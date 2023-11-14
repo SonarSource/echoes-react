@@ -1,0 +1,9 @@
+{
+  "name": "@sonar/echoes-react",
+  "description": "React implementation of Echoes, SONAR's Design System",
+  "packageManager": "yarn@3.6.0",
+  "license": "LGPL-3.0",
+  "dependencies": {
+    "react": "17.0.2"
+  }
+}

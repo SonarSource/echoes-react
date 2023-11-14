@@ -1,0 +1,44 @@
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
+# Swap the comments on the following lines if you wish to use zero-installs
+# Documentation here: https://yarnpkg.com/features/zero-installs
+#!.yarn/cache
+.pnp.*
+
+# ---- IntelliJ IDEA
+*.iws
+*.iml
+*.ipr
+.idea/
+.attach_pid*
+out/
+
+# ---- VS Code
+.vscode/
+*.code-workspace
+
+# ---- Mac OS X
+.DS_Store
+# Thumbnails
+._*
+# Files that might appear on external disk
+.Spotlight-V100
+.Trashes
+
+# ---- Windows
+# Windows image file caches
+Thumbs.db 
+# Folder config file
+Desktop.ini
+
+# ---- Linux
+.directory
+
+# ---- SonarQube
+.sonar/
+.scannerwork/
