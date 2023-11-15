@@ -1,0 +1,48 @@
+/**
+ * Do not edit directly
+ * Generated on Thu, 16 Nov 2023 10:06:17 GMT
+ */
+
+:root {
+  --size-dimension-scale: 2px;
+  --size-dimension-xs: 4px;
+  --size-dimension-sm: 8px;
+  --size-dimension-md: 16px;
+  --size-dimension-lg: 32px;
+  --size-dimension-xl: 64px;
+  --size-spacing-xs: 4px;
+  --size-spacing-sm: 8px;
+  --size-spacing-md: 16px;
+  --size-spacing-lg: 32px;
+  --size-spacing-xl: 64px;
+  --size-spacing-multi-value: 8px 64px; /* You can have multiple values in a single spacing token. Read more on these: https://docs.tokens.studio/available-tokens/spacing-tokens#multi-value-spacing-tokens */
+  --size-border-radius-sm: 4px;
+  --size-border-radius-lg: 8px;
+  --size-border-radius-xl: 16px;
+  --size-border-radius-multi-value: 4px 8px; /* You can have multiple values in a single radius token. Read more on these: https://docs.tokens.studio/available-tokens/border-radius-tokens#single--multiple-values */
+  --opacity-low: 0.1;
+  --opacity-md: 0.5;
+  --opacity-high: 0.9;
+  --font-families-heading: Inter;
+  --font-families-body: Roboto;
+  --line-heights-heading: 1.1;
+  --line-heights-body: 1.4;
+  --letter-spacing-default: 0;
+  --letter-spacing-increased: 1.5em;
+  --letter-spacing-decreased: -0.05em;
+  --paragraph-spacing-h1: 32;
+  --paragraph-spacing-h2: 26;
+  --font-weights-heading-regular: 400;
+  --font-weights-heading-bold: 700;
+  --font-weights-body-regular: 400;
+  --font-weights-body-bold: 700;
+  --font-sizes-h1: 48.829px;
+  --font-sizes-h2: 39.063px;
+  --font-sizes-h3: 31.25px;
+  --font-sizes-h4: 25px;
+  --font-sizes-h5: 20px;
+  --font-sizes-h6: 16px;
+  --font-sizes-body: 16px;
+  --font-sizes-sm: 13.6px;
+  --font-sizes-xs: 10.4px;
+}

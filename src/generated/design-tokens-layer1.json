@@ -1,0 +1,65 @@
+{
+  "size": {
+    "dimension": {
+      "scale": "2px",
+      "xs": "4px",
+      "sm": "8px",
+      "md": "16px",
+      "lg": "32px",
+      "xl": "64px"
+    },
+    "spacing": {
+      "xs": "4px",
+      "sm": "8px",
+      "md": "16px",
+      "lg": "32px",
+      "xl": "64px",
+      "multi-value": "8px 64px"
+    },
+    "borderRadius": {
+      "sm": "4px",
+      "lg": "8px",
+      "xl": "16px",
+      "multi-value": "4px 8px"
+    }
+  },
+  "opacity": {
+    "low": 0.1,
+    "md": 0.5,
+    "high": 0.9
+  },
+  "fontFamilies": {
+    "heading": "Inter",
+    "body": "Roboto"
+  },
+  "lineHeights": {
+    "heading": 1.1,
+    "body": 1.4
+  },
+  "letterSpacing": {
+    "default": "0",
+    "increased": "1.5em",
+    "decreased": "-0.05em"
+  },
+  "paragraphSpacing": {
+    "h1": "32",
+    "h2": "26"
+  },
+  "fontWeights": {
+    "headingRegular": 400,
+    "headingBold": 700,
+    "bodyRegular": 400,
+    "bodyBold": 700
+  },
+  "fontSizes": {
+    "h1": "48.829px",
+    "h2": "39.063px",
+    "h3": "31.25px",
+    "h4": "25px",
+    "h5": "20px",
+    "h6": "16px",
+    "body": "16px",
+    "sm": "13.6px",
+    "xs": "10.4px"
+  }
+}

@@ -1,0 +1,23 @@
+/**
+ * Do not edit directly
+ * Generated on Thu, 16 Nov 2023 10:06:18 GMT
+ */
+
+html[data-theme='light'] {
+  --color-fg-default: #000000;
+  --color-fg-muted: #4a5568;
+  --color-fg-subtle: #a0aec0;
+  --color-bg-default: #ffffff;
+  --color-bg-muted: #f7fafc;
+  --color-bg-subtle: #edf2f7;
+  --color-accent-default: #7f9cf5;
+  --color-accent-on-accent: #ffffff;
+  --color-accent-bg: #c3dafe;
+  --color-shadows-default: #1a202c;
+  --box-shadow-default: 5px 5px 5px 3px rgba(26, 32, 44, 0.15), inset 4px 4px 5px 6px #00000033;
+  --typography-h1-bold: 700 48.829px/1.1 Inter;
+  --typography-h1-regular: 400 48.829px/1.1 Inter;
+  --typography-h2-bold: 700 39.063px/1.1 Inter;
+  --typography-h2-regular: 400 39.063px/1.1 Inter;
+  --typography-body: 400 16px/1.1 Roboto;
+}
