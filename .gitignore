@@ -41,3 +41,7 @@ Desktop.ini
 # ---- SonarQube
 .sonar/
 .scannerwork/
+
+# ---- Storybook
+storybook-static/
+node_modules

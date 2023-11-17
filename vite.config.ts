@@ -31,7 +31,7 @@ import * as packageJson from "./package.json";
 export default defineConfig({
   build: {
     lib: {
-      entry: resolve("src", "index.ts"),
+      entry: resolve("src/index.ts"),
       name: "Echoes",
       formats: ["es"],
       fileName: (_format) => `index.js`,
@@ -73,6 +73,7 @@ export default defineConfig({
     react(),
     dts({
       entryRoot: "src",
+      exclude: ["**/__tests__/**", "**/__stories__/**"],
     }),
   ],
 });
