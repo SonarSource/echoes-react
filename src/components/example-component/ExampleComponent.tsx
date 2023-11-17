@@ -18,7 +18,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-// import React from 'react';
+import styled from '@emotion/styled';
 
 interface Props {
   a: number;
@@ -26,7 +26,12 @@ interface Props {
   c: string;
 }
 
-export function ExampleComponent(props: Props) {
+export function ExampleComponent(props: Readonly<Props>) {
   const { a, b, c } = props;
-  return <div>{b ? a : c}</div>;
+  return <Wrapper>test: {b ? a : c}</Wrapper>;
 }
+
+const Wrapper = styled.div`
+  padding: 20px;
+  background-color: grey;
+`;
