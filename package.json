@@ -20,7 +20,9 @@
     "build-tokens": "node design-tokens/build.js",
     "ts-check": "tsc --noEmit",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "format": "prettier --write --list-different .",
+    "format-check": "prettier --check ."
   },
   "peerDependencies": {
     "react": "17.0.2",
@@ -43,6 +45,7 @@
     "@types/react-dom": "17.0.23",
     "@vitejs/plugin-react": "4.2.0",
     "glob": "10.3.10",
+    "prettier": "3.1.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "storybook": "7.5.3",

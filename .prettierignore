@@ -1,0 +1,11 @@
+src/generated/
+design-tokens/tokens/
+dist/
+node_modules/
+.vscode/
+.yarn/
+.github/
+yarn.lock
+.yarnrc.yml
+.pnp.*
+tsconfig.*
