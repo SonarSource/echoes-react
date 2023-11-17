@@ -10,6 +10,8 @@
 #!.yarn/cache
 .pnp.*
 
+node_modules
+
 # ---- IntelliJ IDEA
 *.iws
 *.iml
