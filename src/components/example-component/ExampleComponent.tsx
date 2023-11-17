@@ -18,6 +18,15 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-export function ExampleComponent() {
-  return null;
+// import React from 'react';
+
+interface Props {
+  a: number;
+  b: boolean;
+  c: string;
+}
+
+export function ExampleComponent(props: Props) {
+  const { a, b, c } = props;
+  return <div>{b ? a : c}</div>;
 }

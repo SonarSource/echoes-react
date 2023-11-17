@@ -1,8 +1,14 @@
 {
   "name": "@sonar/echoes-react",
+  "version": "0.0.0",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "description": "React implementation of Echoes, SONAR's Design System",
   "license": "LGPL-3.0",
-  "type": "module",
   "engines": {
     "node": ">=18.17.0"
   },
@@ -10,13 +16,25 @@
   "scripts": {
     "dev": "echo 'coming soon'",
     "test": "echo 'coming soon'",
-    "build": "node design-tokens/build.js"
+    "build-react": "vite build",
+    "build-tokens": "node design-tokens/build.js",
+    "ts-check": "tsc --noEmit"
   },
-  "dependencies": {
-    "react": "17.0.2"
+  "peerDependencies": {
+    "react": "17.0.2",
+    "react-dom": "17.0.2"
   },
   "devDependencies": {
     "@tokens-studio/sd-transforms": "0.11.10",
-    "style-dictionary": "3.9.0"
+    "@types/node": "18.17.0",
+    "@types/react": "17.0.70",
+    "@types/react-dom": "17.0.23",
+    "@vitejs/plugin-react": "4.2.0",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "style-dictionary": "3.9.0",
+    "typescript": "5.2.2",
+    "vite": "5.0.0",
+    "vite-plugin-dts": "3.6.3"
   }
 }
