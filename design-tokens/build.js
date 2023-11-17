@@ -1,25 +1,25 @@
-import { registerTransforms, transforms } from "@tokens-studio/sd-transforms";
-import * as fs from "fs";
-import StyleDictionary from "style-dictionary";
+import { registerTransforms, transforms } from '@tokens-studio/sd-transforms';
+import * as fs from 'fs';
+import StyleDictionary from 'style-dictionary';
 
 registerTransforms(StyleDictionary, {});
 
-const DESIGN_TOKENS_PATH = "design-tokens/tokens";
-const BUILD_PATH = "src/generated/";
-const NAME_PREFIX = "design-tokens-";
+const DESIGN_TOKENS_PATH = 'design-tokens/tokens';
+const BUILD_PATH = 'src/generated/';
+const NAME_PREFIX = 'design-tokens-';
 const LAYER1_NAME = `${NAME_PREFIX}layer1`;
-const CUSTOM_TRANSFORM_GROUP = "sonar-design-tokens";
-const CUSTOM_FILTER_NO_COLOR = "sonar-no-color";
-const CUSTOM_FILTER_NO_CORE = "sonar-exclude-core";
+const CUSTOM_TRANSFORM_GROUP = 'sonar-design-tokens';
+const CUSTOM_FILTER_NO_COLOR = 'sonar-no-color';
+const CUSTOM_FILTER_NO_CORE = 'sonar-exclude-core';
 
 StyleDictionary.registerTransformGroup({
   name: CUSTOM_TRANSFORM_GROUP,
-  transforms: ["attribute/cti", ...transforms, "name/cti/kebab"],
+  transforms: ['attribute/cti', ...transforms, 'name/cti/kebab'],
 });
 
 StyleDictionary.registerFilter({
   name: CUSTOM_FILTER_NO_COLOR,
-  matcher: (token) => token.attributes.category !== "color",
+  matcher: (token) => token.attributes.category !== 'color',
 });
 
 StyleDictionary.registerFilter({
@@ -37,16 +37,16 @@ StyleDictionary.extend({
       files: [
         {
           destination: `${LAYER1_NAME}.css`,
-          format: "css/variables",
+          format: 'css/variables',
           filter: CUSTOM_FILTER_NO_COLOR,
           options: {
             showFileHeader: true,
-            selector: ":root",
+            selector: ':root',
           },
         },
         {
           destination: `${LAYER1_NAME}.json`,
-          format: "json/nested",
+          format: 'json/nested',
           filter: CUSTOM_FILTER_NO_COLOR,
           options: {
             showFileHeader: true,
@@ -58,13 +58,11 @@ StyleDictionary.extend({
 }).buildAllPlatforms();
 
 // Build themed layers
-const $themes = JSON.parse(
-  fs.readFileSync(`${DESIGN_TOKENS_PATH}/$themes.json`, "utf-8")
-);
+const $themes = JSON.parse(fs.readFileSync(`${DESIGN_TOKENS_PATH}/$themes.json`, 'utf-8'));
 $themes.forEach((theme) => {
   StyleDictionary.extend({
     source: Object.entries(theme.selectedTokenSets)
-      .filter(([, val]) => val !== "disabled")
+      .filter(([, val]) => val !== 'disabled')
       .map(([tokenset]) => `${DESIGN_TOKENS_PATH}/${tokenset}.json`),
     platforms: {
       echoes: {
@@ -73,7 +71,7 @@ $themes.forEach((theme) => {
         files: [
           {
             destination: `${NAME_PREFIX}${theme.name}.css`,
-            format: "css/variables",
+            format: 'css/variables',
             filter: CUSTOM_FILTER_NO_CORE,
             options: {
               showFileHeader: true,
