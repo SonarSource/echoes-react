@@ -38,12 +38,15 @@ export default defineConfig({
     },
     outDir: 'dist',
     rollupOptions: {
-      external: ['react/jsx-runtime', ...Object.keys(packageJson.peerDependencies)],
+      external: [
+        'react/jsx-runtime',
+        '@emotion/react/jsx-runtime',
+        ...Object.keys(packageJson.peerDependencies),
+      ],
       output: {
         globals: {
           react: 'react',
           'react-dom': 'ReactDOM',
-          'react/jsx-runtime': 'react/jsx-runtime',
         },
       },
     },
@@ -70,7 +73,7 @@ export default defineConfig({
     react(),
     dts({
       entryRoot: 'src',
-      exclude: ['**/__tests__/**', '**/__stories__/**'],
+      exclude: ['**/stories/**', '**/__tests__/**', '**/*-stories.*'],
     }),
   ],
 });
