@@ -1,11 +1,19 @@
-import { jsx as r } from "react/jsx-runtime";
-function e(n) {
-  const { a: o, b: t, c: i } = n;
-  return /* @__PURE__ */ r("div", { children: t ? o : i });
+import { jsxs as e } from "@emotion/react/jsx-runtime";
+import p from "@emotion/styled";
+function m(o) {
+  const { a: r, b: t, c: n } = o;
+  return /* @__PURE__ */ e(c, { children: [
+    "test: ",
+    t ? r : n
+  ] });
 }
-function m() {
+const c = p.div`
+  padding: 20px;
+  background-color: grey;
+`;
+function s() {
 }
 export {
-  e as ExampleComponent,
-  m as util
+  m as ExampleComponent,
+  s as util
 };
