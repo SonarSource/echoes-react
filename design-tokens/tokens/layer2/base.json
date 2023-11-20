@@ -1,5 +1,5 @@
 {
-  "color":{
+  "color": {
     "fg": {
       "default": {
         "value": "{color.black}",

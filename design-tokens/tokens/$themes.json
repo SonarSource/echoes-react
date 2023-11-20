@@ -1,20 +1,31 @@
 [
   {
+    "id": "facb569404341346562e3291080d3ebf2ec68957",
     "name": "light",
+    "$figmaStyleReferences": {},
     "selectedTokenSets": {
-      "core": "enabled",
-      "light": "enabled",
-      "dark": "disabled",
-      "theme": "enabled"
-    } 
+      "layer1/base": "source",
+      "layer1/colors": "source",
+      "layer2/base": "enabled",
+      "layer2/light": "enabled",
+      "layer3/base": "enabled",
+      "layer3/light": "enabled"
+    },
+
+    "group": "Themes"
   },
   {
+    "id": "2c04c267b0954974cd2c068cbffdb86a6fadefa4",
     "name": "dark",
+    "$figmaStyleReferences": {},
     "selectedTokenSets": {
-      "core": "enabled",
-      "light": "disabled",
-      "dark": "enabled",
-      "theme": "enabled"
-    } 
+      "layer1/base": "source",
+      "layer1/colors": "source",
+      "layer2/base": "enabled",
+      "layer2/dark": "enabled",
+      "layer3/base": "enabled",
+      "layer3/dark": "enabled"
+    },
+    "group": "Themes"
   }
 ]
