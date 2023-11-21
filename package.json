@@ -14,9 +14,9 @@
   },
   "packageManager": "yarn@4.0.2",
   "scripts": {
-    "dev": "echo 'coming soon'",
+    "dev": "vite build --watch & yarn storybook",
     "test": "echo 'coming soon'",
-    "build-react": "vite build",
+    "build": "vite build",
     "build-tokens": "node design-tokens/build.js",
     "ts-check": "tsc --noEmit",
     "storybook": "storybook dev -p 6006",
