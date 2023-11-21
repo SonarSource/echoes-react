@@ -4,9 +4,7 @@ import type { Preview } from '@storybook/react';
 import React from 'react';
 import { Theme } from '../dist';
 
-const GlobalStoriesStyle = styled.div`
-  color: blue;
-`;
+const GlobalStoriesStyle = styled.div``;
 
 const preview: Preview = {
   parameters: {
