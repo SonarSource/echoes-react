@@ -61,5 +61,24 @@
     "body": "16px",
     "sm": "13.6px",
     "xs": "10.4px"
+  },
+  "typography": {
+    "H1": {
+      "Bold": "700 48.829px/1.1 Inter",
+      "Regular": "400 48.829px/1.1 Inter"
+    },
+    "H2": {
+      "Bold": "700 39.063px/1.1 Inter",
+      "Regular": "400 39.063px/1.1 Inter"
+    },
+    "Body": "400 16px/1.1 Roboto"
+  },
+  "button": {
+    "borderRadius": "8px",
+    "borderWidth": "8px"
+  },
+  "card": {
+    "borderRadius": "8px",
+    "padding": "16px"
   }
 }
