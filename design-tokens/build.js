@@ -1,93 +1,130 @@
 import { registerTransforms, transforms } from '@tokens-studio/sd-transforms';
-import * as fs from 'fs';
+import * as fs from 'node:fs';
 import StyleDictionary from 'style-dictionary';
 
-registerTransforms(StyleDictionary, {});
-
+const DEFAULT_THEME = 'light';
 const DESIGN_TOKENS_PATH = 'design-tokens/tokens';
 const BUILD_PATH = 'src/generated/';
 const NAME_PREFIX = 'design-tokens-';
 const BASE_TOKENS_NAME = `${NAME_PREFIX}base`;
 const CUSTOM_TRANSFORM_GROUP = 'sonar-design-tokens';
 const CUSTOM_FILTER_NO_COLOR = 'sonar-no-color';
-const CUSTOM_FILTER_NO_BASE = 'sonar-exclude-core';
+const CUSTOM_FILTER_THEMED_TOKENS = 'sonar-themed-tokens';
+const themeDefinitions = JSON.parse(fs.readFileSync(`${DESIGN_TOKENS_PATH}/$themes.json`, 'utf-8'));
 
-StyleDictionary.registerTransformGroup({
-  name: CUSTOM_TRANSFORM_GROUP,
-  transforms: ['attribute/cti', ...transforms, 'name/cti/kebab'],
-});
+initStyleDictionary();
+buildBaseTokens();
+buildThemedTokens(themeDefinitions);
+buildCSSRootFile(themeDefinitions);
+buildThemesEnumType(themeDefinitions);
 
-StyleDictionary.registerFilter({
-  name: CUSTOM_FILTER_NO_COLOR,
-  matcher: (token) => token.attributes.category !== 'color',
-});
+function initStyleDictionary() {
+  registerTransforms(StyleDictionary, {});
 
-StyleDictionary.registerFilter({
-  name: CUSTOM_FILTER_NO_BASE,
-  matcher: ({ filePath }) => !filePath.includes(`layer1`) && !filePath.endsWith(`base.json`),
-});
+  StyleDictionary.registerTransformGroup({
+    name: CUSTOM_TRANSFORM_GROUP,
+    transforms: ['attribute/cti', ...transforms, 'color/css', 'name/cti/kebab'],
+  });
 
-// Build base tokens
-console.log('\nBuilding base tokens, no colors allowed...');
-StyleDictionary.extend({
-  source: [
-    `${DESIGN_TOKENS_PATH}/layer1/base.json`,
-    `${DESIGN_TOKENS_PATH}/layer2/base.json`,
-    `${DESIGN_TOKENS_PATH}/layer3/base.json`,
-  ],
-  platforms: {
-    tokens: {
-      transformGroup: CUSTOM_TRANSFORM_GROUP,
-      buildPath: BUILD_PATH,
-      files: [
-        {
-          destination: `${BASE_TOKENS_NAME}.css`,
-          format: 'css/variables',
-          filter: CUSTOM_FILTER_NO_COLOR,
-          options: {
-            showFileHeader: true,
-            selector: ':root',
-          },
-        },
-        {
-          destination: `${BASE_TOKENS_NAME}.json`,
-          format: 'json/nested',
-          filter: CUSTOM_FILTER_NO_COLOR,
-          options: {
-            showFileHeader: true,
-          },
-        },
-      ],
-    },
-  },
-}).buildAllPlatforms();
+  StyleDictionary.registerFilter({
+    name: CUSTOM_FILTER_NO_COLOR,
+    matcher: ({ attributes }) => attributes.category !== 'color',
+  });
 
-// Build themed tokens
-console.log('\nBuilding themed tokens, only colors...');
-const $themes = JSON.parse(fs.readFileSync(`${DESIGN_TOKENS_PATH}/$themes.json`, 'utf-8'));
-$themes.forEach((theme) => {
-  console.log(`\nBuilding "${theme.name}" theme...`);
+  StyleDictionary.registerFilter({
+    name: CUSTOM_FILTER_THEMED_TOKENS,
+    matcher: ({ attributes, filePath }) =>
+      !filePath.includes(`layer1`) &&
+      !(filePath.endsWith('layer2/base.json') && attributes.category !== 'color'),
+  });
+}
+
+// Build base tokens: layer1 base + layer2 base without colors
+function buildBaseTokens() {
+  console.log('\nBuilding base tokens, no colors allowed...');
   StyleDictionary.extend({
-    source: Object.entries(theme.selectedTokenSets)
-      .filter(([, val]) => val !== 'disabled')
-      .map(([tokenset]) => `${DESIGN_TOKENS_PATH}/${tokenset}.json`),
+    source: [`${DESIGN_TOKENS_PATH}/layer1/base.json`, `${DESIGN_TOKENS_PATH}/layer2/base.json`],
     platforms: {
       tokens: {
         transformGroup: CUSTOM_TRANSFORM_GROUP,
         buildPath: BUILD_PATH,
         files: [
           {
-            destination: `${NAME_PREFIX}${theme.name}.css`,
+            destination: `${BASE_TOKENS_NAME}.css`,
             format: 'css/variables',
-            filter: CUSTOM_FILTER_NO_BASE,
+            filter: CUSTOM_FILTER_NO_COLOR,
             options: {
               showFileHeader: true,
-              selector: `html[data-theme='${theme.name}']`,
+              selector: ':root',
+            },
+          },
+          {
+            destination: `${BASE_TOKENS_NAME}.json`,
+            format: 'json/nested',
+            filter: CUSTOM_FILTER_NO_COLOR,
+            options: {
+              showFileHeader: true,
             },
           },
         ],
       },
     },
   }).buildAllPlatforms();
-});
-console.log(`\nThemed tokens builds done.`);
+}
+
+// Build themed tokens: 1 for each themes, without layer1 and layer2 base non colors tokens
+function buildThemedTokens(themes) {
+  console.log('\nBuilding themed tokens, no layer1 or layer2 base non colors...');
+
+  themes.forEach((theme) => {
+    console.log(`\nBuilding "${theme.name}" theme...`);
+    StyleDictionary.extend({
+      source: Object.entries(theme.selectedTokenSets)
+        .filter(([, val]) => val !== 'disabled')
+        .map(([tokenset]) => `${DESIGN_TOKENS_PATH}/${tokenset}.json`),
+      platforms: {
+        tokens: {
+          transformGroup: CUSTOM_TRANSFORM_GROUP,
+          buildPath: BUILD_PATH,
+          files: [
+            {
+              destination: `${NAME_PREFIX}${theme.name}.css`,
+              format: 'css/variables',
+              filter: CUSTOM_FILTER_THEMED_TOKENS,
+              options: {
+                showFileHeader: true,
+                selector:
+                  theme.name === DEFAULT_THEME
+                    ? ':root'
+                    : `html[data-echoes-theme='${theme.name}']`,
+              },
+            },
+          ],
+        },
+      },
+    }).buildAllPlatforms();
+  });
+  console.log(`\nThemed tokens builds done.`);
+}
+
+// Build design tokens css root file
+function buildCSSRootFile(themes) {
+  console.log('\nBuilding design tokens css root file...');
+  const cssRootFileContent = [
+    `@import './${NAME_PREFIX}base.css';`,
+    ...themes.map((theme) => `@import './${NAME_PREFIX}${theme.name}.css';`),
+  ].join('\n');
+  fs.writeFileSync(`${BUILD_PATH}design-tokens.css`, cssRootFileContent);
+  console.log(`Design tokens css root file build done.`);
+}
+
+// Build themes enum TS type
+function buildThemesEnumType(themes) {
+  console.log('\nBuilding themes enum TS type...');
+  const themesEnum = themes.map((theme) => `  ${theme.name} = '${theme.name}',`).join('\n');
+  const themesEnumFileContent = `export enum Theme {
+${themesEnum}
+}`;
+  fs.writeFileSync(`${BUILD_PATH}themes.ts`, themesEnumFileContent);
+  console.log(`Themes enum TS type build done.`);
+}

@@ -72,13 +72,5 @@
       "Regular": "400 39.063px/1.1 Inter"
     },
     "Body": "400 16px/1.1 Roboto"
-  },
-  "button": {
-    "borderRadius": "8px",
-    "borderWidth": "8px"
-  },
-  "card": {
-    "borderRadius": "8px",
-    "padding": "16px"
   }
 }

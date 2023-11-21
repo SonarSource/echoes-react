@@ -1,6 +1,6 @@
 /**
  * Do not edit directly
- * Generated on Tue, 21 Nov 2023 08:01:57 GMT
+ * Generated on Thu, 23 Nov 2023 07:39:20 GMT
  */
 
 html[data-theme='dark'] {
@@ -15,7 +15,11 @@ html[data-theme='dark'] {
   --color-accent-bg: #434190;
   --color-shadows-default: rgba(0, 0, 0, 0.3);
   --box-shadow-default: 5px 5px 5px 3px rgba(rgba(0, 0, 0, 0.3), 0.15), inset 4px 4px 5px 6px #00000033;
+  --button-border-radius: 8px;
+  --button-border-width: 8px;
   --button-primary-background: #434190;
   --button-primary-text: #ffffff;
+  --card-border-radius: 8px;
+  --card-padding: 16px;
   --card-background: #1a202c;
 }
