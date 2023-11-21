@@ -1,9 +1,9 @@
 /**
  * Do not edit directly
- * Generated on Tue, 21 Nov 2023 08:01:56 GMT
+ * Generated on Thu, 23 Nov 2023 07:39:20 GMT
  */
 
-html[data-theme='light'] {
+:root {
   --color-fg-default: #000000;
   --color-fg-muted: #4a5568;
   --color-fg-subtle: #a0aec0;
@@ -15,7 +15,11 @@ html[data-theme='light'] {
   --color-accent-bg: #c3dafe;
   --color-shadows-default: #1a202c;
   --box-shadow-default: 5px 5px 5px 3px rgba(26, 32, 44, 0.15), inset 4px 4px 5px 6px #00000033;
+  --button-border-radius: 8px;
+  --button-border-width: 8px;
   --button-primary-background: #ffffff;
   --button-primary-text: #ffffff;
+  --card-border-radius: 8px;
+  --card-padding: 16px;
   --card-background: #ffffff;
 }
