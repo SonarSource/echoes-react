@@ -18,35 +18,35 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import react from "@vitejs/plugin-react";
+import react from '@vitejs/plugin-react';
 // import autoprefixer from 'autoprefixer';
-import { resolve } from "node:path";
+import { resolve } from 'node:path';
 // import postCssCalc from 'postcss-calc';
 // import tailwind from 'tailwindcss';
-import { defineConfig } from "vite";
-import dts from "vite-plugin-dts";
-import * as packageJson from "./package.json";
+import { defineConfig } from 'vite';
+import dts from 'vite-plugin-dts';
+import * as packageJson from './package.json';
 
 // https://vitejs.dev/config/
 export default defineConfig({
   build: {
     lib: {
-      entry: resolve("src", "index.ts"),
-      name: "Echoes",
-      formats: ["es"],
+      entry: resolve('src/index.ts'),
+      name: 'Echoes',
+      formats: ['es'],
       fileName: (_format) => `index.js`,
     },
-    outDir: "dist",
+    outDir: 'dist',
     rollupOptions: {
       external: [
-        "react/jsx-runtime",
+        'react/jsx-runtime',
+        '@emotion/react/jsx-runtime',
         ...Object.keys(packageJson.peerDependencies),
       ],
       output: {
         globals: {
-          react: "react",
-          "react-dom": "ReactDOM",
-          "react/jsx-runtime": "react/jsx-runtime",
+          react: 'react',
+          'react-dom': 'ReactDOM',
         },
       },
     },
@@ -66,13 +66,14 @@ export default defineConfig({
   },*/
   optimizeDeps: {
     esbuildOptions: {
-      target: "es2022",
+      target: 'es2022',
     },
   },
   plugins: [
     react(),
     dts({
-      entryRoot: "src",
+      entryRoot: 'src',
+      exclude: ['**/stories/**', '**/__tests__/**', '**/*-stories.*'],
     }),
   ],
 });

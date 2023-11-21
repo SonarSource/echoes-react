@@ -19,5 +19,5 @@
  */
 
 export function BasicComponent() {
-  return null;
+  return <>"I'm so basic 🤷‍♂️ I don't have props."</>;
 }

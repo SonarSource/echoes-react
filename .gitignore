@@ -20,6 +20,7 @@ out/
 
 # ---- VS Code
 *.code-workspace
+.vscode/settings.json
 
 # ---- Mac OS X
 .DS_Store
@@ -41,3 +42,7 @@ Desktop.ini
 # ---- SonarQube
 .sonar/
 .scannerwork/
+
+# ---- Storybook
+storybook-static/
+node_modules
