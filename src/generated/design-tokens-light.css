@@ -22,4 +22,11 @@
   --card-border-radius: 8px;
   --card-padding: 16px;
   --card-background: #ffffff;
+
+
+  /* Test for RadioButton */
+  --radio-fg: #5D6CD0;
+  --radio-bg: #E8EBFF;
+  --radio-fg-disabled: #C5CDDF;
+  --radio-bg-disabled: #EFF2F9;
 }
