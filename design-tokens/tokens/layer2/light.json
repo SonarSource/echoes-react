@@ -3,19 +3,19 @@
     "default": {
       "value": [
         {
-          "x": 5,
-          "y": 5,
-          "spread": 3,
+          "x": "5",
+          "y": "5",
+          "spread": "3",
           "color": "rgba({color.shadows.default}, 0.15)",
-          "blur": 5,
+          "blur": "5",
           "type": "dropShadow"
         },
         {
-          "x": 4,
-          "y": 4,
-          "spread": 6,
+          "x": "4",
+          "y": "4",
+          "spread": "6",
           "color": "#00000033",
-          "blur": 5,
+          "blur": "5",
           "type": "innerShadow"
         }
       ],
@@ -25,29 +25,29 @@
   "color": {
     "fg": {
       "default": {
-        "value": "{color.black}",
+        "value": "{color.support.black}",
         "type": "color"
       },
       "muted": {
-        "value": "{color.gray.700}",
+        "value": "{color.gray.500}",
         "type": "color"
       },
       "subtle": {
-        "value": "{color.gray.500}",
+        "value": "{color.gray.300}",
         "type": "color"
       }
     },
     "bg": {
       "default": {
-        "value": "{color.white}",
+        "value": "{color.support.white}",
         "type": "color"
       },
       "muted": {
-        "value": "{color.gray.100}",
+        "value": "{color.gray.25}",
         "type": "color"
       },
       "subtle": {
-        "value": "{color.gray.200}",
+        "value": "{color.gray.50}",
         "type": "color"
       }
     },
@@ -57,17 +57,17 @@
         "type": "color"
       },
       "onAccent": {
-        "value": "{color.white}",
+        "value": "{color.support.white}",
         "type": "color"
       },
       "bg": {
-        "value": "{color.indigo.200}",
+        "value": "{color.indigo.100}",
         "type": "color"
       }
     },
     "shadows": {
       "default": {
-        "value": "{color.gray.900}",
+        "value": "{color.gray.700}",
         "type": "color"
       }
     }

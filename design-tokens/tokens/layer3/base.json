@@ -1,21 +1,21 @@
 {
   "button": {
     "borderRadius": {
-      "value": "{size.borderRadius.lg}",
+      "value": "{borderRadius.lg}",
       "type": "borderRadius"
     },
     "borderWidth": {
-      "value": "{size.dimension.sm}",
+      "value": "{dimension.sm}",
       "type": "borderWidth"
     }
   },
   "card": {
     "borderRadius": {
-      "value": "{size.borderRadius.lg}",
+      "value": "{borderRadius.lg}",
       "type": "borderRadius"
     },
     "padding": {
-      "value": "{size.dimension.md}",
+      "value": "{dimension.md}",
       "type": "dimension"
     }
   }
