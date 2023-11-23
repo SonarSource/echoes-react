@@ -1,19 +1,24 @@
-import { jsxs as e } from "@emotion/react/jsx-runtime";
-import p from "@emotion/styled";
-function m(o) {
-  const { a: r, b: t, c: n } = o;
-  return /* @__PURE__ */ e(c, { children: [
+import "./style.css";
+import { jsxs as n } from "@emotion/react/jsx-runtime";
+import a from "@emotion/styled";
+function l(t) {
+  const { a: o, b: r, c: e } = t;
+  return /* @__PURE__ */ n(c, { children: [
     "test: ",
-    t ? r : n
+    r ? o : e
   ] });
 }
-const c = p.div`
+const c = a.div`
   padding: 20px;
-  background-color: grey;
+  background-color: var(--color-accent-bg);
+  font: var(--typography-h1-bold);
 `;
-function s() {
+function s(t) {
+  document.documentElement.setAttribute("data-echoes-theme", t);
 }
+var d = /* @__PURE__ */ ((t) => (t.light = "light", t.dark = "dark", t))(d || {});
 export {
-  m as ExampleComponent,
-  s as util
+  l as ExampleComponent,
+  d as Theme,
+  s as setTheme
 };

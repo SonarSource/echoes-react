@@ -19,10 +19,7 @@
  */
 
 import react from '@vitejs/plugin-react';
-// import autoprefixer from 'autoprefixer';
-import { resolve } from 'node:path';
-// import postCssCalc from 'postcss-calc';
-// import tailwind from 'tailwindcss';
+import path from 'node:path';
 import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
 import * as packageJson from './package.json';
@@ -31,7 +28,7 @@ import * as packageJson from './package.json';
 export default defineConfig({
   build: {
     lib: {
-      entry: resolve('src/index.ts'),
+      entry: path.resolve('src/index.ts'),
       name: 'Echoes',
       formats: ['es'],
       fileName: (_format) => `index.js`,
@@ -48,22 +45,10 @@ export default defineConfig({
           react: 'react',
           'react-dom': 'ReactDOM',
         },
+        intro: "import './style.css';",
       },
     },
   },
-  // css: {
-  //   postcss: {
-  //     plugins: [
-  //       tailwind('../tailwind.config.js'),
-  //       autoprefixer,
-  //       postCssCalc,
-  //     ],
-  //   },
-  // },
-  /*esbuild: {
-    // https://github.com/vitejs/vite/issues/8644#issuecomment-1159308803
-    logOverride: { "this-is-undefined-in-esm": "silent" },
-  },*/
   optimizeDeps: {
     esbuildOptions: {
       target: 'es2022',

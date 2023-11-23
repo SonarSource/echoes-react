@@ -24,4 +24,5 @@
  *  - Custom hooks, following the naming convention for hooks: useXXXXXXXXXXX
  *
  */
-export function util() {}
+
+export { setTheme } from './theme';
