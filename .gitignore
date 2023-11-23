@@ -46,3 +46,6 @@ Desktop.ini
 # ---- Storybook
 storybook-static/
 node_modules
+
+# ---- Tests
+test-results/
