@@ -1,5 +1,5 @@
 import type { StorybookConfig } from '@storybook/react-vite';
-import path from 'path';
+import path from 'node:path';
 import { mergeConfig } from 'vite';
 
 const config: StorybookConfig = {
@@ -9,6 +9,7 @@ const config: StorybookConfig = {
     '@storybook/addon-essentials',
     '@storybook/addon-a11y',
     '@storybook/addon-interactions',
+    '@storybook/addon-themes',
   ],
   framework: {
     name: '@storybook/react-vite',

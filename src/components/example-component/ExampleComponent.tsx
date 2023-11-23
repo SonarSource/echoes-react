@@ -33,5 +33,6 @@ export function ExampleComponent(props: Readonly<Props>) {
 
 const Wrapper = styled.div`
   padding: 20px;
-  background-color: grey;
+  background-color: var(--color-accent-bg);
+  font: var(--typography-h1-bold);
 `;
