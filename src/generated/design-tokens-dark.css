@@ -1,9 +1,9 @@
 /**
  * Do not edit directly
- * Generated on Thu, 23 Nov 2023 07:39:20 GMT
+ * Generated on Thu, 23 Nov 2023 09:20:19 GMT
  */
 
-html[data-theme='dark'] {
+html[data-echoes-theme='dark'] {
   --color-fg-default: #ffffff;
   --color-fg-muted: #e2e8f0;
   --color-fg-subtle: #a0aec0;

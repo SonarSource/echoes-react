@@ -4,5 +4,5 @@
  *  - Custom hooks, following the naming convention for hooks: useXXXXXXXXXXX
  *
  */
-export declare function util(): void;
+export { setTheme } from './theme';
 //# sourceMappingURL=index.d.ts.map
