@@ -3029,6 +3029,7 @@ __metadata:
     "@storybook/addon-essentials": "npm:7.5.3"
     "@storybook/addon-interactions": "npm:7.5.3"
     "@storybook/addon-links": "npm:7.5.3"
+    "@storybook/addon-themes": "npm:7.5.3"
     "@storybook/blocks": "npm:7.5.3"
     "@storybook/manager-api": "npm:7.5.3"
     "@storybook/react": "npm:7.5.3"
@@ -3337,6 +3338,30 @@ __metadata:
     react-dom:
       optional: true
   checksum: d3232cee9875bd7243cd07d693f36790dc5372c00e9bba310fd54c51a94cdf8a8bf9cf15f55bb24806383d186151531e1d82c10836c666409bade957c915f3b1
+  languageName: node
+  linkType: hard
+
+"@storybook/addon-themes@npm:7.5.3":
+  version: 7.5.3
+  resolution: "@storybook/addon-themes@npm:7.5.3"
+  dependencies:
+    "@storybook/client-logger": "npm:7.5.3"
+    "@storybook/components": "npm:7.5.3"
+    "@storybook/core-events": "npm:7.5.3"
+    "@storybook/manager-api": "npm:7.5.3"
+    "@storybook/preview-api": "npm:7.5.3"
+    "@storybook/theming": "npm:7.5.3"
+    "@storybook/types": "npm:7.5.3"
+    ts-dedent: "npm:^2.0.0"
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0 || ^18.0.0
+    react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
+  peerDependenciesMeta:
+    react:
+      optional: true
+    react-dom:
+      optional: true
+  checksum: 7ecbb6f873ab04e52087114475724b7c8a05aa0e3441b0672e2a827ef36944e8e2d0a194fbfc54e03657bd78b455ecd8668b883e7866504a3b5d55cdb0637c29
   languageName: node
   linkType: hard
 

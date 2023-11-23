@@ -1,7 +1,8 @@
-import { ThemeProvider } from '@emotion/react';
 import styled from '@emotion/styled';
+import { withThemeByDataAttribute } from '@storybook/addon-themes';
 import type { Preview } from '@storybook/react';
 import React from 'react';
+import { Theme } from '../dist';
 
 const GlobalStoriesStyle = styled.div`
   color: blue;
@@ -25,13 +26,19 @@ const preview: Preview = {
     },
   },
   decorators: [
-    (Story: any) => (
-      <ThemeProvider theme={{}}>
+    withThemeByDataAttribute({
+      themes: Object.fromEntries(Object.entries<string>(Theme)),
+      defaultTheme: 'light',
+      attributeName: 'data-echoes-theme',
+      parentSelector: 'html',
+    }),
+    (Story) => {
+      return (
         <GlobalStoriesStyle>
           <Story />
         </GlobalStoriesStyle>
-      </ThemeProvider>
-    ),
+      );
+    },
   ],
 };
 
