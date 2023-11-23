@@ -61,4 +61,11 @@ export default defineConfig({
       exclude: ['**/stories/**', '**/__tests__/**', '**/*-stories.*'],
     }),
   ],
+  resolve: {
+    alias: {
+      '~common': path.resolve(__dirname, './src/common'),
+      '~generated': path.resolve(__dirname, './src/generated'),
+      '~utils': path.resolve(__dirname, './src/utils'),
+    },
+  },
 });
