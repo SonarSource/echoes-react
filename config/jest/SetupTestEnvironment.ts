@@ -1,6 +1,6 @@
 /*
- * SonarQube
- * Copyright (C) 2009-2023 SonarSource SA
+ * Echoes React
+ * Copyright (C) 2023-2023 SonarSource SA
  * mailto:info AT sonarsource DOT com
  *
  * This program is free software; you can redistribute it and/or
