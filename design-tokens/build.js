@@ -11,6 +11,7 @@ const CUSTOM_TRANSFORM_GROUP = 'sonar-design-tokens';
 const CUSTOM_FILTER_NO_COLOR = 'sonar-no-color';
 const CUSTOM_FILTER_THEMED_TOKENS = 'sonar-themed-tokens';
 const themeDefinitions = JSON.parse(fs.readFileSync(`${DESIGN_TOKENS_PATH}/$themes.json`, 'utf-8'));
+const licenceHeader = fs.readFileSync(`config/license/LICENSE-HEADER.txt`, 'utf-8');
 
 initStyleDictionary();
 buildBaseTokens();
@@ -111,6 +112,7 @@ function buildThemedTokens(themes) {
 function buildCSSRootFile(themes) {
   console.log('\nBuilding design tokens css root file...');
   const cssRootFileContent = [
+    licenceHeader,
     `@import './${NAME_PREFIX}base.css';`,
     ...themes.map((theme) => `@import './${NAME_PREFIX}${theme.name}.css';`),
   ].join('\n');
@@ -121,10 +123,10 @@ function buildCSSRootFile(themes) {
 // Build themes enum TS type
 function buildThemesEnumType(themes) {
   console.log('\nBuilding themes enum TS type...');
-  const themesEnum = themes.map((theme) => `  ${theme.name} = '${theme.name}',`).join('\n');
-  const themesEnumFileContent = `export enum Theme {
-${themesEnum}
-}`;
+  const themesEnum = themes.map((theme) => `  ${theme.name} = '${theme.name}',`);
+  const themesEnumFileContent = [licenceHeader, `export enum Theme {`, ...themesEnum, `}`].join(
+    '\n',
+  );
   fs.writeFileSync(`${BUILD_PATH}themes.ts`, themesEnumFileContent);
   console.log(`Themes enum TS type build done.`);
 }

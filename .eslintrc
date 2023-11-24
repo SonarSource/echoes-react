@@ -21,6 +21,7 @@
     "react/no-unstable-nested-components": ["error", { "allowAsProps": true }],
     "react/react-in-jsx-scope": "off",
     "jest/no-large-snapshots": ["error", { "maxSize": 250 }],
+    "header/header": ["error", "config/license/LICENSE-HEADER.txt"],
 
     // New rules added after updating eslint packages to more recent versions than eslint-config-sonarqube
     "jest/prefer-mock-promise-shorthand": "error",
