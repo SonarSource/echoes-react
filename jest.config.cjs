@@ -14,7 +14,10 @@ module.exports = {
     '^~utils/(.*)': '<rootDir>/src/utils/$1',
   },
   setupFiles: ['<rootDir>/config/jest/SetupTestEnvironment.ts'],
-  setupFilesAfterEnv: ['<rootDir>/config/jest/SetupJestAxe.ts'],
+  setupFilesAfterEnv: [
+    '<rootDir>/config/jest/SetupTests.ts',
+    '<rootDir>/config/jest/SetupJestAxe.ts',
+  ],
   snapshotSerializers: ['@emotion/jest/serializer'],
   testEnvironment: 'jsdom',
   testPathIgnorePatterns: [
