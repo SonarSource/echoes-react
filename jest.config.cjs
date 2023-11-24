@@ -1,5 +1,5 @@
 module.exports = {
-  coverageDirectory: '<rootDir>/test-results/coverage',
+  coverageDirectory: '<rootDir>/build-reports/tests/coverage',
   collectCoverageFrom: [
     'src/**/*.{ts,tsx}',
     '!src/generated/*',
