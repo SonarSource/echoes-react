@@ -152,6 +152,8 @@ const SelectionIndicator = styled(RadioGroup.Indicator)`
 `;
 
 const Label = styled.label`
+  display: block;
+  width: 100%;
   cursor: pointer;
   margin-left: var(--size-spacing-sm);
 

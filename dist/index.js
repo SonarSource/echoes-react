@@ -835,6 +835,8 @@ const Ct = k(mt)``, Rt = k.div`
     background-color: var(--radio-fg-disabled);
   }
 `, At = k.label`
+  display: block;
+  width: 100%;
   cursor: pointer;
   margin-left: var(--size-spacing-sm);
 

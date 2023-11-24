@@ -24,7 +24,7 @@ export const Basic: Story = {
       {
         ariaLabel: 'Blabla',
         label: (
-          <div>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
             <span style={{ marginRight: '4px' }}>✅</span>
             <p>This is a complicated Radio Option, that has a pragraph and some stuff</p> <br />
             <ul style={{ display: 'block', listStyle: 'inside' }}>
