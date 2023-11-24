@@ -1,3 +1,23 @@
+/*
+ * Echoes React
+ * Copyright (C) 2023-2023 SonarSource SA
+ * mailto:info AT sonarsource DOT com
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 3 of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program; if not, write to the Free Software Foundation,
+ * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ */
+
 import { registerTransforms, transforms } from '@tokens-studio/sd-transforms';
 import * as fs from 'node:fs';
 import StyleDictionary from 'style-dictionary';
@@ -11,6 +31,7 @@ const CUSTOM_TRANSFORM_GROUP = 'sonar-design-tokens';
 const CUSTOM_FILTER_NO_COLOR = 'sonar-no-color';
 const CUSTOM_FILTER_THEMED_TOKENS = 'sonar-themed-tokens';
 const themeDefinitions = JSON.parse(fs.readFileSync(`${DESIGN_TOKENS_PATH}/$themes.json`, 'utf-8'));
+const licenceHeader = fs.readFileSync(`config/license/LICENSE-HEADER.txt`, 'utf-8');
 
 initStyleDictionary();
 buildBaseTokens();
@@ -111,6 +132,7 @@ function buildThemedTokens(themes) {
 function buildCSSRootFile(themes) {
   console.log('\nBuilding design tokens css root file...');
   const cssRootFileContent = [
+    licenceHeader,
     `@import './${NAME_PREFIX}base.css';`,
     ...themes.map((theme) => `@import './${NAME_PREFIX}${theme.name}.css';`),
   ].join('\n');
@@ -121,10 +143,10 @@ function buildCSSRootFile(themes) {
 // Build themes enum TS type
 function buildThemesEnumType(themes) {
   console.log('\nBuilding themes enum TS type...');
-  const themesEnum = themes.map((theme) => `  ${theme.name} = '${theme.name}',`).join('\n');
-  const themesEnumFileContent = `export enum Theme {
-${themesEnum}
-}`;
+  const themesEnum = themes.map((theme) => `  ${theme.name} = '${theme.name}',`);
+  const themesEnumFileContent = [licenceHeader, `export enum Theme {`, ...themesEnum, `}`].join(
+    '\n',
+  );
   fs.writeFileSync(`${BUILD_PATH}themes.ts`, themesEnumFileContent);
   console.log(`Themes enum TS type build done.`);
 }

@@ -47,5 +47,5 @@ Desktop.ini
 storybook-static/
 node_modules
 
-# ---- Tests
-test-results/
+# ---- Build reports output
+build-reports/

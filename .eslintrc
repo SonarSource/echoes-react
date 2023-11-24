@@ -1,0 +1,44 @@
+{
+  "extends": ["sonarqube"],
+  "plugins": ["header"],
+  "ignorePatterns": [
+    ".github",
+    ".yarn",
+    "node_modules",
+    "design-tokens/tokens",
+    "dist",
+    "src/generated"
+  ],
+  "rules": {
+    // Custom Echoes react config that differs from eslint-config-sonarqube
+    "camelcase": "off",
+    "no-implicit-coercion": [2, { "boolean": true, "number": true, "string": true }],
+    "import/no-default-export": "error",
+    "react/jsx-sort-props": "error",
+    "react/jsx-pascal-case": [2, { "allowNamespace": true }],
+    "react/jsx-no-constructed-context-values": "error",
+    "react/jsx-uses-react": "off",
+    "react/no-unstable-nested-components": ["error", { "allowAsProps": true }],
+    "react/react-in-jsx-scope": "off",
+    "jest/no-large-snapshots": ["error", { "maxSize": 250 }],
+    "header/header": ["error", "config/license/LICENSE-HEADER.txt"],
+
+    // New rules added after updating eslint packages to more recent versions than eslint-config-sonarqube
+    "jest/prefer-mock-promise-shorthand": "error",
+    "promise/catch-or-return": ["warn", { "allowThen": true, "allowFinally": true }]
+  },
+  "overrides": [
+    {
+      "files": ["*-stories.tsx", "vite.config.ts"],
+      "rules": {
+        "import/no-default-export": "off"
+      }
+    },
+    {
+      "files": ["design-tokens/build.js"],
+      "rules": {
+        "no-console": "off"
+      }
+    }
+  ]
+}

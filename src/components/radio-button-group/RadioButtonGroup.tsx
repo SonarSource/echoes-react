@@ -1,6 +1,6 @@
 /*
- * SonarQube
- * Copyright (C) 2009-2023 SonarSource SA
+ * Echoes React
+ * Copyright (C) 2023-2023 SonarSource SA
  * mailto:info AT sonarsource DOT com
  *
  * This program is free software; you can redistribute it and/or
@@ -18,8 +18,8 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import * as RadioGroup from '@radix-ui/react-radio-group';
 import styled from '@emotion/styled';
+import * as RadioGroup from '@radix-ui/react-radio-group';
 import { ReactNode } from 'react';
 
 interface Props {
@@ -40,7 +40,7 @@ export function RadioButtonGroup(props: Readonly<Props>) {
   return (
     <RadioGroupWrapper onValueChange={onChange} {...groupProps}>
       {options.map((o) => (
-        <RadioButton key={o.value} groupId={groupProps.id} {...o} />
+        <RadioButton groupId={groupProps.id} key={o.value} {...o} />
       ))}
     </RadioGroupWrapper>
   );
@@ -76,7 +76,7 @@ function RadioButton(props: Readonly<RadioButtonProps>) {
 
   return (
     <OptionWrapper>
-      <Input aria-label={inputLabel} disabled={disabled} value={value} id={id}>
+      <Input aria-label={inputLabel} disabled={disabled} id={id} value={value}>
         <SelectionIndicator />
       </Input>
       <Label htmlFor={id} {...(disabled ? { 'data-disabled': true } : {})}>

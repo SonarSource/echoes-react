@@ -1,6 +1,6 @@
 /**
  * Do not edit directly
- * Generated on Thu, 23 Nov 2023 09:20:19 GMT
+ * Generated on Fri, 24 Nov 2023 10:25:11 GMT
  */
 
 :root {
@@ -50,11 +50,6 @@
   --typography-h2-bold: 700 39.063px/1.1 Inter;
   --typography-h2-regular: 400 39.063px/1.1 Inter;
   --typography-body: 400 16px/1.1 Roboto;
-
-  --button-border-radius: 8px;
-  --button-border-width: 8px;
-  --card-border-radius: 8px;
-  --card-padding: 16px;
 
   /* Test for RadioButton */
   --radio-size-indicator: 6px;

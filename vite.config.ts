@@ -1,6 +1,6 @@
 /*
- * SonarQube
- * Copyright (C) 2009-2023 SonarSource SA
+ * Echoes React
+ * Copyright (C) 2023-2023 SonarSource SA
  * mailto:info AT sonarsource DOT com
  *
  * This program is free software; you can redistribute it and/or
@@ -20,6 +20,7 @@
 
 import react from '@vitejs/plugin-react';
 import path from 'node:path';
+import license from 'rollup-plugin-license';
 import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
 import * as packageJson from './package.json';
@@ -41,11 +42,21 @@ export default defineConfig({
         ...Object.keys(packageJson.peerDependencies),
       ],
       output: {
+        intro: `import './style.css';`,
         globals: {
           react: 'react',
           'react-dom': 'ReactDOM',
         },
-        intro: "import './style.css';",
+        plugins: [
+          license({
+            sourcemap: true,
+            banner: {
+              content: {
+                file: path.resolve(__dirname, 'config/license/LICENSE-BANNER.txt'),
+              },
+            },
+          }),
+        ],
       },
     },
   },
@@ -58,7 +69,7 @@ export default defineConfig({
     react(),
     dts({
       entryRoot: 'src',
-      exclude: ['**/stories/**', '**/__tests__/**', '**/*-stories.*'],
+      exclude: ['**/config/**', '**/stories/**', '**/__tests__/**', '**/*-stories.*'],
     }),
   ],
   resolve: {

@@ -1,3 +1,25 @@
+/**
+ * Echoes React
+ * Version: 0.0.0
+ * Generated: 2023-11-24
+ * Copyright (C) 2023-2023 SonarSource SA
+ * mailto:info AT sonarsource DOT com
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 3 of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program; if not, write to the Free Software Foundation,
+ * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ */
+
 import "./style.css";
 import { jsxs as ee, jsx as F } from "@emotion/react/jsx-runtime";
 import k from "@emotion/styled";
@@ -773,7 +795,7 @@ function Ot(e) {
 function xt(e) {
   const { ariaLabel: t, disabled: o, groupId: n, label: r, value: c } = e, s = `${n}-${c}`;
   return /* @__PURE__ */ ee(Rt, { children: [
-    /* @__PURE__ */ F(St, { "aria-label": t ?? (typeof r == "string" ? r : void 0), disabled: o, value: c, id: s, children: /* @__PURE__ */ F(It, {}) }),
+    /* @__PURE__ */ F(St, { "aria-label": t ?? (typeof r == "string" ? r : void 0), disabled: o, id: s, value: c, children: /* @__PURE__ */ F(It, {}) }),
     /* @__PURE__ */ F(At, { htmlFor: s, ...o ? { "data-disabled": !0 } : {}, children: r })
   ] });
 }
