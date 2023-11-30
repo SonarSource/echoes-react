@@ -7,7 +7,7 @@
           "fontFamily": "{fontFamily.sans}",
           "fontWeight": "{fontWeight.semiBold}",
           "lineHeight": "{lineHeight.heading}",
-          "fontSize": "{fontSize.headingXXXL}",
+          "fontSize": "{fontSize.heading xl}",
           "paragraphSpacing": "{paragraphSpacing.small}",
           "letterSpacing": "{letterSpacing.decreased}"
         }
@@ -20,7 +20,7 @@
           "fontFamily": "{fontFamily.sans}",
           "fontWeight": "{fontWeight.regular}",
           "lineHeight": "{lineHeight.heading}",
-          "fontSize": "{fontSize.bodyLarge}",
+          "fontSize": "{fontSize.body large}",
           "paragraphSpacing": "{paragraphSpacing.medium}"
         }
       }

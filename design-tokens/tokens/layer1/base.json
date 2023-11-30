@@ -21,16 +21,16 @@
         "value": "0.5rem",
         "type": "dimension"
       },
-      "125": {
-        "value": "0.75rem",
-        "type": "dimension"
-      },
       "150": {
-        "value": "1.25rem",
+        "value": "0.75rem",
         "type": "dimension"
       },
       "200": {
         "value": "1rem",
+        "type": "dimension"
+      },
+      "250": {
+        "value": "1.25rem",
         "type": "dimension"
       },
       "300": {
@@ -54,14 +54,14 @@
         "type": "dimension"
       }
     },
-    "sizes": {
+    "size": {
       "global": {
         "xs": {
           "value": "0.25rem",
           "type": "dimension"
         }
       },
-      "icons": {
+      "icon": {
         "sm": {
           "value": "1rem",
           "type": "dimension"
@@ -78,24 +78,24 @@
     }
   },
   "borderRadius": {
-    "sm": {
-      "value": "2",
+    "10": {
+      "value": "2px",
       "type": "borderRadius"
     },
-    "lg": {
-      "value": "8",
+    "20": {
+      "value": "4px",
       "type": "borderRadius"
     },
-    "md": {
-      "value": "4",
+    "40": {
+      "value": "8px",
       "type": "borderRadius"
     },
-    "none": {
-      "value": "0",
+    "00": {
+      "value": "0px",
       "type": "borderRadius"
     },
     "circle": {
-      "value": "700",
+      "value": "700px",
       "type": "borderRadius"
     }
   },
@@ -167,42 +167,38 @@
     "regular": {
       "value": "Regular",
       "type": "fontWeights"
+    },
+    "italic": {
+      "value": "Italic",
+      "type": "fontWeights"
     }
   },
   "fontSize": {
-    "headingXXXL": {
+    "heading xl": {
       "value": "2.125rem",
       "type": "fontSizes"
     },
-    "headingXXL": {
+    "heading l": {
       "value": "1.5rem",
       "type": "fontSizes"
     },
-    "headingXL": {
+    "heading m": {
       "value": "1.25rem",
       "type": "fontSizes"
     },
-    "headingL": {
+    "heading s": {
       "value": "1rem",
       "type": "fontSizes"
     },
-    "headingM": {
-      "value": "0.85rem",
-      "type": "fontSizes"
-    },
-    "headingS": {
-      "value": "0.75rem",
-      "type": "fontSizes"
-    },
-    "bodyLarge": {
+    "body large": {
       "value": "1rem",
       "type": "fontSizes"
     },
-    "bodyMedium": {
+    "body medium": {
       "value": "0.875rem",
       "type": "fontSizes"
     },
-    "bodySmall": {
+    "body small": {
       "value": "0.75rem",
       "type": "fontSizes"
     }
@@ -219,7 +215,7 @@
         "fontFamily": "{fontFamily.sans}",
         "fontWeight": "{fontWeight.regular}",
         "lineHeight": "{lineHeight.body}",
-        "fontSize": "{fontSize.bodyMedium}",
+        "fontSize": "{fontSize.body medium}",
         "letterSpacing": "{letterSpacing.default}",
         "paragraphSpacing": "{paragraphSpacing.medium}"
       },
@@ -230,7 +226,7 @@
         "fontFamily": "{fontFamily.sans}",
         "fontWeight": "{fontWeight.regular}",
         "lineHeight": "{lineHeight.body}",
-        "fontSize": "{fontSize.bodySmall}",
+        "fontSize": "{fontSize.body small}",
         "letterSpacing": "{letterSpacing.default}",
         "paragraphSpacing": "{paragraphSpacing.small}"
       },
@@ -241,7 +237,7 @@
         "fontFamily": "{fontFamily.sans}",
         "fontWeight": "{fontWeight.regular}",
         "lineHeight": "{lineHeight.body}",
-        "fontSize": "{fontSize.bodyLarge}",
+        "fontSize": "{fontSize.body large}",
         "letterSpacing": "{letterSpacing.default}",
         "paragraphSpacing": "{paragraphSpacing.large}"
       },
@@ -252,7 +248,7 @@
         "fontFamily": "{fontFamily.sans}",
         "fontWeight": "{fontWeight.semiBold}",
         "lineHeight": "{lineHeight.body}",
-        "fontSize": "{fontSize.bodyMedium}",
+        "fontSize": "{fontSize.body medium}",
         "letterSpacing": "{letterSpacing.default}",
         "paragraphSpacing": "{paragraphSpacing.medium}"
       },
@@ -277,6 +273,77 @@
     "underline": {
       "value": "underline",
       "type": "textDecoration"
+    }
+  },
+  "heading": {
+    "heading s": {
+      "value": {
+        "fontFamily": "{fontFamily.sans}",
+        "fontWeight": "{fontWeight.semiBold}",
+        "lineHeight": "{lineHeight.heading}",
+        "fontSize": "{fontSize.heading s}",
+        "letterSpacing": "{letterSpacing.decreased}"
+      },
+      "type": "typography"
+    },
+    "heading m": {
+      "value": {
+        "fontFamily": "{fontFamily.sans}",
+        "fontWeight": "{fontWeight.semiBold}",
+        "lineHeight": "{lineHeight.heading}",
+        "fontSize": "{fontSize.heading m}",
+        "letterSpacing": "{letterSpacing.decreased}"
+      },
+      "type": "typography"
+    },
+    "heading l": {
+      "value": {
+        "fontFamily": "{fontFamily.sans}",
+        "fontWeight": "{fontWeight.semiBold}",
+        "lineHeight": "{lineHeight.heading}",
+        "fontSize": "{fontSize.heading l}",
+        "letterSpacing": "{letterSpacing.decreased}"
+      },
+      "type": "typography"
+    },
+    "heading xl": {
+      "value": {
+        "fontFamily": "{fontFamily.sans}",
+        "fontWeight": "{fontWeight.semiBold}",
+        "lineHeight": "{lineHeight.heading}",
+        "fontSize": "{fontSize.heading xl}",
+        "letterSpacing": "{letterSpacing.decreased}"
+      },
+      "type": "typography"
+    }
+  },
+  "code": {
+    "default": {
+      "value": {
+        "fontFamily": "{fontFamily.mono}",
+        "fontWeight": "{fontWeight.regular}",
+        "lineHeight": "{lineHeight.body}",
+        "fontSize": "{fontSize.body medium}"
+      },
+      "type": "typography"
+    },
+    "highlight": {
+      "value": {
+        "fontFamily": "{fontFamily.mono}",
+        "fontWeight": "{fontWeight.bold}",
+        "lineHeight": "{lineHeight.body}",
+        "fontSize": "{fontSize.body medium}"
+      },
+      "type": "typography"
+    },
+    "comment": {
+      "value": {
+        "fontFamily": "{fontFamily.mono}",
+        "fontWeight": "{fontWeight.italic}",
+        "lineHeight": "{lineHeight.body}",
+        "fontSize": "{fontSize.body medium}"
+      },
+      "type": "typography"
     }
   }
 }

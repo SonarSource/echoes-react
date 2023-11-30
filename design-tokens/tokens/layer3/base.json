@@ -1,7 +1,7 @@
 {
   "button": {
     "borderRadius": {
-      "value": "{borderRadius.lg}",
+      "value": "{borderRadius.40}",
       "type": "borderRadius"
     },
     "borderWidth": {
@@ -11,7 +11,7 @@
   },
   "card": {
     "borderRadius": {
-      "value": "{borderRadius.lg}",
+      "value": "{borderRadius.40}",
       "type": "borderRadius"
     },
     "padding": {
