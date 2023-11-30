@@ -29,11 +29,11 @@
         "type": "color"
       },
       "muted": {
-        "value": "{color.gray.500}",
+        "value": "{color.grey.500}",
         "type": "color"
       },
       "subtle": {
-        "value": "{color.gray.300}",
+        "value": "{color.grey.300}",
         "type": "color"
       }
     },
@@ -43,11 +43,11 @@
         "type": "color"
       },
       "muted": {
-        "value": "{color.gray.25}",
+        "value": "{color.grey.25}",
         "type": "color"
       },
       "subtle": {
-        "value": "{color.gray.50}",
+        "value": "{color.grey.50}",
         "type": "color"
       }
     },

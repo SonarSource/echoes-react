@@ -8,6 +8,10 @@
       "white": {
         "value": "#ffffff",
         "type": "color"
+      },
+      "transparent": {
+        "value": "rgba(0,0,0,0)",
+        "type": "color"
       }
     },
     "grey": {

@@ -1,61 +1,28 @@
 {
   "typography": {
-    "H1": {
-      "Bold": {
+    "headings": {
+      "H1": {
         "type": "typography",
         "value": {
-          "fontFamily": "{fontFamilies.mono}",
-          "fontWeight": "{fontWeights.semiBold}",
-          "lineHeight": "{lineHeights.heading}",
-          "fontSize": "{fontSizes.headingXXXL}",
-          "paragraphSpacing": "{paragraphSpacing.small}",
-          "letterSpacing": "{letterSpacing.decreased}"
-        }
-      },
-      "Regular": {
-        "type": "typography",
-        "value": {
-          "fontFamily": "{fontFamilies.mono}",
-          "fontWeight": "{fontWeights.bold}",
-          "lineHeight": "{lineHeights.heading}",
-          "fontSize": "{fontSizes.headingXXXL}",
+          "fontFamily": "{fontFamily.sans}",
+          "fontWeight": "{fontWeight.semiBold}",
+          "lineHeight": "{lineHeight.heading}",
+          "fontSize": "{fontSize.headingXXXL}",
           "paragraphSpacing": "{paragraphSpacing.small}",
           "letterSpacing": "{letterSpacing.decreased}"
         }
       }
     },
-    "H2": {
-      "Bold": {
+    "paragraph": {
+      "text large": {
         "type": "typography",
         "value": {
-          "fontFamily": "{fontFamilies.mono}",
-          "fontWeight": "{fontWeights.semiBold}",
-          "lineHeight": "{lineHeights.heading}",
-          "fontSize": "{fontSizes.headingXXL}",
-          "paragraphSpacing": "{paragraphSpacing.medium}",
-          "letterSpacing": "{letterSpacing.decreased}"
+          "fontFamily": "{fontFamily.sans}",
+          "fontWeight": "{fontWeight.regular}",
+          "lineHeight": "{lineHeight.heading}",
+          "fontSize": "{fontSize.bodyLarge}",
+          "paragraphSpacing": "{paragraphSpacing.medium}"
         }
-      },
-      "Regular": {
-        "type": "typography",
-        "value": {
-          "fontFamily": "{fontFamilies.mono}",
-          "fontWeight": "{fontWeights.bold}",
-          "lineHeight": "{lineHeights.heading}",
-          "fontSize": "{fontSizes.headingXXL}",
-          "paragraphSpacing": "{paragraphSpacing.medium}",
-          "letterSpacing": "{letterSpacing.decreased}"
-        }
-      }
-    },
-    "Body": {
-      "type": "typography",
-      "value": {
-        "fontFamily": "{fontFamilies.sans}",
-        "fontWeight": "{fontWeights.regular}",
-        "lineHeight": "{lineHeights.heading}",
-        "fontSize": "{fontSizes.bodyLarge}",
-        "paragraphSpacing": "{paragraphSpacing.medium}"
       }
     }
   }
