@@ -2,11 +2,11 @@
   "color": {
     "support": {
       "black": {
-        "value": "#000000",
+        "value": "rgb(0,0,0)",
         "type": "color"
       },
       "white": {
-        "value": "#ffffff",
+        "value": "rgb(255,255,255)",
         "type": "color"
       },
       "transparent": {
