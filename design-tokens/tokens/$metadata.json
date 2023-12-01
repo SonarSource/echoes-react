@@ -1,12 +1,12 @@
 {
   "tokenSetOrder": [
-    "layer1/base",
-    "layer1/colors",
-    "layer2/base",
-    "layer2/light",
-    "layer2/dark",
-    "layer3/base",
-    "layer3/light",
-    "layer3/dark"
+    "echoes/layer1/base",
+    "echoes/layer1/colors",
+    "echoes/layer2/base",
+    "echoes/layer2/light",
+    "echoes/layer2/dark",
+    "echoes/layer3/base",
+    "echoes/layer3/light",
+    "echoes/layer3/dark"
   ]
 }

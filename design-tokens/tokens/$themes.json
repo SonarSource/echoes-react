@@ -4,12 +4,14 @@
     "name": "light",
     "$figmaStyleReferences": {},
     "selectedTokenSets": {
-      "layer1/base": "source",
-      "layer1/colors": "source",
-      "layer2/base": "enabled",
-      "layer2/light": "enabled",
-      "layer3/base": "enabled",
-      "layer3/light": "enabled"
+      "echoes/layer1/base": "source",
+      "echoes/layer1/colors": "source",
+      "echoes/layer2/base": "enabled",
+      "echoes/layer2/light": "enabled",
+      "echoes/layer2/dark": "disabled",
+      "echoes/layer3/base": "enabled",
+      "echoes/layer3/light": "enabled",
+      "echoes/layer3/dark": "disabled"
     },
     "group": "Themes"
   },
@@ -18,12 +20,14 @@
     "name": "dark",
     "$figmaStyleReferences": {},
     "selectedTokenSets": {
-      "layer1/base": "source",
-      "layer1/colors": "source",
-      "layer2/base": "enabled",
-      "layer2/dark": "enabled",
-      "layer3/base": "enabled",
-      "layer3/dark": "enabled"
+      "echoes/layer1/base": "source",
+      "echoes/layer1/colors": "source",
+      "echoes/layer2/base": "enabled",
+      "echoes/layer2/light": "disabled",
+      "echoes/layer2/dark": "enabled",
+      "echoes/layer3/base": "enabled",
+      "echoes/layer3/light": "disabled",
+      "echoes/layer3/dark": "enabled"
     },
     "group": "Themes"
   }

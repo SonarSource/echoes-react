@@ -65,36 +65,42 @@
         "value": "{color.grey.50}"
       },
       "accent": {
-        "type": "color",
-        "value": "{color.indigo.500}"
-      },
-      "accent--hover": {
-        "type": "color",
-        "value": "{color.indigo.600}"
-      },
-      "accent--active": {
-        "type": "color",
-        "value": "{color.indigo.600}"
-      },
-      "accent--disabled": {
-        "type": "color",
-        "value": "{color.grey.50}"
-      },
-      "accent-light": {
-        "type": "color",
-        "value": "{color.indigo.50}"
-      },
-      "accent-light--hover": {
-        "type": "color",
-        "value": "{color.indigo.100}"
-      },
-      "accent-light--active": {
-        "type": "color",
-        "value": "{color.indigo.100}"
-      },
-      "accent-light--disabled": {
-        "type": "color",
-        "value": "{color.grey.50}"
+        "default": {
+          "accent": {
+            "type": "color",
+            "value": "{color.indigo.500}"
+          },
+          "accent--hover": {
+            "type": "color",
+            "value": "{color.indigo.600}"
+          },
+          "accent--active": {
+            "type": "color",
+            "value": "{color.indigo.600}"
+          },
+          "accent--disabled": {
+            "type": "color",
+            "value": "{color.grey.50}"
+          }
+        },
+        "light": {
+          "accent-light": {
+            "type": "color",
+            "value": "{color.indigo.50}"
+          },
+          "accent-light--hover": {
+            "type": "color",
+            "value": "{color.indigo.100}"
+          },
+          "accent-light--active": {
+            "type": "color",
+            "value": "{color.indigo.100}"
+          },
+          "accent-light--disabled": {
+            "type": "color",
+            "value": "{color.grey.50}"
+          }
+        }
       },
       "warning": {
         "type": "color",
@@ -113,48 +119,60 @@
         "value": "{color.yellowGreen.50}"
       },
       "danger": {
-        "type": "color",
-        "value": "{color.red.600}"
-      },
-      "danger--hover": {
-        "type": "color",
-        "value": "{color.red.700}"
-      },
-      "danger--active": {
-        "type": "color",
-        "value": "{color.red.700}"
-      },
-      "danger--focused": {
-        "type": "color",
-        "value": "{color.red.600}"
-      },
-      "danger--disabled": {
-        "type": "color",
-        "value": "{color.grey.50}"
-      },
-      "danger-light": {
-        "type": "color",
-        "value": "{color.red.50}"
-      },
-      "danger-light--hover": {
-        "type": "color",
-        "value": "{color.red.100}"
-      },
-      "danger-light--active": {
-        "type": "color",
-        "value": "{color.red.100}"
+        "default": {
+          "danger": {
+            "type": "color",
+            "value": "{color.red.600}"
+          },
+          "danger--hover": {
+            "type": "color",
+            "value": "{color.red.700}"
+          },
+          "danger--active": {
+            "type": "color",
+            "value": "{color.red.700}"
+          },
+          "danger--focused": {
+            "type": "color",
+            "value": "{color.red.600}"
+          },
+          "danger--disabled": {
+            "type": "color",
+            "value": "{color.grey.50}"
+          }
+        },
+        "light": {
+          "danger-light": {
+            "type": "color",
+            "value": "{color.red.50}"
+          },
+          "danger-light--hover": {
+            "type": "color",
+            "value": "{color.red.100}"
+          },
+          "danger-light--active": {
+            "type": "color",
+            "value": "{color.red.100}"
+          }
+        }
       },
       "danger-light--disabled": {
         "type": "color",
         "value": "{color.grey.50}"
       },
       "info": {
-        "type": "color",
-        "value": "{color.blue.500}"
-      },
-      "info-light": {
-        "type": "color",
-        "value": "{color.blue.50}"
+        "default": {
+          "info": {
+            "type": "color",
+            "value": "{color.blue.500}"
+          }
+        },
+        "light": {
+          "light": {
+            "type": "color",
+            "value": "{color.blue.50}"
+          }
+        }
       },
       "transparent": {
         "type": "color",

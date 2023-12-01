@@ -265,7 +265,7 @@
         "value": "{color.grey.600}"
       }
     },
-    "border" : {
+    "border": {
       "default": {
         "type": "color",
         "value": "{color.grey.500}"
