@@ -2,18 +2,18 @@
   "button": {
     "primary": {
       "background": {
-        "value": "{color.accent.onAccent}",
+        "value": "{color.text.onColor}",
         "type": "color"
       },
       "text": {
-        "value": "{color.accent.onAccent}",
+        "value": "{color.background.accent.default.accent--active}",
         "type": "color"
       }
     }
   },
   "card": {
     "background": {
-      "value": "{color.bg.default}",
+      "value": "{color.background.danger.default.danger--disabled}",
       "type": "color"
     }
   }

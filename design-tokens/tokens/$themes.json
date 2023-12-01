@@ -8,10 +8,8 @@
       "echoes/layer1/colors": "source",
       "echoes/layer2/base": "enabled",
       "echoes/layer2/light": "enabled",
-      "echoes/layer2/dark": "disabled",
       "echoes/layer3/base": "enabled",
-      "echoes/layer3/light": "enabled",
-      "echoes/layer3/dark": "disabled"
+      "echoes/layer3/light": "enabled"
     },
     "group": "Themes"
   },
@@ -23,10 +21,8 @@
       "echoes/layer1/base": "source",
       "echoes/layer1/colors": "source",
       "echoes/layer2/base": "enabled",
-      "echoes/layer2/light": "disabled",
       "echoes/layer2/dark": "enabled",
       "echoes/layer3/base": "enabled",
-      "echoes/layer3/light": "disabled",
       "echoes/layer3/dark": "enabled"
     },
     "group": "Themes"

@@ -5,7 +5,7 @@
       "type": "borderRadius"
     },
     "borderWidth": {
-      "value": "{dimension.sm}",
+      "value": "{borderWidth.default}",
       "type": "borderWidth"
     }
   },
@@ -15,7 +15,7 @@
       "type": "borderRadius"
     },
     "padding": {
-      "value": "{dimension.md}",
+      "value": "{dimension.size.icon.lg}",
       "type": "dimension"
     }
   }
