@@ -345,5 +345,40 @@
       },
       "type": "typography"
     }
+  },
+  "others": {
+    "label": {
+      "value": {
+        "fontFamily": "{fontFamily.sans}",
+        "fontWeight": "{fontWeight.semiBold}",
+        "lineHeight": "{lineHeight.body}",
+        "fontSize": "{fontSize.body medium}",
+        "letterSpacing": "{letterSpacing.default}",
+        "textDecoration": "{textDecoration.none}"
+      },
+      "type": "typography"
+    },
+    "link": {
+      "value": {
+        "fontFamily": "{fontFamily.sans}",
+        "fontWeight": "{fontWeight.semiBold}",
+        "lineHeight": "{lineHeight.body}",
+        "fontSize": "{fontSize.body medium}",
+        "letterSpacing": "{letterSpacing.default}",
+        "textDecoration": "{textDecoration.underline}"
+      },
+      "type": "typography"
+    },
+    "link-large": {
+      "value": {
+        "fontFamily": "{fontFamily.sans}",
+        "fontWeight": "{fontWeight.semiBold}",
+        "lineHeight": "{lineHeight.body}",
+        "fontSize": "{fontSize.body large}",
+        "letterSpacing": "{letterSpacing.default}",
+        "textDecoration": "{textDecoration.underline}"
+      },
+      "type": "typography"
+    }
   }
 }
