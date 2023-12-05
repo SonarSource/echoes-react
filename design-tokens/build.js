@@ -26,7 +26,6 @@ const DEFAULT_THEME = 'light';
 const DESIGN_TOKENS_PATH = 'design-tokens/tokens';
 const BUILD_PATH = 'src/generated/';
 const NAME_PREFIX = 'design-tokens-';
-const VARIABLE_NAME_PREFIX = 'echoes';
 const BASE_TOKENS_NAME = `${NAME_PREFIX}base`;
 const CUSTOM_TRANSFORM_GROUP = 'sonar-design-tokens';
 const CUSTOM_FILTER_NO_COLOR = 'sonar-no-color';
@@ -65,15 +64,11 @@ function initStyleDictionary() {
 function buildBaseTokens() {
   console.log('\nBuilding base tokens, no colors allowed...');
   StyleDictionary.extend({
-    source: [
-      `${DESIGN_TOKENS_PATH}/echoes/layer1/base.json`,
-      `${DESIGN_TOKENS_PATH}/echoes/layer2/base.json`,
-    ],
+    source: [`${DESIGN_TOKENS_PATH}/layer1/base.json`, `${DESIGN_TOKENS_PATH}/layer2/base.json`],
     platforms: {
       tokens: {
         transformGroup: CUSTOM_TRANSFORM_GROUP,
         buildPath: BUILD_PATH,
-        prefix: VARIABLE_NAME_PREFIX,
         files: [
           {
             destination: `${BASE_TOKENS_NAME}.css`,
@@ -112,7 +107,6 @@ function buildThemedTokens(themes) {
         tokens: {
           transformGroup: CUSTOM_TRANSFORM_GROUP,
           buildPath: BUILD_PATH,
-          prefix: VARIABLE_NAME_PREFIX,
           files: [
             {
               destination: `${NAME_PREFIX}${theme.name}.css`,
