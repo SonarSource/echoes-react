@@ -1,56 +1,81 @@
 /**
  * Do not edit directly
- * Generated on Fri, 24 Nov 2023 10:25:11 GMT
+ * Generated on Fri, 08 Dec 2023 10:20:18 GMT
  */
 
 :root {
-  --size-dimension-scale: 2px;
-  --size-dimension-xs: 4px;
-  --size-dimension-sm: 8px;
-  --size-dimension-md: 16px;
-  --size-dimension-lg: 32px;
-  --size-dimension-xl: 64px;
-  --size-spacing-xs: 4px;
-  --size-spacing-sm: 8px;
-  --size-spacing-md: 16px;
-  --size-spacing-lg: 32px;
-  --size-spacing-xl: 64px;
-  --size-spacing-multi-value: 8px 64px; /* You can have multiple values in a single spacing token. Read more on these: https://docs.tokens.studio/available-tokens/spacing-tokens#multi-value-spacing-tokens */
-  --size-border-radius-sm: 4px;
-  --size-border-radius-lg: 8px;
-  --size-border-radius-xl: 16px;
-  --size-border-radius-multi-value: 4px 8px; /* You can have multiple values in a single radius token. Read more on these: https://docs.tokens.studio/available-tokens/border-radius-tokens#single--multiple-values */
-  --opacity-low: 0.1;
-  --opacity-md: 0.5;
-  --opacity-high: 0.9;
-  --font-families-heading: Inter;
-  --font-families-body: Roboto;
-  --line-heights-heading: 1.1;
-  --line-heights-body: 1.4;
-  --letter-spacing-default: 0;
-  --letter-spacing-increased: 1.5em;
-  --letter-spacing-decreased: -0.05em;
-  --paragraph-spacing-h1: 32;
-  --paragraph-spacing-h2: 26;
-  --font-weights-heading-regular: 400;
-  --font-weights-heading-bold: 700;
-  --font-weights-body-regular: 400;
-  --font-weights-body-bold: 700;
-  --font-sizes-h1: 48.829px;
-  --font-sizes-h2: 39.063px;
-  --font-sizes-h3: 31.25px;
-  --font-sizes-h4: 25px;
-  --font-sizes-h5: 20px;
-  --font-sizes-h6: 16px;
-  --font-sizes-body: 16px;
-  --font-sizes-sm: 13.6px;
-  --font-sizes-xs: 10.4px;
-  --typography-h1-bold: 700 48.829px/1.1 Inter;
-  --typography-h1-regular: 400 48.829px/1.1 Inter;
-  --typography-h2-bold: 700 39.063px/1.1 Inter;
-  --typography-h2-regular: 400 39.063px/1.1 Inter;
-  --typography-body: 400 16px/1.1 Roboto;
-
-  /* Test for RadioButton */
-  --radio-size-indicator: 6px;
+  --echoes-dimension-space-0: 0px;
+  --echoes-dimension-space-25: 0.125rem;
+  --echoes-dimension-space-50: 0.25rem;
+  --echoes-dimension-space-75: 0.375rem;
+  --echoes-dimension-space-100: 0.5rem;
+  --echoes-dimension-space-150: 0.75rem;
+  --echoes-dimension-space-200: 1rem;
+  --echoes-dimension-space-250: 1.25rem;
+  --echoes-dimension-space-300: 1.5rem;
+  --echoes-dimension-space-400: 2rem;
+  --echoes-dimension-space-500: 2.5rem;
+  --echoes-dimension-space-600: 3rem;
+  --echoes-dimension-space-800: 4rem;
+  --echoes-dimension-size-0: 0px;
+  --echoes-dimension-size-25: 0.125rem;
+  --echoes-dimension-size-50: 0.25rem;
+  --echoes-dimension-size-75: 0.375rem;
+  --echoes-dimension-size-100: 0.5rem;
+  --echoes-dimension-size-150: 0.75rem;
+  --echoes-dimension-size-200: 1rem;
+  --echoes-dimension-size-250: 1.25rem;
+  --echoes-dimension-size-300: 1.5rem;
+  --echoes-dimension-size-400: 2rem;
+  --echoes-dimension-size-450: 2.25rem;
+  --echoes-dimension-size-500: 2.5rem;
+  --echoes-dimension-size-600: 3rem;
+  --echoes-dimension-size-800: 4rem;
+  --echoes-border-radius-100: 2px;
+  --echoes-border-radius-200: 4px;
+  --echoes-border-radius-400: 8px;
+  --echoes-border-radius-none: 0px;
+  --echoes-border-radius-full: 700px;
+  --echoes-font-family-mono: 'Ubuntu Mono';
+  --echoes-font-family-sans: Inter;
+  --echoes-font-family-fallback-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+  --echoes-font-family-fallback-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  --echoes-line-height-heading: 1.32;
+  --echoes-line-height-body: 1.42;
+  --echoes-letter-spacing-default: 0;
+  --echoes-letter-spacing-increased: 0.02em;
+  --echoes-letter-spacing-decreased: -0.02em;
+  --echoes-paragraph-spacing-small: 1rem;
+  --echoes-paragraph-spacing-medium: 1.125rem;
+  --echoes-paragraph-spacing-large: 1.375rem;
+  --echoes-font-weight-bold: 700;
+  --echoes-font-weight-semi-bold: 600;
+  --echoes-font-weight-regular: 400;
+  --echoes-font-weight-italic: Italic;
+  --echoes-font-size-heading-xlarge: 2.125rem;
+  --echoes-font-size-heading-large: 1.5rem;
+  --echoes-font-size-heading-medium: 1.25rem;
+  --echoes-font-size-heading-small: 1rem;
+  --echoes-font-size-body-large: 1rem;
+  --echoes-font-size-body-medium: 0.875rem;
+  --echoes-font-size-body-small: 0.75rem;
+  --echoes-border-width-default: 1px;
+  --echoes-text-case-uppercase: uppercase;
+  --echoes-text-case-none: none;
+  --echoes-text-decoration-none: none;
+  --echoes-text-decoration-underline: underline;
+  --echoes-typography-paragraph-default: 400 0.875rem/1.42 Inter;
+  --echoes-typography-paragraph-small: 400 0.75rem/1.42 Inter;
+  --echoes-typography-paragraph-large: 400 1rem/1.42 Inter;
+  --echoes-typography-paragraph-default-semi-bold: 600 0.875rem/1.42 Inter;
+  --echoes-typography-heading-small: 600 1rem/1.32 Inter;
+  --echoes-typography-heading-medium: 600 1.25rem/1.32 Inter;
+  --echoes-typography-heading-large: 600 1.5rem/1.32 Inter;
+  --echoes-typography-heading-xlarge: 600 2.125rem/1.32 Inter;
+  --echoes-typography-code-default: 400 0.875rem/1.42 'Ubuntu Mono';
+  --echoes-typography-code-highlight: 700 0.875rem/1.42 'Ubuntu Mono';
+  --echoes-typography-code-comment: 400 italic 0.875rem/1.42 'Ubuntu Mono';
+  --echoes-typography-others-label: 600 0.875rem/1.42 Inter;
+  --echoes-typography-others-link: 600 0.875rem/1.42 Inter;
+  --echoes-typography-others-link-large: 600 1rem/1.42 Inter;
 }

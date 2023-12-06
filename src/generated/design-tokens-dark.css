@@ -1,25 +1,75 @@
 /**
  * Do not edit directly
- * Generated on Fri, 24 Nov 2023 10:25:11 GMT
+ * Generated on Fri, 08 Dec 2023 10:20:18 GMT
  */
 
 html[data-echoes-theme='dark'] {
-  --color-fg-default: #ffffff;
-  --color-fg-muted: #e2e8f0;
-  --color-fg-subtle: #a0aec0;
-  --color-bg-default: #1a202c;
-  --color-bg-muted: #4a5568;
-  --color-bg-subtle: #718096;
-  --color-accent-default: #5a67d8;
-  --color-accent-on-accent: #ffffff;
-  --color-accent-bg: #434190;
-  --color-shadows-default: rgba(0, 0, 0, 0.3);
-  --box-shadow-default: 5px 5px 5px 3px rgba(rgba(0, 0, 0, 0.3), 0.15), inset 4px 4px 5px 6px #00000033;
-  --button-border-radius: 8px;
-  --button-border-width: 8px;
-  --button-primary-background: #434190;
-  --button-primary-text: #ffffff;
-  --card-border-radius: 8px;
-  --card-padding: 16px;
-  --card-background: #1a202c;
+  --echoes-color-background-neutral: rgb(62,67,87);
+  --echoes-color-background-neutral-bolder: rgb(106,117,144);
+  --echoes-color-background-default: rgb(42,47,64);
+  --echoes-color-background-default-hover: rgb(29,33,47);
+  --echoes-color-background-default-active: rgb(29,33,47);
+  --echoes-color-background-default-disabled: rgb(62,67,87);
+  --echoes-color-background-page: rgb(29,33,47);
+  --echoes-color-background-emphasize: rgb(29,33,47);
+  --echoes-color-background-inverse: rgb(225,230,243);
+  --echoes-color-background-disabled: rgb(62,67,87);
+  --echoes-color-background-accent-default: rgb(189,198,255);
+  --echoes-color-background-accent-default-hover: rgb(159,169,237);
+  --echoes-color-background-accent-default-active: rgb(159,169,237);
+  --echoes-color-background-accent-default-disabled: rgb(62,67,87);
+  --echoes-color-background-accent-weak: #5D6CD033;
+  --echoes-color-background-accent-weak-hover: #5D6CD04D;
+  --echoes-color-background-accent-weak-active: #5D6CD04D;
+  --echoes-color-background-accent-weak-disabled: rgb(62,67,87);
+  --echoes-color-background-warning-default: rgb(252,233,163);
+  --echoes-color-background-warning-weak: #FADC7933;
+  --echoes-color-background-success-default: rgb(225,245,168);
+  --echoes-color-background-success-weak: #C5E67C33;
+  --echoes-color-background-danger-default: rgb(254,205,202);
+  --echoes-color-background-danger-default-hover: rgb(249,112,102);
+  --echoes-color-background-danger-default-active: rgb(249,112,102);
+  --echoes-color-background-danger-default-focused: rgb(253,162,155);
+  --echoes-color-background-danger-default-disabled: rgb(62,67,87);
+  --echoes-color-background-danger-weak: #FDA29B33;
+  --echoes-color-background-danger-weak-hover: rgb(29,33,47);
+  --echoes-color-background-danger-weak-active: rgb(29,33,47);
+  --echoes-color-background-danger-weak-disabled: rgb(62,67,87);
+  --echoes-color-background-info-default: rgb(184,222,241);
+  --echoes-color-background-info-weak: #8FCAEA33;
+  --echoes-color-background-transparent: rgba(0,0,0,0);
+  --echoes-color-text-bold: rgb(252,252,253);
+  --echoes-color-text-default: rgb(225,230,243);
+  --echoes-color-text-subdued: rgb(197,205,223);
+  --echoes-color-text-disabled: rgb(106,117,144);
+  --echoes-color-text-accent: rgb(159,169,237);
+  --echoes-color-text-accent-bold: rgb(232,235,255);
+  --echoes-color-text-danger: rgb(253,162,155);
+  --echoes-color-text-danger-bold: rgb(254,243,242);
+  --echoes-color-text-warning: rgb(250,220,121);
+  --echoes-color-text-warning-bold: rgb(252,245,228);
+  --echoes-color-text-success: rgb(197,230,124);
+  --echoes-color-text-success-bold: rgb(247,251,230);
+  --echoes-color-text-info: rgb(143,202,234);
+  --echoes-color-text-info-bold: rgb(245,251,255);
+  --echoes-color-text-on-color: rgb(42,47,64);
+  --echoes-color-icon-bold: rgb(252,252,253);
+  --echoes-color-icon-default: rgb(252,252,253);
+  --echoes-color-icon-subdued: rgb(197,205,223);
+  --echoes-color-icon-disabled: rgb(106,117,144);
+  --echoes-color-icon-accent: rgb(189,198,255);
+  --echoes-color-icon-danger: rgb(254,205,202);
+  --echoes-color-icon-warning: rgb(252,233,163);
+  --echoes-color-icon-success: rgb(225,245,168);
+  --echoes-color-icon-info: rgb(184,222,241);
+  --echoes-color-icon-on-color: rgb(42,47,64);
+  --echoes-color-border-default: rgb(62,67,87);
+  --echoes-color-border-subdued: rgb(106,117,144);
+  --echoes-color-border-disabled: rgb(106,117,144);
+  --echoes-color-border-accent: rgb(189,198,255);
+  --echoes-color-border-danger: rgb(253,162,155);
+  --echoes-color-border-none: rgba(0,0,0,0);
+  --echoes-color-border-success: rgb(166,244,197);
+  --echoes-color-border-warning: rgb(250,220,121);
+  --echoes-color-border-info: rgb(143,202,234);
 }

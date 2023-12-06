@@ -1,76 +1,120 @@
 {
-  "size": {
+  "echoes": {
     "dimension": {
-      "scale": "2px",
-      "xs": "4px",
-      "sm": "8px",
-      "md": "16px",
-      "lg": "32px",
-      "xl": "64px"
-    },
-    "spacing": {
-      "xs": "4px",
-      "sm": "8px",
-      "md": "16px",
-      "lg": "32px",
-      "xl": "64px",
-      "multi-value": "8px 64px"
+      "space": {
+        "0": "0px",
+        "25": "0.125rem",
+        "50": "0.25rem",
+        "75": "0.375rem",
+        "100": "0.5rem",
+        "150": "0.75rem",
+        "200": "1rem",
+        "250": "1.25rem",
+        "300": "1.5rem",
+        "400": "2rem",
+        "500": "2.5rem",
+        "600": "3rem",
+        "800": "4rem"
+      },
+      "size": {
+        "0": "0px",
+        "25": "0.125rem",
+        "50": "0.25rem",
+        "75": "0.375rem",
+        "100": "0.5rem",
+        "150": "0.75rem",
+        "200": "1rem",
+        "250": "1.25rem",
+        "300": "1.5rem",
+        "400": "2rem",
+        "450": "2.25rem",
+        "500": "2.5rem",
+        "600": "3rem",
+        "800": "4rem"
+      }
     },
     "borderRadius": {
-      "sm": "4px",
-      "lg": "8px",
-      "xl": "16px",
-      "multi-value": "4px 8px"
+      "100": "2px",
+      "200": "4px",
+      "400": "8px",
+      "none": "0px",
+      "full": "700px"
+    },
+    "fontFamily": {
+      "mono": "'Ubuntu Mono'",
+      "sans": "Inter",
+      "fallback": {
+        "mono": "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace",
+        "sans": "ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'"
+      }
+    },
+    "lineHeight": {
+      "heading": 1.32,
+      "body": 1.42
+    },
+    "letterSpacing": {
+      "default": "0",
+      "increased": "0.02em",
+      "decreased": "-0.02em"
+    },
+    "paragraphSpacing": {
+      "small": "1rem",
+      "medium": "1.125rem",
+      "large": "1.375rem"
+    },
+    "fontWeight": {
+      "bold": "700",
+      "semiBold": "600",
+      "regular": "400",
+      "italic": "Italic"
+    },
+    "fontSize": {
+      "heading": {
+        "xlarge": "2.125rem",
+        "large": "1.5rem",
+        "medium": "1.25rem",
+        "small": "1rem"
+      },
+      "body": {
+        "large": "1rem",
+        "medium": "0.875rem",
+        "small": "0.75rem"
+      }
+    },
+    "borderWidth": {
+      "default": "1px"
+    },
+    "textCase": {
+      "uppercase": "uppercase",
+      "none": "none"
+    },
+    "textDecoration": {
+      "none": "none",
+      "underline": "underline"
+    },
+    "typography": {
+      "paragraph": {
+        "default": "400 0.875rem/1.42 Inter",
+        "small": "400 0.75rem/1.42 Inter",
+        "large": "400 1rem/1.42 Inter",
+        "defaultSemiBold": "600 0.875rem/1.42 Inter"
+      },
+      "heading": {
+        "small": "600 1rem/1.32 Inter",
+        "medium": "600 1.25rem/1.32 Inter",
+        "large": "600 1.5rem/1.32 Inter",
+        "xlarge": "600 2.125rem/1.32 Inter"
+      },
+      "code": {
+        "default": "400 0.875rem/1.42 'Ubuntu Mono'",
+        "highlight": "700 0.875rem/1.42 'Ubuntu Mono'",
+        "comment": "400 italic 0.875rem/1.42 'Ubuntu Mono'"
+      },
+      "others": {
+        "label": "600 0.875rem/1.42 Inter",
+        "link": "600 0.875rem/1.42 Inter",
+        "link-large": "600 1rem/1.42 Inter"
+      }
     }
-  },
-  "opacity": {
-    "low": 0.1,
-    "md": 0.5,
-    "high": 0.9
-  },
-  "fontFamilies": {
-    "heading": "Inter",
-    "body": "Roboto"
-  },
-  "lineHeights": {
-    "heading": 1.1,
-    "body": 1.4
-  },
-  "letterSpacing": {
-    "default": "0",
-    "increased": "1.5em",
-    "decreased": "-0.05em"
-  },
-  "paragraphSpacing": {
-    "h1": "32",
-    "h2": "26"
-  },
-  "fontWeights": {
-    "headingRegular": 400,
-    "headingBold": 700,
-    "bodyRegular": 400,
-    "bodyBold": 700
-  },
-  "fontSizes": {
-    "h1": "48.829px",
-    "h2": "39.063px",
-    "h3": "31.25px",
-    "h4": "25px",
-    "h5": "20px",
-    "h6": "16px",
-    "body": "16px",
-    "sm": "13.6px",
-    "xs": "10.4px"
-  },
-  "typography": {
-    "H1": {
-      "Bold": "700 48.829px/1.1 Inter",
-      "Regular": "400 48.829px/1.1 Inter"
-    },
-    "H2": {
-      "Bold": "700 39.063px/1.1 Inter",
-      "Regular": "400 39.063px/1.1 Inter"
-    },
-    "Body": "400 16px/1.1 Roboto"
   }
 }
