@@ -18,13 +18,19 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import styled from '@emotion/styled';
+import { Global, css } from '@emotion/react';
 import { withThemeByDataAttribute } from '@storybook/addon-themes';
 import type { Preview } from '@storybook/react';
 import React from 'react';
 import { Theme } from '../dist';
 
-const GlobalStoriesStyle = styled.div``;
+const globalStyles = css`
+  body {
+    font: var(--echoes-typography-paragraph-default);
+    color: var(--echoes-color-text-default);
+    background-color: var(--echoes-color-background-default);
+  }
+`;
 
 const preview: Preview = {
   parameters: {
@@ -42,6 +48,19 @@ const preview: Preview = {
         order: ['Design Tokens', 'Components'],
       },
     },
+    backgrounds: {
+      disabled: undefined,
+      values: [
+        {
+          name: 'light',
+          value: 'rgb(255,255,255)',
+        },
+        {
+          name: 'dark',
+          value: 'rgb(42,47,64)',
+        },
+      ],
+    },
   },
   decorators: [
     withThemeByDataAttribute({
@@ -52,9 +71,10 @@ const preview: Preview = {
     }),
     (Story) => {
       return (
-        <GlobalStoriesStyle>
+        <>
+          <Global styles={globalStyles} />
           <Story />
-        </GlobalStoriesStyle>
+        </>
       );
     },
   ],

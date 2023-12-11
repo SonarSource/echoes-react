@@ -91,7 +91,7 @@ const RadioGroupWrapper = styled(RadioGroup.Root)``;
 const OptionWrapper = styled.div`
   display: flex;
   align-items: center;
-  margin: var(--size-spacing-sm) 0;
+  margin: var(--echoes-dimension-space-100) 0;
 `;
 
 const Input = styled(RadioGroup.Item)`
@@ -101,28 +101,28 @@ const Input = styled(RadioGroup.Item)`
 
   box-sizing: border-box;
   padding: 0;
-  border: 1px solid var(--radio-fg);
+  border: 1px solid var(--echoes-color-background-accent-default);
   border-radius: 100%;
 
-  height: var(--size-dimension-md);
-  width: var(--size-dimension-md);
-  min-width: var(--size-dimension-md);
+  height: var(--echoes-dimension-size-200);
+  width: var(--echoes-dimension-size-200);
+  min-width: var(--echoes-dimension-size-200);
 
   &:hover,
   &[data-state='checked'] {
-    background-color: var(--radio-bg);
+    background-color: var(--echoes-color-background-accent-weak);
   }
 
   &:focus,
   &:focus-visible {
-    background-color: var(--radio-bg);
-    outline: var(--radio-bg) solid 4px;
+    background-color: var(--echoes-color-background-accent-weak);
+    outline: var(--echoes-color-background-accent-weak) solid 4px;
   }
 
   &:disabled {
     cursor: default;
-    background-color: var(--radio-bg-disabled);
-    border-color: var(--radio-fg-disabled);
+    background-color: var(--echoes-color-background-disabled);
+    border-color: var(--echoes-color-border-disabled);
   }
 `;
 
@@ -139,15 +139,15 @@ const SelectionIndicator = styled(RadioGroup.Indicator)`
     display: block;
 
     box-sizing: border-box;
-    height: var(--radio-size-indicator);
-    width: var(--radio-size-indicator);
+    height: var(--echoes-dimension-size-75);
+    width: var(--echoes-dimension-size-75);
     border-radius: 50%;
 
-    background-color: var(--radio-fg);
+    background-color: var(--echoes-color-background-accent-default);
   }
 
   &[data-disabled]::after {
-    background-color: var(--radio-fg-disabled);
+    background-color: var(--echoes-color-border-disabled);
   }
 `;
 
@@ -155,7 +155,7 @@ const Label = styled.label`
   display: block;
   width: 100%;
   cursor: pointer;
-  margin-left: var(--size-spacing-sm);
+  margin-left: var(--echoes-dimension-space-100);
 
   [data-disabled] &, /* disabled group */
   &[data-disabled] /* disabled option */ {
