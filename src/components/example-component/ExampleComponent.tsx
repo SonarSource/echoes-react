@@ -19,6 +19,7 @@
  */
 
 import styled from '@emotion/styled';
+import { useIntl } from 'react-intl';
 
 interface Props {
   a: number;
@@ -28,7 +29,22 @@ interface Props {
 
 export function ExampleComponent(props: Readonly<Props>) {
   const { a, b, c } = props;
-  return <Wrapper>test: {b ? a : c}</Wrapper>;
+
+  const intl = useIntl();
+
+  return (
+    <Wrapper>
+      test: {b ? a : c}
+      <span
+        aria-label={intl.formatMessage({
+          id: 'example-component-hover-for-help',
+          defaultMessage: 'Hover for help',
+          description: 'aria-label text, to indicate that there is a Tooltip on hover',
+        })}>
+        🐋
+      </span>
+    </Wrapper>
+  );
 }
 
 const Wrapper = styled.div`
