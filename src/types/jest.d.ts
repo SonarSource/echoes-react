@@ -1,6 +1,6 @@
 /*
- * Echoes React
- * Copyright (C) 2023-2023 SonarSource SA
+ * SonarQube
+ * Copyright (C) 2009-2023 SonarSource SA
  * mailto:info AT sonarsource DOT com
  *
  * This program is free software; you can redistribute it and/or
@@ -18,13 +18,8 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-/**
- * This folder is for small helper functions that help us build our components.
- * They are purely internal and not exported outside.
- */
-
-/**
- * To get the Props of a functional component
- */
-export type FCProps<T extends React.FunctionComponent<React.PropsWithChildren<any>>> =
-  Parameters<T>[0];
+declare namespace jest {
+  interface Matchers<R> {
+    toHaveNoA11yViolations(): Promise<CustomMatcherResult>;
+  }
+}

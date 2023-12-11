@@ -20,6 +20,7 @@
 
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { FCProps } from '~common/helpers';
 import { RadioButtonGroup } from '../RadioButtonGroup';
 
 describe('RadioButtonGroup', () => {
@@ -32,12 +33,23 @@ describe('RadioButtonGroup', () => {
       { label: 'c', value: '3' },
     ];
 
-    render(<RadioButtonGroup id="group1" options={options} />);
+    const { container } = renderRadioButtonGroup({ options });
 
     expect(screen.getAllByRole('radio')).toHaveLength(options.length);
 
     await user.click(screen.getByRole('radio', { name: 'b' }));
 
     expect(screen.getByRole('radio', { name: 'b' })).toBeChecked();
+    expect(container).toHaveNoA11yViolations();
   });
 });
+
+function renderRadioButtonGroup(overrides: Partial<FCProps<typeof RadioButtonGroup>> = {}) {
+  const options = [
+    { label: 'a', value: '1' },
+    { label: 'b', value: '2' },
+    { label: 'c', value: '3' },
+  ];
+
+  return render(<RadioButtonGroup id="group1" options={options} {...overrides} />);
+}
