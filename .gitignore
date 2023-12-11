@@ -49,3 +49,5 @@ node_modules
 
 # ---- Build reports output
 build-reports/
+
+dist/
