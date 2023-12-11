@@ -22,6 +22,7 @@ import { Global, css } from '@emotion/react';
 import { withThemeByDataAttribute } from '@storybook/addon-themes';
 import type { Preview } from '@storybook/react';
 import React from 'react';
+import { IntlProvider } from 'react-intl';
 import { Theme } from '../dist';
 
 const globalStyles = css`
@@ -71,10 +72,10 @@ const preview: Preview = {
     }),
     (Story) => {
       return (
-        <>
+        <IntlProvider locale="en-us">
           <Global styles={globalStyles} />
           <Story />
-        </>
+        </IntlProvider>
       );
     },
   ],
