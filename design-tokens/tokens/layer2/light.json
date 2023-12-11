@@ -4,43 +4,53 @@
       "background": {
         "neutral": {
           "type": "color",
-          "value": "{echoes.color.grey.50}"
+          "value": "{echoes.color.grey.50}",
+          "description": "Use it in components with neutral sentiment"
         },
         "neutral-bolder": {
           "type": "color",
-          "value": "{echoes.color.grey.100}"
+          "value": "{echoes.color.grey.100}",
+          "description": "Use it in components with neutral sentiment that need a bolded accent"
         },
         "default": {
           "type": "color",
-          "value": "{echoes.color.support.white}"
+          "value": "{echoes.color.support.white}",
+          "description": "Go to color for backgrounds.. eg: cards, modals, popovers, etc..."
         },
         "default-hover": {
           "type": "color",
-          "value": "{echoes.color.grey.50}"
+          "value": "{echoes.color.grey.50}",
+          "description": "Hover color for bg-default"
         },
         "default-active": {
           "type": "color",
-          "value": "{echoes.color.grey.50}"
+          "value": "{echoes.color.grey.50}",
+          "description": "Active color for bg-default"
         },
         "default-disabled": {
           "type": "color",
-          "value": "{echoes.color.grey.50}"
+          "value": "{echoes.color.grey.50}",
+          "description": "Disabled color for bg-default"
         },
         "page": {
           "type": "color",
-          "value": "{echoes.color.grey.25}"
+          "value": "{echoes.color.grey.25}",
+          "description": "Use it as page background"
         },
         "emphasize": {
           "type": "color",
-          "value": "{echoes.color.grey.50}"
+          "value": "{echoes.color.grey.50}",
+          "description": "Use it to emphasize sections"
         },
         "inverse": {
           "type": "color",
-          "value": "{echoes.color.grey.600}"
+          "value": "{echoes.color.grey.600}",
+          "description": "Inverse color for bgs, creates high contrast against bg-default and bg-page"
         },
         "disabled": {
           "type": "color",
-          "value": "{echoes.color.grey.50}"
+          "value": "{echoes.color.grey.50}",
+          "description": "Use it as background for disabled components"
         },
         "accent": {
           "default": {
@@ -289,7 +299,109 @@
         "info": {
           "type": "color",
           "value": "{echoes.color.blue.300}"
+        },
+        "focus": {
+          "value": "{echoes.color.indigo.600}",
+          "type": "color",
+          "description": "User in Focus Ring"
         }
+      }
+    },
+    "boxShadow": {
+      "xsmall": {
+        "value": {
+          "x": "0",
+          "y": "1",
+          "blur": "02",
+          "spread": "0",
+          "color": "rgba(0,0,0,0.05)",
+          "type": "dropShadow"
+        },
+        "type": "boxShadow"
+      },
+      "small": {
+        "value": [
+          {
+            "x": "0",
+            "y": "1",
+            "blur": "25",
+            "spread": "0",
+            "color": "rgba(29,33,47,0.05)",
+            "type": "dropShadow"
+          },
+          {
+            "x": "0",
+            "y": "1",
+            "blur": "3",
+            "spread": "0",
+            "color": "rgba(29,33,47,0.05)",
+            "type": "dropShadow"
+          }
+        ],
+        "type": "boxShadow"
+      },
+      "medium": {
+        "value": [
+          {
+            "x": "0",
+            "y": "2",
+            "blur": "15",
+            "spread": "-2",
+            "color": "rgba(29,33,47,0.06)",
+            "type": "dropShadow"
+          },
+          {
+            "x": "0",
+            "y": "4",
+            "blur": "8",
+            "spread": "-2",
+            "color": "rgba(29,33,47,0.1)",
+            "type": "dropShadow"
+          }
+        ],
+        "type": "boxShadow"
+      },
+      "large": {
+        "value": [
+          {
+            "x": "0",
+            "y": "4",
+            "blur": "6",
+            "spread": "-2",
+            "color": "rgba(29,33,47,0.05)",
+            "type": "dropShadow"
+          },
+          {
+            "x": "0",
+            "y": "12",
+            "blur": "16",
+            "spread": "-4",
+            "color": "rgba(29,33,47,0.1)",
+            "type": "dropShadow"
+          }
+        ],
+        "type": "boxShadow"
+      },
+      "xLarge": {
+        "value": [
+          {
+            "x": "0",
+            "y": "8",
+            "blur": "8",
+            "spread": "-4",
+            "color": "rgba(29,33,47,0.04)",
+            "type": "dropShadow"
+          },
+          {
+            "x": "15",
+            "y": "20",
+            "blur": "24",
+            "spread": "-4",
+            "color": "rgba(29,33,47,0.1)",
+            "type": "dropShadow"
+          }
+        ],
+        "type": "boxShadow"
       }
     }
   }
