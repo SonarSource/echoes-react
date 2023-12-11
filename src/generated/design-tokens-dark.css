@@ -1,6 +1,6 @@
 /**
  * Do not edit directly
- * Generated on Fri, 08 Dec 2023 10:20:18 GMT
+ * Generated on Mon, 11 Dec 2023 16:54:27 GMT
  */
 
 html[data-echoes-theme='dark'] {
@@ -72,4 +72,10 @@ html[data-echoes-theme='dark'] {
   --echoes-color-border-success: rgb(166,244,197);
   --echoes-color-border-warning: rgb(250,220,121);
   --echoes-color-border-info: rgb(143,202,234);
+  --echoes-color-border-focus: rgb(189,198,255);
+  --echoes-box-shadow-xsmall: 0 1px 4px 0 rgba(8,9,12,0.4);
+  --echoes-box-shadow-small: 0 1px 10px 0 rgba(8,9,12,0.4), 0 1px 3px 0 rgba(8,9,12,0.4);
+  --echoes-box-shadow-medium: inset 0 2px 15px -2px rgba(8,9,12,0.06), 0 4px 15px -2px rgba(8,9,12,0.5);
+  --echoes-box-shadow-large: 0 4px 6px -2px rgba(8,9,12,0.05), 0 12px 20px -4px rgba(8,9,12,0.5);
+  --echoes-box-shadow-x-large: 0 8px 8px -4px rgba(8,9,12,0.04), 0 20px 30px -4px rgba(8,9,12,0.5);
 }

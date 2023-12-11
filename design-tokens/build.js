@@ -30,14 +30,19 @@ const BASE_TOKENS_NAME = `${NAME_PREFIX}base`;
 const CUSTOM_TRANSFORM_GROUP = 'sonar-design-tokens';
 const CUSTOM_FILTER_NO_COLOR = 'sonar-no-color';
 const CUSTOM_FILTER_THEMED_TOKENS = 'sonar-themed-tokens';
-const themeDefinitions = JSON.parse(fs.readFileSync(`${DESIGN_TOKENS_PATH}/$themes.json`, 'utf-8'));
-const licenceHeader = fs.readFileSync(`config/license/LICENSE-HEADER.txt`, 'utf-8');
+
+const licenseHeader = fs.readFileSync(`config/license/LICENSE-HEADER.txt`, 'utf-8');
+
+const designTokenGroups = JSON.parse(
+  fs.readFileSync(`${DESIGN_TOKENS_PATH}/$themes.json`, 'utf-8'),
+);
+const themedDesignTokenGroups = designTokenGroups.filter(({ group }) => group === 'Themes');
 
 initStyleDictionary();
-buildBaseTokens();
-buildThemedTokens(themeDefinitions);
-buildCSSRootFile(themeDefinitions);
-buildThemesEnumType(themeDefinitions);
+buildBaseTokens(designTokenGroups.filter(({ group }) => group === 'Sonar'));
+buildThemedTokens(themedDesignTokenGroups);
+buildCSSRootFile(designTokenGroups, licenseHeader);
+buildThemesEnumType(themedDesignTokenGroups, licenseHeader);
 
 function initStyleDictionary() {
   registerTransforms(StyleDictionary, {});
@@ -61,43 +66,49 @@ function initStyleDictionary() {
 }
 
 // Build base tokens: layer1 base + layer2 base without colors
-function buildBaseTokens() {
+function buildBaseTokens(tokenGroups) {
   console.log('\nBuilding base tokens, no colors allowed...');
-  StyleDictionary.extend({
-    source: [`${DESIGN_TOKENS_PATH}/layer1/base.json`, `${DESIGN_TOKENS_PATH}/layer2/base.json`],
-    platforms: {
-      tokens: {
-        transformGroup: CUSTOM_TRANSFORM_GROUP,
-        buildPath: BUILD_PATH,
-        files: [
-          {
-            destination: `${BASE_TOKENS_NAME}.css`,
-            format: 'css/variables',
-            filter: CUSTOM_FILTER_NO_COLOR,
-            options: {
-              showFileHeader: true,
-              selector: ':root',
+  tokenGroups.forEach((group) => {
+    console.log(`\nBuilding "${group.name}" group...`);
+    StyleDictionary.extend({
+      source: Object.entries(group.selectedTokenSets)
+        .filter(([, val]) => val !== 'disabled')
+        .map(([tokenset]) => `${DESIGN_TOKENS_PATH}/${tokenset}.json`),
+      platforms: {
+        tokens: {
+          transformGroup: CUSTOM_TRANSFORM_GROUP,
+          buildPath: BUILD_PATH,
+          files: [
+            {
+              destination: `${NAME_PREFIX}${group.name}.css`,
+              format: 'css/variables',
+              filter: CUSTOM_FILTER_NO_COLOR,
+              options: {
+                showFileHeader: true,
+                selector: ':root',
+              },
             },
-          },
-          {
-            destination: `${BASE_TOKENS_NAME}.json`,
-            format: 'json/nested',
-            filter: CUSTOM_FILTER_NO_COLOR,
-            options: {
-              showFileHeader: true,
+            {
+              destination: `${NAME_PREFIX}${group.name}.json`,
+              format: 'json/nested',
+              filter: CUSTOM_FILTER_NO_COLOR,
+              options: {
+                showFileHeader: true,
+              },
             },
-          },
-        ],
+          ],
+        },
       },
-    },
-  }).buildAllPlatforms();
+    }).buildAllPlatforms();
+  });
+  console.log(`\nBase tokens builds done.`);
 }
 
 // Build themed tokens: 1 for each themes, without layer1 and layer2 base non colors tokens
-function buildThemedTokens(themes) {
+function buildThemedTokens(themedTokenGroups) {
   console.log('\nBuilding themed tokens, no layer1 or layer2 base non colors...');
 
-  themes.forEach((theme) => {
+  themedTokenGroups.forEach((theme) => {
     console.log(`\nBuilding "${theme.name}" theme...`);
     StyleDictionary.extend({
       source: Object.entries(theme.selectedTokenSets)
@@ -129,24 +140,24 @@ function buildThemedTokens(themes) {
 }
 
 // Build design tokens css root file
-function buildCSSRootFile(themes) {
+function buildCSSRootFile(tokenGroups, license) {
   console.log('\nBuilding design tokens css root file...');
+  const sortedTokenGroups = [...tokenGroups];
+  sortedTokenGroups.sort((a, b) => a.name.localeCompare(b.name));
+
   const cssRootFileContent = [
-    licenceHeader,
-    `@import './${NAME_PREFIX}base.css';`,
-    ...themes.map((theme) => `@import './${NAME_PREFIX}${theme.name}.css';`),
+    license,
+    ...sortedTokenGroups.map((theme) => `@import './${NAME_PREFIX}${theme.name}.css';`),
   ].join('\n');
   fs.writeFileSync(`${BUILD_PATH}design-tokens.css`, cssRootFileContent);
   console.log(`Design tokens css root file build done.`);
 }
 
 // Build themes enum TS type
-function buildThemesEnumType(themes) {
+function buildThemesEnumType(themedTokenGroups, license) {
   console.log('\nBuilding themes enum TS type...');
-  const themesEnum = themes.map((theme) => `  ${theme.name} = '${theme.name}',`);
-  const themesEnumFileContent = [licenceHeader, `export enum Theme {`, ...themesEnum, `}`].join(
-    '\n',
-  );
+  const themesEnum = themedTokenGroups.map((theme) => `  ${theme.name} = '${theme.name}',`);
+  const themesEnumFileContent = [license, `export enum Theme {`, ...themesEnum, `}`].join('\n');
   fs.writeFileSync(`${BUILD_PATH}themes.ts`, themesEnumFileContent);
   console.log(`Themes enum TS type build done.`);
 }

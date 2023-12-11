@@ -171,7 +171,7 @@
   },
   {
     "id": "a6dfdac750c6c5bad68ee3f0d90c7f865a47dd3c",
-    "name": "Base",
+    "name": "base",
     "$figmaStyleReferences": {},
     "selectedTokenSets": {
       "layer1/base": "enabled",
