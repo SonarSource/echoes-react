@@ -15,7 +15,7 @@ eks_container: &BUILD_TEMPLATE
 
 yarn_cache_template: &YARN_CACHE_TEMPLATE
   yarn_cache:
-    folders: 
+    folders:
       - '.yarn'
     fingerprint_script: cat yarn.lock
 
@@ -38,7 +38,6 @@ install_dependencies_task:
     memory: 11Gb
   script:
     - yarn install --immutable
-    - ls .yarn/cache
 
 build_number_task:
   eks_container:
@@ -59,7 +58,7 @@ build_task:
     - build_number
     - install_dependencies
   build_script:
-    - ls .yarn/cache
+    - yarn install --immutable
     - yarn build
 
 validation_task:
@@ -74,4 +73,5 @@ validation_task:
     - install_dependencies
     - build
   script:
+    - yarn install --immutable
     - yarn validate-ci
