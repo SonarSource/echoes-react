@@ -13,58 +13,45 @@ eks_container: &BUILD_TEMPLATE
   docker_arguments:
     CIRRUS_AWS_ACCOUNT: ${CIRRUS_AWS_ACCOUNT}
 
-node_modules_cache_template: &NODE_MODULES_CACHE_TEMPLATE
-  node_modules_cache:
-    folders:
-      - 'node_modules'
-      - '.yarn'
-    fingerprint_script: cat yarn.lock
-
 eslint_report_cache_template: &ESLINT_REPORT_CACHE_TEMPLATE
   eslint_report_cache:
-    folders:
-      - "build-reports/eslint-report/**"
+    folder: 'build-reports/eslint-report'
     fingerprint_script: echo $CIRRUS_BUILD_ID
 
-# build_number_task:
-#   eks_container:
-#     <<: *BUILD_TEMPLATE
-#     cpu: 1
-#     memory: 2Gb
-#   script:
-#     - .cirrus/build-number.sh
+build_dist_cache_template: &BUILD_DIST_CACHE_TEMPLATE
+  build_dist_cache:
+    folder: 'dist/**'
+    fingerprint_script: echo $CIRRUS_BUILD_ID
 
-install_dependencies_task:
-  <<: *NODE_MODULES_CACHE_TEMPLATE
-  timeout_in: 30m
+build_number_task:
   eks_container:
     <<: *BUILD_TEMPLATE
-    cpu: 3.4
-    memory: 11Gb
+    cpu: 1
+    memory: 2Gb
   script:
-    - yarn install
+    - .cirrus/build-number.sh
 
 build_task:
-  <<: *NODE_MODULES_CACHE_TEMPLATE
+  <<: *BUILD_DIST_CACHE_TEMPLATE
   eks_container:
     <<: *BUILD_TEMPLATE
     cpu: 4
     memory: 4G
   depends_on:
-    # - build_number
-    - install_dependencies
+    - build_number
   build_script:
+    - yarn install --immutable
     - yarn build
 
 validation_task:
-  <<: *NODE_MODULES_CACHE_TEMPLATE
+  <<: *BUILD_DIST_CACHE_TEMPLATE
   <<: *ESLINT_REPORT_CACHE_TEMPLATE
   eks_container:
     <<: *BUILD_TEMPLATE
     cpu: 4
     memory: 8G
   depends_on:
-    - install_dependencies
     - build
   script:
+    - yarn install --immutable
     - yarn validate-ci
