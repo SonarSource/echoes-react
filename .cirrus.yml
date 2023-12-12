@@ -1,6 +1,9 @@
 env:
   # Determine what we need here
 
+  # analysis on next.sonarqube.com
+  SONARQUBE_NEXT_TOKEN: VAULT[development/kv/data/next data.token]
+
 eks_container: &BUILD_TEMPLATE
   dockerfile: .cirrus/Dockerfile
   builder_subnet_id: ${CIRRUS_AWS_SUBNET}
@@ -93,3 +96,17 @@ unit_test_task:
   script:
     - yarn install --immutable
     - yarn test-ci
+
+sonar_scan_task:
+  <<: *BUILD_DIST_CACHE_TEMPLATE
+  <<: *ESLINT_REPORT_CACHE_TEMPLATE
+  <<: *JEST_COVERAGE_CACHE_TEMPLATE
+  eks_container:
+    <<: *BUILD_TEMPLATE
+    cpu: 2
+    memory: 2G
+  depends_on:
+    - validation
+    - unit_test
+  script:
+    - source .cirrus/cirrus-sq-analysis.sh
