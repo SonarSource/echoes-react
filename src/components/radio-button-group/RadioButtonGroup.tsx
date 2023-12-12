@@ -97,12 +97,12 @@ const OptionWrapper = styled.div`
 const Input = styled(RadioGroup.Item)`
   appearance: none;
   cursor: pointer;
-  background-color: transparent;
+  background-color: var(--echoes-color-background-transparent);
 
   box-sizing: border-box;
   padding: 0;
-  border: 1px solid var(--echoes-color-background-accent-default);
-  border-radius: 100%;
+  border: 1px solid var(--echoes-color-border-accent);
+  border-radius: var(--echoes-border-radius-full);
 
   height: var(--echoes-dimension-size-200);
   width: var(--echoes-dimension-size-200);
@@ -116,7 +116,8 @@ const Input = styled(RadioGroup.Item)`
   &:focus,
   &:focus-visible {
     background-color: var(--echoes-color-background-accent-weak);
-    outline: var(--echoes-color-background-accent-weak) solid 4px;
+    outline: var(--echoes-color-border-focus) solid 2px;
+    outline-offset: var(--echoes-dimension-space-25);
   }
 
   &:disabled {
@@ -141,7 +142,7 @@ const SelectionIndicator = styled(RadioGroup.Indicator)`
     box-sizing: border-box;
     height: var(--echoes-dimension-size-75);
     width: var(--echoes-dimension-size-75);
-    border-radius: 50%;
+    border-radius: var(--echoes-border-radius-full);
 
     background-color: var(--echoes-color-background-accent-default);
   }
