@@ -16,6 +16,7 @@
   "scripts": {
     "dev": "vite build --watch & yarn storybook",
     "test": "jest",
+    "test-ci": "jest --collectCoverage --coverageDirectory=build-reports/coverage",
     "build": "vite build",
     "build-tokens": "node design-tokens/build.js",
     "build-storybook": "storybook build",

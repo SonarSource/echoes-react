@@ -24,6 +24,11 @@ eslint_report_cache_template: &ESLINT_REPORT_CACHE_TEMPLATE
     folder: 'build-reports/eslint-report'
     fingerprint_script: echo $CIRRUS_BUILD_ID
 
+jest_coverage_cache_template: &JEST_COVERAGE_CACHE_TEMPLATE
+  jest_coverage_cache:
+    folder: 'build-reports/coverage'
+    fingerprint_script: echo $CIRRUS_BUILD_ID
+
 build_dist_cache_template: &BUILD_DIST_CACHE_TEMPLATE
   build_dist_cache:
     folder: 'dist/**'
@@ -34,8 +39,8 @@ install_dependencies_task:
   timeout_in: 30m
   eks_container:
     <<: *BUILD_TEMPLATE
-    cpu: 3.4
-    memory: 11Gb
+    cpu: 4
+    memory: 4Gb
   script:
     - yarn install --immutable
 
@@ -75,3 +80,16 @@ validation_task:
   script:
     - yarn install --immutable
     - yarn validate-ci
+
+unit_test_task:
+  <<: *YARN_CACHE_TEMPLATE
+  <<: *JEST_COVERAGE_CACHE_TEMPLATE
+  eks_container:
+    <<: *BUILD_TEMPLATE
+    cpu: 4
+    memory: 8G
+  depends_on:
+    - install_dependencies
+  script:
+    - yarn install --immutable
+    - yarn test-ci
