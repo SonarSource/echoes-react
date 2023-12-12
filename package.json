@@ -23,9 +23,11 @@
     "format": "prettier --write --list-different .",
     "format-check": "prettier --check .",
     "lint": "eslint --ext js,ts,tsx,snap --quiet .",
-    "lint-report": "eslint --ext js,ts,tsx,snap -f json -o build-reports/eslint-report.json .",
+    "lint-report": "eslint --ext js,ts,tsx,snap -f json -o build-reports/eslint-report/eslint-report.json .",
     "storybook": "storybook dev -p 6006",
-    "ts-check": "tsc --noEmit"
+    "ts-check": "tsc --noEmit",
+    "validate": "yarn lint && yarn ts-check && yarn format-check",
+    "validate-ci": "yarn lint-report && yarn ts-check && yarn format-check"
   },
   "peerDependencies": {
     "@emotion/react": "^11.0.0",
@@ -84,6 +86,7 @@
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-intl": "6.5.5",
+    "rollup": "4.8.0",
     "rollup-plugin-license": "3.2.0",
     "storybook": "7.5.3",
     "style-dictionary": "3.9.0",
