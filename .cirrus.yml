@@ -19,4 +19,5 @@ build_task:
     cpu: 4
     memory: 8G
   build_script:
+    - yarn install
     - yarn build
