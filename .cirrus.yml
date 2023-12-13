@@ -1,0 +1,95 @@
+env:
+  # Determine what we need here
+
+eks_container: &BUILD_TEMPLATE
+  dockerfile: .cirrus/Dockerfile
+  builder_subnet_id: ${CIRRUS_AWS_SUBNET}
+  builder_role: cirrus-builder
+  builder_image: docker-builder-v*
+  builder_instance_type: t2.small
+  cluster_name: ${CIRRUS_CLUSTER_NAME}
+  region: eu-central-1
+  namespace: default
+  docker_arguments:
+    CIRRUS_AWS_ACCOUNT: ${CIRRUS_AWS_ACCOUNT}
+
+yarn_cache_template: &YARN_CACHE_TEMPLATE
+  yarn_cache:
+    folders:
+      - '.yarn'
+    fingerprint_script: cat yarn.lock
+
+eslint_report_cache_template: &ESLINT_REPORT_CACHE_TEMPLATE
+  eslint_report_cache:
+    folder: 'build-reports/eslint-report'
+    fingerprint_script: echo $CIRRUS_BUILD_ID
+
+jest_coverage_cache_template: &JEST_COVERAGE_CACHE_TEMPLATE
+  jest_coverage_cache:
+    folder: 'build-reports/coverage'
+    fingerprint_script: echo $CIRRUS_BUILD_ID
+
+build_dist_cache_template: &BUILD_DIST_CACHE_TEMPLATE
+  build_dist_cache:
+    folder: 'dist/**'
+    fingerprint_script: echo $CIRRUS_BUILD_ID
+
+install_dependencies_task:
+  <<: *YARN_CACHE_TEMPLATE
+  timeout_in: 30m
+  eks_container:
+    <<: *BUILD_TEMPLATE
+    cpu: 4
+    memory: 4Gb
+  script:
+    - yarn install --immutable
+
+build_number_task:
+  eks_container:
+    <<: *BUILD_TEMPLATE
+    cpu: 1
+    memory: 2Gb
+  script:
+    - .cirrus/build-number.sh
+
+build_task:
+  <<: *YARN_CACHE_TEMPLATE
+  <<: *BUILD_DIST_CACHE_TEMPLATE
+  eks_container:
+    <<: *BUILD_TEMPLATE
+    cpu: 4
+    memory: 4G
+  depends_on:
+    - build_number
+    - install_dependencies
+  build_script:
+    - yarn install --immutable
+    - yarn build
+
+validation_task:
+  <<: *YARN_CACHE_TEMPLATE
+  <<: *BUILD_DIST_CACHE_TEMPLATE
+  <<: *ESLINT_REPORT_CACHE_TEMPLATE
+  eks_container:
+    <<: *BUILD_TEMPLATE
+    cpu: 4
+    memory: 8G
+  depends_on:
+    - install_dependencies
+    - build
+  script:
+    - yarn install --immutable
+    - yarn validate-ci
+
+unit_test_task:
+  <<: *YARN_CACHE_TEMPLATE
+  <<: *JEST_COVERAGE_CACHE_TEMPLATE
+  eks_container:
+    <<: *BUILD_TEMPLATE
+    cpu: 4
+    memory: 8G
+  depends_on:
+    - install_dependencies
+  script:
+    - yarn install --immutable
+    - yarn test-ci

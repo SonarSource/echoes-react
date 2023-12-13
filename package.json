@@ -16,6 +16,7 @@
   "scripts": {
     "dev": "vite build --watch & yarn storybook",
     "test": "jest",
+    "test-ci": "jest --collectCoverage --coverageDirectory=build-reports/coverage",
     "build": "vite build",
     "build-tokens": "node design-tokens/build.js",
     "build-storybook": "vite build & storybook build",
@@ -23,9 +24,11 @@
     "format": "prettier --write --list-different .",
     "format-check": "prettier --check .",
     "lint": "eslint --ext js,ts,tsx,snap --quiet .",
-    "lint-report": "eslint --ext js,ts,tsx,snap -f json -o build-reports/eslint-report.json .",
+    "lint-report": "eslint --ext js,ts,tsx,snap -f json -o build-reports/eslint-report/eslint-report.json .",
     "storybook": "storybook dev -p 6006",
-    "ts-check": "tsc --noEmit"
+    "ts-check": "tsc --noEmit",
+    "validate": "yarn lint && yarn ts-check && yarn format-check",
+    "validate-ci": "yarn lint-report && yarn ts-check && yarn format-check"
   },
   "peerDependencies": {
     "@emotion/react": "^11.0.0",
