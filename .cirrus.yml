@@ -55,6 +55,12 @@ build_task:
     <<: *BUILD_TEMPLATE
     cpu: 4
     memory: 4G
+  env:
+    ARTIFACTORY_URL: https://repox.jfrog.io/artifactory
+    ARTIFACTORY_DEPLOY_ACCESS_TOKEN: VAULT[development/artifactory/token/${CIRRUS_REPO_OWNER}-${CIRRUS_REPO_NAME}-qa-deployer access_token]
+    ARTIFACTORY_PRIVATE_USERNAME: vault-${CIRRUS_REPO_OWNER}-${CIRRUS_REPO_NAME}-private-reader
+    ARTIFACTORY_PRIVATE_PASSWORD: VAULT[development/artifactory/token/${CIRRUS_REPO_OWNER}-${CIRRUS_REPO_NAME}-private-reader access_token]
+    ARTIFACTORY_DEPLOY_REPO: sonarsource-npm-public-qa
   depends_on:
     - install_dependencies
   build_script:
