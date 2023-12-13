@@ -68,6 +68,8 @@ build_task:
   build_script:
     - yarn install --immutable
     - yarn build
+  publish_script:
+    - .cirrus/publish.sh
 
 validation_task:
   <<: *YARN_CACHE_TEMPLATE
@@ -110,3 +112,12 @@ sonar_scan_task:
     - unit_test
   script:
     - source .cirrus/cirrus-sq-analysis.sh
+
+promote_task:
+  depends_on:
+    - sonar_scan
+  env:
+    ARTIFACTORY_PROMOTE_ACCESS_TOKEN: VAULT[development/artifactory/token/${CIRRUS_REPO_OWNER}-${CIRRUS_REPO_NAME}-promoter access_token]
+  script:
+    - source cirrus-env PROMOTE
+    - cirrus_jfrog_promote
