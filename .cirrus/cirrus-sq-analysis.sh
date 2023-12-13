@@ -30,17 +30,15 @@ if [[ "${PULL_REQUEST}" ]] || [[ "${GITHUB_BRANCH}" == "main" ]]; then
     "-Dsonar.qualitygate.wait=true"
     "-Dsonar.eslint.reportPaths=build-reports/eslint-report/eslint-report.json"
     "-Dsonar.javascript.lcov.reportPaths=**/build-reports/coverage/lcov.info"
-    "-Dsonar.sources=."
-    "-Dsonar.exclusions=**/src/**/__tests__/**"
+    "-Dsonar.sources=src,stories"
+    "-Dsonar.exclusions=src/**/__tests__/**"
     "-Dsonar.tests=."
     "-Dsonar.test.inclusions=**/__tests__/**"
-    "-Dsonar.coverage.exclusions=**/.storybook/**,
-                                **/stories/**,
-                                **/src/**/__stories__/**,
-                                **/src/types/**,
-                                **/src/components/icons/**,
-                                **/src/generated/**,
-                                **/src/common/helpers/testUtils.tsx,
+    "-Dsonar.coverage.exclusions=stories/**,
+                                src/**/*-stories.tsx,
+                                src/types/**,
+                                src/components/icons/**,
+                                src/generated/**,
                                 ")
   sonar-scanner "${scanner_params[@]}"
 
