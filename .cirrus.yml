@@ -20,6 +20,12 @@ eks_container: &BUILD_TEMPLATE
   docker_arguments:
     CIRRUS_AWS_ACCOUNT: ${CIRRUS_AWS_ACCOUNT}
 
+yarn_cache_template: &YARN_CACHE_TEMPLATE
+  yarn_cache:
+    folders:
+      - '.yarn'
+    fingerprint_script: cat yarn.lock
+
 eslint_report_cache_template: &ESLINT_REPORT_CACHE_TEMPLATE
   eslint_report_cache:
     folder: 'build-reports/eslint-report'
@@ -35,12 +41,25 @@ build_dist_cache_template: &BUILD_DIST_CACHE_TEMPLATE
     folder: 'dist/**'
     fingerprint_script: echo $CIRRUS_BUILD_ID
 
+install_dependencies_task:
+  <<: *YARN_CACHE_TEMPLATE
+  timeout_in: 30m
+  eks_container:
+    <<: *BUILD_TEMPLATE
+    cpu: 4
+    memory: 4Gb
+  script:
+    - yarn install --immutable
+
 build_task:
+  <<: *YARN_CACHE_TEMPLATE
   <<: *BUILD_DIST_CACHE_TEMPLATE
   eks_container:
     <<: *BUILD_TEMPLATE
     cpu: 4
     memory: 4G
+  depends_on:
+    - install_dependencies
   build_script:
     - if [ -n "${CIRRUS_BASE_BRANCH}" ]; then git fetch origin "${CIRRUS_BASE_BRANCH}"; fi
     - jfrog config add repox --url https://repox.jfrog.io/ --access-token $ARTIFACTORY_DEPLOY_ACCESS_TOKEN
@@ -50,6 +69,7 @@ build_task:
     - .cirrus/publish.sh
 
 validation_task:
+  <<: *YARN_CACHE_TEMPLATE
   <<: *BUILD_DIST_CACHE_TEMPLATE
   <<: *ESLINT_REPORT_CACHE_TEMPLATE
   eks_container:
@@ -57,16 +77,20 @@ validation_task:
     cpu: 4
     memory: 8G
   depends_on:
+    - install_dependencies
     - build
   script:
     - yarn validate-ci
 
 unit_test_task:
+  <<: *YARN_CACHE_TEMPLATE
   <<: *JEST_COVERAGE_CACHE_TEMPLATE
   eks_container:
     <<: *BUILD_TEMPLATE
     cpu: 4
     memory: 8G
+  depends_on:
+    - install_dependencies
   script:
     - yarn test-ci
 
