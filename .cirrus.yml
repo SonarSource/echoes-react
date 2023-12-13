@@ -1,5 +1,9 @@
 env:
-  # Determine what we need here
+  ARTIFACTORY_URL: https://repox.jfrog.io/artifactory
+  ARTIFACTORY_DEPLOY_ACCESS_TOKEN: VAULT[development/artifactory/token/${CIRRUS_REPO_OWNER}-${CIRRUS_REPO_NAME}-qa-deployer access_token]
+  ARTIFACTORY_PRIVATE_USERNAME: vault-${CIRRUS_REPO_OWNER}-${CIRRUS_REPO_NAME}-private-reader
+  ARTIFACTORY_PRIVATE_PASSWORD: VAULT[development/artifactory/token/${CIRRUS_REPO_OWNER}-${CIRRUS_REPO_NAME}-private-reader access_token]
+  ARTIFACTORY_DEPLOY_REPO: sonarsource-npm-public-qa
 
   # analysis on next.sonarqube.com
   SONARQUBE_NEXT_TOKEN: VAULT[development/kv/data/next data.token]
@@ -47,7 +51,6 @@ install_dependencies_task:
   script:
     - yarn install --immutable
 
-
 build_task:
   <<: *YARN_CACHE_TEMPLATE
   <<: *BUILD_DIST_CACHE_TEMPLATE
@@ -55,16 +58,13 @@ build_task:
     <<: *BUILD_TEMPLATE
     cpu: 4
     memory: 4G
-  env:
-    ARTIFACTORY_URL: https://repox.jfrog.io/artifactory
-    ARTIFACTORY_DEPLOY_ACCESS_TOKEN: VAULT[development/artifactory/token/${CIRRUS_REPO_OWNER}-${CIRRUS_REPO_NAME}-qa-deployer access_token]
-    ARTIFACTORY_PRIVATE_USERNAME: vault-${CIRRUS_REPO_OWNER}-${CIRRUS_REPO_NAME}-private-reader
-    ARTIFACTORY_PRIVATE_PASSWORD: VAULT[development/artifactory/token/${CIRRUS_REPO_OWNER}-${CIRRUS_REPO_NAME}-private-reader access_token]
-    ARTIFACTORY_DEPLOY_REPO: sonarsource-npm-public-qa
   depends_on:
     - install_dependencies
   build_script:
     - yarn install --immutable
+    - if [ -n "${CIRRUS_BASE_BRANCH}" ]; then git fetch origin "${CIRRUS_BASE_BRANCH}"; fi
+    - jfrog config add repox --url https://repox.jfrog.io/ --access-token $ARTIFACTORY_DEPLOY_ACCESS_TOKEN
+    - jfrog npm-config --repo-resolve npm --repo-deploy $ARTIFACTORY_DEPLOY_REPO
     - yarn build
   publish_script:
     - .cirrus/publish.sh
