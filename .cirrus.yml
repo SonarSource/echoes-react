@@ -47,13 +47,6 @@ install_dependencies_task:
   script:
     - yarn install --immutable
 
-build_number_task:
-  eks_container:
-    <<: *BUILD_TEMPLATE
-    cpu: 1
-    memory: 2Gb
-  script:
-    - .cirrus/build-number.sh
 
 build_task:
   <<: *YARN_CACHE_TEMPLATE
@@ -63,7 +56,6 @@ build_task:
     cpu: 4
     memory: 4G
   depends_on:
-    - build_number
     - install_dependencies
   build_script:
     - yarn install --immutable
