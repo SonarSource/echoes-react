@@ -23,8 +23,6 @@
  * They are purely internal and not exported outside.
  */
 
-/**
- * To get the Props of a functional component
- */
-export type FCProps<T extends React.FunctionComponent<React.PropsWithChildren<any>>> =
-  Parameters<T>[0];
+export function help() {
+  /* this is a placeholder */
+}

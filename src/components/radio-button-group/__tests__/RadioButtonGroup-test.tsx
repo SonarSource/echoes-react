@@ -20,7 +20,6 @@
 
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { FCProps } from '~common/helpers';
 import { RadioButtonGroup } from '../RadioButtonGroup';
 
 describe('RadioButtonGroup', () => {
@@ -44,7 +43,9 @@ describe('RadioButtonGroup', () => {
   });
 });
 
-function renderRadioButtonGroup(overrides: Partial<FCProps<typeof RadioButtonGroup>> = {}) {
+function renderRadioButtonGroup(
+  overrides: Partial<React.ComponentProps<typeof RadioButtonGroup>> = {},
+) {
   const options = [
     { label: 'a', value: '1' },
     { label: 'b', value: '2' },
