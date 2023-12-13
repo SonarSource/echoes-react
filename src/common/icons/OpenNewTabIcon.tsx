@@ -18,6 +18,8 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-export * from './example-component';
-export * from './links';
-export * from './radio-button-group';
+import { LinkExternalIcon } from '@primer/octicons-react';
+import { OcticonHoc } from './Icon';
+
+// TODO: This is a temporary solution until we have a proper icon for this
+export const OpenNewTabIcon = OcticonHoc(LinkExternalIcon, 'OpenNewTabIcon');

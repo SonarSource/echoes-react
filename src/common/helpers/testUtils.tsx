@@ -18,6 +18,14 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-export * from './example-component';
-export * from './links';
-export * from './radio-button-group';
+import { RenderOptions, render as rtlRender } from '@testing-library/react';
+import userEvent, { Options as UserEventsOptions } from '@testing-library/user-event';
+import React from 'react';
+
+export function render(
+  ui: React.ReactElement,
+  options?: RenderOptions,
+  userEventOptions?: UserEventsOptions,
+) {
+  return { ...rtlRender(ui, options), user: userEvent.setup(userEventOptions) };
+}

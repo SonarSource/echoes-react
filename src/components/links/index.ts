@@ -18,6 +18,5 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-export * from './example-component';
-export * from './links';
-export * from './radio-button-group';
+export { Link } from './Link';
+export { LinkSubdued } from './LinkSubdued';

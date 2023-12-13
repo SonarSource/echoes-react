@@ -18,6 +18,12 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-export * from './example-component';
-export * from './links';
-export * from './radio-button-group';
+export function isSonarLink(pageUrl: string): boolean {
+  return [
+    'https://docs.sonarsource.com',
+    'https://www.sonarsource.com',
+    'https://sonarcloud.io',
+    'https://redirect.sonarsource.com',
+    'https://blog.sonarsource.com',
+  ].some((url) => pageUrl.startsWith(url));
+}
