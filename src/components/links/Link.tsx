@@ -18,6 +18,15 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-export * from './example-component';
-export * from './links';
-export * from './radio-button-group';
+import styled from '@emotion/styled';
+import { LinkBaseStyled } from './LinkBaseStyled';
+
+export const Link = styled(LinkBaseStyled)`
+  font-weight: var(--echoes-font-weight-semi-bold);
+
+  --color: var(--echoes-color-background-accent-default);
+  --hover: var(--echoes-color-background-accent-default-hover);
+  --active: var(--echoes-color-background-accent-default-active);
+`;
+
+Link.displayName = 'Link';

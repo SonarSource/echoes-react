@@ -18,6 +18,13 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-export * from './example-component';
-export * from './links';
-export * from './radio-button-group';
+import styled from '@emotion/styled';
+import { LinkBaseStyled } from './LinkBaseStyled';
+
+export const LinkSubdued = styled(LinkBaseStyled)`
+  --color: 'currentColor';
+  --hover: var(--echoes-color-background-accent-default-hover);
+  --active: var(--echoes-color-background-accent-default-active);
+`;
+
+LinkSubdued.displayName = 'LinkSubdued';

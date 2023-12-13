@@ -23,6 +23,7 @@ import { withThemeByDataAttribute } from '@storybook/addon-themes';
 import type { Preview } from '@storybook/react';
 import React from 'react';
 import { IntlProvider } from 'react-intl';
+import { MemoryRouter } from 'react-router-dom';
 import { Theme } from '../dist';
 
 const globalStyles = css`
@@ -74,7 +75,9 @@ const preview: Preview = {
       return (
         <IntlProvider locale="en-us">
           <Global styles={globalStyles} />
-          <Story />
+          <MemoryRouter>
+            <Story />
+          </MemoryRouter>
         </IntlProvider>
       );
     },
