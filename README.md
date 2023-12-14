@@ -40,4 +40,5 @@ yarn build
 
 ### Deployment
 
-TODO
+[Release process definition](docs/RELEASING.md)
+
