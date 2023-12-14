@@ -41,4 +41,3 @@ yarn build
 ### Deployment
 
 [Release process definition](docs/RELEASING.md)
-
