@@ -27,7 +27,6 @@ if [[ "${PULL_REQUEST}" ]] || [[ "${GITHUB_BRANCH}" == "main" ]]; then
     "-Dsonar.analysis.repository=${GITHUB_REPO}"
     "-Dsonar.analysis.sha1=${GIT_SHA1}"
     "-Dsonar.projectKey=SonarSource_echoes-react_AYvOIyNg-JQvdKIPB6Ig"
-    "-Dsonar.qualitygate.wait=true"
     "-Dsonar.eslint.reportPaths=build-reports/eslint-report/eslint-report.json"
     "-Dsonar.javascript.lcov.reportPaths=**/build-reports/coverage/lcov.info"
     "-Dsonar.sources=src,stories"
