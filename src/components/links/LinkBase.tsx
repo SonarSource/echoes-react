@@ -83,7 +83,7 @@ function LinkBaseWithRef(props: LinkProps, ref: React.ForwardedRef<HTMLAnchorEle
 
   if (isExternal) {
     return (
-      // eslint-disable-next-line react/jsx-no-target-blank
+      // eslint-disable-next-line react/jsx-no-target-blank --  we only allow noopener noreferrer for known external links
       <a
         rel={`noopener${isSonarLink(toAsString) ? '' : ' noreferrer nofollow'}`}
         target="_blank"
