@@ -1,3 +1,13 @@
+# Releasing
+
+## Versioning
+
+This project follows [semver](https://semver.org/).
+
+Major and minor versions follow the versioning in the Echoes Design System. Patches may diverge.
+
+For more details, refer to the [internal versioning strategy](https://docs.google.com/document/d/1JkzJVFBN3MPl-uBDgddICfdFf4kXPaRBa6XqaJV0F5U) (Sonar employees only)
+
 ## Release Process
 
 - [Create a Jira release ticket](https://jira.sonarsource.com/projects/REL) like [this one](https://sonarsource.atlassian.net/browse/REL-PLACEHOLDER)
