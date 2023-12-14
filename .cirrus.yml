@@ -61,7 +61,6 @@ build_task:
   depends_on:
     - install_dependencies
   build_script:
-    - yarn install --immutable
     - if [ -n "${CIRRUS_BASE_BRANCH}" ]; then git fetch origin "${CIRRUS_BASE_BRANCH}"; fi
     - jfrog config add repox --url https://repox.jfrog.io/ --access-token $ARTIFACTORY_DEPLOY_ACCESS_TOKEN
     - jfrog npm-config --repo-resolve npm --repo-deploy $ARTIFACTORY_DEPLOY_REPO
@@ -81,7 +80,6 @@ validation_task:
     - install_dependencies
     - build
   script:
-    - yarn install --immutable
     - yarn validate-ci
 
 unit_test_task:
@@ -94,7 +92,6 @@ unit_test_task:
   depends_on:
     - install_dependencies
   script:
-    - yarn install --immutable
     - yarn test-ci
 
 sonar_scan_task:

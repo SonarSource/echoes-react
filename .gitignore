@@ -5,10 +5,9 @@
 !.yarn/sdks
 !.yarn/versions
 
-# Swap the comments on the following lines if you wish to use zero-installs
 # Documentation here: https://yarnpkg.com/features/zero-installs
-#!.yarn/cache
-.pnp.*
+!.yarn/cache
+#.pnp.*
 
 # ---- IntelliJ IDEA
 *.iws
