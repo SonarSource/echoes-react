@@ -19,7 +19,6 @@
  */
 
 import { screen } from '@testing-library/react';
-import { IntlProvider } from 'react-intl';
 import { MemoryRouter, Route, Routes, useLocation } from 'react-router-dom';
 import { LinkSubdued } from '..';
 import { render } from '../../../common/helpers/testUtils';
@@ -138,10 +137,10 @@ const setupWithMemoryRouter = (component: JSX.Element, initialEntries = ['/initi
       <Routes>
         <Route
           element={
-            <IntlProvider locale="en">
+            <>
               {component}
               <ShowPath />
-            </IntlProvider>
+            </>
           }
           path="/initial"
         />

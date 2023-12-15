@@ -50,7 +50,7 @@ export function CustomIcon(props: Readonly<Props>) {
       aria-label={ariaLabel}
       className={className}
       fill="none"
-      height="1em"
+      height="1rem"
       role="img"
       style={{
         clipRule: 'evenodd',
@@ -63,7 +63,7 @@ export function CustomIcon(props: Readonly<Props>) {
       }}
       version="1.1"
       viewBox="0 0 16 16"
-      width="1em"
+      width="1rem"
       xmlSpace="preserve"
       xmlnsXlink="http://www.w3.org/1999/xlink"
       {...iconProps}>

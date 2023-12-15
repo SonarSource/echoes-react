@@ -18,26 +18,18 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import { RenderOptions, render as rtlRender } from '@testing-library/react';
-import userEvent, { Options as UserEventsOptions } from '@testing-library/user-event';
-import React, { PropsWithChildren } from 'react';
-import { IntlProvider } from 'react-intl';
+import { CustomIcon, IconProps } from './Icon';
 
-export function render(
-  ui: React.ReactElement,
-  options?: RenderOptions,
-  userEventOptions?: UserEventsOptions,
-) {
-  return {
-    ...rtlRender(ui, { wrapper: ContextWrapper, ...options }),
-    user: userEvent.setup(userEventOptions),
-  };
-}
-
-function ContextWrapper({ children }: PropsWithChildren<{}>) {
+// TODO: This is a temporary solution until we have a proper icons implemented
+export function CheckIcon(props: Readonly<IconProps>) {
   return (
-    <IntlProvider defaultLocale="en-us" locale="en-us">
-      {children}
-    </IntlProvider>
+    <CustomIcon {...props}>
+      <path
+        clipRule="evenodd"
+        d="M11.6634 5.47789c.2884.29737.2811.77218-.0163 1.06054L7.52211 10.5384c-.29414.2852-.76273.2816-1.05244-.0081l-2-1.99997c-.29289-.29289-.29289-.76777 0-1.06066s.76777-.29289 1.06066 0L7.0081 8.94744l3.5948-3.48586c.2974-.28836.7722-.28105 1.0605.01631Z"
+        fill="currentColor"
+        fillRule="evenodd"
+      />
+    </CustomIcon>
   );
 }

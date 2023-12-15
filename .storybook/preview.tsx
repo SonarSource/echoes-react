@@ -73,7 +73,7 @@ const preview: Preview = {
     }),
     (Story) => {
       return (
-        <IntlProvider locale="en-us">
+        <IntlProvider defaultLocale="en-us" locale="en-us">
           <Global styles={globalStyles} />
           <MemoryRouter>
             <Story />
