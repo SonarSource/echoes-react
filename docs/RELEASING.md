@@ -12,7 +12,7 @@ For more details, refer to the [internal versioning strategy](https://docs.googl
 
 - [Create a Jira release ticket](https://jira.sonarsource.com/projects/REL) like [this one](https://sonarsource.atlassian.net/browse/REL-PLACEHOLDER)
 
-  - Title: @sonar/echoes-react 0.1.3.1223
+  - Title: @sonarsource/echoes-react 0.1.3.1223
   - Documentation status: N/A
   - Short description: pull from [version description](https://sonarsource.atlassian.net/projects/DS/versions/15439/tab/release-report-all-issues)
   - SQ compatibility: current version
