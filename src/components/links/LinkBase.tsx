@@ -25,7 +25,7 @@ import { Link as RouterLink, LinkProps as RouterLinkProps } from 'react-router-d
 import { isSonarLink } from '../../common/helpers/url';
 import { OpenNewTabIcon } from '../../common/icons/OpenNewTabIcon';
 
-type RouterLinkPropsRequired = 'to' | 'reloadDocument' | 'state' | 'download' | 'title';
+type RouterLinkPropsRequired = 'to' | 'reloadDocument' | 'state' | 'download' | 'style' | 'title';
 export interface LinkProps extends Pick<RouterLinkProps, RouterLinkPropsRequired> {
   children: React.ReactNode;
   className?: string;
