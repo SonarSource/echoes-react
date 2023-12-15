@@ -19,7 +19,6 @@
  */
 
 export * from './checkbox';
-export * from './example-component';
 export * from './links';
 export * from './radio-button-group';
 export * from './spinner';
