@@ -17,27 +17,4 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-
-import { RenderOptions, render as rtlRender } from '@testing-library/react';
-import userEvent, { Options as UserEventsOptions } from '@testing-library/user-event';
-import React, { PropsWithChildren } from 'react';
-import { IntlProvider } from 'react-intl';
-
-export function render(
-  ui: React.ReactElement,
-  options?: RenderOptions,
-  userEventOptions?: UserEventsOptions,
-) {
-  return {
-    ...rtlRender(ui, { wrapper: ContextWrapper, ...options }),
-    user: userEvent.setup(userEventOptions),
-  };
-}
-
-function ContextWrapper({ children }: PropsWithChildren<{}>) {
-  return (
-    <IntlProvider defaultLocale="en-us" locale="en-us">
-      {children}
-    </IntlProvider>
-  );
-}
+export { Checkbox } from './Checkbox';
