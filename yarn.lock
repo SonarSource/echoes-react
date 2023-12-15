@@ -3618,9 +3618,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sonar/echoes-react@workspace:.":
+"@sonarsource/echoes-react@workspace:.":
   version: 0.0.0-use.local
-  resolution: "@sonar/echoes-react@workspace:."
+  resolution: "@sonarsource/echoes-react@workspace:."
   dependencies:
     "@emotion/jest": "npm:11.11.0"
     "@emotion/react": "npm:11.11.1"
