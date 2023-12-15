@@ -19,7 +19,6 @@
  */
 
 /**
- * This folder is for small helper functions that help us build our components.
+ * This folder is for reusable components that help us build exported components.
  * They are purely internal and not exported outside.
  */
-export { BasicComponent } from './BasicComponent';
