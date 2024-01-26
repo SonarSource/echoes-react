@@ -32,7 +32,7 @@ export default defineConfig({
       entry: path.resolve('src/index.ts'),
       name: 'Echoes',
       formats: ['es'],
-      fileName: (_format) => `index.js`,
+      fileName: `index`,
     },
     outDir: 'dist',
     rollupOptions: {

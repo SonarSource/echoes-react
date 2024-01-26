@@ -2,11 +2,11 @@
   "name": "@sonarsource/echoes-react",
   "version": "0.1.0",
   "type": "module",
+  "exports": "./dist/index.js",
   "files": [
     "dist"
   ],
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "types": "./dist/index.d.ts",
   "description": "React implementation of Echoes, SONAR's Design System",
   "license": "LGPL-3.0",
   "engines": {
