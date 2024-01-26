@@ -2,6 +2,33 @@
 
 A React implementation of Echoes, Sonar's Design System.
 
+## Installation
+
+```bash
+yarn add @sonarsource/echoes-react
+```
+
+## Usage
+
+Make sure to setup the `IntlProvider` from `react-intl` at the root of your app. See [this page](https://formatjs.io/docs/react-intl/components/#intlprovider) for more information.
+
+Use components from the lib:
+
+```ts
+import { Checkbox } from '@sonarsource/echoes-react';
+```
+
+See available components and usage in storybook: https://echoes-react.netlify.app/
+
+### Make it work in Jest
+
+The lib only provides es module bundle. If you use Jest for your tests (or a similar library) make sure your transform preprocessor goes through `echoes-react` to make it runnable on Node.js.
+You can do that by adding an exception in your `transformIgnorePatterns`, for example:
+
+```js
+transformIgnorePatterns: [`/node_modules/(?!@sonarsource/echoes-react)`],
+```
+
 ## Local Development
 
 ### VSCode Configuration
@@ -41,3 +68,7 @@ yarn build
 ### Deployment
 
 [Release process definition](docs/RELEASING.md)
+
+```
+
+```
