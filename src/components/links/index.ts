@@ -19,4 +19,6 @@
  */
 
 export { Link } from './Link';
-export { LinkSubdued } from './LinkSubdued';
+export { LinkHighlight } from './LinkBase';
+export type { LinkProps } from './LinkBase';
+export { LinkStandalone } from './LinkStandalone';

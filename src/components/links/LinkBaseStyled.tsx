@@ -20,45 +20,60 @@
 
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import { LinkBase } from './LinkBase';
+import { LinkBase, LinkHighlight } from './LinkBase';
+
+const LinkBaseStyledType = {
+  [LinkHighlight.Accent]: css`
+    font-weight: var(--echoes-font-weight-semi-bold);
+    --color: var(--echoes-color-text-accent);
+    --hover: var(--echoes-color-text-accent-hover);
+  `,
+  [LinkHighlight.Default]: css`
+    --color: var(--echoes-color-text-default);
+    --hover: var(--echoes-color-text-accent-hover);
+  `,
+  [LinkHighlight.Subdued]: css`
+    --color: var(--echoes-color-text-subdued);
+    --hover: var(--echoes-color-text-accent-hover);
+  `,
+};
+
+const LinkBaseStyledNoType = css`
+  ${LinkBaseStyledType[LinkHighlight.Default]}
+  --color: 'currentColor';
+`;
 
 export const LinkBaseStyled = styled(LinkBase)`
+  ${({ highlight: type }) => (type ? LinkBaseStyledType[type] : LinkBaseStyledNoType)};
+
   color: var(--color);
+  text-decoration-line: var(--echoes-text-decoration-underline);
   text-decoration-color: var(--color);
-  text-decoration: var(--echoes-text-decoration-underline);
+  text-decoration-style: solid;
+  text-decoration-skip-ink: auto;
+  text-decoration-thickness: auto;
 
   &:visited {
     color: var(--color);
   }
 
-  &:hover {
-    color: var(--hover);
-  }
-
+  &:hover,
   &:focus,
   &:active {
-    color: var(--active);
-    text-decoration-color: var(--active);
+    color: var(--hover);
+    text-decoration-color: var(--hover);
   }
 
   &:focus,
   &:focus-visible {
-    outline: var(--echoes-color-border-focus) solid 2px;
-    outline-offset: var(--echoes-dimension-space-25);
+    outline: var(--echoes-color-focus-default) solid var(--echoes-focus-border-width-default);
+    outline-offset: var(--echoes-focus-border-offset-default);
+    border-radius: var(--echoes-border-radius-200);
   }
 
   & > svg {
     vertical-align: text-bottom !important;
   }
-
-  ${({ icon }) =>
-    icon &&
-    css`
-      & > svg,
-      & > img {
-        margin-right: var(--echoes-dimension-space-50);
-      }
-    `};
 
   @media print {
     &,

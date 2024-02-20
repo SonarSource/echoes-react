@@ -25,13 +25,20 @@ import { Link as RouterLink, LinkProps as RouterLinkProps } from 'react-router-d
 import { isSonarLink } from '../../common/helpers/url';
 import { OpenNewTabIcon } from '../../common/icons/OpenNewTabIcon';
 
-type RouterLinkPropsRequired = 'to' | 'reloadDocument' | 'state' | 'download' | 'title';
+type RouterLinkPropsRequired = 'download' | 'reloadDocument' | 'state' | 'style' | 'title' | 'to';
+
+export enum LinkHighlight {
+  Accent = 'accent',
+  Default = 'default',
+  Subdued = 'subdued',
+}
+
 export interface LinkProps extends Pick<RouterLinkProps, RouterLinkPropsRequired> {
   children: React.ReactNode;
   className?: string;
-  icon?: React.ReactNode;
   isExternal?: boolean;
   hasExternalIcon?: boolean;
+  highlight?: LinkHighlight;
   shouldBlurAfterClick?: boolean;
   shouldPreventDefault?: boolean;
   shouldStopPropagation?: boolean;
@@ -39,15 +46,14 @@ export interface LinkProps extends Pick<RouterLinkProps, RouterLinkPropsRequired
   target?: HTMLAttributeAnchorTarget;
 }
 
-function LinkBaseWithRef(props: LinkProps, ref: React.ForwardedRef<HTMLAnchorElement>) {
+function LinkBaseWithRef(props: Readonly<LinkProps>, ref: React.ForwardedRef<HTMLAnchorElement>) {
   const {
     children,
     shouldBlurAfterClick = false,
-    icon,
     isExternal: isExternalProp = false,
     onClick,
     shouldPreventDefault = false,
-    hasExternalIcon = !icon,
+    hasExternalIcon = true,
     shouldStopPropagation = false,
     to,
     ...rest
@@ -91,7 +97,6 @@ function LinkBaseWithRef(props: LinkProps, ref: React.ForwardedRef<HTMLAnchorEle
         href={toAsString}
         onClick={handleClick}
         ref={ref}>
-        {icon}
         {children}
         {hasExternalIcon && (
           <ExternalIcon
@@ -108,7 +113,6 @@ function LinkBaseWithRef(props: LinkProps, ref: React.ForwardedRef<HTMLAnchorEle
 
   return (
     <RouterLink ref={ref} {...rest} onClick={handleClick} to={to}>
-      {icon}
       {children}
     </RouterLink>
   );

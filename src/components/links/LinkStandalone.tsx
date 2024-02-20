@@ -18,13 +18,43 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
+import { LinkProps } from '.';
 import { LinkBaseStyled } from './LinkBaseStyled';
 
-export const LinkSubdued = styled(LinkBaseStyled)`
-  --color: 'currentColor';
-  --hover: var(--echoes-color-background-accent-default-hover);
-  --active: var(--echoes-color-background-accent-default-active);
+interface Props extends LinkProps {
+  iconLeft?: React.ReactNode;
+}
+
+function LinkStandaloneBase(props: Readonly<Props>) {
+  const { children, iconLeft, ...linkProps } = props;
+
+  return (
+    <LinkBaseStyled hasExternalIcon={!iconLeft} {...linkProps}>
+      {iconLeft}
+      {children}
+    </LinkBaseStyled>
+  );
+}
+
+export const LinkStandalone = styled(LinkStandaloneBase)`
+  text-decoration-line: var(--echoes-text-decoration-none);
+
+  &:hover {
+    color: var(--color);
+    text-decoration-line: var(--echoes-text-decoration-underline);
+    text-decoration-color: var(--color);
+  }
+
+  ${({ iconLeft }) =>
+    iconLeft &&
+    css`
+      & > svg,
+      & > img {
+        margin-right: var(--echoes-dimension-space-50);
+      }
+    `};
 `;
 
-LinkSubdued.displayName = 'LinkSubdued';
+LinkStandalone.displayName = 'LinkStandalone';

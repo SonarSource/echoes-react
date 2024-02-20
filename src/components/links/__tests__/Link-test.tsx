@@ -20,13 +20,12 @@
 
 import { screen } from '@testing-library/react';
 import { MemoryRouter, Route, Routes, useLocation } from 'react-router-dom';
-import { LinkSubdued } from '..';
-import { render } from '../../../common/helpers/testUtils';
-import { Link } from '../Link';
+import { render } from '~common/helpers/testUtils';
+import { Link } from '..';
 
 it('should remove focus after link is clicked', async () => {
   const { user, container } = setupWithMemoryRouter(
-    <Link icon={<div>Icon</div>} shouldBlurAfterClick to="/initial">
+    <Link shouldBlurAfterClick to="/initial">
       Test
     </Link>,
   );
@@ -118,12 +117,6 @@ it('should override target if passed as a prop for external link', () => {
   );
 
   expect(screen.getByRole('link')).toHaveAttribute('target', '_self');
-});
-
-it('should display linkSubdued properly', async () => {
-  const { container } = setupWithMemoryRouter(<LinkSubdued to="/path">link subdued</LinkSubdued>);
-  expect(screen.getByRole('link')).toBeVisible();
-  await expect(container).toHaveNoA11yViolations();
 });
 
 function ShowPath() {
