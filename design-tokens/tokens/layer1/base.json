@@ -286,7 +286,7 @@
             },
             "type": "typography"
           },
-          "semiBold": {
+          "semi-bold": {
             "value": {
               "fontFamily": "{echoes.fontFamily.sans}",
               "fontWeight": "{echoes.fontWeight.semiBold}",
@@ -310,7 +310,7 @@
             },
             "type": "typography"
           },
-          "semiBold": {
+          "semi-bold": {
             "value": {
               "fontFamily": "{echoes.fontFamily.sans}",
               "fontWeight": "{echoes.fontWeight.semiBold}",
@@ -334,7 +334,7 @@
             },
             "type": "typography"
           },
-          "semiBold": {
+          "semi-bold": {
             "value": {
               "fontFamily": "{echoes.fontFamily.sans}",
               "fontWeight": "{echoes.fontWeight.semiBold}",

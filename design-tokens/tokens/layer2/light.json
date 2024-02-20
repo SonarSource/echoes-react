@@ -184,7 +184,7 @@
           "type": "color",
           "value": "{echoes.color.indigo.600}"
         },
-        "acent-bold": {
+        "accent-bold": {
           "type": "color",
           "value": "{echoes.color.indigo.900}"
         },

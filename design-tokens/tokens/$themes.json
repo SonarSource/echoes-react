@@ -52,7 +52,6 @@
       "echoes.color.text.disabled": "9d518f6edf3b09f27f0d56a1d4cb201bd02ab1ab",
       "echoes.color.text.accent": "ebe8f3b29adbac83e1049b7ba7f3fcfa93597e41",
       "echoes.color.text.accent-hover": "96d944aa28648d42379033b79f63d27915967457",
-      "echoes.color.text.acent-bold": "d43eef38ac817ef474142ff74d2c926a0a94c465",
       "echoes.color.text.danger": "61a27415b4b5386036e38c6a1db7f27eecba1f8d",
       "echoes.color.text.danger-bold": "d31992df53982d86b8d94bae1b5e6b17402e359a",
       "echoes.color.text.warning": "4b9c5ee639e7e4a5f9909cdd2a8d30ec42921a97",
@@ -82,7 +81,8 @@
       "echoes.color.border.success": "420b9a491b1edad32970da07c6764fb1e9473e83",
       "echoes.color.border.warning": "f1ca8acc11fe0540516282e414fd635835143ca2",
       "echoes.color.border.info": "231c48e1aabd21a214abf554a9844d130bc068c0",
-      "echoes.color.border.focus": "e9977aca795abdb46bdc401cd0b33955aee3c615"
+      "echoes.color.border.focus": "e9977aca795abdb46bdc401cd0b33955aee3c615",
+      "echoes.color.text.accent-bold": "d43eef38ac817ef474142ff74d2c926a0a94c465"
     },
     "group": "Themes"
   },
