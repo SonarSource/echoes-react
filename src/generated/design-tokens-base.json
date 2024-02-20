@@ -94,10 +94,18 @@
     },
     "typography": {
       "paragraph": {
-        "default": "400 0.875rem/1.42 Inter",
-        "small": "400 0.75rem/1.42 Inter",
-        "large": "400 1rem/1.42 Inter",
-        "defaultSemiBold": "600 0.875rem/1.42 Inter"
+        "medium": {
+          "regular": "400 0.875rem/1.42 Inter",
+          "semi-bold": "600 0.875rem/1.42 Inter"
+        },
+        "small": {
+          "regular": "400 0.75rem/1.42 Inter",
+          "semi-bold": "600 0.75rem/1.42 Inter"
+        },
+        "large": {
+          "regular": "400 1rem/1.42 Inter",
+          "semi-bold": "600 1rem/1.42 Inter"
+        }
       },
       "heading": {
         "small": "600 1rem/1.32 Inter",

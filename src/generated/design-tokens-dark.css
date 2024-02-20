@@ -1,6 +1,6 @@
 /**
  * Do not edit directly
- * Generated on Mon, 11 Dec 2023 16:54:27 GMT
+ * Generated on Tue, 20 Feb 2024 12:56:01 GMT
  */
 
 html[data-echoes-theme='dark'] {
@@ -43,6 +43,7 @@ html[data-echoes-theme='dark'] {
   --echoes-color-text-subdued: rgb(197,205,223);
   --echoes-color-text-disabled: rgb(106,117,144);
   --echoes-color-text-accent: rgb(159,169,237);
+  --echoes-color-text-accent-hover: rgb(189,198,255);
   --echoes-color-text-accent-bold: rgb(232,235,255);
   --echoes-color-text-danger: rgb(253,162,155);
   --echoes-color-text-danger-bold: rgb(254,243,242);
@@ -63,6 +64,7 @@ html[data-echoes-theme='dark'] {
   --echoes-color-icon-success: rgb(225,245,168);
   --echoes-color-icon-info: rgb(184,222,241);
   --echoes-color-icon-on-color: rgb(42,47,64);
+  --echoes-color-border-bold: rgb(166,173,194);
   --echoes-color-border-default: rgb(62,67,87);
   --echoes-color-border-subdued: rgb(106,117,144);
   --echoes-color-border-disabled: rgb(106,117,144);

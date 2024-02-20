@@ -1,6 +1,6 @@
 /**
  * Do not edit directly
- * Generated on Mon, 11 Dec 2023 16:54:27 GMT
+ * Generated on Tue, 20 Feb 2024 12:56:01 GMT
  */
 
 :root {
@@ -64,10 +64,12 @@
   --echoes-text-case-none: none;
   --echoes-text-decoration-none: none;
   --echoes-text-decoration-underline: underline;
-  --echoes-typography-paragraph-default: 400 0.875rem/1.42 Inter;
-  --echoes-typography-paragraph-small: 400 0.75rem/1.42 Inter;
-  --echoes-typography-paragraph-large: 400 1rem/1.42 Inter;
-  --echoes-typography-paragraph-default-semi-bold: 600 0.875rem/1.42 Inter;
+  --echoes-typography-paragraph-medium-regular: 400 0.875rem/1.42 Inter;
+  --echoes-typography-paragraph-medium-semi-bold: 600 0.875rem/1.42 Inter;
+  --echoes-typography-paragraph-small-regular: 400 0.75rem/1.42 Inter;
+  --echoes-typography-paragraph-small-semi-bold: 600 0.75rem/1.42 Inter;
+  --echoes-typography-paragraph-large-regular: 400 1rem/1.42 Inter;
+  --echoes-typography-paragraph-large-semi-bold: 600 1rem/1.42 Inter;
   --echoes-typography-heading-small: 600 1rem/1.32 Inter;
   --echoes-typography-heading-medium: 600 1.25rem/1.32 Inter;
   --echoes-typography-heading-large: 600 1.5rem/1.32 Inter;

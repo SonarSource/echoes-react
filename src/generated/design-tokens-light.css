@@ -1,6 +1,6 @@
 /**
  * Do not edit directly
- * Generated on Mon, 11 Dec 2023 16:54:27 GMT
+ * Generated on Tue, 20 Feb 2024 12:56:01 GMT
  */
 
 :root {
@@ -43,7 +43,8 @@
   --echoes-color-text-subdued: rgb(106,117,144);
   --echoes-color-text-disabled: rgb(166,173,194);
   --echoes-color-text-accent: rgb(93,108,208);
-  --echoes-color-text-acent-bold: rgb(27,34,80);
+  --echoes-color-text-accent-hover: rgb(75,86,187);
+  --echoes-color-text-accent-bold: rgb(27,34,80);
   --echoes-color-text-danger: rgb(180,35,24);
   --echoes-color-text-danger-bold: rgb(93,29,19);
   --echoes-color-text-warning: rgb(140,94,30);
@@ -63,6 +64,7 @@
   --echoes-color-icon-success: rgb(104,154,48);
   --echoes-color-icon-info: rgb(69,149,203);
   --echoes-color-icon-on-color: rgb(255,255,255);
+  --echoes-color-border-bold: rgb(106,117,144);
   --echoes-color-border-default: rgb(225,230,243);
   --echoes-color-border-subdued: rgb(239,242,249);
   --echoes-color-border-disabled: rgb(197,205,223);
