@@ -41,15 +41,6 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Basic: Story = {
-  args: {
-    checked: false,
-    title: "I'm a checkbox",
-    onCheck: () => {},
-  },
-  render: (args) => <CheckboxState initialValue={args.checked} {...args} />,
-};
-
 export const WithSimpleLabel: Story = {
   args: {
     checked: false,
@@ -59,19 +50,25 @@ export const WithSimpleLabel: Story = {
   render: (args) => <CheckboxState initialValue={args.checked} {...args} />,
 };
 
-export const WithComplexLabel: Story = {
+export const WithHelpText: Story = {
   args: {
     checked: false,
+    isLoading: false,
+    label: 'A checkbox',
+    helpText: 'I have some help text',
     onCheck: () => {},
   },
-  render: (args) => (
-    <p>
-      <label htmlFor="cbk1" style={{ marginRight: '6px' }}>
-        {"I'm the checkbox label positioned on the left:"}
-      </label>
-      <CheckboxState id="cbk1" initialValue={args.checked} {...args} />
-    </p>
-  ),
+  render: (args) => <CheckboxState initialValue={args.checked} {...args} />,
+};
+
+export const WithError: Story = {
+  args: {
+    checked: false,
+    hasError: true,
+    label: "I'm a checkbox with an error",
+    onCheck: () => {},
+  },
+  render: (args) => <CheckboxState initialValue={args.checked} {...args} />,
 };
 
 export const Disabled: Story = {
@@ -106,8 +103,17 @@ export const LoadingState: Story = {
 function CheckboxState({
   initialValue,
   ...checkboxProps
-}: Partial<ComponentProps<typeof Checkbox>> & { initialValue: boolean | 'indeterminate' }) {
+}: Partial<ComponentProps<typeof Checkbox>> & {
+  initialValue: boolean | 'indeterminate';
+}) {
   const [checked, setChecked] = useState(initialValue);
   useEffect(() => setChecked(initialValue), [initialValue]);
-  return <Checkbox {...checkboxProps} checked={checked} onCheck={setChecked} />;
+  return (
+    <Checkbox
+      ariaLabel="Enable option A"
+      {...checkboxProps}
+      checked={checked}
+      onCheck={setChecked}
+    />
+  );
 }

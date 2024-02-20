@@ -86,6 +86,21 @@ it('should show a loading state', async () => {
   await expect(container).toHaveNoA11yViolations();
 });
 
+it('should display a help text', async () => {
+  const { container } = setupCheckbox({ label: 'me', helpText: 'help' });
+  expect(screen.getByText('help')).toBeVisible();
+  await expect(container).toHaveNoA11yViolations();
+});
+
+it('should have a error style when not checked', async () => {
+  const { container, rerender } = setupCheckbox({ label: 'me', hasError: true });
+  expect(screen.getByRole('checkbox', { name: 'me' })).not.toHaveAttribute('data-error', 'true');
+
+  rerender({ checked: false });
+  expect(screen.getByRole('checkbox', { name: 'me' })).toHaveAttribute('data-error', 'true');
+  await expect(container).toHaveNoA11yViolations();
+});
+
 it('should be keyboard focusable while disabled', async () => {
   const onCheck = jest.fn();
   const { user } = setupCheckbox({ label: 'me', checked: false, isDisabled: true, onCheck });
@@ -106,9 +121,9 @@ it('should be keyboard focusable while disabled', async () => {
   expect(onCheck).not.toHaveBeenCalled();
 });
 
-function setupCheckbox(props?: Partial<ComponentProps<typeof Checkbox>>) {
+function setupCheckbox(props: Partial<ComponentProps<typeof Checkbox>> = {}) {
   const { rerender: rtlRerender, ...rest } = render(
-    <Checkbox checked onCheck={jest.fn()} {...props} />,
+    <Checkbox ariaLabel={props.label || ''} checked onCheck={jest.fn()} {...props} />,
     undefined,
 
     // We skip the pointer-events:none check from user-event to be able to test clicking on the disabled checkbox
@@ -116,7 +131,15 @@ function setupCheckbox(props?: Partial<ComponentProps<typeof Checkbox>>) {
   );
   return {
     rerender(override?: Partial<ComponentProps<typeof Checkbox>>) {
-      rtlRerender(<Checkbox checked onCheck={jest.fn()} {...props} {...override} />);
+      rtlRerender(
+        <Checkbox
+          ariaLabel={props.label || ''}
+          checked
+          onCheck={jest.fn()}
+          {...props}
+          {...override}
+        />,
+      );
     },
     ...rest,
   };

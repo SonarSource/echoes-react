@@ -33,13 +33,16 @@ transformIgnorePatterns: [`/node_modules/(?!@sonarsource/echoes-react)`],
 
 ### VSCode Configuration
 
-We recommend VSCode to work on this project. There is a `.vscode` folder containing:
+We recommend VSCode to work on this project.
+There is a `.vscode` folder containing:
 
 - A list of recommended extensions
   - Install them through the marketplace
 - A template for necessary (and recommended) settings: `settings.template.json`
   - Copy it and save it as `settings.json`
   - You must open the project directly. Adding its folder in an existing workspace might not work, as the typescript configuration must be defined at workspace level.
+
+You should also [set up your vscode to work](https://yarnpkg.com/getting-started/editor-sdks) with the `yarn` pnp setup, using the following command: `yarn dlx @yarnpkg/sdks vscode`
 
 ### Run storybook
 
