@@ -28,10 +28,12 @@ interface Props {
   className?: string;
 
   label?: string;
+  helpText?: string;
   ariaLabel?: string;
   title?: string;
   id?: string;
 
+  hasError?: boolean;
   isDisabled?: boolean;
   isLoading?: boolean;
 
@@ -39,8 +41,29 @@ interface Props {
   onFocus?: VoidFunction;
 }
 
-export function Checkbox(props: Readonly<Props>) {
-  const { checked, className, label, ariaLabel, title, id, isDisabled, isLoading = false } = props;
+interface PropsWithLabel extends Props {
+  label: string;
+  ariaLabel?: string;
+}
+
+interface PropsWithoutLabel extends Props {
+  label?: never;
+  ariaLabel: string;
+}
+
+export function Checkbox(props: Readonly<PropsWithLabel | PropsWithoutLabel>) {
+  const {
+    checked,
+    className,
+    label,
+    ariaLabel,
+    hasError = false,
+    helpText,
+    title,
+    id,
+    isDisabled,
+    isLoading = false,
+  } = props;
   const { onCheck, onFocus } = props;
 
   const handleChange = useCallback(
@@ -65,21 +88,25 @@ export function Checkbox(props: Readonly<Props>) {
           id={id}
           onCheckedChange={handleChange}
           onFocus={onFocus}
-          title={title}>
+          title={title}
+          {...(hasError && checked === false ? { 'data-error': true } : {})}>
           <CheckboxIndicator>
             <CheckboxIcon checked={checked} />
           </CheckboxIndicator>
         </CheckboxRoot>
       </Spinner>
-      {label && <Label>{label}</Label>}
+      {(label || helpText) && (
+        <LabelWrapper>
+          {label && <Label>{label}</Label>}
+          {helpText && <HelpText>{helpText}</HelpText>}
+        </LabelWrapper>
+      )}
     </CheckboxContainer>
   );
 }
 
 const CheckboxContainer = styled.span`
   display: inline-flex;
-  align-items: center;
-  vertical-align: text-bottom;
 
   &[aria-disabled='true'] {
     color: var(--echoes-color-text-disabled);
@@ -89,8 +116,9 @@ const CheckboxContainer = styled.span`
 
 const CheckboxRoot = styled(RadixCheckbox.Root)`
   color: var(--echoes-color-text-on-color);
-  background-color: var(--echoes-color-background-transparent);
-  border: var(--echoes-border-width-default) solid var(--echoes-color-border-accent);
+  background-color: var(--echoes-color-background-default);
+  border: var(--echoes-border-width-default) solid var(--echoes-color-border-bold);
+  margin: var(--echoes-dimension-space-25) 0;
 
   height: var(--echoes-dimension-size-200);
   width: var(--echoes-dimension-size-200);
@@ -102,43 +130,47 @@ const CheckboxRoot = styled(RadixCheckbox.Root)`
   flex-shrink: 0;
 
   &[aria-disabled='true'] {
-    color: var(--echoes-color-text-disabled);
-    background-color: var(--echoes-color-background-accent-weak-disabled);
-    border: var(--echoes-color-border-disabled);
+    color: var(--echoes-color-icon-disabled);
+    background-color: var(--echoes-color-background-disabled);
+    border-color: var(--echoes-color-border-disabled);
 
     &[data-state='checked'],
     &[data-state='indeterminate'] {
-      background-color: var(--echoes-color-background-accent-default-disabled);
+      background-color: var(--echoes-color-background-default-disabled);
+      border-color: var(--echoes-color-background-default-disabled);
     }
 
     &:focus,
     &:focus-visible {
-      outline: var(--echoes-color-border-disabled) solid 2px;
-      outline-offset: var(--echoes-dimension-space-25);
+      outline: var(--echoes-color-border-disabled) solid var(--echoes-focus-border-width-default);
+      outline-offset: var(--echoes-focus-border-offset-default);
     }
   }
 
   &:not([aria-disabled='true']) {
     &:focus,
     &:focus-visible {
-      outline: var(--echoes-color-border-focus) solid 2px;
-      outline-offset: var(--echoes-dimension-space-25);
+      outline: var(--echoes-color-focus-default) solid var(--echoes-focus-border-width-default);
+      outline-offset: var(--echoes-focus-border-offset-default);
     }
 
     &:hover {
-      background-color: var(--echoes-color-background-accent-weak);
-      border: var(--echoes-border-width-default) solid var(--echoes-color-border-accent);
+      background-color: var(--echoes-color-background-default-hover);
     }
 
     &[data-state='checked'],
     &[data-state='indeterminate'] {
       background-color: var(--echoes-color-background-accent-default);
+      border-color: var(--echoes-color-background-accent-default);
 
       &:hover {
         background-color: var(--echoes-color-background-accent-default-hover);
-        border: var(--echoes-border-width-default) solid
-          var(--echoes-color-background-accent-default-hover);
+        border: var(--echoes-color-background-accent-default-hover);
       }
+    }
+
+    &[data-error='true'] {
+      border-color: var(--echoes-color-border-danger);
     }
   }
 `;
@@ -148,6 +180,19 @@ const CheckboxIndicator = styled(RadixCheckbox.Indicator)`
   width: var(--echoes-dimension-size-200);
 `;
 
+const LabelWrapper = styled.span`
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin-left: var(--echoes-dimension-space-100);
+`;
+
 const Label = styled.span`
-  margin-left: var(--echoes-dimension-space-75);
+  font: var(--echoes-typography-paragraph-medium-regular);
+`;
+
+const HelpText = styled.span`
+  font: var(--echoes-typography-paragraph-small-regular);
+  color: var(--echoes-color-text-subdued);
 `;
