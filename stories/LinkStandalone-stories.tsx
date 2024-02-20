@@ -18,42 +18,40 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import { LinkSubdued as LinkSubduedComp } from '@sonarsource/echoes-react';
+import { LinkHighlight, LinkStandalone as LinkStandaloneComp } from '@sonarsource/echoes-react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { OpenNewTabIcon } from '../src/common/icons/OpenNewTabIcon';
+import { CheckIcon } from '../src/common/icons/CheckIcon';
 
-const meta: Meta<typeof LinkSubduedComp> = {
-  component: LinkSubduedComp,
-  title: 'Link Subdued',
-} satisfies Meta<typeof LinkSubduedComp>;
+const meta: Meta<typeof LinkStandaloneComp> = {
+  component: LinkStandaloneComp,
+  title: 'Link Standalone',
+  argTypes: {
+    highlight: {
+      control: {
+        type: 'select',
+        options: ['accent', 'default', 'subdued'],
+      },
+    },
+  },
+} satisfies Meta<typeof LinkStandaloneComp>;
 
 export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const LinkSubdued: Story = {
+export const LinkStandalone: Story = {
   args: {
-    children: 'Link Subdued',
+    children: 'Standalone Link',
+    highlight: LinkHighlight.Accent,
     to: '/projects/new',
   },
 };
 
-export const LinkSubduedWithIcon: Story = {
+export const LinkStandaloneWithIcon: Story = {
   args: {
-    children: 'Link Subdued With Icon',
+    children: 'Standalone Link With Icon',
+    highlight: LinkHighlight.Default,
     to: '/projects/new',
-    icon: <OpenNewTabIcon />,
+    iconLeft: <CheckIcon />,
   },
-};
-
-export const LinkSubduedInsideParagraphWithStyle: Story = {
-  args: {
-    children: 'Link Subdued',
-    to: 'https://abc.com/path/new',
-  },
-  render: (args) => (
-    <p style={{ color: 'grey', fontSize: '1rem', fontWeight: '600' }}>
-      This is a paragraph with grey color and a: <LinkSubduedComp {...args} /> inside
-    </p>
-  ),
 };
