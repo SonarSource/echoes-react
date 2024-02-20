@@ -64,9 +64,10 @@
     },
     "fontWeight": {
       "bold": "700",
-      "semiBold": "600",
+      "semi-bold": "600",
       "regular": "400",
-      "italic": "Italic"
+      "italic": "Italic",
+      "medium": "500"
     },
     "fontSize": {
       "heading": {
@@ -94,8 +95,9 @@
     },
     "typography": {
       "paragraph": {
-        "medium": {
+        "default": {
           "regular": "400 0.875rem/1.42 Inter",
+          "medium": "500 0.875rem/1.42 Inter",
           "semi-bold": "600 0.875rem/1.42 Inter"
         },
         "small": {
