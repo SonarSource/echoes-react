@@ -170,6 +170,10 @@
           "type": "color",
           "value": "{echoes.color.indigo.300}"
         },
+        "accent-hover": {
+          "type": "color",
+          "value": "{echoes.color.indigo.200}"
+        },
         "accent-bold": {
           "type": "color",
           "value": "{echoes.color.indigo.50}"
@@ -254,6 +258,10 @@
         }
       },
       "border": {
+        "bold": {
+          "value": "{echoes.color.grey.300}",
+          "type": "color"
+        },
         "default": {
           "type": "color",
           "value": "{echoes.color.grey.500}"
