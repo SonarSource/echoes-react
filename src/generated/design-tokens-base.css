@@ -1,6 +1,6 @@
 /**
  * Do not edit directly
- * Generated on Tue, 20 Feb 2024 12:56:01 GMT
+ * Generated on Tue, 20 Feb 2024 15:03:42 GMT
  */
 
 :root {
@@ -52,6 +52,7 @@
   --echoes-font-weight-semi-bold: 600;
   --echoes-font-weight-regular: 400;
   --echoes-font-weight-italic: Italic;
+  --echoes-font-weight-medium: 500;
   --echoes-font-size-heading-xlarge: 2.125rem;
   --echoes-font-size-heading-large: 1.5rem;
   --echoes-font-size-heading-medium: 1.25rem;
@@ -64,8 +65,9 @@
   --echoes-text-case-none: none;
   --echoes-text-decoration-none: none;
   --echoes-text-decoration-underline: underline;
-  --echoes-typography-paragraph-medium-regular: 400 0.875rem/1.42 Inter;
-  --echoes-typography-paragraph-medium-semi-bold: 600 0.875rem/1.42 Inter;
+  --echoes-typography-paragraph-default-regular: 400 0.875rem/1.42 Inter;
+  --echoes-typography-paragraph-default-medium: 500 0.875rem/1.42 Inter;
+  --echoes-typography-paragraph-default-semi-bold: 600 0.875rem/1.42 Inter;
   --echoes-typography-paragraph-small-regular: 400 0.75rem/1.42 Inter;
   --echoes-typography-paragraph-small-semi-bold: 600 0.75rem/1.42 Inter;
   --echoes-typography-paragraph-large-regular: 400 1rem/1.42 Inter;

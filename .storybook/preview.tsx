@@ -28,7 +28,7 @@ import { Theme } from '../dist';
 
 const globalStyles = css`
   body {
-    font: var(--echoes-typography-paragraph-medium-regular);
+    font: var(--echoes-typography-paragraph-default-regular);
     color: var(--echoes-color-text-default);
     background-color: var(--echoes-color-background-default);
   }
