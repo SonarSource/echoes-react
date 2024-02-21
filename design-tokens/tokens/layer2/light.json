@@ -290,7 +290,7 @@
         },
         "danger": {
           "type": "color",
-          "value": "{echoes.color.red.300}"
+          "value": "{echoes.color.red.600}"
         },
         "none": {
           "type": "color",
