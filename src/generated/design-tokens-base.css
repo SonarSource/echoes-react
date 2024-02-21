@@ -1,6 +1,6 @@
 /**
  * Do not edit directly
- * Generated on Tue, 20 Feb 2024 15:03:42 GMT
+ * Generated on Wed, 21 Feb 2024 09:13:20 GMT
  */
 
 :root {
@@ -82,4 +82,6 @@
   --echoes-typography-others-label: 600 0.875rem/1.42 Inter;
   --echoes-typography-others-link: 600 0.875rem/1.42 Inter;
   --echoes-typography-others-link-large: 600 1rem/1.42 Inter;
+  --echoes-focus-border-width-default: 2px;
+  --echoes-focus-border-offset-default: 1px;
 }

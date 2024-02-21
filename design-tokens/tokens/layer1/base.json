@@ -468,6 +468,22 @@
           "type": "typography"
         }
       }
+    },
+    "focus": {
+      "border": {
+        "width": {
+          "default": {
+            "value": "2px",
+            "type": "other"
+          }
+        },
+        "offset": {
+          "default": {
+            "value": "1px",
+            "type": "other"
+          }
+        }
+      }
     }
   }
 }

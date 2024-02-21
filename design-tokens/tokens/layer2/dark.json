@@ -297,8 +297,10 @@
         "info": {
           "type": "color",
           "value": "{echoes.color.blue.300}"
-        },
-        "focus": {
+        }
+      },
+      "focus": {
+        "default": {
           "value": "{echoes.color.indigo.200}",
           "type": "color"
         }
