@@ -81,7 +81,6 @@
       "echoes.color.border.success": "420b9a491b1edad32970da07c6764fb1e9473e83",
       "echoes.color.border.warning": "f1ca8acc11fe0540516282e414fd635835143ca2",
       "echoes.color.border.info": "231c48e1aabd21a214abf554a9844d130bc068c0",
-      "echoes.color.border.focus": "e9977aca795abdb46bdc401cd0b33955aee3c615",
       "echoes.color.text.accent-bold": "d43eef38ac817ef474142ff74d2c926a0a94c465"
     },
     "group": "Themes"
@@ -168,8 +167,7 @@
       "echoes.color.border.none": "526b590ca1b356af29175b2e672fc15ac5e10080",
       "echoes.color.border.success": "420b9a491b1edad32970da07c6764fb1e9473e83",
       "echoes.color.border.warning": "f1ca8acc11fe0540516282e414fd635835143ca2",
-      "echoes.color.border.info": "231c48e1aabd21a214abf554a9844d130bc068c0",
-      "echoes.color.border.focus": "e9977aca795abdb46bdc401cd0b33955aee3c615"
+      "echoes.color.border.info": "231c48e1aabd21a214abf554a9844d130bc068c0"
     },
     "group": "Themes"
   },

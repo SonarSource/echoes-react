@@ -1,6 +1,6 @@
 /**
  * Do not edit directly
- * Generated on Tue, 20 Feb 2024 15:03:42 GMT
+ * Generated on Wed, 21 Feb 2024 09:13:21 GMT
  */
 
 html[data-echoes-theme='dark'] {
@@ -74,7 +74,7 @@ html[data-echoes-theme='dark'] {
   --echoes-color-border-success: rgb(166,244,197);
   --echoes-color-border-warning: rgb(250,220,121);
   --echoes-color-border-info: rgb(143,202,234);
-  --echoes-color-border-focus: rgb(189,198,255);
+  --echoes-color-focus-default: rgb(189,198,255);
   --echoes-box-shadow-xsmall: 0 1px 4px 0 rgba(8,9,12,0.4);
   --echoes-box-shadow-small: 0 1px 10px 0 rgba(8,9,12,0.4), 0 1px 3px 0 rgba(8,9,12,0.4);
   --echoes-box-shadow-medium: inset 0 2px 15px -2px rgba(8,9,12,0.06), 0 4px 15px -2px rgba(8,9,12,0.5);

@@ -307,11 +307,12 @@
         "info": {
           "type": "color",
           "value": "{echoes.color.blue.300}"
-        },
-        "focus": {
+        }
+      },
+      "focus": {
+        "default": {
           "value": "{echoes.color.indigo.600}",
-          "type": "color",
-          "description": "User in Focus Ring"
+          "type": "color"
         }
       }
     },

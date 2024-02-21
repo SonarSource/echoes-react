@@ -125,6 +125,16 @@
         "link": "600 0.875rem/1.42 Inter",
         "link-large": "600 1rem/1.42 Inter"
       }
+    },
+    "focus": {
+      "border": {
+        "width": {
+          "default": "2px"
+        },
+        "offset": {
+          "default": "1px"
+        }
+      }
     }
   }
 }
