@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json.schemastore.org/omletrc.json",
+  "exports": {
+    "dist/*": "src/*",
+    ".": "src/index.ts"
+  },
+  "include": ["src/components/**/*"],
+  "ignore": [
+    "dist/**",
+    "**/node_modules/**",
+    "**/*.d.ts",
+    "**/stories/**/*",
+    "**/.storybook/**/*",
+    "**/*.stories.{jsx,tsx,js,ts}",
+    "**/*.{spec,test}.{jsx,tsx,js,ts}",
+    "**/{__test__,tests}/**/*.{jsx,tsx,js,ts}",
+  ],
+  "tsconfigPath": "tsconfig.json"
+}
