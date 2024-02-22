@@ -26,7 +26,7 @@ const meta = {
   title: 'RadioButtonGroup',
   args: {
     id: 'radio',
-    required: false,
+    isRequired: false,
   },
 } satisfies Meta<typeof RadioButtonGroup>;
 
@@ -36,11 +36,14 @@ type Story = StoryObj<typeof meta>;
 
 export const Basic: Story = {
   args: {
-    defaultValue: 'c',
+    defaultValue: 'b',
+    helpText: 'Help text',
+    isRequired: true,
+    label: 'Radio Button Group',
     options: [
-      { label: 'Hello', value: 'a' },
-      { label: 'Hello again', value: 'b' },
-      { label: 'How do you do?', value: 'c', disabled: true },
+      { label: 'First option - unselected by default', value: 'a' },
+      { label: 'Second option - selected by default', value: 'b' },
+      { label: 'Third option is disabled', value: 'c', isDisabled: true },
       {
         ariaLabel: 'Blabla',
         label: (
@@ -55,13 +58,20 @@ export const Basic: Story = {
         ),
         value: 'd',
       },
+      { helpText: 'This is a help text', label: 'Fifth option with help text', value: 'e' },
+      {
+        isDisabled: true,
+        helpText: 'This is another help text',
+        label: 'Six option: disabled with help text',
+        value: 'f',
+      },
     ],
   },
 };
 
 export const InAForm: Story = {
   args: {
-    required: true,
+    isRequired: true,
     options: [
       { label: 'One', value: '1' },
       { label: 'Two', value: '2' },
@@ -73,4 +83,30 @@ export const InAForm: Story = {
       <RadioButtonGroup {...args} />
     </form>
   ),
+};
+
+export const DisabledGroup: Story = {
+  args: {
+    isDisabled: true,
+    isRequired: true,
+    options: [
+      { label: 'One', value: '1' },
+      { helpText: 'Help', label: 'Two', value: '2' },
+      { label: 'Three', value: '3' },
+    ],
+  },
+  render: (args) => <RadioButtonGroup {...args} />,
+};
+
+export const ErroredGroup: Story = {
+  args: {
+    labelRadioGroupError: 'Error message',
+    isRequired: true,
+    options: [
+      { label: 'One', value: '1' },
+      { helpText: 'Help', label: 'Two', value: '2' },
+      { label: 'Three', value: '3' },
+    ],
+  },
+  render: (args) => <RadioButtonGroup {...args} />,
 };

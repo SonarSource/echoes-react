@@ -22,26 +22,75 @@ import styled from '@emotion/styled';
 import * as RadioGroup from '@radix-ui/react-radio-group';
 import { ReactNode } from 'react';
 
-interface Props {
+export interface RadiobuttonGroupBaseProps {
   onChange?: (value: string) => void;
   options: RadioOption[];
 
   // Group Props
   defaultValue?: string;
-  disabled?: boolean;
   id: string;
-  required?: boolean;
+  isDisabled?: boolean;
+  isRequired?: boolean;
+  labelRadioGroupError?: ReactNode;
   value?: string;
 }
+interface PropsWithoutLabel {
+  helpText?: never;
+  label?: never;
+}
+
+interface PropsWithLabel {
+  helpText?: string;
+  label: string;
+}
+
+export type RadioButtonGroupLabelProps = PropsWithLabel | PropsWithoutLabel;
+
+type Props = RadiobuttonGroupBaseProps & RadioButtonGroupLabelProps;
 
 export function RadioButtonGroup(props: Readonly<Props>) {
-  const { onChange, options, ...groupProps } = props;
+  const {
+    labelRadioGroupError,
+    helpText,
+    isDisabled: disabled,
+    isRequired: required,
+    label,
+    onChange,
+    options,
+    ...groupProps
+  } = props;
 
   return (
-    <RadioGroupWrapper onValueChange={onChange} {...groupProps}>
-      {options.map((o) => (
-        <RadioButton groupId={groupProps.id} key={o.value} {...o} />
-      ))}
+    <RadioGroupWrapper
+      disabled={disabled}
+      onValueChange={onChange}
+      required={required}
+      {...groupProps}>
+      {label && (
+        <RadioGroupLabelWrapper data-testid="radio-group-label-wrapper">
+          <RadioGroupLabel>
+            {label}
+
+            {required && <RadioGroupRequired>*</RadioGroupRequired>}
+          </RadioGroupLabel>
+
+          {helpText && <HelpText>{helpText}</HelpText>}
+        </RadioGroupLabelWrapper>
+      )}
+
+      <RadioButtonsWrapper>
+        {options.map(({ isDisabled: disabledOption, ...o }) => (
+          <RadioButton
+            groupId={groupProps.id}
+            hasError={Boolean(labelRadioGroupError)}
+            isDisabled={disabled ? true : disabledOption} // Group disabled takes precedence
+            key={o.value}
+            {...o}
+          />
+        ))}
+
+        <RadioGroupErrorMessage>{labelRadioGroupError ?? <>&nbsp;</>}</RadioGroupErrorMessage>
+      </RadioButtonsWrapper>
     </RadioGroupWrapper>
   );
 }
@@ -51,18 +100,20 @@ export function RadioButtonGroup(props: Readonly<Props>) {
  * If the label is a string, we use it directly as a fallback if no aria-label is provided
  */
 type RadioOption = {
-  disabled?: boolean;
+  helpText?: string;
+  isDisabled?: boolean;
   value: string;
 } & ({ ariaLabel: string; label: ReactNode } | { ariaLabel?: string; label: string });
 
 interface InternalRadioButtonProps {
   groupId: string;
+  hasError?: boolean;
 }
 
 type RadioButtonProps = RadioOption & InternalRadioButtonProps;
 
 function RadioButton(props: Readonly<RadioButtonProps>) {
-  const { ariaLabel, disabled, groupId, label, value } = props;
+  const { ariaLabel, hasError, isDisabled: disabled, groupId, helpText, label, value } = props;
 
   const id = `${groupId}-${value}`;
 
@@ -76,22 +127,56 @@ function RadioButton(props: Readonly<RadioButtonProps>) {
 
   return (
     <OptionWrapper>
-      <Input aria-label={inputLabel} disabled={disabled} id={id} value={value}>
-        <SelectionIndicator />
-      </Input>
-      <Label htmlFor={id} {...(disabled ? { 'data-disabled': true } : {})}>
-        {label}
-      </Label>
+      <LabelWrapper {...(disabled ? { 'data-disabled': true } : {})}>
+        <Input
+          aria-label={inputLabel}
+          {...(hasError ? { 'data-error': true } : {})}
+          disabled={disabled}
+          id={id}
+          value={value}>
+          <SelectionIndicator />
+        </Input>
+        <Label htmlFor={id}>{label}</Label>
+      </LabelWrapper>
+      {helpText && (
+        <OptionHelpText {...(disabled ? { 'data-disabled': true } : {})}>{helpText}</OptionHelpText>
+      )}
     </OptionWrapper>
   );
 }
 
-const RadioGroupWrapper = styled(RadioGroup.Root)``;
+const RadioGroupWrapper = styled(RadioGroup.Root)`
+  display: flex;
+  flex-direction: column;
+  gap: var(--echoes-dimension-space-150);
+`;
+
+const RadioGroupLabelWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: var(--echoes-dimension-space-50);
+`;
+
+const RadioGroupLabel = styled.div`
+  color: var(--echoes-color-text-bold);
+  font: var(--echoes-typography-paragraph-default-semi-bold);
+`;
+
+const RadioGroupRequired = styled.span`
+  color: var(--echoes-color-text-danger);
+  font: var(--echoes-typography-paragraph-default-medium);
+  margin-left: var(--echoes-dimension-space-25);
+`;
+
+const RadioButtonsWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: var(--echoes-dimension-space-100);
+`;
 
 const OptionWrapper = styled.div`
   display: flex;
-  align-items: center;
-  margin: var(--echoes-dimension-space-100) 0;
+  flex-direction: column;
 `;
 
 const Input = styled(RadioGroup.Item)`
@@ -101,23 +186,35 @@ const Input = styled(RadioGroup.Item)`
 
   box-sizing: border-box;
   padding: 0;
-  border: 1px solid var(--echoes-color-border-accent);
+  border: var(--echoes-border-width-default) solid var(--echoes-color-border-bold);
   border-radius: var(--echoes-border-radius-full);
 
   height: var(--echoes-dimension-size-200);
   width: var(--echoes-dimension-size-200);
   min-width: var(--echoes-dimension-size-200);
 
-  &:hover,
+  &:hover {
+    background-color: var(--echoes-color-background-default-hover);
+  }
+
+  &[data-error='true'] {
+    border: var(--echoes-border-width-default) solid var(--echoes-color-border-danger);
+  }
+
   &[data-state='checked'] {
-    background-color: var(--echoes-color-background-accent-weak);
+    background-color: var(--echoes-color-background-accent-default);
+    border: var(--echoes-border-width-default) solid var(--echoes-color-border-accent);
+
+    &:hover {
+      background-color: var(--echoes-color-background-accent-default-hover);
+      border: var(--echoes-border-width-default) solid var(--echoes-color-border-accent);
+    }
   }
 
   &:focus,
   &:focus-visible {
-    background-color: var(--echoes-color-background-accent-weak);
-    outline: var(--echoes-color-border-focus) solid 2px;
-    outline-offset: var(--echoes-dimension-space-25);
+    outline: var(--echoes-color-focus-default) solid var(--echoes-focus-border-width-default);
+    outline-offset: var(--echoes-focus-border-offset-default);
   }
 
   &:disabled {
@@ -144,22 +241,46 @@ const SelectionIndicator = styled(RadioGroup.Indicator)`
     width: var(--echoes-dimension-size-75);
     border-radius: var(--echoes-border-radius-full);
 
-    background-color: var(--echoes-color-background-accent-default);
+    background-color: var(--echoes-color-icon-on-color);
   }
 
   &[data-disabled]::after {
-    background-color: var(--echoes-color-border-disabled);
+    background-color: var(--echoes-color-icon-disabled);
   }
+`;
+
+const LabelWrapper = styled.span`
+  display: inline-flex;
+  gap: var(--echoes-dimension-space-100);
+  align-items: center;
 `;
 
 const Label = styled.label`
   display: block;
+  font: var(--echoes-typography-paragraph-default-medium);
   width: 100%;
   cursor: pointer;
-  margin-left: var(--echoes-dimension-space-100);
 
-  [data-disabled] &, /* disabled group */
-  &[data-disabled] /* disabled option */ {
+  [data-disabled] > & {
+    color: var(--echoes-color-text-disabled);
     cursor: default;
   }
+`;
+
+const HelpText = styled.span`
+  font: var(--echoes-typography-paragraph-small-regular);
+  color: var(--echoes-color-text-subdued);
+`;
+
+const OptionHelpText = styled(HelpText)`
+  margin-left: calc(var(--echoes-dimension-space-200) + var(--echoes-dimension-space-100));
+
+  &[data-disabled] {
+    color: var(--echoes-color-text-disabled);
+  }
+`;
+
+const RadioGroupErrorMessage = styled.span`
+  font: var(--echoes-typography-paragraph-default-regular);
+  color: var(--echoes-color-text-danger);
 `;

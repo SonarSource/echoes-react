@@ -20,7 +20,11 @@
 
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { RadioButtonGroup } from '../RadioButtonGroup';
+import {
+  RadioButtonGroup,
+  RadioButtonGroupLabelProps,
+  RadiobuttonGroupBaseProps,
+} from '../RadioButtonGroup';
 
 describe('RadioButtonGroup', () => {
   it('should render a radio button for each option', async () => {
@@ -41,10 +45,59 @@ describe('RadioButtonGroup', () => {
     expect(screen.getByRole('radio', { name: 'b' })).toBeChecked();
     expect(container).toHaveNoA11yViolations();
   });
+
+  it('should disable each radio button if the group is disabled', () => {
+    const options = [
+      { label: 'a', value: '1' },
+      { label: 'b', value: '2' },
+      { label: 'c', value: '3' },
+    ];
+
+    renderRadioButtonGroup({ isDisabled: true, options });
+
+    const radioButtons = screen.getAllByRole('radio');
+    expect(radioButtons).toHaveLength(options.length);
+    expect(radioButtons.filter((o) => o.hasAttribute('disabled'))).toHaveLength(options.length);
+  });
+
+  it('should error the whole group when labelRadioGroupError is passed', () => {
+    const options = [
+      { label: 'a', value: '1' },
+      { label: 'b', value: '2' },
+      { label: 'c', value: '3' },
+    ];
+
+    renderRadioButtonGroup({ isRequired: true, labelRadioGroupError: 'Error message', options });
+
+    const radioButtons = screen.getAllByRole('radio');
+    expect(radioButtons).toHaveLength(options.length);
+    expect(radioButtons.filter((o) => o.hasAttribute('data-error'))).toHaveLength(options.length);
+    expect(screen.getByText('Error message')).toBeVisible();
+  });
+
+  it('should support radio group label and help text', () => {
+    const options = [
+      { label: 'a', value: '1' },
+      { label: 'b', value: '2' },
+      { label: 'c', value: '3' },
+    ];
+
+    renderRadioButtonGroup({
+      isRequired: true,
+      helpText: 'Help text',
+      label: 'Radio group label',
+      options,
+    });
+
+    expect(screen.getByTestId('radio-group-label-wrapper')).toBeVisible();
+    expect(screen.getByTestId('radio-group-label-wrapper')).toHaveTextContent(
+      'Radio group label*Help text',
+    );
+  });
 });
 
 function renderRadioButtonGroup(
-  overrides: Partial<React.ComponentProps<typeof RadioButtonGroup>> = {},
+  overrides: Partial<RadiobuttonGroupBaseProps> & RadioButtonGroupLabelProps = {},
 ) {
   const options = [
     { label: 'a', value: '1' },
