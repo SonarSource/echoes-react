@@ -41,10 +41,15 @@ function LinkStandaloneBase(props: Readonly<Props>) {
 export const LinkStandalone = styled(LinkStandaloneBase)`
   text-decoration-line: var(--echoes-text-decoration-none);
 
-  &:hover {
+  &:hover,
+  &:focus,
+  &:active {
     color: var(--color);
-    text-decoration-line: var(--echoes-text-decoration-underline);
     text-decoration-color: var(--color);
+  }
+
+  &:hover {
+    text-decoration-line: var(--echoes-text-decoration-underline);
   }
 
   ${({ iconLeft }) =>
