@@ -39,6 +39,7 @@ function LinkStandaloneBase(props: Readonly<Props>) {
 }
 
 export const LinkStandalone = styled(LinkStandaloneBase)`
+  font-weight: var(--echoes-font-weight-semi-bold);
   text-decoration-line: var(--echoes-text-decoration-none);
 
   &:hover,
