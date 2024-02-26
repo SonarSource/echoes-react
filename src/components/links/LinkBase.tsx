@@ -31,6 +31,7 @@ export enum LinkHighlight {
   Accent = 'accent',
   Default = 'default',
   Subdued = 'subdued',
+  CurrentColor = 'current-color',
 }
 
 export interface LinkProps extends Pick<RouterLinkProps, RouterLinkPropsRequired> {

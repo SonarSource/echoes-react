@@ -20,7 +20,7 @@
 
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import { LinkProps } from '.';
+import { LinkHighlight, LinkProps } from '.';
 import { LinkBaseStyled } from './LinkBaseStyled';
 
 interface Props extends LinkProps {
@@ -38,8 +38,18 @@ function LinkStandaloneBase(props: Readonly<Props>) {
   );
 }
 
+const LinkStandaloneHighlight = {
+  [LinkHighlight.Accent]: css`
+    font-weight: var(--echoes-font-weight-semi-bold);
+  `,
+  [LinkHighlight.Default]: undefined,
+  [LinkHighlight.Subdued]: undefined,
+  [LinkHighlight.CurrentColor]: undefined,
+};
+
 export const LinkStandalone = styled(LinkStandaloneBase)`
-  font-weight: var(--echoes-font-weight-semi-bold);
+  ${({ highlight = LinkHighlight.Accent }) => LinkStandaloneHighlight[highlight]}
+
   text-decoration-line: var(--echoes-text-decoration-none);
 
   &:hover,
