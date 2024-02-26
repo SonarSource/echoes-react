@@ -18,6 +18,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+import styled from '@emotion/styled';
 import { Spinner } from '@sonarsource/echoes-react';
 import type { Meta, StoryObj } from '@storybook/react';
 
@@ -60,3 +61,24 @@ export const WithPlaceHolder: Story = {
     </p>
   ),
 };
+
+export const Centered: Story = {
+  args: {
+    isLoading: true,
+    children: <span>Loading complete!</span>,
+    wrapperClassName: 'center-spinner',
+  },
+  render: (args) => (
+    <CenterSpinner>
+      <Spinner {...args} />
+    </CenterSpinner>
+  ),
+};
+
+const CenterSpinner = styled.div`
+  .center-spinner {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+  }
+`;

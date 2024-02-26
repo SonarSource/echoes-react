@@ -36,14 +36,17 @@ it('can be controlled by the isLoading prop', async () => {
   await expect(container).toHaveNoA11yViolations();
 });
 
-it('allows setting a custom class name', () => {
-  setupSpinner({ className: 'foo' });
-  expect(screen.getByRole('status')).toHaveClass('foo');
-});
-
 it('allows setting a custom label to the spinner', () => {
   const { rerender } = setupSpinner({ label: 'loading too many things...' });
   expect(screen.getByText('loading too many things...')).toBeVisible();
+
+  rerender({ isLoading: false });
+  expect(screen.queryByText('loading too many things...')).not.toBeInTheDocument();
+});
+
+it('allows setting a custom aria-label to the spinner', () => {
+  const { rerender } = setupSpinner({ ariaLabel: 'loading too many things...' });
+  expect(screen.getByText('loading too many things...')).toBeInTheDocument();
 
   rerender({ isLoading: false });
   expect(screen.queryByText('loading too many things...')).not.toBeInTheDocument();

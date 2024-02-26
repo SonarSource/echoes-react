@@ -20,36 +20,55 @@
 
 import { keyframes } from '@emotion/react';
 import styled from '@emotion/styled';
+import classNames from 'classnames';
 import { ReactNode } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { screenReaderOnly } from '~common/helpers/styles';
 
 interface Props {
+  ariaLabel?: string;
   className?: string;
   children?: ReactNode;
-  label?: ReactNode;
-  isLoading?: boolean;
   hasPlaceholder?: boolean;
+  isLoading?: boolean;
+  label?: ReactNode;
+  wrapperClassName?: string;
 }
 
 export function Spinner(props: Readonly<Props>) {
-  const { className, children, hasPlaceholder, label, isLoading = true } = props;
+  const {
+    ariaLabel,
+    className,
+    children,
+    hasPlaceholder,
+    isLoading = true,
+    label,
+    wrapperClassName,
+  } = props;
 
   return (
     <>
-      <SpinnerWrapper>
-        <SpinnerInner aria-live="polite" className={className} isLoading={isLoading} role="status">
-          <StyledSpinner />
+      <SpinnerWrapper className={wrapperClassName}>
+        <SpinnerInner
+          aria-live="polite"
+          className={classNames({
+            it__loading: isLoading,
+          })}
+          isLoading={isLoading}
+          role="status">
+          <SpinnerStyled className={className} />
           {isLoading &&
             (label ? (
               <SpinnerLabel>{label}</SpinnerLabel>
             ) : (
               <SpinnerAriaLabel>
-                <FormattedMessage
-                  defaultMessage="Loading..."
-                  description="aria-label text, to indicate that there is a spinner rotating in this place"
-                  id="loading"
-                />
+                {ariaLabel ?? (
+                  <FormattedMessage
+                    defaultMessage="Loading..."
+                    description="aria-label text, to indicate that there is a spinner rotating in this place"
+                    id="loading"
+                  />
+                )}
               </SpinnerAriaLabel>
             ))}
         </SpinnerInner>
@@ -89,7 +108,7 @@ const spinAnimation = keyframes`
   }
 `;
 
-const StyledSpinner = styled.span`
+const SpinnerStyled = styled.span`
   border: 2px solid transparent;
   background:
     linear-gradient(0deg, var(--echoes-color-background-accent-default) 50%, transparent 50% 100%)
