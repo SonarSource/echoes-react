@@ -29,9 +29,9 @@ type RouterLinkPropsRequired = 'download' | 'reloadDocument' | 'state' | 'style'
 
 export enum LinkHighlight {
   Accent = 'accent',
+  CurrentColor = 'current-color',
   Default = 'default',
   Subdued = 'subdued',
-  CurrentColor = 'current-color',
 }
 
 export interface LinkProps extends Pick<RouterLinkProps, RouterLinkPropsRequired> {
