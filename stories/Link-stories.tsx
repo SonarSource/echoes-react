@@ -24,6 +24,14 @@ import type { Meta, StoryObj } from '@storybook/react';
 const meta: Meta<typeof LinkComp> = {
   component: LinkComp,
   title: 'Link',
+  argTypes: {
+    highlight: {
+      control: {
+        type: 'select',
+      },
+      options: Object.values(LinkHighlight),
+    },
+  },
 } satisfies Meta<typeof LinkComp>;
 
 export default meta;
@@ -49,7 +57,7 @@ export const LinkExternal: Story = {
 export const LinkInsideParagraphWithStyle: Story = {
   args: {
     children: 'an external link',
-    highlight: undefined,
+    highlight: LinkHighlight.CurrentColor,
     to: 'https://abc.com/path/new',
   },
   render: (args) => (
@@ -62,7 +70,7 @@ export const LinkInsideParagraphWithStyle: Story = {
 export const LinkInsideList: Story = {
   args: {
     children: 'External link inside a list',
-    highlight: undefined,
+    highlight: LinkHighlight.Default,
     to: 'https://abc.com/path/new',
   },
   render: (args) => (
@@ -79,7 +87,7 @@ export const LinkInsideList: Story = {
 export const LinkInsideDivWithFlexAndStyle: Story = {
   args: {
     children: 'External link inside a div',
-    highlight: undefined,
+    highlight: LinkHighlight.CurrentColor,
     to: 'https://abc.com/path/new',
   },
   render: (args) => (

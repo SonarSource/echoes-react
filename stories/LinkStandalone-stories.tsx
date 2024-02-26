@@ -29,8 +29,8 @@ const meta: Meta<typeof LinkStandaloneComp> = {
     highlight: {
       control: {
         type: 'select',
-        options: ['accent', 'default', 'subdued'],
       },
+      options: Object.values(LinkHighlight),
     },
   },
 } satisfies Meta<typeof LinkStandaloneComp>;
@@ -42,7 +42,7 @@ type Story = StoryObj<typeof meta>;
 export const LinkStandalone: Story = {
   args: {
     children: 'Standalone Link',
-    highlight: LinkHighlight.Accent,
+    highlight: undefined,
     to: '/projects/new',
   },
 };
