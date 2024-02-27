@@ -10,9 +10,11 @@ For more details, refer to the [internal versioning strategy](https://docs.googl
 
 ## Release Process
 
+- Create a new branch for the release and maintenance following the name convention `branch-x.y.z`
+
 - [Create a Jira release ticket](https://jira.sonarsource.com/projects/REL) like [this one](https://sonarsource.atlassian.net/browse/REL-PLACEHOLDER)
 
-  - Title: @sonarsource/echoes-react 0.1.3.1223
+  - Title: @sonarsource/echoes-react x.y.z.1234
   - Documentation status: N/A
   - Short description: pull from [version description](https://sonarsource.atlassian.net/projects/DS/versions/15439/tab/release-report-all-issues)
   - SQ compatibility: current version
