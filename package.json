@@ -1,6 +1,6 @@
 {
   "name": "@sonarsource/echoes-react",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "type": "module",
   "exports": "./dist/index.js",
   "files": [
@@ -9,6 +9,9 @@
   "types": "./dist/index.d.ts",
   "description": "React implementation of Echoes, SONAR's Design System",
   "license": "LGPL-3.0",
+  "publishConfig": {
+    "access": "public"
+  },
   "engines": {
     "node": ">=18.17.0"
   },
