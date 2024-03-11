@@ -17,7 +17,22 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
+import { CheckIcon } from '~common/icons/CheckIcon';
+import { CustomIcon } from '~common/icons/Icon';
 
-@import './design-tokens-base.css';
-@import './design-tokens-dark.css';
-@import './design-tokens-light.css';
+interface Props {
+  checked?: boolean | 'indeterminate';
+}
+
+export function CheckboxIcon({ checked }: Readonly<Props>) {
+  if (checked === 'indeterminate') {
+    return (
+      <CustomIcon>
+        <rect fill="currentColor" height="2" rx="1" width="50%" x="4" y="7" />
+      </CustomIcon>
+    );
+  } else if (checked) {
+    return <CheckIcon />;
+  }
+  return null;
+}

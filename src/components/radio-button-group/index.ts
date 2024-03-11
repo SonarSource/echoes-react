@@ -18,6 +18,4 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-@import './design-tokens-base.css';
-@import './design-tokens-dark.css';
-@import './design-tokens-light.css';
+export { RadioButtonGroup } from './RadioButtonGroup';
