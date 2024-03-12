@@ -101,7 +101,7 @@ const CheckboxContainer = styled.span`
   font-family: Arial, Helvetica, sans-serif;
   font-size: 0.833rem;
 
-  &[aria-disabled] {
+  &[aria-disabled='true'] {
     pointer-events: none;
   }
 `;
@@ -126,7 +126,7 @@ const CheckboxRoot = styled(RadixCheckbox.Root)`
     outline-offset: var(--echoes-focus-border-offset-default);
   }
 
-  &[aria-disabled] {
+  &[aria-disabled='true'] {
     color: var(--echoes-color-icon-disabled);
     background-color: var(--echoes-color-background-disabled);
     border-color: var(--echoes-color-border-disabled);
@@ -138,7 +138,7 @@ const CheckboxRoot = styled(RadixCheckbox.Root)`
     }
   }
 
-  &:not([aria-disabled]) {
+  &:not([aria-disabled='true']) {
     &:hover {
       background-color: var(--echoes-color-background-default-hover);
     }
@@ -176,7 +176,7 @@ const LabelWrapper = styled.span`
 const Label = styled.span`
   font: var(--echoes-typography-paragraph-default-medium);
 
-  [aria-disabled] > & {
+  [aria-disabled='true'] > & {
     color: var(--echoes-color-text-disabled);
   }
 `;
@@ -185,7 +185,7 @@ const HelpText = styled.span`
   font: var(--echoes-typography-paragraph-small-regular);
   color: var(--echoes-color-text-subdued);
 
-  [aria-disabled] > & {
+  [aria-disabled='true'] > & {
     color: var(--echoes-color-text-disabled);
   }
 `;
