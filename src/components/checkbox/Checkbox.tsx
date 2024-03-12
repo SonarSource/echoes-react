@@ -98,6 +98,8 @@ export function Checkbox(props: Readonly<PropsWithLabel | PropsWithoutLabel>) {
 
 const CheckboxContainer = styled.span`
   display: inline-flex;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.833rem;
 
   &[aria-disabled] {
     pointer-events: none;
