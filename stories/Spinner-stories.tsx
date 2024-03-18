@@ -19,8 +19,8 @@
  */
 
 import styled from '@emotion/styled';
-import { Spinner } from '@sonarsource/echoes-react';
 import type { Meta, StoryObj } from '@storybook/react';
+import { Spinner } from '../src';
 
 const meta = {
   component: Spinner,

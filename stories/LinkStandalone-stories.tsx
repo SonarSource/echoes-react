@@ -18,8 +18,8 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import { LinkHighlight, LinkStandalone as LinkStandaloneComp } from '@sonarsource/echoes-react';
 import type { Meta, StoryObj } from '@storybook/react';
+import { LinkHighlight, LinkStandalone as LinkStandaloneComp } from '../src';
 import { CheckIcon } from '../src/common/icons/CheckIcon';
 
 const meta: Meta<typeof LinkStandaloneComp> = {
