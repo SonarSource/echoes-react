@@ -18,9 +18,9 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import { Checkbox } from '@sonarsource/echoes-react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { ComponentProps, useEffect, useState } from 'react';
+import { Checkbox } from '../src';
 
 const meta = {
   component: Checkbox,
