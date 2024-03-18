@@ -81,6 +81,7 @@ export function Spinner(props: Readonly<Props>) {
 
 const SpinnerWrapper = styled.span`
   display: inline-block;
+  position: relative;
 `;
 
 const SpinnerInner = styled.span<{ isLoading: boolean }>`
