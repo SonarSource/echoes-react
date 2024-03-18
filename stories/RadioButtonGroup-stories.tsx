@@ -18,8 +18,8 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import { RadioButtonGroup } from '@sonarsource/echoes-react';
 import type { Meta, StoryObj } from '@storybook/react';
+import { RadioButtonGroup } from '../src';
 
 const meta = {
   component: RadioButtonGroup,
