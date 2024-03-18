@@ -23,7 +23,7 @@
     "build": "vite build",
     "build-tokens": "node design-tokens/build.js",
     "build-storybook": "vite build & storybook build",
-    "intl": "formatjs extract src/components/**/*.ts*",
+    "intl-keys": "formatjs extract src/components/**/*.ts* --out-file i18n/keys.json",
     "format": "prettier --write --list-different .",
     "format-check": "prettier --check .",
     "lint": "eslint --ext js,ts,tsx,snap --quiet .",

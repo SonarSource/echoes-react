@@ -1,0 +1,10 @@
+{
+  "loading": {
+    "defaultMessage": "Loading...",
+    "description": "aria-label text, to indicate that there is a spinner rotating in this place"
+  },
+  "open_in_new_window": {
+    "defaultMessage": "Open in new window",
+    "description": "aria-label text, to indicate that the link will open in a new window"
+  }
+}
