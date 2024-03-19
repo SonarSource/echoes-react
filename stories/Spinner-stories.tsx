@@ -82,3 +82,30 @@ const CenterSpinner = styled.div`
     width: 100%;
   }
 `;
+
+export const Display: Story = {
+  args: {
+    isLoading: true,
+  },
+  render: (args) => (
+    <div>
+      <p>
+        We are processing the reports
+        <Spinner {...args} />
+        8/10
+      </p>
+
+      <div>
+        <Spinner>
+          <ul>
+            <li>random</li>
+            <li>content</li>
+            <li>for</li>
+            <li>nothing</li>
+            <li>special</li>
+          </ul>
+        </Spinner>
+      </div>
+    </div>
+  ),
+};
