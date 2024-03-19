@@ -48,7 +48,7 @@ export function Spinner(props: Readonly<Props>) {
 
   return (
     <>
-      <SpinnerWrapper className={wrapperClassName}>
+      <SpinnerWrapper className={wrapperClassName} inline={children === undefined}>
         <SpinnerInner
           aria-live="polite"
           className={classNames({
@@ -79,9 +79,10 @@ export function Spinner(props: Readonly<Props>) {
   );
 }
 
-const SpinnerWrapper = styled.span`
-  display: inline-block;
+const SpinnerWrapper = styled.span<{ inline: boolean }>`
+  display: ${(props) => (props.inline ? 'inline-block' : 'block')};
   position: relative;
+  ${(props) => (props.inline ? 'margin: 0 var(--echoes-dimension-space-50);' : '')}
 `;
 
 const SpinnerInner = styled.span<{ isLoading: boolean }>`
