@@ -17,6 +17,7 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
+
 import styled from '@emotion/styled';
 import * as RadixCheckbox from '@radix-ui/react-checkbox';
 import { useCallback } from 'react';
@@ -24,21 +25,19 @@ import { Spinner } from '../spinner';
 import { CheckboxIcon } from './CheckboxIcon';
 
 interface Props {
+  ariaLabel?: string;
   checked: boolean | 'indeterminate';
   className?: string;
-
-  ariaLabel?: string;
-  label?: string;
-  helpText?: string;
-  title?: string;
-  id?: string;
-
   hasError?: boolean;
+  helpText?: string;
+  id?: string;
+  innerClassName?: string;
   isDisabled?: boolean;
   isLoading?: boolean;
-
+  label?: string;
   onCheck: (checked: boolean | 'indeterminate', id?: string) => void;
   onFocus?: VoidFunction;
+  title?: string;
 }
 
 interface PropsWithLabel extends Props {
@@ -52,7 +51,7 @@ interface PropsWithoutLabel extends Props {
 }
 
 export function Checkbox(props: Readonly<PropsWithLabel | PropsWithoutLabel>) {
-  const { ariaLabel, className, helpText, id, label, title } = props;
+  const { ariaLabel, className, helpText, id, innerClassName, label, title } = props;
   const { checked, hasError = false, isDisabled, isLoading = false } = props;
   const { onCheck, onFocus } = props;
 
@@ -70,40 +69,47 @@ export function Checkbox(props: Readonly<PropsWithLabel | PropsWithoutLabel>) {
       aria-disabled={isDisabled}
       as={label ? 'label' : 'span'}
       className={className}>
-      <Spinner isLoading={isLoading}>
-        <CheckboxRoot
-          aria-disabled={isDisabled}
-          aria-label={ariaLabel ?? title}
-          checked={checked}
-          id={id}
-          onCheckedChange={handleChange}
-          onFocus={onFocus}
-          title={title}
-          // We only support the error state for unchecked checkboxes for now
-          {...(hasError && checked === false ? { 'data-error': true } : {})}>
-          <CheckboxIndicator>
-            <CheckboxIcon checked={checked} />
-          </CheckboxIndicator>
-        </CheckboxRoot>
-      </Spinner>
-      {(label || helpText) && (
-        <LabelWrapper aria-disabled={isDisabled}>
-          {label && <Label>{label}</Label>}
-          {helpText && <HelpText>{helpText}</HelpText>}
-        </LabelWrapper>
-      )}
+      <CheckboxInnerContainer className={innerClassName}>
+        <Spinner isLoading={isLoading}>
+          <CheckboxRoot
+            aria-disabled={isDisabled}
+            aria-label={ariaLabel ?? title}
+            checked={checked}
+            id={id}
+            onCheckedChange={handleChange}
+            onFocus={onFocus}
+            title={title}
+            // We only support the error state for unchecked checkboxes for now
+            {...(hasError && checked === false ? { 'data-error': true } : {})}>
+            <CheckboxIndicator>
+              <CheckboxIcon checked={checked} />
+            </CheckboxIndicator>
+          </CheckboxRoot>
+        </Spinner>
+        {(label || helpText) && (
+          <LabelWrapper aria-disabled={isDisabled}>
+            {label && <Label>{label}</Label>}
+            {helpText && <HelpText>{helpText}</HelpText>}
+          </LabelWrapper>
+        )}
+      </CheckboxInnerContainer>
     </CheckboxContainer>
   );
 }
 
 const CheckboxContainer = styled.span`
   display: inline-flex;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 0.833rem;
+  vertical-align: top;
 
   &[aria-disabled='true'] {
     pointer-events: none;
   }
+`;
+
+const CheckboxInnerContainer = styled.span`
+  display: flex;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.833rem;
 `;
 
 const CheckboxRoot = styled(RadixCheckbox.Root)`
