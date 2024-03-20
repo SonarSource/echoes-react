@@ -75,6 +75,7 @@ const RAW_RUNTIME_STATE =
           ["jest", "virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#npm:29.7.0"],\
           ["jest-axe", "npm:8.0.0"],\
           ["jest-environment-jsdom", "virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#npm:29.7.0"],\
+          ["material-symbols", "npm:0.17.0"],\
           ["prettier", "npm:3.1.0"],\
           ["react", "npm:17.0.2"],\
           ["react-dom", "virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#npm:17.0.2"],\
@@ -5677,6 +5678,7 @@ const RAW_RUNTIME_STATE =
           ["jest", "virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#npm:29.7.0"],\
           ["jest-axe", "npm:8.0.0"],\
           ["jest-environment-jsdom", "virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#npm:29.7.0"],\
+          ["material-symbols", "npm:0.17.0"],\
           ["prettier", "npm:3.1.0"],\
           ["react", "npm:17.0.2"],\
           ["react-dom", "virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#npm:17.0.2"],\
@@ -14379,6 +14381,15 @@ const RAW_RUNTIME_STATE =
         "packagePeers": [\
           "@types/react",\
           "react"\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["material-symbols", [\
+      ["npm:0.17.0", {\
+        "packageLocation": "./.yarn/cache/material-symbols-npm-0.17.0-b3d7224df6-d432e18203.zip/node_modules/material-symbols/",\
+        "packageDependencies": [\
+          ["material-symbols", "npm:0.17.0"]\
         ],\
         "linkType": "HARD"\
       }]\
