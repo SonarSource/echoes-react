@@ -35,15 +35,12 @@ export function IconWrapper(props: Readonly<IconProps & { children: React.ReactN
 const StyledSpan = styled.span`
   font-family: 'Material Symbols Rounded';
   font-size: 1.2em;
-  font-weight: normal;
   font-style: normal;
-  line-height: 1;
+  font-weight: normal;
   letter-spacing: normal;
+  line-height: calc(1em + 4px);
+  text-rendering: optimizeLegibility;
   text-transform: none;
   white-space: nowrap;
   word-wrap: normal;
-  direction: ltr;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
 `;
