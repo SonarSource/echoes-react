@@ -3203,6 +3203,7 @@ __metadata:
     jest: "npm:29.7.0"
     jest-axe: "npm:8.0.0"
     jest-environment-jsdom: "npm:29.7.0"
+    material-symbols: "npm:0.17.0"
     prettier: "npm:3.2.5"
     react: "npm:17.0.2"
     react-dom: "npm:17.0.2"
@@ -10459,6 +10460,13 @@ __metadata:
   peerDependencies:
     react: ">= 0.14.0"
   checksum: 5a7ca9d04dfe180ea32baac94b471678053843da0be941a84ff7570a26f3afd8876d3bcc8fec8ee8aa68d157615f293f87b93c1d0f64945181bc218d61ee4494
+  languageName: node
+  linkType: hard
+
+"material-symbols@npm:0.17.0":
+  version: 0.17.0
+  resolution: "material-symbols@npm:0.17.0"
+  checksum: d432e18203d38b83a645783b03ac4b321d30cd6a8bec1aae5e47fccf4340387d4f7bc703d3aebb5a25639c316bb04f2027518e592869361d8bfbbd46ca8c9835
   languageName: node
   linkType: hard
 
