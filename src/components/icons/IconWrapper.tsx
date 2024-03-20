@@ -33,7 +33,7 @@ export function IconWrapper(props: Readonly<IconProps & { children: React.ReactN
 }
 
 const StyledSpan = styled.span`
-  font-family: 'Material Symbols Outlined';
+  font-family: 'Material Symbols Rounded';
   font-size: 1.2em;
   font-weight: normal;
   font-style: normal;
