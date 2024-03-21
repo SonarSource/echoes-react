@@ -20,24 +20,7 @@
 
 import styled from '@emotion/styled';
 import { Meta, StoryObj } from '@storybook/react';
-import {
-  IconCalendar,
-  IconChevronDown,
-  IconClock,
-  IconCollapse,
-  IconDash,
-  IconDirectory,
-  IconExpand,
-  IconFile,
-  IconLock,
-  IconMegaphone,
-  IconPin,
-  IconProject,
-  IconRecommended,
-  IconSearch,
-  IconTarget,
-  IconX,
-} from '../src';
+import * as icons from '../src/components/icons';
 
 const meta = {
   title: 'Icons',
@@ -45,92 +28,73 @@ const meta = {
 
 export default meta;
 
-export const Display: StoryObj = {
-  render: () => (
-    <>
-      16px
-      <SmallIconsDiv>
-        <IconMegaphone />
-        <IconDash />
-        <IconCollapse />
-        <IconExpand />
-        <IconLock />
-        <IconTarget />
-        <IconRecommended />
-        <IconPin />
-        <IconChevronDown />
-        <IconCalendar />
-        <IconFile />
-        <IconProject />
-        <IconDirectory />
-        <IconClock />
-        <IconSearch />
-        <IconX />
-      </SmallIconsDiv>
-      20px
-      <MediumIconsDiv>
-        <IconMegaphone />
-        <IconDash />
-        <IconCollapse />
-        <IconExpand />
-        <IconLock />
-        <IconTarget />
-        <IconRecommended />
-        <IconPin />
-        <IconChevronDown />
-        <IconCalendar />
-        <IconFile />
-        <IconProject />
-        <IconDirectory />
-        <IconClock />
-        <IconSearch />
-        <IconX />
-      </MediumIconsDiv>
-      24px
-      <LargeIconsDiv>
-        <IconMegaphone />
-        <IconDash />
-        <IconCollapse />
-        <IconExpand />
-        <IconLock />
-        <IconTarget />
-        <IconRecommended />
-        <IconPin />
-        <IconChevronDown />
-        <IconCalendar />
-        <IconFile />
-        <IconProject />
-        <IconDirectory />
-        <IconClock />
-        <IconSearch />
-        <IconX />
-      </LargeIconsDiv>
-    </>
-  ),
+function renderIcons() {
+  return Object.values(icons)
+    .filter((icon) => !['IconWrapper'].includes(icon.name))
+    .map((Icon) => (
+      <IconTile key={Icon.name}>
+        <Icon />
+        <span>{Icon.name}</span>
+      </IconTile>
+    ));
+}
+
+export const Grid: StoryObj<{ fontSize: number }> = {
+  args: {
+    fontSize: 20,
+  },
+  argTypes: {
+    fontSize: {
+      name: 'Font size',
+      description: 'Change the contextual font size the icons will adapt to',
+      type: 'number',
+      options: [16, 20, 24],
+      control: { type: 'select' },
+    },
+  },
+  render: (args) => <GridWrapper fontSize={args.fontSize}>{renderIcons()}</GridWrapper>,
 };
 
-const SmallIconsDiv = styled.div`
-  display: flex;
+const GridWrapper = styled.div<{ fontSize: number }>`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 16px;
   margin: 1rem;
 
   span {
-    font-size: 16px;
+    font-size: ${(props) => props.fontSize}px;
   }
 `;
 
-const MediumIconsDiv = styled(SmallIconsDiv)`
-  gap: 12px;
+const IconTile = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-  span {
-    font-size: 20px;
+  padding: 16px 0;
+  border: 1px solid lightgrey;
+  border-radius: 8px;
+
+  & span {
+    margin-top: 8px;
   }
 `;
 
-const LargeIconsDiv = styled(SmallIconsDiv)`
-  gap: 8px;
+export const AutoSizing: StoryObj = {
+  render: () => (
+    <div>
+      <p style={{ fontSize: '16px' }}>
+        <icons.IconMegaphone />
+        Warning warning!
+      </p>
 
-  span {
-    font-size: 24px;
-  }
-`;
+      <p style={{ fontSize: '14px' }}>
+        This is pretty cool <icons.IconTarget />, init?
+      </p>
+
+      <p style={{ fontSize: '12px' }}>
+        Tiny <icons.IconPin /> text
+      </p>
+    </div>
+  ),
+};
