@@ -22,17 +22,17 @@ import styled from '@emotion/styled';
 
 export type IconProps = Omit<JSX.IntrinsicElements['span'], 'children'>;
 
-export function IconWrapper(props: Readonly<IconProps & { children: React.ReactNode }>) {
+function IconBase(props: Readonly<IconProps & { children: React.ReactNode }>) {
   const { children, className, ...rest } = props;
 
   return (
-    <StyledSpan className={className} {...rest}>
+    <span className={className} {...rest}>
       {children}
-    </StyledSpan>
+    </span>
   );
 }
 
-const StyledSpan = styled.span`
+export const IconMaterialWrapper = styled(IconBase)`
   font-family: 'Material Symbols Rounded';
   font-size: 1.2em;
   font-weight: normal;
@@ -47,3 +47,21 @@ const StyledSpan = styled.span`
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
 `;
+IconMaterialWrapper.displayName = 'IconMaterialWrapper';
+
+export const IconCustomWrapper = styled(IconBase)`
+  font-family: 'Echoes Icons';
+  font-size: 1.2em;
+  font-weight: normal;
+  font-style: normal;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+`;
+IconMaterialWrapper.displayName = 'IconCustomWrapper';

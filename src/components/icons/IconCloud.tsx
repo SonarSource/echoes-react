@@ -17,8 +17,10 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-import './icons.css';
 
-export { IconCloud } from './IconCloud';
-export { IconMegaphone } from './IconMegaphone';
-export type { IconProps } from './IconWrapper';
+import { IconCustomWrapper, IconProps } from './IconWrapper';
+
+// TODO replace me with a real custom icon
+export function IconCloud(props: Readonly<IconProps>) {
+  return <IconCustomWrapper {...props}>&#x021;</IconCustomWrapper>;
+}

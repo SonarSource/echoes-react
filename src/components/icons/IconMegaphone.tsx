@@ -18,8 +18,8 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import { IconProps, IconWrapper } from './IconWrapper';
+import { IconMaterialWrapper, IconProps } from './IconWrapper';
 
 export function IconMegaphone(props: Readonly<IconProps>) {
-  return <IconWrapper {...props}>&#xEF49;</IconWrapper>;
+  return <IconMaterialWrapper {...props}>&#xEF49;</IconMaterialWrapper>;
 }
