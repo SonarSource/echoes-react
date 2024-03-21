@@ -5,3 +5,11 @@
   font-display: block;
   src: url('material-symbols/material-symbols-rounded.woff2') format('woff2');
 }
+
+@font-face {
+  font-family: 'Echoes Icons';
+  font-style: normal;
+  font-weight: 400;
+  font-display: auto;
+  src: url('./echoes-icons.woff2') format('woff2');
+}
