@@ -33,35 +33,22 @@ function IconBase(props: Readonly<IconProps & { children: React.ReactNode }>) {
 }
 
 export const IconMaterialWrapper = styled(IconBase)`
-  font-family: 'Material Symbols Rounded';
-  font-size: 1.2em;
-  font-weight: normal;
-  font-style: normal;
-  line-height: 1;
-  letter-spacing: normal;
-  text-transform: none;
-  white-space: nowrap;
-  word-wrap: normal;
-  direction: ltr;
-  -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  display: inline-block;
+  font-family: 'Material Symbols Rounded';
+  font-size: calc(1em * (18 / 14));
+  font-style: normal;
+  font-weight: normal;
+  height: calc(1em * (20 / 18));
+  line-height: calc(1em * (20 / 18));
+  text-align: center;
+  vertical-align: bottom;
+  width: calc(1em * (20 / 18));
 `;
 IconMaterialWrapper.displayName = 'IconMaterialWrapper';
 
-export const IconCustomWrapper = styled(IconBase)`
+export const IconCustomWrapper = styled(IconMaterialWrapper)`
   font-family: 'Echoes Icons';
-  font-size: 1.2em;
-  font-weight: normal;
-  font-style: normal;
-  line-height: 1;
-  letter-spacing: normal;
-  text-transform: none;
-  white-space: nowrap;
-  word-wrap: normal;
-  direction: ltr;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
 `;
 IconMaterialWrapper.displayName = 'IconCustomWrapper';
