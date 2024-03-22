@@ -45,7 +45,7 @@ buildCSSRootFile(designTokenGroups, licenseHeader);
 buildThemesEnumType(themedDesignTokenGroups, licenseHeader);
 
 function initStyleDictionary() {
-  registerTransforms(StyleDictionary, {});
+  registerTransforms(StyleDictionary);
 
   StyleDictionary.registerTransformGroup({
     name: CUSTOM_TRANSFORM_GROUP,

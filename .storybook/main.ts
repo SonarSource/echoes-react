@@ -1,3 +1,4 @@
+import { dirname, join } from 'path';
 /*
  * Echoes react
  * Copyright (C) 2023-2023 SonarSource SA
@@ -23,18 +24,15 @@ import path from 'node:path';
 import { mergeConfig } from 'vite';
 
 const config: StorybookConfig = {
-  stories: ['../stories/**/*', '../src/**/*.mdx', '../src/**/*-stories.@(js|jsx|mjs|ts|tsx)'],
+  stories: ['../stories/**/*'],
   addons: [
-    '@storybook/addon-links',
-    '@storybook/addon-essentials',
-    '@storybook/addon-a11y',
-    '@storybook/addon-interactions',
-    '@storybook/addon-themes',
+    getAbsolutePath('@storybook/addon-links'),
+    getAbsolutePath('@storybook/addon-essentials'),
+    getAbsolutePath('@storybook/addon-a11y'),
+    getAbsolutePath('@storybook/addon-interactions'),
+    getAbsolutePath('@storybook/addon-themes'),
   ],
-  framework: {
-    name: '@storybook/react-vite',
-    options: {},
-  },
+  framework: '@storybook/react-vite',
   docs: {
     autodocs: 'tag',
   },
@@ -52,3 +50,7 @@ const config: StorybookConfig = {
   },
 };
 export default config;
+
+function getAbsolutePath(value: string) {
+  return dirname(require.resolve(join(value, 'package.json')));
+}
