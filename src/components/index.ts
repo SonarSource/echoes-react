@@ -19,6 +19,7 @@
  */
 
 export * from './checkbox';
+export * from './icons';
 export * from './links';
 export * from './radio-button-group';
 export * from './spinner';
