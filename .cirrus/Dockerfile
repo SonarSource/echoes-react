@@ -17,8 +17,8 @@ RUN curl ${SCANNER_BINARIES}/sonar-scanner-cli-${SCANNER_VERSION}.zip -o ${SCANN
     && mv sonar-scanner-${SCANNER_VERSION} ${SCANNER_HOME} \
     && rm ${SCANNER_ZIP}
 
-    
-ARG NODE_VERSION=18
+
+ARG NODE_VERSION=20
 
 RUN apt-get update && apt-get install -y nodejs=${NODE_VERSION}.*
 
