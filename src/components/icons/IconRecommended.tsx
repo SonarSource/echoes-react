@@ -18,24 +18,8 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import './icons.css';
+import { IconMaterialWrapper, IconProps } from './IconWrapper';
 
-export type { IconProps } from './IconWrapper';
-
-export { IconCalendar } from './IconCalendar';
-export { IconChevronDown } from './IconChevronDown';
-export { IconClock } from './IconClock';
-export { IconCloud } from './IconCloud';
-export { IconCollapse } from './IconCollapse';
-export { IconDash } from './IconDash';
-export { IconDirectory } from './IconDirectory';
-export { IconExpand } from './IconExpand';
-export { IconFile } from './IconFile';
-export { IconLock } from './IconLock';
-export { IconMegaphone } from './IconMegaphone';
-export { IconPin } from './IconPin';
-export { IconProject } from './IconProject';
-export { IconRecommended } from './IconRecommended';
-export { IconSearch } from './IconSearch';
-export { IconTarget } from './IconTarget';
-export { IconX } from './IconX';
+export function IconRecommended(props: Readonly<IconProps>) {
+  return <IconMaterialWrapper {...props}>&#xEF76;</IconMaterialWrapper>;
+}
