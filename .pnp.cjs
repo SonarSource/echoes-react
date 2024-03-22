@@ -54,7 +54,7 @@ const RAW_RUNTIME_STATE =
           ["@types/eslint", "npm:8.44.7"],\
           ["@types/jest", "npm:29.5.10"],\
           ["@types/jest-axe", "npm:3.5.8"],\
-          ["@types/node", "npm:18.17.0"],\
+          ["@types/node", "npm:20.11.30"],\
           ["@types/react", "npm:17.0.70"],\
           ["@types/react-dom", "npm:17.0.23"],\
           ["@typescript-eslint/eslint-plugin", "virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#npm:6.12.0"],\
@@ -5656,7 +5656,7 @@ const RAW_RUNTIME_STATE =
           ["@types/eslint", "npm:8.44.7"],\
           ["@types/jest", "npm:29.5.10"],\
           ["@types/jest-axe", "npm:3.5.8"],\
-          ["@types/node", "npm:18.17.0"],\
+          ["@types/node", "npm:20.11.30"],\
           ["@types/react", "npm:17.0.70"],\
           ["@types/react-dom", "npm:17.0.23"],\
           ["@typescript-eslint/eslint-plugin", "virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#npm:6.12.0"],\
@@ -7706,17 +7706,18 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["@types/node", [\
-      ["npm:18.17.0", {\
-        "packageLocation": "./.yarn/cache/@types-node-npm-18.17.0-7e216793ee-1a30fbfba1.zip/node_modules/@types/node/",\
-        "packageDependencies": [\
-          ["@types/node", "npm:18.17.0"]\
-        ],\
-        "linkType": "HARD"\
-      }],\
       ["npm:18.18.9", {\
         "packageLocation": "./.yarn/cache/@types-node-npm-18.18.9-db29fe3223-ebd98b117c.zip/node_modules/@types/node/",\
         "packageDependencies": [\
           ["@types/node", "npm:18.18.9"],\
+          ["undici-types", "npm:5.26.5"]\
+        ],\
+        "linkType": "HARD"\
+      }],\
+      ["npm:20.11.30", {\
+        "packageLocation": "./.yarn/cache/@types-node-npm-20.11.30-b20dd3f11f-78515bc768.zip/node_modules/@types/node/",\
+        "packageDependencies": [\
+          ["@types/node", "npm:20.11.30"],\
           ["undici-types", "npm:5.26.5"]\
         ],\
         "linkType": "HARD"\
@@ -18240,7 +18241,7 @@ const RAW_RUNTIME_STATE =
           ["vite", "virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#npm:5.0.0"],\
           ["@types/less", null],\
           ["@types/lightningcss", null],\
-          ["@types/node", "npm:18.17.0"],\
+          ["@types/node", "npm:20.11.30"],\
           ["@types/sass", null],\
           ["@types/stylus", null],\
           ["@types/sugarss", null],\

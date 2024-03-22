@@ -3650,7 +3650,7 @@ __metadata:
     "@types/eslint": "npm:8.44.7"
     "@types/jest": "npm:29.5.10"
     "@types/jest-axe": "npm:3.5.8"
-    "@types/node": "npm:18.17.0"
+    "@types/node": "npm:20.11.30"
     "@types/react": "npm:17.0.70"
     "@types/react-dom": "npm:17.0.23"
     "@typescript-eslint/eslint-plugin": "npm:6.12.0"
@@ -5257,10 +5257,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:18.17.0":
-  version: 18.17.0
-  resolution: "@types/node@npm:18.17.0"
-  checksum: 1a30fbfba152541398229e34520a6bf6a82b97d5611856f13c84357074b95fe058937a09e412b997618e0414e0230cd0e389f783f26f0818bf609fa3a3bcd10e
+"@types/node@npm:20.11.30":
+  version: 20.11.30
+  resolution: "@types/node@npm:20.11.30"
+  dependencies:
+    undici-types: "npm:~5.26.4"
+  checksum: 78515bc768d2b878e2e06a1c20eb4f5840072b79b8d28ff3dd0a7feaaf48fd3a2ac03cfa5bc7564da82db5906b43e9ba0e5df9f43d870b7aae2942306e208815
   languageName: node
   linkType: hard
 
