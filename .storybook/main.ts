@@ -20,8 +20,6 @@ import { dirname, join } from 'path';
  */
 
 import type { StorybookConfig } from '@storybook/react-vite';
-import path from 'node:path';
-import { mergeConfig } from 'vite';
 
 const config: StorybookConfig = {
   stories: ['../stories/**/*'],
@@ -34,19 +32,11 @@ const config: StorybookConfig = {
   ],
   framework: '@storybook/react-vite',
   docs: {
-    autodocs: 'tag',
+    autodocs: true,
   },
   typescript: {
     check: false,
-  },
-  async viteFinal(config) {
-    return mergeConfig(config, {
-      resolve: {
-        alias: {
-          '@sonarsource/echoes-react': path.dirname(require.resolve('../dist/')),
-        },
-      },
-    });
+    reactDocgen: 'react-docgen-typescript',
   },
 };
 export default config;
