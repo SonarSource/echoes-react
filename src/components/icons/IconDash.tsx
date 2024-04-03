@@ -21,5 +21,6 @@
 import { IconMaterialWrapper, IconProps } from './IconWrapper';
 
 export function IconDash(props: Readonly<IconProps>) {
+  // This is Material Symbols' "remove" icon
   return <IconMaterialWrapper {...props}>&#xE15B;</IconMaterialWrapper>;
 }

@@ -20,7 +20,7 @@
 
 import { IconCustomWrapper, IconProps } from './IconWrapper';
 
-// TODO replace me with a real custom icon
-export function IconCloud(props: Readonly<IconProps>) {
-  return <IconCustomWrapper {...props}>&#x021;</IconCustomWrapper>;
+export function IconFileCode(props: Readonly<IconProps>) {
+  // This is an icon from the "Echoes" custom font
+  return <IconCustomWrapper {...props}>&#x23;</IconCustomWrapper>;
 }

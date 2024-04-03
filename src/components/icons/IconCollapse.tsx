@@ -21,5 +21,6 @@
 import { IconMaterialWrapper, IconProps } from './IconWrapper';
 
 export function IconCollapse(props: Readonly<IconProps>) {
-  return <IconMaterialWrapper {...props}>&#xF507;</IconMaterialWrapper>;
+  // This is Material Symbols' "close_fullscreen" icon
+  return <IconMaterialWrapper {...props}>&#xF1CF;</IconMaterialWrapper>;
 }

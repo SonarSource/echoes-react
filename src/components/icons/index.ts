@@ -22,19 +22,27 @@ import './icons.css';
 
 export type { IconProps } from './IconWrapper';
 
+export { IconBug } from './IconBug';
 export { IconCalendar } from './IconCalendar';
 export { IconChevronDown } from './IconChevronDown';
 export { IconClock } from './IconClock';
-export { IconCloud } from './IconCloud';
+export { IconCodeSmell } from './IconCodeSmell';
 export { IconCollapse } from './IconCollapse';
 export { IconDash } from './IconDash';
 export { IconDirectory } from './IconDirectory';
 export { IconExpand } from './IconExpand';
 export { IconFile } from './IconFile';
+export { IconFileCode } from './IconFileCode';
+export { IconFoldDown } from './IconFoldDown';
+export { IconFoldUp } from './IconFoldUp';
+export { IconGitBranch } from './IconGitBranch';
+export { IconInheritance } from './IconInheritance';
 export { IconLock } from './IconLock';
+export { IconMainBranch } from './IconMainBranch';
 export { IconMegaphone } from './IconMegaphone';
 export { IconPin } from './IconPin';
 export { IconProject } from './IconProject';
+export { IconPullrequest } from './IconPullRequest';
 export { IconRecommended } from './IconRecommended';
 export { IconSearch } from './IconSearch';
 export { IconTarget } from './IconTarget';
