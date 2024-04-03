@@ -27,11 +27,11 @@
     "dep-check": "node --no-warnings ./config/scripts/validate-package-json.js",
     "format": "prettier --write --list-different .",
     "format-check": "prettier --check .",
-    "intl-keys-check": "yarn build-intl-keys && git diff --exit-code --compact-summary i18n/keys.json",
+    "intl-keys-check": "./config/scripts/validate-intl-keys.sh",
     "lint": "eslint --ext js,ts,tsx,snap --quiet .",
     "lint-report": "eslint --ext js,ts,tsx,snap -f json -o build-reports/eslint-report/eslint-report.json .",
     "storybook": "storybook dev -p 6006",
-    "tokens-check": "yarn build-tokens && git diff --exit-code --compact-summary src/generated",
+    "tokens-check": "./config/scripts/validate-tokens.sh",
     "ts-check": "tsc --noEmit",
     "validate": "yarn lint && yarn ts-check && yarn format-check",
     "validate-ci": "yarn dep-check && yarn intl-keys-check && yarn tokens-check && yarn lint-report && yarn ts-check && yarn format-check"
