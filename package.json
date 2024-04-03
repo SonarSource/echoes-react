@@ -31,9 +31,10 @@
     "lint": "eslint --ext js,ts,tsx,snap --quiet .",
     "lint-report": "eslint --ext js,ts,tsx,snap -f json -o build-reports/eslint-report/eslint-report.json .",
     "storybook": "storybook dev -p 6006",
+    "tokens-check": "yarn build-tokens && git diff --exit-code --compact-summary src/generated",
     "ts-check": "tsc --noEmit",
     "validate": "yarn lint && yarn ts-check && yarn format-check",
-    "validate-ci": "yarn dep-check && yarn intl-keys-check && yarn lint-report && yarn ts-check && yarn format-check"
+    "validate-ci": "yarn dep-check && yarn intl-keys-check && yarn tokens-check && yarn lint-report && yarn ts-check && yarn format-check"
   },
   "peerDependencies": {
     "@emotion/react": "^11.0.0",
