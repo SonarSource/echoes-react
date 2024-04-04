@@ -21,5 +21,6 @@
 import { IconMaterialWrapper, IconProps } from './IconWrapper';
 
 export function IconExpand(props: Readonly<IconProps>) {
-  return <IconMaterialWrapper {...props}>&#xF830;</IconMaterialWrapper>;
+  // This is Material Symbols' "pan_zoom" icon
+  return <IconMaterialWrapper {...props}>&#xF655;</IconMaterialWrapper>;
 }

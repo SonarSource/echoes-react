@@ -21,5 +21,6 @@
 import { IconMaterialWrapper, IconProps } from './IconWrapper';
 
 export function IconMegaphone(props: Readonly<IconProps>) {
+  // This is Material Symbols' "campaign" icon
   return <IconMaterialWrapper {...props}>&#xEF49;</IconMaterialWrapper>;
 }

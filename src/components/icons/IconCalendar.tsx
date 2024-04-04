@@ -21,5 +21,6 @@
 import { IconMaterialWrapper, IconProps } from './IconWrapper';
 
 export function IconCalendar(props: Readonly<IconProps>) {
+  // This is Material Symbols' "calendar_today" icon
   return <IconMaterialWrapper {...props}>&#xE935;</IconMaterialWrapper>;
 }

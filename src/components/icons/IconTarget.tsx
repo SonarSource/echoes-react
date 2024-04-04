@@ -21,5 +21,6 @@
 import { IconMaterialWrapper, IconProps } from './IconWrapper';
 
 export function IconTarget(props: Readonly<IconProps>) {
+  // This is Material Symbols' "target" icon
   return <IconMaterialWrapper {...props}>&#xE719;</IconMaterialWrapper>;
 }

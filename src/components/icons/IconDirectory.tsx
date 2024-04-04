@@ -21,5 +21,6 @@
 import { IconMaterialWrapper, IconProps } from './IconWrapper';
 
 export function IconDirectory(props: Readonly<IconProps>) {
+  // This is Material Symbols' "folder" icon
   return <IconMaterialWrapper {...props}>&#xE2C7;</IconMaterialWrapper>;
 }

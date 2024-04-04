@@ -21,5 +21,6 @@
 import { IconMaterialWrapper, IconProps } from './IconWrapper';
 
 export function IconLock(props: Readonly<IconProps>) {
+  // This is Material Symbols' "lock" icon
   return <IconMaterialWrapper {...props}>&#xE897;</IconMaterialWrapper>;
 }
