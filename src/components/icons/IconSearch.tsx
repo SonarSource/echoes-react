@@ -21,5 +21,6 @@
 import { IconMaterialWrapper, IconProps } from './IconWrapper';
 
 export function IconSearch(props: Readonly<IconProps>) {
+  // This is Material Symbols' "search" icon
   return <IconMaterialWrapper {...props}>&#xE8B6;</IconMaterialWrapper>;
 }
