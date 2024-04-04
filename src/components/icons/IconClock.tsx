@@ -21,5 +21,6 @@
 import { IconMaterialWrapper, IconProps } from './IconWrapper';
 
 export function IconClock(props: Readonly<IconProps>) {
+  // This is Material Symbols' "schedule" icon
   return <IconMaterialWrapper {...props}>&#xE8B5;</IconMaterialWrapper>;
 }

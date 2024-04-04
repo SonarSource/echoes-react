@@ -24,7 +24,7 @@ export function IconBell(props: Readonly<IconProps>) {
   // This is Material Symbols' "notifications" icon
   return (
     <IconMaterialWrapper isFilled {...props}>
-      &#xE5C4;
+      &#xE7F4;
     </IconMaterialWrapper>
   );
 }

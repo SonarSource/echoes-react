@@ -21,5 +21,6 @@
 import { IconMaterialWrapper, IconProps } from './IconWrapper';
 
 export function IconRecommended(props: Readonly<IconProps>) {
-  return <IconMaterialWrapper {...props}>&#xEF76;</IconMaterialWrapper>;
+  // This is Material Symbols' "new_releases" icon
+  return <IconMaterialWrapper {...props}>&#xE031;</IconMaterialWrapper>;
 }

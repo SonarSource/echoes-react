@@ -21,5 +21,6 @@
 import { IconMaterialWrapper, IconProps } from './IconWrapper';
 
 export function IconChevronDown(props: Readonly<IconProps>) {
+  // This is Material Symbols' "expand_more" icon
   return <IconMaterialWrapper {...props}>&#xE5CF;</IconMaterialWrapper>;
 }
