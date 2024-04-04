@@ -32,7 +32,7 @@ function IconBase(props: Readonly<IconProps & { children: React.ReactNode }>) {
   );
 }
 
-interface IconMaterialProps extends IconProps {
+export interface IconMaterialProps extends IconProps {
   isFilled?: boolean;
 }
 

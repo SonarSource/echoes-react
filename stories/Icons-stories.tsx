@@ -31,12 +31,23 @@ export default meta;
 function renderIcons() {
   return Object.values(icons)
     .filter((icon) => !['IconWrapper'].includes(icon.name))
-    .map((Icon) => (
-      <IconTile key={Icon.name}>
-        <Icon />
-        <span>{Icon.name}</span>
-      </IconTile>
-    ));
+    .map((Icon) => {
+      return (
+        <>
+          <IconTile key={Icon.name}>
+            <Icon />
+            <span>{(Icon as React.FC).displayName}</span>
+          </IconTile>
+
+          {['IconHome', 'IconStar'].includes(Icon.name) && (
+            <IconTile key={`${Icon.name} isFilled`}>
+              <Icon isFilled />
+              <span>{(Icon as React.FC).displayName} isFilled</span>
+            </IconTile>
+          )}
+        </>
+      );
+    });
 }
 
 export const Grid: StoryObj<{ fontSize: number }> = {

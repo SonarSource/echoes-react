@@ -21,7 +21,7 @@
 import { IconMaterialWrapper, IconProps } from './IconWrapper';
 
 export function IconWarning(props: Readonly<IconProps>) {
-  // This is Material Symbols' "triangle" icon
+  // This is Material Symbols' "warning" icon
   return (
     <IconMaterialWrapper isFilled {...props}>
       &#xE002;
