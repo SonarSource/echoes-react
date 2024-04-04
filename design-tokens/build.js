@@ -38,13 +38,13 @@ const designTokenGroups = JSON.parse(
 );
 const themedDesignTokenGroups = designTokenGroups.filter(({ group }) => group === 'Themes');
 
-initStyleDictionary();
+initStyleDictionary(licenseHeader);
 buildBaseTokens(designTokenGroups.filter(({ group }) => group === 'Sonar'));
 buildThemedTokens(themedDesignTokenGroups);
 buildCSSRootFile(designTokenGroups, licenseHeader);
 buildThemesEnumType(themedDesignTokenGroups, licenseHeader);
 
-function initStyleDictionary() {
+function initStyleDictionary(licenseHeader) {
   registerTransforms(StyleDictionary);
 
   StyleDictionary.registerTransformGroup({
@@ -62,6 +62,15 @@ function initStyleDictionary() {
     matcher: ({ attributes, filePath }) =>
       !filePath.includes(`layer1`) &&
       !(filePath.endsWith('layer2/base.json') && attributes.category !== 'color'),
+  });
+
+  StyleDictionary.registerFileHeader({
+    name: 'licence-header',
+    fileHeader: () => [
+      licenseHeader.replace(/(\/\*\n \* )|(\n \*\/\n)/gm, ''),
+      '',
+      'GENERATED FILE: do not edit directly.',
+    ],
   });
 }
 
@@ -84,7 +93,7 @@ function buildBaseTokens(tokenGroups) {
               format: 'css/variables',
               filter: CUSTOM_FILTER_NO_COLOR,
               options: {
-                showFileHeader: true,
+                fileHeader: 'licence-header',
                 selector: ':root',
               },
             },
@@ -93,7 +102,7 @@ function buildBaseTokens(tokenGroups) {
               format: 'json/nested',
               filter: CUSTOM_FILTER_NO_COLOR,
               options: {
-                showFileHeader: true,
+                fileHeader: 'licence-header',
               },
             },
           ],
@@ -124,7 +133,7 @@ function buildThemedTokens(themedTokenGroups) {
               format: 'css/variables',
               filter: CUSTOM_FILTER_THEMED_TOKENS,
               options: {
-                showFileHeader: true,
+                fileHeader: 'licence-header',
                 selector:
                   theme.name === DEFAULT_THEME
                     ? ':root'

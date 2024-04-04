@@ -17,11 +17,13 @@ RUN curl ${SCANNER_BINARIES}/sonar-scanner-cli-${SCANNER_VERSION}.zip -o ${SCANN
     && mv sonar-scanner-${SCANNER_VERSION} ${SCANNER_HOME} \
     && rm ${SCANNER_ZIP}
 
+# Install Node.js
+ARG NODE_VERSION=20.*
+RUN apt-get update \
+  && apt-get install -y nodejs=${NODE_VERSION} \
+  && apt-get clean
 
-ARG NODE_VERSION=20
-
-RUN apt-get update && apt-get install -y nodejs=${NODE_VERSION}.*
-
+# Install Yarn
 RUN npm install -g yarn
 
 USER sonarsource
