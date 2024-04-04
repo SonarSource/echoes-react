@@ -32,7 +32,11 @@ function IconBase(props: Readonly<IconProps & { children: React.ReactNode }>) {
   );
 }
 
-export const IconMaterialWrapper = styled(IconBase)`
+interface IconMaterialProps extends IconProps {
+  isFilled?: boolean;
+}
+
+export const IconMaterialWrapper = styled(IconBase)<IconMaterialProps>`
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   display: inline-block;
@@ -45,6 +49,8 @@ export const IconMaterialWrapper = styled(IconBase)`
   text-align: center;
   vertical-align: bottom;
   width: calc(1em * (20 / 18));
+
+  ${({ isFilled = false }) => (isFilled ? `font-variation-settings: 'FILL' 1;` : '')}
 `;
 IconMaterialWrapper.displayName = 'IconMaterialWrapper';
 
