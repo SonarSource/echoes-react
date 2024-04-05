@@ -19,24 +19,46 @@
  */
 
 import styled from '@emotion/styled';
+import { isStringDefined } from '~common/helpers/types';
 
-export type IconProps = Omit<JSX.IntrinsicElements['span'], 'children'>;
+export interface IconProps {
+  ariaLabel?: string;
+  className?: string;
+  /* To discuss?
+  ['data-guiding-id']?: string;
+  fill?: ThemeColors | CSSColor;
+  style?: React.CSSProperties;
+  */
+}
 
-function IconBase(props: Readonly<IconProps & { children: React.ReactNode }>) {
-  const { children, className, ...rest } = props;
+export interface IconFilledProps extends IconProps {
+  isFilled?: boolean;
+}
+
+type IconWrapperProps = JSX.IntrinsicElements['span'];
+
+function IconBase(props: Readonly<IconWrapperProps & IconFilledProps>) {
+  const {
+    ariaLabel,
+    'aria-label': nativeAriaLabel,
+    children,
+    isFilled, // extracted here to prevent it from leaking to the span element
+    ...rest
+  } = props;
 
   return (
-    <span className={className} {...rest}>
+    <span
+      // 'aria-label' is not a valid prop, but it might be used by the consumer when wrapping the component with emotion
+      aria-hidden={isStringDefined(ariaLabel ?? nativeAriaLabel) ? 'false' : 'true'}
+      aria-label={ariaLabel ?? nativeAriaLabel}
+      role="img"
+      {...rest}>
       {children}
     </span>
   );
 }
 
-export interface IconMaterialProps extends IconProps {
-  isFilled?: boolean;
-}
-
-export const IconMaterialWrapper = styled(IconBase)<IconMaterialProps>`
+export const IconMaterialWrapper = styled(IconBase)<IconWrapperProps & IconFilledProps>`
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   display: inline-block;
@@ -54,7 +76,7 @@ export const IconMaterialWrapper = styled(IconBase)<IconMaterialProps>`
 `;
 IconMaterialWrapper.displayName = 'IconMaterialWrapper';
 
-export const IconCustomWrapper = styled(IconMaterialWrapper)`
+export const IconCustomWrapper = styled(IconMaterialWrapper)<IconWrapperProps & IconProps>`
   font-family: 'Echoes';
 `;
 IconMaterialWrapper.displayName = 'IconCustomWrapper';
