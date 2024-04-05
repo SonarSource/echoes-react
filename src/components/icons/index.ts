@@ -75,6 +75,7 @@ export { IconSearch } from './IconSearch';
 export { IconSecurityFinding } from './IconSecurityFinding';
 export { IconStar } from './IconStar';
 export { IconTarget } from './IconTarget';
+export { IconUnfold } from './IconUnfold';
 export { IconVulnerability } from './IconVulnerability';
 export { IconWarning } from './IconWarning';
 export { IconX } from './IconX';
