@@ -39,7 +39,7 @@ function renderIcons() {
             <span>{(Icon as React.FC).displayName}</span>
           </IconTile>
 
-          {['IconHome', 'IconStar'].includes(Icon.name) && (
+          {['IconHome', 'IconStar'].includes((Icon as React.FC).displayName ?? '') && (
             <IconTile key={`${Icon.name} isFilled`}>
               <Icon isFilled />
               <span>{(Icon as React.FC).displayName} isFilled</span>
