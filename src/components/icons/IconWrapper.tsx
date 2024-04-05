@@ -19,46 +19,35 @@
  */
 
 import styled from '@emotion/styled';
-import { isStringDefined } from '~common/helpers/types';
+import { PropsWithChildren } from 'react';
+import { DesignTokensColors } from '~common/helpers/design-tokens';
+import { isDefined, isStringDefined } from '~common/helpers/types';
 
 export interface IconProps {
   ariaLabel?: string;
   className?: string;
-  /* To discuss?
-  ['data-guiding-id']?: string;
-  fill?: ThemeColors | CSSColor;
-  style?: React.CSSProperties;
-  */
+  color?: DesignTokensColors;
 }
 
 export interface IconFilledProps extends IconProps {
   isFilled?: boolean;
 }
 
-type IconWrapperProps = JSX.IntrinsicElements['span'];
-
-function IconBase(props: Readonly<IconWrapperProps & IconFilledProps>) {
-  const {
-    ariaLabel,
-    'aria-label': nativeAriaLabel,
-    children,
-    isFilled, // extracted here to prevent it from leaking to the span element
-    ...rest
-  } = props;
+function IconBase(props: Readonly<PropsWithChildren<IconFilledProps>>) {
+  const { ariaLabel, className, children } = props;
 
   return (
     <span
-      // 'aria-label' is not a valid prop, but it might be used by the consumer when wrapping the component with emotion
-      aria-hidden={isStringDefined(ariaLabel ?? nativeAriaLabel) ? 'false' : 'true'}
-      aria-label={ariaLabel ?? nativeAriaLabel}
-      role="img"
-      {...rest}>
+      aria-hidden={isStringDefined(ariaLabel) ? 'false' : 'true'}
+      aria-label={ariaLabel}
+      className={className}
+      role="img">
       {children}
     </span>
   );
 }
 
-export const IconMaterialWrapper = styled(IconBase)<IconWrapperProps & IconFilledProps>`
+export const IconMaterialWrapper = styled(IconBase)<PropsWithChildren<IconFilledProps>>`
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   display: inline-block;
@@ -72,11 +61,12 @@ export const IconMaterialWrapper = styled(IconBase)<IconWrapperProps & IconFille
   vertical-align: bottom;
   width: calc(2em - 16px);
 
+  ${({ color }) => isDefined(color) && `color: var(${color});`}
   ${({ isFilled = false }) => (isFilled ? `font-variation-settings: 'FILL' 1;` : '')}
 `;
 IconMaterialWrapper.displayName = 'IconMaterialWrapper';
 
-export const IconCustomWrapper = styled(IconMaterialWrapper)<IconWrapperProps & IconProps>`
+export const IconCustomWrapper = styled(IconMaterialWrapper)<PropsWithChildren<IconProps>>`
   font-family: 'Echoes';
 `;
 IconMaterialWrapper.displayName = 'IconCustomWrapper';

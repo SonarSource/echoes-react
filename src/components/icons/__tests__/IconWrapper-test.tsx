@@ -18,7 +18,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 import { screen } from '@testing-library/react';
-import { render } from '../../../common/helpers/testUtils';
+import { render } from '../../../common/helpers/test-utils';
 import { IconCustomWrapper, IconMaterialWrapper } from '../IconWrapper';
 
 it('should render material icon correctly', () => {
@@ -60,16 +60,18 @@ it('should not be hidden when ariaLabel is set', () => {
   expect(screen.getByRole('img')).toBeVisible();
 });
 
-it('should not be hidden when aria-label is set', () => {
-  render(<IconMaterialWrapper aria-label="test">&#xE3A6;</IconMaterialWrapper>);
-
-  expect(screen.getByRole('img')).toBeVisible();
-});
-
 it('should correctly handled isFilled props for material icons', () => {
   render(<IconMaterialWrapper isFilled>&#xE3A6;</IconMaterialWrapper>);
 
   expect(screen.getByRole('img', { hidden: true })).toHaveStyle({
     'font-variation-settings': `'FILL' 1`,
+  });
+});
+
+it('should accept custom color', () => {
+  render(<IconMaterialWrapper color="--echoes-color-icon-success">&#xE3A6;</IconMaterialWrapper>);
+
+  expect(screen.getByRole('img', { hidden: true })).toHaveStyle({
+    color: `var(--echoes-color-icon-success)`,
   });
 });

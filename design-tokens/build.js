@@ -140,7 +140,15 @@ function buildThemedTokens(themedTokenGroups) {
                     : `html[data-echoes-theme='${theme.name}']`,
               },
             },
-          ],
+            DEFAULT_THEME === theme.name && {
+              destination: `${NAME_PREFIX}colors.json`,
+              format: 'json/flat',
+              filter: CUSTOM_FILTER_THEMED_TOKENS,
+              options: {
+                fileHeader: 'licence-header',
+              },
+            },
+          ].filter((file) => Boolean(file)),
         },
       },
     }).buildAllPlatforms();

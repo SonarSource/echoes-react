@@ -101,7 +101,7 @@ function LinkBaseWithRef(props: Readonly<LinkProps>, ref: React.ForwardedRef<HTM
         {children}
         {hasExternalIcon && (
           <ExternalIcon
-            aria-label={intl.formatMessage({
+            ariaLabel={intl.formatMessage({
               id: 'open_in_new_window',
               defaultMessage: 'Open in new window',
               description: 'aria-label text, to indicate that the link will open in a new window',
