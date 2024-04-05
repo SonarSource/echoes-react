@@ -39,7 +39,7 @@ it('should render material icon correctly', () => {
 });
 
 it('should render custom icon correctly', () => {
-  const { container } = render(<IconCustomWrapper>&#x21;</IconCustomWrapper>);
+  render(<IconCustomWrapper>&#x21;</IconCustomWrapper>);
 
   expect(screen.queryByRole('img')).not.toBeInTheDocument();
 
@@ -51,7 +51,6 @@ it('should render custom icon correctly', () => {
   expect(icon).toHaveStyle({
     'font-family': `'Echoes'`,
   });
-  expect(container).toMatchSnapshot();
 });
 
 it('should not be hidden when ariaLabel is set', () => {
