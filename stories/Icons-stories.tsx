@@ -114,10 +114,10 @@ export const WithCustomColor: StoryObj = {
   render: () => (
     <div>
       <p>
-        This is pretty cool <icons.IconTarget color="--echoes-color-icon-info" />, innit?
+        This is pretty cool <icons.IconTarget color="echoes-color-icon-info" />, innit?
       </p>
       <p style={{ color: 'magenta' }}>
-        <icons.IconPin color="--echoes-color-icon-danger" /> Pinned!
+        <icons.IconPin color="echoes-color-icon-danger" /> Pinned!
       </p>
     </div>
   ),

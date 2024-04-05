@@ -23,7 +23,7 @@ import React, { HTMLAttributeAnchorTarget } from 'react';
 import { useIntl } from 'react-intl';
 import { Link as RouterLink, LinkProps as RouterLinkProps } from 'react-router-dom';
 import { isSonarLink } from '~common/helpers/url';
-import { IconLinkExternal } from '../icons';
+import { IconLinkExternal } from '../icons/IconLinkExternal';
 
 type RouterLinkPropsRequired = 'download' | 'reloadDocument' | 'state' | 'style' | 'title' | 'to';
 

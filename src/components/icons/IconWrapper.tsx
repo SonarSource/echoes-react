@@ -61,7 +61,7 @@ export const IconMaterialWrapper = styled(IconBase)<PropsWithChildren<IconFilled
   vertical-align: bottom;
   width: calc(2em - 16px);
 
-  ${({ color }) => isDefined(color) && `color: var(${color});`}
+  ${({ color }) => isDefined(color) && `color: var(--${color});`}
   ${({ isFilled = false }) => (isFilled ? `font-variation-settings: 'FILL' 1;` : '')}
 `;
 IconMaterialWrapper.displayName = 'IconMaterialWrapper';

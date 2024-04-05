@@ -68,7 +68,7 @@ it('should correctly handled isFilled props for material icons', () => {
 });
 
 it('should accept custom color', () => {
-  render(<IconMaterialWrapper color="--echoes-color-icon-success">&#xE3A6;</IconMaterialWrapper>);
+  render(<IconMaterialWrapper color="echoes-color-icon-success">&#xE3A6;</IconMaterialWrapper>);
 
   expect(screen.getByRole('img', { hidden: true })).toHaveStyle({
     color: `var(--echoes-color-icon-success)`,
