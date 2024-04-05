@@ -41,14 +41,14 @@ export const IconMaterialWrapper = styled(IconBase)<IconMaterialProps>`
   -webkit-font-smoothing: antialiased;
   display: inline-block;
   font-family: 'Material Symbols Rounded';
-  font-size: calc(1em * (18 / 14));
+  font-size: calc(1em + 4px);
   font-style: normal;
   font-weight: normal;
-  height: calc(1em * (20 / 18));
-  line-height: calc(1em * (20 / 18));
+  height: calc(2em - 16px);
+  line-height: calc(2em - 16px);
   text-align: center;
   vertical-align: bottom;
-  width: calc(1em * (20 / 18));
+  width: calc(2em - 16px);
 
   ${({ isFilled = false }) => (isFilled ? `font-variation-settings: 'FILL' 1;` : '')}
 `;

@@ -94,19 +94,16 @@ const IconTile = styled.div`
 export const AutoSizing: StoryObj = {
   render: () => (
     <div>
-      <p style={{ fontSize: '20px', lineHeight: `${(20 * 20) / 14}px` }}>
+      <p style={{ fontSize: '16px', lineHeight: '24px' }}>
         <icons.IconMegaphone /> Warning warning!
       </p>
-      <p style={{ fontSize: '16px', lineHeight: `${(16 * 20) / 14}px` }}>
-        <icons.IconMegaphone /> Warning warning!
-      </p>
-      <p style={{ color: 'magenta', fontSize: '16px', lineHeight: `${(16 * 20) / 14}px` }}>
+      <p style={{ color: 'magenta', fontSize: '16px', lineHeight: '24px' }}>
         <icons.IconPin /> Pinned!
       </p>
-      <p style={{ fontSize: '14px', lineHeight: `${(14 * 20) / 14}px` }}>
+      <p style={{ fontSize: '14px', lineHeight: '20px' }}>
         This is pretty cool <icons.IconTarget />, innit?
       </p>
-      <p style={{ fontSize: '12px', lineHeight: `${(12 * 20) / 14}px` }}>
+      <p style={{ fontSize: '12px', lineHeight: '16px' }}>
         Tiny <icons.IconMegaphone /> text
       </p>
     </div>
