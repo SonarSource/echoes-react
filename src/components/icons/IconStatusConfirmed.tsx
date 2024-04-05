@@ -18,39 +18,9 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import type { Meta, StoryObj } from '@storybook/react';
-import { IconLink, LinkHighlight, LinkStandalone as LinkStandaloneComp } from '../src';
+import { IconMaterialWrapper, IconProps } from './IconWrapper';
 
-const meta: Meta<typeof LinkStandaloneComp> = {
-  component: LinkStandaloneComp,
-  title: 'Link Standalone',
-  argTypes: {
-    highlight: {
-      control: {
-        type: 'select',
-      },
-      options: Object.values(LinkHighlight),
-    },
-  },
-} satisfies Meta<typeof LinkStandaloneComp>;
-
-export default meta;
-
-type Story = StoryObj<typeof meta>;
-
-export const LinkStandalone: Story = {
-  args: {
-    children: 'Standalone Link',
-    highlight: undefined,
-    to: '/projects/new',
-  },
-};
-
-export const LinkStandaloneWithIcon: Story = {
-  args: {
-    children: 'Standalone Link With Icon',
-    highlight: LinkHighlight.Default,
-    to: '/projects/new',
-    iconLeft: <IconLink />,
-  },
-};
+export function IconStatusConfirmed(props: Readonly<IconProps>) {
+  // This is Material Symbols' "adjust" icon
+  return <IconMaterialWrapper {...props}>&#xE39E;</IconMaterialWrapper>;
+}

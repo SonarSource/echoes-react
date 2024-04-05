@@ -18,8 +18,9 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import { LinkExternalIcon } from '@primer/octicons-react';
-import { OcticonHoc } from './Icon';
+import { IconMaterialWrapper, IconProps } from './IconWrapper';
 
-// TODO: This is a temporary solution until we have a proper icon for this
-export const OpenNewTabIcon = OcticonHoc(LinkExternalIcon, 'OpenNewTabIcon');
+export function IconStatusOpen(props: Readonly<IconProps>) {
+  // This is Material Symbols' "brightness_1" icon
+  return <IconMaterialWrapper {...props}>&#xE3A6;</IconMaterialWrapper>;
+}

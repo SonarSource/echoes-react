@@ -18,9 +18,9 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import { IconMaterialProps, IconMaterialWrapper } from './IconWrapper';
+import { IconFilledProps, IconMaterialWrapper } from './IconWrapper';
 
-export function IconHome(props: Readonly<IconMaterialProps>) {
+export function IconHome(props: Readonly<IconFilledProps>) {
   // This is Material Symbols' "home" icon
   return <IconMaterialWrapper {...props}>&#xE88A;</IconMaterialWrapper>;
 }

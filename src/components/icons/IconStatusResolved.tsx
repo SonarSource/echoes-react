@@ -20,7 +20,11 @@
 
 import { IconMaterialWrapper, IconProps } from './IconWrapper';
 
-export function IconIssues(props: Readonly<IconProps>) {
-  // This is Material Symbols' "brightness_1" icon
-  return <IconMaterialWrapper {...props}>&#xE3A6;</IconMaterialWrapper>;
+export function IconStatusResolved(props: Readonly<IconProps>) {
+  // This is Material Symbols' "check_circle" icon
+  return (
+    <IconMaterialWrapper isFilled {...props}>
+      &#xE86C;
+    </IconMaterialWrapper>
+  );
 }

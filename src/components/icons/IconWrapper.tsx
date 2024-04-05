@@ -19,24 +19,35 @@
  */
 
 import styled from '@emotion/styled';
+import { PropsWithChildren } from 'react';
+import { DesignTokensColors } from '~common/helpers/design-tokens';
+import { isDefined, isStringDefined } from '~common/helpers/types';
 
-export type IconProps = Omit<JSX.IntrinsicElements['span'], 'children'>;
+export interface IconProps {
+  ariaLabel?: string;
+  className?: string;
+  color?: DesignTokensColors;
+}
 
-function IconBase(props: Readonly<IconProps & { children: React.ReactNode }>) {
-  const { children, className, ...rest } = props;
+export interface IconFilledProps extends IconProps {
+  isFilled?: boolean;
+}
+
+function IconBase(props: Readonly<PropsWithChildren<IconFilledProps>>) {
+  const { ariaLabel, className, children } = props;
 
   return (
-    <span className={className} {...rest}>
+    <span
+      aria-hidden={isStringDefined(ariaLabel) ? 'false' : 'true'}
+      aria-label={ariaLabel}
+      className={className}
+      role="img">
       {children}
     </span>
   );
 }
 
-export interface IconMaterialProps extends IconProps {
-  isFilled?: boolean;
-}
-
-export const IconMaterialWrapper = styled(IconBase)<IconMaterialProps>`
+export const IconMaterialWrapper = styled(IconBase)<PropsWithChildren<IconFilledProps>>`
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   display: inline-block;
@@ -50,11 +61,12 @@ export const IconMaterialWrapper = styled(IconBase)<IconMaterialProps>`
   vertical-align: bottom;
   width: calc(2em - 16px);
 
+  ${({ color }) => isDefined(color) && `color: var(--${color});`}
   ${({ isFilled = false }) => (isFilled ? `font-variation-settings: 'FILL' 1;` : '')}
 `;
 IconMaterialWrapper.displayName = 'IconMaterialWrapper';
 
-export const IconCustomWrapper = styled(IconMaterialWrapper)`
+export const IconCustomWrapper = styled(IconMaterialWrapper)<PropsWithChildren<IconProps>>`
   font-family: 'Echoes';
 `;
 IconMaterialWrapper.displayName = 'IconCustomWrapper';

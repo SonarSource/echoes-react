@@ -20,7 +20,7 @@
 
 import { IconMaterialWrapper, IconProps } from './IconWrapper';
 
-export function IconCircle(props: Readonly<IconProps>) {
-  // This is Material Symbols' "adjust" icon
-  return <IconMaterialWrapper {...props}>&#xE39E;</IconMaterialWrapper>;
+export function IconStatusReopened(props: Readonly<IconProps>) {
+  // This is Material Symbols' "contrast" icon
+  return <IconMaterialWrapper {...props}>&#xEB37;</IconMaterialWrapper>;
 }

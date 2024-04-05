@@ -20,7 +20,7 @@
 
 import { screen } from '@testing-library/react';
 import { MemoryRouter, Route, Routes, useLocation } from 'react-router-dom';
-import { render } from '~common/helpers/testUtils';
+import { render } from '~common/helpers/test-utils';
 import { Link } from '..';
 
 it('should remove focus after link is clicked', async () => {
@@ -100,7 +100,7 @@ it('internal link should be clickable', async () => {
   expect(screen.getByText('/second')).toBeVisible();
 });
 
-it('external links are indicated by OpenNewTabIcon', async () => {
+it('external links are indicated by IconLinkExternal', async () => {
   const { container } = setupWithMemoryRouter(<Link to="https://google.com">external link</Link>);
   expect(screen.getByRole('link')).toBeVisible();
   expect(screen.getByRole('link')).toHaveAttribute('target', '_blank');

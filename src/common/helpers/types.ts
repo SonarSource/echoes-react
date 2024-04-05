@@ -18,39 +18,10 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import type { Meta, StoryObj } from '@storybook/react';
-import { IconLink, LinkHighlight, LinkStandalone as LinkStandaloneComp } from '../src';
+export function isDefined<T>(x: T | undefined | null): x is T {
+  return x !== undefined && x !== null;
+}
 
-const meta: Meta<typeof LinkStandaloneComp> = {
-  component: LinkStandaloneComp,
-  title: 'Link Standalone',
-  argTypes: {
-    highlight: {
-      control: {
-        type: 'select',
-      },
-      options: Object.values(LinkHighlight),
-    },
-  },
-} satisfies Meta<typeof LinkStandaloneComp>;
-
-export default meta;
-
-type Story = StoryObj<typeof meta>;
-
-export const LinkStandalone: Story = {
-  args: {
-    children: 'Standalone Link',
-    highlight: undefined,
-    to: '/projects/new',
-  },
-};
-
-export const LinkStandaloneWithIcon: Story = {
-  args: {
-    children: 'Standalone Link With Icon',
-    highlight: LinkHighlight.Default,
-    to: '/projects/new',
-    iconLeft: <IconLink />,
-  },
-};
+export function isStringDefined<T extends string>(x: T | undefined | null): x is T {
+  return isDefined(x) && x !== '';
+}

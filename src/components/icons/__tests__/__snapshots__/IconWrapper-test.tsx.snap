@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render material icon correctly 1`] = `
+.emotion-0 {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  display: inline-block;
+  font-family: 'Material Symbols Rounded';
+  font-size: calc(1em + 4px);
+  font-style: normal;
+  font-weight: normal;
+  height: calc(2em - 16px);
+  line-height: calc(2em - 16px);
+  text-align: center;
+  vertical-align: bottom;
+  width: calc(2em - 16px);
+}
+
+<div>
+  <span
+    aria-hidden="true"
+    class="emotion-0"
+    role="img"
+  >
+    
+  </span>
+</div>
+`;

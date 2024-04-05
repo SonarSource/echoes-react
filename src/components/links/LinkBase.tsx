@@ -22,8 +22,8 @@ import styled from '@emotion/styled';
 import React, { HTMLAttributeAnchorTarget } from 'react';
 import { useIntl } from 'react-intl';
 import { Link as RouterLink, LinkProps as RouterLinkProps } from 'react-router-dom';
-import { isSonarLink } from '../../common/helpers/url';
-import { OpenNewTabIcon } from '../../common/icons/OpenNewTabIcon';
+import { isSonarLink } from '~common/helpers/url';
+import { IconLinkExternal } from '../icons/IconLinkExternal';
 
 type RouterLinkPropsRequired = 'download' | 'reloadDocument' | 'state' | 'style' | 'title' | 'to';
 
@@ -101,7 +101,7 @@ function LinkBaseWithRef(props: Readonly<LinkProps>, ref: React.ForwardedRef<HTM
         {children}
         {hasExternalIcon && (
           <ExternalIcon
-            aria-label={intl.formatMessage({
+            ariaLabel={intl.formatMessage({
               id: 'open_in_new_window',
               defaultMessage: 'Open in new window',
               description: 'aria-label text, to indicate that the link will open in a new window',
@@ -119,7 +119,7 @@ function LinkBaseWithRef(props: Readonly<LinkProps>, ref: React.ForwardedRef<HTM
   );
 }
 
-const ExternalIcon = styled(OpenNewTabIcon)`
+const ExternalIcon = styled(IconLinkExternal)`
   margin-left: var(--echoes-dimension-space-50);
 `;
 

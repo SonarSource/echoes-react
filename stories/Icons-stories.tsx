@@ -39,7 +39,7 @@ function renderIcons() {
             <span>{(Icon as React.FC).displayName}</span>
           </IconTile>
 
-          {['IconHome', 'IconStar'].includes((Icon as React.FC).displayName ?? '') && (
+          {['IconDot', 'IconHome', 'IconStar'].includes((Icon as React.FC).displayName ?? '') && (
             <IconTile key={`${Icon.name} isFilled`}>
               <Icon isFilled />
               <span>{(Icon as React.FC).displayName} isFilled</span>
@@ -105,6 +105,19 @@ export const AutoSizing: StoryObj = {
       </p>
       <p style={{ fontSize: '12px', lineHeight: '16px' }}>
         Tiny <icons.IconMegaphone /> text
+      </p>
+    </div>
+  ),
+};
+
+export const WithCustomColor: StoryObj = {
+  render: () => (
+    <div>
+      <p>
+        This is pretty cool <icons.IconTarget color="echoes-color-icon-info" />, innit?
+      </p>
+      <p style={{ color: 'magenta' }}>
+        <icons.IconPin color="echoes-color-icon-danger" /> Pinned!
       </p>
     </div>
   ),
