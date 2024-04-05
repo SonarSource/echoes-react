@@ -20,7 +20,7 @@
 
 import { screen } from '@testing-library/react';
 import { ComponentProps } from 'react';
-import { render } from '~common/helpers/testUtils';
+import { render } from '~common/helpers/test-utils';
 import { Spinner } from '../Spinner';
 
 it('can be controlled by the isLoading prop', async () => {

@@ -20,7 +20,7 @@
 
 import { screen } from '@testing-library/react';
 import { MemoryRouter, Route, Routes, useLocation } from 'react-router-dom';
-import { render } from '~common/helpers/testUtils';
+import { render } from '~common/helpers/test-utils';
 import { LinkStandalone } from '..';
 import { IconLink } from '../../icons';
 
