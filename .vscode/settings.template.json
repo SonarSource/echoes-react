@@ -1,4 +1,5 @@
 {
+  "cssvar.files": ["src/generated/design-tokens-light.css", "src/generated/design-tokens-base.css"],
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
   "prettier.prettierPath": ".yarn/sdks/prettier/index.cjs",

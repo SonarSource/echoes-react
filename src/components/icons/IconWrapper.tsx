@@ -19,21 +19,24 @@
  */
 
 import styled from '@emotion/styled';
-import { PropsWithChildren } from 'react';
-import { DesignTokensColors } from '~common/helpers/design-tokens';
 import { isDefined, isStringDefined } from '~common/helpers/types';
+import { DesignTokensColors } from '~types/design-tokens';
 
 export interface IconProps {
   ariaLabel?: string;
   className?: string;
-  color?: DesignTokensColors;
 }
 
 export interface IconFilledProps extends IconProps {
   isFilled?: boolean;
 }
 
-function IconBase(props: Readonly<PropsWithChildren<IconFilledProps>>) {
+interface IconBaseProps {
+  children: React.ReactNode;
+  color?: DesignTokensColors;
+}
+
+function IconBase(props: Readonly<IconBaseProps & IconFilledProps>) {
   const { ariaLabel, className, children } = props;
 
   return (
@@ -47,11 +50,10 @@ function IconBase(props: Readonly<PropsWithChildren<IconFilledProps>>) {
   );
 }
 
-export const IconMaterialWrapper = styled(IconBase)<PropsWithChildren<IconFilledProps>>`
+const IconWrapper = styled(IconBase)<IconBaseProps & IconFilledProps>`
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   display: inline-block;
-  font-family: 'Material Symbols Rounded';
   font-size: calc(1em + 4px);
   font-style: normal;
   font-weight: normal;
@@ -64,9 +66,14 @@ export const IconMaterialWrapper = styled(IconBase)<PropsWithChildren<IconFilled
   ${({ color }) => isDefined(color) && `color: var(--${color});`}
   ${({ isFilled = false }) => (isFilled ? `font-variation-settings: 'FILL' 1;` : '')}
 `;
+IconWrapper.displayName = 'IconWrapper';
+
+export const IconMaterialWrapper = styled(IconWrapper)<IconBaseProps & IconFilledProps>`
+  font-family: 'Material Symbols Rounded';
+`;
 IconMaterialWrapper.displayName = 'IconMaterialWrapper';
 
-export const IconCustomWrapper = styled(IconMaterialWrapper)<PropsWithChildren<IconProps>>`
+export const IconCustomWrapper = styled(IconWrapper)<IconBaseProps & IconProps>`
   font-family: 'Echoes';
 `;
 IconMaterialWrapper.displayName = 'IconCustomWrapper';

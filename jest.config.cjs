@@ -34,6 +34,7 @@ module.exports = {
     '^~common/(.*)': '<rootDir>/src/common/$1',
     '^~generated/(.*)': '<rootDir>/src/generated/$1',
     '^~utils/(.*)': '<rootDir>/src/utils/$1',
+    '^~types/(.*)': '<rootDir>/src/types/$1',
   },
   setupFiles: ['<rootDir>/config/jest/SetupTestEnvironment.ts'],
   setupFilesAfterEnv: [
