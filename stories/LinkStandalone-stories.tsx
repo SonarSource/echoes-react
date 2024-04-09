@@ -19,8 +19,7 @@
  */
 
 import type { Meta, StoryObj } from '@storybook/react';
-import { LinkHighlight, LinkStandalone as LinkStandaloneComp } from '../src';
-import { CheckIcon } from '../src/common/icons/CheckIcon';
+import { IconLink, LinkHighlight, LinkStandalone as LinkStandaloneComp } from '../src';
 
 const meta: Meta<typeof LinkStandaloneComp> = {
   component: LinkStandaloneComp,
@@ -52,6 +51,6 @@ export const LinkStandaloneWithIcon: Story = {
     children: 'Standalone Link With Icon',
     highlight: LinkHighlight.Default,
     to: '/projects/new',
-    iconLeft: <CheckIcon />,
+    iconLeft: <IconLink />,
   },
 };

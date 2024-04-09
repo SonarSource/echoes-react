@@ -30,7 +30,6 @@ const RAW_RUNTIME_STATE =
           ["@emotion/react", "virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#npm:11.11.4"],\
           ["@emotion/styled", "virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#npm:11.11.0"],\
           ["@formatjs/cli", "virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#npm:6.2.7"],\
-          ["@primer/octicons-react", "virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#npm:19.8.0"],\
           ["@radix-ui/react-checkbox", "virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#npm:1.0.4"],\
           ["@radix-ui/react-radio-group", "virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#npm:1.1.3"],\
           ["@storybook/addon-a11y", "npm:8.0.5"],\
@@ -75,6 +74,7 @@ const RAW_RUNTIME_STATE =
           ["jest", "virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#npm:29.7.0"],\
           ["jest-axe", "npm:8.0.0"],\
           ["jest-environment-jsdom", "virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#npm:29.7.0"],\
+          ["material-symbols", "npm:0.17.0"],\
           ["prettier", "npm:3.2.5"],\
           ["react", "npm:17.0.2"],\
           ["react-dom", "virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#npm:17.0.2"],\
@@ -4184,28 +4184,6 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
-    ["@primer/octicons-react", [\
-      ["npm:19.8.0", {\
-        "packageLocation": "./.yarn/cache/@primer-octicons-react-npm-19.8.0-21a927563a-8691a7b723.zip/node_modules/@primer/octicons-react/",\
-        "packageDependencies": [\
-          ["@primer/octicons-react", "npm:19.8.0"]\
-        ],\
-        "linkType": "SOFT"\
-      }],\
-      ["virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#npm:19.8.0", {\
-        "packageLocation": "./.yarn/__virtual__/@primer-octicons-react-virtual-f42c4f283b/0/cache/@primer-octicons-react-npm-19.8.0-21a927563a-8691a7b723.zip/node_modules/@primer/octicons-react/",\
-        "packageDependencies": [\
-          ["@primer/octicons-react", "virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#npm:19.8.0"],\
-          ["@types/react", "npm:17.0.79"],\
-          ["react", "npm:17.0.2"]\
-        ],\
-        "packagePeers": [\
-          "@types/react",\
-          "react"\
-        ],\
-        "linkType": "HARD"\
-      }]\
-    ]],\
     ["@radix-ui/primitive", [\
       ["npm:1.0.1", {\
         "packageLocation": "./.yarn/cache/@radix-ui-primitive-npm-1.0.1-cbcafe0446-2b93e161d3.zip/node_modules/@radix-ui/primitive/",\
@@ -5074,7 +5052,6 @@ const RAW_RUNTIME_STATE =
           ["@emotion/react", "virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#npm:11.11.4"],\
           ["@emotion/styled", "virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#npm:11.11.0"],\
           ["@formatjs/cli", "virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#npm:6.2.7"],\
-          ["@primer/octicons-react", "virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#npm:19.8.0"],\
           ["@radix-ui/react-checkbox", "virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#npm:1.0.4"],\
           ["@radix-ui/react-radio-group", "virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#npm:1.1.3"],\
           ["@storybook/addon-a11y", "npm:8.0.5"],\
@@ -5119,6 +5096,7 @@ const RAW_RUNTIME_STATE =
           ["jest", "virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#npm:29.7.0"],\
           ["jest-axe", "npm:8.0.0"],\
           ["jest-environment-jsdom", "virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#npm:29.7.0"],\
+          ["material-symbols", "npm:0.17.0"],\
           ["prettier", "npm:3.2.5"],\
           ["react", "npm:17.0.2"],\
           ["react-dom", "virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#npm:17.0.2"],\
@@ -14093,6 +14071,15 @@ const RAW_RUNTIME_STATE =
         "packagePeers": [\
           "@types/react",\
           "react"\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["material-symbols", [\
+      ["npm:0.17.0", {\
+        "packageLocation": "./.yarn/cache/material-symbols-npm-0.17.0-b3d7224df6-d432e18203.zip/node_modules/material-symbols/",\
+        "packageDependencies": [\
+          ["material-symbols", "npm:0.17.0"]\
         ],\
         "linkType": "HARD"\
       }]\

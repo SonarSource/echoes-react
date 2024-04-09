@@ -22,7 +22,7 @@ import { screen } from '@testing-library/react';
 
 import { PointerEventsCheckLevel } from '@testing-library/user-event';
 import { ComponentProps } from 'react';
-import { render } from '~common/helpers/testUtils';
+import { render } from '~common/helpers/test-utils';
 import { Checkbox } from '../Checkbox';
 
 it('should call check function when clicked without label', async () => {

@@ -77,6 +77,7 @@ export default defineConfig({
       '~common': path.resolve(__dirname, './src/common'),
       '~generated': path.resolve(__dirname, './src/generated'),
       '~utils': path.resolve(__dirname, './src/utils'),
+      '~types': path.resolve(__dirname, './src/types'),
     },
   },
 });

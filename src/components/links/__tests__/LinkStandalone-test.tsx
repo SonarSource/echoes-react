@@ -20,9 +20,9 @@
 
 import { screen } from '@testing-library/react';
 import { MemoryRouter, Route, Routes, useLocation } from 'react-router-dom';
-import { render } from '~common/helpers/testUtils';
-import { CheckIcon } from '~common/icons/CheckIcon';
+import { render } from '~common/helpers/test-utils';
 import { LinkStandalone } from '..';
+import { IconLink } from '../../icons';
 
 it('should display LinkStandalone properly', async () => {
   const { container } = setupWithMemoryRouter(
@@ -34,7 +34,7 @@ it('should display LinkStandalone properly', async () => {
 
 it('should support a left icon', async () => {
   const { container } = setupWithMemoryRouter(
-    <LinkStandalone iconLeft={<CheckIcon />} to="/path">
+    <LinkStandalone iconLeft={<IconLink />} to="/path">
       link with icon
     </LinkStandalone>,
   );
@@ -45,7 +45,7 @@ it('should support a left icon', async () => {
 
 it('should not show external icon when left icon is provided by default', () => {
   setupWithMemoryRouter(
-    <LinkStandalone iconLeft={<CheckIcon />} to="https://www.sonarsource.com">
+    <LinkStandalone iconLeft={<IconLink />} to="https://www.sonarsource.com">
       link with icon
     </LinkStandalone>,
   );
@@ -55,7 +55,7 @@ it('should not show external icon when left icon is provided by default', () => 
 
 it('should be possible to override and show the external icon with icon on the left', () => {
   setupWithMemoryRouter(
-    <LinkStandalone hasExternalIcon iconLeft={<CheckIcon />} to="https://www.sonarsource.com">
+    <LinkStandalone hasExternalIcon iconLeft={<IconLink />} to="https://www.sonarsource.com">
       link with icon
     </LinkStandalone>,
   );

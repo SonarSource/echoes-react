@@ -1,0 +1,15 @@
+@font-face {
+  font-family: 'Material Symbols Rounded';
+  font-style: normal;
+  font-weight: 100 700;
+  font-display: block;
+  src: url('material-symbols/material-symbols-rounded.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Echoes';
+  font-style: normal;
+  font-weight: 400;
+  font-display: auto;
+  src: url('./echoes.woff2') format('woff2');
+}
