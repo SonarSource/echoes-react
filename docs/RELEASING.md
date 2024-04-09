@@ -8,20 +8,38 @@ Major and minor versions follow the versioning in the Echoes Design System. Patc
 
 For more details, refer to the [internal versioning strategy](https://docs.google.com/document/d/1JkzJVFBN3MPl-uBDgddICfdFf4kXPaRBa6XqaJV0F5U) (Sonar employees only)
 
-## Release Process
+## Release Process for Major and Minor Versions
 
-- Create a new branch for the release and maintenance following the name convention `branch-x.y.z`
+- Create a new branch for the release and maintenance following the name convention `branch-x.y`
 
-- [Create a Jira release ticket](https://jira.sonarsource.com/projects/REL) like [this one](https://sonarsource.atlassian.net/browse/REL-PLACEHOLDER)
+- [Create a Jira release ticket in the REL project](https://jira.sonarsource.com/projects/REL) like [this one](https://sonarsource.atlassian.net/jira/software/c/projects/REL/issues/REL-3062)
 
-  - Title: @sonarsource/echoes-react x.y.z.1234
+  - Summary: @sonarsource/echoes-react x.y
   - Documentation status: N/A
   - Short description: pull from [version description](https://sonarsource.atlassian.net/projects/DS/versions/15439/tab/release-report-all-issues)
   - SQ compatibility: current version
+  - Link to Jira RELEASE NOTES: copy from a previous release ticket, updating the release ID, e.g.: https://sonarsource.atlassian.net/projects/DS/versions/15590/tab/release-report-all-issues?isReleaseNoteModalOpen=true
 
-- [Publish a new GitHub release](https://github.com/SonarSource/echoes-react/releases/new)
+- [Publish a new GitHub release](https://github.com/SonarSource/echoes-react/releases/new) targeting the release branch
 
   - Find the relevant release from the [releases page](https://sonarsource.atlassian.net/projects/DS?selectedItem=com.atlassian.jira.jira-projects-plugin%3Arelease-page) and populate (as markdown) the notes section.
+  - Example: https://github.com/SonarSource/echoes-react/releases/tag/v0.2.0
   - click `Publish Release`
 
-- Bump the [package version](https://github.com/SonarSource/echoes-react/blob/main/package.json#L3) for the next development iteration
+- Bump the [package version](https://github.com/SonarSource/echoes-react/blob/main/package.json#L3) for the next development iteration with `yarn version major|minor` and commit with message `[NO-JIRA] Prepare for version x.y`.
+
+## Release Process for Patch Versions
+
+- Check out the version branch `branch-x.y`
+
+- Bump the [package version](https://github.com/SonarSource/echoes-react/blob/main/package.json#L3) with `yarn version patch` and commit with message `[NO-JIRA] Prepare for version x.y.z`.
+
+- Cherry-pick the commits from the `main` branch that need to be in this patch release
+
+- Create a PR on the version branch with the changes
+
+- [Create a new version in the Echoes Design System project](https://sonarsource.atlassian.net/projects/DS?selectedItem=com.atlassian.jira.jira-projects-plugin%3Arelease-page) like [this one](https://sonarsource.atlassian.net/projects/DS/versions/15545)
+
+- Tag the relevant tickets with this new version
+
+- Once the PR is merged, follow the same procedure as for Major/Minor versions, starting with the creation of a Jira REL ticket, and skipping the version bump at the end
