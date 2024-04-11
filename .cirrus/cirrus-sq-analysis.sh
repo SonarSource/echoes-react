@@ -23,6 +23,7 @@ if [[ "${PULL_REQUEST}" ]] || [[ "${GITHUB_BRANCH}" == "main" ]]; then
   scanner_params+=(
     "-Dsonar.host.url=${SONARQUBE_HOST_URL}"
     "-Dsonar.token=${SONARQUBE_NEXT_TOKEN}"
+    "-Dsonar.projectVersion=$(cat ./package.json | jq -r .version)"
     "-Dsonar.analysis.pipeline=${CIRRUS_BUILD_ID}"
     "-Dsonar.analysis.repository=${GITHUB_REPO}"
     "-Dsonar.analysis.sha1=${GIT_SHA1}"

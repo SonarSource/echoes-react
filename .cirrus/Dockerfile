@@ -11,19 +11,26 @@ ENV SCANNER_ZIP=sonar-scanner.zip
 
 ENV PATH=${SCANNER_HOME}/bin:${PATH}
 
+# Update package list
+RUN apt-get update -y
+
+# Install some tools
+RUN apt-get install -y jq
+
 # Install Scanner dependencies
 RUN curl ${SCANNER_BINARIES}/sonar-scanner-cli-${SCANNER_VERSION}.zip -o ${SCANNER_ZIP}  \
-    && unzip ${SCANNER_ZIP} \
-    && mv sonar-scanner-${SCANNER_VERSION} ${SCANNER_HOME} \
-    && rm ${SCANNER_ZIP}
+  && unzip ${SCANNER_ZIP} \
+  && mv sonar-scanner-${SCANNER_VERSION} ${SCANNER_HOME} \
+  && rm ${SCANNER_ZIP}
 
 # Install Node.js
 ARG NODE_VERSION=20.*
-RUN apt-get update \
-  && apt-get install -y nodejs=${NODE_VERSION} \
-  && apt-get clean
+RUN apt-get install -y nodejs=${NODE_VERSION}
 
 # Install Yarn
 RUN npm install -g yarn
+
+# Clean up cache after packages installation
+RUN apt-get clean
 
 USER sonarsource
