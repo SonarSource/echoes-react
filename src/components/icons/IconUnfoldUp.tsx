@@ -20,7 +20,7 @@
 
 import { IconCustomWrapper, IconProps } from './IconWrapper';
 
-export function IconFoldUp(props: Readonly<IconProps>) {
+export function IconUnfoldUp(props: Readonly<IconProps>) {
   // This is an icon from the "Echoes" custom font
   return <IconCustomWrapper {...props}>&#x27;</IconCustomWrapper>;
 }
