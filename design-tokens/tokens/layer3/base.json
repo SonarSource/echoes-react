@@ -1,1 +1,14 @@
-{}
+{
+  "echoes": {
+    "sizes": {
+      "overlays": {
+        "maxWidth": {
+          "default": {
+            "value": "{echoes.dimension.space.800}",
+            "type": "sizing"
+          }
+        }
+      }
+    }
+  }
+}

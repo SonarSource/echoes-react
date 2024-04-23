@@ -1,10 +1,1 @@
-{
-  "echoes": {
-    "sizes": {
-      "sizeLarge": {
-        "value": "25rem",
-        "type": "sizing"
-      }
-    }
-  }
-}
+{}
