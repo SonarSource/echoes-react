@@ -19,6 +19,7 @@
  */
 
 import styled from '@emotion/styled';
+import * as VisuallyHidden from '@radix-ui/react-visually-hidden';
 import React, { HTMLAttributeAnchorTarget } from 'react';
 import { useIntl } from 'react-intl';
 import { Link as RouterLink, LinkProps as RouterLinkProps } from 'react-router-dom';
@@ -90,7 +91,7 @@ function LinkBaseWithRef(props: Readonly<LinkProps>, ref: React.ForwardedRef<HTM
 
   if (isExternal) {
     return (
-      // eslint-disable-next-line react/jsx-no-target-blank --  we only allow noopener noreferrer for known external links
+      /* eslint-disable-next-line react/jsx-no-target-blank -- we only allow noopener noreferrer for known external links */
       <a
         rel={`noopener${isSonarLink(toAsString) ? '' : ' noreferrer nofollow'}`}
         target="_blank"
@@ -99,15 +100,14 @@ function LinkBaseWithRef(props: Readonly<LinkProps>, ref: React.ForwardedRef<HTM
         onClick={handleClick}
         ref={ref}>
         {children}
-        {hasExternalIcon && (
-          <ExternalIcon
-            ariaLabel={intl.formatMessage({
-              id: 'open_in_new_window',
-              defaultMessage: 'Open in new window',
-              description: 'aria-label text, to indicate that the link will open in a new window',
-            })}
-          />
-        )}
+        {hasExternalIcon && <ExternalIcon />}
+        <VisuallyHidden.Root>
+          {intl.formatMessage({
+            id: 'open_in_new_tab',
+            defaultMessage: '(opens in new tab)',
+            description: 'Screen reader-only text to indicate that the link will open in a new tab',
+          })}
+        </VisuallyHidden.Root>
       </a>
     );
   }
