@@ -100,11 +100,11 @@ it('internal link should be clickable', async () => {
   expect(screen.getByText('/second')).toBeVisible();
 });
 
-it('external links are indicated by IconLinkExternal', async () => {
+it('external links are indicated by additional text', async () => {
   const { container } = setupWithMemoryRouter(<Link to="https://google.com">external link</Link>);
   expect(screen.getByRole('link')).toBeVisible();
   expect(screen.getByRole('link')).toHaveAttribute('target', '_blank');
-  expect(screen.getByRole('img')).toBeVisible();
+  expect(screen.getByRole('link')).toHaveTextContent('(opens in new tab)');
   await expect(container).toHaveNoA11yViolations();
 });
 
