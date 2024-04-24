@@ -36,11 +36,14 @@ const licenseHeader = fs.readFileSync(`config/license/LICENSE-HEADER.txt`, 'utf-
 const designTokenGroups = JSON.parse(
   fs.readFileSync(`${DESIGN_TOKENS_PATH}/$themes.json`, 'utf-8'),
 );
+const baseDesignTokenGroup = designTokenGroups.find(
+  ({ group, name }) => group === 'Sonar' && name === 'base',
+);
 const themedDesignTokenGroups = designTokenGroups.filter(({ group }) => group === 'Themes');
 
 initStyleDictionary(licenseHeader);
-buildBaseTokens(designTokenGroups.filter(({ group }) => group === 'Sonar'));
-buildThemedTokens(themedDesignTokenGroups);
+buildBaseTokens(baseDesignTokenGroup);
+buildThemedTokens(themedDesignTokenGroups, baseDesignTokenGroup);
 buildCSSRootFile(designTokenGroups, licenseHeader);
 buildThemesEnumType(themedDesignTokenGroups, licenseHeader);
 
@@ -75,52 +78,53 @@ function initStyleDictionary(licenseHeader) {
 }
 
 // Build base tokens: layer1 base + layer2 base without colors
-function buildBaseTokens(tokenGroups) {
+function buildBaseTokens(tokenGroup) {
   console.log('\nBuilding base tokens, no colors allowed...');
-  tokenGroups.forEach((group) => {
-    console.log(`\nBuilding "${group.name}" group...`);
-    StyleDictionary.extend({
-      source: Object.entries(group.selectedTokenSets)
-        .filter(([, val]) => val !== 'disabled')
-        .map(([tokenset]) => `${DESIGN_TOKENS_PATH}/${tokenset}.json`),
-      platforms: {
-        tokens: {
-          transformGroup: CUSTOM_TRANSFORM_GROUP,
-          buildPath: BUILD_PATH,
-          files: [
-            {
-              destination: `${NAME_PREFIX}${group.name}.css`,
-              format: 'css/variables',
-              filter: CUSTOM_FILTER_NO_COLOR,
-              options: {
-                fileHeader: 'licence-header',
-                selector: ':root',
-              },
+  console.log(`\nBuilding "${tokenGroup.name}" group...`);
+  StyleDictionary.extend({
+    source: Object.entries(tokenGroup.selectedTokenSets)
+      .filter(([, val]) => val !== 'disabled')
+      .map(([tokenset]) => `${DESIGN_TOKENS_PATH}/${tokenset}.json`),
+    platforms: {
+      tokens: {
+        transformGroup: CUSTOM_TRANSFORM_GROUP,
+        buildPath: BUILD_PATH,
+        files: [
+          {
+            destination: `${NAME_PREFIX}${tokenGroup.name}.css`,
+            format: 'css/variables',
+            filter: CUSTOM_FILTER_NO_COLOR,
+            options: {
+              fileHeader: 'licence-header',
+              selector: ':root',
             },
-            {
-              destination: `${NAME_PREFIX}${group.name}.json`,
-              format: 'json/nested',
-              filter: CUSTOM_FILTER_NO_COLOR,
-              options: {
-                fileHeader: 'licence-header',
-              },
+          },
+          {
+            destination: `${NAME_PREFIX}${tokenGroup.name}.json`,
+            format: 'json/nested',
+            filter: CUSTOM_FILTER_NO_COLOR,
+            options: {
+              fileHeader: 'licence-header',
             },
-          ],
-        },
+          },
+        ],
       },
-    }).buildAllPlatforms();
-  });
+    },
+  }).buildAllPlatforms();
   console.log(`\nBase tokens builds done.`);
 }
 
 // Build themed tokens: 1 for each themes, without layer1 and layer2 base non colors tokens
-function buildThemedTokens(themedTokenGroups) {
+function buildThemedTokens(themedTokenGroups, baseDesignTokenGroup) {
   console.log('\nBuilding themed tokens, no layer1 or layer2 base non colors...');
 
   themedTokenGroups.forEach((theme) => {
     console.log(`\nBuilding "${theme.name}" theme...`);
     StyleDictionary.extend({
-      source: Object.entries(theme.selectedTokenSets)
+      source: [
+        ...Object.entries(baseDesignTokenGroup.selectedTokenSets),
+        ...Object.entries(theme.selectedTokenSets),
+      ]
         .filter(([, val]) => val !== 'disabled')
         .map(([tokenset]) => `${DESIGN_TOKENS_PATH}/${tokenset}.json`),
       platforms: {
@@ -141,7 +145,7 @@ function buildThemedTokens(themedTokenGroups) {
               },
             },
             DEFAULT_THEME === theme.name && {
-              destination: `${NAME_PREFIX}colors.json`,
+              destination: `${NAME_PREFIX}themed.json`,
               format: 'json/flat',
               filter: CUSTOM_FILTER_THEMED_TOKENS,
               options: {

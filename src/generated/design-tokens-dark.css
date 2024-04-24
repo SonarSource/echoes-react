@@ -97,4 +97,5 @@ html[data-echoes-theme='dark'] {
   --echoes-box-shadow-medium: inset 0 2px 15px -2px rgba(8,9,12,0.06), 0 4px 15px -2px rgba(8,9,12,0.5);
   --echoes-box-shadow-large: 0 4px 6px -2px rgba(8,9,12,0.05), 0 12px 20px -4px rgba(8,9,12,0.5);
   --echoes-box-shadow-x-large: 0 8px 8px -4px rgba(8,9,12,0.04), 0 20px 30px -4px rgba(8,9,12,0.5);
+  --echoes-sizes-overlays-max-width-default: 25rem;
 }

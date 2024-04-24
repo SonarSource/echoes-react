@@ -4,7 +4,7 @@
       "overlays": {
         "maxWidth": {
           "default": {
-            "value": "{echoes.dimension.space.800}",
+            "value": "{echoes.dimension.size.5000}",
             "type": "sizing"
           }
         }
