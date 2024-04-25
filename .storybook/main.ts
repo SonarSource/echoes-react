@@ -1,4 +1,3 @@
-import { dirname, join } from 'path';
 /*
  * Echoes react
  * Copyright (C) 2023-2023 SonarSource SA
@@ -20,6 +19,7 @@ import { dirname, join } from 'path';
  */
 
 import type { StorybookConfig } from '@storybook/react-vite';
+import { dirname, join } from 'node:path';
 
 const config: StorybookConfig = {
   stories: ['../stories/**/*'],

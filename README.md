@@ -68,6 +68,40 @@ To build the lib, run:
 yarn build
 ```
 
+### Generated files
+
+The lib is built on top of some generated files like the design-tokens of the icons fonts. Those generated files are versionined in the `src/generated` folder.
+
+#### Generated Icons font
+
+We generated an optimized version of the material-symbold-rounded font that we use for our icons. The whole font contains thousands of icons and weight more than 4Mb, so we generate a subset of it containing only the icons we use in the design system, reducing it's size to a few Kb.
+
+If you add new icons you must run the following command to generate the new optimized font:
+
+```bash
+yarn build-fonts
+```
+
+#### Generated Design Tokens
+
+Our raw design tokens files that are created on Figma are stored inside the `design-tokens/tokens` folder. We can't use these tokens as is, so we transform them using `style-dictionary` to css variable format and store them in the `src/generated` folder. We also generated a few other files to help us with typings.
+
+If new design tokens are added to the raw figma file, we must run the following command to generate the new design tokens css variables:
+
+```bash
+yarn build-tokens
+```
+
+#### Generated i18n keys file
+
+We use the `react-intl` library for internationalization. We store our translations in the `i18n/keys.json` file. This file is generated based on all the translation keys contained in our components. This file if mainly useful for the products that use the lib to know what keys they should translate.
+
+If you add new translations keys, you must run the following command to generate the new `i18n/keys.json` file:
+
+```bash
+yarn build-intl-keys
+```
+
 ### Deployment
 
 [Release process definition](docs/RELEASING.md)

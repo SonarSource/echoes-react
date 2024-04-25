@@ -21,13 +21,14 @@
     "test": "jest",
     "test-ci": "jest --collectCoverage --coverageDirectory=build-reports/coverage",
     "build": "vite build",
+    "build-fonts": "node ./config/scripts/build-fonts.js",
     "build-intl-keys": "formatjs extract src/components/**/*.ts* --out-file i18n/keys.json",
     "build-tokens": "node design-tokens/build.js",
     "build-storybook": "vite build & storybook build",
-    "build-fonts": "node ./config/scripts/build-fonts.js",
     "dep-check": "node --no-warnings ./config/scripts/validate-package-json.js",
     "format": "prettier --write --list-different .",
     "format-check": "prettier --check .",
+    "fonts-check": "./config/scripts/validate-fonts.sh",
     "intl-keys-check": "./config/scripts/validate-intl-keys.sh",
     "lint": "eslint --ext js,ts,tsx,snap --quiet .",
     "lint-report": "eslint --ext js,ts,tsx,snap -f json -o build-reports/eslint-report/eslint-report.json .",
@@ -35,7 +36,7 @@
     "tokens-check": "./config/scripts/validate-tokens.sh",
     "ts-check": "tsc --noEmit",
     "validate": "yarn lint && yarn ts-check && yarn format-check",
-    "validate-ci": "yarn dep-check && yarn intl-keys-check && yarn tokens-check && yarn lint-report && yarn ts-check && yarn format-check"
+    "validate-ci": "yarn dep-check && yarn intl-keys-check && yarn tokens-check && yarn fonts-check && yarn lint-report && yarn ts-check && yarn format-check"
   },
   "peerDependencies": {
     "@emotion/react": "^11.0.0",
