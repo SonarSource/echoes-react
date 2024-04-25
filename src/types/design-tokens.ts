@@ -18,9 +18,9 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import designTokensColors from '~generated/design-tokens-colors.json';
+import designTokensThemed from '~generated/design-tokens-themed.json';
 
-export type DesignTokens = keyof typeof designTokensColors;
+export type DesignTokens = keyof typeof designTokensThemed;
 
 export type DesignTokensColors = {
   [K in DesignTokens]: K extends `echoes-color-${string}` ? K : never;
