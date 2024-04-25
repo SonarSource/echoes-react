@@ -51,6 +51,7 @@ export default defineConfig({
           license({
             sourcemap: true,
             banner: {
+              commentStyle: 'ignored',
               content: {
                 file: path.resolve(__dirname, 'config/license/LICENSE-BANNER.txt'),
               },
