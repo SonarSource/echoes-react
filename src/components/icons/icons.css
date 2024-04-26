@@ -1,9 +1,9 @@
 @font-face {
   font-family: 'Material Symbols Rounded';
   font-style: normal;
-  font-weight: 100 700;
+  font-weight: 400;
   font-display: block;
-  src: url('material-symbols/material-symbols-rounded.woff2') format('woff2');
+  src: url('../../generated/material-symbols-rounded-optimized.woff2') format('woff2');
 }
 
 @font-face {
@@ -11,5 +11,5 @@
   font-style: normal;
   font-weight: 400;
   font-display: auto;
-  src: url('./echoes.woff2') format('woff2');
+  src: url('../../generated/echoes.woff2') format('woff2');
 }
