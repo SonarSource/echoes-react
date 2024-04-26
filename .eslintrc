@@ -35,7 +35,7 @@
       }
     },
     {
-      "files": ["design-tokens/build.js"],
+      "files": ["config/scripts/*","design-tokens/build.js"],
       "rules": {
         "no-console": "off"
       }
