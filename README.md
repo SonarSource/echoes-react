@@ -18,7 +18,7 @@ Use components from the lib:
 import { Checkbox } from '@sonarsource/echoes-react';
 ```
 
-See available components and usage in storybook: https://echoes-react.netlify.app/
+See available components and usage in storybook: <https://echoes-react.netlify.app/>
 
 ### Make it work in Jest
 
@@ -70,7 +70,7 @@ yarn build
 
 ### Generated files
 
-The lib is built on top of some generated files like the design-tokens of the icons fonts. Those generated files are versioned in the `src/generated` and `i18n` folders.
+The lib is built on top of some generated files like the design-tokens or the icons fonts. These generated files are versioned in the `src/generated` and `i18n` folders.
 
 #### Generated Icons font
 
@@ -86,7 +86,7 @@ yarn build-fonts
 
 Our raw design tokens files that are created on Figma are stored inside the `design-tokens/tokens` folder. We can't use these tokens as is, so we transform them using `style-dictionary` to css variable format and store them in the `src/generated` folder. We also generate a few other files to help us with typings.
 
-If new design tokens are added to the raw figma file, we must run the following command to generate the new design tokens css variables:
+If new design tokens are added to the raw Figma file, we must run the following command to generate the new design tokens css variables:
 
 ```bash
 yarn build-tokens
