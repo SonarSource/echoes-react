@@ -68,6 +68,7 @@ export { IconRecommended } from './IconRecommended';
 export { IconRocket } from './IconRocket';
 export { IconSearch } from './IconSearch';
 export { IconSecurityFinding } from './IconSecurityFinding';
+export { IconSlideshow } from './IconSlideshow';
 export { IconStar } from './IconStar';
 export { IconStatusConfirmed } from './IconStatusConfirmed';
 export { IconStatusOpen } from './IconStatusOpen';
