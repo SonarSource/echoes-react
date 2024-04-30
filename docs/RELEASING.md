@@ -18,13 +18,15 @@ For more details, refer to the [internal versioning strategy](https://docs.googl
   - Documentation status: N/A
   - Short description: pull from [version description](https://sonarsource.atlassian.net/projects/DS/versions/15439/tab/release-report-all-issues)
   - SQ compatibility: current version
-  - Link to Jira RELEASE NOTES: copy from a previous release ticket, updating the release ID, e.g.: https://sonarsource.atlassian.net/projects/DS/versions/15590/tab/release-report-all-issues?isReleaseNoteModalOpen=true
+  - Link to Jira RELEASE NOTES: copy from a previous release ticket, updating the release ID, e.g.: <https://sonarsource.atlassian.net/projects/DS/versions/15590/tab/release-report-all-issues?isReleaseNoteModalOpen=true>
 
 - [Publish a new GitHub release](https://github.com/SonarSource/echoes-react/releases/new) targeting the release branch
 
   - Find the relevant release from the [releases page](https://sonarsource.atlassian.net/projects/DS?selectedItem=com.atlassian.jira.jira-projects-plugin%3Arelease-page) and populate (as markdown) the notes section.
-  - Example: https://github.com/SonarSource/echoes-react/releases/tag/v0.2.0
+  - Example: <https://github.com/SonarSource/echoes-react/releases/tag/v0.2.0>
   - click `Publish Release`
+
+- Close the REL ticket you've created
 
 - Bump the [package version](https://github.com/SonarSource/echoes-react/blob/main/package.json#L3) for the next development iteration with `yarn version major|minor` and commit with message `[NO-JIRA] Prepare for version x.y`.
 
