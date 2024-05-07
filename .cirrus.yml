@@ -105,7 +105,10 @@ sonar_scan_task:
   depends_on:
     - validation
     - unit_test
+  env:
+    SONAR_SCANNER_NPM_VERSION: 3.6.0-2097
   script:
+    - npm install --no-save "https://$ARTIFACTORY_PRIVATE_USERNAME:$ARTIFACTORY_PRIVATE_PASSWORD@repox.jfrog.io/artifactory/sonarsource-npm-public-dev/sonarqube-scanner/-/sonarqube-scanner-$SONAR_SCANNER_NPM_VERSION.tgz"
     - source .cirrus/cirrus-sq-analysis.sh
 
 promote_task:
