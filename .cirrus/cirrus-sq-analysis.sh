@@ -40,6 +40,6 @@ if [[ "${PULL_REQUEST}" ]] || [[ "${GITHUB_BRANCH}" == "main" ]]; then
                                 src/components/icons/**,
                                 src/generated/**,
                                 ")
-  sonar-scanner "${scanner_params[@]}"
+  npx sonar-scanner "${scanner_params[@]}"
 
 fi
