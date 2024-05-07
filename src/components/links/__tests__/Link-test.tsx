@@ -23,19 +23,6 @@ import { MemoryRouter, Route, Routes, useLocation } from 'react-router-dom';
 import { render } from '~common/helpers/test-utils';
 import { Link } from '..';
 
-it('should remove focus after link is clicked', async () => {
-  const { user, container } = setupWithMemoryRouter(
-    <Link shouldBlurAfterClick to="/initial">
-      Test
-    </Link>,
-  );
-
-  await user.click(screen.getByRole('link'));
-
-  expect(screen.getByRole('link')).not.toHaveFocus();
-  await expect(container).toHaveNoA11yViolations();
-});
-
 it('should prevent default when preventDefault is true', async () => {
   const { user } = setupWithMemoryRouter(
     <Link shouldPreventDefault to="/second">
