@@ -1,23 +1,10 @@
 
-ARG CIRRUS_AWS_ACCOUNT
-FROM ${CIRRUS_AWS_ACCOUNT}.dkr.ecr.eu-central-1.amazonaws.com/base:j17-latest
+FROM node:20-alpine
 
 USER root
 
-# Update package list
-RUN apt-get update -y
-
-# Install some tools
-RUN apt-get install -y jq
-
-# Install Node.js
-ARG NODE_VERSION=20.*
-RUN apt-get install -y nodejs=${NODE_VERSION}
-
-# Install Yarn
-RUN npm install -g yarn
+# Update package list and install some tools
+RUN apk update && apk add jq
 
 # Clean up cache after packages installation
-RUN apt-get clean
-
-USER sonarsource
+RUN rm -rf /var/cache/apk/*
