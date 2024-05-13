@@ -111,6 +111,26 @@ sonar_scan_task:
     - npm install --no-save "https://$ARTIFACTORY_PRIVATE_USERNAME:$ARTIFACTORY_PRIVATE_PASSWORD@repox.jfrog.io/artifactory/sonarsource-npm-public-dev/sonarqube-scanner/-/sonarqube-scanner-$SONAR_SCANNER_NPM_VERSION.tgz"
     - source .cirrus/cirrus-sq-analysis.sh
 
+mend_scan_task:
+  <<: *BUILD_DIST_CACHE_TEMPLATE
+  only_if: $CIRRUS_BRANCH == "main" || $CIRRUS_BRANCH =~ "branch-.*"
+  <<: *YARN_CACHE_TEMPLATE
+  timeout_in: 30m
+  eks_container:
+    <<: *BUILD_TEMPLATE
+    cpu: 2
+    memory: 4Gb
+  env:
+    WS_APIKEY: VAULT[development/kv/data/mend data.apikey]
+    WS_WSS_URL: VAULT[development/kv/data/mend data.url]
+    WS_USERKEY: VAULT[development/kv/data/mend data.userKey]
+  mend_script:
+    - .cirrus/cirrus-mend-scan.sh
+  allow_failures: 'true'
+  always:
+    ws_artifacts:
+      path: 'whitesource/**/*'
+
 promote_task:
   depends_on:
     - sonar_scan
