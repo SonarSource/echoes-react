@@ -46,6 +46,9 @@ Desktop.ini
 storybook-static/
 node_modules
 
+# ---- Mend scan
+whitesource/
+
 # ---- Build reports output
 build-reports/
 
