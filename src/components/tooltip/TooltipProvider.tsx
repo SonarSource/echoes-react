@@ -18,9 +18,9 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-export * from './checkbox';
-export * from './icons';
-export * from './links';
-export * from './radio-button-group';
-export * from './spinner';
-export * from './tooltip';
+import * as radixTooltip from '@radix-ui/react-tooltip';
+import { PropsWithChildren } from 'react';
+
+export function TooltipProvider({ children }: PropsWithChildren<{}>) {
+  return <radixTooltip.Provider delayDuration={0.5}>{children}</radixTooltip.Provider>;
+}
