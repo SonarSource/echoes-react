@@ -10,9 +10,22 @@ yarn add @sonarsource/echoes-react
 
 ## Usage
 
-Make sure to setup the `IntlProvider` from `react-intl` at the root of your app. See [this page](https://formatjs.io/docs/react-intl/components/#intlprovider) for more information.
+### Providers
 
-Use components from the lib:
+Make sure to setup the following Providers at the root of your app:
+
+#### Intl Provider
+
+The `IntlProvider` from `react-intl` is necessary for translations. See [this page](https://formatjs.io/docs/react-intl/components/#intlprovider) for more information.
+The [i18n keys file](i18n/keys.json) contains the list of keys that should be translated.
+
+#### Tooltip Provider
+
+The `TooltipProvider` is required to allow the Tooltips to work.
+
+`import { TooltipProvider } from '@sonarsource/echoes-react';` and wrap the root of your app.
+
+### Use components
 
 ```ts
 import { Checkbox } from '@sonarsource/echoes-react';

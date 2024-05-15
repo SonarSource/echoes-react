@@ -17,29 +17,10 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-import React from 'react';
 
-(window as any).React = React;
+import * as radixTooltip from '@radix-ui/react-tooltip';
+import { PropsWithChildren } from 'react';
 
-/*
- * ResizeObserver
- */
-const MockResizeObserverEntries = [
-  {
-    contentRect: {
-      width: 100,
-      height: 200,
-    },
-  },
-];
-
-const MockResizeObserver = {
-  observe: jest.fn(),
-  unobserve: jest.fn(),
-  disconnect: jest.fn(),
-};
-
-global.ResizeObserver = jest.fn().mockImplementation((callback) => {
-  callback(MockResizeObserverEntries, MockResizeObserver);
-  return MockResizeObserver;
-});
+export function TooltipProvider({ children }: PropsWithChildren<{}>) {
+  return <radixTooltip.Provider delayDuration={500}>{children}</radixTooltip.Provider>;
+}
