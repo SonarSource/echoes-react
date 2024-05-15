@@ -20,6 +20,7 @@
 
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
+import { forwardRef } from 'react';
 import { LinkHighlight, LinkProps } from '.';
 import { LinkBaseStyled } from './LinkBaseStyled';
 
@@ -27,11 +28,11 @@ interface Props extends LinkProps {
   iconLeft?: React.ReactNode;
 }
 
-function LinkStandaloneBase(props: Readonly<Props>) {
+function LinkStandaloneBase(props: Readonly<Props>, ref: React.ForwardedRef<HTMLAnchorElement>) {
   const { children, iconLeft, ...linkProps } = props;
 
   return (
-    <LinkBaseStyled hasExternalIcon={!iconLeft} {...linkProps}>
+    <LinkBaseStyled hasExternalIcon={!iconLeft} ref={ref} {...linkProps}>
       {iconLeft}
       {children}
     </LinkBaseStyled>
@@ -47,7 +48,7 @@ const LinkStandaloneHighlight = {
   [LinkHighlight.CurrentColor]: undefined,
 };
 
-export const LinkStandalone = styled(LinkStandaloneBase)`
+export const LinkStandalone = styled(forwardRef(LinkStandaloneBase))`
   ${({ highlight = LinkHighlight.Accent }) => LinkStandaloneHighlight[highlight]}
 
   text-decoration-line: var(--echoes-text-decoration-none);

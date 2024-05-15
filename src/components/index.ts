@@ -23,3 +23,4 @@ export * from './icons';
 export * from './links';
 export * from './radio-button-group';
 export * from './spinner';
+export * from './tooltip';
