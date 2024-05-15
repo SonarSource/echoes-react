@@ -47,10 +47,13 @@ export const Basic: Story = {
   args: {
     content:
       'hello world, with a super long text to test max width, I do hope this is enough because it is becoming tedious',
+    side: TooltipPlacement.Bottom,
+    align: TooltipAlignment.Center,
+    open: undefined,
   },
   render: (args) => (
     <div>
-      <Tooltip content={args.content} side={TooltipPlacement.Bottom} align={TooltipAlignment.Start}>
+      <Tooltip {...args}>
         <button>Hover this button to display the tooltip</button>
       </Tooltip>
     </div>

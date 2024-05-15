@@ -38,16 +38,17 @@ interface Props {
   align?: TooltipAlignment;
   content: React.ReactNode;
   side?: TooltipPlacement;
+  open?: boolean;
 }
 
 export function Tooltip(props: PropsWithChildren<Props>) {
   const { align, children, content, side } = props;
 
   return (
-    <radixTooltip.Root>
+    <radixTooltip.Root open={props.open}>
       <radixTooltip.Trigger asChild>{children}</radixTooltip.Trigger>
       <radixTooltip.Portal>
-        <TooltipContent align={align} sideOffset={4} side={side}>
+        <TooltipContent align={align} side={side} sideOffset={4}>
           {content}
           <TooltipArrow />
         </TooltipContent>
