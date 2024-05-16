@@ -18,7 +18,6 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import * as radixTooltip from '@radix-ui/react-tooltip';
 import { screen, waitForElementToBeRemoved } from '@testing-library/react';
 import { ComponentProps } from 'react';
 import { render } from '~common/helpers/test-utils';
@@ -29,10 +28,11 @@ it('toggles when trigger is hovered', async () => {
 
   expect(screen.queryByRole('tooltip', { name: 'content' })).not.toBeInTheDocument();
 
-  user.hover(screen.getByText('Trigger'));
+  await user.hover(screen.getByText('Trigger'));
 
   expect(await screen.findByRole('tooltip', { name: 'content' })).toBeInTheDocument();
 
+  /* We don't want to wait here, to allow waitForElementToBeRemoved to find the tooltip at first */
   user.keyboard('[Escape]');
 
   await waitForElementToBeRemoved(() => screen.queryByRole('tooltip', { name: 'content' }));
@@ -52,10 +52,8 @@ it.each([
 
 function setupTooltip(props: Partial<ComponentProps<typeof Tooltip>> = {}) {
   return render(
-    <radixTooltip.Provider delayDuration={0}>
-      <Tooltip content="content" {...props}>
-        <button type="button">Trigger</button>
-      </Tooltip>
-    </radixTooltip.Provider>,
+    <Tooltip content="content" {...props}>
+      <button type="button">Trigger</button>
+    </Tooltip>,
   );
 }

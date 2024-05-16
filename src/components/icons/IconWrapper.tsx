@@ -19,6 +19,7 @@
  */
 
 import styled from '@emotion/styled';
+import { forwardRef } from 'react';
 import { isDefined, isStringDefined } from '~common/helpers/types';
 import { DesignTokensColors } from '~types/design-tokens';
 
@@ -36,19 +37,22 @@ interface IconBaseProps {
   color?: DesignTokensColors;
 }
 
-function IconBase(props: Readonly<IconBaseProps & IconFilledProps>) {
-  const { ariaLabel, className, children } = props;
+const IconBase = forwardRef<HTMLSpanElement, IconBaseProps & IconFilledProps>((props, ref) => {
+  const { ariaLabel, className, children, color, isFilled, ...radixProps } = props;
 
   return (
     <span
+      {...radixProps}
       aria-hidden={isStringDefined(ariaLabel) ? 'false' : 'true'}
       aria-label={ariaLabel}
       className={className}
+      ref={ref}
       role="img">
       {children}
     </span>
   );
-}
+});
+IconBase.displayName = 'IconBase';
 
 const IconWrapper = styled(IconBase)<IconBaseProps & IconFilledProps>`
   -moz-osx-font-smoothing: grayscale;

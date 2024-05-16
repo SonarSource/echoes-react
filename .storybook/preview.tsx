@@ -24,7 +24,7 @@ import type { Preview } from '@storybook/react';
 import React from 'react';
 import { IntlProvider } from 'react-intl';
 import { MemoryRouter } from 'react-router-dom';
-import { Theme } from '../dist';
+import { Theme, TooltipProvider } from '../src';
 
 const globalStyles = css`
   body {
@@ -74,10 +74,12 @@ const preview: Preview = {
     (Story) => {
       return (
         <IntlProvider defaultLocale="en-us" locale="en-us">
-          <Global styles={globalStyles} />
-          <MemoryRouter>
-            <Story />
-          </MemoryRouter>
+          <TooltipProvider>
+            <Global styles={globalStyles} />
+            <MemoryRouter>
+              <Story />
+            </MemoryRouter>
+          </TooltipProvider>
         </IntlProvider>
       );
     },

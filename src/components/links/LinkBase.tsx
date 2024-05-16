@@ -20,7 +20,7 @@
 
 import styled from '@emotion/styled';
 import * as VisuallyHidden from '@radix-ui/react-visually-hidden';
-import React, { HTMLAttributeAnchorTarget } from 'react';
+import React, { HTMLAttributeAnchorTarget, forwardRef } from 'react';
 import { useIntl } from 'react-intl';
 import { Link as RouterLink, LinkProps as RouterLinkProps } from 'react-router-dom';
 import { isSonarLink } from '~common/helpers/url';
@@ -48,7 +48,7 @@ export interface LinkProps extends Pick<RouterLinkProps, RouterLinkPropsRequired
   target?: HTMLAttributeAnchorTarget;
 }
 
-function LinkBaseWithRef(props: Readonly<LinkProps>, ref: React.ForwardedRef<HTMLAnchorElement>) {
+export const LinkBase = forwardRef<HTMLAnchorElement, LinkProps>((props, ref) => {
   const {
     children,
     shouldBlurAfterClick = false,
@@ -58,7 +58,7 @@ function LinkBaseWithRef(props: Readonly<LinkProps>, ref: React.ForwardedRef<HTM
     hasExternalIcon = true,
     shouldStopPropagation = false,
     to,
-    ...rest
+    ...restAndRadixProps
   } = props;
 
   const toAsString =
@@ -95,7 +95,7 @@ function LinkBaseWithRef(props: Readonly<LinkProps>, ref: React.ForwardedRef<HTM
       <a
         rel={`noopener${isSonarLink(toAsString) ? '' : ' noreferrer nofollow'}`}
         target="_blank"
-        {...rest}
+        {...restAndRadixProps}
         href={toAsString}
         onClick={handleClick}
         ref={ref}>
@@ -113,14 +113,13 @@ function LinkBaseWithRef(props: Readonly<LinkProps>, ref: React.ForwardedRef<HTM
   }
 
   return (
-    <RouterLink ref={ref} {...rest} onClick={handleClick} to={to}>
+    <RouterLink {...restAndRadixProps} onClick={handleClick} ref={ref} to={to}>
       {children}
     </RouterLink>
   );
-}
+});
+LinkBase.displayName = 'LinkBase';
 
 const ExternalIcon = styled(IconLinkExternal)`
   margin-left: var(--echoes-dimension-space-50);
 `;
-
-export const LinkBase = React.forwardRef(LinkBaseWithRef);

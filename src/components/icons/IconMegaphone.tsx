@@ -18,9 +18,15 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+import { forwardRef } from 'react';
 import { IconMaterialWrapper, IconProps } from './IconWrapper';
 
-export function IconMegaphone(props: Readonly<IconProps>) {
+export const IconMegaphone = forwardRef<HTMLSpanElement, IconProps>((props, ref) => {
   // This is Material Symbols' "campaign" icon
-  return <IconMaterialWrapper {...props}>&#xEF49;</IconMaterialWrapper>;
-}
+  return (
+    <IconMaterialWrapper {...props} ref={ref}>
+      &#xEF49;
+    </IconMaterialWrapper>
+  );
+});
+IconMegaphone.displayName = 'IconMegaphone';

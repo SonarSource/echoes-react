@@ -20,7 +20,7 @@
 
 import styled from '@emotion/styled';
 import type { Meta, StoryObj } from '@storybook/react';
-import { Link, LinkStandalone, Tooltip, TooltipProvider, TooltipSide } from '../src';
+import { Link, LinkStandalone, Tooltip, TooltipSide } from '../src';
 
 const meta: Meta<typeof Tooltip> = {
   component: Tooltip,
@@ -28,20 +28,11 @@ const meta: Meta<typeof Tooltip> = {
   parameters: {
     controls: { exclude: ['children'] },
   },
-  decorators: [
-    (Story) => {
-      return (
-        <TooltipProvider>
-          <Story />
-        </TooltipProvider>
-      );
-    },
-  ],
-} satisfies Meta<typeof Tooltip>;
+};
 
 export default meta;
 
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<typeof Tooltip>;
 
 export const Basic: Story = {
   args: {

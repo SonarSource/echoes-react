@@ -18,9 +18,15 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+import { forwardRef } from 'react';
 import { IconMaterialWrapper, IconProps } from './IconWrapper';
 
-export function IconExpand(props: Readonly<IconProps>) {
+export const IconExpand = forwardRef<HTMLSpanElement, IconProps>((props, ref) => {
   // This is Material Symbols' "pan_zoom" icon
-  return <IconMaterialWrapper {...props}>&#xF655;</IconMaterialWrapper>;
-}
+  return (
+    <IconMaterialWrapper {...props} ref={ref}>
+      &#xF655;
+    </IconMaterialWrapper>
+  );
+});
+IconExpand.displayName = 'IconExpand';

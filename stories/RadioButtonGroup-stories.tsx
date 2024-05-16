@@ -21,18 +21,18 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { RadioButtonGroup } from '../src';
 
-const meta = {
+const meta: Meta<typeof RadioButtonGroup> = {
   component: RadioButtonGroup,
   title: 'RadioButtonGroup',
   args: {
     id: 'radio',
     isRequired: false,
   },
-} satisfies Meta<typeof RadioButtonGroup>;
+};
 
 export default meta;
 
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<typeof RadioButtonGroup>;
 
 export const Basic: Story = {
   args: {

@@ -84,3 +84,4 @@ export const LinkBaseStyled = styled(LinkBase)`
     }
   }
 `;
+LinkBaseStyled.displayName = 'LinkBaseStyled';

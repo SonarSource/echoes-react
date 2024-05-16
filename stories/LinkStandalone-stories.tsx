@@ -32,11 +32,11 @@ const meta: Meta<typeof LinkStandaloneComp> = {
       options: Object.values(LinkHighlight),
     },
   },
-} satisfies Meta<typeof LinkStandaloneComp>;
+};
 
 export default meta;
 
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<typeof LinkStandaloneComp>;
 
 export const LinkStandalone: Story = {
   args: {

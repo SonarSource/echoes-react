@@ -22,7 +22,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { ComponentProps, useEffect, useState } from 'react';
 import { Checkbox } from '../src';
 
-const meta = {
+const meta: Meta<typeof Checkbox> = {
   component: Checkbox,
   title: 'Checkbox',
   parameters: {
@@ -35,11 +35,11 @@ const meta = {
       },
     },
   },
-} satisfies Meta<typeof Checkbox>;
+};
 
 export default meta;
 
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<typeof Checkbox>;
 
 export const WithSimpleLabel: Story = {
   args: {

@@ -21,7 +21,7 @@
 import { keyframes } from '@emotion/react';
 import styled from '@emotion/styled';
 import classNames from 'classnames';
-import { ReactNode } from 'react';
+import { ReactNode, forwardRef } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { screenReaderOnly } from '~common/helpers/styles';
 
@@ -35,7 +35,7 @@ interface Props {
   wrapperClassName?: string;
 }
 
-export function Spinner(props: Readonly<Props>) {
+export const Spinner = forwardRef<HTMLSpanElement, Props>((props, ref) => {
   const {
     ariaLabel,
     className,
@@ -44,17 +44,20 @@ export function Spinner(props: Readonly<Props>) {
     isLoading = true,
     label,
     wrapperClassName,
+    ...radixProps
   } = props;
 
   return (
     <>
       <SpinnerWrapper className={wrapperClassName} inline={children === undefined}>
         <SpinnerInner
+          {...radixProps}
           aria-live="polite"
           className={classNames({
             it__loading: isLoading,
           })}
           isLoading={isLoading}
+          ref={ref}
           role="status">
           <SpinnerStyled className={className} />
           {isLoading &&
@@ -77,7 +80,9 @@ export function Spinner(props: Readonly<Props>) {
         (children ?? (hasPlaceholder && <Placeholder className={className} />) ?? null)}
     </>
   );
-}
+});
+
+Spinner.displayName = 'Spinner';
 
 const SpinnerWrapper = styled.span<{ inline: boolean }>`
   display: ${(props) => (props.inline ? 'inline-block' : 'block')};

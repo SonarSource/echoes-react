@@ -18,9 +18,15 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+import { forwardRef } from 'react';
 import { IconCustomWrapper, IconProps } from './IconWrapper';
 
-export function IconCodeSmell(props: Readonly<IconProps>) {
+export const IconCodeSmell = forwardRef<HTMLSpanElement, IconProps>((props, ref) => {
   // This is an icon from the "Echoes" custom font
-  return <IconCustomWrapper {...props}>&#x24;</IconCustomWrapper>;
-}
+  return (
+    <IconCustomWrapper {...props} ref={ref}>
+      &#x24;
+    </IconCustomWrapper>
+  );
+});
+IconCodeSmell.displayName = 'IconCodeSmell';

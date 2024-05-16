@@ -18,9 +18,15 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+import { forwardRef } from 'react';
 import { IconMaterialWrapper, IconProps } from './IconWrapper';
 
-export function IconCollapse(props: Readonly<IconProps>) {
+export const IconCollapse = forwardRef<HTMLSpanElement, IconProps>((props, ref) => {
   // This is Material Symbols' "close_fullscreen" icon
-  return <IconMaterialWrapper {...props}>&#xF1CF;</IconMaterialWrapper>;
-}
+  return (
+    <IconMaterialWrapper {...props} ref={ref}>
+      &#xF1CF;
+    </IconMaterialWrapper>
+  );
+});
+IconCollapse.displayName = 'IconCollapse';

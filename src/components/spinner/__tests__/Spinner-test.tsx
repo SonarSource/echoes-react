@@ -21,6 +21,7 @@
 import { screen } from '@testing-library/react';
 import { ComponentProps } from 'react';
 import { render } from '~common/helpers/test-utils';
+import { Tooltip } from '../../tooltip';
 import { Spinner } from '../Spinner';
 
 it('can be controlled by the isLoading prop', async () => {
@@ -70,6 +71,17 @@ it('should display a placeholder when not loading', async () => {
   // eslint-disable-next-line testing-library/no-node-access  -- this is purely visual element that isn't accessible
   expect(container.querySelector('.my-classname')).toBeInTheDocument();
   await expect(container).toHaveNoA11yViolations();
+});
+
+it('should correclty support tooltips', async () => {
+  const { user } = render(
+    <Tooltip content="my tooltip">
+      <Spinner />
+    </Tooltip>,
+  );
+
+  await user.hover(screen.getByRole('status'));
+  expect(screen.getByRole('tooltip', { name: 'my tooltip' })).toBeInTheDocument();
 });
 
 function setupSpinner(props: Partial<ComponentProps<typeof Spinner>> = {}) {

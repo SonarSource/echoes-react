@@ -18,9 +18,15 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+import { forwardRef } from 'react';
 import { IconMaterialWrapper, IconProps } from './IconWrapper';
 
-export function IconDash(props: Readonly<IconProps>) {
+export const IconDash = forwardRef<HTMLSpanElement, IconProps>((props, ref) => {
   // This is Material Symbols' "remove" icon
-  return <IconMaterialWrapper {...props}>&#xE15B;</IconMaterialWrapper>;
-}
+  return (
+    <IconMaterialWrapper {...props} ref={ref}>
+      &#xE15B;
+    </IconMaterialWrapper>
+  );
+});
+IconDash.displayName = 'IconDash';

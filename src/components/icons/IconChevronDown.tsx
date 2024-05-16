@@ -18,9 +18,15 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+import { forwardRef } from 'react';
 import { IconMaterialWrapper, IconProps } from './IconWrapper';
 
-export function IconChevronDown(props: Readonly<IconProps>) {
+export const IconChevronDown = forwardRef<HTMLSpanElement, IconProps>((props, ref) => {
   // This is Material Symbols' "expand_more" icon
-  return <IconMaterialWrapper {...props}>&#xE5CF;</IconMaterialWrapper>;
-}
+  return (
+    <IconMaterialWrapper {...props} ref={ref}>
+      &#xE5CF;
+    </IconMaterialWrapper>
+  );
+});
+IconChevronDown.displayName = 'IconChevronDown';

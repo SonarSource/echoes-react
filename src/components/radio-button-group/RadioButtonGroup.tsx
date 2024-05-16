@@ -20,7 +20,7 @@
 
 import styled from '@emotion/styled';
 import * as RadioGroup from '@radix-ui/react-radio-group';
-import { ReactNode } from 'react';
+import { ReactNode, forwardRef } from 'react';
 
 export interface RadiobuttonGroupBaseProps {
   onChange?: (value: string) => void;
@@ -48,24 +48,27 @@ export type RadioButtonGroupLabelProps = PropsWithLabel | PropsWithoutLabel;
 
 type Props = RadiobuttonGroupBaseProps & RadioButtonGroupLabelProps;
 
-export function RadioButtonGroup(props: Readonly<Props>) {
+export const RadioButtonGroup = forwardRef<HTMLDivElement, Props>((props, ref) => {
   const {
-    labelRadioGroupError,
     helpText,
+    id,
     isDisabled: disabled,
     isRequired: required,
     label,
+    labelRadioGroupError,
     onChange,
     options,
-    ...groupProps
+    ...radixRadioGroupProps
   } = props;
 
   return (
-    <RadioGroupWrapper
+    <RadioGroupRoot
+      {...radixRadioGroupProps}
       disabled={disabled}
+      id={id}
       onValueChange={onChange}
-      required={required}
-      {...groupProps}>
+      ref={ref}
+      required={required}>
       {label && (
         <RadioGroupLabelWrapper data-testid="radio-group-label-wrapper">
           <RadioGroupLabel>
@@ -81,7 +84,7 @@ export function RadioButtonGroup(props: Readonly<Props>) {
       <RadioButtonsWrapper>
         {options.map(({ isDisabled: disabledOption, ...o }) => (
           <RadioButton
-            groupId={groupProps.id}
+            groupId={id}
             hasError={Boolean(labelRadioGroupError)}
             isDisabled={disabled ? true : disabledOption} // Group disabled takes precedence
             key={o.value}
@@ -91,9 +94,10 @@ export function RadioButtonGroup(props: Readonly<Props>) {
 
         <RadioGroupErrorMessage>{labelRadioGroupError ?? <>&nbsp;</>}</RadioGroupErrorMessage>
       </RadioButtonsWrapper>
-    </RadioGroupWrapper>
+    </RadioGroupRoot>
   );
-}
+});
+RadioButtonGroup.displayName = 'RadioButtonGroup';
 
 /*
  * Related to the explanation below, we require an aria-label if the label is a ReactNode.
@@ -145,7 +149,9 @@ function RadioButton(props: Readonly<RadioButtonProps>) {
   );
 }
 
-const RadioGroupWrapper = styled(RadioGroup.Root)`
+RadioButton.displayName = 'RadioButton';
+
+const RadioGroupRoot = styled(RadioGroup.Root)`
   display: flex;
   flex-direction: column;
   gap: var(--echoes-dimension-space-150);

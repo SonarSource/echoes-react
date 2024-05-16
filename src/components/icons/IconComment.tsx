@@ -18,9 +18,15 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+import { forwardRef } from 'react';
 import { IconMaterialWrapper, IconProps } from './IconWrapper';
 
-export function IconComment(props: Readonly<IconProps>) {
+export const IconComment = forwardRef<HTMLSpanElement, IconProps>((props, ref) => {
   // This is Material Symbols' "chat_bubble" icon
-  return <IconMaterialWrapper {...props}>&#xE0CA;</IconMaterialWrapper>;
-}
+  return (
+    <IconMaterialWrapper {...props} ref={ref}>
+      &#xE0CA;
+    </IconMaterialWrapper>
+  );
+});
+IconComment.displayName = 'IconComment';

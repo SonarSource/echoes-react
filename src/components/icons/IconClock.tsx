@@ -18,9 +18,15 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+import { forwardRef } from 'react';
 import { IconMaterialWrapper, IconProps } from './IconWrapper';
 
-export function IconClock(props: Readonly<IconProps>) {
+export const IconClock = forwardRef<HTMLSpanElement, IconProps>((props, ref) => {
   // This is Material Symbols' "schedule" icon
-  return <IconMaterialWrapper {...props}>&#xE8B5;</IconMaterialWrapper>;
-}
+  return (
+    <IconMaterialWrapper {...props} ref={ref}>
+      &#xE8B5;
+    </IconMaterialWrapper>
+  );
+});
+IconClock.displayName = 'IconClock';
