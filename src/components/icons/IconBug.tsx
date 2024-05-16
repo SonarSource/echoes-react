@@ -18,9 +18,15 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+import { forwardRef } from 'react';
 import { IconCustomWrapper, IconProps } from './IconWrapper';
 
-export function IconBug(props: Readonly<IconProps>) {
+export const IconBug = forwardRef<HTMLSpanElement, IconProps>((props, ref) => {
   // This is an icon from the "Echoes" custom font
-  return <IconCustomWrapper {...props}>&#x22;</IconCustomWrapper>;
-}
+  return (
+    <IconCustomWrapper {...props} ref={ref}>
+      &#x22;
+    </IconCustomWrapper>
+  );
+});
+IconBug.displayName = 'IconBug';

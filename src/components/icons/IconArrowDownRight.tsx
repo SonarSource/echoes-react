@@ -18,9 +18,15 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+import { forwardRef } from 'react';
 import { IconMaterialWrapper, IconProps } from './IconWrapper';
 
-export function IconArrowDownRight(props: Readonly<IconProps>) {
+export const IconArrowDownRight = forwardRef<HTMLSpanElement, IconProps>((props, ref) => {
   // This is Material Symbols' "south_east" icon
-  return <IconMaterialWrapper {...props}>&#xF1E4;</IconMaterialWrapper>;
-}
+  return (
+    <IconMaterialWrapper {...props} ref={ref}>
+      &#xF1E4;
+    </IconMaterialWrapper>
+  );
+});
+IconArrowDownRight.displayName = 'IconArrowDownRight';

@@ -18,9 +18,15 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+import { forwardRef } from 'react';
 import { IconMaterialWrapper, IconProps } from './IconWrapper';
 
-export function IconX(props: Readonly<IconProps>) {
+export const IconX = forwardRef<HTMLSpanElement, IconProps>((props, ref) => {
   // This is Material Symbols' "close" icon
-  return <IconMaterialWrapper {...props}>&#xE5CD;</IconMaterialWrapper>;
-}
+  return (
+    <IconMaterialWrapper {...props} ref={ref}>
+      &#xE5CD;
+    </IconMaterialWrapper>
+  );
+});
+IconX.displayName = 'IconX';

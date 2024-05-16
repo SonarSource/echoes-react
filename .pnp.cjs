@@ -6828,21 +6828,6 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["@testing-library/dom", [\
-      ["npm:8.20.1", {\
-        "packageLocation": "./.yarn/cache/@testing-library-dom-npm-8.20.1-453580d160-6c7a92fcc8.zip/node_modules/@testing-library/dom/",\
-        "packageDependencies": [\
-          ["@testing-library/dom", "npm:8.20.1"],\
-          ["@babel/code-frame", "npm:7.24.2"],\
-          ["@babel/runtime", "npm:7.24.1"],\
-          ["@types/aria-query", "npm:5.0.4"],\
-          ["aria-query", "npm:5.1.3"],\
-          ["chalk", "npm:4.1.2"],\
-          ["dom-accessibility-api", "npm:0.5.16"],\
-          ["lz-string", "npm:1.5.0"],\
-          ["pretty-format", "npm:27.5.1"]\
-        ],\
-        "linkType": "HARD"\
-      }],\
       ["npm:9.3.4", {\
         "packageLocation": "./.yarn/cache/@testing-library-dom-npm-9.3.4-cfb609c4fc-510da752ea.zip/node_modules/@testing-library/dom/",\
         "packageDependencies": [\
@@ -6948,7 +6933,7 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["@testing-library/react", "virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#npm:12.1.5"],\
           ["@babel/runtime", "npm:7.24.1"],\
-          ["@testing-library/dom", "npm:8.20.1"],\
+          ["@testing-library/dom", "npm:9.3.4"],\
           ["@types/react", "npm:17.0.79"],\
           ["@types/react-dom", "npm:17.0.25"],\
           ["react", "npm:17.0.2"],\

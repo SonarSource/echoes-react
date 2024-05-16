@@ -23,6 +23,7 @@ import { MemoryRouter, Route, Routes, useLocation } from 'react-router-dom';
 import { render } from '~common/helpers/test-utils';
 import { LinkStandalone } from '..';
 import { IconLink } from '../../icons';
+import { Tooltip } from '../../tooltip';
 
 it('should display LinkStandalone properly', async () => {
   const { container } = setupWithMemoryRouter(
@@ -61,6 +62,17 @@ it('should be possible to override and show the external icon with icon on the l
   );
   expect(screen.getByRole('link')).toBeVisible();
   expect(screen.getAllByRole('img', { hidden: true })).toHaveLength(2);
+});
+
+it('should correclty support tooltips', async () => {
+  const { user } = setupWithMemoryRouter(
+    <Tooltip content="my tooltip">
+      <LinkStandalone to="/path">link</LinkStandalone>
+    </Tooltip>,
+  );
+
+  await user.hover(screen.getByRole('link'));
+  expect(screen.getByRole('tooltip', { name: 'my tooltip' })).toBeInTheDocument();
 });
 
 function ShowPath() {

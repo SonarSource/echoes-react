@@ -18,27 +18,25 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import { screen } from '@testing-library/react';
+import { render } from '~common/helpers/test-utils';
 import {
   RadioButtonGroup,
   RadioButtonGroupLabelProps,
   RadiobuttonGroupBaseProps,
 } from '../RadioButtonGroup';
 
+const DEFAULT_OPTIONS = [
+  { label: 'a', value: '1' },
+  { label: 'b', value: '2' },
+  { label: 'c', value: '3' },
+];
+
 describe('RadioButtonGroup', () => {
   it('should render a radio button for each option', async () => {
-    const user = userEvent.setup();
+    const { container, user } = renderRadioButtonGroup();
 
-    const options = [
-      { label: 'a', value: '1' },
-      { label: 'b', value: '2' },
-      { label: 'c', value: '3' },
-    ];
-
-    const { container } = renderRadioButtonGroup({ options });
-
-    expect(screen.getAllByRole('radio')).toHaveLength(options.length);
+    expect(screen.getAllByRole('radio')).toHaveLength(DEFAULT_OPTIONS.length);
 
     await user.click(screen.getByRole('radio', { name: 'b' }));
 
@@ -47,46 +45,31 @@ describe('RadioButtonGroup', () => {
   });
 
   it('should disable each radio button if the group is disabled', () => {
-    const options = [
-      { label: 'a', value: '1' },
-      { label: 'b', value: '2' },
-      { label: 'c', value: '3' },
-    ];
-
-    renderRadioButtonGroup({ isDisabled: true, options });
+    renderRadioButtonGroup({ isDisabled: true });
 
     const radioButtons = screen.getAllByRole('radio');
-    expect(radioButtons).toHaveLength(options.length);
-    expect(radioButtons.filter((o) => o.hasAttribute('disabled'))).toHaveLength(options.length);
+    expect(radioButtons).toHaveLength(DEFAULT_OPTIONS.length);
+    expect(radioButtons.filter((o) => o.hasAttribute('disabled'))).toHaveLength(
+      DEFAULT_OPTIONS.length,
+    );
   });
 
   it('should error the whole group when labelRadioGroupError is passed', () => {
-    const options = [
-      { label: 'a', value: '1' },
-      { label: 'b', value: '2' },
-      { label: 'c', value: '3' },
-    ];
-
-    renderRadioButtonGroup({ isRequired: true, labelRadioGroupError: 'Error message', options });
+    renderRadioButtonGroup({ isRequired: true, labelRadioGroupError: 'Error message' });
 
     const radioButtons = screen.getAllByRole('radio');
-    expect(radioButtons).toHaveLength(options.length);
-    expect(radioButtons.filter((o) => o.hasAttribute('data-error'))).toHaveLength(options.length);
+    expect(radioButtons).toHaveLength(DEFAULT_OPTIONS.length);
+    expect(radioButtons.filter((o) => o.hasAttribute('data-error'))).toHaveLength(
+      DEFAULT_OPTIONS.length,
+    );
     expect(screen.getByText('Error message')).toBeVisible();
   });
 
   it('should support radio group label and help text', () => {
-    const options = [
-      { label: 'a', value: '1' },
-      { label: 'b', value: '2' },
-      { label: 'c', value: '3' },
-    ];
-
     renderRadioButtonGroup({
       isRequired: true,
       helpText: 'Help text',
       label: 'Radio group label',
-      options,
     });
 
     expect(screen.getByTestId('radio-group-label-wrapper')).toBeVisible();
@@ -99,11 +82,5 @@ describe('RadioButtonGroup', () => {
 function renderRadioButtonGroup(
   overrides: Partial<RadiobuttonGroupBaseProps> & RadioButtonGroupLabelProps = {},
 ) {
-  const options = [
-    { label: 'a', value: '1' },
-    { label: 'b', value: '2' },
-    { label: 'c', value: '3' },
-  ];
-
-  return render(<RadioButtonGroup id="group1" options={options} {...overrides} />);
+  return render(<RadioButtonGroup id="group1" options={DEFAULT_OPTIONS} {...overrides} />);
 }

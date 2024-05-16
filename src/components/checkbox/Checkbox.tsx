@@ -20,7 +20,7 @@
 
 import styled from '@emotion/styled';
 import * as RadixCheckbox from '@radix-ui/react-checkbox';
-import { useCallback } from 'react';
+import { forwardRef, useCallback } from 'react';
 import { Spinner } from '../spinner';
 import { CheckboxIcon } from './CheckboxIcon';
 
@@ -50,52 +50,70 @@ interface PropsWithoutLabel extends Props {
   label?: never;
 }
 
-export function Checkbox(props: Readonly<PropsWithLabel | PropsWithoutLabel>) {
-  const { ariaLabel, className, helpText, id, innerClassName, label, title } = props;
-  const { checked, hasError = false, isDisabled, isLoading = false } = props;
-  const { onCheck, onFocus } = props;
+export const Checkbox = forwardRef<HTMLButtonElement, PropsWithLabel | PropsWithoutLabel>(
+  (props, ref) => {
+    const {
+      ariaLabel,
+      className,
+      checked,
+      helpText,
+      hasError = false,
+      id,
+      innerClassName,
+      isDisabled,
+      isLoading = false,
+      label,
+      onCheck,
+      onFocus,
+      title,
+      ...radixProps
+    } = props;
 
-  const handleChange = useCallback(
-    (checked: boolean | 'indeterminate') => {
-      if (!isDisabled && !isLoading) {
-        onCheck(checked, id);
-      }
-    },
-    [isDisabled, isLoading, onCheck, id],
-  );
+    const handleChange = useCallback(
+      (checked: boolean | 'indeterminate') => {
+        if (!isDisabled && !isLoading) {
+          onCheck(checked, id);
+        }
+      },
+      [isDisabled, isLoading, onCheck, id],
+    );
 
-  return (
-    <CheckboxContainer
-      aria-disabled={isDisabled}
-      as={label ? 'label' : 'span'}
-      className={className}>
-      <CheckboxInnerContainer className={innerClassName}>
-        <Spinner isLoading={isLoading}>
-          <CheckboxRoot
-            aria-disabled={isDisabled}
-            aria-label={ariaLabel ?? title}
-            checked={checked}
-            id={id}
-            onCheckedChange={handleChange}
-            onFocus={onFocus}
-            title={title}
-            // We only support the error state for unchecked checkboxes for now
-            {...(hasError && checked === false ? { 'data-error': true } : {})}>
-            <CheckboxIndicator>
-              <CheckboxIcon checked={checked} />
-            </CheckboxIndicator>
-          </CheckboxRoot>
-        </Spinner>
-        {(label || helpText) && (
-          <LabelWrapper aria-disabled={isDisabled}>
-            {label && <Label>{label}</Label>}
-            {helpText && <HelpText>{helpText}</HelpText>}
-          </LabelWrapper>
-        )}
-      </CheckboxInnerContainer>
-    </CheckboxContainer>
-  );
-}
+    return (
+      <CheckboxContainer
+        {...radixProps}
+        aria-disabled={isDisabled}
+        as={label ? 'label' : 'span'}
+        className={className}
+        ref={ref}>
+        <CheckboxInnerContainer className={innerClassName}>
+          <Spinner isLoading={isLoading}>
+            <CheckboxRoot
+              aria-disabled={isDisabled}
+              aria-label={ariaLabel ?? title}
+              checked={checked}
+              id={id}
+              onCheckedChange={handleChange}
+              onFocus={onFocus}
+              title={title}
+              // We only support the error state for unchecked checkboxes for now
+              {...(hasError && checked === false ? { 'data-error': true } : {})}>
+              <CheckboxIndicator>
+                <CheckboxIcon checked={checked} />
+              </CheckboxIndicator>
+            </CheckboxRoot>
+          </Spinner>
+          {(label || helpText) && (
+            <LabelWrapper aria-disabled={isDisabled}>
+              {label && <Label>{label}</Label>}
+              {helpText && <HelpText>{helpText}</HelpText>}
+            </LabelWrapper>
+          )}
+        </CheckboxInnerContainer>
+      </CheckboxContainer>
+    );
+  },
+);
+Checkbox.displayName = 'Checkbox';
 
 const CheckboxContainer = styled.span`
   display: inline-flex;

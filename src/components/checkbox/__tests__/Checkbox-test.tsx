@@ -19,10 +19,10 @@
  */
 
 import { screen } from '@testing-library/react';
-
 import { PointerEventsCheckLevel } from '@testing-library/user-event';
 import { ComponentProps } from 'react';
 import { render } from '~common/helpers/test-utils';
+import { Tooltip } from '../../tooltip';
 import { Checkbox } from '../Checkbox';
 
 it('should call check function when clicked without label', async () => {
@@ -119,6 +119,17 @@ it('should be keyboard focusable while disabled', async () => {
 
   await user.click(checkboxElement);
   expect(onCheck).not.toHaveBeenCalled();
+});
+
+it('should correclty support tooltips', async () => {
+  const { user } = render(
+    <Tooltip content="my tooltip">
+      <Checkbox checked label="me" onCheck={jest.fn()} />
+    </Tooltip>,
+  );
+
+  await user.hover(screen.getByRole('checkbox'));
+  expect(screen.getByRole('tooltip', { name: 'my tooltip' })).toBeInTheDocument();
 });
 
 function setupCheckbox(props: Partial<ComponentProps<typeof Checkbox>> = {}) {

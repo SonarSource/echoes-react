@@ -24,9 +24,9 @@ import { useMemo, useState } from 'react';
 import { DesignTokensColors } from '~types/design-tokens';
 import * as icons from '../src/components/icons';
 
-const meta = {
+const meta: Meta = {
   title: 'Icons',
-} satisfies Meta;
+};
 
 export default meta;
 
@@ -102,7 +102,7 @@ export const Grid: StoryObj<StoryArgs> = {
 };
 
 const IconName = styled.label`
-  fontsize: 14px;
+  font-size: 14px;
 `;
 
 const GridWrapper = styled.div<{ fontSize: number; color: DesignTokensColors }>`

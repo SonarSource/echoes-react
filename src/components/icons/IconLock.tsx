@@ -18,9 +18,15 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+import { forwardRef } from 'react';
 import { IconMaterialWrapper, IconProps } from './IconWrapper';
 
-export function IconLock(props: Readonly<IconProps>) {
+export const IconLock = forwardRef<HTMLSpanElement, IconProps>((props, ref) => {
   // This is Material Symbols' "lock" icon
-  return <IconMaterialWrapper {...props}>&#xE897;</IconMaterialWrapper>;
-}
+  return (
+    <IconMaterialWrapper {...props} ref={ref}>
+      &#xE897;
+    </IconMaterialWrapper>
+  );
+});
+IconLock.displayName = 'IconLock';

@@ -22,17 +22,17 @@ import styled from '@emotion/styled';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Spinner } from '../src';
 
-const meta = {
+const meta: Meta<typeof Spinner> = {
   component: Spinner,
   title: 'Spinner',
   parameters: {
     controls: { exclude: ['checked', 'onCheck'] },
   },
-} satisfies Meta<typeof Spinner>;
+};
 
 export default meta;
 
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<typeof Spinner>;
 
 export const Basic: Story = {
   args: {

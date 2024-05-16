@@ -17,7 +17,7 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-
+import * as radixTooltip from '@radix-ui/react-tooltip';
 import { RenderOptions, render as rtlRender } from '@testing-library/react';
 import userEvent, { Options as UserEventsOptions } from '@testing-library/user-event';
 import React, { PropsWithChildren } from 'react';
@@ -37,7 +37,7 @@ export function render(
 function ContextWrapper({ children }: PropsWithChildren<{}>) {
   return (
     <IntlProvider defaultLocale="en-us" locale="en-us">
-      {children}
+      <radixTooltip.Provider delayDuration={0}>{children}</radixTooltip.Provider>
     </IntlProvider>
   );
 }

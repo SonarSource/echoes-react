@@ -28,16 +28,16 @@ interface Props extends LinkProps {
   iconLeft?: React.ReactNode;
 }
 
-function LinkStandaloneBase(props: Readonly<Props>, ref: React.ForwardedRef<HTMLAnchorElement>) {
+const LinkStandaloneBase = forwardRef<HTMLAnchorElement, Props>((props, ref) => {
   const { children, iconLeft, ...linkProps } = props;
-
   return (
-    <LinkBaseStyled hasExternalIcon={!iconLeft} ref={ref} {...linkProps}>
+    <LinkBaseStyled hasExternalIcon={!iconLeft} {...linkProps} ref={ref}>
       {iconLeft}
       {children}
     </LinkBaseStyled>
   );
-}
+});
+LinkStandaloneBase.displayName = 'LinkStandaloneBase';
 
 const LinkStandaloneHighlight = {
   [LinkHighlight.Accent]: css`
@@ -48,7 +48,7 @@ const LinkStandaloneHighlight = {
   [LinkHighlight.CurrentColor]: undefined,
 };
 
-export const LinkStandalone = styled(forwardRef(LinkStandaloneBase))`
+export const LinkStandalone = styled(LinkStandaloneBase)`
   ${({ highlight = LinkHighlight.Accent }) => LinkStandaloneHighlight[highlight]}
 
   text-decoration-line: var(--echoes-text-decoration-none);
@@ -73,5 +73,4 @@ export const LinkStandalone = styled(forwardRef(LinkStandaloneBase))`
       }
     `};
 `;
-
 LinkStandalone.displayName = 'LinkStandalone';

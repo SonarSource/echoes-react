@@ -22,6 +22,7 @@ import { screen } from '@testing-library/react';
 import { MemoryRouter, Route, Routes, useLocation } from 'react-router-dom';
 import { render } from '~common/helpers/test-utils';
 import { Link } from '..';
+import { Tooltip } from '../../tooltip';
 
 it('should remove focus after link is clicked', async () => {
   const { user, container } = setupWithMemoryRouter(
@@ -117,6 +118,17 @@ it('should override target if passed as a prop for external link', () => {
   );
 
   expect(screen.getByRole('link')).toHaveAttribute('target', '_self');
+});
+
+it('should correclty support tooltips', async () => {
+  const { user } = setupWithMemoryRouter(
+    <Tooltip content="my tooltip">
+      <Link to="/path">link</Link>
+    </Tooltip>,
+  );
+
+  await user.hover(screen.getByRole('link'));
+  expect(screen.getByRole('tooltip', { name: 'my tooltip' })).toBeInTheDocument();
 });
 
 function ShowPath() {
