@@ -39,6 +39,7 @@ it.each([
   ['null', null],
   ['undefined', undefined],
   ['empty', ''],
+  ['false', false],
 ])('does not appear when content is %s', async (_, content) => {
   const { user } = setupTooltip({ content });
 
