@@ -53,9 +53,13 @@ export function Tooltip(props: Readonly<Props>) {
   const { align, children, content, isOpen, side } = props;
 
   /*
-   * Undefined content or empty strings should not render a tooltip
+   * Undefined content, Boolean false content or empty strings should not render a tooltip
    */
-  if (!isDefined(content) || (typeof content === 'string' && content.length === 0)) {
+  if (
+    !isDefined(content) ||
+    (typeof content === 'string' && content.length === 0) ||
+    (typeof content === 'boolean' && !content)
+  ) {
     return <>{children}</>;
   }
 
