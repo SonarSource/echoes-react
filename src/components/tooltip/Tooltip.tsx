@@ -19,7 +19,7 @@
  */
 import styled from '@emotion/styled';
 import * as radixTooltip from '@radix-ui/react-tooltip';
-import { PropsWithChildren } from 'react';
+import { ReactElement, ReactNode } from 'react';
 import { isDefined } from '~common/helpers/types';
 
 export enum TooltipAlign {
@@ -37,7 +37,8 @@ export enum TooltipSide {
 
 interface Props {
   align?: TooltipAlign;
-  content?: React.ReactNode;
+  children: ReactElement;
+  content?: ReactNode;
   isOpen?: boolean;
   side?: TooltipSide;
 }
@@ -48,7 +49,7 @@ const TOOLTIP_OFFSET = 4;
 /* This is the padding between the edge of the tooltip and the arrow. */
 const ARROW_PADDING = 12;
 
-export function Tooltip(props: PropsWithChildren<Props>) {
+export function Tooltip(props: Readonly<Props>) {
   const { align, children, content, isOpen, side } = props;
 
   /*
