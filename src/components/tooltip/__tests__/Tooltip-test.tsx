@@ -18,7 +18,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import { screen, waitForElementToBeRemoved } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import { ComponentProps } from 'react';
 import { render } from '~common/helpers/test-utils';
 import { Tooltip } from '../Tooltip';
@@ -29,13 +29,10 @@ it('toggles when trigger is hovered', async () => {
   expect(screen.queryByRole('tooltip', { name: 'content' })).not.toBeInTheDocument();
 
   await user.hover(screen.getByText('Trigger'));
-
   expect(await screen.findByRole('tooltip', { name: 'content' })).toBeInTheDocument();
 
-  /* We don't want to wait here, to allow waitForElementToBeRemoved to find the tooltip at first */
-  user.keyboard('[Escape]');
-
-  await waitForElementToBeRemoved(() => screen.queryByRole('tooltip', { name: 'content' }));
+  await user.keyboard('[Escape]');
+  expect(screen.queryByRole('tooltip', { name: 'content' })).not.toBeInTheDocument();
 });
 
 it.each([
