@@ -49,6 +49,23 @@ const TOOLTIP_OFFSET = 4;
 /* This is the padding between the edge of the tooltip and the arrow. */
 const ARROW_PADDING = 12;
 
+/**
+ * **Tooltips must be attached to an interactive element to be accessible.**
+ * This is acceptable if the trigger element has an accessible label that contains the same information.
+ *
+ * ### Stacking Context
+ *
+ * In order to have tooltips appear above the rest of the UI, it is probably necessary to have a [Stacking Context](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_positioned_layout/Understanding_z-index/Stacking_context) for your app. This means the root should define a new one, or be wrapped in a component that does it.
+ *
+ * The easiest way to start a new Stacking Context is to provide it with the following CSS properties:
+ *
+ * ```CSS
+ *   position: relative;
+ *   z-index: 0;
+ * ```
+ *
+ * Since the tooltips are appended to the body, they are in the root Stacking Context. If other elements are also there, the z-index will determine which appears on top. By creating a new Stacking Context for your app, it ensures that z-indexed elements will stay within that context, while tooltips will be painted on top, in the parent Stacking Context.
+ */
 export function Tooltip(props: Readonly<Props>) {
   const { align, children, content, isOpen, side } = props;
 

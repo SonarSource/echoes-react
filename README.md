@@ -33,6 +33,10 @@ import { Checkbox } from '@sonarsource/echoes-react';
 
 See available components and usage in storybook: <https://echoes-react.netlify.app/>
 
+> **Tooltips and stacking context**
+>
+> If tooltips do not appear above the rest of the UI, read the jsdoc of [Tooltips](src/components/tooltip/Tooltip.tsx)
+
 ### Make it work in Jest
 
 The lib only provides es module bundle. If you use Jest for your tests (or a similar library) make sure your transform preprocessor goes through `echoes-react` to make it runnable on Node.js.
@@ -118,10 +122,6 @@ yarn build-intl-keys
 ### Deployment
 
 [Release process definition](docs/RELEASING.md)
-
-```
-
-```
 
 ## License
 
