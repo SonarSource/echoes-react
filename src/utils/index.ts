@@ -25,4 +25,4 @@
  *
  */
 
-export { setTheme } from './theme';
+export { ThemeProvider, setTheme } from './theme';

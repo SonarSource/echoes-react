@@ -18,8 +18,29 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+import { Slot } from '@radix-ui/react-slot';
+import { PropsWithChildren, createContext } from 'react';
 import { Theme } from '~generated/themes';
 
+export const THEME_DATA_ATTRIBUTE = 'data-echoes-theme';
+
 export function setTheme(theme: Theme) {
-  document.documentElement.setAttribute('data-echoes-theme', theme);
+  document.documentElement.setAttribute(THEME_DATA_ATTRIBUTE, theme);
 }
+
+interface ThemeProviderProps {
+  asChild?: boolean;
+  theme: Theme;
+}
+
+export function ThemeProvider({ asChild, theme, ...props }: PropsWithChildren<ThemeProviderProps>) {
+  const Comp = asChild ? Slot : 'div';
+  return (
+    <ThemeContext.Provider value={theme}>
+      <Comp {...{ [THEME_DATA_ATTRIBUTE]: theme }} {...props} />
+    </ThemeContext.Provider>
+  );
+}
+ThemeProvider.displayName = 'ThemeProvider';
+
+export const ThemeContext = createContext<Theme | undefined>(undefined);
