@@ -20,11 +20,10 @@
 
 import styled from '@emotion/styled';
 import { forwardRef } from 'react';
-import { isDefined, isStringDefined } from '~common/helpers/types';
+import { isDefined } from '~common/helpers/types';
 import { DesignTokensColors } from '~types/design-tokens';
 
 export interface IconProps {
-  ariaLabel?: string;
   className?: string;
 }
 
@@ -38,16 +37,10 @@ interface IconBaseProps {
 }
 
 const IconBase = forwardRef<HTMLSpanElement, IconBaseProps & IconFilledProps>((props, ref) => {
-  const { ariaLabel, className, children, color, isFilled, ...radixProps } = props;
+  const { className, children, color, isFilled, ...radixProps } = props;
 
   return (
-    <span
-      {...radixProps}
-      aria-hidden={isStringDefined(ariaLabel) ? 'false' : 'true'}
-      aria-label={ariaLabel}
-      className={className}
-      ref={ref}
-      role="img">
+    <span {...radixProps} aria-hidden className={className} ref={ref}>
       {children}
     </span>
   );

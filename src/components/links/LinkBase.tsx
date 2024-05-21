@@ -100,7 +100,7 @@ export const LinkBase = forwardRef<HTMLAnchorElement, LinkProps>((props, ref) =>
         onClick={handleClick}
         ref={ref}>
         {children}
-        {hasExternalIcon && <ExternalIcon />}
+        {hasExternalIcon && <ExternalIcon data-testid="echoes-link-external-icon" />}
         <VisuallyHidden.Root>
           {intl.formatMessage({
             id: 'open_in_new_tab',
