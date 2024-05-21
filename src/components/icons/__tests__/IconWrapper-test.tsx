@@ -17,60 +17,70 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
+
 import { screen } from '@testing-library/react';
 import { render } from '../../../common/helpers/test-utils';
 import { IconCustomWrapper, IconMaterialWrapper } from '../IconWrapper';
 
 it('should render material icon correctly', () => {
-  const { container } = render(<IconMaterialWrapper>&#xE3A6;</IconMaterialWrapper>);
+  const { container } = render(
+    <IconMaterialWrapper data-testid="icon">&#xE3A6;</IconMaterialWrapper>,
+  );
 
-  expect(screen.queryByRole('img')).not.toBeInTheDocument();
+  expect(screen.queryByTestId('icon')).not.toHaveAccessibleDescription();
 
-  const icon = screen.getByRole('img', { hidden: true });
+  const icon = screen.getByTestId('icon');
   expect(icon).toContainHTML('&#xE3A6;');
+
   expect(icon).toHaveStyle({
     'font-family': `'Material Symbols Rounded'`,
   });
+
   expect(icon).not.toHaveStyle({
     'font-variation-settings': `'FILL' 1`,
     'font-family': `'Echoes'`,
   });
+
   expect(container).toMatchSnapshot();
 });
 
 it('should render custom icon correctly', () => {
-  render(<IconCustomWrapper>&#x21;</IconCustomWrapper>);
+  render(<IconCustomWrapper data-testid="custom icon">&#x21;</IconCustomWrapper>);
 
-  expect(screen.queryByRole('img')).not.toBeInTheDocument();
+  expect(screen.queryByTestId('custom icon')).not.toHaveAccessibleDescription();
 
-  const icon = screen.getByRole('img', { hidden: true });
+  const icon = screen.getByTestId('custom icon');
   expect(icon).toContainHTML('&#x21;');
+
   expect(icon).not.toHaveStyle({
     'font-family': `'Material Symbols Rounded'`,
   });
+
   expect(icon).toHaveStyle({
     'font-family': `'Echoes'`,
   });
 });
 
-it('should not be hidden when ariaLabel is set', () => {
-  render(<IconMaterialWrapper ariaLabel="test">&#xE3A6;</IconMaterialWrapper>);
-
-  expect(screen.getByRole('img')).toBeVisible();
-});
-
 it('should correctly handled isFilled props for material icons', () => {
-  render(<IconMaterialWrapper isFilled>&#xE3A6;</IconMaterialWrapper>);
+  render(
+    <IconMaterialWrapper data-testid="filled icon" isFilled>
+      &#xE3A6;
+    </IconMaterialWrapper>,
+  );
 
-  expect(screen.getByRole('img', { hidden: true })).toHaveStyle({
+  expect(screen.getByTestId('filled icon')).toHaveStyle({
     'font-variation-settings': `'FILL' 1`,
   });
 });
 
 it('should accept custom color', () => {
-  render(<IconMaterialWrapper color="echoes-color-icon-success">&#xE3A6;</IconMaterialWrapper>);
+  render(
+    <IconMaterialWrapper color="echoes-color-icon-success" data-testid="colored icon">
+      &#xE3A6;
+    </IconMaterialWrapper>,
+  );
 
-  expect(screen.getByRole('img', { hidden: true })).toHaveStyle({
+  expect(screen.getByTestId('colored icon')).toHaveStyle({
     color: `var(--echoes-color-icon-success)`,
   });
 });

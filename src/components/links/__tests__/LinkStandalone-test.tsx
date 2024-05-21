@@ -35,33 +35,40 @@ it('should display LinkStandalone properly', async () => {
 
 it('should support a left icon', async () => {
   const { container } = setupWithMemoryRouter(
-    <LinkStandalone iconLeft={<IconLink />} to="/path">
+    <LinkStandalone iconLeft={<IconLink data-testid="link icon" />} to="/path">
       link with icon
     </LinkStandalone>,
   );
   expect(screen.getByRole('link')).toBeVisible();
-  expect(screen.getByRole('img', { hidden: true })).toBeInTheDocument();
+  expect(screen.getByTestId('link icon')).toBeInTheDocument();
   await expect(container).toHaveNoA11yViolations();
 });
 
 it('should not show external icon when left icon is provided by default', () => {
   setupWithMemoryRouter(
-    <LinkStandalone iconLeft={<IconLink />} to="https://www.sonarsource.com">
+    <LinkStandalone
+      iconLeft={<IconLink data-testid="link icon" />}
+      to="https://www.sonarsource.com">
       link with icon
     </LinkStandalone>,
   );
   expect(screen.getByRole('link')).toBeVisible();
-  expect(screen.getAllByRole('img', { hidden: true })).toHaveLength(1);
+  expect(screen.getByTestId('link icon')).toBeInTheDocument();
+  expect(screen.queryByTestId('echoes-link-external-icon')).not.toBeInTheDocument();
 });
 
 it('should be possible to override and show the external icon with icon on the left', () => {
   setupWithMemoryRouter(
-    <LinkStandalone hasExternalIcon iconLeft={<IconLink />} to="https://www.sonarsource.com">
+    <LinkStandalone
+      hasExternalIcon
+      iconLeft={<IconLink data-testid="link icon" />}
+      to="https://www.sonarsource.com">
       link with icon
     </LinkStandalone>,
   );
   expect(screen.getByRole('link')).toBeVisible();
-  expect(screen.getAllByRole('img', { hidden: true })).toHaveLength(2);
+  expect(screen.getByTestId('link icon')).toBeInTheDocument();
+  expect(screen.getByTestId('echoes-link-external-icon')).toBeInTheDocument();
 });
 
 it('should correclty support tooltips', async () => {
