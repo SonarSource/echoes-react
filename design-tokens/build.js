@@ -30,6 +30,7 @@ const BASE_TOKENS_NAME = `${NAME_PREFIX}base`;
 const CUSTOM_TRANSFORM_GROUP = 'sonar-design-tokens';
 const CUSTOM_FILTER_NO_COLOR = 'sonar-no-color';
 const CUSTOM_FILTER_THEMED_TOKENS = 'sonar-themed-tokens';
+const THEME_DATA_ATTRIBUTE = 'data-echoes-theme';
 
 const licenseHeader = fs.readFileSync(`config/license/LICENSE-HEADER.txt`, 'utf-8');
 
@@ -141,7 +142,7 @@ function buildThemedTokens(themedTokenGroups, baseDesignTokenGroup) {
                 selector:
                   theme.name === DEFAULT_THEME
                     ? ':root'
-                    : `html[data-echoes-theme='${theme.name}']`,
+                    : `[${THEME_DATA_ATTRIBUTE}='${theme.name}']`,
               },
             },
             DEFAULT_THEME === theme.name && {

@@ -20,7 +20,7 @@
  * GENERATED FILE: do not edit directly.
  */
 
-html[data-echoes-theme='dark'] {
+[data-echoes-theme='dark'] {
   --echoes-color-background-neutral: rgb(62,67,87);
   --echoes-color-background-neutral-bolder: rgb(106,117,144);
   --echoes-color-background-default: rgb(42,47,64);
