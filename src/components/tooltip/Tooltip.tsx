@@ -17,10 +17,12 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
+
 import styled from '@emotion/styled';
 import * as radixTooltip from '@radix-ui/react-tooltip';
-import { ReactElement, ReactNode } from 'react';
+import { ReactElement, ReactNode, forwardRef, useContext } from 'react';
 import { isDefined } from '~common/helpers/types';
+import { THEME_DATA_ATTRIBUTE, ThemeContext } from '~utils/theme';
 
 export enum TooltipAlign {
   Start = 'start',
@@ -66,8 +68,10 @@ const ARROW_PADDING = 12;
  *
  * Since the tooltips are appended to the body, they are in the root Stacking Context. If other elements are also there, the z-index will determine which appears on top. By creating a new Stacking Context for your app, it ensures that z-indexed elements will stay within that context, while tooltips will be painted on top, in the parent Stacking Context.
  */
-export function Tooltip(props: Readonly<Props>) {
-  const { align, children, content, isOpen, side } = props;
+export const Tooltip = forwardRef<HTMLDivElement, Props>((props, ref) => {
+  const { align, children, content, isOpen, side, ...radixProps } = props;
+  const theme = useContext(ThemeContext);
+  const themeOverrideProp = isDefined(theme) ? { [THEME_DATA_ATTRIBUTE]: theme } : {};
 
   /*
    * Undefined content, Boolean false content or empty strings should not render a tooltip
@@ -85,8 +89,11 @@ export function Tooltip(props: Readonly<Props>) {
       <radixTooltip.Trigger asChild>{children}</radixTooltip.Trigger>
       <radixTooltip.Portal>
         <TooltipContent
+          {...themeOverrideProp}
+          {...radixProps}
           align={align}
           arrowPadding={ARROW_PADDING}
+          ref={ref}
           side={side}
           sideOffset={TOOLTIP_OFFSET}>
           {content}
@@ -95,7 +102,7 @@ export function Tooltip(props: Readonly<Props>) {
       </radixTooltip.Portal>
     </radixTooltip.Root>
   );
-}
+});
 
 Tooltip.displayName = 'Tooltip';
 

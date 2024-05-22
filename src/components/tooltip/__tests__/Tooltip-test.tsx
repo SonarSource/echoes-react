@@ -21,6 +21,8 @@
 import { screen } from '@testing-library/react';
 import { ComponentProps } from 'react';
 import { render } from '~common/helpers/test-utils';
+import { Theme } from '~generated/themes';
+import { ThemeProvider } from '~utils/theme';
 import { Tooltip } from '../Tooltip';
 
 it('toggles when trigger is hovered', async () => {
@@ -46,6 +48,28 @@ it.each([
   await user.hover(screen.getByText('Trigger'));
 
   expect(screen.queryByRole('tooltip')).not.toBeInTheDocument();
+});
+
+it('keeps custom properties', async () => {
+  const { user } = setupTooltip({ 'data-custom': 'test' } as any);
+
+  await user.hover(screen.getByText('Trigger'));
+
+  expect((await screen.findAllByText('content'))[0]).toHaveAttribute('data-custom', 'test');
+});
+
+it('can override the theme', async () => {
+  const { user } = render(
+    <ThemeProvider theme={Theme.dark}>
+      <Tooltip content="content">
+        <button type="button">Trigger</button>
+      </Tooltip>
+    </ThemeProvider>,
+  );
+
+  await user.hover(screen.getByText('Trigger'));
+
+  expect((await screen.findAllByText('content'))[0]).toHaveAttribute('data-echoes-theme', 'dark');
 });
 
 function setupTooltip(props: Partial<ComponentProps<typeof Tooltip>> = {}) {
