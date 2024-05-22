@@ -25,3 +25,7 @@ export type DesignTokens = keyof typeof designTokensThemed;
 export type DesignTokensColors = {
   [K in DesignTokens]: K extends `echoes-color-${string}` ? K : never;
 }[DesignTokens];
+
+export type DesignTokensColorsIcons = {
+  [K in DesignTokens]: K extends `echoes-color-icon-${string}` ? K : never;
+}[DesignTokens];

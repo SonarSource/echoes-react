@@ -21,10 +21,11 @@
 import styled from '@emotion/styled';
 import { forwardRef } from 'react';
 import { isDefined } from '~common/helpers/types';
-import { DesignTokensColors } from '~types/design-tokens';
+import { DesignTokensColorsIcons } from '~types/design-tokens';
 
 export interface IconProps {
   className?: string;
+  color?: DesignTokensColorsIcons;
 }
 
 export interface IconFilledProps extends IconProps {
@@ -33,7 +34,6 @@ export interface IconFilledProps extends IconProps {
 
 interface IconBaseProps {
   children: React.ReactNode;
-  color?: DesignTokensColors;
 }
 
 const IconBase = forwardRef<HTMLSpanElement, IconBaseProps & IconFilledProps>((props, ref) => {
