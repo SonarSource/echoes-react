@@ -77,6 +77,12 @@ describe('RadioButtonGroup', () => {
       'Radio group label*Help text',
     );
   });
+
+  it('should support radio group label as JSX.Element', () => {
+    renderRadioButtonGroup({ isRequired: true, label: <span>Group label</span> });
+
+    expect(screen.getByText('Group label')).toBeVisible();
+  });
 });
 
 function renderRadioButtonGroup(
