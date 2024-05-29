@@ -34,7 +34,7 @@ interface Props {
   innerClassName?: string;
   isDisabled?: boolean;
   isLoading?: boolean;
-  label?: string;
+  label?: JSX.Element | string;
   onCheck: (checked: boolean | 'indeterminate', id?: string) => void;
   onFocus?: VoidFunction;
   title?: string;
@@ -42,7 +42,7 @@ interface Props {
 
 interface PropsWithLabel extends Props {
   ariaLabel?: string;
-  label: string;
+  label: JSX.Element | string;
 }
 
 interface PropsWithoutLabel extends Props {
