@@ -87,13 +87,13 @@ it('should show a loading state', async () => {
 });
 
 it('should display a help text', async () => {
-  const { container } = setupCheckbox({ label: 'me', helpText: 'help' });
+  const { container } = setupCheckbox({ ariaLabel: 'me', helpText: 'help' });
   expect(screen.getByText('help')).toBeVisible();
   await expect(container).toHaveNoA11yViolations();
 });
 
 it('should have a error style when not checked', async () => {
-  const { container, rerender } = setupCheckbox({ label: 'me', hasError: true });
+  const { container, rerender } = setupCheckbox({ ariaLabel: 'me', hasError: true });
   expect(screen.getByRole('checkbox', { name: 'me' })).not.toHaveAttribute('data-error', 'true');
 
   rerender({ checked: false });
@@ -103,7 +103,7 @@ it('should have a error style when not checked', async () => {
 
 it('should be keyboard focusable while disabled', async () => {
   const onCheck = jest.fn();
-  const { user } = setupCheckbox({ label: 'me', checked: false, isDisabled: true, onCheck });
+  const { user } = setupCheckbox({ ariaLabel: 'me', checked: false, isDisabled: true, onCheck });
 
   const checkboxElement = screen.getByRole('checkbox', { name: 'me' });
   expect(checkboxElement).toBeVisible();
@@ -121,6 +121,12 @@ it('should be keyboard focusable while disabled', async () => {
   expect(onCheck).not.toHaveBeenCalled();
 });
 
+it('should accept label as JSX.Element', () => {
+  setupCheckbox({ ariaLabel: 'me', label: <span>label child</span> });
+
+  expect(screen.getByText('label child')).toBeVisible();
+});
+
 it('should correclty support tooltips', async () => {
   const { user } = render(
     <Tooltip content="my tooltip">
@@ -134,7 +140,7 @@ it('should correclty support tooltips', async () => {
 
 function setupCheckbox(props: Partial<ComponentProps<typeof Checkbox>> = {}) {
   const { rerender: rtlRerender, ...rest } = render(
-    <Checkbox ariaLabel={props.label || ''} checked onCheck={jest.fn()} {...props} />,
+    <Checkbox ariaLabel={props.ariaLabel || ''} checked onCheck={jest.fn()} {...props} />,
     undefined,
 
     // We skip the pointer-events:none check from user-event to be able to test clicking on the disabled checkbox
@@ -144,8 +150,9 @@ function setupCheckbox(props: Partial<ComponentProps<typeof Checkbox>> = {}) {
     rerender(override?: Partial<ComponentProps<typeof Checkbox>>) {
       rtlRerender(
         <Checkbox
-          ariaLabel={props.label || ''}
+          ariaLabel={props.ariaLabel || ''}
           checked
+          label="label"
           onCheck={jest.fn()}
           {...props}
           {...override}
