@@ -41,7 +41,7 @@ interface PropsWithoutLabel {
 
 interface PropsWithLabel {
   helpText?: string;
-  label: string;
+  label: JSX.Element | string;
 }
 
 export type RadioButtonGroupLabelProps = PropsWithLabel | PropsWithoutLabel;
