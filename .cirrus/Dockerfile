@@ -17,6 +17,9 @@ RUN apt-get install -y nodejs=${NODE_VERSION}
 # Install Yarn
 RUN npm install -g yarn
 
+# Install sonar-scanner-npm
+RUN npm install -g sonarqube-scanner
+
 # Clean up cache after packages installation
 RUN apt-get clean
 
