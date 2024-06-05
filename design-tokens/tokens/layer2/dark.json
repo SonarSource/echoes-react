@@ -258,17 +258,21 @@
         }
       },
       "border": {
-        "bold": {
+        "bolder": {
           "value": "{echoes.color.grey.300}",
           "type": "color"
         },
-        "default": {
-          "type": "color",
-          "value": "{echoes.color.grey.500}"
+        "bold": {
+          "value": "{echoes.color.grey.600}",
+          "type": "color"
         },
-        "subdued": {
+        "weak": {
           "type": "color",
-          "value": "{echoes.color.grey.400}"
+          "value": "{echoes.color.grey.700}"
+        },
+        "weaker": {
+          "type": "color",
+          "value": "{echoes.color.grey.800}"
         },
         "disabled": {
           "type": "color",

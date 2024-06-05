@@ -268,15 +268,19 @@
         }
       },
       "border": {
-        "bold": {
+        "bolder": {
           "value": "{echoes.color.grey.400}",
           "type": "color"
         },
-        "default": {
+        "bold": {
+          "value": "{echoes.color.grey.200}",
+          "type": "color"
+        },
+        "weak": {
           "type": "color",
           "value": "{echoes.color.grey.100}"
         },
-        "subdued": {
+        "weaker": {
           "type": "color",
           "value": "{echoes.color.grey.50}"
         },
