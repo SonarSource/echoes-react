@@ -192,7 +192,7 @@ const Input = styled(RadioGroup.Item)`
 
   box-sizing: border-box;
   padding: 0;
-  border: var(--echoes-border-width-default) solid var(--echoes-color-border-bold);
+  border: var(--echoes-border-width-default) solid var(--echoes-color-border-bolder);
   border-radius: var(--echoes-border-radius-full);
 
   height: var(--echoes-dimension-size-200);
@@ -208,12 +208,12 @@ const Input = styled(RadioGroup.Item)`
   }
 
   &[data-state='checked'] {
-    background-color: var(--echoes-color-background-accent-default);
-    border: var(--echoes-border-width-default) solid var(--echoes-color-border-accent);
+    background-color: var(--echoes-color-background-selected-bold-default);
+    border-color: var(--echoes-color-background-selected-bold-default);
 
     &:hover {
-      background-color: var(--echoes-color-background-accent-default-hover);
-      border: var(--echoes-border-width-default) solid var(--echoes-color-border-accent);
+      background-color: var(--echoes-color-background-selected-bold-hover);
+      border-color: var(--echoes-color-background-selected-bold-hover);
     }
   }
 

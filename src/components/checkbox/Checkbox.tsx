@@ -133,7 +133,7 @@ const CheckboxInnerContainer = styled.span`
 const CheckboxRoot = styled(RadixCheckbox.Root)`
   color: var(--echoes-color-text-on-color);
   background-color: var(--echoes-color-background-default);
-  border: var(--echoes-border-width-default) solid var(--echoes-color-border-bold);
+  border: var(--echoes-border-width-default) solid var(--echoes-color-border-bolder);
 
   height: var(--echoes-dimension-size-200);
   width: var(--echoes-dimension-size-200);
@@ -158,8 +158,8 @@ const CheckboxRoot = styled(RadixCheckbox.Root)`
 
     &[data-state='checked'],
     &[data-state='indeterminate'] {
-      background-color: var(--echoes-color-background-default-disabled);
-      border-color: var(--echoes-color-background-default-disabled);
+      background-color: var(--echoes-color-background-disabled);
+      border-color: var(--echoes-color-border-disabled);
     }
   }
 
@@ -170,12 +170,12 @@ const CheckboxRoot = styled(RadixCheckbox.Root)`
 
     &[data-state='checked'],
     &[data-state='indeterminate'] {
-      background-color: var(--echoes-color-background-accent-default);
-      border-color: var(--echoes-color-background-accent-default);
+      background-color: var(--echoes-color-background-selected-bold-default);
+      border-color: var(--echoes-color-background-selected-bold-default);
 
       &:hover {
-        background-color: var(--echoes-color-background-accent-default-hover);
-        border: var(--echoes-color-background-accent-default-hover);
+        background-color: var(--echoes-color-background-selected-bold-hover);
+        border: var(--echoes-color-background-selected-bold-hover);
       }
     }
 
