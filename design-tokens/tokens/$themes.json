@@ -90,7 +90,8 @@
       "echoes.color.background.selected.weak.pressed": "c8fb20601b26ca8f0f19e79028bcbd8c6198dc0c",
       "echoes.color.background.selected.bold.default": "3e621b3651b4d6f0b906ab502cbe07d1d1243280",
       "echoes.color.background.selected.bold.hover": "4c8cad3f4970101e5236cc710925f3cee62fd1ef",
-      "echoes.color.background.selected.bold.pressed": "b7be9e3a8236df771d481716cb46e274fcfe7e42"
+      "echoes.color.background.selected.bold.pressed": "b7be9e3a8236df771d481716cb46e274fcfe7e42",
+      "echoes.color.icon.selected": "70dc7e2fe336e14a0d9e17e882a1c7ab86abe5a9"
     },
     "group": "Themes"
   },
@@ -185,7 +186,8 @@
       "echoes.color.background.selected.weak.pressed": "c8fb20601b26ca8f0f19e79028bcbd8c6198dc0c",
       "echoes.color.background.selected.bold.default": "3e621b3651b4d6f0b906ab502cbe07d1d1243280",
       "echoes.color.background.selected.bold.hover": "4c8cad3f4970101e5236cc710925f3cee62fd1ef",
-      "echoes.color.background.selected.bold.pressed": "b7be9e3a8236df771d481716cb46e274fcfe7e42"
+      "echoes.color.background.selected.bold.pressed": "b7be9e3a8236df771d481716cb46e274fcfe7e42",
+      "echoes.color.icon.selected": "70dc7e2fe336e14a0d9e17e882a1c7ab86abe5a9"
     },
     "group": "Themes"
   },

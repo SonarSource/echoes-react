@@ -295,6 +295,10 @@
         "onColor": {
           "type": "color",
           "value": "{echoes.color.support.white}"
+        },
+        "selected": {
+          "value": "{echoes.color.indigo.500}",
+          "type": "color"
         }
       },
       "border": {
