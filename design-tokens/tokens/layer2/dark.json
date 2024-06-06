@@ -259,20 +259,20 @@
       },
       "border": {
         "bolder": {
-          "value": "{echoes.color.grey.300}",
+          "value": "{echoes.color.grey.200}",
           "type": "color"
         },
         "bold": {
-          "value": "{echoes.color.grey.600}",
+          "value": "{echoes.color.grey.300}",
           "type": "color"
         },
         "weak": {
           "type": "color",
-          "value": "{echoes.color.grey.700}"
+          "value": "{echoes.color.grey.400}"
         },
         "weaker": {
           "type": "color",
-          "value": "{echoes.color.grey.800}"
+          "value": "{echoes.color.grey.500}"
         },
         "disabled": {
           "type": "color",
