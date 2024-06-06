@@ -84,7 +84,13 @@
       "echoes.color.border.success": "420b9a491b1edad32970da07c6764fb1e9473e83",
       "echoes.color.border.warning": "f1ca8acc11fe0540516282e414fd635835143ca2",
       "echoes.color.border.info": "231c48e1aabd21a214abf554a9844d130bc068c0",
-      "echoes.color.focus.default": "a5d79c72e6395c98eb1fcf18075446f2aa65e0fc"
+      "echoes.color.focus.default": "a5d79c72e6395c98eb1fcf18075446f2aa65e0fc",
+      "echoes.color.background.selected.weak.default": "07c503abc8e3c53a2b27be7444359c0f64b6004c",
+      "echoes.color.background.selected.weak.hover": "2383db56cc2adf81e4270c6c315a8c52eefd286d",
+      "echoes.color.background.selected.weak.pressed": "c8fb20601b26ca8f0f19e79028bcbd8c6198dc0c",
+      "echoes.color.background.selected.bold.default": "3e621b3651b4d6f0b906ab502cbe07d1d1243280",
+      "echoes.color.background.selected.bold.hover": "4c8cad3f4970101e5236cc710925f3cee62fd1ef",
+      "echoes.color.background.selected.bold.pressed": "b7be9e3a8236df771d481716cb46e274fcfe7e42"
     },
     "group": "Themes"
   },
@@ -173,7 +179,13 @@
       "echoes.color.border.success": "420b9a491b1edad32970da07c6764fb1e9473e83",
       "echoes.color.border.warning": "f1ca8acc11fe0540516282e414fd635835143ca2",
       "echoes.color.border.info": "231c48e1aabd21a214abf554a9844d130bc068c0",
-      "echoes.color.focus.default": "a5d79c72e6395c98eb1fcf18075446f2aa65e0fc"
+      "echoes.color.focus.default": "a5d79c72e6395c98eb1fcf18075446f2aa65e0fc",
+      "echoes.color.background.selected.weak.default": "07c503abc8e3c53a2b27be7444359c0f64b6004c",
+      "echoes.color.background.selected.weak.hover": "2383db56cc2adf81e4270c6c315a8c52eefd286d",
+      "echoes.color.background.selected.weak.pressed": "c8fb20601b26ca8f0f19e79028bcbd8c6198dc0c",
+      "echoes.color.background.selected.bold.default": "3e621b3651b4d6f0b906ab502cbe07d1d1243280",
+      "echoes.color.background.selected.bold.hover": "4c8cad3f4970101e5236cc710925f3cee62fd1ef",
+      "echoes.color.background.selected.bold.pressed": "b7be9e3a8236df771d481716cb46e274fcfe7e42"
     },
     "group": "Themes"
   },

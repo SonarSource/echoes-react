@@ -157,6 +157,36 @@
         "transparent": {
           "type": "color",
           "value": "{echoes.color.support.transparent}"
+        },
+        "selected": {
+          "weak": {
+            "default": {
+              "value": "{echoes.color.indigo.25}",
+              "type": "color"
+            },
+            "hover": {
+              "value": "{echoes.color.indigo.50}",
+              "type": "color"
+            },
+            "pressed": {
+              "value": "{echoes.color.indigo.100}",
+              "type": "color"
+            }
+          },
+          "bold": {
+            "default": {
+              "value": "{echoes.color.indigo.500}",
+              "type": "color"
+            },
+            "hover": {
+              "value": "{echoes.color.indigo.600}",
+              "type": "color"
+            },
+            "pressed": {
+              "value": "{echoes.color.indigo.700}",
+              "type": "color"
+            }
+          }
         }
       },
       "text": {
