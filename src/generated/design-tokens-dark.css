@@ -55,6 +55,12 @@ html[data-echoes-theme='dark'], [data-echoes-theme='dark'] {
   --echoes-color-background-info-default: rgb(184,222,241);
   --echoes-color-background-info-weak: #8FCAEA33;
   --echoes-color-background-transparent: rgba(0,0,0,0);
+  --echoes-color-background-selected-weak-default: rgb(27,34,80);
+  --echoes-color-background-selected-weak-hover: rgb(43,51,104);
+  --echoes-color-background-selected-weak-pressed: rgb(71,81,143);
+  --echoes-color-background-selected-bold-default: rgb(189,198,255);
+  --echoes-color-background-selected-bold-hover: rgb(209,215,254);
+  --echoes-color-background-selected-bold-pressed: rgb(232,235,255);
   --echoes-color-text-bold: rgb(252,252,253);
   --echoes-color-text-default: rgb(225,230,243);
   --echoes-color-text-subdued: rgb(197,205,223);
@@ -81,9 +87,11 @@ html[data-echoes-theme='dark'], [data-echoes-theme='dark'] {
   --echoes-color-icon-success: rgb(225,245,168);
   --echoes-color-icon-info: rgb(184,222,241);
   --echoes-color-icon-on-color: rgb(42,47,64);
+  --echoes-color-icon-selected: rgb(189,198,255);
+  --echoes-color-border-bolder: rgb(197,205,223);
   --echoes-color-border-bold: rgb(166,173,194);
-  --echoes-color-border-default: rgb(62,67,87);
-  --echoes-color-border-subdued: rgb(106,117,144);
+  --echoes-color-border-weak: rgb(106,117,144);
+  --echoes-color-border-weaker: rgb(62,67,87);
   --echoes-color-border-disabled: rgb(106,117,144);
   --echoes-color-border-accent: rgb(189,198,255);
   --echoes-color-border-danger: rgb(253,162,155);
