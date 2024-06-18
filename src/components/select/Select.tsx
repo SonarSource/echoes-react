@@ -18,10 +18,10 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-export * from './checkbox';
-export * from './icons';
-export * from './links';
-export * from './radio-button-group';
-export * from './select';
-export * from './spinner';
-export * from './tooltip';
+import { forwardRef } from 'react';
+
+export const Select = forwardRef<HTMLInputElement, {}>(() => {
+  return <div>test</div>;
+});
+
+Select.displayName = 'Select';
