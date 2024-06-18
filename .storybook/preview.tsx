@@ -19,6 +19,7 @@
  */
 
 import { Global, css } from '@emotion/react';
+import { MantineProvider } from '@mantine/core';
 import { withThemeByDataAttribute } from '@storybook/addon-themes';
 import type { Preview } from '@storybook/react';
 import React from 'react';
@@ -74,12 +75,14 @@ const preview: Preview = {
     (Story) => {
       return (
         <IntlProvider defaultLocale="en-us" locale="en-us">
-          <TooltipProvider>
-            <Global styles={globalStyles} />
-            <MemoryRouter>
-              <Story />
-            </MemoryRouter>
-          </TooltipProvider>
+          <MantineProvider theme={{}}>
+            <TooltipProvider>
+              <Global styles={globalStyles} />
+              <MemoryRouter>
+                <Story />
+              </MemoryRouter>
+            </TooltipProvider>
+          </MantineProvider>
         </IntlProvider>
       );
     },

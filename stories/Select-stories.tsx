@@ -18,10 +18,18 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-export * from './checkbox';
-export * from './icons';
-export * from './links';
-export * from './radio-button-group';
-export * from './select';
-export * from './spinner';
-export * from './tooltip';
+import type { Meta, StoryObj } from '@storybook/react';
+import { Select } from '../src';
+
+const meta: Meta<typeof Select> = {
+  component: Select,
+  title: 'Select',
+};
+
+export default meta;
+
+type Story = StoryObj<typeof Select>;
+
+export const Default: Story = {
+  args: {},
+};
