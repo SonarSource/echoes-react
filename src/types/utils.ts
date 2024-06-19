@@ -18,8 +18,25 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-declare namespace jest {
-  interface Matchers<R> {
-    toHaveNoA11yViolations(axeOptions?: Object): Promise<CustomMatcherResult>;
-  }
+export interface PropsLabel {
+  ariaLabel?: string;
+  ariaLabelledBy?: never;
+  label: JSX.Element | string;
+  helpText?: JSX.Element | string;
 }
+
+export interface PropsAriaLabel {
+  ariaLabel: string;
+  ariaLabelledBy?: never;
+  label?: never;
+  helpText?: never;
+}
+
+export interface PropsAriaLabelledBy {
+  ariaLabel?: never;
+  ariaLabelledBy: string;
+  label?: never;
+  helpText?: never;
+}
+
+export type PropsWithLabels<T> = T & (PropsLabel | PropsAriaLabel | PropsAriaLabelledBy);

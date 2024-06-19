@@ -21,8 +21,9 @@
 import styled from '@emotion/styled';
 import * as RadioGroup from '@radix-ui/react-radio-group';
 import { ReactNode, forwardRef } from 'react';
+import { PropsWithLabels } from '~types/utils';
 
-export interface RadiobuttonGroupBaseProps {
+interface Props {
   onChange?: (value: string) => void;
   options: RadioOption[];
 
@@ -34,22 +35,11 @@ export interface RadiobuttonGroupBaseProps {
   labelRadioGroupError?: ReactNode;
   value?: string;
 }
-interface PropsWithoutLabel {
-  helpText?: never;
-  label?: never;
-}
 
-interface PropsWithLabel {
-  helpText?: string;
-  label: JSX.Element | string;
-}
-
-export type RadioButtonGroupLabelProps = PropsWithLabel | PropsWithoutLabel;
-
-type Props = RadiobuttonGroupBaseProps & RadioButtonGroupLabelProps;
-
-export const RadioButtonGroup = forwardRef<HTMLDivElement, Props>((props, ref) => {
+export const RadioButtonGroup = forwardRef<HTMLDivElement, PropsWithLabels<Props>>((props, ref) => {
   const {
+    ariaLabel,
+    ariaLabelledBy,
     helpText,
     id,
     isDisabled: disabled,
@@ -64,6 +54,8 @@ export const RadioButtonGroup = forwardRef<HTMLDivElement, Props>((props, ref) =
   return (
     <RadioGroupRoot
       {...radixRadioGroupProps}
+      aria-label={ariaLabel}
+      aria-labelledby={ariaLabelledBy}
       disabled={disabled}
       id={id}
       onValueChange={onChange}
