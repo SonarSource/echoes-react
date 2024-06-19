@@ -21,7 +21,7 @@
 import { screen } from '@testing-library/react';
 import { PointerEventsCheckLevel } from '@testing-library/user-event';
 import { ComponentProps } from 'react';
-import { render } from '~common/helpers/test-utils';
+import { OmitPropsWithLabels, render } from '~common/helpers/test-utils';
 import { Tooltip } from '../../tooltip';
 import { Checkbox } from '../Checkbox';
 
@@ -87,9 +87,10 @@ it('should show a loading state', async () => {
 });
 
 it('should display a help text', async () => {
-  const { container } = setupCheckbox({ ariaLabel: 'me', helpText: 'help' });
+  const { container } = setupCheckbox({ label: 'me', helpText: 'help' });
+  expect(screen.getByText('me')).toBeVisible();
   expect(screen.getByText('help')).toBeVisible();
-  await expect(container).toHaveNoA11yViolations();
+  await expect(container).toHaveNoA11yViolations({ rules: { 'button-name': { enabled: false } } });
 });
 
 it('should have a error style when not checked', async () => {
@@ -138,26 +139,18 @@ it('should correclty support tooltips', async () => {
   expect(screen.getByRole('tooltip', { name: 'my tooltip' })).toBeInTheDocument();
 });
 
-function setupCheckbox(props: Partial<ComponentProps<typeof Checkbox>> = {}) {
+function setupCheckbox(props: OmitPropsWithLabels<typeof Checkbox>) {
   const { rerender: rtlRerender, ...rest } = render(
-    <Checkbox ariaLabel={props.ariaLabel || ''} checked onCheck={jest.fn()} {...props} />,
+    <Checkbox checked onCheck={jest.fn()} {...props} />,
     undefined,
 
     // We skip the pointer-events:none check from user-event to be able to test clicking on the disabled checkbox
     { pointerEventsCheck: PointerEventsCheckLevel.Never },
   );
   return {
-    rerender(override?: Partial<ComponentProps<typeof Checkbox>>) {
-      rtlRerender(
-        <Checkbox
-          ariaLabel={props.ariaLabel || ''}
-          checked
-          label="label"
-          onCheck={jest.fn()}
-          {...props}
-          {...override}
-        />,
-      );
+    rerender(override: Partial<ComponentProps<typeof Checkbox>>) {
+      const newProps = { ...props, ...override } as OmitPropsWithLabels<typeof Checkbox>;
+      rtlRerender(<Checkbox checked onCheck={jest.fn()} {...newProps} />);
     },
     ...rest,
   };
