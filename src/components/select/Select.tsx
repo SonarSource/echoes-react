@@ -18,10 +18,85 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import { forwardRef } from 'react';
+import { Select as MantineSelect, SelectItem } from '@mantine/core';
+import { ComponentProps, forwardRef } from 'react';
+import { PropsWithLabels } from '~types/utils';
+import { Spinner } from '..';
 
-export const Select = forwardRef<HTMLInputElement, {}>(() => {
-  return <div>test</div>;
+export enum SelectHighlight {
+  Default = 'default',
+  Ghost = 'unstyled',
+}
+
+type MantineSelectProps = ComponentProps<typeof MantineSelect>;
+
+interface Props {
+  className?: string;
+  data: ReadonlyArray<SelectItem>;
+  defaultValue?: MantineSelectProps['defaultValue'];
+  hasError?: boolean;
+  highlight?: SelectHighlight;
+  id?: string;
+  isDisabled?: boolean;
+  isLoading?: boolean;
+  isNotClearable?: boolean;
+  isRequired?: boolean;
+  isSearchable?: boolean;
+  labelError?: MantineSelectProps['error'];
+  labelNotFound?: MantineSelectProps['nothingFound'];
+  limit?: MantineSelectProps['limit']; // might change for a max height
+  name?: MantineSelectProps['name'];
+  optionComponent?: MantineSelectProps['itemComponent'];
+  onChange?: MantineSelectProps['onChange'];
+  onOpen?: MantineSelectProps['onDropdownOpen'];
+  placeholder?: MantineSelectProps['placeholder'];
+  value?: MantineSelectProps['value'];
+}
+
+export const Select = forwardRef<HTMLInputElement, PropsWithLabels<Props>>((props, ref) => {
+  const {
+    ariaLabel,
+    ariaLabelledBy,
+    data,
+    hasError = false,
+    helpText,
+    highlight,
+    isDisabled = false,
+    isLoading = false,
+    isNotClearable = false,
+    isSearchable = false,
+    isRequired = false,
+    label,
+    labelError,
+    labelNotFound,
+    onOpen,
+    optionComponent,
+    ...selectProps
+  } = props;
+
+  // TODO Highlighter for search
+
+  return (
+    <MantineSelect
+      aria-label={ariaLabel}
+      aria-labelledby={ariaLabelledBy}
+      clearable={!isNotClearable && !isRequired}
+      data={data}
+      description={helpText}
+      disabled={isDisabled}
+      error={labelError ?? hasError}
+      itemComponent={optionComponent}
+      label={label}
+      nothingFound={labelNotFound}
+      onDropdownOpen={onOpen}
+      ref={ref}
+      required={isRequired}
+      rightSection={isLoading ? <Spinner isLoading /> : undefined}
+      searchable={isSearchable}
+      variant={highlight}
+      {...selectProps}
+    />
+  );
 });
 
 Select.displayName = 'Select';

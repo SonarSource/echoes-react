@@ -30,6 +30,16 @@ export default meta;
 
 type Story = StoryObj<typeof Select>;
 
+const data = [
+  { value: '1', label: 'cheese' },
+  { value: '2', label: 'bread' },
+  { value: '3', label: 'salad' },
+  { value: '4', label: 'no' },
+];
+
 export const Default: Story = {
-  args: {},
+  args: {
+    data,
+    isSearchable: true,
+  },
 };
