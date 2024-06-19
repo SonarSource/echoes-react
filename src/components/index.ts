@@ -19,6 +19,7 @@
  */
 
 export * from './checkbox';
+export * from './echoes-provider';
 export * from './icons';
 export * from './links';
 export * from './radio-button-group';
