@@ -21,98 +21,86 @@
 import styled from '@emotion/styled';
 import * as RadixCheckbox from '@radix-ui/react-checkbox';
 import { forwardRef, useCallback } from 'react';
+import { PropsWithLabels } from '~types/utils';
 import { Spinner } from '../spinner';
 import { CheckboxIcon } from './CheckboxIcon';
 
 interface Props {
-  ariaLabel?: string;
   checked: boolean | 'indeterminate';
   className?: string;
   hasError?: boolean;
-  helpText?: string;
   id?: string;
   innerClassName?: string;
   isDisabled?: boolean;
   isLoading?: boolean;
-  label?: JSX.Element | string;
   onCheck: (checked: boolean | 'indeterminate', id?: string) => void;
   onFocus?: VoidFunction;
   title?: string;
 }
 
-interface PropsWithLabel extends Props {
-  ariaLabel?: string;
-  label: JSX.Element | string;
-}
+export const Checkbox = forwardRef<HTMLButtonElement, PropsWithLabels<Props>>((props, ref) => {
+  const {
+    ariaLabel,
+    ariaLabelledBy,
+    className,
+    checked,
+    helpText,
+    hasError = false,
+    id,
+    innerClassName,
+    isDisabled,
+    isLoading = false,
+    label,
+    onCheck,
+    onFocus,
+    title,
+    ...radixProps
+  } = props;
 
-interface PropsWithoutLabel extends Props {
-  ariaLabel: string;
-  label?: never;
-}
+  const handleChange = useCallback(
+    (checked: boolean | 'indeterminate') => {
+      if (!isDisabled && !isLoading) {
+        onCheck(checked, id);
+      }
+    },
+    [isDisabled, isLoading, onCheck, id],
+  );
 
-export const Checkbox = forwardRef<HTMLButtonElement, PropsWithLabel | PropsWithoutLabel>(
-  (props, ref) => {
-    const {
-      ariaLabel,
-      className,
-      checked,
-      helpText,
-      hasError = false,
-      id,
-      innerClassName,
-      isDisabled,
-      isLoading = false,
-      label,
-      onCheck,
-      onFocus,
-      title,
-      ...radixProps
-    } = props;
-
-    const handleChange = useCallback(
-      (checked: boolean | 'indeterminate') => {
-        if (!isDisabled && !isLoading) {
-          onCheck(checked, id);
-        }
-      },
-      [isDisabled, isLoading, onCheck, id],
-    );
-
-    return (
-      <CheckboxContainer
-        {...radixProps}
-        aria-disabled={isDisabled}
-        as={label ? 'label' : 'span'}
-        className={className}
-        ref={ref}>
-        <CheckboxInnerContainer className={innerClassName}>
-          <Spinner isLoading={isLoading}>
-            <CheckboxRoot
-              aria-disabled={isDisabled}
-              aria-label={ariaLabel ?? title}
-              checked={checked}
-              id={id}
-              onCheckedChange={handleChange}
-              onFocus={onFocus}
-              title={title}
-              // We only support the error state for unchecked checkboxes for now
-              {...(hasError && checked === false ? { 'data-error': true } : {})}>
-              <CheckboxIndicator>
-                <CheckboxIcon checked={checked} />
-              </CheckboxIndicator>
-            </CheckboxRoot>
-          </Spinner>
-          {(label || helpText) && (
-            <LabelWrapper aria-disabled={isDisabled}>
-              {label && <Label>{label}</Label>}
-              {helpText && <HelpText>{helpText}</HelpText>}
-            </LabelWrapper>
-          )}
-        </CheckboxInnerContainer>
-      </CheckboxContainer>
-    );
-  },
-);
+  return (
+    <CheckboxContainer
+      {...radixProps}
+      aria-disabled={isDisabled}
+      as={label ? 'label' : 'span'}
+      className={className}
+      ref={ref}>
+      <CheckboxInnerContainer className={innerClassName}>
+        <Spinner isLoading={isLoading}>
+          <CheckboxRoot
+            aria-disabled={isDisabled}
+            aria-label={ariaLabel ?? title}
+            aria-labelledby={ariaLabelledBy}
+            checked={checked}
+            id={id}
+            onCheckedChange={handleChange}
+            onFocus={onFocus}
+            title={title}
+            // We only support the error state for unchecked checkboxes for now
+            {...(hasError && checked === false ? { 'data-error': true } : {})}>
+            <CheckboxIndicator>
+              <CheckboxIcon checked={checked} />
+            </CheckboxIndicator>
+          </CheckboxRoot>
+        </Spinner>
+        {(label || helpText) && (
+          <LabelWrapper aria-disabled={isDisabled}>
+            {label && <Label>{label}</Label>}
+            {helpText && <HelpText>{helpText}</HelpText>}
+          </LabelWrapper>
+        )}
+      </CheckboxInnerContainer>
+    </CheckboxContainer>
+  );
+});
 Checkbox.displayName = 'Checkbox';
 
 const CheckboxContainer = styled.span`

@@ -19,12 +19,8 @@
  */
 
 import { screen } from '@testing-library/react';
-import { render } from '~common/helpers/test-utils';
-import {
-  RadioButtonGroup,
-  RadioButtonGroupLabelProps,
-  RadiobuttonGroupBaseProps,
-} from '../RadioButtonGroup';
+import { OmitPropsWithLabels, render } from '~common/helpers/test-utils';
+import { RadioButtonGroup } from '../RadioButtonGroup';
 
 const DEFAULT_OPTIONS = [
   { label: 'a', value: '1' },
@@ -34,7 +30,7 @@ const DEFAULT_OPTIONS = [
 
 describe('RadioButtonGroup', () => {
   it('should render a radio button for each option', async () => {
-    const { container, user } = renderRadioButtonGroup();
+    const { container, user } = renderRadioButtonGroup({ ariaLabel: 'me' });
 
     expect(screen.getAllByRole('radio')).toHaveLength(DEFAULT_OPTIONS.length);
 
@@ -45,7 +41,7 @@ describe('RadioButtonGroup', () => {
   });
 
   it('should disable each radio button if the group is disabled', () => {
-    renderRadioButtonGroup({ isDisabled: true });
+    renderRadioButtonGroup({ ariaLabel: 'me', isDisabled: true });
 
     const radioButtons = screen.getAllByRole('radio');
     expect(radioButtons).toHaveLength(DEFAULT_OPTIONS.length);
@@ -55,7 +51,11 @@ describe('RadioButtonGroup', () => {
   });
 
   it('should error the whole group when labelRadioGroupError is passed', () => {
-    renderRadioButtonGroup({ isRequired: true, labelRadioGroupError: 'Error message' });
+    renderRadioButtonGroup({
+      ariaLabel: 'me',
+      isRequired: true,
+      labelRadioGroupError: 'Error message',
+    });
 
     const radioButtons = screen.getAllByRole('radio');
     expect(radioButtons).toHaveLength(DEFAULT_OPTIONS.length);
@@ -85,8 +85,6 @@ describe('RadioButtonGroup', () => {
   });
 });
 
-function renderRadioButtonGroup(
-  overrides: Partial<RadiobuttonGroupBaseProps> & RadioButtonGroupLabelProps = {},
-) {
+function renderRadioButtonGroup(overrides: OmitPropsWithLabels<typeof RadioButtonGroup>) {
   return render(<RadioButtonGroup id="group1" options={DEFAULT_OPTIONS} {...overrides} />);
 }

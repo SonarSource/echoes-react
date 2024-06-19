@@ -110,8 +110,7 @@ function CheckboxState({
   useEffect(() => setChecked(initialValue), [initialValue]);
   return (
     <Checkbox
-      ariaLabel="Enable option A"
-      {...checkboxProps}
+      {...(checkboxProps as ComponentProps<typeof Checkbox>)}
       checked={checked}
       onCheck={setChecked}
     />

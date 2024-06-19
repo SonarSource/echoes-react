@@ -19,8 +19,9 @@
  */
 import { RenderOptions, render as rtlRender } from '@testing-library/react';
 import userEvent, { Options as UserEventsOptions } from '@testing-library/user-event';
-import React, { PropsWithChildren } from 'react';
+import React, { ComponentProps, PropsWithChildren } from 'react';
 import { IntlProvider } from 'react-intl';
+import { PropsWithLabels } from '~types/utils';
 import { TooltipProvider } from '../../components/tooltip';
 
 export function render(
@@ -41,3 +42,8 @@ function ContextWrapper({ children }: PropsWithChildren<{}>) {
     </IntlProvider>
   );
 }
+
+export type OmitPropsWithLabels<T extends React.JSXElementConstructor<any>> = Partial<
+  Omit<ComponentProps<T>, keyof PropsWithLabels<{}>>
+> &
+  PropsWithLabels<{}>;
