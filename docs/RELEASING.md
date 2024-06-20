@@ -12,6 +12,10 @@ For more details, refer to the [internal versioning strategy](https://docs.googl
 
 - Create a new branch for the release and maintenance following the name convention `branch-x.y`
 
+- [Create a new version in the Echoes Design System project](https://sonarsource.atlassian.net/projects/DS?selectedItem=com.atlassian.jira.jira-projects-plugin%3Arelease-page) like [this one](https://sonarsource.atlassian.net/projects/DS/versions/15545)
+
+- Tag the relevant tickets with this new version
+
 - [Create a Jira release ticket in the REL project](https://jira.sonarsource.com/projects/REL) like [this one](https://sonarsource.atlassian.net/jira/software/c/projects/REL/issues/REL-3062)
 
   - Summary: @sonarsource/echoes-react x.y
