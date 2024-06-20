@@ -3,7 +3,7 @@
   "echoes-color-background-neutral-bolder": "rgb(225,230,243)",
   "echoes-color-background-default": "rgb(255,255,255)",
   "echoes-color-background-default-hover": "rgb(239,242,249)",
-  "echoes-color-background-default-active": "rgb(239,242,249)",
+  "echoes-color-background-default-active": "rgb(225,230,243)",
   "echoes-color-background-default-disabled": "rgb(239,242,249)",
   "echoes-color-background-page": "rgb(252,252,253)",
   "echoes-color-background-emphasize": "rgb(239,242,249)",

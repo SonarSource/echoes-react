@@ -24,7 +24,7 @@
         },
         "default-active": {
           "type": "color",
-          "value": "{echoes.color.grey.50}",
+          "value": "{echoes.color.grey.100}",
           "description": "Active color for bg-default"
         },
         "default-disabled": {
