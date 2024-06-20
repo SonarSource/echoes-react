@@ -25,7 +25,7 @@ html[data-echoes-theme='dark'], [data-echoes-theme='dark'] {
   --echoes-color-background-neutral-bolder: rgb(106,117,144);
   --echoes-color-background-default: rgb(42,47,64);
   --echoes-color-background-default-hover: rgb(29,33,47);
-  --echoes-color-background-default-active: rgb(29,33,47);
+  --echoes-color-background-default-active: rgb(42,47,64);
   --echoes-color-background-default-disabled: rgb(62,67,87);
   --echoes-color-background-page: rgb(29,33,47);
   --echoes-color-background-emphasize: rgb(29,33,47);
