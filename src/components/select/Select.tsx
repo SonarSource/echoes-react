@@ -22,7 +22,6 @@ import { Select as MantineSelect, SelectItem } from '@mantine/core';
 import sortBy from 'lodash.sortby';
 import { ComponentProps, forwardRef, useMemo } from 'react';
 import { PropsWithLabels } from '~types/utils';
-import { Spinner } from '..';
 
 export enum SelectHighlight {
   Default = 'default',
@@ -36,7 +35,6 @@ interface Props {
   data: ReadonlyArray<SelectItem>;
   defaultValue?: MantineSelectProps['defaultValue'];
   isDisabled?: boolean;
-  isLoading?: boolean;
   isNotClearable?: boolean;
   isRequired?: boolean;
   isSearchable?: boolean;
@@ -46,98 +44,54 @@ interface Props {
   highlight?: SelectHighlight;
   optionComponent?: MantineSelectProps['itemComponent'];
   onChange?: MantineSelectProps['onChange'];
-  onSearchChange?: MantineSelectProps['onSearchChange'];
   placeholder?: MantineSelectProps['placeholder'];
-  searchValue?: MantineSelectProps['searchValue'];
   value?: MantineSelectProps['value'];
   shouldSortOptions?: boolean;
 }
 
 export const Select = forwardRef<HTMLInputElement, PropsWithLabels<Props>>((props, ref) => {
   const {
+    ariaLabel,
+    ariaLabelledBy,
     data,
+    helpText,
     isDisabled = false,
-    isLoading = false,
     isNotClearable = false,
     isRequired = false,
     isSearchable = false,
+    label,
     labelError,
     labelNotFound,
-    onSearchChange,
     optionComponent,
     highlight,
     shouldSortOptions,
     ...selectProps
   } = props;
 
-  const itemComponent = optionComponent;
   const selectData = useMemo(
     () => (shouldSortOptions ? sortBy(data, (o) => (o.label ?? o.value).toUpperCase()) : data),
     [data, shouldSortOptions],
   );
 
-  /*
-  if (isLoading) {
-    selectData = [{ value: 'loading', disabled: true }, ...selectData];
-    itemComponent = SelectOptionLoading;
-  }*/
-
-  const filterProps: Pick<MantineSelectProps, 'filter'> = {};
-  if (onSearchChange) {
-    filterProps.filter = () => true;
-  }
-
   return (
     <MantineSelect
+      aria-label={ariaLabel}
+      aria-labelledby={ariaLabelledBy}
       clearable={!isNotClearable}
       data={selectData}
+      description={helpText}
       disabled={isDisabled}
       error={labelError}
-      itemComponent={itemComponent}
+      itemComponent={optionComponent}
+      label={label}
       nothingFound={labelNotFound}
-      onSearchChange={onSearchChange}
       ref={ref}
       required={isRequired}
-      rightSection={isLoading && <Spinner isLoading />}
       searchable={isSearchable}
       variant={highlight}
-      {...filterProps}
       {...selectProps}
     />
   );
 });
 
 Select.displayName = 'Select';
-/*
-function SelectOptionLoading(props) {
-  const { value, ...mantineProps } = props;
-
-  console.log('SelectOptionLoading', mantineProps);
-
-  const intl = useIntl();
-
-  if (value !== 'loading') {
-    return null;
-  }
-
-  return (
-    <SelectOptionLoadingWrapper {...mantineProps}>
-      <Spinner
-        isLoading
-        label={intl.formatMessage({
-          id: 'select.loading',
-          defaultMessage: 'Content is loading',
-          description:
-            'Message displayed next to a spinner in the select menu while the content is loading',
-        })}
-      />
-    </SelectOptionLoadingWrapper>
-  );
-}
-
-const SelectOptionLoadingWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  padding: var(--echoes-dimension-size-100) 0;
-`;
-*/

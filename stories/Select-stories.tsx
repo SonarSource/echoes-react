@@ -19,7 +19,6 @@
  */
 
 import type { Meta, StoryObj } from '@storybook/react';
-import { ComponentProps, useCallback, useState } from 'react';
 import { Select } from '../src';
 
 const meta: Meta<typeof Select> = {
@@ -42,61 +41,5 @@ export const Default: Story = {
   args: {
     data,
     isSearchable: true,
-    onSearchChange: undefined,
   },
 };
-
-export const AsyncSearch: Story = {
-  args: {},
-  render: (args) => (
-    <div style={{ width: 300 }}>
-      <Wrapper args={args} />
-    </div>
-  ),
-};
-
-interface Props {
-  args: ComponentProps<typeof Select>;
-}
-
-function Wrapper({ args }: Props) {
-  const [options, setOptions] = useState(data);
-  const [searchValue, setSearchValue] = useState<string | undefined>(undefined);
-  const [value, setValue] = useState<string | undefined>(undefined);
-  const [loading, setLoading] = useState(false);
-
-  const doSearch = useCallback(
-    (q: string) => {
-      setSearchValue(q);
-      console.log('searching', q, searchValue, value);
-      if (!loading && q !== searchValue) {
-        setLoading(true);
-        setTimeout(() => {
-          setOptions(data.filter((d) => d.label.includes(q)));
-          setLoading(false);
-        }, 2000);
-      }
-    },
-    [data, loading],
-  );
-
-  const onChange = useCallback((v) => {
-    console.log('value change', v);
-    setValue(v);
-  }, []);
-
-  return (
-    <div style={{ width: 300 }}>
-      <Select
-        {...args}
-        data={options}
-        isLoading={loading}
-        isSearchable
-        onChange={onChange}
-        onSearchChange={doSearch}
-        searchValue={searchValue}
-        value={value}
-      />
-    </div>
-  );
-}
