@@ -20,7 +20,7 @@
         },
         "default-active": {
           "type": "color",
-          "value": "{echoes.color.grey.700}"
+          "value": "{echoes.color.grey.600}"
         },
         "default-disabled": {
           "type": "color",
