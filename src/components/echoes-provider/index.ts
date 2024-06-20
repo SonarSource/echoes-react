@@ -18,11 +18,4 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-export * from './checkbox';
-export * from './echoes-provider';
-export * from './icons';
-export * from './links';
-export * from './radio-button-group';
-export * from './select';
-export * from './spinner';
-export * from './tooltip';
+export { EchoesProvider } from './EchoesProvider';

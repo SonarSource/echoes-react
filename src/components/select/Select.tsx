@@ -34,13 +34,14 @@ interface Props {
   className?: string;
   data: ReadonlyArray<SelectItem>;
   defaultValue?: MantineSelectProps['defaultValue'];
+  id?: string;
   isDisabled?: boolean;
   isNotClearable?: boolean;
   isRequired?: boolean;
   isSearchable?: boolean;
   labelError?: MantineSelectProps['error'];
   labelNotFound?: MantineSelectProps['nothingFound'];
-  limit?: MantineSelectProps['limit'];
+  limit?: MantineSelectProps['limit']; // might change for a max height
   highlight?: SelectHighlight;
   optionComponent?: MantineSelectProps['itemComponent'];
   onChange?: MantineSelectProps['onChange'];
