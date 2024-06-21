@@ -78,7 +78,7 @@ export const Select = forwardRef<HTMLInputElement, PropsWithLabels<Props>>((prop
     <MantineSelect
       aria-label={ariaLabel}
       aria-labelledby={ariaLabelledBy}
-      clearable={!isNotClearable}
+      clearable={!isNotClearable && !isRequired}
       data={selectData}
       description={helpText}
       disabled={isDisabled}
