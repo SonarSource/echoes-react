@@ -34,6 +34,7 @@ interface Props {
   className?: string;
   data: ReadonlyArray<SelectItem>;
   defaultValue?: MantineSelectProps['defaultValue'];
+  hasError?: boolean;
   id?: string;
   isDisabled?: boolean;
   isNotClearable?: boolean;
@@ -56,6 +57,7 @@ export const Select = forwardRef<HTMLInputElement, PropsWithLabels<Props>>((prop
     ariaLabelledBy,
     data,
     helpText,
+    hasError = false,
     isDisabled = false,
     isNotClearable = false,
     isRequired = false,
@@ -74,6 +76,8 @@ export const Select = forwardRef<HTMLInputElement, PropsWithLabels<Props>>((prop
     [data, shouldSortOptions],
   );
 
+  // TODO Highlighter for search
+
   return (
     <MantineSelect
       aria-label={ariaLabel}
@@ -82,7 +86,7 @@ export const Select = forwardRef<HTMLInputElement, PropsWithLabels<Props>>((prop
       data={selectData}
       description={helpText}
       disabled={isDisabled}
-      error={labelError}
+      error={labelError ?? hasError}
       itemComponent={optionComponent}
       label={label}
       nothingFound={labelNotFound}
