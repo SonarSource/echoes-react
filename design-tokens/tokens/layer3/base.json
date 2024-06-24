@@ -8,7 +8,29 @@
             "type": "sizing"
           }
         }
+      },
+      "inputs": {
+        "small": {
+          "value": "150px",
+          "type": "sizing"
+        },
+        "medium": {
+          "value": "250px",
+          "type": "sizing"
+        },
+        "large": {
+          "value": "350px",
+          "type": "sizing"
+        },
+        "full": {
+          "value": "100%",
+          "type": "sizing"
+        }
       }
     }
   }
 }
+
+
+
+
