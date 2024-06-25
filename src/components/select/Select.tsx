@@ -48,6 +48,7 @@ interface Props {
   name?: MantineSelectProps['name'];
   optionComponent?: MantineSelectProps['itemComponent'];
   onChange?: MantineSelectProps['onChange'];
+  onOpen?: MantineSelectProps['onDropdownOpen'];
   placeholder?: MantineSelectProps['placeholder'];
   value?: MantineSelectProps['value'];
 }
@@ -57,17 +58,18 @@ export const Select = forwardRef<HTMLInputElement, PropsWithLabels<Props>>((prop
     ariaLabel,
     ariaLabelledBy,
     data,
-    helpText,
     hasError = false,
+    helpText,
     highlight,
     isDisabled = false,
     isLoading = false,
     isNotClearable = false,
-    isRequired = false,
     isSearchable = false,
+    isRequired = false,
     label,
     labelError,
     labelNotFound,
+    onOpen,
     optionComponent,
     ...selectProps
   } = props;
@@ -86,6 +88,7 @@ export const Select = forwardRef<HTMLInputElement, PropsWithLabels<Props>>((prop
       itemComponent={optionComponent}
       label={label}
       nothingFound={labelNotFound}
+      onDropdownOpen={onOpen}
       ref={ref}
       required={isRequired}
       rightSection={isLoading ? <Spinner isLoading /> : undefined}
