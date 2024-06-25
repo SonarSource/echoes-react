@@ -18,12 +18,16 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-/**
- * This folder is for:
- *  - Small utility functions that are exported to ease the usage of the design system library
- *  - Custom hooks, following the naming convention for hooks: useXXXXXXXXXXX
- *
- */
+export enum InputSize {
+  Small,
+  Medium,
+  Large,
+  Full,
+}
 
-export { InputSize } from './inputs';
-export { ThemeProvider, setTheme } from './theme';
+export const INPUT_SIZE_VALUES = {
+  [InputSize.Small]: 'var(--echoes-sizes-inputs-small)',
+  [InputSize.Medium]: 'var(--echoes-sizes-inputs-medium)',
+  [InputSize.Large]: 'var(--echoes-sizes-inputs-large)',
+  [InputSize.Full]: 'var(--echoes-sizes-inputs-full)',
+};

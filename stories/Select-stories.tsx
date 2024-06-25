@@ -19,7 +19,7 @@
  */
 
 import type { Meta, StoryObj } from '@storybook/react';
-import { Select } from '../src';
+import { IconBell, Select } from '../src';
 
 const meta: Meta<typeof Select> = {
   component: Select,
@@ -40,6 +40,7 @@ const data = [
 export const Default: Story = {
   args: {
     data,
+    valueIcon: <IconBell />,
     isSearchable: true,
   },
 };
