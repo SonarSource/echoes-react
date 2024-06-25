@@ -20,7 +20,7 @@
 
 import styled from '@emotion/styled';
 import { Select as MantineSelect, SelectItem } from '@mantine/core';
-import { ComponentProps, forwardRef } from 'react';
+import { ComponentProps, ComponentType, forwardRef, useMemo } from 'react';
 import { PropsWithLabels } from '~types/utils';
 import { IconChevronDown, Spinner } from '..';
 import { INPUT_SIZE_VALUES, InputSize } from '../../utils/inputs';
@@ -82,6 +82,8 @@ export const Select = forwardRef<HTMLInputElement, PropsWithLabels<Props>>((prop
 
   // TODO Highlighter for search
 
+  const itemComponent = useMemo(() => withSelectItemWrapper(optionComponent), [optionComponent]);
+
   return (
     <SelectStyled
       aria-label={ariaLabel}
@@ -93,8 +95,9 @@ export const Select = forwardRef<HTMLInputElement, PropsWithLabels<Props>>((prop
       disabled={isDisabled}
       error={labelError ?? hasError}
       icon={valueIcon}
+      initiallyOpened
       inputSize={size}
-      itemComponent={optionComponent}
+      itemComponent={itemComponent}
       label={label}
       nothingFound={labelNotFound}
       onDropdownOpen={onOpen}
@@ -109,6 +112,59 @@ export const Select = forwardRef<HTMLInputElement, PropsWithLabels<Props>>((prop
 });
 
 Select.displayName = 'Select';
+
+function withSelectItemWrapper<P extends Partial<SelectItem>>(WrappedComponent?: ComponentType<P>) {
+  const Wrapper = forwardRef<HTMLDivElement, P>((props, ref) => (
+    <SelectItemWrapper ref={ref} {...props}>
+      {WrappedComponent ? <WrappedComponent {...props} /> : props.label}
+    </SelectItemWrapper>
+  ));
+
+  Wrapper.displayName = 'SelectItemWrapper';
+
+  return Wrapper;
+}
+
+const SelectItemWrapper = styled.div`
+  &.mantine-Select-item {
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: var(--echoes-dimension-space-50);
+
+    border: var(--echoes-focus-border-width-default) solid transparent;
+    border-radius: var(--echoes-border-radius-200);
+
+    padding: calc(var(--echoes-dimension-space-100) - var(--echoes-focus-border-width-default))
+      var(--echoes-dimension-space-200);
+
+    font: var(--echoes-typography-paragraph-default-regular);
+    color: var(--echoes-color-text-default);
+
+    background-color: var(--echoes-color-background-default);
+
+    &:not([data-disabled]) {
+      &:hover {
+        background-color: var(--echoes-color-background-default-hover);
+      }
+
+      &:active {
+        background-color: var(--echoes-color-background-default-active);
+      }
+
+      &[data-hovered] {
+        border: var(--echoes-color-focus-default) solid var(--echoes-focus-border-width-default);
+      }
+    }
+
+    &[data-disabled] {
+      color: var(--echoes-color-text-disabled);
+    }
+  }
+`;
 
 const SelectStyled = styled(MantineSelect, {
   shouldForwardProp: (prop) => prop !== 'inputSize',
@@ -172,6 +228,45 @@ const SelectStyled = styled(MantineSelect, {
   & .mantine-Select-wrapper:has(input:disabled) .mantine-Input-rightSection {
     display: flex;
     color: var(--echoes-color-icon-disabled);
+  }
+
+  & .mantine-Select-dropdown {
+    padding: var(--echoes-dimension-space-100) var(--echoes-dimension-space-0);
+
+    background: var(--echoes-color-background-default);
+    border: var(--echoes-border-width-default) solid var(--echoes-color-border-weak);
+    border-radius: var(--echoes-border-radius-400);
+
+    box-shadow: var(--echoes-box-shadow-medium);
+
+    & .mantine-Select-itemsWrapper {
+      padding: var(--echoes-dimension-space-0);
+    }
+  }
+
+  & .mantine-Select-separatorLabel {
+    font: var(--echoes-typography-paragraph-small-semi-bold);
+    color: var(--echoes-color-text-default);
+    padding: var(--echoes-dimension-space-100) var(--echoes-dimension-space-200);
+
+    &::after {
+      display: none;
+    }
+  }
+
+  & .mantine-Select-separator {
+    display: flex;
+    flex-direction: column;
+    padding: var(--echoes-dimension-space-0);
+  }
+
+  & .mantine-Select-item + .mantine-Select-separator {
+    &::before {
+      content: '';
+      flex: 1;
+      border-top: var(--echoes-border-width-default) solid var(--echoes-color-border-weak);
+      padding: var(--echoes-dimension-space-25) var(--echoes-dimension-space-0);
+    }
   }
 `;
 

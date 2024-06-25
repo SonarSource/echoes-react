@@ -31,10 +31,10 @@ export default meta;
 type Story = StoryObj<typeof Select>;
 
 const data = [
-  { value: '1', label: 'cheese' },
-  { value: '2', label: 'bread' },
-  { value: '3', label: 'salad' },
-  { value: '4', label: 'no' },
+  { value: '1', label: 'cheese', group: 'good' },
+  { value: '2', label: 'bread', group: 'good' },
+  { value: '3', label: 'salad', group: 'bad' },
+  { value: '4', label: 'no', group: 'bad', disabled: true },
 ];
 
 export const Default: Story = {
@@ -42,5 +42,14 @@ export const Default: Story = {
     data,
     valueIcon: <IconBell />,
     isSearchable: true,
+    optionComponent: Custom,
   },
 };
+
+function Custom(props: any) {
+  return (
+    <span>
+      {props.label}-{props.value}
+    </span>
+  );
+}
