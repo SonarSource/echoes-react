@@ -18,6 +18,16 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-export { Select } from './Select';
-export { SelectAsync } from './SelectAsync';
-export type { SelectHighlight, SelectOption, SelectOptionType } from './SelectTypes';
+export enum InputSize {
+  Small,
+  Medium,
+  Large,
+  Full,
+}
+
+export const INPUT_SIZE_VALUES = {
+  [InputSize.Small]: 'var(--echoes-sizes-inputs-small)',
+  [InputSize.Medium]: 'var(--echoes-sizes-inputs-medium)',
+  [InputSize.Large]: 'var(--echoes-sizes-inputs-large)',
+  [InputSize.Full]: 'var(--echoes-sizes-inputs-full)',
+};

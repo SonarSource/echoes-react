@@ -18,39 +18,16 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import { Select as MantineSelect, SelectItem } from '@mantine/core';
-import { ComponentProps, forwardRef } from 'react';
+import { forwardRef } from 'react';
+import { isDefined } from '~common/helpers/types';
 import { PropsWithLabels } from '~types/utils';
-import { Spinner } from '..';
+import { InputSize } from '../../utils/inputs';
+import { SelectStyled, getSelectRightSection } from './SelectCommons';
+import { useSelectItemComponent } from './SelectItemCommons';
+import { SelectBaseProps, SelectHighlight, SelectOptionType } from './SelectTypes';
 
-export enum SelectHighlight {
-  Default = 'default',
-  Ghost = 'unstyled',
-}
-
-type MantineSelectProps = ComponentProps<typeof MantineSelect>;
-
-interface Props {
-  className?: string;
-  data: ReadonlyArray<SelectItem>;
-  defaultValue?: MantineSelectProps['defaultValue'];
-  hasError?: boolean;
-  highlight?: SelectHighlight;
-  id?: string;
-  isDisabled?: boolean;
-  isLoading?: boolean;
-  isNotClearable?: boolean;
-  isRequired?: boolean;
+interface Props extends SelectBaseProps {
   isSearchable?: boolean;
-  labelError?: MantineSelectProps['error'];
-  labelNotFound?: MantineSelectProps['nothingFound'];
-  limit?: MantineSelectProps['limit']; // might change for a max height
-  name?: MantineSelectProps['name'];
-  optionComponent?: MantineSelectProps['itemComponent'];
-  onChange?: MantineSelectProps['onChange'];
-  onOpen?: MantineSelectProps['onDropdownOpen'];
-  placeholder?: MantineSelectProps['placeholder'];
-  value?: MantineSelectProps['value'];
 }
 
 export const Select = forwardRef<HTMLInputElement, PropsWithLabels<Props>>((props, ref) => {
@@ -60,7 +37,7 @@ export const Select = forwardRef<HTMLInputElement, PropsWithLabels<Props>>((prop
     data,
     hasError = false,
     helpText,
-    highlight,
+    highlight = SelectHighlight.Default,
     isDisabled = false,
     isLoading = false,
     isNotClearable = false,
@@ -71,27 +48,41 @@ export const Select = forwardRef<HTMLInputElement, PropsWithLabels<Props>>((prop
     labelNotFound,
     onOpen,
     optionComponent,
+    optionType = SelectOptionType.Check,
+    size = InputSize.Full,
+    valueIcon,
     ...selectProps
   } = props;
+
+  const itemComponent = useSelectItemComponent(optionComponent, optionType);
+  const isClearable = !isNotClearable && !isRequired;
 
   // TODO Highlighter for search
 
   return (
-    <MantineSelect
+    <SelectStyled
+      allowDeselect={isClearable}
       aria-label={ariaLabel}
       aria-labelledby={ariaLabelledBy}
-      clearable={!isNotClearable && !isRequired}
+      clearable={isClearable}
       data={data}
+      data-variant={highlight}
       description={helpText}
       disabled={isDisabled}
       error={labelError ?? hasError}
-      itemComponent={optionComponent}
+      icon={valueIcon}
+      inputSize={size}
+      itemComponent={itemComponent}
       label={label}
       nothingFound={labelNotFound}
       onDropdownOpen={onOpen}
       ref={ref}
       required={isRequired}
-      rightSection={isLoading ? <Spinner isLoading /> : undefined}
+      rightSection={getSelectRightSection({
+        hasValue: isDefined(selectProps.value),
+        isLoading,
+        isClearable,
+      })}
       searchable={isSearchable}
       variant={highlight}
       {...selectProps}
