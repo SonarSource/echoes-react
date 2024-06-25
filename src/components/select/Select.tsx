@@ -21,6 +21,7 @@
 import { Select as MantineSelect, SelectItem } from '@mantine/core';
 import { ComponentProps, forwardRef } from 'react';
 import { PropsWithLabels } from '~types/utils';
+import { Spinner } from '..';
 
 export enum SelectHighlight {
   Default = 'default',
@@ -37,6 +38,7 @@ interface Props {
   highlight?: SelectHighlight;
   id?: string;
   isDisabled?: boolean;
+  isLoading?: boolean;
   isNotClearable?: boolean;
   isRequired?: boolean;
   isSearchable?: boolean;
@@ -59,6 +61,7 @@ export const Select = forwardRef<HTMLInputElement, PropsWithLabels<Props>>((prop
     hasError = false,
     highlight,
     isDisabled = false,
+    isLoading = false,
     isNotClearable = false,
     isRequired = false,
     isSearchable = false,
@@ -85,6 +88,7 @@ export const Select = forwardRef<HTMLInputElement, PropsWithLabels<Props>>((prop
       nothingFound={labelNotFound}
       ref={ref}
       required={isRequired}
+      rightSection={isLoading ? <Spinner isLoading /> : undefined}
       searchable={isSearchable}
       variant={highlight}
       {...selectProps}
