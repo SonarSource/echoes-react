@@ -23,10 +23,10 @@ import {
   SelectProps as MantineSelectProps,
   SelectItem,
 } from '@mantine/core';
-import { forwardRef, useCallback, useRef } from 'react';
+import { forwardRef, useCallback, useMemo, useRef } from 'react';
 import { PropsWithLabels } from '~types/utils';
 import { Spinner } from '..';
-import { SelectHighlight } from './Select';
+import { SelectHighlight, withSelectItemWrapper } from './Select';
 
 interface Props {
   className?: string;
@@ -49,10 +49,13 @@ interface Props {
 export const SelectAsync = forwardRef<HTMLInputElement, PropsWithLabels<Props>>((props, ref) => {
   const {
     ariaLabel,
+    ariaLabelledBy,
+    className,
     data,
     hasError,
     helpText,
     highlight,
+    id,
     isNotClearable,
     isDisabled,
     isLoading,
@@ -109,17 +112,22 @@ export const SelectAsync = forwardRef<HTMLInputElement, PropsWithLabels<Props>>(
     [onChange],
   );
 
+  const itemComponent = useMemo(() => withSelectItemWrapper(optionComponent), [optionComponent]);
+
   return (
     <MantineSelect
       allowDeselect={!isRequired}
       aria-label={ariaLabel}
+      aria-labelledby={ariaLabelledBy}
+      className={className}
       clearable={!isNotClearable && !isRequired}
       data={data}
       description={helpText}
       disabled={isDisabled}
       error={labelError ?? hasError}
       filter={() => true}
-      itemComponent={optionComponent}
+      id={id}
+      itemComponent={itemComponent}
       label={label}
       nothingFound={labelNotFound}
       onChange={handleChange}
@@ -128,7 +136,7 @@ export const SelectAsync = forwardRef<HTMLInputElement, PropsWithLabels<Props>>(
       required={isRequired}
       rightSection={isLoading ? <Spinner isLoading /> : undefined}
       searchable
-      value={value}
+      value={value ?? null} // Mantine only clears the value if `null`, not `undefined`
       variant={highlight}
     />
   );

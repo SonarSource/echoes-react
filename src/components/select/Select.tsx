@@ -113,7 +113,9 @@ export const Select = forwardRef<HTMLInputElement, PropsWithLabels<Props>>((prop
 
 Select.displayName = 'Select';
 
-function withSelectItemWrapper<P extends Partial<SelectItem>>(WrappedComponent?: ComponentType<P>) {
+export function withSelectItemWrapper<P extends Partial<SelectItem>>(
+  WrappedComponent?: ComponentType<P>,
+) {
   const Wrapper = forwardRef<HTMLDivElement, P>((props, ref) => (
     <SelectItemWrapper ref={ref} {...props}>
       {WrappedComponent ? <WrappedComponent {...props} /> : props.label}
