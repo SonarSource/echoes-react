@@ -19,8 +19,7 @@
  */
 
 import { Select as MantineSelect, SelectItem } from '@mantine/core';
-import sortBy from 'lodash.sortby';
-import { ComponentProps, forwardRef, useMemo } from 'react';
+import { ComponentProps, forwardRef } from 'react';
 import { PropsWithLabels } from '~types/utils';
 
 export enum SelectHighlight {
@@ -35,6 +34,7 @@ interface Props {
   data: ReadonlyArray<SelectItem>;
   defaultValue?: MantineSelectProps['defaultValue'];
   hasError?: boolean;
+  highlight?: SelectHighlight;
   id?: string;
   isDisabled?: boolean;
   isNotClearable?: boolean;
@@ -43,12 +43,11 @@ interface Props {
   labelError?: MantineSelectProps['error'];
   labelNotFound?: MantineSelectProps['nothingFound'];
   limit?: MantineSelectProps['limit']; // might change for a max height
-  highlight?: SelectHighlight;
+  name?: MantineSelectProps['name'];
   optionComponent?: MantineSelectProps['itemComponent'];
   onChange?: MantineSelectProps['onChange'];
   placeholder?: MantineSelectProps['placeholder'];
   value?: MantineSelectProps['value'];
-  shouldSortOptions?: boolean;
 }
 
 export const Select = forwardRef<HTMLInputElement, PropsWithLabels<Props>>((props, ref) => {
@@ -58,6 +57,7 @@ export const Select = forwardRef<HTMLInputElement, PropsWithLabels<Props>>((prop
     data,
     helpText,
     hasError = false,
+    highlight,
     isDisabled = false,
     isNotClearable = false,
     isRequired = false,
@@ -66,15 +66,8 @@ export const Select = forwardRef<HTMLInputElement, PropsWithLabels<Props>>((prop
     labelError,
     labelNotFound,
     optionComponent,
-    highlight,
-    shouldSortOptions,
     ...selectProps
   } = props;
-
-  const selectData = useMemo(
-    () => (shouldSortOptions ? sortBy(data, (o) => (o.label ?? o.value).toUpperCase()) : data),
-    [data, shouldSortOptions],
-  );
 
   // TODO Highlighter for search
 
@@ -83,7 +76,7 @@ export const Select = forwardRef<HTMLInputElement, PropsWithLabels<Props>>((prop
       aria-label={ariaLabel}
       aria-labelledby={ariaLabelledBy}
       clearable={!isNotClearable && !isRequired}
-      data={selectData}
+      data={data}
       description={helpText}
       disabled={isDisabled}
       error={labelError ?? hasError}
