@@ -3642,7 +3642,6 @@ __metadata:
     "@types/eslint": "npm:8.56.6"
     "@types/jest": "npm:29.5.12"
     "@types/jest-axe": "npm:3.5.9"
-    "@types/lodash.sortby": "npm:4.7.9"
     "@types/node": "npm:20.11.30"
     "@types/react": "npm:17.0.79"
     "@types/react-dom": "npm:17.0.25"
@@ -3666,7 +3665,6 @@ __metadata:
     jest: "npm:29.7.0"
     jest-axe: "npm:8.0.0"
     jest-environment-jsdom: "npm:29.7.0"
-    lodash.sortby: "npm:4.7.0"
     prettier: "npm:3.2.5"
     react: "npm:17.0.2"
     react-dom: "npm:17.0.2"
@@ -5047,22 +5045,6 @@ __metadata:
   version: 0.0.29
   resolution: "@types/json5@npm:0.0.29"
   checksum: 4e5aed58cabb2bbf6f725da13421aa50a49abb6bc17bfab6c31b8774b073fa7b50d557c61f961a09a85f6056151190f8ac95f13f5b48136ba5841f7d4484ec56
-  languageName: node
-  linkType: hard
-
-"@types/lodash.sortby@npm:4.7.9":
-  version: 4.7.9
-  resolution: "@types/lodash.sortby@npm:4.7.9"
-  dependencies:
-    "@types/lodash": "npm:*"
-  checksum: b5f0159d51ff2928b9d54ab8ed5f95be8d4d4d7ff24a46eef24654e5523ec3e9b371125ed9a24e9e88abb4a337bbff05379a51c3c174ca424d68714151cbe158
-  languageName: node
-  linkType: hard
-
-"@types/lodash@npm:*":
-  version: 4.17.5
-  resolution: "@types/lodash@npm:4.17.5"
-  checksum: 10e2e9cbeb16998026f4071f9f5f2a38b651eba15302f512e0b8ab904c07c197ca0282d2821f64e53c2b692d7046af0a1ce3ead190fb077cbe4036948fce1924
   languageName: node
   linkType: hard
 
@@ -10839,13 +10821,6 @@ __metadata:
   version: 4.6.2
   resolution: "lodash.merge@npm:4.6.2"
   checksum: d0ea2dd0097e6201be083865d50c3fb54fbfbdb247d9cc5950e086c991f448b7ab0cdab0d57eacccb43473d3f2acd21e134db39f22dac2d6c9ba6bf26978e3d6
-  languageName: node
-  linkType: hard
-
-"lodash.sortby@npm:4.7.0":
-  version: 4.7.0
-  resolution: "lodash.sortby@npm:4.7.0"
-  checksum: 38df19ae28608af2c50ac342fc1f414508309d53e1d58ed9adfb2c3cd17c3af290058c0a0478028d932c5404df3d53349d19fa364ef6bed6145a6bc21320399e
   languageName: node
   linkType: hard
 

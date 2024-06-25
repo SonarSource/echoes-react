@@ -75,7 +75,6 @@
     "@types/eslint": "8.56.6",
     "@types/jest": "29.5.12",
     "@types/jest-axe": "3.5.9",
-    "@types/lodash.sortby": "4.7.9",
     "@types/node": "20.11.30",
     "@types/react": "17.0.79",
     "@types/react-dom": "17.0.25",
@@ -121,8 +120,7 @@
     "@radix-ui/react-slot": "1.0.2",
     "@radix-ui/react-tooltip": "1.0.7",
     "@radix-ui/react-visually-hidden": "1.0.3",
-    "classnames": "2.5.1",
-    "lodash.sortby": "4.7.0"
+    "classnames": "2.5.1"
   },
   "resolutions": {
     "@testing-library/dom": "9.3.4"

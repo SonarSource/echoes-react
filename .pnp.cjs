@@ -62,7 +62,6 @@ const RAW_RUNTIME_STATE =
           ["@types/eslint", "npm:8.56.6"],\
           ["@types/jest", "npm:29.5.12"],\
           ["@types/jest-axe", "npm:3.5.9"],\
-          ["@types/lodash.sortby", "npm:4.7.9"],\
           ["@types/node", "npm:20.11.30"],\
           ["@types/react", "npm:17.0.79"],\
           ["@types/react-dom", "npm:17.0.25"],\
@@ -86,7 +85,6 @@ const RAW_RUNTIME_STATE =
           ["jest", "virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#npm:29.7.0"],\
           ["jest-axe", "npm:8.0.0"],\
           ["jest-environment-jsdom", "virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#npm:29.7.0"],\
-          ["lodash.sortby", "npm:4.7.0"],\
           ["prettier", "npm:3.2.5"],\
           ["react", "npm:17.0.2"],\
           ["react-dom", "virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#npm:17.0.2"],\
@@ -5833,7 +5831,6 @@ const RAW_RUNTIME_STATE =
           ["@types/eslint", "npm:8.56.6"],\
           ["@types/jest", "npm:29.5.12"],\
           ["@types/jest-axe", "npm:3.5.9"],\
-          ["@types/lodash.sortby", "npm:4.7.9"],\
           ["@types/node", "npm:20.11.30"],\
           ["@types/react", "npm:17.0.79"],\
           ["@types/react-dom", "npm:17.0.25"],\
@@ -5857,7 +5854,6 @@ const RAW_RUNTIME_STATE =
           ["jest", "virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#npm:29.7.0"],\
           ["jest-axe", "npm:8.0.0"],\
           ["jest-environment-jsdom", "virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#npm:29.7.0"],\
-          ["lodash.sortby", "npm:4.7.0"],\
           ["prettier", "npm:3.2.5"],\
           ["react", "npm:17.0.2"],\
           ["react-dom", "virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#npm:17.0.2"],\
@@ -7786,23 +7782,6 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./.yarn/cache/@types-lodash-npm-4.17.0-11e757616b-2053203292.zip/node_modules/@types/lodash/",\
         "packageDependencies": [\
           ["@types/lodash", "npm:4.17.0"]\
-        ],\
-        "linkType": "HARD"\
-      }],\
-      ["npm:4.17.5", {\
-        "packageLocation": "./.yarn/cache/@types-lodash-npm-4.17.5-81b8d6a8ab-10e2e9cbeb.zip/node_modules/@types/lodash/",\
-        "packageDependencies": [\
-          ["@types/lodash", "npm:4.17.5"]\
-        ],\
-        "linkType": "HARD"\
-      }]\
-    ]],\
-    ["@types/lodash.sortby", [\
-      ["npm:4.7.9", {\
-        "packageLocation": "./.yarn/cache/@types-lodash.sortby-npm-4.7.9-37f7952032-b5f0159d51.zip/node_modules/@types/lodash.sortby/",\
-        "packageDependencies": [\
-          ["@types/lodash.sortby", "npm:4.7.9"],\
-          ["@types/lodash", "npm:4.17.5"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -14732,15 +14711,6 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./.yarn/cache/lodash.merge-npm-4.6.2-77cb4416bf-d0ea2dd009.zip/node_modules/lodash.merge/",\
         "packageDependencies": [\
           ["lodash.merge", "npm:4.6.2"]\
-        ],\
-        "linkType": "HARD"\
-      }]\
-    ]],\
-    ["lodash.sortby", [\
-      ["npm:4.7.0", {\
-        "packageLocation": "./.yarn/cache/lodash.sortby-npm-4.7.0-fda8ab950d-38df19ae28.zip/node_modules/lodash.sortby/",\
-        "packageDependencies": [\
-          ["lodash.sortby", "npm:4.7.0"]\
         ],\
         "linkType": "HARD"\
       }]\

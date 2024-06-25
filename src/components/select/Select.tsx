@@ -19,8 +19,7 @@
  */
 
 import { Select as MantineSelect, SelectItem } from '@mantine/core';
-import sortBy from 'lodash.sortby';
-import { ComponentProps, forwardRef, useMemo } from 'react';
+import { ComponentProps, forwardRef } from 'react';
 import { PropsWithLabels } from '~types/utils';
 import { Spinner } from '..';
 
@@ -35,6 +34,9 @@ interface Props {
   className?: string;
   data: ReadonlyArray<SelectItem>;
   defaultValue?: MantineSelectProps['defaultValue'];
+  hasError?: boolean;
+  highlight?: SelectHighlight;
+  id?: string;
   isDisabled?: boolean;
   isLoading?: boolean;
   isNotClearable?: boolean;
@@ -42,102 +44,59 @@ interface Props {
   isSearchable?: boolean;
   labelError?: MantineSelectProps['error'];
   labelNotFound?: MantineSelectProps['nothingFound'];
-  limit?: MantineSelectProps['limit'];
-  highlight?: SelectHighlight;
+  limit?: MantineSelectProps['limit']; // might change for a max height
+  name?: MantineSelectProps['name'];
   optionComponent?: MantineSelectProps['itemComponent'];
   onChange?: MantineSelectProps['onChange'];
-  onSearchChange?: MantineSelectProps['onSearchChange'];
+  onOpen?: MantineSelectProps['onDropdownOpen'];
   placeholder?: MantineSelectProps['placeholder'];
-  searchValue?: MantineSelectProps['searchValue'];
   value?: MantineSelectProps['value'];
-  shouldSortOptions?: boolean;
 }
 
 export const Select = forwardRef<HTMLInputElement, PropsWithLabels<Props>>((props, ref) => {
   const {
+    ariaLabel,
+    ariaLabelledBy,
     data,
+    hasError = false,
+    helpText,
+    highlight,
     isDisabled = false,
     isLoading = false,
     isNotClearable = false,
-    isRequired = false,
     isSearchable = false,
+    isRequired = false,
+    label,
     labelError,
     labelNotFound,
-    onSearchChange,
+    onOpen,
     optionComponent,
-    highlight,
-    shouldSortOptions,
     ...selectProps
   } = props;
 
-  const itemComponent = optionComponent;
-  const selectData = useMemo(
-    () => (shouldSortOptions ? sortBy(data, (o) => (o.label ?? o.value).toUpperCase()) : data),
-    [data, shouldSortOptions],
-  );
-
-  /*
-  if (isLoading) {
-    selectData = [{ value: 'loading', disabled: true }, ...selectData];
-    itemComponent = SelectOptionLoading;
-  }*/
-
-  const filterProps: Pick<MantineSelectProps, 'filter'> = {};
-  if (onSearchChange) {
-    filterProps.filter = () => true;
-  }
+  // TODO Highlighter for search
 
   return (
     <MantineSelect
-      clearable={!isNotClearable}
-      data={selectData}
+      aria-label={ariaLabel}
+      aria-labelledby={ariaLabelledBy}
+      clearable={!isNotClearable && !isRequired}
+      data={data}
+      description={helpText}
       disabled={isDisabled}
-      error={labelError}
-      itemComponent={itemComponent}
+      error={labelError ?? hasError}
+      itemComponent={optionComponent}
+      label={label}
       nothingFound={labelNotFound}
-      onSearchChange={onSearchChange}
+      onDropdownOpen={onOpen}
       ref={ref}
       required={isRequired}
-      rightSection={isLoading && <Spinner isLoading />}
+      rightSection={isLoading ? <Spinner isLoading /> : undefined}
       searchable={isSearchable}
       variant={highlight}
-      {...filterProps}
       {...selectProps}
     />
   );
 });
 
 Select.displayName = 'Select';
-/*
-function SelectOptionLoading(props) {
-  const { value, ...mantineProps } = props;
-
-  console.log('SelectOptionLoading', mantineProps);
-
-  const intl = useIntl();
-
-  if (value !== 'loading') {
-    return null;
-  }
-
-  return (
-    <SelectOptionLoadingWrapper {...mantineProps}>
-      <Spinner
-        isLoading
-        label={intl.formatMessage({
-          id: 'select.loading',
-          defaultMessage: 'Content is loading',
-          description:
-            'Message displayed next to a spinner in the select menu while the content is loading',
-        })}
-      />
-    </SelectOptionLoadingWrapper>
-  );
-}
-
-const SelectOptionLoadingWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  padding: var(--echoes-dimension-size-100) 0;
-`;
-*/
