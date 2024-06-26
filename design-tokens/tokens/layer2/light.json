@@ -65,14 +65,15 @@
           },
           "default-active": {
             "type": "color",
-            "value": "{echoes.color.indigo.600}",
+            "value": "{echoes.color.indigo.700}",
             "description": "Active state of components that reinforce our brand"
           },
-          "default-disabled": {
-            "type": "color",
-            "value": "{echoes.color.grey.50}",
-            "description": "Disabled state of components that reinforce our brand"
-          },
+          "default-focus": {
+            "value": "{echoes.color.indigo.500}",
+            "type": "color"
+          }
+        },
+        "accent-weak": {
           "weak": {
             "type": "color",
             "value": "{echoes.color.indigo.50}",
@@ -85,13 +86,13 @@
           },
           "weak-active": {
             "type": "color",
-            "value": "{echoes.color.indigo.100}",
+            "value": "{echoes.color.indigo.200}",
             "description": "Active state of components that reinforce our brand with less visual highlight"
           },
-          "weak-disabled": {
+          "weak-focus": {
             "type": "color",
-            "value": "{echoes.color.grey.50}",
-            "description": "Disabled state of components that reinforce our brand with less visual highlight"
+            "value": "{echoes.color.indigo.50}",
+            "description": "Focus state of components that reinforce our brand with less visual highlight"
           }
         },
         "warning": {
@@ -131,19 +132,16 @@
           },
           "default-active": {
             "type": "color",
-            "value": "{echoes.color.red.700}",
+            "value": "{echoes.color.red.800}",
             "description": "Active state for backgrounds that communicate danger or destructive messages"
           },
           "default-focused": {
             "type": "color",
             "value": "{echoes.color.red.600}",
             "description": "Focused state for backgrounds that communicate danger or destructive messages"
-          },
-          "default-disabled": {
-            "type": "color",
-            "value": "{echoes.color.grey.50}",
-            "description": "Disabled state for backgrounds that communicate danger or destructive messages"
-          },
+          }
+        },
+        "danger-weak": {
           "weak": {
             "type": "color",
             "value": "{echoes.color.red.50}",
@@ -156,13 +154,12 @@
           },
           "weak-active": {
             "type": "color",
-            "value": "{echoes.color.red.100}",
+            "value": "{echoes.color.red.200}",
             "description": "Active state for backgrounds that communicate danger or destructive messages, with less visual highlight"
           },
-          "weak-disabled": {
-            "type": "color",
-            "value": "{echoes.color.grey.50}",
-            "description": "Focus state for backgrounds that communicate danger or destructive messages, with less visual highlight"
+          "weak-focus": {
+            "value": "{echoes.color.red.50}",
+            "type": "color"
           }
         },
         "info": {
