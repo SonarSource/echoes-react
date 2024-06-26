@@ -47,33 +47,33 @@
             "type": "color",
             "value": "{echoes.color.indigo.300}"
           },
-          "default-hover": {
+          "hover": {
             "type": "color",
             "value": "{echoes.color.indigo.200}"
           },
-          "default-active": {
+          "active": {
             "type": "color",
             "value": "{echoes.color.indigo.100}"
           },
-          "default-focus": {
+          "focus": {
             "value": "{echoes.color.indigo.300}",
             "type": "color"
           }
         },
         "accent-weak": {
-          "weak": {
+          "default": {
             "type": "color",
             "value": "#5D6CD033"
           },
-          "weak-hover": {
+          "hover": {
             "type": "color",
             "value": "#5D6CD04D"
           },
-          "weak-active": {
+          "active": {
             "type": "color",
             "value": "#5D6CD04D"
           },
-          "weak-focus": {
+          "focus": {
             "value": "#5D6CD033",
             "type": "color"
           }
@@ -103,33 +103,33 @@
             "type": "color",
             "value": "{echoes.color.red.300}"
           },
-          "default-hover": {
+          "hover": {
             "type": "color",
             "value": "{echoes.color.red.200}"
           },
-          "default-active": {
+          "active": {
             "type": "color",
             "value": "{echoes.color.red.100}"
           },
-          "default-focused": {
+          "focus": {
             "type": "color",
             "value": "{echoes.color.red.300}"
           }
         },
         "danger-weak": {
-          "weak": {
+          "default": {
             "type": "color",
             "value": "#FDA29B33"
           },
-          "weak-hover": {
+          "hover": {
             "type": "color",
             "value": "{echoes.color.grey.700}"
           },
-          "weak-active": {
+          "active": {
             "type": "color",
             "value": "{echoes.color.grey.700}"
           },
-          "weak-focused": {
+          "focus": {
             "value": "{echoes.color.red.300}",
             "type": "color"
           }

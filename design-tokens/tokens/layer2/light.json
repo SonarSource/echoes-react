@@ -58,38 +58,38 @@
             "value": "{echoes.color.indigo.500}",
             "description": "Used as the background color of components that reinforce our brand"
           },
-          "default-hover": {
+          "hover": {
             "type": "color",
             "value": "{echoes.color.indigo.600}",
             "description": "Hover state of components that reinforce our brand"
           },
-          "default-active": {
+          "active": {
             "type": "color",
             "value": "{echoes.color.indigo.700}",
             "description": "Active state of components that reinforce our brand"
           },
-          "default-focus": {
+          "focus": {
             "value": "{echoes.color.indigo.500}",
             "type": "color"
           }
         },
         "accent-weak": {
-          "weak": {
+          "default": {
             "type": "color",
             "value": "{echoes.color.indigo.50}",
             "description": "Used as the background color of components that reinforce our brand with less visual highlight"
           },
-          "weak-hover": {
+          "hover": {
             "type": "color",
             "value": "{echoes.color.indigo.100}",
             "description": "Hover state of components that reinforce our brand with less visual highlight"
           },
-          "weak-active": {
+          "active": {
             "type": "color",
             "value": "{echoes.color.indigo.200}",
             "description": "Active state of components that reinforce our brand with less visual highlight"
           },
-          "weak-focus": {
+          "focus": {
             "type": "color",
             "value": "{echoes.color.indigo.50}",
             "description": "Focus state of components that reinforce our brand with less visual highlight"
@@ -125,39 +125,39 @@
             "value": "{echoes.color.red.600}",
             "description": "Use for backgrounds that communicate danger or destructive messages"
           },
-          "default-hover": {
+          "hover": {
             "type": "color",
             "value": "{echoes.color.red.700}",
             "description": "Hover state for backgrounds that communicate danger or destructive messages"
           },
-          "default-active": {
+          "active": {
             "type": "color",
             "value": "{echoes.color.red.800}",
             "description": "Active state for backgrounds that communicate danger or destructive messages"
           },
-          "default-focused": {
+          "focus": {
             "type": "color",
             "value": "{echoes.color.red.600}",
             "description": "Focused state for backgrounds that communicate danger or destructive messages"
           }
         },
         "danger-weak": {
-          "weak": {
+          "default": {
             "type": "color",
             "value": "{echoes.color.red.50}",
             "description": "Use it for backgrounds that communicate danger or destructive messages, with less visual highlight"
           },
-          "weak-hover": {
+          "hover": {
             "type": "color",
             "value": "{echoes.color.red.100}",
             "description": "Hover state for backgrounds that communicate danger or destructive messages, with less visual highlight"
           },
-          "weak-active": {
+          "active": {
             "type": "color",
             "value": "{echoes.color.red.200}",
             "description": "Active state for backgrounds that communicate danger or destructive messages, with less visual highlight"
           },
-          "weak-focus": {
+          "focus": {
             "value": "{echoes.color.red.50}",
             "type": "color"
           }
