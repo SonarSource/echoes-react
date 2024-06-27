@@ -16,11 +16,11 @@
         },
         "default-hover": {
           "type": "color",
-          "value": "{echoes.color.grey.700}"
+          "value": "{echoes.color.grey.500}"
         },
         "default-active": {
           "type": "color",
-          "value": "{echoes.color.grey.600}"
+          "value": "{echoes.color.grey.400}"
         },
         "default-disabled": {
           "type": "color",
@@ -45,35 +45,37 @@
         "accent": {
           "default": {
             "type": "color",
+            "value": "{echoes.color.indigo.300}"
+          },
+          "hover": {
+            "type": "color",
             "value": "{echoes.color.indigo.200}"
           },
-          "default-hover": {
+          "active": {
             "type": "color",
-            "value": "{echoes.color.indigo.300}"
+            "value": "{echoes.color.indigo.100}"
           },
-          "default-active": {
-            "type": "color",
-            "value": "{echoes.color.indigo.300}"
-          },
-          "default-disabled": {
-            "type": "color",
-            "value": "{echoes.color.grey.500}"
-          },
-          "weak": {
+          "focus": {
+            "value": "{echoes.color.indigo.300}",
+            "type": "color"
+          }
+        },
+        "accent-weak": {
+          "default": {
             "type": "color",
             "value": "#5D6CD033"
           },
-          "weak-hover": {
+          "hover": {
             "type": "color",
             "value": "#5D6CD04D"
           },
-          "weak-active": {
+          "active": {
             "type": "color",
             "value": "#5D6CD04D"
           },
-          "weak-disabled": {
-            "type": "color",
-            "value": "{echoes.color.grey.500}"
+          "focus": {
+            "value": "#5D6CD033",
+            "type": "color"
           }
         },
         "warning": {
@@ -99,39 +101,37 @@
         "danger": {
           "default": {
             "type": "color",
-            "value": "{echoes.color.red.200}"
-          },
-          "default-hover": {
-            "type": "color",
-            "value": "{echoes.color.red.400}"
-          },
-          "default-active": {
-            "type": "color",
-            "value": "{echoes.color.red.400}"
-          },
-          "default-focused": {
-            "type": "color",
             "value": "{echoes.color.red.300}"
           },
-          "default-disabled": {
+          "hover": {
             "type": "color",
-            "value": "{echoes.color.grey.500}"
+            "value": "{echoes.color.red.200}"
           },
-          "weak": {
+          "active": {
+            "type": "color",
+            "value": "{echoes.color.red.100}"
+          },
+          "focus": {
+            "type": "color",
+            "value": "{echoes.color.red.300}"
+          }
+        },
+        "danger-weak": {
+          "default": {
             "type": "color",
             "value": "#FDA29B33"
           },
-          "weak-hover": {
+          "hover": {
             "type": "color",
             "value": "{echoes.color.grey.700}"
           },
-          "weak-active": {
+          "active": {
             "type": "color",
             "value": "{echoes.color.grey.700}"
           },
-          "weak-disabled": {
-            "type": "color",
-            "value": "{echoes.color.grey.500}"
+          "focus": {
+            "value": "{echoes.color.red.300}",
+            "type": "color"
           }
         },
         "info": {
@@ -252,7 +252,7 @@
         },
         "default": {
           "type": "color",
-          "value": "{echoes.color.grey.25}"
+          "value": "{echoes.color.grey.100}"
         },
         "subdued": {
           "type": "color",
@@ -268,7 +268,7 @@
         },
         "danger": {
           "type": "color",
-          "value": "{echoes.color.red.200}"
+          "value": "{echoes.color.red.300}"
         },
         "warning": {
           "type": "color",
