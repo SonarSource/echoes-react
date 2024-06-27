@@ -22,7 +22,8 @@ import styled from '@emotion/styled';
 import { ComponentType, forwardRef, useMemo } from 'react';
 import { isDefined } from '~common/helpers/types';
 import { IconCheck } from '..';
-import { SelectBaseProps, SelectOption, SelectOptionType } from './SelectTypes';
+import { SelectBaseProps } from './SelectCommons';
+import { SelectOption, SelectOptionType } from './SelectTypes';
 
 // Returns the stylized SelectItem component to be used in the itemComponent props of the Mantine Select
 export function useSelectItemComponent(

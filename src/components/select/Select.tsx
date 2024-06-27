@@ -19,75 +19,13 @@
  */
 
 import { forwardRef } from 'react';
-import { isDefined } from '~common/helpers/types';
 import { PropsWithLabels } from '~types/utils';
-import { InputSize } from '../../utils/inputs';
-import { SelectStyled, getSelectRightSection } from './SelectCommons';
-import { useSelectItemComponent } from './SelectItemCommons';
-import { SelectBaseProps, SelectHighlight, SelectOptionType } from './SelectTypes';
+import { SelectBase, SelectBaseProps } from './SelectCommons';
 
-interface Props extends SelectBaseProps {
-  isSearchable?: boolean;
-}
+type Props = PropsWithLabels<Omit<SelectBaseProps, 'onSearch'>>;
 
-export const Select = forwardRef<HTMLInputElement, PropsWithLabels<Props>>((props, ref) => {
-  const {
-    ariaLabel,
-    ariaLabelledBy,
-    data,
-    hasError = false,
-    helpText,
-    highlight = SelectHighlight.Default,
-    isDisabled = false,
-    isLoading = false,
-    isNotClearable = false,
-    isSearchable = false,
-    isRequired = false,
-    label,
-    labelError,
-    labelNotFound,
-    onOpen,
-    optionComponent,
-    optionType = SelectOptionType.Check,
-    size = InputSize.Full,
-    valueIcon,
-    ...selectProps
-  } = props;
-
-  const itemComponent = useSelectItemComponent(optionComponent, optionType);
-  const isClearable = !isNotClearable && !isRequired;
-
-  // TODO Highlighter for search
-
-  return (
-    <SelectStyled
-      allowDeselect={isClearable}
-      aria-label={ariaLabel}
-      aria-labelledby={ariaLabelledBy}
-      clearable={isClearable}
-      data={data}
-      data-variant={highlight}
-      description={helpText}
-      disabled={isDisabled}
-      error={labelError ?? hasError}
-      icon={valueIcon}
-      inputSize={size}
-      itemComponent={itemComponent}
-      label={label}
-      nothingFound={labelNotFound}
-      onDropdownOpen={onOpen}
-      ref={ref}
-      required={isRequired}
-      rightSection={getSelectRightSection({
-        hasValue: isDefined(selectProps.value),
-        isLoading,
-        isClearable,
-      })}
-      searchable={isSearchable}
-      variant={highlight}
-      {...selectProps}
-    />
-  );
+export const Select = forwardRef<HTMLInputElement, Props>((props, ref) => {
+  return <SelectBase ref={ref} {...props} />;
 });
 
 Select.displayName = 'Select';

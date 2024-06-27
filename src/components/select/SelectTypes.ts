@@ -17,11 +17,8 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-import { Select as MantineSelect, SelectItem as MantineSelectItem } from '@mantine/core';
-import { ComponentProps, ReactNode } from 'react';
-import { InputSize } from '../../utils/inputs';
-
-type MantineSelectProps = ComponentProps<typeof MantineSelect>;
+import { SelectItem as MantineSelectItem } from '@mantine/core';
+import { ReactNode } from 'react';
 
 export enum SelectHighlight {
   Default = 'default',
@@ -37,29 +34,4 @@ export interface SelectOption extends MantineSelectItem {
   prefix?: ReactNode;
   suffix?: ReactNode;
   helpText?: JSX.Element | string;
-}
-
-export interface SelectBaseProps {
-  className?: string;
-  data: ReadonlyArray<SelectOption>;
-  defaultValue?: MantineSelectProps['defaultValue'];
-  hasError?: boolean;
-  highlight?: SelectHighlight;
-  id?: string;
-  isDisabled?: boolean;
-  isLoading?: boolean;
-  isNotClearable?: boolean;
-  isRequired?: boolean;
-  labelError?: MantineSelectProps['error'];
-  labelNotFound?: MantineSelectProps['nothingFound'];
-  limit?: MantineSelectProps['limit']; // might change for a max height
-  name?: MantineSelectProps['name'];
-  optionComponent?: MantineSelectProps['itemComponent'];
-  optionType?: SelectOptionType;
-  onChange: MantineSelectProps['onChange'];
-  onOpen?: MantineSelectProps['onDropdownOpen'];
-  placeholder?: MantineSelectProps['placeholder'];
-  size?: InputSize;
-  value: MantineSelectProps['value'];
-  valueIcon?: MantineSelectProps['icon'];
 }

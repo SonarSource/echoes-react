@@ -20,9 +20,107 @@
 
 import styled from '@emotion/styled';
 import { Select as MantineSelect } from '@mantine/core';
+import { ComponentProps, forwardRef } from 'react';
+import { isDefined } from '~common/helpers/types';
+import { PropsWithLabels } from '~types/utils';
 import { IconChevronDown, Spinner } from '..';
 import { INPUT_SIZE_VALUES, InputSize } from '../../utils/inputs';
-import { SelectBaseProps } from './SelectTypes';
+import { useSelectItemComponent } from './SelectItemCommons';
+import { SelectHighlight, SelectOption, SelectOptionType } from './SelectTypes';
+
+type MantineSelectProps = ComponentProps<typeof MantineSelect>;
+export interface SelectBaseProps {
+  className?: string;
+  data: ReadonlyArray<SelectOption>;
+  defaultValue?: MantineSelectProps['defaultValue'];
+  hasError?: boolean;
+  highlight?: SelectHighlight;
+  id?: string;
+  isDisabled?: boolean;
+  isLoading?: boolean;
+  isNotClearable?: boolean;
+  isSearchable?: boolean;
+  isRequired?: boolean;
+  labelError?: MantineSelectProps['error'];
+  labelNotFound?: MantineSelectProps['nothingFound'];
+  limit?: MantineSelectProps['limit']; // might change for a max height
+  name?: MantineSelectProps['name'];
+  optionComponent?: MantineSelectProps['itemComponent'];
+  optionType?: SelectOptionType;
+  onChange: MantineSelectProps['onChange'];
+  onOpen?: MantineSelectProps['onDropdownOpen'];
+  onSearch?: MantineSelectProps['onSearchChange'];
+  placeholder?: MantineSelectProps['placeholder'];
+  size?: InputSize;
+  value: MantineSelectProps['value'];
+  valueIcon?: MantineSelectProps['icon'];
+}
+
+export const SelectBase = forwardRef<HTMLInputElement, PropsWithLabels<SelectBaseProps>>(
+  (props, ref) => {
+    const {
+      ariaLabel,
+      ariaLabelledBy,
+      data,
+      hasError = false,
+      helpText,
+      highlight = SelectHighlight.Default,
+      isDisabled = false,
+      isLoading = false,
+      isNotClearable = false,
+      isSearchable = false,
+      isRequired = false,
+      label,
+      labelError,
+      labelNotFound,
+      onSearch,
+      onOpen,
+      optionComponent,
+      optionType = SelectOptionType.Check,
+      size = InputSize.Full,
+      valueIcon,
+      ...selectProps
+    } = props;
+
+    const itemComponent = useSelectItemComponent(optionComponent, optionType);
+    const isClearable = !isNotClearable && !isRequired;
+
+    // TODO Highlighter for search
+
+    return (
+      <SelectStyled
+        allowDeselect={isClearable}
+        aria-label={ariaLabel}
+        aria-labelledby={ariaLabelledBy}
+        clearable={isClearable}
+        data={data}
+        data-variant={highlight}
+        description={helpText}
+        disabled={isDisabled}
+        error={labelError ?? hasError}
+        icon={valueIcon}
+        inputSize={size}
+        itemComponent={itemComponent}
+        label={label}
+        nothingFound={labelNotFound}
+        onDropdownOpen={onOpen}
+        onSearchChange={onSearch}
+        ref={ref}
+        required={isRequired}
+        rightSection={getSelectRightSection({
+          hasValue: isDefined(selectProps.value),
+          isLoading,
+          isClearable,
+        })}
+        searchable={isSearchable}
+        variant={highlight}
+        {...selectProps}
+      />
+    );
+  },
+);
+
+SelectBase.displayName = 'SelectBase';
 
 export const SelectStyled = styled(MantineSelect, {
   shouldForwardProp: (prop) => prop !== 'inputSize',

@@ -20,12 +20,9 @@
 
 import { SelectProps as MantineSelectProps } from '@mantine/core';
 import { forwardRef, useCallback, useRef } from 'react';
-import { isDefined } from '~common/helpers/types';
 import { PropsWithLabels } from '~types/utils';
-import { InputSize } from '../../utils/inputs';
-import { SelectStyled, getSelectRightSection } from './SelectCommons';
-import { useSelectItemComponent } from './SelectItemCommons';
-import { SelectBaseProps, SelectHighlight, SelectOption, SelectOptionType } from './SelectTypes';
+import { SelectBase, SelectBaseProps } from './SelectCommons';
+import { SelectOption } from './SelectTypes';
 
 interface Props extends SelectBaseProps {
   onSearch: MantineSelectProps['onSearchChange'];
@@ -33,27 +30,10 @@ interface Props extends SelectBaseProps {
 
 export const SelectAsync = forwardRef<HTMLInputElement, PropsWithLabels<Props>>((props, ref) => {
   const {
-    ariaLabel,
-    ariaLabelledBy,
     data,
-    hasError = false,
-    helpText,
-    highlight = SelectHighlight.Default,
-    isDisabled = false,
-    isLoading = false,
-    isNotClearable = false,
-    isRequired = false,
-    label,
-    labelError,
-    labelNotFound,
-    onOpen,
     onChange,
     onSearch,
-    optionComponent,
-    optionType = SelectOptionType.Check,
-    size = InputSize.Full,
-    value,
-    valueIcon,
+
     ...selectProps
   } = props;
 
@@ -100,41 +80,13 @@ export const SelectAsync = forwardRef<HTMLInputElement, PropsWithLabels<Props>>(
     [onChange],
   );
 
-  const itemComponent = useSelectItemComponent(optionComponent, optionType);
-  const isClearable = !isNotClearable && !isRequired;
-
-  // TODO Highlighter for search
-
   return (
-    <SelectStyled
-      allowDeselect={isClearable}
-      aria-label={ariaLabel}
-      aria-labelledby={ariaLabelledBy}
-      clearable={isClearable}
+    <SelectBase
       data={data}
-      data-variant={highlight}
-      description={helpText}
-      disabled={isDisabled}
-      error={labelError ?? hasError}
-      filter={() => true}
-      icon={valueIcon}
-      inputSize={size}
-      itemComponent={itemComponent}
-      label={label}
-      nothingFound={labelNotFound}
+      isSearchable
       onChange={handleChange}
-      onDropdownOpen={onOpen}
-      onSearchChange={handleSearch}
+      onSearch={handleSearch}
       ref={ref}
-      required={isRequired}
-      rightSection={getSelectRightSection({
-        hasValue: isDefined(value),
-        isLoading,
-        isClearable,
-      })}
-      searchable
-      value={value ?? null} // Mantine only clears the value if `null`, not `undefined`
-      variant={highlight}
       {...selectProps}
     />
   );
