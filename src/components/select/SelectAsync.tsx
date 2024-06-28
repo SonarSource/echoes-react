@@ -18,52 +18,23 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import {
-  Select as MantineSelect,
-  SelectProps as MantineSelectProps,
-  SelectItem,
-} from '@mantine/core';
+import { SelectProps as MantineSelectProps } from '@mantine/core';
 import { forwardRef, useCallback, useRef } from 'react';
 import { PropsWithLabels } from '~types/utils';
-import { Spinner } from '..';
-import { SelectHighlight } from './Select';
+import { SelectBase, SelectBaseProps } from './SelectCommons';
+import { SelectOption } from './SelectTypes';
 
-interface Props {
-  className?: string;
-  data: ReadonlyArray<SelectItem>;
-  hasError?: boolean;
-  highlight?: SelectHighlight;
-  id?: string;
-  isDisabled?: boolean;
-  isLoading?: boolean;
-  isNotClearable?: boolean;
-  isRequired?: boolean;
-  labelError?: MantineSelectProps['error'];
-  labelNotFound?: MantineSelectProps['nothingFound'];
-  optionComponent?: MantineSelectProps['itemComponent'];
-  onChange: MantineSelectProps['onChange'];
+interface Props extends SelectBaseProps {
   onSearch: MantineSelectProps['onSearchChange'];
-  value: MantineSelectProps['value'];
 }
 
 export const SelectAsync = forwardRef<HTMLInputElement, PropsWithLabels<Props>>((props, ref) => {
   const {
-    ariaLabel,
     data,
-    hasError,
-    helpText,
-    highlight,
-    isNotClearable,
-    isDisabled,
-    isLoading,
-    isRequired,
-    label,
-    labelError,
-    labelNotFound,
-    optionComponent,
     onChange,
     onSearch,
-    value,
+
+    ...selectProps
   } = props;
 
   const previousQuery = useRef<string>();
@@ -110,32 +81,19 @@ export const SelectAsync = forwardRef<HTMLInputElement, PropsWithLabels<Props>>(
   );
 
   return (
-    <MantineSelect
-      allowDeselect={!isRequired}
-      aria-label={ariaLabel}
-      clearable={!isNotClearable && !isRequired}
+    <SelectBase
       data={data}
-      description={helpText}
-      disabled={isDisabled}
-      error={labelError ?? hasError}
-      filter={() => true}
-      itemComponent={optionComponent}
-      label={label}
-      nothingFound={labelNotFound}
+      isSearchable
       onChange={handleChange}
-      onSearchChange={handleSearch}
+      onSearch={handleSearch}
       ref={ref}
-      required={isRequired}
-      rightSection={isLoading ? <Spinner isLoading /> : undefined}
-      searchable
-      value={value}
-      variant={highlight}
+      {...selectProps}
     />
   );
 });
-SelectAsync.displayName = 'AsyncSelect';
+SelectAsync.displayName = 'SelectAsync';
 
-const getItemValue = (item: SelectItem | string | undefined) => {
+const getItemValue = (item: SelectOption | string | undefined) => {
   if (item === undefined || typeof item === 'string') {
     return item;
   }
@@ -143,7 +101,7 @@ const getItemValue = (item: SelectItem | string | undefined) => {
   return item.value;
 };
 
-const getItemLabel = (item: SelectItem | string | undefined) => {
+const getItemLabel = (item: SelectOption | string | undefined) => {
   if (item === undefined || typeof item === 'string') {
     return item;
   }
