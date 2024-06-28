@@ -93,6 +93,7 @@ function Wrapper({ args }: Props) {
         isLoading={loading}
         onChange={doChange}
         onSearch={doSearch}
+        value={selection}
       />
       <div>Selected: {selection ?? '- None -'}</div>
     </div>

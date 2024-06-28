@@ -19,7 +19,8 @@
  */
 
 import type { Meta, StoryObj } from '@storybook/react';
-import { Select } from '../src';
+import { ComponentProps, useState } from 'react';
+import { IconBell, IconBug, IconMegaphone, Select } from '../src';
 
 const meta: Meta<typeof Select> = {
   component: Select,
@@ -31,15 +32,43 @@ export default meta;
 type Story = StoryObj<typeof Select>;
 
 const data = [
-  { value: '1', label: 'cheese' },
-  { value: '2', label: 'bread' },
-  { value: '3', label: 'salad' },
-  { value: '4', label: 'no' },
+  { value: '1', label: 'cheese', group: 'good', suffix: <IconBell /> },
+  { value: '2', label: 'bread', group: 'good', prefix: <IconBug />, helpText: 'boooh' },
+  { value: '3', label: 'salad', group: 'bad', helpText: 'this is a helper text' },
+  {
+    value: '4',
+    label: 'no',
+    group: 'bad',
+    disabled: true,
+    helpText: 'this is a helper text',
+    suffix: <IconMegaphone />,
+  },
+  { value: '5', label: 'tomatoes', group: 'bad' },
+  { value: '6', label: 'carrots', group: 'bad' },
 ];
 
 export const Default: Story = {
   args: {
+    label: 'my label',
+    labelError: '0o0o0o0o0psies',
+    helpText: 'this is a helper text',
     data,
+    valueIcon: <IconBell />,
     isSearchable: true,
+    optionComponent: Custom,
   },
+  render: (args) => <SelectContainer {...args} />,
 };
+
+function Custom(props: any) {
+  return (
+    <span>
+      {props.label} - {props.value}
+    </span>
+  );
+}
+
+function SelectContainer(args: ComponentProps<typeof Select>) {
+  const [value, setValue] = useState(args.value);
+  return <Select {...args} onChange={setValue} value={value} />;
+}
