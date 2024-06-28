@@ -22,7 +22,7 @@ import userEvent, { Options as UserEventsOptions } from '@testing-library/user-e
 import React, { ComponentProps, PropsWithChildren } from 'react';
 import { IntlProvider } from 'react-intl';
 import { PropsWithLabels } from '~types/utils';
-import { TooltipProvider } from '../../components/tooltip';
+import { EchoesProvider } from '../../components/echoes-provider';
 
 export function render(
   ui: React.ReactElement,
@@ -38,7 +38,7 @@ export function render(
 function ContextWrapper({ children }: PropsWithChildren<{}>) {
   return (
     <IntlProvider defaultLocale="en-us" locale="en-us">
-      <TooltipProvider delayDuration={0}>{children}</TooltipProvider>
+      <EchoesProvider tooltipsDelayDuration={0}>{children}</EchoesProvider>
     </IntlProvider>
   );
 }

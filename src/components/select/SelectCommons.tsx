@@ -21,6 +21,7 @@
 import styled from '@emotion/styled';
 import { Select as MantineSelect } from '@mantine/core';
 import { ComponentProps, forwardRef } from 'react';
+import { useIntl } from 'react-intl';
 import { isDefined } from '~common/helpers/types';
 import { PropsWithLabels } from '~types/utils';
 import { IconChevronDown, Spinner } from '..';
@@ -81,6 +82,8 @@ export const SelectBase = forwardRef<HTMLInputElement, PropsWithLabels<SelectBas
       ...selectProps
     } = props;
 
+    const intl = useIntl();
+
     const itemComponent = useSelectItemComponent(optionComponent, optionType);
     const isClearable = !isNotClearable && !isRequired;
 
@@ -91,6 +94,18 @@ export const SelectBase = forwardRef<HTMLInputElement, PropsWithLabels<SelectBas
         allowDeselect={isClearable}
         aria-label={ariaLabel}
         aria-labelledby={ariaLabelledBy}
+        clearButtonProps={
+          isClearable
+            ? {
+                'aria-label': intl.formatMessage({
+                  id: 'select.clear',
+                  defaultMessage: 'Clear select field',
+                  description:
+                    'Screen reader-only text to indicate that the select field can be cleared with a button',
+                }),
+              }
+            : {}
+        }
         clearable={isClearable}
         data={data}
         data-variant={highlight}
