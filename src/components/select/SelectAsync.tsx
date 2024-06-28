@@ -33,6 +33,7 @@ export const SelectAsync = forwardRef<HTMLInputElement, PropsWithLabels<Props>>(
     data,
     onChange,
     onSearch,
+    value,
 
     ...selectProps
   } = props;
@@ -83,10 +84,12 @@ export const SelectAsync = forwardRef<HTMLInputElement, PropsWithLabels<Props>>(
   return (
     <SelectBase
       data={data}
+      filter={() => true} // Filtering is done on search
       isSearchable
       onChange={handleChange}
       onSearch={handleSearch}
       ref={ref}
+      value={value ?? null}
       {...selectProps}
     />
   );
