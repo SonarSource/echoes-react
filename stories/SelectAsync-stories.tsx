@@ -20,7 +20,7 @@
 
 import { Avatar, SelectItem } from '@mantine/core';
 import type { Meta, StoryObj } from '@storybook/react';
-import { ComponentProps, forwardRef, useCallback, useState } from 'react';
+import { ComponentProps, useCallback, useState } from 'react';
 import { SelectAsync } from '../src/components/select';
 
 const meta: Meta<typeof SelectAsync> = {
@@ -32,19 +32,19 @@ export default meta;
 
 type Story = StoryObj<typeof SelectAsync>;
 
-export const Dev: Story = {
+export const SimpleAsync: Story = {
   args: {},
   render: (args) => (
-    <div style={{ width: 300 }}>
+    <div>
       <Wrapper args={args} />
     </div>
   ),
 };
 
-export const OverrideItemComponent: Story = {
+export const WithCustomItemComponent: Story = {
   args: {},
   render: (args) => (
-    <div style={{ width: 300 }}>
+    <div>
       <Wrapper args={{ ...args, optionComponent: SelectItemComponent }} />
     </div>
   ),
@@ -86,7 +86,7 @@ function Wrapper({ args }: Props) {
   );
 
   return (
-    <div style={{ width: 300 }}>
+    <div style={{ width: 600 }}>
       <SelectAsync
         {...args}
         data={options}
@@ -95,20 +95,20 @@ function Wrapper({ args }: Props) {
         onSearch={doSearch}
         value={selection}
       />
+      <br />
       <div>Selected: {selection ?? '- None -'}</div>
     </div>
   );
 }
 
-const SelectItemComponent = forwardRef<HTMLDivElement, SelectItem>(
-  ({ label, ...others }: SelectItem, ref) => {
-    return (
-      <div ref={ref} {...others}>
-        <Avatar />
-        <span>{label}</span> <br />
-        <span>This is an item!</span>
-      </div>
-    );
-  },
-);
+function SelectItemComponent({ label }: SelectItem) {
+  return (
+    <>
+      <Avatar />
+      <span>{label}</span> <br />
+      <span>This is an item!</span>
+    </>
+  );
+}
+
 SelectItemComponent.displayName = 'SelectItem';

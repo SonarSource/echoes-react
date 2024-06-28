@@ -34,6 +34,7 @@ export interface SelectBaseProps {
   className?: string;
   data: ReadonlyArray<SelectOption>;
   defaultValue?: MantineSelectProps['defaultValue'];
+  filter?: MantineSelectProps['filter'];
   hasError?: boolean;
   highlight?: SelectHighlight;
   isDisabled?: boolean;
