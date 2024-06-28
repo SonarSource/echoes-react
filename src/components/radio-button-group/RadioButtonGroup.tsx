@@ -203,7 +203,7 @@ const Input = styled(RadioGroup.Item)`
     background-color: var(--echoes-color-background-selected-bold-default);
     border-color: var(--echoes-color-background-selected-bold-default);
 
-    &:hover {
+    &:not(:disabled):hover {
       background-color: var(--echoes-color-background-selected-bold-hover);
       border-color: var(--echoes-color-background-selected-bold-hover);
     }

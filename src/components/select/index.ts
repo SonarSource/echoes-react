@@ -20,3 +20,4 @@
 
 export { Select } from './Select';
 export { SelectAsync } from './SelectAsync';
+export type { SelectHighlight, SelectOption, SelectOptionType } from './SelectTypes';

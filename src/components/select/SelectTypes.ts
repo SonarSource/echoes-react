@@ -17,38 +17,21 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
+import { SelectItem as MantineSelectItem } from '@mantine/core';
+import { ReactNode } from 'react';
 
-export interface PropsLabel {
-  ariaLabel?: string;
-  ariaLabelledBy?: never;
-  id?: string;
-  label: JSX.Element | string;
+export enum SelectHighlight {
+  Default = 'default',
+  Ghost = 'unstyled',
+}
+
+export enum SelectOptionType {
+  Check = 'check',
+  Radio = 'radio',
+}
+
+export interface SelectOption extends MantineSelectItem {
+  prefix?: ReactNode;
+  suffix?: ReactNode;
   helpText?: JSX.Element | string;
 }
-
-export interface PropsAriaLabel {
-  ariaLabel: string;
-  ariaLabelledBy?: never;
-  id?: string;
-  label?: never;
-  helpText?: never;
-}
-
-export interface PropsAriaLabelledBy {
-  ariaLabel?: never;
-  ariaLabelledBy: string;
-  id?: string;
-  label?: never;
-  helpText?: never;
-}
-
-export interface PropsAriaLabelViaId {
-  ariaLabel?: never;
-  ariaLabelledBy?: never;
-  id: string;
-  label?: never;
-  helpText?: never;
-}
-
-export type PropsWithLabels<T> = T &
-  (PropsLabel | PropsAriaLabel | PropsAriaLabelledBy | PropsAriaLabelViaId);

@@ -29,7 +29,6 @@ interface Props {
   checked: boolean | 'indeterminate';
   className?: string;
   hasError?: boolean;
-  id?: string;
   innerClassName?: string;
   isDisabled?: boolean;
   isLoading?: boolean;
