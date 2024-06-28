@@ -20,7 +20,7 @@
 
 import type { Meta, StoryObj } from '@storybook/react';
 import { ComponentProps, useState } from 'react';
-import { IconBell, IconBug, IconMegaphone, Select } from '../src';
+import { IconBell, IconBug, IconMegaphone, InputSize, Select } from '../src';
 
 const meta: Meta<typeof Select> = {
   component: Select,
@@ -40,7 +40,7 @@ const data = [
     label: 'no',
     group: 'bad',
     disabled: true,
-    helpText: 'this is a helper text',
+    helpText: 'I help express loudly that NO!',
     suffix: <IconMegaphone />,
   },
   { value: '5', label: 'tomatoes', group: 'bad' },
@@ -51,11 +51,35 @@ export const Default: Story = {
   args: {
     label: 'my label',
     labelError: '0o0o0o0o0psies',
-    helpText: 'this is a helper text',
+    helpText: 'input help',
     data,
     valueIcon: <IconBell />,
     isSearchable: true,
     optionComponent: Custom,
+  },
+  render: (args) => <SelectContainer {...args} />,
+};
+
+export const CustomFiltering: Story = {
+  args: {
+    label: 'my label',
+    labelError: '0o0o0o0o0psies',
+    helpText: 'this is a helper text',
+    data,
+    valueIcon: <IconBell />,
+    filter: (query, { group }) => query.length === 0 || Boolean(group?.includes(query)),
+    isSearchable: true,
+    optionComponent: Custom,
+  },
+  render: (args) => <SelectContainer {...args} />,
+};
+
+export const Plain: Story = {
+  args: {
+    label: 'Select one',
+    data,
+    isRequired: true,
+    size: InputSize.Medium,
   },
   render: (args) => <SelectContainer {...args} />,
 };
