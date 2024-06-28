@@ -35,7 +35,6 @@ export interface SelectBaseProps {
   defaultValue?: MantineSelectProps['defaultValue'];
   hasError?: boolean;
   highlight?: SelectHighlight;
-  id?: string;
   isDisabled?: boolean;
   isLoading?: boolean;
   isNotClearable?: boolean;

@@ -21,6 +21,7 @@
 export interface PropsLabel {
   ariaLabel?: string;
   ariaLabelledBy?: never;
+  id?: string;
   label: JSX.Element | string;
   helpText?: JSX.Element | string;
 }
@@ -28,6 +29,7 @@ export interface PropsLabel {
 export interface PropsAriaLabel {
   ariaLabel: string;
   ariaLabelledBy?: never;
+  id?: string;
   label?: never;
   helpText?: never;
 }
@@ -35,8 +37,18 @@ export interface PropsAriaLabel {
 export interface PropsAriaLabelledBy {
   ariaLabel?: never;
   ariaLabelledBy: string;
+  id?: string;
   label?: never;
   helpText?: never;
 }
 
-export type PropsWithLabels<T> = T & (PropsLabel | PropsAriaLabel | PropsAriaLabelledBy);
+export interface PropsAriaLabelViaId {
+  ariaLabel?: never;
+  ariaLabelledBy?: never;
+  id: string;
+  label?: never;
+  helpText?: never;
+}
+
+export type PropsWithLabels<T> = T &
+  (PropsLabel | PropsAriaLabel | PropsAriaLabelledBy | PropsAriaLabelViaId);
