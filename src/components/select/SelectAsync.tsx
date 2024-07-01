@@ -24,7 +24,7 @@ import { PropsWithLabels } from '~types/utils';
 import { SelectBase, SelectBaseProps } from './SelectCommons';
 import { SelectOption } from './SelectTypes';
 
-interface Props extends SelectBaseProps {
+interface Props extends Omit<SelectBaseProps, 'filter' | 'isSearchable'> {
   onSearch: MantineSelectProps['onSearchChange'];
 }
 
