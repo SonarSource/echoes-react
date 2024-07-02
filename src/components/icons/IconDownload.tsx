@@ -18,12 +18,15 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-export * from './checkbox';
-export * from './dropdown-menu';
-export * from './echoes-provider';
-export * from './icons';
-export * from './links';
-export * from './radio-button-group';
-export * from './select';
-export * from './spinner';
-export * from './tooltip';
+import { forwardRef } from 'react';
+import { IconMaterialWrapper, IconProps } from './IconWrapper';
+
+export const IconDownload = forwardRef<HTMLSpanElement, IconProps>((props, ref) => {
+  // This is Material Symbols' "download" icon
+  return (
+    <IconMaterialWrapper isFilled {...props} ref={ref}>
+      &#xF090;
+    </IconMaterialWrapper>
+  );
+});
+IconDownload.displayName = 'IconDownload';
