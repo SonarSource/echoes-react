@@ -18,12 +18,28 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-export * from './checkbox';
-export * from './dropdown-menu';
-export * from './echoes-provider';
-export * from './icons';
-export * from './links';
-export * from './radio-button-group';
-export * from './select';
-export * from './spinner';
-export * from './tooltip';
+import styled from '@emotion/styled';
+import { DropdownMenuItemBase, DropdownMenuItemBaseProps } from './DropdownMenuItemBase';
+
+type Props = Omit<DropdownMenuItemBaseProps, 'isCheckable' | 'isChecked' | 'prefix' | 'suffix'>;
+
+export function DropdownMenuItemButtonDestructive(props: Readonly<Props>) {
+  return <StyledDropdownMenuItemBase {...props} />;
+}
+
+const StyledDropdownMenuItemBase = styled(DropdownMenuItemBase)`
+  color: var(--echoes-color-text-danger);
+
+  &:hover {
+    background-color: var(--echoes-color-background-danger-weak-hover);
+  }
+
+  /* when the item is clicked */
+  &:active {
+    background-color: var(--echoes-color-background-danger-weak-active);
+  }
+
+  &[data-disabled] {
+    background-color: var(--echoes-color-background-default);
+  }
+`;

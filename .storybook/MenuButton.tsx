@@ -18,12 +18,28 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-export * from './checkbox';
-export * from './dropdown-menu';
-export * from './echoes-provider';
-export * from './icons';
-export * from './links';
-export * from './radio-button-group';
-export * from './select';
-export * from './spinner';
-export * from './tooltip';
+import { PropsWithChildren, forwardRef } from 'react';
+import { IconChevronDown } from '../src';
+
+export const MenuButton = forwardRef<HTMLButtonElement, PropsWithChildren<{}>>(
+  ({ children = 'Menu', ...radixProps }, ref) => (
+    <button
+      ref={ref}
+      style={{
+        alignItems: 'center',
+        backgroundColor: 'blue',
+        border: 'none',
+        color: 'white',
+        display: 'flex',
+        gap: '4px',
+        opacity: 0.6,
+        padding: '4px 8px',
+      }}
+      type="button"
+      {...radixProps}>
+      {children} <IconChevronDown />
+    </button>
+  ),
+);
+
+MenuButton.displayName = 'MenuButton';

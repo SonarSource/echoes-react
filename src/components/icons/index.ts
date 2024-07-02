@@ -41,6 +41,7 @@ export { IconCopy } from './IconCopy';
 export { IconDash } from './IconDash';
 export { IconDirectory } from './IconDirectory';
 export { IconDot } from './IconDot';
+export { IconDownload } from './IconDownload';
 export { IconEqual } from './IconEqual';
 export { IconError } from './IconError';
 export { IconExpand } from './IconExpand';

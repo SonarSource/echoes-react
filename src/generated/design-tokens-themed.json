@@ -78,6 +78,7 @@
   "echoes-color-border-info": "rgb(143,202,234)",
   "echoes-color-focus-default": "rgb(75,86,187)",
   "echoes-sizes-overlays-max-width-default": "25rem",
+  "echoes-sizes-overlays-min-width-default": "150px",
   "echoes-sizes-inputs-small": "150px",
   "echoes-sizes-inputs-medium": "250px",
   "echoes-sizes-inputs-large": "350px",
