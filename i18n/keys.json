@@ -6,5 +6,9 @@
   "open_in_new_tab": {
     "defaultMessage": "(opens in new tab)",
     "description": "Screen reader-only text to indicate that the link will open in a new tab"
+  },
+  "select.clear": {
+    "defaultMessage": "Clear select field",
+    "description": "Screen reader-only text to indicate that the select field can be cleared with a button"
   }
 }

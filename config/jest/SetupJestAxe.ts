@@ -17,11 +17,12 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-import { axe, toHaveNoViolations } from 'jest-axe';
+import { JestAxeConfigureOptions, axe, configureAxe, toHaveNoViolations } from 'jest-axe';
 
 expect.extend({
-  async toHaveNoA11yViolations(received: HTMLElement) {
-    const result = await axe(received);
+  async toHaveNoA11yViolations(received: HTMLElement, axeOptions?: JestAxeConfigureOptions) {
+    const axeVerifier = axeOptions ? configureAxe(axeOptions) : axe;
+    const result = await axeVerifier(received);
     return toHaveNoViolations.toHaveNoViolations(result);
   },
 });

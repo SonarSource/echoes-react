@@ -20,6 +20,6 @@
 
 declare namespace jest {
   interface Matchers<R> {
-    toHaveNoA11yViolations(): Promise<CustomMatcherResult>;
+    toHaveNoA11yViolations(axeOptions?: Object): Promise<CustomMatcherResult>;
   }
 }

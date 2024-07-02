@@ -19,8 +19,11 @@
  */
 
 export * from './checkbox';
+export * from './dropdown-menu';
+export * from './echoes-provider';
 export * from './icons';
 export * from './links';
 export * from './radio-button-group';
+export * from './select';
 export * from './spinner';
 export * from './tooltip';

@@ -19,9 +19,10 @@
  */
 import { RenderOptions, render as rtlRender } from '@testing-library/react';
 import userEvent, { Options as UserEventsOptions } from '@testing-library/user-event';
-import React, { PropsWithChildren } from 'react';
+import React, { ComponentProps, PropsWithChildren } from 'react';
 import { IntlProvider } from 'react-intl';
-import { TooltipProvider } from '../../components/tooltip';
+import { PropsWithLabels } from '~types/utils';
+import { EchoesProvider } from '../../components/echoes-provider';
 
 export function render(
   ui: React.ReactElement,
@@ -37,7 +38,12 @@ export function render(
 function ContextWrapper({ children }: PropsWithChildren<{}>) {
   return (
     <IntlProvider defaultLocale="en-us" locale="en-us">
-      <TooltipProvider delayDuration={0}>{children}</TooltipProvider>
+      <EchoesProvider tooltipsDelayDuration={0}>{children}</EchoesProvider>
     </IntlProvider>
   );
 }
+
+export type OmitPropsWithLabels<T extends React.JSXElementConstructor<any>> = Partial<
+  Omit<ComponentProps<T>, keyof PropsWithLabels<{}>>
+> &
+  PropsWithLabels<{}>;

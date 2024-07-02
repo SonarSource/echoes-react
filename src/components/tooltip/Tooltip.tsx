@@ -20,7 +20,7 @@
 
 import styled from '@emotion/styled';
 import * as radixTooltip from '@radix-ui/react-tooltip';
-import { ReactElement, ReactNode, forwardRef, useContext } from 'react';
+import { ReactElement, ReactNode, Ref, forwardRef, useContext } from 'react';
 import { isDefined } from '~common/helpers/types';
 import { THEME_DATA_ATTRIBUTE, ThemeContext } from '~utils/theme';
 
@@ -40,7 +40,7 @@ export enum TooltipSide {
 interface Props {
   align?: TooltipAlign;
   children: ReactElement;
-  content?: ReactNode;
+  content: ReactNode | undefined;
   isOpen?: boolean;
   side?: TooltipSide;
 }
@@ -68,7 +68,7 @@ const ARROW_PADDING = 12;
  *
  * Since the tooltips are appended to the body, they are in the root Stacking Context. If other elements are also there, the z-index will determine which appears on top. By creating a new Stacking Context for your app, it ensures that z-indexed elements will stay within that context, while tooltips will be painted on top, in the parent Stacking Context.
  */
-export const Tooltip = forwardRef<HTMLDivElement, Props>((props, ref) => {
+export const Tooltip = forwardRef<HTMLElement, Props>((props, ref) => {
   const { align, children, content, isOpen, side, ...radixProps } = props;
   const theme = useContext(ThemeContext);
   const themeOverrideProp = isDefined(theme) ? { [THEME_DATA_ATTRIBUTE]: theme } : {};
@@ -86,14 +86,14 @@ export const Tooltip = forwardRef<HTMLDivElement, Props>((props, ref) => {
 
   return (
     <radixTooltip.Root open={isOpen}>
-      <radixTooltip.Trigger asChild>{children}</radixTooltip.Trigger>
+      <radixTooltip.Trigger asChild ref={ref as Ref<HTMLButtonElement> | undefined} {...radixProps}>
+        {children}
+      </radixTooltip.Trigger>
       <radixTooltip.Portal>
         <TooltipContent
           {...themeOverrideProp}
-          {...radixProps}
           align={align}
           arrowPadding={ARROW_PADDING}
-          ref={ref}
           side={side}
           sideOffset={TOOLTIP_OFFSET}>
           {content}

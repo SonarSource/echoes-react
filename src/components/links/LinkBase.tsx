@@ -20,13 +20,24 @@
 
 import styled from '@emotion/styled';
 import * as VisuallyHidden from '@radix-ui/react-visually-hidden';
-import React, { HTMLAttributeAnchorTarget, forwardRef } from 'react';
+import React, { CSSProperties, HTMLAttributeAnchorTarget, forwardRef } from 'react';
 import { useIntl } from 'react-intl';
-import { Link as RouterLink, LinkProps as RouterLinkProps } from 'react-router-dom';
+import {
+  Link as RouterLink,
+  NavLink as RouterNavLink,
+  NavLinkProps as RouterNavLinkProps,
+} from 'react-router-dom';
 import { isSonarLink } from '~common/helpers/url';
 import { IconLinkExternal } from '../icons/IconLinkExternal';
 
-type RouterLinkPropsRequired = 'download' | 'reloadDocument' | 'state' | 'style' | 'title' | 'to';
+type RouterNavLinkPropsAllowed =
+  | 'download'
+  | 'end'
+  | 'reloadDocument'
+  | 'state'
+  | 'style'
+  | 'title'
+  | 'to';
 
 export enum LinkHighlight {
   Accent = 'accent',
@@ -35,11 +46,12 @@ export enum LinkHighlight {
   Subdued = 'subdued',
 }
 
-export interface LinkProps extends Pick<RouterLinkProps, RouterLinkPropsRequired> {
+export interface LinkProps extends Pick<RouterNavLinkProps, RouterNavLinkPropsAllowed> {
   children: React.ReactNode;
   className?: string;
   isExternal?: boolean;
   hasExternalIcon?: boolean;
+  hasNavLink?: boolean;
   highlight?: LinkHighlight;
   shouldBlurAfterClick?: boolean;
   shouldPreventDefault?: boolean;
@@ -56,7 +68,9 @@ export const LinkBase = forwardRef<HTMLAnchorElement, LinkProps>((props, ref) =>
     onClick,
     shouldPreventDefault = false,
     hasExternalIcon = true,
+    hasNavLink = false,
     shouldStopPropagation = false,
+    style,
     to,
     ...restAndRadixProps
   } = props;
@@ -98,7 +112,8 @@ export const LinkBase = forwardRef<HTMLAnchorElement, LinkProps>((props, ref) =>
         {...restAndRadixProps}
         href={toAsString}
         onClick={handleClick}
-        ref={ref}>
+        ref={ref}
+        style={style as CSSProperties | undefined}>
         {children}
         {hasExternalIcon && <ExternalIcon data-testid="echoes-link-external-icon" />}
         <VisuallyHidden.Root>
@@ -112,10 +127,18 @@ export const LinkBase = forwardRef<HTMLAnchorElement, LinkProps>((props, ref) =>
     );
   }
 
+  const RouterLinkComponent = hasNavLink ? RouterNavLink : RouterLink;
+
   return (
-    <RouterLink {...restAndRadixProps} onClick={handleClick} ref={ref} to={to}>
+    <RouterLinkComponent
+      {...(hasNavLink ? { end: true } : {})}
+      {...restAndRadixProps}
+      onClick={handleClick}
+      ref={ref}
+      style={style}
+      to={to}>
       {children}
-    </RouterLink>
+    </RouterLinkComponent>
   );
 });
 LinkBase.displayName = 'LinkBase';
