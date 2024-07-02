@@ -18,12 +18,10 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-export * from './checkbox';
-export * from './dropdown-menu';
-export * from './echoes-provider';
-export * from './icons';
-export * from './links';
-export * from './radio-button-group';
-export * from './select';
-export * from './spinner';
-export * from './tooltip';
+import { DropdownMenuItemBase, DropdownMenuItemBaseProps } from './DropdownMenuItemBase';
+
+type Props = Omit<DropdownMenuItemBaseProps, 'isCheckable' | 'isChecked'>;
+
+export function DropdownMenuItemButton(props: Readonly<Props>) {
+  return <DropdownMenuItemBase {...props} />;
+}

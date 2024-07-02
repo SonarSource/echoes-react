@@ -18,12 +18,17 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-export * from './checkbox';
-export * from './dropdown-menu';
-export * from './echoes-provider';
-export * from './icons';
-export * from './links';
-export * from './radio-button-group';
-export * from './select';
-export * from './spinner';
-export * from './tooltip';
+import styled from '@emotion/styled';
+import * as radixDropdownMenu from '@radix-ui/react-dropdown-menu';
+import { ReactNode } from 'react';
+
+export function DropdownMenuGroupLabel({ children }: Readonly<{ children: ReactNode }>) {
+  return <StyledGroupLabel>{children}</StyledGroupLabel>;
+}
+
+const StyledGroupLabel = styled(radixDropdownMenu.Label)`
+  color: var(--echoes-color-text-default);
+  font: var(--echoes-typography-paragraph-small-semi-bold);
+  padding: var(--echoes-dimension-space-100) var(--echoes-dimension-space-150)
+    var(--echoes-dimension-space-50);
+`;

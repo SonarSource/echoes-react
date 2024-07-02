@@ -7,6 +7,12 @@
             "value": "{echoes.dimension.size.5000}",
             "type": "sizing"
           }
+        },
+        "minWidth": {
+          "default": {
+            "value": "150px",
+            "type": "sizing"
+          }
         }
       },
       "inputs": {
@@ -27,6 +33,6 @@
           "type": "sizing"
         }
       }
-    }
+   }
   }
 }

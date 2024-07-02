@@ -55,7 +55,7 @@ it('keeps custom properties', async () => {
 
   await user.hover(screen.getByText('Trigger'));
 
-  expect((await screen.findAllByText('content'))[0]).toHaveAttribute('data-custom', 'test');
+  expect(await screen.findByRole('button')).toHaveAttribute('data-custom', 'test');
 });
 
 it('can override the theme', async () => {

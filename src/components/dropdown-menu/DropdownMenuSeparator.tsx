@@ -18,12 +18,16 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-export * from './checkbox';
-export * from './dropdown-menu';
-export * from './echoes-provider';
-export * from './icons';
-export * from './links';
-export * from './radio-button-group';
-export * from './select';
-export * from './spinner';
-export * from './tooltip';
+import styled from '@emotion/styled';
+import * as radixDropdownMenu from '@radix-ui/react-dropdown-menu';
+
+export function DropdownMenuSeparator() {
+  return <StyledSeparator />;
+}
+
+const StyledSeparator = styled(radixDropdownMenu.Separator)`
+  border-top: var(--echoes-border-width-default) solid var(--echoes-color-border-weak);
+  box-sizing: border-box;
+  margin: var(--echoes-dimension-space-25);
+  width: 100%;
+`;
