@@ -21,12 +21,13 @@
 import styled from '@emotion/styled';
 import type { Meta, StoryObj } from '@storybook/react';
 import { PropsWithChildren } from 'react';
+import { To } from 'react-router-dom';
 import { DropdownMenu } from '../src';
 import { MenuButton } from '../storybook-static/MenuButton';
 
-const meta: Meta<typeof DropdownMenu.ItemButtonDestructive> = {
-  component: DropdownMenu.ItemButtonDestructive,
-  title: 'DropdownMenu/ItemButtonDestructive',
+const meta: Meta<typeof DropdownMenu.ItemLink> = {
+  component: DropdownMenu.ItemLink,
+  title: 'DropdownMenu/ItemButtonLink',
   parameters: {
     controls: { exclude: ['onClick'] },
   },
@@ -34,14 +35,30 @@ const meta: Meta<typeof DropdownMenu.ItemButtonDestructive> = {
 
 export default meta;
 
-type Story = StoryObj<typeof DropdownMenu.ItemButtonDestructive>;
+type Story = StoryObj<typeof DropdownMenu.ItemLink>;
 
-const defaultProps = { children: 'Item label', helpText: 'Help text' };
+const defaultProps = {
+  children: 'Link label',
+  helpText: 'Help text',
+  prefix: '🌷',
+  to: 'elsewhere',
+};
 
-export const Simple: Story = {
+export const InactiveSimple: Story = {
   args: {
     ...defaultProps,
     helpText: '',
+    prefix: '',
+  },
+  render,
+};
+
+export const ActiveSimple: Story = {
+  args: {
+    ...defaultProps,
+    helpText: '',
+    prefix: '',
+    to: '/',
   },
   render,
 };
@@ -51,25 +68,71 @@ export const Disabled: Story = {
     ...defaultProps,
     helpText: '',
     isDisabled: true,
+    prefix: '',
   },
   render,
 };
 
-export const WithHelpText: Story = {
-  args: defaultProps,
+export const InactiveWithHelpText: Story = {
+  args: {
+    ...defaultProps,
+    prefix: '',
+  },
   render,
 };
 
-function render({ children, ...args }: PropsWithChildren<{}>) {
+export const ActiveWithHelpText: Story = {
+  args: {
+    ...defaultProps,
+    prefix: '',
+    to: '/',
+  },
+  render,
+};
+
+export const InactiveWithPrefix: Story = {
+  args: {
+    ...defaultProps,
+    helpText: '',
+  },
+  render,
+};
+
+export const ActiveWithPrefix: Story = {
+  args: {
+    ...defaultProps,
+    helpText: '',
+    to: '/',
+  },
+  render,
+};
+
+export const External: Story = {
+  args: {
+    ...defaultProps,
+    helpText: '',
+    isExternal: true,
+    prefix: '',
+  },
+  render,
+};
+
+export const Full: Story = {
+  args: {
+    ...defaultProps,
+    ariaLabel: 'ARIA label',
+    isExternal: true,
+    to: '/',
+  },
+  render,
+};
+
+function render({ children, ...args }: PropsWithChildren<{ to: To }>) {
   return (
     <BasicWrapper>
       <DropdownMenu.Root
         isOpen
-        items={
-          <DropdownMenu.ItemButtonDestructive {...args}>
-            {children}
-          </DropdownMenu.ItemButtonDestructive>
-        }>
+        items={<DropdownMenu.ItemLink {...args}>{children}</DropdownMenu.ItemLink>}>
         <MenuButton />
       </DropdownMenu.Root>
     </BasicWrapper>

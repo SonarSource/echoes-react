@@ -20,8 +20,8 @@
 
 import styled from '@emotion/styled';
 import type { Meta, StoryObj } from '@storybook/react';
-import { PropsWithChildren, forwardRef } from 'react';
-import { DropdownMenu, IconBug, IconChevronDown, IconGear, LinkStandalone } from '../src';
+import { DropdownMenu, IconBug, IconGear, LinkStandalone } from '../src';
+import { MenuButton } from '../storybook-static/MenuButton';
 
 const meta: Meta<typeof DropdownMenu.Root> = {
   component: DropdownMenu.Root,
@@ -45,29 +45,6 @@ const StyledBadge = styled.span`
   text-transform: uppercase;
   vertical-align: middle;
 `;
-
-const MenuButton = forwardRef<HTMLButtonElement, PropsWithChildren<{}>>(
-  ({ children = 'Menu', ...radixProps }, ref) => (
-    <button
-      ref={ref}
-      style={{
-        alignItems: 'center',
-        backgroundColor: 'blue',
-        border: 'none',
-        color: 'white',
-        display: 'flex',
-        gap: '4px',
-        opacity: 0.6,
-        padding: '4px 8px',
-      }}
-      type="button"
-      {...radixProps}>
-      {children} <IconChevronDown />
-    </button>
-  ),
-);
-
-MenuButton.displayName = 'MenuButton';
 
 const items = (
   <>

@@ -20,12 +20,13 @@
 
 import styled from '@emotion/styled';
 import type { Meta, StoryObj } from '@storybook/react';
-import { PropsWithChildren, forwardRef } from 'react';
-import { DropdownMenu, IconChevronDown } from '../src';
+import { PropsWithChildren } from 'react';
+import { DropdownMenu } from '../src';
+import { MenuButton } from '../storybook-static/MenuButton';
 
 const meta: Meta<typeof DropdownMenu.ItemButton> = {
   component: DropdownMenu.ItemButton,
-  title: 'DropdownMenu.ItemButton',
+  title: 'DropdownMenu/ItemButton',
   parameters: {
     controls: { exclude: ['onClick'] },
   },
@@ -35,117 +36,75 @@ export default meta;
 
 type Story = StoryObj<typeof DropdownMenu.ItemButton>;
 
-const MenuButton = forwardRef<HTMLButtonElement, PropsWithChildren<{}>>(
-  ({ children = 'Menu', ...radixProps }, ref) => (
-    <button
-      ref={ref}
-      style={{
-        alignItems: 'center',
-        backgroundColor: 'blue',
-        border: 'none',
-        color: 'white',
-        display: 'flex',
-        gap: '4px',
-        opacity: 0.6,
-        padding: '4px 8px',
-      }}
-      type="button"
-      {...radixProps}>
-      {children} <IconChevronDown />
-    </button>
-  ),
-);
-
-MenuButton.displayName = 'MenuButton';
+const children = 'Item label';
+const helpText = 'Help text';
+const prefix = '🌷';
+const suffix = '🌼';
 
 export const Simple: Story = {
   args: {
-    children: 'Item label',
+    children,
+    helpText: '',
+    prefix: '',
+    suffix: '',
   },
-  render: ({ children, ...args }) => (
-    <BasicWrapper>
-      <DropdownMenu.Root
-        isOpen
-        items={<DropdownMenu.ItemButton {...args}>{children}</DropdownMenu.ItemButton>}>
-        <MenuButton />
-      </DropdownMenu.Root>
-    </BasicWrapper>
-  ),
+  render,
 };
 
 export const Disabled: Story = {
   args: {
-    children: 'Item label',
+    children,
+    helpText: '',
     isDisabled: true,
+    prefix: '',
+    suffix: '',
   },
-  render: ({ children, ...args }) => (
-    <BasicWrapper>
-      <DropdownMenu.Root
-        isOpen
-        items={<DropdownMenu.ItemButton {...args}>{children}</DropdownMenu.ItemButton>}>
-        <MenuButton />
-      </DropdownMenu.Root>
-    </BasicWrapper>
-  ),
+  render,
 };
 
 export const WithHelpText: Story = {
   args: {
-    children: 'Item label',
-    helpText: 'Help text',
+    children,
+    helpText,
+    prefix: '',
+    suffix: '',
   },
-  render: ({ children, ...args }) => (
-    <BasicWrapper>
-      <DropdownMenu.Root
-        isOpen
-        items={<DropdownMenu.ItemButton {...args}>{children}</DropdownMenu.ItemButton>}>
-        <MenuButton />
-      </DropdownMenu.Root>
-    </BasicWrapper>
-  ),
+  render,
 };
 
 export const WithPrefix: Story = {
   args: {
-    children: 'Item label',
-    prefix: '🌷',
+    children,
+    helpText: '',
+    prefix,
+    suffix: '',
   },
-  render: ({ children, ...args }) => (
-    <BasicWrapper>
-      <DropdownMenu.Root
-        isOpen
-        items={<DropdownMenu.ItemButton {...args}>{children}</DropdownMenu.ItemButton>}>
-        <MenuButton />
-      </DropdownMenu.Root>
-    </BasicWrapper>
-  ),
+  render,
 };
 
 export const WithSuffix: Story = {
   args: {
-    children: 'Item label',
-    suffix: '🌼',
+    children,
+    helpText: '',
+    prefix: '',
+    suffix,
   },
-  render: ({ children, ...args }) => (
-    <BasicWrapper>
-      <DropdownMenu.Root
-        isOpen
-        items={<DropdownMenu.ItemButton {...args}>{children}</DropdownMenu.ItemButton>}>
-        <MenuButton />
-      </DropdownMenu.Root>
-    </BasicWrapper>
-  ),
+  render,
 };
 
 export const Full: Story = {
   args: {
     ariaLabel: 'ARIA label',
-    children: 'Item label',
-    helpText: 'Help text',
-    prefix: '🌷',
-    suffix: '🌼',
+    children,
+    helpText,
+    prefix,
+    suffix,
   },
-  render: ({ children, ...args }) => (
+  render,
+};
+
+function render({ children, ...args }: PropsWithChildren<{}>) {
+  return (
     <BasicWrapper>
       <DropdownMenu.Root
         isOpen
@@ -153,8 +112,8 @@ export const Full: Story = {
         <MenuButton />
       </DropdownMenu.Root>
     </BasicWrapper>
-  ),
-};
+  );
+}
 
 const BasicWrapper = styled.div`
   display: flex;

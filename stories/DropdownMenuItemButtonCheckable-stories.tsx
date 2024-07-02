@@ -20,12 +20,13 @@
 
 import styled from '@emotion/styled';
 import type { Meta, StoryObj } from '@storybook/react';
-import { PropsWithChildren, forwardRef } from 'react';
-import { DropdownMenu, IconChevronDown } from '../src';
+import { PropsWithChildren } from 'react';
+import { DropdownMenu } from '../src';
+import { MenuButton } from '../storybook-static/MenuButton';
 
 const meta: Meta<typeof DropdownMenu.ItemButtonCheckable> = {
-  component: DropdownMenu.ItemButton,
-  title: 'DropdownMenu.ItemButtonCheckable',
+  component: DropdownMenu.ItemButtonCheckable,
+  title: 'DropdownMenu/ItemButtonCheckable',
   parameters: {
     controls: { exclude: ['onClick'] },
   },
@@ -35,243 +36,133 @@ export default meta;
 
 type Story = StoryObj<typeof DropdownMenu.ItemButtonCheckable>;
 
-const MenuButton = forwardRef<HTMLButtonElement, PropsWithChildren<{}>>(
-  ({ children = 'Menu', ...radixProps }, ref) => (
-    <button
-      ref={ref}
-      style={{
-        alignItems: 'center',
-        backgroundColor: 'blue',
-        border: 'none',
-        color: 'white',
-        display: 'flex',
-        gap: '4px',
-        opacity: 0.6,
-        padding: '4px 8px',
-      }}
-      type="button"
-      {...radixProps}>
-      {children} <IconChevronDown />
-    </button>
-  ),
-);
-
-MenuButton.displayName = 'MenuButton';
+const defaultProps = {
+  children: 'Item label',
+  helpText: 'Help text',
+  prefix: '🌷',
+  suffix: '🌼',
+};
 
 export const UncheckedSimple: Story = {
   args: {
-    children: 'Item label',
+    ...defaultProps,
+    helpText: '',
+    prefix: '',
+    suffix: '',
   },
-  render: ({ children, ...args }) => (
-    <BasicWrapper>
-      <DropdownMenu.Root
-        isOpen
-        items={
-          <DropdownMenu.ItemButtonCheckable {...args}>{children}</DropdownMenu.ItemButtonCheckable>
-        }>
-        <MenuButton />
-      </DropdownMenu.Root>
-    </BasicWrapper>
-  ),
+  render,
 };
 
 export const CheckedSimple: Story = {
   args: {
-    children: 'Item label',
+    ...defaultProps,
+    helpText: '',
     isChecked: true,
+    prefix: '',
+    suffix: '',
   },
-  render: ({ children, ...args }) => (
-    <BasicWrapper>
-      <DropdownMenu.Root
-        isOpen
-        items={
-          <DropdownMenu.ItemButtonCheckable {...args}>{children}</DropdownMenu.ItemButtonCheckable>
-        }>
-        <MenuButton />
-      </DropdownMenu.Root>
-    </BasicWrapper>
-  ),
+  render,
 };
 
 export const UncheckedDisabled: Story = {
   args: {
-    children: 'Item label',
+    ...defaultProps,
+    helpText: '',
     isDisabled: true,
+    prefix: '',
+    suffix: '',
   },
-  render: ({ children, ...args }) => (
-    <BasicWrapper>
-      <DropdownMenu.Root
-        isOpen
-        items={
-          <DropdownMenu.ItemButtonCheckable {...args}>{children}</DropdownMenu.ItemButtonCheckable>
-        }>
-        <MenuButton />
-      </DropdownMenu.Root>
-    </BasicWrapper>
-  ),
+  render,
 };
 
 export const CheckedDisabled: Story = {
   args: {
-    children: 'Item label',
+    ...defaultProps,
+    helpText: '',
     isChecked: true,
     isDisabled: true,
+    prefix: '',
+    suffix: '',
   },
-  render: ({ children, ...args }) => (
-    <BasicWrapper>
-      <DropdownMenu.Root
-        isOpen
-        items={
-          <DropdownMenu.ItemButtonCheckable {...args}>{children}</DropdownMenu.ItemButtonCheckable>
-        }>
-        <MenuButton />
-      </DropdownMenu.Root>
-    </BasicWrapper>
-  ),
+  render,
 };
 
 export const UncheckedWithHelpText: Story = {
   args: {
-    children: 'Item label',
-    helpText: 'Help text',
+    ...defaultProps,
+    prefix: '',
+    suffix: '',
   },
-  render: ({ children, ...args }) => (
-    <BasicWrapper>
-      <DropdownMenu.Root
-        isOpen
-        items={
-          <DropdownMenu.ItemButtonCheckable {...args}>{children}</DropdownMenu.ItemButtonCheckable>
-        }>
-        <MenuButton />
-      </DropdownMenu.Root>
-    </BasicWrapper>
-  ),
+  render,
 };
 
 export const CheckedWithHelpText: Story = {
   args: {
-    children: 'Item label',
-    helpText: 'Help text',
+    ...defaultProps,
     isChecked: true,
+    prefix: '',
+    suffix: '',
   },
-  render: ({ children, ...args }) => (
-    <BasicWrapper>
-      <DropdownMenu.Root
-        isOpen
-        items={
-          <DropdownMenu.ItemButtonCheckable {...args}>{children}</DropdownMenu.ItemButtonCheckable>
-        }>
-        <MenuButton />
-      </DropdownMenu.Root>
-    </BasicWrapper>
-  ),
+  render,
 };
 
 export const UncheckedWithPrefix: Story = {
   args: {
-    children: 'Item label',
-    prefix: '🌷',
+    ...defaultProps,
+    helpText: '',
+    suffix: '',
   },
-  render: ({ children, ...args }) => (
-    <BasicWrapper>
-      <DropdownMenu.Root
-        isOpen
-        items={
-          <DropdownMenu.ItemButtonCheckable {...args}>{children}</DropdownMenu.ItemButtonCheckable>
-        }>
-        <MenuButton />
-      </DropdownMenu.Root>
-    </BasicWrapper>
-  ),
+  render,
 };
 
 export const CheckedWithPrefix: Story = {
   args: {
-    children: 'Item label',
+    ...defaultProps,
+    helpText: '',
     isChecked: true,
-    prefix: '🌷',
+    suffix: '',
   },
-  render: ({ children, ...args }) => (
-    <BasicWrapper>
-      <DropdownMenu.Root
-        isOpen
-        items={
-          <DropdownMenu.ItemButtonCheckable {...args}>{children}</DropdownMenu.ItemButtonCheckable>
-        }>
-        <MenuButton />
-      </DropdownMenu.Root>
-    </BasicWrapper>
-  ),
+  render,
 };
 
 export const UncheckedWithSuffix: Story = {
   args: {
-    children: 'Item label',
-    suffix: '🌼',
+    ...defaultProps,
+    helpText: '',
+    prefix: '',
   },
-  render: ({ children, ...args }) => (
-    <BasicWrapper>
-      <DropdownMenu.Root
-        isOpen
-        items={
-          <DropdownMenu.ItemButtonCheckable {...args}>{children}</DropdownMenu.ItemButtonCheckable>
-        }>
-        <MenuButton />
-      </DropdownMenu.Root>
-    </BasicWrapper>
-  ),
+  render,
 };
 
 export const CheckedWithSuffix: Story = {
   args: {
-    children: 'Item label',
+    ...defaultProps,
+    helpText: '',
     isChecked: true,
-    suffix: '🌼',
+    prefix: '',
   },
-  render: ({ children, ...args }) => (
-    <BasicWrapper>
-      <DropdownMenu.Root
-        isOpen
-        items={
-          <DropdownMenu.ItemButtonCheckable {...args}>{children}</DropdownMenu.ItemButtonCheckable>
-        }>
-        <MenuButton />
-      </DropdownMenu.Root>
-    </BasicWrapper>
-  ),
+  render,
 };
 
 export const UncheckedFull: Story = {
   args: {
+    ...defaultProps,
     ariaLabel: 'ARIA label',
-    children: 'Item label',
-    helpText: 'Help text',
-    prefix: '🌷',
-    suffix: '🌼',
   },
-  render: ({ children, ...args }) => (
-    <BasicWrapper>
-      <DropdownMenu.Root
-        isOpen
-        items={
-          <DropdownMenu.ItemButtonCheckable {...args}>{children}</DropdownMenu.ItemButtonCheckable>
-        }>
-        <MenuButton />
-      </DropdownMenu.Root>
-    </BasicWrapper>
-  ),
+  render,
 };
 
 export const CheckedFull: Story = {
   args: {
+    ...defaultProps,
     ariaLabel: 'ARIA label',
-    children: 'Item label',
-    helpText: 'Help text',
     isChecked: true,
-    prefix: '🌷',
-    suffix: '🌼',
   },
-  render: ({ children, ...args }) => (
+  render,
+};
+
+function render({ children, ...args }: PropsWithChildren<{}>) {
+  return (
     <BasicWrapper>
       <DropdownMenu.Root
         isOpen
@@ -281,8 +172,8 @@ export const CheckedFull: Story = {
         <MenuButton />
       </DropdownMenu.Root>
     </BasicWrapper>
-  ),
-};
+  );
+}
 
 const BasicWrapper = styled.div`
   display: flex;
