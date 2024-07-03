@@ -26,7 +26,7 @@ import { DropdownMenu } from '../src';
 
 const meta: Meta<typeof DropdownMenu.ItemButtonDestructive> = {
   component: DropdownMenu.ItemButtonDestructive,
-  title: 'DropdownMenu/ItemButtonDestructive',
+  title: 'Echoes/DropdownMenuItems/ItemButtonDestructive',
   parameters: {
     controls: { exclude: ['onClick'] },
   },

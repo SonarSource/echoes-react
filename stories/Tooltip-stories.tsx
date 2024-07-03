@@ -24,7 +24,7 @@ import { Link, LinkStandalone, Tooltip, TooltipSide } from '../src';
 
 const meta: Meta<typeof Tooltip> = {
   component: Tooltip,
-  title: 'Tooltip',
+  title: 'Echoes/Tooltip',
   parameters: {
     controls: { exclude: ['children'] },
   },

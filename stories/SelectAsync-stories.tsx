@@ -25,7 +25,7 @@ import { SelectAsync } from '../src/components/select';
 
 const meta: Meta<typeof SelectAsync> = {
   component: SelectAsync,
-  title: 'SelectAsync',
+  title: 'Echoes/Select/SelectAsync',
 };
 
 export default meta;

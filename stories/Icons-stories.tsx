@@ -25,7 +25,7 @@ import { DesignTokensColors } from '~types/design-tokens';
 import * as icons from '../src/components/icons';
 
 const meta: Meta = {
-  title: 'Icons',
+  title: 'Echoes/Icons',
 };
 
 export default meta;

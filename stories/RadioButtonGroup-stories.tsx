@@ -23,7 +23,7 @@ import { RadioButtonGroup } from '../src';
 
 const meta: Meta<typeof RadioButtonGroup> = {
   component: RadioButtonGroup,
-  title: 'RadioButtonGroup',
+  title: 'Echoes/RadioButtonGroup',
   args: {
     id: 'radio',
     isRequired: false,
