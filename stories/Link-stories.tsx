@@ -23,7 +23,7 @@ import { Link as LinkComp, LinkHighlight } from '../src';
 
 const meta: Meta<typeof LinkComp> = {
   component: LinkComp,
-  title: 'Link',
+  title: 'Echoes/Link/Link',
   argTypes: {
     highlight: {
       control: {

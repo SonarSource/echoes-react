@@ -26,7 +26,7 @@ import { DropdownMenu } from '../src';
 
 const meta: Meta<typeof DropdownMenu.ItemButtonCheckable> = {
   component: DropdownMenu.ItemButtonCheckable,
-  title: 'DropdownMenu/ItemButtonCheckable',
+  title: 'Echoes/DropdownMenuItems/ItemButtonCheckable',
   parameters: {
     controls: { exclude: ['onClick'] },
   },

@@ -25,7 +25,7 @@ import { DropdownMenu, IconBug, IconGear, LinkStandalone } from '../src';
 
 const meta: Meta<typeof DropdownMenu.Root> = {
   component: DropdownMenu.Root,
-  title: 'DropdownMenu',
+  title: 'Echoes/DropdownMenu',
   parameters: {
     controls: { exclude: ['children'] },
   },
