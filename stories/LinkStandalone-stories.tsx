@@ -23,7 +23,7 @@ import { IconLink, LinkHighlight, LinkStandalone as LinkStandaloneComp } from '.
 
 const meta: Meta<typeof LinkStandaloneComp> = {
   component: LinkStandaloneComp,
-  title: 'Link Standalone',
+  title: 'Echoes/Link/LinkStandalone',
   argTypes: {
     highlight: {
       control: {
