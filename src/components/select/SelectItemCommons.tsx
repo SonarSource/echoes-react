@@ -25,7 +25,7 @@ import { IconCheck } from '..';
 import { SelectBaseProps } from './SelectCommons';
 import { SelectOption, SelectOptionType } from './SelectTypes';
 
-// Returns the stylized SelectItem component to be used in the itemComponent props of the Mantine Select
+// Returns the stylized SelectItem component to be used in the itemComponent prop of the Mantine Select
 export function useSelectItemComponent(
   optionComponent: SelectBaseProps['optionComponent'],
   optionType: SelectOptionType,
@@ -195,21 +195,23 @@ const SelectItemSatusRadio = styled.div`
 SelectItemSatusRadio.displayName = 'SelectItemSatusRadio';
 
 /**
-dropdown	.mantine-Select-dropdown	Dropdown element
-item	.mantine-Select-item	Item element, rendered inside dropdown
-nothingFound	.mantine-Select-nothingFound	Nothing found label
-separator	.mantine-Select-separator	Divider wrapper
+ == Mantine Select structure & css class reference ==
+
+dropdown	    .mantine-Select-dropdown	        Dropdown element
+item	        .mantine-Select-item	            Item element, rendered inside dropdown
+nothingFound	.mantine-Select-nothingFound	    Nothing found label
+separator	    .mantine-Select-separator	        Divider wrapper
 separatorLabel	.mantine-Select-separatorLabel	Separator Label
-itemsWrapper	.mantine-Select-itemsWrapper	Wraps all items in dropdown
+itemsWrapper	.mantine-Select-itemsWrapper	    Wraps all items in dropdown
 
-wrapper	.mantine-Select-wrapper	Root Input element
-root	.mantine-Select-root	Root element
-icon	.mantine-Select-icon	Input icon wrapper on the left side of the input, controlled by icon prop
-input	.mantine-Select-input	Main input element
-rightSection	.mantine-Select-rightSection	Input right section, controlled by rightSection prop
+wrapper	      .mantine-Select-wrapper	          Root Input element
+root	        .mantine-Select-root	            Root element
+icon	        .mantine-Select-icon	            Input icon wrapper on the left side of the input, controlled by icon prop
+input	        .mantine-Select-input	            Main input element
+rightSection	.mantine-Select-rightSection	    Input right section, controlled by rightSection prop
 
-label	.mantine-Select-label	Label element styles, defined by label prop
-error	.mantine-Select-error	Error element styles, defined by error prop
-description	.mantine-Select-description	Description element styles, defined by description prop
-required	.mantine-Select-required	Required asterisk element styles, defined by required prop
+label	        .mantine-Select-label	            Label element styles, defined by label prop
+error	        .mantine-Select-error	            Error element styles, defined by error prop
+description	  .mantine-Select-description	      Description element styles, defined by description prop
+required	    .mantine-Select-required	        Required asterisk element styles, defined by required prop
  */

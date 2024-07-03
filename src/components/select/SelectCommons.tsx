@@ -44,7 +44,7 @@ export interface SelectBaseProps {
   isRequired?: boolean;
   labelError?: MantineSelectProps['error'];
   labelNotFound?: MantineSelectProps['nothingFound'];
-  limit?: MantineSelectProps['limit']; // might change for a max height
+  limit?: MantineSelectProps['limit'];
   name?: MantineSelectProps['name'];
   optionComponent?: MantineSelectProps['itemComponent'];
   optionType?: SelectOptionType;
@@ -87,8 +87,6 @@ export const SelectBase = forwardRef<HTMLInputElement, PropsWithLabels<SelectBas
 
     const itemComponent = useSelectItemComponent(optionComponent, optionType);
     const isClearable = !isNotClearable && !isRequired;
-
-    // TODO Highlighter for search
 
     return (
       <SelectStyled
@@ -179,7 +177,7 @@ export const SelectStyled = styled(MantineSelect, {
     margin-top: var(--echoes-dimension-space-100);
   }
 
-  // Main input element, with styling for the default and ghost highlight and the difference states
+  // Main input element, with styling for the default and ghost highlight and the different states
   & .mantine-Select-input {
     box-sizing: border-box;
 
