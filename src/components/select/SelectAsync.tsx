@@ -43,6 +43,13 @@ export const SelectAsync = forwardRef<HTMLInputElement, PropsWithLabels<Props>>(
 
   const handleSearch = useCallback(
     (query: string) => {
+      // Avoid repeated queries (this callback is triggered repeatedly with the same query)
+      const queryIsRepeated = query === previousQuery.current;
+
+      if (onSearch === undefined || queryIsRepeated) {
+        return;
+      }
+
       /*
        * Prevent search from being triggered when we select a value
        * Explanation: When selecting an option, onSearchChange is triggered
@@ -53,12 +60,10 @@ export const SelectAsync = forwardRef<HTMLInputElement, PropsWithLabels<Props>>(
       const selectedOptionLabel = getItemLabel(
         data.find((item) => getItemValue(item) === valueRef.current),
       );
+
       const queryIsCurrentOptionLabel = query === selectedOptionLabel;
 
-      // Also avoid repeated queries (this callback is triggered repeatedly with the same query)
-      const queryIsRepeated = query === previousQuery.current;
-
-      if (onSearch && !queryIsRepeated && !queryIsCurrentOptionLabel) {
+      if (!queryIsCurrentOptionLabel) {
         previousQuery.current = query;
         onSearch(query);
       }
