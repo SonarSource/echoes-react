@@ -27,7 +27,7 @@ const meta: Meta<typeof DropdownMenu.Root> = {
   component: DropdownMenu.Root,
   title: 'DropdownMenu',
   parameters: {
-    controls: { exclude: ['children'] },
+    controls: { exclude: ['children', 'id'] },
   },
 };
 
