@@ -124,7 +124,7 @@ const StyledDropdownMenuContent = styled(radixDropdownMenu.Content)`
   border-radius: var(--echoes-dimension-space-100);
   box-shadow: var(--echoes-box-shadow-medium);
   box-sizing: border-box;
-  margin: var(--echoes-dimension-space-50);
+  margin: var(--echoes-dimension-space-50) 0;
   max-height: var(--radix-dropdown-menu-content-available-height);
   max-width: var(--echoes-sizes-overlays-max-width-default);
   min-width: var(--echoes-sizes-overlays-min-width-default);
