@@ -36,8 +36,9 @@ interface DropdownMenuRootProps extends radixDropdownMenu.DropdownMenuTriggerPro
   align?: 'center' | 'end' | 'start';
   children: ReactNode;
   className?: string;
-  isDisabled?: boolean;
   header?: Pick<PropsLabel, 'helpText' | 'label'>;
+  isDisabled?: boolean;
+  isModal?: boolean;
   isOpen?: boolean;
   items?: ReactNode;
 }
@@ -48,8 +49,9 @@ const DropdownMenuRoot = forwardRef<HTMLButtonElement, DropdownMenuRootProps>(
       align = 'center',
       children,
       className,
-      isDisabled,
       header,
+      isDisabled = false,
+      isModal = false,
       isOpen,
       items,
       ...radixProps
@@ -61,7 +63,7 @@ const DropdownMenuRoot = forwardRef<HTMLButtonElement, DropdownMenuRootProps>(
     }
 
     return (
-      <radixDropdownMenu.Root open={isOpen}>
+      <radixDropdownMenu.Root modal={isModal} open={isOpen}>
         <radixDropdownMenu.Trigger asChild ref={ref} {...radixProps}>
           {children}
         </radixDropdownMenu.Trigger>
