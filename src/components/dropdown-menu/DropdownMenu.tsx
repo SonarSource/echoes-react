@@ -32,11 +32,16 @@ import { DropdownMenuItemButtonDownload } from './DropdownMenuItemButtonDownload
 import { DropdownMenuItemLink } from './DropdownMenuItemLink';
 import { DropdownMenuSeparator } from './DropdownMenuSeparator';
 
+type A11yAttrs = Pick<React.AriaAttributes, 'aria-controls'> & {
+  id?: string;
+};
+
 interface DropdownMenuRootProps extends radixDropdownMenu.DropdownMenuTriggerProps {
   align?: 'center' | 'end' | 'start';
   children: ReactNode;
   className?: string;
   header?: Pick<PropsLabel, 'helpText' | 'label'>;
+  id?: string;
   isDisabled?: boolean;
   isModal?: boolean;
   isOpen?: boolean;
@@ -50,6 +55,7 @@ const DropdownMenuRoot = forwardRef<HTMLButtonElement, DropdownMenuRootProps>(
       children,
       className,
       header,
+      id = 'dropdown-menu',
       isDisabled = false,
       isModal = false,
       isOpen,
@@ -62,14 +68,23 @@ const DropdownMenuRoot = forwardRef<HTMLButtonElement, DropdownMenuRootProps>(
       return <span>{children}</span>;
     }
 
+    const a11yAttrs: A11yAttrs = {
+      'aria-controls': `${id}-dropdown`,
+      id: `${id}-trigger`,
+    };
+
     return (
       <radixDropdownMenu.Root modal={isModal} open={isOpen}>
-        <radixDropdownMenu.Trigger asChild ref={ref} {...radixProps}>
+        <radixDropdownMenu.Trigger asChild ref={ref} {...a11yAttrs} {...radixProps}>
           {children}
         </radixDropdownMenu.Trigger>
 
         <radixDropdownMenu.Portal>
-          <StyledDropdownMenuContent align={align} className={className}>
+          <StyledDropdownMenuContent
+            align={align}
+            aria-labelledby={`${id}-trigger`}
+            className={className}
+            id={`${id}-dropdown`}>
             {header && (
               <>
                 <StyledHeaderLabelAndHelpText>

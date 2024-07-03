@@ -36,14 +36,16 @@ export default meta;
 
 type Story = StoryObj<typeof DropdownMenu.ItemButton>;
 
-const children = 'Item label';
-const helpText = 'Help text';
-const prefix = '🌷';
-const suffix = '🌼';
+const defaultProps = {
+  children: 'Item label',
+  helpText: 'Help text',
+  prefix: '🌷',
+  suffix: '🌼',
+};
 
 export const Simple: Story = {
   args: {
-    children,
+    ...defaultProps,
     helpText: '',
     prefix: '',
     suffix: '',
@@ -53,7 +55,7 @@ export const Simple: Story = {
 
 export const Disabled: Story = {
   args: {
-    children,
+    ...defaultProps,
     helpText: '',
     isDisabled: true,
     prefix: '',
@@ -64,8 +66,7 @@ export const Disabled: Story = {
 
 export const WithHelpText: Story = {
   args: {
-    children,
-    helpText,
+    ...defaultProps,
     prefix: '',
     suffix: '',
   },
@@ -74,9 +75,8 @@ export const WithHelpText: Story = {
 
 export const WithPrefix: Story = {
   args: {
-    children,
+    ...defaultProps,
     helpText: '',
-    prefix,
     suffix: '',
   },
   render,
@@ -84,21 +84,17 @@ export const WithPrefix: Story = {
 
 export const WithSuffix: Story = {
   args: {
-    children,
+    ...defaultProps,
     helpText: '',
     prefix: '',
-    suffix,
   },
   render,
 };
 
 export const Full: Story = {
   args: {
+    ...defaultProps,
     ariaLabel: 'ARIA label',
-    children,
-    helpText,
-    prefix,
-    suffix,
   },
   render,
 };
