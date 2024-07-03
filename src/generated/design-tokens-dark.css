@@ -54,9 +54,9 @@ html[data-echoes-theme='dark'], [data-echoes-theme='dark'] {
   --echoes-color-background-info-default: rgb(184,222,241);
   --echoes-color-background-info-weak: #8FCAEA33;
   --echoes-color-background-transparent: rgba(0,0,0,0);
-  --echoes-color-background-selected-weak-default: rgb(27,34,80);
-  --echoes-color-background-selected-weak-hover: rgb(43,51,104);
-  --echoes-color-background-selected-weak-pressed: rgb(71,81,143);
+  --echoes-color-background-selected-weak-default: #5D6CD033;
+  --echoes-color-background-selected-weak-hover: #5D6CD04D;
+  --echoes-color-background-selected-weak-pressed: #5D6CD04D;
   --echoes-color-background-selected-bold-default: rgb(189,198,255);
   --echoes-color-background-selected-bold-hover: rgb(209,215,254);
   --echoes-color-background-selected-bold-pressed: rgb(232,235,255);

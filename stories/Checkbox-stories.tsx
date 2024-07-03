@@ -24,7 +24,7 @@ import { Checkbox } from '../src';
 
 const meta: Meta<typeof Checkbox> = {
   component: Checkbox,
-  title: 'Checkbox',
+  title: 'Echoes/Checkbox',
   parameters: {
     a11y: {
       config: {

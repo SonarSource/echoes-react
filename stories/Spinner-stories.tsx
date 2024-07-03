@@ -24,7 +24,7 @@ import { Spinner } from '../src';
 
 const meta: Meta<typeof Spinner> = {
   component: Spinner,
-  title: 'Spinner',
+  title: 'Echoes/Spinner',
   parameters: {
     controls: { exclude: ['checked', 'onCheck'] },
   },

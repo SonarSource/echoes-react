@@ -24,7 +24,7 @@ import { IconBell, IconBug, IconMegaphone, InputSize, Select } from '../src';
 
 const meta: Meta<typeof Select> = {
   component: Select,
-  title: 'Select',
+  title: 'Echoes/Select/Select',
 };
 
 export default meta;

@@ -151,15 +151,15 @@
         "selected": {
           "weak": {
             "default": {
-              "value": "{echoes.color.indigo.900}",
+              "value": "#5D6CD033",
               "type": "color"
             },
             "hover": {
-              "value": "{echoes.color.indigo.800}",
+              "value": "#5D6CD04D",
               "type": "color"
             },
             "pressed": {
-              "value": "{echoes.color.indigo.700}",
+              "value": "#5D6CD04D",
               "type": "color"
             }
           },

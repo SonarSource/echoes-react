@@ -44,7 +44,7 @@ export interface SelectBaseProps {
   isRequired?: boolean;
   labelError?: MantineSelectProps['error'];
   labelNotFound?: MantineSelectProps['nothingFound'];
-  limit?: MantineSelectProps['limit']; // might change for a max height
+  limit?: MantineSelectProps['limit'];
   name?: MantineSelectProps['name'];
   optionComponent?: MantineSelectProps['itemComponent'];
   optionType?: SelectOptionType;
@@ -87,8 +87,6 @@ export const SelectBase = forwardRef<HTMLInputElement, PropsWithLabels<SelectBas
 
     const itemComponent = useSelectItemComponent(optionComponent, optionType);
     const isClearable = !isNotClearable && !isRequired;
-
-    // TODO Highlighter for search
 
     return (
       <SelectStyled
@@ -179,7 +177,7 @@ export const SelectStyled = styled(MantineSelect, {
     margin-top: var(--echoes-dimension-space-100);
   }
 
-  // Main input element, with styling for the default and ghost highlight and the difference states
+  // Main input element, with styling for the default and ghost highlight and the different states
   & .mantine-Select-input {
     box-sizing: border-box;
 
@@ -209,7 +207,6 @@ export const SelectStyled = styled(MantineSelect, {
     &:focus,
     &:focus-visible {
       outline: var(--echoes-color-focus-default) solid var(--echoes-focus-border-width-default);
-      outline-offset: var(--echoes-focus-border-offset-default);
     }
 
     &[data-with-icon] {
@@ -284,7 +281,8 @@ export const SelectStyled = styled(MantineSelect, {
 
   // Inside the dropdown - Group header label
   & .mantine-Select-separatorLabel {
-    padding: var(--echoes-dimension-space-100) var(--echoes-dimension-space-200);
+    padding: var(--echoes-dimension-space-50) var(--echoes-dimension-space-200)
+      var(--echoes-dimension-space-100);
 
     font: var(--echoes-typography-paragraph-small-semi-bold);
     color: var(--echoes-color-text-default);
@@ -314,7 +312,7 @@ interface SelectRightSectionProps extends Pick<SelectBaseProps, 'isLoading'> {
 
 // Can't be a component because it must return undefined when not needed
 export function getSelectRightSection(props: Readonly<SelectRightSectionProps>) {
-  const { isLoading, isClearable, hasValue } = props;
+  const { isLoading, isClearable, hasValue, ...rest } = props;
 
   if (isLoading) {
     return <Spinner isLoading />;
@@ -325,5 +323,5 @@ export function getSelectRightSection(props: Readonly<SelectRightSectionProps>) 
     return undefined;
   }
 
-  return <IconChevronDown />;
+  return <IconChevronDown {...rest} />;
 }
