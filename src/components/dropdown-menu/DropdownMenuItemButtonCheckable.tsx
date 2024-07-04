@@ -32,13 +32,13 @@ const StyledDropdownMenuItemBase = styled(DropdownMenuItemBase)<
 >`
   background-color: ${(props) =>
     props.isChecked
-      ? 'var(--echoes-color-background-selected-weak-default)'
+      ? 'var(--echoes-color-background-accent-weak-default)'
       : 'var(--echoes-color-background-default)'};
 
   &:hover {
     background-color: ${(props) =>
       props.isChecked
-        ? 'var(--echoes-color-background-selected-weak-hover)'
+        ? 'var(--echoes-color-background-accent-weak-hover)'
         : 'var(--echoes-color-background-default-hover)'};
   }
 
@@ -46,7 +46,7 @@ const StyledDropdownMenuItemBase = styled(DropdownMenuItemBase)<
   &:active {
     background-color: ${(props) =>
       props.isChecked
-        ? 'var(--echoes-color-background-selected-weak-pressed)'
+        ? 'var(--echoes-color-background-accent-weak-active)'
         : 'var(--echoes-color-background-default-active)'};
   }
 
