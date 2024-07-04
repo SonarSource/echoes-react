@@ -88,9 +88,14 @@ const DropdownMenuRoot = forwardRef<HTMLButtonElement, DropdownMenuRootProps>(
             {header && (
               <>
                 <StyledHeaderLabelAndHelpText>
-                  <StyledHeaderLabel>{header.label}</StyledHeaderLabel>
+                  <StyledHeaderLabel title={typeof header.label === 'string' ? header.label : ''}>
+                    {header.label}
+                  </StyledHeaderLabel>
 
-                  <StyledHeaderHelpText>{header.helpText}</StyledHeaderHelpText>
+                  <StyledHeaderHelpText
+                    title={typeof header.helpText === 'string' ? header.helpText : ''}>
+                    {header.helpText}
+                  </StyledHeaderHelpText>
                 </StyledHeaderLabelAndHelpText>
                 <DropdownMenuSeparator />
               </>
@@ -128,11 +133,17 @@ const StyledHeaderLabelAndHelpText = styled.div`
 
 const StyledHeaderLabel = styled.div`
   font: var(--echoes-typography-paragraph-default-semi-bold);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 
 const StyledHeaderHelpText = styled.span`
   color: var(--echoes-color-text-subdued);
   font: var(--echoes-typography-paragraph-small-regular);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 
 const StyledDropdownMenuContent = styled(radixDropdownMenu.Content)`
