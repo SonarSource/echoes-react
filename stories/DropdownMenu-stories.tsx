@@ -50,14 +50,14 @@ const items = (
   <>
     <DropdownMenu.ItemButton>Your account</DropdownMenu.ItemButton>
 
-    <DropdownMenu.ItemButton>Your organization</DropdownMenu.ItemButton>
+    <DropdownMenu.ItemLink to="/">Your organization</DropdownMenu.ItemLink>
 
     <DropdownMenu.Separator />
 
     <DropdownMenu.GroupLabel>Enterprises</DropdownMenu.GroupLabel>
 
     <DropdownMenu.ItemButton
-      prefix={<IconGear color="echoes-color-icon-danger" />}
+      prefix={<IconGear color="echoes-color-icon-bold" />}
       suffix={<StyledBadge>Public</StyledBadge>}>
       SonarCloud
     </DropdownMenu.ItemButton>
@@ -70,7 +70,7 @@ const items = (
           open source project
         </>
       }
-      prefix={<IconBug color="echoes-color-icon-accent" />}>
+      prefix={<IconBug color="echoes-color-icon-default" />}>
       SonarQube
     </DropdownMenu.ItemButton>
 
