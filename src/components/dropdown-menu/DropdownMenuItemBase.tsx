@@ -60,7 +60,7 @@ export function DropdownMenuItemBase({
 
   if (isCheckable) {
     checkMarkOrPlaceHolder = isChecked ? (
-      <IconCheck color="echoes-color-icon-selected" />
+      <StyledIconCheck color="echoes-color-icon-selected" />
     ) : (
       <CheckmarkPlaceholder />
     );
@@ -89,7 +89,12 @@ export function DropdownMenuItemBase({
   );
 }
 
+const StyledIconCheck = styled(IconCheck)`
+  font-size: var(--echoes-font-size-body-medium);
+`;
+
 const CheckmarkPlaceholder = styled(IconCheck)`
+  font-size: var(--echoes-font-size-body-medium);
   visibility: hidden;
 `;
 
