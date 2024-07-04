@@ -254,6 +254,19 @@
         "800": "rgb(49,108,146)",
         "900": "rgb(23,67,97)"
       }
+    },
+    "sizes": {
+      "overlays": {
+        "maxWidth": {
+          "default": "25rem"
+        }
+      },
+      "inputs": {
+        "small": "150px",
+        "medium": "250px",
+        "large": "350px",
+        "full": "100%"
+      }
     }
   }
 }
