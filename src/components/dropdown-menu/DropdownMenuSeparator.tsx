@@ -28,6 +28,6 @@ export function DropdownMenuSeparator() {
 const StyledSeparator = styled(radixDropdownMenu.Separator)`
   border-top: var(--echoes-border-width-default) solid var(--echoes-color-border-weak);
   box-sizing: border-box;
-  margin: var(--echoes-dimension-space-25);
+  margin: var(--echoes-dimension-space-25) 0;
   width: 100%;
 `;
