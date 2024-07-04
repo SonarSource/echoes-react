@@ -71,4 +71,5 @@ const StyledDropdownMenuItemBase = styled(DropdownMenuItemBase)`
 
 const StyledIconLinkExternal = styled(IconLinkExternal)`
   font-size: var(--echoes-font-size-body-medium);
+  padding-right: var(--echoes-dimension-size-25);
 `;
