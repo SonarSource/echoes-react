@@ -72,9 +72,9 @@ const SelectItemWrapper = styled.div`
     gap: var(--echoes-dimension-space-100);
 
     padding: calc(var(--echoes-dimension-space-100) - var(--echoes-focus-border-width-default))
-      var(--echoes-dimension-space-200);
+      var(--echoes-dimension-space-150);
 
-    font: var(--echoes-typography-paragraph-default-regular);
+    font: var(--echoes-typography-paragraph-small-regular);
     color: var(--echoes-color-text-default);
     background-color: var(--echoes-color-background-default);
 
@@ -108,6 +108,8 @@ const SelectItemInner = styled.div`
 
   display: flex;
   flex-direction: column;
+
+  font: var(--echoes-typography-paragraph-default-regular);
 `;
 SelectItemInner.displayName = 'SelectItemInner';
 
@@ -143,7 +145,7 @@ const SelectItemStatusStyled = styled.div`
   padding: var(--echoes-dimension-space-25);
   min-width: var(--echoes-dimension-size-250);
 
-  font: var(--echoes-typography-paragraph-default-regular);
+  font: var(--echoes-typography-paragraph-small-regular);
   color: var(--echoes-color-icon-selected);
 
   [data-disabled] & {

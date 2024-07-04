@@ -207,7 +207,6 @@ export const SelectStyled = styled(MantineSelect, {
     &:focus,
     &:focus-visible {
       outline: var(--echoes-color-focus-default) solid var(--echoes-focus-border-width-default);
-      outline-offset: var(--echoes-focus-border-offset-default);
     }
 
     &[data-with-icon] {
@@ -282,7 +281,8 @@ export const SelectStyled = styled(MantineSelect, {
 
   // Inside the dropdown - Group header label
   & .mantine-Select-separatorLabel {
-    padding: var(--echoes-dimension-space-100) var(--echoes-dimension-space-200);
+    padding: var(--echoes-dimension-space-50) var(--echoes-dimension-space-200)
+      var(--echoes-dimension-space-100);
 
     font: var(--echoes-typography-paragraph-small-semi-bold);
     color: var(--echoes-color-text-default);
@@ -312,7 +312,7 @@ interface SelectRightSectionProps extends Pick<SelectBaseProps, 'isLoading'> {
 
 // Can't be a component because it must return undefined when not needed
 export function getSelectRightSection(props: Readonly<SelectRightSectionProps>) {
-  const { isLoading, isClearable, hasValue } = props;
+  const { isLoading, isClearable, hasValue, ...rest } = props;
 
   if (isLoading) {
     return <Spinner isLoading />;
@@ -323,5 +323,5 @@ export function getSelectRightSection(props: Readonly<SelectRightSectionProps>) 
     return undefined;
   }
 
-  return <IconChevronDown />;
+  return <IconChevronDown {...rest} />;
 }
