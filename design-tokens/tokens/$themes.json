@@ -193,7 +193,9 @@
     "$figmaStyleReferences": {},
     "selectedTokenSets": {
       "layer1/base": "enabled",
-      "layer1/colors": "enabled"
+      "layer1/colors": "enabled",
+      "layer2/base": "enabled",
+      "layer3/base": "enabled"
     },
     "$figmaCollectionId": "VariableCollectionId:1763:890",
     "$figmaModeId": "1763:0",
