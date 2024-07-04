@@ -259,6 +259,9 @@
       "overlays": {
         "maxWidth": {
           "default": "25rem"
+        },
+        "minWidth": {
+          "default": "150px"
         }
       },
       "inputs": {
