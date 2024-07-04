@@ -30,14 +30,7 @@ import {
 import { isSonarLink } from '~common/helpers/url';
 import { IconLinkExternal } from '../icons/IconLinkExternal';
 
-type RouterNavLinkPropsAllowed =
-  | 'download'
-  | 'end'
-  | 'reloadDocument'
-  | 'state'
-  | 'style'
-  | 'title'
-  | 'to';
+type RouterNavLinkPropsAllowed = 'download' | 'reloadDocument' | 'state' | 'style' | 'title' | 'to';
 
 export enum LinkHighlight {
   Accent = 'accent',
@@ -49,14 +42,15 @@ export enum LinkHighlight {
 export interface LinkProps extends Pick<RouterNavLinkProps, RouterNavLinkPropsAllowed> {
   children: React.ReactNode;
   className?: string;
-  isExternal?: boolean;
   hasExternalIcon?: boolean;
   hasNavLink?: boolean;
   highlight?: LinkHighlight;
+  isExternal?: boolean;
+  isMatchingPartialPath?: boolean;
+  onClick?: (event: React.MouseEvent<HTMLAnchorElement>) => void;
   shouldBlurAfterClick?: boolean;
   shouldPreventDefault?: boolean;
   shouldStopPropagation?: boolean;
-  onClick?: (event: React.MouseEvent<HTMLAnchorElement>) => void;
   target?: HTMLAttributeAnchorTarget;
 }
 
@@ -65,6 +59,7 @@ export const LinkBase = forwardRef<HTMLAnchorElement, LinkProps>((props, ref) =>
     children,
     shouldBlurAfterClick = false,
     isExternal: isExternalProp = false,
+    isMatchingPartialPath = false,
     onClick,
     shouldPreventDefault = false,
     hasExternalIcon = true,
@@ -131,7 +126,7 @@ export const LinkBase = forwardRef<HTMLAnchorElement, LinkProps>((props, ref) =>
 
   return (
     <RouterLinkComponent
-      {...(hasNavLink ? { end: true } : {})}
+      {...(hasNavLink && !isMatchingPartialPath ? { end: true } : {})}
       {...restAndRadixProps}
       onClick={handleClick}
       ref={ref}
@@ -141,6 +136,7 @@ export const LinkBase = forwardRef<HTMLAnchorElement, LinkProps>((props, ref) =>
     </RouterLinkComponent>
   );
 });
+
 LinkBase.displayName = 'LinkBase';
 
 const ExternalIcon = styled(IconLinkExternal)`
