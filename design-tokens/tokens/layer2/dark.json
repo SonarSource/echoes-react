@@ -16,11 +16,11 @@
         },
         "default-hover": {
           "type": "color",
-          "value": "{echoes.color.grey.500}"
+          "value": "{echoes.color.grey.700}"
         },
         "default-active": {
           "type": "color",
-          "value": "{echoes.color.grey.400}"
+          "value": "{echoes.color.grey.800}"
         },
         "default-disabled": {
           "type": "color",
