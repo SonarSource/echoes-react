@@ -67,7 +67,7 @@ export function DropdownMenuItemBase({
   }
 
   return (
-    <StyledDropdownMenuItemBase
+    <StyledRadixDropdownMenuItem
       aria-label={ariaLabel}
       className={className}
       disabled={isDisabled}
@@ -75,17 +75,17 @@ export function DropdownMenuItemBase({
       <StyledLeftHandSide>
         {checkMarkOrPlaceHolder}
 
-        {prefix}
+        {prefix && <StyledPrefix>{prefix}</StyledPrefix>}
 
         <StyledLabelAndHelpText>
-          {children}
+          <StyledLabel>{children}</StyledLabel>
 
           <StyledHelpText isDisabled={isDisabled}>{helpText}</StyledHelpText>
         </StyledLabelAndHelpText>
       </StyledLeftHandSide>
 
       <StyledSuffix>{suffix}</StyledSuffix>
-    </StyledDropdownMenuItemBase>
+    </StyledRadixDropdownMenuItem>
   );
 }
 
@@ -96,6 +96,12 @@ const StyledIconCheck = styled(IconCheck)`
 const CheckmarkPlaceholder = styled(IconCheck)`
   font-size: var(--echoes-font-size-body-medium);
   visibility: hidden;
+`;
+
+const StyledPrefix = styled.span`
+  align-items: center;
+  display: flex;
+  flex: 1 0 auto;
 `;
 
 const StyledLeftHandSide = styled.div`
@@ -110,8 +116,14 @@ const StyledLabelAndHelpText = styled.div`
   justify-content: space-between;
   overflow: hidden;
   row-gap: var(---echoes-dimension-space-25);
-  text-overflow: ellipsis;
-  white-space: nowrap;
+`;
+
+const StyledLabel = styled.span`
+  &,
+  * {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
 `;
 
 const StyledHelpText = styled.span<{ isDisabled?: boolean }>`
@@ -124,9 +136,11 @@ const StyledSuffix = styled.span`
   align-items: center;
   color: var(--echoes-color-text-subdued);
   display: flex;
+  flex: 1 0 auto;
+  justify-content: flex-end;
 `;
 
-const StyledDropdownMenuItemBase = styled(radixDropdownMenu.Item)`
+const StyledRadixDropdownMenuItem = styled(radixDropdownMenu.Item)`
   align-items: center;
   background-color: var(--echoes-color-background-default);
   color: var(--echoes-color-text-default);
@@ -135,6 +149,10 @@ const StyledDropdownMenuItemBase = styled(radixDropdownMenu.Item)`
   display: flex;
   justify-content: space-between;
   padding: var(--echoes-dimension-space-100) var(--echoes-dimension-space-150);
+
+  * {
+    overflow: hidden;
+  }
 
   &:focus-visible {
     border-radius: var(--echoes-border-radius-400);
