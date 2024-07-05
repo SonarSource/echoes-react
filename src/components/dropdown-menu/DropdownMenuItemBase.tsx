@@ -93,8 +93,7 @@ const StyledIconCheck = styled(IconCheck)`
   font-size: var(--echoes-font-size-body-medium);
 `;
 
-const CheckmarkPlaceholder = styled(IconCheck)`
-  font-size: var(--echoes-font-size-body-medium);
+const CheckmarkPlaceholder = styled(StyledIconCheck)`
   visibility: hidden;
 `;
 
