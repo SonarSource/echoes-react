@@ -46,7 +46,7 @@ export interface LinkProps extends Pick<RouterNavLinkProps, RouterNavLinkPropsAl
   hasNavLink?: boolean;
   highlight?: LinkHighlight;
   isExternal?: boolean;
-  isMatchingPartialPath?: boolean;
+  isMatchingFullPath?: boolean;
   onClick?: (event: React.MouseEvent<HTMLAnchorElement>) => void;
   shouldBlurAfterClick?: boolean;
   shouldPreventDefault?: boolean;
@@ -59,7 +59,7 @@ export const LinkBase = forwardRef<HTMLAnchorElement, LinkProps>((props, ref) =>
     children,
     shouldBlurAfterClick = false,
     isExternal: isExternalProp = false,
-    isMatchingPartialPath = false,
+    isMatchingFullPath = false,
     onClick,
     shouldPreventDefault = false,
     hasExternalIcon = true,
@@ -126,7 +126,7 @@ export const LinkBase = forwardRef<HTMLAnchorElement, LinkProps>((props, ref) =>
 
   return (
     <RouterLinkComponent
-      {...(hasNavLink && !isMatchingPartialPath ? { end: true } : {})}
+      {...(hasNavLink && isMatchingFullPath ? { end: true } : {})}
       {...restAndRadixProps}
       onClick={handleClick}
       ref={ref}
