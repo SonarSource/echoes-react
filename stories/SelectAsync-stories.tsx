@@ -90,7 +90,7 @@ function Wrapper({ args }: Props) {
       <SelectAsync
         {...args}
         data={options}
-        isLoading={loading}
+        isLoading={args.isLoading ?? loading}
         onChange={doChange}
         onSearch={doSearch}
         value={selection}

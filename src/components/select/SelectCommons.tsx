@@ -19,7 +19,7 @@
  */
 
 import styled from '@emotion/styled';
-import { Select as MantineSelect } from '@mantine/core';
+import { CSSObject, Select as MantineSelect } from '@mantine/core';
 import { ComponentProps, forwardRef } from 'react';
 import { useIntl } from 'react-intl';
 import { isDefined } from '~common/helpers/types';
@@ -88,6 +88,17 @@ export const SelectBase = forwardRef<HTMLInputElement, PropsWithLabels<SelectBas
     const itemComponent = useSelectItemComponent(optionComponent, optionType);
     const isClearable = !isNotClearable && !isRequired;
 
+    const rightSection = getSelectRightSection({
+      hasValue: isDefined(selectProps.value),
+      isLoading,
+      isClearable,
+    });
+
+    // Necessary to allow click events to go through and trigger the dropdown to open
+    const rightSectionStyles: CSSObject | undefined = isDefined(rightSection)
+      ? { pointerEvents: 'none' }
+      : undefined;
+
     return (
       <SelectStyled
         allowDeselect={isClearable}
@@ -120,12 +131,9 @@ export const SelectBase = forwardRef<HTMLInputElement, PropsWithLabels<SelectBas
         onSearchChange={onSearch}
         ref={ref}
         required={isRequired}
-        rightSection={getSelectRightSection({
-          hasValue: isDefined(selectProps.value),
-          isLoading,
-          isClearable,
-        })}
+        rightSection={rightSection}
         searchable={isSearchable}
+        styles={{ rightSection: rightSectionStyles }}
         variant={highlight}
         {...selectProps}
       />
