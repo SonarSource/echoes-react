@@ -24,12 +24,12 @@ import { LinkBase, LinkProps } from '../links/LinkBase';
 import { DropdownMenuItemBase, DropdownMenuItemBaseProps } from './DropdownMenuItemBase';
 
 type Props = Omit<DropdownMenuItemBaseProps, 'isCheckable' | 'isChecked' | 'suffix'> &
-  Pick<LinkProps, 'isExternal' | 'isMatchingPartialPath' | 'to'>;
+  Pick<LinkProps, 'isExternal' | 'isMatchingFullPath' | 'to'>;
 
 export function DropdownMenuItemLink({
   isDisabled,
   isExternal: isExternalProp = false,
-  isMatchingPartialPath = false,
+  isMatchingFullPath = false,
   to,
   ...props
 }: Readonly<Props>) {
@@ -43,7 +43,7 @@ export function DropdownMenuItemLink({
       hasExternalIcon={false}
       hasNavLink
       isExternal={isExternal}
-      isMatchingPartialPath={isMatchingPartialPath}
+      isMatchingFullPath={isMatchingFullPath}
       to={isDisabled ? '' : to}>
       <StyledDropdownMenuItemBase
         {...props}
