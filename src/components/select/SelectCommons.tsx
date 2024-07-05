@@ -94,7 +94,7 @@ export const SelectBase = forwardRef<HTMLInputElement, PropsWithLabels<SelectBas
       isClearable,
     });
 
-    // Necessary to allow click events to go through and trigger the dropdown to open'
+    // Necessary to allow click events to go through and trigger the dropdown to open
     const rightSectionStyles: CSSObject | undefined = isDefined(rightSection)
       ? { pointerEvents: 'none' }
       : undefined;
