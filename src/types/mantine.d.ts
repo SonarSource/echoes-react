@@ -18,12 +18,18 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+import '@mantine/core';
+
 declare module '@mantine/core' {
-  export interface ScrollAreaAutosize {
-    placeholder?: string | undefined;
+  export interface HorizontalSectionProps {
+    placeholder?: any;
+    onPointerEnterCapture?: any;
+    onPointerLeaveCapture?: any;
   }
 
-  export interface HorizontalSection {
-    placeholder?: string | undefined;
+  export interface ScrollAreaAutosizeProps {
+    placeholder?: any;
+    onPointerEnterCapture?: any;
+    onPointerLeaveCapture?: any;
   }
 }
