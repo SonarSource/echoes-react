@@ -100,17 +100,20 @@ const CheckmarkPlaceholder = styled(StyledIconCheck)`
 const StyledPrefix = styled.span`
   align-items: center;
   display: flex;
-  flex: 1 0 auto;
+  flex: 0 0 auto;
 `;
 
 const StyledLeftHandSide = styled.div`
   align-items: center;
   column-gap: var(--echoes-dimension-space-100);
   display: flex;
+  flex: 1 1 auto;
+  justify-content: flex-start;
 `;
 
 const StyledLabelAndHelpText = styled.div`
   display: flex;
+  flex: 1 1 auto;
   flex-direction: column;
   justify-content: space-between;
   overflow: hidden;
@@ -135,7 +138,7 @@ const StyledSuffix = styled.span`
   align-items: center;
   color: var(--echoes-color-text-subdued);
   display: flex;
-  flex: 1 0 auto;
+  flex: 0 0 auto;
   justify-content: flex-end;
 `;
 
