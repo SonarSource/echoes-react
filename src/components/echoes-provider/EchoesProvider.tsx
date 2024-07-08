@@ -18,7 +18,6 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import { MantineProvider } from '@mantine/core';
 import { ComponentProps, PropsWithChildren } from 'react';
 import { TooltipProvider } from '..';
 
@@ -29,11 +28,7 @@ interface Props {
 export function EchoesProvider(props: PropsWithChildren<Props>) {
   const { children, tooltipsDelayDuration } = props;
 
-  return (
-    <MantineProvider theme={{}}>
-      <TooltipProvider delayDuration={tooltipsDelayDuration}>{children}</TooltipProvider>
-    </MantineProvider>
-  );
+  return <TooltipProvider delayDuration={tooltipsDelayDuration}>{children}</TooltipProvider>;
 }
 
 EchoesProvider.displayName = 'EchoesProvider';
