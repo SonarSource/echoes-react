@@ -4,7 +4,8 @@
   "type": "module",
   "exports": "./dist/index.js",
   "files": [
-    "dist"
+    "dist",
+    "config/patches/**"
   ],
   "types": "./dist/index.d.ts",
   "description": "React implementation of Echoes, SONAR's Design System",
@@ -112,7 +113,7 @@
     "vite-plugin-dts": "3.8.1"
   },
   "dependencies": {
-    "@mantine/core": "6.0.21",
+    "@mantine/core": "patch:@mantine/core@6.0.21#./config/patches/@mantine-core-npm-6.0.21-4d202d6649.patch",
     "@mantine/hooks": "6.0.21",
     "@material-symbols/font-400": "0.17.2",
     "@radix-ui/react-checkbox": "1.0.4",
