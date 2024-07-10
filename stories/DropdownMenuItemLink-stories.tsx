@@ -27,7 +27,7 @@ import { DropdownMenu } from '../src';
 
 const meta: Meta<typeof DropdownMenu.ItemLink> = {
   component: DropdownMenu.ItemLink,
-  title: 'Echoes/DropdownMenuItems/ItemButtonLink',
+  title: 'Echoes/DropdownMenuItems/ItemLink',
   parameters: {
     controls: { exclude: ['onClick'] },
   },

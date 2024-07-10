@@ -21,7 +21,6 @@
 import styled from '@emotion/styled';
 import * as radixDropdownMenu from '@radix-ui/react-dropdown-menu';
 import { ReactNode, forwardRef } from 'react';
-import { isDefined } from '~common/helpers/types';
 import { PropsLabel } from '~types/utils';
 import { DropdownMenuGroupLabel } from './DropdownMenuGroupLabel';
 import { DropdownMenuItemButton } from './DropdownMenuItemButton';
@@ -45,7 +44,10 @@ interface DropdownMenuRootProps extends radixDropdownMenu.DropdownMenuTriggerPro
   isDisabled?: boolean;
   isModal?: boolean;
   isOpen?: boolean;
-  items?: ReactNode;
+  isOpenOnMount?: boolean;
+  items: ReactNode | undefined;
+  onClose?: () => void;
+  onOpen?: () => void;
 }
 
 const DropdownMenuRoot = forwardRef<HTMLButtonElement, DropdownMenuRootProps>(
@@ -59,13 +61,16 @@ const DropdownMenuRoot = forwardRef<HTMLButtonElement, DropdownMenuRootProps>(
       isDisabled = false,
       isModal = false,
       isOpen,
+      isOpenOnMount,
       items,
+      onClose,
+      onOpen,
       ...radixProps
     }: Readonly<DropdownMenuRootProps>,
     ref,
   ) => {
-    if (isDisabled || !isDefined(items)) {
-      return <span>{children}</span>;
+    if (isDisabled) {
+      return <>{children}</>;
     }
 
     const a11yAttrs: A11yAttrs = {
@@ -74,7 +79,17 @@ const DropdownMenuRoot = forwardRef<HTMLButtonElement, DropdownMenuRootProps>(
     };
 
     return (
-      <radixDropdownMenu.Root modal={isModal} open={isOpen}>
+      <radixDropdownMenu.Root
+        defaultOpen={isOpenOnMount}
+        modal={isModal}
+        onOpenChange={(open: boolean) => {
+          if (open && onOpen) {
+            onOpen();
+          } else if (!open && onClose) {
+            onClose();
+          }
+        }}
+        open={isOpen}>
         <radixDropdownMenu.Trigger asChild ref={ref} {...a11yAttrs} {...radixProps}>
           {children}
         </radixDropdownMenu.Trigger>
@@ -97,9 +112,11 @@ const DropdownMenuRoot = forwardRef<HTMLButtonElement, DropdownMenuRootProps>(
                     {header.helpText}
                   </StyledHeaderHelpText>
                 </StyledHeaderLabelAndHelpText>
+
                 <DropdownMenuSeparator />
               </>
             )}
+
             {items}
           </StyledDropdownMenuContent>
         </radixDropdownMenu.Portal>
