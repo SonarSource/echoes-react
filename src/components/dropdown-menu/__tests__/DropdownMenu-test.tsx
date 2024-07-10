@@ -24,8 +24,13 @@ import { render } from '~common/helpers/test-utils';
 import { IconBell, IconCalendar } from '../../icons';
 import { DropdownMenu } from '../DropdownMenu';
 
+const items = <DropdownMenu.ItemButton>An item</DropdownMenu.ItemButton>;
+const trigger = <button type="button">Trigger</button>;
+
 it('should render without items', async () => {
-  const { container } = setupWithMemoryRouter(<DropdownMenu.Root>Trigger</DropdownMenu.Root>);
+  const { container } = setupWithMemoryRouter(
+    <DropdownMenu.Root items={undefined}>{trigger}</DropdownMenu.Root>,
+  );
 
   await expect(container).toHaveNoA11yViolations();
 
@@ -39,42 +44,96 @@ it('should render with items when isOpen', () => {
       className="testClassName"
       header={{ helpText: 'Header help text', label: 'Header label' }}
       isOpen
-      items={<>The items</>}>
-      Trigger
+      items={items}>
+      {trigger}
     </DropdownMenu.Root>,
   );
 
   expect(screen.getByText('Header label')).toBeVisible();
   expect(screen.getByText('Header help text')).toBeVisible();
-  expect(screen.getByText('The items')).toBeVisible();
+  expect(screen.getByText('An item')).toBeVisible();
+});
+
+it('should render with items when isOpenOnMount', () => {
+  setupWithMemoryRouter(
+    <DropdownMenu.Root align="start" className="testClassName" isOpenOnMount items={items}>
+      {trigger}
+    </DropdownMenu.Root>,
+  );
+
+  expect(screen.getByText('An item')).toBeVisible();
 });
 
 it('should render with items when clicked', async () => {
   const { user } = setupWithMemoryRouter(
-    <DropdownMenu.Root align="center" items={<>The items</>}>
-      <button type="button">Trigger</button>
+    <DropdownMenu.Root align="center" items={items}>
+      <a href="/">Trigger</a>
     </DropdownMenu.Root>,
   );
 
-  expect(screen.queryByText('The items')).not.toBeInTheDocument();
+  expect(screen.queryByText('An item')).not.toBeInTheDocument();
 
   await user.click(screen.getByText('Trigger'));
 
-  expect(screen.getByText('The items')).toBeVisible();
+  expect(screen.getByText('An item')).toBeVisible();
+
+  await user.click(screen.getByText('An item'));
+
+  expect(screen.queryByText('An item')).not.toBeInTheDocument();
+});
+
+it('should handle onOpen', async () => {
+  const onOpen = jest.fn();
+
+  const { user } = setupWithMemoryRouter(
+    <DropdownMenu.Root align="center" items={items} onOpen={onOpen}>
+      <a href="/">Trigger</a>
+    </DropdownMenu.Root>,
+  );
+
+  expect(screen.queryByText('An item')).not.toBeInTheDocument();
+  expect(onOpen).not.toHaveBeenCalled();
+
+  await user.click(screen.getByText('Trigger'));
+
+  expect(screen.getByText('An item')).toBeVisible();
+  expect(onOpen).toHaveBeenCalled();
+});
+
+it('should handle onClose', async () => {
+  const onClose = jest.fn();
+
+  const { user } = setupWithMemoryRouter(
+    <DropdownMenu.Root align="center" items={items} onClose={onClose}>
+      <a href="/">Trigger</a>
+    </DropdownMenu.Root>,
+  );
+
+  expect(screen.queryByText('An item')).not.toBeInTheDocument();
+  expect(onClose).not.toHaveBeenCalled();
+
+  await user.click(screen.getByText('Trigger'));
+
+  expect(screen.getByText('An item')).toBeVisible();
+
+  await user.click(screen.getByText('An item'));
+
+  expect(onClose).toHaveBeenCalled();
+  expect(screen.queryByText('An item')).not.toBeInTheDocument();
 });
 
 it('should not show items when clicked if isDisabled', async () => {
   const { user } = setupWithMemoryRouter(
-    <DropdownMenu.Root align="end" isDisabled items={<>The items</>}>
-      <button type="button">Trigger</button>
+    <DropdownMenu.Root align="end" isDisabled items={items}>
+      {trigger}
     </DropdownMenu.Root>,
   );
 
-  expect(screen.queryByText('The items')).not.toBeInTheDocument();
+  expect(screen.queryByText('An item')).not.toBeInTheDocument();
 
   await user.click(screen.getByText('Trigger'));
 
-  expect(screen.queryByText('The items')).not.toBeInTheDocument();
+  expect(screen.queryByText('An item')).not.toBeInTheDocument();
 });
 
 it('should render many different items', async () => {
@@ -179,7 +238,7 @@ it('should render many different items', async () => {
           </DropdownMenu.ItemLink>
         </>
       }>
-      Trigger
+      {trigger}
     </DropdownMenu.Root>,
   );
 
