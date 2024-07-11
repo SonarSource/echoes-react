@@ -81,7 +81,7 @@
     "@types/react-dom": "17.0.25",
     "@typescript-eslint/eslint-plugin": "7.3.1",
     "@typescript-eslint/parser": "7.3.1",
-    "@vitejs/plugin-react": "4.2.1",
+    "@vitejs/plugin-react": "4.3.1",
     "@yarnpkg/fslib": "3.0.2",
     "@yarnpkg/libzip": "3.0.1",
     "eslint": "8.57.0",
@@ -103,14 +103,14 @@
     "react-dom": "17.0.2",
     "react-intl": "6.6.8",
     "react-router-dom": "6.22.3",
-    "rollup": "4.13.2",
-    "rollup-plugin-license": "3.3.1",
+    "rollup": "4.18.1",
+    "rollup-plugin-license": "3.5.2",
     "storybook": "8.2.1",
     "style-dictionary": "3.9.2",
     "subset-font": "2.3.0",
     "typescript": "5.3.3",
-    "vite": "5.2.7",
-    "vite-plugin-dts": "3.8.1"
+    "vite": "5.3.3",
+    "vite-plugin-dts": "3.9.1"
   },
   "dependencies": {
     "@mantine/core": "patch:@mantine/core@6.0.21#./config/patches/@mantine-core-npm-6.0.21-4d202d6649.patch",
