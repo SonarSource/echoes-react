@@ -5,7 +5,7 @@ __metadata:
   version: 8
   cacheKey: 10
 
-"@adobe/css-tools@npm:^4.3.1, @adobe/css-tools@npm:^4.3.2":
+"@adobe/css-tools@npm:^4.3.2":
   version: 4.4.0
   resolution: "@adobe/css-tools@npm:4.4.0"
   checksum: 9c6315fe9efa5075d6ddb6ded7a1424bc9c41a01f2314b6bdcc368723985fe161008d03ddcc2b27b2da50cb9c14190fbce965d15cefe5f9a31bdd43f35b52115
@@ -3904,8 +3904,8 @@ __metadata:
     "@storybook/theming": "npm:8.2.1"
     "@swc/core": "npm:1.4.8"
     "@swc/jest": "npm:0.2.36"
-    "@testing-library/dom": "npm:9.3.4"
-    "@testing-library/jest-dom": "npm:6.1.4"
+    "@testing-library/dom": "npm:10.3.1"
+    "@testing-library/jest-dom": "npm:6.3.0"
     "@testing-library/react": "npm:12.1.5"
     "@testing-library/user-event": "npm:14.5.2"
     "@tokens-studio/sd-transforms": "npm:0.14.4"
@@ -3933,7 +3933,7 @@ __metadata:
     eslint-plugin-react-hooks: "npm:4.6.2"
     eslint-plugin-testing-library: "npm:5.11.1"
     jest: "npm:29.7.0"
-    jest-axe: "npm:8.0.0"
+    jest-axe: "npm:9.0.0"
     jest-environment-jsdom: "npm:29.7.0"
     prettier: "npm:3.2.5"
     react: "npm:17.0.2"
@@ -4565,25 +4565,28 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@testing-library/jest-dom@npm:6.1.4":
-  version: 6.1.4
-  resolution: "@testing-library/jest-dom@npm:6.1.4"
+"@testing-library/jest-dom@npm:6.3.0":
+  version: 6.3.0
+  resolution: "@testing-library/jest-dom@npm:6.3.0"
   dependencies:
-    "@adobe/css-tools": "npm:^4.3.1"
+    "@adobe/css-tools": "npm:^4.3.2"
     "@babel/runtime": "npm:^7.9.2"
     aria-query: "npm:^5.0.0"
     chalk: "npm:^3.0.0"
     css.escape: "npm:^1.5.1"
-    dom-accessibility-api: "npm:^0.5.6"
+    dom-accessibility-api: "npm:^0.6.3"
     lodash: "npm:^4.17.15"
     redent: "npm:^3.0.0"
   peerDependencies:
     "@jest/globals": ">= 28"
+    "@types/bun": "*"
     "@types/jest": ">= 28"
     jest: ">= 28"
     vitest: ">= 0.32"
   peerDependenciesMeta:
     "@jest/globals":
+      optional: true
+    "@types/bun":
       optional: true
     "@types/jest":
       optional: true
@@ -4591,7 +4594,7 @@ __metadata:
       optional: true
     vitest:
       optional: true
-  checksum: e5a0cdb96eec509c0c85f2b7a0d08fc1c9f6c10aa49bba0d738bf4bb114c3472b92ace5067aedfaaf848ae13b38ba9296047c219aa24b66c87aa16de33341fdb
+  checksum: d96e552cfe5a72fa0a4c21655a9fabe6ffce6a066323c8a0f5847f39ff88229cd2455c9af41d3381b672d65469e74752d29e35dd04c15d8241a9f6a1e7cb78c6
   languageName: node
   linkType: hard
 
@@ -5954,10 +5957,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axe-core@npm:4.7.2":
-  version: 4.7.2
-  resolution: "axe-core@npm:4.7.2"
-  checksum: 1b94fcbe203296fc7174992a3d70dbcd477d88b933afa045aaffa1704fe63d8da8945e4b38fc576f9c7384abeb353e2d6607ab54d25b5c90b255ef2244bda29a
+"axe-core@npm:4.9.1, axe-core@npm:^4.2.0":
+  version: 4.9.1
+  resolution: "axe-core@npm:4.9.1"
+  checksum: 9d4944f6d3289428e1c6b41a80516f6558a960889f59c3c00f0fb88b955eda81edf9ca377c2cbc2a775f4003596d2aeaa35acca5aad3e1fc6b3d1e26e82b02cc
   languageName: node
   linkType: hard
 
@@ -5972,13 +5975,6 @@ __metadata:
   version: 3.5.6
   resolution: "axe-core@npm:3.5.6"
   checksum: 3e776d843737edbb189e909694518e925ff1830c89ad7a043044ca4f2136d43417dc1f3006d2b164488316d12bf6fbcf0d989f05e874d8eeab58b8e2393ba4bc
-  languageName: node
-  linkType: hard
-
-"axe-core@npm:^4.2.0":
-  version: 4.9.1
-  resolution: "axe-core@npm:4.9.1"
-  checksum: 9d4944f6d3289428e1c6b41a80516f6558a960889f59c3c00f0fb88b955eda81edf9ca377c2cbc2a775f4003596d2aeaa35acca5aad3e1fc6b3d1e26e82b02cc
   languageName: node
   linkType: hard
 
@@ -7132,7 +7128,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"dom-accessibility-api@npm:^0.5.6, dom-accessibility-api@npm:^0.5.9":
+"dom-accessibility-api@npm:^0.5.9":
   version: 0.5.16
   resolution: "dom-accessibility-api@npm:0.5.16"
   checksum: 377b4a7f9eae0a5d72e1068c369c99e0e4ca17fdfd5219f3abd32a73a590749a267475a59d7b03a891f9b673c27429133a818c44b2e47e32fec024b34274e2ca
@@ -9563,15 +9559,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jest-axe@npm:8.0.0":
-  version: 8.0.0
-  resolution: "jest-axe@npm:8.0.0"
+"jest-axe@npm:9.0.0":
+  version: 9.0.0
+  resolution: "jest-axe@npm:9.0.0"
   dependencies:
-    axe-core: "npm:4.7.2"
+    axe-core: "npm:4.9.1"
     chalk: "npm:4.1.2"
     jest-matcher-utils: "npm:29.2.2"
     lodash.merge: "npm:4.6.2"
-  checksum: 6a1673b547292d0ced82fbf48ff337efd349da00164ecffe95b3b702b6fbe477ba6762baa221bbb972bfa31b3368b15d5f91fcd3489d18789a990c7b6b7bb7ce
+  checksum: 4a0d382f5d24457a16e2459f75f2f101ed267b803654291d992c6c7181e462602e8d9d4902a7b40422258d5cafc5b5484da529693011c0ce1c60e64825d365fa
   languageName: node
   linkType: hard
 
