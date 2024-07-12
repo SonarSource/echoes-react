@@ -236,6 +236,17 @@ it('should render many different items', async () => {
             to="elsewhere 6">
             ItemLink with prefix
           </DropdownMenu.ItemLink>
+          <DropdownMenu.ItemLink
+            suffix={<IconBell color="echoes-color-icon-warning" />}
+            to="elsewhere 7">
+            ItemLink with suffix
+          </DropdownMenu.ItemLink>
+          <DropdownMenu.ItemLink
+            isExternal
+            suffix={<IconBell color="echoes-color-icon-warning" />}
+            to="elsewhere 8">
+            Itemlink with suffix and external icon
+          </DropdownMenu.ItemLink>
         </>
       }>
       {trigger}
