@@ -21,7 +21,7 @@
 import styled from '@emotion/styled';
 import type { Meta, StoryObj } from '@storybook/react';
 import { MenuButton } from '../.storybook/MenuButton';
-import { DropdownMenu, IconBug, IconGear, LinkStandalone } from '../src';
+import { DropdownMenu, DropdownMenuAlign, IconBug, IconGear, LinkStandalone } from '../src';
 
 const meta: Meta<typeof DropdownMenu.Root> = {
   component: DropdownMenu.Root,
@@ -103,7 +103,11 @@ export const MenuWithVariousItems: Story = {
 
       <br />
 
-      <DropdownMenu.Root {...args} align="start" id="secondDropdown" items={items}>
+      <DropdownMenu.Root
+        {...args}
+        align={DropdownMenuAlign.Start}
+        id="secondDropdown"
+        items={items}>
         <LinkStandalone to="#">Menu link</LinkStandalone>
       </DropdownMenu.Root>
     </BasicWrapper>

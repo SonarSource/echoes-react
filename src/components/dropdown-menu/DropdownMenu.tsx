@@ -35,8 +35,14 @@ type A11yAttrs = Pick<React.AriaAttributes, 'aria-controls'> & {
   id?: string;
 };
 
+export enum DropdownMenuAlign {
+  Center = 'center',
+  End = 'end',
+  Start = 'start',
+}
+
 interface DropdownMenuRootProps extends radixDropdownMenu.DropdownMenuTriggerProps {
-  align?: 'center' | 'end' | 'start';
+  align?: DropdownMenuAlign;
   children: ReactNode;
   className?: string;
   header?: Pick<PropsLabel, 'helpText' | 'label'>;
@@ -53,7 +59,7 @@ interface DropdownMenuRootProps extends radixDropdownMenu.DropdownMenuTriggerPro
 const DropdownMenuRoot = forwardRef<HTMLButtonElement, DropdownMenuRootProps>(
   (
     {
-      align = 'center',
+      align = DropdownMenuAlign.Center,
       children,
       className,
       header,
