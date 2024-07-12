@@ -23,13 +23,29 @@ import { IconLinkExternal } from '../icons/IconLinkExternal';
 import { LinkBase, LinkProps } from '../links/LinkBase';
 import { DropdownMenuItemBase, DropdownMenuItemBaseProps } from './DropdownMenuItemBase';
 
-type Props = Omit<DropdownMenuItemBaseProps, 'isCheckable' | 'isChecked' | 'suffix'> &
+type Props = Omit<DropdownMenuItemBaseProps, 'isCheckable' | 'isChecked'> &
   Pick<LinkProps, 'isExternal' | 'isMatchingFullPath' | 'to'>;
+
+const composedSuffix = ({ isExternal, suffix }: Readonly<Pick<Props, 'isExternal' | 'suffix'>>) => {
+  const externalSuffix = isExternal ? <StyledIconLinkExternal /> : undefined;
+
+  if (suffix && externalSuffix) {
+    return (
+      <StyledSuffix>
+        {suffix}
+        {externalSuffix}
+      </StyledSuffix>
+    );
+  }
+
+  return suffix || externalSuffix;
+};
 
 export function DropdownMenuItemLink({
   isDisabled,
   isExternal: isExternalProp = false,
   isMatchingFullPath = false,
+  suffix,
   to,
   ...props
 }: Readonly<Props>) {
@@ -48,7 +64,7 @@ export function DropdownMenuItemLink({
       <StyledDropdownMenuItemBase
         {...props}
         isDisabled={isDisabled}
-        suffix={isExternal ? <StyledIconLinkExternal /> : undefined}
+        suffix={composedSuffix({ isExternal, suffix })}
       />
     </StyledLinkBase>
   );
@@ -72,4 +88,10 @@ const StyledDropdownMenuItemBase = styled(DropdownMenuItemBase)`
 const StyledIconLinkExternal = styled(IconLinkExternal)`
   font-size: var(--echoes-font-size-body-medium);
   padding-right: var(--echoes-dimension-size-25);
+`;
+
+const StyledSuffix = styled.span`
+  align-items: center;
+  display: flex;
+  gap: var(--echoes-dimension-space-50);
 `;
