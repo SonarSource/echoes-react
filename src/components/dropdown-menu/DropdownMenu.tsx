@@ -27,8 +27,8 @@ import { DropdownMenuItemButton } from './DropdownMenuItemButton';
 import { DropdownMenuItemButtonCheckable } from './DropdownMenuItemButtonCheckable';
 import { DropdownMenuItemButtonCopy } from './DropdownMenuItemButtonCopy';
 import { DropdownMenuItemButtonDestructive } from './DropdownMenuItemButtonDestructive';
-import { DropdownMenuItemButtonDownload } from './DropdownMenuItemButtonDownload';
 import { DropdownMenuItemLink } from './DropdownMenuItemLink';
+import { DropdownMenuItemLinkDownload } from './DropdownMenuItemLinkDownload';
 import { DropdownMenuSeparator } from './DropdownMenuSeparator';
 
 type A11yAttrs = Pick<React.AriaAttributes, 'aria-controls'> & {
@@ -139,8 +139,8 @@ export const DropdownMenu = {
   ItemButtonCheckable: DropdownMenuItemButtonCheckable,
   ItemButtonCopy: DropdownMenuItemButtonCopy,
   ItemButtonDestructive: DropdownMenuItemButtonDestructive,
-  ItemButtonDownload: DropdownMenuItemButtonDownload,
   ItemLink: DropdownMenuItemLink,
+  ItemLinkDownload: DropdownMenuItemLinkDownload,
   Root: DropdownMenuRoot,
   Separator: DropdownMenuSeparator,
 };
