@@ -18,13 +18,20 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import { IconDownload } from '..';
-import { DropdownMenuItemBase, DropdownMenuItemBaseProps } from './DropdownMenuItemBase';
+import { IconDownload, LinkProps } from '..';
+import { DropdownMenuItemBaseProps } from './DropdownMenuItemBase';
+import { DropdownMenuItemLink } from './DropdownMenuItemLink';
 
-type Props = Omit<DropdownMenuItemBaseProps, 'isCheckable' | 'isChecked' | 'prefix'>;
+type Props = Omit<DropdownMenuItemBaseProps, 'isCheckable' | 'isChecked' | 'prefix' | 'suffix'> &
+  Pick<LinkProps, 'to'> & { download: string };
 
-export function DropdownMenuItemButtonDownload(props: Readonly<Props>) {
+export function DropdownMenuItemLinkDownload(props: Readonly<Props>) {
   return (
-    <DropdownMenuItemBase {...props} prefix={<IconDownload color="echoes-color-icon-subdued" />} />
+    <DropdownMenuItemLink
+      {...props}
+      hasExternalIcon={false}
+      isExternal
+      prefix={<IconDownload color="echoes-color-icon-subdued" />}
+    />
   );
 }
