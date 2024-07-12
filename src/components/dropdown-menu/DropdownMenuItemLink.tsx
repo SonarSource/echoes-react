@@ -24,9 +24,12 @@ import { LinkBase, LinkProps } from '../links/LinkBase';
 import { DropdownMenuItemBase, DropdownMenuItemBaseProps } from './DropdownMenuItemBase';
 
 type Props = Omit<DropdownMenuItemBaseProps, 'isCheckable' | 'isChecked'> &
-  Pick<LinkProps, 'isExternal' | 'isMatchingFullPath' | 'to'>;
+  Pick<LinkProps, 'download' | 'hasExternalIcon' | 'isExternal' | 'isMatchingFullPath' | 'to'>;
 
-const composedSuffix = ({ isExternal, suffix }: Readonly<Pick<Props, 'isExternal' | 'suffix'>>) => {
+const getComposedSuffix = ({
+  isExternal,
+  suffix,
+}: Readonly<Pick<Props, 'isExternal' | 'suffix'>>) => {
   const externalSuffix = isExternal ? <StyledIconLinkExternal /> : undefined;
 
   if (suffix && externalSuffix) {
@@ -42,6 +45,8 @@ const composedSuffix = ({ isExternal, suffix }: Readonly<Pick<Props, 'isExternal
 };
 
 export function DropdownMenuItemLink({
+  download,
+  hasExternalIcon = true,
   isDisabled,
   isExternal: isExternalProp = false,
   isMatchingFullPath = false,
@@ -54,18 +59,27 @@ export function DropdownMenuItemLink({
 
   const isExternal = isExternalProp || toAsString.startsWith('http');
 
+  const LinkItem = (
+    <StyledDropdownMenuItemBase
+      {...props}
+      isDisabled={isDisabled}
+      suffix={getComposedSuffix({ isExternal: isExternal && hasExternalIcon, suffix })}
+    />
+  );
+
+  if (isDisabled) {
+    return LinkItem;
+  }
+
   return (
     <StyledLinkBase
+      download={download}
       hasExternalIcon={false}
       hasNavLink
       isExternal={isExternal}
       isMatchingFullPath={isMatchingFullPath}
-      to={isDisabled ? '' : to}>
-      <StyledDropdownMenuItemBase
-        {...props}
-        isDisabled={isDisabled}
-        suffix={composedSuffix({ isExternal, suffix })}
-      />
+      to={to}>
+      {LinkItem}
     </StyledLinkBase>
   );
 }
