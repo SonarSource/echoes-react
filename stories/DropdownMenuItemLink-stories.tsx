@@ -41,6 +41,7 @@ const defaultProps = {
   children: 'Link label',
   helpText: 'Help text',
   prefix: '🌷',
+  suffix: '🌸',
   to: 'elsewhere',
 };
 
@@ -49,6 +50,7 @@ export const InactiveSimple: Story = {
     ...defaultProps,
     helpText: '',
     prefix: '',
+    suffix: '',
   },
   render,
 };
@@ -58,6 +60,8 @@ export const ActiveSimple: Story = {
     ...defaultProps,
     helpText: '',
     prefix: '',
+    suffix: '',
+
     to: '/',
   },
   render,
@@ -69,6 +73,7 @@ export const Disabled: Story = {
     helpText: '',
     isDisabled: true,
     prefix: '',
+    suffix: '',
   },
   render,
 };
@@ -77,6 +82,7 @@ export const InactiveWithHelpText: Story = {
   args: {
     ...defaultProps,
     prefix: '',
+    suffix: '',
   },
   render,
 };
@@ -85,6 +91,8 @@ export const ActiveWithHelpText: Story = {
   args: {
     ...defaultProps,
     prefix: '',
+    suffix: '',
+
     to: '/',
   },
   render,
@@ -94,6 +102,7 @@ export const InactiveWithPrefix: Story = {
   args: {
     ...defaultProps,
     helpText: '',
+    suffix: '',
   },
   render,
 };
@@ -102,12 +111,45 @@ export const ActiveWithPrefix: Story = {
   args: {
     ...defaultProps,
     helpText: '',
+    suffix: '',
+
+    to: '/',
+  },
+  render,
+};
+
+export const InactiveWithSuffix: Story = {
+  args: {
+    ...defaultProps,
+    helpText: '',
+    prefix: '',
+  },
+  render,
+};
+
+export const ActiveWithSuffix: Story = {
+  args: {
+    ...defaultProps,
+    helpText: '',
+    prefix: '',
+
     to: '/',
   },
   render,
 };
 
 export const External: Story = {
+  args: {
+    ...defaultProps,
+    helpText: '',
+    isExternal: true,
+    prefix: '',
+    suffix: '',
+  },
+  render,
+};
+
+export const ExternalWithSuffix: Story = {
   args: {
     ...defaultProps,
     helpText: '',
