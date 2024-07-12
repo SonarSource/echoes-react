@@ -61,7 +61,6 @@ export const ActiveSimple: Story = {
     helpText: '',
     prefix: '',
     suffix: '',
-
     to: '/',
   },
   render,
@@ -92,7 +91,6 @@ export const ActiveWithHelpText: Story = {
     ...defaultProps,
     prefix: '',
     suffix: '',
-
     to: '/',
   },
   render,
@@ -112,7 +110,6 @@ export const ActiveWithPrefix: Story = {
     ...defaultProps,
     helpText: '',
     suffix: '',
-
     to: '/',
   },
   render,
@@ -132,7 +129,6 @@ export const ActiveWithSuffix: Story = {
     ...defaultProps,
     helpText: '',
     prefix: '',
-
     to: '/',
   },
   render,
