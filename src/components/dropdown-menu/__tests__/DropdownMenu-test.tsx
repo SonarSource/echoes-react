@@ -22,7 +22,7 @@ import { screen } from '@testing-library/react';
 import { MemoryRouter, Route, Routes, useLocation } from 'react-router-dom';
 import { render } from '~common/helpers/test-utils';
 import { IconBell, IconCalendar } from '../../icons';
-import { DropdownMenu } from '../DropdownMenu';
+import { DropdownMenu, DropdownMenuAlign } from '../DropdownMenu';
 
 const items = <DropdownMenu.ItemButton>An item</DropdownMenu.ItemButton>;
 const trigger = <button type="button">Trigger</button>;
@@ -40,7 +40,6 @@ it('should render without items', async () => {
 it('should render with items when isOpen', () => {
   setupWithMemoryRouter(
     <DropdownMenu.Root
-      align="start"
       className="testClassName"
       header={{ helpText: 'Header help text', label: 'Header label' }}
       isOpen
@@ -56,7 +55,7 @@ it('should render with items when isOpen', () => {
 
 it('should render with items when isOpenOnMount', () => {
   setupWithMemoryRouter(
-    <DropdownMenu.Root align="start" className="testClassName" isOpenOnMount items={items}>
+    <DropdownMenu.Root className="testClassName" isOpenOnMount items={items}>
       {trigger}
     </DropdownMenu.Root>,
   );
@@ -66,7 +65,7 @@ it('should render with items when isOpenOnMount', () => {
 
 it('should render with items when clicked', async () => {
   const { user } = setupWithMemoryRouter(
-    <DropdownMenu.Root align="center" items={items}>
+    <DropdownMenu.Root items={items}>
       <a href="/">Trigger</a>
     </DropdownMenu.Root>,
   );
@@ -86,7 +85,7 @@ it('should handle onOpen', async () => {
   const onOpen = jest.fn();
 
   const { user } = setupWithMemoryRouter(
-    <DropdownMenu.Root align="center" items={items} onOpen={onOpen}>
+    <DropdownMenu.Root align={DropdownMenuAlign.Start} items={items} onOpen={onOpen}>
       <a href="/">Trigger</a>
     </DropdownMenu.Root>,
   );
@@ -104,7 +103,7 @@ it('should handle onClose', async () => {
   const onClose = jest.fn();
 
   const { user } = setupWithMemoryRouter(
-    <DropdownMenu.Root align="center" items={items} onClose={onClose}>
+    <DropdownMenu.Root align={DropdownMenuAlign.Center} items={items} onClose={onClose}>
       <a href="/">Trigger</a>
     </DropdownMenu.Root>,
   );
@@ -124,7 +123,7 @@ it('should handle onClose', async () => {
 
 it('should not show items when clicked if isDisabled', async () => {
   const { user } = setupWithMemoryRouter(
-    <DropdownMenu.Root align="end" isDisabled items={items}>
+    <DropdownMenu.Root align={DropdownMenuAlign.End} isDisabled items={items}>
       {trigger}
     </DropdownMenu.Root>,
   );
