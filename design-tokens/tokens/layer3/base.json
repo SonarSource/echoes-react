@@ -4,7 +4,7 @@
       "overlays": {
         "maxWidth": {
           "default": {
-            "value": "{echoes.dimension.size.5000}",
+            "value": "{echoes.dimension.width.5000}",
             "type": "sizing"
           }
         },
@@ -30,6 +30,16 @@
         },
         "full": {
           "value": "100%",
+          "type": "sizing"
+        }
+      },
+      "buttons": {
+        "medium": {
+          "value": "{echoes.dimension.height.800}",
+          "type": "sizing"
+        },
+        "large": {
+          "value": "{echoes.dimension.height.900}",
           "type": "sizing"
         }
       }
