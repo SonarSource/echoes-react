@@ -177,6 +177,98 @@
               "type": "color"
             }
           }
+        },
+        "ghost": {
+          "accent": {
+            "default": {
+              "value": "{echoes.color.background.transparent}",
+              "type": "color"
+            },
+            "hover": {
+              "value": "{echoes.color.indigo.500}",
+              "type": "color",
+              "$extensions": {
+                "studio.tokens": {
+                  "modify": {
+                    "type": "alpha",
+                    "value": "0.2",
+                    "space": "hsl"
+                  }
+                }
+              }
+            },
+            "active": {
+              "value": "{echoes.color.indigo.500}",
+              "type": "color",
+              "$extensions": {
+                "studio.tokens": {
+                  "modify": {
+                    "type": "alpha",
+                    "value": "0.3",
+                    "space": "hsl"
+                  }
+                }
+              }
+            },
+            "focus": {
+              "value": "{echoes.color.background.transparent}",
+              "type": "color"
+            }
+          },
+          "neutral": {
+            "default": {
+              "value": "{echoes.color.background.transparent}",
+              "type": "color"
+            },
+            "hover": {
+              "value": "{echoes.color.grey.700}",
+              "type": "color"
+            },
+            "active": {
+              "value": "{echoes.color.grey.800}",
+              "type": "color"
+            },
+            "focus": {
+              "value": "{echoes.color.background.transparent}",
+              "type": "color"
+            }
+          },
+          "danger": {
+            "default": {
+              "value": "{echoes.color.background.transparent}",
+              "type": "color"
+            },
+            "hover": {
+              "value": "{echoes.color.red.900}",
+              "type": "color",
+              "$extensions": {
+                "studio.tokens": {
+                  "modify": {
+                    "type": "alpha",
+                    "value": "0.2",
+                    "space": "hsl"
+                  }
+                }
+              }
+            },
+            "active": {
+              "value": "{echoes.color.red.900}",
+              "type": "color",
+              "$extensions": {
+                "studio.tokens": {
+                  "modify": {
+                    "type": "alpha",
+                    "value": "0.3",
+                    "space": "hsl"
+                  }
+                }
+              }
+            },
+            "focus": {
+              "value": "{echoes.color.background.transparent}",
+              "type": "color"
+            }
+          }
         }
       },
       "text": {

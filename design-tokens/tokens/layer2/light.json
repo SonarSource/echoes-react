@@ -76,17 +76,17 @@
         "accent-weak": {
           "default": {
             "type": "color",
-            "value": "{echoes.color.indigo.50}",
+            "value": "{echoes.color.indigo.25}",
             "description": "Used as the background color of components that reinforce our brand with less visual highlight"
           },
           "hover": {
             "type": "color",
-            "value": "{echoes.color.indigo.100}",
+            "value": "{echoes.color.indigo.50}",
             "description": "Hover state of components that reinforce our brand with less visual highlight"
           },
           "active": {
             "type": "color",
-            "value": "{echoes.color.indigo.200}",
+            "value": "{echoes.color.indigo.100}",
             "description": "Active state of components that reinforce our brand with less visual highlight"
           },
           "focus": {
@@ -212,6 +212,62 @@
               "value": "{echoes.color.indigo.700}",
               "type": "color",
               "description": "Pressed state of components that have a selected state, like checkboxes or radios"
+            }
+          }
+        },
+        "ghost": {
+          "accent": {
+            "default": {
+              "value": "{echoes.color.background.transparent}",
+              "type": "color"
+            },
+            "hover": {
+              "value": "{echoes.color.indigo.50}",
+              "type": "color"
+            },
+            "active": {
+              "value": "{echoes.color.indigo.100}",
+              "type": "color"
+            },
+            "focus": {
+              "value": "{echoes.color.background.transparent}",
+              "type": "color"
+            }
+          },
+          "neutral": {
+            "default": {
+              "value": "{echoes.color.background.transparent}",
+              "type": "color"
+            },
+            "hover": {
+              "value": "{echoes.color.grey.50}",
+              "type": "color"
+            },
+            "active": {
+              "value": "{echoes.color.grey.100}",
+              "type": "color"
+            },
+            "focus": {
+              "value": "{echoes.color.background.transparent}",
+              "type": "color"
+            }
+          },
+          "danger": {
+            "default": {
+              "value": "{echoes.color.background.transparent}",
+              "type": "color"
+            },
+            "hover": {
+              "value": "{echoes.color.red.50}",
+              "type": "color"
+            },
+            "active": {
+              "value": "{echoes.color.red.100}",
+              "type": "color"
+            },
+            "focus": {
+              "value": "{echoes.color.background.transparent}",
+              "type": "color"
             }
           }
         }
