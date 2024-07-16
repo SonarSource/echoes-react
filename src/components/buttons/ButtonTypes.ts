@@ -18,14 +18,24 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-export * from './buttons';
-export * from './checkbox';
-export * from './dropdown-menu';
-export * from './echoes-provider';
-export * from './icons';
-export * from './links';
-export * from './popover';
-export * from './radio-button-group';
-export * from './select';
-export * from './spinner';
-export * from './tooltip';
+import { ButtonHTMLAttributes } from 'react';
+
+export type HTMLButtonProps = Pick<
+  ButtonHTMLAttributes<HTMLButtonElement>,
+  'id' | 'name' | 'role' | 'style' | 'type' | 'form'
+>;
+
+export enum ButtonSize {
+  Medium = 'medium',
+  Large = 'large',
+}
+
+export enum ButtonVariety {
+  Neutral = 'neutral',
+  NeutralGhost = 'neutral-ghost',
+  Accent = 'accent',
+  AccentGhost = 'accent-ghost',
+  Danger = 'danger',
+  DangerOutline = 'danger-outline',
+  DangerGhost = 'danger-ghost',
+}

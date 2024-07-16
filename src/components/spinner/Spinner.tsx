@@ -49,7 +49,10 @@ export const Spinner = forwardRef<HTMLSpanElement, Props>((props, ref) => {
 
   return (
     <>
-      <SpinnerWrapper className={wrapperClassName} inline={children === undefined}>
+      <SpinnerWrapper
+        className={wrapperClassName}
+        inline={children === undefined}
+        isLoading={isLoading}>
         <SpinnerInner
           {...radixProps}
           aria-live="polite"
@@ -77,18 +80,24 @@ export const Spinner = forwardRef<HTMLSpanElement, Props>((props, ref) => {
         </SpinnerInner>
       </SpinnerWrapper>
       {!isLoading &&
-        (children ?? (hasPlaceholder && <Placeholder className={className} />) ?? null)}
+        (children ?? (hasPlaceholder && <SpinnerPlaceholder className={className} />) ?? null)}
     </>
   );
 });
 
 Spinner.displayName = 'Spinner';
 
-const SpinnerWrapper = styled.span<{ inline: boolean }>`
+const SpinnerWrapper = styled.span<{ inline: boolean; isLoading?: boolean }>`
   display: ${(props) => (props.inline ? 'inline-block' : 'block')};
   position: relative;
-  ${(props) => (props.inline ? 'margin: 0 var(--echoes-dimension-space-50);' : '')}
+  ${(props) =>
+    props.inline && props.isLoading ? 'margin: 0 var(--echoes-dimension-space-50);' : ''}
+
+  &.echoes-button-spinner-wrapper {
+    margin: 0;
+  }
 `;
+SpinnerWrapper.displayName = 'SpinnerWrapper';
 
 const SpinnerInner = styled.span<{ isLoading: boolean }>`
   position: relative;
@@ -96,14 +105,17 @@ const SpinnerInner = styled.span<{ isLoading: boolean }>`
   height: var(--echoes-dimension-size-200);
   ${({ isLoading }) => (isLoading ? '' : screenReaderOnly)}
 `;
+SpinnerInner.displayName = 'SpinnerInner';
 
 const SpinnerAriaLabel = styled.span`
   ${screenReaderOnly};
 `;
+SpinnerAriaLabel.displayName = 'SpinnerAriaLabel';
 
 const SpinnerLabel = styled.span`
   margin-left: var(--echoes-dimension-space-50);
 `;
+SpinnerLabel.displayName = 'SpinnerLabel';
 
 const spinAnimation = keyframes`
   from {
@@ -135,12 +147,22 @@ const SpinnerStyled = styled.span`
   width: var(--echoes-dimension-size-200);
   border-radius: var(--echoes-border-radius-full);
   vertical-align: text-bottom;
-`;
 
-const Placeholder = styled.div`
+  &.echoes-button-spinner {
+    margin-right: var(--echoes-dimension-size-75);
+
+    background:
+      linear-gradient(0deg, var(--button-spinner-color) 50%, transparent 50% 100%) border-box,
+      linear-gradient(90deg, var(--button-spinner-color) 25%, transparent 75% 100%) border-box;
+  }
+`;
+SpinnerStyled.displayName = 'SpinnerStyled';
+
+const SpinnerPlaceholder = styled.div`
   display: inline-block;
   vertical-align: text-bottom;
   visibility: hidden;
   height: var(--echoes-dimension-size-200);
   width: var(--echoes-dimension-size-200);
 `;
+SpinnerPlaceholder.displayName = 'SpinnerPlaceholder';
