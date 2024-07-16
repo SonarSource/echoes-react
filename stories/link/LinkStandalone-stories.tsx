@@ -18,28 +18,39 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import { PropsWithChildren, forwardRef } from 'react';
-import { IconChevronDown } from '../src';
+import type { Meta, StoryObj } from '@storybook/react';
+import { IconLink, LinkHighlight, LinkStandalone as LinkStandaloneComp } from '../../src';
 
-export const MenuButton = forwardRef<HTMLButtonElement, PropsWithChildren<{}>>(
-  ({ children = 'Menu', ...radixProps }, ref) => (
-    <button
-      ref={ref}
-      style={{
-        alignItems: 'center',
-        backgroundColor: 'blue',
-        border: 'none',
-        color: 'white',
-        display: 'flex',
-        gap: '4px',
-        opacity: 0.6,
-        padding: '4px 8px',
-      }}
-      type="button"
-      {...radixProps}>
-      {children} <IconChevronDown />
-    </button>
-  ),
-);
+const meta: Meta<typeof LinkStandaloneComp> = {
+  component: LinkStandaloneComp,
+  title: 'Echoes/Link/LinkStandalone',
+  argTypes: {
+    highlight: {
+      control: {
+        type: 'select',
+      },
+      options: Object.values(LinkHighlight),
+    },
+  },
+};
 
-MenuButton.displayName = 'MenuButton';
+export default meta;
+
+type Story = StoryObj<typeof LinkStandaloneComp>;
+
+export const LinkStandalone: Story = {
+  args: {
+    children: 'Standalone Link',
+    highlight: undefined,
+    to: '/projects/new',
+  },
+};
+
+export const LinkStandaloneWithIcon: Story = {
+  args: {
+    children: 'Standalone Link With Icon',
+    highlight: LinkHighlight.Default,
+    to: '/projects/new',
+    iconLeft: <IconLink />,
+  },
+};

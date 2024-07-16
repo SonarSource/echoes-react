@@ -21,13 +21,12 @@
 import styled from '@emotion/styled';
 import type { Meta, StoryObj } from '@storybook/react';
 import { PropsWithChildren } from 'react';
-import { To } from 'react-router-dom';
-import { MenuButton } from '../.storybook/MenuButton';
-import { DropdownMenu } from '../src';
+import { DropdownMenu } from '../../src';
+import { MenuButton } from './MenuButton';
 
-const meta: Meta<typeof DropdownMenu.ItemLinkDownload> = {
-  component: DropdownMenu.ItemLinkDownload,
-  title: 'Echoes/DropdownMenuItems/ItemLinkDownload',
+const meta: Meta<typeof DropdownMenu.ItemButtonDestructive> = {
+  component: DropdownMenu.ItemButtonDestructive,
+  title: 'Echoes/DropdownMenuItems/ItemButtonDestructive',
   parameters: {
     controls: { exclude: ['onClick'] },
   },
@@ -35,14 +34,9 @@ const meta: Meta<typeof DropdownMenu.ItemLinkDownload> = {
 
 export default meta;
 
-type Story = StoryObj<typeof DropdownMenu.ItemLinkDownload>;
+type Story = StoryObj<typeof DropdownMenu.ItemButtonDestructive>;
 
-const defaultProps = {
-  children: 'Download favicon',
-  download: 'favicon.svg',
-  helpText: 'Help text',
-  to: '/favicon.svg',
-};
+const defaultProps = { children: 'Item label', helpText: 'Help text' };
 
 export const Simple: Story = {
   args: {
@@ -62,18 +56,20 @@ export const Disabled: Story = {
 };
 
 export const WithHelpText: Story = {
-  args: {
-    ...defaultProps,
-  },
+  args: defaultProps,
   render,
 };
 
-function render({ children, ...args }: PropsWithChildren<{ download: string; to: To }>) {
+function render({ children, ...args }: PropsWithChildren<{}>) {
   return (
     <BasicWrapper>
       <DropdownMenu.Root
         isOpen
-        items={<DropdownMenu.ItemLinkDownload {...args}>{children}</DropdownMenu.ItemLinkDownload>}>
+        items={
+          <DropdownMenu.ItemButtonDestructive {...args}>
+            {children}
+          </DropdownMenu.ItemButtonDestructive>
+        }>
         <MenuButton />
       </DropdownMenu.Root>
     </BasicWrapper>

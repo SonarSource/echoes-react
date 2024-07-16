@@ -21,12 +21,13 @@
 import styled from '@emotion/styled';
 import type { Meta, StoryObj } from '@storybook/react';
 import { PropsWithChildren } from 'react';
-import { MenuButton } from '../.storybook/MenuButton';
-import { DropdownMenu } from '../src';
+import { To } from 'react-router-dom';
+import { DropdownMenu } from '../../src';
+import { MenuButton } from './MenuButton';
 
-const meta: Meta<typeof DropdownMenu.ItemButtonCheckable> = {
-  component: DropdownMenu.ItemButtonCheckable,
-  title: 'Echoes/DropdownMenuItems/ItemButtonCheckable',
+const meta: Meta<typeof DropdownMenu.ItemLink> = {
+  component: DropdownMenu.ItemLink,
+  title: 'Echoes/DropdownMenuItems/ItemLink',
   parameters: {
     controls: { exclude: ['onClick'] },
   },
@@ -34,16 +35,17 @@ const meta: Meta<typeof DropdownMenu.ItemButtonCheckable> = {
 
 export default meta;
 
-type Story = StoryObj<typeof DropdownMenu.ItemButtonCheckable>;
+type Story = StoryObj<typeof DropdownMenu.ItemLink>;
 
 const defaultProps = {
-  children: 'Item label',
+  children: 'Link label',
   helpText: 'Help text',
   prefix: '🌷',
-  suffix: '🌼',
+  suffix: '🌸',
+  to: 'elsewhere',
 };
 
-export const UncheckedSimple: Story = {
+export const InactiveSimple: Story = {
   args: {
     ...defaultProps,
     helpText: '',
@@ -53,18 +55,18 @@ export const UncheckedSimple: Story = {
   render,
 };
 
-export const CheckedSimple: Story = {
+export const ActiveSimple: Story = {
   args: {
     ...defaultProps,
     helpText: '',
-    isChecked: true,
     prefix: '',
     suffix: '',
+    to: '/',
   },
   render,
 };
 
-export const UncheckedDisabled: Story = {
+export const Disabled: Story = {
   args: {
     ...defaultProps,
     helpText: '',
@@ -75,19 +77,7 @@ export const UncheckedDisabled: Story = {
   render,
 };
 
-export const CheckedDisabled: Story = {
-  args: {
-    ...defaultProps,
-    helpText: '',
-    isChecked: true,
-    isDisabled: true,
-    prefix: '',
-    suffix: '',
-  },
-  render,
-};
-
-export const UncheckedWithHelpText: Story = {
+export const InactiveWithHelpText: Story = {
   args: {
     ...defaultProps,
     prefix: '',
@@ -96,79 +86,91 @@ export const UncheckedWithHelpText: Story = {
   render,
 };
 
-export const CheckedWithHelpText: Story = {
+export const ActiveWithHelpText: Story = {
   args: {
     ...defaultProps,
-    isChecked: true,
+    prefix: '',
+    suffix: '',
+    to: '/',
+  },
+  render,
+};
+
+export const InactiveWithPrefix: Story = {
+  args: {
+    ...defaultProps,
+    helpText: '',
+    suffix: '',
+  },
+  render,
+};
+
+export const ActiveWithPrefix: Story = {
+  args: {
+    ...defaultProps,
+    helpText: '',
+    suffix: '',
+    to: '/',
+  },
+  render,
+};
+
+export const InactiveWithSuffix: Story = {
+  args: {
+    ...defaultProps,
+    helpText: '',
+    prefix: '',
+  },
+  render,
+};
+
+export const ActiveWithSuffix: Story = {
+  args: {
+    ...defaultProps,
+    helpText: '',
+    prefix: '',
+    to: '/',
+  },
+  render,
+};
+
+export const External: Story = {
+  args: {
+    ...defaultProps,
+    helpText: '',
+    isExternal: true,
     prefix: '',
     suffix: '',
   },
   render,
 };
 
-export const UncheckedWithPrefix: Story = {
+export const ExternalWithSuffix: Story = {
   args: {
     ...defaultProps,
     helpText: '',
-    suffix: '',
-  },
-  render,
-};
-
-export const CheckedWithPrefix: Story = {
-  args: {
-    ...defaultProps,
-    helpText: '',
-    isChecked: true,
-    suffix: '',
-  },
-  render,
-};
-
-export const UncheckedWithSuffix: Story = {
-  args: {
-    ...defaultProps,
-    helpText: '',
+    isExternal: true,
     prefix: '',
   },
   render,
 };
 
-export const CheckedWithSuffix: Story = {
-  args: {
-    ...defaultProps,
-    helpText: '',
-    isChecked: true,
-    prefix: '',
-  },
-  render,
-};
-
-export const UncheckedFull: Story = {
+export const Full: Story = {
   args: {
     ...defaultProps,
     ariaLabel: 'ARIA label',
+    isExternal: true,
+    to: '/',
   },
   render,
 };
 
-export const CheckedFull: Story = {
-  args: {
-    ...defaultProps,
-    ariaLabel: 'ARIA label',
-    isChecked: true,
-  },
-  render,
-};
-
-function render({ children, ...args }: PropsWithChildren<{}>) {
+function render({ children, ...args }: PropsWithChildren<{ to: To }>) {
   return (
     <BasicWrapper>
       <DropdownMenu.Root
         isOpen
-        items={
-          <DropdownMenu.ItemButtonCheckable {...args}>{children}</DropdownMenu.ItemButtonCheckable>
-        }>
+        items={<DropdownMenu.ItemLink {...args}>{children}</DropdownMenu.ItemLink>}>
         <MenuButton />
       </DropdownMenu.Root>
     </BasicWrapper>

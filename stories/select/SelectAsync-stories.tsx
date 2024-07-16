@@ -21,7 +21,7 @@
 import { Avatar, SelectItem } from '@mantine/core';
 import type { Meta, StoryObj } from '@storybook/react';
 import { ComponentProps, useCallback, useState } from 'react';
-import { SelectAsync } from '../src/components/select';
+import { SelectAsync } from '../../src/components/select';
 
 const meta: Meta<typeof SelectAsync> = {
   component: SelectAsync,

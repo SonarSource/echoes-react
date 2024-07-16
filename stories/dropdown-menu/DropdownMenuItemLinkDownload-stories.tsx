@@ -21,12 +21,13 @@
 import styled from '@emotion/styled';
 import type { Meta, StoryObj } from '@storybook/react';
 import { PropsWithChildren } from 'react';
-import { MenuButton } from '../.storybook/MenuButton';
-import { DropdownMenu } from '../src';
+import { To } from 'react-router-dom';
+import { DropdownMenu } from '../../src';
+import { MenuButton } from './MenuButton';
 
-const meta: Meta<typeof DropdownMenu.ItemButton> = {
-  component: DropdownMenu.ItemButton,
-  title: 'Echoes/DropdownMenuItems/ItemButton',
+const meta: Meta<typeof DropdownMenu.ItemLinkDownload> = {
+  component: DropdownMenu.ItemLinkDownload,
+  title: 'Echoes/DropdownMenuItems/ItemLinkDownload',
   parameters: {
     controls: { exclude: ['onClick'] },
   },
@@ -34,21 +35,19 @@ const meta: Meta<typeof DropdownMenu.ItemButton> = {
 
 export default meta;
 
-type Story = StoryObj<typeof DropdownMenu.ItemButton>;
+type Story = StoryObj<typeof DropdownMenu.ItemLinkDownload>;
 
 const defaultProps = {
-  children: 'Item label',
+  children: 'Download favicon',
+  download: 'favicon.svg',
   helpText: 'Help text',
-  prefix: '🌷',
-  suffix: '🌼',
+  to: '/favicon.svg',
 };
 
 export const Simple: Story = {
   args: {
     ...defaultProps,
     helpText: '',
-    prefix: '',
-    suffix: '',
   },
   render,
 };
@@ -58,8 +57,6 @@ export const Disabled: Story = {
     ...defaultProps,
     helpText: '',
     isDisabled: true,
-    prefix: '',
-    suffix: '',
   },
   render,
 };
@@ -67,44 +64,16 @@ export const Disabled: Story = {
 export const WithHelpText: Story = {
   args: {
     ...defaultProps,
-    prefix: '',
-    suffix: '',
   },
   render,
 };
 
-export const WithPrefix: Story = {
-  args: {
-    ...defaultProps,
-    helpText: '',
-    suffix: '',
-  },
-  render,
-};
-
-export const WithSuffix: Story = {
-  args: {
-    ...defaultProps,
-    helpText: '',
-    prefix: '',
-  },
-  render,
-};
-
-export const Full: Story = {
-  args: {
-    ...defaultProps,
-    ariaLabel: 'ARIA label',
-  },
-  render,
-};
-
-function render({ children, ...args }: PropsWithChildren<{}>) {
+function render({ children, ...args }: PropsWithChildren<{ download: string; to: To }>) {
   return (
     <BasicWrapper>
       <DropdownMenu.Root
         isOpen
-        items={<DropdownMenu.ItemButton {...args}>{children}</DropdownMenu.ItemButton>}>
+        items={<DropdownMenu.ItemLinkDownload {...args}>{children}</DropdownMenu.ItemLinkDownload>}>
         <MenuButton />
       </DropdownMenu.Root>
     </BasicWrapper>

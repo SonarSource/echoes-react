@@ -21,12 +21,12 @@
 import styled from '@emotion/styled';
 import type { Meta, StoryObj } from '@storybook/react';
 import { PropsWithChildren } from 'react';
-import { MenuButton } from '../.storybook/MenuButton';
-import { DropdownMenu } from '../src';
+import { DropdownMenu } from '../../src';
+import { MenuButton } from './MenuButton';
 
-const meta: Meta<typeof DropdownMenu.ItemButtonDestructive> = {
-  component: DropdownMenu.ItemButtonDestructive,
-  title: 'Echoes/DropdownMenuItems/ItemButtonDestructive',
+const meta: Meta<typeof DropdownMenu.ItemButton> = {
+  component: DropdownMenu.ItemButton,
+  title: 'Echoes/DropdownMenuItems/ItemButton',
   parameters: {
     controls: { exclude: ['onClick'] },
   },
@@ -34,14 +34,21 @@ const meta: Meta<typeof DropdownMenu.ItemButtonDestructive> = {
 
 export default meta;
 
-type Story = StoryObj<typeof DropdownMenu.ItemButtonDestructive>;
+type Story = StoryObj<typeof DropdownMenu.ItemButton>;
 
-const defaultProps = { children: 'Item label', helpText: 'Help text' };
+const defaultProps = {
+  children: 'Item label',
+  helpText: 'Help text',
+  prefix: '🌷',
+  suffix: '🌼',
+};
 
 export const Simple: Story = {
   args: {
     ...defaultProps,
     helpText: '',
+    prefix: '',
+    suffix: '',
   },
   render,
 };
@@ -51,12 +58,44 @@ export const Disabled: Story = {
     ...defaultProps,
     helpText: '',
     isDisabled: true,
+    prefix: '',
+    suffix: '',
   },
   render,
 };
 
 export const WithHelpText: Story = {
-  args: defaultProps,
+  args: {
+    ...defaultProps,
+    prefix: '',
+    suffix: '',
+  },
+  render,
+};
+
+export const WithPrefix: Story = {
+  args: {
+    ...defaultProps,
+    helpText: '',
+    suffix: '',
+  },
+  render,
+};
+
+export const WithSuffix: Story = {
+  args: {
+    ...defaultProps,
+    helpText: '',
+    prefix: '',
+  },
+  render,
+};
+
+export const Full: Story = {
+  args: {
+    ...defaultProps,
+    ariaLabel: 'ARIA label',
+  },
   render,
 };
 
@@ -65,11 +104,7 @@ function render({ children, ...args }: PropsWithChildren<{}>) {
     <BasicWrapper>
       <DropdownMenu.Root
         isOpen
-        items={
-          <DropdownMenu.ItemButtonDestructive {...args}>
-            {children}
-          </DropdownMenu.ItemButtonDestructive>
-        }>
+        items={<DropdownMenu.ItemButton {...args}>{children}</DropdownMenu.ItemButton>}>
         <MenuButton />
       </DropdownMenu.Root>
     </BasicWrapper>

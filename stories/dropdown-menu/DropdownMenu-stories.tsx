@@ -20,8 +20,8 @@
 
 import styled from '@emotion/styled';
 import type { Meta, StoryObj } from '@storybook/react';
-import { MenuButton } from '../.storybook/MenuButton';
-import { DropdownMenu, DropdownMenuAlign, IconBug, IconGear, LinkStandalone } from '../src';
+import { DropdownMenu, DropdownMenuAlign, IconBug, IconGear, LinkStandalone } from '../../src';
+import { MenuButton } from './MenuButton';
 
 const meta: Meta<typeof DropdownMenu.Root> = {
   component: DropdownMenu.Root,
