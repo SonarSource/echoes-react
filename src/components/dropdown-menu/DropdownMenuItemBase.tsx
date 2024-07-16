@@ -20,7 +20,7 @@
 
 import styled from '@emotion/styled';
 import * as radixDropdownMenu from '@radix-ui/react-dropdown-menu';
-import { MouseEventHandler, ReactNode } from 'react';
+import { MouseEventHandler, ReactNode, useCallback } from 'react';
 import { IconCheck } from '../icons/IconCheck';
 
 type CheckProps =
@@ -35,7 +35,13 @@ type CheckProps =
 
 export type DropdownMenuItemBaseProps = CheckProps & {
   ariaLabel?: string;
-  children: ReactNode;
+  children:
+    | ReactNode
+    | (({
+        getStyledItemContents,
+      }: {
+        getStyledItemContents: ({ label }: { label: ReactNode }) => ReactNode;
+      }) => ReactNode);
   className?: string;
   helpText?: JSX.Element | string;
   isDisabled?: boolean;
@@ -56,7 +62,7 @@ export function DropdownMenuItemBase({
   prefix,
   suffix,
 }: Readonly<DropdownMenuItemBaseProps>) {
-  let checkMarkOrPlaceHolder = null;
+  let checkMarkOrPlaceHolder: ReactNode = null;
 
   if (isCheckable) {
     checkMarkOrPlaceHolder = isChecked ? (
@@ -66,25 +72,41 @@ export function DropdownMenuItemBase({
     );
   }
 
+  const getStyledItemContents = useCallback(
+    ({ label }: { label: ReactNode }) => (
+      <>
+        <StyledLeftHandSide>
+          {checkMarkOrPlaceHolder}
+
+          {prefix && <StyledPrefix>{prefix}</StyledPrefix>}
+
+          <StyledLabelAndHelpText>
+            <StyledLabel>{label}</StyledLabel>
+
+            <StyledHelpText isDisabled={isDisabled}>{helpText}</StyledHelpText>
+          </StyledLabelAndHelpText>
+        </StyledLeftHandSide>
+
+        <StyledSuffix>{suffix}</StyledSuffix>
+      </>
+    ),
+    [checkMarkOrPlaceHolder, helpText, isDisabled, prefix, suffix],
+  );
+
+  const isItemWrapped = typeof children === 'function';
+
+  const itemContainer = isItemWrapped
+    ? children({ getStyledItemContents })
+    : getStyledItemContents({ label: children });
+
   return (
     <StyledRadixDropdownMenuItem
       aria-label={ariaLabel}
+      {...(isItemWrapped ? { asChild: true } : {})}
       className={className}
       disabled={isDisabled}
       onClick={isDisabled ? undefined : onClick}>
-      <StyledLeftHandSide>
-        {checkMarkOrPlaceHolder}
-
-        {prefix && <StyledPrefix>{prefix}</StyledPrefix>}
-
-        <StyledLabelAndHelpText>
-          <StyledLabel>{children}</StyledLabel>
-
-          <StyledHelpText isDisabled={isDisabled}>{helpText}</StyledHelpText>
-        </StyledLabelAndHelpText>
-      </StyledLeftHandSide>
-
-      <StyledSuffix>{suffix}</StyledSuffix>
+      {itemContainer}
     </StyledRadixDropdownMenuItem>
   );
 }

@@ -23,8 +23,13 @@ import { IconLinkExternal } from '../icons/IconLinkExternal';
 import { LinkBase, LinkProps } from '../links/LinkBase';
 import { DropdownMenuItemBase, DropdownMenuItemBaseProps } from './DropdownMenuItemBase';
 
-type Props = Omit<DropdownMenuItemBaseProps, 'isCheckable' | 'isChecked'> &
-  Pick<LinkProps, 'download' | 'hasExternalIcon' | 'isExternal' | 'isMatchingFullPath' | 'to'>;
+type Props = React.PropsWithChildren<
+  Omit<
+    DropdownMenuItemBaseProps,
+    'children' | 'isCheckable' | 'isChecked' | 'ItemWrapper' | 'itemWrapperProps'
+  > &
+    Pick<LinkProps, 'download' | 'hasExternalIcon' | 'isExternal' | 'isMatchingFullPath' | 'to'>
+>;
 
 const getComposedSuffix = ({
   isExternal,
@@ -45,6 +50,7 @@ const getComposedSuffix = ({
 };
 
 export function DropdownMenuItemLink({
+  children,
   download,
   hasExternalIcon = true,
   isDisabled,
@@ -59,28 +65,30 @@ export function DropdownMenuItemLink({
 
   const isExternal = isExternalProp || toAsString.startsWith('http');
 
-  const LinkItem = (
-    <StyledDropdownMenuItemBase
-      {...props}
-      isDisabled={isDisabled}
-      suffix={getComposedSuffix({ isExternal: isExternal && hasExternalIcon, suffix })}
-    />
-  );
+  const itemProps = {
+    ...props,
+    isDisabled,
+    suffix: getComposedSuffix({ isExternal: isExternal && hasExternalIcon, suffix }),
+  };
 
   if (isDisabled) {
-    return LinkItem;
+    return <StyledDropdownMenuItemBase {...itemProps}>{children}</StyledDropdownMenuItemBase>;
   }
 
   return (
-    <StyledLinkBase
-      download={download}
-      hasExternalIcon={false}
-      hasNavLink
-      isExternal={isExternal}
-      isMatchingFullPath={isMatchingFullPath}
-      to={to}>
-      {LinkItem}
-    </StyledLinkBase>
+    <StyledDropdownMenuItemBase {...itemProps}>
+      {({ getStyledItemContents }) => (
+        <StyledLinkBase
+          download={download}
+          hasExternalIcon={false}
+          hasNavLink
+          isExternal={isExternal}
+          isMatchingFullPath={isMatchingFullPath}
+          to={to}>
+          {getStyledItemContents({ label: children })}
+        </StyledLinkBase>
+      )}
+    </StyledDropdownMenuItemBase>
   );
 }
 
@@ -89,8 +97,8 @@ const StyledLinkBase = styled(LinkBase)`
 `;
 
 const StyledDropdownMenuItemBase = styled(DropdownMenuItemBase)`
-  /* when the current URL matches 'to', react-router adds an 'active' class to the parent 'a' */
-  .active & {
+  /* when the current URL matches 'to', react-router adds an 'active' class to the 'a' tag */
+  &.active {
     background-color: var(--echoes-color-background-default-active);
   }
 
