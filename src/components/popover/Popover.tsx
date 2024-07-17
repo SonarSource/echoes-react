@@ -127,7 +127,7 @@ const PopoverContent = styled(RadixPopover.Content)`
   padding: var(--echoes-dimension-space-300) var(--echoes-dimension-space-250);
   background-color: var(--echoes-color-background-default);
   box-shadow: var(--echoes-box-shadow-large);
-  max-width: var(--echoes-dimension-size-5000);
+  max-width: var(--echoes-dimension-width-5000);
   box-sizing: border-box;
 
   // We are in a modal context, so we don't want to display the focus ring

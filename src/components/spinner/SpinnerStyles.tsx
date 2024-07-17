@@ -31,7 +31,7 @@ SpinnerWrapper.displayName = 'SpinnerWrapper';
 export const SpinnerInner = styled.span<{ isLoading: boolean }>`
   position: relative;
   display: inline-block;
-  height: var(--echoes-dimension-size-200);
+  height: var(--echoes-dimension-height-400);
   ${({ isLoading }) => (isLoading ? '' : screenReaderOnly)}
 `;
 SpinnerInner.displayName = 'SpinnerInner';
@@ -72,8 +72,8 @@ export const SpinnerStyled = styled.span`
 
   display: inline-block;
   box-sizing: border-box;
-  height: var(--echoes-dimension-size-200);
-  width: var(--echoes-dimension-size-200);
+  height: var(--echoes-dimension-height-400);
+  width: var(--echoes-dimension-width-200);
   border-radius: var(--echoes-border-radius-full);
   vertical-align: text-bottom;
 `;
@@ -83,7 +83,7 @@ export const SpinnerPlaceholder = styled.div`
   display: inline-block;
   vertical-align: text-bottom;
   visibility: hidden;
-  height: var(--echoes-dimension-size-200);
-  width: var(--echoes-dimension-size-200);
+  height: var(--echoes-dimension-height-400);
+  width: var(--echoes-dimension-width-200);
 `;
 SpinnerPlaceholder.displayName = 'SpinnerPlaceholder';

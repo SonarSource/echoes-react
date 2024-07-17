@@ -122,8 +122,8 @@ const CheckboxRoot = styled(RadixCheckbox.Root)`
   background-color: var(--echoes-color-background-default);
   border: var(--echoes-border-width-default) solid var(--echoes-color-border-bolder);
 
-  height: var(--echoes-dimension-size-200);
-  width: var(--echoes-dimension-size-200);
+  height: var(--echoes-dimension-height-400);
+  width: var(--echoes-dimension-width-200);
   border-radius: var(--echoes-border-radius-100);
   margin: var(--echoes-dimension-space-25) 0;
   box-sizing: border-box;
@@ -173,8 +173,8 @@ const CheckboxRoot = styled(RadixCheckbox.Root)`
 `;
 
 const CheckboxIndicator = styled(RadixCheckbox.Indicator)`
-  height: var(--echoes-dimension-size-200);
-  width: var(--echoes-dimension-size-200);
+  height: var(--echoes-dimension-height-400);
+  width: var(--echoes-dimension-width-200);
 `;
 
 const LabelWrapper = styled.span`

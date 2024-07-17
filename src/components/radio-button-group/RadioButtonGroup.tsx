@@ -187,9 +187,9 @@ const Input = styled(RadioGroup.Item)`
   border: var(--echoes-border-width-default) solid var(--echoes-color-border-bolder);
   border-radius: var(--echoes-border-radius-full);
 
-  height: var(--echoes-dimension-size-200);
-  width: var(--echoes-dimension-size-200);
-  min-width: var(--echoes-dimension-size-200);
+  height: var(--echoes-dimension-height-400);
+  width: var(--echoes-dimension-width-200);
+  min-width: var(--echoes-dimension-width-200);
 
   &:hover {
     background-color: var(--echoes-color-background-default-hover);
@@ -235,8 +235,8 @@ const SelectionIndicator = styled(RadioGroup.Indicator)`
     display: block;
 
     box-sizing: border-box;
-    height: var(--echoes-dimension-size-75);
-    width: var(--echoes-dimension-size-75);
+    height: var(--echoes-dimension-height-150);
+    width: var(--echoes-dimension-width-75);
     border-radius: var(--echoes-border-radius-full);
 
     background-color: var(--echoes-color-icon-on-color);

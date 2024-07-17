@@ -143,7 +143,7 @@ function SelectItemStatus(props: Readonly<SelectItemStatusProps>) {
 // Wrapper around the Checkmark icon or Radio input icon
 const SelectItemStatusStyled = styled.div`
   padding: var(--echoes-dimension-space-25);
-  min-width: var(--echoes-dimension-size-250);
+  min-width: var(--echoes-dimension-width-250);
 
   font: var(--echoes-typography-paragraph-small-regular);
   color: var(--echoes-color-icon-selected);
@@ -157,9 +157,9 @@ SelectItemStatusStyled.displayName = 'SelectItemStatusStyled';
 // Radio input icon in from of the select item for Radio optionType
 const SelectItemSatusRadio = styled.div`
   box-sizing: border-box;
-  height: var(--echoes-dimension-size-200);
-  width: var(--echoes-dimension-size-200);
-  min-width: var(--echoes-dimension-size-200);
+  height: var(--echoes-dimension-height-400);
+  width: var(--echoes-dimension-width-200);
+  min-width: var(--echoes-dimension-width-200);
   padding: 0;
 
   background-color: var(--echoes-color-background-def ault);
@@ -178,7 +178,7 @@ const SelectItemSatusRadio = styled.div`
       width: 100%;
 
       background-color: var(--echoes-color-icon-on-color);
-      border: var(--echoes-dimension-size-50) solid var(--echoes-color-border-accent);
+      border: 0.25rem solid var(--echoes-color-border-accent);
       border-radius: var(--echoes-border-radius-full);
     }
   }

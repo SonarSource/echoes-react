@@ -113,7 +113,7 @@ const TooltipContent = styled(radixTooltip.Content)`
   color: var(--echoes-color-text-on-color);
   background-color: var(--echoes-color-background-inverse);
   box-shadow: var(--echoes-box-shadow-medium);
-  max-width: var(--echoes-dimension-size-5000);
+  max-width: var(--echoes-dimension-width-5000);
   box-sizing: border-box;
 `;
 
