@@ -30,3 +30,9 @@ export const screenReaderOnly = css`
   white-space: nowrap;
   border-width: 0;
 `;
+
+export const truncate = css`
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+`;

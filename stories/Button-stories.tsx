@@ -27,6 +27,7 @@ import {
   IconCalendar,
   IconChevronDown,
   IconRocket,
+  Tooltip,
 } from '../src';
 import { basicWrapperDecorator } from './helpers/BasicWrapper';
 
@@ -74,6 +75,28 @@ export const WithLoading: Story = {
     onClick: () => console.log('Button clicked'),
     prefix: <IconRocket />,
   },
+};
+
+export const WithEllipsis: Story = {
+  args: {
+    children: 'My Super Long Button',
+    onClick: () => console.log('Button clicked'),
+    suffix: <IconChevronDown />,
+    prefix: <IconRocket />,
+  },
+  render: (args) => (
+    <div
+      style={{
+        display: 'flex',
+        maxWidth: '180px',
+        padding: '8px',
+        border: '1px solid hotpink',
+      }}>
+      <Tooltip content={args.children}>
+        <Button {...args} />
+      </Tooltip>
+    </div>
+  ),
 };
 
 export const AllVarieties: Story = {

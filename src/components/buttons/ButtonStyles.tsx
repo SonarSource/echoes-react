@@ -19,6 +19,7 @@
  */
 
 import styled from '@emotion/styled';
+import { truncate } from '~common/helpers/styles';
 import { ButtonSize, ButtonVariety } from './ButtonTypes';
 
 export const ButtonStyled = styled.button`
@@ -28,6 +29,7 @@ export const ButtonStyled = styled.button`
   padding: var(--echoes-dimension-size-0) var(--button-padding);
   height: var(--button-height);
   min-height: var(--button-height);
+  overflow: hidden;
 
   font: var(--echoes-typography-paragraph-default-semi-bold);
   color: var(--button-color);
@@ -75,9 +77,17 @@ export const ButtonInnerWrapper = styled.span`
   display: inline-flex;
   align-items: center;
   gap: var(--echoes-dimension-size-75);
+
+  overflow: hidden;
 `;
 
 ButtonInnerWrapper.displayName = 'ButtonInnerWrapper';
+
+export const ButtonText = styled.span`
+  ${truncate}
+`;
+
+ButtonText.displayName = 'ButtonText';
 
 export const BUTTON_VARIETY_STYLES = {
   [ButtonVariety.Neutral]: {

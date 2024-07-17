@@ -25,6 +25,7 @@ import {
   BUTTON_VARIETY_STYLES,
   ButtonInnerWrapper,
   ButtonStyled,
+  ButtonText,
 } from './ButtonStyles';
 import { ButtonSize, ButtonVariety, HTMLButtonProps } from './ButtonTypes';
 
@@ -101,7 +102,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) =>
       )}
       <ButtonInnerWrapper>
         {prefix}
-        {children}
+        <ButtonText>{children}</ButtonText>
         {suffix}
       </ButtonInnerWrapper>
     </ButtonStyled>
