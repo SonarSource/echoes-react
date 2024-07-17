@@ -22,7 +22,7 @@ import { ButtonHTMLAttributes } from 'react';
 
 export type HTMLButtonProps = Pick<
   ButtonHTMLAttributes<HTMLButtonElement>,
-  'id' | 'name' | 'role' | 'style' | 'type' | 'form'
+  'form' | 'id' | 'name' | 'role' | 'style' | 'type'
 >;
 
 export enum ButtonSize {

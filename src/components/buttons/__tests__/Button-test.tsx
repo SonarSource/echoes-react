@@ -38,7 +38,7 @@ it('should not call onClick function when disabled', async () => {
       Click me
     </Button>,
     {},
-    // We skip the pointer-events:none check from user-event to be able to test clicking on the disabled checkbox
+    // We skip the pointer-events:none check from user-event to be able to test clicking on the disabled button
     { pointerEventsCheck: PointerEventsCheckLevel.Never },
   );
 
@@ -48,7 +48,7 @@ it('should not call onClick function when disabled', async () => {
   expect(onClick).not.toHaveBeenCalled();
 });
 
-it("should show a loading state, it doens't prevent clicking", () => {
+it("should show a loading state, it doesn't prevent clicking", () => {
   render(
     <Button isLoading onClick={jest.fn()}>
       Click me

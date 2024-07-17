@@ -51,7 +51,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) =>
     isLoading,
     onClick,
     prefix,
-    shouldPreventDefault = props.type !== 'submit',
+    shouldPreventDefault = false,
     shouldStopPropagation = false,
     size = ButtonSize.Large,
     variety = ButtonVariety.Neutral,
