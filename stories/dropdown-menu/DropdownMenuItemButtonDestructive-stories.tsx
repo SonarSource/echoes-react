@@ -18,11 +18,11 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import styled from '@emotion/styled';
 import type { Meta, StoryObj } from '@storybook/react';
 import { PropsWithChildren } from 'react';
 import { DropdownMenu } from '../../src';
-import { MenuButton } from './MenuButton';
+import { BasicWrapper } from '../helpers/BasicWrapper';
+import { MenuButton } from '../helpers/MenuButton';
 
 const meta: Meta<typeof DropdownMenu.ItemButtonDestructive> = {
   component: DropdownMenu.ItemButtonDestructive,
@@ -75,10 +75,3 @@ function render({ children, ...args }: PropsWithChildren<{}>) {
     </BasicWrapper>
   );
 }
-
-const BasicWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 100px 0;
-`;

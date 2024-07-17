@@ -18,9 +18,9 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import styled from '@emotion/styled';
 import type { Meta, StoryObj } from '@storybook/react';
-import { LinkStandalone, Popover } from '../src';
+import { Button, LinkStandalone, Popover } from '../src';
+import { basicWrapperDecorator } from './helpers/BasicWrapper';
 
 const meta: Meta<typeof Popover> = {
   component: Popover,
@@ -28,6 +28,7 @@ const meta: Meta<typeof Popover> = {
   parameters: {
     controls: { exclude: ['children'] },
   },
+  decorators: [basicWrapperDecorator],
 };
 
 export default meta;
@@ -41,11 +42,9 @@ export const Basic: Story = {
       'This is a more complete explanation to detail the concepts and practices that are required to understand said explanation. It is fairly easy to assess how this important text is made important by its self-sufficient importance.',
   },
   render: (args) => (
-    <Wrapper>
-      <Popover {...args}>
-        <button type="button">Click this button to display the Popover</button>
-      </Popover>
-    </Wrapper>
+    <Popover {...args}>
+      <button type="button">Click this button to display the Popover</button>
+    </Popover>
   ),
 };
 
@@ -55,36 +54,26 @@ export const ExtraContent: Story = {
     description: 'Follow these instructions:',
   },
   render: (args) => (
-    <Wrapper>
-      <Popover
-        {...args}
-        extraContent={
-          <>
-            <span>First, click on the thing, then the other thing.</span>
-            <ul>
-              <li>Field 1: put your name</li>
-              <li>Field 2: put your favorite food item</li>
-            </ul>
-            <span>Finally, profit!</span>
-          </>
-        }
-        footer={
-          <>
-            <LinkStandalone to="#">Go to the config page</LinkStandalone>
-            {' - '}
-            <LinkStandalone to="#">Go to the docs</LinkStandalone>
-          </>
-        }>
-        <button type="button">Click this button to display the Popover</button>
-      </Popover>
-    </Wrapper>
+    <Popover
+      {...args}
+      extraContent={
+        <>
+          <span>First, click on the thing, then the other thing.</span>
+          <ul>
+            <li>Field 1: put your name</li>
+            <li>Field 2: put your favorite food item</li>
+          </ul>
+          <span>Finally, profit!</span>
+        </>
+      }
+      footer={
+        <>
+          <LinkStandalone to="#">Go to the config page</LinkStandalone>
+          {' - '}
+          <LinkStandalone to="#">Go to the docs</LinkStandalone>
+        </>
+      }>
+      <Button>Click this button to display the Popover</Button>
+    </Popover>
   ),
 };
-
-const Wrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100vw;
-  height: 80vh;
-`;

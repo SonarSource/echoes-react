@@ -19,9 +19,16 @@
  */
 
 /* eslint-disable no-console */
-import styled from '@emotion/styled';
 import type { Meta, StoryObj } from '@storybook/react';
-import { Button, ButtonSize, ButtonVariety, IconCalendar, IconChevronDown } from '../src';
+import {
+  Button,
+  ButtonSize,
+  ButtonVariety,
+  IconCalendar,
+  IconChevronDown,
+  IconRocket,
+} from '../src';
+import { basicWrapperDecorator } from './helpers/BasicWrapper';
 
 const meta: Meta<typeof Button> = {
   component: Button,
@@ -30,6 +37,7 @@ const meta: Meta<typeof Button> = {
     size: { control: { type: 'select' }, options: Object.values(ButtonSize) },
     variety: { control: { type: 'select' }, options: Object.values(ButtonVariety) },
   },
+  decorators: [basicWrapperDecorator],
 };
 
 export default meta;
@@ -46,16 +54,25 @@ export const Default: Story = {
 export const WithPrefix: Story = {
   args: {
     children: 'My Button',
-    prefix: <IconCalendar />,
     onClick: () => console.log('Button clicked'),
+    prefix: <IconCalendar />,
   },
 };
 
 export const WithSuffix: Story = {
   args: {
     children: 'My Button',
-    suffix: <IconChevronDown />,
     onClick: () => console.log('Button clicked'),
+    suffix: <IconChevronDown />,
+  },
+};
+
+export const WithLoading: Story = {
+  args: {
+    children: 'My Button',
+    isLoading: true,
+    onClick: () => console.log('Button clicked'),
+    prefix: <IconRocket />,
   },
 };
 
@@ -64,19 +81,12 @@ export const AllVarieties: Story = {
     onClick: () => console.log('Button clicked'),
   },
   render: (args) => (
-    <VarietiesWrapper>
+    <>
       {Object.values(ButtonVariety).map((variety) => (
         <Button key={variety} {...args} variety={variety}>
           {variety}
         </Button>
       ))}
-    </VarietiesWrapper>
+    </>
   ),
 };
-
-const VarietiesWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  gap: 1rem;
-`;
