@@ -3017,7 +3017,7 @@ __metadata:
       optional: true
     "@types/react-dom":
       optional: true
-  checksum: 977173c0c6cb0d806c1a94197c7f92447004ade8c0aba5f238acb53ccaf0d330af54f8dbd3b334b497847df28c1ef0215b1103ae6bfccba10bbaf21f4ac59fac
+  checksum: 10/977173c0c6cb0d806c1a94197c7f92447004ade8c0aba5f238acb53ccaf0d330af54f8dbd3b334b497847df28c1ef0215b1103ae6bfccba10bbaf21f4ac59fac
   languageName: node
   linkType: hard
 
