@@ -35,10 +35,10 @@ html[data-echoes-theme='dark'], [data-echoes-theme='dark'] {
   --echoes-color-background-accent-hover: rgb(189,198,255);
   --echoes-color-background-accent-active: rgb(209,215,254);
   --echoes-color-background-accent-focus: rgb(159,169,237);
-  --echoes-color-background-accent-weak-default: #5D6CD033;
-  --echoes-color-background-accent-weak-hover: #5D6CD04D;
-  --echoes-color-background-accent-weak-active: #5D6CD04D;
-  --echoes-color-background-accent-weak-focus: #5D6CD033;
+  --echoes-color-background-accent-weak-default: hsl(232 55% 59% / 0.2);
+  --echoes-color-background-accent-weak-hover: hsl(232 55% 59% / 0.3);
+  --echoes-color-background-accent-weak-active: hsl(232 55% 59% / 0.4);
+  --echoes-color-background-accent-weak-focus: hsl(232 55% 59% / 0.2);
   --echoes-color-background-warning-default: rgb(252,233,163);
   --echoes-color-background-warning-weak: #FADC7933;
   --echoes-color-background-success-default: rgb(225,245,168);
@@ -117,6 +117,8 @@ html[data-echoes-theme='dark'], [data-echoes-theme='dark'] {
   --echoes-sizes-inputs-medium: 250px;
   --echoes-sizes-inputs-large: 350px;
   --echoes-sizes-inputs-full: 100%;
+  --echoes-sizes-buttons-medium: 2rem;
+  --echoes-sizes-buttons-large: 2.25rem;
   --echoes-box-shadow-xsmall: 0 1px 4px 0 rgba(8,9,12,0.4);
   --echoes-box-shadow-small: 0 1px 10px 0 rgba(8,9,12,0.4), 0 1px 3px 0 rgba(8,9,12,0.4);
   --echoes-box-shadow-medium: inset 0 2px 15px -2px rgba(8,9,12,0.06), 0 4px 15px -2px rgba(8,9,12,0.5);

@@ -27,7 +27,7 @@ export const ButtonStyled = styled.button`
   box-sizing: border-box;
   display: inline-flex;
   align-items: center;
-  padding: var(--echoes-dimension-size-0) var(--button-padding);
+  padding: var(--echoes-dimension-space-0) var(--button-padding);
   height: var(--button-height);
   min-height: var(--button-height);
   overflow: hidden;
@@ -77,7 +77,7 @@ ButtonStyled.displayName = 'ButtonStyled';
 export const ButtonInnerWrapper = styled.span`
   display: flex;
   align-items: center;
-  gap: var(--echoes-dimension-size-75);
+  gap: var(--echoes-dimension-space-75);
 
   overflow: hidden;
 `;
@@ -91,7 +91,7 @@ export const ButtonText = styled.span`
 ButtonText.displayName = 'ButtonText';
 
 export const SpinnerButton = styled(SpinnerOverrideColor)`
-  margin-right: var(--echoes-dimension-size-75);
+  margin-right: var(--echoes-dimension-space-75);
 `;
 
 export const BUTTON_VARIETY_STYLES = {
@@ -165,10 +165,10 @@ export const BUTTON_VARIETY_STYLES = {
 export const BUTTON_SIZE_STYLE = {
   [ButtonSize.Medium]: {
     '--button-padding': 'var(--echoes-dimension-space-100)',
-    '--button-height': 'var(--echoes-dimension-size-400)',
+    '--button-height': 'var(--echoes-sizes-buttons-medium)',
   },
   [ButtonSize.Large]: {
     '--button-padding': 'var(--echoes-dimension-space-150)',
-    '--button-height': 'var(--echoes-dimension-size-450)',
+    '--button-height': 'var(--echoes-sizes-buttons-large)',
   },
 };
