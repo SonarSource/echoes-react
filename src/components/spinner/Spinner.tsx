@@ -24,6 +24,7 @@ import classNames from 'classnames';
 import { ReactNode, forwardRef } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { screenReaderOnly } from '~common/helpers/styles';
+import { ButtonStyled } from '../buttons/ButtonStyles';
 
 interface Props {
   ariaLabel?: string;
@@ -90,12 +91,6 @@ Spinner.displayName = 'Spinner';
 const SpinnerWrapper = styled.span<{ inline: boolean; isLoading?: boolean }>`
   display: ${(props) => (props.inline ? 'inline-block' : 'block')};
   position: relative;
-  ${(props) =>
-    props.inline && props.isLoading ? 'margin: 0 var(--echoes-dimension-space-50);' : ''}
-
-  &.echoes-button-spinner-wrapper {
-    margin: 0;
-  }
 `;
 SpinnerWrapper.displayName = 'SpinnerWrapper';
 
@@ -148,7 +143,7 @@ const SpinnerStyled = styled.span`
   border-radius: var(--echoes-border-radius-full);
   vertical-align: text-bottom;
 
-  &.echoes-button-spinner {
+  ${ButtonStyled} & {
     margin-right: var(--echoes-dimension-size-75);
 
     background:

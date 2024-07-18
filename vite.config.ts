@@ -67,7 +67,7 @@ export default defineConfig({
     },
   },
   plugins: [
-    react(),
+    react({ jsxImportSource: '@emotion/react', babel: { plugins: ['@emotion/babel-plugin'] } }),
     dts({
       entryRoot: 'src',
       exclude: ['**/config/**', '**/stories/**', '**/__tests__/**', '**/*-stories.*'],

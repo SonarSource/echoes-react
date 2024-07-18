@@ -93,13 +93,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) =>
       onClick={handleClick}
       ref={ref}
       type={type}>
-      {isDefined(isLoading) && (
-        <Spinner
-          className="echoes-button-spinner"
-          isLoading={isLoading}
-          wrapperClassName="echoes-button-spinner-wrapper"
-        />
-      )}
+      {isDefined(isLoading) && <Spinner isLoading={isLoading} />}
       <ButtonInnerWrapper>
         {prefix}
         <ButtonText>{children}</ButtonText>
