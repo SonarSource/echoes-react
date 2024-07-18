@@ -74,6 +74,13 @@ export const ButtonStyled = styled.button`
 
 ButtonStyled.displayName = 'ButtonStyled';
 
+export const ButtonIconStyled = styled(ButtonStyled)`
+  padding: 0;
+  justify-content: center;
+
+  width: var(--button-width);
+`;
+
 export const ButtonInnerWrapper = styled.span`
   display: flex;
   align-items: center;
@@ -170,5 +177,16 @@ export const BUTTON_SIZE_STYLE = {
   [ButtonSize.Large]: {
     '--button-padding': 'var(--echoes-dimension-space-150)',
     '--button-height': 'var(--echoes-sizes-buttons-large)',
+  },
+};
+
+export const BUTTONICON_DIMENSIONS = {
+  [ButtonSize.Medium]: {
+    '--button-height': 'var(--echoes-sizes-buttons-medium)',
+    '--button-width': 'var(--echoes-sizes-buttons-medium)',
+  },
+  [ButtonSize.Large]: {
+    '--button-height': 'var(--echoes-sizes-buttons-large)',
+    '--button-width': 'var(--echoes-sizes-buttons-large)',
   },
 };
