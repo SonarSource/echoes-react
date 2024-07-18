@@ -17,22 +17,22 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-import { css } from '@emotion/react';
+import styled from '@emotion/styled';
+import { Spinner } from './Spinner';
 
-export const screenReaderOnly = css`
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border-width: 0;
+export const SpinnerOverrideColor = styled(Spinner)`
+  background:
+    linear-gradient(
+        0deg,
+        var(--spinner-color-override, var(--echoes-color-background-accent-default)) 50%,
+        transparent 50% 100%
+      )
+      border-box,
+    linear-gradient(
+        90deg,
+        var(--spinner-color-override, var(--echoes-color-background-accent-default)) 25%,
+        transparent 75% 100%
+      )
+      border-box;
 `;
-
-export const truncate = css`
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-`;
+SpinnerOverrideColor.displayName = 'SpinnerOverrideColor';

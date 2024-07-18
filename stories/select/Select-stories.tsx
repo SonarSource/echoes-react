@@ -20,7 +20,7 @@
 
 import type { Meta, StoryObj } from '@storybook/react';
 import { ComponentProps, useState } from 'react';
-import { IconBell, IconBug, IconMegaphone, InputSize, Select } from '../src';
+import { IconBell, IconBug, IconMegaphone, InputSize, Select } from '../../src';
 
 const meta: Meta<typeof Select> = {
   component: Select,

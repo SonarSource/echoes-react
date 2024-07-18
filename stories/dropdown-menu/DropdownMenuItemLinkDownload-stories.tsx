@@ -18,12 +18,12 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import styled from '@emotion/styled';
 import type { Meta, StoryObj } from '@storybook/react';
 import { PropsWithChildren } from 'react';
 import { To } from 'react-router-dom';
-import { MenuButton } from '../.storybook/MenuButton';
-import { DropdownMenu } from '../src';
+import { DropdownMenu } from '../../src';
+import { BasicWrapper } from '../helpers/BasicWrapper';
+import { MenuButton } from '../helpers/MenuButton';
 
 const meta: Meta<typeof DropdownMenu.ItemLinkDownload> = {
   component: DropdownMenu.ItemLinkDownload,
@@ -79,10 +79,3 @@ function render({ children, ...args }: PropsWithChildren<{ download: string; to:
     </BasicWrapper>
   );
 }
-
-const BasicWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 100px 0;
-`;

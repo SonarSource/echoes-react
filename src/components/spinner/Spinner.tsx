@@ -18,14 +18,19 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import { keyframes } from '@emotion/react';
-import styled from '@emotion/styled';
 import classNames from 'classnames';
 import { ReactNode, forwardRef } from 'react';
 import { FormattedMessage } from 'react-intl';
-import { screenReaderOnly } from '~common/helpers/styles';
+import {
+  SpinnerAriaLabel,
+  SpinnerInner,
+  SpinnerLabel,
+  SpinnerPlaceholder,
+  SpinnerStyled,
+  SpinnerWrapper,
+} from './SpinnerStyles';
 
-interface Props {
+export interface SpinnerProps {
   ariaLabel?: string;
   className?: string;
   children?: ReactNode;
@@ -35,7 +40,7 @@ interface Props {
   wrapperClassName?: string;
 }
 
-export const Spinner = forwardRef<HTMLSpanElement, Props>((props, ref) => {
+export const Spinner = forwardRef<HTMLSpanElement, SpinnerProps>((props, ref) => {
   const {
     ariaLabel,
     className,
@@ -49,7 +54,10 @@ export const Spinner = forwardRef<HTMLSpanElement, Props>((props, ref) => {
 
   return (
     <>
-      <SpinnerWrapper className={wrapperClassName} inline={children === undefined}>
+      <SpinnerWrapper
+        className={wrapperClassName}
+        inline={children === undefined}
+        isLoading={isLoading}>
         <SpinnerInner
           {...radixProps}
           aria-live="polite"
@@ -77,70 +85,9 @@ export const Spinner = forwardRef<HTMLSpanElement, Props>((props, ref) => {
         </SpinnerInner>
       </SpinnerWrapper>
       {!isLoading &&
-        (children ?? (hasPlaceholder && <Placeholder className={className} />) ?? null)}
+        (children ?? (hasPlaceholder && <SpinnerPlaceholder className={className} />) ?? null)}
     </>
   );
 });
 
 Spinner.displayName = 'Spinner';
-
-const SpinnerWrapper = styled.span<{ inline: boolean }>`
-  display: ${(props) => (props.inline ? 'inline-block' : 'block')};
-  position: relative;
-  ${(props) => (props.inline ? 'margin: 0 var(--echoes-dimension-space-50);' : '')}
-`;
-
-const SpinnerInner = styled.span<{ isLoading: boolean }>`
-  position: relative;
-  display: inline-block;
-  height: var(--echoes-dimension-size-200);
-  ${({ isLoading }) => (isLoading ? '' : screenReaderOnly)}
-`;
-
-const SpinnerAriaLabel = styled.span`
-  ${screenReaderOnly};
-`;
-
-const SpinnerLabel = styled.span`
-  margin-left: var(--echoes-dimension-space-50);
-`;
-
-const spinAnimation = keyframes`
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(-360deg);
-  }
-`;
-
-const SpinnerStyled = styled.span`
-  border: 2px solid transparent;
-  background:
-    linear-gradient(0deg, var(--echoes-color-background-accent-default) 50%, transparent 50% 100%)
-      border-box,
-    linear-gradient(90deg, var(--echoes-color-background-accent-default) 25%, transparent 75% 100%)
-      border-box;
-  mask:
-    linear-gradient(#fff 0 0) padding-box,
-    linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  animation: ${spinAnimation} 1s infinite linear;
-
-  display: inline-block;
-  box-sizing: border-box;
-  height: var(--echoes-dimension-size-200);
-  width: var(--echoes-dimension-size-200);
-  border-radius: var(--echoes-border-radius-full);
-  vertical-align: text-bottom;
-`;
-
-const Placeholder = styled.div`
-  display: inline-block;
-  vertical-align: text-bottom;
-  visibility: hidden;
-  height: var(--echoes-dimension-size-200);
-  width: var(--echoes-dimension-size-200);
-`;

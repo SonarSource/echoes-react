@@ -17,22 +17,20 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-import { css } from '@emotion/react';
 
-export const screenReaderOnly = css`
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border-width: 0;
-`;
+import { PropsWithChildren, forwardRef } from 'react';
+import { Button, ButtonVariety, IconChevronDown } from '../../src';
 
-export const truncate = css`
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-`;
+export const MenuButton = forwardRef<HTMLButtonElement, PropsWithChildren<{}>>(
+  ({ children = 'Menu', ...radixProps }, ref) => (
+    <Button
+      ref={ref}
+      suffix={<IconChevronDown />}
+      variety={ButtonVariety.NeutralGhost}
+      {...radixProps}>
+      {children}
+    </Button>
+  ),
+);
+
+MenuButton.displayName = 'MenuButton';

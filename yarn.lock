@@ -1535,7 +1535,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@emotion/babel-plugin@npm:^11.11.0":
+"@emotion/babel-plugin@npm:11.11.0, @emotion/babel-plugin@npm:^11.11.0":
   version: 11.11.0
   resolution: "@emotion/babel-plugin@npm:11.11.0"
   dependencies:
@@ -3642,6 +3642,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@sonarsource/echoes-react@workspace:."
   dependencies:
+    "@emotion/babel-plugin": "npm:11.11.0"
     "@emotion/cache": "npm:11.11.0"
     "@emotion/jest": "npm:11.11.0"
     "@emotion/react": "npm:11.11.4"

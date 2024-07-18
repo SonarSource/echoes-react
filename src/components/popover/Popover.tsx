@@ -129,6 +129,12 @@ const PopoverContent = styled(RadixPopover.Content)`
   box-shadow: var(--echoes-box-shadow-large);
   max-width: var(--echoes-dimension-size-5000);
   box-sizing: border-box;
+
+  // We are in a modal context, so we don't want to display the focus ring
+  &:focus,
+  &:focus-visible {
+    outline: none;
+  }
 `;
 
 const PopoverArrow = styled(RadixPopover.Arrow)`

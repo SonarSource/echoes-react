@@ -17,40 +17,5 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-
-import type { Meta, StoryObj } from '@storybook/react';
-import { IconLink, LinkHighlight, LinkStandalone as LinkStandaloneComp } from '../src';
-
-const meta: Meta<typeof LinkStandaloneComp> = {
-  component: LinkStandaloneComp,
-  title: 'Echoes/Link/LinkStandalone',
-  argTypes: {
-    highlight: {
-      control: {
-        type: 'select',
-      },
-      options: Object.values(LinkHighlight),
-    },
-  },
-};
-
-export default meta;
-
-type Story = StoryObj<typeof LinkStandaloneComp>;
-
-export const LinkStandalone: Story = {
-  args: {
-    children: 'Standalone Link',
-    highlight: undefined,
-    to: '/projects/new',
-  },
-};
-
-export const LinkStandaloneWithIcon: Story = {
-  args: {
-    children: 'Standalone Link With Icon',
-    highlight: LinkHighlight.Default,
-    to: '/projects/new',
-    iconLeft: <IconLink />,
-  },
-};
+export { Button } from './Button';
+export { ButtonSize, ButtonVariety } from './ButtonTypes';

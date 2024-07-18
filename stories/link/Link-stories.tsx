@@ -19,7 +19,7 @@
  */
 
 import type { Meta, StoryObj } from '@storybook/react';
-import { Link as LinkComp, LinkHighlight } from '../src';
+import { Link as LinkComp, LinkHighlight } from '../../src';
 
 const meta: Meta<typeof LinkComp> = {
   component: LinkComp,

@@ -20,7 +20,8 @@
 
 import styled from '@emotion/styled';
 import type { Meta, StoryObj } from '@storybook/react';
-import { Link, LinkStandalone, Tooltip, TooltipSide } from '../src';
+import { Button, Link, LinkStandalone, Tooltip, TooltipSide } from '../src';
+import { BasicWrapper } from './helpers/BasicWrapper';
 
 const meta: Meta<typeof Tooltip> = {
   component: Tooltip,
@@ -42,7 +43,7 @@ export const Basic: Story = {
   render: (args) => (
     <BasicWrapper>
       <Tooltip {...args}>
-        <button type="button">Hover this button to display the tooltip</button>
+        <Button>Hover this button to display the tooltip</Button>
       </Tooltip>
 
       <br />
@@ -53,13 +54,6 @@ export const Basic: Story = {
     </BasicWrapper>
   ),
 };
-
-const BasicWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 100px 0;
-`;
 
 export const OverflowHidden: Story = {
   args: {

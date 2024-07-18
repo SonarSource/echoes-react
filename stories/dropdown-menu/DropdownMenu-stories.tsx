@@ -20,8 +20,9 @@
 
 import styled from '@emotion/styled';
 import type { Meta, StoryObj } from '@storybook/react';
-import { MenuButton } from '../.storybook/MenuButton';
-import { DropdownMenu, DropdownMenuAlign, IconBug, IconGear, LinkStandalone } from '../src';
+import { DropdownMenu, DropdownMenuAlign, IconBug, IconGear, LinkStandalone } from '../../src';
+import { BasicWrapper } from '../helpers/BasicWrapper';
+import { MenuButton } from '../helpers/MenuButton';
 
 const meta: Meta<typeof DropdownMenu.Root> = {
   component: DropdownMenu.Root,
@@ -113,10 +114,3 @@ export const MenuWithVariousItems: Story = {
     </BasicWrapper>
   ),
 };
-
-const BasicWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 100px 0;
-`;

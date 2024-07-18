@@ -17,29 +17,19 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
+import styled from '@emotion/styled';
+import { Decorator } from '@storybook/react';
 
-import { PropsWithChildren, forwardRef } from 'react';
-import { IconChevronDown } from '../src';
+export const BasicWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 100px 0;
+`;
 
-export const MenuButton = forwardRef<HTMLButtonElement, PropsWithChildren<{}>>(
-  ({ children = 'Menu', ...radixProps }, ref) => (
-    <button
-      ref={ref}
-      style={{
-        alignItems: 'center',
-        backgroundColor: 'blue',
-        border: 'none',
-        color: 'white',
-        display: 'flex',
-        gap: '4px',
-        opacity: 0.6,
-        padding: '4px 8px',
-      }}
-      type="button"
-      {...radixProps}>
-      {children} <IconChevronDown />
-    </button>
-  ),
+export const basicWrapperDecorator: Decorator = (Story) => (
+  <BasicWrapper>
+    <Story />
+  </BasicWrapper>
 );
-
-MenuButton.displayName = 'MenuButton';

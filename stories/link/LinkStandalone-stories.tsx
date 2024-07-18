@@ -17,22 +17,40 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-import { css } from '@emotion/react';
 
-export const screenReaderOnly = css`
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border-width: 0;
-`;
+import type { Meta, StoryObj } from '@storybook/react';
+import { IconLink, LinkHighlight, LinkStandalone as LinkStandaloneComp } from '../../src';
 
-export const truncate = css`
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-`;
+const meta: Meta<typeof LinkStandaloneComp> = {
+  component: LinkStandaloneComp,
+  title: 'Echoes/Link/LinkStandalone',
+  argTypes: {
+    highlight: {
+      control: {
+        type: 'select',
+      },
+      options: Object.values(LinkHighlight),
+    },
+  },
+};
+
+export default meta;
+
+type Story = StoryObj<typeof LinkStandaloneComp>;
+
+export const LinkStandalone: Story = {
+  args: {
+    children: 'Standalone Link',
+    highlight: undefined,
+    to: '/projects/new',
+  },
+};
+
+export const LinkStandaloneWithIcon: Story = {
+  args: {
+    children: 'Standalone Link With Icon',
+    highlight: LinkHighlight.Default,
+    to: '/projects/new',
+    iconLeft: <IconLink />,
+  },
+};

@@ -17,22 +17,25 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-import { css } from '@emotion/react';
 
-export const screenReaderOnly = css`
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border-width: 0;
-`;
+import { ButtonHTMLAttributes } from 'react';
 
-export const truncate = css`
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-`;
+export type HTMLButtonProps = Pick<
+  ButtonHTMLAttributes<HTMLButtonElement>,
+  'form' | 'id' | 'name' | 'role' | 'style' | 'type'
+>;
+
+export enum ButtonSize {
+  Medium = 'medium',
+  Large = 'large',
+}
+
+export enum ButtonVariety {
+  Neutral = 'neutral',
+  NeutralGhost = 'neutral-ghost',
+  Accent = 'accent',
+  AccentGhost = 'accent-ghost',
+  Danger = 'danger',
+  DangerOutline = 'danger-outline',
+  DangerGhost = 'danger-ghost',
+}
