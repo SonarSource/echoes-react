@@ -19,7 +19,7 @@ exports[`should render material icon correctly 1`] = `
 <div>
   <span
     aria-hidden="true"
-    class="emotion-0"
+    class="emotion-0 emotion-1"
     data-testid="icon"
   >
     
