@@ -17,46 +17,39 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-import { MouseEvent, ReactNode, forwardRef, useCallback, useMemo } from 'react';
-import { isDefined } from '~common/helpers/types';
-import {
-  BUTTON_SIZE_STYLE,
-  BUTTON_VARIETY_STYLES,
-  ButtonInnerWrapper,
-  ButtonStyled,
-  ButtonText,
-  SpinnerButton,
-} from './ButtonStyles';
+
+import { forwardRef, MouseEvent, useMemo } from 'react';
+import { IconProps } from '../icons';
+import { SpinnerOverrideColor } from '../spinner/SpinnerOverrideColor';
+import { useButtonClickHandler } from './Button';
+import { BUTTON_VARIETY_STYLES, BUTTONICON_DIMENSIONS, ButtonIconStyled } from './ButtonStyles';
 import { ButtonSize, ButtonVariety, HTMLButtonProps } from './ButtonTypes';
 
-export interface ButtonProps extends HTMLButtonProps {
-  children?: ReactNode;
+export interface ButtonIconProps extends HTMLButtonProps {
+  Icon: React.ForwardRefExoticComponent<IconProps & React.RefAttributes<HTMLSpanElement>>;
+  'aria-label': string;
   className?: string;
   hasAutoFocus?: boolean;
   isDisabled?: boolean;
   isLoading?: boolean;
   onClick?: (event: MouseEvent<HTMLButtonElement>) => unknown;
-  prefix?: ReactNode;
   size?: ButtonSize;
   shouldPreventDefault?: boolean;
   shouldStopPropagation?: boolean;
-  suffix?: ReactNode;
   variety?: ButtonVariety;
 }
 
-export const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
+export const ButtonIcon = forwardRef<HTMLButtonElement, ButtonIconProps>((props, ref) => {
   const {
-    children,
+    Icon,
     hasAutoFocus = false,
     isDisabled = false,
-    isLoading,
-    onClick,
-    prefix,
     shouldPreventDefault = false,
     shouldStopPropagation = false,
+    isLoading = false,
+    onClick,
     size = ButtonSize.Large,
-    variety = ButtonVariety.Default,
-    suffix,
+    variety = ButtonVariety.Neutral,
     type = 'button',
     ...htmlProps
   } = props;
@@ -64,13 +57,13 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) =>
   const handleClick = useButtonClickHandler(props);
 
   return (
-    <ButtonStyled
+    <ButtonIconStyled
       {...htmlProps}
       autoFocus={hasAutoFocus}
       css={useMemo(
         () => ({
           ...BUTTON_VARIETY_STYLES[variety],
-          ...BUTTON_SIZE_STYLE[size],
+          ...BUTTONICON_DIMENSIONS[size],
         }),
         [variety, size],
       )}
@@ -78,40 +71,10 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) =>
       onClick={handleClick}
       ref={ref}
       type={type}>
-      {isDefined(isLoading) && <SpinnerButton isLoading={isLoading} />}
-      <ButtonInnerWrapper>
-        {prefix}
-        <ButtonText>{children}</ButtonText>
-        {suffix}
-      </ButtonInnerWrapper>
-    </ButtonStyled>
+      <SpinnerOverrideColor isLoading={isLoading}>
+        <Icon />
+      </SpinnerOverrideColor>
+    </ButtonIconStyled>
   );
 });
-
-Button.displayName = 'Button';
-
-export function useButtonClickHandler(
-  props: Pick<
-    ButtonProps,
-    'isDisabled' | 'shouldPreventDefault' | 'shouldStopPropagation' | 'onClick'
-  >,
-) {
-  const { isDisabled, onClick, shouldPreventDefault, shouldStopPropagation } = props;
-
-  return useCallback(
-    (event: MouseEvent<HTMLButtonElement>) => {
-      if (shouldPreventDefault || isDisabled) {
-        event.preventDefault();
-      }
-
-      if (shouldStopPropagation) {
-        event.stopPropagation();
-      }
-
-      if (onClick && !isDisabled) {
-        onClick(event);
-      }
-    },
-    [isDisabled, onClick, shouldPreventDefault, shouldStopPropagation],
-  );
-}
+ButtonIcon.displayName = 'ButtonIcon';
