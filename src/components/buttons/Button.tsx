@@ -19,13 +19,13 @@
  */
 import { MouseEvent, ReactNode, forwardRef, useCallback, useMemo } from 'react';
 import { isDefined } from '~common/helpers/types';
-import { Spinner } from '../spinner';
 import {
   BUTTON_SIZE_STYLE,
   BUTTON_VARIETY_STYLES,
   ButtonInnerWrapper,
   ButtonStyled,
   ButtonText,
+  SpinnerButton,
 } from './ButtonStyles';
 import { ButtonSize, ButtonVariety, HTMLButtonProps } from './ButtonTypes';
 
@@ -93,7 +93,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) =>
       onClick={handleClick}
       ref={ref}
       type={type}>
-      {isDefined(isLoading) && <Spinner isLoading={isLoading} />}
+      {isDefined(isLoading) && <SpinnerButton isLoading={isLoading} />}
       <ButtonInnerWrapper>
         {prefix}
         <ButtonText>{children}</ButtonText>

@@ -20,6 +20,7 @@
 
 import styled from '@emotion/styled';
 import { truncate } from '~common/helpers/styles';
+import { SpinnerOverrideColor } from '../spinner/SpinnerOverrideColor';
 import { ButtonSize, ButtonVariety } from './ButtonTypes';
 
 export const ButtonStyled = styled.button`
@@ -74,7 +75,7 @@ export const ButtonStyled = styled.button`
 ButtonStyled.displayName = 'ButtonStyled';
 
 export const ButtonInnerWrapper = styled.span`
-  display: inline-flex;
+  display: flex;
   align-items: center;
   gap: var(--echoes-dimension-size-75);
 
@@ -89,6 +90,10 @@ export const ButtonText = styled.span`
 
 ButtonText.displayName = 'ButtonText';
 
+export const SpinnerButton = styled(SpinnerOverrideColor)`
+  margin-right: var(--echoes-dimension-size-75);
+`;
+
 export const BUTTON_VARIETY_STYLES = {
   [ButtonVariety.Neutral]: {
     '--button-color': 'var(--echoes-color-text-default)',
@@ -98,7 +103,6 @@ export const BUTTON_VARIETY_STYLES = {
     '--button-background-active': 'var(--echoes-color-background-default-active)',
     '--button-background-focus': 'var(--echoes-color-background-default)',
     '--button-background-disabled': 'var(--echoes-color-background-disabled)',
-    '--button-spinner-color': 'var(--echoes-color-background-accent-default)',
   },
   [ButtonVariety.NeutralGhost]: {
     '--button-color': 'var(--echoes-color-text-default)',
@@ -108,7 +112,6 @@ export const BUTTON_VARIETY_STYLES = {
     '--button-background-active': 'var(--echoes-color-background-ghost-neutral-active)',
     '--button-background-focus': 'var(--echoes-color-background-ghost-neutral-focus)',
     '--button-background-disabled': 'var(--echoes-color-background-ghost-neutral-default)',
-    '--button-spinner-color': 'var(--echoes-color-background-accent-default)',
   },
   [ButtonVariety.Accent]: {
     '--button-color': 'var(--echoes-color-text-on-color)',
@@ -118,7 +121,7 @@ export const BUTTON_VARIETY_STYLES = {
     '--button-background-active': 'var(--echoes-color-background-accent-active)',
     '--button-background-focus': 'var(--echoes-color-background-accent-focus)',
     '--button-background-disabled': 'var(--echoes-color-background-disabled)',
-    '--button-spinner-color': 'var(--echoes-color-icon-on-color)',
+    '--spinner-color-override': 'var(--echoes-color-icon-on-color)',
   },
   [ButtonVariety.AccentGhost]: {
     '--button-color': 'var(--echoes-color-text-accent)',
@@ -128,7 +131,6 @@ export const BUTTON_VARIETY_STYLES = {
     '--button-background-active': 'var(--echoes-color-background-ghost-accent-active)',
     '--button-background-focus': 'var(--echoes-color-background-ghost-accent-focus)',
     '--button-background-disabled': 'var(--echoes-color-background-ghost-accent-default)',
-    '--button-spinner-color': 'var(--echoes-color-background-accent-default)',
   },
   [ButtonVariety.Danger]: {
     '--button-color': 'var(--echoes-color-text-on-color)',
@@ -138,7 +140,7 @@ export const BUTTON_VARIETY_STYLES = {
     '--button-background-active': 'var(--echoes-color-background-danger-active)',
     '--button-background-focus': 'var(--echoes-color-background-danger-focus)',
     '--button-background-disabled': 'var(--echoes-color-background-disabled)',
-    '--button-spinner-color': 'var(--echoes-color-icon-on-color)',
+    '--spinner-color-override': 'var(--echoes-color-icon-on-color)',
   },
   [ButtonVariety.DangerGhost]: {
     '--button-color': 'var(--echoes-color-text-danger)',
@@ -148,7 +150,6 @@ export const BUTTON_VARIETY_STYLES = {
     '--button-background-active': 'var(--echoes-color-background-ghost-danger-active)',
     '--button-background-focus': 'var(--echoes-color-background-ghost-danger-focus)',
     '--button-background-disabled': 'var(--echoes-color-background-ghost-danger-default)',
-    '--button-spinner-color': 'var(--echoes-color-background-accent-default)',
   },
   [ButtonVariety.DangerOutline]: {
     '--button-color': 'var(--echoes-color-text-danger)',
@@ -158,7 +159,6 @@ export const BUTTON_VARIETY_STYLES = {
     '--button-background-active': 'var(--echoes-color-background-default-active)',
     '--button-background-focus': 'var(--echoes-color-background-default)',
     '--button-background-disabled': 'var(--echoes-color-background-disabled)',
-    '--button-spinner-color': 'var(--echoes-color-background-accent-default)',
   },
 };
 
