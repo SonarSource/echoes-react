@@ -54,6 +54,6 @@ module.exports = {
   ],
   testRegex: '(/__tests__/.*|\\-test)\\.(t|j)sx?$',
   transform: {
-    '^.+\\.(t|j)sx?$': '@swc/jest',
+    '^.+\\.(t|j)sx?$': './config/jest/JestPreprocess.cjs',
   },
 };
