@@ -47,11 +47,62 @@ export const Default: Story = {
   args: {
     ariaLabel: 'click the clock',
     onClick: () => console.log('it is now o`clock'),
-    tooltipContent: 'Click to log the time',
+    Icon: icons.IconClock,
+  },
+};
+
+export const Loading: Story = {
+  args: {
+    ariaLabel: 'loading',
+    onClick: () => console.log('it is loading o`clock'),
+    Icon: icons.IconClock,
+    isLoading: true,
+  },
+};
+
+export const FillableIcon: Story = {
+  args: {
+    ariaLabel: 'click star',
+    onClick: () => console.log('it is filled'),
+    tooltipContent: 'star',
+    tooltipOptions: {
+      align: TooltipAlign.Center,
+      side: TooltipSide.Right,
+    },
+    Icon: icons.IconStar,
+    isIconFilled: true,
+  },
+};
+
+export const TooltipDetails: Story = {
+  args: {
+    ariaLabel: 'click star',
+    onClick: () => console.log('info'),
+    tooltipContent: 'This is more info to understand the button',
+    tooltipOptions: {
+      align: TooltipAlign.Center,
+      side: TooltipSide.Top,
+      isOpen: true,
+    },
+    Icon: icons.IconInfo,
+  },
+};
+
+export const AllVarieties: Story = {
+  args: {
+    ariaLabel: 'click',
     tooltipOptions: {
       align: TooltipAlign.Center,
       side: TooltipSide.Right,
     },
     Icon: icons.IconClock,
+    onClick: () => console.log('Button clicked'),
   },
+  render: (args) => (
+    <>
+      {Object.values(ButtonVariety).map((variety) => (
+        <ButtonIcon key={variety} {...args} variety={variety} />
+      ))}
+    </>
+  ),
 };
