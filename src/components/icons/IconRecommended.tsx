@@ -19,9 +19,9 @@
  */
 
 import { forwardRef } from 'react';
-import { IconMaterialWrapper, IconProps } from './IconWrapper';
+import { IconFilledProps, IconMaterialWrapper } from './IconWrapper';
 
-export const IconRecommended = forwardRef<HTMLSpanElement, IconProps>((props, ref) => {
+export const IconRecommended = forwardRef<HTMLSpanElement, IconFilledProps>((props, ref) => {
   // This is Material Symbols' "new_releases" icon
   return (
     <IconMaterialWrapper {...props} ref={ref}>
