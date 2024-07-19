@@ -18,12 +18,16 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import { forwardRef, MouseEvent, useMemo } from 'react';
+import { ComponentPropsWithoutRef, forwardRef, MouseEvent, useMemo } from 'react';
 import { IconProps } from '../icons';
 import { SpinnerOverrideColor } from '../spinner/SpinnerOverrideColor';
+import { Tooltip } from '../tooltip';
 import { useButtonClickHandler } from './Button';
 import { BUTTON_VARIETY_STYLES, BUTTONICON_DIMENSIONS, ButtonIconStyled } from './ButtonStyles';
 import { ButtonSize, ButtonVariety, HTMLButtonProps } from './ButtonTypes';
+
+type TooltipProps = ComponentPropsWithoutRef<typeof Tooltip>;
+type TooltipOptions = Omit<TooltipProps, 'children' | 'content' | 'key'>;
 
 export interface ButtonIconProps extends HTMLButtonProps {
   Icon: React.ForwardRefExoticComponent<IconProps & React.RefAttributes<HTMLSpanElement>>;
@@ -36,6 +40,8 @@ export interface ButtonIconProps extends HTMLButtonProps {
   size?: ButtonSize;
   shouldPreventDefault?: boolean;
   shouldStopPropagation?: boolean;
+  tooltipContent: TooltipProps['content'];
+  tooltipOptions?: TooltipOptions;
   variety?: ButtonVariety;
 }
 
@@ -50,6 +56,8 @@ export const ButtonIcon = forwardRef<HTMLButtonElement, ButtonIconProps>((props,
     onClick,
     size = ButtonSize.Large,
     variety = ButtonVariety.Neutral,
+    tooltipContent,
+    tooltipOptions = {},
     type = 'button',
     ...htmlProps
   } = props;
@@ -57,24 +65,26 @@ export const ButtonIcon = forwardRef<HTMLButtonElement, ButtonIconProps>((props,
   const handleClick = useButtonClickHandler(props);
 
   return (
-    <ButtonIconStyled
-      {...htmlProps}
-      autoFocus={hasAutoFocus}
-      css={useMemo(
-        () => ({
-          ...BUTTON_VARIETY_STYLES[variety],
-          ...BUTTONICON_DIMENSIONS[size],
-        }),
-        [variety, size],
-      )}
-      disabled={isDisabled}
-      onClick={handleClick}
-      ref={ref}
-      type={type}>
-      <SpinnerOverrideColor isLoading={isLoading}>
-        <Icon />
-      </SpinnerOverrideColor>
-    </ButtonIconStyled>
+    <Tooltip content={tooltipContent} {...tooltipOptions}>
+      <ButtonIconStyled
+        {...htmlProps}
+        autoFocus={hasAutoFocus}
+        css={useMemo(
+          () => ({
+            ...BUTTON_VARIETY_STYLES[variety],
+            ...BUTTONICON_DIMENSIONS[size],
+          }),
+          [variety, size],
+        )}
+        disabled={isDisabled}
+        onClick={handleClick}
+        ref={ref}
+        type={type}>
+        <SpinnerOverrideColor isLoading={isLoading}>
+          <Icon />
+        </SpinnerOverrideColor>
+      </ButtonIconStyled>
+    </Tooltip>
   );
 });
 ButtonIcon.displayName = 'ButtonIcon';
