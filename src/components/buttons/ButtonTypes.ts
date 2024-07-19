@@ -31,10 +31,10 @@ export enum ButtonSize {
 }
 
 export enum ButtonVariety {
-  Neutral = 'neutral',
-  NeutralGhost = 'neutral-ghost',
-  Accent = 'accent',
-  AccentGhost = 'accent-ghost',
+  Default = 'default',
+  DefaultGhost = 'default-ghost',
+  Primary = 'primary',
+  PrimaryGhost = 'primary-ghost',
   Danger = 'danger',
   DangerOutline = 'danger-outline',
   DangerGhost = 'danger-ghost',

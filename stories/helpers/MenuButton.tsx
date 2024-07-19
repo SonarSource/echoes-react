@@ -26,7 +26,7 @@ export const MenuButton = forwardRef<HTMLButtonElement, PropsWithChildren<{}>>(
     <Button
       ref={ref}
       suffix={<IconChevronDown />}
-      variety={ButtonVariety.NeutralGhost}
+      variety={ButtonVariety.DefaultGhost}
       {...radixProps}>
       {children}
     </Button>
