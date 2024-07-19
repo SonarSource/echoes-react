@@ -18,45 +18,46 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import { ComponentPropsWithoutRef, forwardRef, MouseEvent, useMemo } from 'react';
-import { IconProps } from '../icons';
+import { ComponentPropsWithoutRef, forwardRef, useMemo } from 'react';
+import { isDefined } from '~common/helpers/types';
+import { IconFilledProps } from '../icons/IconWrapper';
 import { SpinnerOverrideColor } from '../spinner/SpinnerOverrideColor';
 import { Tooltip } from '../tooltip';
 import { useButtonClickHandler } from './Button';
-import { BUTTON_VARIETY_STYLES, BUTTONICON_DIMENSIONS, ButtonIconStyled } from './ButtonStyles';
-import { ButtonSize, ButtonVariety, HTMLButtonProps } from './ButtonTypes';
+import {
+  BUTTON_VARIETY_STYLES,
+  BUTTONICON_DIMENSIONS_STYLE,
+  ButtonIconStyled,
+} from './ButtonStyles';
+import { ButtonCommonProps, ButtonSize, ButtonVariety } from './ButtonTypes';
 
 type TooltipProps = ComponentPropsWithoutRef<typeof Tooltip>;
 type TooltipOptions = Omit<TooltipProps, 'children' | 'content' | 'key'>;
 
-export interface ButtonIconProps extends HTMLButtonProps {
-  Icon: React.ForwardRefExoticComponent<IconProps & React.RefAttributes<HTMLSpanElement>>;
-  'aria-label': string;
-  className?: string;
-  hasAutoFocus?: boolean;
-  isDisabled?: boolean;
-  isLoading?: boolean;
-  onClick?: (event: MouseEvent<HTMLButtonElement>) => unknown;
-  size?: ButtonSize;
-  shouldPreventDefault?: boolean;
-  shouldStopPropagation?: boolean;
-  tooltipContent: TooltipProps['content'];
+interface ButtonIconProps extends ButtonCommonProps {
+  Icon: React.ForwardRefExoticComponent<IconFilledProps & React.RefAttributes<HTMLSpanElement>>;
+  isIconFilled?: IconFilledProps['isFilled'];
+
+  ariaLabel: string;
+
+  tooltipContent?: TooltipProps['content'];
   tooltipOptions?: TooltipOptions;
-  variety?: ButtonVariety;
 }
 
 export const ButtonIcon = forwardRef<HTMLButtonElement, ButtonIconProps>((props, ref) => {
   const {
     Icon,
+    ariaLabel,
     hasAutoFocus = false,
     isDisabled = false,
+    isIconFilled,
     shouldPreventDefault = false,
     shouldStopPropagation = false,
     isLoading = false,
     onClick,
     size = ButtonSize.Large,
-    variety = ButtonVariety.Neutral,
-    tooltipContent,
+    variety = ButtonVariety.Default,
+    tooltipContent = props.ariaLabel,
     tooltipOptions = {},
     type = 'button',
     ...htmlProps
@@ -68,11 +69,12 @@ export const ButtonIcon = forwardRef<HTMLButtonElement, ButtonIconProps>((props,
     <Tooltip content={tooltipContent} {...tooltipOptions}>
       <ButtonIconStyled
         {...htmlProps}
+        aria-label={ariaLabel}
         autoFocus={hasAutoFocus}
         css={useMemo(
           () => ({
             ...BUTTON_VARIETY_STYLES[variety],
-            ...BUTTONICON_DIMENSIONS[size],
+            ...BUTTONICON_DIMENSIONS_STYLE[size],
           }),
           [variety, size],
         )}
@@ -80,9 +82,13 @@ export const ButtonIcon = forwardRef<HTMLButtonElement, ButtonIconProps>((props,
         onClick={handleClick}
         ref={ref}
         type={type}>
-        <SpinnerOverrideColor isLoading={isLoading}>
-          <Icon />
-        </SpinnerOverrideColor>
+        {isDefined(isLoading) ? (
+          <SpinnerOverrideColor isLoading={isLoading}>
+            <Icon isFilled={isIconFilled} />
+          </SpinnerOverrideColor>
+        ) : (
+          <Icon isFilled={isIconFilled} />
+        )}
       </ButtonIconStyled>
     </Tooltip>
   );

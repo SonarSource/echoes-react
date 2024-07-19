@@ -20,16 +20,23 @@
 
 /* eslint-disable no-console */
 import type { Meta, StoryObj } from '@storybook/react';
-import { ButtonSize, ButtonVariety, IconClock, TooltipAlign, TooltipSide } from '../src';
+import { ButtonSize, ButtonVariety, TooltipAlign, TooltipSide } from '../src';
 import { ButtonIcon } from '../src/components/buttons/ButtonIcon';
+import * as icons from '../src/components/icons';
+import { basicWrapperDecorator } from './helpers/BasicWrapper';
 
 const meta: Meta<typeof ButtonIcon> = {
   component: ButtonIcon,
   title: 'Echoes/ButtonIcon',
   argTypes: {
+    Icon: {
+      mapping: icons,
+      options: Object.keys(icons),
+    },
     size: { options: Object.values(ButtonSize) },
     variety: { options: Object.values(ButtonVariety) },
   },
+  decorators: [basicWrapperDecorator],
 };
 
 export default meta;
@@ -38,15 +45,13 @@ type Story = StoryObj<typeof ButtonIcon>;
 
 export const Default: Story = {
   args: {
-    'aria-label': 'click the clock',
+    ariaLabel: 'click the clock',
     onClick: () => console.log('it is now o`clock'),
     tooltipContent: 'Click to log the time',
     tooltipOptions: {
       align: TooltipAlign.Center,
       side: TooltipSide.Right,
     },
-  },
-  render: (args) => {
-    return <ButtonIcon {...args} Icon={IconClock} />;
+    Icon: icons.IconClock,
   },
 };

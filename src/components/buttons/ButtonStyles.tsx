@@ -75,7 +75,6 @@ export const ButtonStyled = styled.button`
 ButtonStyled.displayName = 'ButtonStyled';
 
 export const ButtonIconStyled = styled(ButtonStyled)`
-  padding: 0;
   justify-content: center;
 
   width: var(--button-width);
@@ -180,12 +179,14 @@ export const BUTTON_SIZE_STYLE = {
   },
 };
 
-export const BUTTONICON_DIMENSIONS = {
+export const BUTTONICON_DIMENSIONS_STYLE = {
   [ButtonSize.Medium]: {
+    '--button-padding': 'var(--echoes-dimension-space-0)',
     '--button-height': 'var(--echoes-sizes-buttons-medium)',
     '--button-width': 'var(--echoes-sizes-buttons-medium)',
   },
   [ButtonSize.Large]: {
+    '--button-padding': 'var(--echoes-dimension-space-0)',
     '--button-height': 'var(--echoes-sizes-buttons-large)',
     '--button-width': 'var(--echoes-sizes-buttons-large)',
   },

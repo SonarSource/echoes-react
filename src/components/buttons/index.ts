@@ -20,4 +20,5 @@
 
 export { Button } from './Button';
 export { ButtonGroup } from './ButtonGroup';
+export { ButtonIcon } from './ButtonIcon';
 export { ButtonSize, ButtonVariety } from './ButtonTypes';

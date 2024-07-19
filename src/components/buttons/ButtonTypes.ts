@@ -18,12 +18,24 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import { ButtonHTMLAttributes } from 'react';
+import { ButtonHTMLAttributes, MouseEvent } from 'react';
 
-export type HTMLButtonProps = Pick<
+type HTMLButtonAttributesSubset = Pick<
   ButtonHTMLAttributes<HTMLButtonElement>,
   'form' | 'id' | 'name' | 'role' | 'style' | 'type'
 >;
+
+export interface ButtonCommonProps extends HTMLButtonAttributesSubset {
+  className?: string;
+  hasAutoFocus?: boolean;
+  isDisabled?: boolean;
+  isLoading?: boolean;
+  onClick?: (event: MouseEvent<HTMLButtonElement>) => unknown;
+  size?: ButtonSize;
+  shouldPreventDefault?: boolean;
+  shouldStopPropagation?: boolean;
+  variety?: ButtonVariety;
+}
 
 export enum ButtonSize {
   Medium = 'medium',
