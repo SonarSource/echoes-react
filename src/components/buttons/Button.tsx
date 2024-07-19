@@ -55,7 +55,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) =>
     shouldPreventDefault = false,
     shouldStopPropagation = false,
     size = ButtonSize.Large,
-    variety = ButtonVariety.Neutral,
+    variety = ButtonVariety.Default,
     suffix,
     type = 'button',
     ...htmlProps
