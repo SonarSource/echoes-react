@@ -41,8 +41,8 @@ export function ButtonGroup({
 }
 
 const StyledButtonGroup = styled.span`
+  display: inline-flex;
   align-items: center;
-  display: flex;
   gap: var(--echoes-dimension-space-100);
 `;
 
