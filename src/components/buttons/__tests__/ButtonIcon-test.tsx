@@ -25,7 +25,14 @@ import { ButtonIcon } from '../ButtonIcon';
 
 it('should render and handle click', async () => {
   const onClick = jest.fn();
-  const { user } = render(<ButtonIcon Icon={IconClock} aria-label="click me" onClick={onClick} />);
+  const { user } = render(
+    <ButtonIcon
+      Icon={IconClock}
+      aria-label="click me"
+      onClick={onClick}
+      tooltipContent="clock button"
+    />,
+  );
 
   expect(screen.queryByText('Loading...')).not.toBeInTheDocument();
 
@@ -35,7 +42,9 @@ it('should render and handle click', async () => {
 });
 
 it("should show a loading state, it doesn't prevent clicking", () => {
-  render(<ButtonIcon Icon={IconPeople} aria-label="click me" isLoading />);
+  render(
+    <ButtonIcon Icon={IconPeople} aria-label="click me" isLoading tooltipContent="people button" />,
+  );
 
   expect(screen.getByText('Loading...')).toBeInTheDocument();
   expect(screen.getByRole('button', { name: 'click me' })).toBeEnabled();
