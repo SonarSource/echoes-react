@@ -27,21 +27,12 @@ import {
   ButtonText,
   SpinnerButton,
 } from './ButtonStyles';
-import { ButtonSize, ButtonVariety, HTMLButtonProps } from './ButtonTypes';
+import { ButtonCommonProps, ButtonSize, ButtonVariety } from './ButtonTypes';
 
-export interface ButtonProps extends HTMLButtonProps {
+export interface ButtonProps extends ButtonCommonProps {
   children?: ReactNode;
-  className?: string;
-  hasAutoFocus?: boolean;
-  isDisabled?: boolean;
-  isLoading?: boolean;
-  onClick?: (event: MouseEvent<HTMLButtonElement>) => unknown;
   prefix?: ReactNode;
-  size?: ButtonSize;
-  shouldPreventDefault?: boolean;
-  shouldStopPropagation?: boolean;
   suffix?: ReactNode;
-  variety?: ButtonVariety;
 }
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {

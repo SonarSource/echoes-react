@@ -20,7 +20,7 @@
 
 import styled from '@emotion/styled';
 import { ReactNode } from 'react';
-import { ButtonStyled } from './ButtonStyles';
+import { ButtonIconStyled, ButtonStyled } from './ButtonStyles';
 
 interface ButtonGroupProps {
   children: ReactNode;
@@ -49,7 +49,7 @@ const StyledButtonGroup = styled.span`
 const StyledCombinedButtonGroup = styled(StyledButtonGroup)`
   gap: 0;
 
-  & ${ButtonStyled} {
+  & ${ButtonStyled}, ${ButtonIconStyled} {
     :focus,
     :focus-visible {
       outline-offset: -2px;

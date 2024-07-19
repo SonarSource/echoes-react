@@ -19,7 +19,7 @@
  */
 
 import type { Meta, StoryObj } from '@storybook/react';
-import { Button, ButtonGroup } from '../src';
+import { Button, ButtonGroup, ButtonIcon, IconClock } from '../src';
 import { basicWrapperDecorator } from './helpers/BasicWrapper';
 
 const meta: Meta<typeof ButtonGroup> = {
@@ -40,7 +40,7 @@ const children = (
     <Button>First</Button>
     <Button>Second</Button>
     <Button>Third</Button>
-    <Button>Fourth</Button>
+    <ButtonIcon Icon={IconClock} ariaLabel="clock button" tooltipContent="A helpful tooltip" />
   </>
 );
 

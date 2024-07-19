@@ -26,26 +26,26 @@ import { ButtonIcon } from '../ButtonIcon';
 it('should render and handle click', async () => {
   const onClick = jest.fn();
   const { user } = render(
-    <ButtonIcon
-      Icon={IconClock}
-      aria-label="click me"
-      onClick={onClick}
-      tooltipContent="clock button"
-    />,
+    <ButtonIcon Icon={IconClock} ariaLabel="click the clock" onClick={onClick} />,
   );
 
   expect(screen.queryByText('Loading...')).not.toBeInTheDocument();
 
-  await user.click(screen.getByRole('button', { name: 'click me' }));
+  await user.click(screen.getByRole('button', { name: 'click the clock' }));
 
   expect(onClick).toHaveBeenCalled();
 });
 
 it("should show a loading state, it doesn't prevent clicking", () => {
   render(
-    <ButtonIcon Icon={IconPeople} aria-label="click me" isLoading tooltipContent="people button" />,
+    <ButtonIcon
+      Icon={IconPeople}
+      ariaLabel="click this people button"
+      isLoading
+      tooltipContent="people button"
+    />,
   );
 
   expect(screen.getByText('Loading...')).toBeInTheDocument();
-  expect(screen.getByRole('button', { name: 'click me' })).toBeEnabled();
+  expect(screen.getByRole('button', { name: 'click this people button' })).toBeEnabled();
 });
