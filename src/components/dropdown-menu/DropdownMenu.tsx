@@ -25,7 +25,6 @@ import { PropsLabel } from '~types/utils';
 import { DropdownMenuGroupLabel } from './DropdownMenuGroupLabel';
 import { DropdownMenuItemButton } from './DropdownMenuItemButton';
 import { DropdownMenuItemButtonCheckable } from './DropdownMenuItemButtonCheckable';
-import { DropdownMenuItemButtonCopy } from './DropdownMenuItemButtonCopy';
 import { DropdownMenuItemButtonDestructive } from './DropdownMenuItemButtonDestructive';
 import { DropdownMenuItemLink } from './DropdownMenuItemLink';
 import { DropdownMenuItemLinkDownload } from './DropdownMenuItemLinkDownload';
@@ -137,7 +136,6 @@ export const DropdownMenu = {
   GroupLabel: DropdownMenuGroupLabel,
   ItemButton: DropdownMenuItemButton,
   ItemButtonCheckable: DropdownMenuItemButtonCheckable,
-  ItemButtonCopy: DropdownMenuItemButtonCopy,
   ItemButtonDestructive: DropdownMenuItemButtonDestructive,
   ItemLink: DropdownMenuItemLink,
   ItemLinkDownload: DropdownMenuItemLinkDownload,
