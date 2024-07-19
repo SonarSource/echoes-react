@@ -22,7 +22,7 @@ import { keyframes } from '@emotion/react';
 import styled from '@emotion/styled';
 import { screenReaderOnly } from '~common/helpers/styles';
 
-export const SpinnerWrapper = styled.span<{ inline: boolean; isLoading?: boolean }>`
+export const SpinnerWrapper = styled.span<{ inline: boolean }>`
   display: ${(props) => (props.inline ? 'inline-block' : 'block')};
   position: relative;
 `;
