@@ -54,10 +54,7 @@ export const Spinner = forwardRef<HTMLSpanElement, SpinnerProps>((props, ref) =>
 
   return (
     <>
-      <SpinnerWrapper
-        className={wrapperClassName}
-        inline={children === undefined}
-        isLoading={isLoading}>
+      <SpinnerWrapper className={wrapperClassName} inline={children === undefined}>
         <SpinnerInner
           {...radixProps}
           aria-live="polite"
