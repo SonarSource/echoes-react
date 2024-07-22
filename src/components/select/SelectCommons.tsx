@@ -35,6 +35,7 @@ export interface SelectBaseProps {
   data: ReadonlyArray<SelectOption>;
   defaultValue?: MantineSelectProps['defaultValue'];
   filter?: MantineSelectProps['filter'];
+  hasDropdownAutoWidth?: boolean;
   hasError?: boolean;
   highlight?: SelectHighlight;
   isDisabled?: boolean;
@@ -46,7 +47,7 @@ export interface SelectBaseProps {
   labelNotFound?: MantineSelectProps['nothingFound'];
   limit?: MantineSelectProps['limit'];
   name?: MantineSelectProps['name'];
-  optionComponent?: MantineSelectProps['itemComponent'];
+  optionComponent?: (selectItemOptions: SelectOption) => React.JSX.Element | null;
   optionType?: SelectOptionType;
   onChange: MantineSelectProps['onChange'];
   onOpen?: MantineSelectProps['onDropdownOpen'];
@@ -63,6 +64,7 @@ export const SelectBase = forwardRef<HTMLInputElement, PropsWithLabels<SelectBas
       ariaLabel,
       ariaLabelledBy,
       data,
+      hasDropdownAutoWidth = false,
       hasError = false,
       helpText,
       highlight = SelectHighlight.Default,
@@ -122,6 +124,7 @@ export const SelectBase = forwardRef<HTMLInputElement, PropsWithLabels<SelectBas
         description={helpText}
         disabled={isDisabled}
         error={labelError ?? hasError}
+        hasDropdownAutoWidth={hasDropdownAutoWidth}
         icon={valueIcon}
         inputSize={size}
         itemComponent={itemComponent}
@@ -144,8 +147,8 @@ export const SelectBase = forwardRef<HTMLInputElement, PropsWithLabels<SelectBas
 SelectBase.displayName = 'SelectBase';
 
 export const SelectStyled = styled(MantineSelect, {
-  shouldForwardProp: (prop) => prop !== 'inputSize',
-})<{ inputSize: InputSize }>`
+  shouldForwardProp: (prop) => !['hasDropdownAutoWidth', 'inputSize'].includes(prop),
+})<{ hasDropdownAutoWidth: boolean; inputSize: InputSize }>`
   // Set the width of the whole input component and its dropdown
   width: ${({ inputSize }) => INPUT_SIZE_VALUES[inputSize]};
 
@@ -278,6 +281,8 @@ export const SelectStyled = styled(MantineSelect, {
     & .mantine-Select-itemsWrapper {
       padding: var(--echoes-dimension-space-0);
     }
+
+    ${({ hasDropdownAutoWidth }) => (hasDropdownAutoWidth ? 'width: auto !important;' : '')};
   }
 
   // Inside the dropdown - Group header wrapper, contains a divider and a label

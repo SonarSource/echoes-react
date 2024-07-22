@@ -42,15 +42,37 @@ function withSelectItemWrapper<P extends SelectOption>(
   optionType: SelectOptionType,
 ) {
   const Wrapper = forwardRef<HTMLDivElement, P>((props, ref) => {
-    const { helpText, label, prefix, suffix, value, ...rest } = props;
+    const { helpText, prefix, suffix, ...mantineAndCustomProps } = props;
+
+    const {
+      // below: we're removing the Mantine props we don't want passed down to the WrappedComponent
+      'aria-selected': _ariaSelected,
+      className,
+      'data-disabled': _dataDisabled,
+      'data-hovered': _dataHovered,
+      'data-selected': _dataSelected,
+      onMouseDown,
+      onMouseEnter,
+      tabIndex,
+      ...customComponentProps
+    } = mantineAndCustomProps;
+
     return (
-      <SelectItemWrapper ref={ref} {...rest}>
-        <SelectItemStatus optionType={optionType} {...props} />
+      <SelectItemWrapper ref={ref} {...mantineAndCustomProps}>
+        <SelectItemStatus optionType={optionType} selected={mantineAndCustomProps.selected} />
+
         {prefix}
+
         <SelectItemInner>
-          {WrappedComponent ? <WrappedComponent {...props} /> : <span>{props.label}</span>}
+          {WrappedComponent ? (
+            <WrappedComponent {...(customComponentProps as P)} />
+          ) : (
+            <span>{mantineAndCustomProps.label}</span>
+          )}
+
           {isDefined(helpText) && <SelectItemHelpText>{helpText}</SelectItemHelpText>}
         </SelectItemInner>
+
         {suffix}
       </SelectItemWrapper>
     );
@@ -124,7 +146,7 @@ const SelectItemHelpText = styled.span`
 `;
 SelectItemHelpText.displayName = 'SelectItemHelpText';
 
-interface SelectItemStatusProps extends SelectOption {
+interface SelectItemStatusProps extends Pick<SelectOption, 'selected'> {
   optionType: SelectOptionType;
 }
 
