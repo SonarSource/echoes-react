@@ -23,11 +23,17 @@ import * as RadioGroup from '@radix-ui/react-radio-group';
 import { ReactNode, forwardRef } from 'react';
 import { PropsWithLabels } from '~types/utils';
 
+export enum RadioButtonGroupAlignment {
+  Vertical = 'vertical',
+  Horizontal = 'horizontal',
+}
+
 interface Props {
   onChange?: (value: string) => void;
   options: RadioOption[];
 
   // Group Props
+  alignment?: RadioButtonGroupAlignment;
   defaultValue?: string;
   id: string;
   isDisabled?: boolean;
@@ -38,6 +44,7 @@ interface Props {
 
 export const RadioButtonGroup = forwardRef<HTMLDivElement, PropsWithLabels<Props>>((props, ref) => {
   const {
+    alignment = RadioButtonGroupAlignment.Vertical,
     ariaLabel,
     ariaLabelledBy,
     helpText,
@@ -73,7 +80,7 @@ export const RadioButtonGroup = forwardRef<HTMLDivElement, PropsWithLabels<Props
         </RadioGroupLabelWrapper>
       )}
 
-      <RadioButtonsWrapper>
+      <RadioButtonsWrapper horizontal={alignment === RadioButtonGroupAlignment.Horizontal}>
         {options.map(({ isDisabled: disabledOption, ...o }) => (
           <RadioButton
             groupId={id}
@@ -83,9 +90,9 @@ export const RadioButtonGroup = forwardRef<HTMLDivElement, PropsWithLabels<Props
             {...o}
           />
         ))}
-
-        <RadioGroupErrorMessage>{labelRadioGroupError ?? <>&nbsp;</>}</RadioGroupErrorMessage>
       </RadioButtonsWrapper>
+
+      <RadioGroupErrorMessage>{labelRadioGroupError ?? <>&nbsp;</>}</RadioGroupErrorMessage>
     </RadioGroupRoot>
   );
 });
@@ -146,13 +153,13 @@ RadioButton.displayName = 'RadioButton';
 const RadioGroupRoot = styled(RadioGroup.Root)`
   display: flex;
   flex-direction: column;
-  gap: var(--echoes-dimension-space-150);
 `;
 
 const RadioGroupLabelWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: var(--echoes-dimension-space-50);
+  margin-bottom: var(--echoes-dimension-space-150);
 `;
 
 const RadioGroupLabel = styled.div`
@@ -166,10 +173,11 @@ const RadioGroupRequired = styled.span`
   margin-left: var(--echoes-dimension-space-25);
 `;
 
-const RadioButtonsWrapper = styled.div`
+const RadioButtonsWrapper = styled.div<{ horizontal: boolean }>`
   display: flex;
-  flex-direction: column;
-  gap: var(--echoes-dimension-space-100);
+  flex-direction: ${(props) => (props.horizontal ? 'row' : 'column')};
+  gap: ${(props) =>
+    props.horizontal ? 'var(--echoes-dimension-space-300)' : 'var(--echoes-dimension-space-100)'};
 `;
 
 const OptionWrapper = styled.div`
@@ -281,4 +289,5 @@ const OptionHelpText = styled(HelpText)`
 const RadioGroupErrorMessage = styled.span`
   font: var(--echoes-typography-paragraph-default-regular);
   color: var(--echoes-color-text-danger);
+  margin-top: var(--echoes-dimension-space-100);
 `;
