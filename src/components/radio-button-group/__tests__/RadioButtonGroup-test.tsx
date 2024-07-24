@@ -20,7 +20,7 @@
 
 import { screen } from '@testing-library/react';
 import { OmitPropsWithLabels, render } from '~common/helpers/test-utils';
-import { RadioButtonGroup } from '../RadioButtonGroup';
+import { RadioButtonGroup, RadioButtonGroupAlignment } from '../RadioButtonGroup';
 
 const DEFAULT_OPTIONS = [
   { label: 'a', value: '1' },
@@ -37,7 +37,18 @@ describe('RadioButtonGroup', () => {
     await user.click(screen.getByRole('radio', { name: 'b' }));
 
     expect(screen.getByRole('radio', { name: 'b' })).toBeChecked();
-    expect(container).toHaveNoA11yViolations();
+    await expect(container).toHaveNoA11yViolations();
+  });
+
+  it('should render a radio button for each option, horizontally', async () => {
+    const { container } = renderRadioButtonGroup({
+      ariaLabel: 'me',
+      alignment: RadioButtonGroupAlignment.Horizontal,
+    });
+
+    expect(screen.getAllByRole('radio')).toHaveLength(DEFAULT_OPTIONS.length);
+
+    await expect(container).toHaveNoA11yViolations();
   });
 
   it('should disable each radio button if the group is disabled', () => {

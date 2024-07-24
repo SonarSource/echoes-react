@@ -19,7 +19,7 @@
  */
 
 import type { Meta, StoryObj } from '@storybook/react';
-import { RadioButtonGroup } from '../src';
+import { RadioButtonGroup, RadioButtonGroupAlignment } from '../src';
 
 const meta: Meta<typeof RadioButtonGroup> = {
   component: RadioButtonGroup,
@@ -27,6 +27,11 @@ const meta: Meta<typeof RadioButtonGroup> = {
   args: {
     id: 'radio',
     isRequired: false,
+  },
+  argTypes: {
+    label: { type: 'string' },
+    labelRadioGroupError: { type: 'string' },
+    helpText: { type: 'string' },
   },
 };
 
@@ -66,6 +71,18 @@ export const Basic: Story = {
         value: 'f',
       },
     ],
+  },
+};
+
+export const Horizontal: Story = {
+  args: {
+    isRequired: true,
+    options: [
+      { label: 'One', value: '1' },
+      { label: 'Two', value: '2' },
+      { label: 'Three', value: '3' },
+    ],
+    alignment: RadioButtonGroupAlignment.Horizontal,
   },
 };
 
