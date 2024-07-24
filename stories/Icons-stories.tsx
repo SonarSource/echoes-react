@@ -32,17 +32,18 @@ export default meta;
 
 function renderIcons(regexp?: RegExp) {
   return Object.values(icons)
-    .filter((icon) => !['IconWrapper'].includes(icon.name))
-    .filter((icon) => !regexp || regexp.exec(icon.name) !== null)
+    .filter((icon) => !regexp || regexp.exec((icon as React.FC).displayName ?? '') !== null)
     .map((Icon) => (
       <>
-        <IconTile key={Icon.name}>
+        <IconTile key={(Icon as React.FC).displayName}>
           <Icon />
           <IconName>{(Icon as React.FC).displayName}</IconName>
         </IconTile>
 
-        {['IconDot', 'IconHome', 'IconStar'].includes((Icon as React.FC).displayName ?? '') && (
-          <IconTile key={`${Icon.name} isFilled`}>
+        {['IconDot', 'IconHome', 'IconRecommended', 'IconStar'].includes(
+          (Icon as React.FC).displayName ?? '',
+        ) && (
+          <IconTile key={`${(Icon as React.FC).displayName}} isFilled`}>
             <Icon isFilled />
             <IconName>{(Icon as React.FC).displayName} isFilled</IconName>
           </IconTile>
@@ -80,7 +81,7 @@ interface StoryArgs {
 export const Grid: StoryObj<StoryArgs> = {
   args: {
     fontColor: 'echoes-color-text-default',
-    fontSize: 16,
+    fontSize: 20,
   },
   argTypes: {
     fontSize: {
