@@ -39,6 +39,7 @@ export function ButtonGroup({
 
   return <StyledButtonGroup className={className}>{children}</StyledButtonGroup>;
 }
+ButtonGroup.displayName = 'ButtonGroup';
 
 const StyledButtonGroup = styled.span`
   display: inline-flex;
