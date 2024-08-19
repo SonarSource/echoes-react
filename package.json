@@ -120,6 +120,7 @@
     "@mantine/core": "patch:@mantine/core@6.0.21#./config/patches/@mantine-core-npm-6.0.21-4d202d6649.patch",
     "@mantine/hooks": "6.0.21",
     "@material-symbols/font-400": "0.21.1",
+    "@radix-ui/react-alert-dialog": "1.1.1",
     "@radix-ui/react-checkbox": "1.1.1",
     "@radix-ui/react-dialog": "1.1.1",
     "@radix-ui/react-dropdown-menu": "2.1.1",
