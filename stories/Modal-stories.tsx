@@ -18,15 +18,31 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-export * from './buttons';
-export * from './checkbox';
-export * from './dropdown-menu';
-export * from './echoes-provider';
-export * from './icons';
-export * from './links';
-export * from './modal';
-export * from './popover';
-export * from './radio-button-group';
-export * from './select';
-export * from './spinner';
-export * from './tooltip';
+import type { Meta, StoryObj } from '@storybook/react';
+import { Button, Modal } from '../src';
+import { basicWrapperDecorator } from './helpers/BasicWrapper';
+
+const meta: Meta<typeof Modal> = {
+  component: Modal,
+  title: 'Echoes/Modal',
+  parameters: {
+    controls: { exclude: ['children'] },
+  },
+  decorators: [basicWrapperDecorator],
+};
+
+export default meta;
+
+type Story = StoryObj<typeof Modal>;
+
+export const Basic: Story = {
+  args: {
+    title: 'My Modal',
+    description: 'This is my modal description',
+  },
+  render: (args) => (
+    <Modal {...args}>
+      <Button>Click this button to display the Modal</Button>
+    </Modal>
+  ),
+};
