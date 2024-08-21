@@ -7,6 +7,10 @@
     "defaultMessage": "Close",
     "description": "ARIA-label for the close button at the top of the Modal."
   },
+  "modal_alert.cancel": {
+    "defaultMessage": "Cancel",
+    "description": "Label for the secondary action of the Modal Alert"
+  },
   "open_in_new_tab": {
     "defaultMessage": "(opens in new tab)",
     "description": "Screen reader-only text to indicate that the link will open in a new tab"
