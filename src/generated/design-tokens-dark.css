@@ -72,6 +72,7 @@ html[data-echoes-theme='dark'], [data-echoes-theme='dark'] {
   --echoes-color-background-ghost-danger-hover: hsl(8.11 66.1% 22% / 0.2);
   --echoes-color-background-ghost-danger-active: hsl(8.11 66.1% 22% / 0.3);
   --echoes-color-background-ghost-danger-focus: rgba(0,0,0,0);
+  --echoes-color-background-back-drop-default: hsl(225 20% 3.92% / 0.6);
   --echoes-color-text-bold: rgb(252,252,253);
   --echoes-color-text-default: rgb(225,230,243);
   --echoes-color-text-subdued: rgb(197,205,223);
@@ -113,6 +114,9 @@ html[data-echoes-theme='dark'], [data-echoes-theme='dark'] {
   --echoes-color-focus-default: rgb(189,198,255);
   --echoes-sizes-overlays-max-width-default: 25rem;
   --echoes-sizes-overlays-min-width-default: 150px;
+  --echoes-sizes-overlays-width-default: 37.5rem;
+  --echoes-sizes-overlays-width-wide: 62.5rem;
+  --echoes-sizes-overlays-max-height-default: 80vh;
   --echoes-sizes-inputs-small: 150px;
   --echoes-sizes-inputs-medium: 250px;
   --echoes-sizes-inputs-large: 350px;
@@ -124,4 +128,6 @@ html[data-echoes-theme='dark'], [data-echoes-theme='dark'] {
   --echoes-box-shadow-medium: inset 0 2px 15px -2px rgba(8,9,12,0.06), 0 4px 15px -2px rgba(8,9,12,0.5);
   --echoes-box-shadow-large: 0 4px 6px -2px rgba(8,9,12,0.05), 0 12px 20px -4px rgba(8,9,12,0.5);
   --echoes-box-shadow-x-large: 0 8px 8px -4px rgba(8,9,12,0.04), 0 20px 30px -4px rgba(8,9,12,0.5);
+  --echoes-overlays-inner-shadow-default: inset 0 -6px 10px 0 rgba(255,255,255,0.1);
+  --echoes-modal-colors-shadow-gradient: rgba(255,255,255,0.2);
 }

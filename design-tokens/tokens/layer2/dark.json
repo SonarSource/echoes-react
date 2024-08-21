@@ -305,6 +305,21 @@
               "type": "color"
             }
           }
+        },
+        "backDrop": {
+          "default": {
+            "value": "{echoes.color.grey.900}",
+            "type": "color",
+            "$extensions": {
+              "studio.tokens": {
+                "modify": {
+                  "type": "alpha",
+                  "value": "0.6",
+                  "space": "hsl"
+                }
+              }
+            }
+          }
         }
       },
       "text": {
