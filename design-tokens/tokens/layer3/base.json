@@ -13,6 +13,22 @@
             "value": "150px",
             "type": "sizing"
           }
+        },
+        "width": {
+          "default": {
+            "value": "37.5rem",
+            "type": "sizing"
+          },
+          "wide": {
+            "value": "62.5rem",
+            "type": "sizing"
+          }
+        },
+        "maxHeight": {
+          "default": {
+            "value": "80vh",
+            "type": "sizing"
+          }
         }
       },
       "inputs": {

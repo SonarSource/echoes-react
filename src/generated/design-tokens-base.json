@@ -278,6 +278,13 @@
         },
         "minWidth": {
           "default": "150px"
+        },
+        "width": {
+          "default": "37.5rem",
+          "wide": "62.5rem"
+        },
+        "maxHeight": {
+          "default": "80vh"
         }
       },
       "inputs": {

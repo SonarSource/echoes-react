@@ -210,6 +210,9 @@
   --echoes-color-blue-900: rgb(23,67,97);
   --echoes-sizes-overlays-max-width-default: 25rem;
   --echoes-sizes-overlays-min-width-default: 150px;
+  --echoes-sizes-overlays-width-default: 37.5rem;
+  --echoes-sizes-overlays-width-wide: 62.5rem;
+  --echoes-sizes-overlays-max-height-default: 80vh;
   --echoes-sizes-inputs-small: 150px;
   --echoes-sizes-inputs-medium: 250px;
   --echoes-sizes-inputs-large: 350px;
