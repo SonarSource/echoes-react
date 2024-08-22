@@ -79,7 +79,7 @@ export const Modal = forwardRef<HTMLButtonElement, Props>((props, ref) => {
           {...(!isDefined(description) && { 'aria-describedby': undefined })}
           size={size}>
           <ModalTitle>{title}</ModalTitle>
-          <ModalBody>
+          <ModalBody isLast={!hasFooter}>
             {description && <ModalDescription>{description}</ModalDescription>}
             {content && <ModalContent>{content}</ModalContent>}
           </ModalBody>

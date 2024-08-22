@@ -21,12 +21,17 @@ import styled from '@emotion/styled';
 import { PropsWithChildren, useCallback, useMemo, useState } from 'react';
 import { PortalContext } from '../../common/components/PortalContext';
 
-export function ModalBody({ children }: PropsWithChildren<{}>) {
+interface Props {
+  isLast?: boolean;
+}
+
+export function ModalBody(props: PropsWithChildren<Props>) {
+  const { children, isLast = false } = props;
   const [showBottomShadow, setShowBottomShadow] = useState(false);
 
   const handleScroll = useCallback((event) => {
-    const { scrollHeight, clientHeight, scrollTop } = event.currentTarget;
-    setShowBottomShadow(scrollTop + clientHeight < scrollHeight - 16); // -16 for bottom padding
+    const { scrollHeight, clientHeight, scrollTop } = event?.currentTarget ?? {};
+    setShowBottomShadow(scrollTop + clientHeight < scrollHeight - 16); // -16px for bottom padding
   }, []);
 
   const initShadows = useCallback(
@@ -47,7 +52,7 @@ export function ModalBody({ children }: PropsWithChildren<{}>) {
   return (
     <>
       <PortalContext.Provider value={modalContextProviderValue}>
-        <ModalBodyWrapper>
+        <ModalBodyWrapper isLast={isLast}>
           <ModalBodyInner onScroll={handleScroll} ref={initShadows}>
             {children}
           </ModalBodyInner>
@@ -65,11 +70,14 @@ export function ModalBody({ children }: PropsWithChildren<{}>) {
 }
 ModalBody.displayName = 'ModalBody';
 
-const ModalBodyWrapper = styled.div`
+const ModalBodyWrapper = styled.div<Props>`
   position: relative;
   display: flex;
 
-  overflow: hidden;
+  overflow-y: hidden;
+
+  ${({ isLast }) =>
+    isLast && 'border-radius: 0 0 var(--echoes-border-radius-400) var(--echoes-border-radius-400);'}
 `;
 ModalBodyWrapper.displayName = 'ModalBodyWrapper';
 
