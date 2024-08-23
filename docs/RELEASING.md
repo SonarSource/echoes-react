@@ -8,6 +8,17 @@ Major and minor versions follow the versioning in the Echoes Design System. Patc
 
 For more details, refer to the [internal versioning strategy](https://docs.google.com/document/d/1JkzJVFBN3MPl-uBDgddICfdFf4kXPaRBa6XqaJV0F5U) (Sonar employees only)
 
+## Release Process for Release Candidates
+
+- Make sure the version is correct in **_package.json_**
+  - If not, bump it with a `[No Jira] Prepare version vX.Y.Z-rcN` commit message
+- [Publish a new GitHub release](https://github.com/SonarSource/echoes-react/releases/new) targeting the candidate branch (usually the **_main_** branch):
+  - Title: `@sonarsource/echoes-react - vX.Y.Z-rcN`
+  - Description: You can leave this blank
+  - Check **[x]_Set as a pre-release_**
+    - Make sure **[ ]_Set as the latest release_** has been automatically unchecked.
+  - Click **_Publish release_**
+
 ## Release Process for Major and Minor Versions
 
 - Create a new branch for the release and maintenance following the name convention `branch-x.y`
@@ -24,7 +35,7 @@ For more details, refer to the [internal versioning strategy](https://docs.googl
 
   - Find the relevant release from the [releases page](https://sonarsource.atlassian.net/projects/DS?selectedItem=com.atlassian.jira.jira-projects-plugin%3Arelease-page) and populate (as markdown) the notes section.
   - Example: <https://github.com/SonarSource/echoes-react/releases/tag/v0.5.0>
-  - click `Publish Release`
+  - click _Publish Release_
 
 - Close the REL ticket you've created
 
