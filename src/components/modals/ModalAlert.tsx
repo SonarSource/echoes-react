@@ -109,12 +109,12 @@ export const ModalAlert = forwardRef<HTMLButtonElement, Props>((props, ref) => {
 
           <ModalAlertFooter>
             <ButtonGroup>
-              <RadixAlertDialog.Cancel asChild>{actualSecondaryButton}</RadixAlertDialog.Cancel>
               {isControlled ? (
                 primaryButton
               ) : (
                 <RadixAlertDialog.Action asChild>{primaryButton}</RadixAlertDialog.Action>
               )}
+              <RadixAlertDialog.Cancel asChild>{actualSecondaryButton}</RadixAlertDialog.Cancel>
             </ButtonGroup>
           </ModalAlertFooter>
         </ModalAlertWrapper>
