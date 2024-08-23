@@ -25,7 +25,7 @@ import { basicWrapperDecorator } from './helpers/BasicWrapper';
 
 const meta: Meta<typeof ModalAlert> = {
   component: ModalAlert,
-  title: 'Echoes/ModalAlert',
+  title: 'Echoes/Modal/ModalAlert',
   parameters: {
     controls: { exclude: ['children', 'secondaryButton', 'onOpenChange'] },
   },
