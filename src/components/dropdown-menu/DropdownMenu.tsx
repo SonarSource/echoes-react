@@ -20,8 +20,9 @@
 
 import styled from '@emotion/styled';
 import * as radixDropdownMenu from '@radix-ui/react-dropdown-menu';
-import { ReactNode, forwardRef } from 'react';
+import { ReactNode, forwardRef, useContext } from 'react';
 import { PropsLabel } from '~types/utils';
+import { PortalContext } from '../../common/components/PortalContext';
 import { DropdownMenuGroupLabel } from './DropdownMenuGroupLabel';
 import { DropdownMenuItemButton } from './DropdownMenuItemButton';
 import { DropdownMenuItemButtonCheckable } from './DropdownMenuItemButtonCheckable';
@@ -74,6 +75,8 @@ const DropdownMenuRoot = forwardRef<HTMLButtonElement, DropdownMenuRootProps>(
     }: Readonly<DropdownMenuRootProps>,
     ref,
   ) => {
+    const portalContext = useContext(PortalContext);
+
     if (isDisabled) {
       return <>{children}</>;
     }
@@ -99,7 +102,7 @@ const DropdownMenuRoot = forwardRef<HTMLButtonElement, DropdownMenuRootProps>(
           {children}
         </radixDropdownMenu.Trigger>
 
-        <radixDropdownMenu.Portal>
+        <radixDropdownMenu.Portal container={portalContext.portalReference}>
           <StyledDropdownMenuContent
             align={align}
             aria-labelledby={`${id}-trigger`}

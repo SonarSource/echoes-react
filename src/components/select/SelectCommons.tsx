@@ -18,13 +18,15 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { CSSObject, Select as MantineSelect } from '@mantine/core';
-import { ComponentProps, forwardRef } from 'react';
+import { ComponentProps, forwardRef, useContext } from 'react';
 import { useIntl } from 'react-intl';
 import { isDefined } from '~common/helpers/types';
 import { PropsWithLabels } from '~types/utils';
 import { IconChevronDown, Spinner } from '..';
+import { PortalContext } from '../../common/components/PortalContext';
 import { INPUT_SIZE_VALUES, InputSize } from '../../utils/inputs';
 import { useSelectItemComponent } from './SelectItemCommons';
 import { SelectHighlight, SelectOption, SelectOptionType } from './SelectTypes';
@@ -58,6 +60,61 @@ export interface SelectBaseProps {
   valueIcon?: MantineSelectProps['icon'];
 }
 
+/*
+ * These styles are meant for the dropdown part of the select, which can be portalled.
+ * In that case, they aren't children of the root component, so they aren't scoped to the SelectStyled
+ * wrapper below.
+ * Instead, these styles are added as Global emotion styles in the EchoesProvider.
+ */
+export const globalSelectStyles = css`
+  // Dropdown element - wrapper around the select items
+  .mantine-Select-dropdown {
+    padding: var(--echoes-dimension-space-100) var(--echoes-dimension-space-0);
+
+    background-color: var(--echoes-color-background-default);
+    border: var(--echoes-border-width-default) solid var(--echoes-color-border-weak);
+    border-radius: var(--echoes-border-radius-400);
+
+    box-shadow: var(--echoes-box-shadow-medium);
+
+    & .mantine-Select-itemsWrapper {
+      padding: var(--echoes-dimension-space-0);
+    }
+  }
+
+  // Inside the dropdown - Group header wrapper, contains a divider and a label
+  .mantine-Select-separator {
+    display: flex;
+    flex-direction: column;
+    padding: var(--echoes-dimension-space-0);
+  }
+
+  // Inside the dropdown - Group header label
+  .mantine-Select-separatorLabel {
+    padding: var(--echoes-dimension-space-50) var(--echoes-dimension-space-200)
+      var(--echoes-dimension-space-100);
+
+    font: var(--echoes-typography-paragraph-small-semi-bold);
+    color: var(--echoes-color-text-default);
+
+    &::after {
+      display: none;
+    }
+  }
+
+  // Inside the dropdown - Adds a divider between an Item element and the following Group header
+  .mantine-Select-item + .mantine-Select-separator {
+    &::before {
+      content: '';
+
+      flex: 1;
+      padding: var(--echoes-dimension-space-25) var(--echoes-dimension-space-0);
+
+      border-top: var(--echoes-border-width-default) solid var(--echoes-color-border-weak);
+    }
+  }
+`;
+
 export const SelectBase = forwardRef<HTMLInputElement, PropsWithLabels<SelectBaseProps>>(
   (props, ref) => {
     const {
@@ -86,6 +143,8 @@ export const SelectBase = forwardRef<HTMLInputElement, PropsWithLabels<SelectBas
     } = props;
 
     const intl = useIntl();
+
+    const portalContext = useContext(PortalContext);
 
     const itemComponent = useSelectItemComponent(optionComponent, optionType);
     const isClearable = !isNotClearable && !isRequired;
@@ -132,12 +191,19 @@ export const SelectBase = forwardRef<HTMLInputElement, PropsWithLabels<SelectBas
         nothingFound={labelNotFound}
         onDropdownOpen={onOpen}
         onSearchChange={onSearch}
+        portalProps={{
+          target: portalContext.portalReference,
+        }}
         ref={ref}
         required={isRequired}
         rightSection={rightSection}
         searchable={isSearchable}
-        styles={{ rightSection: rightSectionStyles }}
+        styles={{
+          rightSection: rightSectionStyles,
+          dropdown: hasDropdownAutoWidth ? { width: 'auto !important;' } : undefined,
+        }}
         variant={highlight}
+        withinPortal={isDefined(portalContext.portalReference)}
         {...selectProps}
       />
     );
@@ -265,55 +331,6 @@ export const SelectStyled = styled(MantineSelect, {
       outline: var(--echoes-color-focus-default) solid var(--echoes-focus-border-width-default);
       outline-offset: var(--echoes-focus-border-offset-default);
       border-radius: var(--echoes-border-radius-200);
-    }
-  }
-
-  // Dropdown element - wrapper around the select items
-  & .mantine-Select-dropdown {
-    padding: var(--echoes-dimension-space-100) var(--echoes-dimension-space-0);
-
-    background-color: var(--echoes-color-background-default);
-    border: var(--echoes-border-width-default) solid var(--echoes-color-border-weak);
-    border-radius: var(--echoes-border-radius-400);
-
-    box-shadow: var(--echoes-box-shadow-medium);
-
-    & .mantine-Select-itemsWrapper {
-      padding: var(--echoes-dimension-space-0);
-    }
-
-    ${({ hasDropdownAutoWidth }) => (hasDropdownAutoWidth ? 'width: auto !important;' : '')};
-  }
-
-  // Inside the dropdown - Group header wrapper, contains a divider and a label
-  & .mantine-Select-separator {
-    display: flex;
-    flex-direction: column;
-    padding: var(--echoes-dimension-space-0);
-  }
-
-  // Inside the dropdown - Group header label
-  & .mantine-Select-separatorLabel {
-    padding: var(--echoes-dimension-space-50) var(--echoes-dimension-space-200)
-      var(--echoes-dimension-space-100);
-
-    font: var(--echoes-typography-paragraph-small-semi-bold);
-    color: var(--echoes-color-text-default);
-
-    &::after {
-      display: none;
-    }
-  }
-
-  // Inside the dropdown - Adds a divider between an Item element and the following Group header
-  & .mantine-Select-item + .mantine-Select-separator {
-    &::before {
-      content: '';
-
-      flex: 1;
-      padding: var(--echoes-dimension-space-25) var(--echoes-dimension-space-0);
-
-      border-top: var(--echoes-border-width-default) solid var(--echoes-color-border-weak);
     }
   }
 `;

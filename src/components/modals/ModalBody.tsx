@@ -18,7 +18,8 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 import styled from '@emotion/styled';
-import { PropsWithChildren, useCallback, useState } from 'react';
+import { PropsWithChildren, useCallback, useMemo, useState } from 'react';
+import { PortalContext } from '../../common/components/PortalContext';
 
 export function ModalBody({ children }: PropsWithChildren<{}>) {
   const [showBottomShadow, setShowBottomShadow] = useState(false);
@@ -37,13 +38,29 @@ export function ModalBody({ children }: PropsWithChildren<{}>) {
     [handleScroll],
   );
 
+  const [portalRef, setPortalRef] = useState<HTMLDivElement | null>(null);
+  const modalContextProviderValue = useMemo(
+    () => ({ portalReference: portalRef ?? undefined }),
+    [portalRef],
+  );
+
   return (
-    <ModalBodyWrapper>
-      <ModalBodyInner onScroll={handleScroll} ref={initShadows}>
-        {children}
-      </ModalBodyInner>
-      {showBottomShadow && <ModalBodyBottomShadow />}
-    </ModalBodyWrapper>
+    <>
+      <PortalContext.Provider value={modalContextProviderValue}>
+        <ModalBodyWrapper>
+          <ModalBodyInner onScroll={handleScroll} ref={initShadows}>
+            {children}
+          </ModalBodyInner>
+          {showBottomShadow && <ModalBodyBottomShadow />}
+        </ModalBodyWrapper>
+      </PortalContext.Provider>
+
+      {/*
+       * This node is the portal anchor for other overlay types that need to break out of the scrolling content
+       * e.g. Select
+       */}
+      <div ref={setPortalRef} />
+    </>
   );
 }
 ModalBody.displayName = 'ModalBody';

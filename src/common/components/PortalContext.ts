@@ -17,25 +17,10 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
+import { createContext } from 'react';
 
-import { Global } from '@emotion/react';
-import { ComponentProps, PropsWithChildren } from 'react';
-import { TooltipProvider } from '..';
-import { globalSelectStyles } from '../select/SelectCommons';
-
-interface Props {
-  tooltipsDelayDuration?: ComponentProps<typeof TooltipProvider>['delayDuration'];
+interface PortalContextInterface {
+  portalReference?: HTMLDivElement;
 }
 
-export function EchoesProvider(props: PropsWithChildren<Props>) {
-  const { children, tooltipsDelayDuration } = props;
-
-  return (
-    <>
-      <Global styles={globalSelectStyles} />
-      <TooltipProvider delayDuration={tooltipsDelayDuration}>{children}</TooltipProvider>
-    </>
-  );
-}
-
-EchoesProvider.displayName = 'EchoesProvider';
+export const PortalContext = createContext<PortalContextInterface>({});
