@@ -88,10 +88,12 @@ export const Modal = forwardRef<HTMLButtonElement, Props>((props, ref) => {
           {...(!isDefined(description) && { 'aria-describedby': undefined })}
           size={size}>
           <ModalTitle>{title}</ModalTitle>
+
           <ModalBody isLast={!hasFooter}>
             {description && <ModalDescription>{description}</ModalDescription>}
             {content && <ModalContent>{content}</ModalContent>}
           </ModalBody>
+
           {hasFooter && (
             <ModalFooter>
               <ModalFooterLinkWrapper>{footerLink}</ModalFooterLinkWrapper>
@@ -99,16 +101,16 @@ export const Modal = forwardRef<HTMLButtonElement, Props>((props, ref) => {
                 <ButtonGroup>
                   {isControlled ? (
                     <>
-                      {secondaryButton}
                       {primaryButton}
+                      {secondaryButton}
                     </>
                   ) : (
                     <>
-                      {secondaryButton && (
-                        <RadixDialog.Close asChild>{secondaryButton}</RadixDialog.Close>
-                      )}
                       {primaryButton && (
                         <RadixDialog.Close asChild>{primaryButton}</RadixDialog.Close>
+                      )}
+                      {secondaryButton && (
+                        <RadixDialog.Close asChild>{secondaryButton}</RadixDialog.Close>
                       )}
                     </>
                   )}
@@ -116,6 +118,7 @@ export const Modal = forwardRef<HTMLButtonElement, Props>((props, ref) => {
               )}
             </ModalFooter>
           )}
+
           <RadixDialog.Close asChild>
             <ModalButtonIconClose
               Icon={IconX}
