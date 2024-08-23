@@ -19,10 +19,11 @@
  */
 import styled from '@emotion/styled';
 import * as RadixDialog from '@radix-ui/react-dialog';
-import { forwardRef, ReactNode } from 'react';
+import { forwardRef, ReactNode, SyntheticEvent, useCallback } from 'react';
 import { useIntl } from 'react-intl';
 import { isDefined } from '~common/helpers/types';
 import { ButtonGroup, ButtonIcon, ButtonSize, ButtonVariety } from '../buttons';
+import { isDropdownMenuItemComponent } from '../dropdown-menu/DropdownMenuItemBase';
 import { IconX } from '../icons';
 import { ModalBody } from './ModalBody';
 import {
@@ -68,9 +69,17 @@ export const Modal = forwardRef<HTMLButtonElement, Props>((props, ref) => {
   const hasFooter = hasActionButtons || isDefined(footerLink);
   const isControlled = isDefined(isOpen) && isDefined(onOpenChange);
 
+  const handleSelectForDropdownMenu = useCallback((event: SyntheticEvent) => {
+    event.preventDefault();
+  }, []);
+
   return (
     <RadixDialog.Root defaultOpen={isDefaultOpen} onOpenChange={onOpenChange} open={isOpen}>
-      <RadixDialog.Trigger asChild ref={ref} {...radixProps}>
+      <RadixDialog.Trigger
+        asChild
+        ref={ref}
+        {...(isDropdownMenuItemComponent(children) && { onSelect: handleSelectForDropdownMenu })}
+        {...radixProps}>
         {children}
       </RadixDialog.Trigger>
       <RadixDialog.Portal>

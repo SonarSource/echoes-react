@@ -21,13 +21,11 @@
 import styled from '@emotion/styled';
 import * as radixDropdownMenu from '@radix-ui/react-dropdown-menu';
 
-export function DropdownMenuSeparator() {
-  return <StyledSeparator />;
-}
-
-const StyledSeparator = styled(radixDropdownMenu.Separator)`
+export const DropdownMenuSeparator = styled(radixDropdownMenu.Separator)`
   border-top: var(--echoes-border-width-default) solid var(--echoes-color-border-weak);
   box-sizing: border-box;
   margin: var(--echoes-dimension-space-25) 0;
   width: 100%;
 `;
+
+DropdownMenuSeparator.displayName = 'DropdownMenu.Separator';

@@ -132,7 +132,6 @@ const DropdownMenuRoot = forwardRef<HTMLButtonElement, DropdownMenuRootProps>(
     );
   },
 );
-
 DropdownMenuRoot.displayName = 'DropdownMenu.Root';
 
 export const DropdownMenu = {

@@ -19,6 +19,7 @@
  */
 
 import styled from '@emotion/styled';
+import { forwardRef } from 'react';
 import { IconLinkExternal } from '../icons/IconLinkExternal';
 import { LinkBase, LinkProps } from '../links/LinkBase';
 import { DropdownMenuItemBase, DropdownMenuItemBaseProps } from './DropdownMenuItemBase';
@@ -49,34 +50,39 @@ const getComposedSuffix = ({
   return suffix || externalSuffix;
 };
 
-export function DropdownMenuItemLink({
-  children,
-  download,
-  hasExternalIcon = true,
-  isDisabled,
-  isExternal: isExternalProp = false,
-  isMatchingFullPath = false,
-  suffix,
-  to,
-  ...props
-}: Readonly<Props>) {
+export const DropdownMenuItemLink = forwardRef<HTMLDivElement, Props>((props, ref) => {
+  const {
+    children,
+    download,
+    hasExternalIcon = true,
+    isDisabled,
+    isExternal: isExternalProp = false,
+    isMatchingFullPath = false,
+    suffix,
+    to,
+    ...radixProps
+  } = props;
   const toAsString =
     typeof to === 'string' ? to : `${to.pathname ?? ''}${to.search ?? ''}${to.hash ?? ''}`;
 
   const isExternal = isExternalProp || toAsString.startsWith('http');
 
   const itemProps = {
-    ...props,
+    ...radixProps,
     isDisabled,
     suffix: getComposedSuffix({ isExternal: isExternal && hasExternalIcon, suffix }),
   };
 
   if (isDisabled) {
-    return <StyledDropdownMenuItemBase {...itemProps}>{children}</StyledDropdownMenuItemBase>;
+    return (
+      <StyledDropdownMenuItemBase {...itemProps} ref={ref}>
+        {children}
+      </StyledDropdownMenuItemBase>
+    );
   }
 
   return (
-    <StyledDropdownMenuItemBase {...itemProps}>
+    <StyledDropdownMenuItemBase {...itemProps} ref={ref}>
       {({ getStyledItemContents }) => (
         <StyledLinkBase
           download={download}
@@ -90,7 +96,8 @@ export function DropdownMenuItemLink({
       )}
     </StyledDropdownMenuItemBase>
   );
-}
+});
+DropdownMenuItemLink.displayName = 'DropdownMenu.ItemLink';
 
 const StyledLinkBase = styled(LinkBase)`
   text-decoration: none;

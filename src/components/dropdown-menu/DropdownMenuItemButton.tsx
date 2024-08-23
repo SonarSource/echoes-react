@@ -18,10 +18,12 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+import { forwardRef } from 'react';
 import { DropdownMenuItemBase, DropdownMenuItemBaseProps } from './DropdownMenuItemBase';
 
 type Props = Omit<DropdownMenuItemBaseProps, 'isCheckable' | 'isChecked'>;
 
-export function DropdownMenuItemButton(props: Readonly<Props>) {
-  return <DropdownMenuItemBase {...props} />;
-}
+export const DropdownMenuItemButton = forwardRef<HTMLDivElement, Props>((props, ref) => {
+  return <DropdownMenuItemBase {...props} ref={ref} />;
+});
+DropdownMenuItemButton.displayName = 'DropdownMenu.ItemButton';
