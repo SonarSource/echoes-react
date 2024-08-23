@@ -20,10 +20,11 @@
 
 import styled from '@emotion/styled';
 import * as RadixAlertDialog from '@radix-ui/react-alert-dialog';
-import { ReactNode, forwardRef } from 'react';
+import { ReactNode, SyntheticEvent, forwardRef, useCallback } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { isDefined } from '~common/helpers/types';
 import { Button, ButtonGroup, ButtonVariety } from '../buttons';
+import { isDropdownMenuItemComponent } from '../dropdown-menu/DropdownMenuItemBase';
 import { ModalBody } from './ModalBody';
 import {
   ModalFooter,
@@ -82,9 +83,17 @@ export const ModalAlert = forwardRef<HTMLButtonElement, Props>((props, ref) => {
     </Button>
   );
 
+  const handleSelectForDropdownMenu = useCallback((event: SyntheticEvent) => {
+    event.preventDefault();
+  }, []);
+
   return (
     <RadixAlertDialog.Root onOpenChange={onOpenChange} open={isOpen}>
-      <RadixAlertDialog.Trigger asChild ref={ref} {...radixProps}>
+      <RadixAlertDialog.Trigger
+        asChild
+        ref={ref}
+        {...(isDropdownMenuItemComponent(children) && { onSelect: handleSelectForDropdownMenu })}
+        {...radixProps}>
         {children}
       </RadixAlertDialog.Trigger>
       <RadixAlertDialog.Portal>

@@ -21,6 +21,7 @@ import { screen } from '@testing-library/react';
 import { ComponentProps, useState } from 'react';
 import { render } from '~common/helpers/test-utils';
 import { Button } from '../../buttons';
+import { DropdownMenu } from '../../dropdown-menu';
 import { Modal } from '../Modal';
 
 it('should appear/disappear as expected', async () => {
@@ -72,8 +73,30 @@ it('should render content and description and extra buttons', async () => {
   expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
 });
 
+it('should be triggered by DropdownMenu Items', async () => {
+  const { user } = render(
+    <DropdownMenu.Root
+      id="modal-trigger"
+      items={
+        <Modal content="Modal content" title="Modal title">
+          <DropdownMenu.ItemButton>Open Modal</DropdownMenu.ItemButton>
+        </Modal>
+      }>
+      <Button>Menu</Button>
+    </DropdownMenu.Root>,
+  );
+
+  expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+
+  await user.click(screen.getByRole('button', { name: 'Menu' }));
+  await user.click(screen.getByRole('menuitem', { name: 'Open Modal' }));
+
+  expect(screen.getByRole('dialog')).toBeInTheDocument();
+});
+
 it("shouldn't have any a11y violation", async () => {
-  const { container } = renderModal();
+  const { container } = renderModal({ isDefaultOpen: true });
+
   await expect(container).toHaveNoA11yViolations();
 });
 

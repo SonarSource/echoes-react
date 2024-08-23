@@ -22,9 +22,11 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { ComponentProps, useCallback, useState } from 'react';
 import {
   Button,
+  ButtonIcon,
   ButtonVariety,
   DropdownMenu,
   DropdownMenuAlign,
+  IconMoreVertical,
   LinkStandalone,
   Modal,
   ModalSize,
@@ -86,6 +88,50 @@ export const Uncontrolled: Story = {
   ),
 };
 
+export const Controlled: Story = {
+  args: {
+    description:
+      'This is a controlled modal that will closed on submit after a delay and showing a spinner.',
+    footerLink: 'link',
+    secondaryButton: 'default',
+    title: 'My Modal',
+  },
+  render: (args) => <ControlledModal {...args} />,
+};
+
+function ControlledModal(props: ComponentProps<typeof Modal>) {
+  const [isOpen, setIsOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const doThing = useCallback(() => {
+    setIsLoading(true);
+
+    setTimeout(() => {
+      setIsOpen(false);
+      setIsLoading(false);
+    }, 1000);
+  }, []);
+
+  return (
+    <Modal
+      {...props}
+      isOpen={isOpen}
+      onOpenChange={setIsOpen}
+      primaryButton={
+        <Button
+          isDisabled={isLoading}
+          isLoading={isLoading}
+          onClick={doThing}
+          variety={ButtonVariety.Primary}>
+          Submit
+        </Button>
+      }
+      secondaryButton={<Button onClick={() => setIsOpen(false)}>Close</Button>}>
+      <Button>Show Modal</Button>
+    </Modal>
+  );
+}
+
 export const WithSelectAndDropdown: Story = {
   args: {
     description:
@@ -130,7 +176,7 @@ function ControlledSelect() {
 
   return (
     <Select
-      ariaLabel="asd"
+      ariaLabel="select label"
       data={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map((i) => ({
         value: `${i}`,
         label: `${i}`,
@@ -144,46 +190,24 @@ function ControlledSelect() {
   );
 }
 
-export const Controlled: Story = {
+export const WithADropdownItemTrigger: Story = {
   args: {
     description:
-      'This is a controlled modal that will closed on submit after a delay and showing a spinner.',
+      'This is a modal accessible description that will be automatically announced by screen readers when the modal is opened.',
     footerLink: 'link',
+    primaryButton: 'default',
     secondaryButton: 'default',
-    title: 'My Modal',
+    title: 'My Modal title',
   },
-  render: (args) => <ControlledModal {...args} />,
+  render: (args) => (
+    <DropdownMenu.Root
+      id="modal-trigger"
+      items={
+        <Modal content={<div>Modal content, anything can be set in there.</div>} {...args}>
+          <DropdownMenu.ItemButton>Open Modal</DropdownMenu.ItemButton>
+        </Modal>
+      }>
+      <ButtonIcon Icon={IconMoreVertical} ariaLabel="Menu" />
+    </DropdownMenu.Root>
+  ),
 };
-
-function ControlledModal(props: ComponentProps<typeof Modal>) {
-  const [isOpen, setIsOpen] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-
-  const doThing = useCallback(() => {
-    setIsLoading(true);
-
-    setTimeout(() => {
-      setIsOpen(false);
-      setIsLoading(false);
-    }, 1000);
-  }, []);
-
-  return (
-    <Modal
-      {...props}
-      isOpen={isOpen}
-      onOpenChange={setIsOpen}
-      primaryButton={
-        <Button
-          isDisabled={isLoading}
-          isLoading={isLoading}
-          onClick={doThing}
-          variety={ButtonVariety.Primary}>
-          Submit
-        </Button>
-      }
-      secondaryButton={<Button onClick={() => setIsOpen(false)}>Close</Button>}>
-      <Button>Show Modal</Button>
-    </Modal>
-  );
-}

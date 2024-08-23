@@ -18,6 +18,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+import { forwardRef } from 'react';
 import { IconDownload, LinkProps } from '..';
 import { DropdownMenuItemBaseProps } from './DropdownMenuItemBase';
 import { DropdownMenuItemLink } from './DropdownMenuItemLink';
@@ -25,13 +26,15 @@ import { DropdownMenuItemLink } from './DropdownMenuItemLink';
 type Props = Omit<DropdownMenuItemBaseProps, 'isCheckable' | 'isChecked' | 'prefix' | 'suffix'> &
   Pick<LinkProps, 'to'> & { download: string };
 
-export function DropdownMenuItemLinkDownload(props: Readonly<Props>) {
+export const DropdownMenuItemLinkDownload = forwardRef<HTMLDivElement, Props>((props, ref) => {
   return (
     <DropdownMenuItemLink
       {...props}
       hasExternalIcon={false}
       isExternal
       prefix={<IconDownload color="echoes-color-icon-subdued" />}
+      ref={ref}
     />
   );
-}
+});
+DropdownMenuItemLinkDownload.displayName = 'DropdownMenu.ItemLinkDownload';

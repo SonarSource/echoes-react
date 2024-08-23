@@ -21,6 +21,7 @@ import { screen } from '@testing-library/react';
 import { ComponentProps, useState } from 'react';
 import { render } from '~common/helpers/test-utils';
 import { Button } from '../../buttons';
+import { DropdownMenu } from '../../dropdown-menu';
 import { ModalAlert } from '../ModalAlert';
 
 it('should appear/disappear as expected', async () => {
@@ -61,6 +62,35 @@ it('should render content and secondaryButtonLabel', async () => {
   expect(screen.getByText('special content')).toBeInTheDocument();
 
   await user.click(screen.getByRole('button', { name: 'leave' }));
+
+  expect(screen.queryByRole('alertdialog')).not.toBeInTheDocument();
+});
+
+it('should be triggered by DropdownMenu Items', async () => {
+  const { user } = render(
+    <DropdownMenu.Root
+      id="modal-trigger"
+      items={
+        <ModalAlert
+          description="modal-alert-description"
+          primaryButton={<Button>Accept</Button>}
+          secondaryButtonLabel="Cancel"
+          title="Modal alert title">
+          <DropdownMenu.ItemButton>Open Modal</DropdownMenu.ItemButton>
+        </ModalAlert>
+      }>
+      <Button>Menu</Button>
+    </DropdownMenu.Root>,
+  );
+
+  expect(screen.queryByRole('alertdialog')).not.toBeInTheDocument();
+
+  await user.click(screen.getByRole('button', { name: 'Menu' }));
+  await user.click(screen.getByRole('menuitem', { name: 'Open Modal' }));
+
+  expect(screen.getByRole('alertdialog')).toBeInTheDocument();
+
+  await user.click(screen.getByRole('button', { name: 'Cancel' }));
 
   expect(screen.queryByRole('alertdialog')).not.toBeInTheDocument();
 });

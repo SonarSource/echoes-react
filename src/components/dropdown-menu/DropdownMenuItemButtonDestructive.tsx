@@ -19,13 +19,15 @@
  */
 
 import styled from '@emotion/styled';
+import { forwardRef } from 'react';
 import { DropdownMenuItemBase, DropdownMenuItemBaseProps } from './DropdownMenuItemBase';
 
 type Props = Omit<DropdownMenuItemBaseProps, 'isCheckable' | 'isChecked' | 'prefix' | 'suffix'>;
 
-export function DropdownMenuItemButtonDestructive(props: Readonly<Props>) {
-  return <StyledDropdownMenuItemBase {...props} />;
-}
+export const DropdownMenuItemButtonDestructive = forwardRef<HTMLDivElement, Props>((props, ref) => {
+  return <StyledDropdownMenuItemBase {...props} ref={ref} />;
+});
+DropdownMenuItemButtonDestructive.displayName = 'DropdownMenu.ItemButtonDestructive';
 
 const StyledDropdownMenuItemBase = styled(DropdownMenuItemBase)`
   color: var(--echoes-color-text-danger);
