@@ -20,7 +20,16 @@
 
 import type { Meta, StoryObj } from '@storybook/react';
 import { ComponentProps, useCallback, useState } from 'react';
-import { Button, ButtonVariety, LinkStandalone, Modal, ModalSize } from '../src';
+import {
+  Button,
+  ButtonVariety,
+  DropdownMenu,
+  DropdownMenuAlign,
+  LinkStandalone,
+  Modal,
+  ModalSize,
+  Select,
+} from '../src';
 import { basicWrapperDecorator } from './helpers/BasicWrapper';
 
 const meta: Meta<typeof Modal> = {
@@ -76,6 +85,64 @@ export const Uncontrolled: Story = {
     </Modal>
   ),
 };
+
+export const WithSelectAndDropdown: Story = {
+  args: {
+    description:
+      'This Modal has both a Select and a Dropdown, to see how they nicely overflow out of the content',
+    footerLink: 'link',
+    primaryButton: 'default',
+    secondaryButton: 'default',
+    title: 'My Modal title',
+  },
+  render: (args) => (
+    <Modal
+      content={
+        <div>
+          <ControlledSelect />
+          <br />
+          <DropdownMenu.Root
+            align={DropdownMenuAlign.Start}
+            items={
+              <>
+                <DropdownMenu.ItemLink to="/awesome1">awesome link 1</DropdownMenu.ItemLink>
+                <DropdownMenu.ItemLink to="/awesome2">awesome link 2</DropdownMenu.ItemLink>
+                <DropdownMenu.ItemLink to="/awesome3">awesome link 3</DropdownMenu.ItemLink>
+                <DropdownMenu.ItemLink to="/awesome4">awesome link 4</DropdownMenu.ItemLink>
+                <DropdownMenu.ItemLink to="/awesome5">awesome link 5</DropdownMenu.ItemLink>
+                <DropdownMenu.ItemLink to="/awesome6">awesome link 6</DropdownMenu.ItemLink>
+                <DropdownMenu.ItemLink to="/awesome7">awesome link 7</DropdownMenu.ItemLink>
+                <DropdownMenu.ItemLink to="/awesome8">awesome link 8</DropdownMenu.ItemLink>
+              </>
+            }>
+            <Button>Choose a link to actually do nothing</Button>
+          </DropdownMenu.Root>
+        </div>
+      }
+      {...args}>
+      <Button>Show Modal</Button>
+    </Modal>
+  ),
+};
+
+function ControlledSelect() {
+  const [selected, setSelected] = useState<string | null>(null);
+
+  return (
+    <Select
+      ariaLabel="asd"
+      data={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map((i) => ({
+        value: `${i}`,
+        label: `${i}`,
+        group: `${i % 3}`,
+      }))}
+      onChange={(v) => {
+        setSelected(v);
+      }}
+      value={selected}
+    />
+  );
+}
 
 export const Controlled: Story = {
   args: {
