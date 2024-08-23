@@ -145,7 +145,9 @@ ModalOverlay.displayName = 'ModalOverlay';
 const ModalWrapper = styleModalWrapper(RadixDialog.Content);
 ModalWrapper.displayName = 'ModalWrapper';
 
-const ModalTitle = styleModalTitle(RadixDialog.Title);
+const ModalTitle = styled(styleModalTitle(RadixDialog.Title))`
+  padding-right: calc(var(--echoes-dimension-space-400) + var(--echoes-sizes-buttons-medium));
+`;
 ModalTitle.displayName = 'ModalTitle';
 
 const ModalDescription = styleModalDescription(RadixDialog.Description);
@@ -159,7 +161,7 @@ ModalFooterLinkWrapper.displayName = 'ModalFooterLinkWrapper';
 
 const ModalButtonIconClose = styled(ButtonIcon)`
   position: absolute;
-  top: var(--echoes-dimension-space-150);
-  right: var(--echoes-dimension-space-150);
+  top: var(--echoes-dimension-space-400);
+  right: var(--echoes-dimension-space-400);
 `;
 ModalButtonIconClose.displayName = 'ModalButtonIconClose';
