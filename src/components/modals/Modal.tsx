@@ -116,6 +116,7 @@ export const Modal = forwardRef<HTMLButtonElement, Props>((props, ref) => {
                 description: 'ARIA-label for the close button at the top of the Modal.',
               })}
               size={ButtonSize.Medium}
+              tooltipContent={null}
               variety={ButtonVariety.DefaultGhost}
             />
           </RadixDialog.Close>
@@ -130,7 +131,7 @@ const ModalOverlay = styleModalOverlay(RadixDialog.Overlay);
 ModalOverlay.displayName = 'ModalOverlay';
 
 const ModalWrapper = styleModalWrapper(RadixDialog.Content);
-ModalWrapper.displayName = 'ModalContent';
+ModalWrapper.displayName = 'ModalWrapper';
 
 const ModalTitle = styleModalTitle(RadixDialog.Title);
 ModalTitle.displayName = 'ModalTitle';
