@@ -37,7 +37,7 @@ type Story = StoryObj<typeof Popover>;
 
 export const Basic: Story = {
   args: {
-    title: 'Explanation',
+    title: 'Explanation !',
     description:
       'This is a more complete explanation to detail the concepts and practices that are required to understand said explanation. It is fairly easy to assess how this important text is made important by its self-sufficient importance.',
   },
