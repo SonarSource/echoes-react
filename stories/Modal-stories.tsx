@@ -75,7 +75,7 @@ type Story = StoryObj<typeof Modal>;
 export const Uncontrolled: Story = {
   args: {
     description:
-      'This is a modal accessible description that will be automatically announced by screen readers when the modal is opened.',
+      'This is a modal accessible description that wiasdll be automatically announced by screen readers when the modal is opened.',
     footerLink: 'link',
     primaryButton: 'default',
     secondaryButton: 'default',
