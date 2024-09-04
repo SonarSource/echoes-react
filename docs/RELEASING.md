@@ -39,13 +39,13 @@ For more details, refer to the [internal versioning strategy](https://docs.googl
 
 - Close the REL ticket you've created
 
-- Bump the [package version](https://github.com/SonarSource/echoes-react/blob/main/package.json#L3) for the next development iteration with `yarn version major|minor` and commit with message `[NO-JIRA] Prepare for version x.y`.
+- Bump the [package version](https://github.com/SonarSource/echoes-react/blob/main/package.json#L3) for the next development iteration with `yarn version major|minor` and commit with message `[No Jira] Prepare for version x.y`.
 
 ## Release Process for Patch Versions
 
 - Check out the version branch `branch-x.y`
 
-- Bump the [package version](https://github.com/SonarSource/echoes-react/blob/main/package.json#L3) with `yarn version patch` and commit with message `[NO-JIRA] Prepare for version x.y.z`.
+- Bump the [package version](https://github.com/SonarSource/echoes-react/blob/main/package.json#L3) with `yarn version patch` and commit with message `[No Jira] Prepare for version x.y.z`.
 
 - Cherry-pick the commits from the `main` branch that need to be in this patch release
 
