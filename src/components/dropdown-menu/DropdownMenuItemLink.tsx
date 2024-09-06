@@ -24,13 +24,11 @@ import { IconLinkExternal } from '../icons/IconLinkExternal';
 import { LinkBase, LinkProps } from '../links/LinkBase';
 import { DropdownMenuItemBase, DropdownMenuItemBaseProps } from './DropdownMenuItemBase';
 
-type Props = React.PropsWithChildren<
-  Omit<
-    DropdownMenuItemBaseProps,
-    'children' | 'isCheckable' | 'isChecked' | 'ItemWrapper' | 'itemWrapperProps'
-  > &
-    Pick<LinkProps, 'download' | 'hasExternalIcon' | 'isExternal' | 'isMatchingFullPath' | 'to'>
->;
+type Props = Omit<
+  DropdownMenuItemBaseProps,
+  'isCheckable' | 'isChecked' | 'ItemWrapper' | 'itemWrapperProps'
+> &
+  Pick<LinkProps, 'download' | 'hasExternalIcon' | 'isExternal' | 'isMatchingFullPath' | 'to'>;
 
 const getComposedSuffix = ({
   isExternal,
