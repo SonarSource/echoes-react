@@ -19,8 +19,7 @@
  */
 
 import type { Meta, StoryObj } from '@storybook/react';
-import { PropsWithChildren } from 'react';
-import { To } from 'react-router-dom';
+import { ComponentProps, PropsWithChildren } from 'react';
 import { DropdownMenu } from '../../src';
 import { BasicWrapper } from '../helpers/BasicWrapper';
 import { MenuButton } from '../helpers/MenuButton';
@@ -68,7 +67,10 @@ export const WithHelpText: Story = {
   render,
 };
 
-function render({ children, ...args }: PropsWithChildren<{ download: string; to: To }>) {
+function render({
+  children,
+  ...args
+}: PropsWithChildren<ComponentProps<typeof DropdownMenu.ItemLinkDownload>>) {
   return (
     <BasicWrapper>
       <DropdownMenu.Root

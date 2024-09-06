@@ -19,7 +19,7 @@
  */
 
 import type { Meta, StoryObj } from '@storybook/react';
-import { PropsWithChildren } from 'react';
+import { ComponentProps, PropsWithChildren } from 'react';
 import { DropdownMenu } from '../../src';
 import { BasicWrapper } from '../helpers/BasicWrapper';
 import { MenuButton } from '../helpers/MenuButton';
@@ -99,7 +99,10 @@ export const Full: Story = {
   render,
 };
 
-function render({ children, ...args }: PropsWithChildren<{}>) {
+function render({
+  children,
+  ...args
+}: PropsWithChildren<ComponentProps<typeof DropdownMenu.ItemButton>>) {
   return (
     <BasicWrapper>
       <DropdownMenu.Root

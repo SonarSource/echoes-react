@@ -17,6 +17,7 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
+
 import styled from '@emotion/styled';
 import { PropsWithChildren, useCallback, useMemo, useState } from 'react';
 import { PortalContext } from '../../common/components/PortalContext';
@@ -29,21 +30,22 @@ export function ModalBody(props: PropsWithChildren<Props>) {
   const { children, isLast = false } = props;
   const [showBottomShadow, setShowBottomShadow] = useState(false);
 
-  const handleScroll = useCallback((event) => {
+  const handleScroll = useCallback((event: React.UIEvent<HTMLDivElement>) => {
     const { scrollHeight, clientHeight, scrollTop } = event?.currentTarget ?? {};
     setShowBottomShadow(scrollTop + clientHeight < scrollHeight - 16); // -16px for bottom padding
   }, []);
 
   const initShadows = useCallback(
-    (node) => {
+    (node: HTMLDivElement) => {
       if (node) {
-        handleScroll({ currentTarget: node });
+        handleScroll({ currentTarget: node } as React.UIEvent<HTMLDivElement>);
       }
     },
     [handleScroll],
   );
 
   const [portalRef, setPortalRef] = useState<HTMLDivElement | null>(null);
+
   const modalContextProviderValue = useMemo(
     () => ({ portalReference: portalRef ?? undefined }),
     [portalRef],
@@ -56,6 +58,7 @@ export function ModalBody(props: PropsWithChildren<Props>) {
           <ModalBodyInner onScroll={handleScroll} ref={initShadows}>
             {children}
           </ModalBodyInner>
+
           {showBottomShadow && <ModalBodyBottomShadow />}
         </ModalBodyWrapper>
       </PortalContext.Provider>

@@ -35,13 +35,7 @@ type CheckProps =
 
 export type DropdownMenuItemBaseProps = CheckProps & {
   ariaLabel?: string;
-  children:
-    | ReactNode
-    | (({
-        getStyledItemContents,
-      }: {
-        getStyledItemContents: ({ label }: { label: ReactNode }) => ReactNode;
-      }) => ReactNode);
+  children: ReactNode;
   className?: string;
   helpText?: JSX.Element | string;
   isDisabled?: boolean;
@@ -50,73 +44,81 @@ export type DropdownMenuItemBaseProps = CheckProps & {
   suffix?: ReactNode;
 };
 
-export const DropdownMenuItemBase = forwardRef<HTMLDivElement, DropdownMenuItemBaseProps>(
-  (props, ref) => {
-    const {
-      ariaLabel,
-      children,
-      className,
-      helpText,
-      isCheckable = false,
-      isChecked = false,
-      isDisabled = false,
-      onClick,
-      prefix,
-      suffix,
-      ...radixProps
-    } = props;
+type Props = Omit<DropdownMenuItemBaseProps, 'children'> & {
+  children:
+    | ReactNode
+    | (({
+        getStyledItemContents,
+      }: {
+        getStyledItemContents: ({ label }: { label: ReactNode }) => ReactNode;
+      }) => ReactNode);
+};
 
-    let checkMarkOrPlaceHolder: ReactNode = null;
+export const DropdownMenuItemBase = forwardRef<HTMLDivElement, Props>((props, ref) => {
+  const {
+    ariaLabel,
+    children,
+    className,
+    helpText,
+    isCheckable = false,
+    isChecked = false,
+    isDisabled = false,
+    onClick,
+    prefix,
+    suffix,
+    ...radixProps
+  } = props;
 
-    if (isCheckable) {
-      checkMarkOrPlaceHolder = isChecked ? (
-        <StyledIconCheck color="echoes-color-icon-selected" />
-      ) : (
-        <CheckmarkPlaceholder />
-      );
-    }
+  let checkMarkOrPlaceHolder: ReactNode = null;
 
-    const getStyledItemContents = useCallback(
-      ({ label }: { label: ReactNode }) => (
-        <>
-          <StyledLeftHandSide>
-            {checkMarkOrPlaceHolder}
-
-            {prefix && <StyledPrefix>{prefix}</StyledPrefix>}
-
-            <StyledLabelAndHelpText>
-              <StyledLabel>{label}</StyledLabel>
-
-              <StyledHelpText isDisabled={isDisabled}>{helpText}</StyledHelpText>
-            </StyledLabelAndHelpText>
-          </StyledLeftHandSide>
-
-          <StyledSuffix>{suffix}</StyledSuffix>
-        </>
-      ),
-      [checkMarkOrPlaceHolder, helpText, isDisabled, prefix, suffix],
+  if (isCheckable) {
+    checkMarkOrPlaceHolder = isChecked ? (
+      <StyledIconCheck color="echoes-color-icon-selected" />
+    ) : (
+      <CheckmarkPlaceholder />
     );
+  }
 
-    const isItemWrapped = typeof children === 'function';
+  const getStyledItemContents = useCallback(
+    ({ label }: { label: ReactNode }) => (
+      <>
+        <StyledLeftHandSide>
+          {checkMarkOrPlaceHolder}
 
-    const itemContainer = isItemWrapped
-      ? children({ getStyledItemContents })
-      : getStyledItemContents({ label: children });
+          {prefix && <StyledPrefix>{prefix}</StyledPrefix>}
 
-    return (
-      <StyledRadixDropdownMenuItem
-        {...radixProps}
-        aria-label={ariaLabel}
-        {...(isItemWrapped ? { asChild: true } : {})}
-        className={className}
-        disabled={isDisabled}
-        onClick={isDisabled ? undefined : onClick}
-        ref={ref}>
-        {itemContainer}
-      </StyledRadixDropdownMenuItem>
-    );
-  },
-);
+          <StyledLabelAndHelpText>
+            <StyledLabel>{label}</StyledLabel>
+
+            <StyledHelpText isDisabled={isDisabled}>{helpText}</StyledHelpText>
+          </StyledLabelAndHelpText>
+        </StyledLeftHandSide>
+
+        <StyledSuffix>{suffix}</StyledSuffix>
+      </>
+    ),
+    [checkMarkOrPlaceHolder, helpText, isDisabled, prefix, suffix],
+  );
+
+  const isItemWrapped = typeof children === 'function';
+
+  const itemContainer = isItemWrapped
+    ? children({ getStyledItemContents })
+    : getStyledItemContents({ label: children });
+
+  return (
+    <StyledRadixDropdownMenuItem
+      {...radixProps}
+      aria-label={ariaLabel}
+      {...(isItemWrapped ? { asChild: true } : {})}
+      className={className}
+      disabled={isDisabled}
+      onClick={isDisabled ? undefined : onClick}
+      ref={ref}>
+      {itemContainer}
+    </StyledRadixDropdownMenuItem>
+  );
+});
 DropdownMenuItemBase.displayName = 'DropdownMenu.ItemBase';
 
 export function isDropdownMenuItemComponent(node: any): boolean {
