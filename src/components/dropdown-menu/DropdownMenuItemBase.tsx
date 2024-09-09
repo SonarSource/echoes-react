@@ -165,7 +165,7 @@ const StyledLabel = styled.span`
 const StyledHelpText = styled.span<{ isDisabled?: boolean }>`
   color: ${(props) =>
     props.isDisabled ? 'var(--echoes-color-text-disabled)' : 'var(--echoes-color-text-subdued)'};
-  font: var(--echoes-typography-paragraph-small-regular);
+  font: var(--echoes-typography-others-helper-text);
 `;
 
 const StyledSuffix = styled.span`

@@ -53,7 +53,7 @@ export const styleModalWrapper = styled.div<{ size: ModalSize }>`
 export const styleModalTitle = styled.h2`
   flex: 0 0 auto;
 
-  font: var(--echoes-typography-heading-medium);
+  font: var(--echoes-typography-heading-large);
   color: var(--echoes-color-text-bold);
 
   height: var(--echoes-dimension-height-800);
@@ -66,13 +66,13 @@ export const styleModalTitle = styled.h2`
 `.withComponent;
 
 export const styleModalDescription = styled.div`
-  font: var(--echoes-typography-paragraph-default);
+  font: var(--echoes-typography-text-default);
 
   margin: var(--echoes-dimension-space-0);
 `.withComponent;
 
 export const ModalContent = styled.div`
-  font: var(--echoes-typography-paragraph-default);
+  font: var(--echoes-typography-text-default);
 `;
 ModalContent.displayName = 'ModalContent';
 

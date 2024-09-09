@@ -32,7 +32,7 @@ export const ButtonStyled = styled.button`
   min-height: var(--button-height);
   overflow: hidden;
 
-  font: var(--echoes-typography-paragraph-default-semi-bold);
+  font: var(--echoes-typography-text-default-semi-bold);
   color: var(--button-color);
   text-decoration: none;
 

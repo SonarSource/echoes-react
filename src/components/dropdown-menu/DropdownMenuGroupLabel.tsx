@@ -23,7 +23,7 @@ import * as radixDropdownMenu from '@radix-ui/react-dropdown-menu';
 
 export const DropdownMenuGroupLabel = styled(radixDropdownMenu.Label)`
   color: var(--echoes-color-text-default);
-  font: var(--echoes-typography-paragraph-small-semi-bold);
+  font: var(--echoes-typography-text-small-semi-bold);
   padding: var(--echoes-dimension-space-100) var(--echoes-dimension-space-150)
     var(--echoes-dimension-space-50);
 `;
