@@ -186,7 +186,7 @@ const LabelWrapper = styled.span`
 `;
 
 const Label = styled.span`
-  font: var(--echoes-typography-paragraph-default-medium);
+  font: var(--echoes-typography-text-default-medium);
 
   [aria-disabled='true'] > & {
     color: var(--echoes-color-text-disabled);
@@ -194,7 +194,7 @@ const Label = styled.span`
 `;
 
 const HelpText = styled.span`
-  font: var(--echoes-typography-paragraph-small-regular);
+  font: var(--echoes-typography-others-helper-text);
   color: var(--echoes-color-text-subdued);
 
   [aria-disabled='true'] > & {

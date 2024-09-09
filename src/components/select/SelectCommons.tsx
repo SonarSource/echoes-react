@@ -190,7 +190,7 @@ export const SelectStyled = styled(MantineSelect, {
     display: inline-block;
     margin-bottom: var(--echoes-dimension-space-100);
 
-    font: var(--echoes-typography-paragraph-default-semi-bold);
+    font: var(--echoes-typography-others-label);
     color: var(--echoes-color-text-bold);
 
     word-break: break-word;
@@ -198,7 +198,7 @@ export const SelectStyled = styled(MantineSelect, {
 
   // Description element styles, defined by description prop
   & .echoes-select-description {
-    font: var(--echoes-typography-paragraph-small-regular);
+    font: var(--echoes-typography-others-helper-text);
     color: var(--echoes-color-text-subdued);
 
     margin-top: calc(-1 * var(--echoes-dimension-space-50));
@@ -209,13 +209,13 @@ export const SelectStyled = styled(MantineSelect, {
 
   // Required asterisk element styles, defined by required prop
   & .echoes-select-required {
-    font: var(--echoes-typography-paragraph-default-medium);
+    font: var(--echoes-typography-text-default-medium);
     color: var(--echoes-color-text-danger);
   }
 
   // Error element styles, defined by error prop
   & .echoes-select-error {
-    font: var(--echoes-typography-paragraph-default-regular);
+    font: var(--echoes-typography-text-default-regular);
     color: var(--echoes-color-text-danger);
 
     margin-top: var(--echoes-dimension-space-100);
@@ -255,7 +255,7 @@ export const SelectStyled = styled(MantineSelect, {
     padding: var(--echoes-dimension-space-100);
     padding-left: var(--echoes-dimension-space-150);
 
-    font: var(--echoes-typography-paragraph-default-regular);
+    font: var(--echoes-typography-text-default-regular);
     color: var(--echoes-color-text-bold);
     text-align: left;
     text-overflow: ellipsis;
@@ -336,7 +336,7 @@ export const SelectStyled = styled(MantineSelect, {
         align-items: center;
         justify-content: center;
 
-        font: var(--echoes-typography-paragraph-small-regular);
+        font: var(--echoes-typography-text-small-regular);
         background-color: var(--echoes-color-background-transparent);
         color: var(--echoes-color-icon-subdued);
 
@@ -410,7 +410,7 @@ export const globalSelectStyles = css`
     padding: var(--echoes-dimension-space-50) var(--echoes-dimension-space-200)
       var(--echoes-dimension-space-100);
 
-    font: var(--echoes-typography-paragraph-small-semi-bold);
+    font: var(--echoes-typography-text-small-semi-bold);
     color: var(--echoes-color-text-default);
   }
 
@@ -425,7 +425,7 @@ export const globalSelectStyles = css`
   }
 
   .echoes-select-empty {
-    font: var(--echoes-typography-paragraph-small-regular);
+    font: var(--echoes-typography-text-small-regular);
     color: var(--echoes-color-text-subdued);
     text-align: center;
 

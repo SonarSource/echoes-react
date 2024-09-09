@@ -73,7 +73,7 @@ const SelectItemWrapper = styled.div`
     padding: calc(var(--echoes-dimension-space-100) - var(--echoes-focus-border-width-default))
       var(--echoes-dimension-space-150);
 
-    font: var(--echoes-typography-paragraph-small-regular);
+    font: var(--echoes-typography-text-small-regular);
     color: var(--echoes-color-text-default);
     background-color: var(--echoes-color-background-default);
 
@@ -108,13 +108,13 @@ const SelectItemInner = styled.div`
   display: flex;
   flex-direction: column;
 
-  font: var(--echoes-typography-paragraph-default-regular);
+  font: var(--echoes-typography-text-default-regular);
 `;
 SelectItemInner.displayName = 'SelectItemInner';
 
 // Help text below the select item label
 const SelectItemHelpText = styled.span`
-  font: var(--echoes-typography-paragraph-small-regular);
+  font: var(--echoes-typography-others-helper-text);
   color: var(--echoes-color-text-subdued);
 
   .echoes-select-option[data-combobox-disabled] & {
@@ -145,7 +145,7 @@ const SelectItemStatusStyled = styled.div`
   padding: var(--echoes-dimension-space-25);
   min-width: var(--echoes-dimension-width-250);
 
-  font: var(--echoes-typography-paragraph-small-regular);
+  font: var(--echoes-typography-text-small-regular);
   color: var(--echoes-color-icon-selected);
 
   .echoes-select-option[data-combobox-disabled] & {

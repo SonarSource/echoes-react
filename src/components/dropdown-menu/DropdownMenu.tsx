@@ -155,7 +155,7 @@ const StyledHeaderLabelAndHelpText = styled.div`
 `;
 
 const StyledHeaderLabel = styled.div`
-  font: var(--echoes-typography-paragraph-default-semi-bold);
+  font: var(--echoes-typography-text-default-semi-bold);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -163,7 +163,7 @@ const StyledHeaderLabel = styled.div`
 
 const StyledHeaderHelpText = styled.span`
   color: var(--echoes-color-text-subdued);
-  font: var(--echoes-typography-paragraph-small-regular);
+  font: var(--echoes-typography-others-helper-text);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;

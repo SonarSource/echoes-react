@@ -66,8 +66,12 @@
       }
     },
     "lineHeight": {
-      "heading": 1.32,
-      "body": 1.42
+      "10": "1.125rem",
+      "20": "1.25rem",
+      "30": "1.5rem",
+      "40": "1.875rem",
+      "50": "2.25rem",
+      "60": "3.125rem"
     },
     "letterSpacing": {
       "default": "0",
@@ -87,6 +91,12 @@
       "medium": "500"
     },
     "fontSize": {
+      "10": "0.75rem",
+      "20": "0.875rem",
+      "30": "1rem",
+      "40": "1.25rem",
+      "50": "1.5rem",
+      "60": "2.125rem",
       "heading": {
         "xlarge": "2.125rem",
         "large": "1.5rem",
@@ -111,36 +121,39 @@
       "underline": "underline"
     },
     "typography": {
-      "paragraph": {
+      "text": {
         "default": {
-          "regular": "400 0.875rem/1.42 Inter",
-          "medium": "500 0.875rem/1.42 Inter",
-          "semi-bold": "600 0.875rem/1.42 Inter"
+          "regular": "400 0.875rem/1.25rem Inter",
+          "medium": "500 0.875rem/1.25rem Inter",
+          "semi-bold": "600 0.875rem/1.25rem Inter"
         },
         "small": {
-          "regular": "400 0.75rem/1.42 Inter",
-          "semi-bold": "600 0.75rem/1.42 Inter"
+          "regular": "400 0.75rem/1.125rem Inter",
+          "semi-bold": "600 0.75rem/1.125rem Inter"
         },
         "large": {
-          "regular": "400 1rem/1.42 Inter",
-          "semi-bold": "600 1rem/1.42 Inter"
+          "regular": "400 1rem/1.5rem Inter",
+          "semi-bold": "600 1rem/1.5rem Inter"
         }
       },
       "heading": {
-        "small": "600 1rem/1.32 Inter",
-        "medium": "600 1.25rem/1.32 Inter",
-        "large": "600 1.5rem/1.32 Inter",
-        "xlarge": "600 2.125rem/1.32 Inter"
+        "xsmall": "700 0.75rem/1.125rem Inter",
+        "small": "700 0.875rem/1.25rem Inter",
+        "medium": "600 1rem/1.5rem Inter",
+        "large": "600 1.25rem/1.875rem Inter",
+        "xlarge": "600 1.5rem/2.25rem Inter"
       },
       "code": {
-        "default": "400 0.875rem/1.42 'Ubuntu Mono'",
-        "highlight": "700 0.875rem/1.42 'Ubuntu Mono'",
-        "comment": "400 italic 0.875rem/1.42 'Ubuntu Mono'"
+        "default": "400 0.875rem/1.25rem 'Ubuntu Mono'",
+        "highlight": "700 0.875rem/1.25rem 'Ubuntu Mono'",
+        "comment": "400 italic 0.875rem/1.25rem 'Ubuntu Mono'"
       },
       "others": {
-        "label": "600 0.875rem/1.42 Inter",
-        "link": "600 0.875rem/1.42 Inter",
-        "link-large": "600 1rem/1.42 Inter"
+        "label": "600 0.875rem/1.25rem Inter",
+        "helper-text": "400 0.75rem/1.125rem Inter"
+      },
+      "display": {
+        "default": "600 2.125rem/3.125rem Inter"
       }
     },
     "focus": {

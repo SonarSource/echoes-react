@@ -103,13 +103,13 @@ export const Popover = forwardRef<HTMLButtonElement, Props>((props, ref) => {
 Popover.displayName = 'Popover';
 
 const PopoverTitle = styled.h1`
-  font: var(--echoes-typography-heading-small);
+  font: var(--echoes-typography-heading-medium);
   color: var(--echoes-color-text-bold);
   margin: 0 0 var(--echoes-dimension-space-75);
 `;
 
 const PopoverDescription = styled.div`
-  font: var(--echoes-typography-paragraph-small-regular);
+  font: var(--echoes-typography-text-small-regular);
   color: var(--echoes-color-text-subdued);
 `;
 

@@ -164,12 +164,12 @@ const RadioGroupLabelWrapper = styled.div`
 
 const RadioGroupLabel = styled.div`
   color: var(--echoes-color-text-bold);
-  font: var(--echoes-typography-paragraph-default-semi-bold);
+  font: var(--echoes-typography-others-label);
 `;
 
 const RadioGroupRequired = styled.span`
   color: var(--echoes-color-text-danger);
-  font: var(--echoes-typography-paragraph-default-medium);
+  font: var(--echoes-typography-text-default-medium);
   margin-left: var(--echoes-dimension-space-25);
 `;
 
@@ -263,7 +263,7 @@ const LabelWrapper = styled.span`
 
 const Label = styled.label`
   display: block;
-  font: var(--echoes-typography-paragraph-default-medium);
+  font: var(--echoes-typography-text-default-medium);
   width: 100%;
   cursor: pointer;
 
@@ -274,7 +274,7 @@ const Label = styled.label`
 `;
 
 const HelpText = styled.span`
-  font: var(--echoes-typography-paragraph-small-regular);
+  font: var(--echoes-typography-others-helper-text);
   color: var(--echoes-color-text-subdued);
 `;
 
@@ -287,7 +287,7 @@ const OptionHelpText = styled(HelpText)`
 `;
 
 const RadioGroupErrorMessage = styled.span`
-  font: var(--echoes-typography-paragraph-default-regular);
+  font: var(--echoes-typography-text-default-regular);
   color: var(--echoes-color-text-danger);
   margin-top: var(--echoes-dimension-space-100);
 `;

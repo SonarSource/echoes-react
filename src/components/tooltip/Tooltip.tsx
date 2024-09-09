@@ -109,7 +109,7 @@ Tooltip.displayName = 'Tooltip';
 const TooltipContent = styled(radixTooltip.Content)`
   border-radius: var(--echoes-border-radius-200);
   padding: var(--echoes-dimension-space-50) var(--echoes-dimension-space-150);
-  font: var(--echoes-typography-paragraph-small-regular);
+  font: var(--echoes-typography-text-small-regular);
   color: var(--echoes-color-text-on-color);
   background-color: var(--echoes-color-background-inverse);
   box-shadow: var(--echoes-box-shadow-medium);
