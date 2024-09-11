@@ -19,74 +19,51 @@
  */
 
 import styled from '@emotion/styled';
-import { ComponentType, forwardRef, useMemo } from 'react';
+import { ComboboxLikeRenderOptionInput } from '@mantine/core';
+import { ComponentType, useCallback } from 'react';
 import { isDefined } from '~common/helpers/types';
 import { IconCheck } from '..';
-import { SelectBaseProps } from './SelectCommons';
 import { SelectOption, SelectOptionType } from './SelectTypes';
 
-// Returns the stylized SelectItem component to be used in the itemComponent prop of the Mantine Select
-export function useSelectItemComponent(
-  optionComponent: SelectBaseProps['optionComponent'],
+export type RenderOptionParams = ComboboxLikeRenderOptionInput<SelectOption>;
+export type OptionComponent = ComponentType<SelectOption>;
+
+export interface OptionComponentProps extends SelectOption {
+  selected?: boolean;
+}
+
+// Returns the renderOption function to be used in the renderOption prop of the Mantine Select
+export function useSelectOptionFunction(
+  OptionComponent: OptionComponent | undefined,
   optionType: SelectOptionType,
 ) {
-  return useMemo(
-    () => withSelectItemWrapper(optionComponent, optionType),
-    [optionComponent, optionType],
+  return useCallback(
+    ({ option, checked }: RenderOptionParams) => {
+      const { label, helpText, prefix, suffix } = option;
+      const optionComponentProps: OptionComponentProps = { ...option, selected: checked };
+      return (
+        <SelectItemWrapper>
+          <SelectItemStatus checked={checked} optionType={optionType} />
+
+          {prefix}
+
+          <SelectItemInner>
+            {OptionComponent ? <OptionComponent {...optionComponentProps} /> : <span>{label}</span>}
+
+            {isDefined(helpText) && <SelectItemHelpText>{helpText}</SelectItemHelpText>}
+          </SelectItemInner>
+
+          {suffix}
+        </SelectItemWrapper>
+      );
+    },
+    [OptionComponent, optionType],
   );
 }
 
-// HOC to wrap the optional custom optionComponent with the SelectItemWrapper
-function withSelectItemWrapper<P extends SelectOption>(
-  WrappedComponent: ComponentType<P> | undefined,
-  optionType: SelectOptionType,
-) {
-  const Wrapper = forwardRef<HTMLDivElement, P>((props, ref) => {
-    const { helpText, prefix, suffix, ...mantineAndCustomProps } = props;
-
-    const {
-      // below: we're removing the Mantine props we don't want passed down to the WrappedComponent
-      'aria-selected': _ariaSelected,
-      className,
-      'data-disabled': _dataDisabled,
-      'data-hovered': _dataHovered,
-      'data-selected': _dataSelected,
-      onMouseDown,
-      onMouseEnter,
-      tabIndex,
-      ...customComponentProps
-    } = mantineAndCustomProps;
-
-    return (
-      <SelectItemWrapper ref={ref} {...mantineAndCustomProps}>
-        <SelectItemStatus optionType={optionType} selected={mantineAndCustomProps.selected} />
-
-        {prefix}
-
-        <SelectItemInner>
-          {WrappedComponent ? (
-            <WrappedComponent {...(customComponentProps as P)} />
-          ) : (
-            <span>{mantineAndCustomProps.label}</span>
-          )}
-
-          {isDefined(helpText) && <SelectItemHelpText>{helpText}</SelectItemHelpText>}
-        </SelectItemInner>
-
-        {suffix}
-      </SelectItemWrapper>
-    );
-  });
-
-  Wrapper.displayName = 'WithSelectItemWrapper';
-
-  return Wrapper;
-}
-
-// Wrapper around the whole select item
+// Wrapper around the select item content
 const SelectItemWrapper = styled.div`
-  // Inside the dropdown - Item element
-  &.mantine-Select-item {
+  .echoes-select-option & {
     box-sizing: border-box;
 
     display: flex;
@@ -103,23 +80,23 @@ const SelectItemWrapper = styled.div`
     border: var(--echoes-focus-border-width-default) solid transparent;
     border-radius: var(--echoes-border-radius-none);
 
-    &:not([data-disabled]) {
-      &[data-selected] {
-        background-color: var(--echoes-color-background-selected-weak-default);
+    cursor: pointer;
+  }
 
-        &[data-hovered] {
-          background-color: var(--echoes-color-background-selected-weak-hover);
-        }
-      }
-
-      &[data-hovered] {
-        background-color: var(--echoes-color-background-default-hover);
-      }
-    }
-
-    &[data-disabled] {
-      color: var(--echoes-color-text-disabled);
-    }
+  .echoes-select-option:not([data-combobox-disabled]):hover &,
+  .echoes-select-option:not([data-combobox-disabled])[data-combobox-selected] & {
+    background-color: var(--echoes-color-background-default-hover);
+  }
+  .echoes-select-option:not([data-combobox-disabled])[data-combobox-active] & {
+    background-color: var(--echoes-color-background-selected-weak-default);
+  }
+  .echoes-select-option:not([data-combobox-disabled])[data-combobox-active]:hover &,
+  .echoes-select-option:not([data-combobox-disabled])[data-combobox-active][data-combobox-selected]
+    & {
+    background-color: var(--echoes-color-background-selected-weak-hover);
+  }
+  .echoes-select-option[data-combobox-disabled] & {
+    color: var(--echoes-color-text-disabled);
   }
 `;
 SelectItemWrapper.displayName = 'SelectItemWrapper';
@@ -140,14 +117,15 @@ const SelectItemHelpText = styled.span`
   font: var(--echoes-typography-paragraph-small-regular);
   color: var(--echoes-color-text-subdued);
 
-  [data-disabled] & {
+  .echoes-select-option[data-combobox-disabled] & {
     color: var(--echoes-color-text-disabled);
   }
 `;
 SelectItemHelpText.displayName = 'SelectItemHelpText';
 
-interface SelectItemStatusProps extends Pick<SelectOption, 'selected'> {
+interface SelectItemStatusProps {
   optionType: SelectOptionType;
+  checked?: boolean;
 }
 
 // Checkmark icon or Radio input icon in front of the select item
@@ -155,11 +133,11 @@ function SelectItemStatus(props: Readonly<SelectItemStatusProps>) {
   if (props.optionType === SelectOptionType.Radio) {
     return (
       <SelectItemStatusStyled>
-        <SelectItemSatusRadio {...(props.selected ? { 'data-selected': true } : {})} />
+        <SelectItemStatusRadio {...(props.checked ? { 'data-selected': true } : {})} />
       </SelectItemStatusStyled>
     );
   }
-  return <SelectItemStatusStyled>{props.selected && <IconCheck />}</SelectItemStatusStyled>;
+  return <SelectItemStatusStyled>{props.checked && <IconCheck />}</SelectItemStatusStyled>;
 }
 
 // Wrapper around the Checkmark icon or Radio input icon
@@ -170,14 +148,14 @@ const SelectItemStatusStyled = styled.div`
   font: var(--echoes-typography-paragraph-small-regular);
   color: var(--echoes-color-icon-selected);
 
-  [data-disabled] & {
+  .echoes-select-option[data-combobox-disabled] & {
     color: var(--echoes-color-icon-disabled);
   }
 `;
 SelectItemStatusStyled.displayName = 'SelectItemStatusStyled';
 
 // Radio input icon in from of the select item for Radio optionType
-const SelectItemSatusRadio = styled.div`
+const SelectItemStatusRadio = styled.div`
   box-sizing: border-box;
   height: var(--echoes-dimension-height-400);
   width: var(--echoes-dimension-width-200);
@@ -205,7 +183,7 @@ const SelectItemSatusRadio = styled.div`
     }
   }
 
-  [data-disabled] & {
+  .echoes-select-option[data-combobox-disabled] & {
     background-color: var(--echoes-color-background-disabled);
     border-color: var(--echoes-color-border-disabled);
     border-width: var(--echoes-border-width-default);
@@ -216,26 +194,4 @@ const SelectItemSatusRadio = styled.div`
     }
   }
 `;
-SelectItemSatusRadio.displayName = 'SelectItemSatusRadio';
-
-/**
- == Mantine Select structure & css class reference ==
-
-dropdown	    .mantine-Select-dropdown	        Dropdown element
-item	        .mantine-Select-item	            Item element, rendered inside dropdown
-nothingFound	.mantine-Select-nothingFound	    Nothing found label
-separator	    .mantine-Select-separator	        Divider wrapper
-separatorLabel	.mantine-Select-separatorLabel	Separator Label
-itemsWrapper	.mantine-Select-itemsWrapper	    Wraps all items in dropdown
-
-wrapper	      .mantine-Select-wrapper	          Root Input element
-root	        .mantine-Select-root	            Root element
-icon	        .mantine-Select-icon	            Input icon wrapper on the left side of the input, controlled by icon prop
-input	        .mantine-Select-input	            Main input element
-rightSection	.mantine-Select-rightSection	    Input right section, controlled by rightSection prop
-
-label	        .mantine-Select-label	            Label element styles, defined by label prop
-error	        .mantine-Select-error	            Error element styles, defined by error prop
-description	  .mantine-Select-description	      Description element styles, defined by description prop
-required	    .mantine-Select-required	        Required asterisk element styles, defined by required prop
- */
+SelectItemStatusRadio.displayName = 'SelectItemStatusRadio';

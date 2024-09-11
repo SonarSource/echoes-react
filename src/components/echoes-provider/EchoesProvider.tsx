@@ -19,6 +19,7 @@
  */
 
 import { Global } from '@emotion/react';
+import { HeadlessMantineProvider } from '@mantine/core';
 import { ComponentProps, PropsWithChildren } from 'react';
 import { TooltipProvider } from '..';
 import { globalSelectStyles } from '../select/SelectCommons';
@@ -33,7 +34,9 @@ export function EchoesProvider(props: PropsWithChildren<Props>) {
   return (
     <>
       <Global styles={globalSelectStyles} />
-      <TooltipProvider delayDuration={tooltipsDelayDuration}>{children}</TooltipProvider>
+      <TooltipProvider delayDuration={tooltipsDelayDuration}>
+        <HeadlessMantineProvider>{children}</HeadlessMantineProvider>
+      </TooltipProvider>
     </>
   );
 }

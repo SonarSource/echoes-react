@@ -18,69 +18,49 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import { SelectProps as MantineSelectProps } from '@mantine/core';
 import { forwardRef, useCallback, useRef } from 'react';
 import { PropsWithLabels } from '~types/utils';
 import { SelectBase, SelectBaseProps } from './SelectCommons';
 import { SelectOption } from './SelectTypes';
 
-interface Props extends Omit<SelectBaseProps, 'filter' | 'isSearchable'> {
-  onSearch: MantineSelectProps['onSearchChange'];
-}
+type Props = Omit<SelectBaseProps, 'filter' | 'isSearchable' | 'onSearch'> &
+  Required<Pick<SelectBaseProps, 'onSearch'>>;
 
 export const SelectAsync = forwardRef<HTMLInputElement, PropsWithLabels<Props>>((props, ref) => {
-  const {
-    data,
-    onChange,
-    onSearch,
-    value,
+  const { onChange, onSearch, value, ...selectProps } = props;
 
-    ...selectProps
-  } = props;
-
-  const previousQuery = useRef<string>();
-  const valueRef = useRef<string | null>();
+  const previousSearchQuery = useRef<string>();
+  const selectedOptionRef = useRef<SelectOption | null>();
 
   const handleSearch = useCallback(
-    (query: string) => {
+    (searchQuery: string) => {
       // Avoid repeated queries (this callback is triggered repeatedly with the same query)
-      const queryIsRepeated = query === previousQuery.current;
-
+      const queryIsRepeated = searchQuery === previousSearchQuery.current;
       if (onSearch === undefined || queryIsRepeated) {
         return;
       }
 
-      /*
-       * Prevent search from being triggered when we select a value
-       * Explanation: When selecting an option, onSearchChange is triggered
-       * with the selected option's *label*.
-       * So we get the selected option (`find` the one that matches the current value)
-       * and get its label.
-       */
-      const selectedOptionLabel = getItemLabel(
-        data.find((item) => getItemValue(item) === valueRef.current),
-      );
+      // Prevent search from being triggered when we select a value
+      const searchQueryIsCurrentOptionLabel = searchQuery === selectedOptionRef.current?.label;
 
-      const queryIsCurrentOptionLabel = query === selectedOptionLabel;
-
-      if (!queryIsCurrentOptionLabel) {
-        previousQuery.current = query;
-        onSearch(query);
+      if (!searchQueryIsCurrentOptionLabel) {
+        previousSearchQuery.current = searchQuery;
+        onSearch(searchQuery);
       }
     },
-    [data, onSearch],
+    [onSearch],
   );
 
   const handleChange = useCallback(
-    (value: string | null) => {
+    (value: string | null, option: SelectOption) => {
       /*
        * Current selected option value is saved to prevent the search
        * from being triggered when we select a value. (See comment above `selectedOptionLabel`)
        */
-      valueRef.current = value;
+      selectedOptionRef.current = option;
 
       if (onChange) {
-        onChange(value);
+        onChange(value, option);
       }
     },
     [onChange],
@@ -88,7 +68,6 @@ export const SelectAsync = forwardRef<HTMLInputElement, PropsWithLabels<Props>>(
 
   return (
     <SelectBase
-      data={data}
       filter={() => true} // Filtering is done on search
       isSearchable
       onChange={handleChange}
@@ -100,19 +79,3 @@ export const SelectAsync = forwardRef<HTMLInputElement, PropsWithLabels<Props>>(
   );
 });
 SelectAsync.displayName = 'SelectAsync';
-
-const getItemValue = (item: SelectOption | string | undefined) => {
-  if (item === undefined || typeof item === 'string') {
-    return item;
-  }
-
-  return item.value;
-};
-
-const getItemLabel = (item: SelectOption | string | undefined) => {
-  if (item === undefined || typeof item === 'string') {
-    return item;
-  }
-
-  return item.label;
-};

@@ -44,14 +44,12 @@ export type DropdownMenuItemBaseProps = CheckProps & {
   suffix?: ReactNode;
 };
 
+type FunctionChild = (data: {
+  getStyledItemContents: ({ label }: { label: ReactNode }) => ReactNode;
+}) => ReactNode;
+
 type Props = Omit<DropdownMenuItemBaseProps, 'children'> & {
-  children:
-    | ReactNode
-    | (({
-        getStyledItemContents,
-      }: {
-        getStyledItemContents: ({ label }: { label: ReactNode }) => ReactNode;
-      }) => ReactNode);
+  children: ReactNode | FunctionChild;
 };
 
 export const DropdownMenuItemBase = forwardRef<HTMLDivElement, Props>((props, ref) => {

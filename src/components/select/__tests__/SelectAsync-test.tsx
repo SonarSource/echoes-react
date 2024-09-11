@@ -43,21 +43,22 @@ it('should behave as expected', async () => {
     />,
   );
 
-  await expect(container).toHaveNoA11yViolations();
+  await user.click(screen.getByRole('textbox', { name: 'select' }));
 
-  await user.click(screen.getByLabelText('select'));
-
+  expect(screen.getByRole('listbox')).toBeInTheDocument();
   expect(screen.getAllByRole('option')).toHaveLength(4);
 
-  await user.type(screen.getByLabelText('select'), 'ad');
+  await expect(container).toHaveNoA11yViolations();
+
+  await user.type(screen.getByRole('textbox', { name: 'select' }), 'ad');
 
   expect(onSearch).toHaveBeenCalledTimes(3); // initial, 'a', and 'ad'
   expect(onSearch).toHaveBeenLastCalledWith('ad');
 
   onSearch.mockClear();
 
-  await user.click(screen.getByRole('option', { name: 'oh, no!' }));
+  await user.click(screen.getByRole('option', { name: 'salad' }));
 
-  expect(onChange).toHaveBeenLastCalledWith('o-no');
+  expect(onChange).toHaveBeenLastCalledWith('o-salad', data[2]);
   expect(onSearch).not.toHaveBeenCalled();
 });
