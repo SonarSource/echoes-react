@@ -17,11 +17,10 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-
-import { Avatar, SelectItem } from '@mantine/core';
 import type { Meta, StoryObj } from '@storybook/react';
 import { ComponentProps, useCallback, useState } from 'react';
-import { SelectAsync } from '../../src/components/select';
+import { IconPeople } from '../../src/components/icons';
+import { SelectAsync, SelectOption } from '../../src/components/select';
 
 const meta: Meta<typeof SelectAsync> = {
   component: SelectAsync,
@@ -101,10 +100,10 @@ function Wrapper({ args }: Props) {
   );
 }
 
-function SelectItemComponent({ label }: SelectItem) {
+function SelectItemComponent({ label }: Readonly<SelectOption>) {
   return (
     <>
-      <Avatar />
+      <IconPeople />
       <span>{label}</span> <br />
       <span>This is an item!</span>
     </>

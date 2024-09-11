@@ -20,23 +20,23 @@
 
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import { CSSObject, Select as MantineSelect } from '@mantine/core';
-import { ComponentProps, forwardRef, useContext } from 'react';
+import { Select as MantineSelect, SelectProps as MantineSelectProps } from '@mantine/core';
+import { forwardRef, useContext } from 'react';
 import { useIntl } from 'react-intl';
 import { isDefined } from '~common/helpers/types';
 import { PropsWithLabels } from '~types/utils';
-import { IconChevronDown, Spinner } from '..';
+import { IconChevronDown, IconX, Spinner } from '..';
 import { PortalContext } from '../../common/components/PortalContext';
 import { INPUT_SIZE_VALUES, InputSize } from '../../utils/inputs';
-import { useSelectItemComponent } from './SelectItemCommons';
-import { SelectHighlight, SelectOption, SelectOptionType } from './SelectTypes';
+import { OptionComponent, useSelectOptionFunction } from './SelectItemCommons';
+import { SelectData, SelectHighlight, SelectOption, SelectOptionType } from './SelectTypes';
+import { SelectFilterFunction, useSelectOptionFilter } from './useSelectOptionFilter';
 
-type MantineSelectProps = ComponentProps<typeof MantineSelect>;
 export interface SelectBaseProps {
   className?: string;
-  data: ReadonlyArray<SelectOption>;
+  data: SelectData;
   defaultValue?: MantineSelectProps['defaultValue'];
-  filter?: MantineSelectProps['filter'];
+  filter?: SelectFilterFunction;
   hasDropdownAutoWidth?: boolean;
   hasError?: boolean;
   highlight?: SelectHighlight;
@@ -46,74 +46,19 @@ export interface SelectBaseProps {
   isSearchable?: boolean;
   isRequired?: boolean;
   labelError?: MantineSelectProps['error'];
-  labelNotFound?: MantineSelectProps['nothingFound'];
+  labelNotFound?: MantineSelectProps['nothingFoundMessage'];
   limit?: MantineSelectProps['limit'];
   name?: MantineSelectProps['name'];
-  optionComponent?: (selectItemOptions: SelectOption) => React.JSX.Element | null;
+  optionComponent?: OptionComponent;
   optionType?: SelectOptionType;
-  onChange: MantineSelectProps['onChange'];
+  onChange: (value: string | null, option: SelectOption) => void;
   onOpen?: MantineSelectProps['onDropdownOpen'];
   onSearch?: MantineSelectProps['onSearchChange'];
   placeholder?: MantineSelectProps['placeholder'];
   size?: InputSize;
   value: MantineSelectProps['value'];
-  valueIcon?: MantineSelectProps['icon'];
+  valueIcon?: MantineSelectProps['leftSection'];
 }
-
-/*
- * These styles are meant for the dropdown part of the select, which can be portalled.
- * In that case, they aren't children of the root component, so they aren't scoped to the SelectStyled
- * wrapper below.
- * Instead, these styles are added as Global emotion styles in the EchoesProvider.
- */
-export const globalSelectStyles = css`
-  // Dropdown element - wrapper around the select items
-  .mantine-Select-dropdown {
-    padding: var(--echoes-dimension-space-100) var(--echoes-dimension-space-0);
-
-    background-color: var(--echoes-color-background-default);
-    border: var(--echoes-border-width-default) solid var(--echoes-color-border-weak);
-    border-radius: var(--echoes-border-radius-400);
-
-    box-shadow: var(--echoes-box-shadow-medium);
-
-    & .mantine-Select-itemsWrapper {
-      padding: var(--echoes-dimension-space-0);
-    }
-  }
-
-  // Inside the dropdown - Group header wrapper, contains a divider and a label
-  .mantine-Select-separator {
-    display: flex;
-    flex-direction: column;
-    padding: var(--echoes-dimension-space-0);
-  }
-
-  // Inside the dropdown - Group header label
-  .mantine-Select-separatorLabel {
-    padding: var(--echoes-dimension-space-50) var(--echoes-dimension-space-200)
-      var(--echoes-dimension-space-100);
-
-    font: var(--echoes-typography-paragraph-small-semi-bold);
-    color: var(--echoes-color-text-default);
-
-    &::after {
-      display: none;
-    }
-  }
-
-  // Inside the dropdown - Adds a divider between an Item element and the following Group header
-  .mantine-Select-item + .mantine-Select-separator {
-    &::before {
-      content: '';
-
-      flex: 1;
-      padding: var(--echoes-dimension-space-25) var(--echoes-dimension-space-0);
-
-      border-top: var(--echoes-border-width-default) solid var(--echoes-color-border-weak);
-    }
-  }
-`;
 
 export const SelectBase = forwardRef<HTMLInputElement, PropsWithLabels<SelectBaseProps>>(
   (props, ref) => {
@@ -121,6 +66,7 @@ export const SelectBase = forwardRef<HTMLInputElement, PropsWithLabels<SelectBas
       ariaLabel,
       ariaLabelledBy,
       data,
+      filter,
       hasDropdownAutoWidth = false,
       hasError = false,
       helpText,
@@ -143,11 +89,11 @@ export const SelectBase = forwardRef<HTMLInputElement, PropsWithLabels<SelectBas
     } = props;
 
     const intl = useIntl();
-
     const portalContext = useContext(PortalContext);
+    const optionsFilter = useSelectOptionFilter(filter);
+    const optionRenderer = useSelectOptionFunction(optionComponent, optionType);
 
-    const itemComponent = useSelectItemComponent(optionComponent, optionType);
-    const isClearable = !isNotClearable && !isRequired;
+    const isClearable = !isNotClearable && !isRequired && !isDisabled;
 
     const rightSection = getSelectRightSection({
       hasValue: isDefined(selectProps.value),
@@ -155,16 +101,16 @@ export const SelectBase = forwardRef<HTMLInputElement, PropsWithLabels<SelectBas
       isClearable,
     });
 
-    // Necessary to allow click events to go through and trigger the dropdown to open
-    const rightSectionStyles: CSSObject | undefined = isDefined(rightSection)
-      ? { pointerEvents: 'none' }
-      : undefined;
-
     return (
       <SelectStyled
         allowDeselect={isClearable}
         aria-label={ariaLabel}
         aria-labelledby={ariaLabelledBy}
+        classNames={
+          hasDropdownAutoWidth
+            ? { ...SELECT_CLASSNAMES, dropdown: 'echoes-select-dropdown-auto-width' }
+            : SELECT_CLASSNAMES
+        }
         clearButtonProps={
           isClearable
             ? {
@@ -174,36 +120,39 @@ export const SelectBase = forwardRef<HTMLInputElement, PropsWithLabels<SelectBas
                   description:
                     'Screen reader-only text to indicate that the select field can be cleared with a button',
                 }),
+                className: 'echoes-select-close-button',
+                icon: <IconX />,
               }
             : {}
         }
         clearable={isClearable}
+        comboboxProps={{
+          portalProps: {
+            target: portalContext.portalReference,
+          },
+          withinPortal: isDefined(portalContext.portalReference),
+        }}
         data={data}
         data-variant={highlight}
         description={helpText}
         disabled={isDisabled}
         error={labelError ?? hasError}
-        hasDropdownAutoWidth={hasDropdownAutoWidth}
-        icon={valueIcon}
-        inputSize={size}
-        itemComponent={itemComponent}
+        filter={optionsFilter}
         label={label}
-        nothingFound={labelNotFound}
+        leftSection={valueIcon}
+        nothingFoundMessage={labelNotFound}
         onDropdownOpen={onOpen}
         onSearchChange={onSearch}
-        portalProps={{
-          target: portalContext.portalReference,
-        }}
         ref={ref}
+        renderOption={optionRenderer}
         required={isRequired}
         rightSection={rightSection}
+        rightSectionPointerEvents={isDefined(rightSection) ? 'none' : 'auto'} // Necessary to allow click events to go through and trigger the dropdown to open
         searchable={isSearchable}
-        styles={{
-          rightSection: rightSectionStyles,
-          dropdown: hasDropdownAutoWidth ? { width: 'auto !important;' } : undefined,
-        }}
+        selectBaseInputSize={size}
         variant={highlight}
-        withinPortal={isDefined(portalContext.portalReference)}
+        withCheckIcon={false}
+        withScrollArea={false}
         {...selectProps}
       />
     );
@@ -212,68 +161,116 @@ export const SelectBase = forwardRef<HTMLInputElement, PropsWithLabels<SelectBas
 
 SelectBase.displayName = 'SelectBase';
 
-export const SelectStyled = styled(MantineSelect, {
-  shouldForwardProp: (prop) => !['hasDropdownAutoWidth', 'inputSize'].includes(prop),
-})<{ hasDropdownAutoWidth: boolean; inputSize: InputSize }>`
-  // Set the width of the whole input component and its dropdown
-  width: ${({ inputSize }) => INPUT_SIZE_VALUES[inputSize]};
+const SELECT_CLASSNAMES = {
+  wrapper: 'echoes-select-wrapper',
+  input: 'echoes-select-input',
+  section: 'echoes-select-input-section',
+  root: 'echoes-select-root',
+  label: 'echoes-select-label',
+  required: 'echoes-select-required',
+  description: 'echoes-select-description',
+  error: 'echoes-select-error',
+  dropdown: 'echoes-select-dropdown',
+  options: 'echoes-select-options-wrapper',
+  option: 'echoes-select-option',
+  empty: 'echoes-select-empty',
+  group: 'echoes-select-group',
+  groupLabel: 'echoes-select-group-label',
+};
 
-  // Root wrapper around the whole input
-  & .mantine-Select-wrapper {
-    margin: 0;
-  }
+export const SelectStyled = styled(MantineSelect, {
+  shouldForwardProp: (prop) => !['selectBaseInputSize'].includes(prop),
+})<{ selectBaseInputSize: InputSize }>`
+  // Set the width of the whole input component and its dropdown
+  width: ${({ selectBaseInputSize }) => INPUT_SIZE_VALUES[selectBaseInputSize]};
 
   // Label element styles, defined by label prop
-  & .mantine-Select-label {
+  & .echoes-select-label {
+    display: inline-block;
+    margin-bottom: var(--echoes-dimension-space-100);
+
     font: var(--echoes-typography-paragraph-default-semi-bold);
     color: var(--echoes-color-text-bold);
 
-    margin-bottom: var(--echoes-dimension-space-100);
+    word-break: break-word;
   }
 
   // Description element styles, defined by description prop
-  & .mantine-Select-description {
+  & .echoes-select-description {
     font: var(--echoes-typography-paragraph-small-regular);
     color: var(--echoes-color-text-subdued);
 
     margin-top: calc(-1 * var(--echoes-dimension-space-50));
     margin-bottom: var(--echoes-dimension-space-100);
+
+    word-break: break-word;
   }
 
   // Required asterisk element styles, defined by required prop
-  & .mantine-Select-required {
+  & .echoes-select-required {
     font: var(--echoes-typography-paragraph-default-medium);
     color: var(--echoes-color-text-danger);
   }
 
   // Error element styles, defined by error prop
-  & .mantine-Select-error {
+  & .echoes-select-error {
     font: var(--echoes-typography-paragraph-default-regular);
     color: var(--echoes-color-text-danger);
 
     margin-top: var(--echoes-dimension-space-100);
+    margin-bottom: var(--echoes-dimension-space-0);
+
+    word-break: break-word;
+  }
+
+  // Wrapper around the input
+  & .echoes-select-wrapper {
+    position: relative;
+    margin: 0;
+
+    &:not([data-disabled])[data-pointer='true'] {
+      &,
+      & .echoes-select-input {
+        cursor: pointer;
+      }
+    }
+
+    &[data-with-left-section] .echoes-select-input {
+      padding-left: var(--echoes-dimension-space-400);
+    }
+
+    &[data-with-right-section] .echoes-select-input {
+      padding-right: var(--echoes-dimension-space-300);
+    }
   }
 
   // Main input element, with styling for the default and ghost highlight and the different states
-  & .mantine-Select-input {
+  & .echoes-select-input {
+    display: block;
     box-sizing: border-box;
+    height: var(--echoes-dimension-height-900);
+    min-height: var(--echoes-dimension-height-900);
+    width: var(--echoes-sizes-inputs-full);
+    padding: var(--echoes-dimension-space-100);
+    padding-left: var(--echoes-dimension-space-150);
 
     font: var(--echoes-typography-paragraph-default-regular);
     color: var(--echoes-color-text-bold);
-
-    padding: var(--echoes-dimension-space-100);
-    padding-left: var(--echoes-dimension-space-150);
+    text-align: left;
+    text-overflow: ellipsis;
 
     background-color: var(--echoes-color-background-default);
     border: var(--echoes-border-width-default) solid var(--echoes-color-border-bold);
     border-radius: var(--echoes-border-radius-400);
+
+    transition: border-color 100ms;
 
     &[data-variant='unstyled'],
     &[data-variant='unstyled'][data-disabled] {
       border-color: transparent;
     }
 
-    &[data-invalid] {
+    &[data-error] {
       border-color: var(--echoes-color-border-danger);
     }
 
@@ -284,10 +281,6 @@ export const SelectStyled = styled(MantineSelect, {
     &:focus,
     &:focus-visible {
       outline: var(--echoes-color-focus-default) solid var(--echoes-focus-border-width-default);
-    }
-
-    &[data-with-icon] {
-      padding-left: var(--echoes-dimension-space-400);
     }
 
     &::placeholder {
@@ -304,34 +297,138 @@ export const SelectStyled = styled(MantineSelect, {
     }
   }
 
-  // Input icon wrapper on the left side of the input, controlled by icon prop
-  & .mantine-Select-icon,
-  // Input right section, controlled by rightSection prop
-  & .mantine-Select-rightSection {
+  // Input left and right sections
+  & .echoes-select-input-section {
     color: var(--echoes-color-icon-subdued);
+
+    position: absolute;
+    top: 0;
+    bottom: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: var(--echoes-dimension-width-450);
+
+    pointer-events: none;
+
+    &[data-position='left'] {
+      left: 0;
+    }
+
+    &[data-position='right'] {
+      right: 0;
+
+      // Clear button
+      & .echoes-select-close-button {
+        appearance: none;
+
+        box-sizing: border-box;
+        height: var(--echoes-dimension-height-600);
+        min-height: var(--echoes-dimension-height-600);
+        width: var(--echoes-dimension-width-300);
+        min-width: var(--echoes-dimension-width-300);
+        padding: var(--echoes-dimension-space-50);
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        font: var(--echoes-typography-paragraph-small-regular);
+        background-color: var(--echoes-color-background-transparent);
+        color: var(--echoes-color-icon-subdued);
+
+        border: none;
+        border-radius: var(--echoes-border-radius-200);
+
+        cursor: pointer;
+        pointer-events: auto;
+
+        &:hover {
+          background-color: var(--echoes-color-background-default-hover);
+        }
+
+        &:focus,
+        &:focus-visible {
+          outline: var(--echoes-color-focus-default) solid var(--echoes-focus-border-width-default);
+          outline-offset: var(--echoes-focus-border-offset-default);
+          border-radius: var(--echoes-border-radius-200);
+        }
+      }
+    }
   }
 
-  // Input right section icon when the input is disabled
-  & .mantine-Select-wrapper:has(input:disabled) .mantine-Input-rightSection {
-    display: flex;
+  // Input left and right sections icons when the input is disabled
+  & .echoes-select-wrapper[data-disabled] .echoes-select-input-section {
     color: var(--echoes-color-icon-disabled);
   }
+`;
 
-  // Clear button
-  & .mantine-CloseButton-root {
-    color: var(--echoes-color-icon-subdued);
-    border-radius: var(--echoes-border-radius-200);
+/*
+ * These styles are meant for the dropdown part of the select, which can be portalled.
+ * In that case, they aren't children of the root component, so they aren't scoped to the SelectStyled
+ * wrapper below.
+ * Instead, these styles are added as Global emotion styles in the EchoesProvider.
+ */
+export const globalSelectStyles = css`
+  // Dropdown element - wrapper around the select items
+  .echoes-select-dropdown,
+  .echoes-select-dropdown-auto-width {
+    position: absolute;
 
-    &:hover {
-      background-color: var(--echoes-color-background-default-hover);
+    overflow: hidden;
+
+    background-color: var(--echoes-color-background-default);
+    border: var(--echoes-border-width-default) solid var(--echoes-color-border-weak);
+    border-radius: var(--echoes-border-radius-400);
+
+    box-shadow: var(--echoes-box-shadow-medium);
+
+    & .echoes-select-options-wrapper {
+      max-height: 250px;
+      overflow-y: auto;
+
+      padding: var(--echoes-dimension-space-100) var(--echoes-dimension-space-0);
     }
+  }
 
-    &:focus,
-    &:focus-visible {
-      outline: var(--echoes-color-focus-default) solid var(--echoes-focus-border-width-default);
-      outline-offset: var(--echoes-focus-border-offset-default);
-      border-radius: var(--echoes-border-radius-200);
-    }
+  .echoes-select-dropdown-auto-width {
+    width: auto !important; // We need to override the element width set by Mantine
+  }
+
+  // Inside the dropdown - Group wrapper, contains a group label and all the items of a group
+  .echoes-select-group {
+    display: flex;
+    flex-direction: column;
+    padding: var(--echoes-dimension-space-0);
+  }
+
+  // Inside the dropdown - Group header label
+  .echoes-select-group-label {
+    padding: var(--echoes-dimension-space-50) var(--echoes-dimension-space-200)
+      var(--echoes-dimension-space-100);
+
+    font: var(--echoes-typography-paragraph-small-semi-bold);
+    color: var(--echoes-color-text-default);
+  }
+
+  // Inside the dropdown - Adds a divider between two groups
+  .echoes-select-group + .echoes-select-group::before {
+    content: '';
+
+    flex: 1;
+    padding: var(--echoes-dimension-space-25) var(--echoes-dimension-space-0);
+
+    border-top: var(--echoes-border-width-default) solid var(--echoes-color-border-weak);
+  }
+
+  .echoes-select-empty {
+    font: var(--echoes-typography-paragraph-small-regular);
+    color: var(--echoes-color-text-subdued);
+    text-align: center;
+
+    padding: var(--echoes-dimension-space-50) var(--echoes-dimension-space-0);
   }
 `;
 

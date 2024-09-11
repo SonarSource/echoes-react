@@ -21,7 +21,7 @@
 import { screen } from '@testing-library/react';
 import { ComponentProps } from 'react';
 import { OmitPropsWithLabels, render } from '~common/helpers/test-utils';
-import { Select } from '..';
+import { Select, SelectOptionType } from '..';
 
 describe('it should correctly handle the clearable state', () => {
   const clearLabel = 'Clear select field';
@@ -48,10 +48,10 @@ describe('it should correctly handle the clearable state', () => {
   });
 });
 
-it('should display options', async () => {
-  const { user } = setupSelect({ ariaLabel: 'my-select' });
+it('should display options with radio style', async () => {
+  const { user } = setupSelect({ ariaLabel: 'my-select', optionType: SelectOptionType.Radio });
 
-  await user.click(screen.getByRole('searchbox'));
+  await user.click(screen.getByRole('textbox'));
 
   expect(screen.getAllByRole('option')).toHaveLength(3);
 });

@@ -32,19 +32,29 @@ export default meta;
 type Story = StoryObj<typeof Select>;
 
 const data = [
-  { value: '1', label: 'cheese', group: 'good', suffix: <IconBell /> },
-  { value: '2', label: 'bread', group: 'good', prefix: <IconBug />, helpText: 'boooh' },
-  { value: '3', label: 'salad', group: 'bad', helpText: 'this is a helper text' },
   {
-    value: '4',
-    label: 'no',
-    group: 'bad',
-    disabled: true,
-    helpText: 'I help express loudly that NO!',
-    suffix: <IconMegaphone />,
+    group: 'good',
+    items: [
+      { value: '1', label: 'cheese', suffix: <IconBell /> },
+      { value: '2', label: 'bread', prefix: <IconBug />, helpText: 'boooh' },
+    ],
   },
-  { value: '5', label: 'tomatoes', group: 'bad' },
-  { value: '6', label: 'carrots', group: 'bad' },
+  {
+    group: 'bad',
+    items: [
+      { value: '3', label: 'salad', helpText: 'this is a helper text' },
+      {
+        value: '4',
+        label: 'no',
+        disabled: true,
+        helpText: 'I help express loudly that NO!',
+        suffix: <IconMegaphone />,
+      },
+      { value: '5', label: 'tomatoes' },
+      { value: '6', label: 'carrots' },
+      { value: '7', label: 'carrots with a super long name' },
+    ],
+  },
 ];
 
 export const Default: Story = {
@@ -64,10 +74,13 @@ export const CustomFiltering: Story = {
   args: {
     label: 'my label',
     labelError: '0o0o0o0o0psies',
+    labelNotFound: 'no results',
     helpText: 'this is a helper text',
     data,
     valueIcon: <IconBell />,
-    filter: (query, { group }) => query.length === 0 || Boolean(group?.includes(query)),
+    filter: ({ option, search }) =>
+      option.label.includes(search) ||
+      (typeof option.helpText === 'string' && option.helpText.includes(search)),
     isSearchable: true,
     optionComponent: Custom,
   },

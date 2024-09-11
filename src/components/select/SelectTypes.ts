@@ -17,7 +17,7 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-import { SelectItem as MantineSelectItem } from '@mantine/core';
+import { ComboboxItem } from '@mantine/core';
 import { ReactNode } from 'react';
 
 export enum SelectHighlight {
@@ -30,8 +30,18 @@ export enum SelectOptionType {
   Radio = 'radio',
 }
 
-export interface SelectOption extends MantineSelectItem {
+export interface SelectOption extends ComboboxItem {
   prefix?: ReactNode;
   suffix?: ReactNode;
   helpText?: JSX.Element | string;
+  group?: never;
 }
+
+export interface SelectOptionGroup<T = SelectOption> {
+  group: string;
+  items: T[];
+}
+
+export type SelectData =
+  | Array<SelectOption | SelectOptionGroup>
+  | ReadonlyArray<SelectOption | SelectOptionGroup>;
