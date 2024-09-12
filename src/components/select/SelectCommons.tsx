@@ -96,7 +96,7 @@ export const SelectBase = forwardRef<HTMLInputElement, PropsWithLabels<SelectBas
     const isClearable = !isNotClearable && !isRequired && !isDisabled;
 
     const rightSection = getSelectRightSection({
-      hasValue: isDefined(selectProps.value),
+      hasValue: isDefined(selectProps.value) && selectProps.value !== '',
       isLoading,
       isClearable,
     });
