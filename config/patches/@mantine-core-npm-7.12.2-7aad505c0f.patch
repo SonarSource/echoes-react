@@ -1,0 +1,26 @@
+diff --git a/cjs/components/Select/Select.cjs b/cjs/components/Select/Select.cjs
+index a12159b72324cb3604e49bc2e260fb3eb15032c3..789f11a6ff44969781c2955f781a1e976a167b6d 100644
+--- a/cjs/components/Select/Select.cjs
++++ b/cjs/components/Select/Select.cjs
+@@ -174,7 +174,7 @@ const Select = factory.factory((_props, ref) => {
+         size,
+         ...comboboxProps,
+         children: [
+-          /* @__PURE__ */ jsxRuntime.jsx(Combobox.Combobox.Target, { targetType: searchable ? "input" : "button", autoComplete, children: /* @__PURE__ */ jsxRuntime.jsx(
++          /* @__PURE__ */ jsxRuntime.jsx(Combobox.Combobox.Target, { targetType: searchable ? "input" : "button", autoComplete, withExpandedAttribute: true, children: /* @__PURE__ */ jsxRuntime.jsx(
+             InputBase.InputBase,
+             {
+               id: _id,
+diff --git a/esm/components/Select/Select.mjs b/esm/components/Select/Select.mjs
+index 43237ede36d1bc4cef6fb6d202b52a355b967daa..cdcffa198f983bb9bab150df67e04a32aa66475c 100644
+--- a/esm/components/Select/Select.mjs
++++ b/esm/components/Select/Select.mjs
+@@ -172,7 +172,7 @@ const Select = factory((_props, ref) => {
+         size,
+         ...comboboxProps,
+         children: [
+-          /* @__PURE__ */ jsx(Combobox.Target, { targetType: searchable ? "input" : "button", autoComplete, children: /* @__PURE__ */ jsx(
++          /* @__PURE__ */ jsx(Combobox.Target, { targetType: searchable ? "input" : "button", autoComplete, withExpandedAttribute: true, children: /* @__PURE__ */ jsx(
+             InputBase,
+             {
+               id: _id,

@@ -148,6 +148,7 @@ export const SelectBase = forwardRef<HTMLInputElement, PropsWithLabels<SelectBas
         required={isRequired}
         rightSection={rightSection}
         rightSectionPointerEvents={isDefined(rightSection) ? 'none' : 'auto'} // Necessary to allow click events to go through and trigger the dropdown to open
+        role="combobox"
         searchable={isSearchable}
         selectBaseInputSize={size}
         variant={highlight}

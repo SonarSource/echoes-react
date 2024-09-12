@@ -43,14 +43,14 @@ it('should behave as expected', async () => {
     />,
   );
 
-  await user.click(screen.getByRole('textbox', { name: 'select' }));
+  await user.click(screen.getByRole('combobox', { name: 'select' }));
 
   expect(screen.getByRole('listbox')).toBeInTheDocument();
   expect(screen.getAllByRole('option')).toHaveLength(4);
 
   await expect(container).toHaveNoA11yViolations();
 
-  await user.type(screen.getByRole('textbox', { name: 'select' }), 'ad');
+  await user.type(screen.getByRole('combobox', { name: 'select' }), 'ad');
 
   expect(onSearch).toHaveBeenCalledTimes(3); // initial, 'a', and 'ad'
   expect(onSearch).toHaveBeenLastCalledWith('ad');

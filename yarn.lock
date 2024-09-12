@@ -2869,6 +2869,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@mantine/core@patch:@mantine/core@7.12.2#./config/patches/@mantine-core-npm-7.12.2-7aad505c0f.patch::locator=%40sonarsource%2Fechoes-react%40workspace%3A.":
+  version: 7.12.2
+  resolution: "@mantine/core@patch:@mantine/core@npm%3A7.12.2#./config/patches/@mantine-core-npm-7.12.2-7aad505c0f.patch::version=7.12.2&hash=cab555&locator=%40sonarsource%2Fechoes-react%40workspace%3A."
+  dependencies:
+    "@floating-ui/react": "npm:^0.26.9"
+    clsx: "npm:^2.1.1"
+    react-number-format: "npm:^5.3.1"
+    react-remove-scroll: "npm:^2.5.7"
+    react-textarea-autosize: "npm:8.5.3"
+    type-fest: "npm:^4.12.0"
+  peerDependencies:
+    "@mantine/hooks": 7.12.2
+    react: ^18.2.0
+    react-dom: ^18.2.0
+  checksum: 10/b4e483298f7f650235753dc034a12d85d7f055151e661f5e1d3a1b42c11849c930c8936516dccb633038866457e544a62b5c43ea2785e9f33ffa1af1de457002
+  languageName: node
+  linkType: hard
+
 "@mantine/hooks@npm:7.12.2":
   version: 7.12.2
   resolution: "@mantine/hooks@npm:7.12.2"
@@ -3893,7 +3911,7 @@ __metadata:
     "@emotion/styled": "npm:11.13.0"
     "@emotion/utils": "npm:1.4.0"
     "@formatjs/cli": "npm:6.2.12"
-    "@mantine/core": "npm:7.12.2"
+    "@mantine/core": "patch:@mantine/core@7.12.2#./config/patches/@mantine-core-npm-7.12.2-7aad505c0f.patch"
     "@mantine/hooks": "npm:7.12.2"
     "@material-symbols/font-400": "npm:0.23.0"
     "@radix-ui/react-alert-dialog": "npm:1.1.1"

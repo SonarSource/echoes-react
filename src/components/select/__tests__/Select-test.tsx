@@ -51,7 +51,7 @@ describe('it should correctly handle the clearable state', () => {
 it('should display options with radio style', async () => {
   const { user } = setupSelect({ ariaLabel: 'my-select', optionType: SelectOptionType.Radio });
 
-  await user.click(screen.getByRole('textbox'));
+  await user.click(screen.getByRole('combobox'));
 
   expect(screen.getAllByRole('option')).toHaveLength(3);
 });
