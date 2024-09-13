@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders as default 1`] = `
+.emotion-0 {
+  font: var(--echoes-typography-display-default);
+  color: var(--echoes-color-text-bold);
+}
+
+<span
+  class="emotion-0 emotion-1"
+>
+  hi there
+</span>
+`;
+
+exports[`renders as div 1`] = `
+.emotion-0 {
+  font: var(--echoes-typography-display-default);
+  color: var(--echoes-color-text-bold);
+}
+
+<div
+  class="emotion-0 emotion-1"
+>
+  hi there
+</div>
+`;
+
+exports[`renders as paragraph 1`] = `
+.emotion-0 {
+  font: var(--echoes-typography-display-default);
+  color: var(--echoes-color-text-bold);
+}
+
+<p
+  class="emotion-0 emotion-1"
+>
+  hi there
+</p>
+`;
+
+exports[`renders as span 1`] = `
+.emotion-0 {
+  font: var(--echoes-typography-display-default);
+  color: var(--echoes-color-text-bold);
+}
+
+<span
+  class="emotion-0 emotion-1"
+>
+  hi there
+</span>
+`;
