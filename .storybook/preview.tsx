@@ -32,6 +32,10 @@ const globalStyles = css`
     color: var(--echoes-color-text-default);
     background-color: var(--echoes-color-background-default);
   }
+
+  p {
+    margin: 0;
+  }
 `;
 
 const preview: Preview = {
