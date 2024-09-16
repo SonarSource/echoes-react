@@ -29,3 +29,7 @@ export type DesignTokensColors = {
 export type DesignTokensColorsIcons = {
   [K in DesignTokens]: K extends `echoes-color-icon-${string}` ? K : never;
 }[DesignTokens];
+
+export type DesignTokensColorsText = {
+  [K in DesignTokens]: K extends `echoes-color-text-${string}` ? K : never;
+}[DesignTokens];
