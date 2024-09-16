@@ -18,7 +18,20 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-export * from './Display';
-export * from './Heading';
-export * from './HelperText';
-export * from './Label';
+import { ComponentProps } from 'react';
+import { render } from '~common/helpers/test-utils';
+import { HelperText } from '../HelperText';
+
+it('renders correctly', () => {
+  const { container } = setupHelperText();
+
+  expect(container).toMatchSnapshot();
+});
+
+function setupHelperText(
+  { children, ...otherProps }: Partial<ComponentProps<typeof HelperText>> = {
+    children: 'The helper text',
+  },
+) {
+  return render(<HelperText {...otherProps}>{children}</HelperText>);
+}
