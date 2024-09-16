@@ -18,7 +18,23 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-export * from './Display';
-export * from './Heading';
-export * from './HelperText';
-export * from './Label';
+/* eslint-disable no-console */
+import type { Meta, StoryObj } from '@storybook/react';
+import { HelperText } from '../../src/components/typography/HelperText';
+import { basicWrapperDecorator } from '../helpers/BasicWrapper';
+
+const meta: Meta<typeof HelperText> = {
+  component: HelperText,
+  title: 'Echoes/Typography/HelperText',
+  decorators: [basicWrapperDecorator],
+};
+
+export default meta;
+
+type Story = StoryObj<typeof HelperText>;
+
+export const Default: Story = {
+  args: {
+    children: 'The helper text',
+  },
+};
