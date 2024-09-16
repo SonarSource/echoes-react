@@ -1,0 +1,393 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`default & regular renders as default 1`] = `
+.emotion-0 {
+  max-width: var(--echoes-sizes-typography-max-width-default);
+  font: var(--echoes-typography-text-default-regular);
+  color: var(--echoes-color-text-default);
+}
+
+<span
+  class="emotion-0 emotion-1"
+>
+  hi there
+</span>
+`;
+
+exports[`default & regular renders as div 1`] = `
+.emotion-0 {
+  max-width: var(--echoes-sizes-typography-max-width-default);
+  font: var(--echoes-typography-text-default-regular);
+  color: var(--echoes-color-text-default);
+}
+
+<div
+  class="emotion-0 emotion-1"
+>
+  hi there
+</div>
+`;
+
+exports[`default & regular renders as paragraph 1`] = `
+.emotion-0 {
+  max-width: var(--echoes-sizes-typography-max-width-default);
+  font: var(--echoes-typography-text-default-regular);
+  color: var(--echoes-color-text-default);
+}
+
+<p
+  class="emotion-0 emotion-1"
+>
+  hi there
+</p>
+`;
+
+exports[`default & regular renders as span 1`] = `
+.emotion-0 {
+  max-width: var(--echoes-sizes-typography-max-width-default);
+  font: var(--echoes-typography-text-default-regular);
+  color: var(--echoes-color-text-default);
+}
+
+<span
+  class="emotion-0 emotion-1"
+>
+  hi there
+</span>
+`;
+
+exports[`default & regular renders with size default 1`] = `
+.emotion-0 {
+  max-width: var(--echoes-sizes-typography-max-width-default);
+  font: var(--echoes-typography-text-default-regular);
+  color: var(--echoes-color-text-default);
+}
+
+<span
+  class="emotion-0 emotion-1"
+>
+  hi there
+</span>
+`;
+
+exports[`default & regular renders with size large 1`] = `
+.emotion-0 {
+  max-width: var(--echoes-sizes-typography-max-width-default);
+  font: var(--echoes-typography-text-large-regular);
+  color: var(--echoes-color-text-default);
+}
+
+<span
+  class="emotion-0 emotion-1"
+>
+  hi there
+</span>
+`;
+
+exports[`default & regular renders with size small 1`] = `
+.emotion-0 {
+  max-width: var(--echoes-sizes-typography-max-width-default);
+  font: var(--echoes-typography-text-small-medium);
+  color: var(--echoes-color-text-default);
+}
+
+<span
+  class="emotion-0 emotion-1"
+>
+  hi there
+</span>
+`;
+
+exports[`default & strong renders as default 1`] = `
+.emotion-0 {
+  max-width: var(--echoes-sizes-typography-max-width-default);
+  font: var(--echoes-typography-text-default-semi-bold);
+  color: var(--echoes-color-text-default);
+}
+
+<span
+  class="emotion-0 emotion-1"
+>
+  hi there
+</span>
+`;
+
+exports[`default & strong renders as div 1`] = `
+.emotion-0 {
+  max-width: var(--echoes-sizes-typography-max-width-default);
+  font: var(--echoes-typography-text-default-semi-bold);
+  color: var(--echoes-color-text-default);
+}
+
+<div
+  class="emotion-0 emotion-1"
+>
+  hi there
+</div>
+`;
+
+exports[`default & strong renders as paragraph 1`] = `
+.emotion-0 {
+  max-width: var(--echoes-sizes-typography-max-width-default);
+  font: var(--echoes-typography-text-default-semi-bold);
+  color: var(--echoes-color-text-default);
+}
+
+<p
+  class="emotion-0 emotion-1"
+>
+  hi there
+</p>
+`;
+
+exports[`default & strong renders as span 1`] = `
+.emotion-0 {
+  max-width: var(--echoes-sizes-typography-max-width-default);
+  font: var(--echoes-typography-text-default-semi-bold);
+  color: var(--echoes-color-text-default);
+}
+
+<span
+  class="emotion-0 emotion-1"
+>
+  hi there
+</span>
+`;
+
+exports[`default & strong renders with size default 1`] = `
+.emotion-0 {
+  max-width: var(--echoes-sizes-typography-max-width-default);
+  font: var(--echoes-typography-text-default-semi-bold);
+  color: var(--echoes-color-text-default);
+}
+
+<span
+  class="emotion-0 emotion-1"
+>
+  hi there
+</span>
+`;
+
+exports[`default & strong renders with size large 1`] = `
+.emotion-0 {
+  max-width: var(--echoes-sizes-typography-max-width-default);
+  font: var(--echoes-typography-text-large-semi-bold);
+  color: var(--echoes-color-text-default);
+}
+
+<span
+  class="emotion-0 emotion-1"
+>
+  hi there
+</span>
+`;
+
+exports[`default & strong renders with size small 1`] = `
+.emotion-0 {
+  max-width: var(--echoes-sizes-typography-max-width-default);
+  font: var(--echoes-typography-text-small-semi-bold);
+  color: var(--echoes-color-text-default);
+}
+
+<span
+  class="emotion-0 emotion-1"
+>
+  hi there
+</span>
+`;
+
+exports[`subdued & regular renders as default 1`] = `
+.emotion-0 {
+  max-width: var(--echoes-sizes-typography-max-width-default);
+  font: var(--echoes-typography-text-default-regular);
+  color: var(--echoes-color-text-subdued);
+}
+
+<span
+  class="emotion-0 emotion-1"
+>
+  hi there
+</span>
+`;
+
+exports[`subdued & regular renders as div 1`] = `
+.emotion-0 {
+  max-width: var(--echoes-sizes-typography-max-width-default);
+  font: var(--echoes-typography-text-default-regular);
+  color: var(--echoes-color-text-subdued);
+}
+
+<div
+  class="emotion-0 emotion-1"
+>
+  hi there
+</div>
+`;
+
+exports[`subdued & regular renders as paragraph 1`] = `
+.emotion-0 {
+  max-width: var(--echoes-sizes-typography-max-width-default);
+  font: var(--echoes-typography-text-default-regular);
+  color: var(--echoes-color-text-subdued);
+}
+
+<p
+  class="emotion-0 emotion-1"
+>
+  hi there
+</p>
+`;
+
+exports[`subdued & regular renders as span 1`] = `
+.emotion-0 {
+  max-width: var(--echoes-sizes-typography-max-width-default);
+  font: var(--echoes-typography-text-default-regular);
+  color: var(--echoes-color-text-subdued);
+}
+
+<span
+  class="emotion-0 emotion-1"
+>
+  hi there
+</span>
+`;
+
+exports[`subdued & regular renders with size default 1`] = `
+.emotion-0 {
+  max-width: var(--echoes-sizes-typography-max-width-default);
+  font: var(--echoes-typography-text-default-regular);
+  color: var(--echoes-color-text-subdued);
+}
+
+<span
+  class="emotion-0 emotion-1"
+>
+  hi there
+</span>
+`;
+
+exports[`subdued & regular renders with size large 1`] = `
+.emotion-0 {
+  max-width: var(--echoes-sizes-typography-max-width-default);
+  font: var(--echoes-typography-text-large-regular);
+  color: var(--echoes-color-text-subdued);
+}
+
+<span
+  class="emotion-0 emotion-1"
+>
+  hi there
+</span>
+`;
+
+exports[`subdued & regular renders with size small 1`] = `
+.emotion-0 {
+  max-width: var(--echoes-sizes-typography-max-width-default);
+  font: var(--echoes-typography-text-small-medium);
+  color: var(--echoes-color-text-subdued);
+}
+
+<span
+  class="emotion-0 emotion-1"
+>
+  hi there
+</span>
+`;
+
+exports[`subdued & strong renders as default 1`] = `
+.emotion-0 {
+  max-width: var(--echoes-sizes-typography-max-width-default);
+  font: var(--echoes-typography-text-default-semi-bold);
+  color: var(--echoes-color-text-subdued);
+}
+
+<span
+  class="emotion-0 emotion-1"
+>
+  hi there
+</span>
+`;
+
+exports[`subdued & strong renders as div 1`] = `
+.emotion-0 {
+  max-width: var(--echoes-sizes-typography-max-width-default);
+  font: var(--echoes-typography-text-default-semi-bold);
+  color: var(--echoes-color-text-subdued);
+}
+
+<div
+  class="emotion-0 emotion-1"
+>
+  hi there
+</div>
+`;
+
+exports[`subdued & strong renders as paragraph 1`] = `
+.emotion-0 {
+  max-width: var(--echoes-sizes-typography-max-width-default);
+  font: var(--echoes-typography-text-default-semi-bold);
+  color: var(--echoes-color-text-subdued);
+}
+
+<p
+  class="emotion-0 emotion-1"
+>
+  hi there
+</p>
+`;
+
+exports[`subdued & strong renders as span 1`] = `
+.emotion-0 {
+  max-width: var(--echoes-sizes-typography-max-width-default);
+  font: var(--echoes-typography-text-default-semi-bold);
+  color: var(--echoes-color-text-subdued);
+}
+
+<span
+  class="emotion-0 emotion-1"
+>
+  hi there
+</span>
+`;
+
+exports[`subdued & strong renders with size default 1`] = `
+.emotion-0 {
+  max-width: var(--echoes-sizes-typography-max-width-default);
+  font: var(--echoes-typography-text-default-semi-bold);
+  color: var(--echoes-color-text-subdued);
+}
+
+<span
+  class="emotion-0 emotion-1"
+>
+  hi there
+</span>
+`;
+
+exports[`subdued & strong renders with size large 1`] = `
+.emotion-0 {
+  max-width: var(--echoes-sizes-typography-max-width-default);
+  font: var(--echoes-typography-text-large-semi-bold);
+  color: var(--echoes-color-text-subdued);
+}
+
+<span
+  class="emotion-0 emotion-1"
+>
+  hi there
+</span>
+`;
+
+exports[`subdued & strong renders with size small 1`] = `
+.emotion-0 {
+  max-width: var(--echoes-sizes-typography-max-width-default);
+  font: var(--echoes-typography-text-small-semi-bold);
+  color: var(--echoes-color-text-subdued);
+}
+
+<span
+  class="emotion-0 emotion-1"
+>
+  hi there
+</span>
+`;
