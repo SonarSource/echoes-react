@@ -18,6 +18,23 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-export * from './Display';
-export * from './Heading';
-export * from './Label';
+/* eslint-disable no-console */
+import type { Meta, StoryObj } from '@storybook/react';
+import { Label } from '../../src/components/typography/Label';
+import { basicWrapperDecorator } from '../helpers/BasicWrapper';
+
+const meta: Meta<typeof Label> = {
+  component: Label,
+  title: 'Echoes/Typography/Label',
+  decorators: [basicWrapperDecorator],
+};
+
+export default meta;
+
+type Story = StoryObj<typeof Label>;
+
+export const Default: Story = {
+  args: {
+    children: 'The text of the label',
+  },
+};

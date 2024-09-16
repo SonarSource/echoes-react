@@ -18,6 +18,20 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-export * from './Display';
-export * from './Heading';
-export * from './Label';
+import { ComponentProps } from 'react';
+import { render } from '~common/helpers/test-utils';
+import { Label } from '../Label';
+
+it('renders correctly', () => {
+  const { container } = setupLabel();
+
+  expect(container).toMatchSnapshot();
+});
+
+function setupLabel(
+  { children, ...otherProps }: Partial<ComponentProps<typeof Label>> = {
+    children: 'The label text',
+  },
+) {
+  return render(<Label {...otherProps}>{children}</Label>);
+}
