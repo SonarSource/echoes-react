@@ -19,7 +19,7 @@
  */
 
 import styled from '@emotion/styled';
-import { ReactNode } from 'react';
+import { forwardRef, ReactNode } from 'react';
 import { ButtonIconStyled, ButtonStyled } from './ButtonStyles';
 
 interface ButtonGroupProps {
@@ -28,17 +28,15 @@ interface ButtonGroupProps {
   isCombined?: boolean;
 }
 
-export function ButtonGroup({
-  children,
-  className,
-  isCombined = false,
-}: Readonly<ButtonGroupProps>) {
-  if (isCombined) {
-    return <StyledCombinedButtonGroup className={className}>{children}</StyledCombinedButtonGroup>;
-  }
+export const ButtonGroup = forwardRef<HTMLSpanElement, Readonly<ButtonGroupProps>>(
+  ({ isCombined = false, ...props }, ref) =>
+    isCombined ? (
+      <StyledCombinedButtonGroup {...props} ref={ref} />
+    ) : (
+      <StyledButtonGroup {...props} ref={ref} />
+    ),
+);
 
-  return <StyledButtonGroup className={className}>{children}</StyledButtonGroup>;
-}
 ButtonGroup.displayName = 'ButtonGroup';
 
 const StyledButtonGroup = styled.span`

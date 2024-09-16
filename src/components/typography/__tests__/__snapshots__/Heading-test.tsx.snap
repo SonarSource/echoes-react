@@ -1,0 +1,171 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders a Heading as an h1 with no bottom margin 1`] = `
+.emotion-0 {
+  font: var(--echoes-typography-heading-xlarge);
+  margin: 0;
+}
+
+<div>
+  <h1
+    class="emotion-0 emotion-1"
+  >
+    This is a heading rendered as "h1" with no bottom margin
+  </h1>
+</div>
+`;
+
+exports[`renders a Heading as an h2 with no bottom margin 1`] = `
+.emotion-0 {
+  font: var(--echoes-typography-heading-large);
+  margin: 0;
+}
+
+<div>
+  <h2
+    class="emotion-0 emotion-1"
+  >
+    This is a heading rendered as "h2" with no bottom margin
+  </h2>
+</div>
+`;
+
+exports[`renders a Heading as an h3 with no bottom margin 1`] = `
+.emotion-0 {
+  font: var(--echoes-typography-heading-medium);
+  margin: 0;
+}
+
+<div>
+  <h3
+    class="emotion-0 emotion-1"
+  >
+    This is a heading rendered as "h3" with no bottom margin
+  </h3>
+</div>
+`;
+
+exports[`renders a Heading as an h4 with no bottom margin 1`] = `
+.emotion-0 {
+  font: var(--echoes-typography-heading-small);
+  margin: 0;
+}
+
+<div>
+  <h4
+    class="emotion-0 emotion-1"
+  >
+    This is a heading rendered as "h4" with no bottom margin
+  </h4>
+</div>
+`;
+
+exports[`renders a Heading as an h5 with no bottom margin 1`] = `
+.emotion-0 {
+  font: var(--echoes-typography-heading-xsmall);
+  margin: 0;
+}
+
+<div>
+  <h5
+    class="emotion-0 emotion-1"
+  >
+    This is a heading rendered as "h5" with no bottom margin
+  </h5>
+</div>
+`;
+
+exports[`renders a Heading with size large and a bottom margin 1`] = `
+.emotion-0 {
+  font: var(--echoes-typography-heading-large);
+  margin: 0;
+  margin-bottom: var(--echoes-dimension-space-200);
+}
+
+<div>
+  <div
+    class="emotion-0 emotion-1"
+  >
+    This is a heading with size "large" with a bottom margin
+  </div>
+</div>
+`;
+
+exports[`renders a Heading with size medium and a bottom margin 1`] = `
+.emotion-0 {
+  font: var(--echoes-typography-heading-medium);
+  margin: 0;
+  margin-bottom: var(--echoes-dimension-space-100);
+}
+
+<div>
+  <div
+    class="emotion-0 emotion-1"
+  >
+    This is a heading with size "medium" with a bottom margin
+  </div>
+</div>
+`;
+
+exports[`renders a Heading with size small and a bottom margin 1`] = `
+.emotion-0 {
+  font: var(--echoes-typography-heading-small);
+  margin: 0;
+  margin-bottom: var(--echoes-dimension-space-100);
+}
+
+<div>
+  <div
+    class="emotion-0 emotion-1"
+  >
+    This is a heading with size "small" with a bottom margin
+  </div>
+</div>
+`;
+
+exports[`renders a Heading with size xlarge and a bottom margin 1`] = `
+.emotion-0 {
+  font: var(--echoes-typography-heading-xlarge);
+  margin: 0;
+  margin-bottom: var(--echoes-dimension-space-250);
+}
+
+<div>
+  <div
+    class="emotion-0 emotion-1"
+  >
+    This is a heading with size "xlarge" with a bottom margin
+  </div>
+</div>
+`;
+
+exports[`renders a Heading with size xsmall and a bottom margin 1`] = `
+.emotion-0 {
+  font: var(--echoes-typography-heading-xsmall);
+  margin: 0;
+  margin-bottom: var(--echoes-dimension-space-100);
+}
+
+<div>
+  <div
+    class="emotion-0 emotion-1"
+  >
+    This is a heading with size "xsmall" with a bottom margin
+  </div>
+</div>
+`;
+
+exports[`uses the default size 1`] = `
+.emotion-0 {
+  font: var(--echoes-typography-heading-xlarge);
+  margin: 0;
+}
+
+<div>
+  <h1
+    class="emotion-0 emotion-1"
+  >
+    Text goes here
+  </h1>
+</div>
+`;
