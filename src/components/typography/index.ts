@@ -22,3 +22,4 @@ export * from './Display';
 export * from './Heading';
 export * from './HelperText';
 export * from './Label';
+export * from './Text';
