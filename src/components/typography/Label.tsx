@@ -18,6 +18,16 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-export * from './Display';
-export * from './Heading';
-export * from './Label';
+import styled from '@emotion/styled';
+
+interface Props {
+  as?: 'div' | 'label' | 'span';
+  className?: string;
+  for?: string;
+}
+
+export const Label = styled.label<Props>`
+  font: var(--echoes-typography-others-label);
+`;
+
+Label.displayName = 'Label';
