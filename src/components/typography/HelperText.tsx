@@ -18,7 +18,16 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-export * from './Display';
-export * from './Heading';
-export * from './HelperText';
-export * from './Label';
+import styled from '@emotion/styled';
+
+interface Props {
+  as?: 'div' | 'p' | 'span';
+  className?: string;
+  id?: string;
+}
+
+export const HelperText = styled.div<Props>`
+  font: var(--echoes-typography-others-helper-text);
+`;
+
+HelperText.displayName = 'HelperText';

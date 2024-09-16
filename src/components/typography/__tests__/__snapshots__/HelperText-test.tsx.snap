@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+.emotion-0 {
+  font: var(--echoes-typography-others-helper-text);
+}
+
+<div>
+  <div
+    class="emotion-0 emotion-1"
+  >
+    The helper text
+  </div>
+</div>
+`;
