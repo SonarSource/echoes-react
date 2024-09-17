@@ -101,7 +101,7 @@
   "echoes-sizes-inputs-full": "100%",
   "echoes-sizes-buttons-medium": "2rem",
   "echoes-sizes-buttons-large": "2.25rem",
-  "echoes-sizes-typography-max-wdith-default": "650px",
+  "echoes-sizes-typography-max-width-default": "650px",
   "echoes-box-shadow-xsmall": "0 1px 02px 0 rgba(0,0,0,0.05)",
   "echoes-box-shadow-small": "0 1px 25px 0 rgba(29,33,47,0.05), 0 1px 3px 0 rgba(29,33,47,0.05)",
   "echoes-box-shadow-medium": "0 2px 15px -2px rgba(29,33,47,0.06), 0 4px 8px -2px rgba(29,33,47,0.1)",

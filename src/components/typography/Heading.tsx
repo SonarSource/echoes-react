@@ -71,6 +71,7 @@ export const StyledHeading = styled.div<{
 }>`
   font: var(--echoes-typography-heading-${({ size }) => size});
   margin: 0;
+  max-width: var(--echoes-sizes-typography-max-width-default);
 
   ${({ hasMarginBottom, size }) =>
     hasMarginBottom ? `margin-bottom: ${bottomMarginByHeadingSize(size as HeadingSize)}` : ''}

@@ -311,7 +311,7 @@
         "large": "2.25rem"
       },
       "typography": {
-        "maxWdith": {
+        "maxWidth": {
           "default": "650px"
         }
       }

@@ -60,7 +60,7 @@
         }
       },
       "typography": {
-        "maxWdith": {
+        "maxWidth": {
           "default": {
             "value": "650px",
             "type": "sizing",

@@ -230,5 +230,5 @@
   --echoes-sizes-inputs-full: 100%;
   --echoes-sizes-buttons-medium: 2rem;
   --echoes-sizes-buttons-large: 2.25rem;
-  --echoes-sizes-typography-max-wdith-default: 650px; /* Use as max width in typography components */
+  --echoes-sizes-typography-max-width-default: 650px; /* Use as max width in typography components */
 }

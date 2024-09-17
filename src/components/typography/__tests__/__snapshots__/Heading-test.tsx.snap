@@ -4,6 +4,7 @@ exports[`renders a Heading as an h1 with no bottom margin 1`] = `
 .emotion-0 {
   font: var(--echoes-typography-heading-xlarge);
   margin: 0;
+  max-width: var(--echoes-sizes-typography-max-width-default);
 }
 
 <div>
@@ -19,6 +20,7 @@ exports[`renders a Heading as an h2 with no bottom margin 1`] = `
 .emotion-0 {
   font: var(--echoes-typography-heading-large);
   margin: 0;
+  max-width: var(--echoes-sizes-typography-max-width-default);
 }
 
 <div>
@@ -34,6 +36,7 @@ exports[`renders a Heading as an h3 with no bottom margin 1`] = `
 .emotion-0 {
   font: var(--echoes-typography-heading-medium);
   margin: 0;
+  max-width: var(--echoes-sizes-typography-max-width-default);
 }
 
 <div>
@@ -49,6 +52,7 @@ exports[`renders a Heading as an h4 with no bottom margin 1`] = `
 .emotion-0 {
   font: var(--echoes-typography-heading-small);
   margin: 0;
+  max-width: var(--echoes-sizes-typography-max-width-default);
 }
 
 <div>
@@ -64,6 +68,7 @@ exports[`renders a Heading as an h5 with no bottom margin 1`] = `
 .emotion-0 {
   font: var(--echoes-typography-heading-xsmall);
   margin: 0;
+  max-width: var(--echoes-sizes-typography-max-width-default);
 }
 
 <div>
@@ -79,6 +84,7 @@ exports[`renders a Heading with size large and a bottom margin 1`] = `
 .emotion-0 {
   font: var(--echoes-typography-heading-large);
   margin: 0;
+  max-width: var(--echoes-sizes-typography-max-width-default);
   margin-bottom: var(--echoes-dimension-space-200);
 }
 
@@ -95,6 +101,7 @@ exports[`renders a Heading with size medium and a bottom margin 1`] = `
 .emotion-0 {
   font: var(--echoes-typography-heading-medium);
   margin: 0;
+  max-width: var(--echoes-sizes-typography-max-width-default);
   margin-bottom: var(--echoes-dimension-space-100);
 }
 
@@ -111,6 +118,7 @@ exports[`renders a Heading with size small and a bottom margin 1`] = `
 .emotion-0 {
   font: var(--echoes-typography-heading-small);
   margin: 0;
+  max-width: var(--echoes-sizes-typography-max-width-default);
   margin-bottom: var(--echoes-dimension-space-100);
 }
 
@@ -127,6 +135,7 @@ exports[`renders a Heading with size xlarge and a bottom margin 1`] = `
 .emotion-0 {
   font: var(--echoes-typography-heading-xlarge);
   margin: 0;
+  max-width: var(--echoes-sizes-typography-max-width-default);
   margin-bottom: var(--echoes-dimension-space-250);
 }
 
@@ -143,6 +152,7 @@ exports[`renders a Heading with size xsmall and a bottom margin 1`] = `
 .emotion-0 {
   font: var(--echoes-typography-heading-xsmall);
   margin: 0;
+  max-width: var(--echoes-sizes-typography-max-width-default);
   margin-bottom: var(--echoes-dimension-space-100);
 }
 
@@ -159,6 +169,7 @@ exports[`uses the default size 1`] = `
 .emotion-0 {
   font: var(--echoes-typography-heading-xlarge);
   margin: 0;
+  max-width: var(--echoes-sizes-typography-max-width-default);
 }
 
 <div>
