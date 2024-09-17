@@ -20,7 +20,7 @@
   "scripts": {
     "dev": "vite build --watch & yarn storybook",
     "test": "jest",
-    "test-ci": "jest --collectCoverage --coverageDirectory=build-reports/coverage",
+    "test-ci": "jest --collectCoverage --coverageDirectory=build-reports/coverage --workerIdleMemoryLimit=1G --maxWorkers=4",
     "build": "vite build",
     "build-fonts": "node ./config/scripts/build-fonts.js",
     "build-intl-keys": "formatjs extract src/components/**/*.ts* --out-file i18n/keys.json",

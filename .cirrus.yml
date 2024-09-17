@@ -87,8 +87,8 @@ unit_test_task:
   <<: *JEST_COVERAGE_CACHE_TEMPLATE
   eks_container:
     <<: *BUILD_TEMPLATE
-    cpu: 4
-    memory: 8G
+    cpu: 8
+    memory: 10G
   depends_on:
     - install_dependencies
   script:
