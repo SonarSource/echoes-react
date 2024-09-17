@@ -58,6 +58,15 @@
           "value": "{echoes.dimension.height.900}",
           "type": "sizing"
         }
+      },
+      "typography": {
+        "maxWidth": {
+          "default": {
+            "value": "650px",
+            "type": "sizing",
+            "description": "Use as max width in typography components"
+          }
+        }
       }
     }
   }

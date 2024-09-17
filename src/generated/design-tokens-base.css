@@ -104,9 +104,9 @@
   --echoes-text-decoration-none: none;
   --echoes-text-decoration-underline: underline;
   --echoes-typography-text-default-regular: 400 0.875rem/1.25rem Inter;
-  --echoes-typography-text-default-medium: 500 0.875rem/1.25rem Inter;
   --echoes-typography-text-default-semi-bold: 600 0.875rem/1.25rem Inter;
-  --echoes-typography-text-small-regular: 400 0.75rem/1.125rem Inter;
+  --echoes-typography-text-default-bold: 700 0.875rem/1.25rem Inter;
+  --echoes-typography-text-small-medium: 500 0.75rem/1.125rem Inter;
   --echoes-typography-text-small-semi-bold: 600 0.75rem/1.125rem Inter;
   --echoes-typography-text-large-regular: 400 1rem/1.5rem Inter;
   --echoes-typography-text-large-semi-bold: 600 1rem/1.5rem Inter;
@@ -119,7 +119,7 @@
   --echoes-typography-code-highlight: 700 0.875rem/1.25rem 'Ubuntu Mono';
   --echoes-typography-code-comment: 400 italic 0.875rem/1.25rem 'Ubuntu Mono';
   --echoes-typography-others-label: 600 0.875rem/1.25rem Inter;
-  --echoes-typography-others-helper-text: 400 0.75rem/1.125rem Inter;
+  --echoes-typography-others-helper-text: 500 0.75rem/1.125rem Inter;
   --echoes-typography-display-default: 600 2.125rem/3.125rem Inter;
   --echoes-focus-border-width-default: 2px;
   --echoes-focus-border-offset-default: 1px;
@@ -230,4 +230,5 @@
   --echoes-sizes-inputs-full: 100%;
   --echoes-sizes-buttons-medium: 2rem;
   --echoes-sizes-buttons-large: 2.25rem;
+  --echoes-sizes-typography-max-width-default: 650px; /* Use as max width in typography components */
 }
