@@ -124,11 +124,11 @@
       "text": {
         "default": {
           "regular": "400 0.875rem/1.25rem Inter",
-          "medium": "500 0.875rem/1.25rem Inter",
-          "semi-bold": "600 0.875rem/1.25rem Inter"
+          "semi-bold": "600 0.875rem/1.25rem Inter",
+          "bold": "700 0.875rem/1.25rem Inter"
         },
         "small": {
-          "regular": "400 0.75rem/1.125rem Inter",
+          "medium": "500 0.75rem/1.125rem Inter",
           "semi-bold": "600 0.75rem/1.125rem Inter"
         },
         "large": {
@@ -150,7 +150,7 @@
       },
       "others": {
         "label": "600 0.875rem/1.25rem Inter",
-        "helper-text": "400 0.75rem/1.125rem Inter"
+        "helper-text": "500 0.75rem/1.125rem Inter"
       },
       "display": {
         "default": "600 2.125rem/3.125rem Inter"
@@ -309,6 +309,11 @@
       "buttons": {
         "medium": "2rem",
         "large": "2.25rem"
+      },
+      "typography": {
+        "maxWdith": {
+          "default": "650px"
+        }
       }
     }
   }

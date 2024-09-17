@@ -380,17 +380,6 @@
             },
             "type": "typography"
           },
-          "medium": {
-            "value": {
-              "fontFamily": "{echoes.fontFamily.sans}",
-              "fontWeight": "{echoes.fontWeight.medium}",
-              "lineHeight": "{echoes.lineHeight.20}",
-              "fontSize": "{echoes.fontSize.20}",
-              "letterSpacing": "{echoes.letterSpacing.default}",
-              "paragraphSpacing": "{echoes.paragraphSpacing.medium}"
-            },
-            "type": "typography"
-          },
           "semi-bold": {
             "value": {
               "fontFamily": "{echoes.fontFamily.sans}",
@@ -401,13 +390,24 @@
               "paragraphSpacing": "{echoes.paragraphSpacing.medium}"
             },
             "type": "typography"
+          },
+          "bold": {
+            "value": {
+              "fontFamily": "{echoes.fontFamily.sans}",
+              "fontWeight": "{echoes.fontWeight.bold}",
+              "lineHeight": "{echoes.lineHeight.20}",
+              "fontSize": "{echoes.fontSize.20}",
+              "letterSpacing": "{echoes.letterSpacing.default}",
+              "paragraphSpacing": "{echoes.paragraphSpacing.medium}"
+            },
+            "type": "typography"
           }
         },
         "small": {
-          "regular": {
+          "medium": {
             "value": {
               "fontFamily": "{echoes.fontFamily.sans}",
-              "fontWeight": "{echoes.fontWeight.regular}",
+              "fontWeight": "{echoes.fontWeight.medium}",
               "lineHeight": "{echoes.lineHeight.10}",
               "fontSize": "{echoes.fontSize.10}",
               "letterSpacing": "{echoes.letterSpacing.default}",
@@ -549,7 +549,7 @@
         "helper-text": {
           "value": {
             "fontFamily": "{echoes.fontFamily.sans}",
-            "fontWeight": "{echoes.fontWeight.regular}",
+            "fontWeight": "{echoes.fontWeight.medium}",
             "fontSize": "{echoes.fontSize.10}",
             "lineHeight": "{echoes.lineHeight.10}"
           },
