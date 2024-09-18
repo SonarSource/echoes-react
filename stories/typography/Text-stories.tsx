@@ -62,3 +62,40 @@ export const OverrideColor: Story = {
     </>
   ),
 };
+
+export const RichContent: Story = {
+  parameters: {
+    controls: { exclude: ['children', 'as', 'isSubdued'] },
+  },
+  render: (args: ComponentProps<typeof Text>) => (
+    <>
+      <p>This shows how HTML formatting tags are handled</p>
+      <br />
+      <br />
+      <Text {...args}>
+        <strong>Important things</strong>
+        <br />
+        <br />
+        Here is the list of things I <em>need</em> to buy:
+        <ul>
+          <li>Cheese</li>
+          <li>More Cheese</li>
+          <li>
+            Moar Cheese!<sub> moar moar moar</sub>
+          </li>
+        </ul>
+        <br />
+        And my <i>favorite</i> cheeses<sup>1</sup> are:
+        <ol>
+          <li>
+            <b>Pepperjack</b>
+          </li>
+          <li>Rubber</li>
+          <li>American</li>
+        </ol>
+        <br />
+        <small>1. Not really cheese</small>
+      </Text>
+    </>
+  ),
+};

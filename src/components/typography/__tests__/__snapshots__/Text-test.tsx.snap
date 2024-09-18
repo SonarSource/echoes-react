@@ -7,6 +7,22 @@ exports[`default & regular renders as default 1`] = `
   color: var(--echoes-color-text-default);
 }
 
+.emotion-0 ul,
+.emotion-0 ol {
+  margin-block-start: var(--echoes-dimension-space-100);
+  margin-block-end: 0;
+  -webkit-padding-start: 28px;
+  padding-inline-start: 28px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: var(--echoes-dimension-space-100);
+}
+
 <span
   class="emotion-0 emotion-1"
 >
@@ -19,6 +35,22 @@ exports[`default & regular renders as div 1`] = `
   max-width: var(--echoes-sizes-typography-max-width-default);
   font: var(--echoes-typography-text-default-regular);
   color: var(--echoes-color-text-default);
+}
+
+.emotion-0 ul,
+.emotion-0 ol {
+  margin-block-start: var(--echoes-dimension-space-100);
+  margin-block-end: 0;
+  -webkit-padding-start: 28px;
+  padding-inline-start: 28px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: var(--echoes-dimension-space-100);
 }
 
 <div
@@ -35,6 +67,22 @@ exports[`default & regular renders as paragraph 1`] = `
   color: var(--echoes-color-text-default);
 }
 
+.emotion-0 ul,
+.emotion-0 ol {
+  margin-block-start: var(--echoes-dimension-space-100);
+  margin-block-end: 0;
+  -webkit-padding-start: 28px;
+  padding-inline-start: 28px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: var(--echoes-dimension-space-100);
+}
+
 <p
   class="emotion-0 emotion-1"
 >
@@ -47,6 +95,22 @@ exports[`default & regular renders as span 1`] = `
   max-width: var(--echoes-sizes-typography-max-width-default);
   font: var(--echoes-typography-text-default-regular);
   color: var(--echoes-color-text-default);
+}
+
+.emotion-0 ul,
+.emotion-0 ol {
+  margin-block-start: var(--echoes-dimension-space-100);
+  margin-block-end: 0;
+  -webkit-padding-start: 28px;
+  padding-inline-start: 28px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: var(--echoes-dimension-space-100);
 }
 
 <span
@@ -63,6 +127,22 @@ exports[`default & regular renders with size default 1`] = `
   color: var(--echoes-color-text-default);
 }
 
+.emotion-0 ul,
+.emotion-0 ol {
+  margin-block-start: var(--echoes-dimension-space-100);
+  margin-block-end: 0;
+  -webkit-padding-start: 28px;
+  padding-inline-start: 28px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: var(--echoes-dimension-space-100);
+}
+
 <span
   class="emotion-0 emotion-1"
 >
@@ -75,6 +155,22 @@ exports[`default & regular renders with size large 1`] = `
   max-width: var(--echoes-sizes-typography-max-width-default);
   font: var(--echoes-typography-text-large-regular);
   color: var(--echoes-color-text-default);
+}
+
+.emotion-0 ul,
+.emotion-0 ol {
+  margin-block-start: var(--echoes-dimension-space-100);
+  margin-block-end: 0;
+  -webkit-padding-start: 28px;
+  padding-inline-start: 28px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: var(--echoes-dimension-space-100);
 }
 
 <span
@@ -91,6 +187,22 @@ exports[`default & regular renders with size small 1`] = `
   color: var(--echoes-color-text-default);
 }
 
+.emotion-0 ul,
+.emotion-0 ol {
+  margin-block-start: var(--echoes-dimension-space-100);
+  margin-block-end: 0;
+  -webkit-padding-start: 28px;
+  padding-inline-start: 28px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: var(--echoes-dimension-space-100);
+}
+
 <span
   class="emotion-0 emotion-1"
 >
@@ -103,6 +215,22 @@ exports[`default & strong renders as default 1`] = `
   max-width: var(--echoes-sizes-typography-max-width-default);
   font: var(--echoes-typography-text-default-semi-bold);
   color: var(--echoes-color-text-default);
+}
+
+.emotion-0 ul,
+.emotion-0 ol {
+  margin-block-start: var(--echoes-dimension-space-100);
+  margin-block-end: 0;
+  -webkit-padding-start: 28px;
+  padding-inline-start: 28px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: var(--echoes-dimension-space-100);
 }
 
 <span
@@ -119,6 +247,22 @@ exports[`default & strong renders as div 1`] = `
   color: var(--echoes-color-text-default);
 }
 
+.emotion-0 ul,
+.emotion-0 ol {
+  margin-block-start: var(--echoes-dimension-space-100);
+  margin-block-end: 0;
+  -webkit-padding-start: 28px;
+  padding-inline-start: 28px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: var(--echoes-dimension-space-100);
+}
+
 <div
   class="emotion-0 emotion-1"
 >
@@ -131,6 +275,22 @@ exports[`default & strong renders as paragraph 1`] = `
   max-width: var(--echoes-sizes-typography-max-width-default);
   font: var(--echoes-typography-text-default-semi-bold);
   color: var(--echoes-color-text-default);
+}
+
+.emotion-0 ul,
+.emotion-0 ol {
+  margin-block-start: var(--echoes-dimension-space-100);
+  margin-block-end: 0;
+  -webkit-padding-start: 28px;
+  padding-inline-start: 28px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: var(--echoes-dimension-space-100);
 }
 
 <p
@@ -147,6 +307,22 @@ exports[`default & strong renders as span 1`] = `
   color: var(--echoes-color-text-default);
 }
 
+.emotion-0 ul,
+.emotion-0 ol {
+  margin-block-start: var(--echoes-dimension-space-100);
+  margin-block-end: 0;
+  -webkit-padding-start: 28px;
+  padding-inline-start: 28px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: var(--echoes-dimension-space-100);
+}
+
 <span
   class="emotion-0 emotion-1"
 >
@@ -159,6 +335,22 @@ exports[`default & strong renders with size default 1`] = `
   max-width: var(--echoes-sizes-typography-max-width-default);
   font: var(--echoes-typography-text-default-semi-bold);
   color: var(--echoes-color-text-default);
+}
+
+.emotion-0 ul,
+.emotion-0 ol {
+  margin-block-start: var(--echoes-dimension-space-100);
+  margin-block-end: 0;
+  -webkit-padding-start: 28px;
+  padding-inline-start: 28px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: var(--echoes-dimension-space-100);
 }
 
 <span
@@ -175,6 +367,22 @@ exports[`default & strong renders with size large 1`] = `
   color: var(--echoes-color-text-default);
 }
 
+.emotion-0 ul,
+.emotion-0 ol {
+  margin-block-start: var(--echoes-dimension-space-100);
+  margin-block-end: 0;
+  -webkit-padding-start: 28px;
+  padding-inline-start: 28px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: var(--echoes-dimension-space-100);
+}
+
 <span
   class="emotion-0 emotion-1"
 >
@@ -187,6 +395,22 @@ exports[`default & strong renders with size small 1`] = `
   max-width: var(--echoes-sizes-typography-max-width-default);
   font: var(--echoes-typography-text-small-semi-bold);
   color: var(--echoes-color-text-default);
+}
+
+.emotion-0 ul,
+.emotion-0 ol {
+  margin-block-start: var(--echoes-dimension-space-100);
+  margin-block-end: 0;
+  -webkit-padding-start: 28px;
+  padding-inline-start: 28px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: var(--echoes-dimension-space-100);
 }
 
 <span
@@ -203,6 +427,22 @@ exports[`subdued & regular renders as default 1`] = `
   color: var(--echoes-color-text-subdued);
 }
 
+.emotion-0 ul,
+.emotion-0 ol {
+  margin-block-start: var(--echoes-dimension-space-100);
+  margin-block-end: 0;
+  -webkit-padding-start: 28px;
+  padding-inline-start: 28px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: var(--echoes-dimension-space-100);
+}
+
 <span
   class="emotion-0 emotion-1"
 >
@@ -215,6 +455,22 @@ exports[`subdued & regular renders as div 1`] = `
   max-width: var(--echoes-sizes-typography-max-width-default);
   font: var(--echoes-typography-text-default-regular);
   color: var(--echoes-color-text-subdued);
+}
+
+.emotion-0 ul,
+.emotion-0 ol {
+  margin-block-start: var(--echoes-dimension-space-100);
+  margin-block-end: 0;
+  -webkit-padding-start: 28px;
+  padding-inline-start: 28px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: var(--echoes-dimension-space-100);
 }
 
 <div
@@ -231,6 +487,22 @@ exports[`subdued & regular renders as paragraph 1`] = `
   color: var(--echoes-color-text-subdued);
 }
 
+.emotion-0 ul,
+.emotion-0 ol {
+  margin-block-start: var(--echoes-dimension-space-100);
+  margin-block-end: 0;
+  -webkit-padding-start: 28px;
+  padding-inline-start: 28px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: var(--echoes-dimension-space-100);
+}
+
 <p
   class="emotion-0 emotion-1"
 >
@@ -243,6 +515,22 @@ exports[`subdued & regular renders as span 1`] = `
   max-width: var(--echoes-sizes-typography-max-width-default);
   font: var(--echoes-typography-text-default-regular);
   color: var(--echoes-color-text-subdued);
+}
+
+.emotion-0 ul,
+.emotion-0 ol {
+  margin-block-start: var(--echoes-dimension-space-100);
+  margin-block-end: 0;
+  -webkit-padding-start: 28px;
+  padding-inline-start: 28px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: var(--echoes-dimension-space-100);
 }
 
 <span
@@ -259,6 +547,22 @@ exports[`subdued & regular renders with size default 1`] = `
   color: var(--echoes-color-text-subdued);
 }
 
+.emotion-0 ul,
+.emotion-0 ol {
+  margin-block-start: var(--echoes-dimension-space-100);
+  margin-block-end: 0;
+  -webkit-padding-start: 28px;
+  padding-inline-start: 28px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: var(--echoes-dimension-space-100);
+}
+
 <span
   class="emotion-0 emotion-1"
 >
@@ -271,6 +575,22 @@ exports[`subdued & regular renders with size large 1`] = `
   max-width: var(--echoes-sizes-typography-max-width-default);
   font: var(--echoes-typography-text-large-regular);
   color: var(--echoes-color-text-subdued);
+}
+
+.emotion-0 ul,
+.emotion-0 ol {
+  margin-block-start: var(--echoes-dimension-space-100);
+  margin-block-end: 0;
+  -webkit-padding-start: 28px;
+  padding-inline-start: 28px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: var(--echoes-dimension-space-100);
 }
 
 <span
@@ -287,6 +607,22 @@ exports[`subdued & regular renders with size small 1`] = `
   color: var(--echoes-color-text-subdued);
 }
 
+.emotion-0 ul,
+.emotion-0 ol {
+  margin-block-start: var(--echoes-dimension-space-100);
+  margin-block-end: 0;
+  -webkit-padding-start: 28px;
+  padding-inline-start: 28px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: var(--echoes-dimension-space-100);
+}
+
 <span
   class="emotion-0 emotion-1"
 >
@@ -299,6 +635,22 @@ exports[`subdued & strong renders as default 1`] = `
   max-width: var(--echoes-sizes-typography-max-width-default);
   font: var(--echoes-typography-text-default-semi-bold);
   color: var(--echoes-color-text-subdued);
+}
+
+.emotion-0 ul,
+.emotion-0 ol {
+  margin-block-start: var(--echoes-dimension-space-100);
+  margin-block-end: 0;
+  -webkit-padding-start: 28px;
+  padding-inline-start: 28px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: var(--echoes-dimension-space-100);
 }
 
 <span
@@ -315,6 +667,22 @@ exports[`subdued & strong renders as div 1`] = `
   color: var(--echoes-color-text-subdued);
 }
 
+.emotion-0 ul,
+.emotion-0 ol {
+  margin-block-start: var(--echoes-dimension-space-100);
+  margin-block-end: 0;
+  -webkit-padding-start: 28px;
+  padding-inline-start: 28px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: var(--echoes-dimension-space-100);
+}
+
 <div
   class="emotion-0 emotion-1"
 >
@@ -327,6 +695,22 @@ exports[`subdued & strong renders as paragraph 1`] = `
   max-width: var(--echoes-sizes-typography-max-width-default);
   font: var(--echoes-typography-text-default-semi-bold);
   color: var(--echoes-color-text-subdued);
+}
+
+.emotion-0 ul,
+.emotion-0 ol {
+  margin-block-start: var(--echoes-dimension-space-100);
+  margin-block-end: 0;
+  -webkit-padding-start: 28px;
+  padding-inline-start: 28px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: var(--echoes-dimension-space-100);
 }
 
 <p
@@ -343,6 +727,22 @@ exports[`subdued & strong renders as span 1`] = `
   color: var(--echoes-color-text-subdued);
 }
 
+.emotion-0 ul,
+.emotion-0 ol {
+  margin-block-start: var(--echoes-dimension-space-100);
+  margin-block-end: 0;
+  -webkit-padding-start: 28px;
+  padding-inline-start: 28px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: var(--echoes-dimension-space-100);
+}
+
 <span
   class="emotion-0 emotion-1"
 >
@@ -355,6 +755,22 @@ exports[`subdued & strong renders with size default 1`] = `
   max-width: var(--echoes-sizes-typography-max-width-default);
   font: var(--echoes-typography-text-default-semi-bold);
   color: var(--echoes-color-text-subdued);
+}
+
+.emotion-0 ul,
+.emotion-0 ol {
+  margin-block-start: var(--echoes-dimension-space-100);
+  margin-block-end: 0;
+  -webkit-padding-start: 28px;
+  padding-inline-start: 28px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: var(--echoes-dimension-space-100);
 }
 
 <span
@@ -371,6 +787,22 @@ exports[`subdued & strong renders with size large 1`] = `
   color: var(--echoes-color-text-subdued);
 }
 
+.emotion-0 ul,
+.emotion-0 ol {
+  margin-block-start: var(--echoes-dimension-space-100);
+  margin-block-end: 0;
+  -webkit-padding-start: 28px;
+  padding-inline-start: 28px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: var(--echoes-dimension-space-100);
+}
+
 <span
   class="emotion-0 emotion-1"
 >
@@ -383,6 +815,22 @@ exports[`subdued & strong renders with size small 1`] = `
   max-width: var(--echoes-sizes-typography-max-width-default);
   font: var(--echoes-typography-text-small-semi-bold);
   color: var(--echoes-color-text-subdued);
+}
+
+.emotion-0 ul,
+.emotion-0 ol {
+  margin-block-start: var(--echoes-dimension-space-100);
+  margin-block-end: 0;
+  -webkit-padding-start: 28px;
+  padding-inline-start: 28px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: var(--echoes-dimension-space-100);
 }
 
 <span

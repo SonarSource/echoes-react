@@ -76,8 +76,22 @@ Text.displayName = 'Text';
 
 type StyledTextProps = Required<Pick<Props, 'isSubdued' | 'isStrong' | 'size'>>;
 
-const StyledText = styled.span<StyledTextProps>`
+const BaseStyles = styled.span`
   max-width: var(--echoes-sizes-typography-max-width-default);
+
+  & ul,
+  & ol {
+    margin-block-start: var(--echoes-dimension-space-100);
+    margin-block-end: 0;
+    padding-inline-start: 28px;
+
+    display: flex;
+    flex-direction: column;
+    gap: var(--echoes-dimension-space-100);
+  }
+`;
+
+const StyledText = styled(BaseStyles)<StyledTextProps>`
   font: ${getFontForSizeAndWeight};
 
   color: ${getColor};
