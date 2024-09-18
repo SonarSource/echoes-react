@@ -37,7 +37,7 @@ export const Display = forwardRef<HTMLSpanElement, PropsWithChildren<Props>>((pr
 });
 Display.displayName = 'Display';
 
-export const StyledDisplay = styled.span`
+const StyledDisplay = styled.span`
   font: var(--echoes-typography-display-default);
   color: var(--echoes-color-text-bold);
 `;
