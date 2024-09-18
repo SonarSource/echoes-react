@@ -65,7 +65,7 @@ export const Heading = forwardRef<HTMLDivElement, Readonly<PropsWithChildren<Pro
 
 Heading.displayName = 'Heading';
 
-export const StyledHeading = styled.div<{
+const StyledHeading = styled.div<{
   hasMarginBottom?: Props['hasMarginBottom'];
   size: Props['size'];
 }>`
