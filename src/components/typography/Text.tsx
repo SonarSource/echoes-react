@@ -29,8 +29,10 @@ export enum TextSize {
   Large = 'large',
 }
 
+type TextTags = 'span' | 'p' | 'div' | 'strong' | 'b' | 'em' | 'i';
+
 type Props = {
-  as?: 'span' | 'p' | 'div';
+  as?: TextTags;
   className?: string;
   isStrong?: boolean;
   size?: TextSize;
@@ -99,8 +101,13 @@ const BaseStyles = styled.span`
   }
 
   & strong,
-  & b {
+  & b,
+  &:is(strong, b) {
     font-weight: var(--echoes-font-weight-bold);
+  }
+
+  &:is(em, i) {
+    font-style: italic;
   }
 `;
 
