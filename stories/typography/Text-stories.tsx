@@ -37,7 +37,7 @@ export const Default: Story = {
   args: {
     as: 'span',
     children: 'I am a Text!',
-    isStrong: false,
+    isHighlighted: false,
     isSubdued: false,
     size: TextSize.Default,
   },

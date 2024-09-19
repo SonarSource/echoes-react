@@ -34,7 +34,7 @@ type TextTags = 'span' | 'p' | 'div' | 'strong' | 'b' | 'em' | 'i';
 type Props = {
   as?: TextTags;
   className?: string;
-  isStrong?: boolean;
+  isHighlighted?: boolean;
   size?: TextSize;
 } & ColorProps;
 
@@ -52,7 +52,7 @@ export const Text = forwardRef<HTMLSpanElement, PropsWithChildren<Props>>((props
   const {
     children,
     colorOverride,
-    isStrong = false,
+    isHighlighted = false,
     isSubdued = false,
     size = TextSize.Default,
     ...restAndRadixProps
@@ -64,7 +64,7 @@ export const Text = forwardRef<HTMLSpanElement, PropsWithChildren<Props>>((props
 
   return (
     <StyledText
-      isStrong={isStrong}
+      isHighlighted={isHighlighted}
       isSubdued={isSubdued}
       ref={ref}
       size={size}
@@ -76,7 +76,7 @@ export const Text = forwardRef<HTMLSpanElement, PropsWithChildren<Props>>((props
 });
 Text.displayName = 'Text';
 
-type StyledTextProps = Required<Pick<Props, 'isSubdued' | 'isStrong' | 'size'>>;
+type StyledTextProps = Required<Pick<Props, 'isSubdued' | 'isHighlighted' | 'size'>>;
 
 const BaseStyles = styled.span`
   max-width: var(--echoes-sizes-typography-max-width-default);
@@ -121,18 +121,21 @@ function getColor({ isSubdued }: Pick<StyledTextProps, 'isSubdued'>) {
   return isSubdued ? 'var(--echoes-color-text-subdued)' : 'var(--echoes-color-text-default)';
 }
 
-function getFontForSizeAndWeight({ size, isStrong }: Pick<StyledTextProps, 'size' | 'isStrong'>) {
-  return TYPOGRAPHY_MAP[`${isStrong}`][size];
+function getFontForSizeAndWeight({
+  size,
+  isHighlighted,
+}: Pick<StyledTextProps, 'size' | 'isHighlighted'>) {
+  return TYPOGRAPHY_MAP[`${isHighlighted}`][size];
 }
 
 const TYPOGRAPHY_MAP = {
-  /* isStrong is true */
+  /* isHighlighted is true */
   true: {
     [TextSize.Small]: 'var(--echoes-typography-text-small-semi-bold)',
     [TextSize.Default]: 'var(--echoes-typography-text-default-semi-bold)',
     [TextSize.Large]: 'var(--echoes-typography-text-large-semi-bold)',
   },
-  /* isStrong is false */
+  /* isHighlighted is false */
   false: {
     [TextSize.Small]: 'var(--echoes-typography-text-small-medium)',
     [TextSize.Default]: 'var(--echoes-typography-text-default-regular)',
