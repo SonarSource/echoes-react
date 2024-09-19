@@ -24,3 +24,5 @@ export * from './components';
 export * from './utils';
 
 export { Theme } from './generated/themes';
+
+module.exports = require('./utils/tailwind-utilities-plugin');
