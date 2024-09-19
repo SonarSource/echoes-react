@@ -79,6 +79,14 @@ type StyledTextProps = Required<Pick<Props, 'isSubdued' | 'isStrong' | 'size'>>;
 const BaseStyles = styled.span`
   max-width: var(--echoes-sizes-typography-max-width-default);
 
+  & ul {
+    list-style-type: disc;
+  }
+
+  & ol {
+    list-style-type: decimal;
+  }
+
   & ul,
   & ol {
     margin-block-start: var(--echoes-dimension-space-100);
