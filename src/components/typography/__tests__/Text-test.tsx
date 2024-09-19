@@ -28,12 +28,12 @@ describe.each([
   ['subdued & regular', true, false],
   ['default & strong', false, true],
   ['subdued & strong', true, true],
-])('%s', (_, isSubdued, isStrong) => {
+])('%s', (_, isSubdued, isHighlighted) => {
   it.each([[TextSize.Small], [TextSize.Default], [TextSize.Large]])(
     'renders with size %s',
     (size) => {
       const text = 'hi there';
-      setupText({ children: text, size, isStrong, isSubdued });
+      setupText({ children: text, size, isHighlighted, isSubdued });
 
       expect(screen.getByText(text)).toMatchSnapshot();
     },
@@ -46,7 +46,7 @@ describe.each([
     ['span', 'span'],
   ] as Array<[_: string, as: ComponentProps<typeof Text>['as']]>)('renders as %s', (_, as) => {
     const text = 'hi there';
-    setupText({ as, children: text, isSubdued, isStrong });
+    setupText({ as, children: text, isSubdued, isHighlighted });
 
     expect(screen.getByText(text)).toMatchSnapshot();
   });
