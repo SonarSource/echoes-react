@@ -23,7 +23,7 @@ import styled from '@emotion/styled';
 interface Props {
   as?: 'div' | 'label' | 'span';
   className?: string;
-  for?: string;
+  htmlFor?: string;
 }
 
 export const Label = styled.label<Props>`
