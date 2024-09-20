@@ -3,6 +3,7 @@
 exports[`renders correctly 1`] = `
 .emotion-0 {
   font: var(--echoes-typography-others-label);
+  color: var(--echoes-color-text-default);
 }
 
 <div>

@@ -70,6 +70,7 @@ const StyledHeading = styled.div<{
   size: Props['size'];
 }>`
   font: var(--echoes-typography-heading-${({ size }) => size});
+  color: var(--echoes-color-text-bold);
   margin: 0;
   max-width: var(--echoes-sizes-typography-max-width-default);
 
