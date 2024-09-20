@@ -28,6 +28,7 @@ interface Props {
 
 export const Label = styled.label<Props>`
   font: var(--echoes-typography-others-label);
+  color: var(--echoes-color-text-default);
 `;
 
 Label.displayName = 'Label';
