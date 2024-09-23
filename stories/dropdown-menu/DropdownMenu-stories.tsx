@@ -40,7 +40,7 @@ const StyledBadge = styled.span`
   background-color: var(--echoes-color-background-default-active);
   border-radius: 4px;
   color: var(--echoes-color-text-default);
-  font: var(--echoes-typography-paragraph-small-semi-bold);
+  font: var(--echoes-typography-text-small-semi-bold);
   margin-left: 1rem;
   padding: 0px 8px;
   text-transform: uppercase;

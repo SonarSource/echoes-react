@@ -29,6 +29,53 @@ export enum HeadingSize {
   ExtraLarge = 'xlarge',
 }
 
+type HeadingTag = 'h1' | 'h2' | 'h3' | 'h4' | 'h5';
+
+interface Props {
+  as: HeadingTag;
+  className?: string;
+  hasMarginBottom?: boolean;
+  size?: HeadingSize;
+}
+
+export const Heading = forwardRef<HTMLDivElement, Readonly<PropsWithChildren<Props>>>(
+  ({ as, size = defaultSizeByTag[as], hasMarginBottom = false, ...props }, ref) => (
+    <StyledHeading as={as} hasMarginBottom={hasMarginBottom} ref={ref} size={size} {...props} />
+  ),
+);
+
+Heading.displayName = 'Heading';
+
+const defaultSizeByTag: Record<HeadingTag, HeadingSize> = {
+  h1: HeadingSize.ExtraLarge,
+  h2: HeadingSize.Large,
+  h3: HeadingSize.Medium,
+  h4: HeadingSize.Small,
+  h5: HeadingSize.ExtraSmall,
+};
+
+const StyledHeading = styled.div<Required<Pick<Props, 'hasMarginBottom' | 'size'>>>`
+  font: ${getHeadingFont};
+  color: var(--echoes-color-text-bold);
+  margin: 0;
+  max-width: var(--echoes-sizes-typography-max-width-default);
+
+  ${({ hasMarginBottom, size }) =>
+    hasMarginBottom ? `margin-bottom: ${bottomMarginByHeadingSize(size)}` : ''}
+`;
+
+function getHeadingFont({ size }: Required<Pick<Props, 'size'>>) {
+  return HEADING_TYPOGRAPHY_MAP[size];
+}
+
+const HEADING_TYPOGRAPHY_MAP = {
+  [HeadingSize.ExtraSmall]: 'var(--echoes-typography-heading-xsmall)',
+  [HeadingSize.Small]: 'var(--echoes-typography-heading-small)',
+  [HeadingSize.Medium]: 'var(--echoes-typography-heading-medium)',
+  [HeadingSize.Large]: 'var(--echoes-typography-heading-large)',
+  [HeadingSize.ExtraLarge]: 'var(--echoes-typography-heading-xlarge)',
+};
+
 const bottomMarginByHeadingSize = (headingSize: HeadingSize) => {
   switch (headingSize) {
     case HeadingSize.Large:
@@ -39,41 +86,3 @@ const bottomMarginByHeadingSize = (headingSize: HeadingSize) => {
       return 'var(--echoes-dimension-space-100)';
   }
 };
-
-type HeadingTag = 'h1' | 'h2' | 'h3' | 'h4' | 'h5';
-
-const defaultSizeByTag: Record<HeadingTag, HeadingSize> = {
-  h1: HeadingSize.ExtraLarge,
-  h2: HeadingSize.Large,
-  h3: HeadingSize.Medium,
-  h4: HeadingSize.Small,
-  h5: HeadingSize.ExtraSmall,
-};
-
-interface Props {
-  as: HeadingTag;
-  className?: string;
-  hasMarginBottom?: boolean;
-  size?: HeadingSize;
-}
-
-export const Heading = forwardRef<HTMLDivElement, Readonly<PropsWithChildren<Props>>>(
-  ({ as, size = defaultSizeByTag[as], ...props }, ref) => (
-    <StyledHeading as={as} ref={ref} size={size} {...props} />
-  ),
-);
-
-Heading.displayName = 'Heading';
-
-const StyledHeading = styled.div<{
-  hasMarginBottom?: Props['hasMarginBottom'];
-  size: Props['size'];
-}>`
-  font: var(--echoes-typography-heading-${({ size }) => size});
-  color: var(--echoes-color-text-bold);
-  margin: 0;
-  max-width: var(--echoes-sizes-typography-max-width-default);
-
-  ${({ hasMarginBottom, size }) =>
-    hasMarginBottom ? `margin-bottom: ${bottomMarginByHeadingSize(size as HeadingSize)}` : ''}
-`;

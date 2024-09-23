@@ -18,27 +18,25 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import { HeadlessMantineProvider } from '@mantine/core';
-import { ComponentProps, PropsWithChildren } from 'react';
-import { TooltipProvider, TypographyGlobalStyles } from '..';
-import { SelectGlobalStyles } from '../select/SelectCommons';
+import { css, Global } from '@emotion/react';
 
-interface Props {
-  tooltipsDelayDuration?: ComponentProps<typeof TooltipProvider>['delayDuration'];
-}
-
-export function EchoesProvider(props: PropsWithChildren<Props>) {
-  const { children, tooltipsDelayDuration } = props;
-
+export function TypographyGlobalStyles() {
   return (
-    <>
-      <TypographyGlobalStyles />
-      <SelectGlobalStyles />
-      <TooltipProvider delayDuration={tooltipsDelayDuration}>
-        <HeadlessMantineProvider>{children}</HeadlessMantineProvider>
-      </TooltipProvider>
-    </>
+    <Global
+      styles={css`
+        body {
+          font: var(--echoes-typography-text-default-regular);
+          color: var(--echoes-color-text-default);
+        }
+
+        pre,
+        code,
+        kbd,
+        samp,
+        tt {
+          font: var(--echoes-typography-code-default);
+        }
+      `}
+    />
   );
 }
-
-EchoesProvider.displayName = 'EchoesProvider';

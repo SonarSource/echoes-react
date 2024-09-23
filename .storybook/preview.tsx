@@ -28,8 +28,6 @@ import { EchoesProvider, Theme } from '../src';
 
 const globalStyles = css`
   body {
-    font: var(--echoes-typography-paragraph-default-regular);
-    color: var(--echoes-color-text-default);
     background-color: var(--echoes-color-background-default);
   }
 

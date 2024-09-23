@@ -177,14 +177,17 @@ const StyledSuffix = styled.span`
 `;
 
 const StyledRadixDropdownMenuItem = styled(radixDropdownMenu.Item)`
-  align-items: center;
   background-color: var(--echoes-color-background-default);
   color: var(--echoes-color-text-default);
-  column-gap: var(--echoes-dimension-space-100);
-  cursor: pointer;
+  font: var(--echoes-typography-text-default-regular);
+
   display: flex;
+  align-items: center;
   justify-content: space-between;
+  column-gap: var(--echoes-dimension-space-100);
   padding: var(--echoes-dimension-space-100) var(--echoes-dimension-space-150);
+
+  cursor: pointer;
 
   * {
     overflow: hidden;
