@@ -113,7 +113,7 @@ const StyledDropdownMenuItemBase = styled(DropdownMenuItemBase)`
 `;
 
 const StyledIconLinkExternal = styled(IconLinkExternal)`
-  font-size: var(--echoes-font-size-body-medium);
+  font-size: var(--echoes-font-size-20);
   padding-right: var(--echoes-dimension-space-25);
 `;
 

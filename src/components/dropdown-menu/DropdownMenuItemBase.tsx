@@ -124,7 +124,7 @@ export function isDropdownMenuItemComponent(node: any): boolean {
 }
 
 const StyledIconCheck = styled(IconCheck)`
-  font-size: var(--echoes-font-size-body-medium);
+  font-size: var(--echoes-font-size-20);
 `;
 
 const CheckmarkPlaceholder = styled(StyledIconCheck)`
