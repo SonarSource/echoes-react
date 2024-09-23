@@ -19,7 +19,7 @@
  */
 
 import type { Meta, StoryObj } from '@storybook/react';
-import { Button, LinkStandalone, Popover } from '../src';
+import { Button, LinkStandalone, Popover, Text } from '../src';
 import { basicWrapperDecorator } from './helpers/BasicWrapper';
 
 const meta: Meta<typeof Popover> = {
@@ -43,7 +43,7 @@ export const Basic: Story = {
   },
   render: (args) => (
     <Popover {...args}>
-      <button type="button">Click this button to display the Popover</button>
+      <Button>Click this button to display the Popover</Button>
     </Popover>
   ),
 };
@@ -57,14 +57,14 @@ export const ExtraContent: Story = {
     <Popover
       {...args}
       extraContent={
-        <>
+        <Text>
           <span>First, click on the thing, then the other thing.</span>
           <ul>
             <li>Field 1: put your name</li>
             <li>Field 2: put your favorite food item</li>
           </ul>
           <span>Finally, profit!</span>
-        </>
+        </Text>
       }
       footer={
         <>

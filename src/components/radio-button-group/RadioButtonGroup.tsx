@@ -22,6 +22,7 @@ import styled from '@emotion/styled';
 import * as RadioGroup from '@radix-ui/react-radio-group';
 import { ReactNode, forwardRef } from 'react';
 import { PropsWithLabels } from '~types/utils';
+import { HelperText, Label } from '../typography';
 
 export enum RadioButtonGroupAlignment {
   Vertical = 'vertical',
@@ -70,13 +71,12 @@ export const RadioButtonGroup = forwardRef<HTMLDivElement, PropsWithLabels<Props
       required={required}>
       {label && (
         <RadioGroupLabelWrapper data-testid="radio-group-label-wrapper">
-          <RadioGroupLabel>
+          <Label>
             {label}
-
             {required && <RadioGroupRequired>*</RadioGroupRequired>}
-          </RadioGroupLabel>
+          </Label>
 
-          {helpText && <HelpText>{helpText}</HelpText>}
+          {helpText && <HelperText as="span">{helpText}</HelperText>}
         </RadioGroupLabelWrapper>
       )}
 
@@ -139,10 +139,12 @@ function RadioButton(props: Readonly<RadioButtonProps>) {
           value={value}>
           <SelectionIndicator />
         </Input>
-        <Label htmlFor={id}>{label}</Label>
+        <OptionLabel htmlFor={id}>{label}</OptionLabel>
       </LabelWrapper>
       {helpText && (
-        <OptionHelpText {...(disabled ? { 'data-disabled': true } : {})}>{helpText}</OptionHelpText>
+        <OptionHelpText as="span" {...(disabled ? { 'data-disabled': true } : {})}>
+          {helpText}
+        </OptionHelpText>
       )}
     </OptionWrapper>
   );
@@ -162,14 +164,9 @@ const RadioGroupLabelWrapper = styled.div`
   margin-bottom: var(--echoes-dimension-space-150);
 `;
 
-const RadioGroupLabel = styled.div`
-  color: var(--echoes-color-text-bold);
-  font: var(--echoes-typography-others-label);
-`;
-
 const RadioGroupRequired = styled.span`
   color: var(--echoes-color-text-danger);
-  font: var(--echoes-typography-text-default-medium);
+  font: var(--echoes-typography-others-label-medium);
   margin-left: var(--echoes-dimension-space-25);
 `;
 
@@ -261,10 +258,12 @@ const LabelWrapper = styled.span`
   align-items: center;
 `;
 
-const Label = styled.label`
+const OptionLabel = styled(Label)`
+  font: var(--echoes-typography-others-label-medium);
+
   display: block;
-  font: var(--echoes-typography-text-default-medium);
   width: 100%;
+
   cursor: pointer;
 
   [data-disabled] > & {
@@ -273,12 +272,7 @@ const Label = styled.label`
   }
 `;
 
-const HelpText = styled.span`
-  font: var(--echoes-typography-others-helper-text);
-  color: var(--echoes-color-text-subdued);
-`;
-
-const OptionHelpText = styled(HelpText)`
+const OptionHelpText = styled(HelperText)`
   margin-left: calc(var(--echoes-dimension-space-200) + var(--echoes-dimension-space-100));
 
   &[data-disabled] {

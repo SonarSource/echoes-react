@@ -73,7 +73,7 @@ const SelectItemWrapper = styled.div`
     padding: calc(var(--echoes-dimension-space-100) - var(--echoes-focus-border-width-default))
       var(--echoes-dimension-space-150);
 
-    font: var(--echoes-typography-text-small-regular);
+    font: var(--echoes-typography-text-small-medium);
     color: var(--echoes-color-text-default);
     background-color: var(--echoes-color-background-default);
 
@@ -145,7 +145,7 @@ const SelectItemStatusStyled = styled.div`
   padding: var(--echoes-dimension-space-25);
   min-width: var(--echoes-dimension-width-250);
 
-  font: var(--echoes-typography-text-small-regular);
+  font: var(--echoes-typography-text-small-medium);
   color: var(--echoes-color-icon-selected);
 
   .echoes-select-option[data-combobox-disabled] & {

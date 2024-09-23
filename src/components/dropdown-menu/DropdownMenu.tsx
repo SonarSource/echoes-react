@@ -21,8 +21,10 @@
 import styled from '@emotion/styled';
 import * as radixDropdownMenu from '@radix-ui/react-dropdown-menu';
 import { ReactNode, forwardRef, useContext } from 'react';
+import { truncate } from '~common/helpers/styles';
 import { PropsLabel } from '~types/utils';
 import { PortalContext } from '../../common/components/PortalContext';
+import { HelperText, Label } from '../typography';
 import { DropdownMenuGroupLabel } from './DropdownMenuGroupLabel';
 import { DropdownMenuItemButton } from './DropdownMenuItemButton';
 import { DropdownMenuItemButtonCheckable } from './DropdownMenuItemButtonCheckable';
@@ -111,11 +113,14 @@ const DropdownMenuRoot = forwardRef<HTMLButtonElement, DropdownMenuRootProps>(
             {header && (
               <>
                 <StyledHeaderLabelAndHelpText>
-                  <StyledHeaderLabel title={typeof header.label === 'string' ? header.label : ''}>
+                  <StyledHeaderLabel
+                    as="div"
+                    title={typeof header.label === 'string' ? header.label : ''}>
                     {header.label}
                   </StyledHeaderLabel>
 
                   <StyledHeaderHelpText
+                    as="span"
                     title={typeof header.helpText === 'string' ? header.helpText : ''}>
                     {header.helpText}
                   </StyledHeaderHelpText>
@@ -154,19 +159,12 @@ const StyledHeaderLabelAndHelpText = styled.div`
   row-gap: var(---echoes-dimension-space-50);
 `;
 
-const StyledHeaderLabel = styled.div`
-  font: var(--echoes-typography-text-default-semi-bold);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+const StyledHeaderLabel = styled(Label)`
+  ${truncate}
 `;
 
-const StyledHeaderHelpText = styled.span`
-  color: var(--echoes-color-text-subdued);
-  font: var(--echoes-typography-others-helper-text);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+const StyledHeaderHelpText = styled(HelperText)`
+  ${truncate}
 `;
 
 const StyledDropdownMenuContent = styled(radixDropdownMenu.Content)`

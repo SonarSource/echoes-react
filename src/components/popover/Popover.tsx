@@ -23,6 +23,7 @@ import * as RadixPopover from '@radix-ui/react-popover';
 import { ReactElement, ReactNode, forwardRef, useContext } from 'react';
 import { isDefined } from '~common/helpers/types';
 import { THEME_DATA_ATTRIBUTE, ThemeContext } from '~utils/theme';
+import { Heading, HeadingSize, Text, TextSize } from '../typography';
 
 export enum PopoverAlign {
   Start = 'start',
@@ -88,9 +89,15 @@ export const Popover = forwardRef<HTMLButtonElement, Props>((props, ref) => {
           arrowPadding={ARROW_PADDING}
           side={side}
           sideOffset={POPOVER_OFFSET}>
-          <PopoverTitle>{title}</PopoverTitle>
+          <Heading as="h1" hasMarginBottom size={HeadingSize.Medium}>
+            {title}
+          </Heading>
 
-          {description && <PopoverDescription>{description}</PopoverDescription>}
+          {description && (
+            <Text isSubdued size={TextSize.Small}>
+              {description}
+            </Text>
+          )}
           {extraContent && <PopoverExtraContent>{extraContent}</PopoverExtraContent>}
           {footer && <PopoverFooter>{footer}</PopoverFooter>}
           <PopoverArrow />
@@ -101,17 +108,6 @@ export const Popover = forwardRef<HTMLButtonElement, Props>((props, ref) => {
 });
 
 Popover.displayName = 'Popover';
-
-const PopoverTitle = styled.h1`
-  font: var(--echoes-typography-heading-medium);
-  color: var(--echoes-color-text-bold);
-  margin: 0 0 var(--echoes-dimension-space-75);
-`;
-
-const PopoverDescription = styled.div`
-  font: var(--echoes-typography-text-small-regular);
-  color: var(--echoes-color-text-subdued);
-`;
 
 const PopoverExtraContent = styled.div`
   margin-top: var(--echoes-dimension-space-200);

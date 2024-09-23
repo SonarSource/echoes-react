@@ -23,3 +23,4 @@ export * from './Heading';
 export * from './HelperText';
 export * from './Label';
 export * from './Text';
+export * from './TypographyGlobalStyles';

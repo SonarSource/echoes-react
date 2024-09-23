@@ -186,7 +186,7 @@ const LabelWrapper = styled.span`
 `;
 
 const Label = styled.span`
-  font: var(--echoes-typography-text-default-medium);
+  font: var(--echoes-typography-others-label-medium);
 
   [aria-disabled='true'] > & {
     color: var(--echoes-color-text-disabled);

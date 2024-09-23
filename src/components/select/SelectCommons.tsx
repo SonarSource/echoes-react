@@ -18,7 +18,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import { css } from '@emotion/react';
+import { css, Global } from '@emotion/react';
 import styled from '@emotion/styled';
 import { Select as MantineSelect, SelectProps as MantineSelectProps } from '@mantine/core';
 import { forwardRef, useContext } from 'react';
@@ -209,7 +209,7 @@ export const SelectStyled = styled(MantineSelect, {
 
   // Required asterisk element styles, defined by required prop
   & .echoes-select-required {
-    font: var(--echoes-typography-text-default-medium);
+    font: var(--echoes-typography-others-label-medium);
     color: var(--echoes-color-text-danger);
   }
 
@@ -336,7 +336,7 @@ export const SelectStyled = styled(MantineSelect, {
         align-items: center;
         justify-content: center;
 
-        font: var(--echoes-typography-text-small-regular);
+        font: var(--echoes-typography-text-small-medium);
         background-color: var(--echoes-color-background-transparent);
         color: var(--echoes-color-icon-subdued);
 
@@ -372,66 +372,72 @@ export const SelectStyled = styled(MantineSelect, {
  * wrapper below.
  * Instead, these styles are added as Global emotion styles in the EchoesProvider.
  */
-export const globalSelectStyles = css`
-  // Dropdown element - wrapper around the select items
-  .echoes-select-dropdown,
-  .echoes-select-dropdown-auto-width {
-    position: absolute;
+export function SelectGlobalStyles() {
+  return (
+    <Global
+      styles={css`
+        // Dropdown element - wrapper around the select items
+        .echoes-select-dropdown,
+        .echoes-select-dropdown-auto-width {
+          position: absolute;
 
-    overflow: hidden;
+          overflow: hidden;
 
-    background-color: var(--echoes-color-background-default);
-    border: var(--echoes-border-width-default) solid var(--echoes-color-border-weak);
-    border-radius: var(--echoes-border-radius-400);
+          background-color: var(--echoes-color-background-default);
+          border: var(--echoes-border-width-default) solid var(--echoes-color-border-weak);
+          border-radius: var(--echoes-border-radius-400);
 
-    box-shadow: var(--echoes-box-shadow-medium);
+          box-shadow: var(--echoes-box-shadow-medium);
 
-    & .echoes-select-options-wrapper {
-      max-height: 250px;
-      overflow-y: auto;
+          & .echoes-select-options-wrapper {
+            max-height: 250px;
+            overflow-y: auto;
 
-      padding: var(--echoes-dimension-space-100) var(--echoes-dimension-space-0);
-    }
-  }
+            padding: var(--echoes-dimension-space-100) var(--echoes-dimension-space-0);
+          }
+        }
 
-  .echoes-select-dropdown-auto-width {
-    width: auto !important; // We need to override the element width set by Mantine
-  }
+        .echoes-select-dropdown-auto-width {
+          width: auto !important; // We need to override the element width set by Mantine
+        }
 
-  // Inside the dropdown - Group wrapper, contains a group label and all the items of a group
-  .echoes-select-group {
-    display: flex;
-    flex-direction: column;
-    padding: var(--echoes-dimension-space-0);
-  }
+        // Inside the dropdown - Group wrapper, contains a group label and all the items of a group
+        .echoes-select-group {
+          display: flex;
+          flex-direction: column;
+          padding: var(--echoes-dimension-space-0);
+        }
 
-  // Inside the dropdown - Group header label
-  .echoes-select-group-label {
-    padding: var(--echoes-dimension-space-50) var(--echoes-dimension-space-200)
-      var(--echoes-dimension-space-100);
+        // Inside the dropdown - Group header label
+        .echoes-select-group-label {
+          padding: var(--echoes-dimension-space-50) var(--echoes-dimension-space-200)
+            var(--echoes-dimension-space-100);
 
-    font: var(--echoes-typography-text-small-semi-bold);
-    color: var(--echoes-color-text-default);
-  }
+          font: var(--echoes-typography-text-small-semi-bold);
+          color: var(--echoes-color-text-default);
+        }
 
-  // Inside the dropdown - Adds a divider between two groups
-  .echoes-select-group + .echoes-select-group::before {
-    content: '';
+        // Inside the dropdown - Adds a divider between two groups
+        .echoes-select-group + .echoes-select-group::before {
+          content: '';
 
-    flex: 1;
-    padding: var(--echoes-dimension-space-25) var(--echoes-dimension-space-0);
+          flex: 1;
+          padding: var(--echoes-dimension-space-25) var(--echoes-dimension-space-0);
 
-    border-top: var(--echoes-border-width-default) solid var(--echoes-color-border-weak);
-  }
+          border-top: var(--echoes-border-width-default) solid var(--echoes-color-border-weak);
+        }
 
-  .echoes-select-empty {
-    font: var(--echoes-typography-text-small-regular);
-    color: var(--echoes-color-text-subdued);
-    text-align: center;
+        .echoes-select-empty {
+          font: var(--echoes-typography-text-small-medium);
+          color: var(--echoes-color-text-subdued);
+          text-align: center;
 
-    padding: var(--echoes-dimension-space-50) var(--echoes-dimension-space-0);
-  }
-`;
+          padding: var(--echoes-dimension-space-50) var(--echoes-dimension-space-0);
+        }
+      `}
+    />
+  );
+}
 
 interface SelectRightSectionProps extends Pick<SelectBaseProps, 'isLoading'> {
   hasValue: boolean;
