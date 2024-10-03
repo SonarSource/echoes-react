@@ -38,19 +38,31 @@ export default meta;
 
 type Story = StoryObj<typeof LinkStandaloneComp>;
 
+const defaultArgs = {
+  highlight: undefined,
+  to: '/projects/new',
+};
+
 export const LinkStandalone: Story = {
   args: {
+    ...defaultArgs,
     children: 'Standalone Link',
-    highlight: undefined,
-    to: '/projects/new',
+  },
+};
+
+export const LinkStandaloneExternal: Story = {
+  args: {
+    ...defaultArgs,
+    children: 'Standalone External Link',
+    shouldOpenInNewTab: true,
   },
 };
 
 export const LinkStandaloneWithIcon: Story = {
   args: {
+    ...defaultArgs,
     children: 'Standalone Link With Icon',
     highlight: LinkHighlight.Default,
-    to: '/projects/new',
     iconLeft: <IconLink />,
   },
 };

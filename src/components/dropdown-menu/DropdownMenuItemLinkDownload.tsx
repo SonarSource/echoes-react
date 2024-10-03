@@ -31,10 +31,11 @@ export const DropdownMenuItemLinkDownload = forwardRef<HTMLDivElement, Props>((p
     <DropdownMenuItemLink
       {...props}
       hasExternalIcon={false}
-      isExternal
       prefix={<IconDownload color="echoes-color-icon-subdued" />}
       ref={ref}
+      shouldOpenInNewTab
     />
   );
 });
+
 DropdownMenuItemLinkDownload.displayName = 'DropdownMenu.ItemLinkDownload';

@@ -69,13 +69,21 @@ it('should stop propagation when stopPropagation is true', async () => {
   expect(buttonOnClick).not.toHaveBeenCalled();
 });
 
-it('should add noreferrer nofollow when link is not a sonar link', () => {
-  setupWithMemoryRouter(<Link to="https://google.com">external link</Link>);
+it('should add noreferrer nofollow when link should open in new tab', () => {
+  setupWithMemoryRouter(
+    <Link shouldOpenInNewTab to="https://google.com">
+      external link
+    </Link>,
+  );
   expect(screen.getByRole('link')).toHaveAttribute('rel', 'noopener noreferrer nofollow');
 });
 
 it('should not add noreferrer nofollow when link is a sonar link', () => {
-  setupWithMemoryRouter(<Link to="https://blog.sonarsource.com">external link</Link>);
+  setupWithMemoryRouter(
+    <Link shouldOpenInNewTab to="https://blog.sonarsource.com">
+      external link
+    </Link>,
+  );
   expect(screen.getByRole('link')).toHaveAttribute('rel', 'noopener');
 });
 
@@ -102,7 +110,11 @@ it('internal link should be clickable', async () => {
 });
 
 it('external links are indicated by additional text', async () => {
-  const { container } = setupWithMemoryRouter(<Link to="https://google.com">external link</Link>);
+  const { container } = setupWithMemoryRouter(
+    <Link shouldOpenInNewTab to="https://google.com">
+      external link
+    </Link>,
+  );
   expect(screen.getByRole('link')).toBeVisible();
   expect(screen.getByRole('link')).toHaveAttribute('target', '_blank');
   expect(screen.getByRole('link')).toHaveTextContent('(opens in new tab)');

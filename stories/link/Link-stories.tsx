@@ -50,6 +50,7 @@ export const LinkExternal: Story = {
   args: {
     children: 'External link',
     highlight: LinkHighlight.Subdued,
+    shouldOpenInNewTab: true,
     to: 'https://abc.com/path/new',
   },
 };
@@ -58,6 +59,7 @@ export const LinkInsideParagraphWithStyle: Story = {
   args: {
     children: 'an external link',
     highlight: LinkHighlight.CurrentColor,
+    shouldOpenInNewTab: true,
     to: 'https://abc.com/path/new',
   },
   render: (args) => (
@@ -71,6 +73,7 @@ export const LinkInsideList: Story = {
   args: {
     children: 'External link inside a list',
     highlight: LinkHighlight.Default,
+    shouldOpenInNewTab: true,
     to: 'https://abc.com/path/new',
   },
   render: (args) => (
@@ -88,6 +91,7 @@ export const LinkInsideDivWithFlexAndStyle: Story = {
   args: {
     children: 'External link inside a div',
     highlight: LinkHighlight.CurrentColor,
+    shouldOpenInNewTab: true,
     to: 'https://abc.com/path/new',
   },
   render: (args) => (

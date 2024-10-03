@@ -57,20 +57,6 @@ it('should not show external icon when left icon is provided by default', () => 
   expect(screen.queryByTestId('echoes-link-external-icon')).not.toBeInTheDocument();
 });
 
-it('should be possible to override and show the external icon with icon on the left', () => {
-  setupWithMemoryRouter(
-    <LinkStandalone
-      hasExternalIcon
-      iconLeft={<IconLink data-testid="link icon" />}
-      to="https://www.sonarsource.com">
-      link with icon
-    </LinkStandalone>,
-  );
-  expect(screen.getByRole('link')).toBeVisible();
-  expect(screen.getByTestId('link icon')).toBeInTheDocument();
-  expect(screen.getByTestId('echoes-link-external-icon')).toBeInTheDocument();
-});
-
 it('should correclty support tooltips', async () => {
   const { user } = setupWithMemoryRouter(
     <Tooltip content="my tooltip">
