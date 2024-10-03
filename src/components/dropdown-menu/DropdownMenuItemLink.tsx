@@ -21,20 +21,23 @@
 import styled from '@emotion/styled';
 import { forwardRef } from 'react';
 import { IconLinkExternal } from '../icons/IconLinkExternal';
-import { LinkBase, LinkProps } from '../links/LinkBase';
+import { LinkBase, LinkBaseProps } from '../links/LinkBase';
 import { DropdownMenuItemBase, DropdownMenuItemBaseProps } from './DropdownMenuItemBase';
 
 type Props = Omit<
   DropdownMenuItemBaseProps,
   'isCheckable' | 'isChecked' | 'ItemWrapper' | 'itemWrapperProps'
 > &
-  Pick<LinkProps, 'download' | 'hasExternalIcon' | 'isExternal' | 'isMatchingFullPath' | 'to'>;
+  Pick<
+    LinkBaseProps,
+    'download' | 'hasExternalIcon' | 'isMatchingFullPath' | 'shouldOpenInNewTab' | 'to'
+  >;
 
 const getComposedSuffix = ({
-  isExternal,
+  shouldOpenInNewTab,
   suffix,
-}: Readonly<Pick<Props, 'isExternal' | 'suffix'>>) => {
-  const externalSuffix = isExternal ? <StyledIconLinkExternal /> : undefined;
+}: Readonly<Pick<Props, 'shouldOpenInNewTab' | 'suffix'>>) => {
+  const externalSuffix = shouldOpenInNewTab ? <StyledIconLinkExternal /> : undefined;
 
   if (suffix && externalSuffix) {
     return (
@@ -54,21 +57,20 @@ export const DropdownMenuItemLink = forwardRef<HTMLDivElement, Props>((props, re
     download,
     hasExternalIcon = true,
     isDisabled,
-    isExternal: isExternalProp = false,
     isMatchingFullPath = false,
+    shouldOpenInNewTab = false,
     suffix,
     to,
     ...radixProps
   } = props;
-  const toAsString =
-    typeof to === 'string' ? to : `${to.pathname ?? ''}${to.search ?? ''}${to.hash ?? ''}`;
-
-  const isExternal = isExternalProp || toAsString.startsWith('http');
 
   const itemProps = {
     ...radixProps,
     isDisabled,
-    suffix: getComposedSuffix({ isExternal: isExternal && hasExternalIcon, suffix }),
+    suffix: getComposedSuffix({
+      shouldOpenInNewTab: shouldOpenInNewTab && hasExternalIcon,
+      suffix,
+    }),
   };
 
   if (isDisabled) {
@@ -85,9 +87,9 @@ export const DropdownMenuItemLink = forwardRef<HTMLDivElement, Props>((props, re
         <StyledLinkBase
           download={download}
           hasExternalIcon={false}
-          hasNavLink
-          isExternal={isExternal}
           isMatchingFullPath={isMatchingFullPath}
+          isNavLink
+          shouldOpenInNewTab={shouldOpenInNewTab}
           to={to}>
           {getStyledItemContents({ label: children })}
         </StyledLinkBase>

@@ -18,8 +18,14 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+import { forwardRef } from 'react';
+import { LinkBaseFixedProps, NavLinkProps } from './LinkBase';
 import { LinkBaseStyled } from './LinkBaseStyled';
 
-export const Link = LinkBaseStyled;
+export type LinkProps = Omit<LinkBaseFixedProps, 'hasExternalIcon'> & NavLinkProps;
+
+export const Link = forwardRef<HTMLAnchorElement, LinkProps>((props, ref) => (
+  <LinkBaseStyled {...{ ...props, ref }} />
+));
 
 Link.displayName = 'Link';

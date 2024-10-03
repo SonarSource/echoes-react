@@ -18,7 +18,6 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import styled from '@emotion/styled';
 import * as VisuallyHidden from '@radix-ui/react-visually-hidden';
 import React, { CSSProperties, HTMLAttributeAnchorTarget, forwardRef } from 'react';
 import { useIntl } from 'react-intl';
@@ -39,31 +38,41 @@ export enum LinkHighlight {
   Subdued = 'subdued',
 }
 
-export interface LinkProps extends Pick<RouterNavLinkProps, RouterNavLinkPropsAllowed> {
+export type NavLinkProps =
+  | {
+      isMatchingFullPath?: boolean;
+      isNavLink: true;
+    }
+  | {
+      isMatchingFullPath?: never;
+      isNavLink?: false;
+    };
+
+export type LinkBaseFixedProps = Pick<RouterNavLinkProps, RouterNavLinkPropsAllowed> & {
   children: React.ReactNode;
   className?: string;
   hasExternalIcon?: boolean;
-  hasNavLink?: boolean;
   highlight?: LinkHighlight;
-  isExternal?: boolean;
-  isMatchingFullPath?: boolean;
   onClick?: (event: React.MouseEvent<HTMLAnchorElement>) => void;
   shouldBlurAfterClick?: boolean;
+  shouldOpenInNewTab?: boolean;
   shouldPreventDefault?: boolean;
   shouldStopPropagation?: boolean;
   target?: HTMLAttributeAnchorTarget;
-}
+};
 
-export const LinkBase = forwardRef<HTMLAnchorElement, LinkProps>((props, ref) => {
+export type LinkBaseProps = LinkBaseFixedProps & NavLinkProps;
+
+export const LinkBase = forwardRef<HTMLAnchorElement, LinkBaseProps>((props, ref) => {
   const {
     children,
     shouldBlurAfterClick = false,
-    isExternal: isExternalProp = false,
     isMatchingFullPath = false,
     onClick,
+    shouldOpenInNewTab = false,
     shouldPreventDefault = false,
     hasExternalIcon = true,
-    hasNavLink = false,
+    isNavLink = false,
     shouldStopPropagation = false,
     style,
     to,
@@ -72,8 +81,6 @@ export const LinkBase = forwardRef<HTMLAnchorElement, LinkProps>((props, ref) =>
 
   const toAsString =
     typeof to === 'string' ? to : `${to.pathname ?? ''}${to.search ?? ''}${to.hash ?? ''}`;
-
-  const isExternal = isExternalProp || toAsString.startsWith('http');
 
   const intl = useIntl();
 
@@ -98,7 +105,7 @@ export const LinkBase = forwardRef<HTMLAnchorElement, LinkProps>((props, ref) =>
     [onClick, shouldBlurAfterClick, shouldPreventDefault, shouldStopPropagation],
   );
 
-  if (isExternal) {
+  if (shouldOpenInNewTab) {
     return (
       /* eslint-disable-next-line react/jsx-no-target-blank -- we only allow noopener noreferrer for known external links */
       <a
@@ -110,7 +117,14 @@ export const LinkBase = forwardRef<HTMLAnchorElement, LinkProps>((props, ref) =>
         ref={ref}
         style={style as CSSProperties | undefined}>
         {children}
-        {hasExternalIcon && <ExternalIcon data-testid="echoes-link-external-icon" />}
+
+        {hasExternalIcon && (
+          <>
+            &nbsp;
+            <IconLinkExternal data-testid="echoes-link-external-icon" />
+          </>
+        )}
+
         <VisuallyHidden.Root>
           {intl.formatMessage({
             id: 'open_in_new_tab',
@@ -122,11 +136,11 @@ export const LinkBase = forwardRef<HTMLAnchorElement, LinkProps>((props, ref) =>
     );
   }
 
-  const RouterLinkComponent = hasNavLink ? RouterNavLink : RouterLink;
+  const RouterLinkComponent = isNavLink ? RouterNavLink : RouterLink;
 
   return (
     <RouterLinkComponent
-      {...(hasNavLink && isMatchingFullPath ? { end: true } : {})}
+      {...(isMatchingFullPath && isNavLink ? { end: true } : {})}
       {...restAndRadixProps}
       onClick={handleClick}
       ref={ref}
@@ -138,7 +152,3 @@ export const LinkBase = forwardRef<HTMLAnchorElement, LinkProps>((props, ref) =>
 });
 
 LinkBase.displayName = 'LinkBase';
-
-const ExternalIcon = styled(IconLinkExternal)`
-  margin-left: var(--echoes-dimension-space-50);
-`;

@@ -18,7 +18,6 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-export { Link } from './Link';
+export * from './Link';
 export { LinkHighlight } from './LinkBase';
-export type { LinkProps } from './LinkBase';
 export { LinkStandalone } from './LinkStandalone';

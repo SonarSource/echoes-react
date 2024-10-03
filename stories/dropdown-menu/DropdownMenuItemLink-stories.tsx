@@ -138,8 +138,8 @@ export const External: Story = {
   args: {
     ...defaultProps,
     helpText: '',
-    isExternal: true,
     prefix: '',
+    shouldOpenInNewTab: true,
     suffix: '',
   },
   render,
@@ -149,8 +149,8 @@ export const ExternalWithSuffix: Story = {
   args: {
     ...defaultProps,
     helpText: '',
-    isExternal: true,
     prefix: '',
+    shouldOpenInNewTab: true,
   },
   render,
 };
@@ -159,7 +159,7 @@ export const Full: Story = {
   args: {
     ...defaultProps,
     ariaLabel: 'ARIA label',
-    isExternal: true,
+    shouldOpenInNewTab: true,
     to: '/',
   },
   render,
