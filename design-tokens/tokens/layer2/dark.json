@@ -339,6 +339,10 @@
           "type": "color",
           "value": "{echoes.color.grey.400}"
         },
+        "placeholder": {
+          "type": "color",
+          "value": "{echoes.color.grey.200}"
+        },
         "accent": {
           "type": "color",
           "value": "{echoes.color.indigo.300}"
@@ -404,6 +408,10 @@
         "disabled": {
           "type": "color",
           "value": "{echoes.color.grey.400}"
+        },
+        "placeholder": {
+          "type": "color",
+          "value": "{echoes.color.grey.200}"
         },
         "accent": {
           "type": "color",
