@@ -19,10 +19,10 @@
  */
 
 import { forwardRef } from 'react';
-import { LinkBaseFixedProps, NavLinkProps } from './LinkBase';
+import { LinkBaseFixedProps } from './LinkBase';
 import { LinkBaseStyled } from './LinkBaseStyled';
 
-export type LinkProps = Omit<LinkBaseFixedProps, 'hasExternalIcon'> & NavLinkProps;
+export type LinkProps = Omit<LinkBaseFixedProps, 'hasExternalIcon'>;
 
 export const Link = forwardRef<HTMLAnchorElement, LinkProps>((props, ref) => (
   <LinkBaseStyled {...{ ...props, ref }} />
