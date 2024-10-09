@@ -20,18 +20,13 @@
 
 import styled from '@emotion/styled';
 import { forwardRef } from 'react';
+import { NavLinkBase, NavLinkBaseProps } from '~common/components/NavLinkBase';
 import { IconLinkExternal } from '../icons/IconLinkExternal';
-import { LinkBase, LinkBaseProps } from '../links/LinkBase';
 import { DropdownMenuItemBase, DropdownMenuItemBaseProps } from './DropdownMenuItemBase';
 
-type Props = Omit<
-  DropdownMenuItemBaseProps,
-  'isCheckable' | 'isChecked' | 'ItemWrapper' | 'itemWrapperProps'
-> &
-  Pick<
-    LinkBaseProps,
-    'download' | 'hasExternalIcon' | 'isMatchingFullPath' | 'shouldOpenInNewTab' | 'to'
-  >;
+type Props = Omit<DropdownMenuItemBaseProps, 'isCheckable' | 'isChecked'> & {
+  hasExternalIcon?: boolean;
+} & Pick<NavLinkBaseProps, 'download' | 'isMatchingFullPath' | 'shouldOpenInNewTab' | 'to'>;
 
 const getComposedSuffix = ({
   shouldOpenInNewTab,
@@ -84,24 +79,18 @@ export const DropdownMenuItemLink = forwardRef<HTMLDivElement, Props>((props, re
   return (
     <StyledDropdownMenuItemBase {...itemProps} ref={ref}>
       {({ getStyledItemContents }) => (
-        <StyledLinkBase
+        <StyledNavLinkBase
           download={download}
-          hasExternalIcon={false}
           isMatchingFullPath={isMatchingFullPath}
-          isNavLink
           shouldOpenInNewTab={shouldOpenInNewTab}
           to={to}>
           {getStyledItemContents({ label: children })}
-        </StyledLinkBase>
+        </StyledNavLinkBase>
       )}
     </StyledDropdownMenuItemBase>
   );
 });
 DropdownMenuItemLink.displayName = 'DropdownMenu.ItemLink';
-
-const StyledLinkBase = styled(LinkBase)`
-  text-decoration: none;
-`;
 
 const StyledDropdownMenuItemBase = styled(DropdownMenuItemBase)`
   /* when the current URL matches 'to', react-router adds an 'active' class to the 'a' tag */
@@ -112,6 +101,10 @@ const StyledDropdownMenuItemBase = styled(DropdownMenuItemBase)`
   &[data-disabled] {
     background-color: var(--echoes-color-background-default);
   }
+`;
+
+const StyledNavLinkBase = styled(NavLinkBase)`
+  text-decoration: none;
 `;
 
 const StyledIconLinkExternal = styled(IconLinkExternal)`

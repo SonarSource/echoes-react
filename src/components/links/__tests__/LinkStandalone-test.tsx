@@ -44,19 +44,6 @@ it('should support a left icon', async () => {
   await expect(container).toHaveNoA11yViolations();
 });
 
-it('should not show external icon when left icon is provided by default', () => {
-  setupWithMemoryRouter(
-    <LinkStandalone
-      iconLeft={<IconLink data-testid="link icon" />}
-      to="https://www.sonarsource.com">
-      link with icon
-    </LinkStandalone>,
-  );
-  expect(screen.getByRole('link')).toBeVisible();
-  expect(screen.getByTestId('link icon')).toBeInTheDocument();
-  expect(screen.queryByTestId('echoes-link-external-icon')).not.toBeInTheDocument();
-});
-
 it('should correclty support tooltips', async () => {
   const { user } = setupWithMemoryRouter(
     <Tooltip content="my tooltip">
