@@ -19,18 +19,20 @@
  */
 
 import styled from '@emotion/styled';
+import * as VisuallyHidden from '@radix-ui/react-visually-hidden';
 import { forwardRef } from 'react';
+import { useIntl } from 'react-intl';
+import { NavLink as RouterNavLink, NavLinkProps as RouterNavLinkProps } from 'react-router-dom';
+import { isSonarLink } from '~common/helpers/url';
 import { IconLinkExternal } from '../icons/IconLinkExternal';
-import { LinkBase, LinkBaseProps } from '../links/LinkBase';
 import { DropdownMenuItemBase, DropdownMenuItemBaseProps } from './DropdownMenuItemBase';
 
 type Props = Omit<
   DropdownMenuItemBaseProps,
   'isCheckable' | 'isChecked' | 'ItemWrapper' | 'itemWrapperProps'
-> &
-  Pick<
-    LinkBaseProps,
-    'download' | 'hasExternalIcon' | 'isMatchingFullPath' | 'shouldOpenInNewTab' | 'to'
+> & { hasExternalIcon?: boolean } & Pick<
+    DropdownMenuItemNavLinkProps,
+    'download' | 'isMatchingFullPath' | 'shouldOpenInNewTab' | 'to'
   >;
 
 const getComposedSuffix = ({
@@ -86,9 +88,7 @@ export const DropdownMenuItemLink = forwardRef<HTMLDivElement, Props>((props, re
       {({ getStyledItemContents }) => (
         <StyledLinkBase
           download={download}
-          hasExternalIcon={false}
           isMatchingFullPath={isMatchingFullPath}
-          isNavLink
           shouldOpenInNewTab={shouldOpenInNewTab}
           to={to}>
           {getStyledItemContents({ label: children })}
@@ -99,10 +99,6 @@ export const DropdownMenuItemLink = forwardRef<HTMLDivElement, Props>((props, re
 });
 DropdownMenuItemLink.displayName = 'DropdownMenu.ItemLink';
 
-const StyledLinkBase = styled(LinkBase)`
-  text-decoration: none;
-`;
-
 const StyledDropdownMenuItemBase = styled(DropdownMenuItemBase)`
   /* when the current URL matches 'to', react-router adds an 'active' class to the 'a' tag */
   &.active {
@@ -112,6 +108,64 @@ const StyledDropdownMenuItemBase = styled(DropdownMenuItemBase)`
   &[data-disabled] {
     background-color: var(--echoes-color-background-default);
   }
+`;
+
+type RouterNavLinkPropsAllowed = 'download' | 'to';
+
+type DropdownMenuItemNavLinkProps = Pick<RouterNavLinkProps, RouterNavLinkPropsAllowed> & {
+  children: React.ReactNode;
+  isMatchingFullPath?: boolean;
+  shouldOpenInNewTab?: boolean;
+};
+
+const DropdownMenuItemNavLink = forwardRef<HTMLAnchorElement, DropdownMenuItemNavLinkProps>(
+  (props, ref) => {
+    const {
+      children,
+      isMatchingFullPath = false,
+      shouldOpenInNewTab = false,
+      to,
+      ...restAndRadixProps
+    } = props;
+
+    const intl = useIntl();
+
+    const shouldOpenInNewTabProps = shouldOpenInNewTab
+      ? {
+          rel: `noopener${typeof to === 'string' && isSonarLink(to) ? '' : ' noreferrer nofollow'}`,
+          /* eslint-disable-next-line react/jsx-no-target-blank -- we only allow noopener noreferrer for known external links */
+          target: '_blank',
+        }
+      : {};
+
+    return (
+      <RouterNavLink
+        {...(isMatchingFullPath ? { end: true } : {})}
+        {...shouldOpenInNewTabProps}
+        {...restAndRadixProps}
+        ref={ref}
+        to={to}>
+        {children}
+
+        {shouldOpenInNewTabProps && (
+          <VisuallyHidden.Root>
+            {intl.formatMessage({
+              id: 'open_in_new_tab',
+              defaultMessage: '(opens in new tab)',
+              description:
+                'Screen reader-only text to indicate that the link will open in a new tab',
+            })}
+          </VisuallyHidden.Root>
+        )}
+      </RouterNavLink>
+    );
+  },
+);
+
+DropdownMenuItemNavLink.displayName = 'DropdownMenuItemNavLink';
+
+const StyledLinkBase = styled(DropdownMenuItemNavLink)`
+  text-decoration: none;
 `;
 
 const StyledIconLinkExternal = styled(IconLinkExternal)`
