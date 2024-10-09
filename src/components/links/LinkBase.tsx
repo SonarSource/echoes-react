@@ -19,13 +19,9 @@
  */
 
 import * as VisuallyHidden from '@radix-ui/react-visually-hidden';
-import React, { CSSProperties, HTMLAttributeAnchorTarget, forwardRef } from 'react';
+import React, { forwardRef } from 'react';
 import { useIntl } from 'react-intl';
-import {
-  Link as RouterLink,
-  NavLink as RouterNavLink,
-  NavLinkProps as RouterNavLinkProps,
-} from 'react-router-dom';
+import { Link as RouterLink, LinkProps as RouterLinkProps } from 'react-router-dom';
 import { isSonarLink } from '~common/helpers/url';
 import { IconLinkExternal } from '../icons/IconLinkExternal';
 
@@ -38,49 +34,29 @@ export enum LinkHighlight {
   Subdued = 'subdued',
 }
 
-type NavLinkProps =
-  | {
-      isMatchingFullPath?: boolean;
-      isNavLink: true;
-    }
-  | {
-      isMatchingFullPath?: never;
-      isNavLink?: false;
-    };
-
-export type LinkBaseFixedProps = Pick<RouterNavLinkProps, RouterNavLinkPropsAllowed> & {
+export interface LinkProps extends Pick<RouterLinkProps, RouterNavLinkPropsAllowed> {
   children: React.ReactNode;
   className?: string;
-  hasExternalIcon?: boolean;
   highlight?: LinkHighlight;
   onClick?: (event: React.MouseEvent<HTMLAnchorElement>) => void;
   shouldBlurAfterClick?: boolean;
   shouldOpenInNewTab?: boolean;
   shouldPreventDefault?: boolean;
   shouldStopPropagation?: boolean;
-  target?: HTMLAttributeAnchorTarget;
-};
+}
 
-export type LinkBaseProps = LinkBaseFixedProps & NavLinkProps;
-
-export const LinkBase = forwardRef<HTMLAnchorElement, LinkBaseProps>((props, ref) => {
+export const LinkBase = forwardRef<HTMLAnchorElement, LinkProps>((props, ref) => {
   const {
     children,
     shouldBlurAfterClick = false,
-    isMatchingFullPath = false,
     onClick,
     shouldOpenInNewTab = false,
     shouldPreventDefault = false,
-    hasExternalIcon = true,
-    isNavLink = false,
     shouldStopPropagation = false,
     style,
     to,
     ...restAndRadixProps
   } = props;
-
-  const toAsString =
-    typeof to === 'string' ? to : `${to.pathname ?? ''}${to.search ?? ''}${to.hash ?? ''}`;
 
   const intl = useIntl();
 
@@ -105,49 +81,39 @@ export const LinkBase = forwardRef<HTMLAnchorElement, LinkBaseProps>((props, ref
     [onClick, shouldBlurAfterClick, shouldPreventDefault, shouldStopPropagation],
   );
 
-  if (shouldOpenInNewTab) {
-    return (
-      /* eslint-disable-next-line react/jsx-no-target-blank -- we only allow noopener noreferrer for known external links */
-      <a
-        rel={`noopener${isSonarLink(toAsString) ? '' : ' noreferrer nofollow'}`}
-        target="_blank"
-        {...restAndRadixProps}
-        href={toAsString}
-        onClick={handleClick}
-        ref={ref}
-        style={style as CSSProperties | undefined}>
-        {children}
-
-        {hasExternalIcon && (
-          <>
-            &nbsp;
-            <IconLinkExternal data-testid="echoes-link-external-icon" />
-          </>
-        )}
-
-        <VisuallyHidden.Root>
-          {intl.formatMessage({
-            id: 'open_in_new_tab',
-            defaultMessage: '(opens in new tab)',
-            description: 'Screen reader-only text to indicate that the link will open in a new tab',
-          })}
-        </VisuallyHidden.Root>
-      </a>
-    );
-  }
-
-  const RouterLinkComponent = isNavLink ? RouterNavLink : RouterLink;
+  const shouldOpenInNewTabProps = shouldOpenInNewTab
+    ? {
+        rel: `noopener${typeof to === 'string' && isSonarLink(to) ? '' : ' noreferrer nofollow'}`,
+        /* eslint-disable-next-line react/jsx-no-target-blank -- we only allow noopener noreferrer for known external links */
+        target: '_blank',
+      }
+    : {};
 
   return (
-    <RouterLinkComponent
-      {...(isMatchingFullPath && isNavLink ? { end: true } : {})}
+    <RouterLink
+      {...shouldOpenInNewTabProps}
       {...restAndRadixProps}
       onClick={handleClick}
       ref={ref}
       style={style}
       to={to}>
       {children}
-    </RouterLinkComponent>
+
+      {shouldOpenInNewTab && (
+        <>
+          &nbsp;
+          <IconLinkExternal data-testid="echoes-link-external-icon" />
+          <VisuallyHidden.Root>
+            {intl.formatMessage({
+              id: 'open_in_new_tab',
+              defaultMessage: '(opens in new tab)',
+              description:
+                'Screen reader-only text to indicate that the link will open in a new tab',
+            })}
+          </VisuallyHidden.Root>
+        </>
+      )}
+    </RouterLink>
   );
 });
 

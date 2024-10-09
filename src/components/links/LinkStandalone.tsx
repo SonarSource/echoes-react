@@ -22,18 +22,18 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { forwardRef } from 'react';
 import { LinkHighlight } from '.';
-import { LinkProps } from './Link';
+import { LinkProps } from './LinkBase';
 import { LinkBaseStyled } from './LinkBaseStyled';
 
-type Props = LinkProps & {
+interface Props extends LinkProps {
   iconLeft?: React.ReactNode;
-};
+}
 
 const LinkStandaloneBase = forwardRef<HTMLAnchorElement, Props>((props, ref) => {
   const { children, iconLeft, ...linkProps } = props;
 
   return (
-    <LinkBaseStyled hasExternalIcon={!iconLeft} {...linkProps} ref={ref}>
+    <LinkBaseStyled {...linkProps} ref={ref}>
       {iconLeft}
 
       {children}

@@ -121,17 +121,6 @@ it('external links are indicated by additional text', async () => {
   await expect(container).toHaveNoA11yViolations();
 });
 
-it('should override target if passed as a prop for external link', () => {
-  const onClick = jest.fn();
-  setupWithMemoryRouter(
-    <Link onClick={onClick} target="_self" to="https://google.com">
-      Test
-    </Link>,
-  );
-
-  expect(screen.getByRole('link')).toHaveAttribute('target', '_self');
-});
-
 it('should correclty support tooltips', async () => {
   const { user } = setupWithMemoryRouter(
     <Tooltip content="my tooltip">

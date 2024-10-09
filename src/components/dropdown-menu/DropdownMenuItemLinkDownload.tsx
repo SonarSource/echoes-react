@@ -19,12 +19,13 @@
  */
 
 import { forwardRef } from 'react';
-import { IconDownload, LinkProps } from '..';
+import { NavLinkBaseProps } from '~common/components/NavLinkBase';
+import { IconDownload } from '..';
 import { DropdownMenuItemBaseProps } from './DropdownMenuItemBase';
 import { DropdownMenuItemLink } from './DropdownMenuItemLink';
 
 type Props = Omit<DropdownMenuItemBaseProps, 'isCheckable' | 'isChecked' | 'prefix' | 'suffix'> &
-  Pick<LinkProps, 'to'> & { download: string };
+  Pick<NavLinkBaseProps, 'to'> & { download: string };
 
 export const DropdownMenuItemLinkDownload = forwardRef<HTMLDivElement, Props>((props, ref) => {
   return (
