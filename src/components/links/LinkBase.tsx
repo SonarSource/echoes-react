@@ -38,7 +38,7 @@ export enum LinkHighlight {
   Subdued = 'subdued',
 }
 
-export type NavLinkProps =
+type NavLinkProps =
   | {
       isMatchingFullPath?: boolean;
       isNavLink: true;
