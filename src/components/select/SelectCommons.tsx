@@ -285,7 +285,7 @@ export const SelectStyled = styled(MantineSelect, {
     }
 
     &::placeholder {
-      color: var(--echoes-color-text-subdued);
+      color: var(--echoes-color-text-placeholder);
     }
 
     &[data-disabled] {
