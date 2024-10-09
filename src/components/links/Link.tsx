@@ -17,15 +17,8 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-
-import { forwardRef } from 'react';
-import { LinkBaseFixedProps } from './LinkBase';
 import { LinkBaseStyled } from './LinkBaseStyled';
 
-export type LinkProps = Omit<LinkBaseFixedProps, 'hasExternalIcon'>;
-
-export const Link = forwardRef<HTMLAnchorElement, LinkProps>((props, ref) => (
-  <LinkBaseStyled {...{ ...props, ref }} />
-));
+export const Link = LinkBaseStyled;
 
 Link.displayName = 'Link';
