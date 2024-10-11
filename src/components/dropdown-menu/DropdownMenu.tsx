@@ -22,7 +22,9 @@ import styled from '@emotion/styled';
 import * as radixDropdownMenu from '@radix-ui/react-dropdown-menu';
 import { ReactNode, forwardRef, useContext } from 'react';
 import { truncate } from '~common/helpers/styles';
+import { isDefined } from '~common/helpers/types';
 import { PropsLabel } from '~types/utils';
+import { THEME_DATA_ATTRIBUTE, ThemeContext } from '~utils/theme';
 import { PortalContext } from '../../common/components/PortalContext';
 import { HelperText, Label } from '../typography';
 import { DropdownMenuGroupLabel } from './DropdownMenuGroupLabel';
@@ -78,6 +80,8 @@ const DropdownMenuRoot = forwardRef<HTMLButtonElement, DropdownMenuRootProps>(
     ref,
   ) => {
     const portalContext = useContext(PortalContext);
+    const theme = useContext(ThemeContext);
+    const themeOverrideProp = isDefined(theme) ? { [THEME_DATA_ATTRIBUTE]: theme } : {};
 
     if (isDisabled) {
       return <>{children}</>;
@@ -106,6 +110,7 @@ const DropdownMenuRoot = forwardRef<HTMLButtonElement, DropdownMenuRootProps>(
 
         <radixDropdownMenu.Portal container={portalContext.portalReference}>
           <StyledDropdownMenuContent
+            {...themeOverrideProp}
             align={align}
             aria-labelledby={`${id}-trigger`}
             className={className}
