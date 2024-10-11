@@ -20,7 +20,15 @@
 
 import styled from '@emotion/styled';
 import type { Meta, StoryObj } from '@storybook/react';
-import { DropdownMenu, DropdownMenuAlign, IconBug, IconGear, LinkStandalone } from '../../src';
+import {
+  DropdownMenu,
+  DropdownMenuAlign,
+  IconBug,
+  IconGear,
+  LinkStandalone,
+  Theme,
+  ThemeProvider,
+} from '../../src';
 import { BasicWrapper } from '../helpers/BasicWrapper';
 import { MenuButton } from '../helpers/MenuButton';
 
@@ -114,3 +122,22 @@ export const MenuWithVariousItems: Story = {
     </BasicWrapper>
   ),
 };
+
+export const MenuInADarkSideBar: Story = {
+  render: () => (
+    <ThemeProvider theme={Theme.dark}>
+      <FakeDarkSideBar>
+        <DropdownMenu.Root align={DropdownMenuAlign.Start} items={items}>
+          <MenuButton />
+        </DropdownMenu.Root>
+      </FakeDarkSideBar>
+    </ThemeProvider>
+  ),
+};
+
+const FakeDarkSideBar = styled.div`
+  background-color: var(--echoes-color-background-default);
+  padding: 8px;
+  height: 50vh;
+  width: fit-content;
+`;

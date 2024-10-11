@@ -21,6 +21,8 @@
 import { screen } from '@testing-library/react';
 import { MemoryRouter, Route, Routes, useLocation } from 'react-router-dom';
 import { render } from '~common/helpers/test-utils';
+import { Theme } from '~generated/themes';
+import { ThemeProvider } from '~utils/theme';
 import { IconBell, IconCalendar } from '../../icons';
 import { DropdownMenu, DropdownMenuAlign } from '../DropdownMenu';
 
@@ -268,6 +270,18 @@ it('should render many different items', async () => {
   expect(linkClickHandler).toHaveBeenCalled();
 
   expect(screen.getByText('/second')).toBeVisible();
+});
+
+it('should properly handle theme overrides', () => {
+  setupWithMemoryRouter(
+    <ThemeProvider theme={Theme.dark}>
+      <DropdownMenu.Root className="testClassName" isOpenOnMount items={items}>
+        {trigger}
+      </DropdownMenu.Root>
+    </ThemeProvider>,
+  );
+
+  expect(screen.getByRole('menu')).toHaveAttribute('data-echoes-theme', Theme.dark);
 });
 
 function ShowPath() {
