@@ -68,6 +68,7 @@
       "echoes.color.text.default": "433ad741ec9d5c3f3281ee6740354fecf814ea06",
       "echoes.color.text.subdued": "eced94d663cc27c76b73a47b7e2528ed32be8c48",
       "echoes.color.text.disabled": "9d518f6edf3b09f27f0d56a1d4cb201bd02ab1ab",
+      "echoes.color.text.placeholder": "7254c1dbd8649b6d3467b1c3480743cf79bc5db6",
       "echoes.color.text.accent": "ebe8f3b29adbac83e1049b7ba7f3fcfa93597e41",
       "echoes.color.text.accent-hover": "99b4dc18e184f065a806038e78d88ecb38ade602",
       "echoes.color.text.accent-bold": "729a22e58a105bdaa4952bf36ea6876415f16523",
@@ -84,6 +85,7 @@
       "echoes.color.icon.default": "4a7870c8ecda9c5a73ce003126dbdfe8971c3e6f",
       "echoes.color.icon.subdued": "8cf9ba2e6842bb38b3cb4f0491d65c11bb41c6a6",
       "echoes.color.icon.disabled": "520c2fe5b7268005727af7440c48a83fd6afe766",
+      "echoes.color.icon.placeholder": "1ea44079805c15896460035648e4382aad4b6d41",
       "echoes.color.icon.accent": "7d6d213b486733ddf37b6650fad0f2c7535b281f",
       "echoes.color.icon.danger": "a7c74a2ca656e0a95d13df601dd1b382d0d08553",
       "echoes.color.icon.warning": "c1c4cf5cbeb2aaf6483cc35559f588aba95504f1",
@@ -103,7 +105,9 @@
       "echoes.color.border.warning": "f1ca8acc11fe0540516282e414fd635835143ca2",
       "echoes.color.border.info": "231c48e1aabd21a214abf554a9844d130bc068c0",
       "echoes.color.focus.default": "a5d79c72e6395c98eb1fcf18075446f2aa65e0fc",
-      "echoes.modal.colors.shadow.gradient": "ec7e53aaa31e3c7305cb57d63ecfbf7c51054f5a"
+      "echoes.modal.colors.shadow.gradient": "ec7e53aaa31e3c7305cb57d63ecfbf7c51054f5a",
+      "echoes.logos.colors.text": "45739a7b4a9e51ab8b70ab424d9cc904cc3235d4",
+      "echoes.logos.colors.brand": "50d00de4c3b5874f7f8723abf6e0e5aaa5610f8e"
     },
     "group": "Themes"
   },
@@ -176,6 +180,7 @@
       "echoes.color.text.default": "433ad741ec9d5c3f3281ee6740354fecf814ea06",
       "echoes.color.text.subdued": "eced94d663cc27c76b73a47b7e2528ed32be8c48",
       "echoes.color.text.disabled": "9d518f6edf3b09f27f0d56a1d4cb201bd02ab1ab",
+      "echoes.color.text.placeholder": "7254c1dbd8649b6d3467b1c3480743cf79bc5db6",
       "echoes.color.text.accent": "ebe8f3b29adbac83e1049b7ba7f3fcfa93597e41",
       "echoes.color.text.accent-hover": "99b4dc18e184f065a806038e78d88ecb38ade602",
       "echoes.color.text.accent-bold": "729a22e58a105bdaa4952bf36ea6876415f16523",
@@ -192,6 +197,7 @@
       "echoes.color.icon.default": "4a7870c8ecda9c5a73ce003126dbdfe8971c3e6f",
       "echoes.color.icon.subdued": "8cf9ba2e6842bb38b3cb4f0491d65c11bb41c6a6",
       "echoes.color.icon.disabled": "520c2fe5b7268005727af7440c48a83fd6afe766",
+      "echoes.color.icon.placeholder": "1ea44079805c15896460035648e4382aad4b6d41",
       "echoes.color.icon.accent": "7d6d213b486733ddf37b6650fad0f2c7535b281f",
       "echoes.color.icon.danger": "a7c74a2ca656e0a95d13df601dd1b382d0d08553",
       "echoes.color.icon.warning": "c1c4cf5cbeb2aaf6483cc35559f588aba95504f1",
@@ -211,7 +217,9 @@
       "echoes.color.border.warning": "f1ca8acc11fe0540516282e414fd635835143ca2",
       "echoes.color.border.info": "231c48e1aabd21a214abf554a9844d130bc068c0",
       "echoes.color.focus.default": "a5d79c72e6395c98eb1fcf18075446f2aa65e0fc",
-      "echoes.modal.colors.shadow.gradient": "ec7e53aaa31e3c7305cb57d63ecfbf7c51054f5a"
+      "echoes.modal.colors.shadow.gradient": "ec7e53aaa31e3c7305cb57d63ecfbf7c51054f5a",
+      "echoes.logos.colors.text": "45739a7b4a9e51ab8b70ab424d9cc904cc3235d4",
+      "echoes.logos.colors.brand": "50d00de4c3b5874f7f8723abf6e0e5aaa5610f8e"
     },
     "group": "Themes"
   },
@@ -313,13 +321,6 @@
       "echoes.fontSize.40": "91aa2bb7ba9ff4c9f15da238e693058203823824",
       "echoes.fontSize.50": "f87bc54e265ef9622c51c8678b6576b16826fbd1",
       "echoes.fontSize.60": "ce46d752c257155e8bcf4c3a45cb8bd706d511d8",
-      "echoes.fontSize.heading.xlarge": "dd74fc5ba3099ad4585b24ea047e477e0da5cc52",
-      "echoes.fontSize.heading.large": "ed873c70be0752cc21d5f454754447618bccea52",
-      "echoes.fontSize.heading.medium": "8d8b8238b8a64867360bde96db8fc7d15f50d53c",
-      "echoes.fontSize.heading.small": "347487a65d0cdb547621eb1dfd92956dfbdb8dd7",
-      "echoes.fontSize.body.large": "fe36f2d8310703e804bee46b3517a7c1af89cebf",
-      "echoes.fontSize.body.medium": "f3cd658d14233b6c2e2c6f7d02e3091a53074d9e",
-      "echoes.fontSize.body.small": "c8077dff9c7f971ebb5788c39ff0093b3e4c7251",
       "echoes.borderWidth.default": "14a6e497c8e74a52e550fe5e59bccf04b9831719",
       "echoes.color.support.black": "3be314db8940477cfc1d356f1c4def30e13c37db",
       "echoes.color.support.white": "a85a694466abb4a88c579d58b5a17ae173410abb",
