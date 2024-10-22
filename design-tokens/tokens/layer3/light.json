@@ -24,6 +24,22 @@
           }
         }
       }
+    },
+    "logos": {
+      "colors": {
+        "text": {
+          "value": "#290042",
+          "type": "color"
+        },
+        "brand": {
+          "value": "#126ED3",
+          "type": "color"
+        },
+        "sonar-whale": {
+          "value": "#D3121D",
+          "type": "color"
+        }
+      }
     }
   }
 }

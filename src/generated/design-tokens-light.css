@@ -133,4 +133,7 @@
   --echoes-box-shadow-x-large: 0 8px 8px -4px rgba(29,33,47,0.04), 15px 20px 24px -4px rgba(29,33,47,0.1);
   --echoes-overlays-inner-shadow-default: inset 0 -6px 10px 0 rgba(0,0,0,0.05);
   --echoes-modal-colors-shadow-gradient: rgba(0,0,0,0.2);
+  --echoes-logos-colors-text: #290042;
+  --echoes-logos-colors-brand: #126ED3;
+  --echoes-logos-colors-sonar-whale: #D3121D;
 }
