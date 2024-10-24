@@ -24,6 +24,18 @@
           }
         }
       }
+    },
+    "logos": {
+      "colors": {
+        "text": {
+          "value": "#ffffff",
+          "type": "color"
+        },
+        "brand": {
+          "value": "#7D9CFF",
+          "type": "color"
+        }
+      }
     }
   }
 }
