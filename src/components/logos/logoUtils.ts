@@ -18,17 +18,20 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-export * from './buttons';
-export * from './checkbox';
-export * from './dropdown-menu';
-export * from './echoes-provider';
-export * from './icons';
-export * from './links';
-export * from './logos';
-export * from './modals';
-export * from './popover';
-export * from './radio-button-group';
-export * from './select';
-export * from './spinner';
-export * from './tooltip';
-export * from './typography';
+import styled from '@emotion/styled';
+
+export interface LogoProps {
+  hasText?: boolean;
+  size?: LogoSize;
+}
+
+export enum LogoSize {
+  Small = 'small',
+  Medium = 'medium',
+  Large = 'large',
+}
+
+export const LogoSvgWrapper = styled.svg<{ size: LogoSize | undefined }>`
+  height: var(--echoes-sizes-logo-height-${({ size }) => size ?? LogoSize.Medium});
+  width: auto;
+`;

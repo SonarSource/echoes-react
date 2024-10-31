@@ -3,6 +3,26 @@
     "defaultMessage": "Loading...",
     "description": "aria-label text, to indicate that there is a spinner rotating in this place"
   },
+  "logo.sonar": {
+    "defaultMessage": "Sonar",
+    "description": "Alternative text for the Sonar company logo"
+  },
+  "logo.sonarqube.cloud": {
+    "defaultMessage": "SonarQube Cloud",
+    "description": "Alternative text for the SonarQube Cloud logo"
+  },
+  "logo.sonarqube.community": {
+    "defaultMessage": "SonarQube Community",
+    "description": "Alternative text for the SonarQube Community logo"
+  },
+  "logo.sonarqube.ide": {
+    "defaultMessage": "SonarQube for IDE",
+    "description": "Alternative text for the SonarQube for IDE logo"
+  },
+  "logo.sonarqube.server": {
+    "defaultMessage": "SonarQube Server",
+    "description": "Alternative text for the SonarQube Server logo"
+  },
   "modal.close": {
     "defaultMessage": "Close",
     "description": "ARIA-label for the close button at the top of the Modal."
