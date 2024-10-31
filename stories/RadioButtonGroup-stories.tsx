@@ -66,7 +66,7 @@ export const Basic: Story = {
       { helpText: 'This is a help text', label: 'Fifth option with help text', value: 'e' },
       {
         isDisabled: true,
-        helpText: 'This is another help text',
+        helpText: <span>This is another help text</span>,
         label: 'Six option: disabled with help text',
         value: 'f',
       },
@@ -121,7 +121,7 @@ export const ErroredGroup: Story = {
     isRequired: true,
     options: [
       { label: 'One', value: '1' },
-      { helpText: 'Help', label: 'Two', value: '2' },
+      { helpText: <span>Help</span>, label: 'Two', value: '2' },
       { label: 'Three', value: '3' },
     ],
   },

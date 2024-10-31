@@ -103,7 +103,7 @@ RadioButtonGroup.displayName = 'RadioButtonGroup';
  * If the label is a string, we use it directly as a fallback if no aria-label is provided
  */
 type RadioOption = {
-  helpText?: string;
+  helpText?: ReactNode;
   isDisabled?: boolean;
   value: string;
 } & ({ ariaLabel: string; label: ReactNode } | { ariaLabel?: string; label: string });
