@@ -300,6 +300,13 @@
         "maxWidth": {
           "default": "650px"
         }
+      },
+      "logo": {
+        "height": {
+          "small": "2rem",
+          "medium": "2.25rem",
+          "large": "2.5rem"
+        }
       }
     }
   }

@@ -67,6 +67,22 @@
             "description": "Use as max width in typography components"
           }
         }
+      },
+      "logo": {
+        "height": {
+          "small": {
+            "value": "2rem",
+            "type": "sizing"
+          },
+          "medium": {
+            "value": "2.25rem",
+            "type": "sizing"
+          },
+          "large": {
+            "value": "2.5rem",
+            "type": "sizing"
+          }
+        }
       }
     }
   }
