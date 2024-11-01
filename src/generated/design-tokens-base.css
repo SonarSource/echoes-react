@@ -223,4 +223,7 @@
   --echoes-sizes-buttons-medium: 2rem;
   --echoes-sizes-buttons-large: 2.25rem;
   --echoes-sizes-typography-max-width-default: 650px; /* Use as max width in typography components */
+  --echoes-sizes-logo-height-small: 2rem;
+  --echoes-sizes-logo-height-medium: 2.25rem;
+  --echoes-sizes-logo-height-large: 2.5rem;
 }

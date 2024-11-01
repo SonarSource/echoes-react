@@ -126,6 +126,9 @@ html[data-echoes-theme='dark'], [data-echoes-theme='dark'] {
   --echoes-sizes-buttons-medium: 2rem;
   --echoes-sizes-buttons-large: 2.25rem;
   --echoes-sizes-typography-max-width-default: 650px; /* Use as max width in typography components */
+  --echoes-sizes-logo-height-small: 2rem;
+  --echoes-sizes-logo-height-medium: 2.25rem;
+  --echoes-sizes-logo-height-large: 2.5rem;
   --echoes-box-shadow-xsmall: 0 1px 4px 0 rgba(8,9,12,0.4);
   --echoes-box-shadow-small: 0 1px 10px 0 rgba(8,9,12,0.4), 0 1px 3px 0 rgba(8,9,12,0.4);
   --echoes-box-shadow-medium: inset 0 2px 15px -2px rgba(8,9,12,0.06), 0 4px 15px -2px rgba(8,9,12,0.5);
