@@ -40,6 +40,85 @@
           "type": "color"
         }
       }
+    },
+    "button": {
+      "brand": {
+        "background": {
+          "default": {
+            "value": "linear-gradient(to right, #D02FA0 0%,#7E60E2 100%)",
+            "type": "color"
+          }
+        }
+      }
+    },
+    "badge": {
+      "brand": {
+        "text": {
+          "default": {
+            "value": "linear-gradient(to right, #D02FA0 0%,#7E60E2 100%)",
+            "type": "color"
+          }
+        },
+        "icon": {
+          "default": {
+            "value": "linear-gradient(to right, #D02FA0 0%,#7E60E2 100%)",
+            "type": "color"
+          }
+        },
+        "background": {
+          "default": {
+            "value": "{echoes.color.pink.pink-01}",
+            "type": "color"
+          }
+        }
+      }
+    },
+    "inlineMessage": {
+      "brand": {
+        "icon": {
+          "default": {
+            "value": "linear-gradient(to right, #D02FA0 0%,#7E60E2 100%)",
+            "type": "color"
+          }
+        },
+        "background": {
+          "default": {
+            "value": "{echoes.color.pink.pink-01}",
+            "type": "color"
+          }
+        }
+      }
+    },
+    "flagMessage": {
+      "brand": {
+        "text": {
+          "default": {
+            "value": "{echoes.color.violet.violet-03}",
+            "type": "color"
+          }
+        },
+        "background": {
+          "default": {
+            "value": "{echoes.color.pink.pink-01}",
+            "type": "color"
+          }
+        },
+        "border": {
+          "default": {
+            "value": "{echoes.color.violet.violet-03}",
+            "type": "color",
+            "$extensions": {
+              "studio.tokens": {
+                "modify": {
+                  "type": "alpha",
+                  "value": "0.4",
+                  "space": "srgb"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 }

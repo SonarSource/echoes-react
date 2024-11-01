@@ -40,6 +40,75 @@
           "type": "color"
         }
       }
+    },
+    "flagMessage": {
+      "brand": {
+        "border": {
+          "default": {
+            "value": "{echoes.color.violet.violet-03}",
+            "type": "color",
+            "$extensions": {
+              "studio.tokens": {
+                "modify": {
+                  "type": "alpha",
+                  "value": "0.4",
+                  "space": "hsl"
+                }
+              }
+            }
+          }
+        },
+        "background": {
+          "default": {
+            "value": "{echoes.color.violet.violet-04}",
+            "type": "color"
+          }
+        },
+        "text": {
+          "default": {
+            "value": "{echoes.color.violet.violet-02}",
+            "type": "color"
+          }
+        }
+      }
+    },
+    "badge": {
+      "brand": {
+        "text": {
+          "default": {
+            "value": "linear-gradient(to right, #FF84DA 0%,#B7A6FF 100%)",
+            "type": "color"
+          }
+        },
+        "icon": {
+          "default": {
+            "value": "{echoes.color.pink.pink-02}",
+            "type": "color"
+          }
+        },
+        "background": {
+          "default": {
+            "value": "{echoes.color.violet.violet-04}",
+            "type": "color"
+          }
+        }
+      }
+    },
+    "inlineMessage": {
+      "brand": {
+        "icon": {
+          "default": {
+            "value": "{echoes.color.pink.pink-02}",
+            "type": "color"
+          }
+        },
+        "background": {
+          "default": {
+            "value": "{echoes.color.violet.violet-04}",
+            "type": "color"
+          }
+        }
+      }
     }
   }
 }

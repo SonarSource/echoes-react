@@ -404,6 +404,44 @@
           "value": "rgb(23,67,97)",
           "type": "color"
         }
+      },
+      "pink": {
+        "pink-01": {
+          "value": "#FBF7FF",
+          "type": "color"
+        },
+        "pink-02": {
+          "value": "#FF84DA",
+          "type": "color"
+        },
+        "pink-03": {
+          "value": "#D02FA0",
+          "type": "color"
+        }
+      },
+      "purple": {
+        "purple-02": {
+          "value": "#B7A6FF",
+          "type": "color"
+        },
+        "purple-03": {
+          "value": "#7E60E2",
+          "type": "color"
+        }
+      },
+      "violet": {
+        "violet-03": {
+          "value": "#934AD3",
+          "type": "color"
+        },
+        "violet-02": {
+          "value": "#D39CFF",
+          "type": "color"
+        },
+        "violet-04": {
+          "value": "#1C1425",
+          "type": "color"
+        }
       }
     }
   }
