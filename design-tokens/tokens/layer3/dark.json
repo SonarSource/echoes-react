@@ -45,7 +45,7 @@
       "brand": {
         "border": {
           "default": {
-            "value": "{echoes.color.violet.violet-03}",
+            "value": "{echoes.color.violet.violet-02}",
             "type": "color",
             "$extensions": {
               "studio.tokens": {
