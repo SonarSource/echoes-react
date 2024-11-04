@@ -112,8 +112,8 @@
       "echoes.flagMessage.brand.border.default": "ede7e71f5b8b4ecdd8b52158da936c5c36a3a59b",
       "echoes.flagMessage.brand.background.default": "19880a868f209cc551297e87173620b679371dd6",
       "echoes.flagMessage.brand.text.default": "5b3f0ca4172e9abeb2304589c29e36de5e60d9e4",
-      "echoes.inlineMessage.brand.background.default": "153b87030dc7957b5a43d71c776141c8a60aab70",
-      "echoes.badge.brand.background.default": "6bc2fcaebfa72af0c97b4177f711264686549fac"
+      "echoes.badge.brand.background.default": "6bc2fcaebfa72af0c97b4177f711264686549fac",
+      "echoes.inlineMessage.brand.background.default": "153b87030dc7957b5a43d71c776141c8a60aab70"
     },
     "group": "Themes"
   },
@@ -228,12 +228,12 @@
       "echoes.logos.colors.brand": "48e39fe7df2c467e3ef5e8329e21eee720ba042e",
       "echoes.logos.colors.sonar-whale": "810a5abe6ac3934789b1b2a51705742a5fd1aa1c",
       "echoes.badge.brand.icon.default": "eba297cbe0111b50c9dd0d658d23d036e6b58275",
+      "echoes.badge.brand.background.default": "6bc2fcaebfa72af0c97b4177f711264686549fac",
       "echoes.inlineMessage.brand.icon.default": "ae01a3c74fa915571348533bb45d4cbd4f43bb8e",
+      "echoes.inlineMessage.brand.background.default": "153b87030dc7957b5a43d71c776141c8a60aab70",
       "echoes.flagMessage.brand.text.default": "5b3f0ca4172e9abeb2304589c29e36de5e60d9e4",
       "echoes.flagMessage.brand.background.default": "19880a868f209cc551297e87173620b679371dd6",
-      "echoes.flagMessage.brand.border.default": "ede7e71f5b8b4ecdd8b52158da936c5c36a3a59b",
-      "echoes.inlineMessage.brand.background.default": "153b87030dc7957b5a43d71c776141c8a60aab70",
-      "echoes.badge.brand.background.default": "6bc2fcaebfa72af0c97b4177f711264686549fac"
+      "echoes.flagMessage.brand.border.default": "ede7e71f5b8b4ecdd8b52158da936c5c36a3a59b"
     },
     "group": "Themes"
   },
