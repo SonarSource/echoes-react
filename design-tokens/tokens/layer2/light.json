@@ -285,6 +285,16 @@
               }
             }
           }
+        },
+        "brand": {
+          "leftGradient": {
+            "value": "{echoes.color.pink.pink-03}",
+            "type": "color"
+          },
+          "rightGradient": {
+            "value": "{echoes.color.purple.purple-03}",
+            "type": "color"
+          }
         }
       },
       "text": {

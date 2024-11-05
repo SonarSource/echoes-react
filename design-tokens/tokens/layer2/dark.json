@@ -320,6 +320,16 @@
               }
             }
           }
+        },
+        "brand": {
+          "leftGradient": {
+            "value": "{echoes.color.pink.pink-02}",
+            "type": "color"
+          },
+          "rightGradient": {
+            "value": "{echoes.color.purple.purple-02}",
+            "type": "color"
+          }
         }
       },
       "text": {
