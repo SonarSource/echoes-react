@@ -27,6 +27,7 @@ import { PropsLabel } from '~types/utils';
 import { THEME_DATA_ATTRIBUTE, ThemeContext } from '~utils/theme';
 import { PortalContext } from '../../common/components/PortalContext';
 import { HelperText, Label } from '../typography';
+import { styleDropdownMenuOverlay } from './DropdownMenuCommons';
 import { DropdownMenuGroupLabel } from './DropdownMenuGroupLabel';
 import { DropdownMenuItemButton } from './DropdownMenuItemButton';
 import { DropdownMenuItemButtonCheckable } from './DropdownMenuItemButtonCheckable';
@@ -34,10 +35,7 @@ import { DropdownMenuItemButtonDestructive } from './DropdownMenuItemButtonDestr
 import { DropdownMenuItemLink } from './DropdownMenuItemLink';
 import { DropdownMenuItemLinkDownload } from './DropdownMenuItemLinkDownload';
 import { DropdownMenuSeparator } from './DropdownMenuSeparator';
-
-type A11yAttrs = Pick<React.AriaAttributes, 'aria-controls'> & {
-  id?: string;
-};
+import { DropdownMenuSubMenu } from './DropdownMenuSubMenu';
 
 export enum DropdownMenuAlign {
   Center = 'center',
@@ -87,11 +85,6 @@ const DropdownMenuRoot = forwardRef<HTMLButtonElement, DropdownMenuRootProps>(
       return <>{children}</>;
     }
 
-    const a11yAttrs: A11yAttrs = {
-      'aria-controls': `${id}-dropdown`,
-      id: `${id}-trigger`,
-    };
-
     return (
       <radixDropdownMenu.Root
         defaultOpen={isOpenOnMount}
@@ -104,7 +97,7 @@ const DropdownMenuRoot = forwardRef<HTMLButtonElement, DropdownMenuRootProps>(
           }
         }}
         open={isOpen}>
-        <radixDropdownMenu.Trigger asChild ref={ref} {...a11yAttrs} {...radixProps}>
+        <radixDropdownMenu.Trigger asChild ref={ref} {...radixProps}>
           {children}
         </radixDropdownMenu.Trigger>
 
@@ -153,6 +146,7 @@ export const DropdownMenu = {
   ItemLinkDownload: DropdownMenuItemLinkDownload,
   Root: DropdownMenuRoot,
   Separator: DropdownMenuSeparator,
+  SubMenu: DropdownMenuSubMenu,
 };
 
 const StyledHeaderLabelAndHelpText = styled.div`
@@ -172,17 +166,4 @@ const StyledHeaderHelpText = styled(HelperText)`
   ${truncate}
 `;
 
-const StyledDropdownMenuContent = styled(radixDropdownMenu.Content)`
-  background-color: var(--echoes-color-background-default);
-  border: var(--echoes-border-width-default) solid var(--echoes-color-border-weak);
-  border-radius: var(--echoes-dimension-space-100);
-  box-shadow: var(--echoes-box-shadow-medium);
-  box-sizing: border-box;
-  margin: var(--echoes-dimension-space-50) 0;
-  max-height: var(--radix-dropdown-menu-content-available-height);
-  max-width: var(--echoes-sizes-overlays-max-width-default);
-  min-width: var(--echoes-sizes-overlays-min-width-default);
-  overflow-x: hidden;
-  overflow-y: auto;
-  padding: var(--echoes-dimension-space-50) var(--echoes-dimension-space-0);
-`;
+const StyledDropdownMenuContent = styleDropdownMenuOverlay(radixDropdownMenu.Content);
