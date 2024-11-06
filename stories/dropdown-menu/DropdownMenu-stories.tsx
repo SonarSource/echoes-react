@@ -68,7 +68,7 @@ const items = (
     <DropdownMenu.ItemButton
       prefix={<IconGear color="echoes-color-icon-bold" />}
       suffix={<StyledBadge>Public</StyledBadge>}>
-      SonarCloud
+      SonarQube Cloud
     </DropdownMenu.ItemButton>
 
     <DropdownMenu.ItemButton
@@ -80,8 +80,21 @@ const items = (
         </>
       }
       prefix={<IconBug color="echoes-color-icon-default" />}>
-      SonarQube
+      SonarQube Server
     </DropdownMenu.ItemButton>
+
+    <DropdownMenu.Separator />
+
+    <DropdownMenu.SubMenu
+      items={
+        <>
+          <DropdownMenu.ItemButton>First sub-item</DropdownMenu.ItemButton>
+
+          <DropdownMenu.ItemLink to="/two">Second sub-item</DropdownMenu.ItemLink>
+        </>
+      }>
+      Sub-menu
+    </DropdownMenu.SubMenu>
 
     <DropdownMenu.Separator />
 

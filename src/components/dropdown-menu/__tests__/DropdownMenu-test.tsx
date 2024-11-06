@@ -284,6 +284,24 @@ it('should properly handle theme overrides', () => {
   expect(screen.getByRole('menu')).toHaveAttribute('data-echoes-theme', Theme.dark);
 });
 
+it('should render with a sub-menu', () => {
+  setupWithMemoryRouter(
+    <DropdownMenu.Root
+      className="testClassName"
+      header={{ helpText: 'Header help text', label: 'Header label' }}
+      isOpen
+      items={
+        <DropdownMenu.SubMenu isOpen items={items}>
+          {trigger}
+        </DropdownMenu.SubMenu>
+      }>
+      {trigger}
+    </DropdownMenu.Root>,
+  );
+
+  expect(screen.getByText('An item')).toBeVisible();
+});
+
 function ShowPath() {
   const { pathname } = useLocation();
   return <pre>{pathname}</pre>;

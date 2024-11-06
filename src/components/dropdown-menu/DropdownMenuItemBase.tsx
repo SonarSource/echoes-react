@@ -49,12 +49,14 @@ type FunctionChild = (data: {
 }) => ReactNode;
 
 type Props = Omit<DropdownMenuItemBaseProps, 'children'> & {
+  as?: React.FC;
   children: ReactNode | FunctionChild;
 };
 
 export const DropdownMenuItemBase = forwardRef<HTMLDivElement, Props>((props, ref) => {
   const {
     ariaLabel,
+    as,
     children,
     className,
     helpText,
@@ -104,8 +106,14 @@ export const DropdownMenuItemBase = forwardRef<HTMLDivElement, Props>((props, re
     ? children({ getStyledItemContents })
     : getStyledItemContents({ label: children });
 
+  let MenuItemComponent = StyledRadixDropdownMenuItem;
+
+  if (as) {
+    MenuItemComponent = StyledRadixDropdownMenuItem.withComponent(as);
+  }
+
   return (
-    <StyledRadixDropdownMenuItem
+    <MenuItemComponent
       {...radixProps}
       aria-label={ariaLabel}
       {...(isItemWrapped ? { asChild: true } : {})}
@@ -114,7 +122,7 @@ export const DropdownMenuItemBase = forwardRef<HTMLDivElement, Props>((props, re
       onClick={isDisabled ? undefined : onClick}
       ref={ref}>
       {itemContainer}
-    </StyledRadixDropdownMenuItem>
+    </MenuItemComponent>
   );
 });
 DropdownMenuItemBase.displayName = 'DropdownMenu.ItemBase';
