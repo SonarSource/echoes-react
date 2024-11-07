@@ -194,6 +194,10 @@ export const SelectStyled = styled(MantineSelect, {
     color: var(--echoes-color-text-bold);
 
     word-break: break-word;
+
+    &:has(~ [data-disabled]) {
+      color: var(--echoes-color-text-subdued);
+    }
   }
 
   // Description element styles, defined by description prop
