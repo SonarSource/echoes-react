@@ -129,6 +129,10 @@ mend_scan_task:
       path: 'whitesource/**/*'
 
 promote_task:
+  eks_container:
+    <<: *BUILD_TEMPLATE
+    cpu: 2
+    memory: 2G
   depends_on:
     - sonar_scan
   env:
