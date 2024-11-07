@@ -97,6 +97,7 @@ const SelectItemWrapper = styled.div`
   }
   .echoes-select-option[data-combobox-disabled] & {
     color: var(--echoes-color-text-disabled);
+    cursor: default;
   }
 `;
 SelectItemWrapper.displayName = 'SelectItemWrapper';
@@ -154,7 +155,7 @@ const SelectItemStatusStyled = styled.div`
 `;
 SelectItemStatusStyled.displayName = 'SelectItemStatusStyled';
 
-// Radio input icon in from of the select item for Radio optionType
+// Radio input icon in front of the select item for Radio optionType
 const SelectItemStatusRadio = styled.div`
   box-sizing: border-box;
   height: var(--echoes-dimension-height-400);
