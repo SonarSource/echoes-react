@@ -226,4 +226,6 @@
   --echoes-sizes-logo-height-small: 2rem;
   --echoes-sizes-logo-height-medium: 2.25rem;
   --echoes-sizes-logo-height-large: 2.5rem;
+  --echoes-offset-dropdown-submenu-panel-vertical: 0px;
+  --echoes-offset-dropdown-submenu-panel-horizontal: 8px;
 }
