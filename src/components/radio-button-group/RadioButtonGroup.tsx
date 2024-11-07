@@ -71,9 +71,14 @@ export const RadioButtonGroup = forwardRef<HTMLDivElement, PropsWithLabels<Props
       required={required}>
       {label && (
         <RadioGroupLabelWrapper data-testid="radio-group-label-wrapper">
-          <Label>
+          <Label isSubdued={disabled}>
             {label}
-            {required && <RadioGroupRequired>*</RadioGroupRequired>}
+
+            {required && (
+              <RadioGroupRequired {...(disabled ? { 'data-disabled': true } : {})}>
+                *
+              </RadioGroupRequired>
+            )}
           </Label>
 
           {helpText && <HelperText as="span">{helpText}</HelperText>}
@@ -168,6 +173,10 @@ const RadioGroupRequired = styled.span`
   color: var(--echoes-color-text-danger);
   font: var(--echoes-typography-others-label-medium);
   margin-left: var(--echoes-dimension-space-25);
+
+  &[data-disabled] {
+    color: var(--echoes-color-text-subdued);
+  }
 `;
 
 const RadioButtonsWrapper = styled.div<{ horizontal: boolean }>`

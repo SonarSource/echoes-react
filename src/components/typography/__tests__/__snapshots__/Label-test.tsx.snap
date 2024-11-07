@@ -14,3 +14,16 @@ exports[`renders correctly 1`] = `
   </label>
 </div>
 `;
+
+exports[`renders correctly with isSubdued 1`] = `
+.emotion-0 {
+  font: var(--echoes-typography-others-label);
+  color: var(--echoes-color-text-subdued);
+}
+
+<div>
+  <label
+    class="emotion-0 emotion-1"
+  />
+</div>
+`;

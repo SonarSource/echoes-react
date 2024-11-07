@@ -24,11 +24,13 @@ interface Props {
   as?: 'div' | 'label' | 'span';
   className?: string;
   htmlFor?: string;
+  isSubdued?: boolean;
 }
 
 export const Label = styled.label<Props>`
   font: var(--echoes-typography-others-label);
-  color: var(--echoes-color-text-default);
+  color: ${({ isSubdued }) =>
+    isSubdued ? 'var(--echoes-color-text-subdued)' : 'var(--echoes-color-text-default)'};
 `;
 
 Label.displayName = 'Label';

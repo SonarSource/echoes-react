@@ -28,6 +28,12 @@ it('renders correctly', () => {
   expect(container).toMatchSnapshot();
 });
 
+it('renders correctly with isSubdued', () => {
+  const { container } = setupLabel({ isSubdued: true });
+
+  expect(container).toMatchSnapshot();
+});
+
 function setupLabel(
   { children, ...otherProps }: Partial<ComponentProps<typeof Label>> = {
     children: 'The label text',
