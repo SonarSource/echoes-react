@@ -84,6 +84,22 @@
           }
         }
       }
+    },
+    "offset": {
+      "dropdown": {
+        "submenu": {
+          "panel": {
+            "vertical": {
+              "value": "0px",
+              "type": "sizing"
+            },
+            "horizontal": {
+              "value": "8px",
+              "type": "sizing"
+            }
+          }
+        }
+      }
     }
   }
 }

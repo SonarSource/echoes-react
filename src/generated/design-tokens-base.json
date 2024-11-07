@@ -308,6 +308,16 @@
           "large": "2.5rem"
         }
       }
+    },
+    "offset": {
+      "dropdown": {
+        "submenu": {
+          "panel": {
+            "vertical": "0px",
+            "horizontal": "8px"
+          }
+        }
+      }
     }
   }
 }
