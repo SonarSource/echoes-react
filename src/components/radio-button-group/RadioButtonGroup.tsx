@@ -49,7 +49,7 @@ export const RadioButtonGroup = forwardRef<HTMLDivElement, PropsWithLabels<Props
     ariaLabel,
     ariaLabelledBy,
     helpText,
-    id,
+    id = 'radio-button-group',
     isDisabled: disabled,
     isRequired: required,
     label,
@@ -71,7 +71,7 @@ export const RadioButtonGroup = forwardRef<HTMLDivElement, PropsWithLabels<Props
       required={required}>
       {label && (
         <RadioGroupLabelWrapper data-testid="radio-group-label-wrapper">
-          <Label isSubdued={disabled}>
+          <Label id={`${id}-label`} isSubdued={disabled}>
             {label}
 
             {required && (
@@ -81,11 +81,18 @@ export const RadioButtonGroup = forwardRef<HTMLDivElement, PropsWithLabels<Props
             )}
           </Label>
 
-          {helpText && <HelperText as="span">{helpText}</HelperText>}
+          {helpText && (
+            <HelperText as="span" id={`${id}-helptext`}>
+              {helpText}
+            </HelperText>
+          )}
         </RadioGroupLabelWrapper>
       )}
 
-      <RadioButtonsWrapper horizontal={alignment === RadioButtonGroupAlignment.Horizontal}>
+      <RadioButtonsWrapper
+        aria-describedby={helpText ? `${id}-helptext` : undefined}
+        aria-labelledby={label ? `${id}-label` : undefined}
+        horizontal={alignment === RadioButtonGroupAlignment.Horizontal}>
         {options.map(({ isDisabled: disabledOption, ...o }) => (
           <RadioButton
             groupId={id}
