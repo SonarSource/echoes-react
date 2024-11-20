@@ -353,7 +353,7 @@
         },
         "accent-bold": {
           "type": "color",
-          "value": "{echoes.color.indigo.50}"
+          "value": "{echoes.color.indigo.100}"
         },
         "danger": {
           "type": "color",
