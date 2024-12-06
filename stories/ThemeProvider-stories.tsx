@@ -20,8 +20,17 @@
 
 /* eslint-disable no-console */
 import type { Meta, StoryObj } from '@storybook/react';
+import type { ComponentProps } from 'react';
 import { Text, Theme, ThemeProvider } from '../src';
 import { basicWrapperDecorator } from './helpers/BasicWrapper';
+
+function Background({ children, style }: ComponentProps<'div'>) {
+  return (
+    <div style={{ backgroundColor: 'var(--echoes-color-background-neutral)', ...style }}>
+      {children}
+    </div>
+  );
+}
 
 const meta: Meta<typeof ThemeProvider> = {
   component: ThemeProvider,
@@ -37,9 +46,9 @@ const meta: Meta<typeof ThemeProvider> = {
   decorators: [basicWrapperDecorator],
   render: ({ children, ...args }) => (
     <ThemeProvider {...args}>
-      <div style={{ backgroundColor: 'var(--echoes-color-background-neutral)', padding: 24 }}>
+      <Background style={{ padding: 24 }}>
         <Text>{children}</Text>
-      </div>
+      </Background>
     </ThemeProvider>
   ),
 };
@@ -68,16 +77,16 @@ export const WithNestedTheme: Story = {
   },
   render: ({ children, ...args }) => (
     <ThemeProvider {...args}>
-      <div style={{ backgroundColor: 'var(--echoes-color-background-neutral)', padding: 24 }}>
+      <Background style={{ padding: 24 }}>
         <div style={{ marginBottom: 24 }}>
           <Text>{children}</Text>
         </div>
         <ThemeProvider theme={Theme.light}>
-          <div style={{ backgroundColor: 'var(--echoes-color-background-neutral)', padding: 24 }}>
+          <Background style={{ padding: 24 }}>
             <Text>Light Theme</Text>
-          </div>
+          </Background>
         </ThemeProvider>
-      </div>
+      </Background>
     </ThemeProvider>
   ),
 };
