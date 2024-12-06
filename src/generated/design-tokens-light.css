@@ -20,7 +20,7 @@
  * GENERATED FILE: do not edit directly.
  */
 
-:root {
+:root, [data-echoes-theme='light'] {
   --echoes-color-background-neutral: rgb(239,242,249); /* Use it in components with neutral sentiment */
   --echoes-color-background-neutral-bolder: rgb(225,230,243); /* Use it in components with neutral sentiment that need a bolder highlight */
   --echoes-color-background-default: rgb(255,255,255); /* Go to color for backgrounds.. eg: cards, modals, popovers, etc... */
