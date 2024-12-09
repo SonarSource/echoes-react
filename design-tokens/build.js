@@ -142,7 +142,7 @@ function buildThemedTokens(themedTokenGroups, baseDesignTokenGroup) {
                 selector:
                   theme.name === DEFAULT_THEME
                     ? `:root, [${THEME_DATA_ATTRIBUTE}='${theme.name}']`
-                    : `[${THEME_DATA_ATTRIBUTE}='${theme.name}']`,
+                    : `html[${THEME_DATA_ATTRIBUTE}='${theme.name}'], [${THEME_DATA_ATTRIBUTE}='${theme.name}']`,
               },
             },
             DEFAULT_THEME === theme.name && {
