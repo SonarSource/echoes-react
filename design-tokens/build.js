@@ -141,8 +141,8 @@ function buildThemedTokens(themedTokenGroups, baseDesignTokenGroup) {
                 fileHeader: 'licence-header',
                 selector:
                   theme.name === DEFAULT_THEME
-                    ? `:root, *[${THEME_DATA_ATTRIBUTE}='${theme.name}']`
-                    : `html[${THEME_DATA_ATTRIBUTE}='${theme.name}'], *[${THEME_DATA_ATTRIBUTE}='${theme.name}']`,
+                    ? `:root, [${THEME_DATA_ATTRIBUTE}='${theme.name}']`
+                    : `html[${THEME_DATA_ATTRIBUTE}='${theme.name}'], [${THEME_DATA_ATTRIBUTE}='${theme.name}']`,
               },
             },
             DEFAULT_THEME === theme.name && {
