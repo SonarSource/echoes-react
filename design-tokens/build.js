@@ -140,8 +140,14 @@ function buildThemedTokens(themedTokenGroups, baseDesignTokenGroup) {
               options: {
                 fileHeader: 'licence-header',
                 selector:
+                  /*
+                   * For any theme that is not the default theme, the `html`
+                   * attribute increases the specificity so that it can override
+                   * the default theme. Otherwise, the order in which the CSS
+                   * selectors appear in the CSS file would matter.
+                   */
                   theme.name === DEFAULT_THEME
-                    ? ':root'
+                    ? `:root, [${THEME_DATA_ATTRIBUTE}='${theme.name}']`
                     : `html[${THEME_DATA_ATTRIBUTE}='${theme.name}'], [${THEME_DATA_ATTRIBUTE}='${theme.name}']`,
               },
             },
