@@ -23,19 +23,19 @@ For more details, refer to the [internal versioning strategy](https://docs.googl
 
 - Create a new branch for the release and maintenance following the name convention `branch-x.y`
 
+- [Publish a new GitHub release](https://github.com/SonarSource/echoes-react/releases/new) targeting the release branch
+
+  - Find the relevant release from the [releases page](https://sonarsource.atlassian.net/projects/ECHOES?selectedItem=com.atlassian.jira.jira-projects-plugin%3Arelease-page) and populate (as markdown) the notes section.
+  - Example: <https://github.com/SonarSource/echoes-react/releases/tag/v0.5.0>
+  - click _Publish Release_
+
 - [Create a Jira release ticket in the REL project](https://jira.sonarsource.com/projects/REL) like [this one](https://sonarsource.atlassian.net/jira/software/c/projects/REL/issues/REL-3062)
 
   - Summary: @sonarsource/echoes-react x.y
   - Documentation status: N/A
-  - Short description: pull from [version description](https://sonarsource.atlassian.net/projects/DS/versions/15439/tab/release-report-all-issues)
+  - Short description: pull from [version description](https://sonarsource.atlassian.net/projects/ECHOES/versions/15439/tab/release-report-all-issues)
   - SQ compatibility: current version
-  - Link to Jira RELEASE NOTES: copy from a previous release ticket, updating the release ID, e.g.: <https://sonarsource.atlassian.net/projects/DS/versions/15590/tab/release-report-all-issues?isReleaseNoteModalOpen=true>
-
-- [Publish a new GitHub release](https://github.com/SonarSource/echoes-react/releases/new) targeting the release branch
-
-  - Find the relevant release from the [releases page](https://sonarsource.atlassian.net/projects/DS?selectedItem=com.atlassian.jira.jira-projects-plugin%3Arelease-page) and populate (as markdown) the notes section.
-  - Example: <https://github.com/SonarSource/echoes-react/releases/tag/v0.5.0>
-  - click _Publish Release_
+  - Link to Jira RELEASE NOTES: copy from a previous release ticket, updating the release ID, e.g.: <https://sonarsource.atlassian.net/projects/ECHOES/versions/15590/tab/release-report-all-issues?isReleaseNoteModalOpen=true>
 
 - Close the REL ticket you've created
 
@@ -51,7 +51,7 @@ For more details, refer to the [internal versioning strategy](https://docs.googl
 
 - Create a PR on the version branch with the changes
 
-- [Create a new version in the Echoes Design System project](https://sonarsource.atlassian.net/projects/DS?selectedItem=com.atlassian.jira.jira-projects-plugin%3Arelease-page) like [this one](https://sonarsource.atlassian.net/projects/DS/versions/15545)
+- [Create a new version in the Echoes Design System project](https://sonarsource.atlassian.net/projects/ECHOES?selectedItem=com.atlassian.jira.jira-projects-plugin%3Arelease-page) like [this one](https://sonarsource.atlassian.net/projects/ECHOES/versions/15545)
 
 - Tag the relevant tickets with this new version
 
