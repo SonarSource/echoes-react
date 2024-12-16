@@ -35,7 +35,9 @@
     "lint-report": "eslint --ext js,ts,tsx,snap -f json -o build-reports/eslint-report/eslint-report.json .",
     "storybook": "storybook dev -p 6006",
     "tokens-check": "./config/scripts/validate-tokens.sh",
-    "ts-check": "tsc --noEmit",
+    "ts-check": "yarn ts-check-files && yarn ts-check-declarations",
+    "ts-check-files": "tsc --noEmit",
+    "ts-check-declarations": "tsc --noEmit false --emitDeclarationOnly --isolatedModules false --outFile ./build-reports/ts-declarations/all-declarations",
     "validate": "yarn lint && yarn ts-check && yarn format-check",
     "validate-ci": "yarn dep-check && yarn intl-keys-check && yarn tokens-check && yarn fonts-check && yarn lint-report && yarn ts-check && yarn format-check"
   },
