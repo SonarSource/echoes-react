@@ -25,7 +25,7 @@ import { IconChevronRight } from '../icons';
 import { styleDropdownMenuOverlay } from './DropdownMenuCommons';
 import { DropdownMenuItemBase } from './DropdownMenuItemBase';
 
-interface DropdownMenuSubProps extends radixDropdownMenu.DropdownMenuSubProps {
+export interface DropdownMenuSubProps extends radixDropdownMenu.DropdownMenuSubProps {
   className?: string;
   id?: string;
   isOpen?: boolean;
