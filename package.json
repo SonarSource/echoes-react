@@ -19,7 +19,8 @@
   "packageManager": "yarn@4.3.1",
   "scripts": {
     "dev": "vite build --watch & yarn storybook",
-    "test": "jest",
+    "jest": "jest",
+    "test": "yarn validate-ci && yarn test-ci",
     "test-ci": "jest --collectCoverage --coverageDirectory=build-reports/coverage --workerIdleMemoryLimit=1G --maxWorkers=4",
     "build": "vite build",
     "build-fonts": "node ./config/scripts/build-fonts.js",
