@@ -74,7 +74,7 @@ yarn dev
 To run tests, run:
 
 ```bash
-yarn test
+yarn jest
 ```
 
 ### Build

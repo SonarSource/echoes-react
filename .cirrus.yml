@@ -1,19 +1,11 @@
 env:
+  CIRRUS_CLONE_DEPTH: '20'
+  CIRRUS_SHELL: bash
   ARTIFACTORY_URL: https://repox.jfrog.io/artifactory
-  ARTIFACTORY_DEPLOY_ACCESS_TOKEN: VAULT[development/artifactory/token/${CIRRUS_REPO_OWNER}-${CIRRUS_REPO_NAME}-qa-deployer access_token]
-  ARTIFACTORY_PRIVATE_USERNAME: vault-${CIRRUS_REPO_OWNER}-${CIRRUS_REPO_NAME}-private-reader
-  ARTIFACTORY_PRIVATE_PASSWORD: VAULT[development/artifactory/token/${CIRRUS_REPO_OWNER}-${CIRRUS_REPO_NAME}-private-reader access_token]
   ARTIFACTORY_DEPLOY_REPO: sonarsource-npm-public-qa
 
-  # analysis on next.sonarqube.com
-  SONARQUBE_NEXT_TOKEN: VAULT[development/kv/data/next data.token]
-
-eks_container: &BUILD_TEMPLATE
-  dockerfile: .cirrus/Dockerfile
-  builder_subnet_id: ${CIRRUS_AWS_SUBNET}
-  builder_role: cirrus-builder
-  builder_image: docker-builder-v*
-  builder_instance_type: t2.small
+eks_container_definition: &CONTAINER_DEFINITION
+  image: ${CIRRUS_AWS_ACCOUNT}.dkr.ecr.eu-central-1.amazonaws.com/base:node20-yarn2.4.3
   cluster_name: ${CIRRUS_CLUSTER_NAME}
   region: eu-central-1
   namespace: default
@@ -22,99 +14,44 @@ eks_container: &BUILD_TEMPLATE
 
 yarn_cache_template: &YARN_CACHE_TEMPLATE
   yarn_cache:
-    folders:
-      - '.yarn'
+    folder: '.yarn'
     fingerprint_script: cat yarn.lock
 
-eslint_report_cache_template: &ESLINT_REPORT_CACHE_TEMPLATE
-  eslint_report_cache:
-    folder: 'build-reports/eslint-report'
-    fingerprint_script: echo $CIRRUS_BUILD_ID
-
-jest_coverage_cache_template: &JEST_COVERAGE_CACHE_TEMPLATE
-  jest_coverage_cache:
-    folder: 'build-reports/coverage'
-    fingerprint_script: echo $CIRRUS_BUILD_ID
-
-build_dist_cache_template: &BUILD_DIST_CACHE_TEMPLATE
-  build_dist_cache:
-    folder: 'dist/**'
-    fingerprint_script: echo $CIRRUS_BUILD_ID
-
-install_dependencies_task:
-  <<: *YARN_CACHE_TEMPLATE
-  timeout_in: 30m
-  eks_container:
-    <<: *BUILD_TEMPLATE
-    cpu: 4
-    memory: 4Gb
-  script:
-    - yarn install --immutable
-
 build_task:
+  auto_cancellation: $CIRRUS_BRANCH != 'master' && $CIRRUS_BRANCH != 'stable'
   <<: *YARN_CACHE_TEMPLATE
-  <<: *BUILD_DIST_CACHE_TEMPLATE
   eks_container:
-    <<: *BUILD_TEMPLATE
-    cpu: 4
-    memory: 4G
-  depends_on:
-    - install_dependencies
-  build_script:
-    - if [ -n "${CIRRUS_BASE_BRANCH}" ]; then git fetch origin "${CIRRUS_BASE_BRANCH}"; fi
-    - jfrog config add repox --url https://repox.jfrog.io/ --access-token $ARTIFACTORY_DEPLOY_ACCESS_TOKEN
-    - jfrog npm-config --repo-resolve npm --repo-deploy $ARTIFACTORY_DEPLOY_REPO
-    - yarn build
-  publish_script:
-    - .cirrus/publish.sh
-
-validation_task:
-  <<: *YARN_CACHE_TEMPLATE
-  <<: *BUILD_DIST_CACHE_TEMPLATE
-  <<: *ESLINT_REPORT_CACHE_TEMPLATE
-  eks_container:
-    <<: *BUILD_TEMPLATE
-    cpu: 4
-    memory: 8G
-  depends_on:
-    - install_dependencies
-    - build
-  script:
-    - yarn validate-ci
-
-unit_test_task:
-  <<: *YARN_CACHE_TEMPLATE
-  <<: *JEST_COVERAGE_CACHE_TEMPLATE
-  eks_container:
-    <<: *BUILD_TEMPLATE
+    <<: *CONTAINER_DEFINITION
     cpu: 8
     memory: 10G
-  depends_on:
-    - install_dependencies
-  script:
-    - yarn test-ci
+  env:
+    ARTIFACTORY_DEPLOY_ACCESS_TOKEN: VAULT[development/artifactory/token/${CIRRUS_REPO_OWNER}-${CIRRUS_REPO_NAME}-qa-deployer access_token]
+    SONAR_HOST_URL: VAULT[development/kv/data/next data.url]
+    SONAR_TOKEN: VAULT[development/kv/data/next data.token]
+    DEPLOY_PULL_REQUEST: 'true' # Deploy or not PR builds to Repox
+    # (reminder: PRs builds goes to sonarsource-npm-public-dev / long living branches sonarsource-npm-public-builds)
+  build_script:
+    - source cirrus-env BUILD
+    - yarn_build_deploy_analyze
 
-sonar_scan_task:
-  <<: *BUILD_DIST_CACHE_TEMPLATE
-  <<: *ESLINT_REPORT_CACHE_TEMPLATE
-  <<: *JEST_COVERAGE_CACHE_TEMPLATE
+promote_task:
+  depends_on:
+    - build
   eks_container:
-    <<: *BUILD_TEMPLATE
+    <<: *CONTAINER_DEFINITION
     cpu: 2
     memory: 2G
-  depends_on:
-    - validation
-    - unit_test
+  env:
+    ARTIFACTORY_PROMOTE_ACCESS_TOKEN: VAULT[development/artifactory/token/${CIRRUS_REPO_OWNER}-${CIRRUS_REPO_NAME}-promoter access_token]
   script:
-    - source .cirrus/cirrus-sq-analysis.sh
+    - source cirrus-env PROMOTE
+    - cirrus_promote_npm
 
 mend_scan_task:
-  <<: *BUILD_DIST_CACHE_TEMPLATE
   only_if: $CIRRUS_BRANCH == "main" || $CIRRUS_BRANCH =~ "branch-.*"
-  <<: *YARN_CACHE_TEMPLATE
   timeout_in: 30m
   eks_container:
-    <<: *BUILD_TEMPLATE
+    <<: *CONTAINER_DEFINITION
     cpu: 2
     memory: 4Gb
   env:
@@ -127,16 +64,3 @@ mend_scan_task:
   always:
     ws_artifacts:
       path: 'whitesource/**/*'
-
-promote_task:
-  eks_container:
-    <<: *BUILD_TEMPLATE
-    cpu: 2
-    memory: 2G
-  depends_on:
-    - sonar_scan
-  env:
-    ARTIFACTORY_PROMOTE_ACCESS_TOKEN: VAULT[development/artifactory/token/${CIRRUS_REPO_OWNER}-${CIRRUS_REPO_NAME}-promoter access_token]
-  script:
-    - source cirrus-env PROMOTE
-    - cirrus_jfrog_promote
