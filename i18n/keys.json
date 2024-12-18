@@ -1,4 +1,8 @@
 {
+  "inline.message.dismiss": {
+    "defaultMessage": "Dismiss",
+    "description": "ARIA-label for the dismiss button at the top of the Modal."
+  },
   "loading": {
     "defaultMessage": "Loading...",
     "description": "aria-label text, to indicate that there is a spinner rotating in this place"
@@ -22,6 +26,21 @@
   "logo.sonarqube.server": {
     "defaultMessage": "SonarQube Server",
     "description": "Alternative text for the SonarQube Server logo"
+  },
+  "message.prefix.danger": {
+    "defaultMessage": "Error:"
+  },
+  "message.prefix.discover": {
+    "defaultMessage": "Hint:"
+  },
+  "message.prefix.info": {
+    "defaultMessage": "Information:"
+  },
+  "message.prefix.success": {
+    "defaultMessage": "Success:"
+  },
+  "message.prefix.warning": {
+    "defaultMessage": "Warning:"
   },
   "modal.close": {
     "defaultMessage": "Close",
