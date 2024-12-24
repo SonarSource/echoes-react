@@ -1,4 +1,8 @@
 {
+  "inline.message.dismiss": {
+    "defaultMessage": "Dismiss",
+    "description": "ARIA-label for the dismiss button at the top of the Modal."
+  },
   "loading": {
     "defaultMessage": "Loading...",
     "description": "aria-label text, to indicate that there is a spinner rotating in this place"
