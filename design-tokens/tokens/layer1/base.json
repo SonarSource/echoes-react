@@ -198,7 +198,7 @@
     },
     "lineHeight": {
       "10": {
-        "value": "1.125rem",
+        "value": "1rem",
         "type": "lineHeights"
       },
       "20": {
