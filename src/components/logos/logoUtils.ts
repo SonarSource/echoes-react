@@ -21,6 +21,7 @@
 import styled from '@emotion/styled';
 
 export interface LogoProps {
+  className?: string;
   hasText?: boolean;
   size?: LogoSize;
 }
