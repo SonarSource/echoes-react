@@ -38,5 +38,9 @@
   "select.clear": {
     "defaultMessage": "Clear select field",
     "description": "Screen reader-only text to indicate that the select field can be cleared with a button"
+  },
+  "toggletip.help": {
+    "defaultMessage": "More information",
+    "description": "aria-label text and tooltip for the ToggleTip"
   }
 }

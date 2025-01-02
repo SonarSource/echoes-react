@@ -296,6 +296,10 @@
         "medium": "2rem",
         "large": "2.25rem"
       },
+      "toggletips": {
+        "height": "1rem",
+        "width": "1rem"
+      },
       "typography": {
         "maxWidth": {
           "default": "650px"
