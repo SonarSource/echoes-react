@@ -59,6 +59,16 @@
           "type": "sizing"
         }
       },
+      "toggletips": {
+        "height": {
+          "value": "1rem",
+          "type": "sizing"
+        },
+        "width": {
+          "value": "1rem",
+          "type": "sizing"
+        }
+      },
       "typography": {
         "maxWidth": {
           "default": {
