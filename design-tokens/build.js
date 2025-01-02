@@ -65,7 +65,7 @@ function initStyleDictionary(licenseHeader) {
     name: CUSTOM_FILTER_THEMED_TOKENS,
     matcher: ({ attributes, filePath }) =>
       !filePath.includes(`layer1`) &&
-      !(filePath.endsWith('layer2/base.json') && attributes.category !== 'color'),
+      !(filePath.endsWith('base.json') && attributes.category !== 'color'),
   });
 
   StyleDictionary.registerFileHeader({
