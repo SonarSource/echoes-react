@@ -125,5 +125,5 @@ yarn build-intl-keys
 
 ## License
 
-Copyright 2023-2024 SonarSource.
+Copyright 2023-2025 SonarSource.
 Licensed under the [GNU Lesser General Public License, Version 3.0](http://www.gnu.org/licenses/lgpl.txt)

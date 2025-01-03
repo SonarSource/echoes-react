@@ -1,6 +1,6 @@
 /*
  * Echoes React
- * Copyright (C) 2023-2024 SonarSource SA
+ * Copyright (C) 2023-2025 SonarSource SA
  * mailto:info AT sonarsource DOT com
  *
  * This program is free software; you can redistribute it and/or
