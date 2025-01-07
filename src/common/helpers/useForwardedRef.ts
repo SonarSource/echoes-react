@@ -17,38 +17,33 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
+import { type ForwardedRef, useState } from 'react';
 
-export interface PropsLabel {
-  ariaLabel?: string;
-  ariaLabelledBy?: never;
-  id?: string;
-  label: JSX.Element | string;
-  helpText?: JSX.Element | string | false | null;
+/**
+ * This hook may be used to intercept a forwarded ref, providing a local ref
+ * that can be used in the component.
+ *
+ * **Example**
+ *
+ * ```typescript
+ * const Input = forwardRef<HTMLInputElement>((props, forwardedRef) => {
+ *   const [ref, setRef] = useForwardedRef(forwardedRef);
+ *   return <input ref={setRef} />
+ * });
+ * ```
+ */
+export function useForwardedRef<T>(forwardedRef: ForwardedRef<T>) {
+  const [ref, setRef] = useState<T | null>(null);
+
+  const setForwardedRef = (element: T | null) => {
+    if (typeof forwardedRef === 'function') {
+      forwardedRef(element);
+    } else if (forwardedRef) {
+      forwardedRef.current = element;
+    }
+
+    setRef(element);
+  };
+
+  return [ref, setForwardedRef] as const;
 }
-
-export interface PropsAriaLabel {
-  ariaLabel: string;
-  ariaLabelledBy?: never;
-  id?: string;
-  label?: never;
-  helpText?: never;
-}
-
-export interface PropsAriaLabelledBy {
-  ariaLabel?: never;
-  ariaLabelledBy: string;
-  id?: string;
-  label?: never;
-  helpText?: never;
-}
-
-export interface PropsAriaLabelViaId {
-  ariaLabel?: never;
-  ariaLabelledBy?: never;
-  id: string;
-  label?: never;
-  helpText?: never;
-}
-
-export type PropsWithLabels<T> = T &
-  (PropsLabel | PropsAriaLabel | PropsAriaLabelledBy | PropsAriaLabelViaId);

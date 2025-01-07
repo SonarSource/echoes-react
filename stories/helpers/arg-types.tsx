@@ -18,16 +18,23 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-export enum InputSize {
-  Small,
-  Medium,
-  Large,
-  Full,
-}
+import * as icons from '../../src/components/icons';
 
-export const INPUT_SIZE_VALUES = {
-  [InputSize.Small]: 'var(--echoes-sizes-inputs-small)',
-  [InputSize.Medium]: 'var(--echoes-sizes-inputs-medium)',
-  [InputSize.Large]: 'var(--echoes-sizes-inputs-large)',
-  [InputSize.Full]: 'var(--echoes-sizes-inputs-full)',
+const iconKeys = Object.keys(icons) as (keyof typeof icons)[];
+
+const iconsElements = Object.fromEntries(
+  iconKeys.map((key: keyof typeof icons) => {
+    const IconComponent = icons[key];
+    return [key, <IconComponent key={key} />];
+  }),
+);
+
+export const iconsElementsArgType = {
+  mapping: iconsElements,
+  options: iconKeys,
+};
+
+export const iconsComponentsArgType = {
+  mapping: icons,
+  options: iconKeys,
 };

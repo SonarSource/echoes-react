@@ -38,7 +38,7 @@ export const MessageScreenReaderPrefix = forwardRef<HTMLSpanElement, Props>((pro
 });
 MessageScreenReaderPrefix.displayName = 'MessageScreenReaderPrefix';
 
-function MessagePrefix({ type }: { type: MessageType }) {
+function MessagePrefix({ type }: Pick<Props, 'type'>) {
   const intl = useIntl();
 
   const messages: { [type in MessageType]: string } = useMemo(

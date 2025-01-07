@@ -25,5 +25,4 @@
  *
  */
 
-export { InputSize } from './inputs';
 export { ThemeProvider, setTheme } from './theme';
