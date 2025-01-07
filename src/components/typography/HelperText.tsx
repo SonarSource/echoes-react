@@ -29,6 +29,8 @@ interface Props {
 export const HelperText = styled.div<Props>`
   font: var(--echoes-typography-others-helper-text);
   color: var(--echoes-color-text-subdued);
+
+  max-width: var(--echoes-sizes-typography-max-width-default);
 `;
 
 HelperText.displayName = 'HelperText';

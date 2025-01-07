@@ -65,7 +65,8 @@ describe('RadioButtonGroup', () => {
     renderRadioButtonGroup({
       ariaLabel: 'me',
       isRequired: true,
-      labelRadioGroupError: 'Error message',
+      messageInvalid: 'Error message',
+      validation: 'invalid',
     });
 
     const radioButtons = screen.getAllByRole('radio');
@@ -80,13 +81,16 @@ describe('RadioButtonGroup', () => {
     renderRadioButtonGroup({
       isRequired: true,
       helpText: 'Help text',
+      id: 'group1',
       label: 'Radio group label',
     });
 
-    expect(screen.getByTestId('radio-group-label-wrapper')).toBeVisible();
-    expect(screen.getByTestId('radio-group-label-wrapper')).toHaveTextContent(
-      'Radio group label*Help text',
-    );
+    const description = screen.getByText('Help text');
+    const label = screen.getByLabelText('Radio group label*');
+    const radioGroup = screen.getByRole('radiogroup');
+    expect(description).toBeVisible();
+    expect(radioGroup).toHaveAttribute('aria-describedby', description.id);
+    expect(label).toBeVisible();
   });
 
   it('should support radio group label as JSX.Element', () => {
