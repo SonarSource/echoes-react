@@ -17,38 +17,4 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-
-export interface PropsLabel {
-  ariaLabel?: string;
-  ariaLabelledBy?: never;
-  id?: string;
-  label: JSX.Element | string;
-  helpText?: JSX.Element | string | false | null;
-}
-
-export interface PropsAriaLabel {
-  ariaLabel: string;
-  ariaLabelledBy?: never;
-  id?: string;
-  label?: never;
-  helpText?: never;
-}
-
-export interface PropsAriaLabelledBy {
-  ariaLabel?: never;
-  ariaLabelledBy: string;
-  id?: string;
-  label?: never;
-  helpText?: never;
-}
-
-export interface PropsAriaLabelViaId {
-  ariaLabel?: never;
-  ariaLabelledBy?: never;
-  id: string;
-  label?: never;
-  helpText?: never;
-}
-
-export type PropsWithLabels<T> = T &
-  (PropsLabel | PropsAriaLabel | PropsAriaLabelledBy | PropsAriaLabelViaId);
+export { FormFieldValidation, FormFieldWidth } from './FormField';

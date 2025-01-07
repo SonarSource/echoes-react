@@ -160,6 +160,7 @@
       },
       "grey": {
         "25": "rgb(252,252,253)",
+        "40": "rgb(246,247,251)",
         "50": "rgb(239,242,249)",
         "100": "rgb(225,230,243)",
         "200": "rgb(197,205,223)",
@@ -270,6 +271,16 @@
         "900": "rgb(23,67,97)"
       }
     },
+    "form-control": {
+      "borderRadius": {
+        "default": "8px"
+      },
+      "sizes": {
+        "height": {
+          "default": "2.25rem"
+        }
+      }
+    },
     "sizes": {
       "overlays": {
         "maxWidth": {
@@ -286,7 +297,7 @@
           "default": "80vh"
         }
       },
-      "inputs": {
+      "form-field": {
         "small": "150px",
         "medium": "250px",
         "large": "350px",

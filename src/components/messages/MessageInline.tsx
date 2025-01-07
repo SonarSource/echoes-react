@@ -24,7 +24,9 @@ import { MESSAGE_TYPE_ICON } from './MessageStyles';
 import { MessageInlineSize, MessageType } from './MessageTypes';
 
 interface Props {
+  as?: 'div' | 'span';
   className?: string;
+  id?: string;
   screenReaderPrefix?: string;
   size?: MessageInlineSize;
   type: MessageType;
@@ -35,10 +37,10 @@ export const MessageInline = forwardRef<HTMLDivElement, PropsWithChildren<Props>
   return (
     <MessageInlineContainer
       className={className}
-      size={size}
-      {...radixProps}
       css={useMemo(() => MESSAGE_INLINE_TYPE_STYLE[type], [type])}
-      ref={ref}>
+      ref={ref}
+      size={size}
+      {...radixProps}>
       {MESSAGE_TYPE_ICON[type]}
       <MessageInlineTextWrapper>
         <MessageScreenReaderPrefix screenReaderPrefix={screenReaderPrefix} type={type} />
@@ -72,7 +74,7 @@ const MESSAGE_INLINE_FONT = {
   [MessageInlineSize.Default]: 'var(--echoes-typography-text-default-regular)',
 };
 
-const MessageInlineContainer = styled.span<{ size?: MessageInlineSize }>`
+const MessageInlineContainer = styled.span<Pick<Props, 'size'>>`
   ${({ size }) => (size ? `font: ${MESSAGE_INLINE_FONT[size]};` : '')}
 `;
 MessageInlineContainer.displayName = 'MessageInlineContainer';

@@ -22,17 +22,15 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { ButtonSize, ButtonVariety, TooltipAlign, TooltipSide } from '../src';
 import { ButtonIcon } from '../src/components/buttons/ButtonIcon';
-import * as icons from '../src/components/icons';
+import { IconClock, IconInfo, IconStar } from '../src/components/icons';
 import { basicWrapperDecorator } from './helpers/BasicWrapper';
+import { iconsComponentsArgType } from './helpers/arg-types';
 
 const meta: Meta<typeof ButtonIcon> = {
   component: ButtonIcon,
   title: 'Echoes/ButtonIcon',
   argTypes: {
-    Icon: {
-      mapping: icons,
-      options: Object.keys(icons),
-    },
+    Icon: iconsComponentsArgType,
     size: { options: Object.values(ButtonSize) },
     variety: { options: Object.values(ButtonVariety) },
   },
@@ -47,7 +45,7 @@ export const Default: Story = {
   args: {
     ariaLabel: 'click the clock',
     onClick: () => console.log('it is now o`clock'),
-    Icon: icons.IconClock,
+    Icon: IconClock,
   },
 };
 
@@ -55,7 +53,7 @@ export const Loading: Story = {
   args: {
     ariaLabel: 'loading',
     onClick: () => console.log('it is loading o`clock'),
-    Icon: icons.IconClock,
+    Icon: IconClock,
     isLoading: true,
   },
 };
@@ -69,7 +67,7 @@ export const FillableIcon: Story = {
       align: TooltipAlign.Center,
       side: TooltipSide.Right,
     },
-    Icon: icons.IconStar,
+    Icon: IconStar,
     isIconFilled: true,
   },
 };
@@ -84,7 +82,7 @@ export const TooltipDetails: Story = {
       side: TooltipSide.Top,
       isOpen: true,
     },
-    Icon: icons.IconInfo,
+    Icon: IconInfo,
   },
 };
 
@@ -95,7 +93,7 @@ export const AllVarieties: Story = {
       align: TooltipAlign.Center,
       side: TooltipSide.Right,
     },
-    Icon: icons.IconClock,
+    Icon: IconClock,
     onClick: () => console.log('Button clicked'),
   },
   render: (args) => (
