@@ -17,7 +17,7 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-export { FormField, type FormFieldProps, WithProps, type WithPropsProps } from './FormField';
+export { FormField, WithProps, type FormFieldProps, type WithPropsProps } from './FormField';
 export { FormFieldState } from './FormFieldContext';
-export { FormFieldLabel, type FormFieldLabelProps } from './FormFieldLabel';
+export { FormFieldLabel } from './FormFieldLabel';
 export { FormFieldMessage, type FormFieldMessageProps } from './FormFieldMessage';

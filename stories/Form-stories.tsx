@@ -45,7 +45,9 @@ export const Default: Story = {
   args: {},
   render: (args) => (
     <FormField {...args}>
-      <FormFieldLabel>This is a label</FormFieldLabel>
+      <FormFieldLabel htmlFor="" isRequired>
+        This is a label
+      </FormFieldLabel>
       <TextInput />
       <FormFieldMessage>This is a message</FormFieldMessage>
     </FormField>
@@ -56,7 +58,7 @@ export const ErrorState: Story = {
   args: {},
   render: (args) => (
     <FormField state="error" {...args}>
-      <FormFieldLabel>This is a label</FormFieldLabel>
+      <FormFieldLabel htmlFor="">This is a label</FormFieldLabel>
       <TextInput />
       <FormFieldMessage>This is an error message</FormFieldMessage>
     </FormField>
@@ -68,7 +70,7 @@ export const WithProps: Story = {
   args: {},
   render: (args) => (
     <FormFieldWithProps
-      label={<FormFieldLabel>This is a label</FormFieldLabel>}
+      label={<FormFieldLabel htmlFor="">This is a label</FormFieldLabel>}
       message={<FormFieldMessage>This is a message</FormFieldMessage>}
       {...args}>
       <TextInput key={1} />

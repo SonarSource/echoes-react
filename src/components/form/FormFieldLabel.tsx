@@ -18,23 +18,43 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 import styled from '@emotion/styled';
-import { type ReactNode, forwardRef } from 'react';
+import { forwardRef } from 'react';
+import { Label } from '../typography';
 
-import { useFormFieldContext } from './FormFieldContext';
+interface Props {
+  children: JSX.Element | string;
+  isDisabled?: boolean;
+  isRequired?: boolean;
+  htmlFor: string;
+}
 
-export type FormFieldLabelProps = {
-  children: ReactNode;
-  htmlFor?: string;
-};
-
-export const FormFieldLabel = forwardRef<HTMLLabelElement, FormFieldLabelProps>((props, ref) => {
-  const context = useFormFieldContext();
-  const { htmlFor = context.id, ...rest } = props;
-  return <StyledLabel htmlFor={htmlFor} ref={ref} {...rest} />;
+export const FormFieldLabel = forwardRef<HTMLLabelElement, Props>((props, ref) => {
+  const { children, htmlFor, isDisabled = false, isRequired = false, ...rest } = props;
+  return (
+    <StyledLabel htmlFor={htmlFor} isSubdued={isDisabled} ref={ref} {...rest}>
+      {children}
+      {isRequired && (
+        <FormFieldLabelRequired {...(isDisabled && { 'data-disabled': true })}>
+          *
+        </FormFieldLabelRequired>
+      )}
+    </StyledLabel>
+  );
 });
 
 FormFieldLabel.displayName = 'FormFieldLabel';
 
-const StyledLabel = styled.label`
+const StyledLabel = styled(Label)`
   display: block;
 `;
+
+const FormFieldLabelRequired = styled.span`
+  color: var(--echoes-color-text-danger);
+  font: var(--echoes-typography-others-label-medium);
+  margin-left: var(--echoes-dimension-space-25);
+
+  &[data-disabled] {
+    color: var(--echoes-color-text-subdued);
+  }
+`;
+FormFieldLabelRequired.displayName = 'FormFieldLabelRequired';
