@@ -20,7 +20,8 @@
 import styled from '@emotion/styled';
 import { type ComponentPropsWithRef, forwardRef } from 'react';
 
-import { useFormFieldContext, FormFieldState } from '../form/FormFieldContext';
+import { CurrentAPI, CurrentAPIProps } from '../form/FormField';
+import { FormFieldState, useFormFieldContext } from '../form/FormFieldContext';
 
 export type TextInputProps = ComponentPropsWithRef<'input'> & {
   state?: `${FormFieldState}`;
@@ -49,3 +50,17 @@ const StyledInput = styled.input<{ state: `${FormFieldState}` }>`
   border-style: solid;
   border-width: 1px;
 `;
+
+
+// Try with current API
+
+export interface TextInputCurrentAPIProps extends Omit<CurrentAPIProps, 'children'> {
+  isDisabled?: boolean;
+}
+
+export const TextInputCurrentAPI = forwardRef<HTMLInputElement, TextInputProps>((props, ref) => {
+  const id = useId();
+  return <CurrentAPI ...>
+    <StyledInput id={id} ref={ref} state={state} aria-describedby='' {...rest} />
+  </CurrentAPI>
+});

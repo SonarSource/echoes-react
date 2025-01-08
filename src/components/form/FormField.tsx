@@ -18,7 +18,8 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 import { type ReactNode, forwardRef, useId, useMemo } from 'react';
-
+import { PropsWithLabels } from '~types/utils';
+import { HelperText, Label } from '../typography';
 import { FormFieldContext, FormFieldState } from './FormFieldContext';
 
 export type FormFieldProps = {
@@ -71,3 +72,40 @@ export const WithProps = forwardRef<HTMLDivElement, WithPropsProps>(
 );
 
 WithProps.displayName = 'FormField';
+
+/*
+ * Following our current api on existing form components
+ */
+
+export type CurrentAPIProps = {
+  children: JSX.Element;
+  state?: `${FormFieldState}`;
+  labelError?: JSX.Element | string;
+  labelSuccess?: JSX.Element | string;
+};
+
+export const CurrentAPI = forwardRef<HTMLDivElement, PropsWithLabels<CurrentAPIProps>>(
+  (
+    { children, label, labelError, labelSuccess, helpText, state = FormFieldState.None, ...props },
+    ref,
+  ) => {
+    const id = useId();
+    const value = useMemo(() => ({ id, state: state as FormFieldState }), [id, state]);
+
+    return (
+      <FormFieldContext.Provider value={value}>
+        <div ref={ref} {...props}>
+          {label && <Label htmlFor="id">{label}</Label>}
+          {children}
+          {helpText && state === FormFieldState.None && <HelperText>{helpText}</HelperText>}
+          {labelError && state === FormFieldState.Error && <ErrorText>{labelError}</ErrorText>}
+          {labelSuccess && state === FormFieldState.Success && (
+            <SuccessText>{labelSuccess}</SuccessText>
+          )}
+        </div>
+      </FormFieldContext.Provider>
+    );
+  },
+);
+
+CurrentAPI.displayName = 'FormField';

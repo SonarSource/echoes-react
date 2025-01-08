@@ -19,7 +19,6 @@
  */
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { basicWrapperDecorator } from './helpers/BasicWrapper';
 import {
   FormField,
   FormFieldLabel,
@@ -27,6 +26,7 @@ import {
   WithProps as FormFieldWithProps,
 } from '../src/components/form';
 import { TextInput } from '../src/components/text-input';
+import { basicWrapperDecorator } from './helpers/BasicWrapper';
 
 const meta: Meta<typeof FormField> = {
   component: FormField,
