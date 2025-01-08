@@ -18,7 +18,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 import styled from '@emotion/styled';
-import { forwardRef } from 'react';
+import { forwardRef, JSX } from 'react';
 import { Label } from '../typography';
 
 interface Props {
@@ -29,9 +29,9 @@ interface Props {
 }
 
 export const FormFieldLabel = forwardRef<HTMLLabelElement, Props>((props, ref) => {
-  const { children, htmlFor, isDisabled = false, isRequired = false, ...rest } = props;
+  const { children, isDisabled = false, isRequired = false, ...rest } = props;
   return (
-    <StyledLabel htmlFor={htmlFor} isSubdued={isDisabled} ref={ref} {...rest}>
+    <StyledLabel isSubdued={isDisabled} ref={ref} {...rest}>
       {children}
       {isRequired && (
         <FormFieldLabelRequired {...(isDisabled && { 'data-disabled': true })}>

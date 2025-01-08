@@ -21,10 +21,10 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import {
   FormField,
-  FormFieldLabel,
   FormFieldMessage,
   WithProps as FormFieldWithProps,
 } from '../src/components/form';
+import { FormFieldLabel } from '../src/components/form/FormFieldLabel';
 import { TextInput } from '../src/components/text-input';
 import { basicWrapperDecorator } from './helpers/BasicWrapper';
 

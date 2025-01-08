@@ -19,5 +19,4 @@
  */
 export { FormField, WithProps, type FormFieldProps, type WithPropsProps } from './FormField';
 export { FormFieldState } from './FormFieldContext';
-export { FormFieldLabel } from './FormFieldLabel';
 export { FormFieldMessage, type FormFieldMessageProps } from './FormFieldMessage';
