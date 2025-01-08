@@ -85,6 +85,14 @@ const DropdownMenuRoot = forwardRef<HTMLButtonElement, DropdownMenuRootProps>(
       return <>{children}</>;
     }
 
+    // Radix fully handles a11y binding with generated ids, but we have to do it manually because
+    // this id format is extensively used by SQS ITs to locate dropdown elements
+    // We can drop that and rely on Radix implem once we stop relying on ids in SQS ITs
+    const a11yAttrs = {
+      'aria-controls': `${id}-dropdown`,
+      id: `${id}-trigger`,
+    };
+
     return (
       <radixDropdownMenu.Root
         defaultOpen={isOpenOnMount}
@@ -97,7 +105,7 @@ const DropdownMenuRoot = forwardRef<HTMLButtonElement, DropdownMenuRootProps>(
           }
         }}
         open={isOpen}>
-        <radixDropdownMenu.Trigger asChild ref={ref} {...radixProps}>
+        <radixDropdownMenu.Trigger asChild ref={ref} {...a11yAttrs} {...radixProps}>
           {children}
         </radixDropdownMenu.Trigger>
 
