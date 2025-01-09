@@ -442,7 +442,7 @@
         },
         "success": {
           "type": "color",
-          "value": "{echoes.color.green.300}"
+          "value": "{echoes.color.yellowGreen.700}"
         },
         "warning": {
           "type": "color",
@@ -450,7 +450,7 @@
         },
         "info": {
           "type": "color",
-          "value": "{echoes.color.blue.300}"
+          "value": "{echoes.color.blue.700}"
         }
       },
       "focus": {

@@ -477,7 +477,7 @@
         },
         "success": {
           "type": "color",
-          "value": "{echoes.color.green.300}"
+          "value": "{echoes.color.yellowGreen.300}"
         },
         "warning": {
           "type": "color",
