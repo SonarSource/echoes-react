@@ -19,11 +19,8 @@
  */
 import type { Meta, StoryObj } from '@storybook/react';
 
-import {
-  FormField,
-  FormFieldMessage,
-  WithProps as FormFieldWithProps,
-} from '../src/components/form';
+import { FormField, WithProps as FormFieldWithProps } from '../src/components/form';
+import { FormFieldDescription } from '../src/components/form/FormFieldDescription';
 import { FormFieldLabel } from '../src/components/form/FormFieldLabel';
 import { TextInput } from '../src/components/text-input';
 import { basicWrapperDecorator } from './helpers/BasicWrapper';
@@ -49,7 +46,9 @@ export const Default: Story = {
         This is a label
       </FormFieldLabel>
       <TextInput />
-      <FormFieldMessage>This is a message</FormFieldMessage>
+      <FormFieldDescription id="" state={args.state}>
+        This is a message
+      </FormFieldDescription>
     </FormField>
   ),
 };
@@ -60,7 +59,9 @@ export const ErrorState: Story = {
     <FormField state="error" {...args}>
       <FormFieldLabel htmlFor="">This is a label</FormFieldLabel>
       <TextInput />
-      <FormFieldMessage>This is an error message</FormFieldMessage>
+      <FormFieldDescription id="" state={args.state}>
+        This is an error message
+      </FormFieldDescription>
     </FormField>
   ),
 };
@@ -71,7 +72,11 @@ export const WithProps: Story = {
   render: (args) => (
     <FormFieldWithProps
       label={<FormFieldLabel htmlFor="">This is a label</FormFieldLabel>}
-      message={<FormFieldMessage>This is a message</FormFieldMessage>}
+      message={
+        <FormFieldDescription id="" state={args.state}>
+          This is a message
+        </FormFieldDescription>
+      }
       {...args}>
       <TextInput key={1} />
     </FormFieldWithProps>
