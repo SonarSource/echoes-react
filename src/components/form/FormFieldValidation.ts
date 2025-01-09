@@ -17,22 +17,8 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-import { createContext, useContext } from 'react';
-
-export enum FormFieldState {
-  Error = 'error',
+export enum FormFieldValidation {
   None = 'none',
-  Success = 'success',
+  Valid = 'valid',
+  Invalid = 'invalid',
 }
-
-export type FormFieldContext = {
-  readonly id: string;
-  readonly state: FormFieldState;
-};
-
-export const FormFieldContext = createContext<FormFieldContext>({
-  id: '',
-  state: FormFieldState.None,
-});
-
-export const useFormFieldContext = () => useContext(FormFieldContext);

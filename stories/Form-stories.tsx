@@ -19,15 +19,13 @@
  */
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { FormField, WithProps as FormFieldWithProps } from '../src/components/form';
-import { FormFieldDescription } from '../src/components/form/FormFieldDescription';
-import { FormFieldLabel } from '../src/components/form/FormFieldLabel';
+import { Checkbox } from '../src/components/checkbox';
 import { TextInput } from '../src/components/text-input';
 import { basicWrapperDecorator } from './helpers/BasicWrapper';
 
-const meta: Meta<typeof FormField> = {
-  component: FormField,
-  title: 'Echoes/FormField',
+const meta: Meta<{}> = {
+  component: TextInput,
+  title: 'Echoes/Forms',
   argTypes: {},
   decorators: [basicWrapperDecorator],
 };
@@ -35,50 +33,33 @@ const meta: Meta<typeof FormField> = {
 // eslint-disable-next-line import/no-default-export
 export default meta;
 
-type Story = StoryObj<typeof FormField>;
+type Story = StoryObj<{}>;
 
 // Option 1 using component composition
 export const Default: Story = {
   args: {},
-  render: (args) => (
-    <FormField {...args}>
-      <FormFieldLabel htmlFor="" isRequired>
-        This is a label
-      </FormFieldLabel>
-      <TextInput />
-      <FormFieldDescription id="" state={args.state}>
-        This is a message
-      </FormFieldDescription>
-    </FormField>
-  ),
-};
-
-export const ErrorState: Story = {
-  args: {},
-  render: (args) => (
-    <FormField state="error" {...args}>
-      <FormFieldLabel htmlFor="">This is a label</FormFieldLabel>
-      <TextInput />
-      <FormFieldDescription id="" state={args.state}>
-        This is an error message
-      </FormFieldDescription>
-    </FormField>
-  ),
-};
-
-// Option 2 using component props
-export const WithProps: Story = {
-  args: {},
-  render: (args) => (
-    <FormFieldWithProps
-      label={<FormFieldLabel htmlFor="">This is a label</FormFieldLabel>}
-      message={
-        <FormFieldDescription id="" state={args.state}>
-          This is a message
-        </FormFieldDescription>
-      }
-      {...args}>
-      <TextInput key={1} />
-    </FormFieldWithProps>
+  render: (_args) => (
+    <fieldset>
+      <TextInput
+        helpText="You password must contain at least 8 characters"
+        label="Password"
+        messageInvalid="This is an inline error message"
+        messageValid="This is an inline success message"
+        required
+      />
+      <TextInput
+        helpText="Please re-enter your password"
+        label="Confirm password"
+        messageInvalid="This is an inline error message"
+        messageValid="This is an inline success message"
+        required
+      />
+      <Checkbox
+        checked={false}
+        helpText="By checking this box, you hereby give MegaCorp exclusive rights to your person"
+        label="I agree to the terms and conditions"
+        onCheck={() => {}}
+      />
+    </fieldset>
   ),
 };

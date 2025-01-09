@@ -18,45 +18,45 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 import styled from '@emotion/styled';
-import { forwardRef, JSX } from 'react';
+import { type JSX, forwardRef } from 'react';
 import { MessageInline, MessageInlineSize, MessageType } from '../messages';
 import { HelperText } from '../typography';
-import { FormFieldState } from './FormFieldContext';
+import { FormFieldValidation } from './FormFieldValidation';
 
 interface Props {
   children: JSX.Element | string;
   id: string;
   isDisabled?: boolean;
-  state?: `${FormFieldState}`;
+  validation?: `${FormFieldValidation}`;
 }
 
 export const FormFieldDescription = forwardRef<HTMLDivElement, Props>((props, ref) => {
-  const { children, isDisabled = false, state = FormFieldState.None, ...rest } = props;
+  const { children, isDisabled = false, validation = FormFieldValidation.None, ...rest } = props;
 
-  switch (state) {
-    case FormFieldState.Error:
+  switch (validation) {
+    case FormFieldValidation.Invalid:
       return (
-        <MessageInline
+        <FormFieldMessageInline
           as="div"
           ref={ref}
           size={MessageInlineSize.Small}
           type={MessageType.Danger}
           {...rest}>
           {children}
-        </MessageInline>
+        </FormFieldMessageInline>
       );
-    case FormFieldState.Success:
+    case FormFieldValidation.Valid:
       return (
-        <MessageInline
+        <FormFieldMessageInline
           as="div"
           ref={ref}
           size={MessageInlineSize.Small}
           type={MessageType.Success}
           {...rest}>
           {children}
-        </MessageInline>
+        </FormFieldMessageInline>
       );
-    case FormFieldState.None:
+    case FormFieldValidation.None:
     default:
       return (
         <FormFieldHelperText {...(isDisabled && { 'data-disabled': true })} ref={ref} {...rest}>
@@ -69,8 +69,17 @@ export const FormFieldDescription = forwardRef<HTMLDivElement, Props>((props, re
 FormFieldDescription.displayName = 'FormFieldDescription';
 
 const FormFieldHelperText = styled(HelperText)`
+  grid-area: description;
+
   &[data-disabled] {
     color: var(--echoes-color-text-disabled);
   }
 `;
+
 FormFieldHelperText.displayName = 'FormFieldHelperText';
+
+const FormFieldMessageInline = styled(MessageInline)`
+  grid-area: description;
+`;
+
+FormFieldMessageInline.displayName = 'FormFieldMessageInline';

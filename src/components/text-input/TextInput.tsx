@@ -18,29 +18,91 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 import styled from '@emotion/styled';
-import { type ComponentPropsWithRef, forwardRef } from 'react';
+import { type ComponentPropsWithRef, forwardRef, useId } from 'react';
 
-import { CurrentAPI, CurrentAPIProps } from '../form/FormField';
-import { FormFieldState, useFormFieldContext } from '../form/FormFieldContext';
+import { PropsWithLabels } from '~types/utils';
+import { FormField } from '../form/FormField';
+import { FormFieldControl } from '../form/FormFieldControl';
+import { FormFieldDescription } from '../form/FormFieldDescription';
+import { FormFieldLabel } from '../form/FormFieldLabel';
+import { FormFieldValidation } from '../form/FormFieldValidation';
 
-export type TextInputProps = ComponentPropsWithRef<'input'> & {
-  state?: `${FormFieldState}`;
-};
+export type TextInputProps = PropsWithLabels<
+  ComponentPropsWithRef<'input'> & {
+    messageInvalid?: JSX.Element | string;
+    messageValid?: JSX.Element | string;
+    validation?: `${FormFieldValidation}`;
+  }
+>;
 
 export const TextInput = forwardRef<HTMLInputElement, TextInputProps>((props, ref) => {
-  const context = useFormFieldContext();
-  const { id = context.id, state = context.state, ...rest } = props;
-  return <StyledInput id={id} ref={ref} state={state} {...rest} />;
+  const {
+    ariaLabel,
+    ariaLabelledBy,
+    disabled,
+    helpText,
+    id,
+    label,
+    messageInvalid,
+    messageValid,
+    required,
+    validation = FormFieldValidation.None,
+    ...rest
+  } = props;
+
+  const defaultId = useId();
+  const controlId = id ?? defaultId;
+  const descriptionId = useId();
+  let description: JSX.Element | string | undefined;
+
+  switch (validation) {
+    case FormFieldValidation.Invalid:
+      description = messageInvalid;
+      break;
+    case FormFieldValidation.Valid:
+      description = messageValid;
+      break;
+    case FormFieldValidation.None:
+      description = helpText;
+      break;
+  }
+  return (
+    <FormField controlPlacement="between">
+      {label && (
+        <FormFieldLabel htmlFor={controlId} isDisabled={disabled} isRequired={required}>
+          {label}
+        </FormFieldLabel>
+      )}
+      <FormFieldControl>
+        <StyledInput
+          aria-describedby={description ? descriptionId : undefined}
+          aria-label={ariaLabel}
+          aria-labelledby={ariaLabelledBy}
+          disabled={disabled}
+          id={controlId}
+          ref={ref}
+          required={required}
+          validation={validation}
+          {...rest}
+        />
+      </FormFieldControl>
+      {description && (
+        <FormFieldDescription id={descriptionId} isDisabled={disabled} validation={validation}>
+          {description}
+        </FormFieldDescription>
+      )}
+    </FormField>
+  );
 });
 
 TextInput.displayName = 'TextInput';
 
-const StyledInput = styled.input<{ state: `${FormFieldState}` }>`
+const StyledInput = styled.input<{ validation: `${FormFieldValidation}` }>`
   border-color: ${(props) => {
-    switch (props.state) {
-      case FormFieldState.Error:
+    switch (props.validation) {
+      case FormFieldValidation.Invalid:
         return 'var(--echoes-color-border-danger)';
-      case FormFieldState.Success:
+      case FormFieldValidation.Valid:
         return '#039855';
       default:
         return 'var(--echoes-color-border-bolder)';
@@ -50,17 +112,3 @@ const StyledInput = styled.input<{ state: `${FormFieldState}` }>`
   border-style: solid;
   border-width: 1px;
 `;
-
-
-// Try with current API
-
-export interface TextInputCurrentAPIProps extends Omit<CurrentAPIProps, 'children'> {
-  isDisabled?: boolean;
-}
-
-export const TextInputCurrentAPI = forwardRef<HTMLInputElement, TextInputProps>((props, ref) => {
-  const id = useId();
-  return <CurrentAPI ...>
-    <StyledInput id={id} ref={ref} state={state} aria-describedby='' {...rest} />
-  </CurrentAPI>
-});

@@ -17,95 +17,102 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-import { type ReactNode, forwardRef, useId, useMemo } from 'react';
-import { PropsWithLabels } from '~types/utils';
-import { HelperText, Label } from '../typography';
-import { FormFieldContext, FormFieldState } from './FormFieldContext';
+import styled from '@emotion/styled';
+import { type ComponentProps, forwardRef } from 'react';
 
-export type FormFieldProps = {
-  children: ReactNode;
-  state?: `${FormFieldState}`;
+/**
+ * Used to control the placement of a fom control within a form field.
+ */
+enum FormControlPlacement {
+  /**
+   * Place the form control before the label and description.
+   */
+  Before = 'before',
+  /**
+   * Place the form control below the label and description.
+   */
+  Below = 'below',
+  /**
+   * Place the form control between the label and description. (default)
+   */
+  Between = 'between',
+}
+
+export type FormFieldProps = ComponentProps<'div'> & {
+  /**
+   * The placement of the form control within the form field. There are three
+   * possible placements:
+   *
+   * 1. `Before` - Indicates that the form control should be placed before the
+   *               label and description. This is used for checkbox controls.
+   *
+   * 2. `Below` - Indicates that the form control should be placed below the
+   *              label and description. This is used for radio group controls.
+   *
+   * 3. `Between` - Indicates that the form control should be placed between the
+   *                label and description. This is the default placement.
+   */
+  controlPlacement?: `${FormControlPlacement}`;
+  /**
+   * A form field is a block element by default. If `inline` is set to `true`,
+   * it will render as an inline element.
+   */
+  inline?: boolean;
 };
 
+/**
+ * Acts as a container for a form control.
+ *
+ * Permitted Content: `FormFieldLabel`, `FormFieldControl`, `FormFieldDescription`
+ */
 export const FormField = forwardRef<HTMLDivElement, FormFieldProps>(
-  ({ state = FormFieldState.None, ...props }, ref) => {
-    const id = useId();
-    const value = useMemo(() => ({ id, state: state as FormFieldState }), [id, state]);
-
+  ({ controlPlacement = FormControlPlacement.Between, inline = false, ...props }, ref) => {
     return (
-      <FormFieldContext.Provider value={value}>
-        <div ref={ref} {...props} />
-      </FormFieldContext.Provider>
+      <StyledFormField
+        data-inline={inline ? '' : undefined}
+        data-placement={controlPlacement}
+        ref={ref}
+        {...props}
+      />
     );
   },
 );
 
 FormField.displayName = 'FormField';
 
-/*
- * An alternative version that uses props for defining valid "slots". The
- * `children` prop is assumed to be the "form control".
- */
+const StyledFormField = styled.div`
+  column-gap: var(--echoes-dimension-space-100);
+  display: grid;
 
-export type WithPropsProps = {
-  children: ReactNode;
-  label?: ReactNode;
-  message?: ReactNode;
-  state?: `${FormFieldState}`;
-};
+  &[data-inline] {
+    display: inline-grid;
+  }
 
-export const WithProps = forwardRef<HTMLDivElement, WithPropsProps>(
-  ({ children, label, message, state = FormFieldState.None, ...props }, ref) => {
-    const id = useId();
-    const value = useMemo(() => ({ id, state: state as FormFieldState }), [id, state]);
+  &[data-placement='before'] {
+    grid-template-areas:
+      'control label'
+      '.       description';
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto;
+  }
 
-    return (
-      <FormFieldContext.Provider value={value}>
-        <div ref={ref} {...props}>
-          {label}
-          {children}
-          {message}
-        </div>
-      </FormFieldContext.Provider>
-    );
-  },
-);
+  &[data-placement='below'] {
+    grid-template-areas:
+      'label'
+      'description'
+      'control';
+    grid-template-columns: auto;
+    grid-template-rows: auto auto;
+  }
 
-WithProps.displayName = 'FormField';
+  &[data-placement='between'] {
+    grid-template-areas:
+      'label'
+      'control'
+      'description';
+    grid-template-columns: auto;
+    grid-template-rows: auto auto;
+  }
+`;
 
-/*
- * Following our current api on existing form components
- */
-
-export type CurrentAPIProps = {
-  children: JSX.Element;
-  state?: `${FormFieldState}`;
-  labelError?: JSX.Element | string;
-  labelSuccess?: JSX.Element | string;
-};
-
-export const CurrentAPI = forwardRef<HTMLDivElement, PropsWithLabels<CurrentAPIProps>>(
-  (
-    { children, label, labelError, labelSuccess, helpText, state = FormFieldState.None, ...props },
-    ref,
-  ) => {
-    const id = useId();
-    const value = useMemo(() => ({ id, state: state as FormFieldState }), [id, state]);
-
-    return (
-      <FormFieldContext.Provider value={value}>
-        <div ref={ref} {...props}>
-          {label && <Label htmlFor="id">{label}</Label>}
-          {children}
-          {helpText && state === FormFieldState.None && <HelperText>{helpText}</HelperText>}
-          {labelError && state === FormFieldState.Error && <ErrorText>{labelError}</ErrorText>}
-          {labelSuccess && state === FormFieldState.Success && (
-            <SuccessText>{labelSuccess}</SuccessText>
-          )}
-        </div>
-      </FormFieldContext.Provider>
-    );
-  },
-);
-
-CurrentAPI.displayName = 'FormField';
+StyledFormField.displayName = 'StyledFormField';

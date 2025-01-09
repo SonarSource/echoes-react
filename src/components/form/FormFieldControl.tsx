@@ -17,4 +17,19 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-export { FormFieldValidation } from './FormFieldValidation';
+import styled from '@emotion/styled';
+import { type ReactNode, forwardRef } from 'react';
+
+interface Props {
+  children: ReactNode;
+}
+
+export const FormFieldControl = forwardRef<HTMLDivElement, Props>((props, ref) => {
+  return <StyledFormFieldControl ref={ref} {...props} />;
+});
+
+FormFieldControl.displayName = 'FormFieldControl';
+
+const StyledFormFieldControl = styled.div`
+  grid-area: control;
+`;

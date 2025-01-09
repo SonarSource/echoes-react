@@ -24,6 +24,17 @@ import { Checkbox } from '../src';
 
 const meta: Meta<typeof Checkbox> = {
   component: Checkbox,
+  argTypes: {
+    helpText: {
+      control: 'text',
+    },
+    messageInvalid: {
+      control: 'text',
+    },
+    messageValid: {
+      control: 'text',
+    },
+  },
   title: 'Echoes/Checkbox',
   parameters: {
     a11y: {
@@ -64,9 +75,9 @@ export const WithHelpText: Story = {
 export const WithError: Story = {
   args: {
     checked: false,
-    hasError: true,
     label: "I'm a checkbox with an error",
     onCheck: () => {},
+    validation: 'invalid',
   },
   render: (args) => <CheckboxState initialValue={args.checked} {...args} />,
 };

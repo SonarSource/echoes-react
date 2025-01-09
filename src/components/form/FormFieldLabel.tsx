@@ -18,7 +18,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 import styled from '@emotion/styled';
-import { forwardRef, JSX } from 'react';
+import { type JSX, forwardRef } from 'react';
 import { Label } from '../typography';
 
 interface Props {
@@ -31,7 +31,11 @@ interface Props {
 export const FormFieldLabel = forwardRef<HTMLLabelElement, Props>((props, ref) => {
   const { children, isDisabled = false, isRequired = false, ...rest } = props;
   return (
-    <StyledLabel isSubdued={isDisabled} ref={ref} {...rest}>
+    <StyledLabel
+      data-disabled={isDisabled ? '' : undefined}
+      isSubdued={isDisabled}
+      ref={ref}
+      {...rest}>
       {children}
       {isRequired && (
         <FormFieldLabelRequired {...(isDisabled && { 'data-disabled': true })}>
@@ -46,6 +50,12 @@ FormFieldLabel.displayName = 'FormFieldLabel';
 
 const StyledLabel = styled(Label)`
   display: block;
+  grid-area: label;
+  width: fit-content;
+
+  &[data-disabled] {
+    pointer-events: none;
+  }
 `;
 
 const FormFieldLabelRequired = styled.span`
@@ -57,4 +67,5 @@ const FormFieldLabelRequired = styled.span`
     color: var(--echoes-color-text-subdued);
   }
 `;
+
 FormFieldLabelRequired.displayName = 'FormFieldLabelRequired';
