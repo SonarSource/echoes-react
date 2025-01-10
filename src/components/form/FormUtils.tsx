@@ -17,4 +17,23 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-export { FormFieldValidation } from './FormTypes';
+
+import { PropsLabel } from '~types/utils';
+import { FormFieldValidation, FormFieldValidationProps } from './FormTypes';
+
+export function getValidationMessage({
+  validation,
+  messageInvalid,
+  messageValid,
+  helpText,
+}: FormFieldValidationProps & Pick<PropsLabel, 'helpText'>) {
+  switch (validation) {
+    case FormFieldValidation.Invalid:
+      return messageInvalid;
+    case FormFieldValidation.Valid:
+      return messageValid;
+    case FormFieldValidation.None:
+    default:
+      return helpText;
+  }
+}

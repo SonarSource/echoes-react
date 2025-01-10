@@ -25,7 +25,7 @@ import { FormField } from '../form/FormField';
 import { FormFieldControl } from '../form/FormFieldControl';
 import { FormFieldDescription } from '../form/FormFieldDescription';
 import { FormFieldLabel } from '../form/FormFieldLabel';
-import { FormFieldValidation } from '../form/FormFieldValidation';
+import { FormFieldValidation } from '../form/FormTypes';
 
 export type TextInputProps = PropsWithLabels<
   ComponentPropsWithRef<'input'> & {

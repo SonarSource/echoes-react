@@ -22,3 +22,9 @@ export enum FormFieldValidation {
   Valid = 'valid',
   Invalid = 'invalid',
 }
+
+export interface FormFieldValidationProps {
+  messageInvalid?: JSX.Element | string;
+  messageValid?: JSX.Element | string;
+  validation?: `${FormFieldValidation}`;
+}

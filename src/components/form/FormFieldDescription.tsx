@@ -21,7 +21,7 @@ import styled from '@emotion/styled';
 import { type JSX, forwardRef } from 'react';
 import { MessageInline, MessageInlineSize, MessageType } from '../messages';
 import { HelperText } from '../typography';
-import { FormFieldValidation } from './FormFieldValidation';
+import { FormFieldValidation } from './FormTypes';
 
 interface Props {
   children: JSX.Element | string;

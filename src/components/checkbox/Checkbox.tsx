@@ -26,21 +26,19 @@ import { FormField } from '../form/FormField';
 import { FormFieldControl } from '../form/FormFieldControl';
 import { FormFieldDescription } from '../form/FormFieldDescription';
 import { FormFieldLabel } from '../form/FormFieldLabel';
-import { FormFieldValidation } from '../form/FormFieldValidation';
+import { FormFieldValidation, FormFieldValidationProps } from '../form/FormTypes';
+import { getValidationMessage } from '../form/FormUtils';
 import { Spinner } from '../spinner';
 import { CheckboxIcon } from './CheckboxIcon';
 
-interface Props {
+interface Props extends FormFieldValidationProps {
   checked: boolean | 'indeterminate';
   className?: string;
   isDisabled?: boolean;
   isLoading?: boolean;
-  messageInvalid?: JSX.Element | string;
-  messageValid?: JSX.Element | string;
   onCheck: (checked: boolean | 'indeterminate', id?: string) => void;
   onFocus?: VoidFunction;
   title?: string;
-  validation?: `${FormFieldValidation}`;
 }
 
 export const Checkbox = forwardRef<HTMLDivElement, PropsWithLabels<Props>>((props, ref) => {
@@ -66,19 +64,12 @@ export const Checkbox = forwardRef<HTMLDivElement, PropsWithLabels<Props>>((prop
   const defaultId = useId();
   const controlId = id ?? defaultId;
   const descriptionId = useId();
-  let description: JSX.Element | string | undefined;
-
-  switch (validation) {
-    case FormFieldValidation.Invalid:
-      description = messageInvalid;
-      break;
-    case FormFieldValidation.Valid:
-      description = messageValid;
-      break;
-    case FormFieldValidation.None:
-      description = helpText;
-      break;
-  }
+  const description = getValidationMessage({
+    validation,
+    helpText,
+    messageInvalid,
+    messageValid,
+  });
 
   const handleChange = useCallback(
     (checked: boolean | 'indeterminate') => {
