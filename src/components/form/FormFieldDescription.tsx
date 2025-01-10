@@ -26,12 +26,11 @@ import { FormFieldValidation } from './FormFieldValidation';
 interface Props {
   children: JSX.Element | string;
   id: string;
-  isDisabled?: boolean;
   validation?: `${FormFieldValidation}`;
 }
 
 export const FormFieldDescription = forwardRef<HTMLDivElement, Props>((props, ref) => {
-  const { children, isDisabled = false, validation = FormFieldValidation.None, ...rest } = props;
+  const { children, validation = FormFieldValidation.None, ...rest } = props;
 
   switch (validation) {
     case FormFieldValidation.Invalid:
@@ -59,7 +58,7 @@ export const FormFieldDescription = forwardRef<HTMLDivElement, Props>((props, re
     case FormFieldValidation.None:
     default:
       return (
-        <FormFieldHelperText {...(isDisabled && { 'data-disabled': true })} ref={ref} {...rest}>
+        <FormFieldHelperText ref={ref} {...rest}>
           {children}
         </FormFieldHelperText>
       );
@@ -70,10 +69,6 @@ FormFieldDescription.displayName = 'FormFieldDescription';
 
 const FormFieldHelperText = styled(HelperText)`
   grid-area: description;
-
-  &[data-disabled] {
-    color: var(--echoes-color-text-disabled);
-  }
 `;
 
 FormFieldHelperText.displayName = 'FormFieldHelperText';

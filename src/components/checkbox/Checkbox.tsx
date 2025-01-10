@@ -120,7 +120,7 @@ export const Checkbox = forwardRef<HTMLDivElement, PropsWithLabels<Props>>((prop
         </Spinner>
       </FormFieldControl>
       {description && (
-        <FormFieldDescription id={descriptionId} isDisabled={isDisabled} validation={validation}>
+        <FormFieldDescription id={descriptionId} validation={validation}>
           {description}
         </FormFieldDescription>
       )}

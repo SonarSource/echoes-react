@@ -69,7 +69,7 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>((props, re
   return (
     <FormField controlPlacement="between">
       {label && (
-        <FormFieldLabel htmlFor={controlId} isDisabled={disabled} isRequired={required}>
+        <FormFieldLabel htmlFor={controlId} isRequired={required}>
           {label}
         </FormFieldLabel>
       )}
@@ -87,7 +87,7 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>((props, re
         />
       </FormFieldControl>
       {description && (
-        <FormFieldDescription id={descriptionId} isDisabled={disabled} validation={validation}>
+        <FormFieldDescription id={descriptionId} validation={validation}>
           {description}
         </FormFieldDescription>
       )}

@@ -31,17 +31,9 @@ interface Props {
 export const FormFieldLabel = forwardRef<HTMLLabelElement, Props>((props, ref) => {
   const { children, isDisabled = false, isRequired = false, ...rest } = props;
   return (
-    <StyledLabel
-      data-disabled={isDisabled ? '' : undefined}
-      isSubdued={isDisabled}
-      ref={ref}
-      {...rest}>
+    <StyledLabel data-disabled={isDisabled ? '' : undefined} ref={ref} {...rest}>
       {children}
-      {isRequired && (
-        <FormFieldLabelRequired {...(isDisabled && { 'data-disabled': true })}>
-          *
-        </FormFieldLabelRequired>
-      )}
+      {isRequired && <FormFieldLabelRequired>*</FormFieldLabelRequired>}
     </StyledLabel>
   );
 });
@@ -62,10 +54,6 @@ const FormFieldLabelRequired = styled.span`
   color: var(--echoes-color-text-danger);
   font: var(--echoes-typography-others-label-medium);
   margin-left: var(--echoes-dimension-space-25);
-
-  &[data-disabled] {
-    color: var(--echoes-color-text-subdued);
-  }
 `;
 
 FormFieldLabelRequired.displayName = 'FormFieldLabelRequired';
