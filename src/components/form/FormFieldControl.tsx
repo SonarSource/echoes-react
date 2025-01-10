@@ -24,12 +24,23 @@ interface Props {
   children: ReactNode;
 }
 
+/**
+ * @internal
+ *
+ * A form field must have an associated form control.
+ *
+ * **Permitted Parents:**
+ *
+ * `FormField`
+ *
+ * **Permitted Content:**
+ *
+ * `CheckboxGroup | RadioButtonGroup | Select | Textarea | TextInput`
+ */
 export const FormFieldControl = forwardRef<HTMLDivElement, Props>((props, ref) => {
-  return <StyledFormFieldControl ref={ref} {...props} />;
+  return <FormFieldControlStyled ref={ref} {...props} />;
 });
 
 FormFieldControl.displayName = 'FormFieldControl';
 
-const StyledFormFieldControl = styled.div`
-  grid-area: control;
-`;
+const FormFieldControlStyled = styled.div``;

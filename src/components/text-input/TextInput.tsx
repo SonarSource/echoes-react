@@ -20,12 +20,12 @@
 import styled from '@emotion/styled';
 import { ChangeEventHandler, forwardRef, InputHTMLAttributes, ReactNode, useId } from 'react';
 import { PropsWithLabels } from '~types/utils';
-import { FormField } from '../form/FormField';
-import { FormFieldControl } from '../form/FormFieldControl';
-import { FormFieldDescription } from '../form/FormFieldDescription';
-import { FormFieldLabel } from '../form/FormFieldLabel';
-import { FormFieldValidation, FormFieldValidationProps } from '../form/FormTypes';
-import { getValidationMessage } from '../form/FormUtils';
+import {
+  type ValidationProps,
+  FormField,
+  FormFieldValidation,
+  FormFieldWidth,
+} from '../form/FormField';
 
 // What do we want to keep in there? I think we should probably limit the available types too.
 type InputProps = Pick<
@@ -42,7 +42,7 @@ type InputProps = Pick<
   | 'step'
 >;
 
-interface Props extends FormFieldValidationProps, InputProps {
+interface Props extends InputProps, ValidationProps {
   className?: string;
   isDisabled?: boolean;
   isRequired?: boolean;
@@ -51,6 +51,7 @@ interface Props extends FormFieldValidationProps, InputProps {
   prefix?: ReactNode;
   suffix?: ReactNode;
   value?: string | number;
+  width?: `${FormFieldWidth}`;
 }
 
 export const TextField = forwardRef<HTMLInputElement, PropsWithLabels<Props>>((props, ref) => {
@@ -66,46 +67,39 @@ export const TextField = forwardRef<HTMLInputElement, PropsWithLabels<Props>>((p
     messageValid,
     prefix,
     suffix,
-    validation = FormFieldValidation.None,
+    validation,
+    width,
     ...rest
   } = props;
 
   const defaultId = `${useId()}textfield`;
   const controlId = id ?? defaultId;
   const descriptionId = `${controlId}-description`;
-  const description = getValidationMessage({
-    validation,
-    helpText,
-    messageInvalid,
-    messageValid,
-  });
 
   return (
-    <FormField controlPlacement="between">
-      {label && (
-        <FormFieldLabel htmlFor={controlId} isRequired={isRequired}>
-          {label}
-        </FormFieldLabel>
-      )}
-      <FormFieldControl>
-        <StyledInput
-          aria-describedby={description ? descriptionId : undefined}
-          aria-label={ariaLabel}
-          aria-labelledby={ariaLabelledBy}
-          data-error={validation === FormFieldValidation.Invalid ? '' : undefined}
-          data-valid={validation === FormFieldValidation.Valid ? '' : undefined}
-          disabled={isDisabled}
-          id={controlId}
-          ref={ref}
-          required={isRequired}
-          {...rest}
-        />
-      </FormFieldControl>
-      {description && (
-        <FormFieldDescription id={descriptionId} validation={validation}>
-          {description}
-        </FormFieldDescription>
-      )}
+    <FormField
+      controlId={controlId}
+      description={helpText}
+      descriptionId={descriptionId}
+      isDisabled={isDisabled}
+      isRequired={isRequired}
+      label={label}
+      messageInvalid={messageInvalid}
+      messageValid={messageValid}
+      validation={validation}
+      width={width}>
+      <StyledInput
+        aria-describedby={helpText ? descriptionId : undefined}
+        aria-label={ariaLabel}
+        aria-labelledby={ariaLabelledBy}
+        data-error={validation === FormFieldValidation.Invalid ? '' : undefined}
+        data-valid={validation === FormFieldValidation.Valid ? '' : undefined}
+        disabled={isDisabled}
+        id={controlId}
+        ref={ref}
+        required={isRequired}
+        {...rest}
+      />
     </FormField>
   );
 });

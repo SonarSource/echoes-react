@@ -21,31 +21,34 @@
 import { css, Global } from '@emotion/react';
 import styled from '@emotion/styled';
 import { Select as MantineSelect, SelectProps as MantineSelectProps } from '@mantine/core';
-import { forwardRef, useContext } from 'react';
+import { forwardRef, useContext, useId } from 'react';
 import { useIntl } from 'react-intl';
 import { isDefined } from '~common/helpers/types';
 import { PropsWithLabels } from '~types/utils';
 import { IconChevronDown, IconX, Spinner } from '..';
 import { PortalContext } from '../../common/components/PortalContext';
-import { INPUT_SIZE_VALUES, InputSize } from '../../utils/inputs';
+import {
+  type ValidationProps,
+  FormField,
+  FormFieldValidation,
+  FormFieldWidth,
+} from '../form/FormField';
 import { OptionComponent, useSelectOptionFunction } from './SelectItemCommons';
 import { SelectData, SelectHighlight, SelectOption, SelectOptionType } from './SelectTypes';
 import { SelectFilterFunction, useSelectOptionFilter } from './useSelectOptionFilter';
 
-export interface SelectBaseProps {
+export interface SelectBaseProps extends ValidationProps {
   className?: string;
   data: SelectData;
   defaultValue?: MantineSelectProps['defaultValue'];
   filter?: SelectFilterFunction;
   hasDropdownAutoWidth?: boolean;
-  hasError?: boolean;
   highlight?: SelectHighlight;
   isDisabled?: boolean;
   isLoading?: boolean;
   isNotClearable?: boolean;
   isSearchable?: boolean;
   isRequired?: boolean;
-  labelError?: MantineSelectProps['error'];
   labelNotFound?: MantineSelectProps['nothingFoundMessage'];
   limit?: MantineSelectProps['limit'];
   name?: MantineSelectProps['name'];
@@ -55,9 +58,9 @@ export interface SelectBaseProps {
   onOpen?: MantineSelectProps['onDropdownOpen'];
   onSearch?: MantineSelectProps['onSearchChange'];
   placeholder?: MantineSelectProps['placeholder'];
-  size?: InputSize;
   value: MantineSelectProps['value'];
   valueIcon?: MantineSelectProps['leftSection'];
+  width?: `${FormFieldWidth}`;
 }
 
 export const SelectBase = forwardRef<HTMLInputElement, PropsWithLabels<SelectBaseProps>>(
@@ -68,31 +71,35 @@ export const SelectBase = forwardRef<HTMLInputElement, PropsWithLabels<SelectBas
       data,
       filter,
       hasDropdownAutoWidth = false,
-      hasError = false,
       helpText,
       highlight = SelectHighlight.Default,
+      id,
       isDisabled = false,
       isLoading = false,
       isNotClearable = false,
       isSearchable = false,
       isRequired = false,
       label,
-      labelError,
       labelNotFound,
+      messageInvalid,
+      messageValid,
       onSearch,
       onOpen,
       optionComponent,
       optionType = SelectOptionType.Check,
-      size = InputSize.Full,
       valueIcon,
+      validation,
+      width,
       ...selectProps
     } = props;
 
+    const defaultId = `${useId()}select`;
+    const controlId = id ?? defaultId;
+    const descriptionId = `${controlId}-description`;
     const intl = useIntl();
     const portalContext = useContext(PortalContext);
     const optionsFilter = useSelectOptionFilter(filter);
     const optionRenderer = useSelectOptionFunction(optionComponent, optionType);
-
     const isClearable = !isNotClearable && !isRequired && !isDisabled;
 
     const rightSection = getSelectRightSection({
@@ -102,60 +109,70 @@ export const SelectBase = forwardRef<HTMLInputElement, PropsWithLabels<SelectBas
     });
 
     return (
-      <SelectStyled
-        allowDeselect={isClearable}
-        aria-label={ariaLabel}
-        aria-labelledby={ariaLabelledBy}
-        classNames={
-          hasDropdownAutoWidth
-            ? { ...SELECT_CLASSNAMES, dropdown: 'echoes-select-dropdown-auto-width' }
-            : SELECT_CLASSNAMES
-        }
-        clearButtonProps={
-          isClearable
-            ? {
-                'aria-label': intl.formatMessage({
-                  id: 'select.clear',
-                  defaultMessage: 'Clear select field',
-                  description:
-                    'Screen reader-only text to indicate that the select field can be cleared with a button',
-                }),
-                className: 'echoes-select-close-button',
-                icon: <IconX />,
-              }
-            : {}
-        }
-        clearable={isClearable}
-        comboboxProps={{
-          portalProps: {
-            target: portalContext.portalReference,
-          },
-          withinPortal: isDefined(portalContext.portalReference),
-        }}
-        data={data}
-        data-variant={highlight}
+      <FormField
+        controlId={controlId}
         description={helpText}
-        disabled={isDisabled}
-        error={labelError ?? hasError}
-        filter={optionsFilter}
+        descriptionId={descriptionId}
+        isDisabled={isDisabled}
+        isRequired={isRequired}
         label={label}
-        leftSection={valueIcon}
-        nothingFoundMessage={labelNotFound}
-        onDropdownOpen={onOpen}
-        onSearchChange={onSearch}
-        ref={ref}
-        renderOption={optionRenderer}
-        required={isRequired}
-        rightSection={rightSection}
-        rightSectionPointerEvents={isDefined(rightSection) ? 'none' : 'auto'} // Necessary to allow click events to go through and trigger the dropdown to open
-        role="combobox"
-        searchable={isSearchable}
-        selectBaseInputSize={size}
-        variant={highlight}
-        withCheckIcon={false}
-        withScrollArea={false}
-        {...selectProps}
-      />
+        messageInvalid={messageInvalid}
+        messageValid={messageValid}
+        validation={validation}
+        width={width}>
+        <SelectStyled
+          allowDeselect={isClearable}
+          aria-label={ariaLabel}
+          aria-labelledby={ariaLabelledBy}
+          classNames={
+            hasDropdownAutoWidth
+              ? { ...SELECT_CLASSNAMES, dropdown: 'echoes-select-dropdown-auto-width' }
+              : SELECT_CLASSNAMES
+          }
+          clearButtonProps={
+            isClearable
+              ? {
+                  'aria-label': intl.formatMessage({
+                    id: 'select.clear',
+                    defaultMessage: 'Clear select field',
+                    description:
+                      'Screen reader-only text to indicate that the select field can be cleared with a button',
+                  }),
+                  className: 'echoes-select-close-button',
+                  icon: <IconX />,
+                }
+              : {}
+          }
+          clearable={isClearable}
+          comboboxProps={{
+            portalProps: {
+              target: portalContext.portalReference,
+            },
+            withinPortal: isDefined(portalContext.portalReference),
+          }}
+          data={data}
+          data-variant={highlight}
+          disabled={isDisabled}
+          error={validation === FormFieldValidation.Invalid}
+          filter={optionsFilter}
+          id={controlId}
+          leftSection={valueIcon}
+          nothingFoundMessage={labelNotFound}
+          onDropdownOpen={onOpen}
+          onSearchChange={onSearch}
+          ref={ref}
+          renderOption={optionRenderer}
+          required={isRequired}
+          rightSection={rightSection}
+          rightSectionPointerEvents={isDefined(rightSection) ? 'none' : 'auto'} // Necessary to allow click events to go through and trigger the dropdown to open
+          role="combobox"
+          searchable={isSearchable}
+          variant={highlight}
+          withCheckIcon={false}
+          withScrollArea={false}
+          {...selectProps}
+        />
+      </FormField>
     );
   },
 );
@@ -179,55 +196,7 @@ const SELECT_CLASSNAMES = {
   groupLabel: 'echoes-select-group-label',
 };
 
-export const SelectStyled = styled(MantineSelect, {
-  shouldForwardProp: (prop) => !['selectBaseInputSize'].includes(prop),
-})<{ selectBaseInputSize: InputSize }>`
-  // Set the width of the whole input component and its dropdown
-  width: ${({ selectBaseInputSize }) => INPUT_SIZE_VALUES[selectBaseInputSize]};
-
-  // Label element styles, defined by label prop
-  & .echoes-select-label {
-    display: inline-block;
-    margin-bottom: var(--echoes-dimension-space-100);
-
-    font: var(--echoes-typography-others-label);
-    color: var(--echoes-color-text-bold);
-
-    word-break: break-word;
-
-    &:has(~ [data-disabled]) {
-      color: var(--echoes-color-text-subdued);
-    }
-  }
-
-  // Description element styles, defined by description prop
-  & .echoes-select-description {
-    font: var(--echoes-typography-others-helper-text);
-    color: var(--echoes-color-text-subdued);
-
-    margin-top: calc(-1 * var(--echoes-dimension-space-50));
-    margin-bottom: var(--echoes-dimension-space-100);
-
-    word-break: break-word;
-  }
-
-  // Required asterisk element styles, defined by required prop
-  & .echoes-select-required {
-    font: var(--echoes-typography-others-label-medium);
-    color: var(--echoes-color-text-danger);
-  }
-
-  // Error element styles, defined by error prop
-  & .echoes-select-error {
-    font: var(--echoes-typography-text-default-regular);
-    color: var(--echoes-color-text-danger);
-
-    margin-top: var(--echoes-dimension-space-100);
-    margin-bottom: var(--echoes-dimension-space-0);
-
-    word-break: break-word;
-  }
-
+export const SelectStyled = styled(MantineSelect)`
   // Wrapper around the input
   & .echoes-select-wrapper {
     position: relative;

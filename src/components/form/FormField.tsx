@@ -18,101 +18,194 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 import styled from '@emotion/styled';
-import { type ComponentProps, forwardRef } from 'react';
+import { type ComponentProps, type JSX, forwardRef } from 'react';
+import { FormFieldControl } from './FormFieldControl';
+import { FormFieldLabel } from './FormFieldLabel';
+import { FormFieldMessage } from './FormFieldMessage';
+import { HelperText } from '../typography';
+import { MessageInline, MessageInlineSize, MessageType } from '../messages';
+
+type FormFieldText = JSX.Element | string | false | null;
 
 /**
- * Used to control the placement of a fom control within a form field.
+ * Represents the validity state of a form field.
  */
-export enum FormControlPlacement {
+export enum FormFieldValidation {
   /**
-   * Place the form control before the label and description.
+   * The form field has failed validation.
    */
-  Before = 'before',
+  Invalid = 'invalid',
   /**
-   * Place the form control below the label and description.
+   * The form field has not been explicitly validated (default).
    */
-  Below = 'below',
+  None = 'none',
   /**
-   * Place the form control between the label and description. (default)
+   * The form field has been successfully validated.
    */
-  Between = 'between',
+  Valid = 'valid',
 }
 
-export type FormFieldProps = ComponentProps<'div'> & {
+/**
+ * The available width options for a form felid.
+ */
+export enum FormFieldWidth {
+  Small = 'small',
+  Medium = 'medium',
+  Large = 'large',
+  Full = 'full',
+}
+
+export interface ValidationProps {
   /**
-   * The placement of the form control within the form field. There are three
-   * possible placements:
-   *
-   * 1. `Before` - Indicates that the form control should be placed before the
-   *               label and description. This is used for checkbox controls.
-   *
-   * 2. `Below` - Indicates that the form control should be placed below the
-   *              label and description. This is used for radio group controls.
-   *
-   * 3. `Between` - Indicates that the form control should be placed between the
-   *                label and description. This is the default placement.
+   * The message to display when the form field is invalid (optional).
    */
-  controlPlacement?: `${FormControlPlacement}`;
+  messageInvalid?: FormFieldText;
   /**
-   * A form field is a block element by default. If `isInline` is set to `true`,
-   * it will render as an inline element.
+   * The message to display when the form field is valid (optional).
    */
-  isInline?: boolean;
-};
+  messageValid?: FormFieldText;
+  /**
+   * The validation state of the form field (optional). The default is `none`,
+   * meaning the form field has not been explicitly validated.
+   */
+  validation?: `${FormFieldValidation}`;
+}
+
+export interface FormFieldProps extends ValidationProps, ComponentProps<'div'> {
+  /**
+   * The ID of the form control that this form field is associated with
+   * (optional).
+   */
+  controlId?: string;
+  /**
+   * A descriptive message for the form field (optional).
+   */
+  description?: FormFieldText;
+  /**
+   * The ID of the description for the form field (optional). Useful for
+   * establishing a relationship between a description and a form control using
+   * the `aria-describedby` attribute.
+   */
+  descriptionId?: string;
+  /**
+   * When true, pointer events will be disabled on the label to prevent
+   * activating the form control.
+   */
+  isDisabled?: boolean;
+  /**
+   * When true, an asterisk will be displayed next to the label to indicate that
+   * the field is required.
+   */
+  isRequired?: boolean;
+  /**
+   * The label for the form field (optional).
+   */
+  label?: FormFieldText;
+  /**
+   * Controls the width of the form field (optional). The default value is
+   * `full`, meaning it will take up the full width of its container.
+   */
+  width?: `${FormFieldWidth}`;
+}
 
 /**
- * Acts as a container for a form control.
+ * @internal
  *
- * Permitted Content: `FormFieldLabel`, `FormFieldControl`, `FormFieldDescription`
+ * Form fields wrap form controls and help create standardization between them.
+ * They may have a label, a description, and validation.
+ *
+ * **Permitted Content:**
+ *
+ * `CheckboxGroup | RadioButtonGroup | Select | Textarea | TextInput`
  */
 export const FormField = forwardRef<HTMLDivElement, FormFieldProps>(
-  ({ controlPlacement = FormControlPlacement.Between, isInline = false, ...props }, ref) => {
+  (
+    {
+      children,
+      controlId,
+      description,
+      descriptionId,
+      isDisabled = false,
+      isRequired = false,
+      label,
+      messageInvalid,
+      messageValid,
+      validation = FormFieldValidation.None,
+      width = FormFieldWidth.Full,
+      ...props
+    },
+    ref,
+  ) => {
+    const message = getFormFieldMessage({
+      description,
+      descriptionId,
+      messageInvalid,
+      messageValid,
+      validation,
+    });
+
     return (
-      <StyledFormField
-        data-inline={isInline ? '' : undefined}
-        data-placement={controlPlacement}
-        ref={ref}
-        {...props}
-      />
+      <FormFieldStyled data-width={width} ref={ref} {...props}>
+        <FormFieldLabel htmlFor={controlId} isDisabled={isDisabled} isRequired={isRequired}>
+          {label}
+        </FormFieldLabel>
+        <FormFieldControl>{children}</FormFieldControl>
+        <FormFieldMessage>{message}</FormFieldMessage>
+      </FormFieldStyled>
     );
   },
 );
 
 FormField.displayName = 'FormField';
 
-const StyledFormField = styled.div`
-  column-gap: var(--echoes-dimension-space-100);
-  display: grid;
+const FormFieldStyled = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: var(--echoes-dimension-space-75);
+  min-width: 0;
 
-  &[data-inline] {
-    display: inline-grid;
+  &[data-width='small'] {
+    width: var(--echoes-sizes-inputs-small);
   }
-
-  &[data-placement='before'] {
-    grid-template-areas:
-      'control label'
-      '.       description';
-    grid-template-columns: auto 1fr;
-    grid-template-rows: auto auto;
+  &[data-width='medium'] {
+    width: var(--echoes-sizes-inputs-medium);
   }
-
-  &[data-placement='below'] {
-    grid-template-areas:
-      'label'
-      'description'
-      'control';
-    grid-template-columns: auto;
-    grid-template-rows: auto auto;
+  &[data-width='large'] {
+    width: var(--echoes-sizes-inputs-large);
   }
-
-  &[data-placement='between'] {
-    grid-template-areas:
-      'label'
-      'control'
-      'description';
-    grid-template-columns: auto;
-    grid-template-rows: auto auto;
+  &[data-width='full'] {
+    width: var(--echoes-sizes-inputs-full);
   }
 `;
 
-StyledFormField.displayName = 'StyledFormField';
+type GetFormFieldMessageInput = Pick<
+  FormFieldProps,
+  'description' | 'descriptionId' | 'messageInvalid' | 'messageValid' | 'validation'
+>;
+
+function getFormFieldMessage({
+  description,
+  descriptionId,
+  messageInvalid,
+  messageValid,
+  validation,
+}: GetFormFieldMessageInput) {
+  switch (true) {
+    case Boolean(messageInvalid) && validation === FormFieldValidation.Invalid:
+      return (
+        <MessageInline size={MessageInlineSize.Small} type={MessageType.Danger}>
+          {messageInvalid}
+        </MessageInline>
+      );
+    case Boolean(messageValid) && validation === FormFieldValidation.Valid:
+      return (
+        <MessageInline size={MessageInlineSize.Small} type={MessageType.Success}>
+          {messageValid}
+        </MessageInline>
+      );
+    case Boolean(description):
+      return <HelperText id={descriptionId}>{description}</HelperText>;
+    default:
+      return null;
+  }
+}

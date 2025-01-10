@@ -20,8 +20,14 @@
 
 import styled from '@emotion/styled';
 import * as RadioGroup from '@radix-ui/react-radio-group';
-import { ReactNode, forwardRef } from 'react';
+import { ReactNode, forwardRef, useId } from 'react';
 import { PropsWithLabels } from '~types/utils';
+import {
+  type ValidationProps,
+  FormField,
+  FormFieldValidation,
+  FormFieldWidth,
+} from '../form/FormField';
 import { HelperText, Label } from '../typography';
 
 export enum RadioButtonGroupAlignment {
@@ -29,18 +35,18 @@ export enum RadioButtonGroupAlignment {
   Horizontal = 'horizontal',
 }
 
-interface Props {
+interface Props extends ValidationProps {
   onChange?: (value: string) => void;
   options: RadioOption[];
 
   // Group Props
   alignment?: RadioButtonGroupAlignment;
   defaultValue?: string;
-  id: string;
+  id?: string;
   isDisabled?: boolean;
   isRequired?: boolean;
-  labelRadioGroupError?: ReactNode;
   value?: string;
+  width?: `${FormFieldWidth}`;
 }
 
 export const RadioButtonGroup = forwardRef<HTMLDivElement, PropsWithLabels<Props>>((props, ref) => {
@@ -53,61 +59,57 @@ export const RadioButtonGroup = forwardRef<HTMLDivElement, PropsWithLabels<Props
     isDisabled: disabled,
     isRequired: required,
     label,
-    labelRadioGroupError,
+    messageInvalid,
+    messageValid,
     onChange,
     options,
+    validation,
+    width,
     ...radixRadioGroupProps
   } = props;
 
+  const defaultId = `${useId()}radiogroup`;
+  const controlId = id ?? defaultId;
+  const descriptionId = `${controlId}-description`;
+
   return (
-    <RadioGroupRoot
-      {...radixRadioGroupProps}
-      aria-label={ariaLabel}
-      aria-labelledby={ariaLabelledBy}
-      disabled={disabled}
-      id={id}
-      onValueChange={onChange}
-      ref={ref}
-      required={required}>
-      {label && (
-        <RadioGroupLabelWrapper data-testid="radio-group-label-wrapper">
-          <Label id={`${id}-label`} isSubdued={disabled}>
-            {label}
-
-            {required && (
-              <RadioGroupRequired {...(disabled ? { 'data-disabled': true } : {})}>
-                *
-              </RadioGroupRequired>
-            )}
-          </Label>
-
-          {helpText && (
-            <HelperText as="span" id={`${id}-helptext`}>
-              {helpText}
-            </HelperText>
-          )}
-        </RadioGroupLabelWrapper>
-      )}
-
-      <RadioButtonsWrapper
-        aria-describedby={helpText ? `${id}-helptext` : undefined}
-        aria-labelledby={label ? `${id}-label` : undefined}
-        horizontal={alignment === RadioButtonGroupAlignment.Horizontal}>
-        {options.map(({ isDisabled: disabledOption, ...o }) => (
-          <RadioButton
-            groupId={id}
-            hasError={Boolean(labelRadioGroupError)}
-            isDisabled={disabled ? true : disabledOption} // Group disabled takes precedence
-            key={o.value}
-            {...o}
-          />
-        ))}
-      </RadioButtonsWrapper>
-
-      <RadioGroupErrorMessage>{labelRadioGroupError ?? <>&nbsp;</>}</RadioGroupErrorMessage>
-    </RadioGroupRoot>
+    <FormField
+      controlId={controlId}
+      description={helpText}
+      descriptionId={descriptionId}
+      isDisabled={disabled}
+      isRequired={required}
+      label={label}
+      messageInvalid={messageInvalid}
+      messageValid={messageValid}
+      validation={validation}
+      width={width}>
+      <RadioGroupRoot
+        {...radixRadioGroupProps}
+        aria-describedby={helpText ? descriptionId : undefined}
+        aria-label={ariaLabel}
+        aria-labelledby={ariaLabelledBy}
+        disabled={disabled}
+        id={controlId}
+        onValueChange={onChange}
+        ref={ref}
+        required={required}>
+        <RadioButtonsWrapper horizontal={alignment === RadioButtonGroupAlignment.Horizontal}>
+          {options.map(({ isDisabled: disabledOption, ...o }) => (
+            <RadioButton
+              groupId={id}
+              hasError={validation === FormFieldValidation.Invalid}
+              isDisabled={disabled ? true : disabledOption} // Group disabled takes precedence
+              key={o.value}
+              {...o}
+            />
+          ))}
+        </RadioButtonsWrapper>
+      </RadioGroupRoot>
+    </FormField>
   );
 });
+
 RadioButtonGroup.displayName = 'RadioButtonGroup';
 
 /*
@@ -167,23 +169,6 @@ RadioButton.displayName = 'RadioButton';
 const RadioGroupRoot = styled(RadioGroup.Root)`
   display: flex;
   flex-direction: column;
-`;
-
-const RadioGroupLabelWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: var(--echoes-dimension-space-50);
-  margin-bottom: var(--echoes-dimension-space-150);
-`;
-
-const RadioGroupRequired = styled.span`
-  color: var(--echoes-color-text-danger);
-  font: var(--echoes-typography-others-label-medium);
-  margin-left: var(--echoes-dimension-space-25);
-
-  &[data-disabled] {
-    color: var(--echoes-color-text-subdued);
-  }
 `;
 
 const RadioButtonsWrapper = styled.div<{ horizontal: boolean }>`
@@ -294,10 +279,4 @@ const OptionHelpText = styled(HelperText)`
   &[data-disabled] {
     color: var(--echoes-color-text-disabled);
   }
-`;
-
-const RadioGroupErrorMessage = styled.span`
-  font: var(--echoes-typography-text-default-regular);
-  color: var(--echoes-color-text-danger);
-  margin-top: var(--echoes-dimension-space-100);
 `;

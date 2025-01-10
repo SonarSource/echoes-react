@@ -30,8 +30,8 @@ const meta: Meta<typeof RadioButtonGroup> = {
   },
   argTypes: {
     label: { type: 'string' },
-    labelRadioGroupError: { type: 'string' },
     helpText: { type: 'string' },
+    messageInvalid: { type: 'string' },
   },
 };
 
@@ -117,13 +117,14 @@ export const DisabledGroup: Story = {
 
 export const ErroredGroup: Story = {
   args: {
-    labelRadioGroupError: 'Error message',
     isRequired: true,
+    messageInvalid: 'Error message',
     options: [
       { label: 'One', value: '1' },
       { helpText: <span>Help</span>, label: 'Two', value: '2' },
       { label: 'Three', value: '3' },
     ],
+    validation: 'invalid',
   },
   render: (args) => <RadioButtonGroup {...args} />,
 };

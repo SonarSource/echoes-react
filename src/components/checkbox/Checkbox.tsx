@@ -20,20 +20,16 @@
 
 import styled from '@emotion/styled';
 import * as RadixCheckbox from '@radix-ui/react-checkbox';
-import { forwardRef, useCallback, useId } from 'react';
+import { forwardRef, useCallback } from 'react';
 import { PropsWithLabels } from '~types/utils';
-import { FormField } from '../form/FormField';
-import { FormFieldControl } from '../form/FormFieldControl';
-import { FormFieldDescription } from '../form/FormFieldDescription';
-import { FormFieldLabelMedium } from '../form/FormFieldLabel';
-import { FormFieldValidation, FormFieldValidationProps } from '../form/FormTypes';
-import { getValidationMessage } from '../form/FormUtils';
 import { Spinner } from '../spinner';
 import { CheckboxIcon } from './CheckboxIcon';
 
-interface Props extends FormFieldValidationProps {
+interface Props {
   checked: boolean | 'indeterminate';
   className?: string;
+  hasError?: boolean;
+  innerClassName?: string;
   isDisabled?: boolean;
   isLoading?: boolean;
   onCheck: (checked: boolean | 'indeterminate', id?: string) => void;
@@ -41,85 +37,85 @@ interface Props extends FormFieldValidationProps {
   title?: string;
 }
 
-export const Checkbox = forwardRef<HTMLDivElement, PropsWithLabels<Props>>((props, ref) => {
+export const Checkbox = forwardRef<HTMLButtonElement, PropsWithLabels<Props>>((props, ref) => {
   const {
     ariaLabel,
     ariaLabelledBy,
     className,
     checked,
     helpText,
+    hasError = false,
     id,
+    innerClassName,
     isDisabled,
     isLoading = false,
     label,
-    messageInvalid,
-    messageValid,
     onCheck,
     onFocus,
     title,
-    validation = FormFieldValidation.None,
     ...radixProps
   } = props;
-
-  const defaultId = `${useId()}checkbox`;
-  const controlId = id ?? defaultId;
-  const descriptionId = `${controlId}-description`;
-  const description = getValidationMessage({
-    validation,
-    helpText,
-    messageInvalid,
-    messageValid,
-  });
 
   const handleChange = useCallback(
     (checked: boolean | 'indeterminate') => {
       if (!isDisabled && !isLoading) {
-        onCheck(checked, controlId);
+        onCheck(checked, id);
       }
     },
-    [controlId, isDisabled, isLoading, onCheck],
+    [isDisabled, isLoading, onCheck, id],
   );
 
   return (
-    <FormField className={className} controlPlacement="before" isInline ref={ref}>
-      {label && (
-        <FormFieldLabelMedium htmlFor={controlId} isDisabled={isDisabled}>
-          {label}
-        </FormFieldLabelMedium>
-      )}
-      <FormFieldControl>
+    <CheckboxContainer
+      {...radixProps}
+      aria-disabled={isDisabled}
+      as={label ? 'label' : 'span'}
+      className={className}
+      ref={ref}>
+      <CheckboxInnerContainer className={innerClassName}>
         <Spinner isLoading={isLoading}>
           <CheckboxRoot
-            aria-describedby={description ? descriptionId : undefined}
             aria-disabled={isDisabled}
             aria-label={ariaLabel ?? title}
             aria-labelledby={ariaLabelledBy}
             checked={checked}
-            id={controlId}
+            id={id}
             onCheckedChange={handleChange}
             onFocus={onFocus}
             title={title}
             // We only support the error state for unchecked checkboxes for now
-            {...(validation === FormFieldValidation.Invalid && checked === false
-              ? { 'data-error': true }
-              : {})}
-            {...radixProps}>
+            {...(hasError && checked === false ? { 'data-error': true } : {})}>
             <CheckboxIndicator>
               <CheckboxIcon checked={checked} />
             </CheckboxIndicator>
           </CheckboxRoot>
         </Spinner>
-      </FormFieldControl>
-      {description && (
-        <FormFieldDescription id={descriptionId} validation={validation}>
-          {description}
-        </FormFieldDescription>
-      )}
-    </FormField>
+        {(label || helpText) && (
+          <LabelWrapper aria-disabled={isDisabled}>
+            {label && <Label>{label}</Label>}
+            {helpText && <HelpText>{helpText}</HelpText>}
+          </LabelWrapper>
+        )}
+      </CheckboxInnerContainer>
+    </CheckboxContainer>
   );
 });
-
 Checkbox.displayName = 'Checkbox';
+
+const CheckboxContainer = styled.span`
+  display: inline-flex;
+  vertical-align: top;
+
+  &[aria-disabled='true'] {
+    pointer-events: none;
+  }
+`;
+
+const CheckboxInnerContainer = styled.span`
+  display: flex;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.833rem;
+`;
 
 const CheckboxRoot = styled(RadixCheckbox.Root)`
   color: var(--echoes-color-text-on-color);
@@ -146,7 +142,6 @@ const CheckboxRoot = styled(RadixCheckbox.Root)`
     color: var(--echoes-color-icon-disabled);
     background-color: var(--echoes-color-background-disabled);
     border-color: var(--echoes-color-border-disabled);
-    pointer-events: none;
 
     &[data-state='checked'],
     &[data-state='indeterminate'] {
@@ -180,4 +175,29 @@ const CheckboxRoot = styled(RadixCheckbox.Root)`
 const CheckboxIndicator = styled(RadixCheckbox.Indicator)`
   height: var(--echoes-dimension-height-400);
   width: var(--echoes-dimension-width-200);
+`;
+
+const LabelWrapper = styled.span`
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin-left: var(--echoes-dimension-space-100);
+`;
+
+const Label = styled.span`
+  font: var(--echoes-typography-others-label-medium);
+
+  [aria-disabled='true'] > & {
+    color: var(--echoes-color-text-disabled);
+  }
+`;
+
+const HelpText = styled.span`
+  font: var(--echoes-typography-others-helper-text);
+  color: var(--echoes-color-text-subdued);
+
+  [aria-disabled='true'] > & {
+    color: var(--echoes-color-text-disabled);
+  }
 `;

@@ -17,16 +17,31 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-import { JSX } from 'react';
+import styled from '@emotion/styled';
+import { type ReactNode, forwardRef } from 'react';
 
-export enum FormFieldValidation {
-  None = 'none',
-  Valid = 'valid',
-  Invalid = 'invalid',
+interface Props {
+  children?: ReactNode;
 }
 
-export interface FormFieldValidationProps {
-  messageInvalid?: JSX.Element | string | false | null;
-  messageValid?: JSX.Element | string | false | null;
-  validation?: `${FormFieldValidation}`;
-}
+/**
+ * @internal
+ *
+ * A form field may have a message that appears below the form control. They are
+ * used to provide help, success and error messages to the user.
+ *
+ * **Permitted Parents:**
+ *
+ * `FormField`
+ *
+ * **Permitted Content:**
+ *
+ * Any inline content.
+ */
+export const FormFieldMessage = forwardRef<HTMLDivElement, Props>((props, ref) => {
+  return <FormFieldMessageStyled ref={ref} {...props} />;
+});
+
+FormFieldMessage.displayName = 'FormFieldMessage';
+
+const FormFieldMessageStyled = styled.div``;

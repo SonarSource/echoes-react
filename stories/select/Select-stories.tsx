@@ -20,7 +20,7 @@
 
 import type { Meta, StoryObj } from '@storybook/react';
 import { ComponentProps, useState } from 'react';
-import { IconBell, IconBug, IconMegaphone, InputSize, Select } from '../../src';
+import { FormFieldWidth, IconBell, IconBug, IconMegaphone, Select } from '../../src';
 
 const meta: Meta<typeof Select> = {
   component: Select,
@@ -60,7 +60,7 @@ const data = [
 export const Default: Story = {
   args: {
     label: 'my label',
-    labelError: '0o0o0o0o0psies',
+    messageInvalid: '0o0o0o0o0psies',
     helpText: 'input help',
     data,
     valueIcon: <IconBell />,
@@ -73,7 +73,7 @@ export const Default: Story = {
 export const CustomFiltering: Story = {
   args: {
     label: 'my label',
-    labelError: '0o0o0o0o0psies',
+    messageInvalid: '0o0o0o0o0psies',
     labelNotFound: 'no results',
     helpText: 'this is a helper text',
     data,
@@ -92,7 +92,7 @@ export const Plain: Story = {
     label: 'Select one',
     data,
     isRequired: true,
-    size: InputSize.Medium,
+    width: FormFieldWidth.Medium,
   },
   render: (args) => <SelectContainer {...args} />,
 };
