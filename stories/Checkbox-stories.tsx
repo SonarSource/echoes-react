@@ -76,6 +76,7 @@ export const WithError: Story = {
   args: {
     checked: false,
     label: "I'm a checkbox with an error",
+    messageInvalid: 'Oh no! Something went wrong...',
     onCheck: () => {},
     validation: 'invalid',
   },

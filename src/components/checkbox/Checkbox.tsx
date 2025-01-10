@@ -90,7 +90,7 @@ export const Checkbox = forwardRef<HTMLDivElement, PropsWithLabels<Props>>((prop
   );
 
   return (
-    <FormField className={className} controlPlacement="before" inline ref={ref}>
+    <FormField className={className} controlPlacement="before" isInline ref={ref}>
       {label && (
         <FormFieldLabel htmlFor={controlId} isDisabled={isDisabled}>
           {label}

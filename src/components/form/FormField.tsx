@@ -23,7 +23,7 @@ import { type ComponentProps, forwardRef } from 'react';
 /**
  * Used to control the placement of a fom control within a form field.
  */
-enum FormControlPlacement {
+export enum FormControlPlacement {
   /**
    * Place the form control before the label and description.
    */
@@ -54,10 +54,10 @@ export type FormFieldProps = ComponentProps<'div'> & {
    */
   controlPlacement?: `${FormControlPlacement}`;
   /**
-   * A form field is a block element by default. If `inline` is set to `true`,
+   * A form field is a block element by default. If `isInline` is set to `true`,
    * it will render as an inline element.
    */
-  inline?: boolean;
+  isInline?: boolean;
 };
 
 /**
@@ -66,10 +66,10 @@ export type FormFieldProps = ComponentProps<'div'> & {
  * Permitted Content: `FormFieldLabel`, `FormFieldControl`, `FormFieldDescription`
  */
 export const FormField = forwardRef<HTMLDivElement, FormFieldProps>(
-  ({ controlPlacement = FormControlPlacement.Between, inline = false, ...props }, ref) => {
+  ({ controlPlacement = FormControlPlacement.Between, isInline = false, ...props }, ref) => {
     return (
       <StyledFormField
-        data-inline={inline ? '' : undefined}
+        data-inline={isInline ? '' : undefined}
         data-placement={controlPlacement}
         ref={ref}
         {...props}
