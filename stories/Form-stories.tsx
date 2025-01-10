@@ -20,11 +20,11 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { Checkbox } from '../src/components/checkbox';
-import { TextInput } from '../src/components/text-input';
+import { TextField } from '../src/components/text-input';
 import { basicWrapperDecorator } from './helpers/BasicWrapper';
 
 const meta: Meta<{}> = {
-  component: TextInput,
+  component: TextField,
   title: 'Echoes/Forms',
   argTypes: {},
   decorators: [basicWrapperDecorator],
@@ -40,19 +40,19 @@ export const Default: Story = {
   args: {},
   render: (_args) => (
     <fieldset>
-      <TextInput
+      <TextField
         helpText="You password must contain at least 8 characters"
+        isRequired
         label="Password"
         messageInvalid="This is an inline error message"
         messageValid="This is an inline success message"
-        required
       />
-      <TextInput
+      <TextField
         helpText="Please re-enter your password"
+        isRequired
         label="Confirm password"
         messageInvalid="This is an inline error message"
         messageValid="This is an inline success message"
-        required
       />
       <Checkbox
         checked={false}

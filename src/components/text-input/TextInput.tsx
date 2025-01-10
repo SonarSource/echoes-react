@@ -18,58 +18,72 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 import styled from '@emotion/styled';
-import { type ComponentPropsWithRef, forwardRef, useId } from 'react';
-
+import { ChangeEventHandler, forwardRef, InputHTMLAttributes, ReactNode, useId } from 'react';
 import { PropsWithLabels } from '~types/utils';
 import { FormField } from '../form/FormField';
 import { FormFieldControl } from '../form/FormFieldControl';
 import { FormFieldDescription } from '../form/FormFieldDescription';
 import { FormFieldLabel } from '../form/FormFieldLabel';
-import { FormFieldValidation } from '../form/FormTypes';
+import { FormFieldValidation, FormFieldValidationProps } from '../form/FormTypes';
+import { getValidationMessage } from '../form/FormUtils';
 
-export type TextInputProps = PropsWithLabels<
-  ComponentPropsWithRef<'input'> & {
-    messageInvalid?: JSX.Element | string;
-    messageValid?: JSX.Element | string;
-    validation?: `${FormFieldValidation}`;
-  }
+// What do we want to keep in there? I think we should probably limit the available types too.
+type InputProps = Pick<
+  InputHTMLAttributes<HTMLInputElement>,
+  | 'autoComplete'
+  | 'type'
+  | 'name'
+  | 'minLength'
+  | 'maxLength'
+  | 'multiple'
+  | 'pattern'
+  | 'min'
+  | 'max'
+  | 'step'
 >;
 
-export const TextInput = forwardRef<HTMLInputElement, TextInputProps>((props, ref) => {
+interface Props extends FormFieldValidationProps, InputProps {
+  className?: string;
+  isDisabled?: boolean;
+  isRequired?: boolean;
+  onChange?: ChangeEventHandler<HTMLInputElement>;
+  placeholder?: string;
+  prefix?: ReactNode;
+  suffix?: ReactNode;
+  value?: string | number;
+}
+
+export const TextField = forwardRef<HTMLInputElement, PropsWithLabels<Props>>((props, ref) => {
   const {
     ariaLabel,
     ariaLabelledBy,
-    disabled,
     helpText,
     id,
+    isDisabled,
+    isRequired,
     label,
     messageInvalid,
     messageValid,
-    required,
+    prefix,
+    suffix,
     validation = FormFieldValidation.None,
     ...rest
   } = props;
 
-  const defaultId = useId();
+  const defaultId = `${useId()}textfield`;
   const controlId = id ?? defaultId;
-  const descriptionId = useId();
-  let description: JSX.Element | string | undefined;
+  const descriptionId = `${controlId}-description`;
+  const description = getValidationMessage({
+    validation,
+    helpText,
+    messageInvalid,
+    messageValid,
+  });
 
-  switch (validation) {
-    case FormFieldValidation.Invalid:
-      description = messageInvalid;
-      break;
-    case FormFieldValidation.Valid:
-      description = messageValid;
-      break;
-    case FormFieldValidation.None:
-      description = helpText;
-      break;
-  }
   return (
     <FormField controlPlacement="between">
       {label && (
-        <FormFieldLabel htmlFor={controlId} isRequired={required}>
+        <FormFieldLabel htmlFor={controlId} isRequired={isRequired}>
           {label}
         </FormFieldLabel>
       )}
@@ -78,11 +92,12 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>((props, re
           aria-describedby={description ? descriptionId : undefined}
           aria-label={ariaLabel}
           aria-labelledby={ariaLabelledBy}
-          disabled={disabled}
+          data-error={validation === FormFieldValidation.Invalid ? '' : undefined}
+          data-valid={validation === FormFieldValidation.Valid ? '' : undefined}
+          disabled={isDisabled}
           id={controlId}
           ref={ref}
-          required={required}
-          validation={validation}
+          required={isRequired}
           {...rest}
         />
       </FormFieldControl>
@@ -95,20 +110,18 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>((props, re
   );
 });
 
-TextInput.displayName = 'TextInput';
+TextField.displayName = 'TextField';
 
-const StyledInput = styled.input<{ validation: `${FormFieldValidation}` }>`
-  border-color: ${(props) => {
-    switch (props.validation) {
-      case FormFieldValidation.Invalid:
-        return 'var(--echoes-color-border-danger)';
-      case FormFieldValidation.Valid:
-        return '#039855';
-      default:
-        return 'var(--echoes-color-border-bolder)';
-    }
-  }};
+const StyledInput = styled.input`
+  border-color: var(--echoes-color-border-bolder);
   border-radius: var(--echoes-border-radius-200);
   border-style: solid;
   border-width: 1px;
+
+  &[data-valid] {
+    border-color: var(--echoes-color-border-danger);
+  }
+  &[data-error] {
+    border-color: var(--echoes-color-border-success);
+  }
 `;

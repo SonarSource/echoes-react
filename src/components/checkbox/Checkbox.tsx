@@ -61,9 +61,9 @@ export const Checkbox = forwardRef<HTMLDivElement, PropsWithLabels<Props>>((prop
     ...radixProps
   } = props;
 
-  const defaultId = useId();
+  const defaultId = `${useId()}checkbox`;
   const controlId = id ?? defaultId;
-  const descriptionId = useId();
+  const descriptionId = `${controlId}-description`;
   const description = getValidationMessage({
     validation,
     helpText,

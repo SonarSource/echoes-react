@@ -23,7 +23,7 @@ export interface PropsLabel {
   ariaLabelledBy?: never;
   id?: string;
   label: JSX.Element | string;
-  helpText?: JSX.Element | string;
+  helpText?: JSX.Element | string | false | null;
 }
 
 export interface PropsAriaLabel {
