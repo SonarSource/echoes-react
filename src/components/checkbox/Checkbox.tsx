@@ -25,7 +25,7 @@ import { PropsWithLabels } from '~types/utils';
 import { FormField } from '../form/FormField';
 import { FormFieldControl } from '../form/FormFieldControl';
 import { FormFieldDescription } from '../form/FormFieldDescription';
-import { FormFieldLabel } from '../form/FormFieldLabel';
+import { FormFieldLabelMedium } from '../form/FormFieldLabel';
 import { FormFieldValidation, FormFieldValidationProps } from '../form/FormTypes';
 import { getValidationMessage } from '../form/FormUtils';
 import { Spinner } from '../spinner';
@@ -83,9 +83,9 @@ export const Checkbox = forwardRef<HTMLDivElement, PropsWithLabels<Props>>((prop
   return (
     <FormField className={className} controlPlacement="before" isInline ref={ref}>
       {label && (
-        <FormFieldLabel htmlFor={controlId} isDisabled={isDisabled}>
+        <FormFieldLabelMedium htmlFor={controlId} isDisabled={isDisabled}>
           {label}
-        </FormFieldLabel>
+        </FormFieldLabelMedium>
       )}
       <FormFieldControl>
         <Spinner isLoading={isLoading}>

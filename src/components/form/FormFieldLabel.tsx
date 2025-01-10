@@ -40,6 +40,10 @@ export const FormFieldLabel = forwardRef<HTMLLabelElement, Props>((props, ref) =
 
 FormFieldLabel.displayName = 'FormFieldLabel';
 
+export const FormFieldLabelMedium = styled(FormFieldLabel)`
+  font: var(--echoes-typography-others-label-medium);
+`;
+
 const StyledLabel = styled(Label)`
   display: block;
   grid-area: label;
