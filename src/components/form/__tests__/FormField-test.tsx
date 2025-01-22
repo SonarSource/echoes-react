@@ -50,6 +50,11 @@ it('sets the for attribute on the label if a control ID is provided', () => {
   expect(label).toHaveAttribute('for', 'foo');
 });
 
+it('has no a11y violations', async () => {
+  const { container } = render(<FormField description="Help text" label="Label" />);
+  await expect(container).toHaveNoA11yViolations();
+});
+
 it('displays a description if one is provided', () => {
   render(<FormField description="Description text 1" />);
   const description = screen.getByText('Description text 1');

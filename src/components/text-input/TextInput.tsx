@@ -90,6 +90,7 @@ export const TextField = forwardRef<HTMLInputElement, PropsWithLabels<Props>>((p
       width={width}>
       <StyledInput
         aria-describedby={helpText ? descriptionId : undefined}
+        aria-invalid={validation === FormFieldValidation.Invalid}
         aria-label={ariaLabel}
         aria-labelledby={ariaLabelledBy}
         data-error={validation === FormFieldValidation.Invalid ? '' : undefined}

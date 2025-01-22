@@ -25,7 +25,7 @@ type FormField = typeof FormField;
 
 const meta: Meta<FormField> = {
   component: FormField,
-  title: 'Echoes/FormField (internal)',
+  title: 'Echoes/Forms/FormField (internal)',
   argTypes: {
     validation: {
       control: { type: 'select' },

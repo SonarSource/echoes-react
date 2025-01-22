@@ -87,6 +87,7 @@ export const RadioButtonGroup = forwardRef<HTMLDivElement, PropsWithLabels<Props
       <RadioGroupRoot
         {...radixRadioGroupProps}
         aria-describedby={helpText ? descriptionId : undefined}
+        aria-invalid={validation === FormFieldValidation.Invalid}
         aria-label={ariaLabel}
         aria-labelledby={ariaLabelledBy}
         disabled={disabled}

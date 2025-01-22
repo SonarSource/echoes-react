@@ -122,6 +122,7 @@ export const SelectBase = forwardRef<HTMLInputElement, PropsWithLabels<SelectBas
         width={width}>
         <SelectStyled
           allowDeselect={isClearable}
+          aria-invalid={validation === FormFieldValidation.Invalid}
           aria-label={ariaLabel}
           aria-labelledby={ariaLabelledBy}
           classNames={
