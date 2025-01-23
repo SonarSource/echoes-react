@@ -24,16 +24,6 @@ import { HelperText } from '../typography';
 import { FormFieldLabel } from './FormFieldLabel';
 
 /**
- * The available width options for a form felid.
- */
-export enum FormFieldWidth {
-  Small = 'small',
-  Medium = 'medium',
-  Large = 'large',
-  Full = 'full',
-}
-
-/**
  * Represents the validity state of a form field.
  */
 export enum FormFieldValidation {
@@ -49,6 +39,16 @@ export enum FormFieldValidation {
    * The form field has been successfully validated.
    */
   Valid = 'valid',
+}
+
+/**
+ * The available width options for a form felid.
+ */
+export enum FormFieldWidth {
+  Small = 'small',
+  Medium = 'medium',
+  Large = 'large',
+  Full = 'full',
 }
 
 type Message = JSX.Element | string | false | null;
@@ -145,15 +145,15 @@ export const FormField = forwardRef<HTMLDivElement, FormFieldProps>((props, ref)
   } = props;
 
   const messageInvalidElement = validation === 'invalid' && messageInvalid && (
-    <MessageInline size={MessageInlineSize.Small} type={MessageType.Danger}>
+    <ValidationMessage size={MessageInlineSize.Small} type={MessageType.Danger}>
       {messageInvalid}
-    </MessageInline>
+    </ValidationMessage>
   );
 
   const messageValidElement = validation === 'valid' && messageValid && (
-    <MessageInline size={MessageInlineSize.Small} type={MessageType.Success}>
+    <ValidationMessage size={MessageInlineSize.Small} type={MessageType.Success}>
       {messageValid}
-    </MessageInline>
+    </ValidationMessage>
   );
 
   return (
@@ -171,11 +171,11 @@ export const FormField = forwardRef<HTMLDivElement, FormFieldProps>((props, ref)
         {messageValidElement}
       </span>
       {description && (
-        <HelperText
+        <Description
           hidden={Boolean(messageValidElement || messageInvalidElement)}
           id={descriptionId}>
           {description}
-        </HelperText>
+        </Description>
       )}
     </FormFieldStyled>
   );
@@ -184,11 +184,6 @@ export const FormField = forwardRef<HTMLDivElement, FormFieldProps>((props, ref)
 FormField.displayName = 'FormField';
 
 const FormFieldStyled = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: var(--echoes-dimension-space-75);
-  min-width: 0;
-
   &[data-width='small'] {
     width: var(--echoes-sizes-form-field-small);
   }
@@ -204,3 +199,16 @@ const FormFieldStyled = styled.div`
 `;
 
 FormFieldStyled.displayName = 'FormFieldStyled';
+
+const ValidationMessage = styled(MessageInline)`
+  display: block;
+  margin-top: var(--echoes-dimension-space-75);
+`;
+
+ValidationMessage.displayName = 'ValidationMessage';
+
+const Description = styled(HelperText)`
+  margin-top: var(--echoes-dimension-space-75);
+`;
+
+Description.displayName = 'Description';

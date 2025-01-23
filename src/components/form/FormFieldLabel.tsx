@@ -64,7 +64,9 @@ export const FormFieldLabel = forwardRef<HTMLLabelElement, Props>((props, ref) =
 FormFieldLabel.displayName = 'FormFieldLabel';
 
 const LabelStyled = styled(Label)`
+  display: block;
   inline-size: fit-content;
+  margin-bottom: var(--echoes-dimension-space-75);
 
   [data-disabled] > & {
     pointer-events: none;
