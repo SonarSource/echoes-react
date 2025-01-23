@@ -216,10 +216,10 @@
   --echoes-sizes-overlays-width-default: 37.5rem;
   --echoes-sizes-overlays-width-wide: 62.5rem;
   --echoes-sizes-overlays-max-height-default: 80vh;
-  --echoes-sizes-inputs-small: 150px;
-  --echoes-sizes-inputs-medium: 250px;
-  --echoes-sizes-inputs-large: 350px;
-  --echoes-sizes-inputs-full: 100%;
+  --echoes-sizes-form-field-small: 150px;
+  --echoes-sizes-form-field-medium: 250px;
+  --echoes-sizes-form-field-large: 350px;
+  --echoes-sizes-form-field-full: 100%;
   --echoes-sizes-buttons-medium: 2rem;
   --echoes-sizes-buttons-large: 2.25rem;
   --echoes-sizes-toggletips-height: 1rem;

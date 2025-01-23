@@ -177,5 +177,5 @@ it.each(Object.values(FormFieldWidth))('sets the width of the form field to %s',
       <input />
     </FormField>,
   );
-  expect(container).toHaveStyle({ width: `var(--echoes-sizes-inputs-${width})` });
+  expect(container).toHaveStyle({ width: `var(--echoes-sizes-form-field-${width})` });
 });

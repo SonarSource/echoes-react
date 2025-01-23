@@ -225,7 +225,7 @@ export const SelectStyled = styled(MantineSelect)`
     box-sizing: border-box;
     height: var(--echoes-dimension-height-900);
     min-height: var(--echoes-dimension-height-900);
-    width: var(--echoes-sizes-inputs-full);
+    width: 100%;
     padding: var(--echoes-dimension-space-100);
     padding-left: var(--echoes-dimension-space-150);
 

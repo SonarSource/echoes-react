@@ -172,16 +172,16 @@ const FormFieldStyled = styled.div`
   min-width: 0;
 
   &[data-width='small'] {
-    width: var(--echoes-sizes-inputs-small);
+    width: var(--echoes-sizes-form-field-small);
   }
   &[data-width='medium'] {
-    width: var(--echoes-sizes-inputs-medium);
+    width: var(--echoes-sizes-form-field-medium);
   }
   &[data-width='large'] {
-    width: var(--echoes-sizes-inputs-large);
+    width: var(--echoes-sizes-form-field-large);
   }
   &[data-width='full'] {
-    width: var(--echoes-sizes-inputs-full);
+    width: var(--echoes-sizes-form-field-full);
   }
 `;
 

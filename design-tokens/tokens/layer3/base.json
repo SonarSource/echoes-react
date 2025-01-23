@@ -31,7 +31,7 @@
           }
         }
       },
-      "inputs": {
+      "form-field": {
         "small": {
           "value": "150px",
           "type": "sizing"

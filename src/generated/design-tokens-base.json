@@ -286,7 +286,7 @@
           "default": "80vh"
         }
       },
-      "inputs": {
+      "form-field": {
         "small": "150px",
         "medium": "250px",
         "large": "350px",
