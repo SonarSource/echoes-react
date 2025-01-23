@@ -44,3 +44,5 @@ export const FormFieldControl = forwardRef<HTMLDivElement, Props>((props, ref) =
 FormFieldControl.displayName = 'FormFieldControl';
 
 const FormFieldControlStyled = styled.div``;
+
+FormFieldControlStyled.displayName = 'FormFieldControlStyled';

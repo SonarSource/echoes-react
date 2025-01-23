@@ -45,3 +45,5 @@ export const FormFieldMessage = forwardRef<HTMLDivElement, Props>((props, ref) =
 FormFieldMessage.displayName = 'FormFieldMessage';
 
 const FormFieldMessageStyled = styled.div``;
+
+FormFieldMessageStyled.displayName = 'FormFieldMessageStyled';

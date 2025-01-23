@@ -24,11 +24,6 @@ import { Label } from '../typography';
 interface Props {
   children: ReactNode;
   /**
-   * When true, pointer events will be disabled on the label to prevent
-   * activating the form control.
-   */
-  isDisabled?: boolean;
-  /**
    * When true, will display an asterisk to indicate that the field is required.
    */
   isRequired?: boolean;
@@ -52,14 +47,14 @@ interface Props {
  * Any inline content.
  */
 export const FormFieldLabel = forwardRef<HTMLLabelElement, Props>((props, ref) => {
-  const { children, isDisabled = false, isRequired = false, ...rest } = props;
+  const { children, isRequired = false, ...rest } = props;
 
   if (!children) {
     return null;
   }
 
   return (
-    <LabelStyled data-disabled={isDisabled ? '' : undefined} ref={ref} {...rest}>
+    <LabelStyled ref={ref} {...rest}>
       {children}
       {isRequired && <RequiredIndicator aria-hidden="true">*</RequiredIndicator>}
     </LabelStyled>
@@ -71,13 +66,17 @@ FormFieldLabel.displayName = 'FormFieldLabel';
 const LabelStyled = styled(Label)`
   inline-size: fit-content;
 
-  &[data-disabled] {
+  [data-disabled] > & {
     pointer-events: none;
   }
 `;
+
+LabelStyled.displayName = 'LabelStyled';
 
 const RequiredIndicator = styled.span`
   color: var(--echoes-color-text-danger);
   font: var(--echoes-typography-others-label-medium);
   margin-left: var(--echoes-dimension-space-25);
 `;
+
+RequiredIndicator.displayName = 'RequiredIndicator';

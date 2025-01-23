@@ -71,7 +71,13 @@ export interface ValidationProps {
   validation?: `${FormFieldValidation}`;
 }
 
-export interface FormFieldProps extends ValidationProps, ComponentProps<'div'> {
+type WhiteListedProps = Pick<ComponentProps<'div'>, 'className'>;
+
+interface FormFieldProps extends ValidationProps, WhiteListedProps {
+  /**
+   * The form control element. A form field should have exactly one form control.
+   */
+  children: JSX.Element;
   /**
    * The ID of the form control that this form field is associated with
    * (optional).
@@ -118,43 +124,44 @@ export interface FormFieldProps extends ValidationProps, ComponentProps<'div'> {
  *
  * `CheckboxGroup | RadioButtonGroup | Select | Textarea | TextInput`
  */
-export const FormField = forwardRef<HTMLDivElement, FormFieldProps>(
-  (
-    {
-      children,
-      controlId,
-      description,
-      descriptionId,
-      isDisabled = false,
-      isRequired = false,
-      label,
-      messageInvalid,
-      messageValid,
-      validation = FormFieldValidation.None,
-      width = FormFieldWidth.Full,
-      ...props
-    },
-    ref,
-  ) => {
-    const message = getFormFieldMessage({
-      description,
-      descriptionId,
-      messageInvalid,
-      messageValid,
-      validation,
-    });
+export const FormField = forwardRef<HTMLDivElement, FormFieldProps>((props, ref) => {
+  const {
+    children,
+    controlId,
+    description,
+    descriptionId,
+    isDisabled = false,
+    isRequired = false,
+    label,
+    messageInvalid,
+    messageValid,
+    validation = FormFieldValidation.None,
+    width = FormFieldWidth.Full,
+    ...rest
+  } = props;
 
-    return (
-      <FormFieldStyled data-width={width} ref={ref} {...props}>
-        <FormFieldLabel htmlFor={controlId} isDisabled={isDisabled} isRequired={isRequired}>
-          {label}
-        </FormFieldLabel>
-        <FormFieldControl>{children}</FormFieldControl>
-        <FormFieldMessage>{message}</FormFieldMessage>
-      </FormFieldStyled>
-    );
-  },
-);
+  const message = getFormFieldMessage({
+    description,
+    descriptionId,
+    messageInvalid,
+    messageValid,
+    validation,
+  });
+
+  return (
+    <FormFieldStyled
+      data-disabled={isDisabled ? true : undefined}
+      data-width={width}
+      ref={ref}
+      {...rest}>
+      <FormFieldLabel htmlFor={controlId} isRequired={isRequired}>
+        {label}
+      </FormFieldLabel>
+      <FormFieldControl>{children}</FormFieldControl>
+      <FormFieldMessage>{message}</FormFieldMessage>
+    </FormFieldStyled>
+  );
+});
 
 FormField.displayName = 'FormField';
 
@@ -177,6 +184,8 @@ const FormFieldStyled = styled.div`
     width: var(--echoes-sizes-inputs-full);
   }
 `;
+
+FormFieldStyled.displayName = 'FormFieldStyled';
 
 type GetFormFieldMessageInput = Pick<
   FormFieldProps,

@@ -25,7 +25,7 @@ type FormField = typeof FormField;
 
 const meta: Meta<FormField> = {
   component: FormField,
-  title: 'Echoes/Forms/FormField (internal)',
+  title: 'Internal/FormField',
   argTypes: {
     validation: {
       control: { type: 'select' },
@@ -49,7 +49,6 @@ const meta: Meta<FormField> = {
   },
 };
 
-// eslint-disable-next-line import/no-default-export
 export default meta;
 
 type Story = StoryObj<FormField>;
