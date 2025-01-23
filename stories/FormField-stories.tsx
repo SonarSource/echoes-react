@@ -90,7 +90,7 @@ export const Required: Story = {
     label: 'Password',
   },
   render: ({ isRequired, ...args }) => (
-    <FormField {...args}>
+    <FormField isRequired={isRequired} {...args}>
       <TextInput id="input-3" required={isRequired} />
     </FormField>
   ),
