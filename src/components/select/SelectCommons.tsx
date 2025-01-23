@@ -96,6 +96,7 @@ export const SelectBase = forwardRef<HTMLInputElement, PropsWithLabels<SelectBas
     const defaultId = `${useId()}select`;
     const controlId = id ?? defaultId;
     const descriptionId = `${controlId}-description`;
+    const validationMessageId = `${controlId}-validation-message`;
     const intl = useIntl();
     const portalContext = useContext(PortalContext);
     const optionsFilter = useSelectOptionFilter(filter);
@@ -107,6 +108,13 @@ export const SelectBase = forwardRef<HTMLInputElement, PropsWithLabels<SelectBas
       isLoading,
       isClearable,
     });
+
+    const describedBy = [
+      Boolean(messageValid || messageInvalid) && validationMessageId,
+      Boolean(helpText) && descriptionId,
+    ]
+      .filter((id) => id)
+      .join(' ');
 
     return (
       <FormField
@@ -122,6 +130,7 @@ export const SelectBase = forwardRef<HTMLInputElement, PropsWithLabels<SelectBas
         width={width}>
         <SelectStyled
           allowDeselect={isClearable}
+          aria-describedby={describedBy !== '' ? describedBy : undefined}
           aria-invalid={validation === FormFieldValidation.Invalid}
           aria-label={ariaLabel}
           aria-labelledby={ariaLabelledBy}

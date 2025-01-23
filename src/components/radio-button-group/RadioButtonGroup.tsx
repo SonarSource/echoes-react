@@ -71,6 +71,14 @@ export const RadioButtonGroup = forwardRef<HTMLDivElement, PropsWithLabels<Props
   const defaultId = `${useId()}radiogroup`;
   const controlId = id ?? defaultId;
   const descriptionId = `${controlId}-description`;
+  const validationMessageId = `${controlId}-validation-message`;
+
+  const describedBy = [
+    Boolean(messageValid || messageInvalid) && validationMessageId,
+    Boolean(helpText) && descriptionId,
+  ]
+    .filter((id) => id)
+    .join(' ');
 
   return (
     <FormField
@@ -86,7 +94,7 @@ export const RadioButtonGroup = forwardRef<HTMLDivElement, PropsWithLabels<Props
       width={width}>
       <RadioGroupRoot
         {...radixRadioGroupProps}
-        aria-describedby={helpText ? descriptionId : undefined}
+        aria-describedby={describedBy !== '' ? describedBy : undefined}
         aria-invalid={validation === FormFieldValidation.Invalid}
         aria-label={ariaLabel}
         aria-labelledby={ariaLabelledBy}

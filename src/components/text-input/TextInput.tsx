@@ -75,6 +75,14 @@ export const TextField = forwardRef<HTMLInputElement, PropsWithLabels<Props>>((p
   const defaultId = `${useId()}textfield`;
   const controlId = id ?? defaultId;
   const descriptionId = `${controlId}-description`;
+  const validationMessageId = `${controlId}-validation-message`;
+
+  const describedBy = [
+    Boolean(messageValid || messageInvalid) && validationMessageId,
+    Boolean(helpText) && descriptionId,
+  ]
+    .filter((id) => id)
+    .join(' ');
 
   return (
     <FormField
@@ -89,7 +97,7 @@ export const TextField = forwardRef<HTMLInputElement, PropsWithLabels<Props>>((p
       validation={validation}
       width={width}>
       <StyledInput
-        aria-describedby={helpText ? descriptionId : undefined}
+        aria-describedby={describedBy !== '' ? describedBy : undefined}
         aria-invalid={validation === FormFieldValidation.Invalid}
         aria-label={ariaLabel}
         aria-labelledby={ariaLabelledBy}

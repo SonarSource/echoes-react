@@ -19,13 +19,19 @@
  */
 import styled from '@emotion/styled';
 import { type ComponentProps, type JSX, forwardRef } from 'react';
-import { FormFieldControl } from './FormFieldControl';
-import { FormFieldLabel } from './FormFieldLabel';
-import { FormFieldMessage } from './FormFieldMessage';
-import { HelperText } from '../typography';
 import { MessageInline, MessageInlineSize, MessageType } from '../messages';
+import { HelperText } from '../typography';
+import { FormFieldLabel } from './FormFieldLabel';
 
-type FormFieldText = JSX.Element | string | false | null;
+/**
+ * The available width options for a form felid.
+ */
+export enum FormFieldWidth {
+  Small = 'small',
+  Medium = 'medium',
+  Large = 'large',
+  Full = 'full',
+}
 
 /**
  * Represents the validity state of a form field.
@@ -45,33 +51,24 @@ export enum FormFieldValidation {
   Valid = 'valid',
 }
 
-/**
- * The available width options for a form felid.
- */
-export enum FormFieldWidth {
-  Small = 'small',
-  Medium = 'medium',
-  Large = 'large',
-  Full = 'full',
-}
+type Message = JSX.Element | string | false | null;
+type WhiteListedProps = Pick<ComponentProps<'div'>, 'className'>;
 
 export interface ValidationProps {
   /**
    * The message to display when the form field is invalid (optional).
    */
-  messageInvalid?: FormFieldText;
+  messageInvalid?: Message;
   /**
    * The message to display when the form field is valid (optional).
    */
-  messageValid?: FormFieldText;
+  messageValid?: Message;
   /**
    * The validation state of the form field (optional). The default is `none`,
    * meaning the form field has not been explicitly validated.
    */
   validation?: `${FormFieldValidation}`;
 }
-
-type WhiteListedProps = Pick<ComponentProps<'div'>, 'className'>;
 
 interface FormFieldProps extends ValidationProps, WhiteListedProps {
   /**
@@ -86,7 +83,7 @@ interface FormFieldProps extends ValidationProps, WhiteListedProps {
   /**
    * A descriptive message for the form field (optional).
    */
-  description?: FormFieldText;
+  description?: Message;
   /**
    * The ID of the description for the form field (optional). Useful for
    * establishing a relationship between a description and a form control using
@@ -106,7 +103,13 @@ interface FormFieldProps extends ValidationProps, WhiteListedProps {
   /**
    * The label for the form field (optional).
    */
-  label?: FormFieldText;
+  label?: JSX.Element | string;
+  /**
+   * The ID of the validation message for the form field (optional). Useful for
+   * establishing a relationship between a validation message and a form control
+   * using the `aria-describedby` attribute.
+   */
+  validationMessageId?: string;
   /**
    * Controls the width of the form field (optional). The default value is
    * `full`, meaning it will take up the full width of its container.
@@ -135,18 +138,23 @@ export const FormField = forwardRef<HTMLDivElement, FormFieldProps>((props, ref)
     label,
     messageInvalid,
     messageValid,
-    validation = FormFieldValidation.None,
+    validation,
+    validationMessageId,
     width = FormFieldWidth.Full,
     ...rest
   } = props;
 
-  const message = getFormFieldMessage({
-    description,
-    descriptionId,
-    messageInvalid,
-    messageValid,
-    validation,
-  });
+  const messageInvalidElement = validation === 'invalid' && messageInvalid && (
+    <MessageInline size={MessageInlineSize.Small} type={MessageType.Danger}>
+      {messageInvalid}
+    </MessageInline>
+  );
+
+  const messageValidElement = validation === 'valid' && messageValid && (
+    <MessageInline size={MessageInlineSize.Small} type={MessageType.Success}>
+      {messageValid}
+    </MessageInline>
+  );
 
   return (
     <FormFieldStyled
@@ -157,8 +165,18 @@ export const FormField = forwardRef<HTMLDivElement, FormFieldProps>((props, ref)
       <FormFieldLabel htmlFor={controlId} isRequired={isRequired}>
         {label}
       </FormFieldLabel>
-      <FormFieldControl>{children}</FormFieldControl>
-      <FormFieldMessage>{message}</FormFieldMessage>
+      {children}
+      <span aria-live="polite" id={validationMessageId}>
+        {messageInvalidElement}
+        {messageValidElement}
+      </span>
+      {description && (
+        <HelperText
+          hidden={Boolean(messageValidElement || messageInvalidElement)}
+          id={descriptionId}>
+          {description}
+        </HelperText>
+      )}
     </FormFieldStyled>
   );
 });
@@ -186,35 +204,3 @@ const FormFieldStyled = styled.div`
 `;
 
 FormFieldStyled.displayName = 'FormFieldStyled';
-
-type GetFormFieldMessageInput = Pick<
-  FormFieldProps,
-  'description' | 'descriptionId' | 'messageInvalid' | 'messageValid' | 'validation'
->;
-
-function getFormFieldMessage({
-  description,
-  descriptionId,
-  messageInvalid,
-  messageValid,
-  validation,
-}: GetFormFieldMessageInput) {
-  switch (true) {
-    case Boolean(messageInvalid) && validation === FormFieldValidation.Invalid:
-      return (
-        <MessageInline size={MessageInlineSize.Small} type={MessageType.Danger}>
-          {messageInvalid}
-        </MessageInline>
-      );
-    case Boolean(messageValid) && validation === FormFieldValidation.Valid:
-      return (
-        <MessageInline size={MessageInlineSize.Small} type={MessageType.Success}>
-          {messageValid}
-        </MessageInline>
-      );
-    case Boolean(description):
-      return <HelperText id={descriptionId}>{description}</HelperText>;
-    default:
-      return null;
-  }
-}
