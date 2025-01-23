@@ -18,11 +18,11 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 import styled from '@emotion/styled';
-import { type ReactNode, forwardRef } from 'react';
+import { type JSX, forwardRef } from 'react';
 import { Label } from '../typography';
 
 interface Props {
-  children: ReactNode;
+  children?: JSX.Element | string;
   /**
    * When true, will display an asterisk to indicate that the field is required.
    */

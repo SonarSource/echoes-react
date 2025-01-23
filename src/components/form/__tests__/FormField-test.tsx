@@ -98,7 +98,7 @@ it.each([FormFieldValidation.Invalid, FormFieldValidation.Valid])(
       </FormField>,
     );
     const description = screen.queryByText('Description text 2');
-    expect(description).not.toBeInTheDocument();
+    expect(description).not.toBeVisible();
   },
 );
 
