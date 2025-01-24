@@ -21,7 +21,7 @@
 import { css, Global } from '@emotion/react';
 import styled from '@emotion/styled';
 import { Select as MantineSelect, SelectProps as MantineSelectProps } from '@mantine/core';
-import { forwardRef, useContext, useEffect, useId, useState } from 'react';
+import { forwardRef, useContext, useEffect, useId } from 'react';
 import { useIntl } from 'react-intl';
 import { isDefined } from '~common/helpers/types';
 import { useForwardedRef } from '~common/helpers/useForwardedRef';
@@ -34,6 +34,7 @@ import {
   FormFieldValidation,
   FormFieldWidth,
 } from '../form/FormField';
+import { useFormFelidAccessability } from '../form/useFormFelidAccessability';
 import { OptionComponent, useSelectOptionFunction } from './SelectItemCommons';
 import { SelectData, SelectHighlight, SelectOption, SelectOptionType } from './SelectTypes';
 import { SelectFilterFunction, useSelectOptionFilter } from './useSelectOptionFilter';
@@ -95,28 +96,25 @@ export const SelectBase = forwardRef<HTMLInputElement, PropsWithLabels<SelectBas
     } = props;
 
     const [ref, setRef] = useForwardedRef(forwardedRef);
-    const defaultId = `${useId()}select`;
-    const controlId = id ?? defaultId;
-    const descriptionId = `${controlId}-description`;
-    const validationMessageId = `${controlId}-validation-message`;
     const intl = useIntl();
     const portalContext = useContext(PortalContext);
     const optionsFilter = useSelectOptionFilter(filter);
     const optionRenderer = useSelectOptionFunction(optionComponent, optionType);
     const isClearable = !isNotClearable && !isRequired && !isDisabled;
+    const defaultId = `${useId()}select`;
+
+    const { controlId, describedBy, descriptionId, validationMessageId } =
+      useFormFelidAccessability({
+        controlId: id ?? defaultId,
+        hasDescription: Boolean(helpText),
+        hasValidationMessage: Boolean(messageValid || messageInvalid),
+      });
 
     const rightSection = getSelectRightSection({
       hasValue: isDefined(selectProps.value) && selectProps.value !== '',
       isLoading,
       isClearable,
     });
-
-    const describedBy = [
-      Boolean(messageValid || messageInvalid) && validationMessageId,
-      Boolean(helpText) && descriptionId,
-    ]
-      .filter((id) => id)
-      .join(' ');
 
     useEffect(() => {
       // Mantine select will override the aria-describedby attribute, so we need
@@ -138,6 +136,7 @@ export const SelectBase = forwardRef<HTMLInputElement, PropsWithLabels<SelectBas
         messageInvalid={messageInvalid}
         messageValid={messageValid}
         validation={validation}
+        validationMessageId={validationMessageId}
         width={width}>
         <SelectStyled
           allowDeselect={isClearable}

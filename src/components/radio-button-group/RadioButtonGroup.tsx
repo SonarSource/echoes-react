@@ -28,6 +28,7 @@ import {
   FormFieldValidation,
   FormFieldWidth,
 } from '../form/FormField';
+import { useFormFelidAccessability } from '../form/useFormFelidAccessability';
 import { HelperText, Label } from '../typography';
 
 export enum RadioButtonGroupAlignment {
@@ -69,17 +70,13 @@ export const RadioButtonGroup = forwardRef<HTMLDivElement, PropsWithLabels<Props
   } = props;
 
   const defaultId = `${useId()}radiogroup`;
-  const controlId = id ?? defaultId;
-  const descriptionId = `${controlId}-description`;
-  const labelId = `${controlId}-label`;
-  const validationMessageId = `${controlId}-validation-message`;
 
-  const describedBy = [
-    Boolean(messageValid || messageInvalid) && validationMessageId,
-    Boolean(helpText) && descriptionId,
-  ]
-    .filter((id) => id)
-    .join(' ');
+  const { controlId, describedBy, descriptionId, labelId, validationMessageId } =
+    useFormFelidAccessability({
+      controlId: id ?? defaultId,
+      hasDescription: Boolean(helpText),
+      hasValidationMessage: Boolean(messageValid || messageInvalid),
+    });
 
   return (
     <FormField
@@ -92,10 +89,11 @@ export const RadioButtonGroup = forwardRef<HTMLDivElement, PropsWithLabels<Props
       messageInvalid={messageInvalid}
       messageValid={messageValid}
       validation={validation}
+      validationMessageId={validationMessageId}
       width={width}>
       <RadioGroupRoot
         {...radixRadioGroupProps}
-        aria-describedby={describedBy !== '' ? describedBy : undefined}
+        aria-describedby={describedBy}
         aria-invalid={validation === FormFieldValidation.Invalid}
         aria-label={ariaLabel}
         aria-labelledby={ariaLabelledBy ?? labelId}

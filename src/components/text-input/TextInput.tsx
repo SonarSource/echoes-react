@@ -26,6 +26,7 @@ import {
   FormFieldValidation,
   FormFieldWidth,
 } from '../form/FormField';
+import { useFormFelidAccessability } from '../form/useFormFelidAccessability';
 
 type InputProps = Pick<
   InputHTMLAttributes<HTMLInputElement>,
@@ -87,16 +88,12 @@ export const TextInput = forwardRef<HTMLInputElement, PropsWithLabels<Props>>((p
   } = props;
 
   const defaultId = `${useId()}textinput`;
-  const controlId = id ?? defaultId;
-  const descriptionId = `${controlId}-description`;
-  const validationMessageId = `${controlId}-validation-message`;
 
-  const describedBy = [
-    Boolean(messageValid || messageInvalid) && validationMessageId,
-    Boolean(helpText) && descriptionId,
-  ]
-    .filter((id) => id)
-    .join(' ');
+  const { controlId, describedBy, descriptionId, validationMessageId } = useFormFelidAccessability({
+    controlId: id ?? defaultId,
+    hasDescription: Boolean(helpText),
+    hasValidationMessage: Boolean(messageValid || messageInvalid),
+  });
 
   return (
     <FormField
@@ -109,11 +106,12 @@ export const TextInput = forwardRef<HTMLInputElement, PropsWithLabels<Props>>((p
       messageInvalid={messageInvalid}
       messageValid={messageValid}
       validation={validation}
+      validationMessageId={validationMessageId}
       width={width}>
       <TextInputWrapper>
         {prefix && <InputPrefix>{prefix}</InputPrefix>}
         <StyledInput
-          aria-describedby={describedBy !== '' ? describedBy : undefined}
+          aria-describedby={describedBy}
           aria-invalid={validation === FormFieldValidation.Invalid}
           aria-label={ariaLabel}
           aria-labelledby={ariaLabelledBy}
