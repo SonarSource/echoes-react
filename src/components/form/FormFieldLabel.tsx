@@ -24,13 +24,17 @@ import { Label } from '../typography';
 interface Props {
   children?: JSX.Element | string;
   /**
-   * When true, will display an asterisk to indicate that the field is required.
-   */
-  isRequired?: boolean;
-  /**
    * The ID of the form control that this label is associated with.
    */
   htmlFor?: string;
+  /**
+   * The ID of the label (optional).
+   */
+  id?: string;
+  /**
+   * When true, will display an asterisk to indicate that the field is required.
+   */
+  isRequired?: boolean;
 }
 
 /**

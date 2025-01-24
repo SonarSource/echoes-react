@@ -105,6 +105,10 @@ interface FormFieldProps extends ValidationProps, WhiteListedProps {
    */
   label?: JSX.Element | string;
   /**
+   * The ID of the label for the form field (optional).
+   */
+  labelId?: string;
+  /**
    * The ID of the validation message for the form field (optional). Useful for
    * establishing a relationship between a validation message and a form control
    * using the `aria-describedby` attribute.
@@ -136,6 +140,7 @@ export const FormField = forwardRef<HTMLDivElement, FormFieldProps>((props, ref)
     isDisabled = false,
     isRequired = false,
     label,
+    labelId,
     messageInvalid,
     messageValid,
     validation,
@@ -162,7 +167,7 @@ export const FormField = forwardRef<HTMLDivElement, FormFieldProps>((props, ref)
       data-width={width}
       ref={ref}
       {...rest}>
-      <FormFieldLabel htmlFor={controlId} isRequired={isRequired}>
+      <FormFieldLabel htmlFor={controlId} id={labelId} isRequired={isRequired}>
         {label}
       </FormFieldLabel>
       {children}

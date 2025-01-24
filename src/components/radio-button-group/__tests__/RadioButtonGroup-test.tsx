@@ -86,12 +86,11 @@ describe('RadioButtonGroup', () => {
     });
 
     const description = screen.getByText('Help text');
-    const label = screen.getByText('Radio group label');
+    const label = screen.getByLabelText('Radio group label*');
     const radioGroup = screen.getByRole('radiogroup');
     expect(description).toBeVisible();
     expect(radioGroup).toHaveAttribute('aria-describedby', description.id);
     expect(label).toBeVisible();
-    expect(label).toHaveAttribute('for', 'group1');
   });
 
   it('should support radio group label as JSX.Element', () => {
