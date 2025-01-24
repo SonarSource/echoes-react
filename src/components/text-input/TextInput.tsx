@@ -18,7 +18,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 import styled from '@emotion/styled';
-import { ChangeEventHandler, forwardRef, InputHTMLAttributes, ReactNode, useId } from 'react';
+import { forwardRef, InputHTMLAttributes, ReactNode, useId } from 'react';
 import { PropsWithLabels } from '~types/utils';
 import {
   type ValidationProps,
@@ -27,34 +27,47 @@ import {
   FormFieldWidth,
 } from '../form/FormField';
 
-// What do we want to keep in there? I think we should probably limit the available types too.
 type InputProps = Pick<
   InputHTMLAttributes<HTMLInputElement>,
   | 'autoComplete'
-  | 'type'
+  | 'autoFocus'
   | 'name'
   | 'minLength'
   | 'maxLength'
-  | 'multiple'
   | 'pattern'
   | 'min'
   | 'max'
+  | 'readOnly'
   | 'step'
 >;
 
-interface Props extends InputProps, ValidationProps {
+type InputEventProps = Pick<
+  InputHTMLAttributes<HTMLInputElement>,
+  | 'onFocus'
+  | 'onBlur'
+  | 'onChange'
+  | 'onKeyDown'
+  | 'onKeyPress'
+  | 'onKeyUp'
+  | 'onMouseEnter'
+  | 'onMouseLeave'
+  | 'onPointerEnter'
+  | 'onPointerLeave'
+>;
+
+interface Props extends ValidationProps, InputProps, InputEventProps {
   className?: string;
   isDisabled?: boolean;
   isRequired?: boolean;
-  onChange?: ChangeEventHandler<HTMLInputElement>;
   placeholder?: string;
   prefix?: ReactNode;
   suffix?: ReactNode;
+  type?: 'email' | 'number' | 'password' | 'search' | 'tel' | 'text' | 'url';
   value?: string | number;
   width?: `${FormFieldWidth}`;
 }
 
-export const TextField = forwardRef<HTMLInputElement, PropsWithLabels<Props>>((props, ref) => {
+export const TextInput = forwardRef<HTMLInputElement, PropsWithLabels<Props>>((props, ref) => {
   const {
     ariaLabel,
     ariaLabelledBy,
@@ -67,12 +80,13 @@ export const TextField = forwardRef<HTMLInputElement, PropsWithLabels<Props>>((p
     messageValid,
     prefix,
     suffix,
+    type = 'text',
     validation,
     width,
     ...rest
   } = props;
 
-  const defaultId = `${useId()}textfield`;
+  const defaultId = `${useId()}textinput`;
   const controlId = id ?? defaultId;
   const descriptionId = `${controlId}-description`;
   const validationMessageId = `${controlId}-validation-message`;
@@ -87,6 +101,8 @@ export const TextField = forwardRef<HTMLInputElement, PropsWithLabels<Props>>((p
   return (
     <FormField
       controlId={controlId}
+      // TODO remove once updated in Daniel's branch
+      data-disabled={isDisabled ? '' : undefined}
       description={helpText}
       descriptionId={descriptionId}
       isDisabled={isDisabled}
@@ -96,35 +112,119 @@ export const TextField = forwardRef<HTMLInputElement, PropsWithLabels<Props>>((p
       messageValid={messageValid}
       validation={validation}
       width={width}>
-      <StyledInput
-        aria-describedby={describedBy !== '' ? describedBy : undefined}
-        aria-invalid={validation === FormFieldValidation.Invalid}
-        aria-label={ariaLabel}
-        aria-labelledby={ariaLabelledBy}
-        data-error={validation === FormFieldValidation.Invalid ? '' : undefined}
-        data-valid={validation === FormFieldValidation.Valid ? '' : undefined}
-        disabled={isDisabled}
-        id={controlId}
-        ref={ref}
-        required={isRequired}
-        {...rest}
-      />
+      <TextInputWrapper>
+        {prefix && <InputPrefix>{prefix}</InputPrefix>}
+        <StyledInput
+          aria-describedby={describedBy !== '' ? describedBy : undefined}
+          aria-invalid={validation === FormFieldValidation.Invalid}
+          aria-label={ariaLabel}
+          aria-labelledby={ariaLabelledBy}
+          data-error={validation === FormFieldValidation.Invalid ? '' : undefined}
+          data-prefix={prefix ? '' : undefined}
+          data-suffix={suffix ? '' : undefined}
+          data-valid={validation === FormFieldValidation.Valid ? '' : undefined}
+          disabled={isDisabled}
+          id={controlId}
+          ref={ref}
+          required={isRequired}
+          type={type}
+          {...rest}
+        />
+        {suffix && <InputSuffix>{suffix}</InputSuffix>}
+      </TextInputWrapper>
     </FormField>
   );
 });
 
-TextField.displayName = 'TextField';
+TextInput.displayName = 'TextInput';
 
 const StyledInput = styled.input`
-  border-color: var(--echoes-color-border-bolder);
-  border-radius: var(--echoes-border-radius-200);
-  border-style: solid;
-  border-width: 1px;
+  color: var(--echoes-color-text-default);
+  background-color: var(--echoes-form-control-colors-background-default);
+  border: var(--echoes-border-width-default) solid var(--echoes-form-control-colors-border-default);
+  border-radius: var(--echoes-form-control-border-radius-default);
 
-  &[data-valid] {
-    border-color: var(--echoes-color-border-danger);
+  font: var(--echoes-typography-text-default-regular);
+  text-overflow: ellipsis;
+
+  box-sizing: border-box;
+  width: 100%;
+  height: var(--echoes-form-control-sizes-height-default);
+  padding: var(--echoes-dimension-space-0) var(--echoes-dimension-space-150);
+
+  &::placeholder {
+    color: var(--echoes-color-text-placeholder);
   }
-  &[data-error] {
+  &:hover {
+    background-color: var(--echoes-form-control-colors-background-hover);
+  }
+  &[data-valid] {
     border-color: var(--echoes-color-border-success);
   }
+  &[data-error] {
+    border-color: var(--echoes-color-border-danger);
+  }
+  &[data-prefix] {
+    padding-left: calc(
+      var(--echoes-dimension-space-150) + var(--echoes-dimension-width-300) +
+        var(--echoes-dimension-space-100)
+    );
+  }
+  &[data-suffix] {
+    padding-right: calc(
+      var(--echoes-dimension-space-150) + var(--echoes-dimension-width-300) +
+        var(--echoes-dimension-space-100)
+    );
+  }
+
+  &:active,
+  &:focus,
+  &:focus-within,
+  &:focus-visible {
+    border-color: var(--echoes-form-control-colors-border-focus);
+    outline: var(--echoes-color-focus-default) solid var(--echoes-focus-border-width-default);
+  }
+
+  &:disabled,
+  &:disabled:hover {
+    color: var(--echoes-color-text-disabled);
+    background-color: var(--echoes-color-background-disabled);
+    border-color: var(--echoes-color-border-disabled);
+    outline: none;
+    cursor: not-allowed;
+
+    &::placeholder {
+      color: var(--echoes-color-text-disabled);
+    }
+  }
 `;
+StyledInput.displayName = 'StyledInput';
+
+const TextInputWrapper = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+`;
+TextInputWrapper.displayName = 'TextInputWrapper';
+
+const InputIconWrapper = styled.span`
+  position: absolute;
+
+  font-size: var(--echoes-font-size-30);
+  color: var(--echoes-form-control-colors-icon-default);
+
+  [data-disabled] & {
+    color: var(--echoes-color-icon-disabled);
+  }
+`;
+InputIconWrapper.displayName = 'InputIconWrapper';
+
+const InputPrefix = styled(InputIconWrapper)`
+  left: var(--echoes-dimension-space-150);
+`;
+InputPrefix.displayName = 'InputPrefix';
+
+const InputSuffix = styled(InputIconWrapper)`
+  right: var(--echoes-dimension-space-150);
+`;
+InputSuffix.displayName = 'InputSuffix';

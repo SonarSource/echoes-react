@@ -232,8 +232,8 @@ export const SelectStyled = styled(MantineSelect)`
   & .echoes-select-input {
     display: block;
     box-sizing: border-box;
-    height: var(--echoes-dimension-height-900);
-    min-height: var(--echoes-dimension-height-900);
+    height: var(--echoes-form-control-sizes-height-default);
+    min-height: var(--echoes-form-control-sizes-height-default);
     width: 100%;
     padding: var(--echoes-dimension-space-100);
     padding-left: var(--echoes-dimension-space-150);
@@ -243,27 +243,27 @@ export const SelectStyled = styled(MantineSelect)`
     text-align: left;
     text-overflow: ellipsis;
 
-    background-color: var(--echoes-color-background-default);
-    border: var(--echoes-border-width-default) solid var(--echoes-color-border-bold);
-    border-radius: var(--echoes-border-radius-400);
-
-    transition: border-color 100ms;
+    background-color: var(--echoes-form-control-colors-background-default);
+    border: var(--echoes-border-width-default) solid
+      var(--echoes-form-control-colors-border-default);
+    border-radius: var(--echoes-form-control-border-radius-default);
 
     &[data-variant='unstyled'],
     &[data-variant='unstyled'][data-disabled] {
       border-color: transparent;
     }
 
+    &:hover {
+      background-color: var(--echoes-form-control-colors-background-hover);
+    }
+
     &[data-error] {
       border-color: var(--echoes-color-border-danger);
     }
 
-    &:hover {
-      border-color: var(--echoes-color-border-bolder);
-    }
-
     &:focus,
     &:focus-visible {
+      border-color: var(--echoes-color-border-weak);
       outline: var(--echoes-color-focus-default) solid var(--echoes-focus-border-width-default);
     }
 
@@ -271,9 +271,13 @@ export const SelectStyled = styled(MantineSelect)`
       color: var(--echoes-color-text-placeholder);
     }
 
-    &[data-disabled] {
+    &[data-disabled],
+    &[data-disabled]:hover {
       color: var(--echoes-color-text-disabled);
+      background-color: var(--echoes-color-background-disabled);
       border-color: var(--echoes-color-border-disabled);
+      outline: none;
+      cursor: not-allowed;
 
       &::placeholder {
         color: var(--echoes-color-text-disabled);
@@ -283,7 +287,7 @@ export const SelectStyled = styled(MantineSelect)`
 
   // Input left and right sections
   & .echoes-select-input-section {
-    color: var(--echoes-color-icon-subdued);
+    color: var(--echoes-form-control-colors-icon-default);
 
     position: absolute;
     top: 0;
@@ -321,7 +325,7 @@ export const SelectStyled = styled(MantineSelect)`
 
         font: var(--echoes-typography-text-small-medium);
         background-color: var(--echoes-color-background-transparent);
-        color: var(--echoes-color-icon-subdued);
+        color: var(--echoes-form-control-colors-icon-default);
 
         border: none;
         border-radius: var(--echoes-border-radius-200);
