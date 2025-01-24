@@ -34,15 +34,12 @@ it('displays a label', () => {
 
 it('displays an asterisk next to the label if the form field is required', () => {
   render(
-    <FormField isRequired label="Label 2">
-      <input />
+    <FormField controlId="foo" isRequired label="Label 2">
+      <input id="foo" />
     </FormField>,
   );
 
-  const label = screen.getByText((_, element) => element?.textContent === 'Label 2*', {
-    selector: 'label',
-  });
-
+  const label = screen.getByLabelText('Label 2*');
   expect(label).toBeVisible();
 });
 
