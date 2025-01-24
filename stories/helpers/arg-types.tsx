@@ -17,19 +17,24 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-import styled from '@emotion/styled';
-import { type ReactNode, forwardRef } from 'react';
 
-interface Props {
-  children: ReactNode;
-}
+import * as icons from '../../src/components/icons';
 
-export const FormFieldControl = forwardRef<HTMLDivElement, Props>((props, ref) => {
-  return <StyledFormFieldControl ref={ref} {...props} />;
-});
+const iconKeys = Object.keys(icons) as (keyof typeof icons)[];
 
-FormFieldControl.displayName = 'FormFieldControl';
+const iconsElements = Object.fromEntries(
+  iconKeys.map((key: keyof typeof icons) => {
+    const IconComponent = icons[key];
+    return [key, <IconComponent key={key} />];
+  }),
+);
 
-const StyledFormFieldControl = styled.div`
-  grid-area: control;
-`;
+export const iconsElementsArgType = {
+  mapping: iconsElements,
+  options: iconKeys,
+};
+
+export const iconsComponentsArgType = {
+  mapping: icons,
+  options: iconKeys,
+};

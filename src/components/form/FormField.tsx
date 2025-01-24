@@ -18,101 +18,217 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 import styled from '@emotion/styled';
-import { type ComponentProps, forwardRef } from 'react';
+import { type ComponentProps, type JSX, forwardRef } from 'react';
+import { MessageInline, MessageInlineSize, MessageType } from '../messages';
+import { HelperText } from '../typography';
+import { FormFieldLabel } from './FormFieldLabel';
 
 /**
- * Used to control the placement of a fom control within a form field.
- */
-export enum FormControlPlacement {
-  /**
-   * Place the form control before the label and description.
-   */
-  Before = 'before',
-  /**
-   * Place the form control below the label and description.
-   */
-  Below = 'below',
-  /**
-   * Place the form control between the label and description. (default)
-   */
-  Between = 'between',
-}
-
-export type FormFieldProps = ComponentProps<'div'> & {
-  /**
-   * The placement of the form control within the form field. There are three
-   * possible placements:
-   *
-   * 1. `Before` - Indicates that the form control should be placed before the
-   *               label and description. This is used for checkbox controls.
-   *
-   * 2. `Below` - Indicates that the form control should be placed below the
-   *              label and description. This is used for radio group controls.
-   *
-   * 3. `Between` - Indicates that the form control should be placed between the
-   *                label and description. This is the default placement.
-   */
-  controlPlacement?: `${FormControlPlacement}`;
-  /**
-   * A form field is a block element by default. If `isInline` is set to `true`,
-   * it will render as an inline element.
-   */
-  isInline?: boolean;
-};
-
-/**
- * Acts as a container for a form control.
+ * Form fields wrap form controls and help create standardization between them.
+ * They may have a label, a description, and validation.
  *
- * Permitted Content: `FormFieldLabel`, `FormFieldControl`, `FormFieldDescription`
+ * **Permitted Content**
+ *
+ * Exactly one from control element. The available form control elements are
+ * `CheckboxGroup`, `RadioButtonGroup`, `Select`, `Textarea`, and `TextInput`.
+ *
+ * **Example**
+ *
+ * ```tsx
+ * <FormField
+ *   controlId="19ujfsyw"
+ *   description="Please provide your full name"
+ *   isRequired
+ *   label="Full name"
+ *   massageInvalid="Your name is required"
+ *   validation="invalid">
+ *   <TextInput id="19ujfsyw" required />
+ * </FormField>
+ * ```
+ *
+ * @internal
  */
-export const FormField = forwardRef<HTMLDivElement, FormFieldProps>(
-  ({ controlPlacement = FormControlPlacement.Between, isInline = false, ...props }, ref) => {
-    return (
-      <StyledFormField
-        data-inline={isInline ? '' : undefined}
-        data-placement={controlPlacement}
-        ref={ref}
-        {...props}
-      />
-    );
-  },
-);
+export const FormField = forwardRef<HTMLDivElement, FormFieldProps>((props, ref) => {
+  const {
+    children,
+    controlId,
+    description,
+    descriptionId,
+    isDisabled = false,
+    isRequired = false,
+    label,
+    labelId,
+    messageInvalid,
+    messageValid,
+    validation,
+    validationMessageId,
+    width = FormFieldWidth.Full,
+    ...rest
+  } = props;
+
+  const messageInvalidElement = validation === 'invalid' && messageInvalid && (
+    <ValidationMessage size={MessageInlineSize.Small} type={MessageType.Danger}>
+      {messageInvalid}
+    </ValidationMessage>
+  );
+
+  const messageValidElement = validation === 'valid' && messageValid && (
+    <ValidationMessage size={MessageInlineSize.Small} type={MessageType.Success}>
+      {messageValid}
+    </ValidationMessage>
+  );
+
+  return (
+    <FormFieldStyled
+      data-disabled={isDisabled ? true : undefined}
+      data-width={width}
+      ref={ref}
+      {...rest}>
+      <FormFieldLabel htmlFor={controlId} id={labelId} isRequired={isRequired}>
+        {label}
+      </FormFieldLabel>
+      {children}
+      <span aria-live="polite" id={validationMessageId}>
+        {messageInvalidElement}
+        {messageValidElement}
+      </span>
+      {description && (
+        <Description
+          hidden={Boolean(messageValidElement || messageInvalidElement)}
+          id={descriptionId}>
+          {description}
+        </Description>
+      )}
+    </FormFieldStyled>
+  );
+});
 
 FormField.displayName = 'FormField';
 
-const StyledFormField = styled.div`
-  column-gap: var(--echoes-dimension-space-100);
-  display: grid;
+/**
+ * Represents the validity state of a form field.
+ */
+export enum FormFieldValidation {
+  /**
+   * The form field has failed validation.
+   */
+  Invalid = 'invalid',
+  /**
+   * The form field has not been explicitly validated (default).
+   */
+  None = 'none',
+  /**
+   * The form field has been successfully validated.
+   */
+  Valid = 'valid',
+}
 
-  &[data-inline] {
-    display: inline-grid;
+/**
+ * The available width options for a form felid.
+ */
+export enum FormFieldWidth {
+  Small = 'small',
+  Medium = 'medium',
+  Large = 'large',
+  Full = 'full',
+}
+
+type Message = JSX.Element | string | false | null;
+type WhiteListedProps = Pick<ComponentProps<'div'>, 'className'>;
+
+export interface ValidationProps {
+  /**
+   * The message to display when the form field is invalid (optional).
+   */
+  messageInvalid?: Message;
+  /**
+   * The message to display when the form field is valid (optional).
+   */
+  messageValid?: Message;
+  /**
+   * The validation state of the form field (optional). The default is `none`,
+   * meaning the form field has not been explicitly validated.
+   */
+  validation?: `${FormFieldValidation}`;
+}
+
+interface FormFieldProps extends ValidationProps, WhiteListedProps {
+  /**
+   * The form control element. A form field should have exactly one form control.
+   */
+  children: JSX.Element;
+  /**
+   * The ID of the form control that this form field is associated with
+   * (optional).
+   */
+  controlId?: string;
+  /**
+   * A descriptive message for the form field (optional).
+   */
+  description?: Message;
+  /**
+   * The ID of the description for the form field (optional). Useful for
+   * establishing a relationship between a description and a form control using
+   * the `aria-describedby` attribute.
+   */
+  descriptionId?: string;
+  /**
+   * When true, pointer events will be disabled on the label to prevent
+   * activating the form control.
+   */
+  isDisabled?: boolean;
+  /**
+   * When true, an asterisk will be displayed next to the label to indicate that
+   * the field is required.
+   */
+  isRequired?: boolean;
+  /**
+   * The label for the form field (optional).
+   */
+  label?: JSX.Element | string;
+  /**
+   * The ID of the label for the form field (optional).
+   */
+  labelId?: string;
+  /**
+   * The ID of the validation message for the form field (optional). Useful for
+   * establishing a relationship between a validation message and a form control
+   * using the `aria-describedby` attribute.
+   */
+  validationMessageId?: string;
+  /**
+   * Controls the width of the form field (optional). The default value is
+   * `full`, meaning it will take up the full width of its container.
+   */
+  width?: `${FormFieldWidth}`;
+}
+
+const FormFieldStyled = styled.div`
+  &[data-width='small'] {
+    width: var(--echoes-sizes-form-field-small);
   }
-
-  &[data-placement='before'] {
-    grid-template-areas:
-      'control label'
-      '.       description';
-    grid-template-columns: auto 1fr;
-    grid-template-rows: auto auto;
+  &[data-width='medium'] {
+    width: var(--echoes-sizes-form-field-medium);
   }
-
-  &[data-placement='below'] {
-    grid-template-areas:
-      'label'
-      'description'
-      'control';
-    grid-template-columns: auto;
-    grid-template-rows: auto auto;
+  &[data-width='large'] {
+    width: var(--echoes-sizes-form-field-large);
   }
-
-  &[data-placement='between'] {
-    grid-template-areas:
-      'label'
-      'control'
-      'description';
-    grid-template-columns: auto;
-    grid-template-rows: auto auto;
+  &[data-width='full'] {
+    width: var(--echoes-sizes-form-field-full);
   }
 `;
 
-StyledFormField.displayName = 'StyledFormField';
+FormFieldStyled.displayName = 'FormFieldStyled';
+
+const ValidationMessage = styled(MessageInline)`
+  display: block;
+  margin-top: var(--echoes-dimension-space-75);
+`;
+
+ValidationMessage.displayName = 'ValidationMessage';
+
+const Description = styled(HelperText)`
+  margin-top: var(--echoes-dimension-space-75);
+`;
+
+Description.displayName = 'Description';

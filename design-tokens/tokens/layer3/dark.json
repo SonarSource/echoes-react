@@ -1,25 +1,30 @@
 {
   "echoes": {
-    "overlays": {
-      "innerShadow": {
-        "default": {
-          "value": {
-            "x": "0",
-            "y": "-6",
-            "blur": "10",
-            "spread": "0",
-            "color": "rgba(255,255,255,0.1)",
-            "type": "innerShadow"
-          },
-          "type": "boxShadow"
-        }
-      }
-    },
-    "modal": {
+    "form-control": {
       "colors": {
-        "shadow": {
-          "gradient": {
-            "value": "rgba(255,255,255,0.2)",
+        "background": {
+          "default" : {
+            "value":"{echoes.color.background.default}",
+            "type":"color"
+          },
+          "hover": {
+            "value":"{echoes.color.background.default-hover}",
+            "type":"color"
+          }
+        },
+        "border": {
+          "default": {
+            "value": "{echoes.color.border.bold}",
+            "type": "color"
+          },
+          "focus": {
+            "value": "{echoes.color.border.weak}",
+            "type": "color"
+          }
+        },
+        "icon": {
+          "default": {
+            "value": "{echoes.color.icon.subdued}",
             "type": "color"
           }
         }
@@ -38,6 +43,31 @@
         "sonar-whale": {
           "value": "#D3121D",
           "type": "color"
+        }
+      }
+    },
+    "modal": {
+      "colors": {
+        "shadow": {
+          "gradient": {
+            "value": "rgba(255,255,255,0.2)",
+            "type": "color"
+          }
+        }
+      }
+    },
+    "overlays": {
+      "innerShadow": {
+        "default": {
+          "value": {
+            "x": "0",
+            "y": "-6",
+            "blur": "10",
+            "spread": "0",
+            "color": "rgba(255,255,255,0.1)",
+            "type": "innerShadow"
+          },
+          "type": "boxShadow"
         }
       }
     }

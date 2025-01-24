@@ -1,5 +1,21 @@
 {
   "echoes": {
+    "form-control": {
+      "borderRadius": {
+        "default": {
+          "value": "{echoes.borderRadius.400}",
+          "type": "borderRadius"
+        }
+      },
+      "sizes": {
+        "height": {
+          "default": {
+            "value": "{echoes.dimension.height.900}",
+            "type": "sizing"
+          }
+        }
+      }
+    },
     "sizes": {
       "overlays": {
         "maxWidth": {
@@ -31,7 +47,7 @@
           }
         }
       },
-      "inputs": {
+      "form-field": {
         "small": {
           "value": "150px",
           "type": "sizing"

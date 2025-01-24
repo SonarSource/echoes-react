@@ -22,42 +22,67 @@ import { type JSX, forwardRef } from 'react';
 import { Label } from '../typography';
 
 interface Props {
-  children: JSX.Element | string;
-  isDisabled?: boolean;
+  children?: JSX.Element | string;
+  /**
+   * The ID of the form control that this label is associated with.
+   */
+  htmlFor?: string;
+  /**
+   * The ID of the label (optional).
+   */
+  id?: string;
+  /**
+   * When true, will display an asterisk to indicate that the field is required.
+   */
   isRequired?: boolean;
-  htmlFor: string;
 }
 
+/**
+ * A form field may have a label that appears above the form control.
+ *
+ * **Permitted Parents**
+ *
+ * `FormField`
+ *
+ * **Permitted Content**
+ *
+ * Any phrasing content.
+ *
+ * @internal
+ */
 export const FormFieldLabel = forwardRef<HTMLLabelElement, Props>((props, ref) => {
-  const { children, isDisabled = false, isRequired = false, ...rest } = props;
+  const { children, isRequired = false, ...rest } = props;
+
+  if (!children) {
+    return null;
+  }
+
   return (
-    <StyledLabel data-disabled={isDisabled ? '' : undefined} ref={ref} {...rest}>
+    <LabelStyled ref={ref} {...rest}>
       {children}
-      {isRequired && <FormFieldLabelRequired>*</FormFieldLabelRequired>}
-    </StyledLabel>
+      {isRequired && <RequiredIndicator aria-hidden="true">*</RequiredIndicator>}
+    </LabelStyled>
   );
 });
 
 FormFieldLabel.displayName = 'FormFieldLabel';
 
-export const FormFieldLabelMedium = styled(FormFieldLabel)`
-  font: var(--echoes-typography-others-label-medium);
-`;
-
-const StyledLabel = styled(Label)`
+const LabelStyled = styled(Label)`
   display: block;
-  grid-area: label;
-  width: fit-content;
+  inline-size: fit-content;
+  margin-bottom: var(--echoes-dimension-space-75);
 
-  &[data-disabled] {
+  [data-disabled] > & {
     pointer-events: none;
   }
 `;
 
-const FormFieldLabelRequired = styled.span`
+LabelStyled.displayName = 'LabelStyled';
+
+const RequiredIndicator = styled.span`
   color: var(--echoes-color-text-danger);
   font: var(--echoes-typography-others-label-medium);
   margin-left: var(--echoes-dimension-space-25);
 `;
 
-FormFieldLabelRequired.displayName = 'FormFieldLabelRequired';
+RequiredIndicator.displayName = 'RequiredIndicator';
