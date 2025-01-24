@@ -20,6 +20,10 @@
           "value": "rgb(252,252,253)",
           "type": "color"
         },
+        "40": {
+          "value": "rgb(246,247,251)",
+          "type": "color"
+        },
         "50": {
           "value": "rgb(239,242,249)",
           "type": "color"

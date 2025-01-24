@@ -19,7 +19,7 @@
         },
         "default-hover": {
           "type": "color",
-          "value": "{echoes.color.grey.50}",
+          "value": "{echoes.color.grey.40}",
           "description": "Hover color for bg-default"
         },
         "default-active": {
