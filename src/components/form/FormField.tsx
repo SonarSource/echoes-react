@@ -24,6 +24,88 @@ import { HelperText } from '../typography';
 import { FormFieldLabel } from './FormFieldLabel';
 
 /**
+ * Form fields wrap form controls and help create standardization between them.
+ * They may have a label, a description, and validation.
+ *
+ * **Permitted Content**
+ *
+ * Exactly one from control element. The available form control elements are
+ * `CheckboxGroup`, `RadioButtonGroup`, `Select`, `Textarea`, and `TextInput`.
+ *
+ * **Example**
+ *
+ * ```tsx
+ * <FormField
+ *   controlId="19ujfsyw"
+ *   description="Please provide your full name"
+ *   isRequired
+ *   label="Full name"
+ *   massageInvalid="Your name is required"
+ *   validation="invalid">
+ *   <TextInput id="19ujfsyw" required />
+ * </FormField>
+ * ```
+ *
+ * @internal
+ */
+export const FormField = forwardRef<HTMLDivElement, FormFieldProps>((props, ref) => {
+  const {
+    children,
+    controlId,
+    description,
+    descriptionId,
+    isDisabled = false,
+    isRequired = false,
+    label,
+    labelId,
+    messageInvalid,
+    messageValid,
+    validation,
+    validationMessageId,
+    width = FormFieldWidth.Full,
+    ...rest
+  } = props;
+
+  const messageInvalidElement = validation === 'invalid' && messageInvalid && (
+    <ValidationMessage size={MessageInlineSize.Small} type={MessageType.Danger}>
+      {messageInvalid}
+    </ValidationMessage>
+  );
+
+  const messageValidElement = validation === 'valid' && messageValid && (
+    <ValidationMessage size={MessageInlineSize.Small} type={MessageType.Success}>
+      {messageValid}
+    </ValidationMessage>
+  );
+
+  return (
+    <FormFieldStyled
+      data-disabled={isDisabled ? true : undefined}
+      data-width={width}
+      ref={ref}
+      {...rest}>
+      <FormFieldLabel htmlFor={controlId} id={labelId} isRequired={isRequired}>
+        {label}
+      </FormFieldLabel>
+      {children}
+      <span aria-live="polite" id={validationMessageId}>
+        {messageInvalidElement}
+        {messageValidElement}
+      </span>
+      {description && (
+        <Description
+          hidden={Boolean(messageValidElement || messageInvalidElement)}
+          id={descriptionId}>
+          {description}
+        </Description>
+      )}
+    </FormFieldStyled>
+  );
+});
+
+FormField.displayName = 'FormField';
+
+/**
  * Represents the validity state of a form field.
  */
 export enum FormFieldValidation {
@@ -120,87 +202,6 @@ interface FormFieldProps extends ValidationProps, WhiteListedProps {
    */
   width?: `${FormFieldWidth}`;
 }
-
-/**
- * @internal
- *
- * Form fields wrap form controls and help create standardization between them.
- * They may have a label, a description, and validation.
- *
- * **Permitted Content:**
- *
- * `CheckboxGroup | RadioButtonGroup | Select | Textarea | TextInput`
- *
- * **Example**
- *
- * ```tsx
- * <FormField
- *   controlId="19ujfsyw"
- *   description="Please provide your full name"
- *   isRequired
- *   label="Full name"
- *   massageInvalid="Your name is required"
- *   validation="invalid">
- *   <TextInput id="19ujfsyw" required />
- * </FormField>
- * ```
- */
-export const FormField = forwardRef<HTMLDivElement, FormFieldProps>((props, ref) => {
-  const {
-    children,
-    controlId,
-    description,
-    descriptionId,
-    isDisabled = false,
-    isRequired = false,
-    label,
-    labelId,
-    messageInvalid,
-    messageValid,
-    validation,
-    validationMessageId,
-    width = FormFieldWidth.Full,
-    ...rest
-  } = props;
-
-  const messageInvalidElement = validation === 'invalid' && messageInvalid && (
-    <ValidationMessage size={MessageInlineSize.Small} type={MessageType.Danger}>
-      {messageInvalid}
-    </ValidationMessage>
-  );
-
-  const messageValidElement = validation === 'valid' && messageValid && (
-    <ValidationMessage size={MessageInlineSize.Small} type={MessageType.Success}>
-      {messageValid}
-    </ValidationMessage>
-  );
-
-  return (
-    <FormFieldStyled
-      data-disabled={isDisabled ? true : undefined}
-      data-width={width}
-      ref={ref}
-      {...rest}>
-      <FormFieldLabel htmlFor={controlId} id={labelId} isRequired={isRequired}>
-        {label}
-      </FormFieldLabel>
-      {children}
-      <span aria-live="polite" id={validationMessageId}>
-        {messageInvalidElement}
-        {messageValidElement}
-      </span>
-      {description && (
-        <Description
-          hidden={Boolean(messageValidElement || messageInvalidElement)}
-          id={descriptionId}>
-          {description}
-        </Description>
-      )}
-    </FormFieldStyled>
-  );
-});
-
-FormField.displayName = 'FormField';
 
 const FormFieldStyled = styled.div`
   &[data-width='small'] {

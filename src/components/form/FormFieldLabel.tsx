@@ -38,17 +38,17 @@ interface Props {
 }
 
 /**
- * @internal
- *
  * A form field may have a label that appears above the form control.
  *
- * **Permitted Parents:**
+ * **Permitted Parents**
  *
  * `FormField`
  *
- * **Permitted Content:**
+ * **Permitted Content**
  *
- * Any inline content.
+ * Any phrasing content.
+ *
+ * @internal
  */
 export const FormFieldLabel = forwardRef<HTMLLabelElement, Props>((props, ref) => {
   const { children, isRequired = false, ...rest } = props;

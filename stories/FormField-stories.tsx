@@ -29,14 +29,12 @@ const meta: Meta<FormField> = {
   argTypes: {
     validation: {
       control: { type: 'select' },
-      options: Object.values(FormFieldValidation),
       table: {
         defaultValue: { summary: FormFieldValidation.None },
       },
     },
     width: {
       control: { type: 'select' },
-      options: Object.values(FormFieldWidth),
       table: {
         defaultValue: { summary: FormFieldWidth.Full },
       },
