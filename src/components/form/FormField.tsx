@@ -130,6 +130,20 @@ interface FormFieldProps extends ValidationProps, WhiteListedProps {
  * **Permitted Content:**
  *
  * `CheckboxGroup | RadioButtonGroup | Select | Textarea | TextInput`
+ *
+ * **Example**
+ *
+ * ```tsx
+ * <FormField
+ *   controlId="19ujfsyw"
+ *   description="Please provide your full name"
+ *   isRequired
+ *   label="Full name"
+ *   massageInvalid="Your name is required"
+ *   validation="invalid">
+ *   <TextInput id="19ujfsyw" required />
+ * </FormField>
+ * ```
  */
 export const FormField = forwardRef<HTMLDivElement, FormFieldProps>((props, ref) => {
   const {
