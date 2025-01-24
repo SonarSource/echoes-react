@@ -24,6 +24,7 @@ import { Select as MantineSelect, SelectProps as MantineSelectProps } from '@man
 import { forwardRef, useContext, useEffect, useId, useState } from 'react';
 import { useIntl } from 'react-intl';
 import { isDefined } from '~common/helpers/types';
+import { useForwardedRef } from '~common/helpers/useForwardedRef';
 import { PropsWithLabels } from '~types/utils';
 import { IconChevronDown, IconX, Spinner } from '..';
 import { PortalContext } from '../../common/components/PortalContext';
@@ -64,7 +65,7 @@ export interface SelectBaseProps extends ValidationProps {
 }
 
 export const SelectBase = forwardRef<HTMLInputElement, PropsWithLabels<SelectBaseProps>>(
-  (props, ref) => {
+  (props, forwardedRef) => {
     const {
       ariaLabel,
       ariaLabelledBy,
@@ -93,7 +94,7 @@ export const SelectBase = forwardRef<HTMLInputElement, PropsWithLabels<SelectBas
       ...selectProps
     } = props;
 
-    const [control, setControl] = useState<HTMLInputElement | null>(null);
+    const [ref, setRef] = useForwardedRef(forwardedRef);
     const defaultId = `${useId()}select`;
     const controlId = id ?? defaultId;
     const descriptionId = `${controlId}-description`;
@@ -117,24 +118,14 @@ export const SelectBase = forwardRef<HTMLInputElement, PropsWithLabels<SelectBas
       .filter((id) => id)
       .join(' ');
 
-    const setRef = (element: HTMLInputElement | null) => {
-      if (typeof ref === 'function') {
-        ref(element);
-      } else if (ref) {
-        ref.current = element;
-      }
-
-      setControl(element);
-    };
-
     useEffect(() => {
       // Mantine select will override the aria-describedby attribute, so we need
       // to set it manually.
       // https://github.com/mantinedev/mantine/blob/85f6f0ac372172d0de8a72690bac39b9c7cfaa36/packages/%40mantine/core/src/components/Input/Input.tsx#L288
       if (describedBy) {
-        control?.setAttribute('aria-describedby', describedBy);
+        ref?.setAttribute('aria-describedby', describedBy);
       }
-    }, [control, describedBy]);
+    }, [describedBy, ref]);
 
     return (
       <FormField
