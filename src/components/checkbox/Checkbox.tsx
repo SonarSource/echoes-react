@@ -33,7 +33,7 @@ interface Props {
   innerClassName?: string;
   isDisabled?: boolean;
   isLoading?: boolean;
-  onCheck: (checked: boolean | 'indeterminate', id?: string) => void;
+  onCheck: (checked: boolean | 'indeterminate', id: string) => void;
   onFocus?: VoidFunction;
   title?: string;
 }
