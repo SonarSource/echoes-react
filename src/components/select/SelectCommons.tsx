@@ -21,7 +21,7 @@
 import { css, Global } from '@emotion/react';
 import styled from '@emotion/styled';
 import { Select as MantineSelect, SelectProps as MantineSelectProps } from '@mantine/core';
-import { forwardRef, useContext, useId } from 'react';
+import { forwardRef, useContext, useEffect, useId, useState } from 'react';
 import { useIntl } from 'react-intl';
 import { isDefined } from '~common/helpers/types';
 import { PropsWithLabels } from '~types/utils';
@@ -93,6 +93,7 @@ export const SelectBase = forwardRef<HTMLInputElement, PropsWithLabels<SelectBas
       ...selectProps
     } = props;
 
+    const [control, setControl] = useState<HTMLInputElement | null>(null);
     const defaultId = `${useId()}select`;
     const controlId = id ?? defaultId;
     const descriptionId = `${controlId}-description`;
@@ -116,6 +117,25 @@ export const SelectBase = forwardRef<HTMLInputElement, PropsWithLabels<SelectBas
       .filter((id) => id)
       .join(' ');
 
+    const setRef = (element: HTMLInputElement | null) => {
+      if (typeof ref === 'function') {
+        ref(element);
+      } else if (ref) {
+        ref.current = element;
+      }
+
+      setControl(element);
+    };
+
+    useEffect(() => {
+      // Mantine select will override the aria-describedby attribute, so we need
+      // to set it manually.
+      // https://github.com/mantinedev/mantine/blob/85f6f0ac372172d0de8a72690bac39b9c7cfaa36/packages/%40mantine/core/src/components/Input/Input.tsx#L288
+      if (describedBy) {
+        control?.setAttribute('aria-describedby', describedBy);
+      }
+    }, [control, describedBy]);
+
     return (
       <FormField
         controlId={controlId}
@@ -130,8 +150,6 @@ export const SelectBase = forwardRef<HTMLInputElement, PropsWithLabels<SelectBas
         width={width}>
         <SelectStyled
           allowDeselect={isClearable}
-          aria-describedby={describedBy !== '' ? describedBy : undefined}
-          aria-invalid={validation === FormFieldValidation.Invalid}
           aria-label={ariaLabel}
           aria-labelledby={ariaLabelledBy}
           classNames={
@@ -170,7 +188,7 @@ export const SelectBase = forwardRef<HTMLInputElement, PropsWithLabels<SelectBas
           nothingFoundMessage={labelNotFound}
           onDropdownOpen={onOpen}
           onSearchChange={onSearch}
-          ref={ref}
+          ref={setRef}
           renderOption={optionRenderer}
           required={isRequired}
           rightSection={rightSection}
