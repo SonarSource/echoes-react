@@ -20,9 +20,10 @@
 
 import styled from '@emotion/styled';
 import * as RadixCheckbox from '@radix-ui/react-checkbox';
-import { forwardRef, useCallback } from 'react';
+import { forwardRef, useCallback, useId } from 'react';
 import { PropsWithLabels } from '~types/utils';
 import { Spinner } from '../spinner';
+import { HelperText } from '../typography';
 import { CheckboxIcon } from './CheckboxIcon';
 
 interface Props {
@@ -56,22 +57,20 @@ export const Checkbox = forwardRef<HTMLButtonElement, PropsWithLabels<Props>>((p
     ...radixProps
   } = props;
 
+  const defaultId = `${useId()}checkbox`;
+  const controlId = id ?? defaultId;
+
   const handleChange = useCallback(
     (checked: boolean | 'indeterminate') => {
       if (!isDisabled && !isLoading) {
-        onCheck(checked, id);
+        onCheck(checked, controlId);
       }
     },
-    [isDisabled, isLoading, onCheck, id],
+    [controlId, isDisabled, isLoading, onCheck],
   );
 
   return (
-    <CheckboxContainer
-      {...radixProps}
-      aria-disabled={isDisabled}
-      as={label ? 'label' : 'span'}
-      className={className}
-      ref={ref}>
+    <CheckboxContainer className={className} data-disabled={isDisabled}>
       <CheckboxInnerContainer className={innerClassName}>
         <Spinner isLoading={isLoading}>
           <CheckboxRoot
@@ -79,21 +78,23 @@ export const Checkbox = forwardRef<HTMLButtonElement, PropsWithLabels<Props>>((p
             aria-label={ariaLabel ?? title}
             aria-labelledby={ariaLabelledBy}
             checked={checked}
-            id={id}
+            id={controlId}
             onCheckedChange={handleChange}
             onFocus={onFocus}
+            ref={ref}
             title={title}
             // We only support the error state for unchecked checkboxes for now
-            {...(hasError && checked === false ? { 'data-error': true } : {})}>
+            {...(hasError && checked === false ? { 'data-error': true } : {})}
+            {...radixProps}>
             <CheckboxIndicator>
               <CheckboxIcon checked={checked} />
             </CheckboxIndicator>
           </CheckboxRoot>
         </Spinner>
         {(label || helpText) && (
-          <LabelWrapper aria-disabled={isDisabled}>
-            {label && <Label>{label}</Label>}
-            {helpText && <HelpText>{helpText}</HelpText>}
+          <LabelWrapper>
+            {label && <Label htmlFor={controlId}>{label}</Label>}
+            {helpText && <HelperText>{helpText}</HelperText>}
           </LabelWrapper>
         )}
       </CheckboxInnerContainer>
@@ -106,7 +107,7 @@ const CheckboxContainer = styled.span`
   display: inline-flex;
   vertical-align: top;
 
-  &[aria-disabled='true'] {
+  &[data-disabled='true'] {
     pointer-events: none;
   }
 `;
@@ -185,19 +186,7 @@ const LabelWrapper = styled.span`
   margin-left: var(--echoes-dimension-space-100);
 `;
 
-const Label = styled.span`
+const Label = styled.label`
+  color: var(--echoes-color-text-default);
   font: var(--echoes-typography-others-label-medium);
-
-  [aria-disabled='true'] > & {
-    color: var(--echoes-color-text-disabled);
-  }
-`;
-
-const HelpText = styled.span`
-  font: var(--echoes-typography-others-helper-text);
-  color: var(--echoes-color-text-subdued);
-
-  [aria-disabled='true'] > & {
-    color: var(--echoes-color-text-disabled);
-  }
 `;
