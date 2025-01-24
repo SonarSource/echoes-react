@@ -101,8 +101,6 @@ export const TextInput = forwardRef<HTMLInputElement, PropsWithLabels<Props>>((p
   return (
     <FormField
       controlId={controlId}
-      // TODO remove once updated in Daniel's branch
-      data-disabled={isDisabled ? '' : undefined}
       description={helpText}
       descriptionId={descriptionId}
       isDisabled={isDisabled}
@@ -215,6 +213,7 @@ const InputIconWrapper = styled.span`
 
   [data-disabled] & {
     color: var(--echoes-color-icon-disabled);
+    cursor: not-allowed;
   }
 `;
 InputIconWrapper.displayName = 'InputIconWrapper';
