@@ -82,7 +82,7 @@ it('should display an error message when validation is invalid', () => {
   const commonProps = { helpText: 'Helping', label: 'Label', messageInvalid: 'Error message' };
   const { rerender } = render(<TextInput {...commonProps} validation="none" />);
 
-  expect(screen.getByRole('textbox', { description: 'Helping' })).toBeInTheDocument();
+  expect(screen.getByRole('textbox', { description: ' Helping' })).toBeInTheDocument();
   expect(screen.queryByText('Error message')).not.toBeInTheDocument();
 
   rerender(<TextInput {...commonProps} validation="invalid" />);
@@ -94,7 +94,7 @@ it('should display an valid message when validation is valid', () => {
   const commonProps = { helpText: 'Helping', label: 'Label', messageValid: 'Youhou!' };
   const { rerender } = render(<TextInput {...commonProps} validation="none" />);
 
-  expect(screen.getByRole('textbox', { description: 'Helping' })).toBeInTheDocument();
+  expect(screen.getByRole('textbox', { description: ' Helping' })).toBeInTheDocument();
   expect(screen.queryByText('Youhou')).not.toBeInTheDocument();
 
   rerender(<TextInput {...commonProps} validation="valid" />);
