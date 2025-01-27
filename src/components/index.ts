@@ -32,6 +32,7 @@ export * from './popover';
 export * from './radio-button-group';
 export * from './select';
 export * from './spinner';
+export * from './text-input';
 export * from './toggle-tip';
 export * from './tooltip';
 export * from './typography';
