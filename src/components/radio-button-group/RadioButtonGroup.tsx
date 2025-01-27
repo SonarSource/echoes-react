@@ -28,7 +28,7 @@ import {
   FormFieldValidation,
   FormFieldWidth,
 } from '../form/FormField';
-import { useFormFelidAccessability } from '../form/useFormFelidAccessability';
+import { useFormFieldA11y } from '../form/useFormFieldA11y';
 import { HelperText, Label } from '../typography';
 
 export enum RadioButtonGroupAlignment {
@@ -71,12 +71,11 @@ export const RadioButtonGroup = forwardRef<HTMLDivElement, PropsWithLabels<Props
 
   const defaultId = `${useId()}radiogroup`;
 
-  const { controlId, describedBy, descriptionId, labelId, validationMessageId } =
-    useFormFelidAccessability({
-      controlId: id ?? defaultId,
-      hasDescription: Boolean(helpText),
-      hasValidationMessage: Boolean(messageValid || messageInvalid),
-    });
+  const { controlId, describedBy, descriptionId, labelId, validationMessageId } = useFormFieldA11y({
+    controlId: id ?? defaultId,
+    hasDescription: Boolean(helpText),
+    hasValidationMessage: Boolean(messageValid || messageInvalid),
+  });
 
   return (
     <FormField
