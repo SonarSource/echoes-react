@@ -23,10 +23,12 @@ import { Button, ButtonVariety } from '../src/components/buttons';
 import { FormFieldValidation } from '../src/components/form';
 import { TextArea } from '../src/components/text-input';
 import { basicWrapperDecorator } from './helpers/BasicWrapper';
+import { formFieldsArgTypes } from './helpers/arg-types';
 
 const meta: Meta<typeof TextArea> = {
   component: TextArea,
   title: 'Echoes/TextArea',
+  argTypes: formFieldsArgTypes,
   decorators: [basicWrapperDecorator],
 };
 

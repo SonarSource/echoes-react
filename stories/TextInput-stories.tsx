@@ -24,12 +24,13 @@ import { FormFieldValidation } from '../src/components/form';
 import { IconCopy, IconSearch } from '../src/components/icons';
 import { TextInput } from '../src/components/text-input';
 import { basicWrapperDecorator } from './helpers/BasicWrapper';
-import { iconsElementsArgType } from './helpers/arg-types';
+import { formFieldsArgTypes, iconsElementsArgType } from './helpers/arg-types';
 
 const meta: Meta<typeof TextInput> = {
   component: TextInput,
   title: 'Echoes/TextInput',
   argTypes: {
+    ...formFieldsArgTypes,
     prefix: iconsElementsArgType,
     suffix: iconsElementsArgType,
   },
