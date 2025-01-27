@@ -19,8 +19,8 @@
  */
 
 import type { Meta, StoryObj } from '@storybook/react';
-import { ComponentProps, useEffect, useState } from 'react';
-import { Checkbox } from '../src';
+import { ComponentProps, forwardRef, useEffect, useState } from 'react';
+import { Checkbox, Tooltip } from '../src';
 
 const meta: Meta<typeof Checkbox> = {
   component: Checkbox,
@@ -100,19 +100,41 @@ export const LoadingState: Story = {
   render: (args) => <CheckboxState initialValue={args.checked} {...args} />,
 };
 
-function CheckboxState({
-  initialValue,
-  ...checkboxProps
-}: Partial<ComponentProps<typeof Checkbox>> & {
+export const WithTooltip: Story = {
+  args: {
+    checked: false,
+    label: "I'm a checkbox",
+    helpText: 'I have some help text',
+    onCheck: () => {},
+  },
+  render: (args) => (
+    <div style={{ display: 'flex', alignItems: 'center' }}>
+      <Tooltip content="test">
+        <div>
+          <CheckboxState initialValue={args.checked} {...args} />
+        </div>
+      </Tooltip>
+    </div>
+  ),
+};
+
+type CheckboxStateProps = Partial<ComponentProps<typeof Checkbox>> & {
   initialValue: boolean | 'indeterminate';
-}) {
-  const [checked, setChecked] = useState(initialValue);
-  useEffect(() => setChecked(initialValue), [initialValue]);
-  return (
-    <Checkbox
-      {...(checkboxProps as ComponentProps<typeof Checkbox>)}
-      checked={checked}
-      onCheck={setChecked}
-    />
-  );
-}
+};
+
+const CheckboxState = forwardRef<HTMLButtonElement, CheckboxStateProps>(
+  ({ initialValue, ...checkboxProps }, ref) => {
+    const [checked, setChecked] = useState(initialValue);
+    useEffect(() => setChecked(initialValue), [initialValue]);
+    return (
+      <Checkbox
+        {...(checkboxProps as ComponentProps<typeof Checkbox>)}
+        checked={checked}
+        onCheck={setChecked}
+        ref={ref}
+      />
+    );
+  },
+);
+
+CheckboxState.displayName = 'CheckboxState';
