@@ -89,7 +89,7 @@ export const MessageCalloutTitleWrapper = styled.div`
 MessageCalloutTitleWrapper.displayName = 'MessageCalloutTitleWrapper';
 
 export const MessageCalloutTextWrapper = styled.div`
-  flex: 1 0 auto;
+  flex: 1 1 auto;
 
   display: flex;
   flex-direction: column;

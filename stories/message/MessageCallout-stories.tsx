@@ -97,3 +97,17 @@ function DismissingContainer(args: Story['args']) {
     </>
   );
 }
+
+export const WithLongContent: Story = {
+  args: {
+    type: MessageType.Warning,
+    text: 'This is a super long warning message. I repeat, this is a super long warning message.',
+  },
+  render: (args) => {
+    return (
+      <div style={{ maxWidth: '300px' }}>
+        <MessageCallout {...args} />
+      </div>
+    );
+  },
+};
