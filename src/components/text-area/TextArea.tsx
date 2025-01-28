@@ -17,60 +17,47 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-import { forwardRef, InputHTMLAttributes, ReactNode, useId } from 'react';
+import styled from '@emotion/styled';
+import { forwardRef, InputHTMLAttributes, useId } from 'react';
 import { PropsWithLabels } from '~types/utils';
 import { FormField, FormFieldValidation } from '../form/FormField';
 import { useFormFieldA11y } from '../form/useFormFieldA11y';
 import {
   InputEventProps,
-  InputPrefix,
   InputProps,
   InputStyled,
-  InputSuffix,
   InputWrapper,
-} from './TextInputBase';
+} from '../text-input/TextInputBase';
 
 type InputAttributes = Pick<
-  InputHTMLAttributes<HTMLInputElement>,
-  | 'autoComplete'
-  | 'autoFocus'
-  | 'form'
-  | 'max'
-  | 'min'
-  | 'maxLength'
-  | 'minLength'
-  | 'name'
-  | 'pattern'
-  | 'readOnly'
-  | 'step'
+  InputHTMLAttributes<HTMLTextAreaElement>,
+  'autoComplete' | 'autoFocus' | 'form' | 'maxLength' | 'minLength' | 'name' | 'readOnly'
 >;
 
-interface Props extends InputProps, InputAttributes, InputEventProps<HTMLInputElement> {
-  prefix?: ReactNode;
-  suffix?: ReactNode;
-  type?: 'email' | 'number' | 'password' | 'search' | 'tel' | 'text' | 'url';
+interface Props extends InputProps, InputAttributes, InputEventProps<HTMLTextAreaElement> {
+  isResizable?: boolean;
+  rows?: number;
 }
 
-export const TextInput = forwardRef<HTMLInputElement, PropsWithLabels<Props>>((props, ref) => {
+export const TextArea = forwardRef<HTMLTextAreaElement, PropsWithLabels<Props>>((props, ref) => {
   const {
     ariaLabel,
     ariaLabelledBy,
     helpText,
     id,
     isDisabled = false,
+    isResizable = false,
     isRequired = false,
     label,
     messageInvalid,
     messageValid,
-    prefix,
-    suffix,
-    type = 'text',
+    rows = 3,
     validation,
     width,
     ...rest
   } = props;
 
-  const defaultId = `${useId()}textinput`;
+  const defaultId = `${useId()}textarea`;
 
   const { controlId, describedBy, descriptionId, validationMessageId } = useFormFieldA11y({
     controlId: id ?? defaultId,
@@ -92,27 +79,37 @@ export const TextInput = forwardRef<HTMLInputElement, PropsWithLabels<Props>>((p
       validationMessageId={validationMessageId}
       width={width}>
       <InputWrapper>
-        {prefix && <InputPrefix>{prefix}</InputPrefix>}
-        <InputStyled
+        <TextAreaStyled
           aria-describedby={describedBy}
           aria-invalid={validation === FormFieldValidation.Invalid}
           aria-label={ariaLabel}
           aria-labelledby={ariaLabelledBy}
           data-error={validation === FormFieldValidation.Invalid ? '' : undefined}
-          data-prefix={prefix ? '' : undefined}
-          data-suffix={suffix ? '' : undefined}
+          data-resizable={isResizable ? '' : undefined}
           data-valid={validation === FormFieldValidation.Valid ? '' : undefined}
           disabled={isDisabled}
           id={controlId}
           ref={ref}
           required={isRequired}
-          type={type}
+          rows={rows}
           {...rest}
         />
-        {suffix && <InputSuffix>{suffix}</InputSuffix>}
       </InputWrapper>
     </FormField>
   );
 });
 
-TextInput.displayName = 'TextInput';
+TextArea.displayName = 'TextArea';
+
+const TextAreaStyled = styled(InputStyled.withComponent('textarea'))`
+  height: auto;
+  min-height: var(--echoes-form-control-sizes-height-default);
+
+  resize: none;
+
+  &[data-resizable] {
+    resize: vertical;
+  }
+`;
+
+TextAreaStyled.displayName = 'TextAreaStyled';

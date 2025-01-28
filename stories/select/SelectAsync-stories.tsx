@@ -21,10 +21,20 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { ComponentProps, useCallback, useState } from 'react';
 import { IconPeople } from '../../src/components/icons';
 import { SelectAsync, SelectOption } from '../../src/components/select';
+import {
+  formFieldsArgTypes,
+  iconsElementsArgType,
+  toDisabledControlArgType,
+} from '../helpers/arg-types';
 
 const meta: Meta<typeof SelectAsync> = {
   component: SelectAsync,
   title: 'Echoes/Select/SelectAsync',
+  argTypes: {
+    ...formFieldsArgTypes,
+    valueIcon: iconsElementsArgType,
+    ...toDisabledControlArgType('onChange', 'onOpen'),
+  },
 };
 
 export default meta;

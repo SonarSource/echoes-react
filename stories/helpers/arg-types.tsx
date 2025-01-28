@@ -18,7 +18,12 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+import { ArgTypes } from '@storybook/react';
+import { Args, InputType } from 'storybook/internal/types';
+import { PropsWithLabels } from '~types/utils';
+import { FormFieldValidation, FormFieldWidth } from '../../src/components/form';
 import * as icons from '../../src/components/icons';
+import { InputProps } from '../../src/components/text-input/TextInputBase';
 
 const iconKeys = Object.keys(icons) as (keyof typeof icons)[];
 
@@ -29,12 +34,38 @@ const iconsElements = Object.fromEntries(
   }),
 );
 
-export const iconsElementsArgType = {
+export const iconsElementsArgType: InputType = {
   mapping: iconsElements,
   options: iconKeys,
 };
 
-export const iconsComponentsArgType = {
+export const iconsComponentsArgType: InputType = {
   mapping: icons,
   options: iconKeys,
+};
+
+export function toTextControlArgTypes<TArgs = Args>(...args: (keyof TArgs)[]) {
+  const textControl: InputType = { control: { type: 'text' } };
+  return Object.fromEntries(args.map((arg) => [arg, textControl])) as ArgTypes<TArgs>;
+}
+
+export function toDisabledControlArgType<TArgs = Args>(...args: (keyof TArgs)[]) {
+  const disabledControl: InputType = { table: { disabled: true } };
+  return Object.fromEntries(args.map((arg) => [arg, disabledControl])) as ArgTypes<TArgs>;
+}
+
+export const formFieldsArgTypes: ArgTypes<PropsWithLabels<InputProps>> = {
+  ...toTextControlArgTypes('label', 'helpText', 'messageInvalid', 'messageValid', 'value'),
+  validation: {
+    control: { type: 'select' },
+    table: {
+      defaultValue: { summary: FormFieldValidation.None },
+    },
+  },
+  width: {
+    control: { type: 'select' },
+    table: {
+      defaultValue: { summary: FormFieldWidth.Full },
+    },
+  },
 };
