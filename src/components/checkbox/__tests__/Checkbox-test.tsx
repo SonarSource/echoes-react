@@ -25,6 +25,8 @@ import { OmitPropsWithLabels, render } from '~common/helpers/test-utils';
 import { Tooltip } from '../../tooltip';
 import { Checkbox } from '../Checkbox';
 
+const checkboxIdMatcher = expect.stringMatching(/:r\d:checkbox/);
+
 it('should call check function when clicked without label', async () => {
   const onCheck = jest.fn();
   const { container, rerender, user } = setupCheckbox({
@@ -36,13 +38,13 @@ it('should call check function when clicked without label', async () => {
   });
 
   await user.click(screen.getByRole('checkbox', { name: 'me' }));
-  expect(onCheck).toHaveBeenCalledWith(true, undefined);
+  expect(onCheck).toHaveBeenCalledWith(true, checkboxIdMatcher);
   expect(screen.getByTitle('title')).toBeVisible();
   await expect(container).toHaveNoA11yViolations();
 
   rerender({ ariaLabel: undefined, checked: true });
   await user.click(screen.getByRole('checkbox', { name: 'title' }));
-  expect(onCheck).toHaveBeenCalledWith(false, undefined);
+  expect(onCheck).toHaveBeenCalledWith(false, checkboxIdMatcher);
   await expect(container).toHaveNoA11yViolations();
 });
 
@@ -51,11 +53,11 @@ it("should call check function when clicked on it's label", async () => {
   const { rerender, user } = setupCheckbox({ label: 'me', onCheck, checked: false });
 
   await user.click(screen.getByText('me'));
-  expect(onCheck).toHaveBeenCalledWith(true, undefined);
+  expect(onCheck).toHaveBeenCalledWith(true, checkboxIdMatcher);
 
   rerender({ checked: true });
   await user.click(screen.getByRole('checkbox', { name: 'me' }));
-  expect(onCheck).toHaveBeenCalledWith(false, undefined);
+  expect(onCheck).toHaveBeenCalledWith(false, checkboxIdMatcher);
 });
 
 it('should work with indeterminate state', async () => {
@@ -67,7 +69,7 @@ it('should work with indeterminate state', async () => {
   expect(screen.getByRole('checkbox', { name: 'me' })).toHaveAttribute('aria-checked', 'mixed');
 
   await user.click(screen.getByRole('checkbox', { name: 'me' }));
-  expect(onCheck).toHaveBeenCalledWith(true, undefined);
+  expect(onCheck).toHaveBeenCalledWith(true, checkboxIdMatcher);
 });
 
 it('should show a loading state', async () => {
