@@ -28,7 +28,7 @@ import {
   InputStyled,
   InputSuffix,
   InputWrapper,
-} from './TextCommon';
+} from './TextInputBase';
 
 type InputAttributes = Pick<
   InputHTMLAttributes<HTMLInputElement>,

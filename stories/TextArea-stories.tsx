@@ -19,9 +19,7 @@
  */
 import type { Meta, StoryObj } from '@storybook/react';
 import { ComponentProps, createRef, FormEvent, useCallback, useState } from 'react';
-import { Button, ButtonVariety } from '../src/components/buttons';
-import { FormFieldValidation } from '../src/components/form';
-import { TextArea } from '../src/components/text-input';
+import { Button, ButtonVariety, FormFieldValidation, TextArea } from '../src';
 import { basicWrapperDecorator } from './helpers/BasicWrapper';
 import { formFieldsArgTypes } from './helpers/arg-types';
 
@@ -67,7 +65,7 @@ export const WithValidation: Story = {
     minLength: 15,
     width: 'large',
   },
-  render: (_args) => <TextAreaWithValidation {..._args} />,
+  render: (args) => <TextAreaWithValidation {...args} />,
 };
 
 function TextAreaWithValidation(props: ComponentProps<typeof TextArea>) {

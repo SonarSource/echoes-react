@@ -22,7 +22,12 @@ import { forwardRef, InputHTMLAttributes, useId } from 'react';
 import { PropsWithLabels } from '~types/utils';
 import { FormField, FormFieldValidation } from '../form/FormField';
 import { useFormFieldA11y } from '../form/useFormFieldA11y';
-import { InputEventProps, InputProps, InputStyled, InputWrapper } from './TextCommon';
+import {
+  InputEventProps,
+  InputProps,
+  InputStyled,
+  InputWrapper,
+} from '../text-input/TextInputBase';
 
 type InputAttributes = Pick<
   InputHTMLAttributes<HTMLTextAreaElement>,

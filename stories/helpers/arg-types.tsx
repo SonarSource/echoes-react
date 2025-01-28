@@ -23,7 +23,7 @@ import { Args, InputType } from 'storybook/internal/types';
 import { PropsWithLabels } from '~types/utils';
 import { FormFieldValidation, FormFieldWidth } from '../../src/components/form';
 import * as icons from '../../src/components/icons';
-import { InputProps } from '../../src/components/text-input/TextCommon';
+import { InputProps } from '../../src/components/text-input/TextInputBase';
 
 const iconKeys = Object.keys(icons) as (keyof typeof icons)[];
 

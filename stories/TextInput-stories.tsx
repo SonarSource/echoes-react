@@ -19,10 +19,14 @@
  */
 import type { Meta, StoryObj } from '@storybook/react';
 import { ComponentProps, createRef, FormEvent, useCallback, useState } from 'react';
-import { Button, ButtonVariety } from '../src/components/buttons';
-import { FormFieldValidation } from '../src/components/form';
-import { IconCopy, IconSearch } from '../src/components/icons';
-import { TextInput } from '../src/components/text-input';
+import {
+  Button,
+  ButtonVariety,
+  FormFieldValidation,
+  IconCopy,
+  IconSearch,
+  TextInput,
+} from '../src';
 import { basicWrapperDecorator } from './helpers/BasicWrapper';
 import { formFieldsArgTypes, iconsElementsArgType } from './helpers/arg-types';
 
@@ -81,7 +85,7 @@ export const WithValidation: Story = {
     type: 'email',
     width: 'medium',
   },
-  render: (_args) => <InputWithValidation {..._args} />,
+  render: (args) => <InputWithValidation {...args} />,
 };
 
 function InputWithValidation(props: ComponentProps<typeof TextInput>) {

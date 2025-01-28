@@ -20,7 +20,7 @@
 import { screen } from '@testing-library/react';
 import { useState } from 'react';
 import { render } from '~common/helpers/test-utils';
-import { TextArea } from '../TextArea';
+import { TextArea } from '../../text-area/TextArea';
 
 it('should render with a label, an help text and a placeholder', () => {
   render(<TextArea helpText="I'm helpin'" label="Input Label" placeholder="Placeholding" />);
