@@ -20,6 +20,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import type { ComponentProps } from 'react';
 import { FormField, FormFieldValidation, FormFieldWidth } from '../src/components/form/FormField';
+import { toTextControlArgTypes } from './helpers/arg-types';
 
 type FormField = typeof FormField;
 
@@ -39,6 +40,7 @@ const meta: Meta<FormField> = {
         defaultValue: { summary: FormFieldWidth.Full },
       },
     },
+    ...toTextControlArgTypes('label', 'description', 'messageInvalid', 'messageValid'),
   },
   parameters: {
     docs: {

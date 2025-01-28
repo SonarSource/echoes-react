@@ -19,7 +19,7 @@
  */
 import { useId } from 'react';
 
-type UseFormFelidAccessabilityInput = {
+type UseFormFieldA11yInput = {
   /**
    * Explicitly set the `controlId` for the form field (optional).
    */
@@ -34,7 +34,7 @@ type UseFormFelidAccessabilityInput = {
   hasValidationMessage?: boolean;
 };
 
-type UseFormFelidAccessabilityOutput = {
+type UseFormFieldA11yOutput = {
   /**
    * The ID that should be used for the form control.
    */
@@ -69,12 +69,10 @@ type UseFormFelidAccessabilityOutput = {
  *   descriptionId,
  *   labelId,
  *   validationMessageId
- * } = useFormFelidAccessability()
+ * } = useFormFieldA11y()
  * ```
  */
-export function useFormFelidAccessability(
-  input: UseFormFelidAccessabilityInput = {},
-): UseFormFelidAccessabilityOutput {
+export function useFormFieldA11y(input: UseFormFieldA11yInput = {}): UseFormFieldA11yOutput {
   const { controlId, hasDescription, hasValidationMessage } = input;
 
   const defaultId = useId();
@@ -94,7 +92,7 @@ export function useFormFelidAccessability(
 
   return {
     controlId: id,
-    describedBy: describedBy.length ? describedBy.join(' ') : undefined,
+    describedBy: describedBy.length > 0 ? describedBy.join(' ') : undefined,
     descriptionId,
     labelId,
     validationMessageId,

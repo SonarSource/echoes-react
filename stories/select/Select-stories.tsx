@@ -21,10 +21,20 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { ComponentProps, useState } from 'react';
 import { FormFieldWidth, IconBell, IconBug, IconMegaphone, Select } from '../../src';
+import {
+  formFieldsArgTypes,
+  iconsElementsArgType,
+  toDisabledControlArgType,
+} from '../helpers/arg-types';
 
 const meta: Meta<typeof Select> = {
   component: Select,
   title: 'Echoes/Select/Select',
+  argTypes: {
+    ...formFieldsArgTypes,
+    valueIcon: iconsElementsArgType,
+    ...toDisabledControlArgType('onChange', 'onOpen'),
+  },
 };
 
 export default meta;
