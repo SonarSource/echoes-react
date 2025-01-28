@@ -20,6 +20,7 @@
 
 import type { Meta, StoryObj } from '@storybook/react';
 import { RadioButtonGroup, RadioButtonGroupAlignment } from '../src';
+import { formFieldsArgTypes } from './helpers/arg-types';
 
 const meta: Meta<typeof RadioButtonGroup> = {
   component: RadioButtonGroup,
@@ -28,11 +29,7 @@ const meta: Meta<typeof RadioButtonGroup> = {
     id: 'radio',
     isRequired: false,
   },
-  argTypes: {
-    label: { type: 'string' },
-    helpText: { type: 'string' },
-    messageInvalid: { type: 'string' },
-  },
+  argTypes: formFieldsArgTypes,
 };
 
 export default meta;

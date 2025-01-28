@@ -19,31 +19,20 @@
  */
 import type { Meta, StoryObj } from '@storybook/react';
 import { ComponentProps, createRef, FormEvent, useCallback, useState } from 'react';
-import {
-  Button,
-  ButtonVariety,
-  FormFieldValidation,
-  IconCopy,
-  IconSearch,
-  TextInput,
-} from '../src';
+import { Button, ButtonVariety, FormFieldValidation, TextArea } from '../src';
 import { basicWrapperDecorator } from './helpers/BasicWrapper';
-import { formFieldsArgTypes, iconsElementsArgType } from './helpers/arg-types';
+import { formFieldsArgTypes } from './helpers/arg-types';
 
-const meta: Meta<typeof TextInput> = {
-  component: TextInput,
-  title: 'Echoes/TextInput',
-  argTypes: {
-    ...formFieldsArgTypes,
-    prefix: iconsElementsArgType,
-    suffix: iconsElementsArgType,
-  },
+const meta: Meta<typeof TextArea> = {
+  component: TextArea,
+  title: 'Echoes/TextArea',
+  argTypes: formFieldsArgTypes,
   decorators: [basicWrapperDecorator],
 };
 
 export default meta;
 
-type Story = StoryObj<typeof TextInput>;
+type Story = StoryObj<typeof TextArea>;
 
 export const Basic: Story = {
   args: {
@@ -59,58 +48,54 @@ export const AsFormField: Story = {
     isRequired: true,
     label: `I'm a label`,
     placeholder: 'I am a placeholder',
+    isResizable: true,
     width: 'medium',
-  },
-};
-
-export const WithPrefixAndSuffix: Story = {
-  args: {
-    helpText: `I'm a text to help you fill me correctly!`,
-    isRequired: true,
-    label: `I'm a label`,
-    prefix: <IconSearch />,
-    suffix: <IconCopy />,
-    width: 'medium',
+    rows: 5,
   },
 };
 
 export const WithValidation: Story = {
   args: {
-    helpText: `You must enter a real email`,
+    helpText: `You must enter an address on at least two lines`,
     isRequired: true,
-    label: `Email`,
-    messageValid: `Bravo! You've entered a valid email`,
-    placeholder: 'Email',
-    prefix: <IconSearch />,
-    type: 'email',
-    width: 'medium',
+    label: `Address`,
+    messageValid: `Bravo! You've entered a valid address`,
+    placeholder: 'Your address',
+    maxLength: 60,
+    minLength: 15,
+    width: 'large',
   },
-  render: (args) => <InputWithValidation {...args} />,
+  render: (args) => <TextAreaWithValidation {...args} />,
 };
 
-function InputWithValidation(props: ComponentProps<typeof TextInput>) {
-  const emailInputRef = createRef<HTMLInputElement>();
+function TextAreaWithValidation(props: ComponentProps<typeof TextArea>) {
+  const addressInputRef = createRef<HTMLTextAreaElement>();
   const [validation, setValidation] = useState(FormFieldValidation.None);
   const [messageInvalid, setMessageInvalid] = useState<string | undefined>();
 
   const onSubmit = useCallback(
     (event: FormEvent<HTMLFormElement>) => {
       event.preventDefault();
-
-      if (emailInputRef.current?.validity.typeMismatch) {
+      const validity = addressInputRef.current?.validity;
+      if (validity?.tooShort || validity?.tooLong) {
         setValidation(FormFieldValidation.Invalid);
-        setMessageInvalid('Please enter a valid email');
-      } else if (emailInputRef.current?.validity.valueMissing) {
+        setMessageInvalid('The address must be between 15 and 60 characters');
+      } else if (validity?.valueMissing) {
         setValidation(FormFieldValidation.Invalid);
-        setMessageInvalid('The email is mandatory');
-      } else if (emailInputRef.current?.value.endsWith('@sonarsource.com')) {
+        setMessageInvalid('The address is mandatory');
+      } else if (
+        addressInputRef.current &&
+        addressInputRef.current.value.split(/\r|\r\n|\n/).length < 2
+      ) {
         setValidation(FormFieldValidation.Invalid);
-        setMessageInvalid('Oh no! Not a SonarSourcer again! Only private emails allowed, sorry!');
-      } else if (emailInputRef.current?.validity.valid) {
+        setMessageInvalid(
+          'Oups, you must enter an address on at least two lines for better readability!',
+        );
+      } else if (validity?.valid) {
         setValidation(FormFieldValidation.Valid);
       }
     },
-    [emailInputRef],
+    [addressInputRef],
   );
 
   const onChange = useCallback(() => {
@@ -119,11 +104,11 @@ function InputWithValidation(props: ComponentProps<typeof TextInput>) {
 
   return (
     <form noValidate onSubmit={onSubmit}>
-      <TextInput
+      <TextArea
         {...props}
         messageInvalid={messageInvalid}
         onChange={onChange}
-        ref={emailInputRef}
+        ref={addressInputRef}
         validation={validation}
       />
       <br />
