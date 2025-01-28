@@ -42,6 +42,7 @@ interface Props extends ValidationProps {
 
   // Group Props
   alignment?: RadioButtonGroupAlignment;
+  className?: string;
   defaultValue?: string;
   id?: string;
   isDisabled?: boolean;
@@ -55,6 +56,7 @@ export const RadioButtonGroup = forwardRef<HTMLDivElement, PropsWithLabels<Props
     alignment = RadioButtonGroupAlignment.Vertical,
     ariaLabel,
     ariaLabelledBy,
+    className,
     helpText,
     id = 'radio-button-group',
     isDisabled: disabled,
@@ -79,6 +81,7 @@ export const RadioButtonGroup = forwardRef<HTMLDivElement, PropsWithLabels<Props
 
   return (
     <FormField
+      className={className}
       description={helpText}
       descriptionId={descriptionId}
       isDisabled={disabled}
