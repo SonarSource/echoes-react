@@ -26,7 +26,7 @@ import { Spinner } from '../spinner';
 import { HelperText } from '../typography';
 import { CheckboxIcon } from './CheckboxIcon';
 
-interface Props {
+interface CheckboxPropsBase {
   checked: boolean | 'indeterminate';
   className?: string;
   hasError?: boolean;
@@ -38,7 +38,9 @@ interface Props {
   title?: string;
 }
 
-export const Checkbox = forwardRef<HTMLButtonElement, PropsWithLabels<Props>>((props, ref) => {
+export type CheckboxProps = PropsWithLabels<CheckboxPropsBase>;
+
+export const Checkbox = forwardRef<HTMLButtonElement, CheckboxProps>((props, ref) => {
   const {
     ariaLabel,
     ariaLabelledBy,
