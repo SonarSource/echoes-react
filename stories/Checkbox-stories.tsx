@@ -108,13 +108,9 @@ export const WithTooltip: Story = {
     onCheck: () => {},
   },
   render: (args) => (
-    <div style={{ display: 'flex', alignItems: 'center' }}>
-      <Tooltip content="test">
-        <div>
-          <CheckboxState initialValue={args.checked} {...args} />
-        </div>
-      </Tooltip>
-    </div>
+    <Tooltip content="This is a checkbox with a tooltip">
+      <CheckboxState initialValue={args.checked} {...args} />
+    </Tooltip>
   ),
 };
 
