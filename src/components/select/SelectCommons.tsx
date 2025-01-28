@@ -34,7 +34,7 @@ import {
   FormFieldValidation,
   FormFieldWidth,
 } from '../form/FormField';
-import { useFormFelidAccessability } from '../form/useFormFelidAccessability';
+import { useFormFieldA11y } from '../form/useFormFieldA11y';
 import { OptionComponent, useSelectOptionFunction } from './SelectItemCommons';
 import { SelectData, SelectHighlight, SelectOption, SelectOptionType } from './SelectTypes';
 import { SelectFilterFunction, useSelectOptionFilter } from './useSelectOptionFilter';
@@ -103,12 +103,11 @@ export const SelectBase = forwardRef<HTMLInputElement, PropsWithLabels<SelectBas
     const isClearable = !isNotClearable && !isRequired && !isDisabled;
     const defaultId = `${useId()}select`;
 
-    const { controlId, describedBy, descriptionId, validationMessageId } =
-      useFormFelidAccessability({
-        controlId: id ?? defaultId,
-        hasDescription: Boolean(helpText),
-        hasValidationMessage: Boolean(messageValid || messageInvalid),
-      });
+    const { controlId, describedBy, descriptionId, validationMessageId } = useFormFieldA11y({
+      controlId: id ?? defaultId,
+      hasDescription: Boolean(helpText),
+      hasValidationMessage: Boolean(messageValid || messageInvalid),
+    });
 
     const rightSection = getSelectRightSection({
       hasValue: isDefined(selectProps.value) && selectProps.value !== '',
