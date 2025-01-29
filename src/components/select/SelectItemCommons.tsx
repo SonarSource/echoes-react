@@ -21,7 +21,6 @@
 import styled from '@emotion/styled';
 import { ComboboxLikeRenderOptionInput } from '@mantine/core';
 import { ComponentType, useCallback } from 'react';
-import { isDefined } from '~common/helpers/types';
 import { IconCheck } from '..';
 import { SelectOption, SelectOptionType } from './SelectTypes';
 
@@ -50,7 +49,7 @@ export function useSelectOptionFunction(
           <SelectItemInner>
             {OptionComponent ? <OptionComponent {...optionComponentProps} /> : <span>{label}</span>}
 
-            {isDefined(helpText) && <SelectItemHelpText>{helpText}</SelectItemHelpText>}
+            {helpText && <SelectItemHelpText>{helpText}</SelectItemHelpText>}
           </SelectItemInner>
 
           {suffix}
