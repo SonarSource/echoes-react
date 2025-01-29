@@ -18,7 +18,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 import styled from '@emotion/styled';
-import { type ReactNode, type RefAttributes, forwardRef, useId } from 'react';
+import { type ReactNode, type RefAttributes, forwardRef, useId, useMemo } from 'react';
 import { PropsWithLabels } from '~types/utils';
 import { type CheckboxProps, Checkbox } from '../checkbox/Checkbox';
 import {
@@ -82,12 +82,15 @@ export const CheckboxGroup: CheckboxGroup = forwardRef<HTMLDivElement, CheckboxG
       label,
       messageInvalid,
       messageValid,
+      name,
       onChange,
       options,
+      serializeValue = defaultSerializer,
       validation,
       value,
       width,
     } = props;
+
     const defaultId = `${useId()}checkbox`;
 
     const { controlId, describedBy, descriptionId, labelId, validationMessageId } =
@@ -96,6 +99,10 @@ export const CheckboxGroup: CheckboxGroup = forwardRef<HTMLDivElement, CheckboxG
         hasDescription: Boolean(helpText),
         hasValidationMessage: Boolean(messageInvalid || messageValid),
       });
+
+    const serializedValue = useMemo(() => {
+      return name ? value.map(serializeValue) : [];
+    }, [name, serializeValue, value]);
 
     return (
       <FormField
@@ -148,6 +155,7 @@ export const CheckboxGroup: CheckboxGroup = forwardRef<HTMLDivElement, CheckboxG
               />
             );
           })}
+          {name && <input name={name} type="hidden" value={serializedValue} />}
         </CheckboxGroupRoot>
       </FormField>
     );
@@ -221,6 +229,15 @@ interface CheckboxGroupPropsBase<T> extends RefAttributes<HTMLDivElement>, Valid
    */
   isRequired?: boolean;
   /**
+   * You may provide a name for the group that is used when submitting a form
+   * (optional). The value of the field will be a comma separated list of the
+   * selected values.
+   *
+   * If you need to control how the selected values are serialized, you can
+   * provide a custom serializer using the `serializeValue` prop.
+   */
+  name?: string;
+  /**
    * Called when the value of the group changes.
    */
   onChange(value: T[]): void;
@@ -229,6 +246,11 @@ interface CheckboxGroupPropsBase<T> extends RefAttributes<HTMLDivElement>, Valid
    * have a unique value.
    */
   options: [CheckboxOption<T>, ...CheckboxOption<T>[]];
+  /**
+   * Provide custom serialization for the selected values (optional). The
+   * default behavior is to cast each value to a string.
+   */
+  serializeValue?: (value: T) => string;
   /**
    * An unordered list of the selected values. The value of each checkbox is
    * assumed to be unique.
@@ -249,3 +271,8 @@ const CheckboxGroupRoot = styled.div`
   flex-direction: column;
   row-gap: var(--echoes-dimension-space-100);
 `;
+
+/**
+ * Takes an unknown value and coerces it to a string.
+ */
+const defaultSerializer = (value: unknown) => String(value);
