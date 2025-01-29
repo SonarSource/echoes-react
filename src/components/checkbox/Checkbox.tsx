@@ -61,6 +61,7 @@ export const Checkbox = forwardRef<HTMLButtonElement, CheckboxProps>((props, ref
 
   const defaultId = `${useId()}checkbox`;
   const controlId = id ?? defaultId;
+  const labelId = `${controlId}-label`;
 
   const handleChange = useCallback(
     (checked: boolean | 'indeterminate') => {
@@ -78,7 +79,7 @@ export const Checkbox = forwardRef<HTMLButtonElement, CheckboxProps>((props, ref
           <CheckboxRoot
             aria-disabled={isDisabled}
             aria-label={ariaLabel ?? title}
-            aria-labelledby={ariaLabelledBy}
+            aria-labelledby={ariaLabelledBy ?? labelId}
             checked={checked}
             id={controlId}
             onCheckedChange={handleChange}
@@ -95,7 +96,11 @@ export const Checkbox = forwardRef<HTMLButtonElement, CheckboxProps>((props, ref
         </Spinner>
         {(label || helpText) && (
           <LabelWrapper>
-            {label && <Label htmlFor={controlId}>{label}</Label>}
+            {label && (
+              <Label htmlFor={controlId} id={labelId}>
+                {label}
+              </Label>
+            )}
             {helpText && <HelperText>{helpText}</HelperText>}
           </LabelWrapper>
         )}

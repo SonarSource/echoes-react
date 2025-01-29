@@ -27,6 +27,11 @@ import { Checkbox } from '../Checkbox';
 
 const checkboxIdMatcher = expect.stringMatching(/:r\d:checkbox/);
 
+it("shouldn't have any a11y violations", async () => {
+  const { container } = setupCheckbox({ label: 'Label' });
+  await expect(container).toHaveNoA11yViolations();
+});
+
 it('should call check function when clicked without label', async () => {
   const onCheck = jest.fn();
   const { container, rerender, user } = setupCheckbox({
