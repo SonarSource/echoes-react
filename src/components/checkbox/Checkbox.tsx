@@ -78,6 +78,7 @@ export const Checkbox = forwardRef<HTMLButtonElement, CheckboxProps>((props, ref
         <Spinner isLoading={isLoading}>
           <CheckboxRoot
             aria-disabled={isDisabled}
+            aria-invalid={hasError}
             aria-label={ariaLabel ?? title}
             aria-labelledby={ariaLabelledBy ?? labelId}
             checked={checked}

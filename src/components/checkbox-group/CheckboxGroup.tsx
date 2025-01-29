@@ -138,7 +138,7 @@ export const CheckboxGroup: CheckboxGroup = forwardRef<HTMLDivElement, CheckboxG
                 isDisabled={isDisabled}
                 key={option.label}
                 onCheck={(checkedState) => {
-                  if (isDisabled || option.isDisabled) {
+                  if ('isDisabled' in option ? option.isDisabled : isDisabled) {
                     return;
                   }
 
@@ -266,7 +266,7 @@ interface CheckboxGroupPropsBase<T> extends RefAttributes<HTMLDivElement>, Valid
 export type CheckboxGroupProps<T = unknown> = PropsWithLabels<CheckboxGroupPropsBase<T>>;
 
 const CheckboxGroupRoot = styled.div`
-  column-gap: var(--echoes-dimension-space-150);
+  column-gap: var(--echoes-dimension-space-300);
   display: flex;
   flex-direction: column;
   row-gap: var(--echoes-dimension-space-100);
