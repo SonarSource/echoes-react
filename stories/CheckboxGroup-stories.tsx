@@ -115,8 +115,8 @@ export const HTMLFormData: Story = {
         is included in the form data. \n\n Note that using form data **is not**
         type-safe. In addition, holding state in HTML means your component is
         not a function of state (\`UI = function(state)\`). \n\n Furthermore,
-        the value must be serialized to string, since HTML is text based format. For
-        these reasons, using HTML form data is not recommended.
+        the value must be serialized to string, since HTML is a text based format.
+        For these reasons, using HTML form data is not recommended.
         `,
       },
     },
