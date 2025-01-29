@@ -58,13 +58,13 @@ import { useFormFieldA11y } from '../form/useFormFieldA11y';
  * ```tsx
  * <CheckboxGroup
  *   label="Favorite colors"
- *   onChange={setSelectedColors}
+ *   onChange={setFavoriteColors}
  *   options={[
  *     { label: 'Red' },
  *     { label: 'Green' },
  *     { label: 'Blue' },
  *   ]}
- *   value={selectedColors}
+ *   value={favoriteColors}
  * />
  * ```
  */
@@ -155,7 +155,7 @@ export const CheckboxGroup: CheckboxGroup = forwardRef<HTMLDivElement, CheckboxG
               />
             );
           })}
-          {name && <input name={name} type="hidden" value={serializedValue} />}
+          {Boolean(name) && <input name={name} type="hidden" value={serializedValue} />}
         </CheckboxGroupRoot>
       </FormField>
     );
@@ -270,6 +270,10 @@ const CheckboxGroupRoot = styled.div`
   display: flex;
   flex-direction: column;
   row-gap: var(--echoes-dimension-space-100);
+
+  &[data-direction='horizontal'] {
+    flex-direction: row;
+  }
 `;
 
 /**

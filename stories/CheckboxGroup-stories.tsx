@@ -18,7 +18,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 import type { Meta, StoryObj } from '@storybook/react';
-import { forwardRef, useState } from 'react';
+import { forwardRef, useEffect, useRef, useState } from 'react';
 import {
   type CheckboxGroupProps,
   CheckboxGroup,
@@ -47,26 +47,121 @@ type Story = StoryObj<CheckboxGroup>;
 
 export const Default: Story = {
   args: {
-    helpText: 'Select all topics that interest you',
+    helpText: 'Select all topics that interest you', // NOSONAR
     label: 'Interests',
-    onChange: undefined,
     options: [{ label: 'Travel' }, { label: 'Music' }, { label: 'Sports' }],
   },
 };
 
-const CheckboxGroupState = forwardRef<HTMLDivElement, CheckboxGroupProps>(
-  ({ onChange, value, ...props }, ref) => {
-    const [localValue, setLocalValue] = useState([]);
+export const Horizontal: Story = {
+  args: {
+    direction: 'horizontal',
+    helpText: 'Select all topics that interest you',
+    label: 'Interests',
+    options: [{ label: 'Travel' }, { label: 'Music' }, { label: 'Sports' }],
+  },
+};
 
-    return (
-      <CheckboxGroup
-        onChange={onChange ?? setLocalValue}
-        ref={ref}
-        value={value ?? localValue}
-        {...props}
-      />
-    );
+export const Disabled: Story = {
+  args: {
+    helpText: 'Select all topics that interest you',
+    isDisabled: true,
+    label: 'Interests',
+    options: [{ label: 'Travel' }, { label: 'Music' }, { label: 'Sports' }],
+  },
+};
+
+export const Required: Story = {
+  args: {
+    helpText: 'Select all topics that interest you',
+    isRequired: true,
+    label: 'Interests',
+    options: [{ label: 'Travel' }, { label: 'Music' }, { label: 'Sports' }],
+  },
+};
+
+export const Invalid: Story = {
+  args: {
+    helpText: 'Select all topics that interest you',
+    label: 'Interests',
+    messageInvalid: 'Your interests are invalid',
+    options: [{ label: 'Travel' }, { label: 'Music' }, { label: 'Sports' }],
+    validation: 'invalid',
+  },
+};
+
+export const Valid: Story = {
+  args: {
+    helpText: 'Select all topics that interest you',
+    label: 'Interests',
+    messageValid: 'Your interests are valid',
+    options: [{ label: 'Travel' }, { label: 'Music' }, { label: 'Sports' }],
+    validation: 'valid',
+  },
+};
+
+export const HTMLFormData: Story = {
+  args: {
+    helpText: 'Select all topics that interest you',
+    label: 'Interests',
+    name: 'interests',
+    options: [{ label: 'Travel' }, { label: 'Music' }, { label: 'Sports' }],
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: `This example shows how to integrate a \`CheckboxGroup\`
+        component with an HTML form, such that the value  of the \`CheckboxGroup\`
+        is included in the form data. \n\n Note that using form data **is not**
+        type-safe. In addition, holding state in HTML means your component is
+        not a function of state (\`UI = function(state)\`). \n\n Furthermore,
+        the value must be serialized to string, since HTML is text based format. For
+        these reasons, using HTML form data is not recommended.
+        `,
+      },
+    },
+  },
+  render: (props) => <Form {...props} />,
+};
+
+const CheckboxGroupState = forwardRef<HTMLDivElement, CheckboxGroupProps>(
+  ({ onChange: _onChange, value: initialValue = [], ...props }, ref) => {
+    const [value, setValue] = useState(initialValue);
+    return <CheckboxGroup onChange={setValue} ref={ref} value={value} {...props} />;
   },
 );
 
 CheckboxGroupState.displayName = 'CheckboxGroupState';
+
+const Form = forwardRef<HTMLDivElement, CheckboxGroupProps>(
+  ({ onChange: _onChange, value: initialValue = [], ...props }, ref) => {
+    const [value, setValue] = useState(initialValue);
+    const formRef = useRef<HTMLFormElement>(null);
+    const [formData, setFormData] = useState<string | null>(null);
+
+    useEffect(() => {
+      if (!formRef.current) {
+        setFormData(null);
+        return;
+      }
+
+      const data = Object.fromEntries(new FormData(formRef.current).entries());
+      setFormData(JSON.stringify(data, null, 2));
+    }, [value]);
+
+    return (
+      <>
+        <form ref={formRef}>
+          <CheckboxGroup onChange={setValue} ref={ref} value={value} {...props} />
+        </form>
+        {formData && (
+          <pre>
+            <b>Form Data:</b> {formData}
+          </pre>
+        )}
+      </>
+    );
+  },
+);
+
+Form.displayName = 'Form';
