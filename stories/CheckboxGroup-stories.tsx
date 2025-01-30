@@ -55,7 +55,7 @@ export const Default: Story = {
 
 export const Horizontal: Story = {
   args: {
-    direction: 'horizontal',
+    alignment: 'horizontal',
     helpText: 'Select all topics that interest you',
     label: 'Interests',
     options: [{ label: 'Travel' }, { label: 'Music' }, { label: 'Sports' }],
