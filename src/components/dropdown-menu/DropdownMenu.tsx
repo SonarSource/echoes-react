@@ -152,7 +152,6 @@ export const DropdownMenu = Object.assign(DropdownMenuRoot, {
   ItemButtonDestructive: DropdownMenuItemButtonDestructive,
   ItemLink: DropdownMenuItemLink,
   ItemLinkDownload: DropdownMenuItemLinkDownload,
-  Root: DropdownMenuRoot,
   Separator: DropdownMenuSeparator,
   SubMenu: DropdownMenuSubMenu,
 });
