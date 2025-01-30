@@ -19,6 +19,7 @@
  */
 import styled from '@emotion/styled';
 import { type ComponentProps, type JSX, forwardRef } from 'react';
+import { TextNodeOptional } from '~types/utils';
 import { MessageInline, MessageInlineSize, MessageType } from '../messages';
 import { HelperText } from '../typography';
 import { FormFieldLabel } from './FormFieldLabel';
@@ -133,18 +134,17 @@ export enum FormFieldWidth {
   Full = 'full',
 }
 
-type Message = JSX.Element | string | false | null;
 type WhiteListedProps = Pick<ComponentProps<'div'>, 'className'>;
 
 export interface ValidationProps {
   /**
    * The message to display when the form field is invalid (optional).
    */
-  messageInvalid?: Message;
+  messageInvalid?: TextNodeOptional;
   /**
    * The message to display when the form field is valid (optional).
    */
-  messageValid?: Message;
+  messageValid?: TextNodeOptional;
   /**
    * The validation state of the form field (optional). The default is `none`,
    * meaning the form field has not been explicitly validated.
@@ -165,7 +165,7 @@ interface FormFieldProps extends ValidationProps, WhiteListedProps {
   /**
    * A descriptive message for the form field (optional).
    */
-  description?: Message;
+  description?: TextNodeOptional;
   /**
    * The ID of the description for the form field (optional). Useful for
    * establishing a relationship between a description and a form control using
@@ -185,7 +185,7 @@ interface FormFieldProps extends ValidationProps, WhiteListedProps {
   /**
    * The label for the form field (optional).
    */
-  label?: JSX.Element | string;
+  label?: TextNodeOptional;
   /**
    * The ID of the label for the form field (optional).
    */

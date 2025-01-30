@@ -167,13 +167,13 @@ function render({
 }: PropsWithChildren<ComponentProps<typeof DropdownMenu.ItemButtonCheckable>>) {
   return (
     <BasicWrapper>
-      <DropdownMenu.Root
+      <DropdownMenu
         isOpen
         items={
           <DropdownMenu.ItemButtonCheckable {...args}>{children}</DropdownMenu.ItemButtonCheckable>
         }>
         <MenuButton />
-      </DropdownMenu.Root>
+      </DropdownMenu>
     </BasicWrapper>
   );
 }

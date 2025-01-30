@@ -73,11 +73,11 @@ function render({
 }: PropsWithChildren<ComponentProps<typeof DropdownMenu.ItemLinkDownload>>) {
   return (
     <BasicWrapper>
-      <DropdownMenu.Root
+      <DropdownMenu
         isOpen
         items={<DropdownMenu.ItemLinkDownload {...args}>{children}</DropdownMenu.ItemLinkDownload>}>
         <MenuButton />
-      </DropdownMenu.Root>
+      </DropdownMenu>
     </BasicWrapper>
   );
 }

@@ -21,6 +21,7 @@
 import styled from '@emotion/styled';
 import * as radixDropdownMenu from '@radix-ui/react-dropdown-menu';
 import { forwardRef, MouseEventHandler, ReactNode, useCallback } from 'react';
+import { TextNode } from '~types/utils';
 import { IconCheck } from '../icons/IconCheck';
 
 type CheckProps =
@@ -37,7 +38,7 @@ export type DropdownMenuItemBaseProps = CheckProps & {
   ariaLabel?: string;
   children: ReactNode;
   className?: string;
-  helpText?: JSX.Element | string;
+  helpText?: TextNode;
   isDisabled?: boolean;
   onClick?: MouseEventHandler<HTMLDivElement>;
   prefix?: ReactNode;

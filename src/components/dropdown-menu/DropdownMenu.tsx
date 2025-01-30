@@ -143,19 +143,18 @@ const DropdownMenuRoot = forwardRef<HTMLButtonElement, DropdownMenuRootProps>(
     );
   },
 );
-DropdownMenuRoot.displayName = 'DropdownMenu.Root';
+DropdownMenuRoot.displayName = 'DropdownMenu';
 
-export const DropdownMenu = {
+export const DropdownMenu = Object.assign(DropdownMenuRoot, {
   GroupLabel: DropdownMenuGroupLabel,
   ItemButton: DropdownMenuItemButton,
   ItemButtonCheckable: DropdownMenuItemButtonCheckable,
   ItemButtonDestructive: DropdownMenuItemButtonDestructive,
   ItemLink: DropdownMenuItemLink,
   ItemLinkDownload: DropdownMenuItemLinkDownload,
-  Root: DropdownMenuRoot,
   Separator: DropdownMenuSeparator,
   SubMenu: DropdownMenuSubMenu,
-};
+});
 
 const StyledHeaderLabelAndHelpText = styled.div`
   display: flex;

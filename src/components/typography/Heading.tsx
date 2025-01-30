@@ -34,8 +34,9 @@ type HeadingTag = 'h1' | 'h2' | 'h3' | 'h4' | 'h5';
 interface Props {
   as: HeadingTag;
   className?: string;
+  id?: string;
   hasMarginBottom?: boolean;
-  size?: HeadingSize;
+  size?: `${HeadingSize}`;
 }
 
 export const Heading = forwardRef<HTMLDivElement, Readonly<PropsWithChildren<Props>>>(
@@ -61,7 +62,7 @@ const StyledHeading = styled.div<Required<Pick<Props, 'hasMarginBottom' | 'size'
   max-width: var(--echoes-sizes-typography-max-width-default);
 
   ${({ hasMarginBottom, size }) =>
-    hasMarginBottom ? `margin-bottom: ${bottomMarginByHeadingSize(size)}` : ''}
+    hasMarginBottom ? `margin-bottom: ${bottomMarginByHeadingSize({ size })}` : ''}
 `;
 
 function getHeadingFont({ size }: Required<Pick<Props, 'size'>>) {
@@ -76,8 +77,8 @@ const HEADING_TYPOGRAPHY_MAP = {
   [HeadingSize.ExtraLarge]: 'var(--echoes-typography-heading-xlarge)',
 };
 
-const bottomMarginByHeadingSize = (headingSize: HeadingSize) => {
-  switch (headingSize) {
+const bottomMarginByHeadingSize = ({ size }: Required<Pick<Props, 'size'>>) => {
+  switch (size) {
     case HeadingSize.Large:
       return 'var(--echoes-dimension-space-200)';
     case HeadingSize.ExtraLarge:

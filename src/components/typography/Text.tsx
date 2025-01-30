@@ -34,8 +34,9 @@ type TextTags = 'span' | 'p' | 'div' | 'strong' | 'b' | 'em' | 'i';
 type Props = {
   as?: TextTags;
   className?: string;
+  id?: string;
   isHighlighted?: boolean;
-  size?: TextSize;
+  size?: `${TextSize}`;
 } & ColorProps;
 
 type ColorProps =

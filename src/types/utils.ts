@@ -18,12 +18,17 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+import { JSX } from 'react';
+
+export type TextNode = JSX.Element | string;
+export type TextNodeOptional = TextNode | false | null;
+
 export interface PropsLabel {
   ariaLabel?: string;
   ariaLabelledBy?: never;
   id?: string;
-  label: JSX.Element | string;
-  helpText?: JSX.Element | string | false | null;
+  label: TextNode;
+  helpText?: TextNodeOptional;
 }
 
 export interface PropsAriaLabel {

@@ -18,11 +18,12 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 import styled from '@emotion/styled';
-import { type JSX, forwardRef } from 'react';
+import { forwardRef } from 'react';
+import { TextNodeOptional } from '~types/utils';
 import { Label } from '../typography';
 
 interface Props {
-  children?: JSX.Element | string;
+  children?: TextNodeOptional;
   /**
    * The ID of the form control that this label is associated with.
    */

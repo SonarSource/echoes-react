@@ -25,6 +25,7 @@ type InputEventAttributesSubset =
   | 'onFocus'
   | 'onBlur'
   | 'onChange'
+  | 'onInvalid'
   | 'onKeyDown'
   | 'onKeyPress'
   | 'onKeyUp'
