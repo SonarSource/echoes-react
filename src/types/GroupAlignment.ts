@@ -17,4 +17,17 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-export { type CheckboxGroupProps, CheckboxGroup } from './CheckboxGroup';
+
+/**
+ * Options for aligning items in a group.
+ */
+export enum GroupAlignment {
+  /**
+   * Align items in a row.
+   */
+  Horizontal = 'horizontal',
+  /**
+   * Align items in a column.
+   */
+  Vertical = 'vertical',
+}

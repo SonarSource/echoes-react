@@ -19,7 +19,7 @@
  */
 
 import type { Meta, StoryObj } from '@storybook/react';
-import { RadioButtonGroup, RadioButtonGroupAlignment } from '../src';
+import { GroupAlignment, RadioButtonGroup } from '../src';
 import { formFieldsArgTypes } from './helpers/arg-types';
 
 const meta: Meta<typeof RadioButtonGroup> = {
@@ -79,7 +79,7 @@ export const Horizontal: Story = {
       { label: 'Two', value: '2' },
       { label: 'Three', value: '3' },
     ],
-    alignment: RadioButtonGroupAlignment.Horizontal,
+    alignment: GroupAlignment.Horizontal,
   },
 };
 

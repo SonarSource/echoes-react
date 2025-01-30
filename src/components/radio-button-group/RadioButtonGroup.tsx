@@ -21,6 +21,7 @@
 import styled from '@emotion/styled';
 import * as RadioGroup from '@radix-ui/react-radio-group';
 import { ReactNode, forwardRef, useId } from 'react';
+import { GroupAlignment } from '~types/GroupAlignment';
 import { PropsWithLabels } from '~types/utils';
 import {
   type ValidationProps,
@@ -31,17 +32,12 @@ import {
 import { useFormFieldA11y } from '../form/useFormFieldA11y';
 import { HelperText, Label } from '../typography';
 
-export enum RadioButtonGroupAlignment {
-  Vertical = 'vertical',
-  Horizontal = 'horizontal',
-}
-
 interface Props extends ValidationProps {
   onChange?: (value: string) => void;
   options: RadioOption[];
 
   // Group Props
-  alignment?: `${RadioButtonGroupAlignment}`;
+  alignment?: GroupAlignment;
   className?: string;
   defaultValue?: string;
   id?: string;
@@ -53,7 +49,7 @@ interface Props extends ValidationProps {
 
 export const RadioButtonGroup = forwardRef<HTMLDivElement, PropsWithLabels<Props>>((props, ref) => {
   const {
-    alignment = RadioButtonGroupAlignment.Vertical,
+    alignment = GroupAlignment.Vertical,
     ariaLabel,
     ariaLabelledBy,
     className,
@@ -104,7 +100,7 @@ export const RadioButtonGroup = forwardRef<HTMLDivElement, PropsWithLabels<Props
         onValueChange={onChange}
         ref={ref}
         required={required}>
-        <RadioButtonsWrapper horizontal={alignment === RadioButtonGroupAlignment.Horizontal}>
+        <RadioButtonsWrapper horizontal={alignment === GroupAlignment.Horizontal}>
           {options.map(({ isDisabled: disabledOption, ...o }) => (
             <RadioButton
               groupId={id}

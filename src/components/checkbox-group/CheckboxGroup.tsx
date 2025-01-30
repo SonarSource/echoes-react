@@ -19,6 +19,7 @@
  */
 import styled from '@emotion/styled';
 import { type ReactNode, type RefAttributes, forwardRef, useId, useMemo } from 'react';
+import { GroupAlignment } from '~types/GroupAlignment';
 import { PropsWithLabels } from '~types/utils';
 import { type CheckboxProps, Checkbox } from '../checkbox/Checkbox';
 import {
@@ -40,7 +41,7 @@ import { useFormFieldA11y } from '../form/useFormFieldA11y';
  * strict equality (`===`).
  *
  * The disabled state and error state will be applied to the entire group.
- * However, the disabled state or error state can be overridden per option.
+ * However, the disabled state can be overridden per option.
  *
  * > A checkbox group is a controlled element, it requires a `value` and
  * `onChange` handler.
@@ -71,10 +72,10 @@ import { useFormFieldA11y } from '../form/useFormFieldA11y';
 export const CheckboxGroup: CheckboxGroup = forwardRef<HTMLDivElement, CheckboxGroupProps>(
   (props, ref) => {
     const {
+      alignment = GroupAlignment.Vertical,
       ariaLabel,
       ariaLabelledBy,
       className,
-      direction,
       helpText,
       id,
       isDisabled,
@@ -91,7 +92,7 @@ export const CheckboxGroup: CheckboxGroup = forwardRef<HTMLDivElement, CheckboxG
       width,
     } = props;
 
-    const defaultId = `${useId()}checkbox`;
+    const defaultId = `${useId()}checkbox_group`;
 
     const { controlId, describedBy, descriptionId, labelId, validationMessageId } =
       useFormFieldA11y({
@@ -118,11 +119,11 @@ export const CheckboxGroup: CheckboxGroup = forwardRef<HTMLDivElement, CheckboxG
         validation={validation}
         validationMessageId={validationMessageId}
         width={width}>
-        <CheckboxGroupRoot // NOSONAR
+        <CheckboxGroupRoot
           aria-describedby={describedBy}
           aria-label={ariaLabel}
           aria-labelledby={ariaLabelledBy ?? labelId}
-          data-direction={direction}
+          data-alignment={alignment}
           data-invalid={validation === FormFieldValidation.Invalid}
           id={controlId}
           ref={ref}
@@ -164,6 +165,8 @@ export const CheckboxGroup: CheckboxGroup = forwardRef<HTMLDivElement, CheckboxG
 
 CheckboxGroup.displayName = 'CheckboxGroup';
 
+// It's not possible to make a component generic using `forwardRef`. Therefore,
+// we need to define the generic interface separately.
 interface CheckboxGroup {
   <T>(props: CheckboxGroupProps<T>): ReactNode;
   displayName?: string;
@@ -171,15 +174,7 @@ interface CheckboxGroup {
 
 type CheckboxOption<T = unknown> = Pick<
   CheckboxProps,
-  | 'className'
-  | 'hasError'
-  | 'helpText'
-  | 'id'
-  | 'innerClassName'
-  | 'isDisabled'
-  | 'isLoading'
-  | 'onFocus'
-  | 'title'
+  'helpText' | 'id' | 'isDisabled' | 'onFocus'
 > & {
   /**
    * The label displayed next to the checkbox.
@@ -192,29 +187,16 @@ type CheckboxOption<T = unknown> = Pick<
   value?: T;
 };
 
-/**
- * Options for how checkboxes are displayed in a group.
- */
-export enum CheckboxGroupDirection {
-  /**
-   * Display checkboxes in a row.
-   */
-  Horizontal = 'horizontal',
-  /**
-   * Display checkboxes in a column.
-   */
-  Vertical = 'vertical',
-}
-
 interface CheckboxGroupPropsBase<T> extends RefAttributes<HTMLDivElement>, ValidationProps {
+  /**
+   * Controls the alignment of the checkboxes in the group (optional). The
+   * default is `vertical`.
+   */
+  alignment?: `${GroupAlignment}`;
   /**
    * Add a `class` attribute to the root element (optional).
    */
   className?: string;
-  /**
-   * The direction the checkboxes are laid out in the group (optional). The default is `vertical`.
-   */
-  direction?: `${CheckboxGroupDirection}`;
   /**
    * The ID of the element with the role `group` (optional).
    */
@@ -271,7 +253,7 @@ const CheckboxGroupRoot = styled.div`
   flex-direction: column;
   row-gap: var(--echoes-dimension-space-100);
 
-  &[data-direction='horizontal'] {
+  &[data-alignment='horizontal'] {
     flex-direction: row;
   }
 `;

@@ -18,7 +18,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 import { screen } from '@testing-library/react';
-import userEvent, { PointerEventsCheckLevel } from '@testing-library/user-event';
+import { PointerEventsCheckLevel } from '@testing-library/user-event';
 import { useState } from 'react';
 import { render } from '~common/helpers/test-utils';
 import { CheckboxGroup } from '../CheckboxGroup';
@@ -41,12 +41,12 @@ it('displays a label and description', () => {
 it('calls onChange when the value changes', async () => {
   const onChange = jest.fn();
 
-  render(
+  const { user } = render(
     <CheckboxGroup label="Label" onChange={onChange} options={[{ label: 'Option' }]} value={[]} />,
   );
 
   const checkbox = screen.getByRole('checkbox', { name: 'Option' });
-  await userEvent.click(checkbox);
+  await user.click(checkbox);
 
   expect(onChange).toHaveBeenCalledTimes(1);
   expect(onChange).toHaveBeenCalledWith(['Option']);
@@ -66,10 +66,10 @@ it('functions as a controlled input', async () => {
     );
   }
 
-  render(<ControlledCheckboxGroup />);
+  const { user } = render(<ControlledCheckboxGroup />);
 
   const checkbox = screen.getByRole('checkbox', { name: 'Option' });
-  await userEvent.click(checkbox);
+  await user.click(checkbox);
 
   expect(checkbox).toBeChecked();
 });
@@ -109,7 +109,7 @@ it('displays a success message when validation is valid', () => {
 it('is disabled when isDisabled prop is passed', async () => {
   const onChange = jest.fn();
 
-  render(
+  const { user } = render(
     <CheckboxGroup
       isDisabled
       label="Label"
@@ -117,14 +117,14 @@ it('is disabled when isDisabled prop is passed', async () => {
       options={[{ label: 'Option' }]}
       value={[]}
     />,
+    undefined,
+    { pointerEventsCheck: PointerEventsCheckLevel.Never },
   );
 
   const checkbox = screen.getByRole('checkbox', { name: 'Option' });
   expect(checkbox).toHaveAttribute('aria-disabled', 'true');
 
-  await userEvent.click(checkbox, {
-    pointerEventsCheck: PointerEventsCheckLevel.Never,
-  });
+  await user.click(checkbox);
 
   expect(onChange).not.toHaveBeenCalled();
 });
@@ -132,7 +132,7 @@ it('is disabled when isDisabled prop is passed', async () => {
 it('The disabled state may be overridden for a checkbox', async () => {
   const onChange = jest.fn();
 
-  render(
+  const { user } = render(
     <CheckboxGroup
       isDisabled
       label="Label"
@@ -145,26 +145,8 @@ it('The disabled state may be overridden for a checkbox', async () => {
   const checkbox = screen.getByRole('checkbox', { name: 'Option' });
   expect(checkbox).not.toHaveAttribute('aria-disabled', 'true');
 
-  await userEvent.click(checkbox);
+  await user.click(checkbox);
   expect(onChange).toHaveBeenCalled();
-});
-
-it('The error state may be overridden for a checkbox', () => {
-  const onChange = jest.fn();
-
-  render(
-    <CheckboxGroup
-      isDisabled
-      label="Label"
-      onChange={onChange}
-      options={[{ hasError: false, label: 'Option' }]}
-      validation="invalid"
-      value={[]}
-    />,
-  );
-
-  const checkbox = screen.getByRole('checkbox', { name: 'Option' });
-  expect(checkbox).not.toBeInvalid();
 });
 
 it('can integrate with HTML forms', () => {

@@ -18,4 +18,4 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-export { RadioButtonGroup, RadioButtonGroupAlignment } from './RadioButtonGroup';
+export { RadioButtonGroup } from './RadioButtonGroup';

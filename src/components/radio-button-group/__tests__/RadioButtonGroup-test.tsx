@@ -20,7 +20,8 @@
 
 import { screen } from '@testing-library/react';
 import { OmitPropsWithLabels, render } from '~common/helpers/test-utils';
-import { RadioButtonGroup, RadioButtonGroupAlignment } from '../RadioButtonGroup';
+import { GroupAlignment } from '~types/GroupAlignment';
+import { RadioButtonGroup } from '../RadioButtonGroup';
 
 const DEFAULT_OPTIONS = [
   { label: 'a', value: '1' },
@@ -43,7 +44,7 @@ describe('RadioButtonGroup', () => {
   it('should render a radio button for each option, horizontally', async () => {
     const { container } = renderRadioButtonGroup({
       ariaLabel: 'me',
-      alignment: RadioButtonGroupAlignment.Horizontal,
+      alignment: GroupAlignment.Horizontal,
     });
 
     expect(screen.getAllByRole('radio')).toHaveLength(DEFAULT_OPTIONS.length);
