@@ -43,7 +43,11 @@ it('should render with items when isOpen', () => {
   setupWithMemoryRouter(
     <DropdownMenu.Root
       className="testClassName"
-      header={{ helpText: 'Header help text', label: 'Header label' }}
+      header={{
+        helpText: 'Header help text',
+        label: 'Header label',
+        suffix: <button type="button">test</button>,
+      }}
       isOpen
       items={items}>
       {trigger}
@@ -53,6 +57,7 @@ it('should render with items when isOpen', () => {
   expect(screen.getByText('Header label')).toBeVisible();
   expect(screen.getByText('Header help text')).toBeVisible();
   expect(screen.getByText('An item')).toBeVisible();
+  expect(screen.getByRole('button', { name: 'test' })).toBeVisible();
 });
 
 it('should render with items when isOpenOnMount', () => {
