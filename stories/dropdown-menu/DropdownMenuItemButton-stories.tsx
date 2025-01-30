@@ -105,11 +105,11 @@ function render({
 }: PropsWithChildren<ComponentProps<typeof DropdownMenu.ItemButton>>) {
   return (
     <BasicWrapper>
-      <DropdownMenu.Root
+      <DropdownMenu
         isOpen
         items={<DropdownMenu.ItemButton {...args}>{children}</DropdownMenu.ItemButton>}>
         <MenuButton />
-      </DropdownMenu.Root>
+      </DropdownMenu>
     </BasicWrapper>
   );
 }
