@@ -143,7 +143,7 @@ const DropdownMenuRoot = forwardRef<HTMLButtonElement, DropdownMenuRootProps>(
     );
   },
 );
-DropdownMenuRoot.displayName = 'DropdownMenu.Root';
+DropdownMenuRoot.displayName = 'DropdownMenu';
 
 export const DropdownMenu = Object.assign(DropdownMenuRoot, {
   GroupLabel: DropdownMenuGroupLabel,
