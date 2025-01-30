@@ -95,12 +95,13 @@ export const RadioButtonGroup = forwardRef<HTMLDivElement, PropsWithLabels<Props
         aria-invalid={validation === FormFieldValidation.Invalid}
         aria-label={ariaLabel}
         aria-labelledby={ariaLabelledBy ?? labelId}
+        data-alignment={alignment}
         disabled={disabled}
         id={controlId}
         onValueChange={onChange}
         ref={ref}
         required={required}>
-        <RadioButtonsWrapper horizontal={alignment === GroupAlignment.Horizontal}>
+        <RadioButtonsWrapper>
           {options.map(({ isDisabled: disabledOption, ...o }) => (
             <RadioButton
               groupId={id}
@@ -177,11 +178,15 @@ const RadioGroupRoot = styled(RadioGroup.Root)`
   flex-direction: column;
 `;
 
-const RadioButtonsWrapper = styled.div<{ horizontal: boolean }>`
+const RadioButtonsWrapper = styled.div`
+  column-gap: var(--echoes-dimension-space-300);
   display: flex;
-  flex-direction: ${(props) => (props.horizontal ? 'row' : 'column')};
-  gap: ${(props) =>
-    props.horizontal ? 'var(--echoes-dimension-space-300)' : 'var(--echoes-dimension-space-100)'};
+  flex-direction: column;
+  row-gap: var(--echoes-dimension-space-100);
+
+  [data-alignment='horizontal'] > & {
+    flex-direction: row;
+  }
 `;
 
 const OptionWrapper = styled.div`
