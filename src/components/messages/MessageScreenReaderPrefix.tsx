@@ -25,7 +25,7 @@ import { MessageType } from './MessageTypes';
 
 interface Props {
   screenReaderPrefix?: string;
-  type: MessageType;
+  type: `${MessageType}`;
 }
 
 export const MessageScreenReaderPrefix = forwardRef<HTMLSpanElement, Props>((props, ref) => {

@@ -33,8 +33,8 @@ import {
 import { BasicWrapper } from '../helpers/BasicWrapper';
 import { MenuButton } from '../helpers/MenuButton';
 
-const meta: Meta<typeof DropdownMenu.Root> = {
-  component: DropdownMenu.Root,
+const meta: Meta<typeof DropdownMenu> = {
+  component: DropdownMenu,
   title: 'Echoes/DropdownMenu',
   parameters: {
     controls: { exclude: ['children', 'id'] },
@@ -43,7 +43,7 @@ const meta: Meta<typeof DropdownMenu.Root> = {
 
 export default meta;
 
-type Story = StoryObj<typeof DropdownMenu.Root>;
+type Story = StoryObj<typeof DropdownMenu>;
 
 const StyledBadge = styled.span`
   background-color: var(--echoes-color-background-default-active);
@@ -121,19 +121,15 @@ export const MenuWithVariousItems: Story = {
   },
   render: (args) => (
     <BasicWrapper>
-      <DropdownMenu.Root {...args} className="it__test" items={items}>
+      <DropdownMenu {...args} className="it__test" items={items}>
         <MenuButton />
-      </DropdownMenu.Root>
+      </DropdownMenu>
 
       <br />
 
-      <DropdownMenu.Root
-        {...args}
-        align={DropdownMenuAlign.Start}
-        id="secondDropdown"
-        items={items}>
+      <DropdownMenu {...args} align={DropdownMenuAlign.Start} id="secondDropdown" items={items}>
         <LinkStandalone to="#">Menu link</LinkStandalone>
-      </DropdownMenu.Root>
+      </DropdownMenu>
     </BasicWrapper>
   ),
 };
@@ -142,9 +138,9 @@ export const MenuInADarkSideBar: Story = {
   render: () => (
     <ThemeProvider theme={Theme.dark}>
       <FakeDarkSideBar>
-        <DropdownMenu.Root align={DropdownMenuAlign.Start} items={items}>
+        <DropdownMenu align={DropdownMenuAlign.Start} items={items}>
           <MenuButton />
-        </DropdownMenu.Root>
+        </DropdownMenu>
       </FakeDarkSideBar>
     </ThemeProvider>
   ),

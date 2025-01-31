@@ -41,7 +41,7 @@ interface Props extends ValidationProps {
   options: RadioOption[];
 
   // Group Props
-  alignment?: RadioButtonGroupAlignment;
+  alignment?: `${RadioButtonGroupAlignment}`;
   className?: string;
   defaultValue?: string;
   id?: string;

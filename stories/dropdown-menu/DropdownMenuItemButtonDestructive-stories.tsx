@@ -66,7 +66,7 @@ function render({
 }: PropsWithChildren<ComponentProps<typeof DropdownMenu.ItemButtonDestructive>>) {
   return (
     <BasicWrapper>
-      <DropdownMenu.Root
+      <DropdownMenu
         isOpen
         items={
           <DropdownMenu.ItemButtonDestructive {...args}>
@@ -74,7 +74,7 @@ function render({
           </DropdownMenu.ItemButtonDestructive>
         }>
         <MenuButton />
-      </DropdownMenu.Root>
+      </DropdownMenu>
     </BasicWrapper>
   );
 }

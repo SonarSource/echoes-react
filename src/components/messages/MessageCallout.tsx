@@ -41,7 +41,7 @@ export interface MessageProps {
   screenReaderPrefix?: string;
   text: ReactNode;
   title?: string;
-  type: MessageType;
+  type: `${MessageType}`;
 }
 
 export const MessageCallout = forwardRef<HTMLDivElement, MessageProps>((props, ref) => {

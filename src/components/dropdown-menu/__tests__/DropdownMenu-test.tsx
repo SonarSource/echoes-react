@@ -31,7 +31,7 @@ const trigger = <button type="button">Trigger</button>;
 
 it('should render without items', async () => {
   const { container } = setupWithMemoryRouter(
-    <DropdownMenu.Root items={undefined}>{trigger}</DropdownMenu.Root>,
+    <DropdownMenu items={undefined}>{trigger}</DropdownMenu>,
   );
 
   await expect(container).toHaveNoA11yViolations();
@@ -41,7 +41,7 @@ it('should render without items', async () => {
 
 it('should render with items when isOpen', () => {
   setupWithMemoryRouter(
-    <DropdownMenu.Root
+    <DropdownMenu
       className="testClassName"
       header={{
         helpText: 'Header help text',
@@ -51,7 +51,7 @@ it('should render with items when isOpen', () => {
       isOpen
       items={items}>
       {trigger}
-    </DropdownMenu.Root>,
+    </DropdownMenu>,
   );
 
   expect(screen.getByText('Header label')).toBeVisible();
@@ -62,9 +62,9 @@ it('should render with items when isOpen', () => {
 
 it('should render with items when isOpenOnMount', () => {
   setupWithMemoryRouter(
-    <DropdownMenu.Root className="testClassName" isOpenOnMount items={items}>
+    <DropdownMenu className="testClassName" isOpenOnMount items={items}>
       {trigger}
-    </DropdownMenu.Root>,
+    </DropdownMenu>,
   );
 
   expect(screen.getByText('An item')).toBeVisible();
@@ -72,9 +72,9 @@ it('should render with items when isOpenOnMount', () => {
 
 it('should render with items when clicked', async () => {
   const { user } = setupWithMemoryRouter(
-    <DropdownMenu.Root items={items}>
+    <DropdownMenu items={items}>
       <a href="/">Trigger</a>
-    </DropdownMenu.Root>,
+    </DropdownMenu>,
   );
 
   expect(screen.queryByText('An item')).not.toBeInTheDocument();
@@ -92,9 +92,9 @@ it('should handle onOpen', async () => {
   const onOpen = jest.fn();
 
   const { user } = setupWithMemoryRouter(
-    <DropdownMenu.Root align={DropdownMenuAlign.Start} items={items} onOpen={onOpen}>
+    <DropdownMenu align={DropdownMenuAlign.Start} items={items} onOpen={onOpen}>
       <a href="/">Trigger</a>
-    </DropdownMenu.Root>,
+    </DropdownMenu>,
   );
 
   expect(screen.queryByText('An item')).not.toBeInTheDocument();
@@ -110,9 +110,9 @@ it('should handle onClose', async () => {
   const onClose = jest.fn();
 
   const { user } = setupWithMemoryRouter(
-    <DropdownMenu.Root align={DropdownMenuAlign.Center} items={items} onClose={onClose}>
+    <DropdownMenu align={DropdownMenuAlign.Center} items={items} onClose={onClose}>
       <a href="/">Trigger</a>
-    </DropdownMenu.Root>,
+    </DropdownMenu>,
   );
 
   expect(screen.queryByText('An item')).not.toBeInTheDocument();
@@ -130,9 +130,9 @@ it('should handle onClose', async () => {
 
 it('should not show items when clicked if isDisabled', async () => {
   const { user } = setupWithMemoryRouter(
-    <DropdownMenu.Root align={DropdownMenuAlign.End} isDisabled items={items}>
+    <DropdownMenu align={DropdownMenuAlign.End} isDisabled items={items}>
       {trigger}
-    </DropdownMenu.Root>,
+    </DropdownMenu>,
   );
 
   expect(screen.queryByText('An item')).not.toBeInTheDocument();
@@ -147,7 +147,7 @@ it('should render many different items', async () => {
   const linkClickHandler = jest.fn();
 
   const { user } = setupWithMemoryRouter(
-    <DropdownMenu.Root
+    <DropdownMenu
       isOpen
       items={
         <>
@@ -256,7 +256,7 @@ it('should render many different items', async () => {
         </>
       }>
       {trigger}
-    </DropdownMenu.Root>,
+    </DropdownMenu>,
   );
 
   expect(buttonClickHandler).not.toHaveBeenCalled();
@@ -280,9 +280,9 @@ it('should render many different items', async () => {
 it('should properly handle theme overrides', () => {
   setupWithMemoryRouter(
     <ThemeProvider theme={Theme.dark}>
-      <DropdownMenu.Root className="testClassName" isOpenOnMount items={items}>
+      <DropdownMenu className="testClassName" isOpenOnMount items={items}>
         {trigger}
-      </DropdownMenu.Root>
+      </DropdownMenu>
     </ThemeProvider>,
   );
 
@@ -291,7 +291,7 @@ it('should properly handle theme overrides', () => {
 
 it('should render with a sub-menu', () => {
   setupWithMemoryRouter(
-    <DropdownMenu.Root
+    <DropdownMenu
       className="testClassName"
       header={{ helpText: 'Header help text', label: 'Header label' }}
       isOpen
@@ -301,7 +301,7 @@ it('should render with a sub-menu', () => {
         </DropdownMenu.SubMenu>
       }>
       {trigger}
-    </DropdownMenu.Root>,
+    </DropdownMenu>,
   );
 
   expect(screen.getByText('An item')).toBeVisible();

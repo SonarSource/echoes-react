@@ -68,7 +68,7 @@ it('should render content and secondaryButtonLabel', async () => {
 
 it('should be triggered by DropdownMenu Items', async () => {
   const { user } = render(
-    <DropdownMenu.Root
+    <DropdownMenu
       id="modal-trigger"
       items={
         <ModalAlert
@@ -80,7 +80,7 @@ it('should be triggered by DropdownMenu Items', async () => {
         </ModalAlert>
       }>
       <Button>Menu</Button>
-    </DropdownMenu.Root>,
+    </DropdownMenu>,
   );
 
   expect(screen.queryByRole('alertdialog')).not.toBeInTheDocument();
