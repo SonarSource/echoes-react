@@ -25,7 +25,7 @@ export const IconKey = forwardRef<HTMLSpanElement, IconProps>((props, ref) => {
   // This is Material Symbols' "key" icon
   return (
     <IconMaterialWrapper {...props} ref={ref}>
-      &#xe0da;
+      &#xE73C;
     </IconMaterialWrapper>
   );
 });
