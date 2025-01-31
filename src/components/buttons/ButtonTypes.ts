@@ -31,10 +31,10 @@ export interface ButtonCommonProps extends HTMLButtonAttributesSubset {
   isDisabled?: boolean;
   isLoading?: boolean;
   onClick?: (event: MouseEvent<HTMLButtonElement>) => unknown;
-  size?: ButtonSize;
+  size?: `${ButtonSize}`;
   shouldPreventDefault?: boolean;
   shouldStopPropagation?: boolean;
-  variety?: ButtonVariety;
+  variety?: `${ButtonVariety}`;
 }
 
 export enum ButtonSize {

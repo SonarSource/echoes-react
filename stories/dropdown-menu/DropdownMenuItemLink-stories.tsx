@@ -168,11 +168,11 @@ export const Full: Story = {
 function render({ children, ...args }: PropsWithChildren<{ to: To }>) {
   return (
     <BasicWrapper>
-      <DropdownMenu.Root
+      <DropdownMenu
         isOpen
         items={<DropdownMenu.ItemLink {...args}>{children}</DropdownMenu.ItemLink>}>
         <MenuButton />
-      </DropdownMenu.Root>
+      </DropdownMenu>
     </BasicWrapper>
   );
 }

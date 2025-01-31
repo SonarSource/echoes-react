@@ -28,8 +28,8 @@ interface Props {
   className?: string;
   id?: string;
   screenReaderPrefix?: string;
-  size?: MessageInlineSize;
-  type: MessageType;
+  size?: `${MessageInlineSize}`;
+  type: `${MessageType}`;
 }
 
 export const MessageInline = forwardRef<HTMLDivElement, PropsWithChildren<Props>>((props, ref) => {

@@ -19,6 +19,7 @@
  */
 import { ComboboxItem } from '@mantine/core';
 import { ReactNode } from 'react';
+import { TextNodeOptional } from '~types/utils';
 
 export enum SelectHighlight {
   Default = 'default',
@@ -33,7 +34,7 @@ export enum SelectOptionType {
 export interface SelectOption extends ComboboxItem {
   prefix?: ReactNode;
   suffix?: ReactNode;
-  helpText?: JSX.Element | string;
+  helpText?: TextNodeOptional;
   group?: never;
 }
 
