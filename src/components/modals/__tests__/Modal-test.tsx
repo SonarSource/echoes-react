@@ -75,7 +75,7 @@ it('should render content and description and extra buttons', async () => {
 
 it('should be triggered by DropdownMenu Items', async () => {
   const { user } = render(
-    <DropdownMenu.Root
+    <DropdownMenu
       id="modal-trigger"
       items={
         <Modal content="Modal content" title="Modal title">
@@ -83,7 +83,7 @@ it('should be triggered by DropdownMenu Items', async () => {
         </Modal>
       }>
       <Button>Menu</Button>
-    </DropdownMenu.Root>,
+    </DropdownMenu>,
   );
 
   expect(screen.queryByRole('dialog')).not.toBeInTheDocument();

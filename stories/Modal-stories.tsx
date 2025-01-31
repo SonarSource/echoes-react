@@ -147,7 +147,7 @@ export const WithSelectAndDropdown: Story = {
         <div>
           <ControlledSelect />
           <br />
-          <DropdownMenu.Root
+          <DropdownMenu
             align={DropdownMenuAlign.Start}
             items={
               <>
@@ -162,7 +162,7 @@ export const WithSelectAndDropdown: Story = {
               </>
             }>
             <Button>Choose a link to actually do nothing</Button>
-          </DropdownMenu.Root>
+          </DropdownMenu>
         </div>
       }
       {...args}>
@@ -199,7 +199,7 @@ export const WithADropdownItemTrigger: Story = {
     title: 'My Modal title',
   },
   render: (args) => (
-    <DropdownMenu.Root
+    <DropdownMenu
       id="modal-trigger"
       items={
         <Modal content={<div>Modal content, anything can be set in there.</div>} {...args}>
@@ -207,6 +207,6 @@ export const WithADropdownItemTrigger: Story = {
         </Modal>
       }>
       <ButtonIcon Icon={IconMoreVertical} ariaLabel="Menu" />
-    </DropdownMenu.Root>
+    </DropdownMenu>
   ),
 };
