@@ -21,6 +21,7 @@
 import styled from '@emotion/styled';
 import * as RadioGroup from '@radix-ui/react-radio-group';
 import { ReactNode, forwardRef, useId } from 'react';
+import { GroupAlignment } from '~types/GroupAlignment';
 import { PropsWithLabels } from '~types/utils';
 import {
   type ValidationProps,
@@ -31,17 +32,12 @@ import {
 import { useFormFieldA11y } from '../form/useFormFieldA11y';
 import { HelperText, Label } from '../typography';
 
-export enum RadioButtonGroupAlignment {
-  Vertical = 'vertical',
-  Horizontal = 'horizontal',
-}
-
 interface Props extends ValidationProps {
   onChange?: (value: string) => void;
   options: RadioOption[];
 
   // Group Props
-  alignment?: `${RadioButtonGroupAlignment}`;
+  alignment?: `${GroupAlignment}`;
   className?: string;
   defaultValue?: string;
   id?: string;
@@ -53,7 +49,7 @@ interface Props extends ValidationProps {
 
 export const RadioButtonGroup = forwardRef<HTMLDivElement, PropsWithLabels<Props>>((props, ref) => {
   const {
-    alignment = RadioButtonGroupAlignment.Vertical,
+    alignment = GroupAlignment.Vertical,
     ariaLabel,
     ariaLabelledBy,
     className,
@@ -99,12 +95,13 @@ export const RadioButtonGroup = forwardRef<HTMLDivElement, PropsWithLabels<Props
         aria-invalid={validation === FormFieldValidation.Invalid}
         aria-label={ariaLabel}
         aria-labelledby={ariaLabelledBy ?? labelId}
+        data-alignment={alignment}
         disabled={disabled}
         id={controlId}
         onValueChange={onChange}
         ref={ref}
         required={required}>
-        <RadioButtonsWrapper horizontal={alignment === RadioButtonGroupAlignment.Horizontal}>
+        <RadioButtonsWrapper>
           {options.map(({ isDisabled: disabledOption, ...o }) => (
             <RadioButton
               groupId={id}
@@ -181,11 +178,15 @@ const RadioGroupRoot = styled(RadioGroup.Root)`
   flex-direction: column;
 `;
 
-const RadioButtonsWrapper = styled.div<{ horizontal: boolean }>`
+const RadioButtonsWrapper = styled.div`
+  column-gap: var(--echoes-dimension-space-300);
   display: flex;
-  flex-direction: ${(props) => (props.horizontal ? 'row' : 'column')};
-  gap: ${(props) =>
-    props.horizontal ? 'var(--echoes-dimension-space-300)' : 'var(--echoes-dimension-space-100)'};
+  flex-direction: column;
+  row-gap: var(--echoes-dimension-space-100);
+
+  [data-alignment='horizontal'] > & {
+    flex-direction: row;
+  }
 `;
 
 const OptionWrapper = styled.div`
