@@ -125,7 +125,7 @@ const DropdownMenuRoot = forwardRef<HTMLButtonElement, DropdownMenuRootProps>(
                       title={typeof header.label === 'string' ? header.label : ''}>
                       {header.label}
                     </StyledHeaderLabel>
-                    {header.suffix ? header.suffix : null}
+                    {header.suffix}
                   </StyledHeaderWithSuffix>
 
                   <StyledHeaderHelpText
