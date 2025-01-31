@@ -24,3 +24,4 @@ export * from './components';
 export * from './utils';
 
 export { Theme } from './generated/themes';
+export { GroupAlignment } from './types/GroupAlignment';

@@ -18,4 +18,16 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-export { RadioButtonGroup } from './RadioButtonGroup';
+/**
+ * Options for aligning items in a group.
+ */
+export enum GroupAlignment {
+  /**
+   * Align items in a row.
+   */
+  Horizontal = 'horizontal',
+  /**
+   * Align items in a column.
+   */
+  Vertical = 'vertical',
+}
