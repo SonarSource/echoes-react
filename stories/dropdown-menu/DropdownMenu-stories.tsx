@@ -25,6 +25,7 @@ import {
   DropdownMenuAlign,
   IconBug,
   IconGear,
+  IconKey,
   LinkStandalone,
   Theme,
   ThemeProvider,
@@ -113,8 +114,9 @@ const items = (
 export const MenuWithVariousItems: Story = {
   args: {
     header: {
-      label: 'John Doe',
+      label: 'JohnDoeJohnDoeJohnDoe JohnDoeJohnDoeJohnDoe',
       helpText: 'john.doe@sonarsource.com',
+      suffix: <IconKey color="echoes-color-icon-bold" />,
     },
   },
   render: (args) => (

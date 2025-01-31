@@ -59,6 +59,7 @@ export { IconGitBranch } from './IconGitBranch';
 export { IconHome } from './IconHome';
 export { IconInfo } from './IconInfo';
 export { IconInheritance } from './IconInheritance';
+export { IconKey } from './IconKey';
 export { IconLightBulb } from './IconLightBulb';
 export { IconLink } from './IconLink';
 export { IconLinkExternal } from './IconLinkExternal';

@@ -47,7 +47,7 @@ interface DropdownMenuRootProps extends radixDropdownMenu.DropdownMenuTriggerPro
   align?: DropdownMenuAlign;
   children: ReactNode;
   className?: string;
-  header?: Pick<PropsLabel, 'helpText' | 'label'>;
+  header?: Pick<PropsLabel, 'helpText' | 'label'> & { suffix?: ReactNode };
   id?: string;
   isDisabled?: boolean;
   isModal?: boolean;
@@ -119,11 +119,14 @@ const DropdownMenuRoot = forwardRef<HTMLButtonElement, DropdownMenuRootProps>(
             {header && (
               <>
                 <StyledHeaderLabelAndHelpText>
-                  <StyledHeaderLabel
-                    as="div"
-                    title={typeof header.label === 'string' ? header.label : ''}>
-                    {header.label}
-                  </StyledHeaderLabel>
+                  <StyledHeaderWithSuffix>
+                    <StyledHeaderLabel
+                      as="div"
+                      title={typeof header.label === 'string' ? header.label : ''}>
+                      {header.label}
+                    </StyledHeaderLabel>
+                    {header.suffix}
+                  </StyledHeaderWithSuffix>
 
                   <StyledHeaderHelpText
                     as="span"
@@ -164,6 +167,13 @@ const StyledHeaderLabelAndHelpText = styled.div`
   margin-bottom: var(--echoes-dimension-space-50);
   padding: var(--echoes-dimension-space-100) var(--echoes-dimension-space-150);
   row-gap: var(---echoes-dimension-space-50);
+`;
+
+const StyledHeaderWithSuffix = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--echoes-dimension-space-100);
 `;
 
 const StyledHeaderLabel = styled(Label)`
