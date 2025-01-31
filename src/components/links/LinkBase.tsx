@@ -37,7 +37,7 @@ export enum LinkHighlight {
 export interface LinkProps extends Pick<RouterLinkProps, RouterNavLinkPropsAllowed> {
   children: React.ReactNode;
   className?: string;
-  highlight?: LinkHighlight;
+  highlight?: `${LinkHighlight}`;
   onClick?: (event: React.MouseEvent<HTMLAnchorElement>) => void;
   shouldBlurAfterClick?: boolean;
   shouldOpenInNewTab?: boolean;

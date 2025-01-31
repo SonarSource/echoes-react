@@ -21,7 +21,6 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { forwardRef } from 'react';
-import { LinkHighlight } from '.';
 import { LinkProps } from './LinkBase';
 import { LinkBaseStyled } from './LinkBaseStyled';
 
@@ -43,18 +42,7 @@ const LinkStandaloneBase = forwardRef<HTMLAnchorElement, Props>((props, ref) => 
 
 LinkStandaloneBase.displayName = 'LinkStandaloneBase';
 
-const LinkStandaloneHighlight = {
-  [LinkHighlight.Accent]: css`
-    font-weight: var(--echoes-font-weight-semi-bold);
-  `,
-  [LinkHighlight.Default]: undefined,
-  [LinkHighlight.Subdued]: undefined,
-  [LinkHighlight.CurrentColor]: undefined,
-};
-
 export const LinkStandalone = styled(LinkStandaloneBase)`
-  ${({ highlight = LinkHighlight.Accent }) => LinkStandaloneHighlight[highlight]}
-
   text-decoration-line: var(--echoes-text-decoration-none);
 
   &:hover,

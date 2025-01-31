@@ -45,6 +45,7 @@ export const LinkBaseStyled = styled(LinkBase)`
   ${({ highlight = LinkHighlight.Accent }) => LinkBaseStyledHighlight[highlight]};
 
   color: var(--color);
+  font-weight: var(--echoes-font-weight-semi-bold);
   text-decoration-line: var(--echoes-text-decoration-underline);
   text-decoration-color: var(--color);
   text-decoration-style: solid;
