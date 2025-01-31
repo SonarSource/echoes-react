@@ -5948,7 +5948,7 @@ const RAW_RUNTIME_STATE =
           ["@storybook/addon-a11y", "virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#npm:8.3.2"],\
           ["@storybook/addon-highlight", "virtual:7c1ea9da4764c6491afb5519762e8c2a0cdf1c359d8842af42c8f8ef88de01b5090484404e3fb27e10954cb4dbe41c3aaab5b6fe0f28d6126878953f381b9705#npm:8.3.2"],\
           ["@types/storybook", null],\
-          ["axe-core", "npm:4.10.0"],\
+          ["axe-core", "npm:4.10.2"],\
           ["storybook", "npm:8.3.2"]\
         ],\
         "packagePeers": [\
@@ -7273,7 +7273,7 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["@types/jest-axe", "npm:3.5.9"],\
           ["@types/jest", "npm:29.5.13"],\
-          ["axe-core", "npm:3.5.6"]\
+          ["axe-core", "npm:4.10.2"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -8622,24 +8622,10 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["axe-core", [\
-      ["npm:3.5.6", {\
-        "packageLocation": "./.yarn/cache/axe-core-npm-3.5.6-eec437c619-3e776d8437.zip/node_modules/axe-core/",\
+      ["npm:4.10.2", {\
+        "packageLocation": "./.yarn/cache/axe-core-npm-4.10.2-46ed42027d-a69423b2ff.zip/node_modules/axe-core/",\
         "packageDependencies": [\
-          ["axe-core", "npm:3.5.6"]\
-        ],\
-        "linkType": "HARD"\
-      }],\
-      ["npm:4.10.0", {\
-        "packageLocation": "./.yarn/cache/axe-core-npm-4.10.0-90ec287b5d-6158489a7a.zip/node_modules/axe-core/",\
-        "packageDependencies": [\
-          ["axe-core", "npm:4.10.0"]\
-        ],\
-        "linkType": "HARD"\
-      }],\
-      ["npm:4.9.1", {\
-        "packageLocation": "./.yarn/cache/axe-core-npm-4.9.1-6b74f843b9-9d4944f6d3.zip/node_modules/axe-core/",\
-        "packageDependencies": [\
-          ["axe-core", "npm:4.9.1"]\
+          ["axe-core", "npm:4.10.2"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -10689,7 +10675,7 @@ const RAW_RUNTIME_STATE =
           ["array-includes", "npm:3.1.8"],\
           ["array.prototype.flatmap", "npm:1.3.2"],\
           ["ast-types-flow", "npm:0.0.8"],\
-          ["axe-core", "npm:4.10.0"],\
+          ["axe-core", "npm:4.10.2"],\
           ["axobject-query", "npm:4.1.0"],\
           ["damerau-levenshtein", "npm:1.0.8"],\
           ["emoji-regex", "npm:9.2.2"],\
@@ -12594,7 +12580,7 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./.yarn/cache/jest-axe-npm-9.0.0-74f050ef43-4a0d382f5d.zip/node_modules/jest-axe/",\
         "packageDependencies": [\
           ["jest-axe", "npm:9.0.0"],\
-          ["axe-core", "npm:4.9.1"],\
+          ["axe-core", "npm:4.10.2"],\
           ["chalk", "npm:4.1.2"],\
           ["jest-matcher-utils", "npm:29.2.2"],\
           ["lodash.merge", "npm:4.6.2"]\
