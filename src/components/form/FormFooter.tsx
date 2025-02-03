@@ -21,19 +21,28 @@ import styled from '@emotion/styled';
 import { forwardRef, ReactNode } from 'react';
 import { ButtonGroup } from '../buttons';
 
+export enum FormFooterSide {
+  Right = 'right',
+  Left = 'left',
+}
+
 export interface FormFooterProps {
   /**
    * Buttons to display at the bottom of the Form. They are wrapped in a `ButtonGroup` and aligned to
-   * the right of the Form. Make sure to always keep the primary action on the right.
+   * the left of the Form by default.
    */
   children: ReactNode;
   className?: string;
+  /**
+   * Change the alignment of the buttons to the right or left side of the form (optional)
+   */
+  side?: `${FormFooterSide}`;
 }
 
 export const FormFooter = forwardRef<HTMLDivElement, FormFooterProps>(
-  ({ children, ...rest }, ref) => {
+  ({ children, side, ...rest }, ref) => {
     return (
-      <FormFooterWrapper>
+      <FormFooterWrapper data-side={side}>
         <ButtonGroup ref={ref} {...rest}>
           {children}
         </ButtonGroup>
@@ -46,6 +55,9 @@ FormFooter.displayName = 'FormFooter';
 const FormFooterWrapper = styled.div`
   order: 3; // Ensure the footer always appear last in the Form even if the dev scramble the order of components
   display: flex;
-  justify-content: flex-end;
+
+  &[data-side='right'] {
+    justify-content: flex-end;
+  }
 `;
 FormFooterWrapper.displayName = 'FormFooterWrapper';
