@@ -31,7 +31,7 @@ export enum HeadingSize {
 
 type HeadingTag = 'h1' | 'h2' | 'h3' | 'h4' | 'h5';
 
-interface Props {
+export interface HeadingProps {
   as: HeadingTag;
   className?: string;
   id?: string;
@@ -39,7 +39,7 @@ interface Props {
   size?: `${HeadingSize}`;
 }
 
-export const Heading = forwardRef<HTMLDivElement, Readonly<PropsWithChildren<Props>>>(
+export const Heading = forwardRef<HTMLDivElement, Readonly<PropsWithChildren<HeadingProps>>>(
   ({ as, size = defaultSizeByTag[as], hasMarginBottom = false, ...props }, ref) => (
     <StyledHeading as={as} hasMarginBottom={hasMarginBottom} ref={ref} size={size} {...props} />
   ),
@@ -55,7 +55,7 @@ const defaultSizeByTag: Record<HeadingTag, HeadingSize> = {
   h5: HeadingSize.ExtraSmall,
 };
 
-const StyledHeading = styled.div<Required<Pick<Props, 'hasMarginBottom' | 'size'>>>`
+const StyledHeading = styled.div<Required<Pick<HeadingProps, 'hasMarginBottom' | 'size'>>>`
   font: ${getHeadingFont};
   color: var(--echoes-color-text-bold);
   margin: 0;
@@ -65,7 +65,7 @@ const StyledHeading = styled.div<Required<Pick<Props, 'hasMarginBottom' | 'size'
     hasMarginBottom ? `margin-bottom: ${bottomMarginByHeadingSize({ size })}` : ''}
 `;
 
-function getHeadingFont({ size }: Required<Pick<Props, 'size'>>) {
+function getHeadingFont({ size }: Required<Pick<HeadingProps, 'size'>>) {
   return HEADING_TYPOGRAPHY_MAP[size];
 }
 
@@ -77,7 +77,7 @@ const HEADING_TYPOGRAPHY_MAP = {
   [HeadingSize.ExtraLarge]: 'var(--echoes-typography-heading-xlarge)',
 };
 
-const bottomMarginByHeadingSize = ({ size }: Required<Pick<Props, 'size'>>) => {
+const bottomMarginByHeadingSize = ({ size }: Required<Pick<HeadingProps, 'size'>>) => {
   switch (size) {
     case HeadingSize.Large:
       return 'var(--echoes-dimension-space-200)';

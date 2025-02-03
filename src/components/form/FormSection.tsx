@@ -20,7 +20,7 @@
 import styled from '@emotion/styled';
 import { forwardRef, ReactNode, useId } from 'react';
 import { TextNodeOptional } from '~types/utils';
-import { Heading, HeadingSize, Text, TextSize } from '../typography';
+import { Heading, HeadingProps, HeadingSize, Text, TextSize } from '../typography';
 
 export interface FormSectionProps {
   className?: string;
@@ -43,44 +43,59 @@ export interface FormSectionProps {
    * `<Heading as="h2">` component.
    */
   title?: TextNodeOptional;
+  /**
+   * The HTML element to use for the section title. Defaults to `h2`. (optional)
+   */
+  titleAs?: HeadingProps['as'];
+  /**
+   * The size of the title. Defaults to `medium`. (optional)
+   */
+  titleSize?: HeadingProps['size'];
 }
 
-export const FormSection = forwardRef<HTMLDivElement, FormSectionProps>(
-  ({ children, description, id, title, ...rest }, ref) => {
-    const defaultId = `${useId()}form-section`;
-    const sectionId = id ?? defaultId;
-    const titleId = `${sectionId}-title`;
-    const descriptionId = `${sectionId}-description`;
-    const labelledBy = title ? titleId : undefined;
-    const describedBy = description ? descriptionId : undefined;
+export const FormSection = forwardRef<HTMLDivElement, FormSectionProps>((props, ref) => {
+  const {
+    children,
+    description,
+    id,
+    title,
+    titleAs = 'h2',
+    titleSize = HeadingSize.Medium,
+    ...rest
+  } = props;
+  const defaultId = `${useId()}form-section`;
+  const sectionId = id ?? defaultId;
+  const titleId = `${sectionId}-title`;
+  const descriptionId = `${sectionId}-description`;
+  const labelledBy = title ? titleId : undefined;
+  const describedBy = description ? descriptionId : undefined;
 
-    return (
-      <FormSectionWrapper
-        aria-describedby={describedBy}
-        aria-labelledby={labelledBy}
-        id={sectionId}
-        ref={ref}
-        role="group"
-        {...rest}>
-        {(title || description) && (
-          <div>
-            {title && (
-              <Heading as="h2" hasMarginBottom id={titleId} size={HeadingSize.Medium}>
-                {title}
-              </Heading>
-            )}
-            {description && (
-              <Text id={descriptionId} size={TextSize.Small}>
-                {description}
-              </Text>
-            )}
-          </div>
-        )}
-        {children}
-      </FormSectionWrapper>
-    );
-  },
-);
+  return (
+    <FormSectionWrapper
+      aria-describedby={describedBy}
+      aria-labelledby={labelledBy}
+      id={sectionId}
+      ref={ref}
+      role="group"
+      {...rest}>
+      {(title || description) && (
+        <div>
+          {title && (
+            <Heading as={titleAs} hasMarginBottom id={titleId} size={titleSize}>
+              {title}
+            </Heading>
+          )}
+          {description && (
+            <Text id={descriptionId} size={TextSize.Small}>
+              {description}
+            </Text>
+          )}
+        </div>
+      )}
+      {children}
+    </FormSectionWrapper>
+  );
+});
 FormSection.displayName = 'FormSection';
 
 // According to https://www.w3.org/WAI/tutorials/forms/grouping/ we should use <fieldset> and <legend> to group form elements but it's hard to style so we rely on role=group instead
