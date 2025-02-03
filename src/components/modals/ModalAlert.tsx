@@ -51,11 +51,9 @@ interface WithSecondaryButtonLabel extends BaseProps {
   secondaryButtonLabel?: string;
 }
 
-type ModalAlertProps = WithSecondaryButton | WithSecondaryButtonLabel;
+export type ModalAlertProps = ModalCommonProps & (WithSecondaryButton | WithSecondaryButtonLabel);
 
-type Props = ModalCommonProps & ModalAlertProps;
-
-export const ModalAlert = forwardRef<HTMLButtonElement, Props>((props, ref) => {
+export const ModalAlert = forwardRef<HTMLButtonElement, ModalAlertProps>((props, ref) => {
   const {
     children,
     description,

@@ -17,6 +17,7 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-export { Modal } from './Modal';
-export { ModalAlert } from './ModalAlert';
+export { Modal, type ModalProps } from './Modal';
+export { ModalAlert, type ModalAlertProps } from './ModalAlert';
+export { ModalForm, type ModalFormProps } from './ModalForm';
 export { ModalSize } from './ModalTypes';
