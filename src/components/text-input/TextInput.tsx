@@ -45,13 +45,18 @@ type InputAttributes = Pick<
   | 'step'
 >;
 
-interface Props extends InputProps, InputAttributes, InputEventProps<HTMLInputElement> {
+interface TextInputPropsBase
+  extends InputProps,
+    InputAttributes,
+    InputEventProps<HTMLInputElement> {
   prefix?: ReactNode;
   suffix?: ReactNode;
   type?: 'email' | 'number' | 'password' | 'search' | 'tel' | 'text' | 'url';
 }
 
-export const TextInput = forwardRef<HTMLInputElement, PropsWithLabels<Props>>((props, ref) => {
+export type TextInputProps = PropsWithLabels<TextInputPropsBase>;
+
+export const TextInput = forwardRef<HTMLInputElement, TextInputProps>((props, ref) => {
   const {
     ariaLabel,
     ariaLabelledBy,
