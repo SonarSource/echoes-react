@@ -173,6 +173,15 @@ export const SelectBase = forwardRef<HTMLInputElement, PropsWithLabels<SelectBas
           error={validation === FormFieldValidation.Invalid}
           filter={optionsFilter}
           id={controlId}
+          label={label}
+          labelProps={{
+            // We no longer use Mantine's InputLabel component. However, if we
+            // do not pass a `label` prop to the Select component, Mantine will
+            // render an `aria-label` on the OptionsDropdown component. This
+            // causes the input and the dropdown to have the same label, which
+            // is problematic for accessibility.
+            labelElement: Null,
+          }}
           leftSection={valueIcon}
           nothingFoundMessage={labelNotFound}
           onDropdownOpen={onOpen}
@@ -193,6 +202,10 @@ export const SelectBase = forwardRef<HTMLInputElement, PropsWithLabels<SelectBas
     );
   },
 );
+
+function Null() {
+  return null;
+}
 
 SelectBase.displayName = 'SelectBase';
 
