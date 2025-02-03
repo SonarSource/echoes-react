@@ -138,7 +138,7 @@ const TYPOGRAPHY_MAP = {
   },
   /* isHighlighted is false */
   false: {
-    [TextSize.Small]: 'var(--echoes-typography-text-small-medium)',
+    [TextSize.Small]: 'var(--echoes-typography-text-small-regular)',
     [TextSize.Default]: 'var(--echoes-typography-text-default-regular)',
     [TextSize.Large]: 'var(--echoes-typography-text-large-regular)',
   },

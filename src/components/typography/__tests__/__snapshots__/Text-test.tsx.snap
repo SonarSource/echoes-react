@@ -291,7 +291,7 @@ exports[`default & regular renders with size large 1`] = `
 exports[`default & regular renders with size small 1`] = `
 .emotion-0 {
   max-width: var(--echoes-sizes-typography-max-width-default);
-  font: var(--echoes-typography-text-small-medium);
+  font: var(--echoes-typography-text-small-regular);
   color: var(--echoes-color-text-default);
 }
 
@@ -963,7 +963,7 @@ exports[`subdued & regular renders with size large 1`] = `
 exports[`subdued & regular renders with size small 1`] = `
 .emotion-0 {
   max-width: var(--echoes-sizes-typography-max-width-default);
-  font: var(--echoes-typography-text-small-medium);
+  font: var(--echoes-typography-text-small-regular);
   color: var(--echoes-color-text-subdued);
 }
 
