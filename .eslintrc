@@ -5,8 +5,9 @@
     ".github",
     ".yarn",
     "node_modules",
-    "design-tokens/tokens",
     "dist",
+    "build-reports",
+    "design-tokens/tokens",
     "storybook-static",
     "src/generated"
   ],
