@@ -19,6 +19,7 @@
  */
 
 import { ReactNode } from 'react';
+import { TextNode } from '~types/utils';
 
 export enum ModalSize {
   Default = 'default',
@@ -38,7 +39,7 @@ interface CommonProps {
   content?: ReactNode;
   isDefaultOpen?: boolean;
   /** An accessible title to be announced when the dialog is opened. */
-  title?: ReactNode;
+  title?: TextNode;
 }
 
 interface UncontrolledProps extends CommonProps {

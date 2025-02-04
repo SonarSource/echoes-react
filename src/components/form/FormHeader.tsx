@@ -20,7 +20,7 @@
 import styled from '@emotion/styled';
 import { forwardRef, ReactNode } from 'react';
 import { TextNode, TextNodeOptional } from '~types/utils';
-import { Heading, HeadingSize, Text } from '../typography';
+import { Heading, HeadingProps, Text } from '../typography';
 
 export interface FormHeaderProps {
   className?: string;
@@ -33,17 +33,25 @@ export interface FormHeaderProps {
    */
   extraContent?: ReactNode;
   /**
-   * Title to display at the top of the Form. It's automatically wrapped in a `<Heading as="h1">` component.
+   * Title to display at the top of the Form. It's automatically wrapped in a `<Heading as="h2">` component.
    */
   title: TextNode;
+  /**
+   * The HTML element to use for the title. Defaults to `h2`. (optional)
+   */
+  titleAs?: HeadingProps['as'];
+  /**
+   * The size of the title. Defaults to h2 default size. (optional)
+   */
+  titleSize?: HeadingProps['size'];
 }
 
 export const FormHeader = forwardRef<HTMLDivElement, FormHeaderProps>((props, ref) => {
-  const { title, description, extraContent, ...rest } = props;
+  const { description, extraContent, title, titleAs = 'h2', titleSize, ...rest } = props;
   return (
     <FormHeaderWrapper ref={ref} {...rest}>
       <FormHeaderContent>
-        <Heading as="h1" size={HeadingSize.ExtraLarge}>
+        <Heading as={titleAs} hasMarginBottom size={titleSize}>
           {title}
         </Heading>
         {description && <Text>{description}</Text>}
@@ -65,6 +73,5 @@ FormHeaderWrapper.displayName = 'FormHeaderWrapper';
 const FormHeaderContent = styled.div`
   display: flex;
   flex-direction: column;
-  gap: var(--echoes-dimension-space-100);
 `;
 FormHeaderContent.displayName = 'FormHeaderContent';

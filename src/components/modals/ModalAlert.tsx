@@ -51,15 +51,14 @@ interface WithSecondaryButtonLabel extends BaseProps {
   secondaryButtonLabel?: string;
 }
 
-type ModalAlertProps = WithSecondaryButton | WithSecondaryButtonLabel;
+export type ModalAlertProps = ModalCommonProps & (WithSecondaryButton | WithSecondaryButtonLabel);
 
-type Props = ModalCommonProps & ModalAlertProps;
-
-export const ModalAlert = forwardRef<HTMLButtonElement, Props>((props, ref) => {
+export const ModalAlert = forwardRef<HTMLDivElement, ModalAlertProps>((props, ref) => {
   const {
     children,
     description,
     content,
+    isDefaultOpen,
     isOpen,
     onOpenChange,
     title,
@@ -88,17 +87,15 @@ export const ModalAlert = forwardRef<HTMLButtonElement, Props>((props, ref) => {
   }, []);
 
   return (
-    <RadixAlertDialog.Root onOpenChange={onOpenChange} open={isOpen}>
+    <RadixAlertDialog.Root defaultOpen={isDefaultOpen} onOpenChange={onOpenChange} open={isOpen}>
       <RadixAlertDialog.Trigger
         asChild
-        ref={ref}
-        {...(isDropdownMenuItemComponent(children) && { onSelect: handleSelectForDropdownMenu })}
-        {...radixProps}>
+        {...(isDropdownMenuItemComponent(children) && { onSelect: handleSelectForDropdownMenu })}>
         {children}
       </RadixAlertDialog.Trigger>
       <RadixAlertDialog.Portal>
         <ModalAlertOverlay />
-        <ModalAlertWrapper size={ModalSize.Default}>
+        <ModalAlertWrapper ref={ref} size={ModalSize.Default} {...radixProps}>
           <ModalAlertTitle>{title}</ModalAlertTitle>
 
           <ModalBody>

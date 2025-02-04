@@ -22,6 +22,7 @@ import * as RadixDialog from '@radix-ui/react-dialog';
 import { forwardRef, ReactNode, SyntheticEvent, useCallback } from 'react';
 import { useIntl } from 'react-intl';
 import { isDefined } from '~common/helpers/types';
+import { TextNodeOptional } from '~types/utils';
 import { ButtonGroup, ButtonIcon, ButtonSize, ButtonVariety } from '../buttons';
 import { isDropdownMenuItemComponent } from '../dropdown-menu/DropdownMenuItemBase';
 import { IconX } from '../icons';
@@ -36,18 +37,18 @@ import {
 } from './ModalStyles';
 import { ModalCommonProps, ModalSize } from './ModalTypes';
 
-interface ModalProps {
+interface ModalBaseProps {
   /** An optional accessible description to be announced when the dialog is opened. */
-  description?: ReactNode;
+  description?: TextNodeOptional;
   footerLink?: ReactNode;
   primaryButton?: ReactNode;
   secondaryButton?: ReactNode;
   size?: ModalSize;
 }
 
-type Props = ModalCommonProps & ModalProps;
+export type ModalProps = ModalCommonProps & ModalBaseProps;
 
-export const Modal = forwardRef<HTMLButtonElement, Props>((props, ref) => {
+export const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
   const {
     children,
     description,
@@ -77,16 +78,16 @@ export const Modal = forwardRef<HTMLButtonElement, Props>((props, ref) => {
     <RadixDialog.Root defaultOpen={isDefaultOpen} onOpenChange={onOpenChange} open={isOpen}>
       <RadixDialog.Trigger
         asChild
-        ref={ref}
-        {...(isDropdownMenuItemComponent(children) && { onSelect: handleSelectForDropdownMenu })}
-        {...radixProps}>
+        {...(isDropdownMenuItemComponent(children) && { onSelect: handleSelectForDropdownMenu })}>
         {children}
       </RadixDialog.Trigger>
       <RadixDialog.Portal>
         <ModalOverlay />
         <ModalWrapper
           {...(!isDefined(description) && { 'aria-describedby': undefined })}
-          size={size}>
+          ref={ref}
+          size={size}
+          {...radixProps}>
           <ModalTitle>{title}</ModalTitle>
 
           <ModalBody isLast={!hasFooter}>

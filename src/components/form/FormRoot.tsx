@@ -20,17 +20,24 @@
 import styled from '@emotion/styled';
 import { FormHTMLAttributes, forwardRef, ReactNode } from 'react';
 
-type FormAttributes = Pick<
-  FormHTMLAttributes<HTMLFormElement>,
-  'action' | 'method' | 'name' | 'target' | 'onReset' | 'onSubmit' | 'onInvalid'
->;
+type FormAttributesSubset =
+  | 'action'
+  | 'id'
+  | 'method'
+  | 'name'
+  | 'onReset'
+  | 'onSubmit'
+  | 'onInvalid'
+  | 'target';
+
+type FormAttributes = Pick<FormHTMLAttributes<HTMLFormElement>, FormAttributesSubset>;
 
 export interface FormRootProps extends FormAttributes {
   /**
-   * The content of the `Form.Root`, only one mandatory `Form.Header`, multiple `Form.Section`
+   * The content of the `Form`, only one mandatory `Form.Header`, multiple `Form.Section`
    * and one mandatory `Form.Footer` are allowed.
    */
-  children?: ReactNode;
+  children: ReactNode;
   /**
    * `noValidate` attribute is added by default on the form to not use the browser form validation.
    * Set this prop to `true` to remove the `noValidate` attribute.
