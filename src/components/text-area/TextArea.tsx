@@ -34,12 +34,17 @@ type InputAttributes = Pick<
   'autoComplete' | 'autoFocus' | 'form' | 'maxLength' | 'minLength' | 'name' | 'readOnly'
 >;
 
-interface Props extends InputProps, InputAttributes, InputEventProps<HTMLTextAreaElement> {
+interface TextAreaPropsBase
+  extends InputProps,
+    InputAttributes,
+    InputEventProps<HTMLTextAreaElement> {
   isResizable?: boolean;
   rows?: number;
 }
 
-export const TextArea = forwardRef<HTMLTextAreaElement, PropsWithLabels<Props>>((props, ref) => {
+export type TextAreaProps = PropsWithLabels<TextAreaPropsBase>;
+
+export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>((props, ref) => {
   const {
     ariaLabel,
     ariaLabelledBy,
