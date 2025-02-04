@@ -19,24 +19,18 @@
  */
 
 import type { Meta, StoryObj } from '@storybook/react';
-import { ComponentProps, FormEvent, useCallback, useState } from 'react';
+import { ComponentProps, useCallback, useState } from 'react';
 import {
   Button,
   ButtonIcon,
   ButtonVariety,
   DropdownMenu,
   DropdownMenuAlign,
-  Form,
-  IconHome,
-  IconMegaphone,
   IconMoreVertical,
   LinkStandalone,
-  MessageCallout,
   Modal,
-  ModalForm,
   ModalSize,
   Select,
-  TextInput,
 } from '../src';
 import { basicWrapperDecorator } from './helpers/BasicWrapper';
 
@@ -216,105 +210,3 @@ export const WithADropdownItemTrigger: Story = {
     </DropdownMenu>
   ),
 };
-
-export const WithAForm: Story = {
-  args: {
-    description: 'Description of the form, use it to provide additional information.',
-    footerLink: 'link',
-    title: 'My ModalForm title',
-  },
-  argTypes: {
-    primaryButton: {
-      table: { disable: true },
-    },
-    secondaryButton: {
-      table: { disable: true },
-    },
-  },
-  render: (args) => <ModalWithForm {...args} />,
-};
-
-function ModalWithForm(props: ComponentProps<typeof Modal>) {
-  const [formData, setFormData] = useState<string | null>(null);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const onSubmit = useCallback((event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setIsSubmitting(true);
-    const data = Object.fromEntries(new FormData(event.currentTarget));
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        setFormData(JSON.stringify(data, null, 2));
-        setIsSubmitting(false);
-        resolve(null);
-      }, 1500);
-    });
-  }, []);
-
-  const onReset = useCallback(() => {
-    setFormData(null);
-  }, []);
-
-  return (
-    <>
-      <ModalForm
-        extraContent={
-          <MessageCallout
-            text="This is the flag message description, use it to provide additional information."
-            type="info"
-          />
-        }
-        isDefaultOpen
-        isSubmitting={isSubmitting}
-        onReset={onReset}
-        onSubmit={onSubmit}
-        submitButtonLabel="Confirm payment"
-        {...props}
-        content={
-          <>
-            <Form.Section
-              description="Description of the section, use it to provide additional information."
-              title="Name section">
-              <TextInput
-                helpText="Write your full firstname starting with uppercase."
-                label="Firstname"
-                name="firstname"
-                placeholder="John"
-              />
-              <TextInput
-                helpText="Write your full lastname starting with uppercase."
-                label="Lastname"
-                name="lastname"
-                placeholder="Doe"
-              />
-            </Form.Section>
-            <Form.Section
-              description="Description of the section, use it to provide additional information."
-              title="Contact section">
-              <TextInput
-                helpText="Write your email."
-                label="Email"
-                name="email"
-                placeholder="john@doe.com"
-                prefix={<IconHome />}
-              />
-              <TextInput
-                helpText="Write your phone number."
-                label="Phone"
-                name="phone"
-                placeholder="john@doe.com"
-                prefix={<IconMegaphone />}
-              />
-            </Form.Section>
-          </>
-        }>
-        <Button>Show Form Modal</Button>
-      </ModalForm>
-      {formData && (
-        <pre>
-          <b>Form Data:</b> {formData}
-        </pre>
-      )}
-    </>
-  );
-}

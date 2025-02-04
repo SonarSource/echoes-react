@@ -40,7 +40,7 @@ export interface FormFooterProps {
 }
 
 export const FormFooter = forwardRef<HTMLDivElement, FormFooterProps>(
-  ({ children, side, ...rest }, ref) => {
+  ({ children, side = FormFooterSide.Left, ...rest }, ref) => {
     return (
       <FormFooterWrapper data-side={side}>
         <ButtonGroup ref={ref} {...rest}>

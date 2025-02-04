@@ -33,21 +33,21 @@ export interface FormHeaderProps {
    */
   extraContent?: ReactNode;
   /**
-   * Title to display at the top of the Form. It's automatically wrapped in a `<Heading as="h1">` component.
+   * Title to display at the top of the Form. It's automatically wrapped in a `<Heading as="h2">` component.
    */
   title: TextNode;
   /**
-   * The HTML element to use for the title. Defaults to `h1`. (optional)
+   * The HTML element to use for the title. Defaults to `h2`. (optional)
    */
   titleAs?: HeadingProps['as'];
   /**
-   * The size of the title. Defaults h1 default size. (optional)
+   * The size of the title. Defaults to h2 default size. (optional)
    */
   titleSize?: HeadingProps['size'];
 }
 
 export const FormHeader = forwardRef<HTMLDivElement, FormHeaderProps>((props, ref) => {
-  const { description, extraContent, title, titleAs = 'h1', titleSize, ...rest } = props;
+  const { description, extraContent, title, titleAs = 'h2', titleSize, ...rest } = props;
   return (
     <FormHeaderWrapper ref={ref} {...rest}>
       <FormHeaderContent>

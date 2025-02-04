@@ -26,20 +26,26 @@ import { ModalForm, ModalFormProps } from '../ModalForm';
 
 it('should correctly handle opening, submitting and closing the form', async () => {
   const onSubmit = jest.fn().mockImplementation((e) => e.preventDefault());
-  const { user } = renderModalForm({ onSubmit });
+  const onReset = jest.fn();
+  const { user } = renderModalForm({ onReset, onSubmit });
 
   expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
 
   await user.click(screen.getByRole('button', { name: 'Toggle' }));
-
   expect(screen.getByRole('dialog')).toBeInTheDocument();
   expect(screen.getByRole('form')).toBeInTheDocument();
   expect(screen.getByRole('heading', { name: 'ModalForm' })).toBeInTheDocument();
   expect(screen.getByRole('textbox', { name: 'input' })).toBeInTheDocument();
 
   await user.click(screen.getByRole('button', { name: 'Submit' }));
-
   expect(onSubmit).toHaveBeenCalled();
+  expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+
+  await user.click(screen.getByRole('button', { name: 'Toggle' }));
+  expect(screen.getByRole('dialog')).toBeInTheDocument();
+
+  await user.click(screen.getByRole('button', { name: 'Cancel' }));
+  expect(onReset).toHaveBeenCalled();
   expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
 });
 

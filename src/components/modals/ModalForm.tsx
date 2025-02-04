@@ -18,7 +18,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import { FormEvent, forwardRef, useCallback, useState } from 'react';
+import { FormEvent, forwardRef, useCallback, useId, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { TextNodeOptional } from '~types/utils';
 import { Button, ButtonVariety } from '../buttons';
@@ -60,7 +60,7 @@ export interface ModalFormProps extends FormRootPropsSubset, ModalPropsSubset {
 }
 
 /**
- * {@link ModalForm} is a helper component that wraps a {@link Form | Form} component inside a {@link Modal | Modal}
+ * {@link ModalForm} is a helper component that wraps a {@link Form} component inside a {@link Modal}
  * component and simplify usage of forms inside modals.
  *
  * **Key points**
@@ -72,7 +72,7 @@ export interface ModalFormProps extends FormRootPropsSubset, ModalPropsSubset {
  *
  * **Permitted Content**
  *
- * A Fragment with as many {@link FormSection | Form.Section} as your form needs.
+ * A Fragment with as many {@link Form.Section} as your form needs.
  *
  * **Example**
  *
@@ -84,7 +84,7 @@ export interface ModalFormProps extends FormRootPropsSubset, ModalPropsSubset {
  *  </ModalForm>
  * ```
  */
-export const ModalForm = forwardRef<HTMLButtonElement, ModalFormProps>((props, ref) => {
+export const ModalForm = forwardRef<HTMLDivElement, ModalFormProps>((props, ref) => {
   const {
     action,
     children,
@@ -124,6 +124,9 @@ export const ModalForm = forwardRef<HTMLButtonElement, ModalFormProps>((props, r
     [onReset],
   );
 
+  const defaultId = `${useId()}modal-form`;
+  const formId = id ?? defaultId;
+
   return (
     <Modal
       ref={ref}
@@ -131,7 +134,7 @@ export const ModalForm = forwardRef<HTMLButtonElement, ModalFormProps>((props, r
       content={
         <Form
           action={action}
-          id="my-form-id"
+          id={formId}
           method={method}
           name={name}
           onInvalid={onInvalid}
@@ -147,7 +150,7 @@ export const ModalForm = forwardRef<HTMLButtonElement, ModalFormProps>((props, r
       onOpenChange={setIsOpen}
       primaryButton={
         <Button
-          form="my-form-id"
+          form={formId}
           isDisabled={isSubmitting}
           isLoading={isSubmitting}
           type="submit"
@@ -162,7 +165,7 @@ export const ModalForm = forwardRef<HTMLButtonElement, ModalFormProps>((props, r
         </Button>
       }
       secondaryButton={
-        <Button form="my-form-id" type="reset">
+        <Button form={formId} type="reset">
           {secondaryButtonLabel ?? (
             <FormattedMessage
               defaultMessage="Cancel"

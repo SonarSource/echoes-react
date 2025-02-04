@@ -48,7 +48,7 @@ interface ModalBaseProps {
 
 export type ModalProps = ModalCommonProps & ModalBaseProps;
 
-export const Modal = forwardRef<HTMLButtonElement, ModalProps>((props, ref) => {
+export const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
   const {
     children,
     description,
@@ -78,16 +78,16 @@ export const Modal = forwardRef<HTMLButtonElement, ModalProps>((props, ref) => {
     <RadixDialog.Root defaultOpen={isDefaultOpen} onOpenChange={onOpenChange} open={isOpen}>
       <RadixDialog.Trigger
         asChild
-        ref={ref}
-        {...(isDropdownMenuItemComponent(children) && { onSelect: handleSelectForDropdownMenu })}
-        {...radixProps}>
+        {...(isDropdownMenuItemComponent(children) && { onSelect: handleSelectForDropdownMenu })}>
         {children}
       </RadixDialog.Trigger>
       <RadixDialog.Portal>
         <ModalOverlay />
         <ModalWrapper
           {...(!isDefined(description) && { 'aria-describedby': undefined })}
-          size={size}>
+          ref={ref}
+          size={size}
+          {...radixProps}>
           <ModalTitle>{title}</ModalTitle>
 
           <ModalBody isLast={!hasFooter}>

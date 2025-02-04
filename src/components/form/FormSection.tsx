@@ -20,7 +20,7 @@
 import styled from '@emotion/styled';
 import { forwardRef, ReactNode, useId } from 'react';
 import { TextNodeOptional } from '~types/utils';
-import { Heading, HeadingProps, HeadingSize, Text, TextSize } from '../typography';
+import { Heading, HeadingProps, Text, TextSize } from '../typography';
 
 export interface FormSectionProps {
   className?: string;
@@ -40,29 +40,21 @@ export interface FormSectionProps {
   id?: string;
   /**
    * Optional title to be displayed at the top of the section. It's automatically wrapped in a
-   * `<Heading as="h2">` component.
+   * `<Heading as="h3">` component.
    */
   title?: TextNodeOptional;
   /**
-   * The HTML element to use for the section title. Defaults to `h2`. (optional)
+   * The HTML element to use for the section title. Defaults to `h3`. (optional)
    */
   titleAs?: HeadingProps['as'];
   /**
-   * The size of the title. Defaults to `medium`. (optional)
+   * The size of the title. Defaults to h3 default size. (optional)
    */
   titleSize?: HeadingProps['size'];
 }
 
 export const FormSection = forwardRef<HTMLDivElement, FormSectionProps>((props, ref) => {
-  const {
-    children,
-    description,
-    id,
-    title,
-    titleAs = 'h2',
-    titleSize = HeadingSize.Medium,
-    ...rest
-  } = props;
+  const { children, description, id, title, titleAs = 'h3', titleSize, ...rest } = props;
   const defaultId = `${useId()}form-section`;
   const sectionId = id ?? defaultId;
   const titleId = `${sectionId}-title`;
