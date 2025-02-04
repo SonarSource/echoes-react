@@ -2856,10 +2856,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@material-symbols/font-400@npm:0.23.0":
-  version: 0.23.0
-  resolution: "@material-symbols/font-400@npm:0.23.0"
-  checksum: 10/05574f42faa2b0024b109b5ec98e7b292a0cb65fe83e694a1d1838756d16ab925e2ed2b9e7919fc8a2d5b8b2c105eaee8c03354a5f37689c4a90f6cc1afdf41d
+"@material-symbols/font-400@npm:0.28.1":
+  version: 0.28.1
+  resolution: "@material-symbols/font-400@npm:0.28.1"
+  checksum: 10/f68fafcaec31feb9f98f9a6c6a386145f2d66b1b2ed7ddd354ca4ba9a1167b4c95f874b3051d964eaf9fc3bca83655c41c058138b1f715d24eb6ad0d96cad6d9
   languageName: node
   linkType: hard
 
@@ -3912,7 +3912,7 @@ __metadata:
     "@formatjs/cli": "npm:6.2.12"
     "@mantine/core": "patch:@mantine/core@7.12.2#./config/patches/@mantine-core-npm-7.12.2-7aad505c0f.patch"
     "@mantine/hooks": "npm:7.12.2"
-    "@material-symbols/font-400": "npm:0.23.0"
+    "@material-symbols/font-400": "npm:0.28.1"
     "@radix-ui/react-alert-dialog": "npm:1.1.5"
     "@radix-ui/react-checkbox": "npm:1.1.3"
     "@radix-ui/react-dialog": "npm:1.1.5"
