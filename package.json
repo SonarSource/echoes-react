@@ -20,7 +20,7 @@
   "scripts": {
     "dev": "vite build --watch & yarn storybook",
     "jest": "jest",
-    "test": "yarn validate-ci && yarn test-ci",
+    "test": "yarn test-ci && yarn validate-ci",
     "test-ci": "jest --collectCoverage --coverageDirectory=build-reports/coverage --workerIdleMemoryLimit=1G --maxWorkers=4",
     "build": "vite build",
     "build-fonts": "node ./config/scripts/build-fonts.js",
@@ -39,8 +39,8 @@
     "ts-check": "yarn ts-check-files && yarn ts-check-declarations",
     "ts-check-files": "tsc --noEmit",
     "ts-check-declarations": "tsc --noEmit false --emitDeclarationOnly --isolatedModules false --outFile ./build-reports/ts-declarations/all-declarations",
-    "validate": "yarn lint && yarn ts-check && yarn format-check",
-    "validate-ci": "yarn dep-check && yarn intl-keys-check && yarn tokens-check && yarn fonts-check && yarn lint-report && yarn ts-check && yarn format-check"
+    "validate": "yarn ts-check && yarn format-check && yarn lint",
+    "validate-ci": "yarn dep-check && yarn intl-keys-check && yarn tokens-check && yarn fonts-check && yarn ts-check && yarn format-check && yarn lint-report"
   },
   "peerDependencies": {
     "@emotion/react": "^11.0.0",
@@ -89,7 +89,7 @@
     "@types/react-dom": "18.3.0",
     "@typescript-eslint/eslint-plugin": "8.6.0",
     "@typescript-eslint/parser": "8.6.0",
-    "@vitejs/plugin-react": "4.3.1",
+    "@vitejs/plugin-react": "4.3.4",
     "@yarnpkg/fslib": "3.1.0",
     "@yarnpkg/libzip": "3.1.0",
     "aria-query": "5.3.2",
@@ -119,8 +119,8 @@
     "style-dictionary": "3.9.2",
     "subset-font": "2.3.0",
     "typescript": "5.5.4",
-    "vite": "5.4.7",
-    "vite-plugin-dts": "4.2.1"
+    "vite": "5.4.14",
+    "vite-plugin-dts": "4.5.0"
   },
   "dependencies": {
     "@mantine/core": "patch:@mantine/core@7.12.2#./config/patches/@mantine-core-npm-7.12.2-7aad505c0f.patch",
