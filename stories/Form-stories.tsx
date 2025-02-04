@@ -159,7 +159,7 @@ function FormWithValidation(props: ComponentProps<typeof Form>) {
           <TextInput label="City" />
         </div>
       </Form.Section>
-      <Form.Footer>
+      <Form.Footer side="right">
         <Button type="reset">Cancel</Button>
         <Button type="submit" variety="primary">
           Confirm payment

@@ -70,7 +70,7 @@ const MESSAGE_INLINE_TYPE_STYLE = {
 };
 
 const MESSAGE_INLINE_FONT = {
-  [MessageInlineSize.Small]: 'var(--echoes-typography-text-small-medium)',
+  [MessageInlineSize.Small]: 'var(--echoes-typography-text-small-regular)',
   [MessageInlineSize.Default]: 'var(--echoes-typography-text-default-regular)',
 };
 

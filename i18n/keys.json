@@ -50,6 +50,14 @@
     "defaultMessage": "Cancel",
     "description": "Label for the secondary action of the Modal Alert"
   },
+  "modal_form.cancel": {
+    "defaultMessage": "Cancel",
+    "description": "Label for the secondary action of the Modal Form"
+  },
+  "modal_form.submit": {
+    "defaultMessage": "Submit",
+    "description": "Label for the submit action of the Modal Form"
+  },
   "open_in_new_tab": {
     "defaultMessage": "(opens in new tab)",
     "description": "Screen reader-only text to indicate that the link will open in a new tab"

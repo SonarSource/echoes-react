@@ -136,10 +136,10 @@ export const CheckboxGroup: CheckboxGroup = forwardRef<HTMLDivElement, CheckboxG
               <Checkbox
                 checked={value.includes(optionValue)}
                 hasError={validation === FormFieldValidation.Invalid}
-                isDisabled={isDisabled}
+                isDisabled={isDisabled || option.isDisabled}
                 key={option.label}
                 onCheck={(checkedState) => {
-                  if ('isDisabled' in option ? option.isDisabled : isDisabled) {
+                  if (isDisabled || option.isDisabled) {
                     return;
                   }
 

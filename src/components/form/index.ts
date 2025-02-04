@@ -23,7 +23,7 @@ import { FormRoot } from './FormRoot';
 import { FormSection } from './FormSection';
 
 export { FormFieldValidation, FormFieldWidth } from './FormField';
-export { type FormFooterProps } from './FormFooter';
+export { FormFooterSide, type FormFooterProps } from './FormFooter';
 export { type FormHeaderProps } from './FormHeader';
 export { type FormRootProps } from './FormRoot';
 export { type FormSectionProps } from './FormSection';

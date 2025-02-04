@@ -362,6 +362,17 @@
           }
         },
         "small": {
+          "regular": {
+            "value": {
+              "fontFamily": "{echoes.fontFamily.sans}",
+              "fontWeight": "{echoes.fontWeight.regular}",
+              "lineHeight": "{echoes.lineHeight.10}",
+              "fontSize": "{echoes.fontSize.10}",
+              "letterSpacing": "{echoes.letterSpacing.default}",
+              "paragraphSpacing": "{echoes.paragraphSpacing.small}"
+            },
+            "type": "typography"
+          },
           "medium": {
             "value": {
               "fontFamily": "{echoes.fontFamily.sans}",
