@@ -41,6 +41,10 @@ export interface ModalFormProps extends FormRootPropsSubset, ModalPropsSubset {
    */
   extraContent?: FormHeaderProps['extraContent'];
   /**
+   * Whether the submit button should be disabled. If true, the submit button will be disabled.
+   */
+  isSubmitDisabled?: boolean;
+  /**
    * Whether the form is currently submitting. If true, the submit button will be disabled and show a loading spinner.
    */
   isSubmitting?: boolean;
@@ -91,6 +95,7 @@ export const ModalForm = forwardRef<HTMLDivElement, ModalFormProps>((props, ref)
     content,
     extraContent,
     id,
+    isSubmitDisabled = false,
     isSubmitting = false,
     method,
     name,
@@ -151,7 +156,7 @@ export const ModalForm = forwardRef<HTMLDivElement, ModalFormProps>((props, ref)
       primaryButton={
         <Button
           form={formId}
-          isDisabled={isSubmitting}
+          isDisabled={isSubmitting || isSubmitDisabled}
           isLoading={isSubmitting}
           type="submit"
           variety={ButtonVariety.Primary}>
