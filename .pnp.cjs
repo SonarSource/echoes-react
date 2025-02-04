@@ -9383,10 +9383,10 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["cross-spawn", [\
-      ["npm:7.0.3", {\
-        "packageLocation": "./.yarn/cache/cross-spawn-npm-7.0.3-e4ff3e65b3-e1a13869d2.zip/node_modules/cross-spawn/",\
+      ["npm:7.0.6", {\
+        "packageLocation": "./.yarn/cache/cross-spawn-npm-7.0.6-264bddf921-0d52657d7a.zip/node_modules/cross-spawn/",\
         "packageDependencies": [\
-          ["cross-spawn", "npm:7.0.3"],\
+          ["cross-spawn", "npm:7.0.6"],\
           ["path-key", "npm:3.1.1"],\
           ["shebang-command", "npm:2.0.0"],\
           ["which", "npm:2.0.2"]\
@@ -10200,7 +10200,7 @@ const RAW_RUNTIME_STATE =
           ["@ungap/structured-clone", "npm:1.2.0"],\
           ["ajv", "npm:6.12.6"],\
           ["chalk", "npm:4.1.2"],\
-          ["cross-spawn", "npm:7.0.3"],\
+          ["cross-spawn", "npm:7.0.6"],\
           ["debug", "virtual:1b9e2a314c35921e1b14ca2d2c7664f165a5c0f3f02ca1e30357c6546941724b55e5624ce0d5b4790874f2259ae08ae26d9f95d2cdbb84aae50aa451a2a572cd#npm:4.3.7"],\
           ["doctrine", "npm:3.0.0"],\
           ["escape-string-regexp", "npm:4.0.0"],\
@@ -10741,7 +10741,7 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./.yarn/cache/execa-npm-5.1.1-191347acf5-8ada91f2d7.zip/node_modules/execa/",\
         "packageDependencies": [\
           ["execa", "npm:5.1.1"],\
-          ["cross-spawn", "npm:7.0.3"],\
+          ["cross-spawn", "npm:7.0.6"],\
           ["get-stream", "npm:6.0.1"],\
           ["human-signals", "npm:2.1.0"],\
           ["is-stream", "npm:2.0.1"],\
@@ -10984,7 +10984,7 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./.yarn/cache/foreground-child-npm-3.3.0-b8be745271-e3a60480f3.zip/node_modules/foreground-child/",\
         "packageDependencies": [\
           ["foreground-child", "npm:3.3.0"],\
-          ["cross-spawn", "npm:7.0.3"],\
+          ["cross-spawn", "npm:7.0.6"],\
           ["signal-exit", "npm:4.1.0"]\
         ],\
         "linkType": "HARD"\
@@ -13522,10 +13522,10 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["nanoid", [\
-      ["npm:3.3.7", {\
-        "packageLocation": "./.yarn/cache/nanoid-npm-3.3.7-98824ba130-ac1eb60f61.zip/node_modules/nanoid/",\
+      ["npm:3.3.8", {\
+        "packageLocation": "./.yarn/cache/nanoid-npm-3.3.8-d22226208b-2d1766606c.zip/node_modules/nanoid/",\
         "packageDependencies": [\
-          ["nanoid", "npm:3.3.7"]\
+          ["nanoid", "npm:3.3.8"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -13951,7 +13951,7 @@ const RAW_RUNTIME_STATE =
           ["@yarnpkg/lockfile", "npm:1.1.0"],\
           ["chalk", "npm:4.1.2"],\
           ["ci-info", "npm:3.9.0"],\
-          ["cross-spawn", "npm:7.0.3"],\
+          ["cross-spawn", "npm:7.0.6"],\
           ["find-yarn-workspace-root", "npm:2.0.0"],\
           ["fs-extra", "npm:9.1.0"],\
           ["json-stable-stringify", "npm:1.1.1"],\
@@ -14164,12 +14164,12 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["postcss", [\
-      ["npm:8.4.47", {\
-        "packageLocation": "./.yarn/cache/postcss-npm-8.4.47-2f4d4be1fa-f2b50ba9b6.zip/node_modules/postcss/",\
+      ["npm:8.5.1", {\
+        "packageLocation": "./.yarn/cache/postcss-npm-8.5.1-90fd898a99-1fbd287531.zip/node_modules/postcss/",\
         "packageDependencies": [\
-          ["postcss", "npm:8.4.47"],\
-          ["nanoid", "npm:3.3.7"],\
-          ["picocolors", "npm:1.1.0"],\
+          ["postcss", "npm:8.5.1"],\
+          ["nanoid", "npm:3.3.8"],\
+          ["picocolors", "npm:1.1.1"],\
           ["source-map-js", "npm:1.2.1"]\
         ],\
         "linkType": "HARD"\
@@ -16586,7 +16586,7 @@ const RAW_RUNTIME_STATE =
           ["fsevents", "patch:fsevents@npm%3A2.3.3#optional!builtin<compat/fsevents>::version=2.3.3&hash=df0bf1"],\
           ["less", null],\
           ["lightningcss", null],\
-          ["postcss", "npm:8.4.47"],\
+          ["postcss", "npm:8.5.1"],\
           ["rollup", "npm:4.22.4"],\
           ["sass", null],\
           ["sass-embedded", null],\
