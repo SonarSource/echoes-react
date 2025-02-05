@@ -22,7 +22,7 @@ import { type ComponentProps, type JSX, forwardRef } from 'react';
 import { TextNodeOptional } from '~types/utils';
 import { MessageInline, MessageInlineSize, MessageType } from '../messages';
 import { HelperText } from '../typography';
-import { FormFieldLabel } from './FormFieldLabel';
+import { FormFieldLabel, FormFieldLabelProps } from './FormFieldLabel';
 
 /**
  * Form fields wrap form controls and help create standardization between them.
@@ -38,7 +38,7 @@ import { FormFieldLabel } from './FormFieldLabel';
  * ```tsx
  * <FormField
  *   controlId="19ujfsyw"
- *   description="Please provide your full name"
+ *   helpText="Please provide your full name"
  *   isRequired
  *   label="Full name"
  *   massageInvalid="Your name is required"
@@ -53,8 +53,9 @@ export const FormField = forwardRef<HTMLDivElement, FormFieldProps>((props, ref)
   const {
     children,
     controlId,
-    description,
-    descriptionId,
+    helpText,
+    helpTextId,
+    helpToggletipProps,
     isDisabled = false,
     isRequired = false,
     label,
@@ -85,7 +86,11 @@ export const FormField = forwardRef<HTMLDivElement, FormFieldProps>((props, ref)
       data-width={width}
       ref={ref}
       {...rest}>
-      <FormFieldLabel htmlFor={controlId} id={labelId} isRequired={isRequired}>
+      <FormFieldLabel
+        helpToggletipProps={helpToggletipProps}
+        htmlFor={controlId}
+        id={labelId}
+        isRequired={isRequired}>
         {label}
       </FormFieldLabel>
       {children}
@@ -93,12 +98,10 @@ export const FormField = forwardRef<HTMLDivElement, FormFieldProps>((props, ref)
         {messageInvalidElement}
         {messageValidElement}
       </span>
-      {description && (
-        <Description
-          hidden={Boolean(messageValidElement || messageInvalidElement)}
-          id={descriptionId}>
-          {description}
-        </Description>
+      {helpText && (
+        <HelpText hidden={Boolean(messageValidElement || messageInvalidElement)} id={helpTextId}>
+          {helpText}
+        </HelpText>
       )}
     </FormFieldStyled>
   );
@@ -152,7 +155,7 @@ export interface ValidationProps {
   validation?: `${FormFieldValidation}`;
 }
 
-interface FormFieldProps extends ValidationProps, WhiteListedProps {
+export interface FormFieldProps extends ValidationProps, WhiteListedProps {
   /**
    * The form control element. A form field should have exactly one form control.
    */
@@ -163,15 +166,15 @@ interface FormFieldProps extends ValidationProps, WhiteListedProps {
    */
   controlId?: string;
   /**
-   * A descriptive message for the form field (optional).
+   * A descriptive message for the form field, provides more context about the input validation and criteria (optional).
    */
-  description?: TextNodeOptional;
+  helpText?: TextNodeOptional;
   /**
    * The ID of the description for the form field (optional). Useful for
    * establishing a relationship between a description and a form control using
    * the `aria-describedby` attribute.
    */
-  descriptionId?: string;
+  helpTextId?: string;
   /**
    * When true, pointer events will be disabled on the label to prevent
    * activating the form control.
@@ -181,15 +184,19 @@ interface FormFieldProps extends ValidationProps, WhiteListedProps {
    * When true, an asterisk will be displayed next to the label to indicate that
    * the field is required.
    */
-  isRequired?: boolean;
+  isRequired?: FormFieldLabelProps['isRequired'];
   /**
    * The label for the form field (optional).
    */
-  label?: TextNodeOptional;
+  label?: FormFieldLabelProps['children'];
   /**
    * The ID of the label for the form field (optional).
    */
-  labelId?: string;
+  labelId?: FormFieldLabelProps['id'];
+  /**
+   * The props for a help toggletip showing next to the form field label to provide additional information about the field (optional).
+   */
+  helpToggletipProps?: FormFieldLabelProps['helpToggletipProps'];
   /**
    * The ID of the validation message for the form field (optional). Useful for
    * establishing a relationship between a validation message and a form control
@@ -227,8 +234,8 @@ const ValidationMessage = styled(MessageInline)`
 
 ValidationMessage.displayName = 'ValidationMessage';
 
-const Description = styled(HelperText)`
+const HelpText = styled(HelperText)`
   margin-top: var(--echoes-dimension-space-75);
 `;
 
-Description.displayName = 'Description';
+HelpText.displayName = 'HelpText';

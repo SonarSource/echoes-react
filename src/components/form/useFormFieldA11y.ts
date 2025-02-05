@@ -25,9 +25,9 @@ type UseFormFieldA11yInput = {
    */
   controlId?: string;
   /**
-   * Whether the form field has a description (optional).
+   * Whether the form field has a help text (optional).
    */
-  hasDescription?: boolean;
+  hasHelpText?: boolean;
   /**
    * Whether the form field has a validation message (optional).
    */
@@ -44,9 +44,9 @@ type UseFormFieldA11yOutput = {
    */
   describedBy: string | undefined;
   /**
-   * The ID that should be used for the description.
+   * The ID that should be used for the help text.
    */
-  descriptionId: string;
+  helpTextId: string;
   /**
    * The ID that should be used for the label.
    */
@@ -66,19 +66,19 @@ type UseFormFieldA11yOutput = {
  * const {
  *   controlId,
  *   describedBy,
- *   descriptionId,
+ *   helpTextId,
  *   labelId,
  *   validationMessageId
  * } = useFormFieldA11y()
  * ```
  */
 export function useFormFieldA11y(input: UseFormFieldA11yInput = {}): UseFormFieldA11yOutput {
-  const { controlId, hasDescription, hasValidationMessage } = input;
+  const { controlId, hasHelpText, hasValidationMessage } = input;
 
   const defaultId = useId();
   const id = controlId ?? defaultId;
   const describedBy: string[] = [];
-  const descriptionId = `${controlId}-description`;
+  const helpTextId = `${controlId}-help-text`;
   const labelId = `${controlId}-label`;
   const validationMessageId = `${controlId}-validation-message`;
 
@@ -86,14 +86,14 @@ export function useFormFieldA11y(input: UseFormFieldA11yInput = {}): UseFormFiel
     describedBy.push(validationMessageId);
   }
 
-  if (hasDescription) {
-    describedBy.push(descriptionId);
+  if (hasHelpText) {
+    describedBy.push(helpTextId);
   }
 
   return {
     controlId: id,
     describedBy: describedBy.length > 0 ? describedBy.join(' ') : undefined,
-    descriptionId,
+    helpTextId,
     labelId,
     validationMessageId,
   };

@@ -31,15 +31,17 @@ import { PortalContext } from '../../common/components/PortalContext';
 import {
   type ValidationProps,
   FormField,
+  FormFieldProps,
   FormFieldValidation,
-  FormFieldWidth,
 } from '../form/FormField';
 import { useFormFieldA11y } from '../form/useFormFieldA11y';
 import { OptionComponent, useSelectOptionFunction } from './SelectItemCommons';
 import { SelectData, SelectHighlight, SelectOption, SelectOptionType } from './SelectTypes';
 import { SelectFilterFunction, useSelectOptionFilter } from './useSelectOptionFilter';
 
-export interface SelectBaseProps extends ValidationProps {
+type FormFieldPropsSubset = Pick<FormFieldProps, 'helpToggletipProps' | 'width'>;
+
+export interface SelectBaseProps extends ValidationProps, FormFieldPropsSubset {
   className?: string;
   data: SelectData;
   defaultValue?: MantineSelectProps['defaultValue'];
@@ -62,7 +64,6 @@ export interface SelectBaseProps extends ValidationProps {
   placeholder?: MantineSelectProps['placeholder'];
   value: MantineSelectProps['value'];
   valueIcon?: MantineSelectProps['leftSection'];
-  width?: `${FormFieldWidth}`;
 }
 
 export const SelectBase = forwardRef<HTMLInputElement, PropsWithLabels<SelectBaseProps>>(
@@ -74,6 +75,7 @@ export const SelectBase = forwardRef<HTMLInputElement, PropsWithLabels<SelectBas
       filter,
       hasDropdownAutoWidth = false,
       helpText,
+      helpToggletipProps,
       highlight = SelectHighlight.Default,
       id,
       isDisabled = false,
@@ -103,9 +105,9 @@ export const SelectBase = forwardRef<HTMLInputElement, PropsWithLabels<SelectBas
     const isClearable = !isNotClearable && !isRequired && !isDisabled;
     const defaultId = `${useId()}select`;
 
-    const { controlId, describedBy, descriptionId, validationMessageId } = useFormFieldA11y({
+    const { controlId, describedBy, helpTextId, validationMessageId } = useFormFieldA11y({
       controlId: id ?? defaultId,
-      hasDescription: Boolean(helpText),
+      hasHelpText: Boolean(helpText),
       hasValidationMessage: Boolean(messageValid || messageInvalid),
     });
 
@@ -127,8 +129,9 @@ export const SelectBase = forwardRef<HTMLInputElement, PropsWithLabels<SelectBas
     return (
       <FormField
         controlId={controlId}
-        description={helpText}
-        descriptionId={descriptionId}
+        helpText={helpText}
+        helpTextId={helpTextId}
+        helpToggletipProps={helpToggletipProps}
         isDisabled={isDisabled}
         isRequired={isRequired}
         label={label}

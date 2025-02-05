@@ -43,6 +43,20 @@ it('displays an asterisk next to the label if the form field is required', () =>
   expect(label).toBeVisible();
 });
 
+it('displays a help toggletip next to the label', async () => {
+  const { user } = render(
+    <FormField
+      controlId="foo"
+      helpToggletipProps={{ description: 'Help toggletip' }}
+      label="Label 2">
+      <input id="foo" />
+    </FormField>,
+  );
+
+  await user.click(screen.getByLabelText('More information'));
+  expect(screen.getByText('Help toggletip')).toBeVisible();
+});
+
 it('disables pointer events on the label if the form field is disabled', () => {
   render(
     <FormField isDisabled label="Label 3">
@@ -65,7 +79,7 @@ it('sets the for attribute on the label if a control ID is provided', () => {
 
 it('has no a11y violations', async () => {
   const { container } = render(
-    <FormField controlId="input" description="Help text" label="Label">
+    <FormField controlId="input" helpText="Help text" label="Label">
       <input id="input" />
     </FormField>,
   );
@@ -74,7 +88,7 @@ it('has no a11y violations', async () => {
 
 it('displays a description if one is provided', () => {
   render(
-    <FormField description="Description text 1">
+    <FormField helpText="Description text 1">
       <input />
     </FormField>,
   );
@@ -87,7 +101,7 @@ it.each([FormFieldValidation.Invalid, FormFieldValidation.Valid])(
   (validation) => {
     render(
       <FormField
-        description="Description text 2"
+        helpText="Description text 2"
         messageInvalid="💣"
         messageValid="😎"
         validation={validation}>
@@ -103,7 +117,7 @@ it.each([FormFieldValidation.Invalid, FormFieldValidation.Valid])(
   'displays the description if the form field validation is %s and no validation message is provided',
   (validation) => {
     render(
-      <FormField description="Description text 3" validation={validation}>
+      <FormField helpText="Description text 3" validation={validation}>
         <input />
       </FormField>,
     );
@@ -114,7 +128,7 @@ it.each([FormFieldValidation.Invalid, FormFieldValidation.Valid])(
 
 it('sets the id on the description if one is provided', () => {
   render(
-    <FormField description="Description text 4" descriptionId="foo">
+    <FormField helpText="Description text 4" helpTextId="foo">
       <input />
     </FormField>,
   );

@@ -49,6 +49,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>((props, r
     ariaLabel,
     ariaLabelledBy,
     helpText,
+    helpToggletipProps,
     id,
     isDisabled = false,
     isResizable = false,
@@ -64,17 +65,18 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>((props, r
 
   const defaultId = `${useId()}textarea`;
 
-  const { controlId, describedBy, descriptionId, validationMessageId } = useFormFieldA11y({
+  const { controlId, describedBy, helpTextId, validationMessageId } = useFormFieldA11y({
     controlId: id ?? defaultId,
-    hasDescription: Boolean(helpText),
+    hasHelpText: Boolean(helpText),
     hasValidationMessage: Boolean(messageValid || messageInvalid),
   });
 
   return (
     <FormField
       controlId={controlId}
-      description={helpText}
-      descriptionId={descriptionId}
+      helpText={helpText}
+      helpTextId={helpTextId}
+      helpToggletipProps={helpToggletipProps}
       isDisabled={isDisabled}
       isRequired={isRequired}
       label={label}
