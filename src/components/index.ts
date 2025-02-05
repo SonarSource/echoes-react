@@ -20,6 +20,7 @@
 
 export * from './buttons';
 export * from './checkbox';
+export * from './checkbox-group';
 export * from './dropdown-menu';
 export * from './echoes-provider';
 export * from './form';
