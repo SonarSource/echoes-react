@@ -529,7 +529,7 @@
         "helper-text": {
           "value": {
             "fontFamily": "{echoes.fontFamily.sans}",
-            "fontWeight": "{echoes.fontWeight.medium}",
+            "fontWeight": "{echoes.fontWeight.regular}",
             "fontSize": "{echoes.fontSize.10}",
             "lineHeight": "{echoes.lineHeight.10}"
           },
