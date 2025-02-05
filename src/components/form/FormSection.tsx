@@ -73,7 +73,11 @@ export const FormSection = forwardRef<HTMLDivElement, FormSectionProps>((props, 
       {(title || description) && (
         <div>
           {title && (
-            <Heading as={titleAs} hasMarginBottom id={titleId} size={titleSize}>
+            <Heading
+              as={titleAs}
+              hasMarginBottom={Boolean(description)}
+              id={titleId}
+              size={titleSize}>
               {title}
             </Heading>
           )}
