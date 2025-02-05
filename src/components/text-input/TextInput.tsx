@@ -61,6 +61,7 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>((props, re
     ariaLabel,
     ariaLabelledBy,
     helpText,
+    helpToggletipProps,
     id,
     isDisabled = false,
     isRequired = false,
@@ -77,17 +78,18 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>((props, re
 
   const defaultId = `${useId()}textinput`;
 
-  const { controlId, describedBy, descriptionId, validationMessageId } = useFormFieldA11y({
+  const { controlId, describedBy, helpTextId, validationMessageId } = useFormFieldA11y({
     controlId: id ?? defaultId,
-    hasDescription: Boolean(helpText),
+    hasHelpText: Boolean(helpText),
     hasValidationMessage: Boolean(messageValid || messageInvalid),
   });
 
   return (
     <FormField
       controlId={controlId}
-      description={helpText}
-      descriptionId={descriptionId}
+      helpText={helpText}
+      helpTextId={helpTextId}
+      helpToggletipProps={helpToggletipProps}
       isDisabled={isDisabled}
       isRequired={isRequired}
       label={label}

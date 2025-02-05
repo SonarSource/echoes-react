@@ -26,13 +26,15 @@ import { PropsWithLabels } from '~types/utils';
 import {
   type ValidationProps,
   FormField,
+  FormFieldProps,
   FormFieldValidation,
-  FormFieldWidth,
 } from '../form/FormField';
 import { useFormFieldA11y } from '../form/useFormFieldA11y';
 import { HelperText, Label } from '../typography';
 
-interface Props extends ValidationProps {
+type FormFieldPropsSubset = Pick<FormFieldProps, 'helpToggletipProps' | 'width'>;
+
+interface Props extends ValidationProps, FormFieldPropsSubset {
   onChange?: (value: string) => void;
   options: RadioOption[];
 
@@ -44,7 +46,6 @@ interface Props extends ValidationProps {
   isDisabled?: boolean;
   isRequired?: boolean;
   value?: string;
-  width?: `${FormFieldWidth}`;
 }
 
 export const RadioButtonGroup = forwardRef<HTMLDivElement, PropsWithLabels<Props>>((props, ref) => {
@@ -54,6 +55,7 @@ export const RadioButtonGroup = forwardRef<HTMLDivElement, PropsWithLabels<Props
     ariaLabelledBy,
     className,
     helpText,
+    helpToggletipProps,
     id = 'radio-button-group',
     isDisabled: disabled,
     isRequired: required,
@@ -69,17 +71,18 @@ export const RadioButtonGroup = forwardRef<HTMLDivElement, PropsWithLabels<Props
 
   const defaultId = `${useId()}radiogroup`;
 
-  const { controlId, describedBy, descriptionId, labelId, validationMessageId } = useFormFieldA11y({
+  const { controlId, describedBy, helpTextId, labelId, validationMessageId } = useFormFieldA11y({
     controlId: id ?? defaultId,
-    hasDescription: Boolean(helpText),
+    hasHelpText: Boolean(helpText),
     hasValidationMessage: Boolean(messageValid || messageInvalid),
   });
 
   return (
     <FormField
       className={className}
-      description={helpText}
-      descriptionId={descriptionId}
+      helpText={helpText}
+      helpTextId={helpTextId}
+      helpToggletipProps={helpToggletipProps}
       isDisabled={disabled}
       isRequired={required}
       label={label}
