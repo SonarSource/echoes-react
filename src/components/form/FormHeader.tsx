@@ -51,7 +51,7 @@ export const FormHeader = forwardRef<HTMLDivElement, FormHeaderProps>((props, re
   return (
     <FormHeaderWrapper ref={ref} {...rest}>
       <FormHeaderContent>
-        <Heading as={titleAs} hasMarginBottom size={titleSize}>
+        <Heading as={titleAs} hasMarginBottom={Boolean(description)} size={titleSize}>
           {title}
         </Heading>
         {description && <Text>{description}</Text>}
