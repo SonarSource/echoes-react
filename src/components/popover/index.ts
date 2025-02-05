@@ -18,4 +18,4 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-export { Popover, PopoverAlign, PopoverSide } from './Popover';
+export { Popover, PopoverAlign, PopoverSide, type PopoverProps } from './Popover';

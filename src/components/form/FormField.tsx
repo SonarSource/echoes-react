@@ -22,7 +22,7 @@ import { type ComponentProps, type JSX, forwardRef } from 'react';
 import { TextNodeOptional } from '~types/utils';
 import { MessageInline, MessageInlineSize, MessageType } from '../messages';
 import { HelperText } from '../typography';
-import { FormFieldLabel } from './FormFieldLabel';
+import { FormFieldLabel, FormFieldLabelProps } from './FormFieldLabel';
 
 /**
  * Form fields wrap form controls and help create standardization between them.
@@ -55,6 +55,7 @@ export const FormField = forwardRef<HTMLDivElement, FormFieldProps>((props, ref)
     controlId,
     helpText,
     helpTextId,
+    helpToggletip,
     isDisabled = false,
     isRequired = false,
     label,
@@ -85,7 +86,11 @@ export const FormField = forwardRef<HTMLDivElement, FormFieldProps>((props, ref)
       data-width={width}
       ref={ref}
       {...rest}>
-      <FormFieldLabel htmlFor={controlId} id={labelId} isRequired={isRequired}>
+      <FormFieldLabel
+        helpToggletip={helpToggletip}
+        htmlFor={controlId}
+        id={labelId}
+        isRequired={isRequired}>
         {label}
       </FormFieldLabel>
       {children}
@@ -150,7 +155,7 @@ export interface ValidationProps {
   validation?: `${FormFieldValidation}`;
 }
 
-interface FormFieldProps extends ValidationProps, WhiteListedProps {
+export interface FormFieldProps extends ValidationProps, WhiteListedProps {
   /**
    * The form control element. A form field should have exactly one form control.
    */
@@ -179,19 +184,19 @@ interface FormFieldProps extends ValidationProps, WhiteListedProps {
    * When true, an asterisk will be displayed next to the label to indicate that
    * the field is required.
    */
-  isRequired?: boolean;
+  isRequired?: FormFieldLabelProps['isRequired'];
   /**
    * The label for the form field (optional).
    */
-  label?: TextNodeOptional;
+  label?: FormFieldLabelProps['children'];
   /**
    * The ID of the label for the form field (optional).
    */
-  labelId?: string;
+  labelId?: FormFieldLabelProps['id'];
   /**
-   * A toggletip showing next to the form field label to provide additional information about the field (optional).
+   * The props for a help toggletip showing next to the form field label to provide additional information about the field (optional).
    */
-  toggleTip?: TextNodeOptional;
+  helpToggletip?: FormFieldLabelProps['helpToggletip'];
   /**
    * The ID of the validation message for the form field (optional). Useful for
    * establishing a relationship between a validation message and a form control

@@ -43,6 +43,17 @@ it('displays an asterisk next to the label if the form field is required', () =>
   expect(label).toBeVisible();
 });
 
+it('displays a help toggletip next to the label', async () => {
+  const { user } = render(
+    <FormField controlId="foo" helpToggletip={{ description: 'Help toggletip' }} label="Label 2">
+      <input id="foo" />
+    </FormField>,
+  );
+
+  await user.click(screen.getByLabelText('More information'));
+  expect(screen.getByText('Help toggletip')).toBeVisible();
+});
+
 it('disables pointer events on the label if the form field is disabled', () => {
   render(
     <FormField isDisabled label="Label 3">

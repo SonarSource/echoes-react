@@ -25,8 +25,8 @@ import { type CheckboxProps, Checkbox } from '../checkbox/Checkbox';
 import {
   type ValidationProps,
   FormField,
+  FormFieldProps,
   FormFieldValidation,
-  FormFieldWidth,
 } from '../form/FormField';
 import { useFormFieldA11y } from '../form/useFormFieldA11y';
 
@@ -77,6 +77,7 @@ export const CheckboxGroup: CheckboxGroup = forwardRef<HTMLDivElement, CheckboxG
       ariaLabelledBy,
       className,
       helpText,
+      helpToggletip,
       id,
       isDisabled,
       isRequired,
@@ -109,6 +110,7 @@ export const CheckboxGroup: CheckboxGroup = forwardRef<HTMLDivElement, CheckboxG
         className={className}
         helpText={helpText}
         helpTextId={helpTextId}
+        helpToggletip={helpToggletip}
         isDisabled={isDisabled}
         isRequired={isRequired}
         label={label}
@@ -186,7 +188,12 @@ type CheckboxOption<T = unknown> = Pick<
   value?: T;
 };
 
-interface CheckboxGroupPropsBase<T> extends RefAttributes<HTMLDivElement>, ValidationProps {
+type FormFieldPropsSubset = Pick<FormFieldProps, 'helpToggletip' | 'isRequired' | 'width'>;
+
+interface CheckboxGroupPropsBase<T>
+  extends RefAttributes<HTMLDivElement>,
+    ValidationProps,
+    FormFieldPropsSubset {
   /**
    * Controls the alignment of the checkboxes in the group (optional). The
    * default is `vertical`.
@@ -204,11 +211,6 @@ interface CheckboxGroupPropsBase<T> extends RefAttributes<HTMLDivElement>, Valid
    * Prevent the user from interacting with the checkboxes (optional).
    */
   isDisabled?: boolean;
-  /**
-   * When true, an asterisk will be displayed next to the label to indicate that
-   * the field is required.
-   */
-  isRequired?: boolean;
   /**
    * You may provide a name for the group that is used when submitting a form
    * (optional). The value of the field will be a comma separated list of the
@@ -237,11 +239,6 @@ interface CheckboxGroupPropsBase<T> extends RefAttributes<HTMLDivElement>, Valid
    * assumed to be unique.
    */
   value: T[];
-  /**
-   * Controls the width of the form field (optional). The default value is
-   * `full`, meaning it will take up the full width of its container.
-   */
-  width?: `${FormFieldWidth}`;
 }
 
 export type CheckboxGroupProps<T = unknown> = PropsWithLabels<CheckboxGroupPropsBase<T>>;

@@ -22,6 +22,7 @@ import styled from '@emotion/styled';
 import * as RadixPopover from '@radix-ui/react-popover';
 import { ReactElement, ReactNode, forwardRef, useContext } from 'react';
 import { isDefined } from '~common/helpers/types';
+import { TextNodeOptional } from '~types/utils';
 import { THEME_DATA_ATTRIBUTE, ThemeContext } from '~utils/theme';
 import { Heading, HeadingSize, Text, TextSize } from '../typography';
 
@@ -38,15 +39,15 @@ export enum PopoverSide {
   Left = 'left',
 }
 
-interface Props {
-  align?: PopoverAlign;
+export interface PopoverProps {
+  align?: `${PopoverAlign}`;
   children: ReactElement;
-  description?: ReactNode;
+  description?: TextNodeOptional;
   extraContent?: ReactNode;
   footer?: ReactNode; // Enforce Button, ButtonGroup or Link ?
   isOpen?: boolean;
-  side?: PopoverSide;
-  title: string;
+  side?: `${PopoverSide}`;
+  title?: TextNodeOptional;
 }
 
 /* This is the distance between the point of the arrow and the trigger */
@@ -71,7 +72,7 @@ const ARROW_PADDING = 16;
  *
  * Since the popovers are appended to the body, they are in the root Stacking Context. If other elements are also there, the z-index will determine which appears on top. By creating a new Stacking Context for your app, it ensures that z-indexed elements will stay within that context, while popovers will be painted on top, in the parent Stacking Context.
  */
-export const Popover = forwardRef<HTMLButtonElement, Props>((props, ref) => {
+export const Popover = forwardRef<HTMLButtonElement, PopoverProps>((props, ref) => {
   const { align, children, description, extraContent, footer, isOpen, side, title, ...radixProps } =
     props;
   const theme = useContext(ThemeContext);
@@ -89,9 +90,11 @@ export const Popover = forwardRef<HTMLButtonElement, Props>((props, ref) => {
           arrowPadding={ARROW_PADDING}
           side={side}
           sideOffset={POPOVER_OFFSET}>
-          <Heading as="h1" hasMarginBottom size={HeadingSize.Medium}>
-            {title}
-          </Heading>
+          {title && (
+            <Heading as="h1" hasMarginBottom={Boolean(description)} size={HeadingSize.Medium}>
+              {title}
+            </Heading>
+          )}
 
           {description && (
             <Text isSubdued size={TextSize.Small}>

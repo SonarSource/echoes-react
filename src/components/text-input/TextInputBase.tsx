@@ -19,7 +19,7 @@
  */
 import styled from '@emotion/styled';
 import { InputHTMLAttributes } from 'react';
-import { type ValidationProps, FormFieldWidth } from '../form/FormField';
+import { type ValidationProps, FormFieldProps } from '../form/FormField';
 
 type InputEventAttributesSubset =
   | 'onFocus'
@@ -36,13 +36,13 @@ type InputEventAttributesSubset =
 
 export type InputEventProps<T> = Pick<InputHTMLAttributes<T>, InputEventAttributesSubset>;
 
-export interface InputProps extends ValidationProps {
+type FormFieldPropsSubset = Pick<FormFieldProps, 'helpToggletip' | 'isRequired' | 'width'>;
+
+export interface InputProps extends ValidationProps, FormFieldPropsSubset {
   className?: string;
   isDisabled?: boolean;
-  isRequired?: boolean;
   placeholder?: string;
   value?: string | number;
-  width?: `${FormFieldWidth}`;
 }
 
 export const InputStyled = styled.input`

@@ -19,42 +19,44 @@
  */
 
 import styled from '@emotion/styled';
-import { ComponentProps, forwardRef } from 'react';
+import { forwardRef } from 'react';
 import { useIntl } from 'react-intl';
 import { ButtonIcon, ButtonVariety } from '../buttons';
 import { IconInfo } from '../icons';
-import { Popover } from '../popover';
+import { Popover, PopoverProps } from '../popover';
 
-type PopoverProps = Omit<ComponentProps<typeof Popover>, 'children'>;
+type PopoverPropsSubset = Omit<PopoverProps, 'children'>;
 
-interface Props extends PopoverProps {
+export interface ToggleTipProps extends PopoverPropsSubset {
   ariaLabel?: string;
   className?: string;
 }
 
-export const ToggleTip = forwardRef<HTMLButtonElement, Props>((props: Props, ref) => {
-  const { ariaLabel, className, ...popoverProps } = props;
+export const ToggleTip = forwardRef<HTMLButtonElement, ToggleTipProps>(
+  (props: ToggleTipProps, ref) => {
+    const { ariaLabel, className, ...popoverProps } = props;
 
-  const intl = useIntl();
+    const intl = useIntl();
 
-  const defaultAriaLabel = intl.formatMessage({
-    id: 'toggletip.help',
-    defaultMessage: 'More information',
-    description: 'aria-label text and tooltip for the ToggleTip',
-  });
+    const defaultAriaLabel = intl.formatMessage({
+      id: 'toggletip.help',
+      defaultMessage: 'More information',
+      description: 'aria-label text and tooltip for the ToggleTip',
+    });
 
-  return (
-    <Popover {...popoverProps}>
-      <ToggleTipButtonIcon
-        Icon={IconInfo}
-        ariaLabel={ariaLabel ?? defaultAriaLabel}
-        className={className}
-        ref={ref}
-        variety={ButtonVariety.DefaultGhost}
-      />
-    </Popover>
-  );
-});
+    return (
+      <Popover {...popoverProps}>
+        <ToggleTipButtonIcon
+          Icon={IconInfo}
+          ariaLabel={ariaLabel ?? defaultAriaLabel}
+          className={className}
+          ref={ref}
+          variety={ButtonVariety.DefaultGhost}
+        />
+      </Popover>
+    );
+  },
+);
 
 const ToggleTipButtonIcon = styled(ButtonIcon)`
   line-height: var(--echoes-line-height-10);

@@ -20,9 +20,11 @@
 import styled from '@emotion/styled';
 import { forwardRef } from 'react';
 import { TextNodeOptional } from '~types/utils';
+import { PopoverSide } from '../popover';
+import { ToggleTip, ToggleTipProps } from '../toggle-tip';
 import { Label } from '../typography';
 
-interface Props {
+export interface FormFieldLabelProps {
   children?: TextNodeOptional;
   /**
    * The ID of the form control that this label is associated with.
@@ -36,6 +38,10 @@ interface Props {
    * When true, will display an asterisk to indicate that the field is required.
    */
   isRequired?: boolean;
+  /**
+   * The props for a help toggletip showing next to the form field label to provide additional information about the field (optional).
+   */
+  helpToggletip?: ToggleTipProps;
 }
 
 /**
@@ -51,29 +57,40 @@ interface Props {
  *
  * @internal
  */
-export const FormFieldLabel = forwardRef<HTMLLabelElement, Props>((props, ref) => {
-  const { children, isRequired = false, ...rest } = props;
+export const FormFieldLabel = forwardRef<HTMLLabelElement, FormFieldLabelProps>((props, ref) => {
+  const { children, isRequired = false, helpToggletip, ...rest } = props;
 
   if (!children) {
     return null;
   }
 
   return (
-    <LabelStyled ref={ref} {...rest}>
-      {children}
-      {isRequired && <RequiredIndicator aria-hidden="true">*</RequiredIndicator>}
-    </LabelStyled>
+    <LabelWrapper>
+      <LabelStyled ref={ref} {...rest}>
+        {children}
+        {isRequired && <RequiredIndicator aria-hidden="true">*</RequiredIndicator>}
+      </LabelStyled>
+      {helpToggletip && <ToggleTip side={PopoverSide.Right} {...helpToggletip} />}
+    </LabelWrapper>
   );
 });
 
 FormFieldLabel.displayName = 'FormFieldLabel';
 
+const LabelWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: var(--echoes-dimension-space-75);
+
+  margin-bottom: var(--echoes-dimension-space-75);
+`;
+LabelWrapper.displayName = 'LabelWrapper';
+
 const LabelStyled = styled(Label)`
   display: block;
   inline-size: fit-content;
-  margin-bottom: var(--echoes-dimension-space-75);
 
-  [data-disabled] > & {
+  [data-disabled] & {
     pointer-events: none;
   }
 `;

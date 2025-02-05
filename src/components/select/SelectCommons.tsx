@@ -31,15 +31,17 @@ import { PortalContext } from '../../common/components/PortalContext';
 import {
   type ValidationProps,
   FormField,
+  FormFieldProps,
   FormFieldValidation,
-  FormFieldWidth,
 } from '../form/FormField';
 import { useFormFieldA11y } from '../form/useFormFieldA11y';
 import { OptionComponent, useSelectOptionFunction } from './SelectItemCommons';
 import { SelectData, SelectHighlight, SelectOption, SelectOptionType } from './SelectTypes';
 import { SelectFilterFunction, useSelectOptionFilter } from './useSelectOptionFilter';
 
-export interface SelectBaseProps extends ValidationProps {
+type FormFieldPropsSubset = Pick<FormFieldProps, 'helpToggletip' | 'width'>;
+
+export interface SelectBaseProps extends ValidationProps, FormFieldPropsSubset {
   className?: string;
   data: SelectData;
   defaultValue?: MantineSelectProps['defaultValue'];
@@ -62,7 +64,6 @@ export interface SelectBaseProps extends ValidationProps {
   placeholder?: MantineSelectProps['placeholder'];
   value: MantineSelectProps['value'];
   valueIcon?: MantineSelectProps['leftSection'];
-  width?: `${FormFieldWidth}`;
 }
 
 export const SelectBase = forwardRef<HTMLInputElement, PropsWithLabels<SelectBaseProps>>(
@@ -74,6 +75,7 @@ export const SelectBase = forwardRef<HTMLInputElement, PropsWithLabels<SelectBas
       filter,
       hasDropdownAutoWidth = false,
       helpText,
+      helpToggletip,
       highlight = SelectHighlight.Default,
       id,
       isDisabled = false,
@@ -129,6 +131,7 @@ export const SelectBase = forwardRef<HTMLInputElement, PropsWithLabels<SelectBas
         controlId={controlId}
         helpText={helpText}
         helpTextId={helpTextId}
+        helpToggletip={helpToggletip}
         isDisabled={isDisabled}
         isRequired={isRequired}
         label={label}

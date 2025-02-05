@@ -49,6 +49,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>((props, r
     ariaLabel,
     ariaLabelledBy,
     helpText,
+    helpToggletip,
     id,
     isDisabled = false,
     isResizable = false,
@@ -75,6 +76,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>((props, r
       controlId={controlId}
       helpText={helpText}
       helpTextId={helpTextId}
+      helpToggletip={helpToggletip}
       isDisabled={isDisabled}
       isRequired={isRequired}
       label={label}

@@ -28,6 +28,15 @@ const meta: Meta<FormField> = {
   component: FormField,
   title: 'Internal/FormField',
   argTypes: {
+    helpToggletip: {
+      mapping: {
+        'with-help-toggletip': {
+          description: 'This toggletip will be displayed next to the help text.',
+        },
+        none: undefined,
+      },
+      options: ['with-help-toggletip', 'none'],
+    },
     validation: {
       control: { type: 'select' },
       table: {

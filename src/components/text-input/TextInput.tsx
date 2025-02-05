@@ -61,6 +61,7 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>((props, re
     ariaLabel,
     ariaLabelledBy,
     helpText,
+    helpToggletip,
     id,
     isDisabled = false,
     isRequired = false,
@@ -88,6 +89,7 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>((props, re
       controlId={controlId}
       helpText={helpText}
       helpTextId={helpTextId}
+      helpToggletip={helpToggletip}
       isDisabled={isDisabled}
       isRequired={isRequired}
       label={label}

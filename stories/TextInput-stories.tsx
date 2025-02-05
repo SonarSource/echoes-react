@@ -56,6 +56,9 @@ export const Basic: Story = {
 export const AsFormField: Story = {
   args: {
     helpText: `I'm a text to help you fill me correctly!`,
+    helpToggletip: {
+      description: `I'm a help toggletip, here to help you better understand the form field.`,
+    },
     isRequired: true,
     label: `I'm a label`,
     placeholder: 'I am a placeholder',

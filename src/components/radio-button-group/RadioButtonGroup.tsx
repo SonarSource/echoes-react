@@ -26,13 +26,15 @@ import { PropsWithLabels } from '~types/utils';
 import {
   type ValidationProps,
   FormField,
+  FormFieldProps,
   FormFieldValidation,
-  FormFieldWidth,
 } from '../form/FormField';
 import { useFormFieldA11y } from '../form/useFormFieldA11y';
 import { HelperText, Label } from '../typography';
 
-interface Props extends ValidationProps {
+type FormFieldPropsSubset = Pick<FormFieldProps, 'helpToggletip' | 'width'>;
+
+interface Props extends ValidationProps, FormFieldPropsSubset {
   onChange?: (value: string) => void;
   options: RadioOption[];
 
@@ -44,7 +46,6 @@ interface Props extends ValidationProps {
   isDisabled?: boolean;
   isRequired?: boolean;
   value?: string;
-  width?: `${FormFieldWidth}`;
 }
 
 export const RadioButtonGroup = forwardRef<HTMLDivElement, PropsWithLabels<Props>>((props, ref) => {
@@ -54,6 +55,7 @@ export const RadioButtonGroup = forwardRef<HTMLDivElement, PropsWithLabels<Props
     ariaLabelledBy,
     className,
     helpText,
+    helpToggletip,
     id = 'radio-button-group',
     isDisabled: disabled,
     isRequired: required,
@@ -80,6 +82,7 @@ export const RadioButtonGroup = forwardRef<HTMLDivElement, PropsWithLabels<Props
       className={className}
       helpText={helpText}
       helpTextId={helpTextId}
+      helpToggletip={helpToggletip}
       isDisabled={disabled}
       isRequired={required}
       label={label}
