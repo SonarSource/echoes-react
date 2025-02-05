@@ -34,14 +34,14 @@ import { useFormFieldA11y } from '../form/useFormFieldA11y';
  * A checkbox group allows a user to select multiple items from a list of
  * options. A checkbox group must have at least one option.
  *
- * Each option must have a unique value. If no value is provided for an option,
+ * Each option must have a unique value. If an options's value is `undefined`,
  * then the option's label will be used as its value.
  *
  * The selected values may appear in any order. Equality is determined using
  * strict equality (`===`).
  *
  * The disabled state and error state will be applied to the entire group.
- * However, the disabled state can be overridden per option.
+ * However, you may disabled individual checkboxes without disabling the group.
  *
  * > A checkbox group is a controlled element, it requires a `value` and
  * `onChange` handler.
@@ -129,17 +129,28 @@ export const CheckboxGroup: CheckboxGroup = forwardRef<HTMLDivElement, CheckboxG
           ref={ref}
           role="group">
           {options.map((option) => {
-            const { value: _value, ...rest } = option;
-            const optionValue = 'value' in option ? option.value : option.label;
+            const {
+              helpText,
+              id,
+              isDisabled: optionIsDisabled,
+              label,
+              onFocus,
+              value: optionValue = label,
+            } = option;
+
+            const isDisabledOrGroupIsDisabled = isDisabled || optionIsDisabled;
 
             return (
               <Checkbox
                 checked={value.includes(optionValue)}
                 hasError={validation === FormFieldValidation.Invalid}
-                isDisabled={isDisabled || option.isDisabled}
+                helpText={helpText}
+                id={id}
+                isDisabled={isDisabledOrGroupIsDisabled}
                 key={option.label}
+                label={label}
                 onCheck={(checkedState) => {
-                  if (isDisabled || option.isDisabled) {
+                  if (isDisabledOrGroupIsDisabled) {
                     return;
                   }
 
@@ -152,7 +163,7 @@ export const CheckboxGroup: CheckboxGroup = forwardRef<HTMLDivElement, CheckboxG
                       break;
                   }
                 }}
-                {...rest}
+                onFocus={onFocus}
               />
             );
           })}
