@@ -64,7 +64,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>((props, r
 
   const defaultId = `${useId()}textarea`;
 
-  const { controlId, describedBy, descriptionId, validationMessageId } = useFormFieldA11y({
+  const { controlId, describedBy, helpTextId, validationMessageId } = useFormFieldA11y({
     controlId: id ?? defaultId,
     hasDescription: Boolean(helpText),
     hasValidationMessage: Boolean(messageValid || messageInvalid),
@@ -73,8 +73,8 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>((props, r
   return (
     <FormField
       controlId={controlId}
-      description={helpText}
-      descriptionId={descriptionId}
+      helpText={helpText}
+      helpTextId={helpTextId}
       isDisabled={isDisabled}
       isRequired={isRequired}
       label={label}

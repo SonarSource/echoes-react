@@ -40,7 +40,7 @@ const meta: Meta<FormField> = {
         defaultValue: { summary: FormFieldWidth.Full },
       },
     },
-    ...toTextControlArgTypes('label', 'description', 'messageInvalid', 'messageValid'),
+    ...toTextControlArgTypes('label', 'helpText', 'messageInvalid', 'messageValid'),
   },
   parameters: {
     docs: {
@@ -56,7 +56,7 @@ type Story = StoryObj<FormField>;
 export const Default: Story = {
   args: {
     controlId: 'input-1',
-    description: 'Your password must contain at least 8 characters',
+    helpText: 'Your password must contain at least 8 characters',
     isDisabled: false,
     isRequired: false,
     label: 'Password',
@@ -128,7 +128,7 @@ export const Valid: Story = {
 export const Medium: Story = {
   args: {
     controlId: 'input-6',
-    description: 'Your password must contain at least 8 characters',
+    helpText: 'Your password must contain at least 8 characters',
     label: 'Password',
     width: FormFieldWidth.Medium,
   },

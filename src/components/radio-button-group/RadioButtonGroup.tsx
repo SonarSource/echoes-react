@@ -69,7 +69,7 @@ export const RadioButtonGroup = forwardRef<HTMLDivElement, PropsWithLabels<Props
 
   const defaultId = `${useId()}radiogroup`;
 
-  const { controlId, describedBy, descriptionId, labelId, validationMessageId } = useFormFieldA11y({
+  const { controlId, describedBy, helpTextId, labelId, validationMessageId } = useFormFieldA11y({
     controlId: id ?? defaultId,
     hasDescription: Boolean(helpText),
     hasValidationMessage: Boolean(messageValid || messageInvalid),
@@ -78,8 +78,8 @@ export const RadioButtonGroup = forwardRef<HTMLDivElement, PropsWithLabels<Props
   return (
     <FormField
       className={className}
-      description={helpText}
-      descriptionId={descriptionId}
+      helpText={helpText}
+      helpTextId={helpTextId}
       isDisabled={disabled}
       isRequired={required}
       label={label}

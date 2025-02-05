@@ -38,7 +38,7 @@ import { FormFieldLabel } from './FormFieldLabel';
  * ```tsx
  * <FormField
  *   controlId="19ujfsyw"
- *   description="Please provide your full name"
+ *   helpText="Please provide your full name"
  *   isRequired
  *   label="Full name"
  *   massageInvalid="Your name is required"
@@ -53,8 +53,8 @@ export const FormField = forwardRef<HTMLDivElement, FormFieldProps>((props, ref)
   const {
     children,
     controlId,
-    description,
-    descriptionId,
+    helpText,
+    helpTextId,
     isDisabled = false,
     isRequired = false,
     label,
@@ -93,11 +93,9 @@ export const FormField = forwardRef<HTMLDivElement, FormFieldProps>((props, ref)
         {messageInvalidElement}
         {messageValidElement}
       </span>
-      {description && (
-        <Description
-          hidden={Boolean(messageValidElement || messageInvalidElement)}
-          id={descriptionId}>
-          {description}
+      {helpText && (
+        <Description hidden={Boolean(messageValidElement || messageInvalidElement)} id={helpTextId}>
+          {helpText}
         </Description>
       )}
     </FormFieldStyled>
@@ -163,15 +161,15 @@ interface FormFieldProps extends ValidationProps, WhiteListedProps {
    */
   controlId?: string;
   /**
-   * A descriptive message for the form field (optional).
+   * A descriptive message for the form field, provides more context about the input validation and criteria (optional).
    */
-  description?: TextNodeOptional;
+  helpText?: TextNodeOptional;
   /**
    * The ID of the description for the form field (optional). Useful for
    * establishing a relationship between a description and a form control using
    * the `aria-describedby` attribute.
    */
-  descriptionId?: string;
+  helpTextId?: string;
   /**
    * When true, pointer events will be disabled on the label to prevent
    * activating the form control.
@@ -190,6 +188,10 @@ interface FormFieldProps extends ValidationProps, WhiteListedProps {
    * The ID of the label for the form field (optional).
    */
   labelId?: string;
+  /**
+   * A toggletip showing next to the form field label to provide additional information about the field (optional).
+   */
+  toggleTip?: TextNodeOptional;
   /**
    * The ID of the validation message for the form field (optional). Useful for
    * establishing a relationship between a validation message and a form control

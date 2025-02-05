@@ -94,12 +94,11 @@ export const CheckboxGroup: CheckboxGroup = forwardRef<HTMLDivElement, CheckboxG
 
     const defaultId = `${useId()}checkbox_group`;
 
-    const { controlId, describedBy, descriptionId, labelId, validationMessageId } =
-      useFormFieldA11y({
-        controlId: id ?? defaultId,
-        hasDescription: Boolean(helpText),
-        hasValidationMessage: Boolean(messageInvalid || messageValid),
-      });
+    const { controlId, describedBy, helpTextId, labelId, validationMessageId } = useFormFieldA11y({
+      controlId: id ?? defaultId,
+      hasDescription: Boolean(helpText),
+      hasValidationMessage: Boolean(messageInvalid || messageValid),
+    });
 
     const serializedValue = useMemo(() => {
       return name ? value.map(serializeValue) : [];
@@ -108,8 +107,8 @@ export const CheckboxGroup: CheckboxGroup = forwardRef<HTMLDivElement, CheckboxG
     return (
       <FormField
         className={className}
-        description={helpText}
-        descriptionId={descriptionId}
+        helpText={helpText}
+        helpTextId={helpTextId}
         isDisabled={isDisabled}
         isRequired={isRequired}
         label={label}
