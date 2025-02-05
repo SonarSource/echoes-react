@@ -39,7 +39,7 @@ import { OptionComponent, useSelectOptionFunction } from './SelectItemCommons';
 import { SelectData, SelectHighlight, SelectOption, SelectOptionType } from './SelectTypes';
 import { SelectFilterFunction, useSelectOptionFilter } from './useSelectOptionFilter';
 
-type FormFieldPropsSubset = Pick<FormFieldProps, 'helpToggletip' | 'width'>;
+type FormFieldPropsSubset = Pick<FormFieldProps, 'helpToggletipProps' | 'width'>;
 
 export interface SelectBaseProps extends ValidationProps, FormFieldPropsSubset {
   className?: string;
@@ -75,7 +75,7 @@ export const SelectBase = forwardRef<HTMLInputElement, PropsWithLabels<SelectBas
       filter,
       hasDropdownAutoWidth = false,
       helpText,
-      helpToggletip,
+      helpToggletipProps,
       highlight = SelectHighlight.Default,
       id,
       isDisabled = false,
@@ -107,7 +107,7 @@ export const SelectBase = forwardRef<HTMLInputElement, PropsWithLabels<SelectBas
 
     const { controlId, describedBy, helpTextId, validationMessageId } = useFormFieldA11y({
       controlId: id ?? defaultId,
-      hasDescription: Boolean(helpText),
+      hasHelpText: Boolean(helpText),
       hasValidationMessage: Boolean(messageValid || messageInvalid),
     });
 
@@ -131,7 +131,7 @@ export const SelectBase = forwardRef<HTMLInputElement, PropsWithLabels<SelectBas
         controlId={controlId}
         helpText={helpText}
         helpTextId={helpTextId}
-        helpToggletip={helpToggletip}
+        helpToggletipProps={helpToggletipProps}
         isDisabled={isDisabled}
         isRequired={isRequired}
         label={label}

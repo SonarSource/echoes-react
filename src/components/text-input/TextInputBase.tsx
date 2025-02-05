@@ -36,7 +36,7 @@ type InputEventAttributesSubset =
 
 export type InputEventProps<T> = Pick<InputHTMLAttributes<T>, InputEventAttributesSubset>;
 
-type FormFieldPropsSubset = Pick<FormFieldProps, 'helpToggletip' | 'isRequired' | 'width'>;
+type FormFieldPropsSubset = Pick<FormFieldProps, 'helpToggletipProps' | 'isRequired' | 'width'>;
 
 export interface InputProps extends ValidationProps, FormFieldPropsSubset {
   className?: string;

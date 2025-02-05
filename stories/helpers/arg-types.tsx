@@ -56,7 +56,7 @@ export function toDisabledControlArgType<TArgs = Args>(...args: (keyof TArgs)[])
 
 export const formFieldsArgTypes: ArgTypes<PropsWithLabels<InputProps>> = {
   ...toTextControlArgTypes('label', 'helpText', 'messageInvalid', 'messageValid', 'value'),
-  helpToggletip: {
+  helpToggletipProps: {
     mapping: {
       'with-help-toggletip': {
         description: 'This toggletip will be displayed next to the help text.',

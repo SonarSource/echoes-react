@@ -77,7 +77,7 @@ export const CheckboxGroup: CheckboxGroup = forwardRef<HTMLDivElement, CheckboxG
       ariaLabelledBy,
       className,
       helpText,
-      helpToggletip,
+      helpToggletipProps,
       id,
       isDisabled,
       isRequired,
@@ -97,7 +97,7 @@ export const CheckboxGroup: CheckboxGroup = forwardRef<HTMLDivElement, CheckboxG
 
     const { controlId, describedBy, helpTextId, labelId, validationMessageId } = useFormFieldA11y({
       controlId: id ?? defaultId,
-      hasDescription: Boolean(helpText),
+      hasHelpText: Boolean(helpText),
       hasValidationMessage: Boolean(messageInvalid || messageValid),
     });
 
@@ -110,7 +110,7 @@ export const CheckboxGroup: CheckboxGroup = forwardRef<HTMLDivElement, CheckboxG
         className={className}
         helpText={helpText}
         helpTextId={helpTextId}
-        helpToggletip={helpToggletip}
+        helpToggletipProps={helpToggletipProps}
         isDisabled={isDisabled}
         isRequired={isRequired}
         label={label}
@@ -188,7 +188,7 @@ type CheckboxOption<T = unknown> = Pick<
   value?: T;
 };
 
-type FormFieldPropsSubset = Pick<FormFieldProps, 'helpToggletip' | 'isRequired' | 'width'>;
+type FormFieldPropsSubset = Pick<FormFieldProps, 'helpToggletipProps' | 'isRequired' | 'width'>;
 
 interface CheckboxGroupPropsBase<T>
   extends RefAttributes<HTMLDivElement>,

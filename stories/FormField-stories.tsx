@@ -28,7 +28,7 @@ const meta: Meta<FormField> = {
   component: FormField,
   title: 'Internal/FormField',
   argTypes: {
-    helpToggletip: {
+    helpToggletipProps: {
       mapping: {
         'with-help-toggletip': {
           description: 'This toggletip will be displayed next to the help text.',

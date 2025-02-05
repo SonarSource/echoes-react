@@ -41,7 +41,7 @@ export interface FormFieldLabelProps {
   /**
    * The props for a help toggletip showing next to the form field label to provide additional information about the field (optional).
    */
-  helpToggletip?: ToggleTipProps;
+  helpToggletipProps?: ToggleTipProps;
 }
 
 /**
@@ -58,7 +58,7 @@ export interface FormFieldLabelProps {
  * @internal
  */
 export const FormFieldLabel = forwardRef<HTMLLabelElement, FormFieldLabelProps>((props, ref) => {
-  const { children, isRequired = false, helpToggletip, ...rest } = props;
+  const { children, isRequired = false, helpToggletipProps, ...rest } = props;
 
   if (!children) {
     return null;
@@ -70,7 +70,7 @@ export const FormFieldLabel = forwardRef<HTMLLabelElement, FormFieldLabelProps>(
         {children}
         {isRequired && <RequiredIndicator aria-hidden="true">*</RequiredIndicator>}
       </LabelStyled>
-      {helpToggletip && <ToggleTip side={PopoverSide.Right} {...helpToggletip} />}
+      {helpToggletipProps && <ToggleTip side={PopoverSide.Right} {...helpToggletipProps} />}
     </LabelWrapper>
   );
 });

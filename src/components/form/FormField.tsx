@@ -55,7 +55,7 @@ export const FormField = forwardRef<HTMLDivElement, FormFieldProps>((props, ref)
     controlId,
     helpText,
     helpTextId,
-    helpToggletip,
+    helpToggletipProps,
     isDisabled = false,
     isRequired = false,
     label,
@@ -87,7 +87,7 @@ export const FormField = forwardRef<HTMLDivElement, FormFieldProps>((props, ref)
       ref={ref}
       {...rest}>
       <FormFieldLabel
-        helpToggletip={helpToggletip}
+        helpToggletipProps={helpToggletipProps}
         htmlFor={controlId}
         id={labelId}
         isRequired={isRequired}>
@@ -99,9 +99,9 @@ export const FormField = forwardRef<HTMLDivElement, FormFieldProps>((props, ref)
         {messageValidElement}
       </span>
       {helpText && (
-        <Description hidden={Boolean(messageValidElement || messageInvalidElement)} id={helpTextId}>
+        <HelpText hidden={Boolean(messageValidElement || messageInvalidElement)} id={helpTextId}>
           {helpText}
-        </Description>
+        </HelpText>
       )}
     </FormFieldStyled>
   );
@@ -196,7 +196,7 @@ export interface FormFieldProps extends ValidationProps, WhiteListedProps {
   /**
    * The props for a help toggletip showing next to the form field label to provide additional information about the field (optional).
    */
-  helpToggletip?: FormFieldLabelProps['helpToggletip'];
+  helpToggletipProps?: FormFieldLabelProps['helpToggletipProps'];
   /**
    * The ID of the validation message for the form field (optional). Useful for
    * establishing a relationship between a validation message and a form control
@@ -234,8 +234,8 @@ const ValidationMessage = styled(MessageInline)`
 
 ValidationMessage.displayName = 'ValidationMessage';
 
-const Description = styled(HelperText)`
+const HelpText = styled(HelperText)`
   margin-top: var(--echoes-dimension-space-75);
 `;
 
-Description.displayName = 'Description';
+HelpText.displayName = 'HelpText';

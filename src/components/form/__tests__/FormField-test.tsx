@@ -45,7 +45,10 @@ it('displays an asterisk next to the label if the form field is required', () =>
 
 it('displays a help toggletip next to the label', async () => {
   const { user } = render(
-    <FormField controlId="foo" helpToggletip={{ description: 'Help toggletip' }} label="Label 2">
+    <FormField
+      controlId="foo"
+      helpToggletipProps={{ description: 'Help toggletip' }}
+      label="Label 2">
       <input id="foo" />
     </FormField>,
   );
