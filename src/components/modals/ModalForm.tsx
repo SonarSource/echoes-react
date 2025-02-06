@@ -61,6 +61,10 @@ export interface ModalFormProps extends FormRootPropsSubset, ModalPropsSubset {
    * Allows to override the default text of the submit button.
    */
   submitButtonLabel?: TextNodeOptional;
+  /**
+   * Allows to override the default variety of the submit button.
+   */
+  submitButtonVariety?: `${ButtonVariety}`;
 }
 
 /**
@@ -105,6 +109,7 @@ export const ModalForm = forwardRef<HTMLDivElement, ModalFormProps>((props, ref)
     secondaryButtonLabel,
     shouldUseBrowserValidation,
     submitButtonLabel,
+    submitButtonVariety = ButtonVariety.Primary,
     target,
     ...modalProps
   } = props;
@@ -159,7 +164,7 @@ export const ModalForm = forwardRef<HTMLDivElement, ModalFormProps>((props, ref)
           isDisabled={isSubmitting || isSubmitDisabled}
           isLoading={isSubmitting}
           type="submit"
-          variety={ButtonVariety.Primary}>
+          variety={submitButtonVariety}>
           {submitButtonLabel ?? (
             <FormattedMessage
               defaultMessage="Submit"
