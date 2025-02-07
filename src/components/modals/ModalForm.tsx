@@ -24,14 +24,18 @@ import { TextNodeOptional } from '~types/utils';
 import { Button, ButtonVariety } from '../buttons';
 import { Form, FormHeaderProps, FormRootProps } from '../form';
 import { Modal, ModalProps } from './Modal';
+import { ModalAlert, ModalAlertProps } from './ModalAlert';
+
+type ExcludedModalProps =
+  | 'content'
+  | 'isOpen'
+  | 'onOpenChange'
+  | 'primaryButton'
+  | 'secondaryButton';
 
 type FormRootPropsSubset = Omit<FormRootProps, 'children' | 'onSubmit'>;
-type ModalPropsSubset = Omit<
-  ModalProps,
-  'primaryButton' | 'secondaryButton' | 'content' | 'isOpen' | 'onOpenChange'
->;
 
-export interface ModalFormProps extends FormRootPropsSubset, ModalPropsSubset {
+interface ModalFormBaseProps extends FormRootPropsSubset {
   /**
    * The content of the `Form`, can contain multiple `Form.Section` with their fields
    */
@@ -40,6 +44,7 @@ export interface ModalFormProps extends FormRootPropsSubset, ModalPropsSubset {
    * Optional content to display under the title/description, can be anything.
    */
   extraContent?: FormHeaderProps['extraContent'];
+
   /**
    * Whether the submit button should be disabled. If true, the submit button will be disabled.
    */
@@ -61,11 +66,20 @@ export interface ModalFormProps extends FormRootPropsSubset, ModalPropsSubset {
    * Allows to override the default text of the submit button.
    */
   submitButtonLabel?: TextNodeOptional;
-  /**
-   * Allows to override the default variety of the submit button.
-   */
-  submitButtonVariety?: `${ButtonVariety}`;
 }
+
+interface ModalPropsSubset extends Omit<ModalProps, ExcludedModalProps> {
+  isDestructive?: never;
+}
+
+interface ModalAlertPropsSubset extends Omit<ModalAlertProps, ExcludedModalProps> {
+  /**
+   * Switch from a Modal to a ModalAlert with a destructive action using a ButtonVariety.Danger primary button.
+   */
+  isDestructive: true;
+}
+
+export type ModalFormProps = ModalFormBaseProps & (ModalPropsSubset | ModalAlertPropsSubset);
 
 /**
  * {@link ModalForm} is a helper component that wraps a {@link Form} component inside a {@link Modal}
@@ -97,8 +111,10 @@ export const ModalForm = forwardRef<HTMLDivElement, ModalFormProps>((props, ref)
     action,
     children,
     content,
+    description,
     extraContent,
     id,
+    isDestructive = false,
     isSubmitDisabled = false,
     isSubmitting = false,
     method,
@@ -109,7 +125,6 @@ export const ModalForm = forwardRef<HTMLDivElement, ModalFormProps>((props, ref)
     secondaryButtonLabel,
     shouldUseBrowserValidation,
     submitButtonLabel,
-    submitButtonVariety = ButtonVariety.Primary,
     target,
     ...modalProps
   } = props;
@@ -137,8 +152,12 @@ export const ModalForm = forwardRef<HTMLDivElement, ModalFormProps>((props, ref)
   const defaultId = `${useId()}modal-form`;
   const formId = id ?? defaultId;
 
+  const ModalComponent = isDestructive ? ModalAlert : Modal;
+
   return (
-    <Modal
+    <ModalComponent
+      // description prop is mandatory for ModalAlert but not for Modal, force typing to the most discriminant type to avoid duplicating a lot of code
+      description={description as ModalAlertPropsSubset['description']}
       ref={ref}
       {...modalProps}
       content={
@@ -164,7 +183,7 @@ export const ModalForm = forwardRef<HTMLDivElement, ModalFormProps>((props, ref)
           isDisabled={isSubmitting || isSubmitDisabled}
           isLoading={isSubmitting}
           type="submit"
-          variety={submitButtonVariety}>
+          variety={isDestructive ? ButtonVariety.Danger : ButtonVariety.Primary}>
           {submitButtonLabel ?? (
             <FormattedMessage
               defaultMessage="Submit"
@@ -186,7 +205,7 @@ export const ModalForm = forwardRef<HTMLDivElement, ModalFormProps>((props, ref)
         </Button>
       }>
       {children}
-    </Modal>
+    </ModalComponent>
   );
 });
 ModalForm.displayName = 'ModalForm';

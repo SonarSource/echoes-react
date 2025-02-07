@@ -27,7 +27,6 @@ import {
   IconMegaphone,
   LinkStandalone,
   MessageCallout,
-  Modal,
   ModalForm,
   ModalSize,
   TextInput,
@@ -38,9 +37,10 @@ const meta: Meta<typeof ModalForm> = {
   component: ModalForm,
   title: 'Echoes/Modal/ModalForm',
   parameters: {
-    controls: { exclude: ['children', 'onReset', 'onSubmit', 'content'] },
+    controls: { exclude: ['children', 'onReset', 'onSubmit', 'content', 'isDestructive'] },
   },
   argTypes: {
+    isDestructive: { control: { type: 'boolean' } },
     extraContent: {
       mapping: {
         callout: (
@@ -81,7 +81,23 @@ export const Default: Story = {
   render: (args) => <ModalWithForm {...args} />,
 };
 
-function ModalWithForm(props: ComponentProps<typeof Modal>) {
+export const Destructive: Story = {
+  args: {
+    description: 'Description of the form, use it to provide additional information.',
+    title: 'My destructive ModalForm title',
+    submitButtonLabel: 'Destroy!!!',
+    secondaryButtonLabel: 'Abort!',
+    isDestructive: true,
+  },
+  parameters: {
+    controls: {
+      exclude: [...(meta.parameters?.controls.exclude || []), 'footerLink', 'size'],
+    },
+  },
+  render: (args) => <ModalWithForm {...args} />,
+};
+
+function ModalWithForm(props: ComponentProps<typeof ModalForm>) {
   const [formData, setFormData] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -105,9 +121,6 @@ function ModalWithForm(props: ComponentProps<typeof Modal>) {
   return (
     <>
       <ModalForm
-        isSubmitting={isSubmitting}
-        onReset={onReset}
-        onSubmit={onSubmit}
         {...props}
         content={
           <>
@@ -146,7 +159,10 @@ function ModalWithForm(props: ComponentProps<typeof Modal>) {
               />
             </Form.Section>
           </>
-        }>
+        }
+        isSubmitting={isSubmitting}
+        onReset={onReset}
+        onSubmit={onSubmit}>
         <Button>Show Form Modal</Button>
       </ModalForm>
       {formData && (
