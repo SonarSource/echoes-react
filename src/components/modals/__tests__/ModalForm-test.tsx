@@ -17,7 +17,7 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-import { screen } from '@testing-library/react';
+import { screen, waitForElementToBeRemoved } from '@testing-library/react';
 import { render } from '~common/helpers/test-utils';
 import { Button } from '../../buttons';
 import { Form } from '../../form';
@@ -49,6 +49,25 @@ it('should correctly handle opening, submitting and closing the form', async () 
   expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
 });
 
+it('should correctly handle submitting a promise', async () => {
+  const onSubmit = jest.fn().mockImplementation((e) => {
+    e.preventDefault();
+    return new Promise((resolve) => {
+      setTimeout(resolve, 50);
+    });
+  });
+  const { user } = renderModalForm({ onSubmit });
+
+  await user.click(screen.getByRole('button', { name: 'Toggle' }));
+  expect(screen.getByRole('dialog')).toBeInTheDocument();
+
+  await user.click(screen.getByRole('button', { name: 'Submit' }));
+  expect(screen.getByRole('dialog')).toBeInTheDocument();
+  expect(onSubmit).toHaveBeenCalled();
+
+  await waitForElementToBeRemoved(() => screen.queryByRole('dialog'));
+});
+
 it('should correctly handle overriding buttons text', async () => {
   const { user } = renderModalForm({ submitButtonLabel: 'Save', secondaryButtonLabel: 'Reset' });
 
@@ -56,6 +75,14 @@ it('should correctly handle overriding buttons text', async () => {
 
   expect(screen.getByRole('button', { name: 'Save' })).toBeInTheDocument();
   expect(screen.getByRole('button', { name: 'Reset' })).toBeInTheDocument();
+});
+
+it('should correctly display a modal alert when isDestructive is true', async () => {
+  const { user } = renderModalForm({ isDestructive: true });
+
+  await user.click(screen.getByRole('button', { name: 'Toggle' }));
+
+  expect(screen.getByRole('alertdialog')).toBeInTheDocument();
 });
 
 it("shouldn't have any a11y violation", async () => {

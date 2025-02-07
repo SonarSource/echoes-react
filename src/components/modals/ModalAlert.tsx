@@ -23,6 +23,7 @@ import * as RadixAlertDialog from '@radix-ui/react-alert-dialog';
 import { ReactNode, SyntheticEvent, forwardRef, useCallback } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { isDefined } from '~common/helpers/types';
+import { TextNode, TextNodeOptional } from '~types/utils';
 import { Button, ButtonGroup, ButtonVariety } from '../buttons';
 import { isDropdownMenuItemComponent } from '../dropdown-menu/DropdownMenuItemBase';
 import { ModalBody } from './ModalBody';
@@ -37,7 +38,7 @@ import { ModalCommonProps, ModalSize } from './ModalTypes';
 
 interface BaseProps {
   /** A mandatory accessible description to be announced when the ModalAlert is opened. */
-  description: ReactNode;
+  description: TextNode;
   primaryButton: ReactNode;
 }
 
@@ -48,7 +49,7 @@ interface WithSecondaryButton extends BaseProps {
 
 interface WithSecondaryButtonLabel extends BaseProps {
   secondaryButton?: never;
-  secondaryButtonLabel?: string;
+  secondaryButtonLabel?: TextNodeOptional;
 }
 
 export type ModalAlertProps = ModalCommonProps & (WithSecondaryButton | WithSecondaryButtonLabel);
