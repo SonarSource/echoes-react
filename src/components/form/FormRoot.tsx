@@ -22,6 +22,7 @@ import { FormHTMLAttributes, forwardRef, ReactNode } from 'react';
 
 type FormAttributesSubset =
   | 'action'
+  | 'className'
   | 'id'
   | 'method'
   | 'name'
