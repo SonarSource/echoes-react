@@ -1,0 +1,8 @@
+{
+  "$schema": "https://json.schemastore.org/omletrc.json",
+  "exports": {
+    ".": "src/index.ts"
+  },
+  "tsconfigPath": "tsconfig.json",
+  "ignore": ["**/stories/**", "**/dist/**", "**/__tests__/**"]
+}
