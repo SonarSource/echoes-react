@@ -18,24 +18,33 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-export * from './buttons';
-export * from './checkbox';
-export * from './checkbox-group';
-export * from './dropdown-menu';
-export * from './echoes-provider';
-export * from './form';
-export * from './icons';
-export * from './links';
-export * from './logos';
-export * from './messages';
-export * from './modals';
-export * from './navbar';
-export * from './popover';
-export * from './radio-button-group';
-export * from './select';
-export * from './spinner';
-export * from './text-area';
-export * from './text-input';
-export * from './toggle-tip';
-export * from './tooltip';
-export * from './typography';
+import { render, screen } from '@testing-library/react';
+import { Navbar, NavbarLeft, NavbarRight } from '../Navbar';
+
+describe('Navbar', () => {
+  it('should render children inside the Navbar', () => {
+    render(
+      <Navbar>
+        <div>Test</div>
+      </Navbar>,
+    );
+
+    expect(screen.getByText('Test')).toBeInTheDocument();
+  });
+
+  it('should render NavbarLeft and NavbarRight', () => {
+    render(
+      <Navbar>
+        <NavbarLeft>
+          <div>Left Content</div>
+        </NavbarLeft>
+        <NavbarRight>
+          <div>Right Content</div>
+        </NavbarRight>
+      </Navbar>,
+    );
+
+    expect(screen.getByText('Left Content')).toBeInTheDocument();
+    expect(screen.getByText('Right Content')).toBeInTheDocument();
+  });
+});
