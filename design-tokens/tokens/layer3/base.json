@@ -16,6 +16,24 @@
         }
       }
     },
+    "layouts": {
+      "sizes": {
+        "maxWidth":{
+          "default": {
+            "value": "1280px",
+            "type": "sizing"
+          },
+          "large": {
+            "value": "1560px",
+            "type": "sizing"
+          },
+          "full": {
+            "value": "100%",
+            "type": "sizing"
+          }
+        }
+      }
+    },
     "sizes": {
       "overlays": {
         "maxWidth": {

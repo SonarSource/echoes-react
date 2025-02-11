@@ -282,6 +282,15 @@
         }
       }
     },
+    "layouts": {
+      "sizes": {
+        "maxWidth": {
+          "default": "1280px",
+          "large": "1560px",
+          "full": "100%"
+        }
+      }
+    },
     "sizes": {
       "overlays": {
         "maxWidth": {

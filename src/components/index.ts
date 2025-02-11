@@ -25,6 +25,7 @@ export * from './dropdown-menu';
 export * from './echoes-provider';
 export * from './form';
 export * from './icons';
+export * from './layouts';
 export * from './links';
 export * from './logos';
 export * from './messages';

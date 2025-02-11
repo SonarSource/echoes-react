@@ -215,6 +215,9 @@
   --echoes-color-blue-900: rgb(23,67,97);
   --echoes-form-control-border-radius-default: 8px;
   --echoes-form-control-sizes-height-default: 2.25rem;
+  --echoes-layouts-sizes-max-width-default: 1280px;
+  --echoes-layouts-sizes-max-width-large: 1560px;
+  --echoes-layouts-sizes-max-width-full: 100%;
   --echoes-sizes-overlays-max-width-default: 25rem;
   --echoes-sizes-overlays-min-width-default: 150px;
   --echoes-sizes-overlays-width-default: 37.5rem;
