@@ -26,10 +26,9 @@ import {
   ButtonVariety,
   IconQuestionMark,
   IconSearch,
-  LogoSonarQubeCloud,
   Navbar,
-  NavbarLeft,
-  NavbarRight,
+  LogoSize,
+  LogoSonarQubeCloud,
 } from '../src';
 
 const meta: Meta<typeof Navbar> = {
@@ -45,12 +44,11 @@ type Story = StoryObj<typeof Navbar>;
 export const Default: Story = {
   render: (args) => (
     <Navbar {...args}>
-      <NavbarLeft>
-        <LogoSonarQubeCloud hasText />
-        <div style={{ paddingLeft: '30px' }} />
+      <Navbar.Left>
+        <LogoSonarQubeCloud hasText size={LogoSize.Small} />
         <nav>Nav menu will go here</nav>
-      </NavbarLeft>
-      <NavbarRight>
+      </Navbar.Left>
+      <Navbar.Right>
         <ButtonGroup>
           <ButtonIcon
             Icon={IconQuestionMark}
@@ -60,9 +58,9 @@ export const Default: Story = {
           />
           <ButtonIcon Icon={IconSearch} ariaLabel="Search" variety={ButtonVariety.DefaultGhost} />
           <Button variety="primary">Start free trial</Button>
-          <Button variety="default">Login</Button>
+          <Button variety="default">Log In</Button>
         </ButtonGroup>
-      </NavbarRight>
+      </Navbar.Right>
     </Navbar>
   ),
 };

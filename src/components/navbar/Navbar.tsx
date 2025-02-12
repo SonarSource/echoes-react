@@ -21,7 +21,7 @@
 import { forwardRef } from 'react';
 import styled from '@emotion/styled';
 
-export const Navbar = forwardRef<HTMLElement, React.PropsWithChildren>((props, ref) => {
+const NavbarRoot = forwardRef<HTMLElement, React.PropsWithChildren>((props, ref) => {
   const { children } = props;
 
   return (
@@ -31,21 +31,29 @@ export const Navbar = forwardRef<HTMLElement, React.PropsWithChildren>((props, r
   );
 });
 
-Navbar.displayName = 'Navbar';
+NavbarRoot.displayName = 'Navbar';
 
 const NavbarContainer = styled.nav`
   height: 56px;
   display: flex;
   justify-content: space-between;
+  min-width: 1280px; // needs to be replaced with a token?? will sync with Marcio
   align-items: center;
 
-  padding-right: var(--echoes-dimension-space-300);
-  padding-left: var(--echoes-dimension-space-0);
+  padding: 0 var(--echoes-dimension-space-300) 0 var(--echoes-dimension-space-0);
 
+  background-color: var(--echoes-color-background-default);
   border-bottom: var(--echoes-border-width-default) solid var(--echoes-color-border-weak);
 `;
 
-export const NavbarLeft = styled.div`
+const NavbarLeft = styled.div`
+  display: flex;
+  align-items: center;
+  height: 100%;
+
+  gap: var(--echoes-dimension-space-100);
+`;
+const NavbarRight = styled.div`
   display: flex;
   align-items: center;
   height: 100%;
@@ -53,10 +61,7 @@ export const NavbarLeft = styled.div`
   gap: var(--echoes-dimension-space-100);
 `;
 
-export const NavbarRight = styled.div`
-  display: flex;
-  align-items: center;
-  height: 100%;
-
-  gap: var(--echoes-dimension-space-100);
-`;
+export const Navbar = Object.assign(NavbarRoot, {
+  Left: NavbarLeft,
+  Right: NavbarRight,
+});

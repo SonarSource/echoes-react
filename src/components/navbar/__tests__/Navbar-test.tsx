@@ -19,7 +19,7 @@
  */
 
 import { render, screen } from '@testing-library/react';
-import { Navbar, NavbarLeft, NavbarRight } from '../Navbar';
+import { Navbar } from '../Navbar';
 
 describe('Navbar', () => {
   it('should render children inside the Navbar', () => {
@@ -35,12 +35,12 @@ describe('Navbar', () => {
   it('should render NavbarLeft and NavbarRight', () => {
     render(
       <Navbar>
-        <NavbarLeft>
+        <Navbar.Left>
           <div>Left Content</div>
-        </NavbarLeft>
-        <NavbarRight>
+        </Navbar.Left>
+        <Navbar.Right>
           <div>Right Content</div>
-        </NavbarRight>
+        </Navbar.Right>
       </Navbar>,
     );
 
