@@ -19,29 +19,35 @@
  */
 
 import { render, screen } from '@testing-library/react';
-import { Navbar } from '../Navbar';
+import { Navbar } from '..';
+import { IntlProvider } from 'react-intl';
 
 describe('Navbar', () => {
   it('should render children inside the Navbar', () => {
     render(
-      <Navbar>
-        <div>Test</div>
-      </Navbar>,
+      <IntlProvider defaultLocale="en-us" locale="en-us">
+        <Navbar>
+          <div>Test</div>
+        </Navbar>
+      </IntlProvider>,
     );
 
     expect(screen.getByText('Test')).toBeInTheDocument();
   });
 
-  it('should render NavbarLeft and NavbarRight', () => {
+  it('should render Navbar.Primary content and Navbar.Secondary content', () => {
     render(
-      <Navbar>
-        <Navbar.Left>
-          <div>Left Content</div>
-        </Navbar.Left>
-        <Navbar.Right>
-          <div>Right Content</div>
-        </Navbar.Right>
-      </Navbar>,
+      <IntlProvider defaultLocale="en-us" locale="en-us">
+        <Navbar>
+          <Navbar.Primary>
+            <div>Left Content</div>
+          </Navbar.Primary>
+          <Navbar.Secondary>
+            <div>Right Content</div>
+          </Navbar.Secondary>
+        </Navbar>
+        ,
+      </IntlProvider>,
     );
 
     expect(screen.getByText('Left Content')).toBeInTheDocument();
