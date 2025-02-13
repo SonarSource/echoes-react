@@ -17,7 +17,9 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-import { NavbarRoot, NavbarPrimary, NavbarSecondary } from './Navbar';
+import { NavbarPrimary, NavbarRoot, NavbarSecondary } from './Navbar';
+import { NavbarItem } from './NavbarItem';
+import { NavbarItemsContainer } from './NavbarItemsContainer';
 
 /**
  * {@link NavbarRoot | Navbar} is a navigation element that wraps {@link NavbarPrimary | Navbar.Primary}, and
@@ -41,8 +43,9 @@ import { NavbarRoot, NavbarPrimary, NavbarSecondary } from './Navbar';
  * </Navbar>
  * ```
  */
-
 export const Navbar = Object.assign(NavbarRoot, {
   Primary: NavbarPrimary,
   Secondary: NavbarSecondary,
+  Item: NavbarItem,
+  ItemsContainer: NavbarItemsContainer,
 });

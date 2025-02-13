@@ -26,9 +26,9 @@ import {
   ButtonVariety,
   IconQuestionMark,
   IconSearch,
-  Navbar,
   LogoSize,
   LogoSonarQubeCloud,
+  Navbar,
 } from '../src';
 
 const meta: Meta<typeof Navbar> = {
@@ -47,7 +47,11 @@ export const Default: Story = {
       <Navbar {...args}>
         <Navbar.Primary>
           <LogoSonarQubeCloud hasText size={LogoSize.Small} />
-          <nav>Nav menu will go here</nav>
+          <Navbar.ItemsContainer>
+            <Navbar.Item to="/">Home</Navbar.Item>
+            <Navbar.Item to="/qp">Quality Profiles</Navbar.Item>
+            <Navbar.Item to="/rules">Rules</Navbar.Item>
+          </Navbar.ItemsContainer>
         </Navbar.Primary>
         <Navbar.Secondary>
           <ButtonGroup>
