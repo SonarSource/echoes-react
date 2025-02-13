@@ -20,12 +20,25 @@
 
 import { forwardRef } from 'react';
 import styled from '@emotion/styled';
+import { useIntl } from 'react-intl';
 
-const NavbarRoot = forwardRef<HTMLElement, React.PropsWithChildren>((props, ref) => {
-  const { children } = props;
+export interface NavbarProps extends React.PropsWithChildren {
+  className?: string;
+  ariaLabel?: string;
+}
+
+export const NavbarRoot = forwardRef<HTMLElement, NavbarProps>((props, ref) => {
+  const { children, ariaLabel, ...rest } = props;
+  const intl = useIntl();
+
+  const defaultAriaLabel = intl.formatMessage({
+    id: 'navbar.main.navigation',
+    defaultMessage: 'Main navigation',
+    description: 'ARIA-label for the main navigation',
+  });
 
   return (
-    <NavbarContainer aria-label="main navigation" ref={ref} {...props}>
+    <NavbarContainer aria-label={ariaLabel ?? defaultAriaLabel} ref={ref} {...rest}>
       {children}
     </NavbarContainer>
   );
@@ -37,31 +50,25 @@ const NavbarContainer = styled.nav`
   height: 56px;
   display: flex;
   justify-content: space-between;
-  min-width: 1280px; // needs to be replaced with a token?? will sync with Marcio
   align-items: center;
 
-  padding: 0 var(--echoes-dimension-space-300) 0 var(--echoes-dimension-space-0);
+  padding-right: var(--echoes-dimension-space-300);
 
   background-color: var(--echoes-color-background-default);
   border-bottom: var(--echoes-border-width-default) solid var(--echoes-color-border-weak);
 `;
 
-const NavbarLeft = styled.div`
+export const NavbarPrimary = styled.div`
   display: flex;
   align-items: center;
   height: 100%;
 
   gap: var(--echoes-dimension-space-100);
 `;
-const NavbarRight = styled.div`
+export const NavbarSecondary = styled.div`
   display: flex;
   align-items: center;
   height: 100%;
 
   gap: var(--echoes-dimension-space-100);
 `;
-
-export const Navbar = Object.assign(NavbarRoot, {
-  Left: NavbarLeft,
-  Right: NavbarRight,
-});

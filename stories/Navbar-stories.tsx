@@ -43,24 +43,26 @@ type Story = StoryObj<typeof Navbar>;
 
 export const Default: Story = {
   render: (args) => (
-    <Navbar {...args}>
-      <Navbar.Left>
-        <LogoSonarQubeCloud hasText size={LogoSize.Small} />
-        <nav>Nav menu will go here</nav>
-      </Navbar.Left>
-      <Navbar.Right>
-        <ButtonGroup>
-          <ButtonIcon
-            Icon={IconQuestionMark}
-            ariaLabel="Help"
-            isIconFilled
-            variety="default-ghost"
-          />
-          <ButtonIcon Icon={IconSearch} ariaLabel="Search" variety={ButtonVariety.DefaultGhost} />
-          <Button variety="primary">Start free trial</Button>
-          <Button variety="default">Log In</Button>
-        </ButtonGroup>
-      </Navbar.Right>
-    </Navbar>
+    <div style={{ minWidth: '980px' }}>
+      <Navbar {...args}>
+        <Navbar.Primary>
+          <LogoSonarQubeCloud hasText size={LogoSize.Small} />
+          <nav>Nav menu will go here</nav>
+        </Navbar.Primary>
+        <Navbar.Secondary>
+          <ButtonGroup>
+            <ButtonIcon Icon={IconSearch} ariaLabel="Search" variety={ButtonVariety.DefaultGhost} />
+            <ButtonIcon
+              Icon={IconQuestionMark}
+              ariaLabel="Help"
+              isIconFilled
+              variety="default-ghost"
+            />
+            <Button variety="primary">Start free trial</Button>
+            <Button variety="default">Log In</Button>
+          </ButtonGroup>
+        </Navbar.Secondary>
+      </Navbar>
+    </div>
   ),
 };
