@@ -18,6 +18,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 import { NavbarPrimary, NavbarRoot, NavbarSecondary } from './Navbar';
+import { NavbarDropdownItem } from './NavbarDropdownItem';
 import { NavbarItem } from './NavbarItem';
 import { NavbarItemsContainer } from './NavbarItemsContainer';
 
@@ -35,7 +36,19 @@ import { NavbarItemsContainer } from './NavbarItemsContainer';
  * ```tsx
  * <Navbar>
  *  <Navbar.Primary>
- *      ...
+ *    <Navbar.ItemsContainer>
+ *      <Navbar.Item to="/projects">Projects</Navbar.Item>
+ *      <Navbar.DropdownItem
+ *        items={
+ *          <>
+ *            <DropdownMenu.ItemLink to="/link1"><FormattedMessage id='ext1.name'/></DropdownMenu.ItemLink>
+ *            <DropdownMenu.ItemLink to="/link2"><FormattedMessage id='ext2.name'/></DropdownMenu.ItemLink>
+ *          </>
+ *        }
+ *      >
+ *        <FormattedMessage id='more'/>
+ *      </Navbar.DropdownItem>
+ *    </Navbar.ItemsContainer>
  *  </Navbar.Primary>
  *  <Navbar.Secondary>
  *      ...
@@ -46,6 +59,26 @@ import { NavbarItemsContainer } from './NavbarItemsContainer';
 export const Navbar = Object.assign(NavbarRoot, {
   Primary: NavbarPrimary,
   Secondary: NavbarSecondary,
+  /**
+   * {@link NavbarItem | Navbar.Item} is basically a menu link.
+   *
+   * Place it inside the {@link NavbarItemsContainer | Navbar.ItemsContainer}.
+   *
+   * Its children should be limited to formatted text.
+   */
   Item: NavbarItem,
+  /**
+   * {@link NavbarItemsContainer | Navbar.ItemsContainer} wraps the Navbar Items.
+   * It should be in the Primary section and contain only instances of {@link NavbarItem | Navbar.Item}
+   * and {@link NavbarDropdownItem | Navbar.DropdownItem}.
+   */
   ItemsContainer: NavbarItemsContainer,
+  /**
+   * {@link NavbarDropdownItem | Navbar.DropdownItem} is a menu item that opens a dropdown menu.
+   *
+   * Place it inside the {@link NavbarItemsContainer | Navbar.ItemsContainer}.
+   *
+   * It uses a button with a chevron suffix as a trigger, so its children should be limited to formatted text.
+   */
+  DropdownItem: NavbarDropdownItem,
 });

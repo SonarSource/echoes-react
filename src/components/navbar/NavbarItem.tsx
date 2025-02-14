@@ -18,12 +18,12 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import styled from '@emotion/styled';
 import * as radixNavigationMenu from '@radix-ui/react-navigation-menu';
-import { ReactNode, forwardRef } from 'react';
+import { forwardRef, ReactNode } from 'react';
 import { LinkProps as RouterLinkProps, useMatch, useResolvedPath } from 'react-router-dom';
 import { isDefined } from '~common/helpers/types';
 import { LinkBaseStyled } from '../links/LinkBaseStyled';
+import { navbarItemStyle, StyledWrapper } from './NavbarItemStyles';
 
 export interface NavbarItemProps extends RouterLinkProps {
   children: ReactNode;
@@ -52,39 +52,12 @@ const WrappedLink = forwardRef<HTMLAnchorElement, NavbarItemProps & { active: bo
     const { children, active, ...rest } = props;
 
     return (
-      <StyledWrapper css={active && { borderBottomColor: 'var(--echoes-color-border-accent);' }}>
-        <StyledLink highlight="default" ref={ref} {...rest}>
+      <StyledWrapper data-selected={active}>
+        <LinkBaseStyled css={navbarItemStyle} highlight="default" ref={ref} {...rest}>
           {children}
-        </StyledLink>
+        </LinkBaseStyled>
       </StyledWrapper>
     );
   },
 );
 WrappedLink.displayName = 'Wrapper';
-
-const StyledWrapper = styled.div`
-  padding: var(--echoes-dimension-space-150) 0
-    calc(var(--echoes-dimension-space-150) - var(--echoes-focus-border-width-default));
-
-  border-bottom: var(--echoes-focus-border-width-default) solid transparent;
-`;
-
-const StyledLink = styled(LinkBaseStyled)`
-  --hover: var(--echoes-color-text-default);
-
-  display: block;
-
-  padding: var(--echoes-dimension-space-75);
-  border-radius: var(--echoes-border-radius-200);
-
-  font: var(--echoes-typography-text-default-semi-bold);
-  text-decoration-line: var(--echoes-text-decoration-none);
-
-  &:hover {
-    background-color: var(--echoes-color-background-default-hover);
-  }
-
-  &:active {
-    background-color: var(--echoes-color-background-default-active);
-  }
-`;
