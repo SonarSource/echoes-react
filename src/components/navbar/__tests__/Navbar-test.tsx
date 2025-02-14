@@ -18,18 +18,16 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import { Navbar } from '..';
-import { IntlProvider } from 'react-intl';
+import { render } from '~common/helpers/test-utils';
 
 describe('Navbar', () => {
   it('should render children inside the Navbar', () => {
     render(
-      <IntlProvider defaultLocale="en-us" locale="en-us">
-        <Navbar>
-          <div>Test</div>
-        </Navbar>
-      </IntlProvider>,
+      <Navbar>
+        <div>Test</div>
+      </Navbar>,
     );
 
     expect(screen.getByText('Test')).toBeInTheDocument();
@@ -37,17 +35,14 @@ describe('Navbar', () => {
 
   it('should render Navbar.Primary content and Navbar.Secondary content', () => {
     render(
-      <IntlProvider defaultLocale="en-us" locale="en-us">
-        <Navbar>
-          <Navbar.Primary>
-            <div>Left Content</div>
-          </Navbar.Primary>
-          <Navbar.Secondary>
-            <div>Right Content</div>
-          </Navbar.Secondary>
-        </Navbar>
-        ,
-      </IntlProvider>,
+      <Navbar>
+        <Navbar.Primary>
+          <div>Left Content</div>
+        </Navbar.Primary>
+        <Navbar.Secondary>
+          <div>Right Content</div>
+        </Navbar.Secondary>
+      </Navbar>,
     );
 
     expect(screen.getByText('Left Content')).toBeInTheDocument();
