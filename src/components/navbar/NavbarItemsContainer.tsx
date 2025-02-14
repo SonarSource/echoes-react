@@ -27,7 +27,7 @@ export interface NavbarItemProps
   className?: string;
 }
 
-export const NavbarItemsContainer = forwardRef<HTMLDivElement, NavbarItemProps>(
+export const NavbarItemsContainer = forwardRef<HTMLUListElement, NavbarItemProps>(
   ({ children, className, ...radixProps }: Readonly<NavbarItemProps>, ref) => {
     /*
      * We need to wrap each child in a NavMenu Item to allow Radix to manage it
@@ -37,21 +37,27 @@ export const NavbarItemsContainer = forwardRef<HTMLDivElement, NavbarItemProps>(
     });
 
     return (
-      <StyledNavigationMenuRoot ref={ref} {...radixProps}>
-        {wrappedChildren}
-      </StyledNavigationMenuRoot>
+      <radixNavigationMenu.Root>
+        <StyledNavigationMenuRoot ref={ref} {...radixProps}>
+          {wrappedChildren}
+        </StyledNavigationMenuRoot>
+      </radixNavigationMenu.Root>
     );
   },
 );
 NavbarItemsContainer.displayName = 'NavbarItemsContainer';
 
-const StyledNavigationMenuRoot = styled(radixNavigationMenu.Root)`
+const StyledNavigationMenuRoot = styled(radixNavigationMenu.List)`
   display: flex;
   align-items: center;
 
   gap: var(--echoes-dimension-space-100);
-`;
 
-const StyledNavigationMenuItem = styled(radixNavigationMenu.Item)`
   list-style: none;
+  padding: 0;
+  margin: 0;
 `;
+StyledNavigationMenuRoot.displayName = 'StyledNavigationMenuRoot';
+
+const StyledNavigationMenuItem = styled(radixNavigationMenu.Item)``;
+StyledNavigationMenuItem.displayName = 'StyledNavigationMenuItem';

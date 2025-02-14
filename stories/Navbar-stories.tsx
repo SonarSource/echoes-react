@@ -24,6 +24,7 @@ import {
   ButtonGroup,
   ButtonIcon,
   ButtonVariety,
+  DropdownMenu,
   IconQuestionMark,
   IconSearch,
   LogoSize,
@@ -51,6 +52,15 @@ export const Default: Story = {
             <Navbar.Item to="/">Home</Navbar.Item>
             <Navbar.Item to="/qp">Quality Profiles</Navbar.Item>
             <Navbar.Item to="/rules">Rules</Navbar.Item>
+            <Navbar.DropdownItem
+              items={
+                <>
+                  <DropdownMenu.ItemLink to="/3456">option 1</DropdownMenu.ItemLink>
+                  <DropdownMenu.ItemLink to="/hiya">hiya</DropdownMenu.ItemLink>
+                </>
+              }>
+              More
+            </Navbar.DropdownItem>
           </Navbar.ItemsContainer>
         </Navbar.Primary>
         <Navbar.Secondary>

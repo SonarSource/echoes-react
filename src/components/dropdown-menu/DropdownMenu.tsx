@@ -43,7 +43,7 @@ export enum DropdownMenuAlign {
   Start = 'start',
 }
 
-interface DropdownMenuRootProps extends radixDropdownMenu.DropdownMenuTriggerProps {
+export interface DropdownMenuProps extends radixDropdownMenu.DropdownMenuTriggerProps {
   align?: DropdownMenuAlign;
   children: ReactNode;
   className?: string;
@@ -58,7 +58,7 @@ interface DropdownMenuRootProps extends radixDropdownMenu.DropdownMenuTriggerPro
   onOpen?: () => void;
 }
 
-const DropdownMenuRoot = forwardRef<HTMLButtonElement, DropdownMenuRootProps>(
+const DropdownMenuRoot = forwardRef<HTMLButtonElement, DropdownMenuProps>(
   (
     {
       align = DropdownMenuAlign.Center,
@@ -74,7 +74,7 @@ const DropdownMenuRoot = forwardRef<HTMLButtonElement, DropdownMenuRootProps>(
       onClose,
       onOpen,
       ...radixProps
-    }: Readonly<DropdownMenuRootProps>,
+    }: Readonly<DropdownMenuProps>,
     ref,
   ) => {
     const portalContext = useContext(PortalContext);
