@@ -29,6 +29,7 @@ export * from './links';
 export * from './logos';
 export * from './messages';
 export * from './modals';
+export * from './navbar';
 export * from './popover';
 export * from './radio-button-group';
 export * from './select';
