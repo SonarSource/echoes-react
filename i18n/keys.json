@@ -58,6 +58,10 @@
     "defaultMessage": "Submit",
     "description": "Label for the submit action of the Modal Form"
   },
+  "navbar.main.navigation": {
+    "defaultMessage": "Main navigation",
+    "description": "ARIA-label for the main navigation"
+  },
   "open_in_new_tab": {
     "defaultMessage": "(opens in new tab)",
     "description": "Screen reader-only text to indicate that the link will open in a new tab"
