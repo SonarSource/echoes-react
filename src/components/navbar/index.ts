@@ -19,6 +19,7 @@
  */
 import { NavbarPrimary, NavbarRoot, NavbarSecondary } from './Navbar';
 import { NavbarDropdownItem } from './NavbarDropdownItem';
+import { NavbarHome } from './NavbarHome';
 import { NavbarItem } from './NavbarItem';
 import { NavbarItemsContainer } from './NavbarItemsContainer';
 
@@ -29,13 +30,16 @@ import { NavbarItemsContainer } from './NavbarItemsContainer';
  *
  * **Permitted Content**
  *
- * Exactly one {@link NavbarPrimary | Navbar.Primary}, one {@link NavbarSecondary | Navbar.Secondary}.
+ * Exactly one {@link NavbarPrimary | Navbar.Primary}, one {@link NavbarSecondary | Navbar.Secondary}, and one {@link NavbarHome | Navbar.Home} within {@link NavbarPrimary | Navbar.Primary}.
  *
  * **Example**
  *
  * ```tsx
  * <Navbar>
  *  <Navbar.Primary>
+ *    <Navbar.Home>
+ *      ...
+ *    </Navbar.Home>
  *    <Navbar.ItemsContainer>
  *      <Navbar.Item to="/projects">Projects</Navbar.Item>
  *      <Navbar.DropdownItem
@@ -51,7 +55,7 @@ import { NavbarItemsContainer } from './NavbarItemsContainer';
  *    </Navbar.ItemsContainer>
  *  </Navbar.Primary>
  *  <Navbar.Secondary>
- *      ...
+ *    ...
  *  </Navbar.Secondary>
  * </Navbar>
  * ```
@@ -81,4 +85,11 @@ export const Navbar = Object.assign(NavbarRoot, {
    * It uses a button with a chevron suffix as a trigger, so its children should be limited to formatted text.
    */
   DropdownItem: NavbarDropdownItem,
+  /* {@link NavbarHome | Navbar.Home} is a navigation element that wraps the brand logo and links to the home page.
+   *
+   * Place it inside {@link NavbarPrimary | Navbar.Primary} to render the brand logo.
+   *
+   * Its children should be your brand logo.
+   */
+  Home: NavbarHome,
 });
