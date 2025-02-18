@@ -58,6 +58,10 @@
     "defaultMessage": "Submit",
     "description": "Label for the submit action of the Modal Form"
   },
+  "navbar.account": {
+    "defaultMessage": "Account",
+    "description": "aria-label text for the account button (in the Navbar)"
+  },
   "navbar.home_logo": {
     "defaultMessage": "Link to home page",
     "description": "ARIA-label for the brand link to home page"

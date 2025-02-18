@@ -34,7 +34,7 @@ import { ButtonCommonProps, ButtonSize, ButtonVariety } from './ButtonTypes';
 type TooltipProps = ComponentPropsWithoutRef<typeof Tooltip>;
 type TooltipOptions = Omit<TooltipProps, 'children' | 'content' | 'key'>;
 
-interface ButtonIconProps extends ButtonCommonProps {
+export interface ButtonIconProps extends ButtonCommonProps {
   Icon: React.ForwardRefExoticComponent<IconFilledProps & React.RefAttributes<HTMLSpanElement>>;
   isIconFilled?: IconFilledProps['isFilled'];
 

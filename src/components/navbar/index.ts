@@ -18,6 +18,8 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 import { NavbarPrimary, NavbarRoot, NavbarSecondary } from './Navbar';
+import { NavbarAccount } from './NavbarAccount';
+import { NavbarAction } from './NavbarAction';
 import { NavbarDropdownItem } from './NavbarDropdownItem';
 import { NavbarHome } from './NavbarHome';
 import { NavbarItem } from './NavbarItem';
@@ -55,7 +57,16 @@ import { NavbarItemsContainer } from './NavbarItemsContainer';
  *    </Navbar.ItemsContainer>
  *  </Navbar.Primary>
  *  <Navbar.Secondary>
- *    ...
+ *    <Navbar.Action Icon={IconQuestionMark} ariaLabel="Help" isIconFilled />
+ *
+ *    <DropdownMenu items={<DropdownMenu.ItemLink to="/create">project</DropdownMenu.ItemLink>}>
+ *      <Navbar.Action Icon={IconPlus} ariaLabel="Create..." />
+ *    </DropdownMenu>
+ *
+ *    <Navbar.Account
+ *       avatar={<Avatar />}
+ *       items={<DropdownMenu.ItemLink to="/account">account settings</DropdownMenu.ItemLink>}
+ *    />
  *  </Navbar.Secondary>
  * </Navbar>
  * ```
@@ -85,6 +96,19 @@ export const Navbar = Object.assign(NavbarRoot, {
    * It uses a button with a chevron suffix as a trigger, so its children should be limited to formatted text.
    */
   DropdownItem: NavbarDropdownItem,
+  /**
+   * {@link NavbarAction | Navbar.Action} is a ButtonIcon dedicated to the Secondary section of the Navbar.
+   * It has the same API
+   */
+  Action: NavbarAction,
+  /**
+   * {@link NavbarAccount | Navbar.Account} is a special button for the account menu of the navbar.
+   *
+   * It wraps a DropdownMenu, so it expects the `items` to be provided directly to it.
+   * It includes an `avatar` render prop that should be supplied with the product's Avatar component.
+   * Note that it will constrain it to 20x20 px.
+   */
+  Account: NavbarAccount,
   /* {@link NavbarHome | Navbar.Home} is a navigation element that wraps the brand logo and links to the home page.
    *
    * Place it inside {@link NavbarPrimary | Navbar.Primary} to render the brand logo.
