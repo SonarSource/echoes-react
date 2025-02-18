@@ -1,4 +1,16 @@
 {
+  "global_navigation.account": {
+    "defaultMessage": "Account",
+    "description": "aria-label text for the account button (in the GlobalNavigation)"
+  },
+  "global_navigation.home_logo": {
+    "defaultMessage": "Link to home page",
+    "description": "ARIA-label for the brand link to home page"
+  },
+  "global_navigation.main.navigation": {
+    "defaultMessage": "Main navigation",
+    "description": "ARIA-label for the main navigation"
+  },
   "inline.message.dismiss": {
     "defaultMessage": "Dismiss",
     "description": "ARIA-label for the dismiss button at the top of the Modal."
@@ -57,18 +69,6 @@
   "modal_form.submit": {
     "defaultMessage": "Submit",
     "description": "Label for the submit action of the Modal Form"
-  },
-  "navbar.account": {
-    "defaultMessage": "Account",
-    "description": "aria-label text for the account button (in the Navbar)"
-  },
-  "navbar.home_logo": {
-    "defaultMessage": "Link to home page",
-    "description": "ARIA-label for the brand link to home page"
-  },
-  "navbar.main.navigation": {
-    "defaultMessage": "Main navigation",
-    "description": "ARIA-label for the main navigation"
   },
   "open_in_new_tab": {
     "defaultMessage": "(opens in new tab)",

@@ -22,30 +22,31 @@ import styled from '@emotion/styled';
 import * as radixNavigationMenu from '@radix-ui/react-navigation-menu';
 import { Children, PropsWithChildren, forwardRef } from 'react';
 
-export interface NavbarItemProps
+export interface GlobalNavigationItemProps
   extends PropsWithChildren<radixNavigationMenu.NavigationMenuProps> {
   className?: string;
 }
 
-export const NavbarItemsContainer = forwardRef<HTMLUListElement, NavbarItemProps>(
-  ({ children, className, ...radixProps }: Readonly<NavbarItemProps>, ref) => {
-    /*
-     * We need to wrap each child in a NavMenu Item to allow Radix to manage it
-     */
-    const wrappedChildren = Children.map(children, (child) => {
-      return <StyledNavigationMenuItem>{child}</StyledNavigationMenuItem>;
-    });
+export const GlobalNavigationItemsContainer = forwardRef<
+  HTMLUListElement,
+  GlobalNavigationItemProps
+>(({ children, className, ...radixProps }: Readonly<GlobalNavigationItemProps>, ref) => {
+  /*
+   * We need to wrap each child in a NavMenu Item to allow Radix to manage it
+   */
+  const wrappedChildren = Children.map(children, (child) => {
+    return <StyledNavigationMenuItem>{child}</StyledNavigationMenuItem>;
+  });
 
-    return (
-      <radixNavigationMenu.Root>
-        <StyledNavigationMenuRoot ref={ref} {...radixProps}>
-          {wrappedChildren}
-        </StyledNavigationMenuRoot>
-      </radixNavigationMenu.Root>
-    );
-  },
-);
-NavbarItemsContainer.displayName = 'NavbarItemsContainer';
+  return (
+    <radixNavigationMenu.Root>
+      <StyledNavigationMenuRoot ref={ref} {...radixProps}>
+        {wrappedChildren}
+      </StyledNavigationMenuRoot>
+    </radixNavigationMenu.Root>
+  );
+});
+GlobalNavigationItemsContainer.displayName = 'GlobalNavigationItemsContainer';
 
 const StyledNavigationMenuRoot = styled(radixNavigationMenu.List)`
   display: flex;

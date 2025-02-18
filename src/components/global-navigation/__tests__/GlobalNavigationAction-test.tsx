@@ -18,15 +18,13 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import { forwardRef } from 'react';
-import { ButtonIcon } from '../buttons';
-import { ButtonIconProps } from '../buttons/ButtonIcon';
+import { screen } from '@testing-library/react';
+import { render } from '~common/helpers/test-utils';
+import { GlobalNavigation } from '..';
+import { IconBell } from '../..';
 
-export interface NavbarActionProps extends ButtonIconProps {}
+it('should render', () => {
+  render(<GlobalNavigation.Action Icon={IconBell} ariaLabel="action button" />);
 
-export const NavbarAction = forwardRef<HTMLButtonElement, NavbarActionProps>(
-  ({ ...buttonProps }: Readonly<NavbarActionProps>, ref) => {
-    return <ButtonIcon ref={ref} size="medium" variety="default-ghost" {...buttonProps} />;
-  },
-);
-NavbarAction.displayName = 'NavbarAction';
+  expect(screen.getByRole('button')).toHaveAccessibleName('action button');
+});

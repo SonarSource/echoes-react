@@ -19,12 +19,31 @@
  */
 
 import { screen } from '@testing-library/react';
+import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import { render } from '~common/helpers/test-utils';
-import { Navbar } from '..';
-import { IconBell } from '../..';
+import { GlobalNavigation } from '..';
 
-it('should render', () => {
-  render(<Navbar.Action Icon={IconBell} ariaLabel="action button" />);
+it('should render with active indicator', () => {
+  setupWithContext(<GlobalNavigation.Item to="/">Take me home</GlobalNavigation.Item>);
 
-  expect(screen.getByRole('button')).toHaveAccessibleName('action button');
+  expect(screen.getByRole('link')).toHaveAttribute('data-active');
 });
+
+it('should render without active indicator', () => {
+  setupWithContext(<GlobalNavigation.Item to="/elsewhere">Take me home</GlobalNavigation.Item>);
+
+  expect(screen.getByRole('link')).not.toHaveAttribute('data-active');
+});
+
+const setupWithContext = (component: JSX.Element) => {
+  return render(
+    <MemoryRouter initialEntries={['/']}>
+      <Routes>
+        <Route
+          element={<GlobalNavigation.ItemsContainer>{component}</GlobalNavigation.ItemsContainer>}
+          path="/"
+        />
+      </Routes>
+    </MemoryRouter>,
+  );
+};

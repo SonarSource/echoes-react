@@ -21,25 +21,37 @@
 import { screen } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import { render } from '~common/helpers/test-utils';
-import { Navbar } from '..';
+import { GlobalNavigation } from '..';
+import { DropdownMenu } from '../../dropdown-menu';
 
-it('should render with active indicator', () => {
-  setupWithContext(<Navbar.Item to="/">Take me home</Navbar.Item>);
+it('should display links when dropdown is opened', async () => {
+  const { user } = setupWithContext(
+    <GlobalNavigation.DropdownItem
+      items={
+        <>
+          <DropdownMenu.ItemLink to="/1">link 1</DropdownMenu.ItemLink>
+          <DropdownMenu.ItemLink to="/2">link 2</DropdownMenu.ItemLink>
+        </>
+      }>
+      Moar!
+    </GlobalNavigation.DropdownItem>,
+  );
 
-  expect(screen.getByRole('link')).toHaveAttribute('data-active');
-});
+  expect(screen.queryAllByRole('menuitem')).toHaveLength(0);
 
-it('should render without active indicator', () => {
-  setupWithContext(<Navbar.Item to="/elsewhere">Take me home</Navbar.Item>);
+  await user.click(screen.getByRole('button'));
 
-  expect(screen.getByRole('link')).not.toHaveAttribute('data-active');
+  expect(screen.getAllByRole('menuitem')).toHaveLength(2);
 });
 
 const setupWithContext = (component: JSX.Element) => {
   return render(
     <MemoryRouter initialEntries={['/']}>
       <Routes>
-        <Route element={<Navbar.ItemsContainer>{component}</Navbar.ItemsContainer>} path="/" />
+        <Route
+          element={<GlobalNavigation.ItemsContainer>{component}</GlobalNavigation.ItemsContainer>}
+          path="/"
+        />
       </Routes>
     </MemoryRouter>,
   );

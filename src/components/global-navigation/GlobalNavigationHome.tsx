@@ -23,18 +23,18 @@ import { forwardRef } from 'react';
 import { useIntl } from 'react-intl';
 import { LinkStandalone } from '../links';
 
-export interface NavbarHomeProps {
+export interface GlobalNavigationHomeProps {
   children: React.ReactNode;
   className?: string;
   ariaLabel?: string;
 }
 
-export const NavbarHome = forwardRef<HTMLDivElement, NavbarHomeProps>(
-  ({ children, ariaLabel, ...rest }: Readonly<NavbarHomeProps>, ref) => {
+export const GlobalNavigationHome = forwardRef<HTMLDivElement, GlobalNavigationHomeProps>(
+  ({ children, ariaLabel, ...rest }: Readonly<GlobalNavigationHomeProps>, ref) => {
     const intl = useIntl();
 
     const defaultAriaLabel = intl.formatMessage({
-      id: 'navbar.home_logo',
+      id: 'global_navigation.home_logo',
       defaultMessage: 'Link to home page',
       description: 'ARIA-label for the brand link to home page',
     });
@@ -49,7 +49,7 @@ export const NavbarHome = forwardRef<HTMLDivElement, NavbarHomeProps>(
   },
 );
 
-NavbarHome.displayName = 'NavbarHome';
+GlobalNavigationHome.displayName = 'GlobalNavigationHome';
 
 const HomeContainer = styled.div`
   padding: 0 var(--echoes-dimension-space-300);

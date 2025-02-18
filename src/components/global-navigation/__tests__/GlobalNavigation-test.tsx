@@ -21,30 +21,30 @@
 import { screen } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import { render } from '~common/helpers/test-utils';
-import { Navbar } from '..';
+import { GlobalNavigation } from '..';
 import { LogoSonarQubeCloud } from '../../logos';
 
-describe('Navbar', () => {
-  it('should render children inside the Navbar', () => {
+describe('GlobalNavigation', () => {
+  it('should render children inside the GlobalNavigation', () => {
     render(
-      <Navbar>
+      <GlobalNavigation>
         <div>Test</div>
-      </Navbar>,
+      </GlobalNavigation>,
     );
 
     expect(screen.getByText('Test')).toBeInTheDocument();
   });
 
-  it('should render Navbar.Primary content and Navbar.Secondary content', () => {
+  it('should render GlobalNavigation.Primary content and GlobalNavigation.Secondary content', () => {
     render(
-      <Navbar>
-        <Navbar.Primary>
+      <GlobalNavigation>
+        <GlobalNavigation.Primary>
           <div>Left Content</div>
-        </Navbar.Primary>
-        <Navbar.Secondary>
+        </GlobalNavigation.Primary>
+        <GlobalNavigation.Secondary>
           <div>Right Content</div>
-        </Navbar.Secondary>
-      </Navbar>,
+        </GlobalNavigation.Secondary>
+      </GlobalNavigation>,
     );
 
     expect(screen.getByText('Left Content')).toBeInTheDocument();
@@ -52,34 +52,34 @@ describe('Navbar', () => {
   });
 });
 
-describe('Navbar.Home', () => {
-  it('should render children inside the Navbar.Home', () => {
+describe('GlobalNavigation.Home', () => {
+  it('should render children inside the GlobalNavigation.Home', () => {
     setupWithMemoryRouter(
-      <Navbar>
-        <Navbar.Primary>
-          <Navbar.Home>
+      <GlobalNavigation>
+        <GlobalNavigation.Primary>
+          <GlobalNavigation.Home>
             <div>Test</div>
-          </Navbar.Home>
-        </Navbar.Primary>
-      </Navbar>,
+          </GlobalNavigation.Home>
+        </GlobalNavigation.Primary>
+      </GlobalNavigation>,
     );
 
     expect(screen.getByText('Test')).toBeInTheDocument();
   });
 
-  it('should navigate to the home page when Navbar.Home is clicked', async () => {
+  it('should navigate to the home page when GlobalNavigation.Home is clicked', async () => {
     const { user } = setupWithMemoryRouter(
       <Routes>
         <Route element={<div>Home Page</div>} path="/" />
         <Route
           element={
-            <Navbar>
-              <Navbar.Primary>
-                <Navbar.Home>
+            <GlobalNavigation>
+              <GlobalNavigation.Primary>
+                <GlobalNavigation.Home>
                   <LogoSonarQubeCloud />
-                </Navbar.Home>
-              </Navbar.Primary>
-            </Navbar>
+                </GlobalNavigation.Home>
+              </GlobalNavigation.Primary>
+            </GlobalNavigation>
           }
           path="/initial"
         />
