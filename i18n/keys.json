@@ -58,6 +58,10 @@
     "defaultMessage": "Submit",
     "description": "Label for the submit action of the Modal Form"
   },
+  "navbar.home_logo": {
+    "defaultMessage": "Link to home page",
+    "description": "ARIA-label for the brand link to home page"
+  },
   "navbar.main.navigation": {
     "defaultMessage": "Main navigation",
     "description": "ARIA-label for the main navigation"

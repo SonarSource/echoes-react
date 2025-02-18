@@ -18,8 +18,8 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import { forwardRef } from 'react';
 import styled from '@emotion/styled';
+import { forwardRef } from 'react';
 import { useIntl } from 'react-intl';
 
 export interface NavbarProps extends React.PropsWithChildren {
@@ -63,7 +63,7 @@ export const NavbarPrimary = styled.div`
   align-items: center;
   height: 100%;
 
-  gap: var(--echoes-dimension-space-100);
+  gap: var(--echoes-dimension-space-150);
 `;
 export const NavbarSecondary = styled.div`
   display: flex;

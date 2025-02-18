@@ -19,8 +19,10 @@
  */
 
 import { screen } from '@testing-library/react';
-import { Navbar } from '..';
+import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import { render } from '~common/helpers/test-utils';
+import { Navbar } from '..';
+import { LogoSonarQubeCloud } from '../../logos';
 
 describe('Navbar', () => {
   it('should render children inside the Navbar', () => {
@@ -49,3 +51,46 @@ describe('Navbar', () => {
     expect(screen.getByText('Right Content')).toBeInTheDocument();
   });
 });
+
+describe('Navbar.Home', () => {
+  it('should render children inside the Navbar.Home', () => {
+    setupWithMemoryRouter(
+      <Navbar>
+        <Navbar.Primary>
+          <Navbar.Home>
+            <div>Test</div>
+          </Navbar.Home>
+        </Navbar.Primary>
+      </Navbar>,
+    );
+
+    expect(screen.getByText('Test')).toBeInTheDocument();
+  });
+
+  it('should navigate to the home page when Navbar.Home is clicked', async () => {
+    const { user } = setupWithMemoryRouter(
+      <Routes>
+        <Route element={<div>Home Page</div>} path="/" />
+        <Route
+          element={
+            <Navbar>
+              <Navbar.Primary>
+                <Navbar.Home>
+                  <LogoSonarQubeCloud />
+                </Navbar.Home>
+              </Navbar.Primary>
+            </Navbar>
+          }
+          path="/initial"
+        />
+      </Routes>,
+    );
+
+    await user.click(screen.getByRole('link', { name: /Link to home page/ }));
+    expect(screen.getByText('Home Page')).toBeInTheDocument();
+  });
+});
+
+const setupWithMemoryRouter = (children: React.ReactNode) => {
+  return render(<MemoryRouter initialEntries={['/initial']}>{children}</MemoryRouter>);
+};
