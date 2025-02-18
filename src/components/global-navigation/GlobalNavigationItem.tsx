@@ -23,15 +23,15 @@ import { forwardRef, ReactNode } from 'react';
 import { LinkProps as RouterLinkProps, useMatch, useResolvedPath } from 'react-router-dom';
 import { isDefined } from '~common/helpers/types';
 import { LinkBaseStyled } from '../links/LinkBaseStyled';
-import { navbarItemStyle, StyledWrapper } from './NavbarItemStyles';
+import { globalNavigationItemStyle, StyledWrapper } from './GlobalNavigationItemStyles';
 
-export interface NavbarItemProps extends RouterLinkProps {
+export interface GlobalNavigationItemProps extends RouterLinkProps {
   children: ReactNode;
   className?: string;
 }
 
-export const NavbarItem = forwardRef<HTMLAnchorElement, NavbarItemProps>(
-  ({ children, ...linkProps }: Readonly<NavbarItemProps>, ref) => {
+export const GlobalNavigationItem = forwardRef<HTMLAnchorElement, GlobalNavigationItemProps>(
+  ({ children, ...linkProps }: Readonly<GlobalNavigationItemProps>, ref) => {
     const resolved = useResolvedPath(linkProps.to);
     const match = useMatch(resolved.pathname);
     const active = isDefined(match);
@@ -45,15 +45,15 @@ export const NavbarItem = forwardRef<HTMLAnchorElement, NavbarItemProps>(
     );
   },
 );
-NavbarItem.displayName = 'NavbarItem';
+GlobalNavigationItem.displayName = 'GlobalNavigationItem';
 
-const WrappedLink = forwardRef<HTMLAnchorElement, NavbarItemProps & { active: boolean }>(
+const WrappedLink = forwardRef<HTMLAnchorElement, GlobalNavigationItemProps & { active: boolean }>(
   (props, ref) => {
     const { children, active, ...rest } = props;
 
     return (
       <StyledWrapper data-selected={active}>
-        <LinkBaseStyled css={navbarItemStyle} highlight="default" ref={ref} {...rest}>
+        <LinkBaseStyled css={globalNavigationItemStyle} highlight="default" ref={ref} {...rest}>
           {children}
         </LinkBaseStyled>
       </StyledWrapper>

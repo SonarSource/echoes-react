@@ -22,31 +22,31 @@ import styled from '@emotion/styled';
 import { forwardRef } from 'react';
 import { useIntl } from 'react-intl';
 
-export interface NavbarProps extends React.PropsWithChildren {
+export interface GlobalNavigationProps extends React.PropsWithChildren {
   className?: string;
   ariaLabel?: string;
 }
 
-export const NavbarRoot = forwardRef<HTMLElement, NavbarProps>((props, ref) => {
+export const GlobalNavigationRoot = forwardRef<HTMLElement, GlobalNavigationProps>((props, ref) => {
   const { children, ariaLabel, ...rest } = props;
   const intl = useIntl();
 
   const defaultAriaLabel = intl.formatMessage({
-    id: 'navbar.main.navigation',
+    id: 'global_navigation.main.navigation',
     defaultMessage: 'Main navigation',
     description: 'ARIA-label for the main navigation',
   });
 
   return (
-    <NavbarContainer aria-label={ariaLabel ?? defaultAriaLabel} ref={ref} {...rest}>
+    <GlobalNavigationContainer aria-label={ariaLabel ?? defaultAriaLabel} ref={ref} {...rest}>
       {children}
-    </NavbarContainer>
+    </GlobalNavigationContainer>
   );
 });
 
-NavbarRoot.displayName = 'Navbar';
+GlobalNavigationRoot.displayName = 'GlobalNavigation';
 
-const NavbarContainer = styled.nav`
+const GlobalNavigationContainer = styled.nav`
   height: 56px;
   display: flex;
   justify-content: space-between;
@@ -58,14 +58,14 @@ const NavbarContainer = styled.nav`
   border-bottom: var(--echoes-border-width-default) solid var(--echoes-color-border-weak);
 `;
 
-export const NavbarPrimary = styled.div`
+export const GlobalNavigationPrimary = styled.div`
   display: flex;
   align-items: center;
   height: 100%;
 
   gap: var(--echoes-dimension-space-150);
 `;
-export const NavbarSecondary = styled.div`
+export const GlobalNavigationSecondary = styled.div`
   display: flex;
   align-items: center;
   height: 100%;

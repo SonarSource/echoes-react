@@ -25,9 +25,9 @@ import { Button } from '../buttons';
 import { DropdownMenu } from '../dropdown-menu';
 import { DropdownMenuProps } from '../dropdown-menu/DropdownMenu';
 import { IconChevronDown } from '../icons';
-import { navbarItemStyle, StyledWrapper } from './NavbarItemStyles';
+import { globalNavigationItemStyle, StyledWrapper } from './GlobalNavigationItemStyles';
 
-export interface NavbarDropdownItemProps extends DropdownMenuProps {
+export interface GlobalNavigationDropdownItemProps extends DropdownMenuProps {
   className?: string;
 }
 
@@ -52,8 +52,14 @@ export function isActive(pathname: string, item: ReactNode) {
   return false;
 }
 
-export const NavbarDropdownItem = forwardRef<HTMLButtonElement, NavbarDropdownItemProps>(
-  ({ className, children, ...dropdownMenuProps }: Readonly<NavbarDropdownItemProps>, ref) => {
+export const GlobalNavigationDropdownItem = forwardRef<
+  HTMLButtonElement,
+  GlobalNavigationDropdownItemProps
+>(
+  (
+    { className, children, ...dropdownMenuProps }: Readonly<GlobalNavigationDropdownItemProps>,
+    ref,
+  ) => {
     const { pathname } = useLocation();
 
     const active = useMemo(() => {
@@ -69,9 +75,11 @@ export const NavbarDropdownItem = forwardRef<HTMLButtonElement, NavbarDropdownIt
     );
   },
 );
-NavbarDropdownItem.displayName = 'NavbarDropdownItem';
+GlobalNavigationDropdownItem.displayName = 'GlobalNavigationDropdownItem';
 
-type TriggerProps = Pick<NavbarDropdownItemProps, 'className' | 'children'> & { active: boolean };
+type TriggerProps = Pick<GlobalNavigationDropdownItemProps, 'className' | 'children'> & {
+  active: boolean;
+};
 
 const WrappedTrigger = forwardRef<HTMLButtonElement, TriggerProps>((props, ref) => {
   const { active, className, children, ...rest } = props;
@@ -80,7 +88,7 @@ const WrappedTrigger = forwardRef<HTMLButtonElement, TriggerProps>((props, ref) 
     <StyledWrapper data-selected={active}>
       <Button
         className={className}
-        css={navbarItemStyle}
+        css={globalNavigationItemStyle}
         ref={ref}
         suffix={<IconChevronDown />}
         variety="default-ghost"

@@ -20,7 +20,7 @@
 
 import { screen } from '@testing-library/react';
 import { render } from '~common/helpers/test-utils';
-import { Navbar } from '..';
+import { GlobalNavigation } from '..';
 import { DropdownMenu } from '../..';
 
 const customAriaLabel = 'my account';
@@ -33,7 +33,7 @@ it.each([
   'should render %s',
   async (_, ariaLabel, expectedAriaLabel, tooltipContent, expectedTooltipContent) => {
     const { user } = render(
-      <Navbar.Account
+      <GlobalNavigation.Account
         ariaLabel={ariaLabel}
         avatar={<img alt="broken" />}
         items={<DropdownMenu.ItemButton>opt</DropdownMenu.ItemButton>}

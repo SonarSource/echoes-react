@@ -26,12 +26,12 @@ import {
   IconQuestionMark,
   LogoSize,
   LogoSonarQubeServer,
-  Navbar,
+  GlobalNavigation,
 } from '../src';
 
-const meta: Meta<typeof Navbar> = {
-  title: 'Echoes/Navbar',
-  component: Navbar,
+const meta: Meta<typeof GlobalNavigation> = {
+  title: 'Echoes/GlobalNavigation',
+  component: GlobalNavigation,
   argTypes: {
     children: {
       control: { labels: 'logo', type: 'select' },
@@ -52,7 +52,7 @@ const meta: Meta<typeof Navbar> = {
 
 export default meta;
 
-type Story = StoryObj<typeof Navbar>;
+type Story = StoryObj<typeof GlobalNavigation>;
 
 export const Default: Story = {
   args: {
@@ -60,15 +60,15 @@ export const Default: Story = {
   },
   render: ({ children, ...args }) => (
     <div style={{ minWidth: '980px' }}>
-      <Navbar {...args}>
-        <Navbar.Primary>
-          <Navbar.Home>{children}</Navbar.Home>
+      <GlobalNavigation {...args}>
+        <GlobalNavigation.Primary>
+          <GlobalNavigation.Home>{children}</GlobalNavigation.Home>
 
-          <Navbar.ItemsContainer>
-            <Navbar.Item to="/">Home</Navbar.Item>
-            <Navbar.Item to="/qp">Quality Profiles</Navbar.Item>
-            <Navbar.Item to="/rules">Rules</Navbar.Item>
-            <Navbar.DropdownItem
+          <GlobalNavigation.ItemsContainer>
+            <GlobalNavigation.Item to="/">Home</GlobalNavigation.Item>
+            <GlobalNavigation.Item to="/qp">Quality Profiles</GlobalNavigation.Item>
+            <GlobalNavigation.Item to="/rules">Rules</GlobalNavigation.Item>
+            <GlobalNavigation.DropdownItem
               items={
                 <>
                   <DropdownMenu.ItemLink to="/3456">option 1</DropdownMenu.ItemLink>
@@ -76,21 +76,21 @@ export const Default: Story = {
                 </>
               }>
               More
-            </Navbar.DropdownItem>
-          </Navbar.ItemsContainer>
-        </Navbar.Primary>
-        <Navbar.Secondary>
-          <Navbar.Action Icon={IconBell} ariaLabel="Ding" />
-          <Navbar.Action Icon={IconQuestionMark} ariaLabel="Help" isIconFilled />
+            </GlobalNavigation.DropdownItem>
+          </GlobalNavigation.ItemsContainer>
+        </GlobalNavigation.Primary>
+        <GlobalNavigation.Secondary>
+          <GlobalNavigation.Action Icon={IconBell} ariaLabel="Ding" />
+          <GlobalNavigation.Action Icon={IconQuestionMark} ariaLabel="Help" isIconFilled />
           <DropdownMenu items={<DropdownMenu.ItemLink to="/create">project</DropdownMenu.ItemLink>}>
-            <Navbar.Action Icon={IconPlus} ariaLabel="Create..." />
+            <GlobalNavigation.Action Icon={IconPlus} ariaLabel="Create..." />
           </DropdownMenu>
-          <Navbar.Account
+          <GlobalNavigation.Account
             avatar={<Avatar />}
             items={<DropdownMenu.ItemLink to="/account">account settings</DropdownMenu.ItemLink>}
           />
-        </Navbar.Secondary>
-      </Navbar>
+        </GlobalNavigation.Secondary>
+      </GlobalNavigation>
     </div>
   ),
 };

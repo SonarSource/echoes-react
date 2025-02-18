@@ -27,22 +27,22 @@ import { Tooltip } from '../tooltip';
 
 type TooltipProps = ComponentPropsWithoutRef<typeof Tooltip>;
 
-export interface NavbarActionProps extends Omit<DropdownMenuProps, 'children'> {
+export interface GlobalNavigationActionProps extends Omit<DropdownMenuProps, 'children'> {
   ariaLabel?: string;
   avatar: ReactNode;
   tooltipContent?: TooltipProps['content'];
 }
 
-export const NavbarAccount = forwardRef<HTMLButtonElement, NavbarActionProps>(
-  (props: Readonly<NavbarActionProps>, ref) => {
+export const GlobalNavigationAccount = forwardRef<HTMLButtonElement, GlobalNavigationActionProps>(
+  (props: Readonly<GlobalNavigationActionProps>, ref) => {
     const { ariaLabel, avatar, tooltipContent = props.ariaLabel, ...dropdownProps } = props;
 
     const intl = useIntl();
 
     const defaultAriaLabel = intl.formatMessage({
       defaultMessage: 'Account',
-      description: 'aria-label text for the account button (in the Navbar)',
-      id: 'navbar.account',
+      description: 'aria-label text for the account button (in the GlobalNavigation)',
+      id: 'global_navigation.account',
     });
 
     return (
@@ -56,7 +56,7 @@ export const NavbarAccount = forwardRef<HTMLButtonElement, NavbarActionProps>(
     );
   },
 );
-NavbarAccount.displayName = 'NavbarAccount';
+GlobalNavigationAccount.displayName = 'GlobalNavigationAccount';
 
 const StyledAccountButton = styled(ButtonStyled)`
   ${BUTTON_VARIETY_STYLES['default-ghost']}

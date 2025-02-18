@@ -33,7 +33,7 @@ export const StyledWrapper = styled.div`
 `;
 StyledWrapper.displayName = 'StyledWrapper';
 
-export const navbarItemStyle = css`
+export const globalNavigationItemStyle = css`
   --hover: var(--echoes-color-text-default);
 
   display: block;
