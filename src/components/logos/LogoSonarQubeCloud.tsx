@@ -21,6 +21,7 @@
 import styled from '@emotion/styled';
 import { forwardRef } from 'react';
 import { useIntl } from 'react-intl';
+import { isStringDefined } from '~common/helpers/types';
 import { LogoProps, LogoSvgWrapper } from './logoUtils';
 
 interface Props extends LogoProps {
@@ -117,7 +118,7 @@ export const LogoSonarQubeCloud = forwardRef<SVGSVGElement, Props>(
             fill="var(--echoes-logos-colors-brand)"
           />
         </LogoSvgWrapper>
-        {region !== undefined && <RegionText>{region}</RegionText>}
+        {isStringDefined(region) && <RegionText>{region}</RegionText>}
       </LogoWithTextWrapper>
     ) : (
       <LogoSvgWrapper
@@ -164,4 +165,5 @@ const RegionText = styled.span`
   font-size: 0.688rem;
 `;
 
+LogoWithTextWrapper.displayName = 'LogoWithTextWrapper';
 LogoSonarQubeCloud.displayName = 'LogoSonarQubeCloud';
