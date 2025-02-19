@@ -152,11 +152,13 @@ export const LogoSonarQubeCloud = forwardRef<SVGSVGElement, Props>(
     );
   },
 );
+LogoSonarQubeCloud.displayName = 'LogoSonarQubeCloud';
 
 const LogoWithTextWrapper = styled.div`
   display: flex;
   gap: 3px;
 `;
+LogoWithTextWrapper.displayName = 'LogoWithTextWrapper';
 
 const RegionText = styled.span`
   margin-top: -3px;
@@ -164,6 +166,4 @@ const RegionText = styled.span`
   font: var(--echoes-typography-text-default-semi-bold);
   font-size: 0.688rem;
 `;
-
-LogoWithTextWrapper.displayName = 'LogoWithTextWrapper';
-LogoSonarQubeCloud.displayName = 'LogoSonarQubeCloud';
+RegionText.displayName = 'RegionText';
