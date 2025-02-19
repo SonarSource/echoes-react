@@ -79,6 +79,7 @@ export { IconRefresh } from './IconRefresh';
 export { IconRocket } from './IconRocket';
 export { IconSearch } from './IconSearch';
 export { IconSecurityFinding } from './IconSecurityFinding';
+export { IconSlash } from './IconSlash';
 export { IconSlideshow } from './IconSlideshow';
 export { IconSparkle } from './IconSparkle';
 export { IconSparkleInShield } from './IconSparkleInShield';
