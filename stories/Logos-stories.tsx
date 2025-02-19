@@ -45,6 +45,7 @@ const meta: Meta = {
   },
   args: {
     hasText: true,
+    region: 'US',
   },
 };
 
@@ -52,22 +53,27 @@ export default meta;
 
 interface StoryArgs {
   hasText?: boolean;
+  region?: string;
 }
 
 export const SonarQubeLogos: StoryObj<StoryArgs> = {
-  render: (args) => (
-    <Wrapper>
-      <LogoSonar {...args} />
+  render: (args) => {
+    const { region, ...rest } = args;
 
-      <LogoSonarQubeCloud {...args} />
+    return (
+      <Wrapper>
+        <LogoSonar {...rest} />
 
-      <LogoSonarQubeCommunity {...args} />
+        <LogoSonarQubeCloud {...args} />
 
-      <LogoSonarQubeIde {...args} />
+        <LogoSonarQubeCommunity {...rest} />
 
-      <LogoSonarQubeServer {...args} />
-    </Wrapper>
-  ),
+        <LogoSonarQubeIde {...rest} />
+
+        <LogoSonarQubeServer {...rest} />
+      </Wrapper>
+    );
+  },
 };
 
 const Wrapper = styled.div`

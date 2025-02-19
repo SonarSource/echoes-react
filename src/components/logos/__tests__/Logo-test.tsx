@@ -57,3 +57,10 @@ it.each([
   const icon = screen.getByTestId('logo');
   expect(icon).toHaveAccessibleName(accessibleName);
 });
+
+it('should display the SonarQube Cloud logo with the region', () => {
+  render(<LogoSonarQubeCloud data-testid="logo" hasText region="US" />);
+  const icon = screen.getByTestId('logo');
+  expect(icon).toHaveAccessibleName('SonarQube Cloud');
+  expect(screen.getByText('US')).toBeInTheDocument();
+});
