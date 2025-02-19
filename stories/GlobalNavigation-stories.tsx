@@ -60,8 +60,10 @@ export const Default: Story = {
           <GlobalNavigation.Home>{children}</GlobalNavigation.Home>
 
           <GlobalNavigation.ItemsContainer>
-            <GlobalNavigation.Item to="/">Home</GlobalNavigation.Item>
-            <GlobalNavigation.Item to="/qp">Quality Profiles</GlobalNavigation.Item>
+            <>
+              <GlobalNavigation.Item to="/">Home</GlobalNavigation.Item>
+              <GlobalNavigation.Item to="/qp">Quality Profiles</GlobalNavigation.Item>
+            </>
             <GlobalNavigation.Item to="/rules">Rules</GlobalNavigation.Item>
             <GlobalNavigation.DropdownItem
               items={

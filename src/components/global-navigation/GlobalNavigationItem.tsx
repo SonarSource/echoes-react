@@ -25,23 +25,26 @@ import { isDefined } from '~common/helpers/types';
 import { LinkBaseStyled } from '../links/LinkBaseStyled';
 import { globalNavigationItemStyle, StyledWrapper } from './GlobalNavigationItemStyles';
 
-export interface GlobalNavigationItemProps extends RouterLinkProps {
+export interface GlobalNavigationItemProps {
   children: ReactNode;
   className?: string;
+  to: RouterLinkProps['to'];
 }
 
 export const GlobalNavigationItem = forwardRef<HTMLAnchorElement, GlobalNavigationItemProps>(
-  ({ children, ...linkProps }: Readonly<GlobalNavigationItemProps>, ref) => {
-    const resolved = useResolvedPath(linkProps.to);
+  ({ children, className, to, ...otherProps }: Readonly<GlobalNavigationItemProps>, ref) => {
+    const resolved = useResolvedPath(to);
     const match = useMatch(resolved.pathname);
     const active = isDefined(match);
 
     return (
-      <radixNavigationMenu.Link active={active} asChild>
-        <WrappedLink active={active} ref={ref} {...linkProps}>
-          {children}
-        </WrappedLink>
-      </radixNavigationMenu.Link>
+      <radixNavigationMenu.Item>
+        <radixNavigationMenu.Link active={active} asChild>
+          <WrappedLink active={active} ref={ref} to={to} {...otherProps}>
+            {children}
+          </WrappedLink>
+        </radixNavigationMenu.Link>
+      </radixNavigationMenu.Item>
     );
   },
 );
