@@ -18,6 +18,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+import * as radixNavigationMenu from '@radix-ui/react-navigation-menu';
 import { Children, forwardRef, isValidElement, ReactNode, useMemo } from 'react';
 import { matchPath, useLocation } from 'react-router-dom';
 import { isDefined } from '~common/helpers/types';
@@ -67,11 +68,13 @@ export const GlobalNavigationDropdownItem = forwardRef<
     }, [pathname, dropdownMenuProps.items]);
 
     return (
-      <DropdownMenu {...dropdownMenuProps}>
-        <WrappedTrigger active={active} className={className} ref={ref}>
-          {children}
-        </WrappedTrigger>
-      </DropdownMenu>
+      <radixNavigationMenu.Item>
+        <DropdownMenu {...dropdownMenuProps}>
+          <WrappedTrigger active={active} className={className} ref={ref}>
+            {children}
+          </WrappedTrigger>
+        </DropdownMenu>
+      </radixNavigationMenu.Item>
     );
   },
 );

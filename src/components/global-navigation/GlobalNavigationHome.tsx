@@ -21,16 +21,18 @@
 import styled from '@emotion/styled';
 import { forwardRef } from 'react';
 import { useIntl } from 'react-intl';
+import { LinkProps } from 'react-router-dom';
 import { LinkStandalone } from '../links';
 
 export interface GlobalNavigationHomeProps {
   children: React.ReactNode;
   className?: string;
   ariaLabel?: string;
+  reloadDocument?: LinkProps['reloadDocument'];
 }
 
 export const GlobalNavigationHome = forwardRef<HTMLDivElement, GlobalNavigationHomeProps>(
-  ({ children, ariaLabel, ...rest }: Readonly<GlobalNavigationHomeProps>, ref) => {
+  ({ children, ariaLabel, reloadDocument, ...rest }: Readonly<GlobalNavigationHomeProps>, ref) => {
     const intl = useIntl();
 
     const defaultAriaLabel = intl.formatMessage({
@@ -41,7 +43,10 @@ export const GlobalNavigationHome = forwardRef<HTMLDivElement, GlobalNavigationH
 
     return (
       <HomeContainer ref={ref} {...rest}>
-        <StyledLinkStandalone aria-label={ariaLabel ?? defaultAriaLabel} to="/">
+        <StyledLinkStandalone
+          aria-label={ariaLabel ?? defaultAriaLabel}
+          reloadDocument={reloadDocument}
+          to="/">
           <LogoContainer>{children}</LogoContainer>
         </StyledLinkStandalone>
       </HomeContainer>
