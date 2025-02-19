@@ -57,6 +57,7 @@ const GlobalNavigationContainer = styled.nav`
   background-color: var(--echoes-color-background-default);
   border-bottom: var(--echoes-border-width-default) solid var(--echoes-color-border-weak);
 `;
+GlobalNavigationContainer.displayName = 'GlobalNavigationContainer';
 
 export const GlobalNavigationPrimary = styled.div`
   display: flex;
@@ -65,6 +66,8 @@ export const GlobalNavigationPrimary = styled.div`
 
   gap: var(--echoes-dimension-space-150);
 `;
+GlobalNavigationPrimary.displayName = 'GlobalNavigationPrimary';
+
 export const GlobalNavigationSecondary = styled.div`
   display: flex;
   align-items: center;
@@ -72,3 +75,4 @@ export const GlobalNavigationSecondary = styled.div`
 
   gap: var(--echoes-dimension-space-100);
 `;
+GlobalNavigationSecondary.displayName = 'GlobalNavigationSecondary';

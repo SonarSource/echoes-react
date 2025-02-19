@@ -70,3 +70,4 @@ const StyledAccountButton = styled(ButtonStyled)`
     width: 100%;
   }
 `;
+StyledAccountButton.displayName = 'StyledAccountButton';

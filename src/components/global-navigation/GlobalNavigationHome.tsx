@@ -54,6 +54,7 @@ GlobalNavigationHome.displayName = 'GlobalNavigationHome';
 const HomeContainer = styled.div`
   padding: 0 var(--echoes-dimension-space-300);
 `;
+HomeContainer.displayName = 'HomeContainer';
 
 const StyledLinkStandalone = styled(LinkStandalone)`
   display: flex;
@@ -70,6 +71,7 @@ const StyledLinkStandalone = styled(LinkStandalone)`
     background-color: var(--echoes-color-background-default-active);
   }
 `;
+StyledLinkStandalone.displayName = 'StyledLinkStandalone';
 
 const LogoContainer = styled.div`
   display: flex;
@@ -82,3 +84,4 @@ const LogoContainer = styled.div`
     object-fit: contain;
   }
 `;
+LogoContainer.displayName = 'LogoContainer';
