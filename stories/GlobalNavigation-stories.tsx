@@ -26,6 +26,7 @@ import {
   IconPlus,
   IconQuestionMark,
   LogoSize,
+  LogoSonarQubeCloud,
   LogoSonarQubeServer,
 } from '../src';
 
@@ -36,10 +37,11 @@ const meta: Meta<typeof GlobalNavigation> = {
     children: {
       control: { labels: 'logo', type: 'select' },
       mapping: {
-        defaultLogo: <LogoSonarQubeServer hasText size={LogoSize.Small} />,
+        SQServerLogo: <LogoSonarQubeServer hasText size={LogoSize.Small} />,
+        SQCloudLogo: <LogoSonarQubeCloud hasText region="ASIA" size={LogoSize.Small} />,
         customLogo: <CompanyLogo />,
       },
-      options: ['defaultLogo', 'customLogo'],
+      options: ['SQServerLogo', 'SQCloudLogo', 'customLogo'],
     },
   },
   decorators: [(Story) => <Story />],
