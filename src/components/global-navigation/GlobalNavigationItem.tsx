@@ -34,7 +34,7 @@ export interface GlobalNavigationItemProps {
 export const GlobalNavigationItem = forwardRef<HTMLAnchorElement, GlobalNavigationItemProps>(
   ({ children, className, to, ...otherProps }: Readonly<GlobalNavigationItemProps>, ref) => {
     const resolved = useResolvedPath(to);
-    const match = useMatch(resolved.pathname);
+    const match = useMatch(`${resolved.pathname}/*`);
     const active = isDefined(match);
 
     return (
