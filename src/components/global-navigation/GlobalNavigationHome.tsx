@@ -70,6 +70,7 @@ const StyledLinkStandalone = styled(LinkStandalone)`
 
   &:hover {
     background-color: var(--echoes-color-background-default-hover);
+    text-decoration-line: var(--echoes-text-decoration-none);
   }
 
   &:active {
