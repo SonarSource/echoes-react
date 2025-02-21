@@ -18,6 +18,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+import styled from '@emotion/styled';
 import { forwardRef } from 'react';
 import { ButtonIcon } from '../buttons';
 import { ButtonIconProps } from '../buttons/ButtonIcon';
@@ -26,7 +27,11 @@ export interface GlobalNavigationActionProps extends ButtonIconProps {}
 
 export const GlobalNavigationAction = forwardRef<HTMLButtonElement, GlobalNavigationActionProps>(
   ({ ...buttonProps }: Readonly<GlobalNavigationActionProps>, ref) => {
-    return <ButtonIcon ref={ref} size="medium" variety="default-ghost" {...buttonProps} />;
+    return <StyledButtonIcon ref={ref} size="medium" variety="default-ghost" {...buttonProps} />;
   },
 );
 GlobalNavigationAction.displayName = 'GlobalNavigationAction';
+
+const StyledButtonIcon = styled(ButtonIcon)`
+  font-size: var(--echoes-font-size-30);
+`;
