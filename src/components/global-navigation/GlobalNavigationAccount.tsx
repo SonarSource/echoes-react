@@ -63,7 +63,7 @@ const StyledAccountButton = styled(ButtonStyled)`
 
   height: var(--echoes-sizes-buttons-medium);
   width: var(--echoes-sizes-buttons-medium);
-  padding: var(--echoes-dimension-space-75);
+  padding: var(--echoes-dimension-space-50);
 
   & > * {
     height: 100%;
