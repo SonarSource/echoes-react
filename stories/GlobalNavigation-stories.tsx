@@ -53,7 +53,7 @@ type Story = StoryObj<typeof GlobalNavigation>;
 
 export const Default: Story = {
   args: {
-    children: 'defaultLogo',
+    children: 'SQServerLogo',
   },
   render: ({ children, ...args }) => (
     <div style={{ minWidth: '980px' }}>

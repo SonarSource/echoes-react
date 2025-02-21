@@ -20,8 +20,9 @@
 
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
+import * as radixNavigationMenu from '@radix-ui/react-navigation-menu';
 
-export const StyledWrapper = styled.div`
+export const StyledNavMenuItem = styled(radixNavigationMenu.Item)<{ 'data-selected': boolean }>`
   padding: var(--echoes-dimension-space-150) 0
     calc(var(--echoes-dimension-space-150) - var(--echoes-focus-border-width-default));
 
@@ -31,7 +32,7 @@ export const StyledWrapper = styled.div`
     border-bottom-color: var(--echoes-color-border-accent);
   }
 `;
-StyledWrapper.displayName = 'StyledWrapper';
+StyledNavMenuItem.displayName = 'StyledNavMenuItem';
 
 export const globalNavigationItemStyle = css`
   --hover: var(--echoes-color-text-default);
