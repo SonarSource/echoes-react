@@ -18,7 +18,6 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import * as radixNavigationMenu from '@radix-ui/react-navigation-menu';
 import { Children, forwardRef, isValidElement, ReactNode, useMemo } from 'react';
 import { matchPath, useLocation } from 'react-router-dom';
 import { isDefined } from '~common/helpers/types';
@@ -26,10 +25,11 @@ import { Button } from '../buttons';
 import { DropdownMenu } from '../dropdown-menu';
 import { DropdownMenuProps } from '../dropdown-menu/DropdownMenu';
 import { IconChevronDown } from '../icons';
-import { globalNavigationItemStyle, StyledWrapper } from './GlobalNavigationItemStyles';
+import { globalNavigationItemStyle, StyledNavMenuItem } from './GlobalNavigationItemStyles';
 
 export interface GlobalNavigationDropdownItemProps extends DropdownMenuProps {
   className?: string;
+  disableActiveHighlight?: boolean;
 }
 
 // exported for tests
@@ -58,47 +58,34 @@ export const GlobalNavigationDropdownItem = forwardRef<
   GlobalNavigationDropdownItemProps
 >(
   (
-    { className, children, ...dropdownMenuProps }: Readonly<GlobalNavigationDropdownItemProps>,
+    {
+      className,
+      children,
+      disableActiveHighlight,
+      ...dropdownMenuProps
+    }: Readonly<GlobalNavigationDropdownItemProps>,
     ref,
   ) => {
     const { pathname } = useLocation();
 
     const active = useMemo(() => {
-      return isActive(pathname, dropdownMenuProps.items);
-    }, [pathname, dropdownMenuProps.items]);
+      return !disableActiveHighlight && isActive(pathname, dropdownMenuProps.items);
+    }, [disableActiveHighlight, pathname, dropdownMenuProps.items]);
 
     return (
-      <radixNavigationMenu.Item>
+      <StyledNavMenuItem data-selected={active}>
         <DropdownMenu {...dropdownMenuProps}>
-          <WrappedTrigger active={active} className={className} ref={ref}>
+          <Button
+            className={className}
+            css={globalNavigationItemStyle}
+            ref={ref}
+            suffix={<IconChevronDown />}
+            variety="default-ghost">
             {children}
-          </WrappedTrigger>
+          </Button>
         </DropdownMenu>
-      </radixNavigationMenu.Item>
+      </StyledNavMenuItem>
     );
   },
 );
 GlobalNavigationDropdownItem.displayName = 'GlobalNavigationDropdownItem';
-
-type TriggerProps = Pick<GlobalNavigationDropdownItemProps, 'className' | 'children'> & {
-  active: boolean;
-};
-
-const WrappedTrigger = forwardRef<HTMLButtonElement, TriggerProps>((props, ref) => {
-  const { active, className, children, ...rest } = props;
-
-  return (
-    <StyledWrapper data-selected={active}>
-      <Button
-        className={className}
-        css={globalNavigationItemStyle}
-        ref={ref}
-        suffix={<IconChevronDown />}
-        variety="default-ghost"
-        {...rest}>
-        {children}
-      </Button>
-    </StyledWrapper>
-  );
-});
-WrappedTrigger.displayName = 'Wrapper';

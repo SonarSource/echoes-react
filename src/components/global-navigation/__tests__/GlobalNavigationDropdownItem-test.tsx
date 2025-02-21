@@ -37,11 +37,38 @@ it('should display links when dropdown is opened', async () => {
     </GlobalNavigation.DropdownItem>,
   );
 
+  // No link is active, so the item appears unselected
+  expect(screen.getByRole('listitem')).toHaveAttribute('data-selected', 'false');
+
   expect(screen.queryAllByRole('menuitem')).toHaveLength(0);
 
   await user.click(screen.getByRole('button'));
 
   expect(screen.getAllByRole('menuitem')).toHaveLength(2);
+});
+
+it.each([
+  ['enabled', false],
+  ['disabled', true],
+])('should skip active computation when disabled', (_, disableActiveHighlight) => {
+  setupWithContext(
+    <GlobalNavigation.DropdownItem
+      disableActiveHighlight={disableActiveHighlight}
+      items={
+        <>
+          <DropdownMenu.ItemLink to="/">home</DropdownMenu.ItemLink>
+          <DropdownMenu.ItemLink to="/2">other</DropdownMenu.ItemLink>
+        </>
+      }>
+      Moar!
+    </GlobalNavigation.DropdownItem>,
+  );
+
+  // data-selected should be the ooposite of disableActiveHighlight
+  expect(screen.getByRole('listitem')).toHaveAttribute(
+    'data-selected',
+    `${!disableActiveHighlight}`,
+  );
 });
 
 const setupWithContext = (component: JSX.Element) => {
