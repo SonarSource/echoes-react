@@ -23,7 +23,7 @@ import { forwardRef, ReactNode } from 'react';
 import { LinkProps as RouterLinkProps, useMatch, useResolvedPath } from 'react-router-dom';
 import { isDefined } from '~common/helpers/types';
 import { LinkBaseStyled } from '../links/LinkBaseStyled';
-import { globalNavigationItemStyle, StyledWrapper } from './GlobalNavigationItemStyles';
+import { globalNavigationItemStyle, StyledNavMenuItem } from './GlobalNavigationItemStyles';
 
 export interface GlobalNavigationItemProps {
   children: ReactNode;
@@ -38,29 +38,19 @@ export const GlobalNavigationItem = forwardRef<HTMLAnchorElement, GlobalNavigati
     const active = isDefined(match);
 
     return (
-      <radixNavigationMenu.Item>
+      <StyledNavMenuItem data-selected={active}>
         <radixNavigationMenu.Link active={active} asChild>
-          <WrappedLink active={active} ref={ref} to={to} {...otherProps}>
+          <LinkBaseStyled
+            css={globalNavigationItemStyle}
+            highlight="default"
+            ref={ref}
+            to={to}
+            {...otherProps}>
             {children}
-          </WrappedLink>
+          </LinkBaseStyled>
         </radixNavigationMenu.Link>
-      </radixNavigationMenu.Item>
+      </StyledNavMenuItem>
     );
   },
 );
 GlobalNavigationItem.displayName = 'GlobalNavigationItem';
-
-const WrappedLink = forwardRef<HTMLAnchorElement, GlobalNavigationItemProps & { active: boolean }>(
-  (props, ref) => {
-    const { children, active, ...rest } = props;
-
-    return (
-      <StyledWrapper data-selected={active}>
-        <LinkBaseStyled css={globalNavigationItemStyle} highlight="default" ref={ref} {...rest}>
-          {children}
-        </LinkBaseStyled>
-      </StyledWrapper>
-    );
-  },
-);
-WrappedLink.displayName = 'Wrapper';
