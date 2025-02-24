@@ -19,3 +19,4 @@
  */
 
 export { BreadcrumbLink } from './BreadcrumbLink';
+export { BreadcrumbList } from './BreadcrumbList';
