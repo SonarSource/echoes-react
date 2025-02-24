@@ -1,0 +1,97 @@
+/*
+ * Echoes React
+ * Copyright (C) 2023-2025 SonarSource SA
+ * mailto:info AT sonarsource DOT com
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 3 of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program; if not, write to the Free Software Foundation,
+ * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ */
+
+/* eslint-disable no-console */
+import styled from '@emotion/styled';
+import type { Meta, StoryObj } from '@storybook/react';
+import { BreadcrumbLink } from '../../src/components/breadcrumbs/BreadcrumbLink';
+import { BreadcrumbList } from '../../src/components/breadcrumbs/BreadcrumbList';
+import { basicWrapperDecorator } from '../helpers/BasicWrapper';
+
+const meta: Meta<typeof BreadcrumbList> = {
+  component: BreadcrumbList,
+  title: 'Echoes/Breadcrumbs/BreadcrumbList',
+  decorators: [basicWrapperDecorator],
+};
+
+export default meta;
+
+type Story = StoryObj<typeof BreadcrumbList>;
+
+const FixedWrapper = styled.div`
+  border: 1px dashed purple;
+  padding: 4px;
+  width: 900px;
+`;
+
+const indices = Array.from(Array(6).keys());
+
+const leaf = 'Child element (never truncated)';
+
+export const Default: Story = {
+  render: () => {
+    const crumbs = indices.map((i) => (
+      <BreadcrumbLink key={crypto.randomUUID()} to={`https://google.com/search?q=${i + 1}`}>
+        {i === indices.length - 1 ? leaf : `Breadcrumb #${i + 1}`}
+      </BreadcrumbLink>
+    ));
+
+    return (
+      <FixedWrapper>
+        <BreadcrumbList>{crumbs}</BreadcrumbList>
+      </FixedWrapper>
+    );
+  },
+};
+
+export const LongListThatWraps: Story = {
+  render: () => {
+    const crumbs = indices.map((i) => (
+      <BreadcrumbLink key={crypto.randomUUID()} to={`https://google.com/search?q=${i + 1}`}>
+        {i === indices.length - 1 ? leaf : `Long Breadcrumb #${i + 1}`}
+      </BreadcrumbLink>
+    ));
+
+    return (
+      <FixedWrapper>
+        <BreadcrumbList>{crumbs}</BreadcrumbList>
+      </FixedWrapper>
+    );
+  },
+};
+
+export const LongLinksWithEllipsis: Story = {
+  render: () => {
+    const crumbs = indices.map((i) => (
+      <BreadcrumbLink
+        hasEllipsis
+        key={crypto.randomUUID()}
+        to={`https://google.com/search?q=${i + 1}`}>
+        {i === indices.length - 1 ? leaf : `Breadcrumb name longer than the max width #${i + 1}`}
+      </BreadcrumbLink>
+    ));
+
+    return (
+      <FixedWrapper>
+        <BreadcrumbList>{crumbs}</BreadcrumbList>
+      </FixedWrapper>
+    );
+  },
+};

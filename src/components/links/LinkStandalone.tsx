@@ -24,11 +24,11 @@ import { forwardRef } from 'react';
 import { LinkProps } from './LinkBase';
 import { LinkBaseStyled } from './LinkBaseStyled';
 
-interface Props extends LinkProps {
+export interface LinkStandaloneProps extends LinkProps {
   iconLeft?: React.ReactNode;
 }
 
-const LinkStandaloneBase = forwardRef<HTMLAnchorElement, Props>((props, ref) => {
+const LinkStandaloneBase = forwardRef<HTMLAnchorElement, LinkStandaloneProps>((props, ref) => {
   const { children, iconLeft, ...linkProps } = props;
 
   return (
