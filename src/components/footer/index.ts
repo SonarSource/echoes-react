@@ -18,25 +18,16 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-export * from './buttons';
-export * from './checkbox';
-export * from './checkbox-group';
-export * from './dropdown-menu';
-export * from './echoes-provider';
-export * from './footer';
-export * from './form';
-export * from './icons';
-export * from './links';
-export * from './logos';
-export * from './messages';
-export * from './modals';
-export * from './global-navigation';
-export * from './popover';
-export * from './radio-button-group';
-export * from './select';
-export * from './spinner';
-export * from './text-area';
-export * from './text-input';
-export * from './toggle-tip';
-export * from './tooltip';
-export * from './typography';
+import { FooterRoot } from './Footer';
+import { FooterCopyright } from './FooterCopyright';
+import { FooterNavlist } from './FooterNavlist';
+import { FooterNavlistItem } from './FooterNavlistItem';
+import { FooterExtraContent } from './FooterExtraContent';
+
+export const Footer = Object.assign(FooterRoot, {
+  Footer: FooterRoot,
+  Copyright: FooterCopyright,
+  Navlist: FooterNavlist,
+  NavlistItem: FooterNavlistItem,
+  ExtraContent: FooterExtraContent,
+});
