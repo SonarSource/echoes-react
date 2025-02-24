@@ -52,7 +52,7 @@ const StyledFooterExtraContent = styled.ul`
   line-height: var(--echoes-line-height-10);
   letter-spacing: var(--echoes-letter-spacing-default);
 
-  & > li {
+  & li {
     display: flex;
     align-items: center;
     justify-content: center;

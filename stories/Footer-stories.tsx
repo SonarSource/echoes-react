@@ -50,20 +50,21 @@ export const Default: Story = {
         </Footer.Copyright>
         <Footer.ExtraContent>
           <li>Data Center Edition</li>
+          <>
+            <li>
+              <div
+                style={{
+                  width: '4px',
+                  height: '4px',
+                  borderRadius: '50%',
+                  backgroundColor: 'currentcolor',
+                  display: 'inline-block',
+                }}
+              />
+            </li>
 
-          <li>
-            <div
-              style={{
-                width: '4px',
-                height: '4px',
-                borderRadius: '50%',
-                backgroundColor: 'currentcolor',
-                display: 'inline-block',
-              }}
-            />
-          </li>
-
-          <li>v2025.1-SNAPSHOT</li>
+            <li>v2025.1-SNAPSHOT</li>
+          </>
 
           <li>
             <div
