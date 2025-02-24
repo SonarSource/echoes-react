@@ -51,5 +51,11 @@ const StyledFooterExtraContent = styled.ul`
   font-family: var(--echoes-font-family-mono);
   line-height: var(--echoes-line-height-10);
   letter-spacing: var(--echoes-letter-spacing-default);
+
+  & > li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 `;
 StyledFooterExtraContent.displayName = 'StyledFooterExtraContent';
