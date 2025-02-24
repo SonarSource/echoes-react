@@ -25,7 +25,6 @@ import { FooterNavlistItem } from './FooterNavlistItem';
 import { FooterExtraContent } from './FooterExtraContent';
 
 export const Footer = Object.assign(FooterRoot, {
-  Footer: FooterRoot,
   Copyright: FooterCopyright,
   Navlist: FooterNavlist,
   NavlistItem: FooterNavlistItem,
