@@ -323,6 +323,11 @@
           "medium": "2.25rem",
           "large": "2.5rem"
         }
+      },
+      "breadcrumbs": {
+        "maxWidth": {
+          "default": "300px"
+        }
       }
     },
     "offset": {
