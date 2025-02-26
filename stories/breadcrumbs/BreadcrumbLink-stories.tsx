@@ -36,7 +36,7 @@ type Story = StoryObj<typeof BreadcrumbLink>;
 export const Default: Story = {
   args: {
     children: 'A non-child breadcrumb link',
-    to: 'infinity and beyond',
+    to: 'where you want to go',
   },
 };
 
@@ -44,7 +44,7 @@ export const WithIcon: Story = {
   args: {
     children: 'A non-child breadcrumb link with icon',
     iconLeft: <IconBell />,
-    to: 'infinity and beyond',
+    to: 'Infinty, and beyond!',
   },
 };
 
@@ -59,6 +59,6 @@ export const Ellipsis: Story = {
   args: {
     children: 'A long breadcrumb link with an ellipsis because it overflows the max width',
     hasEllipsis: true,
-    to: 'infinity and beyond',
+    to: 'the Batmobile, Robin!',
   },
 };
