@@ -34,7 +34,7 @@ export enum LinkHighlight {
   Subdued = 'subdued',
 }
 
-export interface LinkProps extends Pick<RouterLinkProps, RouterNavLinkPropsAllowed> {
+interface BaseLinkProps extends Pick<RouterLinkProps, Exclude<RouterNavLinkPropsAllowed, 'to'>> {
   children: React.ReactNode;
   className?: string;
   highlight?: `${LinkHighlight}`;
@@ -45,11 +45,21 @@ export interface LinkProps extends Pick<RouterLinkProps, RouterNavLinkPropsAllow
   shouldStopPropagation?: boolean;
 }
 
+export type LinkProps = BaseLinkProps &
+  (
+    | {
+        isDisabled?: never;
+        to: RouterLinkProps['to'];
+      }
+    | { isDisabled: true; to?: RouterLinkProps['to'] }
+  );
+
 export const LinkBase = forwardRef<HTMLAnchorElement, LinkProps>((props, ref) => {
   const {
     children,
-    shouldBlurAfterClick = false,
+    isDisabled,
     onClick,
+    shouldBlurAfterClick = false,
     shouldOpenInNewTab = false,
     shouldPreventDefault = false,
     shouldStopPropagation = false,
@@ -80,6 +90,14 @@ export const LinkBase = forwardRef<HTMLAnchorElement, LinkProps>((props, ref) =>
     },
     [onClick, shouldBlurAfterClick, shouldPreventDefault, shouldStopPropagation],
   );
+
+  if (isDisabled) {
+    return (
+      <span {...restAndRadixProps} ref={ref} style={style}>
+        {children}
+      </span>
+    );
+  }
 
   const shouldOpenInNewTabProps = shouldOpenInNewTab
     ? {
