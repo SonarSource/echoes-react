@@ -19,3 +19,4 @@
  */
 
 export { DropdownMenu, DropdownMenuAlign } from './DropdownMenu';
+export type { DropdownMenuProps } from './DropdownMenu';

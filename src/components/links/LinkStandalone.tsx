@@ -24,11 +24,11 @@ import { forwardRef } from 'react';
 import { LinkProps } from './LinkBase';
 import { LinkBaseStyled } from './LinkBaseStyled';
 
-interface Props extends LinkProps {
+export type LinkStandaloneProps = LinkProps & {
   iconLeft?: React.ReactNode;
-}
+};
 
-const LinkStandaloneBase = forwardRef<HTMLAnchorElement, Props>((props, ref) => {
+const LinkStandaloneBase = forwardRef<HTMLAnchorElement, LinkStandaloneProps>((props, ref) => {
   const { children, iconLeft, ...linkProps } = props;
 
   return (
@@ -43,18 +43,22 @@ const LinkStandaloneBase = forwardRef<HTMLAnchorElement, Props>((props, ref) => 
 LinkStandaloneBase.displayName = 'LinkStandaloneBase';
 
 export const LinkStandalone = styled(LinkStandaloneBase)`
-  text-decoration-line: var(--echoes-text-decoration-none);
+  ${({ isDisabled }) =>
+    !isDisabled &&
+    css`
+      text-decoration-line: var(--echoes-text-decoration-none);
 
-  &:hover,
-  &:focus,
-  &:active {
-    color: var(--color);
-    text-decoration-color: var(--color);
-  }
+      &:hover,
+      &:focus,
+      &:active {
+        color: var(--color);
+        text-decoration-color: var(--color);
+      }
 
-  &:hover {
-    text-decoration-line: var(--echoes-text-decoration-underline);
-  }
+      &:hover {
+        text-decoration-line: var(--echoes-text-decoration-underline);
+      }
+    `};
 
   ${({ iconLeft }) =>
     iconLeft &&

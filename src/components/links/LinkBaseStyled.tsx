@@ -42,47 +42,52 @@ const LinkBaseStyledHighlight = {
 };
 
 export const LinkBaseStyled = styled(LinkBase)`
-  ${({ highlight = LinkHighlight.Accent }) => LinkBaseStyledHighlight[highlight]};
+  ${({ highlight = LinkHighlight.Accent, isDisabled }) =>
+    !isDisabled && LinkBaseStyledHighlight[highlight]};
 
-  color: var(--color);
-  font-weight: var(--echoes-font-weight-semi-bold);
-  text-decoration-line: var(--echoes-text-decoration-underline);
-  text-decoration-color: var(--color);
-  text-decoration-style: solid;
-  text-decoration-skip-ink: auto;
-  text-decoration-thickness: auto;
+  ${({ isDisabled }) =>
+    !isDisabled &&
+    css`
+      color: var(--color);
+      font-weight: var(--echoes-font-weight-semi-bold);
+      text-decoration-line: var(--echoes-text-decoration-underline);
+      text-decoration-color: var(--color);
+      text-decoration-style: solid;
+      text-decoration-skip-ink: auto;
+      text-decoration-thickness: auto;
 
-  &:visited {
-    color: var(--color);
-  }
+      &:visited {
+        color: var(--color);
+      }
 
-  &:hover,
-  &:focus,
-  &:active {
-    color: var(--hover);
-    text-decoration-color: var(--hover);
-    outline: none;
-  }
+      &:hover,
+      &:focus,
+      &:active {
+        color: var(--hover);
+        text-decoration-color: var(--hover);
+        outline: none;
+      }
 
-  &:focus-visible {
-    outline: var(--echoes-color-focus-default) solid var(--echoes-focus-border-width-default);
-    outline-offset: var(--echoes-focus-border-offset-default);
-    border-radius: var(--echoes-border-radius-200);
-  }
+      &:focus-visible {
+        outline: var(--echoes-color-focus-default) solid var(--echoes-focus-border-width-default);
+        outline-offset: var(--echoes-focus-border-offset-default);
+        border-radius: var(--echoes-border-radius-200);
+      }
 
-  & > svg {
-    vertical-align: text-bottom !important;
-  }
+      & > svg {
+        vertical-align: text-bottom !important;
+      }
 
-  @media print {
-    &,
-    &:visited,
-    &:hover,
-    &:focus,
-    &:active {
-      color: 'currentColor';
-      text-decoration: none;
-    }
-  }
+      @media print {
+        &,
+        &:visited,
+        &:hover,
+        &:focus,
+        &:active {
+          color: 'currentColor';
+          text-decoration: none;
+        }
+      }
+    `};
 `;
 LinkBaseStyled.displayName = 'LinkBaseStyled';
