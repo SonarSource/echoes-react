@@ -68,6 +68,25 @@ it('should correctly handle submitting a promise', async () => {
   await waitForElementToBeRemoved(() => screen.queryByRole('dialog'));
 });
 
+it('should correctly handle submitting a rejected promise', async () => {
+  const onSubmit = jest.fn().mockImplementation((e) => {
+    e.preventDefault();
+    return new Promise((_resolve, reject) => {
+      reject(new Error());
+    });
+  });
+  const { user } = renderModalForm({ onSubmit });
+
+  await user.click(screen.getByRole('button', { name: 'Toggle' }));
+  expect(screen.getByRole('dialog')).toBeInTheDocument();
+
+  await user.click(screen.getByRole('button', { name: 'Submit' }));
+  expect(screen.getByRole('dialog')).toBeInTheDocument();
+  expect(onSubmit).toHaveBeenCalled();
+
+  expect(screen.queryByRole('dialog')).toBeVisible();
+});
+
 it('should correctly handle overriding buttons text', async () => {
   const { user } = renderModalForm({ submitButtonLabel: 'Save', secondaryButtonLabel: 'Reset' });
 

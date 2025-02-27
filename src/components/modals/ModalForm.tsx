@@ -134,7 +134,12 @@ export const ModalForm = forwardRef<HTMLDivElement, ModalFormProps>((props, ref)
     (event: FormEvent<HTMLFormElement>) => {
       const submitResult = onSubmit?.(event);
       if (submitResult instanceof Promise) {
-        return submitResult.then(() => setIsOpen(false));
+        return submitResult.then(
+          () => setIsOpen(false),
+          () => {
+            // Do nothing on reject
+          },
+        );
       }
       setIsOpen(false);
     },
