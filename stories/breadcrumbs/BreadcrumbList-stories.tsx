@@ -102,13 +102,11 @@ export const WithIcons: Story = {
     return (
       <FixedWrapper>
         <BreadcrumbList>
-          <BreadcrumbLink iconLeft={<IconTriangleUp className="sw-mr-2" />} to="be continued">
+          <BreadcrumbLink iconLeft={<IconTriangleUp />} to="be continued">
             Top-level link
           </BreadcrumbLink>
           <BreadcrumbLink to="be or not to be">Second-level link</BreadcrumbLink>
-          <BreadcrumbLink
-            iconLeft={<IconStar className="sw-mr-2" color="echoes-color-icon-danger" isFilled />}
-            isChild>
+          <BreadcrumbLink iconLeft={<IconStar color="echoes-color-icon-danger" isFilled />} isChild>
             My favorite
           </BreadcrumbLink>
         </BreadcrumbList>
