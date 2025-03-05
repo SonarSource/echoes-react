@@ -135,7 +135,7 @@ it('should accept label as JSX.Element', () => {
   expect(screen.getByText('label child')).toBeVisible();
 });
 
-it('should correclty support tooltips', async () => {
+it('should correctly support tooltips', async () => {
   const { user } = render(
     <Tooltip content="my tooltip">
       <Checkbox checked label="me" onCheck={jest.fn()} />

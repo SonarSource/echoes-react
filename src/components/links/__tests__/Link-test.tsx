@@ -121,7 +121,7 @@ it('external links are indicated by additional text', async () => {
   await expect(container).toHaveNoA11yViolations();
 });
 
-it('should correclty support tooltips', async () => {
+it('should correctly support tooltips', async () => {
   const { user } = setupWithMemoryRouter(
     <Tooltip content="my tooltip">
       <Link to="/path">link</Link>
