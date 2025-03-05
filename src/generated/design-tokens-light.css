@@ -129,4 +129,19 @@
   --echoes-logos-colors-sonar-whale: #D3121D;
   --echoes-modal-colors-shadow-gradient: rgba(0,0,0,0.2);
   --echoes-overlays-inner-shadow-default: inset 0 -6px 10px 0 rgba(0,0,0,0.05);
+  --echoes-ratings-colors-background-rating-a-default: rgb(209,250,223);
+  --echoes-ratings-colors-background-rating-b-default: rgb(225,245,168);
+  --echoes-ratings-colors-background-rating-c-default: rgb(252,233,163);
+  --echoes-ratings-colors-background-rating-d-default: rgb(255,214,175);
+  --echoes-ratings-colors-background-rating-e-default: rgb(254,205,202);
+  --echoes-ratings-colors-text-rating-a-default: rgb(5,79,49);
+  --echoes-ratings-colors-text-rating-b-default: rgb(49,85,22);
+  --echoes-ratings-colors-text-rating-c-default: rgb(102,64,15);
+  --echoes-ratings-colors-text-rating-d-default: rgb(122,46,14);
+  --echoes-ratings-colors-text-rating-e-default: rgb(93,29,19);
+  --echoes-ratings-colors-border-rating-a-hover: rgb(18,183,106);
+  --echoes-ratings-colors-border-rating-b-hover: rgb(110,183,18);
+  --echoes-ratings-colors-border-rating-c-hover: rgb(209,152,52);
+  --echoes-ratings-colors-border-rating-d-hover: rgb(253,113,34);
+  --echoes-ratings-colors-border-rating-e-hover: rgb(240,68,56);
 }

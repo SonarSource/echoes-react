@@ -129,4 +129,19 @@ html[data-echoes-theme='dark'], [data-echoes-theme='dark'] {
   --echoes-logos-colors-sonar-whale: #D3121D;
   --echoes-modal-colors-shadow-gradient: rgba(255,255,255,0.2);
   --echoes-overlays-inner-shadow-default: inset 0 -6px 10px 0 rgba(255,255,255,0.1);
+  --echoes-ratings-colors-background-rating-a-default: rgb(2,122,72);
+  --echoes-ratings-colors-background-rating-b-default: rgb(83,128,39);
+  --echoes-ratings-colors-background-rating-c-default: rgb(174,122,41);
+  --echoes-ratings-colors-background-rating-d-default: rgb(181,71,8);
+  --echoes-ratings-colors-background-rating-e-default: rgb(180,35,24);
+  --echoes-ratings-colors-text-rating-a-default: rgb(246,254,249);
+  --echoes-ratings-colors-text-rating-b-default: rgb(247,251,230);
+  --echoes-ratings-colors-text-rating-c-default: rgb(252,245,228);
+  --echoes-ratings-colors-text-rating-d-default: rgb(255,240,235);
+  --echoes-ratings-colors-text-rating-e-default: rgb(254,243,242);
+  --echoes-ratings-colors-border-rating-a-hover: rgb(50,213,131);
+  --echoes-ratings-colors-border-rating-b-hover: rgb(166,208,91);
+  --echoes-ratings-colors-border-rating-c-hover: rgb(250,220,121);
+  --echoes-ratings-colors-border-rating-d-hover: rgb(247,95,9);
+  --echoes-ratings-colors-border-rating-e-hover: rgb(253,162,155);
 }
