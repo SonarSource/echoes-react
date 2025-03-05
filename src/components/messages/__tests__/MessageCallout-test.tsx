@@ -76,7 +76,7 @@ it('should be dismissable', async () => {
   expect(onDismiss).toHaveBeenCalled();
 });
 
-it('should correclty support tooltips', async () => {
+it('should correctly support tooltips', async () => {
   const { user } = render(
     <Tooltip content="my tooltip">
       <MessageCallout text="I got a tooltip" type={MessageType.Info} />

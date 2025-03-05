@@ -21,38 +21,33 @@
 import { screen } from '@testing-library/react';
 import { MemoryRouter, Route, Routes, useLocation } from 'react-router-dom';
 import { render } from '~common/helpers/test-utils';
-import { LinkStandalone } from '..';
-import { IconLink } from '../../icons';
-import { Tooltip } from '../../tooltip';
+import { Breadcrumbs } from '..';
 
-it('should display LinkStandalone properly', async () => {
+it('should display Breadcrumbs properly', async () => {
   const { container } = setupWithMemoryRouter(
-    <LinkStandalone to="/path">standalone link</LinkStandalone>,
+    <Breadcrumbs
+      items={[
+        { linkElement: 'parent crumb', to: 'parent' },
+        { linkElement: 'child crumb', to: 'child' },
+      ]}
+    />,
   );
-  expect(screen.getByRole('link')).toBeVisible();
+
+  expect(
+    screen.getByRole('link', {
+      name: 'parent crumb',
+    }),
+  ).toBeInTheDocument();
+
+  expect(
+    screen.queryByRole('link', {
+      name: 'child crumb',
+    }),
+  ).not.toBeInTheDocument();
+
+  expect(screen.getByText('child crumb')).toBeInTheDocument();
+
   await expect(container).toHaveNoA11yViolations();
-});
-
-it('should support a left icon', async () => {
-  const { container } = setupWithMemoryRouter(
-    <LinkStandalone iconLeft={<IconLink data-testid="link icon" />} to="/path">
-      link with icon
-    </LinkStandalone>,
-  );
-  expect(screen.getByRole('link')).toBeVisible();
-  expect(screen.getByTestId('link icon')).toBeInTheDocument();
-  await expect(container).toHaveNoA11yViolations();
-});
-
-it('should correctly support tooltips', async () => {
-  const { user } = setupWithMemoryRouter(
-    <Tooltip content="my tooltip">
-      <LinkStandalone to="/path">link</LinkStandalone>
-    </Tooltip>,
-  );
-
-  await user.hover(screen.getByRole('link'));
-  expect(screen.getByRole('tooltip', { name: 'my tooltip' })).toBeInTheDocument();
 });
 
 function ShowPath() {

@@ -21,38 +21,22 @@
 import { screen } from '@testing-library/react';
 import { MemoryRouter, Route, Routes, useLocation } from 'react-router-dom';
 import { render } from '~common/helpers/test-utils';
-import { LinkStandalone } from '..';
-import { IconLink } from '../../icons';
-import { Tooltip } from '../../tooltip';
+import { BreadcrumbLink } from '../BreadcrumbLink';
 
-it('should display LinkStandalone properly', async () => {
-  const { container } = setupWithMemoryRouter(
-    <LinkStandalone to="/path">standalone link</LinkStandalone>,
-  );
-  expect(screen.getByRole('link')).toBeVisible();
-  await expect(container).toHaveNoA11yViolations();
-});
-
-it('should support a left icon', async () => {
-  const { container } = setupWithMemoryRouter(
-    <LinkStandalone iconLeft={<IconLink data-testid="link icon" />} to="/path">
-      link with icon
-    </LinkStandalone>,
-  );
-  expect(screen.getByRole('link')).toBeVisible();
-  expect(screen.getByTestId('link icon')).toBeInTheDocument();
-  await expect(container).toHaveNoA11yViolations();
-});
-
-it('should correctly support tooltips', async () => {
-  const { user } = setupWithMemoryRouter(
-    <Tooltip content="my tooltip">
-      <LinkStandalone to="/path">link</LinkStandalone>
-    </Tooltip>,
+it('should truncate long links when hasEllipsis', () => {
+  setupWithMemoryRouter(
+    <BreadcrumbLink
+      hasEllipsis
+      linkElement="A long breadcrumb link with an ellipsis because it overflows the max width"
+      to="/path"
+    />,
   );
 
-  await user.hover(screen.getByRole('link'));
-  expect(screen.getByRole('tooltip', { name: 'my tooltip' })).toBeInTheDocument();
+  expect(
+    screen.getByRole('link', {
+      name: 'A long breadcrumb link with an ellipsis because it overflows the max width',
+    }),
+  ).toHaveProperty('title');
 });
 
 function ShowPath() {

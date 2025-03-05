@@ -44,7 +44,7 @@ it.each([
   expect(screen.getByText(expectedPrefix)).toBeInTheDocument();
 });
 
-it('should correclty support tooltips', async () => {
+it('should correctly support tooltips', async () => {
   const { user } = render(
     <Tooltip content="my tooltip">
       <MessageInline type={MessageType.Info}>Look at my tooltip</MessageInline>
