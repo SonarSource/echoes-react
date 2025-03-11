@@ -18,7 +18,8 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 import styled from '@emotion/styled';
-import { FormHTMLAttributes, forwardRef, ReactNode } from 'react';
+import { FormEvent, FormHTMLAttributes, forwardRef, ReactNode, useCallback } from 'react';
+import { isDefined } from '~common/helpers/types';
 
 type FormAttributesSubset =
   | 'action'
@@ -47,10 +48,27 @@ export interface FormRootProps extends FormAttributes {
 }
 
 export const FormRoot = forwardRef<HTMLFormElement, FormRootProps>((props, ref) => {
-  const { children, shouldUseBrowserValidation = false, ...rest } = props;
+  const { children, shouldUseBrowserValidation = false, onSubmit, action, ...rest } = props;
+
+  const onSubmitHandler = useCallback(
+    (event: FormEvent<HTMLFormElement>) => {
+      if (onSubmit) {
+        if (!isDefined(action)) {
+          event.preventDefault();
+        }
+        onSubmit(event);
+      }
+    },
+    [action, onSubmit],
+  );
 
   return (
-    <FormStyled noValidate={!shouldUseBrowserValidation} ref={ref} {...rest}>
+    <FormStyled
+      action={action}
+      noValidate={!shouldUseBrowserValidation}
+      onSubmit={onSubmitHandler}
+      ref={ref}
+      {...rest}>
       {children}
     </FormStyled>
   );
