@@ -39,15 +39,28 @@ it('displays a form with header, sections and footer', async () => {
 });
 
 it('should submit and reset the form', async () => {
-  const onSubmit = jest.fn().mockImplementation((e) => e.preventDefault());
+  const onSubmit = jest.fn();
   const onReset = jest.fn();
   const { user } = setupForm({ onSubmit, onReset });
 
   await user.click(screen.getByRole('button', { name: 'Submit' }));
   expect(onSubmit).toHaveBeenCalled();
+  expect(onSubmit.mock.calls[0][0].defaultPrevented).toBe(true);
 
   await user.click(screen.getByRole('button', { name: 'Cancel' }));
   expect(onReset).toHaveBeenCalled();
+  expect(onReset.mock.calls[0][0].defaultPrevented).toBe(false);
+});
+
+it('should not prevent default on submit if action is defined', async () => {
+  const onSubmit = jest.fn((event) => {
+    expect(event.defaultPrevented).toBe(false);
+    event.preventDefault();
+  });
+  const { user } = setupForm({ onSubmit, action: 'http://example.com' });
+
+  await user.click(screen.getByRole('button', { name: 'Submit' }));
+  expect(onSubmit).toHaveBeenCalled();
 });
 
 function setupForm(props: Partial<FormRootProps> = {}) {
