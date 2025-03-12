@@ -170,6 +170,74 @@
           }
         }
       }
+    },
+    "SeverityBadges": {
+      "colors": {
+        "background": {
+          "blocker": {
+            "default": {
+              "value": "{echoes.color.red.100}",
+              "type": "color"
+            }
+          },
+          "critical": {
+            "default": {
+              "value": "{echoes.color.red.50}",
+              "type": "color"
+            }
+          },
+          "major": {
+            "default": {
+              "value": "{echoes.color.orange.50}",
+              "type": "color"
+            }
+          },
+          "minor": {
+            "default": {
+              "value": "{echoes.color.yellow.50}",
+              "type": "color"
+            }
+          },
+          "info": {
+            "default": {
+              "value": "{echoes.color.blue.50}",
+              "type": "color"
+            }
+          }
+        },
+        "foreground": {
+          "blocker": {
+            "default": {
+              "value": "{echoes.color.red.800}",
+              "type": "color"
+            }
+          },
+          "critical": {
+            "default": {
+              "value": "{echoes.color.red.700}",
+              "type": "color"
+            }
+          },
+          "major": {
+            "default": {
+              "value": "{echoes.color.orange.800}",
+              "type": "color"
+            }
+          },
+          "minor": {
+            "default": {
+              "value": "{echoes.color.yellow.800}",
+              "type": "color"
+            }
+          },
+          "info": {
+            "default": {
+              "value": "{echoes.color.blue.800}",
+              "type": "color"
+            }
+          }
+        }
+      }
     }
   }
 }
