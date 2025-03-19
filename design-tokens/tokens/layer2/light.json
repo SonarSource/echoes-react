@@ -37,11 +37,6 @@
           "value": "{echoes.color.grey.25}",
           "description": "Use it as page background"
         },
-        "emphasize": {
-          "type": "color",
-          "value": "{echoes.color.grey.50}",
-          "description": "Use it to emphasize sections"
-        },
         "inverse": {
           "type": "color",
           "value": "{echoes.color.grey.600}",
@@ -110,7 +105,7 @@
         "success": {
           "default": {
             "type": "color",
-            "value": "{echoes.color.yellowGreen.500}",
+            "value": "{echoes.color.yellowGreen.700}",
             "description": "Use for backgrounds that communicate positive or success messages"
           },
           "weak": {
@@ -165,7 +160,7 @@
         "info": {
           "default": {
             "type": "color",
-            "value": "{echoes.color.blue.500}",
+            "value": "{echoes.color.blue.800}",
             "description": "Use for backgrounds that communicate information to the user"
           },
           "weak": {
@@ -285,6 +280,20 @@
               }
             }
           }
+        },
+        "emphasis": {
+          "weak": {
+            "default": {
+              "value": "{echoes.color.purple.100}",
+              "type": "color"
+            }
+          },
+          "default": {
+            "default": {
+              "value": "{echoes.color.purple.700}",
+              "type": "color"
+            }
+          }
         }
       },
       "text": {
@@ -338,7 +347,7 @@
         },
         "success": {
           "type": "color",
-          "value": "{echoes.color.yellowGreen.700}"
+          "value": "{echoes.color.yellowGreen.800}"
         },
         "success-bold": {
           "type": "color",
@@ -355,6 +364,14 @@
         "onColor": {
           "type": "color",
           "value": "{echoes.color.support.white}"
+        },
+        "onColor-Inverse": {
+          "type": "color",
+          "value": "{echoes.color.grey.500}"
+        },
+        "emphasis": {
+          "value": "{echoes.color.purple.800}",
+          "type": "color"
         }
       },
       "icon": {
@@ -402,8 +419,16 @@
           "type": "color",
           "value": "{echoes.color.support.white}"
         },
+        "onColor-Inverse": {
+          "type": "color",
+          "value": "{echoes.color.grey.500}"
+        },
         "selected": {
           "value": "{echoes.color.indigo.500}",
+          "type": "color"
+        },
+        "emphasis": {
+          "value": "{echoes.color.purple.800}",
           "type": "color"
         }
       },
@@ -429,28 +454,61 @@
           "value": "{echoes.color.grey.200}"
         },
         "accent": {
-          "type": "color",
-          "value": "{echoes.color.indigo.500}"
+          "default": {
+            "type": "color",
+            "value": "{echoes.color.indigo.500}"
+          }
         },
         "danger": {
-          "type": "color",
-          "value": "{echoes.color.red.600}"
+          "weak": {
+            "type": "color",
+            "value": "{echoes.color.red.100}"
+          },
+          "default": {
+            "type": "color",
+            "value": "{echoes.color.red.600}"
+          }
         },
         "none": {
           "type": "color",
           "value": "{echoes.color.support.transparent}"
         },
         "success": {
-          "type": "color",
-          "value": "{echoes.color.yellowGreen.700}"
+          "weak": {
+            "type": "color",
+            "value": "{echoes.color.yellowGreen.100}"
+          },
+          "default": {
+            "type": "color",
+            "value": "{echoes.color.yellowGreen.700}"
+          }
         },
         "warning": {
-          "type": "color",
-          "value": "{echoes.color.yellow.300}"
+          "weak": {
+            "type": "color",
+            "value": "{echoes.color.yellow.100}"
+          }
         },
         "info": {
-          "type": "color",
-          "value": "{echoes.color.blue.700}"
+          "weak": {
+            "type": "color",
+            "value": "{echoes.color.blue.100}"
+          }
+        },
+        "emphasis": {
+          "weak": {
+            "value": "{echoes.color.purple.300}",
+            "type": "color",
+            "$extensions": {
+              "studio.tokens": {
+                "modify": {
+                  "type": "alpha",
+                  "value": "0.4",
+                  "space": "lch"
+                }
+              }
+            }
+          }
         }
       },
       "focus": {

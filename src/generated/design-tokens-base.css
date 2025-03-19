@@ -184,6 +184,7 @@
   --echoes-color-yellow-800: rgb(140,94,30);
   --echoes-color-yellow-900: rgb(102,64,15);
   --echoes-color-orange-50: rgb(255,240,235);
+  --echoes-color-orange-75: rgb(255,232,218);
   --echoes-color-orange-100: rgb(254,219,199);
   --echoes-color-orange-200: rgb(255,214,175);
   --echoes-color-orange-300: rgb(254,150,75);
@@ -213,6 +214,17 @@
   --echoes-color-blue-700: rgb(58,127,173);
   --echoes-color-blue-800: rgb(49,108,146);
   --echoes-color-blue-900: rgb(23,67,97);
+  --echoes-color-purple-25: rgb(253,252,255);
+  --echoes-color-purple-50: rgb(250,248,255);
+  --echoes-color-purple-100: rgb(244,238,255);
+  --echoes-color-purple-200: rgb(237,226,255);
+  --echoes-color-purple-300: rgb(229,213,255);
+  --echoes-color-purple-400: rgb(217,197,255);
+  --echoes-color-purple-500: rgb(202,174,252);
+  --echoes-color-purple-600: rgb(183,144,247);
+  --echoes-color-purple-700: rgb(136,63,221);
+  --echoes-color-purple-800: rgb(121,52,199);
+  --echoes-color-purple-900: rgb(63,24,107);
   --echoes-form-control-border-radius-default: 8px;
   --echoes-form-control-sizes-height-default: 2.25rem;
   --echoes-sizes-overlays-max-width-default: 25rem;

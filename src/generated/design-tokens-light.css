@@ -28,7 +28,6 @@
   --echoes-color-background-default-active: rgb(225,230,243); /* Active color for bg-default */
   --echoes-color-background-default-disabled: rgb(239,242,249); /* Disabled color for bg-default */
   --echoes-color-background-page: rgb(252,252,253); /* Use it as page background */
-  --echoes-color-background-emphasize: rgb(239,242,249); /* Use it to emphasize sections */
   --echoes-color-background-inverse: rgb(42,47,64); /* Inverse color for bgs, creates high contrast against bg-default and bg-page */
   --echoes-color-background-disabled: rgb(239,242,249); /* Use it as background for disabled components */
   --echoes-color-background-accent-default: rgb(93,108,208); /* Used as the background color of components that reinforce our brand */
@@ -41,7 +40,7 @@
   --echoes-color-background-accent-weak-focus: rgb(232,235,255); /* Focus state of components that reinforce our brand with less visual highlight */
   --echoes-color-background-warning-default: rgb(245,184,64); /* Use for backgrounds that communicate warning or caution */
   --echoes-color-background-warning-weak: rgb(252,245,228); /* Use for backgrounds that communicate warning or caution, with less visual highlight */
-  --echoes-color-background-success-default: rgb(110,183,18); /* Use for backgrounds that communicate positive or success messages */
+  --echoes-color-background-success-default: rgb(83,128,39); /* Use for backgrounds that communicate positive or success messages */
   --echoes-color-background-success-weak: rgb(247,251,230); /* Use for backgrounds that communicate positive or success messages, with less visual highlight */
   --echoes-color-background-danger-default: rgb(217,45,32); /* Use for backgrounds that communicate danger or destructive messages */
   --echoes-color-background-danger-hover: rgb(180,35,24); /* Hover state for backgrounds that communicate danger or destructive messages */
@@ -51,7 +50,7 @@
   --echoes-color-background-danger-weak-hover: rgb(254,228,226); /* Hover state for backgrounds that communicate danger or destructive messages, with less visual highlight */
   --echoes-color-background-danger-weak-active: rgb(254,205,202); /* Active state for backgrounds that communicate danger or destructive messages, with less visual highlight */
   --echoes-color-background-danger-weak-focus: rgb(254,243,242);
-  --echoes-color-background-info-default: rgb(85,170,223); /* Use for backgrounds that communicate information to the user */
+  --echoes-color-background-info-default: rgb(49,108,146); /* Use for backgrounds that communicate information to the user */
   --echoes-color-background-info-weak: rgb(245,251,255); /* Use for backgrounds that communicate information to the user, with less visual highlight */
   --echoes-color-background-transparent: rgba(0,0,0,0); /* Use it when you need transparency in the background */
   --echoes-color-background-selected-weak-default: rgb(244,246,255); /* Use it in backgrounds of components that have a selected state that need less visual highlight, like dropdown or selects */
@@ -73,6 +72,8 @@
   --echoes-color-background-ghost-danger-active: rgb(254,228,226);
   --echoes-color-background-ghost-danger-focus: rgba(0,0,0,0);
   --echoes-color-background-back-drop-default: hsl(225 20% 3.92% / 0.45);
+  --echoes-color-background-emphasis-weak-default: rgb(244,238,255);
+  --echoes-color-background-emphasis-default-default: rgb(136,63,221);
   --echoes-color-text-bold: rgb(29,33,47);
   --echoes-color-text-default: rgb(62,67,87);
   --echoes-color-text-subdued: rgb(99,113,146);
@@ -85,11 +86,13 @@
   --echoes-color-text-danger-bold: rgb(93,29,19);
   --echoes-color-text-warning: rgb(140,94,30);
   --echoes-color-text-warning-bold: rgb(102,64,15);
-  --echoes-color-text-success: rgb(83,128,39);
+  --echoes-color-text-success: rgb(63,104,29);
   --echoes-color-text-success-bold: rgb(49,85,22);
   --echoes-color-text-info: rgb(49,108,146);
   --echoes-color-text-info-bold: rgb(23,67,97);
   --echoes-color-text-on-color: rgb(255,255,255);
+  --echoes-color-text-on-color-inverse: rgb(62,67,87);
+  --echoes-color-text-emphasis: rgb(121,52,199);
   --echoes-color-icon-bold: rgb(29,33,47);
   --echoes-color-icon-default: rgb(62,67,87);
   --echoes-color-icon-subdued: rgb(99,113,146);
@@ -101,18 +104,23 @@
   --echoes-color-icon-success: rgb(104,154,48);
   --echoes-color-icon-info: rgb(69,149,203);
   --echoes-color-icon-on-color: rgb(255,255,255);
+  --echoes-color-icon-on-color-inverse: rgb(62,67,87);
   --echoes-color-icon-selected: rgb(93,108,208);
+  --echoes-color-icon-emphasis: rgb(121,52,199);
   --echoes-color-border-bolder: rgb(99,113,146);
   --echoes-color-border-bold: rgb(197,205,223);
   --echoes-color-border-weak: rgb(225,230,243);
   --echoes-color-border-weaker: rgb(239,242,249);
   --echoes-color-border-disabled: rgb(197,205,223);
-  --echoes-color-border-accent: rgb(93,108,208);
-  --echoes-color-border-danger: rgb(217,45,32);
+  --echoes-color-border-accent-default: rgb(93,108,208);
+  --echoes-color-border-danger-weak: rgb(254,228,226);
+  --echoes-color-border-danger-default: rgb(217,45,32);
   --echoes-color-border-none: rgba(0,0,0,0);
-  --echoes-color-border-success: rgb(83,128,39);
-  --echoes-color-border-warning: rgb(250,220,121);
-  --echoes-color-border-info: rgb(58,127,173);
+  --echoes-color-border-success-weak: rgb(241,250,210);
+  --echoes-color-border-success-default: rgb(83,128,39);
+  --echoes-color-border-warning-weak: rgb(254,245,208);
+  --echoes-color-border-info-weak: rgb(233,244,251);
+  --echoes-color-border-emphasis-weak: lch(87.6 21.8 302 / 0.4);
   --echoes-color-focus-default: rgb(75,86,187);
   --echoes-form-control-colors-background-default: rgb(255,255,255);
   --echoes-form-control-colors-background-hover: rgb(246,247,251);
@@ -144,4 +152,34 @@
   --echoes-ratings-colors-border-rating-c-hover: rgb(209,152,52);
   --echoes-ratings-colors-border-rating-d-hover: rgb(253,113,34);
   --echoes-ratings-colors-border-rating-e-hover: rgb(240,68,56);
+  --echoes-severity-badge-colors-background-severity-blocker-prefix-default: rgb(254,228,226);
+  --echoes-severity-badge-colors-background-severity-blocker-suffix-default: rgb(254,205,202);
+  --echoes-severity-badge-colors-background-severity-blocker-suffix-hover: lch(83.3 18.6 25.6);
+  --echoes-severity-badge-colors-background-severity-critical-prefix-default: rgb(254,243,242);
+  --echoes-severity-badge-colors-background-severity-critical-suffix-default: rgb(254,228,226);
+  --echoes-severity-badge-colors-background-severity-critical-suffix-hover: lch(89 9.58 26.1);
+  --echoes-severity-badge-colors-background-severity-major-prefix-default: rgb(255,240,235);
+  --echoes-severity-badge-colors-background-severity-major-suffix-default: rgb(255,232,218);
+  --echoes-severity-badge-colors-background-severity-major-suffix-hover: lch(86.4 17.1 54.7);
+  --echoes-severity-badge-colors-background-severity-minor-prefix-default: rgb(252,245,228);
+  --echoes-severity-badge-colors-background-severity-minor-suffix-defaul: rgb(254,245,208);
+  --echoes-severity-badge-colors-background-severity-minor-suffix-hover: lch(92.7 18.3 93.7);
+  --echoes-severity-badge-colors-background-severity-info-prefix-default: rgb(245,251,255);
+  --echoes-severity-badge-colors-background-severity-info-suffix-default: rgb(233,244,251);
+  --echoes-severity-badge-colors-background-severity-info-suffix-hover: lch(91.7 5.25 239);
+  --echoes-severity-badge-colors-foreground-blocker-icon-default: rgb(180,35,24);
+  --echoes-severity-badge-colors-foreground-blocker-text-default: rgb(128,27,20);
+  --echoes-severity-badge-colors-foreground-critical-text-default: rgb(180,35,24);
+  --echoes-severity-badge-colors-foreground-critical-icon-default: rgb(217,45,32);
+  --echoes-severity-badge-colors-foreground-major-text-default: rgb(147,55,13);
+  --echoes-severity-badge-colors-foreground-major-icon-default: rgb(220,94,3);
+  --echoes-severity-badge-colors-foreground-minor-text-default: rgb(140,94,30);
+  --echoes-severity-badge-colors-foreground-minor-icon-default: rgb(174,122,41);
+  --echoes-severity-badge-colors-foreground-info-text-default: rgb(49,108,146);
+  --echoes-severity-badge-colors-foreground-info-icon-default: rgb(58,127,173);
+  --echoes-severity-badge-colors-borders-critical-default: rgb(254,205,202);
+  --echoes-severity-badge-colors-borders-blocker-default: rgb(254,228,226);
+  --echoes-severity-badge-colors-borders-major-default: rgb(255,232,218);
+  --echoes-severity-badge-colors-borders-minor-default: rgb(254,245,208);
+  --echoes-severity-badge-colors-borders-info-default: rgb(233,244,251);
 }

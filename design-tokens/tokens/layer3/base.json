@@ -110,7 +110,7 @@
           }
         }
       },
-      "breadcrumbs":{
+      "breadcrumbs": {
         "maxWidth": {
           "default": {
             "value": "300px",
