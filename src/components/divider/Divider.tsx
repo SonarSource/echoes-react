@@ -22,8 +22,8 @@ import styled from '@emotion/styled';
 import { forwardRef } from 'react';
 
 export enum DividerOrientation {
-  HORIZONTAL = 'horizontal',
-  VERTICAL = 'vertical',
+  Horizontal = 'horizontal',
+  Vertical = 'vertical',
 }
 
 export interface DividerProps {
@@ -58,7 +58,7 @@ export interface DividerProps {
 export const Divider = forwardRef<HTMLHRElement, DividerProps>(
   (
     {
-      orientation = DividerOrientation.HORIZONTAL,
+      orientation = DividerOrientation.Horizontal,
       className = '',
       role = 'separator',
       'data-testid': dataTestId,
@@ -98,22 +98,23 @@ export const Divider = forwardRef<HTMLHRElement, DividerProps>(
   },
 );
 
-const StyledDivider = styled.div<{ orientation: DividerOrientation }>`
+const StyledDivider = styled.hr<{ orientation: DividerOrientation }>`
   border: none;
   margin: 0;
   background-color: var(--echoes-color-border-weak);
 
   ${({ orientation }) =>
-    orientation === DividerOrientation.HORIZONTAL
+    orientation === DividerOrientation.Horizontal
       ? `
         height: 1px;
         width: 100%;
-        margin: 8px 0;
+        margin: var(--echoes-dimension-space-150) 0;
       `
       : `
         width: 1px;
         height: 100%;
-        margin: 0 8px;
+        min-height: 60px;
+        margin: 0 var(--echoes-dimension-space-150);
         display: inline-block;
       `}
 `;
@@ -121,18 +122,22 @@ const StyledDivider = styled.div<{ orientation: DividerOrientation }>`
 const DividerContainer = styled.div<{ orientation: DividerOrientation }>`
   display: flex;
   align-items: center;
-  width: 100%;
   margin: ${({ orientation }) =>
-    orientation === DividerOrientation.HORIZONTAL ? '8px 0' : '0 8px'};
+    orientation === DividerOrientation.Horizontal
+      ? 'var(--echoes-dimension-space-100) 0'
+      : '0 var(--echoes-dimension-space-100)'};
 
   ${({ orientation }) =>
-    orientation === DividerOrientation.VERTICAL
+    orientation === DividerOrientation.Vertical
       ? `
         flex-direction: column;
         height: 100%;
+        min-height: 60px;
         width: auto;
       `
-      : ''}
+      : `
+        width: 100%;
+      `}
 `;
 
 const DividerLine = styled.div<{ orientation: DividerOrientation }>`
@@ -140,7 +145,7 @@ const DividerLine = styled.div<{ orientation: DividerOrientation }>`
   background-color: var(--echoes-color-border-weak);
 
   ${({ orientation }) =>
-    orientation === DividerOrientation.HORIZONTAL
+    orientation === DividerOrientation.Horizontal
       ? `
         height: 1px;
       `
@@ -152,7 +157,7 @@ const DividerLine = styled.div<{ orientation: DividerOrientation }>`
 
 const DividerText = styled.span<{ orientation: DividerOrientation }>`
   padding: ${({ orientation }) =>
-    orientation === DividerOrientation.HORIZONTAL
+    orientation === DividerOrientation.Horizontal
       ? '0 var(--echoes-dimension-space-25)'
       : 'var(--echoes-dimension-space-25) 0'};
   font-weight: var(--echoes-font-weight-regular);

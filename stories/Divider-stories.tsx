@@ -20,7 +20,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import styled from '@emotion/styled';
 import { basicWrapperDecorator } from './helpers/BasicWrapper';
-import { Divider, DividerOrientation } from '../src';
+import { Divider, DividerOrientation, Heading, IconCheck, Label, Text, TextSize } from '../src';
 
 const meta: Meta<typeof Divider> = {
   component: Divider,
@@ -52,27 +52,58 @@ type Story = StoryObj<typeof Divider>;
 const VerticalContainer = styled.div`
   display: flex;
   align-items: center;
+  justify-content: space-between;
   height: 60px;
   width: 100%;
+`;
+
+const DynamicContainer = styled.div<{ orientation: DividerOrientation }>`
+  ${({ orientation }) =>
+    orientation === DividerOrientation.Vertical
+      ? `
+        display: flex;
+        align-items: center;
+        height: 60px;
+        width: 100%;
+      `
+      : `
+        display: block;
+        width: 100%;
+      `}
 `;
 
 export const Default: Story = {
   args: {},
   render: (args) => (
-    <div
-      style={{
-        padding: '8px',
-      }}>
-      <p>The divider component creates visual separation between content sections.</p>
-      <Divider {...args} />
-      <p>It helps organize content and improve readability.</p>
+    <div>
+      <DynamicContainer orientation={args.orientation || DividerOrientation.Horizontal}>
+        {args.orientation === DividerOrientation.Vertical ? (
+          <>
+            <span>Left content</span>
+            <Divider {...args} />
+            <span>Right content</span>
+          </>
+        ) : (
+          <>
+            <Heading as="h5" hasMarginBottom>
+              Is this a real issue?
+            </Heading>
+            <Text as="p">Probably</Text>
+            <Divider {...args} />
+            <Heading as="h5" hasMarginBottom>
+              What other things should we put here
+            </Heading>
+            <Text as="p">Super important text probably</Text>
+          </>
+        )}
+      </DynamicContainer>
     </div>
   ),
 };
 
 export const Vertical: Story = {
   args: {
-    orientation: DividerOrientation.VERTICAL,
+    orientation: DividerOrientation.Vertical,
   },
   render: (args) => (
     <div>
@@ -93,25 +124,27 @@ export const WithText: Story = {
     <div>
       <p>You can sign in with your credentials</p>
       <Divider {...args} />
-      <p>Or continue with social media</p>
+      <p>Continue with social media</p>
     </div>
   ),
 };
 
 export const VerticalWithText: Story = {
   args: {
-    orientation: DividerOrientation.VERTICAL,
-    text: 'OR',
+    orientation: DividerOrientation.Vertical,
+    text: (
+      <Text isSubdued size={TextSize.Small}>
+        OR
+      </Text>
+    ),
   },
   render: (args) => (
-    <div style={{ display: 'flex', alignItems: 'center', height: '100px' }}>
-      <div>
-        <p>Left side content</p>
-      </div>
-      <Divider {...args} />
-      <div>
-        <p>Right side content</p>
-      </div>
+    <div>
+      <VerticalContainer>
+        <span>Left content</span>
+        <Divider {...args} />
+        <span>Right content</span>
+      </VerticalContainer>
     </div>
   ),
 };
