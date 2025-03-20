@@ -22,23 +22,20 @@ import type { StorybookConfig } from '@storybook/react-vite';
 import { dirname, join } from 'node:path';
 
 const config: StorybookConfig = {
-  stories: ['../stories/**/*-stories.tsx'],
   addons: [
-    getAbsolutePath('@storybook/addon-links'),
-    getAbsolutePath('@storybook/addon-essentials'),
     getAbsolutePath('@storybook/addon-a11y'),
+    getAbsolutePath('@storybook/addon-essentials'),
     getAbsolutePath('@storybook/addon-interactions'),
+    getAbsolutePath('@storybook/addon-links'),
     getAbsolutePath('@storybook/addon-themes'),
   ],
+  docs: { autodocs: true },
   framework: '@storybook/react-vite',
-  docs: {
-    autodocs: true,
-  },
-  typescript: {
-    check: false,
-    reactDocgen: 'react-docgen-typescript',
-  },
+  staticDirs: ['../public'],
+  stories: ['../stories/**/*-stories.tsx'],
+  typescript: { check: false, reactDocgen: 'react-docgen-typescript' },
 };
+
 export default config;
 
 function getAbsolutePath(value: string) {
