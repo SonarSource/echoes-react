@@ -18,26 +18,32 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-export * from './badges';
-export * from './breadcrumbs';
-export * from './buttons';
-export * from './checkbox';
-export * from './checkbox-group';
-export * from './dropdown-menu';
-export * from './echoes-provider';
-export * from './form';
-export * from './global-navigation';
-export * from './icons';
-export * from './links';
-export * from './logos';
-export * from './messages';
-export * from './modals';
-export * from './popover';
-export * from './radio-button-group';
-export * from './select';
-export * from './spinner';
-export * from './text-area';
-export * from './text-input';
-export * from './toggle-tip';
-export * from './tooltip';
-export * from './typography';
+import type { Meta, StoryObj } from '@storybook/react';
+import { RatingBadgeLink, RatingBadgeScore } from '../../src';
+import { BasicWrapper } from '../helpers/BasicWrapper';
+
+const meta: Meta<typeof RatingBadgeLink> = {
+  component: RatingBadgeLink,
+  title: 'Echoes/Badges/RatingBadgeLink',
+  parameters: {
+    controls: { exclude: ['children', 'id'] },
+  },
+};
+
+export default meta;
+
+type Story = StoryObj<typeof RatingBadgeLink>;
+
+export const Default: Story = {
+  args: {
+    score: RatingBadgeScore.A,
+  },
+  render: (args) => (
+    <BasicWrapper>
+      <span>
+        <RatingBadgeLink {...args} style={{ marginRight: '6px' }} /> Some text next to the rating
+        badge
+      </span>
+    </BasicWrapper>
+  ),
+};

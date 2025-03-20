@@ -108,6 +108,10 @@
           "value": "3rem",
           "type": "dimension"
         },
+        "700": {
+          "value": "3.5rem",
+          "type": "dimension"
+        },
         "800": {
           "value": "4rem",
           "type": "dimension"
