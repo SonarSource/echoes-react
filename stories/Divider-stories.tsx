@@ -20,7 +20,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import styled from '@emotion/styled';
 import { basicWrapperDecorator } from './helpers/BasicWrapper';
-import { Divider, DividerOrientation, Heading, IconCheck, Label, Text, TextSize } from '../src';
+import { Divider, DividerOrientation, Heading, Text, TextSize } from '../src';
 
 const meta: Meta<typeof Divider> = {
   component: Divider,

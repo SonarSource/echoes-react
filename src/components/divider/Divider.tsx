@@ -19,7 +19,7 @@
  */
 
 import styled from '@emotion/styled';
-import { forwardRef } from 'react';
+import { AriaRole, forwardRef } from 'react';
 
 export enum DividerOrientation {
   Horizontal = 'horizontal',
@@ -47,7 +47,7 @@ export interface DividerProps {
    * Optional ARIA role. If not provided, no role will be applied.
    * For semantic separation, 'separator' is recommended.
    */
-  role?: string;
+  role?: AriaRole;
 
   /**
    * Optional data-testid for testing
@@ -59,7 +59,7 @@ export const Divider = forwardRef<HTMLHRElement, DividerProps>(
   (
     {
       orientation = DividerOrientation.Horizontal,
-      className = '',
+      className = undefined,
       role = 'separator',
       'data-testid': dataTestId,
       text,
@@ -80,7 +80,6 @@ export const Divider = forwardRef<HTMLHRElement, DividerProps>(
         />
       );
     }
-    // With text, render a container with the text in the middle
     return (
       <DividerContainer
         aria-orientation={orientation}
