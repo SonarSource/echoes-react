@@ -18,7 +18,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 import { render, screen } from '@testing-library/react';
-import { Divider, DividerOrientation } from '../Divider';
+import { Divider } from '../Divider';
 
 describe('Divider', () => {
   it('renders horizontal divider by default', () => {
@@ -31,7 +31,7 @@ describe('Divider', () => {
   });
 
   it('renders vertical divider when specified', () => {
-    render(<Divider data-testid="divider" orientation={DividerOrientation.Vertical} />);
+    render(<Divider data-testid="divider" isVertical />);
 
     const divider = screen.getByTestId('divider');
     expect(divider).toBeInTheDocument();
@@ -82,7 +82,7 @@ describe('Divider', () => {
   });
 
   it('renders vertical divider with text', () => {
-    render(<Divider data-testid="divider" orientation={DividerOrientation.Vertical} text="OR" />);
+    render(<Divider data-testid="divider" isVertical text="OR" />);
 
     const divider = screen.getByTestId('divider');
     expect(divider).toHaveAttribute('aria-orientation', 'vertical');

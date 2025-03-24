@@ -20,16 +20,16 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import styled from '@emotion/styled';
 import { basicWrapperDecorator } from './helpers/BasicWrapper';
-import { Divider, DividerOrientation, Heading, Text, TextSize } from '../src';
+import { Divider, Heading, Text, TextSize } from '../src';
 
 const meta: Meta<typeof Divider> = {
   component: Divider,
   title: 'Echoes/Divider',
   argTypes: {
-    orientation: {
-      control: 'select',
-      options: Object.values(DividerOrientation),
-      description: 'The orientation of the divider',
+    isVertical: {
+      control: 'boolean',
+      description: 'Whether the divider is vertical',
+      defaultValue: false,
     },
     className: { control: 'text' },
     role: { control: 'text' },
@@ -57,9 +57,9 @@ const VerticalContainer = styled.div`
   width: 100%;
 `;
 
-const DynamicContainer = styled.div<{ orientation: DividerOrientation }>`
-  ${({ orientation }) =>
-    orientation === DividerOrientation.Vertical
+const DynamicContainer = styled.div<{ isVertical: boolean }>`
+  ${({ isVertical }) =>
+    isVertical
       ? `
         display: flex;
         align-items: center;
@@ -76,8 +76,8 @@ export const Default: Story = {
   args: {},
   render: (args) => (
     <div>
-      <DynamicContainer orientation={args.orientation ?? DividerOrientation.Horizontal}>
-        {args.orientation === DividerOrientation.Vertical ? (
+      <DynamicContainer isVertical={args.isVertical ?? false}>
+        {args.isVertical ? (
           <>
             <span>Left content</span>
             <Divider {...args} />
@@ -103,7 +103,7 @@ export const Default: Story = {
 
 export const Vertical: Story = {
   args: {
-    orientation: DividerOrientation.Vertical,
+    isVertical: true,
   },
   render: (args) => (
     <div>
@@ -118,7 +118,11 @@ export const Vertical: Story = {
 
 export const WithText: Story = {
   args: {
-    text: 'OR',
+    text: (
+      <Text isSubdued size={TextSize.Small}>
+        OR
+      </Text>
+    ),
   },
   render: (args) => (
     <div>
@@ -131,7 +135,7 @@ export const WithText: Story = {
 
 export const VerticalWithText: Story = {
   args: {
-    orientation: DividerOrientation.Vertical,
+    isVertical: true,
     text: (
       <Text isSubdued size={TextSize.Small}>
         OR

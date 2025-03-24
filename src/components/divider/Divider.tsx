@@ -21,17 +21,12 @@
 import styled from '@emotion/styled';
 import { AriaRole, forwardRef } from 'react';
 
-export enum DividerOrientation {
-  Horizontal = 'horizontal',
-  Vertical = 'vertical',
-}
-
 export interface DividerProps {
   /**
-   * The orientation of the divider
-   * @default 'horizontal'
+   * Whether the divider is vertical
+   * @default false
    */
-  orientation?: DividerOrientation;
+  isVertical?: boolean;
 
   /**
    * Optional text to display in the middle of the divider
@@ -58,7 +53,7 @@ export interface DividerProps {
 export const Divider = forwardRef<HTMLHRElement | HTMLDivElement, Readonly<DividerProps>>(
   (
     {
-      orientation = DividerOrientation.Horizontal,
+      isVertical = false,
       className,
       role = 'separator',
       'data-testid': dataTestId,
@@ -67,13 +62,14 @@ export const Divider = forwardRef<HTMLHRElement | HTMLDivElement, Readonly<Divid
     },
     ref,
   ) => {
+    const ariaOrientation = isVertical ? 'vertical' : 'horizontal';
     if (!text) {
       return (
         <StyledDivider
-          aria-orientation={orientation}
+          aria-orientation={ariaOrientation}
           className={className}
           data-testid={dataTestId}
-          orientation={orientation}
+          isVertical={isVertical}
           ref={ref as React.Ref<HTMLHRElement>}
           role={role}
           {...props}
@@ -82,28 +78,28 @@ export const Divider = forwardRef<HTMLHRElement | HTMLDivElement, Readonly<Divid
     }
     return (
       <DividerContainer
-        aria-orientation={orientation}
+        aria-orientation={ariaOrientation}
         className={className}
         data-testid={dataTestId}
-        orientation={orientation}
+        isVertical={isVertical}
         ref={ref}
         role={role}
         {...props}>
-        <DividerLine orientation={orientation} />
-        <DividerText orientation={orientation}>{text}</DividerText>
-        <DividerLine orientation={orientation} />
+        <DividerLine isVertical={isVertical} />
+        <DividerText isVertical={isVertical}>{text}</DividerText>
+        <DividerLine isVertical={isVertical} />
       </DividerContainer>
     );
   },
 );
 
-const StyledDivider = styled.hr<{ orientation: DividerOrientation }>`
+const StyledDivider = styled.hr<{ isVertical: boolean }>`
   border: none;
   margin: 0;
   background-color: var(--echoes-color-border-weak);
 
-  ${({ orientation }) =>
-    orientation === DividerOrientation.Horizontal
+  ${({ isVertical }) =>
+    !isVertical
       ? `
         height: 1px;
         width: 100%;
@@ -118,16 +114,14 @@ const StyledDivider = styled.hr<{ orientation: DividerOrientation }>`
       `}
 `;
 
-const DividerContainer = styled.div<{ orientation: DividerOrientation }>`
+const DividerContainer = styled.div<{ isVertical: boolean }>`
   display: flex;
   align-items: center;
-  margin: ${({ orientation }) =>
-    orientation === DividerOrientation.Horizontal
-      ? 'var(--echoes-dimension-space-100) 0'
-      : '0 var(--echoes-dimension-space-100)'};
+  margin: ${({ isVertical }) =>
+    !isVertical ? 'var(--echoes-dimension-space-100) 0' : '0 var(--echoes-dimension-space-100)'};
 
-  ${({ orientation }) =>
-    orientation === DividerOrientation.Vertical
+  ${({ isVertical }) =>
+    isVertical
       ? `
         flex-direction: column;
         height: 100%;
@@ -139,12 +133,12 @@ const DividerContainer = styled.div<{ orientation: DividerOrientation }>`
       `}
 `;
 
-const DividerLine = styled.div<{ orientation: DividerOrientation }>`
+const DividerLine = styled.div<{ isVertical: boolean }>`
   flex-grow: 1;
   background-color: var(--echoes-color-border-weak);
 
-  ${({ orientation }) =>
-    orientation === DividerOrientation.Horizontal
+  ${({ isVertical }) =>
+    !isVertical
       ? `
         height: 1px;
       `
@@ -154,11 +148,9 @@ const DividerLine = styled.div<{ orientation: DividerOrientation }>`
       `}
 `;
 
-const DividerText = styled.span<{ orientation: DividerOrientation }>`
-  padding: ${({ orientation }) =>
-    orientation === DividerOrientation.Horizontal
-      ? '0 var(--echoes-dimension-space-25)'
-      : 'var(--echoes-dimension-space-25) 0'};
+const DividerText = styled.span<{ isVertical: boolean }>`
+  padding: ${({ isVertical }) =>
+    !isVertical ? '0 var(--echoes-dimension-space-25)' : 'var(--echoes-dimension-space-25) 0'};
   font-weight: var(--echoes-font-weight-regular);
   line-height: var(--echoes-line-height-10);
   max-width: var(--echoes-sizes-typography-max-width-default);
