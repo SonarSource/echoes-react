@@ -55,7 +55,7 @@ export interface DividerProps {
   'data-testid'?: string;
 }
 
-export const Divider = forwardRef<HTMLHRElement | HTMLDivElement, DividerProps>(
+export const Divider = forwardRef<HTMLHRElement | HTMLDivElement, Readonly<DividerProps>>(
   (
     {
       orientation = DividerOrientation.Horizontal,
