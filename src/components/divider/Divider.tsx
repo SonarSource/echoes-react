@@ -23,20 +23,20 @@ import { AriaRole, forwardRef } from 'react';
 
 export interface DividerProps {
   /**
+   * Additional CSS class name
+   */
+  className?: string;
+
+  /**
+   * Optional data-testid for testing
+   */
+  'data-testid'?: string;
+
+  /**
    * Whether the divider is vertical
    * @default false
    */
   isVertical?: boolean;
-
-  /**
-   * Optional text to display in the middle of the divider
-   */
-  text?: React.ReactNode;
-
-  /**
-   * Additional CSS class name
-   */
-  className?: string;
 
   /**
    * Optional ARIA role. If not provided, no role will be applied.
@@ -45,24 +45,25 @@ export interface DividerProps {
   role?: AriaRole;
 
   /**
-   * Optional data-testid for testing
+   * Optional text to display in the middle of the divider
    */
-  'data-testid'?: string;
+  text?: React.ReactNode;
 }
 
 export const Divider = forwardRef<HTMLHRElement | HTMLDivElement, Readonly<DividerProps>>(
   (
     {
-      isVertical = false,
       className,
-      role = 'separator',
       'data-testid': dataTestId,
+      isVertical = false,
+      role = 'separator',
       text,
       ...props
     },
     ref,
   ) => {
     const ariaOrientation = isVertical ? 'vertical' : 'horizontal';
+
     if (!text) {
       return (
         <StyledDivider
@@ -76,6 +77,7 @@ export const Divider = forwardRef<HTMLHRElement | HTMLDivElement, Readonly<Divid
         />
       );
     }
+
     return (
       <DividerContainer
         aria-orientation={ariaOrientation}
@@ -94,29 +96,29 @@ export const Divider = forwardRef<HTMLHRElement | HTMLDivElement, Readonly<Divid
 );
 
 const StyledDivider = styled.hr<{ isVertical: boolean }>`
+  background-color: var(--echoes-color-border-weak);
   border: none;
   margin: 0;
-  background-color: var(--echoes-color-border-weak);
 
   ${({ isVertical }) =>
     !isVertical
       ? `
         height: 1px;
-        width: 100%;
         margin: var(--echoes-dimension-space-150) 0;
+        width: 100%;
       `
       : `
-        width: 1px;
-        height: 100%;
-        min-height: 60px;
-        margin: 0 var(--echoes-dimension-space-150);
         display: inline-block;
+        height: 100%;
+        margin: 0 var(--echoes-dimension-space-150);
+        min-height: 60px;
+        width: 1px;
       `}
 `;
 
 const DividerContainer = styled.div<{ isVertical: boolean }>`
-  display: flex;
   align-items: center;
+  display: flex;
   margin: ${({ isVertical }) =>
     !isVertical ? 'var(--echoes-dimension-space-100) 0' : '0 var(--echoes-dimension-space-100)'};
 
@@ -134,8 +136,8 @@ const DividerContainer = styled.div<{ isVertical: boolean }>`
 `;
 
 const DividerLine = styled.div<{ isVertical: boolean }>`
-  flex-grow: 1;
   background-color: var(--echoes-color-border-weak);
+  flex-grow: 1;
 
   ${({ isVertical }) =>
     !isVertical
@@ -143,18 +145,18 @@ const DividerLine = styled.div<{ isVertical: boolean }>`
         height: 1px;
       `
       : `
-        width: 1px;
-        height: 100%;
+      height: 100%;
+      width: 1px;
       `}
 `;
 
 const DividerText = styled.span<{ isVertical: boolean }>`
-  padding: ${({ isVertical }) =>
-    !isVertical ? '0 var(--echoes-dimension-space-25)' : 'var(--echoes-dimension-space-25) 0'};
+  font-size: var(--echoes-font-size-10);
   font-weight: var(--echoes-font-weight-regular);
   line-height: var(--echoes-line-height-10);
   max-width: var(--echoes-sizes-typography-max-width-default);
-  font-size: var(--echoes-font-size-10);
+  padding: ${({ isVertical }) =>
+    !isVertical ? '0 var(--echoes-dimension-space-25)' : 'var(--echoes-dimension-space-25) 0'};
   white-space: nowrap;
 `;
 
