@@ -76,7 +76,7 @@ export const Default: Story = {
   args: {},
   render: (args) => (
     <div>
-      <DynamicContainer orientation={args.orientation || DividerOrientation.Horizontal}>
+      <DynamicContainer orientation={args.orientation ?? DividerOrientation.Horizontal}>
         {args.orientation === DividerOrientation.Vertical ? (
           <>
             <span>Left content</span>
