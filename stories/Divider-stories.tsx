@@ -57,13 +57,12 @@ const VerticalContainer = styled.div`
   justify-content: space-between;
 `;
 
-function DynamicContainer({
-  children,
-  isVertical = false,
-}: {
+interface DynamicContainerProps {
   children: React.ReactNode;
   isVertical?: boolean;
-}) {
+}
+
+function DynamicContainer({ children, isVertical = false }: Readonly<DynamicContainerProps>) {
   if (isVertical) {
     return <VerticalContainer>{children}</VerticalContainer>;
   }
