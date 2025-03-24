@@ -55,11 +55,11 @@ export interface DividerProps {
   'data-testid'?: string;
 }
 
-export const Divider = forwardRef<HTMLHRElement, DividerProps>(
+export const Divider = forwardRef<HTMLHRElement | HTMLDivElement, DividerProps>(
   (
     {
       orientation = DividerOrientation.Horizontal,
-      className = undefined,
+      className,
       role = 'separator',
       'data-testid': dataTestId,
       text,
@@ -74,7 +74,7 @@ export const Divider = forwardRef<HTMLHRElement, DividerProps>(
           className={className}
           data-testid={dataTestId}
           orientation={orientation}
-          ref={ref}
+          ref={ref as React.Ref<HTMLHRElement>}
           role={role}
           {...props}
         />
