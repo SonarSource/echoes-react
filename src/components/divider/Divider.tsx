@@ -111,7 +111,6 @@ const StyledDivider = styled.hr<{ isVertical: boolean }>`
         display: inline-block;
         height: 100%;
         margin: 0 var(--echoes-dimension-space-150);
-        min-height: 60px;
         width: 1px;
       `}
 `;
@@ -127,7 +126,6 @@ const DividerContainer = styled.div<{ isVertical: boolean }>`
       ? `
         flex-direction: column;
         height: 100%;
-        min-height: 60px;
         width: auto;
       `
       : `
