@@ -18,27 +18,10 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-export * from './badges';
-export * from './breadcrumbs';
-export * from './buttons';
-export * from './checkbox';
-export * from './checkbox-group';
-export * from './divider';
-export * from './dropdown-menu';
-export * from './echoes-provider';
-export * from './form';
-export * from './global-navigation';
-export * from './icons';
-export * from './links';
-export * from './logos';
-export * from './messages';
-export * from './modals';
-export * from './popover';
-export * from './radio-button-group';
-export * from './select';
-export * from './spinner';
-export * from './text-area';
-export * from './text-input';
-export * from './toggle-tip';
-export * from './tooltip';
-export * from './typography';
+export { RatingBadge, RatingBadgeRating, RatingBadgeSize } from './RatingBadge';
+export { RatingBadgeButton } from './RatingBadgeButton';
+export { RatingBadgeLink } from './RatingBadgeLink';
+
+export type { RatingBadgeProps } from './RatingBadge';
+export type { RatingBadgeButtonProps } from './RatingBadgeButton';
+export type { RatingBadgeLinkProps } from './RatingBadgeLink';
