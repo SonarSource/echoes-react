@@ -18,12 +18,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import './common/figma-presets.css';
-import './generated/design-tokens-themed.json';
-import './generated/design-tokens.css';
-
-export * from './components';
-export * from './utils';
-
-export { Theme } from './generated/themes';
-export { GroupAlignment } from './types/GroupAlignment';
+body {
+  text-decoration-thickness: 6.82%;
+  text-underline-offset: 19.89%;
+}
