@@ -75,7 +75,7 @@ export const CardRoot = React.forwardRef<HTMLDivElement, Readonly<CardProps>>(
     });
 
     return (
-      <StyledCard className={className} ref={ref} size={size}>
+      <StyledCard className={className} ref={ref}>
         {childrenWithProps}
       </StyledCard>
     );
@@ -84,7 +84,7 @@ export const CardRoot = React.forwardRef<HTMLDivElement, Readonly<CardProps>>(
 
 CardRoot.displayName = 'CardRoot';
 
-const StyledCard = styled.div<{ size: CardSize }>`
+const StyledCard = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
