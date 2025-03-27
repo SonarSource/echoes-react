@@ -70,6 +70,10 @@ function DynamicContainer({ children, isVertical = false }: Readonly<DynamicCont
   return <div>{children}</div>;
 }
 
+const StyledDivider = styled(Divider)<{ isVertical?: boolean }>`
+  margin: ${({ isVertical }) => (isVertical ? '0 10px' : '10px 0')};
+`;
+
 export const Default: Story = {
   args: {},
   render: (args) => (
@@ -77,7 +81,7 @@ export const Default: Story = {
       {args.isVertical ? (
         <>
           <span>Left content</span>
-          <Divider {...args} />
+          <StyledDivider {...args} />
           <span>Right content</span>
         </>
       ) : (
@@ -86,7 +90,7 @@ export const Default: Story = {
             Is this a real issue?
           </Heading>
           <Text as="p">Probably</Text>
-          <Divider {...args} />
+          <StyledDivider {...args} />
           <Heading as="h5" hasMarginBottom>
             What other things should we put here
           </Heading>
@@ -104,7 +108,7 @@ export const Vertical: Story = {
   render: (args) => (
     <DynamicContainer isVertical>
       <span>Left content</span>
-      <Divider {...args} />
+      <StyledDivider {...args} />
       <span>Right content</span>
     </DynamicContainer>
   ),
@@ -121,7 +125,7 @@ export const WithText: Story = {
   render: (args) => (
     <DynamicContainer>
       <p>You can sign in with your credentials</p>
-      <Divider {...args} />
+      <StyledDivider {...args} />
       <p>Continue with social media</p>
     </DynamicContainer>
   ),
@@ -139,7 +143,7 @@ export const VerticalWithText: Story = {
   render: (args) => (
     <DynamicContainer isVertical>
       <span>Left content</span>
-      <Divider {...args} />
+      <StyledDivider {...args} />
       <span>Right content</span>
     </DynamicContainer>
   ),
