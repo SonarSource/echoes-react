@@ -98,19 +98,18 @@ export const Divider = forwardRef<HTMLHRElement | HTMLDivElement, Readonly<Divid
 const StyledDivider = styled.hr<{ isVertical: boolean }>`
   background-color: var(--echoes-color-border-weak);
   border: none;
+  box-sizing: border-box;
   margin: 0;
 
   ${({ isVertical }) =>
     !isVertical
       ? `
         height: 1px;
-        margin: var(--echoes-dimension-space-150) 0;
         width: 100%;
       `
       : `
         display: inline-block;
         height: 100%;
-        margin: 0 var(--echoes-dimension-space-150);
         min-height: 60px;
         width: 1px;
       `}
@@ -118,9 +117,8 @@ const StyledDivider = styled.hr<{ isVertical: boolean }>`
 
 const DividerContainer = styled.div<{ isVertical: boolean }>`
   align-items: center;
+  box-sizing: border-box;
   display: flex;
-  margin: ${({ isVertical }) =>
-    !isVertical ? 'var(--echoes-dimension-space-100) 0' : '0 var(--echoes-dimension-space-100)'};
 
   ${({ isVertical }) =>
     isVertical
