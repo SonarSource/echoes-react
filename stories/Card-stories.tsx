@@ -154,6 +154,7 @@ export const Sizes: Story = {
           <Card.Header
             description={`Description for the ${size} card`}
             hasDivider
+            rightContent="some right content"
             title={`${size.charAt(0).toUpperCase() + size.slice(1)} Card`}
           />
           <Card.Body>

@@ -71,9 +71,9 @@ export const CardHeader = React.forwardRef<HTMLDivElement, Readonly<CardHeaderPr
           <CardHeaderContentStyled>
             <CardHeaderTextStyled>
               <Heading as={sizeConfig.headingLevel}>{title}</Heading>
-              {description && <Text size={sizeConfig.textSize}>{description}</Text>}
+              {rightContent && <RightContentStyled>{rightContent}</RightContentStyled>}
             </CardHeaderTextStyled>
-            {rightContent && <RightContentStyled>{rightContent}</RightContentStyled>}
+            {description && <Text size={sizeConfig.textSize}>{description}</Text>}
           </CardHeaderContentStyled>
         </CardHeaderStyled>
         {hasDivider && <Divider />}
@@ -86,11 +86,13 @@ CardHeader.displayName = 'CardHeader';
 
 const CardHeaderContentStyled = styled.div`
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
 `;
 
 const CardHeaderTextStyled = styled.div`
-  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `;
 
 const RightContentStyled = styled.div`
