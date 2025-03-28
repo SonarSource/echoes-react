@@ -25,11 +25,14 @@ import {
   ButtonVariety,
   Card,
   CardSize,
+  IconCheckCircle,
+  IconSparkleInShieldDisabled,
   IconStar,
   Label,
   LinkStandalone,
   RatingBadge,
   Text,
+  TextSize,
   Tooltip,
 } from '../src';
 import { basicWrapperDecorator } from './helpers/BasicWrapper';
@@ -62,7 +65,22 @@ export const Default: Story = {
   render: (args) => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', padding: '40px' }}>
       <Card {...args}>
-        <Card.Header description="Awesome description" hasDivider title="Card Title" />
+        <Card.Header
+          description={
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+              <Text>Super awesome description</Text>
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+                <IconSparkleInShieldDisabled />
+                <Text as="p" size={TextSize.Small}>
+                  Helpful text
+                </Text>
+              </div>
+            </div>
+          }
+          hasDivider
+          rightContent={<IconCheckCircle color="echoes-color-icon-success" />}
+          title="Card Title"
+        />
         <Card.Body>
           <BodyContainer>
             <Text as="div" className="sw-p-10">
