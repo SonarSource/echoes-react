@@ -27,12 +27,12 @@ export interface CardBodyProps {
   children: React.ReactNode;
   className?: string;
   insetContent?: boolean;
-  size?: CardSize;
 }
 
 export const CardBody = React.forwardRef<HTMLDivElement, Readonly<CardBodyProps>>(
   ({ children, className, insetContent = false }, ref) => {
     const size = useCardContext();
+
     return (
       <CardBodyStyled className={className} insetContent={insetContent} ref={ref} size={size}>
         {children}

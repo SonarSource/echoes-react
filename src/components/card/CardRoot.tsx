@@ -40,15 +40,13 @@ export function useCardContext() {
 }
 
 export const CardRoot = React.forwardRef<HTMLDivElement, Readonly<CardProps>>(
-  ({ children, className, size = CardSize.Medium }, ref) => {
-    return (
-      <CardContext.Provider value={size}>
-        <CardStyled className={className} ref={ref}>
-          {children}
-        </CardStyled>
-      </CardContext.Provider>
-    );
-  },
+  ({ children, className, size = CardSize.Medium }, ref) => (
+    <CardContext.Provider value={size}>
+      <CardStyled className={className} ref={ref}>
+        {children}
+      </CardStyled>
+    </CardContext.Provider>
+  ),
 );
 
 CardRoot.displayName = 'CardRoot';

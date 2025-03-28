@@ -21,7 +21,7 @@
 import styled from '@emotion/styled';
 import React, { useMemo } from 'react';
 import { Heading, Text } from '../typography';
-import { CardSize, useCardContext } from './CardRoot';
+import { useCardContext } from './CardRoot';
 import { CARD_HEADER_STYLES, HEADER_LEVEL_MAP, TEXT_SIZE_MAP } from './CardStyles';
 
 export interface CardHeaderProps {
@@ -30,12 +30,12 @@ export interface CardHeaderProps {
   hasDivider?: boolean;
   rightContent?: React.ReactNode;
   className?: string;
-  size?: CardSize;
 }
 
 export const CardHeader = React.forwardRef<HTMLDivElement, Readonly<CardHeaderProps>>(
   ({ className, description, hasDivider = false, rightContent, title }, ref) => {
     const size = useCardContext();
+
     return (
       <CardHeaderStyled
         className={className}
