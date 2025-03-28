@@ -20,7 +20,7 @@
 
 import styled from '@emotion/styled';
 import React, { useMemo } from 'react';
-import { Heading, Text, TextSize } from '../typography';
+import { Heading } from '../typography';
 import { useCardContext } from './CardRoot';
 import { CARD_HEADER_SIZE_STYLES, CardHeaderStyled } from './CardStyles';
 import { Divider } from '../divider';
@@ -36,17 +36,14 @@ export interface CardHeaderProps {
 
 const CARD_SIZE_CONFIG = {
   [CardSize.Small]: {
-    textSize: TextSize.Small,
     headingLevel: 'h4' as const,
     styles: CARD_HEADER_SIZE_STYLES[CardSize.Small],
   },
   [CardSize.Medium]: {
-    textSize: TextSize.Default,
     headingLevel: 'h3' as const,
     styles: CARD_HEADER_SIZE_STYLES[CardSize.Medium],
   },
   [CardSize.Large]: {
-    textSize: TextSize.Large,
     headingLevel: 'h2' as const,
     styles: CARD_HEADER_SIZE_STYLES[CardSize.Large],
   },
@@ -74,7 +71,7 @@ export const CardHeader = React.forwardRef<HTMLDivElement, Readonly<CardHeaderPr
               <Heading as={sizeConfig.headingLevel}>{title}</Heading>
               {rightContent && <RightContentStyled>{rightContent}</RightContentStyled>}
             </CardHeaderTextStyled>
-            {description && <Text size={sizeConfig.textSize}>{description}</Text>}
+            {description && <DescriptionStyled>{description}</DescriptionStyled>}
           </CardHeaderContentStyled>
         </CardHeaderStyled>
         {hasDivider && <Divider />}
@@ -91,11 +88,17 @@ const CardHeaderContentStyled = styled.div`
 `;
 
 const CardHeaderTextStyled = styled.div`
+  align-items: center;
   display: flex;
   justify-content: space-between;
-  align-items: center;
 `;
 
 const RightContentStyled = styled.div`
   display: flex;
+`;
+
+const DescriptionStyled = styled.div`
+  align-items: center;
+  diplay: flex;
+  justify-content: space-between;
 `;

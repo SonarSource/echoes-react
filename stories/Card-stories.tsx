@@ -151,7 +151,7 @@ export const Sizes: Story = {
       {Object.values(CardSize).map((size) => (
         <Card key={size} size={size}>
           <Card.Header
-            description={`Description for the ${size} card`}
+            description={`A ${size} card`}
             hasDivider
             rightContent="some right content"
             title={`${size.charAt(0).toUpperCase() + size.slice(1)} Card`}
@@ -196,6 +196,30 @@ export const BodyOnly: Story = {
           <BodyContainer>
             <Text as="div">This card has no header, only a body.</Text>
           </BodyContainer>
+        </Card.Body>
+      </Card>
+    </div>
+  ),
+};
+
+export const NoDivider: Story = {
+  args: {
+    size: CardSize.Medium,
+  },
+  render: (args) => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', padding: '40px' }}>
+      <Card {...args}>
+        <Card.Header
+          description="This card has a title and description but no divider between header and body"
+          title="Card Without Divider"
+        />
+        <Card.Body insetContent>
+          <div style={{ padding: '0 16px' }}>
+            <Text as="div">
+              Without a divider, the header and body content flow together visually. This works well
+              for simpler cards where visual separation isnt needed.
+            </Text>
+          </div>
         </Card.Body>
       </Card>
     </div>
