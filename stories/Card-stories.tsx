@@ -53,7 +53,6 @@ type Story = StoryObj<typeof Card>;
 const BodyContainer = styled.div`
   display: flex;
   align-items: center;
-  flex: 1;
 `;
 
 export const Default: Story = {

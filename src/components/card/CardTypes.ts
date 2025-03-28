@@ -18,30 +18,8 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import React, { createContext } from 'react';
-import { CardStyled } from './CardStyles';
-import { CardSize } from './CardTypes';
-
-export interface CardProps {
-  children: React.ReactNode;
-  className?: string;
-  size?: CardSize;
+export enum CardSize {
+  Small = 'small',
+  Medium = 'medium',
+  Large = 'large',
 }
-
-const CardContext = createContext<CardSize>(CardSize.Medium);
-
-export function useCardContext() {
-  return React.useContext(CardContext);
-}
-
-export const CardRoot = React.forwardRef<HTMLDivElement, Readonly<CardProps>>(
-  ({ children, className, size = CardSize.Medium }, ref) => (
-    <CardContext.Provider value={size}>
-      <CardStyled className={className} ref={ref}>
-        {children}
-      </CardStyled>
-    </CardContext.Provider>
-  ),
-);
-
-CardRoot.displayName = 'CardRoot';

@@ -19,15 +19,10 @@
  */
 
 import styled from '@emotion/styled';
-
-export enum CardSize {
-  Small = 'small',
-  Medium = 'medium',
-  Large = 'large',
-}
+import { CardSize } from './CardTypes';
 
 export const CardStyled = styled.div`
-  background-color: var(--echoes-color-background-default);
+  background-color: var(--echoes-color-background-);
   border: var(--echoes-border-width-default) solid var(--echoes-color-border-weak);
   border-radius: var(--echoes-border-radius-400);
   box-shadow: var(--echoes-box-shadow-xsmall);
@@ -48,11 +43,16 @@ export const CardHeaderStyled = styled.header`
 export const CardBodyStyled = styled.div<{ size: CardSize; insetContent: boolean }>`
   box-sizing: border-box;
   display: flex;
+  flex: 1;
   flex-direction: column;
   min-height: var(--card-body-min-height);
   padding: ${(props) => (props.insetContent ? '0' : 'var(--card-padding)')};
-  height: 100%;
   width: 100%;
+
+  & > * {
+    flex: 1;
+    height: 100%;
+  }
 `;
 
 export const CARD_HEADER_SIZE_STYLES = {
