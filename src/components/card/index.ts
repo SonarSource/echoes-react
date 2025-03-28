@@ -22,19 +22,24 @@ import { CardBody } from './CardBody';
 import { CardHeader } from './CardHeader';
 import { CardRoot } from './CardRoot';
 
-export { CardSize } from './CardRoot';
+export { CardSize } from './CardStyles';
 
 /**
- * Card component for displaying content in a contained, styled container.
+ * {@link CardRoot | Card} is a component for displaying content in a contained, styled container.
+ * It provides a flexible card layout system.
  *
- * @description A compound component that provides a flexible card layout system.
- * It requires exactly one `Card.Body` component and can optionally include one `Card.Header` component.
- *
- * Available sizes:
+ * **Available sizes**
  * - SMALL: Compact card with minimal padding
  * - MEDIUM: Standard card size (default)
  * - LARGE: Expanded card with increased padding
- * @example Basic usage
+ *
+ * **Permitted Content**
+ *
+ * Exactly one {@link CardBody | Card.Body} component and optionally one
+ * {@link CardHeader | Card.Header} component.
+ *
+ * **Example**
+ *
  * ```tsx
  * <Card>
  *   <Card.Header>Card Title</Card.Header>
@@ -42,7 +47,8 @@ export { CardSize } from './CardRoot';
  * </Card>
  * ```
  *
- * @example Using with size
+ * **Example with size**
+ *
  * ```tsx
  * <Card size={CardSize.LARGE}>
  *   <Card.Header>Large Card</Card.Header>
@@ -50,7 +56,8 @@ export { CardSize } from './CardRoot';
  * </Card>
  * ```
  *
- * @example Without header (minimal)
+ * **Example without header**
+ *
  * ```tsx
  * <Card>
  *   <Card.Body>Card content without a header</Card.Body>
@@ -59,19 +66,18 @@ export { CardSize } from './CardRoot';
  */
 export const Card = Object.assign(CardRoot, {
   /**
-   * Header component for Card
-   *
-   * @description Provides a consistently styled header section for the Card component.
+   * {@link CardHeader | Card.Header} provides a consistently styled header section for the Card component.
    * Automatically inherits size context from parent Card component.
    *
-   * @props
+   * **Props**
    * - `title`: React.ReactNode - Required title content
    * - `description?`: React.ReactNode - Optional description text below the title
    * - `hasDivider?`: boolean - When true, renders a divider below the header (default: false)
    * - `rightContent?`: React.ReactNode - Optional content to display on the right side
    * - `className?`: string - Optional CSS class name
    *
-   * @example With description and right content
+   * **Example with description and right content**
+   *
    * ```tsx
    * <Card.Header
    *   title="Card Title"
@@ -80,7 +86,8 @@ export const Card = Object.assign(CardRoot, {
    * />
    * ```
    *
-   * @example With divider
+   * **Example with divider**
+   *
    * ```tsx
    * <Card.Header title="Card Title" hasDivider />
    * ```
@@ -88,24 +95,24 @@ export const Card = Object.assign(CardRoot, {
   Header: CardHeader,
 
   /**
-   * Body component for Card
-   *
-   * @description Container for the main content of a Card.
+   * {@link CardBody | Card.Body} is the container for the main content of a Card.
    * Automatically inherits size context from parent Card component.
    *
-   * @props
+   * **Props**
    * - `children`: React.ReactNode - Required content to display in the body
    * - `className?`: string - Optional CSS class name
    * - `insetContent?`: boolean - When true, removes padding from the body (default: false)
    *
-   * @example Standard usage
+   * **Example standard usage**
+   *
    * ```tsx
    * <Card.Body>
    *   <p>This is the content of the card.</p>
    * </Card.Body>
    * ```
    *
-   * @example With inset content (no padding)
+   * **Example with inset content**
+   *
    * ```tsx
    * <Card.Body insetContent>
    *   <div style={{ padding: '8px' }}>Custom padded content</div>

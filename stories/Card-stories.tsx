@@ -18,6 +18,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+import styled from '@emotion/styled';
 import type { Meta, StoryObj } from '@storybook/react';
 import {
   Button,
@@ -33,7 +34,6 @@ import {
 } from '../src';
 import { basicWrapperDecorator } from './helpers/BasicWrapper';
 
-// Define the metadata for your Card component
 const meta: Meta<typeof Card> = {
   title: 'Echoes/Card',
   component: Card,
@@ -50,7 +50,12 @@ const meta: Meta<typeof Card> = {
 export default meta;
 type Story = StoryObj<typeof Card>;
 
-// Basic Card story using the new composition pattern
+const BodyContainer = styled.div`
+  display: flex;
+  align-items: center;
+  flex: 1;
+`;
+
 export const Default: Story = {
   args: {
     size: CardSize.Medium,
@@ -60,16 +65,17 @@ export const Default: Story = {
       <Card {...args}>
         <Card.Header description="Awesome description" hasDivider title="Card Title" />
         <Card.Body>
-          <Text as="div" className="sw-p-10">
-            This is the content of the card.
-          </Text>
+          <BodyContainer>
+            <Text as="div" className="sw-p-10">
+              This is the content of the card.
+            </Text>
+          </BodyContainer>
         </Card.Body>
       </Card>
     </div>
   ),
 };
 
-// Card with right content in header
 export const WithRightContent: Story = {
   args: {
     size: CardSize.Medium,
@@ -80,7 +86,7 @@ export const WithRightContent: Story = {
         <Card.Header
           description={
             <span>
-              <strong>Last analysis: </strong>
+              <strong>Last analysis:</strong>
               3/21/2025, 3:32 PM
             </span>
           }
@@ -104,41 +110,42 @@ export const WithRightContent: Story = {
           }
         />
         <Card.Body>
-          <div
-            style={{
-              display: 'flex',
-              gap: '2rem',
-              width: '100%',
-            }}>
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <RatingBadge rating="B" size="md" />
-                <strong>0</strong>
+          <BodyContainer>
+            <div
+              style={{
+                display: 'flex',
+                gap: '2rem',
+                width: '100%',
+              }}>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <RatingBadge rating="B" size="md" />
+                  <strong>0</strong>
+                </div>
+                <Label style={{ fontSize: '0.875rem', marginTop: '8px' }}>Security</Label>
               </div>
-              <Label style={{ fontSize: '0.875rem', marginTop: '8px' }}>Security</Label>
-            </div>
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <RatingBadge rating="C" size="md" />
-                <strong>1</strong>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <RatingBadge rating="C" size="md" />
+                  <strong>1</strong>
+                </div>
+                <Label style={{ fontSize: '0.875rem', marginTop: '8px' }}>Reliability</Label>
               </div>
-              <Label style={{ fontSize: '0.875rem', marginTop: '8px' }}>Reliability</Label>
-            </div>
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <RatingBadge rating="A" size="md" />
-                <strong>100%</strong>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <RatingBadge rating="A" size="md" />
+                  <strong>100%</strong>
+                </div>
+                <Label style={{ fontSize: '0.875rem', marginTop: '8px' }}>Maintainability</Label>
               </div>
-              <Label style={{ fontSize: '0.875rem', marginTop: '8px' }}>Maintainability</Label>
             </div>
-          </div>
+          </BodyContainer>
         </Card.Body>
       </Card>
     </div>
   ),
 };
 
-// Showcase different sizes
 export const Sizes: Story = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', padding: '40px' }}>
@@ -150,7 +157,9 @@ export const Sizes: Story = {
             title={`${size.charAt(0).toUpperCase() + size.slice(1)} Card`}
           />
           <Card.Body>
-            <Text as="div">Content for the {size} card.</Text>
+            <BodyContainer>
+              <Text as="div">Content for the {size} card.</Text>
+            </BodyContainer>
           </Card.Body>
         </Card>
       ))}
@@ -158,7 +167,6 @@ export const Sizes: Story = {
   ),
 };
 
-// Card without description
 export const NoDescription: Story = {
   args: {
     size: CardSize.Medium,
@@ -168,14 +176,15 @@ export const NoDescription: Story = {
       <Card {...args}>
         <Card.Header hasDivider title="Header Without Description" />
         <Card.Body>
-          <Text as="div">This card has a header with title but no description.</Text>
+          <BodyContainer>
+            <Text as="div">This card has a header with title but no description.</Text>
+          </BodyContainer>
         </Card.Body>
       </Card>
     </div>
   ),
 };
 
-// Card without header
 export const BodyOnly: Story = {
   args: {
     size: CardSize.Medium,
@@ -184,7 +193,9 @@ export const BodyOnly: Story = {
     <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', padding: '40px' }}>
       <Card {...args}>
         <Card.Body>
-          <Text as="div">This card has no header, only a body.</Text>
+          <BodyContainer>
+            <Text as="div">This card has no header, only a body.</Text>
+          </BodyContainer>
         </Card.Body>
       </Card>
     </div>

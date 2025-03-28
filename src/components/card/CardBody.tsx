@@ -18,10 +18,9 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import styled from '@emotion/styled';
-import React from 'react';
-import { CardSize, useCardContext } from './CardRoot';
-import { BODY_PADDING_MAP } from './CardStyles';
+import React, { useMemo } from 'react';
+import { useCardContext } from './CardRoot';
+import { CARD_SIZE_STYLES, CardBodyStyled } from './CardStyles';
 
 export interface CardBodyProps {
   children: React.ReactNode;
@@ -34,7 +33,12 @@ export const CardBody = React.forwardRef<HTMLDivElement, Readonly<CardBodyProps>
     const size = useCardContext();
 
     return (
-      <CardBodyStyled className={className} insetContent={insetContent} ref={ref} size={size}>
+      <CardBodyStyled
+        className={className}
+        css={useMemo(() => ({ ...CARD_SIZE_STYLES[size] }), [size])}
+        insetContent={insetContent}
+        ref={ref}
+        size={size}>
         {children}
       </CardBodyStyled>
     );
@@ -42,11 +46,3 @@ export const CardBody = React.forwardRef<HTMLDivElement, Readonly<CardBodyProps>
 );
 
 CardBody.displayName = 'CardBody';
-
-const CardBodyStyled = styled.div<{ size: CardSize; insetContent: boolean }>`
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  padding: ${(props) => (props.insetContent ? '0' : BODY_PADDING_MAP[props.size])};
-  width: 100%;
-`;

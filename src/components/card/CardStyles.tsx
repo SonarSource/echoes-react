@@ -18,66 +18,71 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import { TextSize } from '../typography';
-import { CardSize } from './CardRoot';
+import styled from '@emotion/styled';
 
-const HEADER_PADDING_MAP = {
+export enum CardSize {
+  Small = 'small',
+  Medium = 'medium',
+  Large = 'large',
+}
+
+export const CardStyled = styled.div`
+  border: var(--echoes-border-width-default) solid var(--echoes-color-border-weak);
+  border-radius: var(--echoes-border-radius-400);
+  box-shadow: var(--echoes-box-shadow-xsmall);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-width: 470px;
+  width: 100%;
+`;
+
+export const CardHeaderStyled = styled.header<{ hasDivider: boolean }>`
+  min-height: var(--card-header-min-height);
+  padding: var(--card-header-padding);
+  ${(props) =>
+    props.hasDivider
+      ? `border-bottom: var(--echoes-border-width-default) solid var(--echoes-color-border-weak);`
+      : ''}
+`;
+
+export const CardBodyStyled = styled.div<{ size: CardSize; insetContent: boolean }>`
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  min-height: var(--card-body-min-height);
+  padding: ${(props) => (props.insetContent ? '0' : 'var(--card-padding)')};
+  height: 100%;
+  width: 100%;
+`;
+
+export const CARD_HEADER_SIZE_STYLES = {
   [CardSize.Small]: {
-    vertical: 'var(--echoes-dimension-space-100)',
-    horizontal: 'var(--echoes-dimension-space-150)',
+    '--card-header-padding': `var(--echoes-dimension-space-100) var(--echoes-dimension-space-150)`,
+    '--card-header-min-height': '36px',
   },
   [CardSize.Medium]: {
-    vertical: 'var(--echoes-dimension-space-150)',
-    horizontal: 'var(--echoes-dimension-space-200)',
+    '--card-header-padding': `var(--echoes-dimension-space-150) var(--echoes-dimension-space-200)`,
+    '--card-header-min-height': '45px',
   },
   [CardSize.Large]: {
-    vertical: 'var(--echoes-dimension-space-200)',
-    horizontal: 'var(--echoes-dimension-space-300)',
+    '--card-header-padding': `var(--echoes-dimension-space-200) var(--echoes-dimension-space-300)`,
+    '--card-header-min-height': '58px',
   },
 };
 
-// Text size mapping based on card size
-export const TEXT_SIZE_MAP: Record<CardSize, TextSize> = {
-  [CardSize.Small]: TextSize.Small,
-  [CardSize.Medium]: TextSize.Default,
-  [CardSize.Large]: TextSize.Default,
-};
-
-// Header height mapping based on card size
-const HEADER_HEIGHT_MAP: Record<CardSize, string> = {
-  [CardSize.Small]: '36px',
-  [CardSize.Medium]: '45px',
-  [CardSize.Large]: '58px',
-};
-
-// Header level mapping for semantic heading levels
-export const HEADER_LEVEL_MAP: Record<CardSize, 'h2' | 'h3' | 'h4'> = {
-  [CardSize.Small]: 'h4',
-  [CardSize.Medium]: 'h3',
-  [CardSize.Large]: 'h2',
-};
-
-// Body padding based on card size
-export const BODY_PADDING_MAP = {
-  [CardSize.Small]: 'var(--echoes-dimension-space-150)',
-  [CardSize.Medium]: 'var(--echoes-dimension-space-200)',
-  [CardSize.Large]: 'var(--echoes-dimension-space-300)',
-};
-
-export const CARD_HEADER_STYLES = {
+export const CARD_SIZE_STYLES = {
   [CardSize.Small]: {
-    'box-sizing': 'border-box',
-    padding: `${HEADER_PADDING_MAP[CardSize.Small].vertical} ${HEADER_PADDING_MAP[CardSize.Small].horizontal}`,
-    'min-height': HEADER_HEIGHT_MAP[CardSize.Small],
+    '--card-padding': 'var(--echoes-dimension-space-150)',
+    '--card-body-min-height': '84px',
   },
   [CardSize.Medium]: {
-    'box-sizing': 'border-box',
-    padding: `${HEADER_PADDING_MAP[CardSize.Medium].vertical} ${HEADER_PADDING_MAP[CardSize.Medium].horizontal}`,
-    'min-height': HEADER_HEIGHT_MAP[CardSize.Medium],
+    '--card-padding': 'var(--echoes-dimension-space-200)',
+    '--card-body-min-height': '92px',
   },
   [CardSize.Large]: {
-    'box-sizing': 'border-box',
-    padding: `${HEADER_PADDING_MAP[CardSize.Large].vertical} ${HEADER_PADDING_MAP[CardSize.Large].horizontal}`,
-    'min-height': HEADER_HEIGHT_MAP[CardSize.Large],
+    '--card-padding': 'var(--echoes-dimension-space-300)',
+    '--card-body-min-height': '108px',
   },
 };

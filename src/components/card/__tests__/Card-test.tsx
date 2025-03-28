@@ -20,10 +20,11 @@
 import { screen } from '@testing-library/react';
 import React from 'react';
 
-import { CardRoot, CardSize } from '../CardRoot';
+import { CardRoot } from '../CardRoot';
 import { CardHeader } from '../CardHeader';
 import { CardBody } from '../CardBody';
 import { render } from '~common/helpers/test-utils';
+import { CardSize } from '../CardStyles';
 
 describe('Card components', () => {
   describe('CardRoot', () => {

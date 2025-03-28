@@ -20,9 +20,9 @@
 
 import styled from '@emotion/styled';
 import React, { useMemo } from 'react';
-import { Heading, Text } from '../typography';
+import { Heading, Text, TextSize } from '../typography';
 import { useCardContext } from './CardRoot';
-import { CARD_HEADER_STYLES, HEADER_LEVEL_MAP, TEXT_SIZE_MAP } from './CardStyles';
+import { CARD_HEADER_SIZE_STYLES, CardHeaderStyled, CardSize } from './CardStyles';
 
 export interface CardHeaderProps {
   title: React.ReactNode;
@@ -32,25 +32,45 @@ export interface CardHeaderProps {
   className?: string;
 }
 
+const CARD_SIZE_CONFIG = {
+  [CardSize.Small]: {
+    textSize: TextSize.Small,
+    headingLevel: 'h4' as const,
+    styles: CARD_HEADER_SIZE_STYLES[CardSize.Small],
+  },
+  [CardSize.Medium]: {
+    textSize: TextSize.Default,
+    headingLevel: 'h3' as const,
+    styles: CARD_HEADER_SIZE_STYLES[CardSize.Medium],
+  },
+  [CardSize.Large]: {
+    textSize: TextSize.Large,
+    headingLevel: 'h2' as const,
+    styles: CARD_HEADER_SIZE_STYLES[CardSize.Large],
+  },
+};
+
 export const CardHeader = React.forwardRef<HTMLDivElement, Readonly<CardHeaderProps>>(
   ({ className, description, hasDivider = false, rightContent, title }, ref) => {
     const size = useCardContext();
+
+    const sizeConfig = CARD_SIZE_CONFIG[size];
 
     return (
       <CardHeaderStyled
         className={className}
         css={useMemo(
           () => ({
-            ...CARD_HEADER_STYLES[size],
+            ...sizeConfig.styles,
           }),
-          [size],
+          [sizeConfig.styles],
         )}
         hasDivider={hasDivider}
         ref={ref}>
         <CardHeaderContentStyled>
           <CardHeaderTextStyled>
-            <Heading as={HEADER_LEVEL_MAP[size]}>{title}</Heading>
-            {description && <Text size={TEXT_SIZE_MAP[size]}>{description}</Text>}
+            <Heading as={sizeConfig.headingLevel}>{title}</Heading>
+            {description && <Text size={sizeConfig.textSize}>{description}</Text>}
           </CardHeaderTextStyled>
           {rightContent && <RightContentStyled>{rightContent}</RightContentStyled>}
         </CardHeaderContentStyled>
@@ -60,13 +80,6 @@ export const CardHeader = React.forwardRef<HTMLDivElement, Readonly<CardHeaderPr
 );
 
 CardHeader.displayName = 'CardHeader';
-
-const CardHeaderStyled = styled.header<{ hasDivider: boolean }>`
-  ${(props) =>
-    props.hasDivider
-      ? `border-bottom: var(--echoes-border-width-default) solid var(--echoes-color-border-weak);`
-      : ''}
-`;
 
 const CardHeaderContentStyled = styled.div`
   display: flex;

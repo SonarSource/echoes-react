@@ -18,14 +18,8 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import styled from '@emotion/styled';
 import React, { createContext } from 'react';
-
-export enum CardSize {
-  Small = 'small',
-  Medium = 'medium',
-  Large = 'large',
-}
+import { CardSize, CardStyled } from './CardStyles';
 
 export interface CardProps {
   children: React.ReactNode;
@@ -50,15 +44,3 @@ export const CardRoot = React.forwardRef<HTMLDivElement, Readonly<CardProps>>(
 );
 
 CardRoot.displayName = 'CardRoot';
-
-const CardStyled = styled.div`
-  border: 1px solid var(--echoes-color-border-weak);
-  border-radius: var(--echoes-border-radius-400);
-  box-shadow: var(--echoes-box-shadow-xsmall);
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  min-width: 470px;
-  width: 100%;
-`;
