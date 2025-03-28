@@ -19,7 +19,7 @@
  */
 
 import styled from '@emotion/styled';
-import React from 'react';
+import React, { createContext } from 'react';
 
 export enum CardSize {
   Small = 'small',
@@ -33,65 +33,34 @@ export interface CardProps {
   size?: CardSize;
 }
 
-// Helper function to safely check component displayName
-const hasDisplayName = (type: any, name: string): boolean => {
-  // Check if it's a React component with a displayName property
-  if (typeof type === 'function' && typeof type.displayName === 'string') {
-    return type.displayName === name;
-  }
+const CardContext = createContext<CardSize>(CardSize.Medium);
 
-  // Check if it's a React.forwardRef component (which has render property)
-  if (type && typeof type.render === 'function' && typeof type.displayName === 'string') {
-    return type.displayName === name;
-  }
-
-  return false;
-};
+export function useCardContext() {
+  return React.useContext(CardContext);
+}
 
 export const CardRoot = React.forwardRef<HTMLDivElement, Readonly<CardProps>>(
   ({ children, className, size = CardSize.Medium }, ref) => {
-    // Detect if there's a CardHeader among the children and inject the size prop
-    const childrenWithProps = React.Children.map(children, (child) => {
-      // Skip null or undefined children
-      if (!child || !React.isValidElement(child)) {
-        return child;
-      }
-
-      const childType = child.type;
-
-      // Check if this is a CardHeader or CardBody component
-      if (
-        (childType && hasDisplayName(childType, 'CardHeader')) ||
-        (childType && hasDisplayName(childType, 'CardBody'))
-      ) {
-        // Clone the element and inject the size prop
-        return React.cloneElement(child, {
-          ...child.props,
-          size,
-        });
-      }
-
-      return child;
-    });
-
     return (
-      <StyledCard className={className} ref={ref}>
-        {childrenWithProps}
-      </StyledCard>
+      <CardContext.Provider value={size}>
+        <CardStyled className={className} ref={ref}>
+          {children}
+        </CardStyled>
+      </CardContext.Provider>
     );
   },
 );
 
 CardRoot.displayName = 'CardRoot';
 
-const StyledCard = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  min-width: 470px;
+const CardStyled = styled.div`
   border: 1px solid var(--echoes-color-border-weak);
   border-radius: var(--echoes-border-radius-400);
   box-shadow: var(--echoes-box-shadow-xsmall);
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-width: 470px;
   width: 100%;
 `;

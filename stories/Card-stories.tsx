@@ -154,13 +154,10 @@ export const Sizes: Story = {
           <Card.Header
             description={`Description for the ${size} card`}
             hasDivider
-            size={size}
             title={`${size.charAt(0).toUpperCase() + size.slice(1)} Card`}
           />
           <Card.Body>
-            <Text as="div" className="sw-p-10" size={textSizeMap[size]}>
-              Content for the {size} card.
-            </Text>
+            <Text as="div">Content for the {size} card.</Text>
           </Card.Body>
         </Card>
       ))}
@@ -178,9 +175,7 @@ export const NoDescription: Story = {
       <Card {...args}>
         <Card.Header hasDivider title="Header Without Description" />
         <Card.Body>
-          <Text as="div" className="sw-p-10">
-            This card has a header with title but no description.
-          </Text>
+          <Text as="div">This card has a header with title but no description.</Text>
         </Card.Body>
       </Card>
     </div>
@@ -196,9 +191,7 @@ export const BodyOnly: Story = {
     <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', padding: '40px' }}>
       <Card {...args}>
         <Card.Body>
-          <Text as="div" className="sw-p-10">
-            This card has no header, only a body.
-          </Text>
+          <Text as="div">This card has no header, only a body.</Text>
         </Card.Body>
       </Card>
     </div>

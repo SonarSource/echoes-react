@@ -19,9 +19,10 @@
  */
 
 import styled from '@emotion/styled';
-import React from 'react';
-import { Heading, Text, TextSize } from '../typography';
-import { CardSize } from './CardRoot';
+import React, { useMemo } from 'react';
+import { Heading, Text } from '../typography';
+import { CardSize, useCardContext } from './CardRoot';
+import { CARD_HEADER_STYLES, HEADER_LEVEL_MAP, TEXT_SIZE_MAP } from './CardStyles';
 
 export interface CardHeaderProps {
   title: React.ReactNode;
@@ -32,76 +33,50 @@ export interface CardHeaderProps {
   size?: CardSize;
 }
 
-const paddingMap = {
-  [CardSize.Small]: {
-    vertical: 'var(--echoes-dimension-space-100)',
-    horizontal: 'var(--echoes-dimension-space-150)',
-  },
-  [CardSize.Medium]: {
-    vertical: 'var(--echoes-dimension-space-150)',
-    horizontal: 'var(--echoes-dimension-space-200)',
-  },
-  [CardSize.Large]: {
-    vertical: 'var(--echoes-dimension-space-200)',
-    horizontal: 'var(--echoes-dimension-space-300)',
-  },
-};
-
-const textSizeMap: Record<CardSize, TextSize> = {
-  [CardSize.Small]: TextSize.Small,
-  [CardSize.Medium]: TextSize.Default,
-  [CardSize.Large]: TextSize.Large,
-};
-
 export const CardHeader = React.forwardRef<HTMLDivElement, Readonly<CardHeaderProps>>(
-  (
-    { className, description, hasDivider = false, rightContent, size = CardSize.Medium, title },
-    ref,
-  ) => {
-    const headerLevel: Record<CardSize, 'h2' | 'h3' | 'h4'> = {
-      [CardSize.Small]: 'h4',
-      [CardSize.Medium]: 'h3',
-      [CardSize.Large]: 'h2',
-    };
+  ({ className, description, hasDivider = false, rightContent, title }, ref) => {
+    const size = useCardContext();
     return (
-      <StyledHeader className={className} hasDivider={hasDivider} ref={ref} size={size}>
-        <StyledContentContainer>
-          <StyledTextContainer>
-            <Heading as={headerLevel[size]}>{title}</Heading>
-            {description && <StyledDescription size={size}>{description}</StyledDescription>}
-          </StyledTextContainer>
-          {rightContent && <StyledRightContent>{rightContent}</StyledRightContent>}
-        </StyledContentContainer>
-      </StyledHeader>
+      <CardHeaderStyled
+        className={className}
+        css={useMemo(
+          () => ({
+            ...CARD_HEADER_STYLES[size],
+          }),
+          [size],
+        )}
+        hasDivider={hasDivider}
+        ref={ref}>
+        <CardHeaderContentStyled>
+          <CardHeaderTextStyled>
+            <Heading as={HEADER_LEVEL_MAP[size]}>{title}</Heading>
+            {description && <Text size={TEXT_SIZE_MAP[size]}>{description}</Text>}
+          </CardHeaderTextStyled>
+          {rightContent && <RightContentStyled>{rightContent}</RightContentStyled>}
+        </CardHeaderContentStyled>
+      </CardHeaderStyled>
     );
   },
 );
 
 CardHeader.displayName = 'CardHeader';
 
-const StyledHeader = styled.header<{ size: CardSize; hasDivider: boolean }>`
+const CardHeaderStyled = styled.header<{ hasDivider: boolean }>`
   ${(props) =>
-    props.hasDivider ? `border-bottom: 1px solid var(--echoes-color-border-weak);` : ''}
-
-  padding: ${(props) => `${paddingMap[props.size].vertical} ${paddingMap[props.size].horizontal}`};
+    props.hasDivider
+      ? `border-bottom: var(--echoes-border-width-default) solid var(--echoes-color-border-weak);`
+      : ''}
 `;
 
-const StyledContentContainer = styled.div`
+const CardHeaderContentStyled = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
 `;
 
-const StyledTextContainer = styled.div`
+const CardHeaderTextStyled = styled.div`
   flex: 1;
 `;
 
-const StyledDescription = styled(({ size, ...props }: { size: CardSize; [key: string]: any }) => (
-  <Text size={textSizeMap[size]} {...props} />
-))<{ size: CardSize }>`
-  color: var(--echoes-color-text-subdued);
-`;
-
-const StyledRightContent = styled.div`
+const RightContentStyled = styled.div`
   display: flex;
 `;

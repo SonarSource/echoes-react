@@ -20,7 +20,8 @@
 
 import styled from '@emotion/styled';
 import React from 'react';
-import { CardSize } from './CardRoot';
+import { CardSize, useCardContext } from './CardRoot';
+import { BODY_PADDING_MAP } from './CardStyles';
 
 export interface CardBodyProps {
   children: React.ReactNode;
@@ -29,29 +30,23 @@ export interface CardBodyProps {
   size?: CardSize;
 }
 
-const paddingMap = {
-  [CardSize.Small]: 'var(--echoes-dimension-space-150)',
-  [CardSize.Medium]: 'var(--echoes-dimension-space-200)',
-  [CardSize.Large]: 'var(--echoes-dimension-space-300)',
-};
-
 export const CardBody = React.forwardRef<HTMLDivElement, Readonly<CardBodyProps>>(
-  ({ children, className, insetContent = false, size = CardSize.Medium }, ref) => {
+  ({ children, className, insetContent = false }, ref) => {
+    const size = useCardContext();
     return (
-      <StyledBody className={className} insetContent={insetContent} ref={ref} size={size}>
+      <CardBodyStyled className={className} insetContent={insetContent} ref={ref} size={size}>
         {children}
-      </StyledBody>
+      </CardBodyStyled>
     );
   },
 );
 
 CardBody.displayName = 'CardBody';
 
-const StyledBody = styled.div<{ size: CardSize; insetContent: boolean }>`
+const CardBodyStyled = styled.div<{ size: CardSize; insetContent: boolean }>`
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
+  padding: ${(props) => (props.insetContent ? '0' : BODY_PADDING_MAP[props.size])};
   width: 100%;
-  box-sizing: border-box;
-
-  padding: ${(props) => (props.insetContent ? '0' : paddingMap[props.size])};
 `;
