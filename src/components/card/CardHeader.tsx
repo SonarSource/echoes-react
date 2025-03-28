@@ -23,6 +23,7 @@ import React, { useMemo } from 'react';
 import { Heading, Text, TextSize } from '../typography';
 import { useCardContext } from './CardRoot';
 import { CARD_HEADER_SIZE_STYLES, CardHeaderStyled, CardSize } from './CardStyles';
+import { Divider } from '../divider';
 
 export interface CardHeaderProps {
   title: React.ReactNode;
@@ -57,24 +58,26 @@ export const CardHeader = React.forwardRef<HTMLDivElement, Readonly<CardHeaderPr
     const sizeConfig = CARD_SIZE_CONFIG[size];
 
     return (
-      <CardHeaderStyled
-        className={className}
-        css={useMemo(
-          () => ({
-            ...sizeConfig.styles,
-          }),
-          [sizeConfig.styles],
-        )}
-        hasDivider={hasDivider}
-        ref={ref}>
-        <CardHeaderContentStyled>
-          <CardHeaderTextStyled>
-            <Heading as={sizeConfig.headingLevel}>{title}</Heading>
-            {description && <Text size={sizeConfig.textSize}>{description}</Text>}
-          </CardHeaderTextStyled>
-          {rightContent && <RightContentStyled>{rightContent}</RightContentStyled>}
-        </CardHeaderContentStyled>
-      </CardHeaderStyled>
+      <>
+        <CardHeaderStyled
+          className={className}
+          css={useMemo(
+            () => ({
+              ...sizeConfig.styles,
+            }),
+            [sizeConfig.styles],
+          )}
+          ref={ref}>
+          <CardHeaderContentStyled>
+            <CardHeaderTextStyled>
+              <Heading as={sizeConfig.headingLevel}>{title}</Heading>
+              {description && <Text size={sizeConfig.textSize}>{description}</Text>}
+            </CardHeaderTextStyled>
+            {rightContent && <RightContentStyled>{rightContent}</RightContentStyled>}
+          </CardHeaderContentStyled>
+        </CardHeaderStyled>
+        {hasDivider && <Divider />}
+      </>
     );
   },
 );

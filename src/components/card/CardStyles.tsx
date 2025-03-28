@@ -27,9 +27,11 @@ export enum CardSize {
 }
 
 export const CardStyled = styled.div`
+  background-color: var(--echoes-color-background-default);
   border: var(--echoes-border-width-default) solid var(--echoes-color-border-weak);
   border-radius: var(--echoes-border-radius-400);
   box-shadow: var(--echoes-box-shadow-xsmall);
+
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -38,13 +40,9 @@ export const CardStyled = styled.div`
   width: 100%;
 `;
 
-export const CardHeaderStyled = styled.header<{ hasDivider: boolean }>`
+export const CardHeaderStyled = styled.header`
   min-height: var(--card-header-min-height);
   padding: var(--card-header-padding);
-  ${(props) =>
-    props.hasDivider
-      ? `border-bottom: var(--echoes-border-width-default) solid var(--echoes-color-border-weak);`
-      : ''}
 `;
 
 export const CardBodyStyled = styled.div<{ size: CardSize; insetContent: boolean }>`
