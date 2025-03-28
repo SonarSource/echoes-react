@@ -29,7 +29,6 @@ import {
   LinkStandalone,
   RatingBadge,
   Text,
-  TextSize,
   Tooltip,
 } from '../src';
 import { basicWrapperDecorator } from './helpers/BasicWrapper';
@@ -137,12 +136,6 @@ export const WithRightContent: Story = {
       </Card>
     </div>
   ),
-};
-
-const textSizeMap = {
-  [CardSize.Small]: TextSize.Small,
-  [CardSize.Medium]: TextSize.Default,
-  [CardSize.Large]: TextSize.Large,
 };
 
 // Showcase different sizes
