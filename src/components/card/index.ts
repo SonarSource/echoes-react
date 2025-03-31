@@ -22,7 +22,7 @@ import { CardBody } from './CardBody';
 import { CardHeader } from './CardHeader';
 import { CardRoot } from './CardRoot';
 
-export { CardSize } from './CardTypes';
+export { CardSize } from './CardStyles';
 
 /**
  * {@link CardRoot | Card} is a component for displaying content in a contained, styled container.

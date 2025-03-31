@@ -53,7 +53,7 @@ const meta: Meta<typeof Card> = {
 export default meta;
 type Story = StoryObj<typeof Card>;
 
-const BodyContainer = styled.div`
+const CardBodyStyled = styled(Card.Body)`
   display: flex;
   align-items: center;
 `;
@@ -81,13 +81,11 @@ export const Default: Story = {
           rightContent={<IconCheckCircle color="echoes-color-icon-success" />}
           title="Card Title"
         />
-        <Card.Body>
-          <BodyContainer>
-            <Text as="div" className="sw-p-10">
-              This is the content of the card.
-            </Text>
-          </BodyContainer>
-        </Card.Body>
+        <CardBodyStyled>
+          <Text as="div" className="sw-p-10">
+            This is the content of the card.
+          </Text>
+        </CardBodyStyled>
       </Card>
     </div>
   ),
@@ -126,38 +124,36 @@ export const WithRightContent: Story = {
             </div>
           }
         />
-        <Card.Body>
-          <BodyContainer>
-            <div
-              style={{
-                display: 'flex',
-                gap: '2rem',
-                width: '100%',
-              }}>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <RatingBadge rating="B" size="md" />
-                  <strong>0</strong>
-                </div>
-                <Label style={{ fontSize: '0.875rem', marginTop: '8px' }}>Security</Label>
+        <CardBodyStyled>
+          <div
+            style={{
+              display: 'flex',
+              gap: '2rem',
+              width: '100%',
+            }}>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <RatingBadge rating="B" size="md" />
+                <strong>0</strong>
               </div>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <RatingBadge rating="C" size="md" />
-                  <strong>1</strong>
-                </div>
-                <Label style={{ fontSize: '0.875rem', marginTop: '8px' }}>Reliability</Label>
-              </div>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <RatingBadge rating="A" size="md" />
-                  <strong>100%</strong>
-                </div>
-                <Label style={{ fontSize: '0.875rem', marginTop: '8px' }}>Maintainability</Label>
-              </div>
+              <Label style={{ fontSize: '0.875rem', marginTop: '8px' }}>Security</Label>
             </div>
-          </BodyContainer>
-        </Card.Body>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <RatingBadge rating="C" size="md" />
+                <strong>1</strong>
+              </div>
+              <Label style={{ fontSize: '0.875rem', marginTop: '8px' }}>Reliability</Label>
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <RatingBadge rating="A" size="md" />
+                <strong>100%</strong>
+              </div>
+              <Label style={{ fontSize: '0.875rem', marginTop: '8px' }}>Maintainability</Label>
+            </div>
+          </div>
+        </CardBodyStyled>
       </Card>
     </div>
   ),
@@ -174,11 +170,9 @@ export const Sizes: Story = {
             rightContent="some right content"
             title={`${size.charAt(0).toUpperCase() + size.slice(1)} Card`}
           />
-          <Card.Body>
-            <BodyContainer>
-              <Text as="div">Content for the {size} card.</Text>
-            </BodyContainer>
-          </Card.Body>
+          <CardBodyStyled>
+            <Text as="div">Content for the {size} card.</Text>
+          </CardBodyStyled>
         </Card>
       ))}
     </div>
@@ -193,11 +187,9 @@ export const NoDescription: Story = {
     <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', padding: '40px' }}>
       <Card {...args}>
         <Card.Header hasDivider title="Header Without Description" />
-        <Card.Body>
-          <BodyContainer>
-            <Text as="div">This card has a header with title but no description.</Text>
-          </BodyContainer>
-        </Card.Body>
+        <CardBodyStyled>
+          <Text as="div">This card has a header with title but no description.</Text>
+        </CardBodyStyled>
       </Card>
     </div>
   ),
@@ -210,11 +202,9 @@ export const BodyOnly: Story = {
   render: (args) => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', padding: '40px' }}>
       <Card {...args}>
-        <Card.Body>
-          <BodyContainer>
-            <Text as="div">This card has no header, only a body.</Text>
-          </BodyContainer>
-        </Card.Body>
+        <CardBodyStyled>
+          <Text as="div">This card has no header, only a body.</Text>
+        </CardBodyStyled>
       </Card>
     </div>
   ),
@@ -231,14 +221,14 @@ export const NoDivider: Story = {
           description="This card has a title and description but no divider between header and body"
           title="Card Without Divider"
         />
-        <Card.Body insetContent>
-          <div style={{ padding: '0 16px' }}>
+        <CardBodyStyled>
+          <div style={{ display: 'flex', alignItems: 'center' }}>
             <Text as="div">
               Without a divider, the header and body content flow together visually. This works well
               for simpler cards where visual separation isnt needed.
             </Text>
           </div>
-        </Card.Body>
+        </CardBodyStyled>
       </Card>
     </div>
   ),

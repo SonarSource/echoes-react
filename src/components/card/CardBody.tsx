@@ -19,7 +19,7 @@
  */
 
 import React, { useMemo } from 'react';
-import { useCardContext } from './CardRoot';
+import { useCardSize } from './CardRoot';
 import { CARD_SIZE_STYLES, CardBodyStyled } from './CardStyles';
 
 export interface CardBodyProps {
@@ -30,7 +30,7 @@ export interface CardBodyProps {
 
 export const CardBody = React.forwardRef<HTMLDivElement, Readonly<CardBodyProps>>(
   ({ children, className, insetContent = false }, ref) => {
-    const size = useCardContext();
+    const size = useCardSize();
 
     return (
       <CardBodyStyled

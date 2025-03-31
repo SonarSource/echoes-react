@@ -24,7 +24,7 @@ import { CardRoot } from '../CardRoot';
 import { CardHeader } from '../CardHeader';
 import { CardBody } from '../CardBody';
 import { render } from '~common/helpers/test-utils';
-import { CardSize } from '../CardTypes';
+import { CardSize } from '../CardStyles';
 
 describe('Card components', () => {
   describe('CardRoot', () => {

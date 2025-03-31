@@ -21,10 +21,9 @@
 import styled from '@emotion/styled';
 import React, { useMemo } from 'react';
 import { Heading } from '../typography';
-import { useCardContext } from './CardRoot';
-import { CARD_HEADER_SIZE_STYLES, CardHeaderStyled } from './CardStyles';
+import { useCardSize } from './CardRoot';
+import { CARD_HEADER_SIZE_STYLES, CardHeaderStyled, CardSize } from './CardStyles';
 import { Divider } from '../divider';
-import { CardSize } from './CardTypes';
 
 export interface CardHeaderProps {
   title: React.ReactNode;
@@ -51,7 +50,7 @@ const CARD_SIZE_CONFIG = {
 
 export const CardHeader = React.forwardRef<HTMLDivElement, Readonly<CardHeaderProps>>(
   ({ className, description, hasDivider = false, rightContent, title }, ref) => {
-    const size = useCardContext();
+    const size = useCardSize();
 
     const sizeConfig = CARD_SIZE_CONFIG[size];
 
@@ -71,9 +70,11 @@ export const CardHeader = React.forwardRef<HTMLDivElement, Readonly<CardHeaderPr
               <Heading as={sizeConfig.headingLevel}>{title}</Heading>
               {rightContent && <RightContentStyled>{rightContent}</RightContentStyled>}
             </CardHeaderTextStyled>
+
             {description && <DescriptionStyled>{description}</DescriptionStyled>}
           </CardHeaderContentStyled>
         </CardHeaderStyled>
+
         {hasDivider && <Divider />}
       </>
     );
@@ -85,12 +86,14 @@ CardHeader.displayName = 'CardHeader';
 const CardHeaderContentStyled = styled.div`
   display: flex;
   flex-direction: column;
+  width: 100%;
 `;
 
 const CardHeaderTextStyled = styled.div`
   align-items: center;
   display: flex;
   justify-content: space-between;
+  width: 100%;
 `;
 
 const RightContentStyled = styled.div`
