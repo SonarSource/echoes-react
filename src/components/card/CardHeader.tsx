@@ -22,8 +22,9 @@ import styled from '@emotion/styled';
 import React, { useMemo } from 'react';
 import { Heading } from '../typography';
 import { useCardSize } from './CardRoot';
-import { CARD_HEADER_SIZE_STYLES, CardHeaderStyled, CardSize } from './CardStyles';
+import { CARD_HEADER_SIZE_STYLES, CardHeaderStyled } from './CardStyles';
 import { Divider } from '../divider';
+import { CardSize } from './CardSize';
 
 export interface CardHeaderProps {
   title: React.ReactNode;

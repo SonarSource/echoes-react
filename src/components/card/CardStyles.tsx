@@ -19,12 +19,7 @@
  */
 
 import styled from '@emotion/styled';
-
-export enum CardSize {
-  Small = 'small',
-  Medium = 'medium',
-  Large = 'large',
-}
+import { CardSize } from './CardSize';
 
 export const CardStyled = styled.div`
   background-color: var(--echoes-color-background-default);
