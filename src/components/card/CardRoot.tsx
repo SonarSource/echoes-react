@@ -18,28 +18,30 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-export * from './badges';
-export * from './breadcrumbs';
-export * from './buttons';
-export * from './card';
-export * from './checkbox';
-export * from './checkbox-group';
-export * from './divider';
-export * from './dropdown-menu';
-export * from './echoes-provider';
-export * from './form';
-export * from './global-navigation';
-export * from './icons';
-export * from './links';
-export * from './logos';
-export * from './messages';
-export * from './modals';
-export * from './popover';
-export * from './radio-button-group';
-export * from './select';
-export * from './spinner';
-export * from './text-area';
-export * from './text-input';
-export * from './toggle-tip';
-export * from './tooltip';
-export * from './typography';
+import React, { createContext } from 'react';
+import { CardStyled } from './CardStyles';
+import { CardSize } from './CardSize';
+
+export interface CardProps {
+  children: React.ReactNode;
+  className?: string;
+  size?: CardSize;
+}
+
+const CardContext = createContext<CardSize>(CardSize.Medium);
+
+export function useCardSize() {
+  return React.useContext(CardContext);
+}
+
+export const CardRoot = React.forwardRef<HTMLDivElement, Readonly<CardProps>>(
+  ({ children, className, size = CardSize.Medium }, ref) => (
+    <CardContext.Provider value={size}>
+      <CardStyled className={className} ref={ref}>
+        {children}
+      </CardStyled>
+    </CardContext.Provider>
+  ),
+);
+
+CardRoot.displayName = 'CardRoot';
