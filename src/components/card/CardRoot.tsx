@@ -35,9 +35,9 @@ export function useCardSize() {
 }
 
 export const CardRoot = React.forwardRef<HTMLDivElement, Readonly<CardProps>>(
-  ({ children, className, size = CardSize.Medium }, ref) => (
+  ({ children, className, size = CardSize.Medium, ...rest }, ref) => (
     <CardContext.Provider value={size}>
-      <CardStyled className={className} ref={ref}>
+      <CardStyled className={className} ref={ref} {...rest}>
         {children}
       </CardStyled>
     </CardContext.Provider>
