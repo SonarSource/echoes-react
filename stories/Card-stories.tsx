@@ -64,7 +64,7 @@ export const Default: Story = {
   },
   render: (args) => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', padding: '40px' }}>
-      <Card {...args}>
+      <Card data-key="my-data-key" {...args}>
         <Card.Header
           description={
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
@@ -97,7 +97,7 @@ export const WithRightContent: Story = {
   },
   render: (args) => (
     <div>
-      <Card {...args}>
+      <Card data-key="key2" {...args}>
         <Card.Header
           description={
             <span>
