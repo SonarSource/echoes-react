@@ -29,7 +29,7 @@ export const StyledNavMenuItem = styled(radixNavigationMenu.Item)<{ 'data-select
   border-bottom: var(--echoes-focus-border-width-default) solid transparent;
 
   &[data-selected='true'] {
-    border-bottom-color: var(--echoes-color-border-accent);
+    border-bottom-color: var(--echoes-color-border-accent-default);
   }
 `;
 StyledNavMenuItem.displayName = 'StyledNavMenuItem';

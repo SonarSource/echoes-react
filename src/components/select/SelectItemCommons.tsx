@@ -167,7 +167,7 @@ const SelectItemStatusRadio = styled.div`
   border-radius: var(--echoes-border-radius-full);
 
   &[data-selected] {
-    border-color: var(--echoes-color-border-accent);
+    border-color: var(--echoes-color-border-accent-default);
     background-color: var(--echoes-color-background-accent-default);
 
     &::after {
@@ -178,7 +178,7 @@ const SelectItemStatusRadio = styled.div`
       width: 100%;
 
       background-color: var(--echoes-color-icon-on-color);
-      border: 0.25rem solid var(--echoes-color-border-accent);
+      border: 0.25rem solid var(--echoes-color-border-accent-default);
       border-radius: var(--echoes-border-radius-full);
     }
   }
