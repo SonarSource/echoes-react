@@ -66,10 +66,10 @@ export const InputStyled = styled.input`
     background-color: var(--echoes-form-control-colors-background-hover);
   }
   &[data-valid] {
-    border-color: var(--echoes-color-border-success);
+    border-color: var(--echoes-color-border-success-default);
   }
   &[data-error] {
-    border-color: var(--echoes-color-border-danger);
+    border-color: var(--echoes-color-border-danger-default);
   }
   &[data-prefix] {
     padding-left: calc(
