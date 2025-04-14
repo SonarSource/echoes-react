@@ -216,7 +216,7 @@ const Input = styled(RadioGroup.Item)`
   }
 
   &[data-error='true'] {
-    border: var(--echoes-border-width-default) solid var(--echoes-color-border-danger);
+    border: var(--echoes-border-width-default) solid var(--echoes-color-border-danger-default);
   }
 
   &[data-state='checked'] {

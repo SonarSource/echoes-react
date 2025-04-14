@@ -171,7 +171,7 @@ const CheckboxRoot = styled(RadixCheckbox.Root)`
     }
 
     &[data-error] {
-      border-color: var(--echoes-color-border-danger);
+      border-color: var(--echoes-color-border-danger-default);
     }
   }
 `;

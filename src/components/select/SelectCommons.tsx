@@ -281,7 +281,7 @@ export const SelectStyled = styled(MantineSelect)`
     }
 
     &[data-error] {
-      border-color: var(--echoes-color-border-danger);
+      border-color: var(--echoes-color-border-danger-default);
     }
 
     &:focus,
