@@ -18,12 +18,36 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-export { Badge, BadgeSize, BadgeVariety } from './Badge';
-export { RatingBadge, RatingBadgeRating, RatingBadgeSize } from './RatingBadge';
-export { RatingBadgeButton } from './RatingBadgeButton';
-export { RatingBadgeLink } from './RatingBadgeLink';
+import { render, screen } from '@testing-library/react';
+import { Badge } from '../Badge';
 
-export type { BadgeProps } from './Badge';
-export type { RatingBadgeProps } from './RatingBadge';
-export type { RatingBadgeButtonProps } from './RatingBadgeButton';
-export type { RatingBadgeLinkProps } from './RatingBadgeLink';
+describe('Badge', () => {
+  it('renders as expected', () => {
+    render(
+      <Badge data-testid="badge" variety="info">
+        badger
+      </Badge>,
+    );
+
+    expect(screen.getByText('badger')).toBeInTheDocument();
+  });
+
+  it('accepts custom ariaLabel and className props', () => {
+    render(
+      <Badge
+        ariaLabel="custom label"
+        className="custom class"
+        isHighContrast
+        size="medium"
+        variety="danger">
+        watch out!
+      </Badge>,
+    );
+
+    const badge = screen.getByText('watch out!');
+
+    expect(badge).toBeInTheDocument();
+    expect(badge).toHaveAttribute('aria-label', 'custom label');
+    expect(badge).toHaveClass('custom class');
+  });
+});
