@@ -18,14 +18,13 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-export { Badge, BadgeSize, BadgeVariety } from './Badge';
-export { BadgeCounter } from './BadgeCounter';
-export { RatingBadge, RatingBadgeRating, RatingBadgeSize } from './RatingBadge';
-export { RatingBadgeButton } from './RatingBadgeButton';
-export { RatingBadgeLink } from './RatingBadgeLink';
+import { render, screen } from '@testing-library/react';
+import { BadgeCounter } from '../BadgeCounter';
 
-export type { BadgeProps } from './Badge';
-export type { BadgeCounterProps } from './BadgeCounter';
-export type { RatingBadgeProps } from './RatingBadge';
-export type { RatingBadgeButtonProps } from './RatingBadgeButton';
-export type { RatingBadgeLinkProps } from './RatingBadgeLink';
+describe('RatingBadge', () => {
+  it('renders as expected', () => {
+    render(<BadgeCounter value={7} />);
+
+    expect(screen.getByText('7')).toBeInTheDocument();
+  });
+});

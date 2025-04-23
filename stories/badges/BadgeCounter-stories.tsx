@@ -18,14 +18,33 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-export { Badge, BadgeSize, BadgeVariety } from './Badge';
-export { BadgeCounter } from './BadgeCounter';
-export { RatingBadge, RatingBadgeRating, RatingBadgeSize } from './RatingBadge';
-export { RatingBadgeButton } from './RatingBadgeButton';
-export { RatingBadgeLink } from './RatingBadgeLink';
+import type { Meta, StoryObj } from '@storybook/react';
+import { BadgeCounter } from '../../src';
+import { BasicWrapper } from '../helpers/BasicWrapper';
 
-export type { BadgeProps } from './Badge';
-export type { BadgeCounterProps } from './BadgeCounter';
-export type { RatingBadgeProps } from './RatingBadge';
-export type { RatingBadgeButtonProps } from './RatingBadgeButton';
-export type { RatingBadgeLinkProps } from './RatingBadgeLink';
+const meta: Meta<typeof BadgeCounter> = {
+  component: BadgeCounter,
+
+  parameters: {
+    controls: { exclude: ['className'] },
+  },
+
+  title: 'Echoes/Badges/BadgeCounter',
+};
+
+export default meta;
+
+type Story = StoryObj<typeof BadgeCounter>;
+
+export const Default: Story = {
+  args: {
+    value: 42,
+  },
+  render: (args) => (
+    <BasicWrapper>
+      <span>
+        <BadgeCounter {...args} />
+      </span>
+    </BasicWrapper>
+  ),
+};
