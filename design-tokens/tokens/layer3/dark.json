@@ -475,7 +475,7 @@
           }
         },
         "borders": {
-          "critical": {
+          "blocker": {
             "default": {
               "value": "{echoes.color.red.600}",
               "type": "color",
@@ -490,7 +490,7 @@
               }
             }
           },
-          "blocker": {
+          "critical": {
             "default": {
               "value": "{echoes.color.red.400}",
               "type": "color",
