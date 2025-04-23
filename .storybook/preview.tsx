@@ -203,7 +203,8 @@ const globalStyles = css`
     src: url('/fonts/Ubuntu/UbuntuMono-BoldItalic.woff2') format('woff2');
   }
 
-  body {
+  body,
+  .docs-story {
     background-color: var(--echoes-color-background-default);
   }
 
