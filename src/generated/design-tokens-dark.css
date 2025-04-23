@@ -177,8 +177,8 @@ html[data-echoes-theme='dark'], [data-echoes-theme='dark'] {
   --echoes-severity-badge-colors-foreground-minor-icon-default: rgb(252,233,163);
   --echoes-severity-badge-colors-foreground-info-text-default: rgb(110,185,228);
   --echoes-severity-badge-colors-foreground-info-icon-default: rgb(143,202,234);
-  --echoes-severity-badge-colors-borders-critical-default: lch(48.8 83 38.3 / 0.6);
-  --echoes-severity-badge-colors-borders-blocker-default: lch(64.6 62.2 31.6 / 0.4);
+  --echoes-severity-badge-colors-borders-blocker-default: lch(48.8 83 38.3 / 0.6);
+  --echoes-severity-badge-colors-borders-critical-default: lch(64.6 62.2 31.6 / 0.4);
   --echoes-severity-badge-colors-borders-major-default: lch(64.8 83.7 51.7 / 0.4);
   --echoes-severity-badge-colors-borders-minor-default: lch(88.8 52.1 87.9 / 0.4);
   --echoes-severity-badge-colors-borders-info-default: lch(78.1 26.1 238 / 0.4);
