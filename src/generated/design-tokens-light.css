@@ -177,8 +177,8 @@
   --echoes-severity-badge-colors-foreground-minor-icon-default: rgb(174,122,41);
   --echoes-severity-badge-colors-foreground-info-text-default: rgb(49,108,146);
   --echoes-severity-badge-colors-foreground-info-icon-default: rgb(58,127,173);
-  --echoes-severity-badge-colors-borders-critical-default: rgb(254,205,202);
-  --echoes-severity-badge-colors-borders-blocker-default: rgb(254,228,226);
+  --echoes-severity-badge-colors-borders-blocker-default: rgb(254,205,202);
+  --echoes-severity-badge-colors-borders-critical-default: rgb(254,228,226);
   --echoes-severity-badge-colors-borders-major-default: rgb(255,232,218);
   --echoes-severity-badge-colors-borders-minor-default: rgb(254,245,208);
   --echoes-severity-badge-colors-borders-info-default: rgb(233,244,251);

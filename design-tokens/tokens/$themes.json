@@ -162,11 +162,11 @@
       "echoes.severityBadge.colors.foreground.minor.icon.default": "5fb5d4cd16e77eb98cb173d4ad320b26276ac08e",
       "echoes.severityBadge.colors.foreground.info.text.default": "4c3ac20d8a58f092b8a2de59eb9e58f2e0828ed6",
       "echoes.severityBadge.colors.foreground.info.icon.default": "c1f5833b1b2c95cc3bd468b87b9d3f32750a4829",
-      "echoes.severityBadge.colors.borders.critical.default": "e86ad9415293ee42cf5eb5188deadc02f9171f68",
-      "echoes.severityBadge.colors.borders.blocker.default": "5fca0c9bdf1f3536e5cadac3592fda568d0fc841",
       "echoes.severityBadge.colors.borders.major.default": "8661f82e7865e7d184d30c6412824b42e65fd65b",
       "echoes.severityBadge.colors.borders.minor.default": "88eb712a5667afbb22809b7b1655cf876482f0e1",
-      "echoes.severityBadge.colors.borders.info.default": "251e43ebc8197db02aeff43ecc7a0073e16ea5fa"
+      "echoes.severityBadge.colors.borders.info.default": "251e43ebc8197db02aeff43ecc7a0073e16ea5fa",
+      "echoes.severityBadge.colors.borders.critical.default": "e86ad9415293ee42cf5eb5188deadc02f9171f68",
+      "echoes.severityBadge.colors.borders.blocker.default": "5fca0c9bdf1f3536e5cadac3592fda568d0fc841"
     },
     "group": "Themes"
   },
@@ -333,11 +333,11 @@
       "echoes.severityBadge.colors.foreground.minor.icon.default": "5fb5d4cd16e77eb98cb173d4ad320b26276ac08e",
       "echoes.severityBadge.colors.foreground.info.text.default": "4c3ac20d8a58f092b8a2de59eb9e58f2e0828ed6",
       "echoes.severityBadge.colors.foreground.info.icon.default": "c1f5833b1b2c95cc3bd468b87b9d3f32750a4829",
-      "echoes.severityBadge.colors.borders.critical.default": "e86ad9415293ee42cf5eb5188deadc02f9171f68",
-      "echoes.severityBadge.colors.borders.blocker.default": "5fca0c9bdf1f3536e5cadac3592fda568d0fc841",
       "echoes.severityBadge.colors.borders.major.default": "8661f82e7865e7d184d30c6412824b42e65fd65b",
       "echoes.severityBadge.colors.borders.minor.default": "88eb712a5667afbb22809b7b1655cf876482f0e1",
-      "echoes.severityBadge.colors.borders.info.default": "251e43ebc8197db02aeff43ecc7a0073e16ea5fa"
+      "echoes.severityBadge.colors.borders.info.default": "251e43ebc8197db02aeff43ecc7a0073e16ea5fa",
+      "echoes.severityBadge.colors.borders.critical.default": "e86ad9415293ee42cf5eb5188deadc02f9171f68",
+      "echoes.severityBadge.colors.borders.blocker.default": "5fca0c9bdf1f3536e5cadac3592fda568d0fc841"
     },
     "group": "Themes"
   },

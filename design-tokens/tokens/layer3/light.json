@@ -385,13 +385,13 @@
           }
         },
         "borders": {
-          "critical": {
+          "blocker": {
             "default": {
               "value": "{echoes.color.red.200}",
               "type": "color"
             }
           },
-          "blocker": {
+          "critical": {
             "default": {
               "value": "{echoes.color.red.100}",
               "type": "color"
