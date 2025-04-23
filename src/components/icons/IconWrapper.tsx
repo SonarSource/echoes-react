@@ -73,4 +73,4 @@ IconMaterialWrapper.displayName = 'IconMaterialWrapper';
 export const IconCustomWrapper = styled(IconWrapper)<IconBaseProps & IconProps>`
   font-family: 'Echoes';
 `;
-IconMaterialWrapper.displayName = 'IconCustomWrapper';
+IconCustomWrapper.displayName = 'IconCustomWrapper';

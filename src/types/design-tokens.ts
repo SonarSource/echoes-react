@@ -27,7 +27,11 @@ export type DesignTokensColors = {
 }[DesignTokens];
 
 export type DesignTokensColorsIcons = {
-  [K in DesignTokens]: K extends `echoes-color-icon-${string}` ? K : never;
+  [K in DesignTokens]: K extends
+    | `echoes-color-icon-${string}`
+    | `echoes-severity-badge-colors-foreground-${string}-icon-${string}`
+    ? K
+    : never;
 }[DesignTokens];
 
 export type DesignTokensColorsText = {
