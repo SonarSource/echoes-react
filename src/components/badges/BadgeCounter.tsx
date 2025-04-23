@@ -18,14 +18,34 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-export { Badge, BadgeSize, BadgeVariety } from './Badge';
-export { BadgeCounter } from './BadgeCounter';
-export { RatingBadge, RatingBadgeRating, RatingBadgeSize } from './RatingBadge';
-export { RatingBadgeButton } from './RatingBadgeButton';
-export { RatingBadgeLink } from './RatingBadgeLink';
+import styled from '@emotion/styled';
+import { forwardRef } from 'react';
 
-export type { BadgeProps } from './Badge';
-export type { BadgeCounterProps } from './BadgeCounter';
-export type { RatingBadgeProps } from './RatingBadge';
-export type { RatingBadgeButtonProps } from './RatingBadgeButton';
-export type { RatingBadgeLinkProps } from './RatingBadgeLink';
+export interface BadgeCounterProps {
+  className?: string;
+  value: number;
+}
+
+export const BadgeCounter = forwardRef<HTMLSpanElement, BadgeCounterProps>(
+  ({ value, ...otherProps }, ref) => {
+    return (
+      <BadgeCounterStyled {...otherProps} ref={ref}>
+        {value}
+      </BadgeCounterStyled>
+    );
+  },
+);
+
+BadgeCounter.displayName = 'BadgeCounter';
+
+const BadgeCounterStyled = styled.span`
+  display: inline-block;
+
+  border-radius: var(--echoes-border-radius-full);
+  padding: var(--echoes-dimension-space-0) var(--echoes-dimension-space-50);
+
+  font: var(--echoes-typography-text-small-semi-bold);
+  color: var(--echoes-color-text-default);
+
+  background-color: var(--echoes-color-background-neutral-bolder);
+`;
