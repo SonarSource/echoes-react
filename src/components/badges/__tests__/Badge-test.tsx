@@ -19,6 +19,7 @@
  */
 
 import { render, screen } from '@testing-library/react';
+import { IconStar } from '../../icons';
 import { Badge } from '../Badge';
 
 describe('Badge', () => {
@@ -35,9 +36,11 @@ describe('Badge', () => {
   it('accepts custom ariaLabel and className props', () => {
     render(
       <Badge
+        IconLeft={IconStar}
         ariaLabel="custom label"
         className="custom class"
         isHighContrast
+        isIconFilled
         size="medium"
         variety="danger">
         watch out!

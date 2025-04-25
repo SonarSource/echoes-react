@@ -20,13 +20,23 @@
 
 import type { Meta, StoryObj } from '@storybook/react';
 import { Badge } from '../../src';
+import { iconsComponentsArgType } from '../helpers/arg-types';
 import { BasicWrapper } from '../helpers/BasicWrapper';
+
+const { mapping, options = [] } = iconsComponentsArgType;
 
 const meta: Meta<typeof Badge> = {
   component: Badge,
 
   parameters: {
     controls: { exclude: ['className'] },
+  },
+
+  argTypes: {
+    IconLeft: {
+      mapping: { ...mapping, none: undefined },
+      options: [...options, 'none'],
+    },
   },
 
   title: 'Echoes/Badges/Badge',

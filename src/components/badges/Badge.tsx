@@ -20,6 +20,8 @@
 
 import styled from '@emotion/styled';
 import { forwardRef, PropsWithChildren, useMemo } from 'react';
+import { isDefined } from '~common/helpers/types';
+import { IconFilledProps } from '../icons/IconWrapper';
 
 export enum BadgeSize {
   Small = 'small',
@@ -36,18 +38,24 @@ export enum BadgeVariety {
 }
 
 export interface BadgeProps extends PropsWithChildren {
+  IconLeft?: React.ForwardRefExoticComponent<
+    IconFilledProps & React.RefAttributes<HTMLSpanElement>
+  >;
   ariaLabel?: string;
   className?: string;
   isHighContrast?: boolean;
+  isIconFilled?: boolean;
   size?: `${BadgeSize}`;
   variety: `${BadgeVariety}`;
 }
 
 export const Badge = forwardRef<HTMLSpanElement, BadgeProps>((props, ref) => {
   const {
+    IconLeft,
     ariaLabel,
     children,
     isHighContrast = false,
+    isIconFilled = false,
     size = BadgeSize.Small,
     variety,
     ...otherProps
@@ -67,6 +75,7 @@ export const Badge = forwardRef<HTMLSpanElement, BadgeProps>((props, ref) => {
         [isHighContrast, size, variety],
       )}
       ref={ref}>
+      {isDefined(IconLeft) && <IconLeft isFilled={isIconFilled} />}
       {children}
     </StyledBadge>
   );
@@ -75,6 +84,10 @@ export const Badge = forwardRef<HTMLSpanElement, BadgeProps>((props, ref) => {
 Badge.displayName = 'Badge';
 
 const StyledBadge = styled.span`
+  display: flex;
+  flex-direction: row;
+  gap: var(--echoes-dimension-space-50);
+
   box-sizing: border-box;
 
   color: var(--badge-color);
