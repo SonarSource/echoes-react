@@ -23,7 +23,7 @@ import { forwardRef } from 'react';
 
 export interface BadgeCounterProps {
   className?: string;
-  value: number;
+  value: number | string;
 }
 
 export const BadgeCounter = forwardRef<HTMLSpanElement, BadgeCounterProps>(
