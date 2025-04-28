@@ -40,6 +40,7 @@ BadgeCounter.displayName = 'BadgeCounter';
 
 const BadgeCounterStyled = styled.span`
   display: inline-block;
+  height: var(--echoes-line-height-10);
 
   border-radius: var(--echoes-border-radius-full);
   padding: var(--echoes-dimension-space-0) var(--echoes-dimension-space-50);
