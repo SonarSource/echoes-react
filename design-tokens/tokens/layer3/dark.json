@@ -220,7 +220,7 @@
                 }
               }
             },
-            "critical": {
+            "high": {
               "prefix": {
                 "default": {
                   "value": "{echoes.color.red.400}",
@@ -265,7 +265,7 @@
                 }
               }
             },
-            "major": {
+            "medium": {
               "prefix": {
                 "default": {
                   "value": "{echoes.color.orange.400}",
@@ -310,7 +310,7 @@
                 }
               }
             },
-            "minor": {
+            "low": {
               "prefix": {
                 "default": {
                   "value": "{echoes.color.yellow.300}",
@@ -327,7 +327,7 @@
                 }
               },
               "suffix": {
-                "defaul": {
+                "default": {
                   "value": "{echoes.color.yellow.300}",
                   "type": "color",
                   "$extensions": {
@@ -417,7 +417,7 @@
               }
             }
           },
-          "critical": {
+          "high": {
             "text": {
               "default": {
                 "value": "{echoes.color.red.100}",
@@ -431,7 +431,7 @@
               }
             }
           },
-          "major": {
+          "medium": {
             "text": {
               "default": {
                 "value": "{echoes.color.orange.75}",
@@ -445,7 +445,7 @@
               }
             }
           },
-          "minor": {
+          "low": {
             "text": {
               "default": {
                 "value": "{echoes.color.yellow.100}",
@@ -490,7 +490,7 @@
               }
             }
           },
-          "critical": {
+          "high": {
             "default": {
               "value": "{echoes.color.red.400}",
               "type": "color",
@@ -505,7 +505,7 @@
               }
             }
           },
-          "major": {
+          "medium": {
             "default": {
               "value": "{echoes.color.orange.400}",
               "type": "color",
@@ -520,7 +520,7 @@
               }
             }
           },
-          "minor": {
+          "low": {
             "default": {
               "value": "{echoes.color.yellow.300}",
               "type": "color",

@@ -21,12 +21,12 @@
 import { forwardRef } from 'react';
 import { IconCustomWrapper, IconProps } from './IconWrapper';
 
-export const IconSeverityCritical = forwardRef<HTMLSpanElement, IconProps>((props, ref) => {
+export const IconSeverityMedium = forwardRef<HTMLSpanElement, IconProps>((props, ref) => {
   // This is an icon from the "Echoes" custom font
   return (
     <IconCustomWrapper {...props} ref={ref}>
-      &#x34;
+      &#x32;
     </IconCustomWrapper>
   );
 });
-IconSeverityCritical.displayName = 'IconSeverityCritical';
+IconSeverityMedium.displayName = 'IconSeverityMedium';

@@ -202,7 +202,7 @@
                 }
               }
             },
-            "critical": {
+            "high": {
               "prefix": {
                 "default": {
                   "value": "{echoes.color.red.50}",
@@ -229,7 +229,7 @@
                 }
               }
             },
-            "major": {
+            "medium": {
               "prefix": {
                 "default": {
                   "value": "{echoes.color.orange.50}",
@@ -256,7 +256,7 @@
                 }
               }
             },
-            "minor": {
+            "low": {
               "prefix": {
                 "default": {
                   "value": "{echoes.color.yellow.50}",
@@ -264,7 +264,7 @@
                 }
               },
               "suffix": {
-                "defaul": {
+                "default": {
                   "value": "{echoes.color.yellow.100}",
                   "type": "color"
                 },
@@ -327,7 +327,7 @@
               }
             }
           },
-          "critical": {
+          "high": {
             "text": {
               "default": {
                 "value": "{echoes.color.red.700}",
@@ -341,7 +341,7 @@
               }
             }
           },
-          "major": {
+          "medium": {
             "text": {
               "default": {
                 "value": "{echoes.color.orange.800}",
@@ -355,7 +355,7 @@
               }
             }
           },
-          "minor": {
+          "low": {
             "text": {
               "default": {
                 "value": "{echoes.color.yellow.800}",
@@ -391,19 +391,19 @@
               "type": "color"
             }
           },
-          "critical": {
+          "high": {
             "default": {
               "value": "{echoes.color.red.100}",
               "type": "color"
             }
           },
-          "major": {
+          "medium": {
             "default": {
               "value": "{echoes.color.orange.75}",
               "type": "color"
             }
           },
-          "minor": {
+          "low": {
             "default": {
               "value": "{echoes.color.yellow.100}",
               "type": "color"
