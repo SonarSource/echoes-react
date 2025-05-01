@@ -526,19 +526,56 @@
                 "studio.tokens": {
                   "modify": {
                     "type": "alpha",
+                    "value": "0.3",
+                    "space": "lch"
+                  }
+                }
+              }
+            },
+            "hover": {
+              "value": "{echoes.color.purple.600}",
+              "type": "color",
+              "$extensions": {
+                "studio.tokens": {
+                  "modify": {
+                    "type": "alpha",
                     "value": "0.2",
                     "space": "lch"
                   }
                 }
               }
-            }
-          },
-          "default": {
-            "default": {
-              "value": "{echoes.color.purple.400}",
-              "type": "color"
+            },
+            "focus": {
+              "value": "{echoes.color.purple.600}",
+              "type": "color",
+              "$extensions": {
+                "studio.tokens": {
+                  "modify": {
+                    "type": "alpha",
+                    "value": "0.3",
+                    "space": "lch"
+                  }
+                }
+              }
+            },
+            "active": {
+              "value": "{echoes.color.purple.600}",
+              "type": "color",
+              "$extensions": {
+                "studio.tokens": {
+                  "modify": {
+                    "type": "alpha",
+                    "value": "0.1",
+                    "space": "lch"
+                  }
+                }
+              }
             }
           }
+        },
+        "emphasis-weak": {
+          "value": "{echoes.color.purple.400}",
+          "type": "color"
         }
       },
       "text": {

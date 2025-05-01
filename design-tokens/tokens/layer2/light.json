@@ -349,18 +349,28 @@
             }
           }
         },
-        "emphasis": {
-          "weak": {
-            "default": {
-              "value": "{echoes.color.purple.100}",
-              "type": "color"
-            }
-          },
+        "emphasis-weak": {
           "default": {
-            "default": {
-              "value": "{echoes.color.purple.700}",
-              "type": "color"
-            }
+            "value": "{echoes.color.purple.100}",
+            "type": "color"
+          },
+          "hover": {
+            "value": "{echoes.color.purple.200}",
+            "type": "color"
+          },
+          "focus": {
+            "value": "{echoes.color.purple.100}",
+            "type": "color"
+          },
+          "active": {
+            "value": "{echoes.color.purple.300}",
+            "type": "color"
+          }
+        },
+        "emphasis": {
+          "default": {
+            "value": "{echoes.color.purple.700}",
+            "type": "color"
           }
         }
       },

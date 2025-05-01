@@ -12,6 +12,10 @@
     "$figmaCollectionId": "VariableCollectionId:210:28",
     "$figmaModeId": "210:0",
     "$figmaVariableReferences": {
+      "echoes.color.background.neutral.default": "99ef247f30d09f29edd3b55734d289e54890bf5c",
+      "echoes.color.background.neutral.hover": "b7e2d9350ec651ee02517ad8b7edf0f54b0d904c",
+      "echoes.color.background.neutral.focus": "7b4c4f477fb4b9efdd2db16b60864d5f416c3665",
+      "echoes.color.background.neutral.active": "e6a98dfd12bb18d211d8773488eda25a9ff7fdcc",
       "echoes.color.background.neutral-bolder": "feab1848d5c7c80bd00b7539471e830230a2d909",
       "echoes.color.background.default": "cf8aef0f2ff46b230993a6124844df16d712fec3",
       "echoes.color.background.default-hover": "faadccb935188afbc377a1633ce958f3bab65b26",
@@ -48,6 +52,7 @@
       "echoes.color.background.danger-weak.active": "72f688334230598d58e92db284cb5f61c71ff5dc",
       "echoes.color.background.info.default": "c333538175a8bf373bd599ed3050ef64f41847eb",
       "echoes.color.background.info-weak.default": "20fbc1a12dd152947bd62840925b649652e58bde",
+      "echoes.color.background.info-weak.hover": "41ffe90e1c8bdc22da5111df17fbadef6bd75504",
       "echoes.color.background.info-weak.focus": "c4e2add9c7348965910e39dcd9eb59c36798ba95",
       "echoes.color.background.info-weak.active": "6b7f15de80d8f9be21b950c5e9479784b50999a5",
       "echoes.color.background.transparent": "ab45b3a59377393559ba58eb504c055f5a1b7ef8",
@@ -70,8 +75,6 @@
       "echoes.color.background.ghost.danger.active": "73068b407a3e6c2142591078e6690aa64ec4a79f",
       "echoes.color.background.ghost.danger.focus": "c1e1781c949bbf608852aacfae7427a857ec7029",
       "echoes.color.background.backDrop.default": "6e0160033bc9084c862370fa20b5f8c5646627b2",
-      "echoes.color.background.emphasis.weak.default": "fd893b0735050486cd0b20df11814ad48ff6756f",
-      "echoes.color.background.emphasis.default.default": "7da4a9e7bc8762c0fbc6196c2adbd66b8f96d091",
       "echoes.color.text.bold": "64a250f556f7e9e672373950814ccb3fc4dd0fd7",
       "echoes.color.text.default": "433ad741ec9d5c3f3281ee6740354fecf814ea06",
       "echoes.color.text.subdued": "eced94d663cc27c76b73a47b7e2528ed32be8c48",
@@ -174,8 +177,8 @@
       "echoes.severityBadge.colors.borders.medium.default": "8661f82e7865e7d184d30c6412824b42e65fd65b",
       "echoes.severityBadge.colors.borders.low.default": "88eb712a5667afbb22809b7b1655cf876482f0e1",
       "echoes.severityBadge.colors.borders.info.default": "251e43ebc8197db02aeff43ecc7a0073e16ea5fa",
-      "echoes.color.background.neutral.default": "99ef247f30d09f29edd3b55734d289e54890bf5c",
-      "echoes.color.background.info-weak.hover": "aba50fa3445eafee6021d17940cf5f17c7e2c79c"
+      "echoes.color.background.emphasis-weak.default": "fd893b0735050486cd0b20df11814ad48ff6756f",
+      "echoes.color.background.emphasis-weak": "7da4a9e7bc8762c0fbc6196c2adbd66b8f96d091"
     },
     "group": "Themes"
   },
@@ -192,6 +195,10 @@
     "$figmaCollectionId": "VariableCollectionId:210:28",
     "$figmaModeId": "210:1",
     "$figmaVariableReferences": {
+      "echoes.color.background.neutral.default": "99ef247f30d09f29edd3b55734d289e54890bf5c",
+      "echoes.color.background.neutral.focus": "7b4c4f477fb4b9efdd2db16b60864d5f416c3665",
+      "echoes.color.background.neutral.hover": "b7e2d9350ec651ee02517ad8b7edf0f54b0d904c",
+      "echoes.color.background.neutral.active": "e6a98dfd12bb18d211d8773488eda25a9ff7fdcc",
       "echoes.color.background.neutral-bolder": "feab1848d5c7c80bd00b7539471e830230a2d909",
       "echoes.color.background.default": "cf8aef0f2ff46b230993a6124844df16d712fec3",
       "echoes.color.background.default-hover": "faadccb935188afbc377a1633ce958f3bab65b26",
@@ -228,6 +235,7 @@
       "echoes.color.background.danger-weak.focus": "0da2b330d7e234374e2a74e3861640f003a8cc8a",
       "echoes.color.background.info.default": "c333538175a8bf373bd599ed3050ef64f41847eb",
       "echoes.color.background.info-weak.default": "20fbc1a12dd152947bd62840925b649652e58bde",
+      "echoes.color.background.info-weak.hover": "41ffe90e1c8bdc22da5111df17fbadef6bd75504",
       "echoes.color.background.info-weak.focus": "c4e2add9c7348965910e39dcd9eb59c36798ba95",
       "echoes.color.background.info-weak.active": "6b7f15de80d8f9be21b950c5e9479784b50999a5",
       "echoes.color.background.transparent": "ab45b3a59377393559ba58eb504c055f5a1b7ef8",
@@ -250,8 +258,6 @@
       "echoes.color.background.ghost.danger.active": "73068b407a3e6c2142591078e6690aa64ec4a79f",
       "echoes.color.background.ghost.danger.focus": "c1e1781c949bbf608852aacfae7427a857ec7029",
       "echoes.color.background.backDrop.default": "6e0160033bc9084c862370fa20b5f8c5646627b2",
-      "echoes.color.background.emphasis.weak.default": "fd893b0735050486cd0b20df11814ad48ff6756f",
-      "echoes.color.background.emphasis.default.default": "7da4a9e7bc8762c0fbc6196c2adbd66b8f96d091",
       "echoes.color.text.bold": "64a250f556f7e9e672373950814ccb3fc4dd0fd7",
       "echoes.color.text.default": "433ad741ec9d5c3f3281ee6740354fecf814ea06",
       "echoes.color.text.subdued": "eced94d663cc27c76b73a47b7e2528ed32be8c48",
@@ -354,8 +360,8 @@
       "echoes.severityBadge.colors.borders.medium.default": "8661f82e7865e7d184d30c6412824b42e65fd65b",
       "echoes.severityBadge.colors.borders.low.default": "88eb712a5667afbb22809b7b1655cf876482f0e1",
       "echoes.severityBadge.colors.borders.info.default": "251e43ebc8197db02aeff43ecc7a0073e16ea5fa",
-      "echoes.color.background.info-weak.hover": "c3880b6b511a551e5706f6c733940e448572780d",
-      "echoes.color.background.neutral.default": "99ef247f30d09f29edd3b55734d289e54890bf5c"
+      "echoes.color.background.emphasis-weak.default": "fd893b0735050486cd0b20df11814ad48ff6756f",
+      "echoes.color.background.emphasis-weak": "7da4a9e7bc8762c0fbc6196c2adbd66b8f96d091"
     },
     "group": "Themes"
   },
