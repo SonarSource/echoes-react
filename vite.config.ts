@@ -33,6 +33,7 @@ export default defineConfig({
       name: 'Echoes',
       formats: ['es'],
       fileName: `index`,
+      cssFileName: `style`,
     },
     outDir: 'dist',
     rollupOptions: {
