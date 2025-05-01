@@ -9,7 +9,16 @@
           },
           "hover": {
             "type": "color",
-            "value": "{echoes.color.grey.400}"
+            "value": "{echoes.color.grey.500}",
+            "$extensions": {
+              "studio.tokens": {
+                "modify": {
+                  "type": "alpha",
+                  "value": "0.8",
+                  "space": "lch"
+                }
+              }
+            }
           },
           "focus": {
             "type": "color",
@@ -17,7 +26,16 @@
           },
           "active": {
             "type": "color",
-            "value": "{echoes.color.grey.300}"
+            "value": "{echoes.color.grey.500}",
+            "$extensions": {
+              "studio.tokens": {
+                "modify": {
+                  "type": "alpha",
+                  "value": "0.7",
+                  "space": "lch"
+                }
+              }
+            }
           }
         },
         "neutral-bolder": {
