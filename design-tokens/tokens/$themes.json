@@ -174,8 +174,8 @@
       "echoes.severityBadge.colors.borders.medium.default": "8661f82e7865e7d184d30c6412824b42e65fd65b",
       "echoes.severityBadge.colors.borders.low.default": "88eb712a5667afbb22809b7b1655cf876482f0e1",
       "echoes.severityBadge.colors.borders.info.default": "251e43ebc8197db02aeff43ecc7a0073e16ea5fa",
-      "echoes.color.background.info-weak.default-copy": "aba50fa3445eafee6021d17940cf5f17c7e2c79c",
-      "echoes.color.background.neutral.default": "99ef247f30d09f29edd3b55734d289e54890bf5c"
+      "echoes.color.background.neutral.default": "99ef247f30d09f29edd3b55734d289e54890bf5c",
+      "echoes.color.background.info-weak.hover": "aba50fa3445eafee6021d17940cf5f17c7e2c79c"
     },
     "group": "Themes"
   },

@@ -221,6 +221,11 @@
             "value": "{echoes.color.blue.50}",
             "description": "Use for backgrounds that communicate information to the user, with less visual highlight"
           },
+          "hover": {
+            "type": "color",
+            "value": "{echoes.color.blue.100}",
+            "description": "Use for backgrounds that communicate information to the user, with less visual highlight"
+          },
           "focus": {
             "type": "color",
             "value": "{echoes.color.blue.50}",
@@ -229,11 +234,6 @@
           "active": {
             "type": "color",
             "value": "{echoes.color.blue.200}",
-            "description": "Use for backgrounds that communicate information to the user, with less visual highlight"
-          },
-          "default-copy": {
-            "type": "color",
-            "value": "{echoes.color.blue.100}",
             "description": "Use for backgrounds that communicate information to the user, with less visual highlight"
           }
         },
