@@ -115,7 +115,16 @@
           },
           "hover": {
             "type": "color",
-            "value": "{echoes.color.yellow.600}",
+            "value": "{echoes.color.yellow.500}",
+            "$extensions": {
+              "studio.tokens": {
+                "modify": {
+                  "type": "darken",
+                  "value": "0.05",
+                  "space": "lch"
+                }
+              }
+            },
             "description": "Use for backgrounds that communicate warning or caution"
           },
           "focus": {
