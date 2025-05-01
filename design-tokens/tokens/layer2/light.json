@@ -95,8 +95,25 @@
             "type": "color",
             "value": "{echoes.color.yellow.500}",
             "description": "Use for backgrounds that communicate warning or caution"
+          }
+        },
+        "warning-weak": {
+          "default": {
+            "type": "color",
+            "value": "{echoes.color.yellow.50}",
+            "description": "Use for backgrounds that communicate warning or caution, with less visual highlight"
           },
-          "weak": {
+          "hover": {
+            "type": "color",
+            "value": "{echoes.color.yellow.100}",
+            "description": "Use for backgrounds that communicate warning or caution, with less visual highlight"
+          },
+          "active": {
+            "type": "color",
+            "value": "{echoes.color.yellow.200}",
+            "description": "Use for backgrounds that communicate warning or caution, with less visual highlight"
+          },
+          "focus": {
             "type": "color",
             "value": "{echoes.color.yellow.50}",
             "description": "Use for backgrounds that communicate warning or caution, with less visual highlight"
@@ -107,8 +124,25 @@
             "type": "color",
             "value": "{echoes.color.yellowGreen.700}",
             "description": "Use for backgrounds that communicate positive or success messages"
+          }
+        },
+        "success-weak": {
+          "default": {
+            "type": "color",
+            "value": "{echoes.color.yellowGreen.50}",
+            "description": "Use for backgrounds that communicate positive or success messages, with less visual highlight"
           },
-          "weak": {
+          "hover": {
+            "type": "color",
+            "value": "{echoes.color.yellowGreen.100}",
+            "description": "Use for backgrounds that communicate positive or success messages, with less visual highlight"
+          },
+          "active": {
+            "type": "color",
+            "value": "{echoes.color.yellowGreen.200}",
+            "description": "Use for backgrounds that communicate positive or success messages, with less visual highlight"
+          },
+          "focus": {
             "type": "color",
             "value": "{echoes.color.yellowGreen.50}",
             "description": "Use for backgrounds that communicate positive or success messages, with less visual highlight"
@@ -162,10 +196,27 @@
             "type": "color",
             "value": "{echoes.color.blue.800}",
             "description": "Use for backgrounds that communicate information to the user"
-          },
-          "weak": {
+          }
+        },
+        "info-weak": {
+          "default": {
             "type": "color",
             "value": "{echoes.color.blue.50}",
+            "description": "Use for backgrounds that communicate information to the user, with less visual highlight"
+          },
+          "focus": {
+            "type": "color",
+            "value": "{echoes.color.blue.50}",
+            "description": "Use for backgrounds that communicate information to the user, with less visual highlight"
+          },
+          "active": {
+            "type": "color",
+            "value": "{echoes.color.blue.200}",
+            "description": "Use for backgrounds that communicate information to the user, with less visual highlight"
+          },
+          "default-copy": {
+            "type": "color",
+            "value": "{echoes.color.blue.100}",
             "description": "Use for backgrounds that communicate information to the user, with less visual highlight"
           }
         },
