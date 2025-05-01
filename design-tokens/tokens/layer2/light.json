@@ -3,9 +3,26 @@
     "color": {
       "background": {
         "neutral": {
-          "type": "color",
-          "value": "{echoes.color.grey.50}",
-          "description": "Use it in components with neutral sentiment"
+          "default": {
+            "type": "color",
+            "value": "{echoes.color.grey.50}",
+            "description": "Use it in components with neutral sentiment"
+          },
+          "focus": {
+            "type": "color",
+            "value": "{echoes.color.grey.50}",
+            "description": "Use it in components with neutral sentiment"
+          },
+          "hover": {
+            "type": "color",
+            "value": "{echoes.color.grey.100}",
+            "description": "Use it in components with neutral sentiment"
+          },
+          "active": {
+            "type": "color",
+            "value": "{echoes.color.grey.200}",
+            "description": "Use it in components with neutral sentiment"
+          }
         },
         "neutral-bolder": {
           "type": "color",

@@ -12,7 +12,6 @@
     "$figmaCollectionId": "VariableCollectionId:210:28",
     "$figmaModeId": "210:0",
     "$figmaVariableReferences": {
-      "echoes.color.background.neutral": "99ef247f30d09f29edd3b55734d289e54890bf5c",
       "echoes.color.background.neutral-bolder": "feab1848d5c7c80bd00b7539471e830230a2d909",
       "echoes.color.background.default": "cf8aef0f2ff46b230993a6124844df16d712fec3",
       "echoes.color.background.default-hover": "faadccb935188afbc377a1633ce958f3bab65b26",
@@ -175,7 +174,8 @@
       "echoes.severityBadge.colors.borders.medium.default": "8661f82e7865e7d184d30c6412824b42e65fd65b",
       "echoes.severityBadge.colors.borders.low.default": "88eb712a5667afbb22809b7b1655cf876482f0e1",
       "echoes.severityBadge.colors.borders.info.default": "251e43ebc8197db02aeff43ecc7a0073e16ea5fa",
-      "echoes.color.background.info-weak.default-copy": "aba50fa3445eafee6021d17940cf5f17c7e2c79c"
+      "echoes.color.background.info-weak.default-copy": "aba50fa3445eafee6021d17940cf5f17c7e2c79c",
+      "echoes.color.background.neutral.default": "99ef247f30d09f29edd3b55734d289e54890bf5c"
     },
     "group": "Themes"
   },
@@ -192,7 +192,6 @@
     "$figmaCollectionId": "VariableCollectionId:210:28",
     "$figmaModeId": "210:1",
     "$figmaVariableReferences": {
-      "echoes.color.background.neutral": "99ef247f30d09f29edd3b55734d289e54890bf5c",
       "echoes.color.background.neutral-bolder": "feab1848d5c7c80bd00b7539471e830230a2d909",
       "echoes.color.background.default": "cf8aef0f2ff46b230993a6124844df16d712fec3",
       "echoes.color.background.default-hover": "faadccb935188afbc377a1633ce958f3bab65b26",
@@ -355,7 +354,8 @@
       "echoes.severityBadge.colors.borders.medium.default": "8661f82e7865e7d184d30c6412824b42e65fd65b",
       "echoes.severityBadge.colors.borders.low.default": "88eb712a5667afbb22809b7b1655cf876482f0e1",
       "echoes.severityBadge.colors.borders.info.default": "251e43ebc8197db02aeff43ecc7a0073e16ea5fa",
-      "echoes.color.background.info-weak.hover": "c3880b6b511a551e5706f6c733940e448572780d"
+      "echoes.color.background.info-weak.hover": "c3880b6b511a551e5706f6c733940e448572780d",
+      "echoes.color.background.neutral.default": "99ef247f30d09f29edd3b55734d289e54890bf5c"
     },
     "group": "Themes"
   },

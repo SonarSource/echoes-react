@@ -3,8 +3,22 @@
     "color": {
       "background": {
         "neutral": {
-          "type": "color",
-          "value": "{echoes.color.grey.500}"
+          "default": {
+            "type": "color",
+            "value": "{echoes.color.grey.500}"
+          },
+          "hover": {
+            "type": "color",
+            "value": "{echoes.color.grey.400}"
+          },
+          "focus": {
+            "type": "color",
+            "value": "{echoes.color.grey.500}"
+          },
+          "active": {
+            "type": "color",
+            "value": "{echoes.color.grey.300}"
+          }
         },
         "neutral-bolder": {
           "type": "color",
