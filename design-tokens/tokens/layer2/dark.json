@@ -61,13 +61,13 @@
             "type": "color",
             "value": "{echoes.color.indigo.200}"
           },
-          "active": {
-            "type": "color",
-            "value": "{echoes.color.indigo.100}"
-          },
           "focus": {
             "value": "{echoes.color.indigo.300}",
             "type": "color"
+          },
+          "active": {
+            "type": "color",
+            "value": "{echoes.color.indigo.100}"
           }
         },
         "accent-weak": {
@@ -97,19 +97,6 @@
               }
             }
           },
-          "active": {
-            "type": "color",
-            "value": "{echoes.color.indigo.500}",
-            "$extensions": {
-              "studio.tokens": {
-                "modify": {
-                  "type": "alpha",
-                  "value": "0.4",
-                  "space": "hsl"
-                }
-              }
-            }
-          },
           "focus": {
             "value": "{echoes.color.indigo.500}",
             "type": "color",
@@ -122,12 +109,37 @@
                 }
               }
             }
+          },
+          "active": {
+            "type": "color",
+            "value": "{echoes.color.indigo.500}",
+            "$extensions": {
+              "studio.tokens": {
+                "modify": {
+                  "type": "alpha",
+                  "value": "0.4",
+                  "space": "hsl"
+                }
+              }
+            }
           }
         },
         "warning": {
           "default": {
             "type": "color",
+            "value": "{echoes.color.yellow.300}"
+          },
+          "hover": {
+            "type": "color",
             "value": "{echoes.color.yellow.200}"
+          },
+          "focus": {
+            "type": "color",
+            "value": "{echoes.color.yellow.300}"
+          },
+          "active": {
+            "type": "color",
+            "value": "{echoes.color.yellow.100}"
           }
         },
         "warning-weak": {
@@ -187,7 +199,19 @@
         "success": {
           "default": {
             "type": "color",
+            "value": "{echoes.color.yellowGreen.300}"
+          },
+          "hover": {
+            "type": "color",
             "value": "{echoes.color.yellowGreen.200}"
+          },
+          "focus": {
+            "type": "color",
+            "value": "{echoes.color.yellowGreen.300}"
+          },
+          "active": {
+            "type": "color",
+            "value": "{echoes.color.yellowGreen.100}"
           }
         },
         "success-weak": {
@@ -253,13 +277,13 @@
             "type": "color",
             "value": "{echoes.color.red.200}"
           },
-          "active": {
-            "type": "color",
-            "value": "{echoes.color.red.100}"
-          },
           "focus": {
             "type": "color",
             "value": "{echoes.color.red.300}"
+          },
+          "active": {
+            "type": "color",
+            "value": "{echoes.color.red.100}"
           }
         },
         "danger-weak": {
@@ -319,7 +343,19 @@
         "info": {
           "default": {
             "type": "color",
+            "value": "{echoes.color.blue.300}"
+          },
+          "hover": {
+            "type": "color",
             "value": "{echoes.color.blue.200}"
+          },
+          "focus": {
+            "type": "color",
+            "value": "{echoes.color.blue.300}"
+          },
+          "active": {
+            "type": "color",
+            "value": "{echoes.color.blue.100}"
           }
         },
         "info-weak": {

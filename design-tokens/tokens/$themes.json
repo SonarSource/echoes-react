@@ -75,6 +75,11 @@
       "echoes.color.background.ghost.danger.active": "73068b407a3e6c2142591078e6690aa64ec4a79f",
       "echoes.color.background.ghost.danger.focus": "c1e1781c949bbf608852aacfae7427a857ec7029",
       "echoes.color.background.backDrop.default": "6e0160033bc9084c862370fa20b5f8c5646627b2",
+      "echoes.color.background.emphasis-weak.default": "4904c391230dd8ff2a8c2055ffbda3bb61d0260e",
+      "echoes.color.background.emphasis-weak.hover": "dc9d3a103938eb97529cac0f941cf604b0e38634",
+      "echoes.color.background.emphasis-weak.focus": "ce5bb2344a2b531c7003bcbe7fa8273419ed68c4",
+      "echoes.color.background.emphasis-weak.active": "e1cf397eb78f69a8c531eaa3352d789d59be1687",
+      "echoes.color.background.emphasis.default": "eb5eb3aafab9ae2265a7ab01795d58607188bb76",
       "echoes.color.text.bold": "64a250f556f7e9e672373950814ccb3fc4dd0fd7",
       "echoes.color.text.default": "433ad741ec9d5c3f3281ee6740354fecf814ea06",
       "echoes.color.text.subdued": "eced94d663cc27c76b73a47b7e2528ed32be8c48",
@@ -176,9 +181,7 @@
       "echoes.severityBadge.colors.borders.high.default": "e86ad9415293ee42cf5eb5188deadc02f9171f68",
       "echoes.severityBadge.colors.borders.medium.default": "8661f82e7865e7d184d30c6412824b42e65fd65b",
       "echoes.severityBadge.colors.borders.low.default": "88eb712a5667afbb22809b7b1655cf876482f0e1",
-      "echoes.severityBadge.colors.borders.info.default": "251e43ebc8197db02aeff43ecc7a0073e16ea5fa",
-      "echoes.color.background.emphasis-weak.default": "fd893b0735050486cd0b20df11814ad48ff6756f",
-      "echoes.color.background.emphasis.default": "7da4a9e7bc8762c0fbc6196c2adbd66b8f96d091"
+      "echoes.severityBadge.colors.borders.info.default": "251e43ebc8197db02aeff43ecc7a0073e16ea5fa"
     },
     "group": "Themes"
   },
@@ -258,6 +261,11 @@
       "echoes.color.background.ghost.danger.active": "73068b407a3e6c2142591078e6690aa64ec4a79f",
       "echoes.color.background.ghost.danger.focus": "c1e1781c949bbf608852aacfae7427a857ec7029",
       "echoes.color.background.backDrop.default": "6e0160033bc9084c862370fa20b5f8c5646627b2",
+      "echoes.color.background.emphasis-weak.default": "4904c391230dd8ff2a8c2055ffbda3bb61d0260e",
+      "echoes.color.background.emphasis-weak.hover": "dc9d3a103938eb97529cac0f941cf604b0e38634",
+      "echoes.color.background.emphasis-weak.focus": "ce5bb2344a2b531c7003bcbe7fa8273419ed68c4",
+      "echoes.color.background.emphasis-weak.active": "e1cf397eb78f69a8c531eaa3352d789d59be1687",
+      "echoes.color.background.emphasis.default": "eb5eb3aafab9ae2265a7ab01795d58607188bb76",
       "echoes.color.text.bold": "64a250f556f7e9e672373950814ccb3fc4dd0fd7",
       "echoes.color.text.default": "433ad741ec9d5c3f3281ee6740354fecf814ea06",
       "echoes.color.text.subdued": "eced94d663cc27c76b73a47b7e2528ed32be8c48",
@@ -359,9 +367,7 @@
       "echoes.severityBadge.colors.borders.high.default": "e86ad9415293ee42cf5eb5188deadc02f9171f68",
       "echoes.severityBadge.colors.borders.medium.default": "8661f82e7865e7d184d30c6412824b42e65fd65b",
       "echoes.severityBadge.colors.borders.low.default": "88eb712a5667afbb22809b7b1655cf876482f0e1",
-      "echoes.severityBadge.colors.borders.info.default": "251e43ebc8197db02aeff43ecc7a0073e16ea5fa",
-      "echoes.color.background.emphasis-weak.default": "fd893b0735050486cd0b20df11814ad48ff6756f",
-      "echoes.color.background.emphasis.default": "7da4a9e7bc8762c0fbc6196c2adbd66b8f96d091"
+      "echoes.severityBadge.colors.borders.info.default": "251e43ebc8197db02aeff43ecc7a0073e16ea5fa"
     },
     "group": "Themes"
   },
