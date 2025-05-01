@@ -2,10 +2,27 @@
   "echoes": {
     "color": {
       "background": {
-        "neutral": {
-          "type": "color",
-          "value": "{echoes.color.grey.50}",
-          "description": "Use it in components with neutral sentiment"
+        "neutral-weak": {
+          "default": {
+            "type": "color",
+            "value": "{echoes.color.grey.50}",
+            "description": "Use it in components with neutral sentiment"
+          },
+          "focus": {
+            "type": "color",
+            "value": "{echoes.color.grey.50}",
+            "description": "Use it in components with neutral sentiment"
+          },
+          "hover": {
+            "type": "color",
+            "value": "{echoes.color.grey.100}",
+            "description": "Use it in components with neutral sentiment"
+          },
+          "active": {
+            "type": "color",
+            "value": "{echoes.color.grey.200}",
+            "description": "Use it in components with neutral sentiment"
+          }
         },
         "neutral-bolder": {
           "type": "color",
@@ -58,14 +75,14 @@
             "value": "{echoes.color.indigo.600}",
             "description": "Hover state of components that reinforce our brand"
           },
+          "focus": {
+            "value": "{echoes.color.indigo.500}",
+            "type": "color"
+          },
           "active": {
             "type": "color",
             "value": "{echoes.color.indigo.700}",
             "description": "Active state of components that reinforce our brand"
-          },
-          "focus": {
-            "value": "{echoes.color.indigo.500}",
-            "type": "color"
           }
         },
         "accent-weak": {
@@ -96,9 +113,50 @@
             "value": "{echoes.color.yellow.500}",
             "description": "Use for backgrounds that communicate warning or caution"
           },
-          "weak": {
+          "hover": {
+            "type": "color",
+            "value": "{echoes.color.yellow.500}",
+            "$extensions": {
+              "studio.tokens": {
+                "modify": {
+                  "type": "darken",
+                  "value": "0.05",
+                  "space": "lch"
+                }
+              }
+            },
+            "description": "Use for backgrounds that communicate warning or caution"
+          },
+          "focus": {
+            "type": "color",
+            "value": "{echoes.color.yellow.500}",
+            "description": "Use for backgrounds that communicate warning or caution"
+          },
+          "active": {
+            "type": "color",
+            "value": "{echoes.color.yellow.700}",
+            "description": "Use for backgrounds that communicate warning or caution"
+          }
+        },
+        "warning-weak": {
+          "default": {
             "type": "color",
             "value": "{echoes.color.yellow.50}",
+            "description": "Use for backgrounds that communicate warning or caution, with less visual highlight"
+          },
+          "hover": {
+            "type": "color",
+            "value": "{echoes.color.yellow.100}",
+            "description": "Use for backgrounds that communicate warning or caution, with less visual highlight"
+          },
+          "focus": {
+            "type": "color",
+            "value": "{echoes.color.yellow.50}",
+            "description": "Use for backgrounds that communicate warning or caution, with less visual highlight"
+          },
+          "active": {
+            "type": "color",
+            "value": "{echoes.color.yellow.200}",
             "description": "Use for backgrounds that communicate warning or caution, with less visual highlight"
           }
         },
@@ -108,7 +166,39 @@
             "value": "{echoes.color.yellowGreen.700}",
             "description": "Use for backgrounds that communicate positive or success messages"
           },
-          "weak": {
+          "hover": {
+            "type": "color",
+            "value": "{echoes.color.yellowGreen.800}",
+            "description": "Use for backgrounds that communicate positive or success messages"
+          },
+          "focus": {
+            "type": "color",
+            "value": "{echoes.color.yellowGreen.700}",
+            "description": "Use for backgrounds that communicate positive or success messages"
+          },
+          "active": {
+            "type": "color",
+            "value": "{echoes.color.yellowGreen.900}",
+            "description": "Use for backgrounds that communicate positive or success messages"
+          }
+        },
+        "success-weak": {
+          "default": {
+            "type": "color",
+            "value": "{echoes.color.yellowGreen.50}",
+            "description": "Use for backgrounds that communicate positive or success messages, with less visual highlight"
+          },
+          "hover": {
+            "type": "color",
+            "value": "{echoes.color.yellowGreen.100}",
+            "description": "Use for backgrounds that communicate positive or success messages, with less visual highlight"
+          },
+          "active": {
+            "type": "color",
+            "value": "{echoes.color.yellowGreen.200}",
+            "description": "Use for backgrounds that communicate positive or success messages, with less visual highlight"
+          },
+          "focus": {
             "type": "color",
             "value": "{echoes.color.yellowGreen.50}",
             "description": "Use for backgrounds that communicate positive or success messages, with less visual highlight"
@@ -125,15 +215,15 @@
             "value": "{echoes.color.red.700}",
             "description": "Hover state for backgrounds that communicate danger or destructive messages"
           },
-          "active": {
-            "type": "color",
-            "value": "{echoes.color.red.800}",
-            "description": "Active state for backgrounds that communicate danger or destructive messages"
-          },
           "focus": {
             "type": "color",
             "value": "{echoes.color.red.600}",
             "description": "Focused state for backgrounds that communicate danger or destructive messages"
+          },
+          "active": {
+            "type": "color",
+            "value": "{echoes.color.red.800}",
+            "description": "Active state for backgrounds that communicate danger or destructive messages"
           }
         },
         "danger-weak": {
@@ -163,9 +253,50 @@
             "value": "{echoes.color.blue.800}",
             "description": "Use for backgrounds that communicate information to the user"
           },
-          "weak": {
+          "hover": {
+            "type": "color",
+            "value": "{echoes.color.blue.900}",
+            "description": "Use for backgrounds that communicate information to the user"
+          },
+          "focus": {
+            "type": "color",
+            "value": "{echoes.color.blue.800}",
+            "description": "Use for backgrounds that communicate information to the user"
+          },
+          "active": {
+            "type": "color",
+            "value": "{echoes.color.blue.900}",
+            "$extensions": {
+              "studio.tokens": {
+                "modify": {
+                  "type": "darken",
+                  "value": "0.2",
+                  "space": "lch"
+                }
+              }
+            },
+            "description": "Use for backgrounds that communicate information to the user"
+          }
+        },
+        "info-weak": {
+          "default": {
             "type": "color",
             "value": "{echoes.color.blue.50}",
+            "description": "Use for backgrounds that communicate information to the user, with less visual highlight"
+          },
+          "hover": {
+            "type": "color",
+            "value": "{echoes.color.blue.100}",
+            "description": "Use for backgrounds that communicate information to the user, with less visual highlight"
+          },
+          "focus": {
+            "type": "color",
+            "value": "{echoes.color.blue.50}",
+            "description": "Use for backgrounds that communicate information to the user, with less visual highlight"
+          },
+          "active": {
+            "type": "color",
+            "value": "{echoes.color.blue.200}",
             "description": "Use for backgrounds that communicate information to the user, with less visual highlight"
           }
         },
@@ -281,18 +412,58 @@
             }
           }
         },
-        "emphasis": {
-          "weak": {
-            "default": {
-              "value": "{echoes.color.purple.100}",
-              "type": "color"
-            }
-          },
+        "emphasis-weak": {
           "default": {
-            "default": {
-              "value": "{echoes.color.purple.700}",
-              "type": "color"
-            }
+            "value": "{echoes.color.purple.100}",
+            "type": "color"
+          },
+          "hover": {
+            "value": "{echoes.color.purple.200}",
+            "type": "color"
+          },
+          "focus": {
+            "value": "{echoes.color.purple.100}",
+            "type": "color"
+          },
+          "active": {
+            "value": "{echoes.color.purple.300}",
+            "type": "color"
+          }
+        },
+        "emphasis": {
+          "default": {
+            "value": "{echoes.color.purple.700}",
+            "type": "color"
+          },
+          "hover": {
+            "value": "{echoes.color.purple.800}",
+            "type": "color"
+          },
+          "focus": {
+            "value": "{echoes.color.purple.700}",
+            "type": "color"
+          },
+          "active": {
+            "value": "{echoes.color.purple.900}",
+            "type": "color"
+          }
+        },
+        "neutral": {
+          "default": {
+            "value": "{echoes.color.grey.600}",
+            "type": "color"
+          },
+          "hover": {
+            "value": "{echoes.color.grey.700}",
+            "type": "color"
+          },
+          "focus": {
+            "value": "{echoes.color.grey.600}",
+            "type": "color"
+          },
+          "active": {
+            "value": "{echoes.color.grey.800}",
+            "type": "color"
           }
         }
       },
