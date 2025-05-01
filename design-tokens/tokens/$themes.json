@@ -178,7 +178,7 @@
       "echoes.severityBadge.colors.borders.low.default": "88eb712a5667afbb22809b7b1655cf876482f0e1",
       "echoes.severityBadge.colors.borders.info.default": "251e43ebc8197db02aeff43ecc7a0073e16ea5fa",
       "echoes.color.background.emphasis-weak.default": "fd893b0735050486cd0b20df11814ad48ff6756f",
-      "echoes.color.background.emphasis-weak": "7da4a9e7bc8762c0fbc6196c2adbd66b8f96d091"
+      "echoes.color.background.emphasis.default": "7da4a9e7bc8762c0fbc6196c2adbd66b8f96d091"
     },
     "group": "Themes"
   },
@@ -361,7 +361,7 @@
       "echoes.severityBadge.colors.borders.low.default": "88eb712a5667afbb22809b7b1655cf876482f0e1",
       "echoes.severityBadge.colors.borders.info.default": "251e43ebc8197db02aeff43ecc7a0073e16ea5fa",
       "echoes.color.background.emphasis-weak.default": "fd893b0735050486cd0b20df11814ad48ff6756f",
-      "echoes.color.background.emphasis-weak": "7da4a9e7bc8762c0fbc6196c2adbd66b8f96d091"
+      "echoes.color.background.emphasis.default": "7da4a9e7bc8762c0fbc6196c2adbd66b8f96d091"
     },
     "group": "Themes"
   },
