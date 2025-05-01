@@ -4271,8 +4271,8 @@ __metadata:
     "@typescript-eslint/eslint-plugin": "npm:8.6.0"
     "@typescript-eslint/parser": "npm:8.6.0"
     "@vitejs/plugin-react": "npm:4.4.1"
-    "@yarnpkg/fslib": "npm:3.1.1"
-    "@yarnpkg/libzip": "npm:3.1.0"
+    "@yarnpkg/fslib": "npm:3.1.2"
+    "@yarnpkg/libzip": "npm:3.2.1"
     aria-query: "npm:5.3.2"
     babel-jest: "npm:29.7.0"
     classnames: "npm:2.5.1"
@@ -4290,7 +4290,7 @@ __metadata:
     jest: "npm:29.7.0"
     jest-axe: "npm:10.0.0"
     jest-environment-jsdom: "npm:29.7.0"
-    prettier: "npm:3.4.2"
+    prettier: "npm:3.5.3"
     react: "npm:18.3.1"
     react-dom: "npm:18.3.1"
     react-intl: "npm:6.7.0"
@@ -5480,34 +5480,25 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@yarnpkg/fslib@npm:3.1.1":
-  version: 3.1.1
-  resolution: "@yarnpkg/fslib@npm:3.1.1"
+"@yarnpkg/fslib@npm:3.1.2, @yarnpkg/fslib@npm:^3.1.2":
+  version: 3.1.2
+  resolution: "@yarnpkg/fslib@npm:3.1.2"
   dependencies:
     tslib: "npm:^2.4.0"
-  checksum: 10/2dba130e18e9d9b3f708352bb473898c1593427a7858e6f936a97a3a31aaacb59a12bf7d53d5fcaf675fd44f1ae4941f4ab3f7ad032e6b51e059b8ea5efc4147
+  checksum: 10/be7ed5d418c1adadd24bfa68abb0a95aceb39aafb6dd22644fcae3a8b0185d30868904f4df59de94536ea3eb36bfb4ee1304cc058afeec8d9ee6837d28f6bcd4
   languageName: node
   linkType: hard
 
-"@yarnpkg/fslib@npm:^3.1.0":
-  version: 3.1.0
-  resolution: "@yarnpkg/fslib@npm:3.1.0"
-  dependencies:
-    tslib: "npm:^2.4.0"
-  checksum: 10/99537cff3269f0728b440bc801872346f8f698ada479b00df82967c0fea1fc61588e69f669174fdf8274107a1b34dfb656513db8789db12afd7e6778bd2b4e86
-  languageName: node
-  linkType: hard
-
-"@yarnpkg/libzip@npm:3.1.0":
-  version: 3.1.0
-  resolution: "@yarnpkg/libzip@npm:3.1.0"
+"@yarnpkg/libzip@npm:3.2.1":
+  version: 3.2.1
+  resolution: "@yarnpkg/libzip@npm:3.2.1"
   dependencies:
     "@types/emscripten": "npm:^1.39.6"
-    "@yarnpkg/fslib": "npm:^3.1.0"
+    "@yarnpkg/fslib": "npm:^3.1.2"
     tslib: "npm:^2.4.0"
   peerDependencies:
-    "@yarnpkg/fslib": ^3.1.0
-  checksum: 10/d3113b362d24cea53a00afe30ca0a5589649317c25812251dd3dbc14d37779b20e00118f040dfa2fc3d9ab78f0341ed827ccc03cad859647f05eaf388a6f1890
+    "@yarnpkg/fslib": ^3.1.2
+  checksum: 10/c8c3bc43777e2ef3c812c991266b9bbccef4d01cea5de44a6b8c359c953dab5325e26fda5640ff611567b61f9dd62ac3a0c3ba79343eb53224d733915a7eb664
   languageName: node
   linkType: hard
 
@@ -10743,12 +10734,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prettier@npm:3.4.2":
-  version: 3.4.2
-  resolution: "prettier@npm:3.4.2"
+"prettier@npm:3.5.3":
+  version: 3.5.3
+  resolution: "prettier@npm:3.5.3"
   bin:
     prettier: bin/prettier.cjs
-  checksum: 10/a3e806fb0b635818964d472d35d27e21a4e17150c679047f5501e1f23bd4aa806adf660f0c0d35214a210d5d440da6896c2e86156da55f221a57938278dc326e
+  checksum: 10/7050c08f674d9e49fbd9a4c008291d0715471f64e94cc5e4b01729affce221dfc6875c8de7e66b728c64abc9352eefb7eaae071b5f79d30081be207b53774b78
   languageName: node
   linkType: hard
 
