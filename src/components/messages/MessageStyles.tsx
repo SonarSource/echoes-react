@@ -31,7 +31,7 @@ export const MESSAGE_TYPE_ICON = {
 
 export const MESSAGE_CALLOUT_TYPE_STYLE = {
   [MessageType.Info]: {
-    '--message-background': 'var(--echoes-color-background-info-weak)',
+    '--message-background': 'var(--echoes-color-background-info-weak-default)',
     '--message-title-color': 'var(--echoes-color-text-info-bold)',
   },
   [MessageType.Danger]: {
@@ -39,11 +39,11 @@ export const MESSAGE_CALLOUT_TYPE_STYLE = {
     '--message-title-color': 'var(--echoes-color-text-danger-bold)',
   },
   [MessageType.Warning]: {
-    '--message-background': 'var(--echoes-color-background-warning-weak)',
+    '--message-background': 'var(--echoes-color-background-warning-weak-default)',
     '--message-title-color': 'var(--echoes-color-text-warning-bold)',
   },
   [MessageType.Success]: {
-    '--message-background': 'var(--echoes-color-background-success-weak)',
+    '--message-background': 'var(--echoes-color-background-success-weak-default)',
     '--message-title-color': 'var(--echoes-color-text-success-bold)',
   },
   [MessageType.Discover]: {

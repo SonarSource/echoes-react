@@ -47,7 +47,9 @@ export const ButtonStyled = styled.button`
   &:focus,
   &:focus-visible {
     background-color: var(--button-background-focus);
+  }
 
+  &:focus-visible {
     outline: var(--echoes-color-focus-default) solid var(--echoes-focus-border-width-default);
     outline-offset: var(--echoes-focus-border-offset-default);
   }

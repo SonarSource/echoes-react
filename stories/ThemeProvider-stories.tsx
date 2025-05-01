@@ -25,7 +25,8 @@ import { basicWrapperDecorator } from './helpers/BasicWrapper';
 
 function Background({ children, style }: ComponentProps<'div'>) {
   return (
-    <div style={{ backgroundColor: 'var(--echoes-color-background-neutral)', ...style }}>
+    <div
+      style={{ backgroundColor: 'var(--echoes-color-background-neutral-weak-default)', ...style }}>
       {children}
     </div>
   );

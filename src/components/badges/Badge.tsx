@@ -63,6 +63,11 @@ export interface BadgeProps extends PropsWithChildren {
   isIconFilled?: boolean;
 
   /**
+   * Changes the badge into a button to allow interactivity (for a Popover, typically)
+   */
+  isInteractive?: boolean;
+
+  /**
    * Specifies the size of the badge. Must match `BadgeSize`.
    */
   size?: `${BadgeSize}`;
@@ -73,13 +78,14 @@ export interface BadgeProps extends PropsWithChildren {
   variety: `${BadgeVariety}`;
 }
 
-export const Badge = forwardRef<HTMLSpanElement, BadgeProps>((props, ref) => {
+export const Badge = forwardRef<HTMLButtonElement, BadgeProps>((props, ref) => {
   const {
     IconLeft,
     ariaLabel,
     children,
     isHighContrast = false,
     isIconFilled = false,
+    isInteractive = false,
     size = BadgeSize.Small,
     variety,
     ...otherProps
@@ -87,8 +93,9 @@ export const Badge = forwardRef<HTMLSpanElement, BadgeProps>((props, ref) => {
 
   return (
     <StyledBadge
-      aria-label={ariaLabel}
       {...otherProps}
+      aria-label={ariaLabel}
+      as={isInteractive ? 'button' : 'span'}
       css={useMemo(
         () => ({
           ...(isHighContrast
@@ -98,7 +105,10 @@ export const Badge = forwardRef<HTMLSpanElement, BadgeProps>((props, ref) => {
         }),
         [isHighContrast, size, variety],
       )}
-      ref={ref}>
+      isInteractive={isInteractive}
+      ref={ref}
+      type="button" // ignored when rendering a span
+    >
       {isDefined(IconLeft) && <IconLeft isFilled={isIconFilled} />}
       {children}
     </StyledBadge>
@@ -107,7 +117,7 @@ export const Badge = forwardRef<HTMLSpanElement, BadgeProps>((props, ref) => {
 
 Badge.displayName = 'Badge';
 
-const StyledBadge = styled.span`
+const StyledBadge = styled.button<{ isInteractive: boolean }>`
   display: flex;
   flex-direction: row;
   gap: var(--echoes-dimension-space-50);
@@ -124,10 +134,34 @@ const StyledBadge = styled.span`
 
   // Using outline so that the border doesn't take space in the flow
   outline: var(--badge-border-color) solid var(--echoes-border-width-default);
+  border: none;
   border-radius: var(--echoes-border-radius-200);
 
   padding: var(--badge-padding);
   height: var(--badge-height);
+
+  ${({ isInteractive }) =>
+    isInteractive
+      ? `
+    &:focus,
+    &:focus-visible {
+      background-color: var(--badge-interactive-backgroud-color-focus);
+    }
+
+    &:focus-visible {
+      outline: var(--echoes-color-focus-default) solid var(--echoes-focus-border-width-default);
+      outline-offset: var(--echoes-focus-border-offset-default);
+    }
+
+    &:hover {
+      background-color: var(--badge-interactive-backgroud-color-hover);
+    }
+
+    &:active {
+      background-color: var(--badge-interactive-backgroud-color-active);
+    }
+  `
+      : ''}
 `;
 
 const BADGE_SIZE_STYLES = {
@@ -150,31 +184,62 @@ const BADGE_VARIETY_STYLES = {
     '--badge-color': 'var(--echoes-color-text-danger)',
     '--badge-border-color': 'var(--echoes-color-border-danger-weak)',
     '--badge-background-color': 'var(--echoes-color-background-danger-weak-default)',
+    '--badge-interactive-backgroud-color-active':
+      'var(--echoes-color-background-danger-weak-active)',
+    '--badge-interactive-backgroud-color-focus': 'var(--echoes-color-background-danger-weak-focus)',
+    '--badge-interactive-backgroud-color-hover': 'var(--echoes-color-background-danger-weak-hover)',
   },
   [BadgeVariety.Highlight]: {
     '--badge-color': 'var(--echoes-color-text-emphasis)',
     '--badge-border-color': 'var(--echoes-color-border-emphasis-weak)',
     '--badge-background-color': 'var(--echoes-color-background-emphasis-weak-default)',
+    '--badge-interactive-backgroud-color-active':
+      'var(--echoes-color-background-emphasis-weak-active)',
+    '--badge-interactive-backgroud-color-focus':
+      'var(--echoes-color-background-emphasis-weak-focus)',
+    '--badge-interactive-backgroud-color-hover':
+      'var(--echoes-color-background-emphasis-weak-hover)',
   },
   [BadgeVariety.Info]: {
     '--badge-color': 'var(--echoes-color-text-info)',
     '--badge-border-color': 'var(--echoes-color-border-info-weak)',
-    '--badge-background-color': 'var(--echoes-color-background-info-weak)',
+    '--badge-background-color': 'var(--echoes-color-background-info-weak-default)',
+    '--badge-interactive-backgroud-color-active': 'var(--echoes-color-background-info-weak-active)',
+    '--badge-interactive-backgroud-color-focus': 'var(--echoes-color-background-info-weak-focus)',
+    '--badge-interactive-backgroud-color-hover': 'var(--echoes-color-background-info-weak-hover)',
   },
   [BadgeVariety.Neutral]: {
     '--badge-color': 'var(--echoes-color-text-default)',
     '--badge-border-color': 'var(--echoes-color-border-weak)',
-    '--badge-background-color': 'var(--echoes-color-background-neutral)',
+    '--badge-background-color': 'var(--echoes-color-background-neutral-weak-default)',
+    '--badge-interactive-backgroud-color-active':
+      'var(--echoes-color-background-neutral-weak-active)',
+    '--badge-interactive-backgroud-color-focus':
+      'var(--echoes-color-background-neutral-weak-focus)',
+    '--badge-interactive-backgroud-color-hover':
+      'var(--echoes-color-background-neutral-weak-hover)',
   },
   [BadgeVariety.Success]: {
     '--badge-color': 'var(--echoes-color-text-success)',
     '--badge-border-color': 'var(--echoes-color-border-success-weak)',
-    '--badge-background-color': 'var(--echoes-color-background-success-weak)',
+    '--badge-background-color': 'var(--echoes-color-background-success-weak-default)',
+    '--badge-interactive-backgroud-color-active':
+      'var(--echoes-color-background-success-weak-active)',
+    '--badge-interactive-backgroud-color-focus':
+      'var(--echoes-color-background-success-weak-focus)',
+    '--badge-interactive-backgroud-color-hover':
+      'var(--echoes-color-background-success-weak-hover)',
   },
   [BadgeVariety.Warning]: {
     '--badge-color': 'var(--echoes-color-text-warning)',
     '--badge-border-color': 'var(--echoes-color-border-warning-weak)',
-    '--badge-background-color': 'var(--echoes-color-background-warning-weak)',
+    '--badge-background-color': 'var(--echoes-color-background-warning-weak-default)',
+    '--badge-interactive-backgroud-color-active':
+      'var(--echoes-color-background-warning-weak-active)',
+    '--badge-interactive-backgroud-color-focus':
+      'var(--echoes-color-background-warning-weak-focus)',
+    '--badge-interactive-backgroud-color-hover':
+      'var(--echoes-color-background-warning-weak-hover)',
   },
 };
 
@@ -183,30 +248,48 @@ const BADGE_HIGH_CONTRAST_VARIETY_STYLES = {
     '--badge-color': 'var(--echoes-color-text-on-color)',
     '--badge-border-color': 'transparent',
     '--badge-background-color': 'var(--echoes-color-background-danger-default)',
+    '--badge-interactive-backgroud-color-active': 'var(--echoes-color-background-danger-active)',
+    '--badge-interactive-backgroud-color-focus': 'var(--echoes-color-background-danger-focus)',
+    '--badge-interactive-backgroud-color-hover': 'var(--echoes-color-background-danger-hover)',
   },
   [BadgeVariety.Highlight]: {
     '--badge-color': 'var(--echoes-color-text-on-color)',
     '--badge-border-color': 'transparent',
-    '--badge-background-color': 'var(--echoes-color-background-emphasis-default-default)',
+    '--badge-background-color': 'var(--echoes-color-background-emphasis-default)',
+    '--badge-interactive-backgroud-color-active': 'var(--echoes-color-background-emphasis-active)',
+    '--badge-interactive-backgroud-color-focus': 'var(--echoes-color-background-emphasis-focus)',
+    '--badge-interactive-backgroud-color-hover': 'var(--echoes-color-background-emphasis-hover)',
   },
   [BadgeVariety.Info]: {
     '--badge-color': 'var(--echoes-color-text-on-color)',
     '--badge-border-color': 'transparent',
     '--badge-background-color': 'var(--echoes-color-background-info-default)',
+    '--badge-interactive-backgroud-color-active': 'var(--echoes-color-background-info-active)',
+    '--badge-interactive-backgroud-color-focus': 'var(--echoes-color-background-info-focus)',
+    '--badge-interactive-backgroud-color-hover': 'var(--echoes-color-background-info-hover)',
   },
   [BadgeVariety.Neutral]: {
     '--badge-color': 'var(--echoes-color-text-on-color)',
     '--badge-border-color': 'transparent',
     '--badge-background-color': 'var(--echoes-color-background-inverse)',
+    '--badge-interactive-backgroud-color-active': 'var(--echoes-color-background-neutral-active)',
+    '--badge-interactive-backgroud-color-focus': 'var(--echoes-color-background-neutral-focus)',
+    '--badge-interactive-backgroud-color-hover': 'var(--echoes-color-background-neutral-hover)',
   },
   [BadgeVariety.Success]: {
     '--badge-color': 'var(--echoes-color-text-on-color)',
     '--badge-border-color': 'transparent',
     '--badge-background-color': 'var(--echoes-color-background-success-default)',
+    '--badge-interactive-backgroud-color-active': 'var(--echoes-color-background-success-active)',
+    '--badge-interactive-backgroud-color-focus': 'var(--echoes-color-background-success-focus)',
+    '--badge-interactive-backgroud-color-hover': 'var(--echoes-color-background-success-hover)',
   },
   [BadgeVariety.Warning]: {
     '--badge-color': 'var(--echoes-color-text-on-color-inverse)',
     '--badge-border-color': 'transparent',
     '--badge-background-color': 'var(--echoes-color-background-warning-default)',
+    '--badge-interactive-backgroud-color-active': 'var(--echoes-color-background-warning-active)',
+    '--badge-interactive-backgroud-color-focus': 'var(--echoes-color-background-warning-focus)',
+    '--badge-interactive-backgroud-color-hover': 'var(--echoes-color-background-warning-hover)',
   },
 };

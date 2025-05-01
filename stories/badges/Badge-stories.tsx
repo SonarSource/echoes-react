@@ -19,7 +19,7 @@
  */
 
 import type { Meta, StoryObj } from '@storybook/react';
-import { Badge } from '../../src';
+import { Badge, Popover } from '../../src';
 import { iconsComponentsArgType } from '../helpers/arg-types';
 import { BasicWrapper } from '../helpers/BasicWrapper';
 
@@ -54,6 +54,23 @@ export const Default: Story = {
   render: (args) => (
     <BasicWrapper>
       <Badge {...args} />
+    </BasicWrapper>
+  ),
+};
+
+export const Interactive: Story = {
+  args: {
+    children: 'Badge!',
+    variety: 'neutral',
+  },
+  parameters: {
+    controls: { exclude: ['isInteractive'] },
+  },
+  render: (args) => (
+    <BasicWrapper>
+      <Popover description="Detailed explanation!">
+        <Badge {...args} isInteractive />
+      </Popover>
     </BasicWrapper>
   ),
 };
