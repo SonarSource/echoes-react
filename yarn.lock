@@ -2193,18 +2193,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@formatjs/cli@npm:6.2.12":
-  version: 6.2.12
-  resolution: "@formatjs/cli@npm:6.2.12"
+"@formatjs/cli@npm:6.6.4":
+  version: 6.6.4
+  resolution: "@formatjs/cli@npm:6.6.4"
   peerDependencies:
     "@glimmer/env": ^0.1.7
-    "@glimmer/reference": ^0.91.1 || ^0.92.0
-    "@glimmer/syntax": ^0.92.0
-    "@glimmer/validator": ^0.92.0
-    "@vue/compiler-core": ^3.4.0
-    content-tag: ^2.0.1
-    ember-template-recast: ^6.1.4
-    vue: ^3.4.0
+    "@glimmer/reference": ^0.94.0
+    "@glimmer/syntax": ^0.94.9
+    "@glimmer/validator": ^0.94.0
+    "@vue/compiler-core": ^3.5.12
+    content-tag: ^3.0.0
+    ember-template-recast: ^6.1.5
+    vue: ^3.5.12
   peerDependenciesMeta:
     "@glimmer/env":
       optional: true
@@ -2224,7 +2224,7 @@ __metadata:
       optional: true
   bin:
     formatjs: bin/formatjs
-  checksum: 10/468123112ddd3c26ae2c11cead5ab684b1c7712c841c976e42cc3d9ab7aa10fa6ea02208b2beeaabfd3872fab16a10fa44eb3e9d611c716f7d80dfaf6f420962
+  checksum: 10/0856623641d1251995cd7b87cec689eff6913bf8a3e8d290c0ae4aa3565d930c1ba0757bcd37776e903a5e856bdee982b5fc210e71499dfc23f713c531bbdaee
   languageName: node
   linkType: hard
 
@@ -2744,10 +2744,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@material-symbols/font-400@npm:0.28.2":
-  version: 0.28.2
-  resolution: "@material-symbols/font-400@npm:0.28.2"
-  checksum: 10/46e825ae6a11bbbc0bae45521b1f04d137f802a44435e134f4ce5f38dfde4982515ed86555e7b12d2092e874353481beebf3a49e6cfddb7273b91085d3757a78
+"@material-symbols/font-400@npm:0.31.2":
+  version: 0.31.2
+  resolution: "@material-symbols/font-400@npm:0.31.2"
+  checksum: 10/a544e4a1abb3708eaf9c47f24fa741b36ae32826bf700c65b3392f562aeb1fe158c7f37085206897cdeee3ec2f23ec672cd86adca2c77e5db33310ae03b6a292
   languageName: node
   linkType: hard
 
@@ -4231,10 +4231,10 @@ __metadata:
     "@emotion/sheet": "npm:1.4.0"
     "@emotion/styled": "npm:11.13.0"
     "@emotion/utils": "npm:1.4.2"
-    "@formatjs/cli": "npm:6.2.12"
+    "@formatjs/cli": "npm:6.6.4"
     "@mantine/core": "patch:@mantine/core@7.12.2#./config/patches/@mantine-core-npm-7.12.2-7aad505c0f.patch"
     "@mantine/hooks": "npm:7.12.2"
-    "@material-symbols/font-400": "npm:0.28.2"
+    "@material-symbols/font-400": "npm:0.31.2"
     "@radix-ui/react-alert-dialog": "npm:1.1.11"
     "@radix-ui/react-checkbox": "npm:1.1.3"
     "@radix-ui/react-dialog": "npm:1.1.11"
@@ -4244,7 +4244,7 @@ __metadata:
     "@radix-ui/react-radio-group": "npm:1.2.2"
     "@radix-ui/react-slot": "npm:1.1.1"
     "@radix-ui/react-tooltip": "npm:1.1.7"
-    "@radix-ui/react-visually-hidden": "npm:1.1.1"
+    "@radix-ui/react-visually-hidden": "npm:1.2.0"
     "@storybook/addon-a11y": "npm:8.6.12"
     "@storybook/addon-essentials": "npm:8.6.12"
     "@storybook/addon-interactions": "npm:8.6.12"
@@ -4299,7 +4299,7 @@ __metadata:
     rollup-plugin-license: "npm:3.6.0"
     storybook: "npm:8.6.12"
     style-dictionary: "npm:3.9.2"
-    subset-font: "npm:2.3.0"
+    subset-font: "npm:2.4.0"
     typescript: "npm:5.5.4"
     vite: "npm:6.3.4"
     vite-plugin-dts: "npm:4.5.3"
@@ -8164,10 +8164,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"harfbuzzjs@npm:^0.3.5":
-  version: 0.3.6
-  resolution: "harfbuzzjs@npm:0.3.6"
-  checksum: 10/265087b6299c24ea2a8ef06a09b115c3a34a8d19f724e8249c1dfa4e4bd0026dae214b52e7e9aae1d4ec382d7c7d670ce744d1dba5d57c8ea7c724cd2dc4a3c1
+"harfbuzzjs@npm:^0.4.0":
+  version: 0.4.7
+  resolution: "harfbuzzjs@npm:0.4.7"
+  checksum: 10/54f80553a72cda37d29ed6e7f3f9235af92cab4fc8df2ffb8994a50559331169d1ec927d4807a31672d590cdf38b086313da21f3d43f705add6ec27b632650da
   languageName: node
   linkType: hard
 
@@ -12139,15 +12139,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"subset-font@npm:2.3.0":
-  version: 2.3.0
-  resolution: "subset-font@npm:2.3.0"
+"subset-font@npm:2.4.0":
+  version: 2.4.0
+  resolution: "subset-font@npm:2.4.0"
   dependencies:
     fontverter: "npm:^2.0.0"
-    harfbuzzjs: "npm:^0.3.5"
+    harfbuzzjs: "npm:^0.4.0"
     lodash: "npm:^4.17.21"
     p-limit: "npm:^3.1.0"
-  checksum: 10/13c7cc1f199fba77318a29da1921f39361084a27010cf9fce98173e94c65395e8d1a7feffb257f3901c50118dd1ee1ece73e19d3a408fd47b2ca813b56189f88
+  checksum: 10/288cab54bb29ac2eae696018efda812f01c3160bd713cc1652cfff52e9baf816bc91db637876d1c54bf44ccd540b5f1581b712cca0bf1880586e53d1c1413c76
   languageName: node
   linkType: hard
 
