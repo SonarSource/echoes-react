@@ -23,6 +23,10 @@ import { forwardRef } from 'react';
 
 export interface BadgeCounterProps {
   className?: string;
+  /**
+   * Specifies the content of the BadgeCounter.
+   * Type string is possible, to allow for use cases like `23+`
+   */
   value: number | string;
 }
 

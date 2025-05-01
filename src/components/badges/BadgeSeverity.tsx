@@ -49,12 +49,32 @@ type InheritedButtonProps = Omit<ButtonCommonProps, excludedButtonProps> &
   Pick<ButtonIconProps, 'isIconFilled' | 'tooltipContent' | 'tooltipOptions'>;
 
 export interface BadgeSeverityProps extends InheritedButtonProps {
+  /**
+   * Optional React component to render an icon on the left side of the badge.
+   */
   IconLeft?: React.ForwardRefExoticComponent<
     IconFilledProps & React.RefAttributes<HTMLSpanElement>
   >;
+
+  /**
+   * The ARIA label for the button. Should include the quality & severity values.
+   */
   ariaLabel: string;
+
+  /**
+   * Indicates whether the badge is in a loading state, which will replace the button's icon with the spinner
+   */
   isLoading?: boolean;
+
+  /**
+   * Text content of the badge
+   */
   quality: string;
+
+  /**
+   * Specifies the severity level of the badge, to style it accordingly.
+   * Must match `BadgeSeverityLevel`.
+   */
   severity: `${BadgeSeverityLevel}`;
 }
 

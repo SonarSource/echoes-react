@@ -38,14 +38,38 @@ export enum BadgeVariety {
 }
 
 export interface BadgeProps extends PropsWithChildren {
+  /**
+   * Optional icon component to render on the left side of the badge.
+   */
   IconLeft?: React.ForwardRefExoticComponent<
     IconFilledProps & React.RefAttributes<HTMLSpanElement>
   >;
+
+  /**
+   * ARIA label for accessibility purposes. Provides a textual description of the badge.
+   */
   ariaLabel?: string;
+
   className?: string;
+
+  /**
+   * Indicates whether the badge should use high-contrast styling for better visibility.
+   */
   isHighContrast?: boolean;
+
+  /**
+   * Determines whether the icon (if provided) should be rendered in a filled style.
+   */
   isIconFilled?: boolean;
+
+  /**
+   * Specifies the size of the badge. Must match `BadgeSize`.
+   */
   size?: `${BadgeSize}`;
+
+  /**
+   * Specifies the style of the badge. Must match `BadgeVariety`.
+   */
   variety: `${BadgeVariety}`;
 }
 
