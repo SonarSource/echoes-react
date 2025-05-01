@@ -611,6 +611,18 @@
           "default": {
             "value": "{echoes.color.purple.400}",
             "type": "color"
+          },
+          "hover": {
+            "value": "{echoes.color.purple.300}",
+            "type": "color"
+          },
+          "focus": {
+            "value": "{echoes.color.purple.400}",
+            "type": "color"
+          },
+          "active": {
+            "value": "{echoes.color.purple.200}",
+            "type": "color"
           }
         }
       },
