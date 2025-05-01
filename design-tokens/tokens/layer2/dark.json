@@ -2,7 +2,7 @@
   "echoes": {
     "color": {
       "background": {
-        "neutral": {
+        "neutral-weak": {
           "default": {
             "type": "color",
             "value": "{echoes.color.grey.500}"
@@ -622,6 +622,24 @@
           },
           "active": {
             "value": "{echoes.color.purple.200}",
+            "type": "color"
+          }
+        },
+        "neutral": {
+          "default": {
+            "value": "{echoes.color.grey.100}",
+            "type": "color"
+          },
+          "hover": {
+            "value": "{echoes.color.grey.50}",
+            "type": "color"
+          },
+          "focus": {
+            "value": "{echoes.color.grey.100}",
+            "type": "color"
+          },
+          "active": {
+            "value": "{echoes.color.grey.40}",
             "type": "color"
           }
         }
