@@ -143,6 +143,8 @@ const StyledBadge = styled.button<{ isInteractive: boolean }>`
   ${({ isInteractive }) =>
     isInteractive
       ? `
+    cursor: pointer;
+
     &:focus,
     &:focus-visible {
       background-color: var(--badge-interactive-backgroud-color-focus);
