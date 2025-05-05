@@ -18,8 +18,10 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
+import { render } from '~common/helpers/test-utils';
 import { IconStar } from '../../icons';
+import { Popover } from '../../popover';
 import { Badge } from '../Badge';
 
 describe('Badge', () => {
@@ -33,11 +35,10 @@ describe('Badge', () => {
     expect(screen.getByText('badger')).toBeInTheDocument();
   });
 
-  it('accepts custom ariaLabel and className props', () => {
+  it('accepts custom className props', () => {
     render(
       <Badge
         IconLeft={IconStar}
-        ariaLabel="custom label"
         className="custom class"
         isHighContrast
         isIconFilled
@@ -50,7 +51,23 @@ describe('Badge', () => {
     const badge = screen.getByText('watch out!');
 
     expect(badge).toBeInTheDocument();
-    expect(badge).toHaveAttribute('aria-label', 'custom label');
     expect(badge).toHaveClass('custom class');
+  });
+
+  it('can be interactive', async () => {
+    const { user } = render(
+      <Popover title="popover">
+        <Badge ariaLabel="custom label" isInteractive size="small" variety="success">
+          click me
+        </Badge>
+      </Popover>,
+    );
+
+    const badge = screen.getByText('click me');
+
+    expect(badge).toHaveAttribute('aria-label', 'custom label');
+
+    await user.click(badge);
+    expect(screen.getByText('popover')).toBeInTheDocument();
   });
 });

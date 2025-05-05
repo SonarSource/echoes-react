@@ -162,7 +162,7 @@ const SelectItemStatusRadio = styled.div`
   min-width: var(--echoes-dimension-width-200);
   padding: 0;
 
-  background-color: var(--echoes-color-background-def ault);
+  background-color: var(--echoes-color-background-default);
   border: var(--echoes-border-width-default) solid var(--echoes-color-border-bolder);
   border-radius: var(--echoes-border-radius-full);
 
