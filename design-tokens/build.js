@@ -51,7 +51,7 @@ buildCSSRootFile(designTokenGroups, licenseHeader);
 buildThemesEnumType(themedDesignTokenGroups, licenseHeader);
 
 function initStyleDictionary(licenseHeader) {
-  registerTransforms(StyleDictionary);
+  registerTransforms(StyleDictionary, { 'ts/color/modifiers': { format: 'hsl' } });
 
   StyleDictionary.registerTransformGroup({
     name: CUSTOM_TRANSFORM_GROUP,

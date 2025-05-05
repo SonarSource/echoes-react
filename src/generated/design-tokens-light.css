@@ -42,7 +42,7 @@
   --echoes-color-background-accent-weak-active: rgb(209,215,254); /* Active state of components that reinforce our brand with less visual highlight */
   --echoes-color-background-accent-weak-focus: rgb(232,235,255); /* Focus state of components that reinforce our brand with less visual highlight */
   --echoes-color-background-warning-default: rgb(245,184,64); /* Use for backgrounds that communicate warning or caution */
-  --echoes-color-background-warning-hover: lch(71.3 61.3 77.4); /* Use for backgrounds that communicate warning or caution */
+  --echoes-color-background-warning-hover: hsl(39.6 68.6% 54.4%); /* Use for backgrounds that communicate warning or caution */
   --echoes-color-background-warning-focus: rgb(245,184,64); /* Use for backgrounds that communicate warning or caution */
   --echoes-color-background-warning-active: rgb(174,122,41); /* Use for backgrounds that communicate warning or caution */
   --echoes-color-background-warning-weak-default: rgb(252,245,228); /* Use for backgrounds that communicate warning or caution, with less visual highlight */
@@ -68,7 +68,7 @@
   --echoes-color-background-info-default: rgb(49,108,146); /* Use for backgrounds that communicate information to the user */
   --echoes-color-background-info-hover: rgb(23,67,97); /* Use for backgrounds that communicate information to the user */
   --echoes-color-background-info-focus: rgb(49,108,146); /* Use for backgrounds that communicate information to the user */
-  --echoes-color-background-info-active: lch(17 15 253); /* Use for backgrounds that communicate information to the user */
+  --echoes-color-background-info-active: hsl(206 48.8% 16.4%); /* Use for backgrounds that communicate information to the user */
   --echoes-color-background-info-weak-default: rgb(245,251,255); /* Use for backgrounds that communicate information to the user, with less visual highlight */
   --echoes-color-background-info-weak-hover: rgb(233,244,251); /* Use for backgrounds that communicate information to the user, with less visual highlight */
   --echoes-color-background-info-weak-focus: rgb(245,251,255); /* Use for backgrounds that communicate information to the user, with less visual highlight */
@@ -151,7 +151,7 @@
   --echoes-color-border-success-default: rgb(83,128,39);
   --echoes-color-border-warning-weak: rgb(254,245,208);
   --echoes-color-border-info-weak: rgb(233,244,251);
-  --echoes-color-border-emphasis-weak: lch(87.6 21.8 302 / 0.4);
+  --echoes-color-border-emphasis-weak: hsl(263 100% 91.8% / 0.4);
   --echoes-color-focus-default: rgb(75,86,187);
   --echoes-form-control-colors-background-default: rgb(255,255,255);
   --echoes-form-control-colors-background-hover: rgb(246,247,251);
@@ -185,19 +185,19 @@
   --echoes-ratings-colors-border-rating-e-hover: rgb(240,68,56);
   --echoes-severity-badge-colors-background-severity-blocker-prefix-default: rgb(254,228,226);
   --echoes-severity-badge-colors-background-severity-blocker-suffix-default: rgb(254,205,202);
-  --echoes-severity-badge-colors-background-severity-blocker-suffix-hover: lch(83.3 18.6 25.6);
+  --echoes-severity-badge-colors-background-severity-blocker-suffix-hover: hsl(3.46 66.7% 85.4%);
   --echoes-severity-badge-colors-background-severity-high-prefix-default: rgb(254,243,242);
   --echoes-severity-badge-colors-background-severity-high-suffix-default: rgb(254,228,226);
-  --echoes-severity-badge-colors-background-severity-high-suffix-hover: lch(89 9.58 26.1);
+  --echoes-severity-badge-colors-background-severity-high-suffix-hover: hsl(4.29 51.8% 89.9%);
   --echoes-severity-badge-colors-background-severity-medium-prefix-default: rgb(255,240,235);
   --echoes-severity-badge-colors-background-severity-medium-suffix-default: rgb(255,232,218);
-  --echoes-severity-badge-colors-background-severity-medium-suffix-hover: lch(86.4 17.1 54.7);
+  --echoes-severity-badge-colors-background-severity-medium-suffix-hover: hsl(21.8 68% 84.9%);
   --echoes-severity-badge-colors-background-severity-low-prefix-default: rgb(252,245,228);
   --echoes-severity-badge-colors-background-severity-low-suffix-default: rgb(254,245,208);
-  --echoes-severity-badge-colors-background-severity-low-suffix-hover: lch(92.7 18.3 93.7);
+  --echoes-severity-badge-colors-background-severity-low-suffix-hover: hsl(48.3 64% 86.5%);
   --echoes-severity-badge-colors-background-severity-info-prefix-default: rgb(245,251,255);
   --echoes-severity-badge-colors-background-severity-info-suffix-default: rgb(233,244,251);
-  --echoes-severity-badge-colors-background-severity-info-suffix-hover: lch(91.7 5.25 239);
+  --echoes-severity-badge-colors-background-severity-info-suffix-hover: hsl(203 35.9% 90.7%);
   --echoes-severity-badge-colors-foreground-blocker-icon-default: rgb(180,35,24);
   --echoes-severity-badge-colors-foreground-blocker-text-default: rgb(128,27,20);
   --echoes-severity-badge-colors-foreground-high-text-default: rgb(180,35,24);
