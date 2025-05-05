@@ -24,7 +24,7 @@ import { ReactElement, ReactNode, forwardRef, useContext } from 'react';
 import { isDefined } from '~common/helpers/types';
 import { TextNodeOptional } from '~types/utils';
 import { THEME_DATA_ATTRIBUTE, ThemeContext } from '~utils/theme';
-import { Heading, HeadingSize, Text, TextSize } from '../typography';
+import { Heading, HeadingSize, Text } from '../typography';
 
 export enum PopoverAlign {
   Start = 'start',
@@ -96,12 +96,10 @@ export const Popover = forwardRef<HTMLButtonElement, PopoverProps>((props, ref) 
             </Heading>
           )}
 
-          {description && (
-            <Text isSubdued size={TextSize.Small}>
-              {description}
-            </Text>
-          )}
+          {description && <Text isSubdued>{description}</Text>}
+
           {extraContent && <PopoverExtraContent>{extraContent}</PopoverExtraContent>}
+
           {footer && <PopoverFooter>{footer}</PopoverFooter>}
           <PopoverArrow />
         </PopoverContent>
