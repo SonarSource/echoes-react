@@ -39,6 +39,11 @@ describe('RadioButtonGroup', () => {
 
     expect(onChange).toHaveBeenCalledWith('2');
     await expect(container).toHaveNoA11yViolations();
+
+    onChange.mockClear();
+    await user.click(screen.getByRole('radio', { name: 'a' }));
+
+    expect(onChange).not.toHaveBeenCalled();
   });
 });
 
@@ -47,7 +52,7 @@ function renderToggleButtonGroup(overrides: Partial<ToggleButtonGroupProps> = {}
     <ToggleButtonGroup
       onChange={jest.fn()}
       options={DEFAULT_OPTIONS}
-      selected="a"
+      selected="1"
       {...overrides}
     />,
   );

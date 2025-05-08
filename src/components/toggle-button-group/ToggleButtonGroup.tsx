@@ -77,7 +77,7 @@ export const ToggleButtonGroup = forwardRef<HTMLDivElement, ToggleButtonGroupPro
   },
 );
 
-ToggleButtonGroup.displayName = 'ToggleGroup';
+ToggleButtonGroup.displayName = 'ToggleButtonGroup';
 
 interface ToggleButtonItemProps extends ToggleOption {}
 
@@ -88,7 +88,7 @@ function ToggleButtonItem(props: ToggleButtonItemProps) {
     <StyledItem value={value}>
       <StyledItemInner>
         {iconLeft}
-        {label}
+        <StyledItemLabel data-text={label}>{label}</StyledItemLabel>
         {suffix}
       </StyledItemInner>
     </StyledItem>
@@ -112,7 +112,26 @@ const StyledItemInner = styled.div`
   flex-direction: row;
   align-items: center;
 
+  border-radius: var(--echoes-border-radius-200);
+
   padding: var(--echoes-dimension-space-50) var(--echoes-dimension-space-150);
+`;
+
+const StyledItemLabel = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  // This is a hack to force the width to stay constant between active and inactive
+  // we add a hidden copy of the label above it that takes the space it would if it were active
+  &::before {
+    content: attr(data-text);
+    display: block;
+    height: 0;
+    overflow: hidden;
+    font-weight: var(--echoes-font-weight-semi-bold);
+    visibility: hidden;
+  }
 `;
 
 const StyledItem = styled(RadixToggleGroup.Item)`
@@ -127,14 +146,6 @@ const StyledItem = styled(RadixToggleGroup.Item)`
 
   background-color: transparent;
   border: var(--echoes-border-width-default) solid transparent;
-
-  &:not([data-state='on']) + &:not([data-state='on'])::before {
-    content: '';
-    background-color: var(--echoes-color-border-weak);
-    width: 1px;
-    height: 28px;
-    margin-left: -6px;
-  }
 
   &:hover:not([data-state='on']) ${StyledItemInner} {
     background-color: var(--echoes-color-background-neutral-bolder);
@@ -153,5 +164,18 @@ const StyledItem = styled(RadixToggleGroup.Item)`
     border-radius: var(--echoes-border-radius-200);
     font-weight: var(--echoes-font-weight-semi-bold);
     box-shadow: var(--echoes-box-shadow-xsmall);
+  }
+
+  // Separator is always present but only visible between inactive options
+  & + &::before {
+    content: '';
+    background-color: transparent;
+    width: 1px;
+    height: 28px;
+    margin-left: -6px;
+  }
+
+  &:not([data-state='on']) + &:not([data-state='on'])::before {
+    background-color: var(--echoes-color-border-weak);
   }
 `;
