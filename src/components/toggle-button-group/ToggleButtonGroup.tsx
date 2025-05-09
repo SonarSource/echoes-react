@@ -56,7 +56,7 @@ export interface ToggleButtonGroupProps {
 
 export const ToggleButtonGroup = forwardRef<HTMLDivElement, ToggleButtonGroupProps>(
   (props, ref) => {
-    const { onChange, options, selected } = props;
+    const { onChange, options, selected, ...additionalProps } = props;
 
     const handleChange = useCallback(
       (value: string) => {
@@ -68,7 +68,12 @@ export const ToggleButtonGroup = forwardRef<HTMLDivElement, ToggleButtonGroupPro
     );
 
     return (
-      <StyledRoot onValueChange={handleChange} ref={ref} type="single" value={selected}>
+      <StyledRoot
+        {...additionalProps}
+        onValueChange={handleChange}
+        ref={ref}
+        type="single"
+        value={selected}>
         {options.map((option) => (
           <ToggleButtonItem key={option.value} {...option} />
         ))}
@@ -96,7 +101,7 @@ function ToggleButtonItem(props: ToggleButtonItemProps) {
 }
 
 const StyledRoot = styled(RadixToggleGroup.Root)`
-  display: flex;
+  display: inline-flex;
   flex-direction: row;
   align-items: center;
 
