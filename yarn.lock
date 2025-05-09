@@ -3367,6 +3367,52 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@radix-ui/react-toggle-group@npm:1.1.7":
+  version: 1.1.7
+  resolution: "@radix-ui/react-toggle-group@npm:1.1.7"
+  dependencies:
+    "@radix-ui/primitive": "npm:1.1.2"
+    "@radix-ui/react-context": "npm:1.1.2"
+    "@radix-ui/react-direction": "npm:1.1.1"
+    "@radix-ui/react-primitive": "npm:2.1.0"
+    "@radix-ui/react-roving-focus": "npm:1.1.7"
+    "@radix-ui/react-toggle": "npm:1.1.6"
+    "@radix-ui/react-use-controllable-state": "npm:1.2.2"
+  peerDependencies:
+    "@types/react": "*"
+    "@types/react-dom": "*"
+    react: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
+    react-dom: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
+    "@types/react-dom":
+      optional: true
+  checksum: 10/9df46a4c2380e7cc90a68da210e35def2f10270446a50829dfb828b83b3b31620b0eea8eef8a73b446b93849fc2dc1420a4dd387cd9da2812a3669dc00a97c58
+  languageName: node
+  linkType: hard
+
+"@radix-ui/react-toggle@npm:1.1.6":
+  version: 1.1.6
+  resolution: "@radix-ui/react-toggle@npm:1.1.6"
+  dependencies:
+    "@radix-ui/primitive": "npm:1.1.2"
+    "@radix-ui/react-primitive": "npm:2.1.0"
+    "@radix-ui/react-use-controllable-state": "npm:1.2.2"
+  peerDependencies:
+    "@types/react": "*"
+    "@types/react-dom": "*"
+    react: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
+    react-dom: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
+    "@types/react-dom":
+      optional: true
+  checksum: 10/2841d4796a5b0111fa2fa2634dae2dbe70fb0f4eb68f0c9aa23fb10c6f28881f06c1f739e513725ea5506c2ca2c796df2a7fad63ed2ced38dbf9db4fec2e9cf2
+  languageName: node
+  linkType: hard
+
 "@radix-ui/react-tooltip@npm:1.1.7":
   version: 1.1.7
   resolution: "@radix-ui/react-tooltip@npm:1.1.7"
@@ -3960,6 +4006,7 @@ __metadata:
     "@radix-ui/react-popover": "npm:1.1.11"
     "@radix-ui/react-radio-group": "npm:1.2.2"
     "@radix-ui/react-slot": "npm:1.1.1"
+    "@radix-ui/react-toggle-group": "npm:1.1.7"
     "@radix-ui/react-tooltip": "npm:1.1.7"
     "@radix-ui/react-visually-hidden": "npm:1.2.0"
     "@storybook/addon-a11y": "npm:8.6.12"
