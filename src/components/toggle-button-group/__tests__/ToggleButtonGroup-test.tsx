@@ -39,8 +39,12 @@ describe('RadioButtonGroup', () => {
 
     expect(onChange).toHaveBeenCalledWith('2');
     await expect(container).toHaveNoA11yViolations();
+  });
 
-    onChange.mockClear();
+  it('should not react to clicking the selected option', async () => {
+    const onChange = jest.fn();
+    const { user } = renderToggleButtonGroup({ onChange });
+
     await user.click(screen.getByRole('radio', { name: 'a' }));
 
     expect(onChange).not.toHaveBeenCalled();

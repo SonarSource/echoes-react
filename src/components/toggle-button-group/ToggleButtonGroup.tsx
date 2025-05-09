@@ -127,15 +127,18 @@ const StyledItemLabel = styled.div`
   flex-direction: column;
   align-items: center;
 
-  // This is a hack to force the width to stay constant between active and inactive
-  // we add a hidden copy of the label above it that takes the space it would if it were active
+  // The following is a hack to force the width to stay constant between active and inactive.
+  // It prevents a wobble effect when changing the selection.
+  // The way the hack works:
+  // We add a hidden copy of the label with the font weight the label has when active.
+  // This forces the container to always have the width the semi-bold label requires.
   &::before {
     content: attr(data-text);
     display: block;
     height: 0;
     overflow: hidden;
     font-weight: var(--echoes-font-weight-semi-bold);
-    visibility: hidden;
+    visibility: hidden; // This makes the copy invisible to screen readers as well
   }
 `;
 
