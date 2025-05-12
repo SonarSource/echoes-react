@@ -49,6 +49,15 @@ describe('RadioButtonGroup', () => {
 
     expect(onChange).not.toHaveBeenCalled();
   });
+
+  it('should not react to clicking when disabled', async () => {
+    const onChange = jest.fn();
+    const { user } = renderToggleButtonGroup({ isDisabled: true, onChange });
+
+    await user.click(screen.getByRole('radio', { name: 'b' }));
+
+    expect(onChange).not.toHaveBeenCalled();
+  });
 });
 
 function renderToggleButtonGroup(overrides: Partial<ToggleButtonGroupProps> = {}) {

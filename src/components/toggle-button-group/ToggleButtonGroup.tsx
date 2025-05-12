@@ -41,6 +41,7 @@ export interface ToggleButtonGroupProps {
 
   className?: string;
 
+  isDisabled?: boolean;
   /**
    * Callback function triggered when the selected value changes.
    * @param value - The newly selected value.
@@ -49,14 +50,13 @@ export interface ToggleButtonGroupProps {
 
   /**
    * The currently selected value in the toggle button group.
-   * If undefined, no option is selected.
    */
-  selected: string | undefined;
+  selected: string;
 }
 
 export const ToggleButtonGroup = forwardRef<HTMLDivElement, ToggleButtonGroupProps>(
   (props, ref) => {
-    const { onChange, options, selected, ...additionalProps } = props;
+    const { isDisabled = false, onChange, options, selected, ...additionalProps } = props;
 
     const handleChange = useCallback(
       (value: string) => {
@@ -70,6 +70,7 @@ export const ToggleButtonGroup = forwardRef<HTMLDivElement, ToggleButtonGroupPro
     return (
       <StyledRoot
         {...additionalProps}
+        disabled={isDisabled}
         onValueChange={handleChange}
         ref={ref}
         type="single"
@@ -107,9 +108,6 @@ const StyledRoot = styled(RadixToggleGroup.Root)`
 
   background-color: var(--echoes-color-background-neutral-weak-default);
   border-radius: var(--echoes-border-radius-200);
-
-  font: var(--echoes-typography-text-default-semi-bold);
-  color: var(--echoes-color-text-default);
 `;
 
 const StyledItemInner = styled.div`
@@ -148,14 +146,18 @@ const StyledItem = styled(RadixToggleGroup.Item)`
   align-items: center;
 
   font: var(--echoes-typography-text-default-regular);
+  color: var(--echoes-color-text-default);
 
   gap: var(--echoes-dimension-space-50);
   padding: var(--echoes-dimension-space-50);
 
   background-color: transparent;
   border: var(--echoes-border-width-default) solid transparent;
+  border-radius: var(--echoes-border-radius-200);
 
-  &:hover:not([data-state='on']) ${StyledItemInner} {
+  cursor: pointer;
+
+  &:hover:not([data-state='on'], :disabled) ${StyledItemInner} {
     background-color: var(--echoes-color-background-neutral-bolder);
   }
 
@@ -166,12 +168,19 @@ const StyledItem = styled(RadixToggleGroup.Item)`
     z-index: 1;
   }
 
+  &:disabled {
+    color: var(--echoes-color-text-disabled);
+    background-color: var(--echoes-color-background-disabled);
+    cursor: default;
+  }
+
   &[data-state='on'] {
     background-color: var(--echoes-color-background-default);
     border-color: var(--echoes-color-border-bold);
     border-radius: var(--echoes-border-radius-200);
     font-weight: var(--echoes-font-weight-semi-bold);
     box-shadow: var(--echoes-box-shadow-xsmall);
+    cursor: default;
   }
 
   // Separator is always present but only visible between inactive options
