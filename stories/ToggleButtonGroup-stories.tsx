@@ -40,7 +40,7 @@ type Story = StoryObj<typeof ToggleButtonGroup>;
 
 export const Default: Story = {
   args: {
-    selected: '',
+    selected: 'a',
     options: [
       { label: 'First option', value: 'a' },
       { label: 'Second option', value: 'b' },
