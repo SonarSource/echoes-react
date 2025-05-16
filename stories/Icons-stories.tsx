@@ -22,7 +22,9 @@ import styled from '@emotion/styled';
 import { Meta, StoryObj } from '@storybook/react';
 import { useMemo, useState } from 'react';
 import { DesignTokensColors } from '~types/design-tokens';
+import { Text } from '../src';
 import * as icons from '../src/components/icons';
+import { iconsComponentsArgType } from './helpers/arg-types';
 
 const meta: Meta = {
   title: 'Echoes/Icons',
@@ -129,9 +131,25 @@ const IconTile = styled.div`
   border-radius: 8px;
 `;
 
-export const AutoSizing: StoryObj = {
-  render: () => (
+interface SizingStoryArgs {
+  Icon: React.ForwardRefExoticComponent<icons.IconProps & React.RefAttributes<HTMLSpanElement>>;
+  text: string;
+}
+
+export const AutoSizing: StoryObj<SizingStoryArgs> = {
+  argTypes: {
+    Icon: iconsComponentsArgType,
+  },
+  args: {
+    Icon: icons.IconBell,
+    text: 'This is some text',
+  },
+  render: (args) => (
     <div>
+      <Text>
+        <args.Icon /> {args.text}
+      </Text>
+
       <p style={{ font: 'var(--echoes-typography-text-large-regular)' }}>
         <icons.IconMegaphone /> Warning warning!
       </p>

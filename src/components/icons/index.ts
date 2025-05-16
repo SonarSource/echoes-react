@@ -64,6 +64,7 @@ export { IconLightBulb } from './IconLightBulb';
 export { IconLink } from './IconLink';
 export { IconLinkExternal } from './IconLinkExternal';
 export { IconLock } from './IconLock';
+export { IconLogoSonarQubeCloud } from './IconLogoSonarQubeCloud';
 export { IconMegaphone } from './IconMegaphone';
 export { IconMoreVertical } from './IconMoreVertical';
 export { IconOrganization } from './IconOrganization';
