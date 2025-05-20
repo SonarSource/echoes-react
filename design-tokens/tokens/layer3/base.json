@@ -134,6 +134,19 @@
           }
         }
       }
+    },
+    "table": {
+      "sizes": {
+        "row": {
+          "minWidth": {
+            "default": {
+              "value": "53px",
+              "type": "sizing",
+              "description": "This is the minimum size we want for the row, regardless of the padding. It includes the 1px border, and as such must be used with box-sizing: border-box."
+            }
+          }
+        }
+      }
     }
   }
 }

@@ -18,30 +18,37 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-export * from './badges';
-export * from './breadcrumbs';
-export * from './buttons';
-export * from './card';
-export * from './checkbox';
-export * from './checkbox-group';
-export * from './divider';
-export * from './dropdown-menu';
-export * from './echoes-provider';
-export * from './form';
-export * from './global-navigation';
-export * from './icons';
-export * from './links';
-export * from './logos';
-export * from './messages';
-export * from './modals';
-export * from './popover';
-export * from './radio-button-group';
-export * from './select';
-export * from './spinner';
-export * from './table';
-export * from './text-area';
-export * from './text-input';
-export * from './toggle-button-group';
-export * from './toggle-tip';
-export * from './tooltip';
-export * from './typography';
+import classNames from 'classnames';
+import { forwardRef } from 'react';
+import { StyledTable } from './TableStyles';
+import { TableProps, TableVariety } from './TableTypes';
+
+export const TableRoot = forwardRef<HTMLTableElement, TableProps>((props, ref) => {
+  const {
+    ariaLabel,
+    ariaLabelledBy,
+    className,
+    children,
+    gridTemplate,
+    variety = TableVariety.Ghost,
+    ...radixProps
+  } = props;
+
+  return (
+    <StyledTable
+      aria-label={ariaLabel}
+      aria-labelledby={ariaLabelledBy}
+      className={classNames(
+        { 'table-variety-surface': variety === TableVariety.Surface },
+        className,
+      )}
+      gridTemplate={gridTemplate}
+      ref={ref}
+      variety={variety}
+      {...radixProps}>
+      {children}
+    </StyledTable>
+  );
+});
+
+TableRoot.displayName = 'Table';
