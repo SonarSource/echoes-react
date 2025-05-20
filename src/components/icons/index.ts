@@ -22,9 +22,11 @@ import './icons.css';
 
 export type { IconProps } from './IconWrapper';
 
+export { IconArrowDown } from './IconArrowDown';
 export { IconArrowDownRight } from './IconArrowDownRight';
 export { IconArrowLeft } from './IconArrowLeft';
 export { IconArrowRight } from './IconArrowRight';
+export { IconArrowUp } from './IconArrowUp';
 export { IconArrowUpRight } from './IconArrowUpRight';
 export { IconBell } from './IconBell';
 export { IconBranch } from './IconBranch';

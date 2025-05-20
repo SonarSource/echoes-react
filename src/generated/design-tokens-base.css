@@ -248,4 +248,5 @@
   --echoes-sizes-breadcrumbs-max-width-default: 300px;
   --echoes-offset-dropdown-submenu-panel-vertical: 0px;
   --echoes-offset-dropdown-submenu-panel-horizontal: 8px;
+  --echoes-table-sizes-row-min-width-default: 53px; /* This is the minimum size we want for the row, regardless of the padding. It includes the 1px border, and as such must be used with box-sizing: border-box. */
 }

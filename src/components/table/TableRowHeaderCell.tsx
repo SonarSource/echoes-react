@@ -18,30 +18,18 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-export * from './badges';
-export * from './breadcrumbs';
-export * from './buttons';
-export * from './card';
-export * from './checkbox';
-export * from './checkbox-group';
-export * from './divider';
-export * from './dropdown-menu';
-export * from './echoes-provider';
-export * from './form';
-export * from './global-navigation';
-export * from './icons';
-export * from './links';
-export * from './logos';
-export * from './messages';
-export * from './modals';
-export * from './popover';
-export * from './radio-button-group';
-export * from './select';
-export * from './spinner';
-export * from './table';
-export * from './text-area';
-export * from './text-input';
-export * from './toggle-button-group';
-export * from './toggle-tip';
-export * from './tooltip';
-export * from './typography';
+import { forwardRef } from 'react';
+import { TableCellText, TableCellTextProps } from './TableCellText';
+
+/**
+ * This component is just a thin wrapper around the TextCell, to make it a <th/>
+ */
+export const TableRowHeaderCell = forwardRef<HTMLTableCellElement, TableCellTextProps>(
+  (props, ref) => {
+    // We don't want to expose the `as` prop for the TableCellText
+    // but it does technically accept it, since all props are forwarded
+    return <TableCellText ref={ref} {...props} {...{ as: 'th' }} />;
+  },
+);
+
+TableRowHeaderCell.displayName = 'TableRowHeaderCell';

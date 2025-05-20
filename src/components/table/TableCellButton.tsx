@@ -18,30 +18,27 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-export * from './badges';
-export * from './breadcrumbs';
-export * from './buttons';
-export * from './card';
-export * from './checkbox';
-export * from './checkbox-group';
-export * from './divider';
-export * from './dropdown-menu';
-export * from './echoes-provider';
-export * from './form';
-export * from './global-navigation';
-export * from './icons';
-export * from './links';
-export * from './logos';
-export * from './messages';
-export * from './modals';
-export * from './popover';
-export * from './radio-button-group';
-export * from './select';
-export * from './spinner';
-export * from './table';
-export * from './text-area';
-export * from './text-input';
-export * from './toggle-button-group';
-export * from './toggle-tip';
-export * from './tooltip';
-export * from './typography';
+import styled from '@emotion/styled';
+import { forwardRef } from 'react';
+import { Button, ButtonProps } from '../buttons/Button';
+import { StyledTableCell } from './TableStyles';
+
+export interface TableCellButtonProps extends ButtonProps {
+  cellClassName?: string;
+}
+
+export const TableCellButton = forwardRef<HTMLButtonElement, TableCellButtonProps>((props, ref) => {
+  const { cellClassName, ...buttonProps } = props;
+
+  return (
+    <StyledTableCellButton className={cellClassName}>
+      <Button {...buttonProps} ref={ref} />
+    </StyledTableCellButton>
+  );
+});
+
+TableCellButton.displayName = 'TableCellButton';
+
+const StyledTableCellButton = styled(StyledTableCell)`
+  padding: var(--echoes-dimension-space-100) var(--echoes-dimension-space-200);
+`;

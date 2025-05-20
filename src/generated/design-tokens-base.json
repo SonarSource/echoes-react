@@ -354,6 +354,15 @@
           }
         }
       }
+    },
+    "table": {
+      "sizes": {
+        "row": {
+          "minWidth": {
+            "default": "53px"
+          }
+        }
+      }
     }
   }
 }
