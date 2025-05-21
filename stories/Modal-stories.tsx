@@ -94,7 +94,7 @@ export const Controlled: Story = {
       'This is a controlled modal that will closed on submit after a delay and showing a spinner.',
     footerLink: 'link',
     secondaryButton: 'default',
-    title: 'My Modal',
+    title: 'My super long modal title about "SonarQube Server WebApp" project that wraps',
   },
   render: (args) => <ControlledModal {...args} />,
 };

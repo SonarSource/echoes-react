@@ -18,7 +18,6 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 import styled from '@emotion/styled';
-import { truncate } from '~common/helpers/styles';
 import { ModalSize } from './ModalTypes';
 
 const SIZES = {
@@ -56,13 +55,12 @@ export const styleModalTitle = styled.h2`
   font: var(--echoes-typography-heading-large);
   color: var(--echoes-color-text-bold);
 
-  height: var(--echoes-dimension-height-800);
+  min-height: var(--echoes-dimension-height-800);
   line-height: var(--echoes-dimension-height-800);
   margin: var(--echoes-dimension-space-0);
   padding: var(--echoes-dimension-space-400) var(--echoes-dimension-space-400);
   padding-bottom: var(--echoes-dimension-space-0);
-
-  ${truncate}
+  overflow-wrap: break-word;
 `.withComponent;
 
 export const styleModalDescription = styled.div`
