@@ -19,7 +19,7 @@
  */
 
 import type { Meta, StoryObj } from '@storybook/react';
-import { ButtonIcon, IconEdit, Table, TableType } from '../src';
+import { ButtonIcon, IconEdit, Table, TableVariety } from '../src';
 import { basicWrapperDecorator } from './helpers/BasicWrapper';
 
 const meta: Meta<typeof Table> = {
@@ -29,7 +29,7 @@ const meta: Meta<typeof Table> = {
     controls: { exclude: ['children'] },
   },
   argTypes: {
-    type: { control: { type: 'select' }, options: Object.values(TableType) },
+    variety: { control: { type: 'select' }, options: Object.values(TableVariety) },
   },
   decorators: [basicWrapperDecorator],
 };
@@ -41,16 +41,23 @@ type Story = StoryObj<typeof Table>;
 export const Basic: Story = {
   args: {
     ariaLabel: 'Awesome table',
-    gridTemplate: 'repeat(3, 1fr) max-content',
-    type: TableType.Surface,
+    gridTemplate: 'repeat(4, 1fr) max-content',
+    variety: TableVariety.Surface,
   },
   render: (args) => (
     <Table {...args}>
       <Table.Header>
         <Table.Row>
-          <Table.ColumnHeaderCell>Name</Table.ColumnHeaderCell>
-          <Table.ColumnHeaderCell>Email</Table.ColumnHeaderCell>
-          <Table.ColumnHeaderCell>Weapon</Table.ColumnHeaderCell>
+          <Table.ColumnHeaderCell label="Name" />
+          <Table.ColumnHeaderCell label="Email" />
+          <Table.ColumnHeaderCell
+            label="Weapon"
+            onSort={() => {
+              console.log('asdf');
+            }}
+            sortDirection="desc"
+          />
+          <Table.ColumnHeaderCell justify="end" label="Age" />
           <Table.ColumnHeaderCell aria-label="actions" />
         </Table.Row>
       </Table.Header>
@@ -60,6 +67,7 @@ export const Basic: Story = {
           <Table.RowHeaderCell>Michelangelo</Table.RowHeaderCell>
           <Table.Cell>mikey@sewers.nyc</Table.Cell>
           <Table.Cell>Nunchaku</Table.Cell>
+          <Table.Cell>13</Table.Cell>
           <Table.Cell>
             <ButtonIcon Icon={IconEdit} ariaLabel="edit mike" />
           </Table.Cell>
@@ -69,6 +77,7 @@ export const Basic: Story = {
           <Table.RowHeaderCell>Leonardo</Table.RowHeaderCell>
           <Table.Cell>leo@sewers.nyc</Table.Cell>
           <Table.Cell>Katana</Table.Cell>
+          <Table.Cell>15</Table.Cell>
           <Table.Cell>
             <ButtonIcon Icon={IconEdit} ariaLabel="edit leo" />
           </Table.Cell>
@@ -78,6 +87,7 @@ export const Basic: Story = {
           <Table.RowHeaderCell>Donatello</Table.RowHeaderCell>
           <Table.Cell>donnie@sewers.nyc</Table.Cell>
           <Table.Cell>Bo</Table.Cell>
+          <Table.Cell>14</Table.Cell>
           <Table.Cell>
             <ButtonIcon Icon={IconEdit} ariaLabel="edit donnie" />
           </Table.Cell>
@@ -87,6 +97,7 @@ export const Basic: Story = {
           <Table.RowHeaderCell>Raphael</Table.RowHeaderCell>
           <Table.Cell>raph@sewers.nyc</Table.Cell>
           <Table.Cell>Sai</Table.Cell>
+          <Table.Cell>14</Table.Cell>
           <Table.Cell>
             <ButtonIcon Icon={IconEdit} ariaLabel="edit raph" />
           </Table.Cell>

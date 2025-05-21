@@ -18,37 +18,38 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import classNames from 'classnames';
-import { forwardRef } from 'react';
-import { StyledTable } from './TableStyles';
-import { TableProps, TableVariety } from './TableTypes';
+import { ComponentProps, PropsWithChildren } from 'react';
 
-export const TableRoot = forwardRef<HTMLTableElement, TableProps>((props, ref) => {
-  const {
-    ariaLabel,
-    ariaLabelledBy,
-    className,
-    children,
-    gridTemplate,
-    variety = TableVariety.Ghost,
-    ...radixProps
-  } = props;
+export enum TableVariety {
+  Surface = 'surface',
+  Ghost = 'ghost',
+}
 
-  return (
-    <StyledTable
-      aria-label={ariaLabel}
-      aria-labelledby={ariaLabelledBy}
-      className={classNames(
-        { 'table-variety-surface': variety === TableVariety.Surface },
-        className,
-      )}
-      gridTemplate={gridTemplate}
-      ref={ref}
-      variety={variety}
-      {...radixProps}>
-      {children}
-    </StyledTable>
-  );
-});
+export enum TableCellJustify {
+  Start = 'start',
+  Center = 'center',
+  End = 'end',
+}
 
-TableRoot.displayName = 'Table';
+export enum TableSortDirection {
+  Asc = 'asc',
+  Desc = 'desc',
+}
+
+export interface TableBaseProps extends PropsWithChildren<ComponentProps<'table'>> {
+  className?: string;
+  gridTemplate: string;
+  variety?: TableVariety;
+}
+
+export interface TablePropsWithLabel extends TableBaseProps {
+  ariaLabel: string;
+  ariaLabelledBy?: never;
+}
+
+export interface TablePropsWithLabeledBy extends TableBaseProps {
+  ariaLabel?: never;
+  ariaLabelledBy: string;
+}
+
+export type TableProps = TablePropsWithLabel | TablePropsWithLabeledBy;

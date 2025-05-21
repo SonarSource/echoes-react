@@ -18,17 +18,17 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+import { TableRoot } from './Table';
+import { TableColumnHeaderCell } from './TableColumnHeaderCell';
 import {
-  TableBody,
-  TableCell,
-  TableColumnHeaderCell,
-  TableHeader,
-  TableRoot,
+  StyledTableBody,
+  StyledTableCell,
+  StyledTableHeader,
+  StyledTableRowHeaderCell,
   TableRow,
-  TableRowHeaderCell,
-} from './Table';
+} from './TableStyles';
 
-export { TableType } from './Table';
+export { TableVariety, type TableBaseProps } from './TableTypes';
 
 /**
  * {@link TableRoot | Table} ...
@@ -45,11 +45,11 @@ export const Table = Object.assign(TableRoot, {
   /**
    * {@link TableHeader | Table.Header}
    */
-  Header: TableHeader,
+  Header: StyledTableHeader,
   /**
    * {@link TableBody | Table.Body}
    */
-  Body: TableBody,
+  Body: StyledTableBody,
   /**
    * {@link TableRow | Table.Row}
    */
@@ -58,7 +58,7 @@ export const Table = Object.assign(TableRoot, {
   /**
    * {@link TableRowHeaderCell | Table.RowHeaderCell}
    */
-  RowHeaderCell: TableRowHeaderCell,
+  RowHeaderCell: StyledTableRowHeaderCell,
 
   /**
    * {@link TableColumnHeaderCell | Table.ColumnHeaderCell}
@@ -68,5 +68,5 @@ export const Table = Object.assign(TableRoot, {
   /**
    * {@link TableCell | Table.Cell}
    */
-  Cell: TableCell,
+  Cell: StyledTableCell,
 });
