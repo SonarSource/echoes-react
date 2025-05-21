@@ -118,7 +118,7 @@ export const Badge = forwardRef<HTMLButtonElement, BadgeProps>((props, ref) => {
 Badge.displayName = 'Badge';
 
 const StyledBadge = styled.button<{ isInteractive: boolean }>`
-  display: flex;
+  display: inline-flex;
   flex-direction: row;
   gap: var(--echoes-dimension-space-50);
 
