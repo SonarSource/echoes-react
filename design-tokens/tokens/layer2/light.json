@@ -668,17 +668,8 @@
         },
         "emphasis": {
           "weak": {
-            "value": "{echoes.color.purple.300}",
-            "type": "color",
-            "$extensions": {
-              "studio.tokens": {
-                "modify": {
-                  "type": "alpha",
-                  "value": "0.4",
-                  "space": "lch"
-                }
-              }
-            }
+            "value": "{echoes.color.purple.200}",
+            "type": "color"
           }
         }
       },

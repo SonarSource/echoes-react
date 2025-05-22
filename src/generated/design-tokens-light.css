@@ -151,7 +151,7 @@
   --echoes-color-border-success-default: rgb(83,128,39);
   --echoes-color-border-warning-weak: rgb(254,245,208);
   --echoes-color-border-info-weak: rgb(233,244,251);
-  --echoes-color-border-emphasis-weak: hsl(263 100% 91.8% / 0.4);
+  --echoes-color-border-emphasis-weak: rgb(237,226,255);
   --echoes-color-focus-default: rgb(75,86,187);
   --echoes-form-control-colors-background-default: rgb(255,255,255);
   --echoes-form-control-colors-background-hover: rgb(246,247,251);
