@@ -18,13 +18,12 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import styled from '@emotion/styled';
 import { forwardRef } from 'react';
 import { isDefined } from '~common/helpers/types';
 import { TextNode } from '~types/utils';
 import { Button } from '../buttons';
 import { IconArrowDown, IconArrowUp } from '../icons';
-import { cellBaseStyle } from './TableStyles';
+import { StyledTableColumnHeaderCell } from './TableStyles';
 import { TableCellJustify, TableSortDirection } from './TableTypes';
 
 export interface Props {
@@ -48,10 +47,10 @@ export const TableColumnHeaderCell = forwardRef<HTMLTableCellElement, Props>((pr
   if (isDefined(onSort)) {
     return (
       <StyledTableColumnHeaderCell
+        {...radixProps}
         className={className}
-        justify={justify}
-        ref={ref}
-        {...radixProps}>
+        css={{ alignItems: justify }}
+        ref={ref}>
         <Button
           onClick={onSort}
           suffix={sortDirection === TableSortDirection.Asc ? <IconArrowUp /> : <IconArrowDown />}
@@ -63,20 +62,14 @@ export const TableColumnHeaderCell = forwardRef<HTMLTableCellElement, Props>((pr
   }
 
   return (
-    <StyledTableColumnHeaderCell className={className} justify={justify} ref={ref} {...radixProps}>
+    <StyledTableColumnHeaderCell
+      {...radixProps}
+      className={className}
+      css={{ alignItems: justify }}
+      ref={ref}>
       {label}
     </StyledTableColumnHeaderCell>
   );
 });
 
 TableColumnHeaderCell.displayName = 'TableColumnHeaderCell';
-
-const StyledTableColumnHeaderCell = styled.th<Required<Pick<Props, 'justify'>>>`
-  ${cellBaseStyle}
-
-  background-color: var(--table-header-background-color);
-  font: var(--echoes-typography-text-default-semi-bold);
-  gap: var(--echoes-dimension-space-100);
-
-  align-items: ${({ justify }) => justify};
-`;

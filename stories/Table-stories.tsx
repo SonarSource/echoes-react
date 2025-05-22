@@ -19,7 +19,9 @@
  */
 
 import type { Meta, StoryObj } from '@storybook/react';
-import { ButtonIcon, IconEdit, Table, TableVariety, Tooltip } from '../src';
+import { useCallback, useState } from 'react';
+import { TableProps } from 'src/components/table/TableTypes';
+import { IconEdit, Table, TableVariety, Tooltip } from '../src';
 import { basicWrapperDecorator } from './helpers/BasicWrapper';
 
 const meta: Meta<typeof Table> = {
@@ -41,13 +43,99 @@ type Story = StoryObj<typeof Table>;
 export const Basic: Story = {
   args: {
     ariaLabel: 'Awesome table',
-    gridTemplate: 'repeat(4, 1fr) max-content',
+    gridTemplate: 'max-content repeat(4, 1fr) max-content',
     variety: TableVariety.Surface,
   },
-  render: (args) => (
-    <Table {...args}>
+  render: (args) => <StateManager {...args} />,
+};
+
+const DATA = [
+  {
+    name: 'Michelangelo',
+    email: 'mikey@sewers.nyc',
+    weapon: 'Nunchaku',
+    age: '13',
+  },
+  {
+    name: 'Leonardo',
+    description: "He's the leader!",
+    email: 'leo@sewers.nyc',
+    weapon: 'Katana',
+    age: '15',
+    ageDescription: 'oldest',
+  },
+  {
+    name: 'Donatello',
+    description: 'techie',
+    email: 'donnie@sewers.nyc',
+    weapon: 'Bo',
+    age: '14',
+  },
+  {
+    name: 'Raphael',
+    email: 'raph@sewers.nyc',
+    emailDescription: "don't bother him!",
+    emailTooltip: 'he can be a bit impatient',
+    weapon: 'Sai',
+    age: '14',
+  },
+];
+
+function getSelectionState(selectedRows: Record<string, boolean>) {
+  const values = Object.values(selectedRows);
+
+  if (values.every((v) => v)) {
+    return true;
+  }
+
+  if (values.every((v) => !v)) {
+    return false;
+  }
+
+  return 'indeterminate';
+}
+
+function StateManager(props: TableProps) {
+  const [selectedRows, setSelectedRows] = useState(
+    DATA.reduce(
+      (result, item) => {
+        result[item.name] = false;
+        return result;
+      },
+      {} as Record<string, boolean>,
+    ),
+  );
+
+  const selectionState = getSelectionState(selectedRows);
+
+  const toggleRow = useCallback(
+    (name: string) => {
+      setSelectedRows((selectedRows) => {
+        return { ...selectedRows, [name]: !selectedRows[name] };
+      });
+    },
+    [setSelectedRows],
+  );
+
+  const toggleAll = useCallback(() => {
+    setSelectedRows((selectedRows) => {
+      DATA.forEach((d) => {
+        selectedRows[d.name] = selectionState === 'indeterminate' || !selectionState;
+      });
+
+      return { ...selectedRows };
+    });
+  }, [setSelectedRows, selectionState]);
+
+  return (
+    <Table {...props}>
       <Table.Header>
         <Table.Row>
+          <Table.ColumnHeaderCellCheckbox
+            ariaLabel="Select"
+            checked={getSelectionState(selectedRows)}
+            onCheck={toggleAll}
+          />
           <Table.ColumnHeaderCell label="Name" />
           <Table.ColumnHeaderCell label="Email" />
           <Table.ColumnHeaderCell
@@ -63,50 +151,33 @@ export const Basic: Story = {
       </Table.Header>
 
       <Table.Body>
-        <Table.Row>
-          <Table.RowHeaderCell content="Michelangelo" />
-          <Table.CellLink to="#">mikey@sewers.nyc</Table.CellLink>
-          <Table.CellText content="Nunchaku" />
-          <Table.CellNumber content="13" />
-          <Table.Cell>
-            <ButtonIcon Icon={IconEdit} ariaLabel="edit mike" />
-          </Table.Cell>
-        </Table.Row>
+        {DATA.map((turtle) => (
+          <Table.Row key={turtle.name}>
+            <Table.CellCheckbox
+              ariaLabel={`Select ${turtle.name}`}
+              checked={selectedRows[turtle.name]}
+              onCheck={() => toggleRow(turtle.name)}
+            />
+            <Table.RowHeaderCell content={turtle.name} description={turtle.description} />
 
-        <Table.Row>
-          <Table.RowHeaderCell content="Leonardo" description="He's the leader!" />
-          <Table.CellLink to="#">leo@sewers.nyc</Table.CellLink>
-          <Table.CellText content="Katana" />
-          <Table.CellNumber content="15" description="oldest" />
-          <Table.Cell>
-            <ButtonIcon Icon={IconEdit} ariaLabel="edit leo" />
-          </Table.Cell>
-        </Table.Row>
+            {turtle.emailTooltip ? (
+              <Tooltip content="he can be a bit impatient">
+                <Table.CellLink description={turtle.emailDescription} to="#">
+                  {turtle.email}
+                </Table.CellLink>
+              </Tooltip>
+            ) : (
+              <Table.CellLink description={turtle.emailDescription} to="#">
+                {turtle.email}
+              </Table.CellLink>
+            )}
 
-        <Table.Row>
-          <Table.RowHeaderCell content="Donatello" description="techie" />
-          <Table.CellLink to="#">donnie@sewers.nyc</Table.CellLink>
-          <Table.CellText content="Bo" />
-          <Table.CellNumber content="14" />
-          <Table.Cell>
-            <ButtonIcon Icon={IconEdit} ariaLabel="edit donnie" />
-          </Table.Cell>
-        </Table.Row>
-
-        <Table.Row>
-          <Table.RowHeaderCell content="Raphael" />
-          <Tooltip content="he can be a bit impatient">
-            <Table.CellLink description="don't bother him!" to="#">
-              raph@sewers.nyc
-            </Table.CellLink>
-          </Tooltip>
-          <Table.CellText content="Sai" />
-          <Table.CellNumber content="14" />
-          <Table.Cell>
-            <ButtonIcon Icon={IconEdit} ariaLabel="edit raph" />
-          </Table.Cell>
-        </Table.Row>
+            <Table.CellText content={turtle.weapon} />
+            <Table.CellNumber content={turtle.age} description={turtle.ageDescription} />
+            <Table.CellButton Icon={IconEdit} ariaLabel={`edit ${turtle.name}`} />
+          </Table.Row>
+        ))}
       </Table.Body>
     </Table>
-  ),
-};
+  );
+}

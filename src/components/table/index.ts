@@ -19,10 +19,13 @@
  */
 
 import { TableRoot } from './Table';
+import { TableCellButton } from './TableCellButton';
+import { TableCellCheckbox } from './TableCellCheckbox';
 import { TableCellLink } from './TableCellLink';
 import { TableCellNumber } from './TableCellNumber';
 import { TableCellText } from './TableCellText';
 import { TableColumnHeaderCell } from './TableColumnHeaderCell';
+import { TableColumnHeaderCellCheckbox } from './TableColumnHeaderCellCheckbox';
 import { TableRowHeaderCell } from './TableRowHeaderCell';
 import { StyledTableBody, StyledTableCell, StyledTableHeader, StyledTableRow } from './TableStyles';
 
@@ -93,4 +96,25 @@ export const Table = Object.assign(TableRoot, {
    * This is a cell to display a Link
    */
   CellLink: TableCellLink,
+
+  /**
+   * {@link TableCellButton | Table.CellButton}
+   *
+   * This is a cell to display a ButtonIcon
+   */
+  CellButton: TableCellButton,
+
+  /**
+   * {@link TableCellCheckbox | Table.CellCheckbox}
+   *
+   * This is a cell to display a Checkbox
+   */
+  CellCheckbox: TableCellCheckbox,
+
+  /**
+   * {@link TableColumnHeaderCellCheckbox | Table.ColumnHeaderCellCheckbox}
+   *
+   * This is a header cell for the checkbox column
+   */
+  ColumnHeaderCellCheckbox: TableColumnHeaderCellCheckbox,
 });

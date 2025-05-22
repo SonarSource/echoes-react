@@ -20,7 +20,7 @@
 
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import { TableBaseProps, TableVariety } from './TableTypes';
+import { TableProps, TableVariety } from './TableTypes';
 
 const TABLE_VARIETY_STYLES = {
   [TableVariety.Surface]: {
@@ -36,18 +36,6 @@ const TABLE_VARIETY_STYLES = {
     'border-spacing': 0,
   },
 };
-
-export interface PropsWithLabel extends TableBaseProps {
-  ariaLabel: string;
-  ariaLabelledBy?: never;
-}
-
-export interface PropsWithLabeledBy extends TableBaseProps {
-  ariaLabel?: never;
-  ariaLabelledBy: string;
-}
-
-export type TableProps = PropsWithLabel | PropsWithLabeledBy;
 
 export const StyledTable = styled.table<Required<Pick<TableProps, 'variety' | 'gridTemplate'>>>`
   display: grid;
@@ -118,4 +106,12 @@ export const StyledTableCell = styled.td`
   ${StyledTableRow}:hover & {
     background-color: var(--echoes-color-background-default-hover);
   }
+`;
+
+export const StyledTableColumnHeaderCell = styled.th`
+  ${cellBaseStyle}
+
+  background-color: var(--table-header-background-color);
+  font: var(--echoes-typography-text-default-semi-bold);
+  gap: var(--echoes-dimension-space-100);
 `;
