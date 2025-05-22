@@ -19,6 +19,7 @@
  */
 
 import { TableRoot } from './Table';
+import { TableCellNumber } from './TableCellNumber';
 import { TableCellText } from './TableCellText';
 import { TableColumnHeaderCell } from './TableColumnHeaderCell';
 import { TableRowHeaderCell } from './TableRowHeaderCell';
@@ -72,9 +73,16 @@ export const Table = Object.assign(TableRoot, {
   Cell: StyledTableCell,
 
   /**
-   * {@link StyledTableCell | Table.Cell}
+   * {@link StyledTableCell | Table.CellText}
    *
    * This is a simple cell to display text
    */
   CellText: TableCellText,
+
+  /**
+   * {@link StyledTableCell | Table.CellNumber}
+   *
+   * This is a simple cell to display a number
+   */
+  CellNumber: TableCellNumber,
 });

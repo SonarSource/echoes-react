@@ -67,27 +67,27 @@ export const Basic: Story = {
           <Table.RowHeaderCell content="Michelangelo" />
           <Table.Cell>mikey@sewers.nyc</Table.Cell>
           <Table.CellText content="Nunchaku" />
-          <Table.Cell>13</Table.Cell>
+          <Table.CellNumber content="13" />
           <Table.Cell>
             <ButtonIcon Icon={IconEdit} ariaLabel="edit mike" />
           </Table.Cell>
         </Table.Row>
 
         <Table.Row>
-          <Table.RowHeaderCell content="Leonardo" />
+          <Table.RowHeaderCell content="Leonardo" description="He's the leader!" />
           <Table.Cell>leo@sewers.nyc</Table.Cell>
           <Table.CellText content="Katana" />
-          <Table.Cell>15</Table.Cell>
+          <Table.CellNumber content="15" description="oldest" />
           <Table.Cell>
             <ButtonIcon Icon={IconEdit} ariaLabel="edit leo" />
           </Table.Cell>
         </Table.Row>
 
         <Table.Row>
-          <Table.RowHeaderCell content="Donatello" />
+          <Table.RowHeaderCell content="Donatello" description="techie" />
           <Table.Cell>donnie@sewers.nyc</Table.Cell>
           <Table.CellText content="Bo" />
-          <Table.Cell>14</Table.Cell>
+          <Table.CellNumber content="14" />
           <Table.Cell>
             <ButtonIcon Icon={IconEdit} ariaLabel="edit donnie" />
           </Table.Cell>
@@ -97,7 +97,7 @@ export const Basic: Story = {
           <Table.RowHeaderCell content="Raphael" />
           <Table.Cell>raph@sewers.nyc</Table.Cell>
           <Table.CellText content="Sai" />
-          <Table.Cell>14</Table.Cell>
+          <Table.CellNumber content="14" />
           <Table.Cell>
             <ButtonIcon Icon={IconEdit} ariaLabel="edit raph" />
           </Table.Cell>

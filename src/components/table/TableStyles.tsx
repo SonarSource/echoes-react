@@ -87,7 +87,9 @@ export const StyledTableRow = styled.tr`
 
 export const cellBaseStyle = css`
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
 
   padding: var(--echoes-dimension-space-200);
 

@@ -30,19 +30,21 @@ export interface TableCellTextProps {
   description?: TextNode;
 }
 
-export const TableCellText = forwardRef<HTMLTableCellElement, TableCellTextProps>((props, ref) => {
-  const { className, content, description, ...radixProps } = props;
+export const TableCellNumber = forwardRef<HTMLTableCellElement, TableCellTextProps>(
+  (props, ref) => {
+    const { className, content, description, ...radixProps } = props;
 
-  return (
-    <StyledTableCell className={className} ref={ref} {...radixProps}>
-      {content}
-      {isDefined(description) && (
-        <Text isSubdued size="small">
-          {description}
-        </Text>
-      )}
-    </StyledTableCell>
-  );
-});
+    return (
+      <StyledTableCell className={className} css={{ alignItems: 'end' }} ref={ref} {...radixProps}>
+        {content}
+        {isDefined(description) && (
+          <Text isSubdued size="small">
+            {description}
+          </Text>
+        )}
+      </StyledTableCell>
+    );
+  },
+);
 
-TableCellText.displayName = 'TableCellText';
+TableCellNumber.displayName = 'TableCellNumber';

@@ -78,5 +78,5 @@ const StyledTableColumnHeaderCell = styled.th<Required<Pick<Props, 'justify'>>>`
   font: var(--echoes-typography-text-default-semi-bold);
   gap: var(--echoes-dimension-space-100);
 
-  justify-content: ${({ justify }) => justify};
+  align-items: ${({ justify }) => justify};
 `;
