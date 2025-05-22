@@ -45,16 +45,19 @@ export const TableColumnHeaderCell = forwardRef<HTMLTableCellElement, Props>((pr
   } = props;
 
   if (isDefined(onSort)) {
+    let sortDirectionIcon = null;
+    if (isDefined(sortDirection)) {
+      sortDirectionIcon =
+        sortDirection === TableSortDirection.Asc ? <IconArrowUp /> : <IconArrowDown />;
+    }
+
     return (
       <StyledTableColumnHeaderCell
         {...radixProps}
         className={className}
         css={{ alignItems: justify }}
         ref={ref}>
-        <Button
-          onClick={onSort}
-          suffix={sortDirection === TableSortDirection.Asc ? <IconArrowUp /> : <IconArrowDown />}
-          variety="default-ghost">
+        <Button onClick={onSort} suffix={sortDirectionIcon} variety="default-ghost">
           {label}
         </Button>
       </StyledTableColumnHeaderCell>

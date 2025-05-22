@@ -20,7 +20,7 @@
 
 import type { Meta, StoryObj } from '@storybook/react';
 import { useCallback, useState } from 'react';
-import { TableProps } from 'src/components/table/TableTypes';
+import { TableProps, TableSortDirection } from 'src/components/table/TableTypes';
 import { IconEdit, Table, TableVariety, Tooltip } from '../src';
 import { basicWrapperDecorator } from './helpers/BasicWrapper';
 
@@ -106,6 +106,11 @@ function StateManager(props: TableProps) {
     ),
   );
 
+  const [sorting, setSorting] = useState<{ column: string; direction?: `${TableSortDirection}` }>({
+    column: '',
+    direction: undefined,
+  });
+
   const selectionState = getSelectionState(selectedRows);
 
   const toggleRow = useCallback(
@@ -127,12 +132,28 @@ function StateManager(props: TableProps) {
     });
   }, [setSelectedRows, selectionState]);
 
+  const toggleSorting = useCallback(
+    (column: string) => {
+      setSorting((sorting) => {
+        if (sorting.column === column) {
+          return {
+            column,
+            direction: sorting.direction === 'asc' ? 'desc' : 'asc',
+          };
+        }
+
+        return { column, direction: 'asc' };
+      });
+    },
+    [setSorting],
+  );
+
   return (
     <Table {...props}>
       <Table.Header>
         <Table.Row>
           <Table.ColumnHeaderCellCheckbox
-            ariaLabel="Select"
+            ariaLabel="Select All"
             checked={getSelectionState(selectedRows)}
             onCheck={toggleAll}
           />
@@ -141,11 +162,18 @@ function StateManager(props: TableProps) {
           <Table.ColumnHeaderCell
             label="Weapon"
             onSort={() => {
-              console.log('asdf');
+              toggleSorting('weapon');
             }}
-            sortDirection="desc"
+            sortDirection={sorting.column === 'weapon' ? sorting.direction : undefined}
           />
-          <Table.ColumnHeaderCell justify="end" label="Age" />
+          <Table.ColumnHeaderCell
+            justify="end"
+            label="Age"
+            onSort={() => {
+              toggleSorting('age');
+            }}
+            sortDirection={sorting.column === 'age' ? sorting.direction : undefined}
+          />
           <Table.ColumnHeaderCell aria-label="actions" />
         </Table.Row>
       </Table.Header>
