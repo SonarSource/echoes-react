@@ -19,14 +19,10 @@
  */
 
 import { TableRoot } from './Table';
+import { TableCellText } from './TableCellText';
 import { TableColumnHeaderCell } from './TableColumnHeaderCell';
-import {
-  StyledTableBody,
-  StyledTableCell,
-  StyledTableHeader,
-  StyledTableRow,
-  StyledTableRowHeaderCell,
-} from './TableStyles';
+import { TableRowHeaderCell } from './TableRowHeaderCell';
+import { StyledTableBody, StyledTableCell, StyledTableHeader, StyledTableRow } from './TableStyles';
 
 export { TableVariety, type TableBaseProps } from './TableTypes';
 
@@ -58,7 +54,7 @@ export const Table = Object.assign(TableRoot, {
   /**
    * {@link TableRowHeaderCell | Table.RowHeaderCell}
    */
-  RowHeaderCell: StyledTableRowHeaderCell,
+  RowHeaderCell: TableRowHeaderCell,
 
   /**
    * {@link TableColumnHeaderCell | Table.ColumnHeaderCell}
@@ -74,4 +70,11 @@ export const Table = Object.assign(TableRoot, {
    * Use as a last resort!
    */
   Cell: StyledTableCell,
+
+  /**
+   * {@link StyledTableCell | Table.Cell}
+   *
+   * This is a simple cell to display text
+   */
+  CellText: TableCellText,
 });

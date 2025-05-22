@@ -91,6 +91,8 @@ export const cellBaseStyle = css`
 
   padding: var(--echoes-dimension-space-200);
 
+  font: var(--echoes-typography-text-default-regular);
+
   .table-variety-surface thead tr:first-child &:first-child {
     border-top-left-radius: var(--echoes-border-radius-200);
   }
@@ -105,14 +107,6 @@ export const cellBaseStyle = css`
 
   .table-variety-surface tbody tr:last-child &:last-child {
     border-bottom-right-radius: var(--echoes-border-radius-200);
-  }
-`;
-
-export const StyledTableRowHeaderCell = styled.th`
-  ${cellBaseStyle}
-
-  ${StyledTableRow}:hover & {
-    background-color: var(--echoes-color-background-default-hover);
   }
 `;
 

@@ -75,7 +75,7 @@ const StyledTableColumnHeaderCell = styled.th<Required<Pick<Props, 'justify'>>>`
   ${cellBaseStyle}
 
   background-color: var(--table-header-background-color);
-
+  font: var(--echoes-typography-text-default-semi-bold);
   gap: var(--echoes-dimension-space-100);
 
   justify-content: ${({ justify }) => justify};

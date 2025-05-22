@@ -19,30 +19,17 @@
  */
 
 import { forwardRef } from 'react';
-import { isDefined } from '~common/helpers/types';
-import { TextNode } from '~types/utils';
-import { StyledTableCell } from './TableStyles';
+import { TableCellText, TableCellTextProps } from './TableCellText';
 
-export interface TableCellTextProps {
-  className?: string;
-  content: TextNode;
-  description?: TextNode;
-}
+/**
+ * This component is just a thin wrapper around the TextCell, to make it a <th/>
+ */
+export const TableRowHeaderCell = forwardRef<HTMLTableCellElement, TableCellTextProps>(
+  (props, ref) => {
+    // We don't want to expose the `as` prop for the TableCellText
+    // but it does technically accept it, since all props are forwarded
+    return <TableCellText ref={ref} {...props} {...{ as: 'th' }} />;
+  },
+);
 
-export const TableCellText = forwardRef<HTMLTableCellElement, TableCellTextProps>((props, ref) => {
-  const { className, content, description, ...radixProps } = props;
-
-  return (
-    <StyledTableCell className={className} ref={ref} {...radixProps}>
-      {content}
-      {isDefined(description) && (
-        <>
-          <br />
-          {description}
-        </>
-      )}
-    </StyledTableCell>
-  );
-});
-
-TableCellText.displayName = 'TextCell';
+TableRowHeaderCell.displayName = 'RowHeaderCell';

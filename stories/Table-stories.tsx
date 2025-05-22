@@ -64,9 +64,9 @@ export const Basic: Story = {
 
       <Table.Body>
         <Table.Row>
-          <Table.RowHeaderCell>Michelangelo</Table.RowHeaderCell>
+          <Table.RowHeaderCell content="Michelangelo" />
           <Table.Cell>mikey@sewers.nyc</Table.Cell>
-          <Table.Cell>Nunchaku</Table.Cell>
+          <Table.CellText content="Nunchaku" />
           <Table.Cell>13</Table.Cell>
           <Table.Cell>
             <ButtonIcon Icon={IconEdit} ariaLabel="edit mike" />
@@ -74,9 +74,9 @@ export const Basic: Story = {
         </Table.Row>
 
         <Table.Row>
-          <Table.RowHeaderCell>Leonardo</Table.RowHeaderCell>
+          <Table.RowHeaderCell content="Leonardo" />
           <Table.Cell>leo@sewers.nyc</Table.Cell>
-          <Table.Cell>Katana</Table.Cell>
+          <Table.CellText content="Katana" />
           <Table.Cell>15</Table.Cell>
           <Table.Cell>
             <ButtonIcon Icon={IconEdit} ariaLabel="edit leo" />
@@ -84,9 +84,9 @@ export const Basic: Story = {
         </Table.Row>
 
         <Table.Row>
-          <Table.RowHeaderCell>Donatello</Table.RowHeaderCell>
+          <Table.RowHeaderCell content="Donatello" />
           <Table.Cell>donnie@sewers.nyc</Table.Cell>
-          <Table.Cell>Bo</Table.Cell>
+          <Table.CellText content="Bo" />
           <Table.Cell>14</Table.Cell>
           <Table.Cell>
             <ButtonIcon Icon={IconEdit} ariaLabel="edit donnie" />
@@ -94,9 +94,9 @@ export const Basic: Story = {
         </Table.Row>
 
         <Table.Row>
-          <Table.RowHeaderCell>Raphael</Table.RowHeaderCell>
+          <Table.RowHeaderCell content="Raphael" />
           <Table.Cell>raph@sewers.nyc</Table.Cell>
-          <Table.Cell>Sai</Table.Cell>
+          <Table.CellText content="Sai" />
           <Table.Cell>14</Table.Cell>
           <Table.Cell>
             <ButtonIcon Icon={IconEdit} ariaLabel="edit raph" />
