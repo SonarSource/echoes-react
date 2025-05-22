@@ -158,7 +158,7 @@ export const BadgeSeverity = forwardRef<HTMLButtonElement, BadgeSeverityProps>((
 BadgeSeverity.displayName = 'BadgeSeverity';
 
 const StyledWrapper = styled.div`
-  display: flex;
+  display: inline-flex;
   flex-direction: row;
   box-sizing: border-box;
 
