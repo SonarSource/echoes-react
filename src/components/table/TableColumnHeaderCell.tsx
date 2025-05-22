@@ -23,7 +23,7 @@ import { forwardRef } from 'react';
 import { isDefined } from '~common/helpers/types';
 import { TextNode } from '~types/utils';
 import { Button } from '../buttons';
-import { IconTriangleDown, IconTriangleUp } from '../icons';
+import { IconArrowDown, IconArrowUp } from '../icons';
 import { cellBaseStyle } from './TableStyles';
 import { TableCellJustify, TableSortDirection } from './TableTypes';
 
@@ -54,9 +54,7 @@ export const TableColumnHeaderCell = forwardRef<HTMLTableCellElement, Props>((pr
         {...radixProps}>
         <Button
           onClick={onSort}
-          suffix={
-            sortDirection === TableSortDirection.Asc ? <IconTriangleUp /> : <IconTriangleDown />
-          }
+          suffix={sortDirection === TableSortDirection.Asc ? <IconArrowUp /> : <IconArrowDown />}
           variety="default-ghost">
           {label}
         </Button>
