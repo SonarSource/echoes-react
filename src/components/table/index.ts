@@ -24,8 +24,8 @@ import {
   StyledTableBody,
   StyledTableCell,
   StyledTableHeader,
+  StyledTableRow,
   StyledTableRowHeaderCell,
-  TableRow,
 } from './TableStyles';
 
 export { TableVariety, type TableBaseProps } from './TableTypes';
@@ -43,17 +43,17 @@ export { TableVariety, type TableBaseProps } from './TableTypes';
  */
 export const Table = Object.assign(TableRoot, {
   /**
-   * {@link TableHeader | Table.Header}
+   * {@link StyledTableHeader | Table.Header}
    */
   Header: StyledTableHeader,
   /**
-   * {@link TableBody | Table.Body}
+   * {@link StyledTableBody | Table.Body}
    */
   Body: StyledTableBody,
   /**
-   * {@link TableRow | Table.Row}
+   * {@link StyledTableRow | Table.Row}
    */
-  Row: TableRow,
+  Row: StyledTableRow,
 
   /**
    * {@link TableRowHeaderCell | Table.RowHeaderCell}
@@ -66,7 +66,12 @@ export const Table = Object.assign(TableRoot, {
   ColumnHeaderCell: TableColumnHeaderCell,
 
   /**
-   * {@link TableCell | Table.Cell}
+   * {@link StyledTableCell | Table.Cell}
+   *
+   * This is a plain cell:
+   * it serves as an escape hatch if you need a cell with custom content
+   *
+   * Use as a last resort!
    */
   Cell: StyledTableCell,
 });

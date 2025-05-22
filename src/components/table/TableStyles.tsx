@@ -67,7 +67,7 @@ export const StyledTableBody = styled.tbody`
   display: contents;
 `;
 
-export const TableRow = styled.tr`
+export const StyledTableRow = styled.tr`
   display: contents;
 
   tbody &:hover {
@@ -111,7 +111,7 @@ export const cellBaseStyle = css`
 export const StyledTableRowHeaderCell = styled.th`
   ${cellBaseStyle}
 
-  ${TableRow}:hover & {
+  ${StyledTableRow}:hover & {
     background-color: var(--echoes-color-background-default-hover);
   }
 `;
@@ -119,7 +119,7 @@ export const StyledTableRowHeaderCell = styled.th`
 export const StyledTableCell = styled.td`
   ${cellBaseStyle}
 
-  ${TableRow}:hover & {
+  ${StyledTableRow}:hover & {
     background-color: var(--echoes-color-background-default-hover);
   }
 `;
