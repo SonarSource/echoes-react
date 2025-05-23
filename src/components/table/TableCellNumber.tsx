@@ -22,7 +22,7 @@ import { forwardRef } from 'react';
 import { isDefined } from '~common/helpers/types';
 import { TextNode } from '~types/utils';
 import { Text } from '../typography';
-import { StyledTableCell } from './TableStyles';
+import { StyledContentWrapper, StyledTableCell } from './TableStyles';
 
 export interface TableCellTextProps {
   className?: string;
@@ -35,13 +35,19 @@ export const TableCellNumber = forwardRef<HTMLTableCellElement, TableCellTextPro
     const { className, content, description, ...radixProps } = props;
 
     return (
-      <StyledTableCell className={className} css={{ alignItems: 'end' }} ref={ref} {...radixProps}>
-        {content}
-        {isDefined(description) && (
-          <Text isSubdued size="small">
-            {description}
-          </Text>
-        )}
+      <StyledTableCell
+        className={className}
+        css={{ justifyContent: 'end' }}
+        ref={ref}
+        {...radixProps}>
+        <StyledContentWrapper css={{ alignItems: 'end' }}>
+          {content}
+          {isDefined(description) && (
+            <Text isSubdued size="small">
+              {description}
+            </Text>
+          )}
+        </StyledContentWrapper>
       </StyledTableCell>
     );
   },

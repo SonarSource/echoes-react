@@ -18,29 +18,33 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import { forwardRef } from 'react';
+import { forwardRef, ReactNode } from 'react';
 import { isDefined } from '~common/helpers/types';
 import { TextNode } from '~types/utils';
 import { Text } from '../typography';
-import { StyledTableCell } from './TableStyles';
+import { StyledContentWrapper, StyledTableCell } from './TableStyles';
 
 export interface TableCellTextProps {
   className?: string;
   content: TextNode;
   description?: TextNode;
+  icon?: ReactNode;
 }
 
 export const TableCellText = forwardRef<HTMLTableCellElement, TableCellTextProps>((props, ref) => {
-  const { className, content, description, ...radixProps } = props;
+  const { className, content, description, icon, ...radixProps } = props;
 
   return (
     <StyledTableCell className={className} ref={ref} {...radixProps}>
-      {content}
-      {isDefined(description) && (
-        <Text isSubdued size="small">
-          {description}
-        </Text>
-      )}
+      {icon}
+      <StyledContentWrapper>
+        {content}
+        {isDefined(description) && (
+          <Text isSubdued size="small">
+            {description}
+          </Text>
+        )}
+      </StyledContentWrapper>
     </StyledTableCell>
   );
 });

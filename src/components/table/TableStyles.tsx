@@ -71,8 +71,11 @@ export const StyledTableRow = styled.tr`
 
 export const cellBaseStyle = css`
   display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--echoes-dimension-space-100);
 
-  padding: var(--echoes-dimension-space-200);
+  padding: var(--echoes-dimension-space-100) var(--echoes-dimension-space-200);
 
   font: var(--echoes-typography-text-default-regular);
 
@@ -96,10 +99,6 @@ export const cellBaseStyle = css`
 export const StyledTableCell = styled.td`
   ${cellBaseStyle}
 
-  flex-direction: column;
-  align-items: start;
-  justify-content: center;
-
   ${StyledTableRow}:hover:not(.selected) & {
     background-color: var(--echoes-color-background-default-hover);
   }
@@ -116,11 +115,16 @@ export const StyledTableCell = styled.td`
 export const StyledTableColumnHeaderCell = styled.th`
   ${cellBaseStyle}
 
-  flex-direction: row;
-  align-items: center;
   /* justify-content is variable, defined in TableColumnHeaderCell */
 
   background-color: var(--table-header-background-color);
   font: var(--echoes-typography-text-default-semi-bold);
-  gap: var(--echoes-dimension-space-100);
+`;
+
+export const StyledContentWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  flex: 1;
 `;

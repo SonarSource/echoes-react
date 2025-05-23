@@ -23,7 +23,7 @@ import { isDefined } from '~common/helpers/types';
 import { TextNode } from '~types/utils';
 import { LinkStandalone, LinkStandaloneProps } from '../links/LinkStandalone';
 import { Text } from '../typography';
-import { StyledTableCell } from './TableStyles';
+import { StyledContentWrapper, StyledTableCell } from './TableStyles';
 
 export interface TableCellLinkProps extends LinkStandaloneProps {
   description?: TextNode;
@@ -35,14 +35,16 @@ export const TableCellLink = forwardRef<HTMLAnchorElement, TableCellLinkProps>((
 
   return (
     <StyledTableCell className={cellClassName}>
-      <LinkStandalone {...linkProps} ref={ref}>
-        {children}
-      </LinkStandalone>
-      {isDefined(description) && (
-        <Text isSubdued size="small">
-          {description}
-        </Text>
-      )}
+      <StyledContentWrapper>
+        <LinkStandalone {...linkProps} ref={ref}>
+          {children}
+        </LinkStandalone>
+        {isDefined(description) && (
+          <Text isSubdued size="small">
+            {description}
+          </Text>
+        )}
+      </StyledContentWrapper>
     </StyledTableCell>
   );
 });

@@ -26,6 +26,7 @@ import {
   DropdownMenu,
   IconEdit,
   IconMoreVertical,
+  IconWarning,
   Table,
   TableVariety,
   Tooltip,
@@ -227,7 +228,10 @@ function StateManager(props: TableProps) {
               </Table.CellLink>
             )}
 
-            <Table.CellText content={turtle.weapon} />
+            <Table.CellText
+              content={turtle.weapon}
+              icon={<IconWarning color="echoes-color-icon-emphasis" />}
+            />
             <Table.CellNumber content={turtle.age} description={turtle.ageDescription} />
             <Table.CellButton Icon={IconEdit} ariaLabel={`edit ${turtle.name}`} />
 
