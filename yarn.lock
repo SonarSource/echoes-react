@@ -2452,12 +2452,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mantine/hooks@npm:7.12.2":
-  version: 7.12.2
-  resolution: "@mantine/hooks@npm:7.12.2"
+"@mantine/hooks@npm:8.0.1":
+  version: 8.0.1
+  resolution: "@mantine/hooks@npm:8.0.1"
   peerDependencies:
-    react: ^18.2.0
-  checksum: 10/a2ac4119c2a4579005f735b68ce7c161eeeeda9cb37d715e8f7e9ef2cdf3231d7f46089aff5adde81a1a1906b678b742060cccfdeb1bf3fa079ccbdfea47d7bc
+    react: ^18.x || ^19.x
+  checksum: 10/567b04bb80b687c0589ecb1db500cd4d6f39496948078442da33d08e73f632d96ee4d929ce593448fc72eb3cf632809c63e47c23671d9fa704389e008f70f42e
   languageName: node
   linkType: hard
 
@@ -3996,7 +3996,7 @@ __metadata:
     "@emotion/utils": "npm:1.4.2"
     "@formatjs/cli": "npm:6.6.4"
     "@mantine/core": "patch:@mantine/core@7.12.2#./config/patches/@mantine-core-npm-7.12.2-7aad505c0f.patch"
-    "@mantine/hooks": "npm:7.12.2"
+    "@mantine/hooks": "npm:8.0.1"
     "@material-symbols/font-400": "npm:0.31.2"
     "@radix-ui/react-alert-dialog": "npm:1.1.11"
     "@radix-ui/react-checkbox": "npm:1.1.3"

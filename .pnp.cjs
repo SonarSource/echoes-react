@@ -41,7 +41,7 @@ const RAW_RUNTIME_STATE =
           ["@emotion/utils", "npm:1.4.2"],\
           ["@formatjs/cli", "virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#npm:6.6.4"],\
           ["@mantine/core", "virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#patch:@mantine/core@npm%3A7.12.2#./config/patches/@mantine-core-npm-7.12.2-7aad505c0f.patch::version=7.12.2&hash=cab555&locator=%40sonarsource%2Fechoes-react%40workspace%3A."],\
-          ["@mantine/hooks", "virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#npm:7.12.2"],\
+          ["@mantine/hooks", "virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#npm:8.0.1"],\
           ["@material-symbols/font-400", "npm:0.31.2"],\
           ["@radix-ui/react-alert-dialog", "virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#npm:1.1.11"],\
           ["@radix-ui/react-checkbox", "virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#npm:1.1.3"],\
@@ -4212,7 +4212,7 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["@mantine/core", "virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#patch:@mantine/core@npm%3A7.12.2#./config/patches/@mantine-core-npm-7.12.2-7aad505c0f.patch::version=7.12.2&hash=cab555&locator=%40sonarsource%2Fechoes-react%40workspace%3A."],\
           ["@floating-ui/react", "virtual:94444f3e294971fe150cc1a76d011ff862539f6bfe531ca6d6a2973dc6647fcd3b13eae19a280297ecce6aa038f84f9ef34d3dcf29d7f520210661cca02d3a60#npm:0.26.24"],\
-          ["@mantine/hooks", "virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#npm:7.12.2"],\
+          ["@mantine/hooks", "virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#npm:8.0.1"],\
           ["@types/mantine__hooks", null],\
           ["@types/react", "npm:18.3.8"],\
           ["@types/react-dom", "npm:18.3.0"],\
@@ -4236,17 +4236,17 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["@mantine/hooks", [\
-      ["npm:7.12.2", {\
-        "packageLocation": "./.yarn/cache/@mantine-hooks-npm-7.12.2-5b59d3290b-a2ac4119c2.zip/node_modules/@mantine/hooks/",\
+      ["npm:8.0.1", {\
+        "packageLocation": "./.yarn/cache/@mantine-hooks-npm-8.0.1-67f6c8cd32-567b04bb80.zip/node_modules/@mantine/hooks/",\
         "packageDependencies": [\
-          ["@mantine/hooks", "npm:7.12.2"]\
+          ["@mantine/hooks", "npm:8.0.1"]\
         ],\
         "linkType": "SOFT"\
       }],\
-      ["virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#npm:7.12.2", {\
-        "packageLocation": "./.yarn/__virtual__/@mantine-hooks-virtual-9dac0cbca1/0/cache/@mantine-hooks-npm-7.12.2-5b59d3290b-a2ac4119c2.zip/node_modules/@mantine/hooks/",\
+      ["virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#npm:8.0.1", {\
+        "packageLocation": "./.yarn/__virtual__/@mantine-hooks-virtual-a719a8d450/0/cache/@mantine-hooks-npm-8.0.1-67f6c8cd32-567b04bb80.zip/node_modules/@mantine/hooks/",\
         "packageDependencies": [\
-          ["@mantine/hooks", "virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#npm:7.12.2"],\
+          ["@mantine/hooks", "virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#npm:8.0.1"],\
           ["@types/react", "npm:18.3.8"],\
           ["react", "npm:18.3.1"]\
         ],\
@@ -6320,7 +6320,7 @@ const RAW_RUNTIME_STATE =
           ["@emotion/utils", "npm:1.4.2"],\
           ["@formatjs/cli", "virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#npm:6.6.4"],\
           ["@mantine/core", "virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#patch:@mantine/core@npm%3A7.12.2#./config/patches/@mantine-core-npm-7.12.2-7aad505c0f.patch::version=7.12.2&hash=cab555&locator=%40sonarsource%2Fechoes-react%40workspace%3A."],\
-          ["@mantine/hooks", "virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#npm:7.12.2"],\
+          ["@mantine/hooks", "virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#npm:8.0.1"],\
           ["@material-symbols/font-400", "npm:0.31.2"],\
           ["@radix-ui/react-alert-dialog", "virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#npm:1.1.11"],\
           ["@radix-ui/react-checkbox", "virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#npm:1.1.3"],\

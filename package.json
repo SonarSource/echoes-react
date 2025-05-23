@@ -124,7 +124,7 @@
   },
   "dependencies": {
     "@mantine/core": "patch:@mantine/core@7.12.2#./config/patches/@mantine-core-npm-7.12.2-7aad505c0f.patch",
-    "@mantine/hooks": "7.12.2",
+    "@mantine/hooks": "8.0.1",
     "@material-symbols/font-400": "0.31.2",
     "@radix-ui/react-alert-dialog": "1.1.11",
     "@radix-ui/react-checkbox": "1.1.3",
