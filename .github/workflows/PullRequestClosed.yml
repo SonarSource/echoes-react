@@ -16,7 +16,7 @@ jobs:
         github.event.pull_request.head.repo.full_name == github.repository
     steps:
       - id: secrets
-        uses: SonarSource/vault-action-wrapper@3.0.2
+        uses: SonarSource/vault-action-wrapper@d6d745ffdbc82b040df839b903bc33b5592cd6b0 # 3.0.2
         with:
           secrets: |
             development/kv/data/jira user | JIRA_USER;
