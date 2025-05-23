@@ -17,5 +17,5 @@
   command = "yarn build-storybook"
 
   [build.environment]
-    NODE_VERSION = "20.12"
+    NODE_VERSION = "20.13"
     YARN_VERSION = "4.3.1"

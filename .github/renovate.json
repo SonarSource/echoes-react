@@ -1,7 +1,9 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "github>SonarSource/renovate-config:default"
+    "github>SonarSource/renovate-config:default",
+    ":dependencyDashboard",
+    ":separateMultipleMajorReleases"
   ],
   "ignoreDeps": [
   ],
@@ -18,8 +20,6 @@
     "npm",
     "github-actions"
   ],
-  "dependencyDashboard": true,
-  "separateMultipleMajor": true,
   "addLabels": [ "renovate-dependencies" ],
   "packageRules": [
     {
@@ -43,19 +43,37 @@
       }
     },
     {
-      "description": "Move prettier updates to a dedicated PR",
-      "groupName": "prettier dependency",
-      "groupSlug": "prettier",
-      "matchPackageNames": [
-        "^prettier"
-      ],
-      "matchUpdateTypes": ["minor", "major"]
+      "description": "Group all linter related dependencies in the same PR",
+      "extends": ["packages:linters"],
+      "groupName": "linters dependencies",
+      "groupSlug": "linters"
     },
     {
-      "description": "All our peerDependencies major updates must be approved through the dependency dashboard first.",
+      "description": "Group all tests related dependencies in the same PR",
+      "extends": ["packages:jsTest"],
+      "groupName": "tests dependencies",
+      "groupSlug": "tests"
+    },
+    {
+      "description": "Group all React related dependencies in the same PR",
+      "extends": ["packages:react"],
+      "groupName": "react dependencies",
+      "groupSlug": "react"
+    },
+    {
+      "description": "Group all Vite related dependencies in the same PR",
+      "extends": ["packages:vite"],
+      "matchPackageNames": [
+        "rollup**"
+      ],
+      "groupName": "vite dependencies",
+      "groupSlug": "vite"
+    },
+    {
+      "description": "Don't automatically update major versions of our peer dependencies",
       "matchDepTypes": ["peerDependencies"],
       "matchUpdateTypes": ["major"],
-      "dependencyDashboardApproval": true
+      "enabled": false
     },
     {
       "description": "Following packages major updates must be approved through the dependency dashboard first.",
@@ -68,13 +86,20 @@
       "dependencyDashboardApproval": true
     },
     {
+      "description": "Group all storybook related dependencies in the same PR",
+      "matchPackageNames": [
+        "storybook**"
+      ],
+      "groupName": "storybook dependencies",
+      "groupSlug": "storybook"
+    },
+    {
       "description": "We are stuck with the current version of Mantine until we completely rework the select component.",
       "matchPackageNames": [
-        "@mantine/core",
-        "@mantine/hooks"
+        "@mantine/**"
       ],
       "matchUpdateTypes": ["patch", "minor", "major"],
-      "dependencyDashboardApproval": true
+      "enabled": false
     },
     {
       "description": "Style Dictionary updates need migration work.",
@@ -83,16 +108,14 @@
         "style-dictionary"
       ],
       "matchUpdateTypes": ["patch", "minor", "major"],
-      "dependencyDashboardApproval": true
+      "enabled": false
+
     },
     {
       "description": "Eslint major update need migration work.",
-      "matchPackageNames": [
-        "^eslint",
-        "@types/eslint"
-      ],
+      "extends": ["packages:eslint"],
       "matchUpdateTypes": ["major"],
-      "dependencyDashboardApproval": true
+      "enabled": false
     }
   ],
   "vulnerabilityAlerts": {
