@@ -13,7 +13,7 @@
   },
   "inline.message.dismiss": {
     "defaultMessage": "Dismiss",
-    "description": "ARIA-label for the dismiss button at the top of the Modal."
+    "description": "ARIA-label for the dismiss button."
   },
   "loading": {
     "defaultMessage": "Loading...",
@@ -73,6 +73,10 @@
   "open_in_new_tab": {
     "defaultMessage": "(opens in new tab)",
     "description": "Screen reader-only text to indicate that the link will open in a new tab"
+  },
+  "promoted_section.badge.default_text": {
+    "defaultMessage": "New",
+    "description": "Default text to display on the optional PromotedSection badge"
   },
   "select.clear": {
     "defaultMessage": "Clear select field",
