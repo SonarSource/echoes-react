@@ -75,9 +75,6 @@ export const StyledTableRow = styled.tr`
 
 export const cellBaseStyle = css`
   display: flex;
-  flex-direction: column;
-  align-items: start;
-  justify-content: center;
 
   padding: var(--echoes-dimension-space-200);
 
@@ -103,6 +100,10 @@ export const cellBaseStyle = css`
 export const StyledTableCell = styled.td`
   ${cellBaseStyle}
 
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+
   ${StyledTableRow}:hover & {
     background-color: var(--echoes-color-background-default-hover);
   }
@@ -110,6 +111,10 @@ export const StyledTableCell = styled.td`
 
 export const StyledTableColumnHeaderCell = styled.th`
   ${cellBaseStyle}
+
+  flex-direction: row;
+  align-items: center;
+  /* justify-content is variable, defined in TableColumnHeaderCell */
 
   background-color: var(--table-header-background-color);
   font: var(--echoes-typography-text-default-semi-bold);

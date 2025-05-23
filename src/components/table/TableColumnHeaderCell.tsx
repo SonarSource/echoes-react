@@ -24,6 +24,7 @@ import { isDefined } from '~common/helpers/types';
 import { TextNode } from '~types/utils';
 import { Button } from '../buttons';
 import { IconArrowDown, IconArrowUp } from '../icons';
+import { ToggleTip, ToggleTipProps } from '../toggle-tip';
 import { StyledTableColumnHeaderCell } from './TableStyles';
 import { TableCellJustify, TableSortDirection } from './TableTypes';
 
@@ -33,6 +34,7 @@ export interface Props {
   label?: TextNode;
   onSort?: () => void;
   sortDirection?: `${TableSortDirection}`;
+  toggleTip?: ToggleTipProps;
 }
 
 function getSortProps(direction?: Props['sortDirection']): {
@@ -65,6 +67,7 @@ export const TableColumnHeaderCell = forwardRef<HTMLTableCellElement, Props>((pr
     label,
     onSort,
     sortDirection,
+    toggleTip,
     ...radixProps
   } = props;
 
@@ -78,11 +81,12 @@ export const TableColumnHeaderCell = forwardRef<HTMLTableCellElement, Props>((pr
         // https://www.w3.org/WAI/ARIA/apg/practices/grid-and-table-properties/#indicatingsortorderwitharia-sort
         aria-sort={sortProps.aria}
         className={className}
-        css={{ alignItems: justify }}
+        css={{ justifyContent: justify }}
         ref={ref}>
         <Button onClick={onSort} suffix={sortProps.icon} variety="default-ghost">
           {label}
         </Button>
+        {toggleTip && <ToggleTip {...toggleTip} />}
       </StyledTableColumnHeaderCell>
     );
   }
@@ -91,9 +95,10 @@ export const TableColumnHeaderCell = forwardRef<HTMLTableCellElement, Props>((pr
     <StyledTableColumnHeaderCell
       {...radixProps}
       className={className}
-      css={{ alignItems: justify }}
+      css={{ justifyContent: justify }}
       ref={ref}>
       {label}
+      {toggleTip && <ToggleTip {...toggleTip} />}
     </StyledTableColumnHeaderCell>
   );
 });

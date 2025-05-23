@@ -161,7 +161,12 @@ function StateManager(props: TableProps) {
             checked={getSelectionState(selectedRows)}
             onCheck={toggleAll}
           />
-          <Table.ColumnHeaderCell label="Name" />
+          <Table.ColumnHeaderCell
+            label="Name"
+            toggleTip={{
+              title: 'kowabunga!!!',
+            }}
+          />
           <Table.ColumnHeaderCell aria-label="Color" />
           <Table.ColumnHeaderCell label="Email" />
           <Table.ColumnHeaderCell
@@ -170,6 +175,11 @@ function StateManager(props: TableProps) {
               toggleSorting('weapon');
             }}
             sortDirection={sorting.column === 'weapon' ? sorting.direction : undefined}
+            toggleTip={{
+              title: 'Weapons',
+              description:
+                'While inspired by medieval japon, the weapons the turtles use are made from recycled materials found in the NYC sewers',
+            }}
           />
           <Table.ColumnHeaderCell
             justify="end"
