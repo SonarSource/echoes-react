@@ -19,6 +19,7 @@
  */
 
 import { TableRoot } from './Table';
+import { TableCellBadge } from './TableCellBadge';
 import { TableCellButton } from './TableCellButton';
 import { TableCellCheckbox } from './TableCellCheckbox';
 import { TableCellLink } from './TableCellLink';
@@ -103,6 +104,13 @@ export const Table = Object.assign(TableRoot, {
    * This is a cell to display a ButtonIcon
    */
   CellButton: TableCellButton,
+
+  /**
+   * {@link TableCellBadge | Table.CellBadge}
+   *
+   * This is a cell to display a Badge
+   */
+  CellBadge: TableCellBadge,
 
   /**
    * {@link TableCellCheckbox | Table.CellCheckbox}

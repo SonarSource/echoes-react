@@ -21,7 +21,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useCallback, useState } from 'react';
 import { TableProps, TableSortDirection } from 'src/components/table/TableTypes';
-import { IconEdit, Table, TableVariety, Tooltip } from '../src';
+import { BadgeVariety, IconEdit, Table, TableVariety, Tooltip } from '../src';
 import { basicWrapperDecorator } from './helpers/BasicWrapper';
 
 const meta: Meta<typeof Table> = {
@@ -43,7 +43,7 @@ type Story = StoryObj<typeof Table>;
 export const Basic: Story = {
   args: {
     ariaLabel: 'Awesome table',
-    gridTemplate: 'max-content repeat(4, 1fr) max-content',
+    gridTemplate: 'max-content 1fr max-content 1fr 1fr max-content max-content',
     variety: TableVariety.Surface,
   },
   render: (args) => <StateManager {...args} />,
@@ -55,6 +55,7 @@ const DATA = [
     email: 'mikey@sewers.nyc',
     weapon: 'Nunchaku',
     age: '13',
+    badge: BadgeVariety.Warning,
   },
   {
     name: 'Leonardo',
@@ -63,6 +64,7 @@ const DATA = [
     weapon: 'Katana',
     age: '15',
     ageDescription: 'oldest',
+    badge: BadgeVariety.Info,
   },
   {
     name: 'Donatello',
@@ -70,6 +72,7 @@ const DATA = [
     email: 'donnie@sewers.nyc',
     weapon: 'Bo',
     age: '14',
+    badge: BadgeVariety.Highlight,
   },
   {
     name: 'Raphael',
@@ -78,6 +81,7 @@ const DATA = [
     emailTooltip: 'he can be a bit impatient',
     weapon: 'Sai',
     age: '14',
+    badge: BadgeVariety.Danger,
   },
 ];
 
@@ -158,6 +162,7 @@ function StateManager(props: TableProps) {
             onCheck={toggleAll}
           />
           <Table.ColumnHeaderCell label="Name" />
+          <Table.ColumnHeaderCell aria-label="Color" />
           <Table.ColumnHeaderCell label="Email" />
           <Table.ColumnHeaderCell
             label="Weapon"
@@ -187,6 +192,9 @@ function StateManager(props: TableProps) {
               onCheck={() => toggleRow(turtle.name)}
             />
             <Table.RowHeaderCell content={turtle.name} description={turtle.description} />
+            <Table.CellBadge isHighContrast variety={turtle.badge}>
+              TMNT
+            </Table.CellBadge>
 
             {turtle.emailTooltip ? (
               <Tooltip content="he can be a bit impatient">
