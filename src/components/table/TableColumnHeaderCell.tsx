@@ -18,7 +18,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import { forwardRef } from 'react';
+import { forwardRef, ReactNode } from 'react';
 import { isDefined } from '~common/helpers/types';
 import { TextNode } from '~types/utils';
 import { Button } from '../buttons';
@@ -34,6 +34,29 @@ export interface Props {
   sortDirection?: `${TableSortDirection}`;
 }
 
+function getSortProps(direction?: Props['sortDirection']): {
+  aria: React.AriaAttributes['aria-sort'];
+  icon: ReactNode;
+} {
+  switch (direction) {
+    case TableSortDirection.Asc:
+      return {
+        aria: 'ascending',
+        icon: <IconArrowUp />,
+      };
+    case TableSortDirection.Desc:
+      return {
+        aria: 'descending',
+        icon: <IconArrowDown />,
+      };
+    default:
+      return {
+        aria: undefined,
+        icon: null,
+      };
+  }
+}
+
 export const TableColumnHeaderCell = forwardRef<HTMLTableCellElement, Props>((props, ref) => {
   const {
     className,
@@ -45,19 +68,18 @@ export const TableColumnHeaderCell = forwardRef<HTMLTableCellElement, Props>((pr
   } = props;
 
   if (isDefined(onSort)) {
-    let sortDirectionIcon = null;
-    if (isDefined(sortDirection)) {
-      sortDirectionIcon =
-        sortDirection === TableSortDirection.Asc ? <IconArrowUp /> : <IconArrowDown />;
-    }
+    const sortProps = getSortProps(sortDirection);
 
     return (
       <StyledTableColumnHeaderCell
         {...radixProps}
+        // ARIA sort is recommended by WCAG
+        // https://www.w3.org/WAI/ARIA/apg/practices/grid-and-table-properties/#indicatingsortorderwitharia-sort
+        aria-sort={sortProps.aria}
         className={className}
         css={{ alignItems: justify }}
         ref={ref}>
-        <Button onClick={onSort} suffix={sortDirectionIcon} variety="default-ghost">
+        <Button onClick={onSort} suffix={sortProps.icon} variety="default-ghost">
           {label}
         </Button>
       </StyledTableColumnHeaderCell>
