@@ -75,6 +75,8 @@ export const cellBaseStyle = css`
   align-items: center;
   gap: var(--echoes-dimension-space-100);
 
+  box-sizing: border-box;
+  min-height: var(--echoes-table-sizes-row-min-width-default);
   padding: var(--echoes-dimension-space-100) var(--echoes-dimension-space-200);
 
   font: var(--echoes-typography-text-default-regular);
