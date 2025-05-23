@@ -552,6 +552,18 @@
           }
         }
       }
+    },
+    "table": {
+      "colors": {
+        "background": {
+          "header": {
+            "default": {
+              "value": "{echoes.color.grey.500}",
+              "type": "color"
+            }
+          }
+        }
+      }
     }
   }
 }

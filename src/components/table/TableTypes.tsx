@@ -18,30 +18,38 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-export * from './badges';
-export * from './breadcrumbs';
-export * from './buttons';
-export * from './card';
-export * from './checkbox';
-export * from './checkbox-group';
-export * from './divider';
-export * from './dropdown-menu';
-export * from './echoes-provider';
-export * from './form';
-export * from './global-navigation';
-export * from './icons';
-export * from './links';
-export * from './logos';
-export * from './messages';
-export * from './modals';
-export * from './popover';
-export * from './radio-button-group';
-export * from './select';
-export * from './spinner';
-export * from './table';
-export * from './text-area';
-export * from './text-input';
-export * from './toggle-button-group';
-export * from './toggle-tip';
-export * from './tooltip';
-export * from './typography';
+import { ComponentProps, PropsWithChildren } from 'react';
+
+export enum TableVariety {
+  Surface = 'surface',
+  Ghost = 'ghost',
+}
+
+export enum TableCellJustify {
+  Start = 'start',
+  Center = 'center',
+  End = 'end',
+}
+
+export enum TableSortDirection {
+  Asc = 'asc',
+  Desc = 'desc',
+}
+
+export interface TableBaseProps extends PropsWithChildren<ComponentProps<'table'>> {
+  className?: string;
+  gridTemplate: string;
+  variety?: TableVariety;
+}
+
+export interface TablePropsWithLabel extends TableBaseProps {
+  ariaLabel: string;
+  ariaLabelledBy?: never;
+}
+
+export interface TablePropsWithLabeledBy extends TableBaseProps {
+  ariaLabel?: never;
+  ariaLabelledBy: string;
+}
+
+export type TableProps = TablePropsWithLabel | TablePropsWithLabeledBy;
