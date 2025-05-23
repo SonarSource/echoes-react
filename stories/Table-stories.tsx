@@ -21,7 +21,15 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useCallback, useState } from 'react';
 import { TableProps, TableSortDirection } from 'src/components/table/TableTypes';
-import { BadgeVariety, IconEdit, Table, TableVariety, Tooltip } from '../src';
+import {
+  BadgeVariety,
+  DropdownMenu,
+  IconEdit,
+  IconMoreVertical,
+  Table,
+  TableVariety,
+  Tooltip,
+} from '../src';
 import { basicWrapperDecorator } from './helpers/BasicWrapper';
 
 const meta: Meta<typeof Table> = {
@@ -43,7 +51,7 @@ type Story = StoryObj<typeof Table>;
 export const Basic: Story = {
   args: {
     ariaLabel: 'Awesome table',
-    gridTemplate: 'max-content 1fr max-content 1fr 1fr max-content max-content',
+    gridTemplate: 'max-content 1fr max-content 1fr 1fr max-content max-content max-content',
     variety: TableVariety.Surface,
   },
   render: (args) => <StateManager {...args} />,
@@ -190,6 +198,7 @@ function StateManager(props: TableProps) {
             sortDirection={sorting.column === 'age' ? sorting.direction : undefined}
           />
           <Table.ColumnHeaderCell aria-label="actions" />
+          <Table.ColumnHeaderCell aria-label="more actions" />
         </Table.Row>
       </Table.Header>
 
@@ -221,6 +230,19 @@ function StateManager(props: TableProps) {
             <Table.CellText content={turtle.weapon} />
             <Table.CellNumber content={turtle.age} description={turtle.ageDescription} />
             <Table.CellButton Icon={IconEdit} ariaLabel={`edit ${turtle.name}`} />
+
+            <DropdownMenu
+              items={
+                <>
+                  <DropdownMenu.ItemLink to="#">check out</DropdownMenu.ItemLink>
+                  <DropdownMenu.ItemButtonDestructive>Delete!</DropdownMenu.ItemButtonDestructive>
+                </>
+              }>
+              <Table.CellButton
+                Icon={IconMoreVertical}
+                ariaLabel={`more actions for ${turtle.name}`}
+              />
+            </DropdownMenu>
           </Table.Row>
         ))}
       </Table.Body>

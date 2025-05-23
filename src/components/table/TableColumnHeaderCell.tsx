@@ -28,7 +28,7 @@ import { ToggleTip, ToggleTipProps } from '../toggle-tip';
 import { StyledTableColumnHeaderCell } from './TableStyles';
 import { TableCellJustify, TableSortDirection } from './TableTypes';
 
-export interface Props {
+export interface TableColumnHeaderCellProps {
   className?: string;
   justify?: `${TableCellJustify}`;
   label?: TextNode;
@@ -37,7 +37,7 @@ export interface Props {
   toggleTip?: ToggleTipProps;
 }
 
-function getSortProps(direction?: Props['sortDirection']): {
+function getSortProps(direction?: TableColumnHeaderCellProps['sortDirection']): {
   aria: React.AriaAttributes['aria-sort'];
   icon: ReactNode;
 } {
@@ -60,48 +60,50 @@ function getSortProps(direction?: Props['sortDirection']): {
   }
 }
 
-export const TableColumnHeaderCell = forwardRef<HTMLTableCellElement, Props>((props, ref) => {
-  const {
-    className,
-    justify = TableCellJustify.Start,
-    label,
-    onSort,
-    sortDirection,
-    toggleTip,
-    ...radixProps
-  } = props;
+export const TableColumnHeaderCell = forwardRef<HTMLTableCellElement, TableColumnHeaderCellProps>(
+  (props, ref) => {
+    const {
+      className,
+      justify = TableCellJustify.Start,
+      label,
+      onSort,
+      sortDirection,
+      toggleTip,
+      ...radixProps
+    } = props;
 
-  if (isDefined(onSort)) {
-    const sortProps = getSortProps(sortDirection);
+    if (isDefined(onSort)) {
+      const sortProps = getSortProps(sortDirection);
+
+      return (
+        <StyledTableColumnHeaderCell
+          {...radixProps}
+          // ARIA sort is recommended by WCAG
+          // https://www.w3.org/WAI/ARIA/apg/practices/grid-and-table-properties/#indicatingsortorderwitharia-sort
+          aria-sort={sortProps.aria}
+          className={className}
+          css={{ justifyContent: justify }}
+          ref={ref}>
+          <Button onClick={onSort} suffix={sortProps.icon} variety="default-ghost">
+            {label}
+          </Button>
+          {toggleTip && <ToggleTip {...toggleTip} />}
+        </StyledTableColumnHeaderCell>
+      );
+    }
 
     return (
       <StyledTableColumnHeaderCell
         {...radixProps}
-        // ARIA sort is recommended by WCAG
-        // https://www.w3.org/WAI/ARIA/apg/practices/grid-and-table-properties/#indicatingsortorderwitharia-sort
-        aria-sort={sortProps.aria}
         className={className}
         css={{ justifyContent: justify }}
         ref={ref}>
-        <Button onClick={onSort} suffix={sortProps.icon} variety="default-ghost">
-          {label}
-        </Button>
+        {label}
         {toggleTip && <ToggleTip {...toggleTip} />}
       </StyledTableColumnHeaderCell>
     );
-  }
-
-  return (
-    <StyledTableColumnHeaderCell
-      {...radixProps}
-      className={className}
-      css={{ justifyContent: justify }}
-      ref={ref}>
-      {label}
-      {toggleTip && <ToggleTip {...toggleTip} />}
-    </StyledTableColumnHeaderCell>
-  );
-});
+  },
+);
 
 TableColumnHeaderCell.displayName = 'TableColumnHeaderCell';
 
