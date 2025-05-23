@@ -32,15 +32,6 @@
       "minimumReleaseAge": "5 days"
     },
     {
-      "description": "Move prettier updates to a dedicated PR",
-      "groupName": "prettier dependency",
-      "groupSlug": "prettier",
-      "matchPackageNames": [
-        "^prettier"
-      ],
-      "matchUpdateTypes": ["minor", "major"]
-    },
-    {
       "description": "Group all non-major dependencies in the same PR",
       "groupName": "all non-major dependencies",
       "groupSlug": "all-minor-patch",
@@ -50,6 +41,15 @@
       "lockFileMaintenance": {
         "enabled": true
       }
+    },
+    {
+      "description": "Move prettier updates to a dedicated PR",
+      "groupName": "prettier dependency",
+      "groupSlug": "prettier",
+      "matchPackageNames": [
+        "^prettier"
+      ],
+      "matchUpdateTypes": ["minor", "major"]
     },
     {
       "description": "All our peerDependencies major updates must be approved through the dependency dashboard first.",
@@ -73,6 +73,7 @@
         "@mantine/core",
         "@mantine/hooks"
       ],
+      "matchUpdateTypes": ["patch", "minor", "major"],
       "dependencyDashboardApproval": true
     },
     {
@@ -81,6 +82,7 @@
         "@tokens-studio/sd-transforms",
         "style-dictionary"
       ],
+      "matchUpdateTypes": ["patch", "minor", "major"],
       "dependencyDashboardApproval": true
     },
     {
@@ -109,7 +111,10 @@
     {
       "customType": "regex",
       "description": "Update YARN_VERSION variables netlify.toml",
-      "managerFilePatterns": ["^netlify\\.toml$"],
+      "managerFilePatterns": [
+        "^netlify\\.toml$",
+        "Dockerfile"
+      ],
       "matchStrings": ["YARN_VERSION\\s*=\\s*\"(?<currentValue>.*?)\""],
       "depNameTemplate": "yarn",
       "datasourceTemplate": "npm"
