@@ -15,7 +15,7 @@
   ],
   "reviewersSampleSize": 1,
   "enabledManagers": [
-    "yarn",
+    "npm",
     "github-actions"
   ],
   "dependencyDashboard": true,
@@ -32,15 +32,21 @@
       "minimumReleaseAge": "5 days"
     },
     {
+      "description": "Move prettier updates to a dedicated PR",
+      "groupName": "prettier dependency",
+      "groupSlug": "prettier",
+      "matchPackageNames": [
+        "^prettier"
+      ],
+      "matchUpdateTypes": ["minor", "major"]
+    },
+    {
       "description": "Group all non-major dependencies in the same PR",
       "groupName": "all non-major dependencies",
       "groupSlug": "all-minor-patch",
       "prHeader": "Update all non-major Yarn dependencies",
       "matchPackageNames": ["*"],
-      "matchUpdateTypes": [
-        "patch",
-        "minor"
-      ],
+      "matchUpdateTypes": ["patch", "minor"],
       "lockFileMaintenance": {
         "enabled": true
       }
@@ -64,15 +70,22 @@
     {
       "description": "We are stuck with the current version of Mantine until we completely rework the select component.",
       "matchPackageNames": [
-        "^@mantine/"
+        "@mantine/core",
+        "@mantine/hooks"
       ],
       "dependencyDashboardApproval": true
     },
     {
-      "description": "Following packages major updates need migration work.",
+      "description": "Style Dictionary updates need migration work.",
       "matchPackageNames": [
         "@tokens-studio/sd-transforms",
-        "style-dictionary",
+        "style-dictionary"
+      ],
+      "dependencyDashboardApproval": true
+    },
+    {
+      "description": "Eslint major update need migration work.",
+      "matchPackageNames": [
         "^eslint",
         "@types/eslint"
       ],
@@ -92,21 +105,13 @@
     "**/node_modules/**",
     "**/.nx/**"
   ],
-  "regexManagers": [
+  "customManagers": [
     {
-      "fileMatch": ["^netlify\\.toml$"],
-      "matchStrings": [
-        "YARN_VERSION\\s*=\\s*\"(?<currentValue>.*?)\""
-      ],
+      "customType": "regex",
+      "description": "Update YARN_VERSION variables netlify.toml",
+      "managerFilePatterns": ["^netlify\\.toml$"],
+      "matchStrings": ["YARN_VERSION\\s*=\\s*\"(?<currentValue>.*?)\""],
       "depNameTemplate": "yarn",
-      "datasourceTemplate": "npm"
-    },
-    {
-      "fileMatch": ["^netlify\\.toml$"],
-      "matchStrings": [
-        "NODE_VERSION\\s*=\\s*\"(?<currentValue>.*?)\""
-      ],
-      "depNameTemplate": "node",
       "datasourceTemplate": "npm"
     }
   ]
