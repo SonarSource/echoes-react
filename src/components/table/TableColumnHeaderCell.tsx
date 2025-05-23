@@ -18,6 +18,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+import styled from '@emotion/styled';
 import { forwardRef, ReactNode } from 'react';
 import { isDefined } from '~common/helpers/types';
 import { TextNode } from '~types/utils';
@@ -52,7 +53,7 @@ function getSortProps(direction?: Props['sortDirection']): {
     default:
       return {
         aria: undefined,
-        icon: null,
+        icon: <StyledSortIconPlaceholder />,
       };
   }
 }
@@ -98,3 +99,16 @@ export const TableColumnHeaderCell = forwardRef<HTMLTableCellElement, Props>((pr
 });
 
 TableColumnHeaderCell.displayName = 'TableColumnHeaderCell';
+
+/*
+ * This is a placeholder so the header label doesn't 'dance around'
+ * when sorting another column.
+ * It also appears on hover, to hint at the effect of clicking.
+ */
+const StyledSortIconPlaceholder = styled(IconArrowUp)`
+  visibility: hidden;
+
+  ${StyledTableColumnHeaderCell}:hover & {
+    visibility: visible;
+  }
+`;
