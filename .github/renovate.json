@@ -6,7 +6,7 @@
   "ignoreDeps": [
   ],
   "description": "Schedule once a month on the first weekend of the month at night (0-5 UTC).",
-  "schedule": ["* 0-5 1-7 * 6,0"],
+  "schedule": ["at any time"],
   "automerge": false,
   "reviewers": [
     "gregaubert",
