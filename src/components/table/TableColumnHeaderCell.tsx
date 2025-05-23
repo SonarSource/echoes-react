@@ -87,13 +87,9 @@ export const TableColumnHeaderCell = forwardRef<HTMLTableCellElement, TableColum
             padding: 'var(--echoes-dimension-space-100)',
           }}
           ref={ref}>
-          <StyledSortButton
-            onClick={onSort}
-            size="medium"
-            suffix={sortProps.icon}
-            variety="default-ghost">
+          <Button onClick={onSort} size="medium" suffix={sortProps.icon} variety="default-ghost">
             {label}
-          </StyledSortButton>
+          </Button>
         </StyledTableColumnHeaderCell>
       );
     }
@@ -105,7 +101,7 @@ export const TableColumnHeaderCell = forwardRef<HTMLTableCellElement, TableColum
         css={{ justifyContent: justify }}
         ref={ref}>
         {label}
-        {toggleTip && <ToggleTip {...toggleTip} />}
+        {toggleTip && <StyledToggleTip {...toggleTip} />}
       </StyledTableColumnHeaderCell>
     );
   },
@@ -126,4 +122,7 @@ const StyledSortIconPlaceholder = styled(IconArrowUp)`
   }
 `;
 
-const StyledSortButton = styled(Button)``;
+/* necessary to play well with 'min-content' */
+const StyledToggleTip = styled(ToggleTip)`
+  flex: 1 0 auto;
+`;
