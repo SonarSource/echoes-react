@@ -15,7 +15,8 @@
   ],
   "reviewersSampleSize": 1,
   "enabledManagers": [
-    "yarn"
+    "yarn",
+    "github-actions"
   ],
   "dependencyDashboard": true,
   "separateMultipleMajor": true,
@@ -61,12 +62,18 @@
       "dependencyDashboardApproval": true
     },
     {
+      "description": "We are stuck with the current version of Mantine until we completely rework the select component.",
+      "matchPackageNames": [
+        "^@mantine/"
+      ],
+      "dependencyDashboardApproval": true
+    },
+    {
       "description": "Following packages major updates need migration work.",
       "matchPackageNames": [
         "@tokens-studio/sd-transforms",
         "style-dictionary",
-        "@mantine/*",
-        "eslint*",
+        "^eslint",
         "@types/eslint"
       ],
       "matchUpdateTypes": ["major"],
@@ -83,7 +90,24 @@
   "ignorePaths": [
     "**/.yarn/**",
     "**/node_modules/**",
-    "**/.github/**",
     "**/.nx/**"
+  ],
+  "regexManagers": [
+    {
+      "fileMatch": ["^netlify\\.toml$"],
+      "matchStrings": [
+        "YARN_VERSION\\s*=\\s*\"(?<currentValue>.*?)\""
+      ],
+      "depNameTemplate": "yarn",
+      "datasourceTemplate": "npm"
+    },
+    {
+      "fileMatch": ["^netlify\\.toml$"],
+      "matchStrings": [
+        "NODE_VERSION\\s*=\\s*\"(?<currentValue>.*?)\""
+      ],
+      "depNameTemplate": "node",
+      "datasourceTemplate": "npm"
+    }
   ]
 }
