@@ -27,6 +27,7 @@ import {
   IconEdit,
   IconMoreVertical,
   IconWarning,
+  Popover,
   Table,
   TableVariety,
   Tooltip,
@@ -210,9 +211,12 @@ function StateManager(props: TableProps) {
               onCheck={() => toggleRow(turtle.name)}
             />
             <Table.RowHeaderCell content={turtle.name} description={turtle.description} />
-            <Table.CellBadge isHighContrast variety={turtle.badge}>
-              TMNT
-            </Table.CellBadge>
+
+            <Popover title="Teenage Mutant Ninja Turtles">
+              <Table.CellBadge isHighContrast isInteractive variety={turtle.badge}>
+                TMNT
+              </Table.CellBadge>
+            </Popover>
 
             {turtle.emailTooltip ? (
               <Tooltip content="he can be a bit impatient">
