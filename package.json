@@ -140,7 +140,6 @@
     "classnames": "2.5.1"
   },
   "resolutions": {
-    "axe-core": "4.10.2",
-    "express": "4.21.0"
+    "axe-core": "4.10.2"
   }
 }
