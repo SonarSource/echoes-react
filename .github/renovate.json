@@ -1,0 +1,89 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "github>SonarSource/renovate-config:default"
+  ],
+  "ignoreDeps": [
+  ],
+  "description": "Schedule once a month on the first weekend of the month at night (0-5 UTC).",
+  "schedule": ["* 0-5 1-7 * 6,0"],
+  "automerge": false,
+  "reviewers": [
+    "gregaubert",
+    "david-cho-lerat-sonarsource",
+    "jeremy-davis-sonarsource"
+  ],
+  "reviewersSampleSize": 1,
+  "enabledManagers": [
+    "yarn"
+  ],
+  "dependencyDashboard": true,
+  "separateMultipleMajor": true,
+  "addLabels": [ "renovate-dependencies" ],
+  "packageRules": [
+    {
+      "description": "Wait for 5 days after a release before updating",
+      "matchUpdateTypes": [
+        "patch",
+        "minor",
+        "major"
+      ],
+      "minimumReleaseAge": "5 days"
+    },
+    {
+      "description": "Group all non-major dependencies in the same PR",
+      "groupName": "all non-major dependencies",
+      "groupSlug": "all-minor-patch",
+      "prHeader": "Update all non-major Yarn dependencies",
+      "matchPackageNames": ["*"],
+      "matchUpdateTypes": [
+        "patch",
+        "minor"
+      ],
+      "lockFileMaintenance": {
+        "enabled": true
+      }
+    },
+    {
+      "description": "All our peerDependencies major updates must be approved through the dependency dashboard first.",
+      "matchDepTypes": ["peerDependencies"],
+      "matchUpdateTypes": ["major"],
+      "dependencyDashboardApproval": true
+    },
+    {
+      "description": "Following packages major updates must be approved through the dependency dashboard first.",
+      "matchPackageNames": [
+        "@types/node",
+        "node",
+        "yarn"
+      ],
+      "matchUpdateTypes": ["major"],
+      "dependencyDashboardApproval": true
+    },
+    {
+      "description": "Following packages major updates need migration work.",
+      "matchPackageNames": [
+        "@tokens-studio/sd-transforms",
+        "style-dictionary",
+        "@mantine/*",
+        "eslint*",
+        "@types/eslint"
+      ],
+      "matchUpdateTypes": ["major"],
+      "dependencyDashboardApproval": true
+    }
+  ],
+  "vulnerabilityAlerts": {
+    "enabled": true,
+    "labels": [
+      "vulnerability-alert"
+    ]
+  },
+  "osvVulnerabilityAlerts": true,
+  "ignorePaths": [
+    "**/.yarn/**",
+    "**/node_modules/**",
+    "**/.github/**",
+    "**/.nx/**"
+  ]
+}
