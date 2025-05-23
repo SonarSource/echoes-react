@@ -190,5 +190,6 @@
   "echoes-severity-badge-colors-borders-high-default": "rgb(254,228,226)",
   "echoes-severity-badge-colors-borders-medium-default": "rgb(255,232,218)",
   "echoes-severity-badge-colors-borders-low-default": "rgb(254,245,208)",
-  "echoes-severity-badge-colors-borders-info-default": "rgb(233,244,251)"
+  "echoes-severity-badge-colors-borders-info-default": "rgb(233,244,251)",
+  "echoes-table-colors-background-header-default": "rgb(246,247,251)"
 }

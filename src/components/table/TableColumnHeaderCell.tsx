@@ -82,11 +82,18 @@ export const TableColumnHeaderCell = forwardRef<HTMLTableCellElement, TableColum
           // https://www.w3.org/WAI/ARIA/apg/practices/grid-and-table-properties/#indicatingsortorderwitharia-sort
           aria-sort={sortProps.aria}
           className={className}
-          css={{ justifyContent: justify }}
+          css={{
+            justifyContent: justify,
+            padding: 'var(--echoes-dimension-space-100)',
+          }}
           ref={ref}>
-          <Button onClick={onSort} suffix={sortProps.icon} variety="default-ghost">
+          <StyledSortButton
+            onClick={onSort}
+            size="medium"
+            suffix={sortProps.icon}
+            variety="default-ghost">
             {label}
-          </Button>
+          </StyledSortButton>
           {toggleTip && <ToggleTip {...toggleTip} />}
         </StyledTableColumnHeaderCell>
       );
@@ -119,3 +126,5 @@ const StyledSortIconPlaceholder = styled(IconArrowUp)`
     visibility: visible;
   }
 `;
+
+const StyledSortButton = styled(Button)``;

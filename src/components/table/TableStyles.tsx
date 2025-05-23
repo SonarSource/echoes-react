@@ -24,7 +24,7 @@ import { TableProps, TableVariety } from './TableTypes';
 
 const TABLE_VARIETY_STYLES = {
   [TableVariety.Surface]: {
-    '--table-header-background-color': 'var(--echoes-color-background-neutral-weak-default)',
+    '--table-header-background-color': 'var(--echoes-table-colors-background-header-default)',
     border: 'var(--echoes-border-width-default) solid var(--echoes-color-border-bold)',
     'border-collapse': 'separate',
     'border-spacing': 0,

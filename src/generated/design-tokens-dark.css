@@ -213,4 +213,5 @@ html[data-echoes-theme='dark'], [data-echoes-theme='dark'] {
   --echoes-severity-badge-colors-borders-medium-default: hsl(21.6 98.2% 56.3% / 0.4);
   --echoes-severity-badge-colors-borders-low-default: hsl(46 92.8% 72.7% / 0.4);
   --echoes-severity-badge-colors-borders-info-default: hsl(201 68.4% 73.9% / 0.4);
+  --echoes-table-colors-background-header-default: rgb(62,67,87);
 }
