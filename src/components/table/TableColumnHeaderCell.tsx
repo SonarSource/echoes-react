@@ -94,7 +94,6 @@ export const TableColumnHeaderCell = forwardRef<HTMLTableCellElement, TableColum
             variety="default-ghost">
             {label}
           </StyledSortButton>
-          {toggleTip && <ToggleTip {...toggleTip} />}
         </StyledTableColumnHeaderCell>
       );
     }
