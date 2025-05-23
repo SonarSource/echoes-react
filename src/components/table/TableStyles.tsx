@@ -79,6 +79,10 @@ export const cellBaseStyle = css`
 
   font: var(--echoes-typography-text-default-regular);
 
+  tbody & {
+    border-top: var(--echoes-border-width-default) solid var(--echoes-color-border-weak);
+  }
+
   .table-variety-surface thead tr:first-child &:first-child {
     border-top-left-radius: var(--echoes-border-radius-200);
   }
