@@ -27,8 +27,9 @@ import { TableCellNumber } from './TableCellNumber';
 import { TableCellText } from './TableCellText';
 import { TableColumnHeaderCell } from './TableColumnHeaderCell';
 import { TableColumnHeaderCellCheckbox } from './TableColumnHeaderCellCheckbox';
+import { TableRow } from './TableRow';
 import { TableRowHeaderCell } from './TableRowHeaderCell';
-import { StyledTableBody, StyledTableCell, StyledTableHeader, StyledTableRow } from './TableStyles';
+import { StyledTableBody, StyledTableCell, StyledTableHeader } from './TableStyles';
 
 export { TableVariety, type TableBaseProps } from './TableTypes';
 
@@ -48,14 +49,16 @@ export const Table = Object.assign(TableRoot, {
    * {@link StyledTableHeader | Table.Header}
    */
   Header: StyledTableHeader,
+
   /**
    * {@link StyledTableBody | Table.Body}
    */
   Body: StyledTableBody,
+
   /**
-   * {@link StyledTableRow | Table.Row}
+   * {@link TableRow | Table.Row}
    */
-  Row: StyledTableRow,
+  Row: TableRow,
 
   /**
    * {@link TableRowHeaderCell | Table.RowHeaderCell}

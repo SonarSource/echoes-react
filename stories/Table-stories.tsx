@@ -204,7 +204,7 @@ function StateManager(props: TableProps) {
 
       <Table.Body>
         {DATA.map((turtle) => (
-          <Table.Row key={turtle.name}>
+          <Table.Row key={turtle.name} selected={selectedRows[turtle.name]}>
             <Table.CellCheckbox
               ariaLabel={`Select ${turtle.name}`}
               checked={selectedRows[turtle.name]}

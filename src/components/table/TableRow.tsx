@@ -18,18 +18,20 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import { forwardRef } from 'react';
-import { TableCellText, TableCellTextProps } from './TableCellText';
+import classNames from 'classnames';
+import { ComponentProps, forwardRef } from 'react';
+import { StyledTableRow } from './TableStyles';
 
-/**
- * This component is just a thin wrapper around the TextCell, to make it a <th/>
- */
-export const TableRowHeaderCell = forwardRef<HTMLTableCellElement, TableCellTextProps>(
-  (props, ref) => {
-    // We don't want to expose the `as` prop for the TableCellText
-    // but it does technically accept it, since all props are forwarded
-    return <TableCellText ref={ref} {...props} {...{ as: 'th' }} />;
-  },
-);
+export interface TableRowProps extends ComponentProps<'tr'> {
+  selected?: boolean;
+}
 
-TableRowHeaderCell.displayName = 'TableRowHeaderCell';
+export const TableRow = forwardRef<HTMLTableRowElement, TableRowProps>((props, ref) => {
+  const { className, selected, ...htmlProps } = props;
+
+  return (
+    <StyledTableRow {...htmlProps} className={classNames(className, { selected })} ref={ref} />
+  );
+});
+
+TableRow.displayName = 'TableRow';

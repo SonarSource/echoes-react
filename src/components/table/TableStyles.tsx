@@ -58,10 +58,6 @@ export const StyledTableBody = styled.tbody`
 export const StyledTableRow = styled.tr`
   display: contents;
 
-  tbody &:hover {
-    background-color: var(--echoes-color-background-default-hover);
-  }
-
   .table-variety-surface thead &:first-of-type {
     border-top-left-radius: var(--echoes-border-radius-200);
     border-top-right-radius: var(--echoes-border-radius-200);
@@ -104,8 +100,16 @@ export const StyledTableCell = styled.td`
   align-items: start;
   justify-content: center;
 
-  ${StyledTableRow}:hover & {
+  ${StyledTableRow}:hover:not(.selected) & {
     background-color: var(--echoes-color-background-default-hover);
+  }
+
+  ${StyledTableRow}.selected & {
+    background-color: var(--echoes-color-background-selected-weak-default);
+  }
+
+  ${StyledTableRow}:hover.selected & {
+    background-color: var(--echoes-color-background-selected-weak-hover);
   }
 `;
 
