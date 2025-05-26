@@ -128,11 +128,15 @@
   "customManagers": [
     {
       "customType": "regex",
-      "description": "Update YARN_VERSION variables netlify.toml",
-      "managerFilePatterns": ["/netlify.toml$/", "/Dockerfile$/"],
-      "matchStrings": ["YARN_VERSION\\s*=\\s*\"(?<currentValue>.*?)\""],
-      "depNameTemplate": "yarnpkg/berry",
-      "datasourceTemplate": "github-releases"
+      "description": "Update _VERSION variables in Dockerfiles and netlify.toml",
+      "managerFilePatterns": [
+        "netlify.toml",
+        "/(^|/|\\.)Dockerfile$/",
+        "/(^|/)Dockerfile\\.[^/]*$/"
+      ],
+      "matchStrings": [
+        "# renovate: datasource=(?<datasource>[a-z-]+?)(?: depName=(?<depName>.+?))? packageName=(?<packageName>.+?)(?: versioning=(?<versioning>[a-z-]+?))?\\s*.+?_VERSION\\s?=\\s?\"?(?<currentValue>.+?)\"?\\s"
+      ]
     }
   ]
 }
