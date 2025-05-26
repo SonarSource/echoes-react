@@ -117,7 +117,7 @@
     {
       "customType": "regex",
       "description": "Update YARN_VERSION variables netlify.toml",
-      "managerFilePatterns": ["^netlify\\.toml$", "Dockerfile"],
+      "managerFilePatterns": ["/netlify\\.toml$/", "/Dockerfile$/"],
       "matchStrings": ["YARN_VERSION\\s*=\\s*\"(?<currentValue>.*?)\""],
       "depNameTemplate": "yarn",
       "datasourceTemplate": "npm"
