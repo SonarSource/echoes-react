@@ -18,4 +18,5 @@
 
   [build.environment]
     NODE_VERSION = "20.13"
+    # renovate: datasource=github-release packageName=yarnpkg/berry
     YARN_VERSION = "4.3.1"
