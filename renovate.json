@@ -117,6 +117,12 @@
       "extends": ["packages:eslint"],
       "matchUpdateTypes": ["major"],
       "enabled": false
+    },
+    {
+      "description": "React-intl minor path version upgrade to 6.7.3 has broken types",
+      "matchPackageNames": ["react-intl"],
+      "matchUpdateTypes": ["patch", "minor"],
+      "enabled": false
     }
   ],
   "vulnerabilityAlerts": {
@@ -124,19 +130,5 @@
     "labels": ["vulnerability-alert"]
   },
   "osvVulnerabilityAlerts": true,
-  "ignorePaths": ["**/.yarn/**", "**/node_modules/**", "**/.nx/**"],
-  "customManagers": [
-    {
-      "customType": "regex",
-      "description": "Update _VERSION variables in Dockerfiles and netlify.toml",
-      "managerFilePatterns": [
-        "netlify.toml",
-        "/(^|/|\\.)Dockerfile$/",
-        "/(^|/)Dockerfile\\.[^/]*$/"
-      ],
-      "matchStrings": [
-        "# renovate: datasource=(?<datasource>[a-z-]+?)(?: depName=(?<depName>.+?))? packageName=(?<packageName>.+?)(?: versioning=(?<versioning>[a-z-]+?))?\\s*.+?_VERSION\\s?=\\s?\"?(?<currentValue>.+?)\"?\\s"
-      ]
-    }
-  ]
+  "ignorePaths": ["**/.yarn/**", "**/node_modules/**", "**/.nx/**"]
 }
