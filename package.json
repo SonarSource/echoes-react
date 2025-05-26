@@ -118,7 +118,7 @@
     "storybook": "8.6.14",
     "style-dictionary": "3.9.2",
     "subset-font": "2.4.0",
-    "typescript": "5.5.4",
+    "typescript": "5.8.3",
     "vite": "6.3.5",
     "vite-plugin-dts": "4.5.4"
   },
