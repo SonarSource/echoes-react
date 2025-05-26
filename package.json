@@ -16,7 +16,7 @@
   "engines": {
     "node": ">=20.13"
   },
-  "packageManager": "yarn@4.3.1",
+  "packageManager": "yarn@4.9.1",
   "scripts": {
     "dev": "vite build --watch & yarn storybook",
     "jest": "jest",
