@@ -5,30 +5,18 @@
     ":dependencyDashboard",
     ":separateMultipleMajorReleases"
   ],
-  "ignoreDeps": [
-  ],
+  "ignoreDeps": [],
   "description": "Schedule once a month on the first weekend of the month at night (0-5 UTC).",
   "schedule": ["at any time"],
   "automerge": false,
-  "reviewers": [
-    "gregaubert",
-    "david-cho-lerat-sonarsource",
-    "jeremy-davis-sonarsource"
-  ],
+  "reviewers": ["gregaubert", "david-cho-lerat-sonarsource", "jeremy-davis-sonarsource"],
   "reviewersSampleSize": 1,
-  "enabledManagers": [
-    "npm",
-    "github-actions"
-  ],
-  "addLabels": [ "renovate-dependencies" ],
+  "enabledManagers": ["npm", "github-actions"],
+  "addLabels": ["renovate-dependencies"],
   "packageRules": [
     {
       "description": "Wait for 5 days after a release before updating",
-      "matchUpdateTypes": [
-        "patch",
-        "minor",
-        "major"
-      ],
+      "matchUpdateTypes": ["patch", "minor", "major"],
       "minimumReleaseAge": "5 days"
     },
     {
@@ -61,55 +49,56 @@
       "groupSlug": "react"
     },
     {
+      "description": "Group all Emotion js related dependencies in the same PR",
+      "matchPackageNames": ["@emotion/**"],
+      "groupName": "emotion dependencies",
+      "groupSlug": "emotion"
+    },
+    {
       "description": "Group all Vite related dependencies in the same PR",
       "extends": ["packages:vite"],
-      "matchPackageNames": [
-        "rollup**"
-      ],
+      "matchPackageNames": ["rollup**"],
       "groupName": "vite dependencies",
       "groupSlug": "vite"
     },
     {
-      "description": "Don't automatically update major versions of our peer dependencies",
-      "matchDepTypes": ["peerDependencies"],
-      "matchUpdateTypes": ["major"],
-      "enabled": false
-    },
-    {
       "description": "Following packages major updates must be approved through the dependency dashboard first.",
-      "matchPackageNames": [
-        "@types/node",
-        "node",
-        "yarn"
-      ],
+      "matchPackageNames": ["@types/node", "node", "yarn"],
       "matchUpdateTypes": ["major"],
       "dependencyDashboardApproval": true
     },
     {
-      "description": "Group all storybook related dependencies in the same PR",
+      "description": "Don't automatically update major versions of our peer dependencies",
       "matchPackageNames": [
-        "storybook**"
+        "@emotion/react",
+        "@emotion/styled",
+        "react",
+        "@types/react",
+        "react-dom",
+        "@types/react-dom",
+        "react-intl",
+        "react-router-dom"
       ],
+      "matchUpdateTypes": ["major"],
+      "enabled": false
+    },
+    {
+      "description": "Group all storybook related dependencies in the same PR",
+      "matchPackageNames": ["storybook", "@storybook/**"],
       "groupName": "storybook dependencies",
       "groupSlug": "storybook"
     },
     {
       "description": "We are stuck with the current version of Mantine until we completely rework the select component.",
-      "matchPackageNames": [
-        "@mantine/**"
-      ],
+      "matchPackageNames": ["@mantine/**"],
       "matchUpdateTypes": ["patch", "minor", "major"],
       "enabled": false
     },
     {
       "description": "Style Dictionary updates need migration work.",
-      "matchPackageNames": [
-        "@tokens-studio/sd-transforms",
-        "style-dictionary"
-      ],
+      "matchPackageNames": ["@tokens-studio/sd-transforms", "style-dictionary"],
       "matchUpdateTypes": ["patch", "minor", "major"],
       "enabled": false
-
     },
     {
       "description": "Eslint major update need migration work.",
@@ -120,24 +109,15 @@
   ],
   "vulnerabilityAlerts": {
     "enabled": true,
-    "labels": [
-      "vulnerability-alert"
-    ]
+    "labels": ["vulnerability-alert"]
   },
   "osvVulnerabilityAlerts": true,
-  "ignorePaths": [
-    "**/.yarn/**",
-    "**/node_modules/**",
-    "**/.nx/**"
-  ],
+  "ignorePaths": ["**/.yarn/**", "**/node_modules/**", "**/.nx/**"],
   "customManagers": [
     {
       "customType": "regex",
       "description": "Update YARN_VERSION variables netlify.toml",
-      "managerFilePatterns": [
-        "^netlify\\.toml$",
-        "Dockerfile"
-      ],
+      "managerFilePatterns": ["^netlify\\.toml$", "Dockerfile"],
       "matchStrings": ["YARN_VERSION\\s*=\\s*\"(?<currentValue>.*?)\""],
       "depNameTemplate": "yarn",
       "datasourceTemplate": "npm"
