@@ -62,6 +62,12 @@
       "groupSlug": "vite"
     },
     {
+      "description": "Update Typescript dependency in a separate PR",
+      "matchPackageNames": ["typescript"],
+      "groupName": "typescript dependencies",
+      "groupSlug": "typescript"
+    },
+    {
       "description": "Following packages major updates must be approved through the dependency dashboard first.",
       "matchPackageNames": ["@types/node", "node", "yarn"],
       "matchUpdateTypes": ["major"],
