@@ -70,7 +70,7 @@ export const MessageCallout = forwardRef<HTMLDivElement, MessageProps>((props, r
         {isDismissable && (
           <MessageDismissButton
             ariaLabel={intl.formatMessage({
-              id: 'inline.message.dismiss',
+              id: 'message_callout.dismiss',
               defaultMessage: 'Dismiss',
               description: 'ARIA-label for the dismiss button at the top of the Modal.',
             })}
