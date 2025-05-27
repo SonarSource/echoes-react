@@ -1,83 +1,12 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
-    "github>SonarSource/renovate-config:default",
-    ":dependencyDashboard",
-    ":separateMultipleMajorReleases"
-  ],
-  "ignoreDeps": [],
-  "description": "Schedule once a month on the first weekend of the month at night (0-5 UTC).",
-  "schedule": ["at any time"],
-  "automerge": false,
-  "reviewers": ["gregaubert", "david-cho-lerat-sonarsource", "jeremy-davis-sonarsource"],
-  "reviewersSampleSize": 1,
-  "enabledManagers": ["npm", "github-actions"],
-  "addLabels": ["renovate-dependencies"],
+  "extends": ["github>SonarSource/renovate-config:frontend-engineering-squad"],
   "packageRules": [
     {
-      "description": "Wait for 5 days after a release before updating",
-      "matchUpdateTypes": ["patch", "minor", "major"],
-      "minimumReleaseAge": "5 days"
-    },
-    {
-      "description": "Group all non-major dependencies in the same PR",
-      "groupName": "all non-major dependencies",
-      "groupSlug": "all-minor-patch",
-      "prHeader": "Update all non-major Yarn dependencies",
-      "matchPackageNames": ["*"],
-      "matchUpdateTypes": ["patch", "minor"],
-      "lockFileMaintenance": {
-        "enabled": true
-      }
-    },
-    {
-      "description": "Group all linter related dependencies in the same PR",
-      "extends": ["packages:linters"],
-      "groupName": "linters dependencies",
-      "groupSlug": "linters"
-    },
-    {
-      "description": "Group all tests related dependencies in the same PR",
-      "extends": ["packages:jsTest"],
-      "groupName": "tests dependencies",
-      "groupSlug": "tests"
-    },
-    {
-      "description": "Group all React related dependencies in the same PR",
-      "extends": ["packages:react"],
-      "groupName": "react dependencies",
-      "groupSlug": "react"
-    },
-    {
-      "description": "Group all Emotion js related dependencies in the same PR",
-      "matchPackageNames": ["@emotion/**"],
-      "groupName": "emotion dependencies",
-      "groupSlug": "emotion"
-    },
-    {
-      "description": "Group all Vite related dependencies in the same PR",
-      "extends": ["packages:vite"],
-      "matchPackageNames": ["rollup**"],
-      "groupName": "vite dependencies",
-      "groupSlug": "vite"
-    },
-    {
-      "description": "Update Typescript dependency in a separate PR",
-      "matchPackageNames": ["typescript"],
-      "groupName": "typescript dependencies",
-      "groupSlug": "typescript"
-    },
-    {
-      "description": "Update Yarn dependency in a separate PR",
-      "extends": ["monorepo:yarn"],
-      "groupName": "yarn dependencies",
-      "groupSlug": "yarn"
-    },
-    {
-      "description": "Following packages major updates must be approved through the dependency dashboard first.",
-      "matchPackageNames": ["@types/node", "node", "yarn"],
-      "matchUpdateTypes": ["major"],
-      "dependencyDashboardApproval": true
+      "description": "Group all storybook related dependencies in the same PR",
+      "matchPackageNames": ["storybook", "@storybook/**"],
+      "groupName": "storybook dependencies",
+      "groupSlug": "storybook"
     },
     {
       "description": "Don't automatically update major versions of our peer dependencies",
@@ -95,48 +24,29 @@
       "enabled": false
     },
     {
-      "description": "Group all storybook related dependencies in the same PR",
-      "matchPackageNames": ["storybook", "@storybook/**"],
-      "groupName": "storybook dependencies",
-      "groupSlug": "storybook"
-    },
-    {
-      "description": "We are stuck with the current version of Mantine until we completely rework the select component.",
+      "description": "ECHOES-761 Mantine next major version has breaking changes.",
       "matchPackageNames": ["@mantine/**"],
       "matchUpdateTypes": ["patch", "minor", "major"],
       "enabled": false
     },
     {
-      "description": "Style Dictionary updates need migration work.",
+      "description": "ECHOES-711 Style Dictionary updates need migration work.",
       "matchPackageNames": ["@tokens-studio/sd-transforms", "style-dictionary"],
       "matchUpdateTypes": ["patch", "minor", "major"],
       "enabled": false
     },
     {
-      "description": "Eslint major update need migration work.",
+      "description": "SC-23705 Eslint major update need configuration rework.",
       "extends": ["packages:eslint"],
       "matchUpdateTypes": ["major"],
       "enabled": false
+    },
+    {
+      "description": "React-intl minor patch version upgrade to 6.7.3 has broken types",
+      "matchPackageNames": ["react-intl"],
+      "matchUpdateTypes": ["patch", "minor"],
+      "enabled": false
     }
   ],
-  "vulnerabilityAlerts": {
-    "enabled": true,
-    "labels": ["vulnerability-alert"]
-  },
-  "osvVulnerabilityAlerts": true,
-  "ignorePaths": ["**/.yarn/**", "**/node_modules/**", "**/.nx/**"],
-  "customManagers": [
-    {
-      "customType": "regex",
-      "description": "Update _VERSION variables in Dockerfiles and netlify.toml",
-      "managerFilePatterns": [
-        "netlify.toml",
-        "/(^|/|\\.)Dockerfile$/",
-        "/(^|/)Dockerfile\\.[^/]*$/"
-      ],
-      "matchStrings": [
-        "# renovate: datasource=(?<datasource>[a-z-]+?)(?: depName=(?<depName>.+?))? packageName=(?<packageName>.+?)(?: versioning=(?<versioning>[a-z-]+?))?\\s*.+?_VERSION\\s?=\\s?\"?(?<currentValue>.+?)\"?\\s"
-      ]
-    }
-  ]
+  "ignoreDeps": []
 }
