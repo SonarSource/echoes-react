@@ -164,6 +164,14 @@
           "100": {
             "value": "-1px",
             "type": "dimension"
+          },
+          "600": {
+            "value": "-6px",
+            "type": "dimension"
+          },
+          "800": {
+            "value": "-8px",
+            "type": "dimension"
           }
         }
       }

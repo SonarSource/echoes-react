@@ -18,10 +18,10 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import type { Meta, StoryObj } from '@storybook/react';
 import styled from '@emotion/styled';
-import { basicWrapperDecorator } from './helpers/BasicWrapper';
+import type { Meta, StoryObj } from '@storybook/react';
 import { Divider, Heading, Text, TextSize } from '../src';
+import { basicWrapperDecorator } from './helpers/BasicWrapper';
 
 const meta: Meta<typeof Divider> = {
   component: Divider,
@@ -34,7 +34,6 @@ const meta: Meta<typeof Divider> = {
     },
     className: { control: 'text' },
     role: { control: 'text' },
-    'data-testid': { control: 'text' },
   },
   decorators: [basicWrapperDecorator],
   parameters: {

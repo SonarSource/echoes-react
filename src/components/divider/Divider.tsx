@@ -28,11 +28,6 @@ export interface DividerProps {
   className?: string;
 
   /**
-   * Optional data-testid for testing
-   */
-  'data-testid'?: string;
-
-  /**
    * Whether the divider is vertical
    * @default false
    */
@@ -51,17 +46,7 @@ export interface DividerProps {
 }
 
 export const Divider = forwardRef<HTMLHRElement | HTMLDivElement, Readonly<DividerProps>>(
-  (
-    {
-      className,
-      'data-testid': dataTestId,
-      isVertical = false,
-      role = 'separator',
-      text,
-      ...props
-    },
-    ref,
-  ) => {
+  ({ className, isVertical = false, role = 'separator', text, ...props }, ref) => {
     const ariaOrientation = isVertical ? 'vertical' : 'horizontal';
 
     if (!text) {
@@ -69,7 +54,6 @@ export const Divider = forwardRef<HTMLHRElement | HTMLDivElement, Readonly<Divid
         <StyledDivider
           aria-orientation={ariaOrientation}
           className={className}
-          data-testid={dataTestId}
           isVertical={isVertical}
           ref={ref as React.Ref<HTMLHRElement>}
           role={role}
@@ -82,7 +66,6 @@ export const Divider = forwardRef<HTMLHRElement | HTMLDivElement, Readonly<Divid
       <DividerContainer
         aria-orientation={ariaOrientation}
         className={className}
-        data-testid={dataTestId}
         isVertical={isVertical}
         ref={ref}
         role={role}

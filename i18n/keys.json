@@ -11,10 +11,6 @@
     "defaultMessage": "Main navigation",
     "description": "ARIA-label for the main navigation"
   },
-  "inline.message.dismiss": {
-    "defaultMessage": "Dismiss",
-    "description": "ARIA-label for the dismiss button at the top of the Modal."
-  },
   "loading": {
     "defaultMessage": "Loading...",
     "description": "aria-label text, to indicate that there is a spinner rotating in this place"
@@ -54,6 +50,10 @@
   "message.prefix.warning": {
     "defaultMessage": "Warning:"
   },
+  "message_callout.dismiss": {
+    "defaultMessage": "Dismiss",
+    "description": "ARIA-label for the dismiss button at the top of the Modal."
+  },
   "modal.close": {
     "defaultMessage": "Close",
     "description": "ARIA-label for the close button at the top of the Modal."
@@ -73,6 +73,10 @@
   "open_in_new_tab": {
     "defaultMessage": "(opens in new tab)",
     "description": "Screen reader-only text to indicate that the link will open in a new tab"
+  },
+  "promoted_section.dismiss": {
+    "defaultMessage": "Dismiss",
+    "description": "ARIA-label for the dismiss button in the top-right corner."
   },
   "select.clear": {
     "defaultMessage": "Clear select field",
