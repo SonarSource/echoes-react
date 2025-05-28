@@ -21,31 +21,31 @@
         "react-router-dom"
       ],
       "matchUpdateTypes": ["major"],
-      "enabled": false
+      "dependencyDashboardApproval": true
     },
     {
       "description": "ECHOES-761 Mantine next major version has breaking changes.",
       "matchPackageNames": ["@mantine/**"],
       "matchUpdateTypes": ["patch", "minor", "major"],
-      "enabled": false
+      "dependencyDashboardApproval": true
     },
     {
       "description": "ECHOES-711 Style Dictionary updates need migration work.",
       "matchPackageNames": ["@tokens-studio/sd-transforms", "style-dictionary"],
       "matchUpdateTypes": ["patch", "minor", "major"],
-      "enabled": false
+      "dependencyDashboardApproval": true
     },
     {
       "description": "SC-23705 Eslint major update need configuration rework.",
       "extends": ["packages:eslint"],
       "matchUpdateTypes": ["major"],
-      "enabled": false
+      "dependencyDashboardApproval": true
     },
     {
       "description": "React-intl minor patch version upgrade to 6.7.3 has broken types",
       "matchPackageNames": ["react-intl"],
       "matchUpdateTypes": ["patch", "minor"],
-      "enabled": false
+      "dependencyDashboardApproval": true
     }
   ],
   "ignoreDeps": []
