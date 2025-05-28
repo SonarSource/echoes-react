@@ -32,7 +32,7 @@ For more details, refer to the [internal versioning strategy](https://docs.googl
 
 - Close the REL ticket you've created
 
-- On `master` branch bump the [package version](https://github.com/SonarSource/echoes-react/blob/main/package.json#L3) for the next development iteration with `yarn version major|minor` and commit with message `Prepare for version x.y`.
+- On the `main` branch, bump the [package version](https://github.com/SonarSource/echoes-react/blob/main/package.json#L3) for the next development iteration with `yarn version major|minor` and commit with message `Prepare for version x.y`.
 
 ## Release Process for Patch Versions
 
