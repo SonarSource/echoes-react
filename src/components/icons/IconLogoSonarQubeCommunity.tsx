@@ -18,23 +18,15 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import designTokensThemed from '~generated/design-tokens-themed.json';
+import { forwardRef } from 'react';
+import { IconCustomWrapper, IconProps } from './IconWrapper';
 
-export type DesignTokens = keyof typeof designTokensThemed;
-
-export type DesignTokensColors = {
-  [K in DesignTokens]: K extends `echoes-color-${string}` ? K : never;
-}[DesignTokens];
-
-export type DesignTokensColorsIcons = {
-  [K in DesignTokens]: K extends
-    | `echoes-color-icon-${string}`
-    | `echoes-severity-badge-colors-foreground-${string}-icon-${string}`
-    | `echoes-logos-colors-brand`
-    ? K
-    : never;
-}[DesignTokens];
-
-export type DesignTokensColorsText = {
-  [K in DesignTokens]: K extends `echoes-color-text-${string}` ? K : never;
-}[DesignTokens];
+export const IconLogoSonarQubeCommunity = forwardRef<HTMLSpanElement, IconProps>((props, ref) => {
+  // This is an icon from the "Echoes" custom font
+  return (
+    <IconCustomWrapper {...props} ref={ref}>
+      &#x37;
+    </IconCustomWrapper>
+  );
+});
+IconLogoSonarQubeCommunity.displayName = 'IconLogoSonarQubeCommunity';
