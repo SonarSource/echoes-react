@@ -21,6 +21,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { ComponentProps, forwardRef, useEffect, useState } from 'react';
 import { Checkbox, Tooltip } from '../src';
+import { basicWrapperDecorator } from './helpers/BasicWrapper';
 
 const meta: Meta<typeof Checkbox> = {
   component: Checkbox,
@@ -35,6 +36,7 @@ const meta: Meta<typeof Checkbox> = {
       },
     },
   },
+  decorators: [basicWrapperDecorator],
 };
 
 export default meta;

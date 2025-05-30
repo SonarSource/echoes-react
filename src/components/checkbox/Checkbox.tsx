@@ -147,8 +147,8 @@ const CheckboxRoot = styled(RadixCheckbox.Root)`
     background-color: var(--echoes-color-background-disabled);
     border-color: var(--echoes-color-border-disabled);
 
-    &[data-state='checked'],
-    &[data-state='indeterminate'] {
+    &[aria-checked='true'],
+    &[aria-checked='mixed'] {
       background-color: var(--echoes-color-background-disabled);
       border-color: var(--echoes-color-border-disabled);
     }
@@ -159,8 +159,8 @@ const CheckboxRoot = styled(RadixCheckbox.Root)`
       background-color: var(--echoes-color-background-default-hover);
     }
 
-    &[data-state='checked'],
-    &[data-state='indeterminate'] {
+    &[aria-checked='true'],
+    &[aria-checked='mixed'] {
       background-color: var(--echoes-color-background-selected-bold-default);
       border-color: var(--echoes-color-background-selected-bold-default);
 
