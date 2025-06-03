@@ -31,6 +31,10 @@
           }
         },
         "width": {
+          "small": {
+            "value": "25rem",
+            "type": "sizing"
+          },
           "default": {
             "value": "37.5rem",
             "type": "sizing"
