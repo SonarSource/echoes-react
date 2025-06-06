@@ -20,10 +20,11 @@
 
 import type { Meta, StoryObj } from '@storybook/react';
 import { RatingBadge, RatingBadgeRating } from '../../src';
-import { BasicWrapper } from '../helpers/BasicWrapper';
+import { basicWrapperDecorator } from '../helpers/BasicWrapper';
 
 const meta: Meta<typeof RatingBadge> = {
   component: RatingBadge,
+  decorators: [basicWrapperDecorator],
 
   parameters: {
     controls: { exclude: ['className'] },
@@ -41,10 +42,8 @@ export const Default: Story = {
     rating: RatingBadgeRating.A,
   },
   render: (args) => (
-    <BasicWrapper>
-      <span>
-        <RatingBadge {...args} style={{ marginRight: '6px' }} /> Some text next to the rating badge
-      </span>
-    </BasicWrapper>
+    <span>
+      <RatingBadge {...args} style={{ marginRight: '6px' }} /> Some text next to the rating badge
+    </span>
   ),
 };

@@ -21,12 +21,13 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { BadgeSeverity, BadgeSeverityLevel, DropdownMenu } from '../../src';
 import { iconsComponentsArgType } from '../helpers/arg-types';
-import { BasicWrapper } from '../helpers/BasicWrapper';
+import { basicWrapperDecorator } from '../helpers/BasicWrapper';
 
 const { mapping, options = [] } = iconsComponentsArgType;
 
 const meta: Meta<typeof BadgeSeverity> = {
   component: BadgeSeverity,
+  decorators: [basicWrapperDecorator],
 
   parameters: {
     controls: { exclude: ['className'] },
@@ -54,16 +55,14 @@ export const Default: Story = {
     severity: 'high',
   },
   render: (args) => (
-    <BasicWrapper>
-      <DropdownMenu
-        items={
-          <>
-            <DropdownMenu.ItemButton>option 1</DropdownMenu.ItemButton>
-            <DropdownMenu.ItemButton>option 2</DropdownMenu.ItemButton>
-          </>
-        }>
-        <BadgeSeverity {...args} />
-      </DropdownMenu>
-    </BasicWrapper>
+    <DropdownMenu
+      items={
+        <>
+          <DropdownMenu.ItemButton>option 1</DropdownMenu.ItemButton>
+          <DropdownMenu.ItemButton>option 2</DropdownMenu.ItemButton>
+        </>
+      }>
+      <BadgeSeverity {...args} />
+    </DropdownMenu>
   ),
 };

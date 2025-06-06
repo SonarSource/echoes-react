@@ -17,36 +17,12 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
+import { Global } from '@emotion/react';
+import { Decorator } from '@storybook/react';
 
-import type { Meta, StoryObj } from '@storybook/react';
-import { RatingBadgeLink, RatingBadgeRating } from '../../src';
-import { basicWrapperDecorator } from '../helpers/BasicWrapper';
-
-const meta: Meta<typeof RatingBadgeLink> = {
-  component: RatingBadgeLink,
-  decorators: [basicWrapperDecorator],
-
-  parameters: {
-    controls: { exclude: ['className'] },
-  },
-
-  title: 'Echoes/Badges/RatingBadgeLink',
-};
-
-export default meta;
-
-type Story = StoryObj<typeof RatingBadgeLink>;
-
-export const Default: Story = {
-  args: {
-    rating: RatingBadgeRating.C,
-    style: { marginRight: '6px' },
-    to: 'a better place',
-  },
-  render: (args) => (
-    <span>
-      <RatingBadgeLink {...args} />
-      Some text next to the rating badge
-    </span>
-  ),
-};
+export const noPaddingBodyDecorator: Decorator = (Story) => (
+  <>
+    <Global styles={{ body: { padding: '0 !important' } }} />
+    <Story />
+  </>
+);
