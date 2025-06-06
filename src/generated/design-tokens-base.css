@@ -228,6 +228,7 @@
   --echoes-color-purple-700: rgb(136,63,221);
   --echoes-color-purple-800: rgb(121,52,199);
   --echoes-color-purple-900: rgb(63,24,107);
+  --echoes-banner-sizes-height: 2.75rem;
   --echoes-form-control-border-radius-default: 8px;
   --echoes-form-control-sizes-height-default: 2.25rem;
   --echoes-sizes-overlays-max-width-default: 25rem;

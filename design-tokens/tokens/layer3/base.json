@@ -1,5 +1,13 @@
 {
   "echoes": {
+    "banner": {
+      "sizes": {
+        "height": {
+          "value": "2.75rem",
+          "type": "sizing"
+        }
+      }
+    },
     "form-control": {
       "borderRadius": {
         "default": {

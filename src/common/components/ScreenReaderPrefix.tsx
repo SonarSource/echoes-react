@@ -17,33 +17,10 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
+import styled from '@emotion/styled';
+import { screenReaderOnly } from '~common/helpers/styles';
 
-export * from './badges';
-export * from './banner';
-export * from './breadcrumbs';
-export * from './buttons';
-export * from './card';
-export * from './checkbox';
-export * from './checkbox-group';
-export * from './divider';
-export * from './dropdown-menu';
-export * from './echoes-provider';
-export * from './form';
-export * from './global-navigation';
-export * from './icons';
-export * from './links';
-export * from './logos';
-export * from './messages';
-export * from './modals';
-export * from './popover';
-export * from './promoted-section';
-export * from './radio-button-group';
-export * from './select';
-export * from './spinner';
-export * from './table';
-export * from './text-area';
-export * from './text-input';
-export * from './toggle-button-group';
-export * from './toggle-tip';
-export * from './tooltip';
-export * from './typography';
+export const ScreenReaderPrefix = styled.span`
+  ${screenReaderOnly}
+`;
+ScreenReaderPrefix.displayName = 'ScreenReaderPrefix';

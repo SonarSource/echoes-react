@@ -1,4 +1,24 @@
 {
+  "banner.dismiss": {
+    "defaultMessage": "Dismiss",
+    "description": "ARIA-label for the dismiss button in the top-right corner of the Banner."
+  },
+  "banner.prefix.danger": {
+    "defaultMessage": "Error banner:",
+    "description": "Screen reader only text that expresses the type of the Danger banner"
+  },
+  "banner.prefix.info": {
+    "defaultMessage": "Information banner:",
+    "description": "Screen reader only text that expresses the type of the Info banner"
+  },
+  "banner.prefix.success": {
+    "defaultMessage": "Success banner:",
+    "description": "Screen reader only text that expresses the type of the Success banner"
+  },
+  "banner.prefix.warning": {
+    "defaultMessage": "Warning banner:",
+    "description": "Screen reader only text that expresses the type of the Warning banner"
+  },
   "global_navigation.account": {
     "defaultMessage": "Account",
     "description": "aria-label text for the account button (in the GlobalNavigation)"
