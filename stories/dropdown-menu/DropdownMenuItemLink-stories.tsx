@@ -22,11 +22,12 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { PropsWithChildren } from 'react';
 import { To } from 'react-router-dom';
 import { DropdownMenu } from '../../src';
-import { BasicWrapper } from '../helpers/BasicWrapper';
+import { basicWrapperDecorator } from '../helpers/BasicWrapper';
 import { MenuButton } from '../helpers/MenuButton';
 
 const meta: Meta<typeof DropdownMenu.ItemLink> = {
   component: DropdownMenu.ItemLink,
+  decorators: [basicWrapperDecorator],
   title: 'Echoes/DropdownMenuItems/ItemLink',
   parameters: {
     controls: { exclude: ['onClick'] },
@@ -167,12 +168,10 @@ export const Full: Story = {
 
 function render({ children, ...args }: PropsWithChildren<{ to: To }>) {
   return (
-    <BasicWrapper>
-      <DropdownMenu
-        isOpen
-        items={<DropdownMenu.ItemLink {...args}>{children}</DropdownMenu.ItemLink>}>
-        <MenuButton />
-      </DropdownMenu>
-    </BasicWrapper>
+    <DropdownMenu
+      isOpen
+      items={<DropdownMenu.ItemLink {...args}>{children}</DropdownMenu.ItemLink>}>
+      <MenuButton />
+    </DropdownMenu>
   );
 }

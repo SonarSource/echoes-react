@@ -67,7 +67,7 @@ export const WithDismiss: Story = {
   render: (args) => <BannerWithDismiss {...args} />,
 };
 
-function BannerWithDismiss(args: BannerProps) {
+function BannerWithDismiss(args: Readonly<BannerProps>) {
   const [dismissed, setDismissed] = useState(false);
 
   if (dismissed) {
