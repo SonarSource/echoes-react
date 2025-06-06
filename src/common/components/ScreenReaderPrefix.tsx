@@ -17,43 +17,10 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
+import styled from '@emotion/styled';
+import { screenReaderOnly } from '~common/helpers/styles';
 
-import { JSX } from 'react';
-
-export type TextNode = JSX.Element | string | Iterable<TextNode>;
-export type TextNodeOptional = TextNode | false | null;
-
-export interface PropsLabel {
-  ariaLabel?: string;
-  ariaLabelledBy?: never;
-  id?: string;
-  label: TextNode;
-  helpText?: TextNodeOptional;
-}
-
-export interface PropsAriaLabel {
-  ariaLabel: string;
-  ariaLabelledBy?: never;
-  id?: string;
-  label?: never;
-  helpText?: never;
-}
-
-export interface PropsAriaLabelledBy {
-  ariaLabel?: never;
-  ariaLabelledBy: string;
-  id?: string;
-  label?: never;
-  helpText?: never;
-}
-
-export interface PropsAriaLabelViaId {
-  ariaLabel?: never;
-  ariaLabelledBy?: never;
-  id: string;
-  label?: never;
-  helpText?: never;
-}
-
-export type PropsWithLabels<T> = T &
-  (PropsLabel | PropsAriaLabel | PropsAriaLabelledBy | PropsAriaLabelViaId);
+export const ScreenReaderPrefix = styled.span`
+  ${screenReaderOnly}
+`;
+ScreenReaderPrefix.displayName = 'ScreenReaderPrefix';
