@@ -35,7 +35,7 @@ export enum PromotedSectionVariety {
 
 export interface PromotedSectionProps {
   /**
-   * The actions on the bottom: either a Button, a ButtonGroup, or a LinkStandalone (optional)
+   * The actions at the bottom: either a Button, a ButtonGroup, or a LinkStandalone (optional)
    */
   actions?: React.ReactNode;
 

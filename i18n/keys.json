@@ -82,6 +82,10 @@
     "defaultMessage": "Clear select field",
     "description": "Screen reader-only text to indicate that the select field can be cleared with a button"
   },
+  "spotlight_tour.dismiss": {
+    "defaultMessage": "Dismiss",
+    "description": "Label for the dismiss button at the bottom of a spotligh tour modal."
+  },
   "toggletip.help": {
     "defaultMessage": "More information",
     "description": "aria-label text and tooltip for the ToggleTip"
