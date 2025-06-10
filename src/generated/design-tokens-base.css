@@ -232,6 +232,7 @@
   --echoes-form-control-sizes-height-default: 2.25rem;
   --echoes-sizes-overlays-max-width-default: 25rem;
   --echoes-sizes-overlays-min-width-default: 150px;
+  --echoes-sizes-overlays-width-small: 25rem;
   --echoes-sizes-overlays-width-default: 37.5rem;
   --echoes-sizes-overlays-width-wide: 62.5rem;
   --echoes-sizes-overlays-max-height-default: 80vh;
