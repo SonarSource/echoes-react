@@ -82,6 +82,26 @@
     "defaultMessage": "Clear select field",
     "description": "Screen reader-only text to indicate that the select field can be cleared with a button"
   },
+  "spotlight.close": {
+    "defaultMessage": "Close",
+    "description": "The label for the Close button on a Spotlight"
+  },
+  "spotlight.go_back": {
+    "defaultMessage": "Go back",
+    "description": "The label for the Go back button on a Spotlight"
+  },
+  "spotlight.next": {
+    "defaultMessage": "Next",
+    "description": "The label for the Next button on a Spotlight"
+  },
+  "spotlight.skip": {
+    "defaultMessage": "Skip",
+    "description": "The label for the Skip button on a Spotlight"
+  },
+  "spotlight.step_x_of_y": {
+    "defaultMessage": "{currentStepNumber} of {totalNumberOfSteps}",
+    "description": "The helper text showing the step progress on a Spotlight"
+  },
   "toggletip.help": {
     "defaultMessage": "More information",
     "description": "aria-label text and tooltip for the ToggleTip"

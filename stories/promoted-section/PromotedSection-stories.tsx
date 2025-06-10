@@ -29,7 +29,7 @@ import {
   PromotedSectionVariety,
 } from '../../src';
 import { basicWrapperDecorator } from '../helpers/BasicWrapper';
-import { FishtankIllustration } from './FishtankIllustration';
+import { FishtankIllustration } from '../helpers/FishtankIllustration';
 
 const meta: Meta<typeof PromotedSection> = {
   args: {
