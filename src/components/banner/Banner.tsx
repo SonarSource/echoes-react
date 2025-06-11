@@ -41,6 +41,7 @@ export const Banner = forwardRef<HTMLDivElement, BannerProps>((props, ref) => {
     onDismiss,
     screenReaderPrefix,
     type,
+    zIndex = 1,
     ...htmlProps
   } = props;
 
@@ -52,7 +53,15 @@ export const Banner = forwardRef<HTMLDivElement, BannerProps>((props, ref) => {
   const { icon: BannerIcon, iconColor } = BANNER_TYPE_ICONS[type];
 
   return (
-    <BannerSkeleton css={useMemo(() => BANNER_TYPE_STYLES[type], [type])} role="alert">
+    <BannerSkeleton
+      css={useMemo(
+        () => ({
+          ...BANNER_TYPE_STYLES[type],
+          '--banner-z-index': zIndex,
+        }),
+        [type, zIndex],
+      )}
+      role="alert">
       <BannerWrapper style={wrapperLeftOffset}>
         <BannerInner ref={ref} {...htmlProps}>
           <BannerContent>

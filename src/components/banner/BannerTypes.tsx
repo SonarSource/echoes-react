@@ -49,4 +49,8 @@ export interface BannerProps {
    * Prefix text for screen readers to announce before the banner content. Optional since a default value is provided.
    */
   screenReaderPrefix?: TextNodeOptional;
+  /**
+   * Custom z-index for the banner, defaults to 1.
+   */
+  zIndex?: number;
 }

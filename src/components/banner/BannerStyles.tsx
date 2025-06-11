@@ -78,8 +78,8 @@ export const BannerWrapper = styled.div`
   min-width: var(--echoes-layout-sizes-min-width-default);
   max-width: var(--echoes-layout-sizes-max-width-full);
 
-  // TODO Need to figure out how to handle y-index or stacking context...
-  //z-index: var(--z-global-navbar, 421);
+  // Not great but should be revisted when Echoes provide a framework for z-indexes
+  z-index: var(--banner-z-index);
 `;
 BannerWrapper.displayName = 'BannerWrapper';
 

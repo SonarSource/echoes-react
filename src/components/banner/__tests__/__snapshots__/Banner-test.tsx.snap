@@ -12,6 +12,7 @@ exports[`should display banner content 1`] = `
   width: 100%;
   min-width: var(--echoes-layout-sizes-min-width-default);
   max-width: var(--echoes-layout-sizes-max-width-full);
+  z-index: var(--banner-z-index);
 }
 
 .emotion-4 {
