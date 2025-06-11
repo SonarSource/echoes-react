@@ -304,6 +304,22 @@
         }
       }
     },
+    "layout": {
+      "sizes": {
+        "max": {
+          "width": {
+            "default": "1280px",
+            "large": "1560px",
+            "full": "100%"
+          }
+        },
+        "min": {
+          "width": {
+            "default": "1280px"
+          }
+        }
+      }
+    },
     "sizes": {
       "overlays": {
         "maxWidth": {

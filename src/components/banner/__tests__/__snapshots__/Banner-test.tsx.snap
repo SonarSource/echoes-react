@@ -10,7 +10,7 @@ exports[`should display banner content 1`] = `
   background-color: var(--echoes-color-background-default);
   height: inherit;
   width: 100%;
-  min-width: var(--echoes-layout-sizes-max-width-default);
+  min-width: var(--echoes-layout-sizes-min-width-default);
   max-width: var(--echoes-layout-sizes-max-width-full);
 }
 

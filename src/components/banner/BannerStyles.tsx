@@ -75,8 +75,8 @@ export const BannerWrapper = styled.div`
 
   height: inherit;
   width: 100%;
-  min-width: 1280px; // TODO Design token
-  max-width: 100%;
+  min-width: var(--echoes-layout-sizes-min-width-default);
+  max-width: var(--echoes-layout-sizes-max-width-full);
 
   // TODO Need to figure out how to handle y-index or stacking context...
   //z-index: var(--z-global-navbar, 421);
