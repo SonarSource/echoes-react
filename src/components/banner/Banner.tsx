@@ -19,6 +19,7 @@
  */
 import { forwardRef, useMemo } from 'react';
 import { useIntl } from 'react-intl';
+import { useFollowScroll } from '~common/helpers/useFollowScroll';
 import { ButtonIcon } from '../buttons';
 import { IconX } from '../icons/IconX';
 import { BannerScreenReaderPrefix } from './BannerScreenReaderPrefix';
@@ -34,14 +35,25 @@ import {
 import { BannerProps } from './BannerTypes';
 
 export const Banner = forwardRef<HTMLDivElement, BannerProps>((props, ref) => {
-  const { children, type, onDismiss, screenReaderPrefix, ...htmlProps } = props;
+  const {
+    children,
+    disableFollowScroll = false,
+    onDismiss,
+    screenReaderPrefix,
+    type,
+    ...htmlProps
+  } = props;
+
   const intl = useIntl();
+  const { left: leftScroll } = useFollowScroll(!disableFollowScroll);
+
+  const wrapperLeftOffset = disableFollowScroll ? {} : { left: -leftScroll };
 
   const { icon: BannerIcon, iconColor } = BANNER_TYPE_ICONS[type];
 
   return (
     <BannerSkeleton css={useMemo(() => BANNER_TYPE_STYLES[type], [type])} role="alert">
-      <BannerWrapper>
+      <BannerWrapper style={wrapperLeftOffset}>
         <BannerInner ref={ref} {...htmlProps}>
           <BannerContent>
             <BannerIcon color={iconColor} />

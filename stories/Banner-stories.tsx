@@ -20,10 +20,10 @@
 
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
-import { Banner, BannerProps, BannerType, Button } from '../src';
+import { Banner, BannerProps, BannerType, Button, Link } from '../src';
 import { toDisabledControlArgType, toTextControlArgTypes } from './helpers/arg-types';
 import { BasicWrapper } from './helpers/BasicWrapper';
-import { noPaddingBodyDecorator } from './helpers/decorators';
+import { minWidthBodyDecorator, noPaddingBodyDecorator } from './helpers/decorators';
 
 const meta: Meta<typeof Banner> = {
   component: Banner,
@@ -35,7 +35,7 @@ const meta: Meta<typeof Banner> = {
     ...toDisabledControlArgType('onDismiss'),
   },
 
-  decorators: [noPaddingBodyDecorator],
+  decorators: [noPaddingBodyDecorator, minWidthBodyDecorator],
 };
 
 export default meta;

@@ -17,20 +17,29 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
- 
-import { Global } from '@emotion/react';
-import { Decorator } from '@storybook/react';
 
-export const noPaddingBodyDecorator: Decorator = (Story) => (
-  <>
-    <Global styles={{ body: { padding: '0 !important' } }} />
-    <Story />
-  </>
-);
+export const THROTTLE_SHORT_DELAY = 10;
+export const THROTTLE_LONG_DELAY = 100;
 
-export const minWidthBodyDecorator: Decorator = (Story) => (
-  <>
-    <Global styles={{ body: { minWidth: 'var(--echoes-layout-sizes-max-width-default)' } }} />
-    <Story />
-  </>
-);
+/**
+ * Throttle a function to ensure it is not called more than once during the specified delay.
+ * @param callback The function to throttle.
+ * @param delay The time in milliseconds to wait before allowing the next call.
+ * @returns A throttled version of the callback function.
+ */
+export function throttle<T extends unknown[]>(callback: (...args: T) => void, delay: number) {
+  let isWaiting = false;
+
+  return (...args: T) => {
+    if (isWaiting) {
+      return;
+    }
+
+    callback(...args);
+    isWaiting = true;
+
+    setTimeout(() => {
+      isWaiting = false;
+    }, delay);
+  };
+}

@@ -34,6 +34,10 @@ export interface BannerProps {
   children: TextNodeOptional;
   className?: string;
   /**
+   * Set to true to disable the follow horizontal scroll behavior of the banner.
+   */
+  disableFollowScroll?: boolean;
+  /**
    * Function that will be called when the dismiss button is clicked, the dismiss button is only showed if this function is defined.
    */
   onDismiss?: VoidFunction;
