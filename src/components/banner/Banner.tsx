@@ -19,9 +19,8 @@
  */
 import { forwardRef, useMemo } from 'react';
 import { useIntl } from 'react-intl';
+import { DismissButton } from '~common/components/DismissButton';
 import { useFollowScroll } from '~common/helpers/useFollowScroll';
-import { ButtonIcon } from '../buttons';
-import { IconX } from '../icons/IconX';
 import { BannerScreenReaderPrefix } from './BannerScreenReaderPrefix';
 import {
   BANNER_TYPE_ICONS,
@@ -71,8 +70,7 @@ export const Banner = forwardRef<HTMLDivElement, BannerProps>((props, ref) => {
           </BannerContent>
 
           {onDismiss && (
-            <ButtonIcon
-              Icon={IconX}
+            <DismissButton
               ariaLabel={intl.formatMessage({
                 id: 'banner.dismiss',
                 defaultMessage: 'Dismiss',
@@ -80,8 +78,6 @@ export const Banner = forwardRef<HTMLDivElement, BannerProps>((props, ref) => {
                   'ARIA-label for the dismiss button in the top-right corner of the Banner.',
               })}
               onClick={onDismiss}
-              size="medium"
-              variety="default-ghost"
             />
           )}
         </BannerInner>
