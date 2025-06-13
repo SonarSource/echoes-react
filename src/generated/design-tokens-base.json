@@ -308,6 +308,7 @@
           "default": "150px"
         },
         "width": {
+          "small": "25rem",
           "default": "37.5rem",
           "wide": "62.5rem"
         },

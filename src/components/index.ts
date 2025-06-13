@@ -39,6 +39,7 @@ export * from './promoted-section';
 export * from './radio-button-group';
 export * from './select';
 export * from './spinner';
+export * from './spotlight';
 export * from './table';
 export * from './text-area';
 export * from './text-input';

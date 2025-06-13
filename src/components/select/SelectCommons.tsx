@@ -23,7 +23,7 @@ import styled from '@emotion/styled';
 import { Select as MantineSelect, SelectProps as MantineSelectProps } from '@mantine/core';
 import { forwardRef, useContext, useEffect, useId } from 'react';
 import { useIntl } from 'react-intl';
-import { isDefined } from '~common/helpers/types';
+import { isDefined, isStringDefined } from '~common/helpers/types';
 import { useForwardedRefWithState } from '~common/helpers/useForwardedRef';
 import { PropsWithLabels } from '~types/utils';
 import { IconChevronDown, IconX, Spinner } from '..';
@@ -112,7 +112,7 @@ export const SelectBase = forwardRef<HTMLInputElement, PropsWithLabels<SelectBas
     });
 
     const rightSection = getSelectRightSection({
-      hasValue: isDefined(selectProps.value) && selectProps.value !== '',
+      hasValue: isStringDefined(selectProps.value),
       isLoading,
       isClearable,
     });
