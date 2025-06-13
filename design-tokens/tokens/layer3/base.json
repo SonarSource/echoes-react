@@ -1,5 +1,13 @@
 {
   "echoes": {
+    "banner": {
+      "sizes": {
+        "height": {
+          "value": "2.75rem",
+          "type": "sizing"
+        }
+      }
+    },
     "form-control": {
       "borderRadius": {
         "default": {
@@ -12,6 +20,34 @@
           "default": {
             "value": "{echoes.dimension.height.900}",
             "type": "sizing"
+          }
+        }
+      }
+    },
+    "layout": {
+      "sizes": {
+        "max": {
+          "width": {
+            "default": {
+              "value": "1280px",
+              "type": "sizing"
+            },
+            "large": {
+              "value": "1560px",
+              "type": "sizing"
+            },
+            "full": {
+              "value": "100%",
+              "type": "sizing"
+            }
+          }
+        },
+        "min": {
+          "width": {
+            "default": {
+              "value": "1280px",
+              "type": "sizing"
+            }
           }
         }
       }

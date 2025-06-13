@@ -21,12 +21,13 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Badge, Popover } from '../../src';
 import { iconsComponentsArgType } from '../helpers/arg-types';
-import { BasicWrapper } from '../helpers/BasicWrapper';
+import { basicWrapperDecorator } from '../helpers/BasicWrapper';
 
 const { mapping, options = [] } = iconsComponentsArgType;
 
 const meta: Meta<typeof Badge> = {
   component: Badge,
+  decorators: [basicWrapperDecorator],
 
   parameters: {
     controls: { exclude: ['className'] },
@@ -51,11 +52,6 @@ export const Default: Story = {
     children: 'Badge!',
     variety: 'neutral',
   },
-  render: (args) => (
-    <BasicWrapper>
-      <Badge {...args} />
-    </BasicWrapper>
-  ),
 };
 
 export const Interactive: Story = {
@@ -67,10 +63,8 @@ export const Interactive: Story = {
     controls: { exclude: ['isInteractive'] },
   },
   render: (args) => (
-    <BasicWrapper>
-      <Popover description="Detailed explanation!">
-        <Badge {...args} isInteractive />
-      </Popover>
-    </BasicWrapper>
+    <Popover description="Detailed explanation!">
+      <Badge {...args} isInteractive />
+    </Popover>
   ),
 };

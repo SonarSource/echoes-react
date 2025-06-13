@@ -20,8 +20,8 @@
 
 import { JSX } from 'react';
 
-export type TextNode = JSX.Element | string;
-export type TextNodeOptional = TextNode | false | null;
+export type TextNode = JSX.Element | string | Iterable<TextNode>;
+export type TextNodeOptional = TextNode | boolean | null | Iterable<TextNodeOptional>;
 
 export interface PropsLabel {
   ariaLabel?: string;

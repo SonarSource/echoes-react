@@ -19,6 +19,7 @@
  */
 
 export * from './badges';
+export * from './banner';
 export * from './breadcrumbs';
 export * from './buttons';
 export * from './card';

@@ -18,35 +18,28 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import type { Meta, StoryObj } from '@storybook/react';
-import { RatingBadgeLink, RatingBadgeRating } from '../../src';
-import { basicWrapperDecorator } from '../helpers/BasicWrapper';
+export const THROTTLE_SHORT_DELAY = 10;
+export const THROTTLE_LONG_DELAY = 100;
 
-const meta: Meta<typeof RatingBadgeLink> = {
-  component: RatingBadgeLink,
-  decorators: [basicWrapperDecorator],
+/**
+ * Throttle a function to ensure it is not called more than once during the specified delay.
+ * @param callback The function to throttle.
+ * @param delay The time in milliseconds to wait before allowing the next call.
+ * @returns A throttled version of the callback function.
+ */
+export function throttle<T extends unknown[]>(callback: (...args: T) => void, delay: number) {
+  let isWaiting = false;
 
-  parameters: {
-    controls: { exclude: ['className'] },
-  },
+  return (...args: T) => {
+    if (isWaiting) {
+      return;
+    }
 
-  title: 'Echoes/Badges/RatingBadgeLink',
-};
+    callback(...args);
+    isWaiting = true;
 
-export default meta;
-
-type Story = StoryObj<typeof RatingBadgeLink>;
-
-export const Default: Story = {
-  args: {
-    rating: RatingBadgeRating.C,
-    style: { marginRight: '6px' },
-    to: 'a better place',
-  },
-  render: (args) => (
-    <span>
-      <RatingBadgeLink {...args} />
-      Some text next to the rating badge
-    </span>
-  ),
-};
+    setTimeout(() => {
+      isWaiting = false;
+    }, delay);
+  };
+}

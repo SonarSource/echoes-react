@@ -289,6 +289,11 @@
         "900": "rgb(63,24,107)"
       }
     },
+    "banner": {
+      "sizes": {
+        "height": "2.75rem"
+      }
+    },
     "form-control": {
       "borderRadius": {
         "default": "8px"
@@ -296,6 +301,22 @@
       "sizes": {
         "height": {
           "default": "2.25rem"
+        }
+      }
+    },
+    "layout": {
+      "sizes": {
+        "max": {
+          "width": {
+            "default": "1280px",
+            "large": "1560px",
+            "full": "100%"
+          }
+        },
+        "min": {
+          "width": {
+            "default": "1280px"
+          }
         }
       }
     },
