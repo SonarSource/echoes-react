@@ -40,7 +40,7 @@ export interface BannerProps {
   /**
    * Function that will be called when the dismiss button is clicked, the dismiss button is only showed if this function is defined.
    */
-  onDismiss?: VoidFunction;
+  onDismiss?: VoidFunction | ((event: React.MouseEvent<HTMLButtonElement>) => Promise<void>);
   /**
    * The type of banner to display, controls the styling and icon.
    */
