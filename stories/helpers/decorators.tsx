@@ -18,35 +18,19 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import type { Meta, StoryObj } from '@storybook/react';
-import { RatingBadgeLink, RatingBadgeRating } from '../../src';
-import { basicWrapperDecorator } from '../helpers/BasicWrapper';
+import { Global } from '@emotion/react';
+import { Decorator } from '@storybook/react';
 
-const meta: Meta<typeof RatingBadgeLink> = {
-  component: RatingBadgeLink,
-  decorators: [basicWrapperDecorator],
+export const noPaddingBodyDecorator: Decorator = (Story) => (
+  <>
+    <Global styles={{ body: { padding: '0 !important' } }} />
+    <Story />
+  </>
+);
 
-  parameters: {
-    controls: { exclude: ['className'] },
-  },
-
-  title: 'Echoes/Badges/RatingBadgeLink',
-};
-
-export default meta;
-
-type Story = StoryObj<typeof RatingBadgeLink>;
-
-export const Default: Story = {
-  args: {
-    rating: RatingBadgeRating.C,
-    style: { marginRight: '6px' },
-    to: 'a better place',
-  },
-  render: (args) => (
-    <span>
-      <RatingBadgeLink {...args} />
-      Some text next to the rating badge
-    </span>
-  ),
-};
+export const minWidthBodyDecorator: Decorator = (Story) => (
+  <>
+    <Global styles={{ body: { minWidth: 'var(--echoes-layout-sizes-min-width-default)' } }} />
+    <Story />
+  </>
+);

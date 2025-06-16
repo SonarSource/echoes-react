@@ -19,39 +19,37 @@
  */
 import styled from '@emotion/styled';
 import { forwardRef } from 'react';
-import { useButtonClickHandler } from '../buttons/Button';
-import { ButtonStyled } from '../buttons/ButtonStyles';
-import { ButtonCommonProps } from '../buttons/ButtonTypes';
-import { IconX } from '../icons';
-import { Tooltip } from '../tooltip';
+import { useButtonClickHandler } from '../../components/buttons/Button';
+import { ButtonStyled } from '../../components/buttons/ButtonStyles';
+import { ButtonCommonProps } from '../../components/buttons/ButtonTypes';
+import { IconX } from '../../components/icons';
+import { Tooltip } from '../../components/tooltip';
 
-interface MessageDismissButtonProps extends Pick<ButtonCommonProps, 'className' | 'onClick'> {
+interface DismissButtonProps extends Pick<ButtonCommonProps, 'className' | 'onClick'> {
   ariaLabel: string;
 }
 
-export const MessageDismissButton = forwardRef<HTMLButtonElement, MessageDismissButtonProps>(
-  (props, ref) => {
-    const { ariaLabel, onClick, ...htmlProps } = props;
+export const DismissButton = forwardRef<HTMLButtonElement, DismissButtonProps>((props, ref) => {
+  const { ariaLabel, onClick, ...htmlProps } = props;
 
-    const handleClick = useButtonClickHandler(props);
+  const handleClick = useButtonClickHandler(props);
 
-    return (
-      <Tooltip content={ariaLabel}>
-        <MessageDismissButtonStyled
-          {...htmlProps}
-          aria-label={ariaLabel}
-          onClick={handleClick}
-          ref={ref}
-          type="button">
-          <IconX />
-        </MessageDismissButtonStyled>
-      </Tooltip>
-    );
-  },
-);
-MessageDismissButton.displayName = 'MessageDismissButton';
+  return (
+    <Tooltip content={ariaLabel}>
+      <DismissButtonStyled
+        {...htmlProps}
+        aria-label={ariaLabel}
+        onClick={handleClick}
+        ref={ref}
+        type="button">
+        <IconX />
+      </DismissButtonStyled>
+    </Tooltip>
+  );
+});
+DismissButton.displayName = 'DismissButton';
 
-const MessageDismissButtonStyled = styled(ButtonStyled)`
+const DismissButtonStyled = styled(ButtonStyled)`
   flex: 0 0 auto;
 
   height: var(--echoes-dimension-height-600);
@@ -62,3 +60,4 @@ const MessageDismissButtonStyled = styled(ButtonStyled)`
   background-color: var(--echoes-color-background-transparent);
   border-radius: var(--echoes-border-radius-200);
 `;
+DismissButtonStyled.displayName = 'DismissButtonStyled';

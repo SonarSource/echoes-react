@@ -21,11 +21,12 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { ComponentProps, PropsWithChildren } from 'react';
 import { DropdownMenu } from '../../src';
-import { BasicWrapper } from '../helpers/BasicWrapper';
+import { basicWrapperDecorator } from '../helpers/BasicWrapper';
 import { MenuButton } from '../helpers/MenuButton';
 
 const meta: Meta<typeof DropdownMenu.ItemButtonDestructive> = {
   component: DropdownMenu.ItemButtonDestructive,
+  decorators: [basicWrapperDecorator],
   title: 'Echoes/DropdownMenuItems/ItemButtonDestructive',
   parameters: {
     controls: { exclude: ['onClick'] },
@@ -65,16 +66,14 @@ function render({
   ...args
 }: PropsWithChildren<ComponentProps<typeof DropdownMenu.ItemButtonDestructive>>) {
   return (
-    <BasicWrapper>
-      <DropdownMenu
-        isOpen
-        items={
-          <DropdownMenu.ItemButtonDestructive {...args}>
-            {children}
-          </DropdownMenu.ItemButtonDestructive>
-        }>
-        <MenuButton />
-      </DropdownMenu>
-    </BasicWrapper>
+    <DropdownMenu
+      isOpen
+      items={
+        <DropdownMenu.ItemButtonDestructive {...args}>
+          {children}
+        </DropdownMenu.ItemButtonDestructive>
+      }>
+      <MenuButton />
+    </DropdownMenu>
   );
 }

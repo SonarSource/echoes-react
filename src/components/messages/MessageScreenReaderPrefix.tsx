@@ -17,14 +17,14 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-import styled from '@emotion/styled';
 import { forwardRef, useMemo } from 'react';
 import { useIntl } from 'react-intl';
-import { screenReaderOnly } from '~common/helpers/styles';
+import { ScreenReaderPrefix } from '~common/components/ScreenReaderPrefix';
+import { TextNode } from '~types/utils';
 import { MessageType } from './MessageTypes';
 
 interface Props {
-  screenReaderPrefix?: string;
+  screenReaderPrefix?: TextNode;
   type: `${MessageType}`;
 }
 
@@ -69,8 +69,3 @@ function MessagePrefix({ type }: Pick<Props, 'type'>) {
 
   return messages[type];
 }
-
-const ScreenReaderPrefix = styled.span`
-  ${screenReaderOnly}
-`;
-ScreenReaderPrefix.displayName = 'ScreenReaderPrefix';

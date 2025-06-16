@@ -21,11 +21,12 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { ComponentProps, PropsWithChildren } from 'react';
 import { DropdownMenu } from '../../src';
-import { BasicWrapper } from '../helpers/BasicWrapper';
+import { basicWrapperDecorator } from '../helpers/BasicWrapper';
 import { MenuButton } from '../helpers/MenuButton';
 
 const meta: Meta<typeof DropdownMenu.ItemButton> = {
   component: DropdownMenu.ItemButton,
+  decorators: [basicWrapperDecorator],
   title: 'Echoes/DropdownMenuItems/ItemButton',
   parameters: {
     controls: { exclude: ['onClick'] },
@@ -104,12 +105,10 @@ function render({
   ...args
 }: PropsWithChildren<ComponentProps<typeof DropdownMenu.ItemButton>>) {
   return (
-    <BasicWrapper>
-      <DropdownMenu
-        isOpen
-        items={<DropdownMenu.ItemButton {...args}>{children}</DropdownMenu.ItemButton>}>
-        <MenuButton />
-      </DropdownMenu>
-    </BasicWrapper>
+    <DropdownMenu
+      isOpen
+      items={<DropdownMenu.ItemButton {...args}>{children}</DropdownMenu.ItemButton>}>
+      <MenuButton />
+    </DropdownMenu>
   );
 }
