@@ -21,11 +21,12 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { ComponentProps, PropsWithChildren } from 'react';
 import { DropdownMenu } from '../../src';
-import { BasicWrapper } from '../helpers/BasicWrapper';
+import { basicWrapperDecorator } from '../helpers/BasicWrapper';
 import { MenuButton } from '../helpers/MenuButton';
 
 const meta: Meta<typeof DropdownMenu.ItemButtonCheckable> = {
   component: DropdownMenu.ItemButtonCheckable,
+  decorators: [basicWrapperDecorator],
   title: 'Echoes/DropdownMenuItems/ItemButtonCheckable',
   parameters: {
     controls: { exclude: ['onClick'] },
@@ -166,14 +167,12 @@ function render({
   ...args
 }: PropsWithChildren<ComponentProps<typeof DropdownMenu.ItemButtonCheckable>>) {
   return (
-    <BasicWrapper>
-      <DropdownMenu
-        isOpen
-        items={
-          <DropdownMenu.ItemButtonCheckable {...args}>{children}</DropdownMenu.ItemButtonCheckable>
-        }>
-        <MenuButton />
-      </DropdownMenu>
-    </BasicWrapper>
+    <DropdownMenu
+      isOpen
+      items={
+        <DropdownMenu.ItemButtonCheckable {...args}>{children}</DropdownMenu.ItemButtonCheckable>
+      }>
+      <MenuButton />
+    </DropdownMenu>
   );
 }

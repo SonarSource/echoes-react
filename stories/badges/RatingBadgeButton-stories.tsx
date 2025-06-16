@@ -20,9 +20,12 @@
 
 import type { Meta, StoryObj } from '@storybook/react';
 import { RatingBadgeButton, RatingBadgeRating, RatingBadgeSize } from '../../src';
-import { BasicWrapper } from '../helpers/BasicWrapper';
+import { basicWrapperDecorator } from '../helpers/BasicWrapper';
 
 const meta: Meta<typeof RatingBadgeButton> = {
+  component: RatingBadgeButton,
+  decorators: [basicWrapperDecorator],
+
   argTypes: {
     rating: { control: { type: 'select' }, options: Object.values(RatingBadgeRating) },
 
@@ -31,8 +34,6 @@ const meta: Meta<typeof RatingBadgeButton> = {
       options: Object.values(RatingBadgeSize),
     },
   },
-
-  component: RatingBadgeButton,
 
   title: 'Echoes/Badges/RatingBadgeButton',
 };
@@ -48,11 +49,9 @@ export const Default: Story = {
     rating: RatingBadgeRating.E,
   },
   render: (args) => (
-    <BasicWrapper>
-      <span>
-        <RatingBadgeButton {...args} style={{ marginRight: '6px' }} />
-        Some text next to the rating badge
-      </span>
-    </BasicWrapper>
+    <span>
+      <RatingBadgeButton {...args} style={{ marginRight: '6px' }} />
+      Some text next to the rating badge
+    </span>
   ),
 };

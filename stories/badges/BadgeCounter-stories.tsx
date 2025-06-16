@@ -20,10 +20,11 @@
 
 import type { Meta, StoryObj } from '@storybook/react';
 import { BadgeCounter } from '../../src';
-import { BasicWrapper } from '../helpers/BasicWrapper';
+import { basicWrapperDecorator } from '../helpers/BasicWrapper';
 
 const meta: Meta<typeof BadgeCounter> = {
   component: BadgeCounter,
+  decorators: [basicWrapperDecorator],
 
   parameters: {
     controls: { exclude: ['className'] },
@@ -41,10 +42,8 @@ export const Default: Story = {
     value: 42,
   },
   render: (args) => (
-    <BasicWrapper>
-      <span>
-        <BadgeCounter {...args} />
-      </span>
-    </BasicWrapper>
+    <span>
+      <BadgeCounter {...args} />
+    </span>
   ),
 };
