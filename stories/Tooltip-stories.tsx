@@ -19,7 +19,7 @@
  */
 
 import styled from '@emotion/styled';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Button, Link, LinkStandalone, Tooltip, TooltipSide } from '../src';
 import { BasicWrapper } from './helpers/BasicWrapper';
 

@@ -19,7 +19,7 @@
  */
 
 import styled from '@emotion/styled';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Spinner } from '../src';
 
 const meta: Meta<typeof Spinner> = {

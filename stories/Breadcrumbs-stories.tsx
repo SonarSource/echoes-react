@@ -20,7 +20,7 @@
 
 /* eslint-disable no-console */
 import styled from '@emotion/styled';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Breadcrumbs, IconStar, IconTriangleUp } from '../src/components';
 import { basicWrapperDecorator } from './helpers/BasicWrapper';
 

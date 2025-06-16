@@ -18,7 +18,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import { ArgTypes } from '@storybook/react';
+import { ArgTypes } from '@storybook/react-vite';
 import { Args, InputType } from 'storybook/internal/types';
 import { PropsWithLabels } from '~types/utils';
 import { FormFieldValidation, FormFieldWidth } from '../../src/components/form';

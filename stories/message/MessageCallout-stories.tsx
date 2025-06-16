@@ -19,7 +19,7 @@
  */
 
 /* eslint-disable no-console */
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { useCallback, useState } from 'react';
 import { Button, ButtonVariety, MessageCallout, MessageType } from '../../src';
 import { basicWrapperDecorator } from '../helpers/BasicWrapper';

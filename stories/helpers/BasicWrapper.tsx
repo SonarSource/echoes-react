@@ -18,7 +18,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 import styled from '@emotion/styled';
-import { Decorator } from '@storybook/react';
+import { Decorator } from '@storybook/react-vite';
 
 export const BasicWrapper = styled.div`
   display: flex;

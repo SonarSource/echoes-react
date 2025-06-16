@@ -19,7 +19,7 @@
  */
 
 import { Global } from '@emotion/react';
-import { Decorator } from '@storybook/react';
+import { Decorator } from '@storybook/react-vite';
 
 export const noPaddingBodyDecorator: Decorator = (Story) => (
   <>

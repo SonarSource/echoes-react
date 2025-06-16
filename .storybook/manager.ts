@@ -18,7 +18,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import { addons } from '@storybook/manager-api';
+import { addons } from 'storybook/manager-api';
 import theme from './theme';
 
 addons.setConfig({ theme });

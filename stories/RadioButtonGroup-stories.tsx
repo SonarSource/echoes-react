@@ -18,7 +18,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { GroupAlignment, RadioButtonGroup } from '../src';
 import { formFieldsArgTypes } from './helpers/arg-types';
 
