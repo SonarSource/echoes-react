@@ -1,0 +1,136 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should display banner content 1`] = `
+.emotion-0 {
+  height: var(--echoes-banner-sizes-height);
+}
+
+.emotion-2 {
+  position: fixed;
+  background-color: var(--echoes-color-background-default);
+  height: inherit;
+  width: 100%;
+  min-width: var(--echoes-layout-sizes-min-width-default);
+  max-width: var(--echoes-layout-sizes-max-width-full);
+  z-index: var(--banner-z-index);
+}
+
+.emotion-4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  gap: var(--echoes-dimension-space-300);
+  box-sizing: border-box;
+  height: inherit;
+  width: 100%;
+  padding: var(--echoes-dimension-space-75) var(--echoes-dimension-space-200);
+  overflow: hidden;
+  background-color: var(--banner-background);
+  color: var(--banner-color);
+  font: var(--echoes-typography-text-default-regular);
+}
+
+.emotion-6 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: var(--echoes-dimension-space-200);
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.emotion-8 {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  display: inline-block;
+  font-size: calc(1em + 4px);
+  font-style: normal;
+  font-weight: normal;
+  height: calc(2em - 16px);
+  line-height: calc(2em - 16px);
+  text-align: center;
+  vertical-align: bottom;
+  width: calc(2em - 16px);
+  color: var(--echoes-color-icon-info);
+  font-variation-settings: 'FILL' 1;
+  font-family: 'Material Symbols Rounded';
+}
+
+.emotion-10 {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.emotion-12 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: var(--echoes-dimension-space-50);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+<div
+  class="emotion-0 emotion-1"
+  role="alert"
+>
+  <div
+    class="emotion-2 emotion-3"
+    style="left: 0px;"
+  >
+    <div
+      class="emotion-4 emotion-5"
+    >
+      <div
+        class="emotion-6 emotion-7"
+      >
+        <span
+          aria-hidden="true"
+          class="emotion-8 emotion-9"
+        >
+          
+        </span>
+        <span
+          class="emotion-10 emotion-11"
+        >
+          Information banner:
+           
+        </span>
+        <div
+          class="emotion-12 emotion-13"
+        >
+          Banner Content
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
