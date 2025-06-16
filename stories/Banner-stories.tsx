@@ -45,6 +45,7 @@ type Story = StoryObj<typeof Banner>;
 export const Default: Story = {
   args: {
     children: 'My banner message',
+    onDismiss: undefined,
     type: 'warning',
   },
   render: (args) => (
