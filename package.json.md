@@ -16,3 +16,5 @@
 - @emotion/utils : peer dependencies of Mantine v6
 
 ## Resolutions
+
+- ast-types: Transitive dependency of Storybook. It is apparently incompatible with typescript 5.4+, but we've never been impacted (why?). With the bump to storybook 9, it requires a patch not to fail ts-check. See [this issue](https://github.com/benjamn/ast-types/issues/948)
