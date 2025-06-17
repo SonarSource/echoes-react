@@ -19,7 +19,7 @@
  */
 
 import styled from '@emotion/styled';
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import { useMemo, useState } from 'react';
 import { DesignTokensColors, DesignTokensColorsIcons } from '~types/design-tokens';
 import { Text, TextSize } from '../src';
@@ -79,6 +79,42 @@ interface StoryArgs {
   fontSize: number;
   fontColor: DesignTokensColors;
 }
+
+export const IconLogo: StoryObj<IconLogoStoryArgs> = {
+  argTypes: {
+    Icon: {
+      control: { type: 'radio' },
+      options: ['SonarQubeCloud', 'SonarQubeCommunity', 'SonarQubeIde', 'SonarQubeServer'],
+      mapping: {
+        SonarQubeCloud: icons.IconLogoSonarQubeCloud,
+        SonarQubeCommunity: icons.IconLogoSonarQubeCommunity,
+        SonarQubeIde: icons.IconLogoSonarQubeIde,
+        SonarQubeServer: icons.IconLogoSonarQubeServer,
+      },
+    },
+    color: {
+      control: { type: 'select' },
+      options: [undefined, 'echoes-logos-colors-brand'],
+    },
+    size: {
+      control: { type: 'select' },
+      options: Object.values(TextSize),
+    },
+  },
+  args: {
+    Icon: icons.IconLogoSonarQubeCloud,
+    text: 'This is some text',
+    size: TextSize.Default,
+  },
+  decorators: [basicWrapperDecorator],
+  render: ({ color, size, text, Icon }) => (
+    <div>
+      <Text size={size}>
+        <Icon color={color} /> {text}
+      </Text>
+    </div>
+  ),
+};
 
 export const Grid: StoryObj<StoryArgs> = {
   args: {
@@ -156,39 +192,3 @@ interface IconLogoStoryArgs {
   text: string;
   size: TextSize;
 }
-
-export const IconLogo: StoryObj<IconLogoStoryArgs> = {
-  argTypes: {
-    Icon: {
-      control: { type: 'radio' },
-      options: ['SonarQubeCloud', 'SonarQubeCommunity', 'SonarQubeIde', 'SonarQubeServer'],
-      mapping: {
-        SonarQubeCloud: icons.IconLogoSonarQubeCloud,
-        SonarQubeCommunity: icons.IconLogoSonarQubeCommunity,
-        SonarQubeIde: icons.IconLogoSonarQubeIde,
-        SonarQubeServer: icons.IconLogoSonarQubeServer,
-      },
-    },
-    color: {
-      control: { type: 'select' },
-      options: [undefined, 'echoes-logos-colors-brand'],
-    },
-    size: {
-      control: { type: 'select' },
-      options: Object.values(TextSize),
-    },
-  },
-  args: {
-    Icon: icons.IconLogoSonarQubeCloud,
-    text: 'This is some text',
-    size: TextSize.Default,
-  },
-  decorators: [basicWrapperDecorator],
-  render: ({ color, size, text, Icon }) => (
-    <div>
-      <Text size={size}>
-        <Icon color={color} /> {text}
-      </Text>
-    </div>
-  ),
-};

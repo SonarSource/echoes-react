@@ -20,8 +20,7 @@
 
 import { Global, css } from '@emotion/react';
 import { withThemeByDataAttribute } from '@storybook/addon-themes';
-import type { Preview } from '@storybook/react';
-import React from 'react';
+import type { Preview } from '@storybook/react-vite';
 import { IntlProvider } from 'react-intl';
 import { MemoryRouter } from 'react-router-dom';
 import { EchoesProvider, Theme } from '../src';
@@ -263,6 +262,7 @@ const preview: Preview = {
       );
     },
   ],
+  tags: ['autodocs'],
 };
 
 export default preview;

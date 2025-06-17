@@ -19,7 +19,7 @@
  */
 
 /* eslint-disable no-console */
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { ButtonSize, ButtonVariety, TooltipAlign, TooltipSide } from '../src';
 import { ButtonIcon } from '../src/components/buttons/ButtonIcon';
 import { IconClock, IconInfo, IconStar } from '../src/components/icons';

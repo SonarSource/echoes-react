@@ -24,12 +24,10 @@ import { dirname, join } from 'node:path';
 const config: StorybookConfig = {
   addons: [
     getAbsolutePath('@storybook/addon-a11y'),
-    getAbsolutePath('@storybook/addon-essentials'),
-    getAbsolutePath('@storybook/addon-interactions'),
+    getAbsolutePath('@storybook/addon-docs'),
     getAbsolutePath('@storybook/addon-links'),
     getAbsolutePath('@storybook/addon-themes'),
   ],
-  docs: { autodocs: true },
   framework: '@storybook/react-vite',
   staticDirs: ['../public'],
   stories: ['../stories/**/*-stories.tsx'],

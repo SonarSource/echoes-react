@@ -19,7 +19,7 @@
  */
 
 import styled from '@emotion/styled';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Spotlight, SpotlightModalPlacement } from '../src';
 import { basicWrapperDecorator } from './helpers/BasicWrapper';
 import { FishtankIllustration } from './helpers/FishtankIllustration';
