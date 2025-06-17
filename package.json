@@ -117,7 +117,7 @@
     "vite-plugin-dts": "4.5.4"
   },
   "dependencies": {
-    "@mantine/core": "patch:@mantine/core@7.12.2#./config/patches/@mantine-core-npm-7.12.2-7aad505c0f.patch",
+    "@mantine/core": "patch:@mantine/core@7.12.2#~/.yarn/patches/@mantine-core-npm-7.12.2-7aad505c0f.patch",
     "@mantine/hooks": "7.12.2",
     "@material-symbols/font-400": "0.31.3",
     "@radix-ui/react-alert-dialog": "1.1.14",
