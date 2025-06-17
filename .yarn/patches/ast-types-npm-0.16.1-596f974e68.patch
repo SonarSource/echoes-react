@@ -1,0 +1,23 @@
+diff --git a/lib/main.d.ts b/lib/main.d.ts
+index 9b54fef0086ea0c99368d8a95f2476e5dcd6d9c1..56621cef43ad5f2b0bd3c05e8c1b4c756f52b69a 100644
+--- a/lib/main.d.ts
++++ b/lib/main.d.ts
+@@ -1,8 +1,8 @@
+-import { ASTNode, Type, AnyType, Field } from "./types";
+-import { NodePath } from "./node-path";
++import { type builders } from "./gen/builders";
+ import { namedTypes } from "./gen/namedTypes";
+-import { builders } from "./gen/builders";
+ import { Visitor } from "./gen/visitor";
++import { type NodePath } from "./node-path";
++import { AnyType, ASTNode, Field, type Type } from "./types";
+ declare const astNodesAreEquivalent: {
+     (a: any, b: any, problemPath?: any): boolean;
+     assert(a: any, b: any): void;
+@@ -26,4 +26,5 @@ declare const astNodesAreEquivalent: {
+     def(typeName: string): import("./types").Def<any>;
+     hasDef(typeName: string): boolean;
+ }, use: <T>(plugin: import("./types").Plugin<T>) => T, visit: <M = {}>(node: ASTNode, methods?: Visitor<M> | undefined) => any;
+-export { AnyType, ASTNode, astNodesAreEquivalent, builders, builtInTypes, defineMethod, eachField, Field, finalize, getBuilderName, getFieldNames, getFieldValue, getSupertypeNames, namedTypes, NodePath, Path, PathVisitor, someField, Type, use, visit, Visitor, };
++export { AnyType, ASTNode, astNodesAreEquivalent, builders, builtInTypes, defineMethod, eachField, Field, finalize, getBuilderName, getFieldNames, getFieldValue, getSupertypeNames, namedTypes, NodePath, Path, PathVisitor, someField, Type, use, visit, Visitor };
++

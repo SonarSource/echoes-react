@@ -135,6 +135,7 @@
     "react-joyride": "2.9.3"
   },
   "resolutions": {
+    "ast-types": "patch:ast-types@npm%3A0.16.1#~/.yarn/patches/ast-types-npm-0.16.1-596f974e68.patch",
     "axe-core": "4.10.3"
   }
 }
