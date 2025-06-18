@@ -24,13 +24,13 @@ import { screenReaderOnly } from '~common/helpers/styles';
 
 export const SpinnerWrapper = styled.span<{ inline: boolean }>`
   position: relative;
-  display: ${(props) => (props.inline ? 'inline-block' : 'block')};
+  display: ${displaySwitcher};
 `;
 SpinnerWrapper.displayName = 'SpinnerWrapper';
 
 export const SpinnerInner = styled.span<{ inline: boolean; isLoading: boolean }>`
   position: relative;
-  display: ${(props) => (props.inline ? 'inline-block' : 'block')};
+  display: ${displaySwitcher};
   height: var(--echoes-dimension-height-400);
   ${({ isLoading }) => (isLoading ? '' : screenReaderOnly)}
 `;
@@ -70,7 +70,7 @@ export const SpinnerStyled = styled.span<{ inline: boolean }>`
   mask-composite: exclude;
   animation: ${spinAnimation} 1s infinite linear;
 
-  display: ${(props) => (props.inline ? 'inline-block' : 'block')};
+  display: ${displaySwitcher};
   box-sizing: border-box;
   height: var(--echoes-dimension-height-400);
   width: var(--echoes-dimension-width-200);
@@ -87,3 +87,7 @@ export const SpinnerPlaceholder = styled.div`
   width: var(--echoes-dimension-width-200);
 `;
 SpinnerPlaceholder.displayName = 'SpinnerPlaceholder';
+
+function displaySwitcher(options: { inline: boolean }) {
+  return options.inline ? 'inline-block' : 'block';
+}

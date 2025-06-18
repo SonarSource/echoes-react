@@ -98,6 +98,18 @@
     "defaultMessage": "Dismiss",
     "description": "ARIA-label for the dismiss button in the top-right corner."
   },
+  "search_input.clear": {
+    "defaultMessage": "Clear search",
+    "description": "ARIA-label for the clear button in the search input."
+  },
+  "search_input.minimum_characters": {
+    "defaultMessage": "(minimum {minLength} characters)",
+    "description": "SearchInput minimum number of characters label"
+  },
+  "search_input.placeholder": {
+    "defaultMessage": "Search",
+    "description": "SearchInput placeholder/label text"
+  },
   "select.clear": {
     "defaultMessage": "Clear select field",
     "description": "Screen reader-only text to indicate that the select field can be cleared with a button"
