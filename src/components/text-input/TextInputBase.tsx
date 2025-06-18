@@ -108,6 +108,8 @@ export const InputStyled = styled.input`
 InputStyled.displayName = 'InputStyled';
 
 export const InputWrapper = styled.div`
+  isolation: isolate; // Prevents the z-index changes of elements inside the InputWrapper from affecting layers outside
+
   position: relative;
   display: flex;
   align-items: center;
