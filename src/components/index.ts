@@ -38,6 +38,7 @@ export * from './modals';
 export * from './popover';
 export * from './promoted-section';
 export * from './radio-button-group';
+export * from './search-input';
 export * from './select';
 export * from './spinner';
 export * from './spotlight';
