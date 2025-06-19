@@ -60,3 +60,4 @@ export function CheckboxIcon({ checked }: Readonly<Props>) {
     </svg>
   );
 }
+CheckboxIcon.displayName = 'CheckboxIcon';

@@ -74,7 +74,7 @@ export const Checkbox = forwardRef<HTMLButtonElement, CheckboxProps>((props, ref
   return (
     <CheckboxContainer className={className} data-disabled={isDisabled}>
       <CheckboxInnerContainer className={innerClassName}>
-        <Spinner isLoading={isLoading}>
+        <CheckboxSpinner isLoading={isLoading}>
           <CheckboxRoot
             aria-disabled={isDisabled}
             aria-invalid={hasError}
@@ -93,12 +93,12 @@ export const Checkbox = forwardRef<HTMLButtonElement, CheckboxProps>((props, ref
               <CheckboxIcon checked={checked} />
             </CheckboxIndicator>
           </CheckboxRoot>
-        </Spinner>
+        </CheckboxSpinner>
         {(label || helpText) && (
-          <LabelWrapper>
-            {label && <Label htmlFor={controlId}>{label}</Label>}
+          <CheckboxLabelWrapper>
+            {label && <CheckboxLabel htmlFor={controlId}>{label}</CheckboxLabel>}
             {helpText && <HelperText>{helpText}</HelperText>}
-          </LabelWrapper>
+          </CheckboxLabelWrapper>
         )}
       </CheckboxInnerContainer>
     </CheckboxContainer>
@@ -114,12 +114,14 @@ const CheckboxContainer = styled.span`
     pointer-events: none;
   }
 `;
+CheckboxContainer.displayName = 'CheckboxContainer';
 
 const CheckboxInnerContainer = styled.span`
   display: flex;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 0.833rem;
 `;
+CheckboxInnerContainer.displayName = 'CheckboxInnerContainer';
 
 const CheckboxRoot = styled(RadixCheckbox.Root)`
   color: var(--echoes-color-text-on-color);
@@ -175,21 +177,30 @@ const CheckboxRoot = styled(RadixCheckbox.Root)`
     }
   }
 `;
+CheckboxRoot.displayName = 'CheckboxRoot';
+
+const CheckboxSpinner = styled(Spinner)`
+  margin: var(--echoes-dimension-space-25) 0;
+`;
+CheckboxSpinner.displayName = 'CheckboxSpinner';
 
 const CheckboxIndicator = styled(RadixCheckbox.Indicator)`
   height: var(--echoes-dimension-height-400);
   width: var(--echoes-dimension-width-200);
 `;
+CheckboxIndicator.displayName = 'CheckboxIndicator';
 
-const LabelWrapper = styled.span`
+const CheckboxLabelWrapper = styled.span`
   display: inline-flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
   margin-left: var(--echoes-dimension-space-100);
 `;
+CheckboxLabelWrapper.displayName = 'CheckboxLabelWrapper';
 
-const Label = styled.label`
+const CheckboxLabel = styled.label`
   color: var(--echoes-color-text-default);
   font: var(--echoes-typography-others-label-medium);
 `;
+CheckboxLabel.displayName = 'CheckboxLabel';
