@@ -5,7 +5,7 @@
   "exports": "./dist/index.js",
   "files": [
     "dist",
-    "config/patches/**"
+    ".yarn/patches/**"
   ],
   "types": "./dist/index.d.ts",
   "description": "React implementation of Echoes, SONAR's Design System",
@@ -117,7 +117,7 @@
     "vite-plugin-dts": "4.5.4"
   },
   "dependencies": {
-    "@mantine/core": "patch:@mantine/core@7.12.2#~/.yarn/patches/@mantine-core-npm-7.12.2-7aad505c0f.patch",
+    "@mantine/core": "patch:@mantine/core@7.12.2#./.yarn/patches/@mantine-core-npm-7.12.2-7aad505c0f.patch",
     "@mantine/hooks": "7.12.2",
     "@material-symbols/font-400": "0.31.3",
     "@radix-ui/react-alert-dialog": "1.1.14",
@@ -135,7 +135,7 @@
     "react-joyride": "2.9.3"
   },
   "resolutions": {
-    "ast-types": "patch:ast-types@npm%3A0.16.1#~/.yarn/patches/ast-types-npm-0.16.1-596f974e68.patch",
+    "ast-types": "patch:ast-types@npm%3A0.16.1#./.yarn/patches/ast-types-npm-0.16.1-596f974e68.patch",
     "axe-core": "4.10.3"
   }
 }
