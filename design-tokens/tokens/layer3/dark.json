@@ -4,11 +4,11 @@
       "colors": {
         "background": {
           "default": {
-            "value": "{echoes.color.background.default}",
+            "value": "{echoes.color.surface.default}",
             "type": "color"
           },
           "hover": {
-            "value": "{echoes.color.background.default-hover}",
+            "value": "{echoes.color.surface.hover}",
             "type": "color"
           }
         },
