@@ -22,6 +22,7 @@ import styled from '@emotion/styled';
 import * as RadixCheckbox from '@radix-ui/react-checkbox';
 import { forwardRef, useCallback, useId } from 'react';
 import { PropsWithLabels } from '~types/utils';
+import { FormFieldLabel } from '../form/FormFieldLabel';
 import { Spinner } from '../spinner';
 import { HelperText } from '../typography';
 import { CheckboxIcon } from './CheckboxIcon';
@@ -33,6 +34,7 @@ interface CheckboxPropsBase {
   innerClassName?: string;
   isDisabled?: boolean;
   isLoading?: boolean;
+  isRequired?: boolean;
   onCheck: (checked: boolean | 'indeterminate', id: string) => void;
   onFocus?: VoidFunction;
   title?: string;
@@ -52,6 +54,7 @@ export const Checkbox = forwardRef<HTMLButtonElement, CheckboxProps>((props, ref
     innerClassName,
     isDisabled,
     isLoading = false,
+    isRequired = false,
     label,
     onCheck,
     onFocus,
@@ -94,9 +97,15 @@ export const Checkbox = forwardRef<HTMLButtonElement, CheckboxProps>((props, ref
             </CheckboxIndicator>
           </CheckboxRoot>
         </Spinner>
+
         {(label || helpText) && (
           <LabelWrapper>
-            {label && <Label htmlFor={controlId}>{label}</Label>}
+            {label && (
+              <Label htmlFor={controlId} isRequired={isRequired}>
+                {label}
+              </Label>
+            )}
+
             {helpText && <HelperText>{helpText}</HelperText>}
           </LabelWrapper>
         )}
@@ -189,7 +198,7 @@ const LabelWrapper = styled.span`
   margin-left: var(--echoes-dimension-space-100);
 `;
 
-const Label = styled.label`
+const Label = styled(FormFieldLabel)`
   color: var(--echoes-color-text-default);
   font: var(--echoes-typography-others-label-medium);
 `;
