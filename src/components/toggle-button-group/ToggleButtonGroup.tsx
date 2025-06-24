@@ -102,6 +102,9 @@ function ToggleButtonItem(props: ToggleButtonItemProps) {
 }
 
 const StyledRoot = styled(RadixToggleGroup.Root)`
+  // Prevents the z-index change in StyledItem:focus-visible from affecting layers outside the ToggleButtonGroup component
+  isolation: isolate;
+
   display: inline-flex;
   flex-direction: row;
   align-items: center;

@@ -158,6 +158,8 @@ export const BadgeSeverity = forwardRef<HTMLButtonElement, BadgeSeverityProps>((
 BadgeSeverity.displayName = 'BadgeSeverity';
 
 const StyledWrapper = styled.div`
+  isolation: isolate; // Prevents the z-index changes of the items inside from affecting layers outside the BadgeSeverity
+
   display: inline-flex;
   flex-direction: row;
   box-sizing: border-box;

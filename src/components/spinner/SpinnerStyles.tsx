@@ -23,14 +23,14 @@ import styled from '@emotion/styled';
 import { screenReaderOnly } from '~common/helpers/styles';
 
 export const SpinnerWrapper = styled.span<{ inline: boolean }>`
-  display: ${(props) => (props.inline ? 'inline-block' : 'block')};
   position: relative;
+  display: ${displaySwitcher};
 `;
 SpinnerWrapper.displayName = 'SpinnerWrapper';
 
-export const SpinnerInner = styled.span<{ isLoading: boolean }>`
+export const SpinnerInner = styled.span<{ inline: boolean; isLoading: boolean }>`
   position: relative;
-  display: inline-block;
+  display: ${displaySwitcher};
   height: var(--echoes-dimension-height-400);
   ${({ isLoading }) => (isLoading ? '' : screenReaderOnly)}
 `;
@@ -56,7 +56,7 @@ const spinAnimation = keyframes`
   }
 `;
 
-export const SpinnerStyled = styled.span`
+export const SpinnerStyled = styled.span<{ inline: boolean }>`
   border: 2px solid transparent;
   background:
     linear-gradient(0deg, var(--echoes-color-background-accent-default) 50%, transparent 50% 100%)
@@ -70,7 +70,7 @@ export const SpinnerStyled = styled.span`
   mask-composite: exclude;
   animation: ${spinAnimation} 1s infinite linear;
 
-  display: inline-block;
+  display: ${displaySwitcher};
   box-sizing: border-box;
   height: var(--echoes-dimension-height-400);
   width: var(--echoes-dimension-width-200);
@@ -87,3 +87,7 @@ export const SpinnerPlaceholder = styled.div`
   width: var(--echoes-dimension-width-200);
 `;
 SpinnerPlaceholder.displayName = 'SpinnerPlaceholder';
+
+function displaySwitcher(options: { inline: boolean }) {
+  return options.inline ? 'inline-block' : 'block';
+}

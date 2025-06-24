@@ -21,6 +21,7 @@
 import classNames from 'classnames';
 import { ReactNode, forwardRef } from 'react';
 import { FormattedMessage } from 'react-intl';
+import { isDefined } from '~common/helpers/types';
 import {
   SpinnerAriaLabel,
   SpinnerInner,
@@ -52,19 +53,27 @@ export const Spinner = forwardRef<HTMLSpanElement, SpinnerProps>((props, ref) =>
     ...radixProps
   } = props;
 
+  const isInline = children === undefined;
+
   return (
     <>
-      <SpinnerWrapper className={wrapperClassName} inline={children === undefined}>
+      <SpinnerWrapper className={wrapperClassName} inline={isInline}>
         <SpinnerInner
           {...radixProps}
           aria-live="polite"
           className={classNames({
             it__loading: isLoading,
           })}
+          /** Needs to also be inline if a visible label is present next to the Spinner icon */
+          inline={isInline || isDefined(label)}
           isLoading={isLoading}
           ref={ref}
           role="status">
-          <SpinnerStyled className={className} />
+          <SpinnerStyled
+            className={className}
+            /** Needs to also be inline if a visible label is present next to the Spinner icon */
+            inline={isInline || isDefined(label)}
+          />
           {isLoading &&
             (label ? (
               <SpinnerLabel>{label}</SpinnerLabel>
