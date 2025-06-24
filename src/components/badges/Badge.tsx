@@ -131,6 +131,7 @@ const StyledBadge = styled.button<{ isInteractive: boolean }>`
   font-weight: var(--echoes-font-weight-medium);
   font-size: var(--badge-font-size);
   line-height: var(--badge-line-height);
+  white-space: nowrap;
 
   // Using outline so that the border doesn't take space in the flow
   outline: var(--badge-border-color) solid var(--echoes-border-width-default);
