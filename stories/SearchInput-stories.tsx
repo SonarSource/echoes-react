@@ -30,7 +30,7 @@ const meta: Meta<typeof SearchInput> = {
     width: {
       control: { type: 'select' },
       table: {
-        defaultValue: { summary: SearchInputWidth.Fixed },
+        defaultValue: { summary: SearchInputWidth.Large },
       },
     },
     ...toDisabledControlArgType('onChange'),
