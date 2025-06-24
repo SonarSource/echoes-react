@@ -408,6 +408,10 @@
           "default": {
             "value": "{echoes.color.yellow.600}",
             "type": "color"
+          },
+          "hover": {
+            "value": "{echoes.color.yellow.700}",
+            "type": "color"
           }
         }
       },
