@@ -56,7 +56,11 @@ export enum SearchInputWidth {
   /**
    * Fixed width that matches FormFieldWidth.Medium
    */
-  Fixed = 'fixed',
+  Medium = 'medium',
+  /**
+   * Fixed width that matches FormFieldWidth.Large
+   */
+  Large = 'large',
 }
 
 export interface SearchInputProps extends InputAttributes, SearchInputEventProps {
@@ -115,8 +119,8 @@ export interface SearchInputProps extends InputAttributes, SearchInputEventProps
    */
   value: string;
   /**
-   * The width of the input field. Can be either 'full' or 'fixed'.
-   * Default is 'full'.
+   * The width of the input field. Can be either `full`, `medium`, or `large`.
+   * Default is `full`.
    */
   width?: `${SearchInputWidth}`;
 }
@@ -280,8 +284,11 @@ const SearchInputStyled = styled(InputStyled)`
 SearchInputStyled.displayName = 'SearchInputStyled';
 
 const SearchInputWrapper = styled(InputWrapper)`
-  &[data-width='fixed'] {
+  &[data-width='medium'] {
     width: var(--echoes-sizes-form-field-medium);
+  }
+  &[data-width='large'] {
+    width: var(--echoes-sizes-form-field-large);
   }
   &[data-width='full'] {
     width: var(--echoes-sizes-form-field-full);
