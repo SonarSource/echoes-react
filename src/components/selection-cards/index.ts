@@ -18,5 +18,4 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-export { RadioButtonGroup } from './RadioButtonGroup';
-export { type RadioButtonGroupProps } from './RadioButtonTypes';
+export { SelectionCards, type SelectionCardsProps } from './SelectionCards';

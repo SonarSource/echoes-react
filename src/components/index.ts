@@ -39,6 +39,7 @@ export * from './popover';
 export * from './promoted-section';
 export * from './radio-button-group';
 export * from './select';
+export * from './selection-cards';
 export * from './spinner';
 export * from './spotlight';
 export * from './table';

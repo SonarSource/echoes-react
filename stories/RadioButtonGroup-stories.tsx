@@ -26,7 +26,6 @@ const meta: Meta<typeof RadioButtonGroup> = {
   component: RadioButtonGroup,
   title: 'Echoes/RadioButtonGroup',
   args: {
-    id: 'radio',
     isRequired: false,
   },
   argTypes: formFieldsArgTypes,
