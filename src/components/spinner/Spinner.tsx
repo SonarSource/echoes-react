@@ -64,11 +64,16 @@ export const Spinner = forwardRef<HTMLSpanElement, SpinnerProps>((props, ref) =>
           className={classNames({
             it__loading: isLoading,
           })}
+          /** Needs to also be inline if a visible label is present next to the Spinner icon */
           inline={isInline || isDefined(label)}
           isLoading={isLoading}
           ref={ref}
           role="status">
-          <SpinnerStyled className={className} inline={isInline || isDefined(label)} />
+          <SpinnerStyled
+            className={className}
+            /** Needs to also be inline if a visible label is present next to the Spinner icon */
+            inline={isInline || isDefined(label)}
+          />
           {isLoading &&
             (label ? (
               <SpinnerLabel>{label}</SpinnerLabel>

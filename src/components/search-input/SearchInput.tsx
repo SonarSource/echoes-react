@@ -50,11 +50,11 @@ type SearchInputEventProps = Omit<InputEventProps<HTMLInputElement>, 'onChange'>
  */
 export enum SearchInputWidth {
   /**
-   * Full width (100%)
+   * Full width (100%) (default)
    */
   Full = 'full',
   /**
-   * Fixed width that matches FormFieldWidth.Large
+   * Fixed width that matches FormFieldWidth.Medium
    */
   Fixed = 'fixed',
 }
@@ -116,7 +116,7 @@ export interface SearchInputProps extends InputAttributes, SearchInputEventProps
   value: string;
   /**
    * The width of the input field. Can be either 'full' or 'fixed'.
-   * Default is 'fixed'.
+   * Default is 'full'.
    */
   width?: `${SearchInputWidth}`;
 }
@@ -175,7 +175,7 @@ export const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>((props
       description: 'SearchInput placeholder/label text',
     }),
     value,
-    width = SearchInputWidth.Fixed,
+    width = SearchInputWidth.Full,
     ...rest
   } = props;
 
@@ -281,7 +281,7 @@ SearchInputStyled.displayName = 'SearchInputStyled';
 
 const SearchInputWrapper = styled(InputWrapper)`
   &[data-width='fixed'] {
-    width: var(--echoes-sizes-form-field-large);
+    width: var(--echoes-sizes-form-field-medium);
   }
   &[data-width='full'] {
     width: var(--echoes-sizes-form-field-full);
@@ -292,7 +292,7 @@ const SearchInputWrapper = styled(InputWrapper)`
     background-color: var(--echoes-form-control-colors-background-hover);
   }
 `;
-SearchInputStyled.displayName = 'SearchInputStyled';
+SearchInputWrapper.displayName = 'SearchInputWrapper';
 
 const SearchInputSpinner = styled(Spinner)`
   margin: 0 var(--echoes-dimension-space-25);

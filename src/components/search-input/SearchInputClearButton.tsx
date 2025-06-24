@@ -59,3 +59,4 @@ const SearchInputClearButtonStyled = styled(ButtonIconStyled)`
   font: var(--echoes-typography-text-small-regular);
   border-radius: var(--echoes-border-radius-200);
 `;
+SearchInputClearButtonStyled.displayName = 'SearchInputClearButtonStyled';
