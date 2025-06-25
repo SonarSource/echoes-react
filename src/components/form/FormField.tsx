@@ -81,11 +81,7 @@ export const FormField = forwardRef<HTMLDivElement, FormFieldProps>((props, ref)
   );
 
   return (
-    <FormFieldStyled
-      data-disabled={isDisabled ? true : undefined}
-      data-width={width}
-      ref={ref}
-      {...rest}>
+    <FormFieldStyled data-disabled={isDisabled || undefined} data-width={width} ref={ref} {...rest}>
       <FormFieldLabel
         helpToggletipProps={helpToggletipProps}
         htmlFor={controlId}

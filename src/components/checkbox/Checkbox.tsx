@@ -75,7 +75,7 @@ export const Checkbox = forwardRef<HTMLButtonElement, CheckboxProps>((props, ref
   );
 
   return (
-    <CheckboxContainer className={className} data-disabled={isDisabled}>
+    <CheckboxContainer className={className} data-disabled={isDisabled || undefined}>
       <CheckboxInnerContainer className={innerClassName}>
         <CheckboxSpinner isLoading={isLoading}>
           <CheckboxRoot
