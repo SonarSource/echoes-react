@@ -311,5 +311,6 @@ const MinLengthMessage = styled(Text)`
   right: calc(var(--echoes-dimension-space-150) + var(--echoes-dimension-width-300));
   text-align: right;
   pointer-events: none;
+  margin-top: 1px;
 `;
 MinLengthMessage.displayName = 'MinLengthMessage';
