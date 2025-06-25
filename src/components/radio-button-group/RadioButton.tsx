@@ -46,7 +46,7 @@ export function RadioButton(props: Readonly<RadioButtonProps>) {
 
   return (
     <RadioButtonOptionWrapper>
-      <RadioButtonLabelWrapper {...(disabled ? { 'data-disabled': true } : {})}>
+      <RadioButtonLabelWrapper data-disabled={disabled || undefined}>
         <RadioButtonInput
           aria-label={inputLabel}
           {...(hasError ? { 'data-error': true } : {})}
@@ -58,7 +58,7 @@ export function RadioButton(props: Readonly<RadioButtonProps>) {
         <RadoiButtonOptionLabel htmlFor={id}>{label}</RadoiButtonOptionLabel>
       </RadioButtonLabelWrapper>
       {helpText && (
-        <RadioButtonOptionHelpText as="span" {...(disabled ? { 'data-disabled': true } : {})}>
+        <RadioButtonOptionHelpText as="span" data-disabled={disabled || undefined}>
           {helpText}
         </RadioButtonOptionHelpText>
       )}
