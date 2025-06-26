@@ -50,19 +50,44 @@ type Story = StoryObj<typeof BadgeSeverity>;
 
 export const Default: Story = {
   args: {
-    ariaLabel: 'Click to open dropdown',
-    quality: 'Reliability',
+    ariaLabel: 'Click to open severity dropdown',
+    quality: 'Maintainability',
     severity: 'high',
   },
   render: (args) => (
     <DropdownMenu
       items={
         <>
-          <DropdownMenu.ItemButton>option 1</DropdownMenu.ItemButton>
-          <DropdownMenu.ItemButton>option 2</DropdownMenu.ItemButton>
+          <DropdownMenu.ItemButton>Blocker</DropdownMenu.ItemButton>
+          <DropdownMenu.ItemButton>High</DropdownMenu.ItemButton>
+          <DropdownMenu.ItemButton>Medium</DropdownMenu.ItemButton>
+          <DropdownMenu.ItemButton>Low</DropdownMenu.ItemButton>
+          <DropdownMenu.ItemButton>Info</DropdownMenu.ItemButton>
         </>
       }>
       <BadgeSeverity {...args} />
     </DropdownMenu>
+  ),
+};
+
+export const Disabled: Story = {
+  args: {
+    ariaLabel: 'Disabled severity badge',
+    quality: 'Maintainability',
+    severity: 'medium',
+    isDisabled: true,
+  },
+};
+
+
+export const AllSeverities: Story = {
+  render: () => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', alignItems: 'start' }}>
+      <BadgeSeverity ariaLabel="Blocker severity" quality="Security" severity="blocker" />
+      <BadgeSeverity ariaLabel="High severity" quality="Reliability" severity="high" />
+      <BadgeSeverity ariaLabel="Medium severity" quality="Maintainability" severity="medium" />
+      <BadgeSeverity ariaLabel="Low severity" quality="Security" severity="low" />
+      <BadgeSeverity ariaLabel="Info severity" quality="Reliability" severity="info" />
+    </div>
   ),
 };
