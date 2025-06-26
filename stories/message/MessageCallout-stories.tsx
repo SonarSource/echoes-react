@@ -42,14 +42,14 @@ export type Story = StoryObj<typeof MessageCallout>;
 
 export const Default: Story = {
   args: {
-    text: 'This is a MessageCallout!',
+    children: 'This is a MessageCallout!',
     variety: MessageVariety.Info,
   },
 };
 
 export const Dismissable: Story = {
   args: {
-    text: 'This is a dismissable MessageCallout',
+    children: 'This is a dismissable MessageCallout',
     variety: MessageVariety.Info,
   },
   render: (args) => {
@@ -68,8 +68,8 @@ export const DismissableWithAction: Story = {
         Do something else!
       </Button>
     ),
+    children: 'This is a MessageCallout!',
     title: 'Hello!',
-    text: 'This is a MessageCallout!',
     variety: MessageVariety.Info,
   },
   render: (args) => {
@@ -92,12 +92,9 @@ function DismissingContainer(args: Story['args']) {
     <>
       <Button onClick={toggle}>Toggle MessageCallout</Button>
       {show && (
-        <MessageCallout
-          onDismiss={dismiss}
-          text="dismiss me"
-          variety={MessageVariety.Info}
-          {...args}
-        />
+        <MessageCallout onDismiss={dismiss} variety={MessageVariety.Info} {...args}>
+          dismiss me
+        </MessageCallout>
       )}
     </>
   );
@@ -105,7 +102,8 @@ function DismissingContainer(args: Story['args']) {
 
 export const WithLongContent: Story = {
   args: {
-    text: 'This is a super long warning message. I repeat, this is a super long warning message.',
+    children:
+      'This is a super long warning message. I repeat, this is a super long warning message.',
     variety: MessageVariety.Warning,
   },
   render: (args) => {
