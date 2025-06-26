@@ -20,7 +20,7 @@
 
 /* eslint-disable no-console */
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { MessageInline, MessageInlineSize, MessageType } from '../../src';
+import { MessageInline, MessageInlineSize, MessageVariety } from '../../src';
 import { basicWrapperDecorator } from '../helpers/BasicWrapper';
 
 const meta: Meta<typeof MessageInline> = {
@@ -28,7 +28,7 @@ const meta: Meta<typeof MessageInline> = {
   title: 'Echoes/Messages/MessageInline',
   argTypes: {
     size: { control: { type: 'select' }, options: Object.values(MessageInlineSize) },
-    type: { control: { type: 'select' }, options: Object.values(MessageType) },
+    variety: { control: { type: 'select' }, options: Object.values(MessageVariety) },
   },
   decorators: [basicWrapperDecorator],
 };
@@ -40,14 +40,14 @@ type Story = StoryObj<typeof MessageInline>;
 export const Default: Story = {
   args: {
     children: 'Hi there',
-    type: MessageType.Info,
+    variety: MessageVariety.Info,
   },
 };
 
 export const InAParagraph: Story = {
   args: {
     children: "Yes, that's me we're talking about! Look how beautifully I flow within this text.",
-    type: MessageType.Info,
+    variety: MessageVariety.Info,
   },
   render: ({ size, ...args }) => {
     return (
