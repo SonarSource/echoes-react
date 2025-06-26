@@ -94,6 +94,26 @@
     "defaultMessage": "(opens in new tab)",
     "description": "Screen reader-only text to indicate that the link will open in a new tab"
   },
+  "pagination.next": {
+    "defaultMessage": "Next",
+    "description": "Label for the pagination button that takes you to the next page"
+  },
+  "pagination.next_page": {
+    "defaultMessage": "Next page",
+    "description": "ARIA-label for the pagination button that takes you to the next page"
+  },
+  "pagination.page_x": {
+    "defaultMessage": "page {page}",
+    "description": "ARIA-label for page buttons"
+  },
+  "pagination.previous": {
+    "defaultMessage": "Previous",
+    "description": "Label for the pagination button that takes you to the previous page"
+  },
+  "pagination.previous_page": {
+    "defaultMessage": "Previous page",
+    "description": "ARIA-label for the pagination button that takes you to the previous page"
+  },
   "promoted_section.dismiss": {
     "defaultMessage": "Dismiss",
     "description": "ARIA-label for the dismiss button in the top-right corner."
