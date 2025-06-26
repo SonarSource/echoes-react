@@ -79,7 +79,6 @@ export const Disabled: Story = {
   },
 };
 
-
 export const AllSeverities: Story = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', alignItems: 'start' }}>
