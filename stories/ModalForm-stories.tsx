@@ -46,7 +46,7 @@ const meta: Meta<typeof ModalForm> = {
         callout: (
           <MessageCallout
             text="This is the flag message description, use it to provide additional information."
-            type="info"
+            variety="info"
           />
         ),
         none: undefined,
