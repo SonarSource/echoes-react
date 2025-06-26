@@ -137,9 +137,7 @@ function SelectionCard(props: Readonly<SelectionCardOption>) {
       <SelectionCardContentWrapper hasIllustration={isDefined(illustration)}>
         <Label>{label}</Label>
         {isDefined(helpText) && (typeof helpText !== 'string' || isStringDefined(helpText)) && (
-          <StyledHelperText {...(isDisabled ? { 'data-disabled': true } : {})}>
-            {helpText}
-          </StyledHelperText>
+          <StyledHelperText data-disabled={isDisabled || undefined}>{helpText}</StyledHelperText>
         )}
       </SelectionCardContentWrapper>
     </StyledSelectionCard>
