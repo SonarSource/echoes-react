@@ -20,7 +20,7 @@
 import styled from '@emotion/styled';
 import { type ComponentProps, type JSX, forwardRef } from 'react';
 import { TextNodeOptional } from '~types/utils';
-import { MessageInline, MessageInlineSize, MessageType } from '../messages';
+import { MessageInline, MessageInlineSize, MessageVariety } from '../messages';
 import { HelperText } from '../typography';
 import { FormFieldLabel, FormFieldLabelProps } from './FormFieldLabel';
 
@@ -69,13 +69,13 @@ export const FormField = forwardRef<HTMLDivElement, FormFieldProps>((props, ref)
   } = props;
 
   const messageInvalidElement = validation === 'invalid' && messageInvalid && (
-    <ValidationMessage size={MessageInlineSize.Small} type={MessageType.Danger}>
+    <ValidationMessage size={MessageInlineSize.Small} variety={MessageVariety.Danger}>
       {messageInvalid}
     </ValidationMessage>
   );
 
   const messageValidElement = validation === 'valid' && messageValid && (
-    <ValidationMessage size={MessageInlineSize.Small} type={MessageType.Success}>
+    <ValidationMessage size={MessageInlineSize.Small} variety={MessageVariety.Success}>
       {messageValid}
     </ValidationMessage>
   );

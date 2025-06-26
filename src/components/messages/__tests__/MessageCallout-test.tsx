@@ -24,7 +24,7 @@ import { render } from '~common/helpers/test-utils';
 import { Button } from '../../buttons';
 import { Tooltip } from '../../tooltip';
 import { MessageCallout } from '../MessageCallout';
-import { MessageType } from '../MessageTypes';
+import { MessageVariety } from '../MessageTypes';
 
 it('should display a message', async () => {
   const { container } = setupMessageCallout({ text: 'Fancy Content' });
@@ -34,13 +34,13 @@ it('should display a message', async () => {
 });
 
 it.each([
-  [MessageType.Danger, 'Error:'],
-  [MessageType.Discover, 'Hint:'],
-  [MessageType.Info, 'Information:'],
-  [MessageType.Success, 'Success:'],
-  [MessageType.Warning, 'Warning:'],
-])('should indicate the message is of type %s', (type, expectedPrefix) => {
-  setupMessageCallout({ type });
+  [MessageVariety.Danger, 'Error:'],
+  [MessageVariety.Discover, 'Hint:'],
+  [MessageVariety.Info, 'Information:'],
+  [MessageVariety.Success, 'Success:'],
+  [MessageVariety.Warning, 'Warning:'],
+])('should indicate the message is of variety %s', (variety, expectedPrefix) => {
+  setupMessageCallout({ variety });
 
   expect(screen.getByText(expectedPrefix)).toBeInTheDocument();
 });
@@ -79,7 +79,7 @@ it('should be dismissable', async () => {
 it('should correctly support tooltips', async () => {
   const { user } = render(
     <Tooltip content="my tooltip">
-      <MessageCallout text="I got a tooltip" type={MessageType.Info} />
+      <MessageCallout text="I got a tooltip" variety={MessageVariety.Info} />
     </Tooltip>,
   );
 
@@ -88,5 +88,5 @@ it('should correctly support tooltips', async () => {
 });
 
 function setupMessageCallout(props: Partial<ComponentProps<typeof MessageCallout>>) {
-  return render(<MessageCallout text="text" type={MessageType.Info} {...props} />);
+  return render(<MessageCallout text="text" variety={MessageVariety.Info} {...props} />);
 }
