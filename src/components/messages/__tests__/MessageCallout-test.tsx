@@ -27,7 +27,7 @@ import { MessageCallout } from '../MessageCallout';
 import { MessageVariety } from '../MessageTypes';
 
 it('should display a message', async () => {
-  const { container } = setupMessageCallout({ text: 'Fancy Content' });
+  const { container } = setupMessageCallout({ children: 'Fancy Content' });
 
   expect(screen.getByText('Fancy Content')).toBeInTheDocument();
   await expect(container).toHaveNoA11yViolations();
@@ -79,7 +79,7 @@ it('should be dismissable', async () => {
 it('should correctly support tooltips', async () => {
   const { user } = render(
     <Tooltip content="my tooltip">
-      <MessageCallout text="I got a tooltip" variety={MessageVariety.Info} />
+      <MessageCallout variety={MessageVariety.Info}>I got a tooltip</MessageCallout>
     </Tooltip>,
   );
 
@@ -87,6 +87,13 @@ it('should correctly support tooltips', async () => {
   expect(screen.getByRole('tooltip', { name: 'my tooltip' })).toBeInTheDocument();
 });
 
-function setupMessageCallout(props: Partial<ComponentProps<typeof MessageCallout>>) {
-  return render(<MessageCallout text="text" variety={MessageVariety.Info} {...props} />);
+function setupMessageCallout({
+  children = 'text',
+  ...props
+}: Partial<ComponentProps<typeof MessageCallout>>) {
+  return render(
+    <MessageCallout variety={MessageVariety.Info} {...props}>
+      {children}
+    </MessageCallout>,
+  );
 }
