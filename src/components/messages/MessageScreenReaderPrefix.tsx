@@ -21,45 +21,45 @@ import { forwardRef, useMemo } from 'react';
 import { useIntl } from 'react-intl';
 import { ScreenReaderPrefix } from '~common/components/ScreenReaderPrefix';
 import { TextNode } from '~types/utils';
-import { MessageType } from './MessageTypes';
+import { MessageVariety } from './MessageTypes';
 
 interface Props {
   screenReaderPrefix?: TextNode;
-  type: `${MessageType}`;
+  variety: `${MessageVariety}`;
 }
 
 export const MessageScreenReaderPrefix = forwardRef<HTMLSpanElement, Props>((props, ref) => {
-  const { screenReaderPrefix, type, ...radixProps } = props;
+  const { screenReaderPrefix, variety, ...radixProps } = props;
   return (
     <ScreenReaderPrefix ref={ref} {...radixProps}>
-      {screenReaderPrefix ?? <MessagePrefix type={type} />}
+      {screenReaderPrefix ?? <MessagePrefix variety={variety} />}
     </ScreenReaderPrefix>
   );
 });
 MessageScreenReaderPrefix.displayName = 'MessageScreenReaderPrefix';
 
-function MessagePrefix({ type }: Pick<Props, 'type'>) {
+function MessagePrefix({ variety }: Pick<Props, 'variety'>) {
   const intl = useIntl();
 
-  const messages: { [type in MessageType]: string } = useMemo(
+  const messages: { [variety in MessageVariety]: string } = useMemo(
     () => ({
-      [MessageType.Info]: intl.formatMessage({
+      [MessageVariety.Info]: intl.formatMessage({
         id: 'message.prefix.info',
         defaultMessage: 'Information:',
       }),
-      [MessageType.Danger]: intl.formatMessage({
+      [MessageVariety.Danger]: intl.formatMessage({
         id: 'message.prefix.danger',
         defaultMessage: 'Error:',
       }),
-      [MessageType.Warning]: intl.formatMessage({
+      [MessageVariety.Warning]: intl.formatMessage({
         id: 'message.prefix.warning',
         defaultMessage: 'Warning:',
       }),
-      [MessageType.Discover]: intl.formatMessage({
+      [MessageVariety.Discover]: intl.formatMessage({
         id: 'message.prefix.discover',
         defaultMessage: 'Hint:',
       }),
-      [MessageType.Success]: intl.formatMessage({
+      [MessageVariety.Success]: intl.formatMessage({
         id: 'message.prefix.success',
         defaultMessage: 'Success:',
       }),
@@ -67,5 +67,5 @@ function MessagePrefix({ type }: Pick<Props, 'type'>) {
     [intl],
   );
 
-  return messages[type];
+  return messages[variety];
 }

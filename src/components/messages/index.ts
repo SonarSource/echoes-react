@@ -20,4 +20,4 @@
 
 export { MessageCallout } from './MessageCallout';
 export { MessageInline } from './MessageInline';
-export { MessageInlineSize, MessageType } from './MessageTypes';
+export { MessageInlineSize, MessageVariety } from './MessageTypes';
