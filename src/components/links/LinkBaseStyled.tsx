@@ -20,7 +20,8 @@
 
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import { LinkBase, LinkHighlight } from './LinkBase';
+import { LinkBase } from './LinkBase';
+import { LinkHighlight } from './LinkTypes';
 
 const LinkBaseStyledHighlight = {
   [LinkHighlight.Accent]: css`

@@ -21,29 +21,10 @@
 import * as VisuallyHidden from '@radix-ui/react-visually-hidden';
 import React, { forwardRef } from 'react';
 import { useIntl } from 'react-intl';
-import { Link as RouterLink, LinkProps as RouterLinkProps } from 'react-router-dom';
+import { Link as RouterLink } from 'react-router-dom';
 import { isSonarLink } from '~common/helpers/url';
 import { IconLinkExternal } from '../icons/IconLinkExternal';
-
-type RouterNavLinkPropsAllowed = 'download' | 'reloadDocument' | 'state' | 'style' | 'title' | 'to';
-
-export enum LinkHighlight {
-  Accent = 'accent',
-  CurrentColor = 'current-color',
-  Default = 'default',
-  Subdued = 'subdued',
-}
-
-export interface LinkProps extends Pick<RouterLinkProps, RouterNavLinkPropsAllowed> {
-  children: React.ReactNode;
-  className?: string;
-  highlight?: `${LinkHighlight}`;
-  onClick?: (event: React.MouseEvent<HTMLAnchorElement>) => void;
-  shouldBlurAfterClick?: boolean;
-  shouldOpenInNewTab?: boolean;
-  shouldPreventDefault?: boolean;
-  shouldStopPropagation?: boolean;
-}
+import { LinkProps } from './LinkTypes';
 
 export const LinkBase = forwardRef<HTMLAnchorElement, LinkProps>((props, ref) => {
   const {
