@@ -18,7 +18,25 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-export { Link } from './Link';
-export { LinkStandalone } from './LinkStandalone';
-export { LinkHighlight } from './LinkTypes';
-export type { LinkProps } from './LinkTypes';
+import React from 'react';
+import { LinkProps as RouterLinkProps } from 'react-router-dom';
+
+type RouterNavLinkPropsAllowed = 'download' | 'reloadDocument' | 'state' | 'style' | 'title' | 'to';
+
+export enum LinkHighlight {
+  Accent = 'accent',
+  CurrentColor = 'current-color',
+  Default = 'default',
+  Subdued = 'subdued',
+}
+
+export interface LinkProps extends Pick<RouterLinkProps, RouterNavLinkPropsAllowed> {
+  children: React.ReactNode;
+  className?: string;
+  highlight?: `${LinkHighlight}`;
+  onClick?: (event: React.MouseEvent<HTMLAnchorElement>) => void;
+  shouldBlurAfterClick?: boolean;
+  shouldOpenInNewTab?: boolean;
+  shouldPreventDefault?: boolean;
+  shouldStopPropagation?: boolean;
+}
