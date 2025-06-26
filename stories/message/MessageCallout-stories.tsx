@@ -21,14 +21,14 @@
 /* eslint-disable no-console */
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { useCallback, useState } from 'react';
-import { Button, ButtonVariety, MessageCallout, MessageType } from '../../src';
+import { Button, ButtonVariety, MessageCallout, MessageVariety } from '../../src';
 import { basicWrapperDecorator } from '../helpers/BasicWrapper';
 
 const meta: Meta<typeof MessageCallout> = {
   component: MessageCallout,
   title: 'Echoes/Messages/MessageCallout',
   argTypes: {
-    type: { control: { type: 'select' }, options: Object.values(MessageType) },
+    variety: { control: { type: 'select' }, options: Object.values(MessageVariety) },
   },
   parameters: {
     controls: { exclude: ['onDismiss'] },
@@ -42,15 +42,15 @@ export type Story = StoryObj<typeof MessageCallout>;
 
 export const Default: Story = {
   args: {
-    type: MessageType.Info,
     text: 'This is a MessageCallout!',
+    variety: MessageVariety.Info,
   },
 };
 
 export const Dismissable: Story = {
   args: {
-    type: MessageType.Info,
     text: 'This is a dismissable MessageCallout',
+    variety: MessageVariety.Info,
   },
   render: (args) => {
     return <DismissingContainer {...args} />;
@@ -68,9 +68,9 @@ export const DismissableWithAction: Story = {
         Do something else!
       </Button>
     ),
-    type: MessageType.Info,
     title: 'Hello!',
     text: 'This is a MessageCallout!',
+    variety: MessageVariety.Info,
   },
   render: (args) => {
     return <DismissingContainer {...args} />;
@@ -92,7 +92,12 @@ function DismissingContainer(args: Story['args']) {
     <>
       <Button onClick={toggle}>Toggle MessageCallout</Button>
       {show && (
-        <MessageCallout onDismiss={dismiss} text="dismiss me" type={MessageType.Info} {...args} />
+        <MessageCallout
+          onDismiss={dismiss}
+          text="dismiss me"
+          variety={MessageVariety.Info}
+          {...args}
+        />
       )}
     </>
   );
@@ -100,8 +105,8 @@ function DismissingContainer(args: Story['args']) {
 
 export const WithLongContent: Story = {
   args: {
-    type: MessageType.Warning,
     text: 'This is a super long warning message. I repeat, this is a super long warning message.',
+    variety: MessageVariety.Warning,
   },
   render: (args) => {
     return (
