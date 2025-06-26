@@ -107,10 +107,9 @@ function FormWithValidation(props: ComponentProps<typeof Form>) {
           </>
         }
         extraContent={
-          <MessageCallout
-            text="This is the flag message description, use it to provide additional information."
-            variety="info"
-          />
+          <MessageCallout variety="info">
+            This is the flag message description, use it to provide additional information.
+          </MessageCallout>
         }
         title="Upgrade to the Team plan"
       />
