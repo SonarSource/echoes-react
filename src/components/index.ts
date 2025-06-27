@@ -35,6 +35,7 @@ export * from './links';
 export * from './logos';
 export * from './messages';
 export * from './modals';
+export * from './pagination';
 export * from './popover';
 export * from './promoted-section';
 export * from './radio-button-group';
