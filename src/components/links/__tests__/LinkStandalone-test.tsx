@@ -19,14 +19,13 @@
  */
 
 import { screen } from '@testing-library/react';
-import { MemoryRouter, Route, Routes, useLocation } from 'react-router-dom';
-import { render } from '~common/helpers/test-utils';
+import { renderWithMemoryRouter } from '~common/helpers/test-utils';
 import { LinkStandalone } from '..';
 import { IconLink } from '../../icons';
 import { Tooltip } from '../../tooltip';
 
 it('should display LinkStandalone properly', async () => {
-  const { container } = setupWithMemoryRouter(
+  const { container } = renderWithMemoryRouter(
     <LinkStandalone to="/path">standalone link</LinkStandalone>,
   );
   expect(screen.getByRole('link')).toBeVisible();
@@ -34,7 +33,7 @@ it('should display LinkStandalone properly', async () => {
 });
 
 it('should support a left icon', async () => {
-  const { container } = setupWithMemoryRouter(
+  const { container } = renderWithMemoryRouter(
     <LinkStandalone iconLeft={<IconLink data-testid="link icon" />} to="/path">
       link with icon
     </LinkStandalone>,
@@ -45,7 +44,7 @@ it('should support a left icon', async () => {
 });
 
 it('should correctly support tooltips', async () => {
-  const { user } = setupWithMemoryRouter(
+  const { user } = renderWithMemoryRouter(
     <Tooltip content="my tooltip">
       <LinkStandalone to="/path">link</LinkStandalone>
     </Tooltip>,
@@ -54,27 +53,3 @@ it('should correctly support tooltips', async () => {
   await user.hover(screen.getByRole('link'));
   expect(screen.getByRole('tooltip', { name: 'my tooltip' })).toBeInTheDocument();
 });
-
-function ShowPath() {
-  const { pathname } = useLocation();
-  return <pre>{pathname}</pre>;
-}
-
-const setupWithMemoryRouter = (component: JSX.Element, initialEntries = ['/initial']) => {
-  return render(
-    <MemoryRouter initialEntries={initialEntries}>
-      <Routes>
-        <Route
-          element={
-            <>
-              {component}
-              <ShowPath />
-            </>
-          }
-          path="/initial"
-        />
-        <Route element={<ShowPath />} path="/second" />
-      </Routes>
-    </MemoryRouter>,
-  );
-};

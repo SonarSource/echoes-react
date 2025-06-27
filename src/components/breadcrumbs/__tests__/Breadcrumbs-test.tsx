@@ -19,12 +19,11 @@
  */
 
 import { screen } from '@testing-library/react';
-import { MemoryRouter, Route, Routes, useLocation } from 'react-router-dom';
-import { render } from '~common/helpers/test-utils';
+import { renderWithMemoryRouter } from '~common/helpers/test-utils';
 import { Breadcrumbs } from '..';
 
 it('should display Breadcrumbs properly', async () => {
-  const { container } = setupWithMemoryRouter(
+  const { container } = renderWithMemoryRouter(
     <Breadcrumbs
       items={[
         { linkElement: 'parent crumb', to: 'parent' },
@@ -49,27 +48,3 @@ it('should display Breadcrumbs properly', async () => {
 
   await expect(container).toHaveNoA11yViolations();
 });
-
-function ShowPath() {
-  const { pathname } = useLocation();
-  return <pre>{pathname}</pre>;
-}
-
-const setupWithMemoryRouter = (component: JSX.Element, initialEntries = ['/initial']) => {
-  return render(
-    <MemoryRouter initialEntries={initialEntries}>
-      <Routes>
-        <Route
-          element={
-            <>
-              {component}
-              <ShowPath />
-            </>
-          }
-          path="/initial"
-        />
-        <Route element={<ShowPath />} path="/second" />
-      </Routes>
-    </MemoryRouter>,
-  );
-};
