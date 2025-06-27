@@ -23,9 +23,9 @@ import { forwardRef } from 'react';
 import { Button, ButtonProps } from '../buttons/Button';
 import { StyledTableCell } from './TableStyles';
 
-export interface TableCellButtonProps extends ButtonProps {
+export type TableCellButtonProps = ButtonProps & {
   cellClassName?: string;
-}
+};
 
 export const TableCellButton = forwardRef<HTMLButtonElement, TableCellButtonProps>((props, ref) => {
   const { cellClassName, ...buttonProps } = props;

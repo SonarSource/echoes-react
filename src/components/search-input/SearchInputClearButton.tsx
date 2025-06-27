@@ -22,10 +22,10 @@ import styled from '@emotion/styled';
 import { forwardRef } from 'react';
 import { useButtonClickHandler } from '../buttons/Button';
 import { BUTTON_VARIETY_STYLES, ButtonIconStyled } from '../buttons/ButtonStyles';
-import { ButtonCommonProps } from '../buttons/ButtonTypes';
+import { ButtonBaseProps } from '../buttons/ButtonTypes';
 import { IconX } from '../icons';
 
-interface SearchInputClearButtonProps extends Pick<ButtonCommonProps, 'className' | 'onClick'> {
+interface SearchInputClearButtonProps extends Pick<ButtonBaseProps, 'className' | 'onClick'> {
   ariaLabel: string;
 }
 
