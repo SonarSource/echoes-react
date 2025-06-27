@@ -21,8 +21,9 @@
 /* eslint-disable no-console */
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { ButtonSize, ButtonVariety, TooltipAlign, TooltipSide } from '../src';
-import { ButtonIcon } from '../src/components/buttons/ButtonIcon';
-import { IconClock, IconInfo, IconStar } from '../src/components/icons';
+import { ButtonAsLinkVariety } from '../src/components/buttons/ButtonAsLink';
+import { ButtonIcon, ButtonIconAsButtonProps } from '../src/components/buttons/ButtonIcon';
+import { IconClock, IconInfo, IconLink, IconStar } from '../src/components/icons';
 import { basicWrapperDecorator } from './helpers/BasicWrapper';
 import { iconsComponentsArgType } from './helpers/arg-types';
 
@@ -96,11 +97,23 @@ export const AllVarieties: Story = {
     Icon: IconClock,
     onClick: () => console.log('Button clicked'),
   },
-  render: (args) => (
+  render: (args: ButtonIconAsButtonProps) => (
     <>
       {Object.values(ButtonVariety).map((variety) => (
         <ButtonIcon key={variety} {...args} variety={variety} />
       ))}
     </>
   ),
+};
+
+export const AsALink: Story = {
+  args: {
+    ariaLabel: 'click',
+    to: 'https://example.com',
+    shouldOpenInNewTab: true,
+    Icon: IconLink,
+  },
+  argTypes: {
+    variety: { control: { type: 'select' }, options: Object.values(ButtonAsLinkVariety) },
+  },
 };

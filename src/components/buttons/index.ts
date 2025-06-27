@@ -20,5 +20,5 @@
 
 export { Button, type ButtonProps } from './Button';
 export { ButtonGroup } from './ButtonGroup';
-export { ButtonIcon } from './ButtonIcon';
+export { ButtonIcon, type ButtonIconProps } from './ButtonIcon';
 export { ButtonSize, ButtonVariety } from './ButtonTypes';
