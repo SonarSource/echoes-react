@@ -18,41 +18,26 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import { ButtonHTMLAttributes, MouseEvent } from 'react';
+import { Link as RouterLink } from 'react-router-dom';
+import { LinkProps } from '../links';
+import { ButtonStyled } from './ButtonStyles';
+import { ButtonCommonProps } from './ButtonTypes';
 
-type HTMLButtonAttributesSubset = Pick<
-  ButtonHTMLAttributes<HTMLButtonElement>,
-  'form' | 'name' | 'role' | 'type'
+type LinkPropsSubset = Pick<
+  LinkProps,
+  'to' | 'download' | 'reloadDocument' | 'shouldOpenInNewTab' | 'state'
 >;
 
-export interface ButtonCommonProps {
-  className?: string;
-  hasAutoFocus?: boolean;
-  id?: string;
-  isDisabled?: boolean;
-  isLoading?: boolean;
-  onClick?: (event: MouseEvent) => unknown;
-  size?: `${ButtonSize}`;
-  style?: React.CSSProperties;
-  shouldPreventDefault?: boolean;
-  shouldStopPropagation?: boolean;
-}
-
-export interface ButtonBaseProps extends ButtonCommonProps, HTMLButtonAttributesSubset {
-  variety?: `${ButtonVariety}`;
-}
-
-export enum ButtonSize {
-  Medium = 'medium',
-  Large = 'large',
-}
-
-export enum ButtonVariety {
+export enum ButtonAsLinkVariety {
   Default = 'default',
   DefaultGhost = 'default-ghost',
   Primary = 'primary',
   PrimaryGhost = 'primary-ghost',
-  Danger = 'danger',
-  DangerOutline = 'danger-outline',
-  DangerGhost = 'danger-ghost',
 }
+
+export interface ButtonAsLinkBaseProps extends ButtonCommonProps, LinkPropsSubset {
+  variety?: `${ButtonAsLinkVariety}`;
+}
+
+export const ButtonAsLink = ButtonStyled.withComponent(RouterLink);
+ButtonAsLink.displayName = 'ButtonAsLink';

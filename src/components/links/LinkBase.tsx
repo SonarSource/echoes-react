@@ -62,17 +62,9 @@ export const LinkBase = forwardRef<HTMLAnchorElement, LinkProps>((props, ref) =>
     [onClick, shouldBlurAfterClick, shouldPreventDefault, shouldStopPropagation],
   );
 
-  const shouldOpenInNewTabProps = shouldOpenInNewTab
-    ? {
-        rel: `noopener${typeof to === 'string' && isSonarLink(to) ? '' : ' noreferrer nofollow'}`,
-        /* eslint-disable-next-line react/jsx-no-target-blank -- we only allow noopener noreferrer for known external links */
-        target: '_blank',
-      }
-    : {};
-
   return (
     <RouterLink
-      {...shouldOpenInNewTabProps}
+      {...getShouldOpenInNewTabProps({ shouldOpenInNewTab, to })}
       {...restAndRadixProps}
       onClick={handleClick}
       ref={ref}
@@ -99,3 +91,16 @@ export const LinkBase = forwardRef<HTMLAnchorElement, LinkProps>((props, ref) =>
 });
 
 LinkBase.displayName = 'LinkBase';
+
+export function getShouldOpenInNewTabProps({
+  shouldOpenInNewTab,
+  to,
+}: Pick<LinkProps, 'shouldOpenInNewTab' | 'to'>) {
+  return shouldOpenInNewTab
+    ? {
+        rel: `noopener${typeof to === 'string' && isSonarLink(to) ? '' : ' noreferrer nofollow'}`,
+        /* eslint-disable-next-line react/jsx-no-target-blank -- we only allow noopener noreferrer for known external links */
+        target: '_blank',
+      }
+    : {};
+}

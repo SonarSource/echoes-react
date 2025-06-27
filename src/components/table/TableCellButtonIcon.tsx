@@ -24,9 +24,9 @@ import { ButtonVariety } from '../buttons';
 import { ButtonIcon, ButtonIconProps } from '../buttons/ButtonIcon';
 import { StyledTableCell } from './TableStyles';
 
-export interface TableCellButtonIconProps extends ButtonIconProps {
+export type TableCellButtonIconProps = ButtonIconProps & {
   cellClassName?: string;
-}
+};
 
 export const TableCellButtonIcon = forwardRef<HTMLButtonElement, TableCellButtonIconProps>(
   (props, ref) => {
