@@ -53,6 +53,7 @@ export const Default: Story = {
     ariaLabel: 'Click to open severity dropdown',
     quality: 'Maintainability',
     severity: 'high',
+    hasDropdownIndicator: true,
   },
   render: (args) => (
     <DropdownMenu

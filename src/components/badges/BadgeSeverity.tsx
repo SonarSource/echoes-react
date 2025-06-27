@@ -64,6 +64,11 @@ export interface BadgeSeverityProps extends InheritedButtonProps {
   ariaLabel: string;
 
   /**
+   * Indicates that this badge opens a dropdown menu.
+   */
+  hasDropdownIndicator?: boolean;
+
+  /**
    * Indicates whether the badge is in a loading state, which will replace the button's icon with the spinner
    */
   isLoading?: boolean;
@@ -86,6 +91,7 @@ export const BadgeSeverity = forwardRef<HTMLButtonElement, BadgeSeverityProps>((
     ariaLabel,
     className,
     hasAutoFocus = false,
+    hasDropdownIndicator = false,
     isDisabled = false,
     isIconFilled = false,
     isLoading = false,
@@ -154,7 +160,7 @@ export const BadgeSeverity = forwardRef<HTMLButtonElement, BadgeSeverityProps>((
           autoFocus={hasAutoFocus}
           css={useMemo(
             () => ({
-              '--button-padding': 'var(--echoes-dimension-space-50)',
+              '--button-padding': 'var(--echoes-dimension-space-75)',
               '--button-height': 'auto',
               '--button-width': 'auto',
 
@@ -172,15 +178,14 @@ export const BadgeSeverity = forwardRef<HTMLButtonElement, BadgeSeverityProps>((
           ref={ref}
           type="button">
           <StyledSeverityContent>
-            {isDefined(isLoading) ? (
-              <SpinnerOverrideColor isLoading={isLoading}>
-                <SeverityIcon />
-              </SpinnerOverrideColor>
-            ) : (
-              <SeverityIcon />
-            )}
+            {isLoading && <SpinnerOverrideColor isLoading={isLoading} />}
+            {!isLoading && <SeverityIcon />}
             <StyledSeverityText>{severityLabel}</StyledSeverityText>
-            {!isDisabled && <IconChevronDown />}
+            {!isDisabled && hasDropdownIndicator && (
+              <StyledDropdownIndicator>
+                <IconChevronDown />
+              </StyledDropdownIndicator>
+            )}
           </StyledSeverityContent>
         </StyledButtonIconStyled>
       </Tooltip>
@@ -218,11 +223,16 @@ const StyledSeverityContent = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: var(--echoes-dimension-space-25);
+  gap: var(--echoes-dimension-space-50);
 `;
 
 const StyledSeverityText = styled.span`
   font: var(--echoes-typography-text-small-medium);
+`;
+
+const StyledDropdownIndicator = styled.div`
+  margin-left: calc(var(--echoes-dimension-space-25) * -1);
+  margin-right: calc(var(--echoes-dimension-space-25) * -1);
 `;
 
 const StyledButtonIconStyled = styled(ButtonIconStyled)`
