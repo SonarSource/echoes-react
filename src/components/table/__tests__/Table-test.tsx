@@ -19,8 +19,7 @@
  */
 
 import { screen } from '@testing-library/react';
-import { MemoryRouter, Route, Routes } from 'react-router-dom';
-import { render } from '~common/helpers/test-utils';
+import { renderWithMemoryRouter } from '~common/helpers/test-utils';
 import { Table } from '..';
 import { IconEdit } from '../../icons';
 
@@ -84,7 +83,7 @@ function setupTable(
     ],
   } = args;
 
-  return setupWithMemoryRouter(
+  return renderWithMemoryRouter(
     <Table ariaLabel="awesome table" gridTemplate="max-content 1fr auto repeat(4, min-content)">
       <Table.Header>
         <Table.Row>
@@ -126,13 +125,3 @@ function setupTable(
     </Table>,
   );
 }
-
-const setupWithMemoryRouter = (component: JSX.Element, initialEntries = ['/']) => {
-  return render(
-    <MemoryRouter initialEntries={initialEntries}>
-      <Routes>
-        <Route element={component} path="/" />
-      </Routes>
-    </MemoryRouter>,
-  );
-};
