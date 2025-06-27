@@ -21,11 +21,11 @@ import styled from '@emotion/styled';
 import { forwardRef } from 'react';
 import { useButtonClickHandler } from '../../components/buttons/Button';
 import { ButtonStyled } from '../../components/buttons/ButtonStyles';
-import { ButtonCommonProps } from '../../components/buttons/ButtonTypes';
+import { ButtonBaseProps } from '../../components/buttons/ButtonTypes';
 import { IconX } from '../../components/icons';
 import { Tooltip } from '../../components/tooltip';
 
-interface DismissButtonProps extends Pick<ButtonCommonProps, 'className' | 'onClick'> {
+interface DismissButtonProps extends Pick<ButtonBaseProps, 'className' | 'onClick'> {
   ariaLabel: string;
 }
 

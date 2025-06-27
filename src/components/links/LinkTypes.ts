@@ -18,41 +18,25 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import { ButtonHTMLAttributes, MouseEvent } from 'react';
+import React from 'react';
+import { LinkProps as RouterLinkProps } from 'react-router-dom';
 
-type HTMLButtonAttributesSubset = Pick<
-  ButtonHTMLAttributes<HTMLButtonElement>,
-  'form' | 'name' | 'role' | 'type'
->;
+type RouterNavLinkPropsAllowed = 'download' | 'reloadDocument' | 'state' | 'style' | 'title' | 'to';
 
-export interface ButtonCommonProps {
+export enum LinkHighlight {
+  Accent = 'accent',
+  CurrentColor = 'current-color',
+  Default = 'default',
+  Subdued = 'subdued',
+}
+
+export interface LinkProps extends Pick<RouterLinkProps, RouterNavLinkPropsAllowed> {
+  children: React.ReactNode;
   className?: string;
-  hasAutoFocus?: boolean;
-  id?: string;
-  isDisabled?: boolean;
-  isLoading?: boolean;
-  onClick?: (event: MouseEvent) => unknown;
-  size?: `${ButtonSize}`;
-  style?: React.CSSProperties;
+  highlight?: `${LinkHighlight}`;
+  onClick?: (event: React.MouseEvent<HTMLAnchorElement>) => void;
+  shouldBlurAfterClick?: boolean;
+  shouldOpenInNewTab?: boolean;
   shouldPreventDefault?: boolean;
   shouldStopPropagation?: boolean;
-}
-
-export interface ButtonBaseProps extends ButtonCommonProps, HTMLButtonAttributesSubset {
-  variety?: `${ButtonVariety}`;
-}
-
-export enum ButtonSize {
-  Medium = 'medium',
-  Large = 'large',
-}
-
-export enum ButtonVariety {
-  Default = 'default',
-  DefaultGhost = 'default-ghost',
-  Primary = 'primary',
-  PrimaryGhost = 'primary-ghost',
-  Danger = 'danger',
-  DangerOutline = 'danger-outline',
-  DangerGhost = 'danger-ghost',
 }

@@ -23,7 +23,7 @@ import { forwardRef } from 'react';
 import { ButtonIcon } from '../buttons';
 import { ButtonIconProps } from '../buttons/ButtonIcon';
 
-export interface GlobalNavigationActionProps extends ButtonIconProps {}
+export type GlobalNavigationActionProps = ButtonIconProps;
 
 export const GlobalNavigationAction = forwardRef<HTMLButtonElement, GlobalNavigationActionProps>(
   ({ ...buttonProps }: Readonly<GlobalNavigationActionProps>, ref) => {

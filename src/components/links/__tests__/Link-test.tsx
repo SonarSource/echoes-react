@@ -19,13 +19,12 @@
  */
 
 import { screen } from '@testing-library/react';
-import { MemoryRouter, Route, Routes, useLocation } from 'react-router-dom';
-import { render } from '~common/helpers/test-utils';
+import { renderWithMemoryRouter } from '~common/helpers/test-utils';
 import { Link } from '..';
 import { Tooltip } from '../../tooltip';
 
 it('should remove focus after link is clicked', async () => {
-  const { user, container } = setupWithMemoryRouter(
+  const { user, container } = renderWithMemoryRouter(
     <Link shouldBlurAfterClick to="/initial">
       Test
     </Link>,
@@ -38,7 +37,7 @@ it('should remove focus after link is clicked', async () => {
 });
 
 it('should prevent default when preventDefault is true', async () => {
-  const { user } = setupWithMemoryRouter(
+  const { user } = renderWithMemoryRouter(
     <Link shouldPreventDefault to="/second">
       Test
     </Link>,
@@ -56,7 +55,7 @@ it('should prevent default when preventDefault is true', async () => {
 it('should stop propagation when stopPropagation is true', async () => {
   const buttonOnClick = jest.fn();
 
-  const { user } = setupWithMemoryRouter(
+  const { user } = renderWithMemoryRouter(
     <button onClick={buttonOnClick} type="button">
       <Link shouldStopPropagation to="/second">
         Test
@@ -70,7 +69,7 @@ it('should stop propagation when stopPropagation is true', async () => {
 });
 
 it('should add noreferrer nofollow when link should open in new tab', () => {
-  setupWithMemoryRouter(
+  renderWithMemoryRouter(
     <Link shouldOpenInNewTab to="https://google.com">
       external link
     </Link>,
@@ -79,7 +78,7 @@ it('should add noreferrer nofollow when link should open in new tab', () => {
 });
 
 it('should not add noreferrer nofollow when link is a sonar link', () => {
-  setupWithMemoryRouter(
+  renderWithMemoryRouter(
     <Link shouldOpenInNewTab to="https://blog.sonarsource.com">
       external link
     </Link>,
@@ -89,7 +88,7 @@ it('should not add noreferrer nofollow when link is a sonar link', () => {
 
 it('should call onClick when one is passed', async () => {
   const onClick = jest.fn();
-  const { user } = setupWithMemoryRouter(
+  const { user } = renderWithMemoryRouter(
     <Link onClick={onClick} shouldStopPropagation to="/second">
       Test
     </Link>,
@@ -101,7 +100,7 @@ it('should call onClick when one is passed', async () => {
 });
 
 it('internal link should be clickable', async () => {
-  const { user } = setupWithMemoryRouter(<Link to="/second">internal link</Link>);
+  const { user } = renderWithMemoryRouter(<Link to="/second">internal link</Link>);
   expect(screen.getByRole('link')).toBeVisible();
 
   await user.click(screen.getByRole('link'));
@@ -110,7 +109,7 @@ it('internal link should be clickable', async () => {
 });
 
 it('external links are indicated by additional text', async () => {
-  const { container } = setupWithMemoryRouter(
+  const { container } = renderWithMemoryRouter(
     <Link shouldOpenInNewTab to="https://google.com">
       external link
     </Link>,
@@ -122,7 +121,7 @@ it('external links are indicated by additional text', async () => {
 });
 
 it('should correctly support tooltips', async () => {
-  const { user } = setupWithMemoryRouter(
+  const { user } = renderWithMemoryRouter(
     <Tooltip content="my tooltip">
       <Link to="/path">link</Link>
     </Tooltip>,
@@ -131,27 +130,3 @@ it('should correctly support tooltips', async () => {
   await user.hover(screen.getByRole('link'));
   expect(screen.getByRole('tooltip', { name: 'my tooltip' })).toBeInTheDocument();
 });
-
-function ShowPath() {
-  const { pathname } = useLocation();
-  return <pre>{pathname}</pre>;
-}
-
-const setupWithMemoryRouter = (component: JSX.Element, initialEntries = ['/initial']) => {
-  return render(
-    <MemoryRouter initialEntries={initialEntries}>
-      <Routes>
-        <Route
-          element={
-            <>
-              {component}
-              <ShowPath />
-            </>
-          }
-          path="/initial"
-        />
-        <Route element={<ShowPath />} path="/second" />
-      </Routes>
-    </MemoryRouter>,
-  );
-};

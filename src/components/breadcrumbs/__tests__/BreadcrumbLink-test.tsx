@@ -19,12 +19,11 @@
  */
 
 import { screen } from '@testing-library/react';
-import { MemoryRouter, Route, Routes, useLocation } from 'react-router-dom';
-import { render } from '~common/helpers/test-utils';
+import { renderWithMemoryRouter } from '~common/helpers/test-utils';
 import { BreadcrumbLink } from '../BreadcrumbLink';
 
 it('should truncate long links when hasEllipsis', () => {
-  setupWithMemoryRouter(
+  renderWithMemoryRouter(
     <BreadcrumbLink
       hasEllipsis
       linkElement="A long breadcrumb link with an ellipsis because it overflows the max width"
@@ -38,27 +37,3 @@ it('should truncate long links when hasEllipsis', () => {
     }),
   ).toHaveProperty('title');
 });
-
-function ShowPath() {
-  const { pathname } = useLocation();
-  return <pre>{pathname}</pre>;
-}
-
-const setupWithMemoryRouter = (component: JSX.Element, initialEntries = ['/initial']) => {
-  return render(
-    <MemoryRouter initialEntries={initialEntries}>
-      <Routes>
-        <Route
-          element={
-            <>
-              {component}
-              <ShowPath />
-            </>
-          }
-          path="/initial"
-        />
-        <Route element={<ShowPath />} path="/second" />
-      </Routes>
-    </MemoryRouter>,
-  );
-};
