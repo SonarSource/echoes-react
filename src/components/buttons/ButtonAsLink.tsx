@@ -19,8 +19,9 @@
  */
 
 import { Link as RouterLink } from 'react-router-dom';
+import { styled } from 'storybook/internal/theming';
 import { LinkProps } from '../links';
-import { ButtonStyled } from './ButtonStyles';
+import { buttonIconStyles, ButtonStyled } from './ButtonStyles';
 import { ButtonCommonProps } from './ButtonTypes';
 
 type LinkPropsSubset = Pick<
@@ -41,3 +42,7 @@ export interface ButtonAsLinkBaseProps extends ButtonCommonProps, LinkPropsSubse
 
 export const ButtonAsLink = ButtonStyled.withComponent(RouterLink);
 ButtonAsLink.displayName = 'ButtonAsLink';
+
+// We can't use `withComponent` here because it breaks the TS types adding some references
+export const ButtonIconAsLink = styled(ButtonAsLink)(buttonIconStyles);
+ButtonIconAsLink.displayName = 'ButtonIconAsLink';
