@@ -172,7 +172,11 @@ describe('Button as Link', () => {
       { pointerEventsCheck: PointerEventsCheckLevel.Never },
     );
 
-    await user.click(screen.getByRole('link', { name: 'Click me' }));
+    // Should actually render as a button instead of a link when disabled
+    expect(screen.queryByRole('link', { name: 'Click me' })).not.toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Click me' })).toBeDisabled();
+
+    await user.click(screen.getByRole('button', { name: 'Click me' }));
     expect(onClick).not.toHaveBeenCalled();
     expect(screen.queryByText('/second')).not.toBeInTheDocument();
   });
@@ -201,9 +205,10 @@ describe('Button as Link', () => {
       </Button>,
     );
 
-    const link = screen.getByRole('link', { name: 'Click me' });
+    const link = screen.getByRole('link', { name: /Click me/ });
     expect(link).toHaveAttribute('target', '_blank');
     expect(link).toHaveAttribute('rel', 'noopener noreferrer nofollow');
+    expect(link).toHaveTextContent('(opens in new tab)');
   });
 
   it('should prevent default when shouldPreventDefault is true', async () => {

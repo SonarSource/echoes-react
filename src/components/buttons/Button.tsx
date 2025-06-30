@@ -17,8 +17,11 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
+import * as VisuallyHidden from '@radix-ui/react-visually-hidden';
 import { ForwardedRef, MouseEvent, ReactNode, forwardRef, useCallback, useMemo } from 'react';
+import { FormattedMessage } from 'react-intl';
 import { isDefined } from '~common/helpers/types';
+import { IconLinkExternal } from '../icons';
 import { getShouldOpenInNewTabProps } from '../links/LinkBase';
 import { ButtonAsLink, ButtonAsLinkBaseProps } from './ButtonAsLink';
 import {
@@ -72,18 +75,37 @@ export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPr
     );
 
     if (isButtonAsLink(props)) {
-      const { to, shouldOpenInNewTab } = props;
+      // Since "props" is narrowed to ButtonAsLinkProps, we can safely assume that "restProps" is of type ButtonAsLinkBaseProps
+      const { to, shouldOpenInNewTab, ...htmlProps } = restProps as ButtonAsLinkBaseProps;
 
       return (
         <ButtonAsLink
-          {...restProps}
+          {...htmlProps}
           {...getShouldOpenInNewTabProps({ shouldOpenInNewTab, to })}
           autoFocus={hasAutoFocus}
           css={commonStyles}
           onClick={handleClick}
           ref={ref as ForwardedRef<HTMLAnchorElement>}
           to={to}>
-          <ButtonContent isLoading={isLoading} prefix={prefix} suffix={suffix}>
+          <ButtonContent
+            isLoading={isLoading}
+            prefix={prefix}
+            suffix={
+              suffix ||
+              (shouldOpenInNewTab && (
+                <>
+                  &nbsp;
+                  <IconLinkExternal data-testid="echoes-link-external-icon" />
+                  <VisuallyHidden.Root>
+                    <FormattedMessage
+                      defaultMessage="(opens in new tab)"
+                      description="Screen reader-only text to indicate that the link will open in a new tab"
+                      id="open_in_new_tab"
+                    />
+                  </VisuallyHidden.Root>
+                </>
+              ))
+            }>
             {children}
           </ButtonContent>
         </ButtonAsLink>
@@ -155,5 +177,7 @@ export function useButtonClickHandler(
 }
 
 function isButtonAsLink(props: ButtonProps): props is ButtonAsLinkProps {
-  return 'to' in props;
+  // A link must have a 'to' prop and a link cannot be disabled.
+  // Disabling a link will end up rendering a disabled button instead.
+  return 'to' in props && !props.isDisabled;
 }
