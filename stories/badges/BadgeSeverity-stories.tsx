@@ -22,6 +22,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { BadgeSeverity, BadgeSeverityLevel, DropdownMenu } from '../../src';
 import { iconsComponentsArgType } from '../helpers/arg-types';
 import { basicWrapperDecorator } from '../helpers/BasicWrapper';
+import { BadgeSeverityVariety } from '../../src/components/badges/BadgeSeverity';
 
 const { mapping, options = [] } = iconsComponentsArgType;
 
@@ -53,7 +54,7 @@ export const Default: Story = {
     ariaLabel: 'Click to open severity dropdown',
     quality: 'Maintainability',
     severity: 'high',
-    hasDropdownIndicator: true,
+    variety: BadgeSeverityVariety.Dropdown,
   },
   render: (args) => (
     <DropdownMenu
@@ -71,12 +72,12 @@ export const Default: Story = {
   ),
 };
 
-export const Disabled: Story = {
+export const Static: Story = {
   args: {
     ariaLabel: 'Disabled severity badge',
     quality: 'Maintainability',
     severity: 'medium',
-    isDisabled: true,
+    variety: BadgeSeverityVariety.Static,
   },
 };
 

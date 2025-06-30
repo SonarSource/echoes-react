@@ -46,7 +46,13 @@ export enum BadgeSeverityLevel {
   Info = 'info',
 }
 
-type excludedButtonProps = 'isLoading' | 'size' | 'variety';
+export enum BadgeSeverityVariety {
+  Clickable = 'clickable',
+  Dropdown = 'dropdown',
+  Static = 'static',
+}
+
+type excludedButtonProps = 'isLoading' | 'size' | 'variety' | 'isDisabled';
 type InheritedButtonProps = Omit<ButtonCommonProps, excludedButtonProps> &
   Pick<ButtonIconProps, 'isIconFilled' | 'tooltipContent' | 'tooltipOptions'>;
 
@@ -64,11 +70,6 @@ export interface BadgeSeverityProps extends InheritedButtonProps {
   ariaLabel: string;
 
   /**
-   * Indicates that this badge opens a dropdown menu.
-   */
-  hasDropdownIndicator?: boolean;
-
-  /**
    * Indicates whether the badge is in a loading state, which will replace the button's icon with the spinner
    */
   isLoading?: boolean;
@@ -83,6 +84,11 @@ export interface BadgeSeverityProps extends InheritedButtonProps {
    * Must match `BadgeSeverityLevel`.
    */
   severity: `${BadgeSeverityLevel}`;
+
+  /**
+   * The variety of the badge.
+   */
+  variety?: BadgeSeverityVariety;
 }
 
 export const BadgeSeverity = forwardRef<HTMLButtonElement, BadgeSeverityProps>((props, ref) => {
@@ -91,8 +97,6 @@ export const BadgeSeverity = forwardRef<HTMLButtonElement, BadgeSeverityProps>((
     ariaLabel,
     className,
     hasAutoFocus = false,
-    hasDropdownIndicator = false,
-    isDisabled = false,
     isIconFilled = false,
     isLoading = false,
     onClick,
@@ -102,10 +106,17 @@ export const BadgeSeverity = forwardRef<HTMLButtonElement, BadgeSeverityProps>((
     shouldStopPropagation = false,
     tooltipContent = props.ariaLabel,
     tooltipOptions = {},
+    variety = BadgeSeverityVariety.Clickable,
     ...htmlProps
   } = props;
 
-  const handleClick = useButtonClickHandler(props);
+  const isDisabled = variety === BadgeSeverityVariety.Static;
+
+  const handleClick = useButtonClickHandler({
+    ...props,
+    isDisabled,
+  });
+
   const { formatMessage } = useIntl();
 
   const SeverityIcon = BADGE_SEVERITY_ICON[severity];
@@ -181,7 +192,7 @@ export const BadgeSeverity = forwardRef<HTMLButtonElement, BadgeSeverityProps>((
             {isLoading && <SpinnerOverrideColor isLoading={isLoading} />}
             {!isLoading && <SeverityIcon />}
             <StyledSeverityText>{severityLabel}</StyledSeverityText>
-            {!isDisabled && hasDropdownIndicator && (
+            {variety === BadgeSeverityVariety.Dropdown && (
               <StyledDropdownIndicator>
                 <IconChevronDown />
               </StyledDropdownIndicator>
