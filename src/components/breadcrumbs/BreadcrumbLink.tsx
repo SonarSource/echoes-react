@@ -19,14 +19,17 @@
  */
 
 import styled from '@emotion/styled';
-import { forwardRef } from 'react';
+import { forwardRef, ReactNode } from 'react';
 import { truncate } from '~common/helpers/styles';
 import { LinkHighlight } from '../links';
-import { LinkStandalone, LinkStandaloneProps } from '../links/LinkStandalone';
+import { LinkStandalone } from '../links/LinkStandalone';
+import { LinkBaseProps, LinkStandaloneBaseProps } from '../links/LinkTypes';
 
-export interface BreadcrumbLinkProps extends Omit<LinkStandaloneProps, 'children'> {
+export interface BreadcrumbLinkProps
+  extends LinkStandaloneBaseProps,
+    Omit<LinkBaseProps, 'children'> {
   hasEllipsis?: boolean;
-  linkElement: React.ReactNode;
+  linkElement: ReactNode;
 }
 
 const BreadcrumbLinkContainer = styled.span`

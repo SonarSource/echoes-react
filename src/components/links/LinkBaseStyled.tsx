@@ -43,15 +43,21 @@ const LinkBaseStyledHighlight = {
 };
 
 export const LinkBaseStyled = styled(LinkBase)`
+  all: unset;
+
   ${({ highlight = LinkHighlight.Accent }) => LinkBaseStyledHighlight[highlight]};
 
   color: var(--color);
+
+  font: inherit;
   font-weight: var(--echoes-font-weight-semi-bold);
   text-decoration-line: var(--echoes-text-decoration-underline);
   text-decoration-color: var(--color);
   text-decoration-style: solid;
   text-decoration-skip-ink: auto;
   text-decoration-thickness: auto;
+
+  cursor: pointer;
 
   &:visited {
     color: var(--color);

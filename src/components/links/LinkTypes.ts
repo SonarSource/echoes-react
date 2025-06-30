@@ -18,10 +18,14 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import React from 'react';
+import { CSSProperties, MouseEvent, ReactNode } from 'react';
 import { LinkProps as RouterLinkProps } from 'react-router-dom';
+import { ButtonBaseProps } from '../buttons/ButtonTypes';
 
-type RouterNavLinkPropsAllowed = 'download' | 'reloadDocument' | 'state' | 'style' | 'title' | 'to';
+type RouterNavLinkPropsSubset = Pick<
+  RouterLinkProps,
+  'download' | 'reloadDocument' | 'state' | 'to'
+>;
 
 export enum LinkHighlight {
   Accent = 'accent',
@@ -30,13 +34,41 @@ export enum LinkHighlight {
   Subdued = 'subdued',
 }
 
-export interface LinkProps extends Pick<RouterLinkProps, RouterNavLinkPropsAllowed> {
-  children: React.ReactNode;
+interface LinkCommonProps {
+  children: ReactNode;
   className?: string;
   highlight?: `${LinkHighlight}`;
-  onClick?: (event: React.MouseEvent<HTMLAnchorElement>) => void;
+  onClick?: (event: MouseEvent<HTMLElement>) => void;
+  style?: CSSProperties;
   shouldBlurAfterClick?: boolean;
-  shouldOpenInNewTab?: boolean;
   shouldPreventDefault?: boolean;
   shouldStopPropagation?: boolean;
+  title?: string;
+}
+
+export interface LinkBaseProps extends LinkCommonProps, RouterNavLinkPropsSubset {
+  shouldOpenInNewTab?: boolean;
+}
+
+interface LinkAsLinkProps extends LinkBaseProps {
+  type?: never;
+}
+
+type LinkPropsForbiddenForButton = {
+  [K in keyof RouterNavLinkPropsSubset]?: never;
+} & { shouldOpenInNewTab?: never };
+
+interface LinkAsButtonProps extends LinkCommonProps, LinkPropsForbiddenForButton {
+  onClick: (event: MouseEvent<HTMLElement>) => void;
+  type?: ButtonBaseProps['type'];
+}
+
+export type LinkProps = LinkAsLinkProps | LinkAsButtonProps;
+
+export type LinkStandaloneBaseProps = { iconLeft?: ReactNode };
+
+export type LinkStandaloneProps = LinkProps & LinkStandaloneBaseProps;
+
+export function isLinkAsButton(props: LinkProps): props is LinkAsButtonProps {
+  return !('to' in props);
 }
