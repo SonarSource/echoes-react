@@ -20,12 +20,12 @@
 
 import { Link as RouterLink } from 'react-router-dom';
 import { styled } from 'storybook/internal/theming';
-import { LinkProps } from '../links';
+import { LinkBaseProps } from '../links/LinkTypes';
 import { buttonIconStyles, ButtonStyled } from './ButtonStyles';
 import { ButtonCommonProps } from './ButtonTypes';
 
 type LinkPropsSubset = Pick<
-  LinkProps,
+  LinkBaseProps,
   'to' | 'download' | 'reloadDocument' | 'shouldOpenInNewTab' | 'state'
 >;
 

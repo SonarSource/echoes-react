@@ -21,14 +21,15 @@
 import { forwardRef } from 'react';
 import { isDefined } from '~common/helpers/types';
 import { TextNode } from '~types/utils';
-import { LinkStandalone, LinkStandaloneProps } from '../links/LinkStandalone';
+import { LinkStandalone } from '../links/LinkStandalone';
+import { LinkStandaloneProps } from '../links/LinkTypes';
 import { Text } from '../typography';
 import { StyledContentWrapper, StyledTableCell } from './TableStyles';
 
-export interface TableCellLinkProps extends LinkStandaloneProps {
+export type TableCellLinkProps = LinkStandaloneProps & {
   cellClassName?: string;
   description?: TextNode;
-}
+};
 
 export const TableCellLink = forwardRef<HTMLAnchorElement, TableCellLinkProps>((props, ref) => {
   const { cellClassName, description, children, ...linkProps } = props;

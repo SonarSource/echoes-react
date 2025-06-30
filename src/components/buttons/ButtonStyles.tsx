@@ -25,7 +25,7 @@ import { SpinnerOverrideColor } from '../spinner/SpinnerOverrideColor';
 import { ButtonSize, ButtonVariety } from './ButtonTypes';
 
 export const ButtonStyled = styled.button`
-  appearance: none;
+  all: unset;
 
   box-sizing: border-box;
   display: inline-flex;

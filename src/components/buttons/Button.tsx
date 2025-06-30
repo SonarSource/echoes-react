@@ -17,12 +17,10 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-import * as VisuallyHidden from '@radix-ui/react-visually-hidden';
 import { ForwardedRef, MouseEvent, ReactNode, forwardRef, useCallback, useMemo } from 'react';
-import { FormattedMessage } from 'react-intl';
 import { isDefined } from '~common/helpers/types';
-import { IconLinkExternal } from '../icons';
 import { getShouldOpenInNewTabProps } from '../links/LinkBase';
+import { LinkOpenInNewTabSuffix } from '../links/LinkOpenInNewTabSuffix';
 import { ButtonAsLink, ButtonAsLinkBaseProps } from './ButtonAsLink';
 import {
   BUTTON_SIZE_STYLE,
@@ -90,22 +88,7 @@ export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPr
           <ButtonContent
             isLoading={isLoading}
             prefix={prefix}
-            suffix={
-              suffix ||
-              (shouldOpenInNewTab && (
-                <>
-                  &nbsp;
-                  <IconLinkExternal data-testid="echoes-link-external-icon" />
-                  <VisuallyHidden.Root>
-                    <FormattedMessage
-                      defaultMessage="(opens in new tab)"
-                      description="Screen reader-only text to indicate that the link will open in a new tab"
-                      id="open_in_new_tab"
-                    />
-                  </VisuallyHidden.Root>
-                </>
-              ))
-            }>
+            suffix={suffix || <LinkOpenInNewTabSuffix shouldOpenInNewTab={shouldOpenInNewTab} />}>
             {children}
           </ButtonContent>
         </ButtonAsLink>

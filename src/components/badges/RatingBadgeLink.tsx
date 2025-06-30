@@ -20,10 +20,11 @@
 
 import styled from '@emotion/styled';
 import { forwardRef } from 'react';
-import { LinkProps, LinkStandalone } from '../links';
+import { LinkStandalone } from '../links';
+import { LinkBaseProps } from '../links/LinkTypes';
 import { RatingBadge, RatingBadgeProps } from './RatingBadge';
 
-export type RatingBadgeLinkProps = Omit<LinkProps, 'children' | 'highlight'> & RatingBadgeProps;
+export type RatingBadgeLinkProps = Omit<LinkBaseProps, 'children' | 'highlight'> & RatingBadgeProps;
 
 export const RatingBadgeLink = forwardRef<HTMLAnchorElement, RatingBadgeLinkProps>(
   ({ className, rating, size, style, ...linkProps }, ref) => (

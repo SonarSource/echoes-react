@@ -19,114 +19,135 @@
  */
 
 import { screen } from '@testing-library/react';
-import { renderWithMemoryRouter } from '~common/helpers/test-utils';
+import { render, renderWithMemoryRouter } from '~common/helpers/test-utils';
 import { Link } from '..';
 import { Tooltip } from '../../tooltip';
 
-it('should remove focus after link is clicked', async () => {
-  const { user, container } = renderWithMemoryRouter(
-    <Link shouldBlurAfterClick to="/initial">
-      Test
-    </Link>,
-  );
-
-  await user.click(screen.getByRole('link'));
-
-  expect(screen.getByRole('link')).not.toHaveFocus();
-  await expect(container).toHaveNoA11yViolations();
-});
-
-it('should prevent default when preventDefault is true', async () => {
-  const { user } = renderWithMemoryRouter(
-    <Link shouldPreventDefault to="/second">
-      Test
-    </Link>,
-  );
-
-  expect(screen.getByText('/initial')).toBeVisible();
-
-  await user.click(screen.getByRole('link'));
-
-  // prevent default behavior of page navigation
-  expect(screen.getByText('/initial')).toBeVisible();
-  expect(screen.queryByText('/second')).not.toBeInTheDocument();
-});
-
-it('should stop propagation when stopPropagation is true', async () => {
-  const buttonOnClick = jest.fn();
-
-  const { user } = renderWithMemoryRouter(
-    <button onClick={buttonOnClick} type="button">
-      <Link shouldStopPropagation to="/second">
+describe('Link', () => {
+  it('should remove focus after link is clicked', async () => {
+    const { user, container } = renderWithMemoryRouter(
+      <Link shouldBlurAfterClick to="/initial">
         Test
-      </Link>
-    </button>,
-  );
+      </Link>,
+    );
 
-  await user.click(screen.getByRole('link'));
+    await user.click(screen.getByRole('link'));
 
-  expect(buttonOnClick).not.toHaveBeenCalled();
+    expect(screen.getByRole('link')).not.toHaveFocus();
+    await expect(container).toHaveNoA11yViolations();
+  });
+
+  it('should prevent default when preventDefault is true', async () => {
+    const { user } = renderWithMemoryRouter(
+      <Link shouldPreventDefault to="/second">
+        Test
+      </Link>,
+    );
+
+    expect(screen.getByText('/initial')).toBeVisible();
+
+    await user.click(screen.getByRole('link'));
+
+    // prevent default behavior of page navigation
+    expect(screen.getByText('/initial')).toBeVisible();
+    expect(screen.queryByText('/second')).not.toBeInTheDocument();
+  });
+
+  it('should stop propagation when stopPropagation is true', async () => {
+    const buttonOnClick = jest.fn();
+
+    const { user } = renderWithMemoryRouter(
+      <button onClick={buttonOnClick} type="button">
+        <Link shouldStopPropagation to="/second">
+          Test
+        </Link>
+      </button>,
+    );
+
+    await user.click(screen.getByRole('link'));
+
+    expect(buttonOnClick).not.toHaveBeenCalled();
+  });
+
+  it('should add noreferrer nofollow when link should open in new tab', () => {
+    renderWithMemoryRouter(
+      <Link shouldOpenInNewTab to="https://google.com">
+        external link
+      </Link>,
+    );
+    expect(screen.getByRole('link')).toHaveAttribute('rel', 'noopener noreferrer nofollow');
+  });
+
+  it('should not add noreferrer nofollow when link is a sonar link', () => {
+    renderWithMemoryRouter(
+      <Link shouldOpenInNewTab to="https://blog.sonarsource.com">
+        external link
+      </Link>,
+    );
+    expect(screen.getByRole('link')).toHaveAttribute('rel', 'noopener');
+  });
+
+  it('should call onClick when one is passed', async () => {
+    const onClick = jest.fn();
+    const { user } = renderWithMemoryRouter(
+      <Link onClick={onClick} shouldStopPropagation to="/second">
+        Test
+      </Link>,
+    );
+
+    await user.click(screen.getByRole('link'));
+
+    expect(onClick).toHaveBeenCalled();
+  });
+
+  it('internal link should be clickable', async () => {
+    const { user } = renderWithMemoryRouter(<Link to="/second">internal link</Link>);
+    expect(screen.getByRole('link')).toBeVisible();
+
+    await user.click(screen.getByRole('link'));
+
+    expect(screen.getByText('/second')).toBeVisible();
+  });
+
+  it('external links are indicated by additional text', async () => {
+    const { container } = renderWithMemoryRouter(
+      <Link shouldOpenInNewTab to="https://google.com">
+        external link
+      </Link>,
+    );
+    expect(screen.getByRole('link')).toBeVisible();
+    expect(screen.getByRole('link')).toHaveAttribute('target', '_blank');
+    expect(screen.getByRole('link')).toHaveTextContent('(opens in new tab)');
+    await expect(container).toHaveNoA11yViolations();
+  });
+
+  it('should correctly support tooltips', async () => {
+    const { user } = renderWithMemoryRouter(
+      <Tooltip content="my tooltip">
+        <Link to="/path">link</Link>
+      </Tooltip>,
+    );
+
+    await user.hover(screen.getByRole('link'));
+    expect(screen.getByRole('tooltip', { name: 'my tooltip' })).toBeInTheDocument();
+  });
 });
 
-it('should add noreferrer nofollow when link should open in new tab', () => {
-  renderWithMemoryRouter(
-    <Link shouldOpenInNewTab to="https://google.com">
-      external link
-    </Link>,
-  );
-  expect(screen.getByRole('link')).toHaveAttribute('rel', 'noopener noreferrer nofollow');
-});
+describe('Link as button', () => {
+  it('should render as a button when there is no "to" prop', async () => {
+    const onClick = jest.fn();
+    const { user } = render(<Link onClick={onClick}>Button Link</Link>);
 
-it('should not add noreferrer nofollow when link is a sonar link', () => {
-  renderWithMemoryRouter(
-    <Link shouldOpenInNewTab to="https://blog.sonarsource.com">
-      external link
-    </Link>,
-  );
-  expect(screen.getByRole('link')).toHaveAttribute('rel', 'noopener');
-});
+    expect(screen.getByRole('button')).toBeInTheDocument();
+    expect(screen.queryByRole('link')).not.toBeInTheDocument();
 
-it('should call onClick when one is passed', async () => {
-  const onClick = jest.fn();
-  const { user } = renderWithMemoryRouter(
-    <Link onClick={onClick} shouldStopPropagation to="/second">
-      Test
-    </Link>,
-  );
+    await user.click(screen.getByRole('button'));
+    expect(onClick).toHaveBeenCalled();
+  });
 
-  await user.click(screen.getByRole('link'));
-
-  expect(onClick).toHaveBeenCalled();
-});
-
-it('internal link should be clickable', async () => {
-  const { user } = renderWithMemoryRouter(<Link to="/second">internal link</Link>);
-  expect(screen.getByRole('link')).toBeVisible();
-
-  await user.click(screen.getByRole('link'));
-
-  expect(screen.getByText('/second')).toBeVisible();
-});
-
-it('external links are indicated by additional text', async () => {
-  const { container } = renderWithMemoryRouter(
-    <Link shouldOpenInNewTab to="https://google.com">
-      external link
-    </Link>,
-  );
-  expect(screen.getByRole('link')).toBeVisible();
-  expect(screen.getByRole('link')).toHaveAttribute('target', '_blank');
-  expect(screen.getByRole('link')).toHaveTextContent('(opens in new tab)');
-  await expect(container).toHaveNoA11yViolations();
-});
-
-it('should correctly support tooltips', async () => {
-  const { user } = renderWithMemoryRouter(
-    <Tooltip content="my tooltip">
-      <Link to="/path">link</Link>
-    </Tooltip>,
-  );
-
-  await user.hover(screen.getByRole('link'));
-  expect(screen.getByRole('tooltip', { name: 'my tooltip' })).toBeInTheDocument();
+  it("shouldn't have any a11y violation as a button", async () => {
+    const onClick = jest.fn();
+    const { container } = render(<Link onClick={onClick}>Button Link</Link>);
+    await expect(container).toHaveNoA11yViolations();
+  });
 });

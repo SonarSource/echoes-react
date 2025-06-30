@@ -18,8 +18,10 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+/* eslint-disable no-console */
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { IconLink, LinkHighlight, LinkStandalone as LinkStandaloneComp } from '../../src';
+import { toDisabledControlArgType } from '../helpers/arg-types';
 
 const meta: Meta<typeof LinkStandaloneComp> = {
   component: LinkStandaloneComp,
@@ -30,6 +32,11 @@ const meta: Meta<typeof LinkStandaloneComp> = {
         type: 'select',
       },
       options: Object.values(LinkHighlight),
+    },
+    type: {
+      table: {
+        disable: true,
+      },
     },
   },
 };
@@ -64,5 +71,25 @@ export const LinkStandaloneWithIcon: Story = {
     children: 'Standalone Link With Icon',
     highlight: LinkHighlight.Default,
     iconLeft: <IconLink />,
+  },
+};
+
+export const LinkAsButton: Story = {
+  args: {
+    children: 'Button Link',
+    highlight: LinkHighlight.Accent,
+    onClick: () => console.log('Button Link clicked!'),
+  },
+  argTypes: {
+    type: {
+      control: {
+        type: 'select',
+      },
+      table: {
+        disable: false,
+        defaultValue: { summary: 'button' },
+      },
+    },
+    ...toDisabledControlArgType('shouldBlurAfterClick', 'title'),
   },
 };

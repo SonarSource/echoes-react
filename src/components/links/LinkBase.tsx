@@ -18,77 +18,74 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import * as VisuallyHidden from '@radix-ui/react-visually-hidden';
-import React, { forwardRef } from 'react';
-import { useIntl } from 'react-intl';
+import { ForwardedRef, forwardRef, MouseEvent, useCallback } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import { isSonarLink } from '~common/helpers/url';
-import { IconLinkExternal } from '../icons/IconLinkExternal';
-import { LinkProps } from './LinkTypes';
+import { LinkOpenInNewTabSuffix } from './LinkOpenInNewTabSuffix';
+import { isLinkAsButton, LinkProps } from './LinkTypes';
 
-export const LinkBase = forwardRef<HTMLAnchorElement, LinkProps>((props, ref) => {
-  const {
-    children,
-    shouldBlurAfterClick = false,
-    onClick,
-    shouldOpenInNewTab = false,
-    shouldPreventDefault = false,
-    shouldStopPropagation = false,
-    style,
-    to,
-    ...restAndRadixProps
-  } = props;
+export const LinkBase = forwardRef<HTMLAnchorElement | HTMLButtonElement, LinkProps>(
+  (props, ref) => {
+    const {
+      children,
+      shouldBlurAfterClick = false,
+      onClick,
+      shouldPreventDefault = false,
+      shouldStopPropagation = false,
+      shouldOpenInNewTab = false,
+      type = 'button',
+      ...restProps
+    } = props;
 
-  const intl = useIntl();
+    const handleClick = useCallback(
+      (event: MouseEvent<HTMLButtonElement | HTMLAnchorElement>) => {
+        if (shouldBlurAfterClick) {
+          event.currentTarget.blur();
+        }
 
-  const handleClick = React.useCallback(
-    (event: React.MouseEvent<HTMLAnchorElement>) => {
-      if (shouldBlurAfterClick) {
-        event.currentTarget.blur();
-      }
+        if (shouldPreventDefault) {
+          event.preventDefault();
+        }
 
-      if (shouldPreventDefault) {
-        event.preventDefault();
-      }
+        if (shouldStopPropagation) {
+          event.stopPropagation();
+        }
 
-      if (shouldStopPropagation) {
-        event.stopPropagation();
-      }
+        if (onClick) {
+          onClick(event);
+        }
+      },
+      [onClick, shouldBlurAfterClick, shouldPreventDefault, shouldStopPropagation],
+    );
 
-      if (onClick) {
-        onClick(event);
-      }
-    },
-    [onClick, shouldBlurAfterClick, shouldPreventDefault, shouldStopPropagation],
-  );
+    if (isLinkAsButton(props)) {
+      return (
+        <button
+          {...restProps}
+          onClick={handleClick}
+          ref={ref as ForwardedRef<HTMLButtonElement>}
+          // eslint-disable-next-line react/button-has-type
+          type={type}>
+          {children}
+        </button>
+      );
+    }
 
-  return (
-    <RouterLink
-      {...getShouldOpenInNewTabProps({ shouldOpenInNewTab, to })}
-      {...restAndRadixProps}
-      onClick={handleClick}
-      ref={ref}
-      style={style}
-      to={to}>
-      {children}
+    const { to } = props;
 
-      {shouldOpenInNewTab && (
-        <>
-          &nbsp;
-          <IconLinkExternal data-testid="echoes-link-external-icon" />
-          <VisuallyHidden.Root>
-            {intl.formatMessage({
-              id: 'open_in_new_tab',
-              defaultMessage: '(opens in new tab)',
-              description:
-                'Screen reader-only text to indicate that the link will open in a new tab',
-            })}
-          </VisuallyHidden.Root>
-        </>
-      )}
-    </RouterLink>
-  );
-});
+    return (
+      <RouterLink
+        {...getShouldOpenInNewTabProps({ shouldOpenInNewTab, to })}
+        {...restProps}
+        onClick={handleClick}
+        ref={ref as ForwardedRef<HTMLAnchorElement>}
+        to={to}>
+        {children}
+        <LinkOpenInNewTabSuffix hasUnbreakableSpace shouldOpenInNewTab={shouldOpenInNewTab} />
+      </RouterLink>
+    );
+  },
+);
 
 LinkBase.displayName = 'LinkBase';
 
