@@ -164,7 +164,7 @@ describe('Button as Link', () => {
     const onClick = jest.fn();
 
     const { user } = renderWithMemoryRouter(
-      <Button isDisabled onClick={onClick} to="/second">
+      <Button isDisabled onClick={onClick} shouldOpenInNewTab to="/second">
         Click me
       </Button>,
       undefined,

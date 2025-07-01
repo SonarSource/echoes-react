@@ -20,7 +20,7 @@
 
 import { ButtonHTMLAttributes, MouseEvent } from 'react';
 
-type HTMLButtonAttributesSubset = Pick<
+export type HTMLButtonAttributesSubset = Pick<
   ButtonHTMLAttributes<HTMLButtonElement>,
   'form' | 'name' | 'role' | 'type'
 >;

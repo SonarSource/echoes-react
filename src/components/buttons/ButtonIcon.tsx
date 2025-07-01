@@ -25,7 +25,11 @@ import { getShouldOpenInNewTabProps } from '../links/LinkBase';
 import { SpinnerOverrideColor } from '../spinner/SpinnerOverrideColor';
 import { Tooltip } from '../tooltip';
 import { useButtonClickHandler } from './Button';
-import { ButtonAsLinkBaseProps, ButtonIconAsLink } from './ButtonAsLink';
+import {
+  ButtonAsLinkBaseProps,
+  ButtonIconAsLink,
+  LinkPropsForbiddenForButton,
+} from './ButtonAsLink';
 import {
   BUTTON_VARIETY_STYLES,
   BUTTONICON_DIMENSIONS_STYLE,
@@ -46,9 +50,10 @@ interface CommonProps {
   tooltipOptions?: TooltipOptions;
 }
 
-export interface ButtonIconAsButtonProps extends CommonProps, ButtonBaseProps {
-  to?: never;
-}
+export interface ButtonIconAsButtonProps
+  extends CommonProps,
+    ButtonBaseProps,
+    LinkPropsForbiddenForButton {}
 
 interface ButtonIconAsLinkProps extends CommonProps, ButtonAsLinkBaseProps {}
 
@@ -60,15 +65,19 @@ export const ButtonIcon = forwardRef<HTMLButtonElement | HTMLAnchorElement, Butt
       Icon,
       ariaLabel,
       hasAutoFocus = false,
-      isIconFilled,
-      shouldPreventDefault = false,
-      shouldStopPropagation = false,
+      isIconFilled = false,
+      isDisabled = false,
       isLoading,
       onClick,
       size = ButtonSize.Large,
-      variety = ButtonVariety.Default,
+      shouldOpenInNewTab = false,
+      shouldPreventDefault = false,
+      shouldStopPropagation = false,
+      to,
       tooltipContent = props.ariaLabel,
       tooltipOptions = {},
+      type = 'button',
+      variety = ButtonVariety.Default,
       ...restProps
     } = props;
 
@@ -83,7 +92,7 @@ export const ButtonIcon = forwardRef<HTMLButtonElement | HTMLAnchorElement, Butt
     );
 
     if (isButtonIconAsLink(props)) {
-      const { to, shouldOpenInNewTab } = props;
+      const { to } = props;
 
       return (
         <Tooltip content={tooltipContent} {...tooltipOptions}>
@@ -102,12 +111,13 @@ export const ButtonIcon = forwardRef<HTMLButtonElement | HTMLAnchorElement, Butt
       );
     }
 
-    const { isDisabled = false, type = 'button' } = props;
+    // Extracting the rest of the link props to avoid passing them to the button element.
+    const { download, reloadDocument, state, ...htmlProps } = restProps;
 
     return (
       <Tooltip content={tooltipContent} {...tooltipOptions}>
         <ButtonIconStyled
-          {...restProps}
+          {...htmlProps}
           aria-label={ariaLabel}
           autoFocus={hasAutoFocus}
           css={commonStyles}
@@ -141,5 +151,7 @@ function ButtonIconContent(
 ButtonIconContent.displayName = 'ButtonIconContent';
 
 function isButtonIconAsLink(props: ButtonIconProps): props is ButtonIconAsLinkProps {
-  return 'to' in props;
+  // A link must have a 'to' prop and a link cannot be disabled.
+  // Disabling a link will end up rendering a disabled button instead.
+  return 'to' in props && !props.isDisabled;
 }
