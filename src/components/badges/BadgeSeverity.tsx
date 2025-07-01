@@ -20,6 +20,7 @@
 
 import styled from '@emotion/styled';
 import { forwardRef, useMemo } from 'react';
+import { useIntl } from 'react-intl';
 import { isDefined } from '~common/helpers/types';
 import { useButtonClickHandler } from '../buttons/Button';
 import { ButtonIconProps } from '../buttons/ButtonIcon';
@@ -36,7 +37,6 @@ import {
 import { IconFilledProps } from '../icons/IconWrapper';
 import { SpinnerOverrideColor } from '../spinner/SpinnerOverrideColor';
 import { Tooltip } from '../tooltip';
-import { useIntl } from 'react-intl';
 
 export enum BadgeSeverityLevel {
   Blocker = 'blocker',
@@ -88,7 +88,7 @@ export interface BadgeSeverityProps extends InheritedButtonProps {
   /**
    * The variety of the badge.
    */
-  variety?: BadgeSeverityVariety;
+  variety?: `${BadgeSeverityVariety}`;
 }
 
 export const BadgeSeverity = forwardRef<HTMLButtonElement, BadgeSeverityProps>((props, ref) => {
