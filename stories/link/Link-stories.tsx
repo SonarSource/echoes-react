@@ -18,8 +18,10 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+/* eslint-disable no-console */
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Link as LinkComp, LinkHighlight } from '../../src';
+import { Link as LinkComp, LinkHighlight, Text } from '../../src';
+import { toDisabledControlArgType } from '../helpers/arg-types';
 
 const meta: Meta<typeof LinkComp> = {
   component: LinkComp,
@@ -30,6 +32,11 @@ const meta: Meta<typeof LinkComp> = {
         type: 'select',
       },
       options: Object.values(LinkHighlight),
+    },
+    type: {
+      table: {
+        disable: true,
+      },
     },
   },
 };
@@ -59,7 +66,6 @@ export const LinkInsideParagraphWithStyle: Story = {
   args: {
     children: 'an external link',
     highlight: LinkHighlight.CurrentColor,
-    shouldOpenInNewTab: true,
     to: 'https://abc.com/path/new',
   },
   render: (args) => (
@@ -101,5 +107,30 @@ export const LinkInsideDivWithFlexAndStyle: Story = {
       <LinkComp {...args} />
       <span>Span 1</span>
     </div>
+  ),
+};
+
+export const LinkAsButton: Story = {
+  args: {
+    children: 'Button Link',
+    highlight: LinkHighlight.CurrentColor,
+    onClick: () => console.log('Button Link clicked!'),
+  },
+  argTypes: {
+    type: {
+      control: {
+        type: 'select',
+      },
+      table: {
+        disable: false,
+        defaultValue: { summary: 'button' },
+      },
+    },
+    ...toDisabledControlArgType('shouldBlurAfterClick', 'title'),
+  },
+  render: (args) => (
+    <Text isSubdued>
+      This is a paragraph with a <LinkComp {...args} /> inside
+    </Text>
   ),
 };

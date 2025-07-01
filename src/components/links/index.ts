@@ -19,6 +19,6 @@
  */
 
 export { Link } from './Link';
-export { LinkHighlight } from './LinkBase';
-export type { LinkProps } from './LinkBase';
 export { LinkStandalone } from './LinkStandalone';
+export { LinkHighlight } from './LinkTypes';
+export type { LinkProps, LinkStandaloneProps } from './LinkTypes';

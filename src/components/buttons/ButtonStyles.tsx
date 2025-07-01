@@ -18,12 +18,15 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { truncate } from '~common/helpers/styles';
 import { SpinnerOverrideColor } from '../spinner/SpinnerOverrideColor';
 import { ButtonSize, ButtonVariety } from './ButtonTypes';
 
 export const ButtonStyled = styled.button`
+  all: unset;
+
   box-sizing: border-box;
   display: inline-flex;
   align-items: center;
@@ -76,11 +79,13 @@ export const ButtonStyled = styled.button`
 
 ButtonStyled.displayName = 'ButtonStyled';
 
-export const ButtonIconStyled = styled(ButtonStyled)`
+export const buttonIconStyles = css`
   justify-content: center;
 
   width: var(--button-width);
 `;
+
+export const ButtonIconStyled = styled(ButtonStyled)(buttonIconStyles);
 
 export const ButtonInnerWrapper = styled.span`
   display: flex;

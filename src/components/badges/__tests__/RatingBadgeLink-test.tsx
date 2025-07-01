@@ -19,15 +19,14 @@
  */
 
 import { screen } from '@testing-library/react';
-import { MemoryRouter, Route, Routes, useLocation } from 'react-router-dom';
-import { render } from '~common/helpers/test-utils';
+import { renderWithMemoryRouter } from '~common/helpers/test-utils';
 import { Tooltip } from '../../tooltip';
 import { RatingBadgeRating } from '../RatingBadge';
 import { RatingBadgeLink } from '../RatingBadgeLink';
 
 describe('RatingBadgeLink', () => {
   it('renders a "Null" badge link by default', async () => {
-    const { container } = setupWithMemoryRouter(<RatingBadgeLink to="a farm upsate" />);
+    const { container } = renderWithMemoryRouter(<RatingBadgeLink to="a farm upsate" />);
 
     expect(screen.getByRole('link')).toBeVisible();
     expect(screen.getByText(RatingBadgeRating.Null)).toBeInTheDocument();
@@ -35,7 +34,7 @@ describe('RatingBadgeLink', () => {
   });
 
   it('correctly supports tooltips', async () => {
-    const { user } = setupWithMemoryRouter(
+    const { user } = renderWithMemoryRouter(
       <Tooltip content="my tooltip">
         <RatingBadgeLink to="see the wizard" />
       </Tooltip>,
@@ -46,29 +45,3 @@ describe('RatingBadgeLink', () => {
     expect(screen.getByRole('tooltip', { name: 'my tooltip' })).toBeInTheDocument();
   });
 });
-
-function ShowPath() {
-  const { pathname } = useLocation();
-
-  return <pre>{pathname}</pre>;
-}
-
-const setupWithMemoryRouter = (component: JSX.Element, initialEntries = ['/initial']) => {
-  return render(
-    <MemoryRouter initialEntries={initialEntries}>
-      <Routes>
-        <Route
-          element={
-            <>
-              {component}
-              <ShowPath />
-            </>
-          }
-          path="/initial"
-        />
-
-        <Route element={<ShowPath />} path="/second" />
-      </Routes>
-    </MemoryRouter>,
-  );
-};

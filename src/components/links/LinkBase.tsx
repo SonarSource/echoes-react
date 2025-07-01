@@ -18,103 +18,86 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import * as VisuallyHidden from '@radix-ui/react-visually-hidden';
-import React, { forwardRef } from 'react';
-import { useIntl } from 'react-intl';
-import { Link as RouterLink, LinkProps as RouterLinkProps } from 'react-router-dom';
+import { ForwardedRef, forwardRef, MouseEvent, useCallback } from 'react';
+import { Link as RouterLink } from 'react-router-dom';
 import { isSonarLink } from '~common/helpers/url';
-import { IconLinkExternal } from '../icons/IconLinkExternal';
+import { LinkOpenInNewTabSuffix } from './LinkOpenInNewTabSuffix';
+import { isLinkAsButton, LinkProps } from './LinkTypes';
 
-type RouterNavLinkPropsAllowed = 'download' | 'reloadDocument' | 'state' | 'style' | 'title' | 'to';
+export const LinkBase = forwardRef<HTMLAnchorElement | HTMLButtonElement, LinkProps>(
+  (props, ref) => {
+    const {
+      children,
+      shouldBlurAfterClick = false,
+      onClick,
+      shouldPreventDefault = false,
+      shouldStopPropagation = false,
+      shouldOpenInNewTab = false,
+      type = 'button',
+      ...restProps
+    } = props;
 
-export enum LinkHighlight {
-  Accent = 'accent',
-  CurrentColor = 'current-color',
-  Default = 'default',
-  Subdued = 'subdued',
-}
+    const handleClick = useCallback(
+      (event: MouseEvent<HTMLButtonElement | HTMLAnchorElement>) => {
+        if (shouldBlurAfterClick) {
+          event.currentTarget.blur();
+        }
 
-export interface LinkProps extends Pick<RouterLinkProps, RouterNavLinkPropsAllowed> {
-  children: React.ReactNode;
-  className?: string;
-  highlight?: `${LinkHighlight}`;
-  onClick?: (event: React.MouseEvent<HTMLAnchorElement>) => void;
-  shouldBlurAfterClick?: boolean;
-  shouldOpenInNewTab?: boolean;
-  shouldPreventDefault?: boolean;
-  shouldStopPropagation?: boolean;
-}
+        if (shouldPreventDefault) {
+          event.preventDefault();
+        }
 
-export const LinkBase = forwardRef<HTMLAnchorElement, LinkProps>((props, ref) => {
-  const {
-    children,
-    shouldBlurAfterClick = false,
-    onClick,
-    shouldOpenInNewTab = false,
-    shouldPreventDefault = false,
-    shouldStopPropagation = false,
-    style,
-    to,
-    ...restAndRadixProps
-  } = props;
+        if (shouldStopPropagation) {
+          event.stopPropagation();
+        }
 
-  const intl = useIntl();
+        if (onClick) {
+          onClick(event);
+        }
+      },
+      [onClick, shouldBlurAfterClick, shouldPreventDefault, shouldStopPropagation],
+    );
 
-  const handleClick = React.useCallback(
-    (event: React.MouseEvent<HTMLAnchorElement>) => {
-      if (shouldBlurAfterClick) {
-        event.currentTarget.blur();
-      }
+    if (isLinkAsButton(props)) {
+      return (
+        <button
+          {...restProps}
+          onClick={handleClick}
+          ref={ref as ForwardedRef<HTMLButtonElement>}
+          // eslint-disable-next-line react/button-has-type
+          type={type}>
+          {children}
+        </button>
+      );
+    }
 
-      if (shouldPreventDefault) {
-        event.preventDefault();
-      }
+    const { to } = props;
 
-      if (shouldStopPropagation) {
-        event.stopPropagation();
-      }
+    return (
+      <RouterLink
+        {...getShouldOpenInNewTabProps({ shouldOpenInNewTab, to })}
+        {...restProps}
+        onClick={handleClick}
+        ref={ref as ForwardedRef<HTMLAnchorElement>}
+        to={to}>
+        {children}
+        <LinkOpenInNewTabSuffix hasUnbreakableSpace shouldOpenInNewTab={shouldOpenInNewTab} />
+      </RouterLink>
+    );
+  },
+);
 
-      if (onClick) {
-        onClick(event);
-      }
-    },
-    [onClick, shouldBlurAfterClick, shouldPreventDefault, shouldStopPropagation],
-  );
+LinkBase.displayName = 'LinkBase';
 
-  const shouldOpenInNewTabProps = shouldOpenInNewTab
+export function getShouldOpenInNewTabProps({
+  shouldOpenInNewTab,
+  to,
+}: Pick<LinkProps, 'shouldOpenInNewTab' | 'to'>) {
+  return shouldOpenInNewTab
     ? {
         rel: `noopener${typeof to === 'string' && isSonarLink(to) ? '' : ' noreferrer nofollow'}`,
         /* eslint-disable-next-line react/jsx-no-target-blank -- we only allow noopener noreferrer for known external links */
         target: '_blank',
       }
     : {};
-
-  return (
-    <RouterLink
-      {...shouldOpenInNewTabProps}
-      {...restAndRadixProps}
-      onClick={handleClick}
-      ref={ref}
-      style={style}
-      to={to}>
-      {children}
-
-      {shouldOpenInNewTab && (
-        <>
-          &nbsp;
-          <IconLinkExternal data-testid="echoes-link-external-icon" />
-          <VisuallyHidden.Root>
-            {intl.formatMessage({
-              id: 'open_in_new_tab',
-              defaultMessage: '(opens in new tab)',
-              description:
-                'Screen reader-only text to indicate that the link will open in a new tab',
-            })}
-          </VisuallyHidden.Root>
-        </>
-      )}
-    </RouterLink>
-  );
-});
-
-LinkBase.displayName = 'LinkBase';
+}

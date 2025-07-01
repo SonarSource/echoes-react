@@ -18,7 +18,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-export { Button } from './Button';
+export { Button, type ButtonProps } from './Button';
 export { ButtonGroup } from './ButtonGroup';
-export { ButtonIcon } from './ButtonIcon';
+export { ButtonIcon, type ButtonIconProps } from './ButtonIcon';
 export { ButtonSize, ButtonVariety } from './ButtonTypes';

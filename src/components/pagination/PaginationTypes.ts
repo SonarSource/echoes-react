@@ -18,33 +18,26 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import { screen } from '@testing-library/react';
-import { renderWithMemoryRouter } from '~common/helpers/test-utils';
-import { Breadcrumbs } from '..';
+export interface PaginationProps {
+  /**
+   * Forwarded to all the buttons
+   */
+  isDisabled?: boolean;
 
-it('should display Breadcrumbs properly', async () => {
-  const { container } = renderWithMemoryRouter(
-    <Breadcrumbs
-      items={[
-        { linkElement: 'parent crumb', to: 'parent' },
-        { linkElement: 'child crumb', to: 'child' },
-      ]}
-    />,
-  );
+  /**
+   * Callback triggered when a button is clicked.
+   *
+   * @param targetPage The page requested
+   */
+  onChange: (targetPage: number) => void;
 
-  expect(
-    screen.getByRole('link', {
-      name: 'parent crumb',
-    }),
-  ).toBeInTheDocument();
+  /**
+   * The current page. Bounds are `[1, totalPages]`, inclusive.
+   */
+  page: number;
 
-  expect(
-    screen.queryByRole('link', {
-      name: 'child crumb',
-    }),
-  ).not.toBeInTheDocument();
-
-  expect(screen.getByText('child crumb')).toBeInTheDocument();
-
-  await expect(container).toHaveNoA11yViolations();
-});
+  /**
+   * The total number of pages
+   */
+  totalPages: number;
+}

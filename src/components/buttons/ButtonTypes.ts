@@ -20,20 +20,25 @@
 
 import { ButtonHTMLAttributes, MouseEvent } from 'react';
 
-type HTMLButtonAttributesSubset = Pick<
+export type HTMLButtonAttributesSubset = Pick<
   ButtonHTMLAttributes<HTMLButtonElement>,
-  'form' | 'id' | 'name' | 'role' | 'style' | 'type'
+  'form' | 'name' | 'role' | 'type'
 >;
 
-export interface ButtonCommonProps extends HTMLButtonAttributesSubset {
+export interface ButtonCommonProps {
   className?: string;
   hasAutoFocus?: boolean;
+  id?: string;
   isDisabled?: boolean;
   isLoading?: boolean;
-  onClick?: (event: MouseEvent<HTMLButtonElement>) => unknown;
+  onClick?: (event: MouseEvent<HTMLElement>) => unknown;
   size?: `${ButtonSize}`;
+  style?: React.CSSProperties;
   shouldPreventDefault?: boolean;
   shouldStopPropagation?: boolean;
+}
+
+export interface ButtonBaseProps extends ButtonCommonProps, HTMLButtonAttributesSubset {
   variety?: `${ButtonVariety}`;
 }
 

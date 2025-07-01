@@ -18,33 +18,21 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import { screen } from '@testing-library/react';
-import { renderWithMemoryRouter } from '~common/helpers/test-utils';
-import { Breadcrumbs } from '..';
+import { computePages } from '../utils';
 
-it('should display Breadcrumbs properly', async () => {
-  const { container } = renderWithMemoryRouter(
-    <Breadcrumbs
-      items={[
-        { linkElement: 'parent crumb', to: 'parent' },
-        { linkElement: 'child crumb', to: 'child' },
-      ]}
-    />,
-  );
-
-  expect(
-    screen.getByRole('link', {
-      name: 'parent crumb',
-    }),
-  ).toBeInTheDocument();
-
-  expect(
-    screen.queryByRole('link', {
-      name: 'child crumb',
-    }),
-  ).not.toBeInTheDocument();
-
-  expect(screen.getByText('child crumb')).toBeInTheDocument();
-
-  await expect(container).toHaveNoA11yViolations();
+describe('computePages', () => {
+  it.each([
+    [1, 1, ['1']],
+    [3, 5, ['1', '2', '3', '4', '5']],
+    [1, 6, ['1', '2', '3', 'ellipsis-high', '6']],
+    [2, 6, ['1', '2', '3', '4', '5', '6']],
+    [5, 6, ['1', '2', '3', '4', '5', '6']],
+    [6, 6, ['1', 'ellipsis-low', '4', '5', '6']],
+    [6, 6, ['1', 'ellipsis-low', '4', '5', '6']],
+    [5, 11, ['1', '2', '3', '4', '5', '6', '7', 'ellipsis-high', '11']],
+    [6, 11, ['1', 'ellipsis-low', '4', '5', '6', '7', '8', 'ellipsis-high', '11']],
+    [7, 11, ['1', 'ellipsis-low', '5', '6', '7', '8', '9', '10', '11']],
+  ])('should render correctly for page %s and total %s', (page, totalPages, expectation) => {
+    expect(computePages({ page, totalPages })).toEqual(expectation);
+  });
 });

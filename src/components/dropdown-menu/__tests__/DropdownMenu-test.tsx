@@ -19,8 +19,7 @@
  */
 
 import { screen } from '@testing-library/react';
-import { MemoryRouter, Route, Routes, useLocation } from 'react-router-dom';
-import { render } from '~common/helpers/test-utils';
+import { renderWithMemoryRouter } from '~common/helpers/test-utils';
 import { Theme } from '~generated/themes';
 import { ThemeProvider } from '~utils/theme';
 import { IconBell, IconCalendar } from '../../icons';
@@ -30,7 +29,7 @@ const items = <DropdownMenu.ItemButton>An item</DropdownMenu.ItemButton>;
 const trigger = <button type="button">Trigger</button>;
 
 it('should render without items', async () => {
-  const { container } = setupWithMemoryRouter(
+  const { container } = renderWithMemoryRouter(
     <DropdownMenu items={undefined}>{trigger}</DropdownMenu>,
   );
 
@@ -40,7 +39,7 @@ it('should render without items', async () => {
 });
 
 it('should render with items when isOpen', () => {
-  setupWithMemoryRouter(
+  renderWithMemoryRouter(
     <DropdownMenu
       className="testClassName"
       header={{
@@ -61,7 +60,7 @@ it('should render with items when isOpen', () => {
 });
 
 it('should render with items when isOpenOnMount', () => {
-  setupWithMemoryRouter(
+  renderWithMemoryRouter(
     <DropdownMenu className="testClassName" isOpenOnMount items={items}>
       {trigger}
     </DropdownMenu>,
@@ -71,7 +70,7 @@ it('should render with items when isOpenOnMount', () => {
 });
 
 it('should render with items when clicked', async () => {
-  const { user } = setupWithMemoryRouter(
+  const { user } = renderWithMemoryRouter(
     <DropdownMenu items={items}>
       <a href="/">Trigger</a>
     </DropdownMenu>,
@@ -91,7 +90,7 @@ it('should render with items when clicked', async () => {
 it('should handle onOpen', async () => {
   const onOpen = jest.fn();
 
-  const { user } = setupWithMemoryRouter(
+  const { user } = renderWithMemoryRouter(
     <DropdownMenu align={DropdownMenuAlign.Start} items={items} onOpen={onOpen}>
       <a href="/">Trigger</a>
     </DropdownMenu>,
@@ -109,7 +108,7 @@ it('should handle onOpen', async () => {
 it('should handle onClose', async () => {
   const onClose = jest.fn();
 
-  const { user } = setupWithMemoryRouter(
+  const { user } = renderWithMemoryRouter(
     <DropdownMenu align={DropdownMenuAlign.Center} items={items} onClose={onClose}>
       <a href="/">Trigger</a>
     </DropdownMenu>,
@@ -129,7 +128,7 @@ it('should handle onClose', async () => {
 });
 
 it('should not show items when clicked if isDisabled', async () => {
-  const { user } = setupWithMemoryRouter(
+  const { user } = renderWithMemoryRouter(
     <DropdownMenu align={DropdownMenuAlign.End} isDisabled items={items}>
       {trigger}
     </DropdownMenu>,
@@ -146,7 +145,7 @@ it('should render many different items', async () => {
   const buttonClickHandler = jest.fn();
   const linkClickHandler = jest.fn();
 
-  const { user } = setupWithMemoryRouter(
+  const { user } = renderWithMemoryRouter(
     <DropdownMenu
       isOpen
       items={
@@ -278,7 +277,7 @@ it('should render many different items', async () => {
 });
 
 it('should properly handle theme overrides', () => {
-  setupWithMemoryRouter(
+  renderWithMemoryRouter(
     <ThemeProvider theme={Theme.dark}>
       <DropdownMenu className="testClassName" isOpenOnMount items={items}>
         {trigger}
@@ -290,7 +289,7 @@ it('should properly handle theme overrides', () => {
 });
 
 it('should render with a sub-menu', () => {
-  setupWithMemoryRouter(
+  renderWithMemoryRouter(
     <DropdownMenu
       className="testClassName"
       header={{ helpText: 'Header help text', label: 'Header label' }}
@@ -306,27 +305,3 @@ it('should render with a sub-menu', () => {
 
   expect(screen.getByText('An item')).toBeVisible();
 });
-
-function ShowPath() {
-  const { pathname } = useLocation();
-  return <pre>{pathname}</pre>;
-}
-
-const setupWithMemoryRouter = (component: JSX.Element, initialEntries = ['/initial']) => {
-  return render(
-    <MemoryRouter initialEntries={initialEntries}>
-      <Routes>
-        <Route
-          element={
-            <>
-              {component}
-              <ShowPath />
-            </>
-          }
-          path="/initial"
-        />
-        <Route element={<ShowPath />} path="/second" />
-      </Routes>
-    </MemoryRouter>,
-  );
-};

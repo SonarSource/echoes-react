@@ -29,6 +29,8 @@ import {
   IconRocket,
   Tooltip,
 } from '../src';
+import { ButtonAsButtonProps } from '../src/components/buttons/Button';
+import { ButtonAsLinkVariety } from '../src/components/buttons/ButtonAsLink';
 import { basicWrapperDecorator } from './helpers/BasicWrapper';
 
 const meta: Meta<typeof Button> = {
@@ -103,7 +105,7 @@ export const AllVarieties: Story = {
   args: {
     onClick: () => console.log('Button clicked'),
   },
-  render: (args) => (
+  render: (args: ButtonAsButtonProps) => (
     <>
       {Object.values(ButtonVariety).map((variety) => (
         <Button key={variety} {...args} variety={variety}>
@@ -112,4 +114,15 @@ export const AllVarieties: Story = {
       ))}
     </>
   ),
+};
+
+export const AsALink: Story = {
+  args: {
+    children: 'My Link Button',
+    to: 'https://example.com',
+    shouldOpenInNewTab: true,
+  },
+  argTypes: {
+    variety: { control: { type: 'select' }, options: Object.values(ButtonAsLinkVariety) },
+  },
 };

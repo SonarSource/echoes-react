@@ -24,7 +24,7 @@ import { isDefined } from '~common/helpers/types';
 import { useButtonClickHandler } from '../buttons/Button';
 import { ButtonIconProps } from '../buttons/ButtonIcon';
 import { ButtonIconStyled, ButtonText } from '../buttons/ButtonStyles';
-import { ButtonCommonProps } from '../buttons/ButtonTypes';
+import { ButtonBaseProps } from '../buttons/ButtonTypes';
 import {
   IconChevronDown,
   IconInfo,
@@ -53,8 +53,7 @@ export enum BadgeSeverityVariety {
 }
 
 type excludedButtonProps = 'isLoading' | 'size' | 'variety' | 'isDisabled';
-type InheritedButtonProps = Omit<ButtonCommonProps, excludedButtonProps> &
-  Pick<ButtonIconProps, 'isIconFilled' | 'tooltipContent' | 'tooltipOptions'>;
+type InheritedButtonProps = Omit<ButtonBaseProps, excludedButtonProps> &
 
 export interface BadgeSeverityProps extends InheritedButtonProps {
   /**

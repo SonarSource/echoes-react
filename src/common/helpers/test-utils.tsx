@@ -21,6 +21,7 @@ import { RenderOptions, render as rtlRender } from '@testing-library/react';
 import userEvent, { Options as UserEventsOptions } from '@testing-library/user-event';
 import React, { ComponentProps, PropsWithChildren } from 'react';
 import { IntlProvider } from 'react-intl';
+import { MemoryRouter, Route, Routes, useLocation } from 'react-router-dom';
 import { PropsWithLabels } from '~types/utils';
 import { EchoesProvider } from '../../components/echoes-provider';
 
@@ -47,3 +48,34 @@ export type OmitPropsWithLabels<T extends React.JSXElementConstructor<any>> = Pa
   Omit<ComponentProps<T>, keyof PropsWithLabels<{}>>
 > &
   PropsWithLabels<{}>;
+
+function ShowPath() {
+  const { pathname } = useLocation();
+  return <pre>{pathname}</pre>;
+}
+
+export const renderWithMemoryRouter = (
+  ui: JSX.Element,
+  initialEntries = ['/initial'],
+  options?: RenderOptions,
+  userEventOptions?: UserEventsOptions,
+) => {
+  return render(
+    <MemoryRouter initialEntries={initialEntries}>
+      <Routes>
+        <Route
+          element={
+            <>
+              {ui}
+              <ShowPath />
+            </>
+          }
+          path="/initial"
+        />
+        <Route element={<ShowPath />} path="/second" />
+      </Routes>
+    </MemoryRouter>,
+    options,
+    userEventOptions,
+  );
+};

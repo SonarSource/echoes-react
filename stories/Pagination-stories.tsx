@@ -18,33 +18,25 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import { screen } from '@testing-library/react';
-import { renderWithMemoryRouter } from '~common/helpers/test-utils';
-import { Breadcrumbs } from '..';
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import { Pagination } from '../src';
+import { basicWrapperDecorator } from './helpers/BasicWrapper';
 
-it('should display Breadcrumbs properly', async () => {
-  const { container } = renderWithMemoryRouter(
-    <Breadcrumbs
-      items={[
-        { linkElement: 'parent crumb', to: 'parent' },
-        { linkElement: 'child crumb', to: 'child' },
-      ]}
-    />,
-  );
+const meta: Meta<typeof Pagination> = {
+  component: Pagination,
+  title: 'Echoes/Pagination',
+  argTypes: {},
+  decorators: [basicWrapperDecorator],
+};
 
-  expect(
-    screen.getByRole('link', {
-      name: 'parent crumb',
-    }),
-  ).toBeInTheDocument();
+export default meta;
 
-  expect(
-    screen.queryByRole('link', {
-      name: 'child crumb',
-    }),
-  ).not.toBeInTheDocument();
+type Story = StoryObj<typeof Pagination>;
 
-  expect(screen.getByText('child crumb')).toBeInTheDocument();
-
-  await expect(container).toHaveNoA11yViolations();
-});
+export const Basic: Story = {
+  args: {
+    page: 1,
+    totalPages: 3,
+    onChange: () => {},
+  },
+};

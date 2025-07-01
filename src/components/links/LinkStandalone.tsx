@@ -21,12 +21,8 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { forwardRef } from 'react';
-import { LinkProps } from './LinkBase';
 import { LinkBaseStyled } from './LinkBaseStyled';
-
-export interface LinkStandaloneProps extends LinkProps {
-  iconLeft?: React.ReactNode;
-}
+import { LinkStandaloneProps } from './LinkTypes';
 
 const LinkStandaloneBase = forwardRef<HTMLAnchorElement, LinkStandaloneProps>((props, ref) => {
   const { children, iconLeft, ...linkProps } = props;
