@@ -21,7 +21,7 @@ import { ForwardedRef, MouseEvent, ReactNode, forwardRef, useCallback, useMemo }
 import { isDefined } from '~common/helpers/types';
 import { getShouldOpenInNewTabProps } from '../links/LinkBase';
 import { LinkOpenInNewTabSuffix } from '../links/LinkOpenInNewTabSuffix';
-import { ButtonAsLink, ButtonAsLinkBaseProps } from './ButtonAsLink';
+import { ButtonAsLink, ButtonAsLinkBaseProps, LinkPropsForbiddenForButton } from './ButtonAsLink';
 import {
   BUTTON_SIZE_STYLE,
   BUTTON_VARIETY_STYLES,
@@ -38,9 +38,10 @@ interface CommonProps {
   suffix?: ReactNode;
 }
 
-export interface ButtonAsButtonProps extends CommonProps, ButtonBaseProps {
-  to?: never;
-}
+export interface ButtonAsButtonProps
+  extends CommonProps,
+    ButtonBaseProps,
+    LinkPropsForbiddenForButton {}
 
 interface ButtonAsLinkProps extends CommonProps, ButtonAsLinkBaseProps {}
 
@@ -51,6 +52,7 @@ export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPr
     const {
       children,
       hasAutoFocus = false,
+      isDisabled = false,
       isLoading,
       onClick,
       prefix,
@@ -58,7 +60,10 @@ export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPr
       shouldStopPropagation = false,
       size = ButtonSize.Large,
       variety = ButtonVariety.Default,
+      shouldOpenInNewTab = false,
       suffix,
+      to,
+      type = 'button',
       ...restProps
     } = props;
 
@@ -73,12 +78,11 @@ export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPr
     );
 
     if (isButtonAsLink(props)) {
-      // Since "props" is narrowed to ButtonAsLinkProps, we can safely assume that "restProps" is of type ButtonAsLinkBaseProps
-      const { to, shouldOpenInNewTab, ...htmlProps } = restProps as ButtonAsLinkBaseProps;
+      const { to } = props;
 
       return (
         <ButtonAsLink
-          {...htmlProps}
+          {...restProps}
           {...getShouldOpenInNewTabProps({ shouldOpenInNewTab, to })}
           autoFocus={hasAutoFocus}
           css={commonStyles}
@@ -95,11 +99,12 @@ export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPr
       );
     }
 
-    const { isDisabled = false, type = 'button' } = props;
+    // Extracting the rest of the link props to avoid passing them to the button element.
+    const { download, reloadDocument, state, ...htmlProps } = restProps;
 
     return (
       <ButtonStyled
-        {...restProps}
+        {...htmlProps}
         autoFocus={hasAutoFocus}
         css={commonStyles}
         disabled={isDisabled}

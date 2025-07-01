@@ -22,12 +22,16 @@ import { Link as RouterLink } from 'react-router-dom';
 import { styled } from 'storybook/internal/theming';
 import { LinkBaseProps } from '../links/LinkTypes';
 import { buttonIconStyles, ButtonStyled } from './ButtonStyles';
-import { ButtonCommonProps } from './ButtonTypes';
+import { ButtonCommonProps, HTMLButtonAttributesSubset } from './ButtonTypes';
 
 type LinkPropsSubset = Pick<
   LinkBaseProps,
   'to' | 'download' | 'reloadDocument' | 'shouldOpenInNewTab' | 'state'
 >;
+
+export type LinkPropsForbiddenForButton = {
+  [K in keyof LinkPropsSubset]?: never;
+};
 
 export enum ButtonAsLinkVariety {
   Default = 'default',
@@ -36,7 +40,14 @@ export enum ButtonAsLinkVariety {
   PrimaryGhost = 'primary-ghost',
 }
 
-export interface ButtonAsLinkBaseProps extends ButtonCommonProps, LinkPropsSubset {
+type ButtonPropsForbiddenForLink = {
+  [K in keyof HTMLButtonAttributesSubset]?: never;
+};
+
+export interface ButtonAsLinkBaseProps
+  extends ButtonCommonProps,
+    LinkPropsSubset,
+    ButtonPropsForbiddenForLink {
   variety?: `${ButtonAsLinkVariety}`;
 }
 

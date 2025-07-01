@@ -22,7 +22,7 @@ import styled from '@emotion/styled';
 import { forwardRef } from 'react';
 import { isStringDefined } from '~common/helpers/types';
 import { ButtonVariety } from '../buttons';
-import { Button, ButtonAsButtonProps, ButtonProps } from '../buttons/Button';
+import { Button, ButtonAsButtonProps } from '../buttons/Button';
 import {
   RatingBadge,
   RatingBadgeDimensions,
@@ -52,7 +52,7 @@ RatingBadgeButton.displayName = 'RatingBadgeButton';
 
 const RatingBadgeButtonInner = forwardRef<
   HTMLButtonElement,
-  Omit<ButtonProps, 'size' | 'variety'> & Pick<RatingBadgeProps, 'rating' | 'size'>
+  Omit<ButtonAsButtonProps, 'size' | 'variety'> & Pick<RatingBadgeProps, 'rating' | 'size'>
 >(({ rating, size, ...buttonProps }, ref) => (
   <Button {...buttonProps} ref={ref} variety={ButtonVariety.DefaultGhost} />
 ));
