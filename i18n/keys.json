@@ -134,6 +134,26 @@
     "defaultMessage": "Clear select field",
     "description": "Screen reader-only text to indicate that the select field can be cleared with a button"
   },
+  "severity_impact.BLOCKER": {
+    "defaultMessage": "Blocker",
+    "description": "Label for blocker severity level"
+  },
+  "severity_impact.HIGH": {
+    "defaultMessage": "High",
+    "description": "Label for high severity level"
+  },
+  "severity_impact.INFO": {
+    "defaultMessage": "Info",
+    "description": "Label for info severity level"
+  },
+  "severity_impact.LOW": {
+    "defaultMessage": "Low",
+    "description": "Label for low severity level"
+  },
+  "severity_impact.MEDIUM": {
+    "defaultMessage": "Medium",
+    "description": "Label for medium severity level"
+  },
   "spotlight.close": {
     "defaultMessage": "Close",
     "description": "The label for the Close button on a Spotlight"

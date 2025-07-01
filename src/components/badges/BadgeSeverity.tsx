@@ -26,6 +26,7 @@ import { ButtonIconProps } from '../buttons/ButtonIcon';
 import { ButtonIconStyled, ButtonText } from '../buttons/ButtonStyles';
 import { ButtonBaseProps } from '../buttons/ButtonTypes';
 import {
+  IconChevronDown,
   IconInfo,
   IconSeverityBlocker,
   IconSeverityHigh,
@@ -35,6 +36,7 @@ import {
 import { IconFilledProps } from '../icons/IconWrapper';
 import { SpinnerOverrideColor } from '../spinner/SpinnerOverrideColor';
 import { Tooltip } from '../tooltip';
+import { useIntl } from 'react-intl';
 
 export enum BadgeSeverityLevel {
   Blocker = 'blocker',
@@ -44,7 +46,13 @@ export enum BadgeSeverityLevel {
   Info = 'info',
 }
 
-type excludedButtonProps = 'isLoading' | 'size' | 'variety';
+export enum BadgeSeverityVariety {
+  Clickable = 'clickable',
+  Dropdown = 'dropdown',
+  Static = 'static',
+}
+
+type excludedButtonProps = 'isLoading' | 'size' | 'variety' | 'isDisabled';
 type InheritedButtonProps = Omit<ButtonBaseProps, excludedButtonProps> &
   Pick<ButtonIconProps, 'isIconFilled' | 'tooltipContent' | 'tooltipOptions'>;
 
@@ -76,6 +84,11 @@ export interface BadgeSeverityProps extends InheritedButtonProps {
    * Must match `BadgeSeverityLevel`.
    */
   severity: `${BadgeSeverityLevel}`;
+
+  /**
+   * The variety of the badge.
+   */
+  variety?: BadgeSeverityVariety;
 }
 
 export const BadgeSeverity = forwardRef<HTMLButtonElement, BadgeSeverityProps>((props, ref) => {
@@ -84,7 +97,6 @@ export const BadgeSeverity = forwardRef<HTMLButtonElement, BadgeSeverityProps>((
     ariaLabel,
     className,
     hasAutoFocus = false,
-    isDisabled = false,
     isIconFilled = false,
     isLoading = false,
     onClick,
@@ -94,12 +106,48 @@ export const BadgeSeverity = forwardRef<HTMLButtonElement, BadgeSeverityProps>((
     shouldStopPropagation = false,
     tooltipContent = props.ariaLabel,
     tooltipOptions = {},
+    variety = BadgeSeverityVariety.Clickable,
     ...htmlProps
   } = props;
 
-  const handleClick = useButtonClickHandler(props);
+  const isDisabled = variety === BadgeSeverityVariety.Static;
+
+  const handleClick = useButtonClickHandler({
+    ...props,
+    isDisabled,
+  });
+
+  const { formatMessage } = useIntl();
 
   const SeverityIcon = BADGE_SEVERITY_ICON[severity];
+  const BADGE_SEVERITY_LABEL = {
+    [BadgeSeverityLevel.Blocker]: formatMessage({
+      id: 'severity_impact.BLOCKER',
+      defaultMessage: 'Blocker',
+      description: 'Label for blocker severity level',
+    }),
+    [BadgeSeverityLevel.High]: formatMessage({
+      id: 'severity_impact.HIGH',
+      defaultMessage: 'High',
+      description: 'Label for high severity level',
+    }),
+    [BadgeSeverityLevel.Info]: formatMessage({
+      id: 'severity_impact.INFO',
+      defaultMessage: 'Info',
+      description: 'Label for info severity level',
+    }),
+    [BadgeSeverityLevel.Low]: formatMessage({
+      id: 'severity_impact.LOW',
+      defaultMessage: 'Low',
+      description: 'Label for low severity level',
+    }),
+    [BadgeSeverityLevel.Medium]: formatMessage({
+      id: 'severity_impact.MEDIUM',
+      defaultMessage: 'Medium',
+      description: 'Label for medium severity level',
+    }),
+  };
+  const severityLabel = BADGE_SEVERITY_LABEL[severity];
 
   return (
     <StyledWrapper
@@ -123,13 +171,11 @@ export const BadgeSeverity = forwardRef<HTMLButtonElement, BadgeSeverityProps>((
           autoFocus={hasAutoFocus}
           css={useMemo(
             () => ({
-              '--button-padding': 'var(--echoes-dimension-space-0)',
-              '--button-height': 'var(--echoes-dimension-height-600)',
-              '--button-width': 'var(--echoes-dimension-height-600)',
+              '--button-padding': 'var(--echoes-dimension-space-75)',
+              '--button-height': 'auto',
+              '--button-width': 'auto',
 
-              '--button-color': 'var(----badge-severity-icon-color)',
-              '--button-border':
-                'var(----badge-severity-border-color) solid var(--echoes-border-width-default)',
+              '--button-border': 'inherit solid var(--echoes-border-width-default)',
               '--button-background': 'var(--badge-severity-icon-background-color)',
               '--button-background-focus': 'var(--badge-severity-icon-background-color)',
               '--button-background-disabled': 'var(--badge-severity-icon-background-color)',
@@ -142,13 +188,21 @@ export const BadgeSeverity = forwardRef<HTMLButtonElement, BadgeSeverityProps>((
           onClick={handleClick}
           ref={ref}
           type="button">
-          {isDefined(isLoading) ? (
-            <SpinnerOverrideColor isLoading={isLoading}>
+          <StyledSeverityContent>
+            <SpinnerOverrideColor
+              css={{
+                marginRight: 'var(--echoes-dimension-space-50)',
+              }}
+              isLoading={isLoading}>
               <SeverityIcon />
             </SpinnerOverrideColor>
-          ) : (
-            <SeverityIcon />
-          )}
+            <StyledSeverityText>{severityLabel}</StyledSeverityText>
+            {variety === BadgeSeverityVariety.Dropdown && (
+              <StyledDropdownIndicator>
+                <IconChevronDown />
+              </StyledDropdownIndicator>
+            )}
+          </StyledSeverityContent>
         </StyledButtonIconStyled>
       </Tooltip>
     </StyledWrapper>
@@ -179,6 +233,25 @@ const StyledContent = styled.div`
   flex-direction: row;
   padding: var(--echoes-dimension-space-50) var(--echoes-dimension-space-75);
   gap: var(--echoes-dimension-space-50);
+`;
+
+const StyledSeverityContent = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  & > *:not(:first-child):not(:last-child) {
+    margin-right: var(--echoes-dimension-space-50);
+  }
+`;
+
+const StyledSeverityText = styled.span`
+  font: var(--echoes-typography-text-small-medium);
+`;
+
+const StyledDropdownIndicator = styled.div`
+  margin-left: calc(var(--echoes-dimension-space-25) * -1);
+  margin-right: calc(var(--echoes-dimension-space-25) * -1);
 `;
 
 const StyledButtonIconStyled = styled(ButtonIconStyled)`
