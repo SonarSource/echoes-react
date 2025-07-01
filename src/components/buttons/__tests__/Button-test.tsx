@@ -19,116 +19,231 @@
  */
 import { screen } from '@testing-library/react';
 import { PointerEventsCheckLevel } from '@testing-library/user-event';
-import { render } from '~common/helpers/test-utils';
+import { render, renderWithMemoryRouter } from '~common/helpers/test-utils';
 import { Button } from '../Button';
 
-it('should call onClick function when clicked', async () => {
-  const onClick = jest.fn();
-  const { user } = render(<Button onClick={onClick}>Click me</Button>);
+describe('Button', () => {
+  it('should call onClick function when clicked', async () => {
+    const onClick = jest.fn();
+    const { user } = render(<Button onClick={onClick}>Click me</Button>);
 
-  await user.click(screen.getByRole('button', { name: 'Click me' }));
-  expect(onClick).toHaveBeenCalled();
-});
+    await user.click(screen.getByRole('button', { name: 'Click me' }));
+    expect(onClick).toHaveBeenCalled();
+  });
 
-it('should not call onClick function when disabled', async () => {
-  const onClick = jest.fn();
+  it('should not call onClick function when disabled', async () => {
+    const onClick = jest.fn();
 
-  const { user } = render(
-    <Button isDisabled onClick={onClick}>
-      Click me
-    </Button>,
-    {},
-    // We skip the pointer-events:none check from user-event to be able to test clicking on the disabled button
-    { pointerEventsCheck: PointerEventsCheckLevel.Never },
-  );
-
-  expect(screen.getByRole('button', { name: 'Click me' })).toBeDisabled();
-
-  await user.click(screen.getByRole('button', { name: 'Click me' }));
-  expect(onClick).not.toHaveBeenCalled();
-});
-
-it("should show a loading state, it doesn't prevent clicking", () => {
-  render(
-    <Button isLoading onClick={jest.fn()}>
-      Click me
-    </Button>,
-  );
-
-  expect(screen.getByText('Loading...')).toBeVisible();
-  expect(screen.getByRole('button', { name: 'Loading... Click me' })).toBeEnabled();
-});
-
-it('should render with prefix and suffix', () => {
-  render(
-    <Button onClick={jest.fn()} prefix={<span>Prefix</span>} suffix={<span>Suffix</span>}>
-      Click me
-    </Button>,
-  );
-
-  expect(screen.getByText('Prefix')).toBeVisible();
-  expect(screen.getByText('Click me')).toBeVisible();
-  expect(screen.getByText('Suffix')).toBeVisible();
-});
-
-it('should stop propagation of event', async () => {
-  const propagatedClick = jest.fn();
-  const onButtonClick = jest.fn();
-  const { user } = render(
-    // eslint-disable-next-line jsx-a11y/no-static-element-interactions
-    <div onClick={propagatedClick}>
-      <Button onClick={onButtonClick} shouldStopPropagation>
+    const { user } = render(
+      <Button isDisabled onClick={onClick}>
         Click me
-      </Button>
-    </div>,
-  );
+      </Button>,
+      {},
+      // We skip the pointer-events:none check from user-event to be able to test clicking on the disabled button
+      { pointerEventsCheck: PointerEventsCheckLevel.Never },
+    );
 
-  await user.click(screen.getByRole('button', { name: 'Click me' }));
+    expect(screen.getByRole('button', { name: 'Click me' })).toBeDisabled();
 
-  expect(onButtonClick).toHaveBeenCalled();
-  expect(propagatedClick).not.toHaveBeenCalled();
-});
+    await user.click(screen.getByRole('button', { name: 'Click me' }));
+    expect(onClick).not.toHaveBeenCalled();
+  });
 
-it('should be able to submit a form', async () => {
-  const onFormSubmit = jest.fn().mockImplementation((e) => e.preventDefault());
-  const { user } = render(
-    <form onSubmit={onFormSubmit}>
-      <Button type="submit">Click me</Button>
-    </form>,
-  );
-
-  await user.click(screen.getByRole('button', { name: 'Click me' }));
-
-  expect(onFormSubmit).toHaveBeenCalled();
-});
-
-it('should prevent default action', async () => {
-  const onFormSubmit = jest.fn();
-  const { user } = render(
-    <form onSubmit={onFormSubmit}>
-      <Button shouldPreventDefault type="submit">
+  it("should show a loading state, it doesn't prevent clicking", () => {
+    render(
+      <Button isLoading onClick={jest.fn()}>
         Click me
-      </Button>
-    </form>,
-  );
+      </Button>,
+    );
 
-  await user.click(screen.getByRole('button', { name: 'Click me' }));
+    expect(screen.getByText('Loading...')).toBeVisible();
+    expect(screen.getByRole('button', { name: 'Loading... Click me' })).toBeEnabled();
+  });
 
-  expect(onFormSubmit).not.toHaveBeenCalled();
+  it('should render with prefix and suffix', () => {
+    render(
+      <Button onClick={jest.fn()} prefix={<span>Prefix</span>} suffix={<span>Suffix</span>}>
+        Click me
+      </Button>,
+    );
+
+    expect(screen.getByText('Prefix')).toBeVisible();
+    expect(screen.getByText('Click me')).toBeVisible();
+    expect(screen.getByText('Suffix')).toBeVisible();
+  });
+
+  it('should stop propagation of event', async () => {
+    const propagatedClick = jest.fn();
+    const onButtonClick = jest.fn();
+    const { user } = render(
+      // eslint-disable-next-line jsx-a11y/no-static-element-interactions
+      <div onClick={propagatedClick}>
+        <Button onClick={onButtonClick} shouldStopPropagation>
+          Click me
+        </Button>
+      </div>,
+    );
+
+    await user.click(screen.getByRole('button', { name: 'Click me' }));
+
+    expect(onButtonClick).toHaveBeenCalled();
+    expect(propagatedClick).not.toHaveBeenCalled();
+  });
+
+  it('should be able to submit a form', async () => {
+    const onFormSubmit = jest.fn().mockImplementation((e) => e.preventDefault());
+    const { user } = render(
+      <form onSubmit={onFormSubmit}>
+        <Button type="submit">Click me</Button>
+      </form>,
+    );
+
+    await user.click(screen.getByRole('button', { name: 'Click me' }));
+
+    expect(onFormSubmit).toHaveBeenCalled();
+  });
+
+  it('should prevent default action', async () => {
+    const onFormSubmit = jest.fn();
+    const { user } = render(
+      <form onSubmit={onFormSubmit}>
+        <Button shouldPreventDefault type="submit">
+          Click me
+        </Button>
+      </form>,
+    );
+
+    await user.click(screen.getByRole('button', { name: 'Click me' }));
+
+    expect(onFormSubmit).not.toHaveBeenCalled();
+  });
+
+  it('should handle keyboard events', async () => {
+    const onClick = jest.fn();
+    const { user } = render(<Button onClick={onClick}>Click me</Button>);
+
+    await user.tab();
+    expect(screen.getByRole('button', { name: 'Click me' })).toHaveFocus();
+
+    await user.keyboard('{enter}');
+    expect(onClick).toHaveBeenCalled();
+  });
+
+  it("shouldn't have any a11y violation", async () => {
+    const { container } = render(<Button onClick={jest.fn()}>Click me</Button>);
+    await expect(container).toHaveNoA11yViolations();
+  });
 });
 
-it('should handle keyboard events', async () => {
-  const onClick = jest.fn();
-  const { user } = render(<Button onClick={onClick}>Click me</Button>);
+describe('Button as Link', () => {
+  it('should render as a link when "to" prop is provided', () => {
+    renderWithMemoryRouter(
+      <Button onClick={jest.fn()} to="/second">
+        Click me
+      </Button>,
+    );
 
-  await user.tab();
-  expect(screen.getByRole('button', { name: 'Click me' })).toHaveFocus();
+    expect(screen.getByRole('link', { name: 'Click me' })).toBeInTheDocument();
+    expect(screen.queryByRole('button')).not.toBeInTheDocument();
+  });
 
-  await user.keyboard('{enter}');
-  expect(onClick).toHaveBeenCalled();
-});
+  it('should call onClick function and navigate when link is clicked', async () => {
+    const onClick = jest.fn();
+    const { user } = renderWithMemoryRouter(
+      <Button onClick={onClick} to="/second">
+        Click me
+      </Button>,
+    );
 
-it("shouldn't have any a11y violation", async () => {
-  const { container } = render(<Button onClick={jest.fn()}>Click me</Button>);
-  await expect(container).toHaveNoA11yViolations();
+    await user.click(screen.getByRole('link', { name: 'Click me' }));
+    expect(onClick).toHaveBeenCalled();
+    expect(screen.getByText('/second')).toBeInTheDocument();
+  });
+
+  it('should not call onClick function when link is disabled', async () => {
+    const onClick = jest.fn();
+
+    const { user } = renderWithMemoryRouter(
+      <Button isDisabled onClick={onClick} to="/second">
+        Click me
+      </Button>,
+      undefined,
+      {},
+      { pointerEventsCheck: PointerEventsCheckLevel.Never },
+    );
+
+    // Should actually render as a button instead of a link when disabled
+    expect(screen.queryByRole('link', { name: 'Click me' })).not.toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Click me' })).toBeDisabled();
+
+    await user.click(screen.getByRole('button', { name: 'Click me' }));
+    expect(onClick).not.toHaveBeenCalled();
+    expect(screen.queryByText('/second')).not.toBeInTheDocument();
+  });
+
+  it('should have prefix and suffix as link', () => {
+    renderWithMemoryRouter(
+      <Button
+        onClick={jest.fn()}
+        prefix={<span>Prefix</span>}
+        suffix={<span>Suffix</span>}
+        to="/second">
+        Click me
+      </Button>,
+    );
+
+    expect(screen.getByText('Prefix')).toBeVisible();
+    expect(screen.getByText('Click me')).toBeVisible();
+    expect(screen.getByText('Suffix')).toBeVisible();
+    expect(screen.getByRole('link', { name: 'Prefix Click me Suffix' })).toBeInTheDocument();
+  });
+
+  it('should open in new tab when shouldOpenInNewTab is true', () => {
+    renderWithMemoryRouter(
+      <Button onClick={jest.fn()} shouldOpenInNewTab to="https://example.com">
+        Click me
+      </Button>,
+    );
+
+    const link = screen.getByRole('link', { name: /Click me/ });
+    expect(link).toHaveAttribute('target', '_blank');
+    expect(link).toHaveAttribute('rel', 'noopener noreferrer nofollow');
+    expect(link).toHaveTextContent('(opens in new tab)');
+  });
+
+  it('should prevent default when shouldPreventDefault is true', async () => {
+    const onClick = jest.fn();
+    const { user } = renderWithMemoryRouter(
+      <Button onClick={onClick} shouldPreventDefault to="/second">
+        Click me
+      </Button>,
+    );
+
+    await user.click(screen.getByRole('link', { name: 'Click me' }));
+    expect(onClick).toHaveBeenCalled();
+    expect(screen.queryByText('/second')).not.toBeInTheDocument();
+  });
+
+  it('should stop propagation of event as link', async () => {
+    const propagatedClick = jest.fn();
+    const onLinkClick = jest.fn();
+    const { user } = renderWithMemoryRouter(
+      // eslint-disable-next-line jsx-a11y/no-static-element-interactions
+      <div onClick={propagatedClick}>
+        <Button onClick={onLinkClick} shouldStopPropagation to="/second">
+          Click me
+        </Button>
+      </div>,
+    );
+
+    await user.click(screen.getByRole('link', { name: 'Click me' }));
+
+    expect(onLinkClick).toHaveBeenCalled();
+    expect(propagatedClick).not.toHaveBeenCalled();
+  });
+
+  it("shouldn't have any a11y violation as link", async () => {
+    const { container } = renderWithMemoryRouter(<Button to="/second">Click me</Button>);
+    await expect(container).toHaveNoA11yViolations();
+  });
 });

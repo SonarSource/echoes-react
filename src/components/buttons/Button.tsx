@@ -17,8 +17,13 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-import { MouseEvent, ReactNode, forwardRef, useCallback, useMemo } from 'react';
+import * as VisuallyHidden from '@radix-ui/react-visually-hidden';
+import { ForwardedRef, MouseEvent, ReactNode, forwardRef, useCallback, useMemo } from 'react';
+import { FormattedMessage } from 'react-intl';
 import { isDefined } from '~common/helpers/types';
+import { IconLinkExternal } from '../icons';
+import { getShouldOpenInNewTabProps } from '../links/LinkBase';
+import { ButtonAsLink, ButtonAsLinkBaseProps } from './ButtonAsLink';
 import {
   BUTTON_SIZE_STYLE,
   BUTTON_VARIETY_STYLES,
@@ -27,70 +32,134 @@ import {
   ButtonText,
   SpinnerButton,
 } from './ButtonStyles';
-import { ButtonCommonProps, ButtonSize, ButtonVariety } from './ButtonTypes';
+import { ButtonBaseProps, ButtonSize, ButtonVariety } from './ButtonTypes';
 
-export interface ButtonProps extends ButtonCommonProps {
+interface CommonProps {
   children?: ReactNode;
   prefix?: ReactNode;
   suffix?: ReactNode;
 }
 
-export const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
-  const {
-    children,
-    hasAutoFocus = false,
-    isDisabled = false,
-    isLoading,
-    onClick,
-    prefix,
-    shouldPreventDefault = false,
-    shouldStopPropagation = false,
-    size = ButtonSize.Large,
-    variety = ButtonVariety.Default,
-    suffix,
-    type = 'button',
-    ...htmlProps
-  } = props;
+export interface ButtonAsButtonProps extends CommonProps, ButtonBaseProps {
+  to?: never;
+}
 
-  const handleClick = useButtonClickHandler(props);
+interface ButtonAsLinkProps extends CommonProps, ButtonAsLinkBaseProps {}
 
+export type ButtonProps = ButtonAsButtonProps | ButtonAsLinkProps;
+
+export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonProps>(
+  (props, ref) => {
+    const {
+      children,
+      hasAutoFocus = false,
+      isLoading,
+      onClick,
+      prefix,
+      shouldPreventDefault = false,
+      shouldStopPropagation = false,
+      size = ButtonSize.Large,
+      variety = ButtonVariety.Default,
+      suffix,
+      ...restProps
+    } = props;
+
+    const handleClick = useButtonClickHandler(props);
+
+    const commonStyles = useMemo(
+      () => ({
+        ...BUTTON_VARIETY_STYLES[variety],
+        ...BUTTON_SIZE_STYLE[size],
+      }),
+      [variety, size],
+    );
+
+    if (isButtonAsLink(props)) {
+      // Since "props" is narrowed to ButtonAsLinkProps, we can safely assume that "restProps" is of type ButtonAsLinkBaseProps
+      const { to, shouldOpenInNewTab, ...htmlProps } = restProps as ButtonAsLinkBaseProps;
+
+      return (
+        <ButtonAsLink
+          {...htmlProps}
+          {...getShouldOpenInNewTabProps({ shouldOpenInNewTab, to })}
+          autoFocus={hasAutoFocus}
+          css={commonStyles}
+          onClick={handleClick}
+          ref={ref as ForwardedRef<HTMLAnchorElement>}
+          to={to}>
+          <ButtonContent
+            isLoading={isLoading}
+            prefix={prefix}
+            suffix={
+              suffix ||
+              (shouldOpenInNewTab && (
+                <>
+                  &nbsp;
+                  <IconLinkExternal data-testid="echoes-link-external-icon" />
+                  <VisuallyHidden.Root>
+                    <FormattedMessage
+                      defaultMessage="(opens in new tab)"
+                      description="Screen reader-only text to indicate that the link will open in a new tab"
+                      id="open_in_new_tab"
+                    />
+                  </VisuallyHidden.Root>
+                </>
+              ))
+            }>
+            {children}
+          </ButtonContent>
+        </ButtonAsLink>
+      );
+    }
+
+    const { isDisabled = false, type = 'button' } = props;
+
+    return (
+      <ButtonStyled
+        {...restProps}
+        autoFocus={hasAutoFocus}
+        css={commonStyles}
+        disabled={isDisabled}
+        onClick={handleClick}
+        ref={ref as ForwardedRef<HTMLButtonElement>}
+        type={type}>
+        <ButtonContent isLoading={isLoading} prefix={prefix} suffix={suffix}>
+          {children}
+        </ButtonContent>
+      </ButtonStyled>
+    );
+  },
+);
+
+Button.displayName = 'Button';
+
+function ButtonContent(
+  props: Readonly<Pick<ButtonProps, 'children' | 'isLoading' | 'prefix' | 'suffix'>>,
+) {
+  const { children, isLoading, prefix, suffix } = props;
   return (
-    <ButtonStyled
-      {...htmlProps}
-      autoFocus={hasAutoFocus}
-      css={useMemo(
-        () => ({
-          ...BUTTON_VARIETY_STYLES[variety],
-          ...BUTTON_SIZE_STYLE[size],
-        }),
-        [variety, size],
-      )}
-      disabled={isDisabled}
-      onClick={handleClick}
-      ref={ref}
-      type={type}>
+    <>
       {isDefined(isLoading) && <SpinnerButton isLoading={isLoading} />}
       <ButtonInnerWrapper>
         {prefix}
         <ButtonText>{children}</ButtonText>
         {suffix}
       </ButtonInnerWrapper>
-    </ButtonStyled>
+    </>
   );
-});
+}
 
-Button.displayName = 'Button';
+ButtonContent.displayName = 'ButtonContent';
 
 export function useButtonClickHandler(
-  props: Pick<
-    ButtonProps,
-    'isDisabled' | 'shouldPreventDefault' | 'shouldStopPropagation' | 'onClick'
-  >,
+  props: Pick<ButtonBaseProps, 'isDisabled' | 'shouldPreventDefault' | 'shouldStopPropagation'> & {
+    onClick?: (event: MouseEvent<HTMLButtonElement | HTMLAnchorElement>) => unknown;
+  },
 ) {
   const { isDisabled, onClick, shouldPreventDefault, shouldStopPropagation } = props;
 
   return useCallback(
-    (event: MouseEvent<HTMLButtonElement>) => {
+    (event: MouseEvent<HTMLButtonElement | HTMLAnchorElement>) => {
       if (shouldPreventDefault || isDisabled) {
         event.preventDefault();
       }
@@ -105,4 +174,10 @@ export function useButtonClickHandler(
     },
     [isDisabled, onClick, shouldPreventDefault, shouldStopPropagation],
   );
+}
+
+function isButtonAsLink(props: ButtonProps): props is ButtonAsLinkProps {
+  // A link must have a 'to' prop and a link cannot be disabled.
+  // Disabling a link will end up rendering a disabled button instead.
+  return 'to' in props && !props.isDisabled;
 }

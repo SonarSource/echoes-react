@@ -22,7 +22,7 @@ import styled from '@emotion/styled';
 import { forwardRef } from 'react';
 import { isStringDefined } from '~common/helpers/types';
 import { ButtonVariety } from '../buttons';
-import { Button, ButtonProps } from '../buttons/Button';
+import { Button, ButtonAsButtonProps, ButtonProps } from '../buttons/Button';
 import {
   RatingBadge,
   RatingBadgeDimensions,
@@ -31,14 +31,7 @@ import {
   RatingBadgeSize,
 } from './RatingBadge';
 
-export type RatingBadgeButtonProps = Pick<ButtonProps, 'onClick'> & RatingBadgeProps;
-
-const RatingBadgeButtonInner = forwardRef<
-  HTMLButtonElement,
-  Omit<ButtonProps, 'size'> & Pick<RatingBadgeProps, 'rating' | 'size'>
->(({ rating, size, ...buttonProps }, ref) => <Button ref={ref} {...buttonProps} />);
-
-RatingBadgeButtonInner.displayName = 'RatingBadgeButtonInner';
+export type RatingBadgeButtonProps = Pick<ButtonAsButtonProps, 'onClick'> & RatingBadgeProps;
 
 export const RatingBadgeButton = forwardRef<HTMLButtonElement, RatingBadgeButtonProps>(
   (
@@ -48,10 +41,7 @@ export const RatingBadgeButton = forwardRef<HTMLButtonElement, RatingBadgeButton
     const rating = isStringDefined(ratingPropValue) ? ratingPropValue : RatingBadgeRating.Null;
 
     return (
-      <RatingBadgeButtonStyled
-        ref={ref}
-        variety={ButtonVariety.DefaultGhost}
-        {...{ className, rating, size, style, ...buttonProps }}>
+      <RatingBadgeButtonStyled ref={ref} {...{ className, rating, size, style, ...buttonProps }}>
         <RatingBadge {...{ rating, size }} />
       </RatingBadgeButtonStyled>
     );
@@ -59,6 +49,15 @@ export const RatingBadgeButton = forwardRef<HTMLButtonElement, RatingBadgeButton
 );
 
 RatingBadgeButton.displayName = 'RatingBadgeButton';
+
+const RatingBadgeButtonInner = forwardRef<
+  HTMLButtonElement,
+  Omit<ButtonProps, 'size' | 'variety'> & Pick<RatingBadgeProps, 'rating' | 'size'>
+>(({ rating, size, ...buttonProps }, ref) => (
+  <Button {...buttonProps} ref={ref} variety={ButtonVariety.DefaultGhost} />
+));
+
+RatingBadgeButtonInner.displayName = 'RatingBadgeButtonInner';
 
 const RatingBadgeButtonStyled = styled(RatingBadgeButtonInner)`
   border-radius: var(--echoes-border-radius-full);

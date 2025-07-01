@@ -18,33 +18,25 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import { screen } from '@testing-library/react';
-import { renderWithMemoryRouter } from '~common/helpers/test-utils';
-import { Breadcrumbs } from '..';
+import React from 'react';
+import { LinkProps as RouterLinkProps } from 'react-router-dom';
 
-it('should display Breadcrumbs properly', async () => {
-  const { container } = renderWithMemoryRouter(
-    <Breadcrumbs
-      items={[
-        { linkElement: 'parent crumb', to: 'parent' },
-        { linkElement: 'child crumb', to: 'child' },
-      ]}
-    />,
-  );
+type RouterNavLinkPropsAllowed = 'download' | 'reloadDocument' | 'state' | 'style' | 'title' | 'to';
 
-  expect(
-    screen.getByRole('link', {
-      name: 'parent crumb',
-    }),
-  ).toBeInTheDocument();
+export enum LinkHighlight {
+  Accent = 'accent',
+  CurrentColor = 'current-color',
+  Default = 'default',
+  Subdued = 'subdued',
+}
 
-  expect(
-    screen.queryByRole('link', {
-      name: 'child crumb',
-    }),
-  ).not.toBeInTheDocument();
-
-  expect(screen.getByText('child crumb')).toBeInTheDocument();
-
-  await expect(container).toHaveNoA11yViolations();
-});
+export interface LinkProps extends Pick<RouterLinkProps, RouterNavLinkPropsAllowed> {
+  children: React.ReactNode;
+  className?: string;
+  highlight?: `${LinkHighlight}`;
+  onClick?: (event: React.MouseEvent<HTMLAnchorElement>) => void;
+  shouldBlurAfterClick?: boolean;
+  shouldOpenInNewTab?: boolean;
+  shouldPreventDefault?: boolean;
+  shouldStopPropagation?: boolean;
+}

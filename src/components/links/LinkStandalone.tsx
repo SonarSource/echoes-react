@@ -21,8 +21,8 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { forwardRef } from 'react';
-import { LinkProps } from './LinkBase';
 import { LinkBaseStyled } from './LinkBaseStyled';
+import { LinkProps } from './LinkTypes';
 
 export interface LinkStandaloneProps extends LinkProps {
   iconLeft?: React.ReactNode;

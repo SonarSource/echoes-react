@@ -21,29 +21,10 @@
 import * as VisuallyHidden from '@radix-ui/react-visually-hidden';
 import React, { forwardRef } from 'react';
 import { useIntl } from 'react-intl';
-import { Link as RouterLink, LinkProps as RouterLinkProps } from 'react-router-dom';
+import { Link as RouterLink } from 'react-router-dom';
 import { isSonarLink } from '~common/helpers/url';
 import { IconLinkExternal } from '../icons/IconLinkExternal';
-
-type RouterNavLinkPropsAllowed = 'download' | 'reloadDocument' | 'state' | 'style' | 'title' | 'to';
-
-export enum LinkHighlight {
-  Accent = 'accent',
-  CurrentColor = 'current-color',
-  Default = 'default',
-  Subdued = 'subdued',
-}
-
-export interface LinkProps extends Pick<RouterLinkProps, RouterNavLinkPropsAllowed> {
-  children: React.ReactNode;
-  className?: string;
-  highlight?: `${LinkHighlight}`;
-  onClick?: (event: React.MouseEvent<HTMLAnchorElement>) => void;
-  shouldBlurAfterClick?: boolean;
-  shouldOpenInNewTab?: boolean;
-  shouldPreventDefault?: boolean;
-  shouldStopPropagation?: boolean;
-}
+import { LinkProps } from './LinkTypes';
 
 export const LinkBase = forwardRef<HTMLAnchorElement, LinkProps>((props, ref) => {
   const {
@@ -81,17 +62,9 @@ export const LinkBase = forwardRef<HTMLAnchorElement, LinkProps>((props, ref) =>
     [onClick, shouldBlurAfterClick, shouldPreventDefault, shouldStopPropagation],
   );
 
-  const shouldOpenInNewTabProps = shouldOpenInNewTab
-    ? {
-        rel: `noopener${typeof to === 'string' && isSonarLink(to) ? '' : ' noreferrer nofollow'}`,
-        /* eslint-disable-next-line react/jsx-no-target-blank -- we only allow noopener noreferrer for known external links */
-        target: '_blank',
-      }
-    : {};
-
   return (
     <RouterLink
-      {...shouldOpenInNewTabProps}
+      {...getShouldOpenInNewTabProps({ shouldOpenInNewTab, to })}
       {...restAndRadixProps}
       onClick={handleClick}
       ref={ref}
@@ -118,3 +91,16 @@ export const LinkBase = forwardRef<HTMLAnchorElement, LinkProps>((props, ref) =>
 });
 
 LinkBase.displayName = 'LinkBase';
+
+export function getShouldOpenInNewTabProps({
+  shouldOpenInNewTab,
+  to,
+}: Pick<LinkProps, 'shouldOpenInNewTab' | 'to'>) {
+  return shouldOpenInNewTab
+    ? {
+        rel: `noopener${typeof to === 'string' && isSonarLink(to) ? '' : ' noreferrer nofollow'}`,
+        /* eslint-disable-next-line react/jsx-no-target-blank -- we only allow noopener noreferrer for known external links */
+        target: '_blank',
+      }
+    : {};
+}
