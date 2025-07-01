@@ -54,6 +54,7 @@ export enum BadgeSeverityVariety {
 
 type excludedButtonProps = 'isLoading' | 'size' | 'variety' | 'isDisabled';
 type InheritedButtonProps = Omit<ButtonBaseProps, excludedButtonProps> &
+  Pick<ButtonIconProps, 'isIconFilled' | 'tooltipContent' | 'tooltipOptions'>;
 
 export interface BadgeSeverityProps extends InheritedButtonProps {
   /**
@@ -188,8 +189,13 @@ export const BadgeSeverity = forwardRef<HTMLButtonElement, BadgeSeverityProps>((
           ref={ref}
           type="button">
           <StyledSeverityContent>
-            {isLoading && <SpinnerOverrideColor isLoading={isLoading} />}
-            {!isLoading && <SeverityIcon />}
+            <SpinnerOverrideColor
+              css={{
+                marginRight: 'var(--echoes-dimension-space-50)',
+              }}
+              isLoading={isLoading}>
+              <SeverityIcon />
+            </SpinnerOverrideColor>
             <StyledSeverityText>{severityLabel}</StyledSeverityText>
             {variety === BadgeSeverityVariety.Dropdown && (
               <StyledDropdownIndicator>
@@ -233,7 +239,10 @@ const StyledSeverityContent = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: var(--echoes-dimension-space-50);
+
+  & > *:not(:first-child):not(:last-child) {
+    margin-right: var(--echoes-dimension-space-50);
+  }
 `;
 
 const StyledSeverityText = styled.span`

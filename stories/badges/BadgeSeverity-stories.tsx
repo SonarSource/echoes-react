@@ -74,7 +74,7 @@ export const Default: Story = {
 
 export const Static: Story = {
   args: {
-    ariaLabel: 'Disabled severity badge',
+    ariaLabel: 'Static severity badge',
     quality: 'Maintainability',
     severity: 'medium',
     variety: BadgeSeverityVariety.Static,
