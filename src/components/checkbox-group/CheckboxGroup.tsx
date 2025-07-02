@@ -20,7 +20,7 @@
 import styled from '@emotion/styled';
 import { type ReactNode, type RefAttributes, forwardRef, useId, useMemo } from 'react';
 import { GroupAlignment } from '~types/GroupAlignment';
-import { PropsWithLabels } from '~types/utils';
+import { PropsWithLabels, TextNodeOptional } from '~types/utils';
 import { type CheckboxProps, Checkbox } from '../checkbox/Checkbox';
 import {
   type ValidationProps,
@@ -214,6 +214,10 @@ interface CheckboxGroupPropsBase<T>
    * Add a `class` attribute to the root element (optional).
    */
   className?: string;
+  /**
+   * Optional text to display under the group
+   */
+  helpText?: TextNodeOptional;
   /**
    * The ID of the element with the role `group` (optional).
    */
