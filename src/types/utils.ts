@@ -28,6 +28,9 @@ export interface PropsLabel {
   ariaLabelledBy?: never;
   id?: string;
   label: TextNode;
+}
+
+export interface PropsLabelAndHelpText extends PropsLabel {
   helpText?: TextNodeOptional;
 }
 
@@ -36,6 +39,9 @@ export interface PropsAriaLabel {
   ariaLabelledBy?: never;
   id?: string;
   label?: never;
+}
+
+export interface PropsAriaLabelAndHelpText extends PropsAriaLabel {
   helpText?: never;
 }
 
@@ -44,6 +50,9 @@ export interface PropsAriaLabelledBy {
   ariaLabelledBy: string;
   id?: string;
   label?: never;
+}
+
+export interface PropsAriaLabelledByAndHelpText extends PropsAriaLabelledBy {
   helpText?: never;
 }
 
@@ -52,8 +61,19 @@ export interface PropsAriaLabelViaId {
   ariaLabelledBy?: never;
   id: string;
   label?: never;
+}
+
+export interface PropsAriaLabelViaIdAndHelpText extends PropsAriaLabelViaId {
   helpText?: never;
 }
+
+export type PropsWithLabelsAndHelpText<T> = T &
+  (
+    | PropsLabelAndHelpText
+    | PropsAriaLabelAndHelpText
+    | PropsAriaLabelledByAndHelpText
+    | PropsAriaLabelViaIdAndHelpText
+  );
 
 export type PropsWithLabels<T> = T &
   (PropsLabel | PropsAriaLabel | PropsAriaLabelledBy | PropsAriaLabelViaId);
