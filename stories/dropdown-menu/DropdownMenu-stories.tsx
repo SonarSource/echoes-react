@@ -21,6 +21,7 @@
 import styled from '@emotion/styled';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import {
+  Badge,
   DropdownMenu,
   DropdownMenuAlign,
   IconBug,
@@ -45,17 +46,6 @@ export default meta;
 
 type Story = StoryObj<typeof DropdownMenu>;
 
-const StyledBadge = styled.span`
-  background-color: var(--echoes-color-background-default-active);
-  border-radius: 4px;
-  color: var(--echoes-color-text-default);
-  font: var(--echoes-typography-text-small-semi-bold);
-  margin-left: 1rem;
-  padding: 0px 8px;
-  text-transform: uppercase;
-  vertical-align: middle;
-`;
-
 const items = (
   <>
     <DropdownMenu.ItemButton>Your account</DropdownMenu.ItemButton>
@@ -68,7 +58,7 @@ const items = (
 
     <DropdownMenu.ItemButton
       prefix={<IconGear color="echoes-color-icon-bold" />}
-      suffix={<StyledBadge>Public</StyledBadge>}>
+      suffix={<Badge variety="info">Public</Badge>}>
       SonarQube Cloud
     </DropdownMenu.ItemButton>
 
