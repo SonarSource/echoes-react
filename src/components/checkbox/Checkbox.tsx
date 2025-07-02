@@ -21,7 +21,7 @@
 import styled from '@emotion/styled';
 import * as RadixCheckbox from '@radix-ui/react-checkbox';
 import { forwardRef, useCallback, useId } from 'react';
-import { PropsWithLabels } from '~types/utils';
+import { PropsWithLabelsAndHelpText } from '~types/utils';
 import { FormFieldLabel } from '../form/FormFieldLabel';
 import { Spinner } from '../spinner';
 import { HelperText } from '../typography';
@@ -40,7 +40,7 @@ interface CheckboxPropsBase {
   title?: string;
 }
 
-export type CheckboxProps = PropsWithLabels<CheckboxPropsBase>;
+export type CheckboxProps = PropsWithLabelsAndHelpText<CheckboxPropsBase>;
 
 export const Checkbox = forwardRef<HTMLButtonElement, CheckboxProps>((props, ref) => {
   const {

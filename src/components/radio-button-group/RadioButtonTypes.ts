@@ -20,6 +20,7 @@
 
 import { ReactNode } from 'react';
 import { GroupAlignment } from '~types/GroupAlignment';
+import { TextNodeOptional } from '~types/utils';
 import { FormFieldProps, ValidationProps } from '../form/FormField';
 
 type FormFieldPropsSubset = Pick<FormFieldProps, 'helpToggletipProps' | 'width'>;
@@ -54,6 +55,11 @@ export interface RadioButtonGroupProps extends ValidationProps, FormFieldPropsSu
    * The default selected value (uncontrolled).
    */
   defaultValue?: string;
+
+  /**
+   * Optional text to display under the group
+   */
+  helpText?: TextNodeOptional;
 
   /**
    * The unique identifier for the radio button group.
