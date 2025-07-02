@@ -19,6 +19,7 @@
  */
 import styled from '@emotion/styled';
 import { InputHTMLAttributes } from 'react';
+import { TextNodeOptional } from '~types/utils';
 import { type ValidationProps, FormFieldProps } from '../form/FormField';
 
 type InputEventAttributesSubset =
@@ -40,6 +41,7 @@ type FormFieldPropsSubset = Pick<FormFieldProps, 'helpToggletipProps' | 'isRequi
 
 export interface InputProps extends ValidationProps, FormFieldPropsSubset {
   className?: string;
+  helpText?: TextNodeOptional;
   isDisabled?: boolean;
   placeholder?: string;
   value?: string | number;

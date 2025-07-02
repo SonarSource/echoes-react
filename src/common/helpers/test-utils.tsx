@@ -22,7 +22,7 @@ import userEvent, { Options as UserEventsOptions } from '@testing-library/user-e
 import React, { ComponentProps, PropsWithChildren } from 'react';
 import { IntlProvider } from 'react-intl';
 import { MemoryRouter, Route, Routes, useLocation } from 'react-router-dom';
-import { PropsWithLabels } from '~types/utils';
+import { PropsWithLabels, PropsWithLabelsAndHelpText } from '~types/utils';
 import { EchoesProvider } from '../../components/echoes-provider';
 
 export function render(
@@ -43,6 +43,11 @@ function ContextWrapper({ children }: PropsWithChildren<{}>) {
     </IntlProvider>
   );
 }
+
+export type OmitPropsWithLabelsAndHelpText<T extends React.JSXElementConstructor<any>> = Partial<
+  Omit<ComponentProps<T>, keyof PropsWithLabelsAndHelpText<{}>>
+> &
+  PropsWithLabelsAndHelpText<{}>;
 
 export type OmitPropsWithLabels<T extends React.JSXElementConstructor<any>> = Partial<
   Omit<ComponentProps<T>, keyof PropsWithLabels<{}>>
