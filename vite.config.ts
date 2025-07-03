@@ -43,7 +43,6 @@ export default defineConfig({
         ...Object.keys(packageJson.peerDependencies),
       ],
       output: {
-        intro: `import './style.css';`,
         globals: {
           react: 'react',
           'react-dom': 'ReactDOM',
@@ -59,6 +58,14 @@ export default defineConfig({
             },
           }),
         ],
+        chunkFileNames: '[name].js',
+        manualChunks: (id) => {
+          if (id.includes('tailwind')) {
+            return 'tailwind';
+          }
+
+          return undefined;
+        },
       },
     },
   },

@@ -19,6 +19,7 @@
  */
 import './generated/design-tokens-themed.json';
 import './generated/design-tokens.css';
+import './generated/tailwindConfig';
 
 export * from './components';
 export * from './utils';
