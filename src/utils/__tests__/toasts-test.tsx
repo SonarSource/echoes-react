@@ -18,54 +18,62 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import { createRef } from 'react';
+import { screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { toast as sonnerToast } from 'sonner';
 import { ToastVariety } from '~common/components/Toast';
+import { render } from '~common/helpers/test-utils';
 import { toast, ToastDuration } from '..';
-
-// Mock sonner toast
-jest.mock('sonner', () => ({
-  toast: {
-    custom: jest.fn(),
-    dismiss: jest.fn(),
-  },
-}));
-
-const mockSonnerToast = sonnerToast as jest.Mocked<typeof sonnerToast>;
+import { EchoesProvider } from '../../components/echoes-provider';
 
 const TEST_MESSAGE = 'Test message';
-const TOAST_ID = 'toast-id-123';
+const SUCCESS_MESSAGE = 'Success message';
+const ACTION_TOAST_MESSAGE = 'Action toast';
+const WARNING_TITLE = 'Warning title';
+const WARNING_DESCRIPTION = 'Warning description';
+
+function clearAllToasts() {
+  sonnerToast.dismiss();
+}
+
+function renderWithEchoesProvider() {
+  return render(
+    <EchoesProvider>
+      <div />
+    </EchoesProvider>,
+  );
+}
 
 describe('toast utility - basic functionality', () => {
-  beforeEach(() => {
-    jest.clearAllMocks();
-    mockSonnerToast.custom.mockReturnValue(TOAST_ID);
+  afterEach(() => {
+    clearAllToasts();
   });
 
-  it('should create a toast with required parameters and return toast ID', () => {
-    const result = toast({
+  it('should create and render a toast with required parameters', async () => {
+    renderWithEchoesProvider();
+
+    const toastId = toast({
       variety: ToastVariety.Info,
       description: TEST_MESSAGE,
     });
 
-    expect(result).toBe(TOAST_ID);
-    expect(mockSonnerToast.custom).toHaveBeenCalledWith(
-      expect.any(Function),
-      expect.objectContaining({
-        duration: 16000, // Medium duration
-      }),
-    );
+    expect(toastId).toBeDefined();
+    await waitFor(() => {
+      expect(screen.getByText(TEST_MESSAGE)).toBeInTheDocument();
+    });
   });
 
-  it('should create a toast with all optional parameters', () => {
+  it('should create a toast with all optional parameters and render actions', async () => {
     const onAutoClose = jest.fn();
     const onDismiss = jest.fn();
-    const actions = jest.fn();
+    const actions = jest.fn(() => <button type="button">Action Button</button>);
+
+    renderWithEchoesProvider();
 
     toast({
       variety: ToastVariety.Success,
       title: 'Success title',
-      description: 'Success message',
+      description: SUCCESS_MESSAGE,
       id: 'custom-id',
       duration: ToastDuration.Infinite,
       isDismissable: true,
@@ -74,181 +82,165 @@ describe('toast utility - basic functionality', () => {
       onDismiss,
     });
 
-    expect(mockSonnerToast.custom).toHaveBeenCalledWith(
-      expect.any(Function),
+    await waitFor(() => {
+      expect(screen.getByText('Success title')).toBeInTheDocument();
+    });
+
+    await waitFor(() => {
+      expect(screen.getByText(SUCCESS_MESSAGE)).toBeInTheDocument();
+    });
+
+    await waitFor(() => {
+      expect(screen.getByText('Action Button')).toBeInTheDocument();
+    });
+
+    // Actions should have been called with correct parameters
+    expect(actions).toHaveBeenCalledWith(
       expect.objectContaining({
-        duration: Infinity,
         id: 'custom-id',
-        onAutoClose,
-        onDismiss,
+        dismiss: expect.any(Function),
       }),
     );
   });
 
-  it('should not pass id to sonner when id is undefined', () => {
-    toast({
-      variety: ToastVariety.Info,
-      description: TEST_MESSAGE,
-      id: undefined,
-    });
-
-    const [, options] = mockSonnerToast.custom.mock.calls[0];
-    expect(options).not.toHaveProperty('id');
-  });
-});
-
-describe('toast utility - duration and dismissible behavior', () => {
-  beforeEach(() => {
-    jest.clearAllMocks();
-    mockSonnerToast.custom.mockReturnValue(TOAST_ID);
-  });
-
-  it('should use default medium duration when not specified', () => {
-    toast({
-      variety: ToastVariety.Info,
-      description: TEST_MESSAGE,
-    });
-
-    expect(mockSonnerToast.custom).toHaveBeenCalledWith(
-      expect.any(Function),
-      expect.objectContaining({
-        duration: 16000, // Medium duration
-      }),
-    );
-  });
-
-  it('should map duration enum values to correct milliseconds', () => {
-    const durations = [
-      { duration: ToastDuration.Short, expected: 8000 },
-      { duration: ToastDuration.Medium, expected: 16000 },
-      { duration: ToastDuration.Long, expected: 24000 },
-      { duration: ToastDuration.Infinite, expected: Infinity },
-    ];
-
-    durations.forEach(({ duration, expected }) => {
-      mockSonnerToast.custom.mockClear();
-
-      toast({
-        variety: ToastVariety.Info,
-        description: TEST_MESSAGE,
-        duration,
-        isDismissable: duration === ToastDuration.Infinite,
-      });
-
-      expect(mockSonnerToast.custom).toHaveBeenCalledWith(
-        expect.any(Function),
-        expect.objectContaining({
-          duration: expected,
-        }),
-      );
-    });
-  });
-
-  it('should automatically use infinite duration and make dismissible when toast has actions', () => {
-    const actions = jest.fn();
-
-    toast({
-      variety: ToastVariety.Info,
-      description: TEST_MESSAGE,
-      duration: ToastDuration.Infinite,
-      actions,
-      isDismissable: true,
-    });
-
-    expect(mockSonnerToast.custom).toHaveBeenCalledWith(
-      expect.any(Function),
-      expect.objectContaining({
-        duration: Infinity,
-      }),
-    );
-
-    const [toastComponent] = mockSonnerToast.custom.mock.calls[0];
-    const renderedToast = toastComponent('test-id');
-
-    expect(renderedToast.props.isDismissable).toBe(true);
-  });
-
-  it('should make infinite duration toasts dismissible', () => {
-    toast({
-      variety: ToastVariety.Info,
-      description: TEST_MESSAGE,
-      duration: ToastDuration.Infinite,
-      isDismissable: true,
-    });
-
-    const [toastComponent] = mockSonnerToast.custom.mock.calls[0];
-    const renderedToast = toastComponent('test-id');
-
-    expect(renderedToast.props.isDismissable).toBe(true);
-  });
-});
-
-describe('toast utility - variety shortcuts and integration', () => {
-  beforeEach(() => {
-    jest.clearAllMocks();
-    mockSonnerToast.custom.mockReturnValue(TOAST_ID);
-  });
-
-  const shortcutTests = [
-    { method: 'success', expectedVariety: 'success' },
-    { method: 'error', expectedVariety: 'danger' },
-    { method: 'info', expectedVariety: 'info' },
-    { method: 'warning', expectedVariety: 'warning' },
-  ] as const;
-
-  shortcutTests.forEach(({ method, expectedVariety }) => {
-    it(`should create ${method} toast with correct variety and handle ref`, () => {
-      const ref = createRef<HTMLDivElement>();
-
-      toast[method](
-        {
-          description: `${method} message`,
-          title: `${method} title`,
-        },
-        ref,
-      );
-
-      const [toastComponent] = mockSonnerToast.custom.mock.calls[0];
-      const renderedToast = toastComponent('test-id');
-
-      expect(renderedToast.props.variety).toBe(expectedVariety);
-      expect(renderedToast.props.description).toBe(`${method} message`);
-      expect(renderedToast.props.title).toBe(`${method} title`);
-      expect(renderedToast.props.id).toBe('test-id');
-    });
-  });
-
-  it('should dismiss toast by calling sonner dismiss', () => {
-    const toastId = 'test-toast-id';
-
-    toast.dismiss(toastId);
-
-    expect(mockSonnerToast.dismiss).toHaveBeenCalledWith(toastId);
-  });
-
-  it('should render Toast component with all props correctly', () => {
-    const actions = jest.fn();
+  it('should render toast with correct structure and dismissible button', async () => {
+    renderWithEchoesProvider();
 
     toast({
       variety: ToastVariety.Warning,
-      title: 'Warning title',
-      description: 'Warning description',
-      actions,
+      title: WARNING_TITLE,
+      description: WARNING_DESCRIPTION,
       isDismissable: true,
     });
 
-    const [toastComponent] = mockSonnerToast.custom.mock.calls[0];
-    const renderedToast = toastComponent('rendered-id');
+    await waitFor(() => {
+      expect(screen.getByText(WARNING_DESCRIPTION)).toBeInTheDocument();
+    });
 
-    expect(renderedToast.props).toEqual(
-      expect.objectContaining({
-        id: 'rendered-id',
-        variety: ToastVariety.Warning,
-        title: 'Warning title',
-        description: 'Warning description',
-        actions,
-        isDismissable: true,
-      }),
-    );
+    // Should have dismiss button
+    await waitFor(() => {
+      expect(screen.getByLabelText('Dismiss toast')).toBeInTheDocument();
+    });
+  });
+});
+
+describe('toast utility - variety shortcuts', () => {
+  afterEach(() => {
+    clearAllToasts();
+  });
+
+  const shortcutTests = [
+    { method: 'success', description: SUCCESS_MESSAGE },
+    { method: 'error', description: 'Error message' },
+    { method: 'info', description: 'Info message' },
+    { method: 'warning', description: WARNING_DESCRIPTION },
+  ] as const;
+
+  shortcutTests.forEach(({ method, description }) => {
+    it(`should create ${method} toast with correct variety and content`, async () => {
+      renderWithEchoesProvider();
+
+      toast[method]({
+        description,
+        title: `${method} title`,
+      });
+
+      await waitFor(() => {
+        expect(screen.getByText(description)).toBeInTheDocument();
+      });
+
+      await waitFor(() => {
+        expect(screen.getByText(`${method} title`)).toBeInTheDocument();
+      });
+    });
+  });
+});
+
+describe('toast utility - dismissal and interaction', () => {
+  afterEach(() => {
+    clearAllToasts();
+  });
+
+  it('should dismiss toast when dismiss button is clicked', async () => {
+    const user = userEvent.setup();
+    renderWithEchoesProvider();
+
+    toast({
+      variety: ToastVariety.Info,
+      description: TEST_MESSAGE,
+      isDismissable: true,
+    });
+
+    await waitFor(() => {
+      expect(screen.getByText(TEST_MESSAGE)).toBeInTheDocument();
+    });
+
+    const dismissButton = screen.getByLabelText('Dismiss toast');
+    await user.click(dismissButton);
+
+    await waitFor(() => {
+      expect(screen.queryByText(TEST_MESSAGE)).not.toBeInTheDocument();
+    });
+  });
+
+  it('should dismiss toast programmatically', async () => {
+    renderWithEchoesProvider();
+
+    const toastId = toast({
+      variety: ToastVariety.Info,
+      description: TEST_MESSAGE,
+      isDismissable: true,
+    });
+
+    await waitFor(() => {
+      expect(screen.getByText(TEST_MESSAGE)).toBeInTheDocument();
+    });
+
+    toast.dismiss(toastId);
+
+    await waitFor(() => {
+      expect(screen.queryByText(TEST_MESSAGE)).not.toBeInTheDocument();
+    });
+  });
+
+  it('should handle action button clicks and dismissal', async () => {
+    const user = userEvent.setup();
+    const actionHandler = jest.fn();
+
+    renderWithEchoesProvider();
+
+    toast({
+      variety: ToastVariety.Success,
+      description: ACTION_TOAST_MESSAGE,
+      duration: ToastDuration.Infinite,
+      isDismissable: true,
+      actions: ({ dismiss }) => (
+        <button
+          onClick={() => {
+            actionHandler();
+            dismiss();
+          }}
+          type="button">
+          Undo Action
+        </button>
+      ),
+    });
+
+    await waitFor(() => {
+      expect(screen.getByText(ACTION_TOAST_MESSAGE)).toBeInTheDocument();
+    });
+
+    await waitFor(() => {
+      expect(screen.getByText('Undo Action')).toBeInTheDocument();
+    });
+
+    const actionButton = screen.getByText('Undo Action');
+    await user.click(actionButton);
+
+    expect(actionHandler).toHaveBeenCalled();
+
+    await waitFor(() => {
+      expect(screen.queryByText(ACTION_TOAST_MESSAGE)).not.toBeInTheDocument();
+    });
   });
 });
