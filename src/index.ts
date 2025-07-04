@@ -19,6 +19,11 @@
  */
 import './generated/design-tokens-themed.json';
 import './generated/design-tokens.css';
+// import { echoesPreset, echoesTypographyPlugin } from './generated/tailwindConfig';
+
+// Need to use tailwindConfig to avoid losing it to tree-shaking...
+// eslint-disable-next-line no-console
+// console.log(Object.keys(echoesPreset), Object.keys(echoesTypographyPlugin));
 
 export * from './components';
 export * from './utils';

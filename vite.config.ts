@@ -23,6 +23,7 @@ import path from 'node:path';
 import license from 'rollup-plugin-license';
 import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
+import { viteStaticCopy } from 'vite-plugin-static-copy';
 import * as packageJson from './package.json';
 
 // https://vitejs.dev/config/
@@ -43,7 +44,6 @@ export default defineConfig({
         ...Object.keys(packageJson.peerDependencies),
       ],
       output: {
-        intro: `import './style.css';`,
         globals: {
           react: 'react',
           'react-dom': 'ReactDOM',
@@ -59,6 +59,14 @@ export default defineConfig({
             },
           }),
         ],
+        // chunkFileNames: '[name].js',
+        // manualChunks: (id) => {
+        //   if (id.includes('tailwind')) {
+        //     return 'tailwind';
+        //   }
+
+        //   return undefined;
+        // },
       },
     },
   },
@@ -68,6 +76,15 @@ export default defineConfig({
     },
   },
   plugins: [
+    viteStaticCopy({
+      targets: [
+        {
+          src: 'src/generated/tailwindConfig.ts',
+          dest: '.',
+          rename: 'tailwind.js',
+        },
+      ],
+    }),
     react({ jsxImportSource: '@emotion/react', babel: { plugins: ['@emotion/babel-plugin'] } }),
     dts({
       entryRoot: 'src',

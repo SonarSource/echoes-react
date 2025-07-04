@@ -1,0 +1,56 @@
+{
+  ".code": {
+    "font": "var(--echoes-typography-code-default)"
+  },
+  ".code-highlight": {
+    "font": "var(--echoes-typography-code-highlight)"
+  },
+  ".code-comment": {
+    "font": "var(--echoes-typography-code-comment)"
+  },
+  ".heading-xs": {
+    "font": "var(--echoes-typography-heading-xsmall)"
+  },
+  ".heading-sm": {
+    "font": "var(--echoes-typography-heading-small)"
+  },
+  ".heading-md": {
+    "font": "var(--echoes-typography-heading-medium)"
+  },
+  ".heading-lg": {
+    "font": "var(--echoes-typography-heading-large)"
+  },
+  ".heading-xl": {
+    "font": "var(--echoes-typography-heading-xlarge)"
+  },
+  ".typo-default": {
+    "font": "var(--echoes-typography-text-default-regular)"
+  },
+  ".typo-semibold": {
+    "font": "var(--echoes-typography-text-default-semi-bold)"
+  },
+  ".typo-bold": {
+    "font": "var(--echoes-typography-text-default-bold)"
+  },
+  ".typo-sm": {
+    "font": "var(--echoes-typography-text-small-medium)"
+  },
+  ".typo-sm-semibold": {
+    "font": "var(--echoes-typography-text-small-semi-bold)"
+  },
+  ".typo-lg": {
+    "font": "var(--echoes-typography-text-large-regular)"
+  },
+  ".typo-lg-semibold": {
+    "font": "var(--echoes-typography-text-large-semi-bold)"
+  },
+  ".typo-label": {
+    "font": "var(--echoes-typography-others-label)"
+  },
+  ".typo-helper-text": {
+    "font": "var(--echoes-typography-others-helper-text)"
+  },
+  ".typo-display": {
+    "font": "var(--echoes-typography-display-default)"
+  }
+}
