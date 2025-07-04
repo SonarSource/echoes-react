@@ -69,3 +69,5 @@ function MessagePrefix({ type }: Pick<Props, 'type'>) {
 
   return messages[type];
 }
+
+MessagePrefix.displayName = 'MessagePrefix';
