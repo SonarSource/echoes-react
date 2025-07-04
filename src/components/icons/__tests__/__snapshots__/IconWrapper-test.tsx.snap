@@ -24,5 +24,12 @@ exports[`should render material icon correctly 1`] = `
   >
     
   </span>
+  <section
+    aria-atomic="false"
+    aria-label="Focus toasts messages with alt+T"
+    aria-live="polite"
+    aria-relevant="additions text"
+    tabindex="-1"
+  />
 </div>
 `;

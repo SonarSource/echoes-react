@@ -14,6 +14,13 @@ exports[`renders a Heading as an h1 with no bottom margin 1`] = `
   >
     This is a heading rendered as "h1" with no bottom margin
   </h1>
+  <section
+    aria-atomic="false"
+    aria-label="Focus toasts messages with alt+T"
+    aria-live="polite"
+    aria-relevant="additions text"
+    tabindex="-1"
+  />
 </div>
 `;
 
@@ -31,6 +38,13 @@ exports[`renders a Heading as an h2 with no bottom margin 1`] = `
   >
     This is a heading rendered as "h2" with no bottom margin
   </h2>
+  <section
+    aria-atomic="false"
+    aria-label="Focus toasts messages with alt+T"
+    aria-live="polite"
+    aria-relevant="additions text"
+    tabindex="-1"
+  />
 </div>
 `;
 
@@ -48,6 +62,13 @@ exports[`renders a Heading as an h3 with no bottom margin 1`] = `
   >
     This is a heading rendered as "h3" with no bottom margin
   </h3>
+  <section
+    aria-atomic="false"
+    aria-label="Focus toasts messages with alt+T"
+    aria-live="polite"
+    aria-relevant="additions text"
+    tabindex="-1"
+  />
 </div>
 `;
 
@@ -65,6 +86,13 @@ exports[`renders a Heading as an h4 with no bottom margin 1`] = `
   >
     This is a heading rendered as "h4" with no bottom margin
   </h4>
+  <section
+    aria-atomic="false"
+    aria-label="Focus toasts messages with alt+T"
+    aria-live="polite"
+    aria-relevant="additions text"
+    tabindex="-1"
+  />
 </div>
 `;
 
@@ -82,6 +110,13 @@ exports[`renders a Heading as an h5 with no bottom margin 1`] = `
   >
     This is a heading rendered as "h5" with no bottom margin
   </h5>
+  <section
+    aria-atomic="false"
+    aria-label="Focus toasts messages with alt+T"
+    aria-live="polite"
+    aria-relevant="additions text"
+    tabindex="-1"
+  />
 </div>
 `;
 
@@ -100,6 +135,13 @@ exports[`renders a Heading with size large and a bottom margin 1`] = `
   >
     This is a heading with size "large" with a bottom margin
   </div>
+  <section
+    aria-atomic="false"
+    aria-label="Focus toasts messages with alt+T"
+    aria-live="polite"
+    aria-relevant="additions text"
+    tabindex="-1"
+  />
 </div>
 `;
 
@@ -118,6 +160,13 @@ exports[`renders a Heading with size medium and a bottom margin 1`] = `
   >
     This is a heading with size "medium" with a bottom margin
   </div>
+  <section
+    aria-atomic="false"
+    aria-label="Focus toasts messages with alt+T"
+    aria-live="polite"
+    aria-relevant="additions text"
+    tabindex="-1"
+  />
 </div>
 `;
 
@@ -136,6 +185,13 @@ exports[`renders a Heading with size small and a bottom margin 1`] = `
   >
     This is a heading with size "small" with a bottom margin
   </div>
+  <section
+    aria-atomic="false"
+    aria-label="Focus toasts messages with alt+T"
+    aria-live="polite"
+    aria-relevant="additions text"
+    tabindex="-1"
+  />
 </div>
 `;
 
@@ -154,6 +210,13 @@ exports[`renders a Heading with size xlarge and a bottom margin 1`] = `
   >
     This is a heading with size "xlarge" with a bottom margin
   </div>
+  <section
+    aria-atomic="false"
+    aria-label="Focus toasts messages with alt+T"
+    aria-live="polite"
+    aria-relevant="additions text"
+    tabindex="-1"
+  />
 </div>
 `;
 
@@ -172,6 +235,13 @@ exports[`renders a Heading with size xsmall and a bottom margin 1`] = `
   >
     This is a heading with size "xsmall" with a bottom margin
   </div>
+  <section
+    aria-atomic="false"
+    aria-label="Focus toasts messages with alt+T"
+    aria-live="polite"
+    aria-relevant="additions text"
+    tabindex="-1"
+  />
 </div>
 `;
 
@@ -189,5 +259,12 @@ exports[`uses the default size 1`] = `
   >
     Text goes here
   </h1>
+  <section
+    aria-atomic="false"
+    aria-label="Focus toasts messages with alt+T"
+    aria-live="polite"
+    aria-relevant="additions text"
+    tabindex="-1"
+  />
 </div>
 `;
