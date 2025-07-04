@@ -247,13 +247,13 @@ function buildTailwindPreset() {
     echoesTypographyPlugin: tailwindTypographyPlugin,
   };
 
-  const fileContents = [
-    license,
+  const fileContents = `
+${license}
+const config = ${JSON.stringify(result, undefined, 2)};
 
-    'export default ',
-    JSON.stringify(result, undefined, 2),
-    ';\n',
-  ].join('');
+export const echoesPreset = config.echoesPreset;
+export const echoesTypographyPlugin = config.echoesTypographyPlugin;
+`;
 
   fs.writeFileSync(`${BUILD_PATH}${TAILWIND_CONFIG_FILENAME}`, fileContents);
 

@@ -1,3 +1,4 @@
+
 /**
  * Echoes React
  * Copyright (C) 2023-2025 SonarSource SA
@@ -20,7 +21,8 @@
  * GENERATED FILE: do not edit directly.
  */
 
-export default {
+
+const config = {
   "echoesPreset": {
     "theme": {
       "spacing": {
@@ -126,3 +128,6 @@ export default {
     }
   }
 };
+
+export const echoesPreset = config.echoesPreset;
+export const echoesTypographyPlugin = config.echoesTypographyPlugin;
