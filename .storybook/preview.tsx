@@ -19,6 +19,7 @@
  */
 
 import { Global, css } from '@emotion/react';
+import styled from '@emotion/styled';
 import { withThemeByDataAttribute } from '@storybook/addon-themes';
 import type { Preview } from '@storybook/react-vite';
 import { IntlProvider } from 'react-intl';
@@ -210,6 +211,13 @@ const globalStyles = css`
   p {
     margin: 0;
   }
+
+  code {
+    font: var(--echoes-typography-code-default);
+    background: var(--echoes-color-background-accent-weak-default);
+    color: var(--echoes-color-text-accent);
+    padding: 0 var(--echoes-dimension-space-200);
+  }
 `;
 
 const preview: Preview = {
@@ -241,6 +249,9 @@ const preview: Preview = {
         },
       ],
     },
+    docs: {
+      codePanel: true,
+    },
   },
   decorators: [
     withThemeByDataAttribute({
@@ -255,7 +266,9 @@ const preview: Preview = {
           <EchoesProvider>
             <Global styles={globalStyles} />
             <MemoryRouter>
-              <Story />
+              <ResetLayerStack>
+                <Story />
+              </ResetLayerStack>
             </MemoryRouter>
           </EchoesProvider>
         </IntlProvider>
@@ -264,5 +277,14 @@ const preview: Preview = {
   ],
   tags: ['autodocs'],
 };
+
+/*
+ * This ensures tooltips and other "floating" elements appended to the body are placed on top
+ * of the rest of the UI.
+ */
+const ResetLayerStack = styled.div`
+  isolation: isolate;
+  position: relative;
+`;
 
 export default preview;

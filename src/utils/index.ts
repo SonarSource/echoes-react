@@ -25,4 +25,5 @@
  *
  */
 
-export { ThemeProvider, setTheme } from './theme';
+export { setTheme, ThemeProvider } from './theme';
+export { toast, ToastDuration, ToastVariety, type ToastParams } from './toasts';
