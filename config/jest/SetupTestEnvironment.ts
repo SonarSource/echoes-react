@@ -43,3 +43,14 @@ global.ResizeObserver = jest.fn().mockImplementation((callback) => {
   callback(MockResizeObserverEntries, MockResizeObserver);
   return MockResizeObserver;
 });
+
+/*
+ * Pointer Capture API - required for Sonner toast library
+ */
+if (!Element.prototype.setPointerCapture) {
+  Element.prototype.setPointerCapture = jest.fn();
+}
+
+if (!Element.prototype.releasePointerCapture) {
+  Element.prototype.releasePointerCapture = jest.fn();
+}

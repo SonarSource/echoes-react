@@ -12,6 +12,13 @@ exports[`renders correctly 1`] = `
   >
     The label text
   </label>
+  <section
+    aria-atomic="false"
+    aria-label="Focus toasts messages with alt+T"
+    aria-live="polite"
+    aria-relevant="additions text"
+    tabindex="-1"
+  />
 </div>
 `;
 
@@ -24,6 +31,13 @@ exports[`renders correctly with isSubdued 1`] = `
 <div>
   <label
     class="emotion-0 emotion-1"
+  />
+  <section
+    aria-atomic="false"
+    aria-label="Focus toasts messages with alt+T"
+    aria-live="polite"
+    aria-relevant="additions text"
+    tabindex="-1"
   />
 </div>
 `;

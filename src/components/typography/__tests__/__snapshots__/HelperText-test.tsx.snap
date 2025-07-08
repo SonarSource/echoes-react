@@ -13,5 +13,12 @@ exports[`renders correctly 1`] = `
   >
     The helper text
   </div>
+  <section
+    aria-atomic="false"
+    aria-label="Focus toasts messages with alt+T"
+    aria-live="polite"
+    aria-relevant="additions text"
+    tabindex="-1"
+  />
 </div>
 `;
