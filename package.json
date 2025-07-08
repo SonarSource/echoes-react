@@ -2,7 +2,10 @@
   "name": "@sonarsource/echoes-react",
   "version": "1.0.0",
   "type": "module",
-  "exports": "./dist/index.js",
+  "exports": {
+    ".": "./dist/index.js",
+    "./tailwind": "./dist/tailwind.js"
+  },
   "files": [
     "dist",
     ".yarn/patches/**"
@@ -115,7 +118,8 @@
     "subset-font": "2.4.0",
     "typescript": "5.8.3",
     "vite": "6.3.5",
-    "vite-plugin-dts": "4.5.4"
+    "vite-plugin-dts": "4.5.4",
+    "vite-plugin-static-copy": "3.1.0"
   },
   "dependencies": {
     "@mantine/core": "patch:@mantine/core@7.12.2#./.yarn/patches/@mantine-core-npm-7.12.2-7aad505c0f.patch",
