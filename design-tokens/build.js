@@ -30,9 +30,14 @@ const BASE_TOKENS_NAME = `${NAME_PREFIX}base`;
 const CUSTOM_TRANSFORM_GROUP = 'sonar-design-tokens';
 const CUSTOM_FILTER_NO_COLOR = 'sonar-no-color';
 const CUSTOM_FILTER_THEMED_TOKENS = 'sonar-themed-tokens';
+const CUSTOM_FILTER_TAILWIND = 'sonar-echoes-tailwind-preset';
 const THEME_DATA_ATTRIBUTE = 'data-echoes-theme';
+const TAILWIND_CONFIG_FILENAME = 'tailwindConfig.js';
 
 const licenseHeader = fs.readFileSync(`config/license/LICENSE-HEADER.txt`, 'utf-8');
+const tailwindTypographyUtilities = JSON.parse(
+  fs.readFileSync(`design-tokens/tailwindTypographyUtilities.json`, 'utf-8'),
+);
 
 const designTokenGroups = JSON.parse(
   fs.readFileSync(`${DESIGN_TOKENS_PATH}/$themes.json`, 'utf-8'),
@@ -49,6 +54,7 @@ buildBaseTokens(baseDesignTokenGroup);
 buildThemedTokens(themedDesignTokenGroups, baseDesignTokenGroup);
 buildCSSRootFile(designTokenGroups, licenseHeader);
 buildThemesEnumType(themedDesignTokenGroups, licenseHeader);
+buildTailwindConfig();
 
 function initStyleDictionary(licenseHeader) {
   registerTransforms(StyleDictionary, { 'ts/color/modifiers': { format: 'hsl' } });
@@ -66,14 +72,23 @@ function initStyleDictionary(licenseHeader) {
 
   StyleDictionary.registerFilter({
     name: CUSTOM_FILTER_NO_COLOR,
-    matcher: ({ attributes }) => attributes.category !== 'color',
+    matcher: ({ attributes }) =>
+      attributes.type !== 'color' || // Exclude colors
+      attributes.item === 'support', // but keep the support colors (black, white, transparent)
+  });
+
+  StyleDictionary.registerFilter({
+    name: CUSTOM_FILTER_TAILWIND,
+    matcher: ({ attributes: { type, item } }) => {
+      return type === 'dimension' && ['space', 'width', 'height'].includes(item);
+    },
   });
 
   StyleDictionary.registerFilter({
     name: CUSTOM_FILTER_THEMED_TOKENS,
     matcher: ({ attributes, filePath }) =>
       !filePath.includes(`layer1`) &&
-      !(filePath.endsWith('base.json') && attributes.category !== 'color'),
+      !(filePath.endsWith('base.json') && attributes.type !== 'color'),
   });
 
   StyleDictionary.registerFileHeader({
@@ -113,6 +128,14 @@ function buildBaseTokens(tokenGroup) {
             destination: `${NAME_PREFIX}${tokenGroup.name}.json`,
             format: 'json/nested',
             filter: CUSTOM_FILTER_NO_COLOR,
+            options: {
+              fileHeader: 'licence-header',
+            },
+          },
+          {
+            destination: TAILWIND_CONFIG_FILENAME,
+            filter: CUSTOM_FILTER_TAILWIND,
+            format: 'javascript/module-flat',
             options: {
               fileHeader: 'licence-header',
             },
@@ -203,4 +226,52 @@ function buildThemesEnumType(themedTokenGroups, license) {
   fs.writeFileSync(`${BUILD_PATH}themes.ts`, themesEnumFileContent);
 
   console.log(`Themes enum TS type build done.`);
+}
+
+// Build tailwind config: provides utilities to be used in a plugin, as well as a preset
+function buildTailwindConfig() {
+  console.log('\nBuilding tailwind config...');
+
+  const content = fs.readFileSync(`${BUILD_PATH}${TAILWIND_CONFIG_FILENAME}`, 'utf-8');
+
+  // Preserve the license and the json but get rid of the `module.exports`
+  const [license, json] = content.split('module.exports = ');
+
+  const jsonTokens = JSON.parse(json.replace(';', ''));
+
+  const spacing = mapTokens(jsonTokens, 'space');
+  const width = mapTokens(jsonTokens, 'width');
+  const height = mapTokens(jsonTokens, 'height');
+
+  const result = {
+    echoesPreset: {
+      theme: { spacing, height, width },
+    },
+    echoesTypographyUtilities: tailwindTypographyUtilities,
+  };
+
+  const fileContents = `
+${license}
+const config = ${JSON.stringify(result, undefined, 2)};
+
+export const echoesPreset = config.echoesPreset;
+export const echoesTypographyUtilities = config.echoesTypographyUtilities;
+`;
+
+  fs.writeFileSync(`${BUILD_PATH}${TAILWIND_CONFIG_FILENAME}`, fileContents);
+
+  console.log(`Tailwind config build done.`);
+}
+
+function mapTokens(tokens, filter) {
+  return Object.keys(tokens)
+    .filter((key) => key.includes(filter))
+    .reduce((acc, key) => {
+      const value = tokens[key];
+      const index = key.split('-').pop();
+
+      acc[index] = `var(--${key}, ${value})`;
+
+      return acc;
+    }, {});
 }
