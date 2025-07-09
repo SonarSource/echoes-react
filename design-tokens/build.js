@@ -243,6 +243,9 @@ function buildTailwindConfig() {
   const width = mapTokens(jsonTokens, 'width');
   const height = mapTokens(jsonTokens, 'height');
 
+  addCoreTokens(height);
+  addCoreTokens(width);
+
   const result = {
     echoesPreset: {
       theme: { spacing, height, width },
@@ -274,4 +277,25 @@ function mapTokens(tokens, filter) {
 
       return acc;
     }, {});
+}
+
+function addCoreTokens(tokens) {
+  tokens['0'] = '0px';
+
+  tokens.auto = 'auto';
+  tokens.fit = 'fit-content';
+  tokens.min = 'min-content';
+  tokens.max = 'max-content';
+
+  tokens['1/2'] = '50%';
+  tokens['1/3'] = '33.333333%';
+  tokens['2/3'] = '66.666667%';
+  tokens['1/4'] = '25%';
+  tokens['2/4'] = '50%';
+  tokens['3/4'] = '75%';
+  tokens['1/5'] = '20%';
+  tokens['2/5'] = '40%';
+  tokens['3/5'] = '60%';
+  tokens['4/5'] = '80%';
+  tokens.full = '100%';
 }

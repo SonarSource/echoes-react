@@ -41,6 +41,7 @@ const config = {
         "800": "var(--echoes-dimension-space-800, 4rem)"
       },
       "height": {
+        "0": "0px",
         "100": "var(--echoes-dimension-height-100, 0.25rem)",
         "150": "var(--echoes-dimension-height-150, 0.375rem)",
         "200": "var(--echoes-dimension-height-200, 0.5rem)",
@@ -49,10 +50,25 @@ const config = {
         "600": "var(--echoes-dimension-height-600, 1.5rem)",
         "800": "var(--echoes-dimension-height-800, 2rem)",
         "900": "var(--echoes-dimension-height-900, 2.25rem)",
-        "1000": "var(--echoes-dimension-height-1000, 2.5rem)"
+        "1000": "var(--echoes-dimension-height-1000, 2.5rem)",
+        "auto": "auto",
+        "fit": "fit-content",
+        "min": "min-content",
+        "max": "max-content",
+        "1/2": "50%",
+        "1/3": "33.333333%",
+        "2/3": "66.666667%",
+        "1/4": "25%",
+        "2/4": "50%",
+        "3/4": "75%",
+        "1/5": "20%",
+        "2/5": "40%",
+        "3/5": "60%",
+        "4/5": "80%",
+        "full": "100%"
       },
       "width": {
-        "0": "var(--echoes-dimension-width-0, 0px)",
+        "0": "0px",
         "25": "var(--echoes-dimension-width-25, 0.125rem)",
         "50": "var(--echoes-dimension-width-50, 0.25rem)",
         "75": "var(--echoes-dimension-width-75, 0.375rem)",
@@ -67,7 +83,22 @@ const config = {
         "600": "var(--echoes-dimension-width-600, 3rem)",
         "700": "var(--echoes-dimension-width-700, 3.5rem)",
         "800": "var(--echoes-dimension-width-800, 4rem)",
-        "5000": "var(--echoes-dimension-width-5000, 25rem)"
+        "5000": "var(--echoes-dimension-width-5000, 25rem)",
+        "auto": "auto",
+        "fit": "fit-content",
+        "min": "min-content",
+        "max": "max-content",
+        "1/2": "50%",
+        "1/3": "33.333333%",
+        "2/3": "66.666667%",
+        "1/4": "25%",
+        "2/4": "50%",
+        "3/4": "75%",
+        "1/5": "20%",
+        "2/5": "40%",
+        "3/5": "60%",
+        "4/5": "80%",
+        "full": "100%"
       }
     }
   },
