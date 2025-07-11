@@ -115,6 +115,8 @@ export const BannerContentText = styled.div`
   display: flex;
   align-items: center;
   gap: var(--echoes-dimension-space-50);
+  padding: var(--echoes-dimension-space-50);
+  margin-left: calc(-1 * var(--echoes-dimension-space-50));
 
   ${truncate}
 `;

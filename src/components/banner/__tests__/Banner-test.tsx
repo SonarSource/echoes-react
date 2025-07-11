@@ -19,9 +19,8 @@
  */
 
 import { screen } from '@testing-library/react';
-import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import { screenReaderOnly } from '~common/helpers/styles';
-import { render } from '~common/helpers/test-utils';
+import { renderWithMemoryRouter } from '~common/helpers/test-utils';
 import { Link } from '../../links';
 import { Banner } from '../Banner';
 import { BannerProps, BannerType } from '../BannerTypes';
@@ -82,29 +81,19 @@ it('should add custom screen reader prefix when provided', () => {
 });
 
 it('should correctly support Links in the banner content', async () => {
-  const { user } = render(
-    <MemoryRouter initialEntries={['/initial']}>
-      <Routes>
-        <Route
-          element={
-            <Banner type={BannerType.Info}>
-              Banner with <Link to="/test">link</Link>
-            </Banner>
-          }
-          path="/initial"
-        />
-        <Route element={<>Test page</>} path="/test" />
-      </Routes>
-    </MemoryRouter>,
+  const { user } = renderWithMemoryRouter(
+    <Banner type={BannerType.Info}>
+      Banner with <Link to="/second">link</Link>
+    </Banner>,
   );
 
   expect(screen.getByRole('link', { name: 'link' })).toBeInTheDocument();
   await user.click(screen.getByRole('link', { name: 'link' }));
-  expect(screen.getByText('Test page')).toBeInTheDocument();
+  expect(screen.getByText('/second')).toBeInTheDocument();
 });
 
 function setupBanner({ children, ...props }: Partial<BannerProps> = {}) {
-  return render(
+  return renderWithMemoryRouter(
     <Banner type={BannerType.Info} {...props}>
       {children ?? 'Default Banner Content'}
     </Banner>,
