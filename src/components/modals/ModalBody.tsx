@@ -19,7 +19,7 @@
  */
 
 import styled from '@emotion/styled';
-import { PropsWithChildren, useCallback, useMemo, useState } from 'react';
+import { PropsWithChildren, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { PortalContext } from '../../common/components/PortalContext';
 
 interface Props {
@@ -29,20 +29,30 @@ interface Props {
 export function ModalBody(props: PropsWithChildren<Props>) {
   const { children, isLast = false } = props;
   const [showBottomShadow, setShowBottomShadow] = useState(false);
+  const shadowRef = useRef<HTMLDivElement | null>(null);
 
-  const handleScroll = useCallback((event: React.UIEvent<HTMLDivElement>) => {
-    const { scrollHeight, clientHeight, scrollTop } = event?.currentTarget ?? {};
-    setShowBottomShadow(scrollTop + clientHeight < scrollHeight - 16); // -16px for bottom padding
+  const updateShadow = useCallback(() => {
+    if (shadowRef.current) {
+      const { scrollHeight, clientHeight, scrollTop } = shadowRef.current;
+      setShowBottomShadow(scrollTop + clientHeight < scrollHeight - 16); // -16px for bottom padding
+    }
   }, []);
 
   const initShadows = useCallback(
     (node: HTMLDivElement) => {
       if (node) {
-        handleScroll({ currentTarget: node } as React.UIEvent<HTMLDivElement>);
+        shadowRef.current = node;
+        updateShadow();
       }
     },
-    [handleScroll],
+    [updateShadow],
   );
+
+  useEffect(() => {
+    window.addEventListener('resize', updateShadow);
+
+    return () => window.removeEventListener('resize', updateShadow);
+  }, [updateShadow]);
 
   const [portalRef, setPortalRef] = useState<HTMLDivElement | null>(null);
 
@@ -55,7 +65,7 @@ export function ModalBody(props: PropsWithChildren<Props>) {
     <>
       <PortalContext.Provider value={modalContextProviderValue}>
         <ModalBodyWrapper isLast={isLast}>
-          <ModalBodyInner onScroll={handleScroll} ref={initShadows}>
+          <ModalBodyInner onScroll={updateShadow} ref={initShadows}>
             {children}
           </ModalBodyInner>
 

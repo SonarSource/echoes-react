@@ -109,7 +109,8 @@ const RAW_RUNTIME_STATE =
           ["subset-font", "npm:2.4.0"],\
           ["typescript", "patch:typescript@npm%3A5.8.3#optional!builtin<compat/typescript>::version=5.8.3&hash=5786d5"],\
           ["vite", "virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#npm:6.3.5"],\
-          ["vite-plugin-dts", "virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#npm:4.5.4"]\
+          ["vite-plugin-dts", "virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#npm:4.5.4"],\
+          ["vite-plugin-static-copy", "virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#npm:3.1.0"]\
         ],\
         "linkType": "SOFT"\
       }]\
@@ -6349,7 +6350,8 @@ const RAW_RUNTIME_STATE =
           ["subset-font", "npm:2.4.0"],\
           ["typescript", "patch:typescript@npm%3A5.8.3#optional!builtin<compat/typescript>::version=5.8.3&hash=5786d5"],\
           ["vite", "virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#npm:6.3.5"],\
-          ["vite-plugin-dts", "virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#npm:4.5.4"]\
+          ["vite-plugin-dts", "virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#npm:4.5.4"],\
+          ["vite-plugin-static-copy", "virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#npm:3.1.0"]\
         ],\
         "linkType": "SOFT"\
       }]\
@@ -8710,6 +8712,15 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["binary-extensions", [\
+      ["npm:2.3.0", {\
+        "packageLocation": "./.yarn/cache/binary-extensions-npm-2.3.0-bd3f20d865-bcad01494e.zip/node_modules/binary-extensions/",\
+        "packageDependencies": [\
+          ["binary-extensions", "npm:2.3.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["brace-expansion", [\
       ["npm:1.1.12", {\
         "packageLocation": "./.yarn/cache/brace-expansion-npm-1.1.12-329e9ad7a1-12cb6d6310.zip/node_modules/brace-expansion/",\
@@ -8978,6 +8989,23 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./.yarn/cache/check-error-npm-2.1.1-34e4ef357e-d785ed17b1.zip/node_modules/check-error/",\
         "packageDependencies": [\
           ["check-error", "npm:2.1.1"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["chokidar", [\
+      ["npm:3.6.0", {\
+        "packageLocation": "./.yarn/cache/chokidar-npm-3.6.0-3c413a828f-c327fb0770.zip/node_modules/chokidar/",\
+        "packageDependencies": [\
+          ["anymatch", "npm:3.1.3"],\
+          ["braces", "npm:3.0.3"],\
+          ["chokidar", "npm:3.6.0"],\
+          ["fsevents", "patch:fsevents@npm%3A2.3.3#optional!builtin<compat/fsevents>::version=2.3.3&hash=df0bf1"],\
+          ["glob-parent", "npm:5.1.2"],\
+          ["is-binary-path", "npm:2.1.0"],\
+          ["is-glob", "npm:4.0.3"],\
+          ["normalize-path", "npm:3.0.0"],\
+          ["readdirp", "npm:3.6.0"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -11532,6 +11560,16 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["has-bigints", "npm:1.1.0"],\
           ["is-bigint", "npm:1.1.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["is-binary-path", [\
+      ["npm:2.1.0", {\
+        "packageLocation": "./.yarn/cache/is-binary-path-npm-2.1.0-e61d46f557-078e51b4f9.zip/node_modules/is-binary-path/",\
+        "packageDependencies": [\
+          ["binary-extensions", "npm:2.3.0"],\
+          ["is-binary-path", "npm:2.1.0"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -14703,6 +14741,16 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["readdirp", [\
+      ["npm:3.6.0", {\
+        "packageLocation": "./.yarn/cache/readdirp-npm-3.6.0-f950cc74ab-196b30ef6c.zip/node_modules/readdirp/",\
+        "packageDependencies": [\
+          ["picomatch", "npm:2.3.1"],\
+          ["readdirp", "npm:3.6.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["recast", [\
       ["npm:0.23.11", {\
         "packageLocation": "./.yarn/cache/recast-npm-0.23.11-1ecce54038-a622b7848e.zip/node_modules/recast/",\
@@ -16792,6 +16840,33 @@ const RAW_RUNTIME_STATE =
           "@types/typescript",\
           "@types/vite",\
           "typescript",\
+          "vite"\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["vite-plugin-static-copy", [\
+      ["npm:3.1.0", {\
+        "packageLocation": "./.yarn/cache/vite-plugin-static-copy-npm-3.1.0-e7c0b827df-7e536b11d1.zip/node_modules/vite-plugin-static-copy/",\
+        "packageDependencies": [\
+          ["vite-plugin-static-copy", "npm:3.1.0"]\
+        ],\
+        "linkType": "SOFT"\
+      }],\
+      ["virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#npm:3.1.0", {\
+        "packageLocation": "./.yarn/__virtual__/vite-plugin-static-copy-virtual-4278cab441/0/cache/vite-plugin-static-copy-npm-3.1.0-e7c0b827df-7e536b11d1.zip/node_modules/vite-plugin-static-copy/",\
+        "packageDependencies": [\
+          ["@types/vite", null],\
+          ["chokidar", "npm:3.6.0"],\
+          ["fs-extra", "npm:11.3.0"],\
+          ["p-map", "npm:7.0.3"],\
+          ["picocolors", "npm:1.1.1"],\
+          ["tinyglobby", "npm:0.2.14"],\
+          ["vite", "virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#npm:6.3.5"],\
+          ["vite-plugin-static-copy", "virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#npm:3.1.0"]\
+        ],\
+        "packagePeers": [\
+          "@types/vite",\
           "vite"\
         ],\
         "linkType": "HARD"\

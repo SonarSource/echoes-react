@@ -150,6 +150,7 @@ const StyledLeftHandSide = styled.div`
   align-items: center;
   column-gap: var(--echoes-dimension-space-100);
   display: flex;
+  min-width: 0; // Necessary for ellipsis
   flex: 1 1 auto;
   justify-content: flex-start;
 `;
@@ -164,6 +165,8 @@ const StyledLabelAndHelpText = styled.div`
 `;
 
 const StyledLabel = styled.span`
+  overflow: hidden;
+
   &,
   * {
     text-overflow: ellipsis;
@@ -197,10 +200,6 @@ const StyledRadixDropdownMenuItem = styled(radixDropdownMenu.Item)`
   padding: var(--echoes-dimension-space-100) var(--echoes-dimension-space-150);
 
   cursor: pointer;
-
-  * {
-    overflow: hidden;
-  }
 
   &:focus-visible {
     border-radius: var(--echoes-border-radius-400);

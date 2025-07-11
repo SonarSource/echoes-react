@@ -25,7 +25,7 @@ import { forwardRef, useContext, useEffect, useId } from 'react';
 import { useIntl } from 'react-intl';
 import { isDefined, isStringDefined } from '~common/helpers/types';
 import { useForwardedRefWithState } from '~common/helpers/useForwardedRef';
-import { PropsWithLabels } from '~types/utils';
+import { PropsWithLabels, TextNodeOptional } from '~types/utils';
 import { IconChevronDown, IconX, Spinner } from '..';
 import { PortalContext } from '../../common/components/PortalContext';
 import {
@@ -47,6 +47,7 @@ export interface SelectBaseProps extends ValidationProps, FormFieldPropsSubset {
   defaultValue?: MantineSelectProps['defaultValue'];
   filter?: SelectFilterFunction;
   hasDropdownAutoWidth?: boolean;
+  helpText?: TextNodeOptional;
   highlight?: SelectHighlight;
   isDisabled?: boolean;
   isLoading?: boolean;

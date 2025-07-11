@@ -26,15 +26,20 @@ import {
   iconsElementsArgType,
   toDisabledControlArgType,
 } from '../helpers/arg-types';
+import { basicWrapperDecorator } from '../helpers/BasicWrapper';
 
 const meta: Meta<typeof Select> = {
   component: Select,
   title: 'Echoes/Select/Select',
+  args: {
+    width: 'large',
+  },
   argTypes: {
     ...formFieldsArgTypes,
     valueIcon: iconsElementsArgType,
     ...toDisabledControlArgType('onChange', 'onOpen'),
   },
+  decorators: [basicWrapperDecorator],
 };
 
 export default meta;
@@ -103,6 +108,16 @@ export const Plain: Story = {
     data,
     isRequired: true,
     width: FormFieldWidth.Medium,
+  },
+  render: (args) => <SelectContainer {...args} />,
+};
+
+export const HelpTextNoLabel: Story = {
+  args: {
+    label: undefined,
+    helpText: 'This is very helpful information',
+    data,
+    optionComponent: Custom,
   },
   render: (args) => <SelectContainer {...args} />,
 };

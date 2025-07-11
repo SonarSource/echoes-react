@@ -23,7 +23,7 @@ import { ComponentProps } from 'react';
 import { render } from '~common/helpers/test-utils';
 import { Tooltip } from '../../tooltip';
 import { MessageInline } from '../MessageInline';
-import { MessageType } from '../MessageTypes';
+import { MessageVariety } from '../MessageTypes';
 
 it('should show a message', async () => {
   const { container } = setupMessageInline({ children: 'Fancy Content' });
@@ -33,13 +33,13 @@ it('should show a message', async () => {
 });
 
 it.each([
-  [MessageType.Danger, 'Error:'],
-  [MessageType.Discover, 'Hint:'],
-  [MessageType.Info, 'Information:'],
-  [MessageType.Success, 'Success:'],
-  [MessageType.Warning, 'Warning:'],
-])('should indicate the message is of type %s', (type, expectedPrefix) => {
-  setupMessageInline({ type });
+  [MessageVariety.Danger, 'Error:'],
+  [MessageVariety.Discover, 'Hint:'],
+  [MessageVariety.Info, 'Information:'],
+  [MessageVariety.Success, 'Success:'],
+  [MessageVariety.Warning, 'Warning:'],
+])('should indicate the message is of variety %s', (variety, expectedPrefix) => {
+  setupMessageInline({ variety });
 
   expect(screen.getByText(expectedPrefix)).toBeInTheDocument();
 });
@@ -47,7 +47,7 @@ it.each([
 it('should correctly support tooltips', async () => {
   const { user } = render(
     <Tooltip content="my tooltip">
-      <MessageInline type={MessageType.Info}>Look at my tooltip</MessageInline>
+      <MessageInline variety={MessageVariety.Info}>Look at my tooltip</MessageInline>
     </Tooltip>,
   );
 
@@ -60,7 +60,7 @@ function setupMessageInline({
   ...props
 }: Partial<ComponentProps<typeof MessageInline>>) {
   return render(
-    <MessageInline type={MessageType.Info} {...props}>
+    <MessageInline variety={MessageVariety.Info} {...props}>
       {children}
     </MessageInline>,
   );

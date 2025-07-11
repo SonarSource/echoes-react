@@ -18,14 +18,14 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 import styled from '@emotion/styled';
-import { forwardRef, ReactNode, useMemo } from 'react';
+import { forwardRef, PropsWithChildren, ReactNode, useMemo } from 'react';
 import { useIntl } from 'react-intl';
 import { DismissButton } from '~common/components/DismissButton';
 import { isDefined } from '~common/helpers/types';
 import { MessageScreenReaderPrefix } from './MessageScreenReaderPrefix';
 import {
-  MESSAGE_CALLOUT_TYPE_STYLE,
-  MESSAGE_TYPE_ICON,
+  MESSAGE_CALLOUT_VARIETY_STYLE,
+  MESSAGE_VARIETY_ICON,
   MessageCalloutContainer,
   MessageCalloutFooter,
   MessageCalloutIconWrapper,
@@ -33,21 +33,28 @@ import {
   MessageCalloutTextWrapper,
   MessageCalloutTitleWrapper,
 } from './MessageStyles';
-import { MessageType } from './MessageTypes';
+import { MessageVariety } from './MessageTypes';
 
-export interface MessageProps {
+export interface MessageProps extends PropsWithChildren {
   action?: ReactNode;
   className?: string;
   onDismiss?: VoidFunction;
   screenReaderPrefix?: string;
-  text: ReactNode;
   title?: string;
-  type: `${MessageType}`;
+  variety: `${MessageVariety}`;
 }
 
 export const MessageCallout = forwardRef<HTMLDivElement, MessageProps>((props, ref) => {
-  const { action, className, onDismiss, screenReaderPrefix, text, title, type, ...radixProps } =
-    props;
+  const {
+    action,
+    children,
+    className,
+    onDismiss,
+    screenReaderPrefix,
+    title,
+    variety,
+    ...radixProps
+  } = props;
   const isDismissable = isDefined(onDismiss);
 
   const intl = useIntl();
@@ -55,17 +62,20 @@ export const MessageCallout = forwardRef<HTMLDivElement, MessageProps>((props, r
   return (
     <MessageCalloutContainer
       className={className}
-      css={useMemo(() => MESSAGE_CALLOUT_TYPE_STYLE[type], [type])}
+      css={useMemo(() => MESSAGE_CALLOUT_VARIETY_STYLE[variety], [variety])}
       ref={ref}
       {...radixProps}>
       <MessageCalloutMainContent>
         <MessageCalloutIconWrapper addMargin={isDefined(title)}>
-          {MESSAGE_TYPE_ICON[type]}
+          {MESSAGE_VARIETY_ICON[variety]}
         </MessageCalloutIconWrapper>
+
         <MessageCalloutTextWrapper>
-          <MessageScreenReaderPrefix screenReaderPrefix={screenReaderPrefix} type={type} />
+          <MessageScreenReaderPrefix screenReaderPrefix={screenReaderPrefix} variety={variety} />
+
           {isDefined(title) && <MessageCalloutTitleWrapper>{title}</MessageCalloutTitleWrapper>}
-          <div>{text}</div>
+
+          <div>{children}</div>
         </MessageCalloutTextWrapper>
 
         {isDismissable && (
@@ -79,10 +89,12 @@ export const MessageCallout = forwardRef<HTMLDivElement, MessageProps>((props, r
           />
         )}
       </MessageCalloutMainContent>
+
       {isDefined(action) && <MessageCalloutFooter>{action}</MessageCalloutFooter>}
     </MessageCalloutContainer>
   );
 });
+
 MessageCallout.displayName = 'MessageCallout';
 
 const MessageCalloutDismissButton = styled(DismissButton)`

@@ -19,34 +19,34 @@
  */
 import styled from '@emotion/styled';
 import { IconCheckCircle, IconError, IconInfo, IconQuestionMark, IconWarning } from '../icons';
-import { MessageType } from './MessageTypes';
+import { MessageVariety } from './MessageTypes';
 
-export const MESSAGE_TYPE_ICON = {
-  [MessageType.Info]: <IconInfo color="echoes-color-icon-info" />,
-  [MessageType.Danger]: <IconError color="echoes-color-icon-danger" />,
-  [MessageType.Warning]: <IconWarning color="echoes-color-icon-warning" />,
-  [MessageType.Success]: <IconCheckCircle color="echoes-color-icon-success" />,
-  [MessageType.Discover]: <IconQuestionMark color="echoes-color-icon-accent" />,
+export const MESSAGE_VARIETY_ICON = {
+  [MessageVariety.Info]: <IconInfo color="echoes-color-icon-info" />,
+  [MessageVariety.Danger]: <IconError color="echoes-color-icon-danger" />,
+  [MessageVariety.Warning]: <IconWarning color="echoes-color-icon-warning" />,
+  [MessageVariety.Success]: <IconCheckCircle color="echoes-color-icon-success" />,
+  [MessageVariety.Discover]: <IconQuestionMark color="echoes-color-icon-accent" />,
 };
 
-export const MESSAGE_CALLOUT_TYPE_STYLE = {
-  [MessageType.Info]: {
+export const MESSAGE_CALLOUT_VARIETY_STYLE = {
+  [MessageVariety.Info]: {
     '--message-background': 'var(--echoes-color-background-info-weak-default)',
     '--message-title-color': 'var(--echoes-color-text-info-bold)',
   },
-  [MessageType.Danger]: {
+  [MessageVariety.Danger]: {
     '--message-background': 'var(--echoes-color-background-danger-weak-default)',
     '--message-title-color': 'var(--echoes-color-text-danger-bold)',
   },
-  [MessageType.Warning]: {
+  [MessageVariety.Warning]: {
     '--message-background': 'var(--echoes-color-background-warning-weak-default)',
     '--message-title-color': 'var(--echoes-color-text-warning-bold)',
   },
-  [MessageType.Success]: {
+  [MessageVariety.Success]: {
     '--message-background': 'var(--echoes-color-background-success-weak-default)',
     '--message-title-color': 'var(--echoes-color-text-success-bold)',
   },
-  [MessageType.Discover]: {
+  [MessageVariety.Discover]: {
     '--message-background': 'var(--echoes-color-background-accent-weak-default)',
     '--message-title-color': 'var(--echoes-color-text-accent-bold)',
   },

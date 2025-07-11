@@ -23,7 +23,7 @@ import * as radixDropdownMenu from '@radix-ui/react-dropdown-menu';
 import { ReactNode, forwardRef, useContext } from 'react';
 import { truncate } from '~common/helpers/styles';
 import { isDefined } from '~common/helpers/types';
-import { PropsLabel } from '~types/utils';
+import { PropsLabelAndHelpText } from '~types/utils';
 import { THEME_DATA_ATTRIBUTE, ThemeContext } from '~utils/theme';
 import { PortalContext } from '../../common/components/PortalContext';
 import { HelperText, Label } from '../typography';
@@ -47,7 +47,7 @@ export interface DropdownMenuProps extends radixDropdownMenu.DropdownMenuTrigger
   align?: DropdownMenuAlign;
   children: ReactNode;
   className?: string;
-  header?: Pick<PropsLabel, 'helpText' | 'label'> & { suffix?: ReactNode };
+  header?: Pick<PropsLabelAndHelpText, 'helpText' | 'label'> & { suffix?: ReactNode };
   id?: string;
   isDisabled?: boolean;
   isModal?: boolean;

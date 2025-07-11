@@ -21,7 +21,7 @@
 import { screen } from '@testing-library/react';
 import { PointerEventsCheckLevel } from '@testing-library/user-event';
 import { ComponentProps } from 'react';
-import { OmitPropsWithLabels, render } from '~common/helpers/test-utils';
+import { OmitPropsWithLabelsAndHelpText, render } from '~common/helpers/test-utils';
 import { Tooltip } from '../../tooltip';
 import { Checkbox } from '../Checkbox';
 
@@ -146,7 +146,7 @@ it('should correctly support tooltips', async () => {
   expect(screen.getByRole('tooltip', { name: 'my tooltip' })).toBeInTheDocument();
 });
 
-function setupCheckbox(props: OmitPropsWithLabels<typeof Checkbox>) {
+function setupCheckbox(props: OmitPropsWithLabelsAndHelpText<typeof Checkbox>) {
   const { rerender: rtlRerender, ...rest } = render(
     <Checkbox checked onCheck={jest.fn()} {...props} />,
     undefined,
@@ -156,7 +156,7 @@ function setupCheckbox(props: OmitPropsWithLabels<typeof Checkbox>) {
   );
   return {
     rerender(override: Partial<ComponentProps<typeof Checkbox>>) {
-      const newProps = { ...props, ...override } as OmitPropsWithLabels<typeof Checkbox>;
+      const newProps = { ...props, ...override } as OmitPropsWithLabelsAndHelpText<typeof Checkbox>;
       rtlRerender(<Checkbox checked onCheck={jest.fn()} {...newProps} />);
     },
     ...rest,
