@@ -132,7 +132,8 @@
     "@radix-ui/react-tooltip": "1.2.7",
     "@radix-ui/react-visually-hidden": "1.2.3",
     "classnames": "2.5.1",
-    "react-joyride": "2.9.3"
+    "react-joyride": "2.9.3",
+    "sonner": "2.0.5"
   },
   "resolutions": {
     "ast-types": "patch:ast-types@npm%3A0.16.1#./.yarn/patches/ast-types-npm-0.16.1-596f974e68.patch",

@@ -62,8 +62,8 @@ const ARROW_PADDING = 12;
  * The easiest way to start a new Stacking Context is to provide it with the following CSS properties:
  *
  * ```CSS
+ *   isolation: isolate;
  *   position: relative;
- *   z-index: 0;
  * ```
  *
  * Since the tooltips are appended to the body, they are in the root Stacking Context. If other elements are also there, the z-index will determine which appears on top. By creating a new Stacking Context for your app, it ensures that z-indexed elements will stay within that context, while tooltips will be painted on top, in the parent Stacking Context.
