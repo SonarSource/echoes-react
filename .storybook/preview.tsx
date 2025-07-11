@@ -263,14 +263,14 @@ const preview: Preview = {
     (Story) => {
       return (
         <IntlProvider defaultLocale="en-us" locale="en-us">
-          <EchoesProvider>
-            <Global styles={globalStyles} />
-            <MemoryRouter>
+          <MemoryRouter future={{ v7_relativeSplatPath: true, v7_startTransition: true }}>
+            <EchoesProvider>
+              <Global styles={globalStyles} />
               <ResetLayerStack>
                 <Story />
               </ResetLayerStack>
-            </MemoryRouter>
-          </EchoesProvider>
+            </EchoesProvider>
+          </MemoryRouter>
         </IntlProvider>
       );
     },
