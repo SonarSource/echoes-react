@@ -113,7 +113,7 @@
     "style-dictionary": "3.9.2",
     "subset-font": "2.4.0",
     "typescript": "5.8.3",
-    "vite": "6.3.5",
+    "vite": "7.0.2",
     "vite-plugin-dts": "4.5.4"
   },
   "dependencies": {
