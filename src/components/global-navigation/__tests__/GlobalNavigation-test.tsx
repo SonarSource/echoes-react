@@ -92,5 +92,11 @@ describe('GlobalNavigation.Home', () => {
 });
 
 const setupWithMemoryRouter = (children: React.ReactNode) => {
-  return render(<MemoryRouter initialEntries={['/initial']}>{children}</MemoryRouter>);
+  return render(
+    <MemoryRouter
+      future={{ v7_relativeSplatPath: true, v7_startTransition: true }}
+      initialEntries={['/initial']}>
+      {children}
+    </MemoryRouter>,
+  );
 };
