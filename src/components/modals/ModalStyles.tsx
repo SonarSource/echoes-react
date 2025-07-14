@@ -58,7 +58,7 @@ export const styleModalTitle = styled.h2`
   min-height: var(--echoes-dimension-height-800);
   line-height: var(--echoes-dimension-height-800);
   margin: var(--echoes-dimension-space-0);
-  padding: var(--echoes-dimension-space-400) var(--echoes-dimension-space-400);
+  padding: var(--echoes-dimension-space-300);
   padding-bottom: var(--echoes-dimension-space-0);
   overflow-wrap: break-word;
 `.withComponent;
@@ -79,6 +79,7 @@ export const ModalFooter = styled.footer`
   justify-content: space-between;
   align-items: center;
 
-  padding: var(--echoes-dimension-space-400);
+  padding: var(--echoes-dimension-space-300);
+  padding-top: var(--echoes-dimension-space-150);
 `;
 ModalFooter.displayName = 'ModalFooter';
