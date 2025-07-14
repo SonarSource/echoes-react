@@ -18,6 +18,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+/* eslint-disable no-console */
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { ComponentProps, useCallback, useState } from 'react';
 import { Button, ButtonVariety, ModalAlert } from '../src';
@@ -51,7 +52,6 @@ export const Basic: Story = {
     description:
       'This is a more complete explanation to detail the concepts and practices that are required to understand said explanation. It is fairly easy to assess how this important text is made important by its self-sufficient importance.',
     secondaryButtonLabel: 'Cancel',
-    // secondaryButton: <Button variety={ButtonVariety.DangerGhost}>asrgewg</Button>,
   },
   render: (args) => (
     <ModalAlert {...args}>
@@ -89,6 +89,9 @@ function Controller(args: ComponentProps<typeof ModalAlert>) {
     <ModalAlert
       {...args}
       isOpen={open}
+      onClose={() => {
+        console.log('Modal closed');
+      }}
       onOpenChange={setOpen}
       primaryButton={
         <Button isLoading={loading} onClick={doThing} variety={ButtonVariety.Primary}>
