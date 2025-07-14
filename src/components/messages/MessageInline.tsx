@@ -41,7 +41,7 @@ export const MessageInline = forwardRef<HTMLDivElement, PropsWithChildren<Props>
       ref={ref}
       size={size}
       {...radixProps}>
-      {MESSAGE_VARIETY_ICON[variety]}
+      <span>{MESSAGE_VARIETY_ICON[variety]}</span>
       <MessageInlineTextWrapper>
         <MessageScreenReaderPrefix screenReaderPrefix={screenReaderPrefix} variety={variety} />
         {children}
@@ -75,12 +75,15 @@ const MESSAGE_INLINE_FONT = {
 };
 
 const MessageInlineContainer = styled.span<Pick<Props, 'size'>>`
+  display: inline-flex;
+  align-items: start;
+  gap: var(--echoes-dimension-space-50);
+
   ${({ size }) => (size ? `font: ${MESSAGE_INLINE_FONT[size]};` : '')}
 `;
 MessageInlineContainer.displayName = 'MessageInlineContainer';
 
 const MessageInlineTextWrapper = styled.span`
-  padding-left: var(--echoes-dimension-space-50);
   color: var(--message-text-color);
 `;
 MessageInlineTextWrapper.displayName = 'MessageInlineTextWrapper';
