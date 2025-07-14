@@ -183,10 +183,14 @@ it.each([FormFieldValidation.Invalid, FormFieldValidation.None])(
 );
 
 it.each(Object.values(FormFieldWidth))('sets the width of the form field to %s', (width) => {
-  const { container } = render(
+  render(
     <FormField width={width}>
       <input />
     </FormField>,
   );
-  expect(container).toHaveStyle({ width: `var(--echoes-sizes-form-field-${width})` });
+
+  // eslint-disable-next-line testing-library/no-node-access
+  expect(screen.getByRole('textbox').parentElement).toHaveStyle({
+    width: `var(--echoes-sizes-form-field-${width})`,
+  });
 });
