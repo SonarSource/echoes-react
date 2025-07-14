@@ -13,7 +13,6 @@ For more details, refer to the [internal versioning strategy](https://docs.googl
 - Create a new branch for the release and maintenance following the name convention `branch-x.y`
 
 - [Publish a new GitHub release](https://github.com/SonarSource/echoes-react/releases/new) targeting the release branch
-
   - Tag version: `x.y.z-build_number`
     - find it in the `repox-main` Github check, where it says `Latest promoted build of '0.13.0-2686' from branch 'main'`
   - Release title: `@sonarsource/echoes-react - x.y.z`
@@ -23,7 +22,6 @@ For more details, refer to the [internal versioning strategy](https://docs.googl
   - click _Publish Release_
 
 - [Create a Jira release ticket in the REL project](https://jira.sonarsource.com/projects/REL) like [this one](https://sonarsource.atlassian.net/jira/software/c/projects/REL/issues/REL-3062)
-
   - Summary: @sonarsource/echoes-react x.y
   - Documentation status: N/A
   - Short description: pull from [version description](https://sonarsource.atlassian.net/projects/ECHOES/versions/15439/tab/release-report-all-issues)
