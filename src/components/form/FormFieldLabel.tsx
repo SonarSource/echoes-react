@@ -35,6 +35,10 @@ export interface FormFieldLabelProps {
    */
   id?: string;
   /**
+   * When true, the label will not be clickable.
+   */
+  isDisabled?: boolean;
+  /**
    * When true, will display an asterisk to indicate that the field is required.
    */
   isRequired?: boolean;
@@ -58,7 +62,7 @@ export interface FormFieldLabelProps {
  * @internal
  */
 export const FormFieldLabel = forwardRef<HTMLLabelElement, FormFieldLabelProps>((props, ref) => {
-  const { children, isRequired = false, helpToggletipProps, ...rest } = props;
+  const { children, isDisabled = false, isRequired = false, helpToggletipProps, ...rest } = props;
 
   if (!children) {
     return null;
@@ -66,7 +70,7 @@ export const FormFieldLabel = forwardRef<HTMLLabelElement, FormFieldLabelProps>(
 
   return (
     <LabelWrapper>
-      <LabelStyled ref={ref} {...rest}>
+      <LabelStyled data-disabled={isDisabled || undefined} ref={ref} {...rest}>
         {children}
         {isRequired && <RequiredIndicator aria-hidden="true">*</RequiredIndicator>}
       </LabelStyled>
@@ -90,7 +94,7 @@ const LabelStyled = styled(Label)`
   display: block;
   inline-size: fit-content;
 
-  [data-disabled] & {
+  &[data-disabled] {
     pointer-events: none;
   }
 `;
