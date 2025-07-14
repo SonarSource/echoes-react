@@ -86,6 +86,7 @@ export const FormField = forwardRef<HTMLDivElement, FormFieldProps>((props, ref)
         helpToggletipProps={helpToggletipProps}
         htmlFor={controlId}
         id={labelId}
+        isDisabled={isDisabled}
         isRequired={isRequired}>
         {label}
       </FormFieldLabel>
