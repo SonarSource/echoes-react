@@ -18,6 +18,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 import { screen, waitForElementToBeRemoved } from '@testing-library/react';
+import { PointerEventsCheckLevel, Options as UserEventsOptions } from '@testing-library/user-event';
 import { render } from '~common/helpers/test-utils';
 import { Button } from '../../buttons';
 import { Form } from '../../form';
@@ -25,9 +26,10 @@ import { TextInput } from '../../text-input';
 import { ModalForm, ModalFormProps } from '../ModalForm';
 
 it('should correctly handle opening, submitting and closing the form', async () => {
+  const onClose = jest.fn();
   const onSubmit = jest.fn().mockImplementation((e) => e.preventDefault());
   const onReset = jest.fn();
-  const { user } = renderModalForm({ onReset, onSubmit });
+  const { user } = renderModalForm({ onClose, onReset, onSubmit });
 
   expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
 
@@ -40,6 +42,7 @@ it('should correctly handle opening, submitting and closing the form', async () 
   await user.click(screen.getByRole('button', { name: 'Submit' }));
   expect(onSubmit).toHaveBeenCalled();
   expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+  expect(onClose).toHaveBeenCalledTimes(1);
 
   await user.click(screen.getByRole('button', { name: 'Toggle' }));
   expect(screen.getByRole('dialog')).toBeInTheDocument();
@@ -47,16 +50,18 @@ it('should correctly handle opening, submitting and closing the form', async () 
   await user.click(screen.getByRole('button', { name: 'Cancel' }));
   expect(onReset).toHaveBeenCalled();
   expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+  expect(onClose).toHaveBeenCalledTimes(2);
 });
 
 it('should correctly handle submitting a promise', async () => {
+  const onClose = jest.fn();
   const onSubmit = jest.fn().mockImplementation((e) => {
     e.preventDefault();
     return new Promise((resolve) => {
       setTimeout(resolve, 50);
     });
   });
-  const { user } = renderModalForm({ onSubmit });
+  const { user } = renderModalForm({ onClose, onSubmit });
 
   await user.click(screen.getByRole('button', { name: 'Toggle' }));
   expect(screen.getByRole('dialog')).toBeInTheDocument();
@@ -66,16 +71,18 @@ it('should correctly handle submitting a promise', async () => {
   expect(onSubmit).toHaveBeenCalled();
 
   await waitForElementToBeRemoved(() => screen.queryByRole('dialog'));
+  expect(onClose).toHaveBeenCalledTimes(1);
 });
 
 it('should correctly handle submitting a rejected promise', async () => {
+  const onClose = jest.fn();
   const onSubmit = jest.fn().mockImplementation((e) => {
     e.preventDefault();
     return new Promise((_resolve, reject) => {
       reject(new Error());
     });
   });
-  const { user } = renderModalForm({ onSubmit });
+  const { user } = renderModalForm({ onClose, onSubmit });
 
   await user.click(screen.getByRole('button', { name: 'Toggle' }));
   expect(screen.getByRole('dialog')).toBeInTheDocument();
@@ -85,6 +92,7 @@ it('should correctly handle submitting a rejected promise', async () => {
   expect(onSubmit).toHaveBeenCalled();
 
   expect(screen.queryByRole('dialog')).toBeVisible();
+  expect(onClose).not.toHaveBeenCalled();
 });
 
 it('should correctly handle overriding buttons text', async () => {
@@ -104,13 +112,37 @@ it('should correctly display a modal alert when isDestructive is true', async ()
   expect(screen.getByRole('alertdialog')).toBeInTheDocument();
 });
 
+it('should call the onClose callback when the modal is closed', async () => {
+  const onClose = jest.fn();
+  const { container, user } = renderModalForm(
+    { isDefaultOpen: true, onClose },
+    { pointerEventsCheck: PointerEventsCheckLevel.Never },
+  );
+
+  expect(screen.getByRole('dialog')).toBeInTheDocument();
+
+  await user.click(screen.getByRole('button', { name: 'Close' }));
+  expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+  expect(onClose).toHaveBeenCalledTimes(1);
+
+  await user.click(screen.getByRole('button', { name: 'Toggle' }));
+  expect(screen.getByRole('dialog')).toBeInTheDocument();
+
+  await user.click(container);
+  expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+  expect(onClose).toHaveBeenCalledTimes(2);
+});
+
 it("shouldn't have any a11y violation", async () => {
   const { container } = renderModalForm({ isDefaultOpen: true });
 
   await expect(container).toHaveNoA11yViolations();
 });
 
-function renderModalForm(overrides: Partial<ModalFormProps> = {}) {
+function renderModalForm(
+  overrides: Partial<ModalFormProps> = {},
+  userEventOptions?: UserEventsOptions,
+) {
   return render(
     <ModalForm
       content={
@@ -124,5 +156,7 @@ function renderModalForm(overrides: Partial<ModalFormProps> = {}) {
       {...overrides}>
       <Button>Toggle</Button>
     </ModalForm>,
+    undefined,
+    userEventOptions,
   );
 }

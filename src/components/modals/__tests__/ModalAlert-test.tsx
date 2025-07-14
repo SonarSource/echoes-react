@@ -18,14 +18,15 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 import { screen } from '@testing-library/react';
-import { ComponentProps, useState } from 'react';
+import { useState } from 'react';
 import { render } from '~common/helpers/test-utils';
 import { Button } from '../../buttons';
 import { DropdownMenu } from '../../dropdown-menu';
-import { ModalAlert } from '../ModalAlert';
+import { ModalAlert, ModalAlertProps } from '../ModalAlert';
 
 it('should appear/disappear as expected', async () => {
-  const { user } = renderModalAlert();
+  const onClose = jest.fn();
+  const { user } = renderModalAlert({ onClose });
 
   expect(screen.queryByRole('alertdialog')).not.toBeInTheDocument();
 
@@ -36,10 +37,12 @@ it('should appear/disappear as expected', async () => {
   await user.click(screen.getByRole('button', { name: 'Accept' }));
 
   expect(screen.queryByRole('alertdialog')).not.toBeInTheDocument();
+  expect(onClose).toHaveBeenCalledTimes(1);
 });
 
 it('should allow to be controlled', async () => {
-  const { user } = renderControlledModalAlert();
+  const onClose = jest.fn();
+  const { user } = renderControlledModalAlert(onClose);
 
   expect(screen.queryByRole('alertdialog')).not.toBeInTheDocument();
 
@@ -50,6 +53,7 @@ it('should allow to be controlled', async () => {
   await user.click(screen.getByRole('button', { name: 'Quit' }));
 
   expect(screen.queryByRole('alertdialog')).not.toBeInTheDocument();
+  expect(onClose).toHaveBeenCalledTimes(1);
 });
 
 it('should render content and secondaryButtonLabel', async () => {
@@ -100,7 +104,7 @@ it("shouldn't have any a11y violation", async () => {
   await expect(container).toHaveNoA11yViolations();
 });
 
-function renderModalAlert(args: Partial<ComponentProps<typeof ModalAlert>> = {}) {
+function renderModalAlert(args: Partial<ModalAlertProps> = {}) {
   const { isOpen, onOpenChange, ...overrides } = args;
   return render(
     <ModalAlert description="modal-alert" primaryButton={<Button>Accept</Button>} {...overrides}>
@@ -109,7 +113,7 @@ function renderModalAlert(args: Partial<ComponentProps<typeof ModalAlert>> = {})
   );
 }
 
-function renderControlledModalAlert() {
+function renderControlledModalAlert(onClose?: ModalAlertProps['onClose']) {
   function Controller() {
     const [open, setOpen] = useState(false);
 
@@ -117,6 +121,7 @@ function renderControlledModalAlert() {
       <ModalAlert
         description="modal-alert"
         isOpen={open}
+        onClose={onClose}
         onOpenChange={setOpen}
         primaryButton={<Button onClick={() => setOpen}>Approve</Button>}
         secondaryButton={<Button onClick={() => setOpen(false)}>Quit</Button>}>
