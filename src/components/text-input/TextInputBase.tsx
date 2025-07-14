@@ -124,7 +124,7 @@ const InputIconWrapper = styled.span`
   font-size: var(--echoes-font-size-30);
   color: var(--echoes-form-control-colors-icon-default);
 
-  [data-disabled] & {
+  &[data-disabled] {
     color: var(--echoes-color-icon-disabled);
     cursor: not-allowed;
   }
