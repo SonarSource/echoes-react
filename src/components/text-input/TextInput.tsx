@@ -34,6 +34,7 @@ type InputAttributes = Pick<
   InputHTMLAttributes<HTMLInputElement>,
   | 'autoComplete'
   | 'autoFocus'
+  | 'dir'
   | 'form'
   | 'max'
   | 'min'
