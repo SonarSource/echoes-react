@@ -99,7 +99,7 @@ const ModalBodyInner = styled.div`
   display: flex;
   flex-direction: column;
   gap: var(--echoes-dimension-space-200);
-  padding: var(--echoes-dimension-space-300) var(--echoes-dimension-space-400);
+  padding: var(--echoes-dimension-space-150) var(--echoes-dimension-space-300);
 
   max-height: 100%;
   width: 100%;
