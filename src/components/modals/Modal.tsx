@@ -173,7 +173,7 @@ ModalFooterLinkWrapper.displayName = 'ModalFooterLinkWrapper';
 
 const ModalButtonIconClose = styled(ButtonIcon)`
   position: absolute;
-  top: var(--echoes-dimension-space-400);
-  right: var(--echoes-dimension-space-400);
+  top: var(--echoes-dimension-space-300);
+  right: var(--echoes-dimension-space-300);
 `;
 ModalButtonIconClose.displayName = 'ModalButtonIconClose';
