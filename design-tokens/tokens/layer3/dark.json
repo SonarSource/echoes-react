@@ -14,7 +14,7 @@
         },
         "border": {
           "default": {
-            "value": "{echoes.color.border.bold}",
+            "value": "{echoes.color.border.bolder}",
             "type": "color"
           },
           "focus": {

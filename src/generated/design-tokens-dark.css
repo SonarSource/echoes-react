@@ -155,7 +155,7 @@ html[data-echoes-theme='dark'], [data-echoes-theme='dark'] {
   --echoes-color-focus-default: rgb(189,198,255);
   --echoes-form-control-colors-background-default: rgb(42,47,64);
   --echoes-form-control-colors-background-hover: rgb(29,33,47);
-  --echoes-form-control-colors-border-default: rgb(166,173,194);
+  --echoes-form-control-colors-border-default: rgb(197,205,223);
   --echoes-form-control-colors-border-focus: rgb(99,113,146);
   --echoes-form-control-colors-icon-default: rgb(197,205,223);
   --echoes-table-colors-background-header-default: rgb(62,67,87);
