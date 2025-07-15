@@ -18,6 +18,4 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-export { ToggleButtonGroup } from './ToggleButtonGroup';
-
-export type { ToggleButtonGroupProps } from './ToggleButtonGroup';
+export { ToggleButtonGroup, type ToggleButtonGroupProps } from './ToggleButtonGroup';

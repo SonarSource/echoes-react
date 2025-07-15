@@ -22,7 +22,7 @@ import styled from '@emotion/styled';
 import { forwardRef, ReactNode } from 'react';
 import { ButtonIconStyled, ButtonStyled } from './ButtonStyles';
 
-interface ButtonGroupProps {
+export interface ButtonGroupProps {
   children: ReactNode;
   className?: string;
   isCombined?: boolean;

@@ -22,8 +22,8 @@ import { screen } from '@testing-library/react';
 import { renderWithMemoryRouter } from '~common/helpers/test-utils';
 import { Theme } from '~generated/themes';
 import { ThemeProvider } from '~utils/theme';
+import { DropdownMenu, DropdownMenuAlign } from '..';
 import { IconBell, IconCalendar } from '../../icons';
-import { DropdownMenu, DropdownMenuAlign } from '../DropdownMenu';
 
 const items = <DropdownMenu.ItemButton>An item</DropdownMenu.ItemButton>;
 const trigger = <button type="button">Trigger</button>;

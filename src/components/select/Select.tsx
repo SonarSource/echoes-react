@@ -22,9 +22,9 @@ import { forwardRef } from 'react';
 import { PropsWithLabels } from '~types/utils';
 import { SelectBase, SelectBaseProps } from './SelectCommons';
 
-type Props = PropsWithLabels<Omit<SelectBaseProps, 'onSearch'>>;
+export type SelectProps = PropsWithLabels<Omit<SelectBaseProps, 'onSearch'>>;
 
-export const Select = forwardRef<HTMLInputElement, Props>((props, ref) => {
+export const Select = forwardRef<HTMLInputElement, SelectProps>((props, ref) => {
   return <SelectBase ref={ref} {...props} />;
 });
 

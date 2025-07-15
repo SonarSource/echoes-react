@@ -35,3 +35,4 @@ GlobalNavigationAction.displayName = 'GlobalNavigationAction';
 const StyledButtonIcon = styled(ButtonIcon)`
   font-size: var(--echoes-font-size-30);
 `;
+StyledButtonIcon.displayName = 'StyledButtonIcon';

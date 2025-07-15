@@ -28,14 +28,7 @@ import { THEME_DATA_ATTRIBUTE, ThemeContext } from '~utils/theme';
 import { PortalContext } from '../../common/components/PortalContext';
 import { HelperText, Label } from '../typography';
 import { styleDropdownMenuOverlay } from './DropdownMenuCommons';
-import { DropdownMenuGroupLabel } from './DropdownMenuGroupLabel';
-import { DropdownMenuItemButton } from './DropdownMenuItemButton';
-import { DropdownMenuItemButtonCheckable } from './DropdownMenuItemButtonCheckable';
-import { DropdownMenuItemButtonDestructive } from './DropdownMenuItemButtonDestructive';
-import { DropdownMenuItemLink } from './DropdownMenuItemLink';
-import { DropdownMenuItemLinkDownload } from './DropdownMenuItemLinkDownload';
 import { DropdownMenuSeparator } from './DropdownMenuSeparator';
-import { DropdownMenuSubMenu } from './DropdownMenuSubMenu';
 
 export enum DropdownMenuAlign {
   Center = 'center',
@@ -44,7 +37,7 @@ export enum DropdownMenuAlign {
 }
 
 export interface DropdownMenuProps extends radixDropdownMenu.DropdownMenuTriggerProps {
-  align?: DropdownMenuAlign;
+  align?: `${DropdownMenuAlign}`;
   children: ReactNode;
   className?: string;
   header?: Pick<PropsLabelAndHelpText, 'helpText' | 'label'> & { suffix?: ReactNode };
@@ -58,7 +51,7 @@ export interface DropdownMenuProps extends radixDropdownMenu.DropdownMenuTrigger
   onOpen?: () => void;
 }
 
-const DropdownMenuRoot = forwardRef<HTMLButtonElement, DropdownMenuProps>(
+export const DropdownMenuRoot = forwardRef<HTMLButtonElement, DropdownMenuProps>(
   (
     {
       align = DropdownMenuAlign.Center,
@@ -148,25 +141,15 @@ const DropdownMenuRoot = forwardRef<HTMLButtonElement, DropdownMenuProps>(
 );
 DropdownMenuRoot.displayName = 'DropdownMenu';
 
-export const DropdownMenu = Object.assign(DropdownMenuRoot, {
-  GroupLabel: DropdownMenuGroupLabel,
-  ItemButton: DropdownMenuItemButton,
-  ItemButtonCheckable: DropdownMenuItemButtonCheckable,
-  ItemButtonDestructive: DropdownMenuItemButtonDestructive,
-  ItemLink: DropdownMenuItemLink,
-  ItemLinkDownload: DropdownMenuItemLinkDownload,
-  Separator: DropdownMenuSeparator,
-  SubMenu: DropdownMenuSubMenu,
-});
-
 const StyledHeaderLabelAndHelpText = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   margin-bottom: var(--echoes-dimension-space-50);
   padding: var(--echoes-dimension-space-100) var(--echoes-dimension-space-150);
-  row-gap: var(---echoes-dimension-space-50);
+  row-gap: var(--echoes-dimension-space-50);
 `;
+StyledHeaderLabelAndHelpText.displayName = 'StyledHeaderLabelAndHelpText';
 
 const StyledHeaderWithSuffix = styled.div`
   display: flex;
@@ -174,13 +157,17 @@ const StyledHeaderWithSuffix = styled.div`
   justify-content: space-between;
   gap: var(--echoes-dimension-space-100);
 `;
+StyledHeaderWithSuffix.displayName = 'StyledHeaderWithSuffix';
 
 const StyledHeaderLabel = styled(Label)`
   ${truncate}
 `;
+StyledHeaderLabel.displayName = 'StyledHeaderLabel';
 
 const StyledHeaderHelpText = styled(HelperText)`
   ${truncate}
 `;
+StyledHeaderHelpText.displayName = 'StyledHeaderHelpText';
 
 const StyledDropdownMenuContent = styleDropdownMenuOverlay(radixDropdownMenu.Content);
+StyledDropdownMenuContent.displayName = 'StyledDropdownMenuContent';

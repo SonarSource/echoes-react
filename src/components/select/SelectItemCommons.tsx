@@ -34,7 +34,7 @@ export interface OptionComponentProps extends SelectOption {
 // Returns the renderOption function to be used in the renderOption prop of the Mantine Select
 export function useSelectOptionFunction(
   OptionComponent: OptionComponent | undefined,
-  optionType: SelectOptionType,
+  optionType: `${SelectOptionType}`,
 ) {
   return useCallback(
     ({ option, checked }: RenderOptionParams) => {
@@ -124,7 +124,7 @@ const SelectItemHelpText = styled.span`
 SelectItemHelpText.displayName = 'SelectItemHelpText';
 
 interface SelectItemStatusProps {
-  optionType: SelectOptionType;
+  optionType: `${SelectOptionType}`;
   checked?: boolean;
 }
 

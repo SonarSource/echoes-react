@@ -75,3 +75,4 @@ const StyledDropdownMenuSubContent = styled(styleDropdownMenuOverlay(radixDropdo
     var(--echoes-offset-dropdown-submenu-panel-vertical) - ${RADIX_SUBMENU_PANEL_VERTICAL_OFFSET}
   );
 `;
+StyledDropdownMenuSubContent.displayName = 'StyledDropdownMenuSubContent';

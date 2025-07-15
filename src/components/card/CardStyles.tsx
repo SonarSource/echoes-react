@@ -34,6 +34,7 @@ export const CardStyled = styled.div`
   min-width: 470px;
   width: 100%;
 `;
+CardStyled.displayName = 'CardStyled';
 
 export const CardHeaderStyled = styled.header`
   align-items: center;
@@ -41,8 +42,9 @@ export const CardHeaderStyled = styled.header`
   min-height: var(--card-header-min-height);
   padding: var(--card-header-padding);
 `;
+CardHeaderStyled.displayName = 'CardHeaderStyled';
 
-export const CardBodyStyled = styled.div<{ size: CardSize; insetContent: boolean }>`
+export const CardBodyStyled = styled.div<{ size: `${CardSize}`; insetContent: boolean }>`
   box-sizing: border-box;
   min-height: var(--card-body-min-height);
   padding: ${(props) => (props.insetContent ? '0' : 'var(--card-padding)')};
@@ -52,6 +54,7 @@ export const CardBodyStyled = styled.div<{ size: CardSize; insetContent: boolean
     height: 100%;
   }
 `;
+CardBodyStyled.displayName = 'CardBodyStyled';
 
 export const CARD_HEADER_SIZE_STYLES = {
   [CardSize.Small]: {
