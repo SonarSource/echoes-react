@@ -17,7 +17,7 @@
     "access": "public"
   },
   "engines": {
-    "node": ">=20.13"
+    "node": "20.19.0 || >=22.12.0"
   },
   "packageManager": "yarn@4.9.2",
   "scripts": {
@@ -81,7 +81,7 @@
     "@types/eslint": "8.56.12",
     "@types/jest": "30.0.0",
     "@types/jest-axe": "3.5.9",
-    "@types/node": "20.17.50",
+    "@types/node": "20.19.8",
     "@types/react": "18.3.23",
     "@types/react-dom": "18.3.7",
     "@typescript-eslint/eslint-plugin": "8.36.0",
@@ -117,7 +117,7 @@
     "style-dictionary": "3.9.2",
     "subset-font": "2.4.0",
     "typescript": "5.8.3",
-    "vite": "6.3.5",
+    "vite": "7.0.4",
     "vite-plugin-dts": "4.5.4",
     "vite-plugin-static-copy": "3.1.0"
   },
