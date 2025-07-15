@@ -42,3 +42,4 @@ TableCellButton.displayName = 'TableCellButton';
 const StyledTableCellButton = styled(StyledTableCell)`
   padding: var(--echoes-dimension-space-100) var(--echoes-dimension-space-200);
 `;
+StyledTableCellButton.displayName = 'StyledTableCellButton';

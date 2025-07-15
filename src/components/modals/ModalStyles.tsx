@@ -32,7 +32,7 @@ export const styleModalOverlay = styled.div`
   background: var(--echoes-color-background-back-drop-default);
 `.withComponent;
 
-export const styleModalWrapper = styled.div<{ size: ModalSize }>`
+export const styleModalWrapper = styled.div<{ size: `${ModalSize}` }>`
   display: flex;
   flex-direction: column;
 

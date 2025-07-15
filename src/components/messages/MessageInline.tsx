@@ -23,7 +23,7 @@ import { MessageScreenReaderPrefix } from './MessageScreenReaderPrefix';
 import { MESSAGE_VARIETY_ICON } from './MessageStyles';
 import { MessageInlineSize, MessageVariety } from './MessageTypes';
 
-interface Props {
+export interface MessageInlineProps {
   as?: 'div' | 'span';
   className?: string;
   id?: string;
@@ -32,23 +32,25 @@ interface Props {
   variety: `${MessageVariety}`;
 }
 
-export const MessageInline = forwardRef<HTMLDivElement, PropsWithChildren<Props>>((props, ref) => {
-  const { children, className, screenReaderPrefix, size, variety, ...radixProps } = props;
-  return (
-    <MessageInlineContainer
-      className={className}
-      css={useMemo(() => MESSAGE_INLINE_VARIETY_STYLE[variety], [variety])}
-      ref={ref}
-      size={size}
-      {...radixProps}>
-      <span>{MESSAGE_VARIETY_ICON[variety]}</span>
-      <MessageInlineTextWrapper>
-        <MessageScreenReaderPrefix screenReaderPrefix={screenReaderPrefix} variety={variety} />
-        {children}
-      </MessageInlineTextWrapper>
-    </MessageInlineContainer>
-  );
-});
+export const MessageInline = forwardRef<HTMLDivElement, PropsWithChildren<MessageInlineProps>>(
+  (props, ref) => {
+    const { children, className, screenReaderPrefix, size, variety, ...radixProps } = props;
+    return (
+      <MessageInlineContainer
+        className={className}
+        css={useMemo(() => MESSAGE_INLINE_VARIETY_STYLE[variety], [variety])}
+        ref={ref}
+        size={size}
+        {...radixProps}>
+        <span>{MESSAGE_VARIETY_ICON[variety]}</span>
+        <MessageInlineTextWrapper>
+          <MessageScreenReaderPrefix screenReaderPrefix={screenReaderPrefix} variety={variety} />
+          {children}
+        </MessageInlineTextWrapper>
+      </MessageInlineContainer>
+    );
+  },
+);
 MessageInline.displayName = 'MessageInline';
 
 const MESSAGE_INLINE_VARIETY_STYLE = {
@@ -74,7 +76,7 @@ const MESSAGE_INLINE_FONT = {
   [MessageInlineSize.Default]: 'var(--echoes-typography-text-default-regular)',
 };
 
-const MessageInlineContainer = styled.span<Pick<Props, 'size'>>`
+const MessageInlineContainer = styled.span<Pick<MessageInlineProps, 'size'>>`
   display: inline-flex;
   align-items: start;
   gap: var(--echoes-dimension-space-50);

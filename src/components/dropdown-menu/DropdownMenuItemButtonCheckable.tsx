@@ -22,9 +22,12 @@ import styled from '@emotion/styled';
 import { forwardRef } from 'react';
 import { DropdownMenuItemBase, DropdownMenuItemBaseProps } from './DropdownMenuItemBase';
 
-type Props = Omit<DropdownMenuItemBaseProps, 'isCheckable'>;
+export type DropdownMenuItemButtonCheckableProps = Omit<DropdownMenuItemBaseProps, 'isCheckable'>;
 
-export const DropdownMenuItemButtonCheckable = forwardRef<HTMLDivElement, Props>((props, ref) => {
+export const DropdownMenuItemButtonCheckable = forwardRef<
+  HTMLDivElement,
+  DropdownMenuItemButtonCheckableProps
+>((props, ref) => {
   return <StyledDropdownMenuItemBase {...props} isCheckable ref={ref} />;
 });
 DropdownMenuItemButtonCheckable.displayName = 'DropdownMenu.ItemButtonCheckable';
@@ -59,3 +62,4 @@ const StyledDropdownMenuItemBase = styled(DropdownMenuItemBase)<
         : 'var(--echoes-color-background-default)'};
   }
 `;
+StyledDropdownMenuItemBase.displayName = 'StyledDropdownMenuItemBase';

@@ -29,6 +29,14 @@ import { GlobalNavigationHome } from './GlobalNavigationHome';
 import { GlobalNavigationItem } from './GlobalNavigationItem';
 import { GlobalNavigationItemsContainer } from './GlobalNavigationItemsContainer';
 
+export { type GlobalNavigationProps } from './GlobalNavigation';
+export { type GlobalNavigationAccountProps } from './GlobalNavigationAccount';
+export { type GlobalNavigationActionProps } from './GlobalNavigationAction';
+export { type GlobalNavigationDropdownItemProps } from './GlobalNavigationDropdownItem';
+export { type GlobalNavigationHomeProps } from './GlobalNavigationHome';
+export { type GlobalNavigationItemProps } from './GlobalNavigationItem';
+export { type GlobalNavigationItemsContainerProps } from './GlobalNavigationItemsContainer';
+
 /**
  * {@link GlobalNavigationRoot | GlobalNavigation} is a navigation element that wraps {@link GlobalNavigationPrimary | GlobalNavigation.Primary}, and
  * {@link GlobalNavigationSecondary | GlobalNavigation.Secondary}.

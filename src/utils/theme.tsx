@@ -24,13 +24,13 @@ import { Theme } from '~generated/themes';
 
 export const THEME_DATA_ATTRIBUTE = 'data-echoes-theme';
 
-export function setTheme(theme: Theme) {
+export function setTheme(theme: `${Theme}`) {
   document.documentElement.setAttribute(THEME_DATA_ATTRIBUTE, theme);
 }
 
-interface ThemeProviderProps {
+export interface ThemeProviderProps {
   asChild?: boolean;
-  theme: Theme;
+  theme: `${Theme}`;
 }
 
 export function ThemeProvider({ asChild, theme, ...props }: PropsWithChildren<ThemeProviderProps>) {
@@ -43,4 +43,4 @@ export function ThemeProvider({ asChild, theme, ...props }: PropsWithChildren<Th
 }
 ThemeProvider.displayName = 'ThemeProvider';
 
-export const ThemeContext = createContext<Theme | undefined>(undefined);
+export const ThemeContext = createContext<`${Theme}` | undefined>(undefined);

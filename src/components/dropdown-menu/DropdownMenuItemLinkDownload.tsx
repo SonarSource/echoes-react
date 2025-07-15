@@ -24,10 +24,16 @@ import { IconDownload } from '..';
 import { DropdownMenuItemBaseProps } from './DropdownMenuItemBase';
 import { DropdownMenuItemLink } from './DropdownMenuItemLink';
 
-type Props = Omit<DropdownMenuItemBaseProps, 'isCheckable' | 'isChecked' | 'prefix' | 'suffix'> &
+export type DropdownMenuItemLinkDownloadProps = Omit<
+  DropdownMenuItemBaseProps,
+  'isCheckable' | 'isChecked' | 'prefix' | 'suffix'
+> &
   Pick<NavLinkBaseProps, 'to'> & { download: string };
 
-export const DropdownMenuItemLinkDownload = forwardRef<HTMLDivElement, Props>((props, ref) => {
+export const DropdownMenuItemLinkDownload = forwardRef<
+  HTMLDivElement,
+  DropdownMenuItemLinkDownloadProps
+>((props, ref) => {
   return (
     <DropdownMenuItemLink
       {...props}

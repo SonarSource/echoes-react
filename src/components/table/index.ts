@@ -32,7 +32,17 @@ import { TableRow } from './TableRow';
 import { TableRowHeaderCell } from './TableRowHeaderCell';
 import { StyledTableBody, StyledTableCell, StyledTableHeader } from './TableStyles';
 
-export { TableVariety, type TableBaseProps } from './TableTypes';
+export { type TableCellBadgeProps } from './TableCellBadge';
+export { type TableCellButtonProps } from './TableCellButton';
+export { type TableCellButtonIconProps } from './TableCellButtonIcon';
+export { type TableCellCheckboxProps } from './TableCellCheckbox';
+export { type TableCellLinkProps } from './TableCellLink';
+export { type TableCellNumberProps } from './TableCellNumber';
+export { type TableCellTextProps } from './TableCellText';
+export { type TableColumnHeaderCellProps } from './TableColumnHeaderCell';
+export { type TableColumnHeaderCellCheckboxProps } from './TableColumnHeaderCellCheckbox';
+export { type TableRowProps } from './TableRow';
+export { TableVariety, type TableBaseProps, type TableProps } from './TableTypes';
 
 /**
  * {@link TableRoot | Table}

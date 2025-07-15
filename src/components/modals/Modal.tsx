@@ -43,7 +43,7 @@ interface ModalBaseProps {
   footerLink?: ReactNode;
   primaryButton?: ReactNode;
   secondaryButton?: ReactNode;
-  size?: ModalSize;
+  size?: `${ModalSize}`;
 }
 
 export type ModalProps = ModalCommonProps & ModalBaseProps;

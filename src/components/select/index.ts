@@ -18,7 +18,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-export { Select } from './Select';
-export { SelectAsync } from './SelectAsync';
+export { Select, type SelectProps } from './Select';
+export { SelectAsync, type SelectAsyncProps } from './SelectAsync';
 export { SelectHighlight, SelectOptionType } from './SelectTypes';
 export type { SelectOption } from './SelectTypes';

@@ -31,7 +31,7 @@ export enum TextSize {
 
 type TextTags = 'span' | 'p' | 'div' | 'strong' | 'b' | 'em' | 'i';
 
-type Props = {
+export type TextProps = {
   as?: TextTags;
   className?: string;
   id?: string;
@@ -49,7 +49,7 @@ type ColorProps =
       isSubdued: boolean;
     };
 
-export const Text = forwardRef<HTMLSpanElement, PropsWithChildren<Props>>((props, ref) => {
+export const Text = forwardRef<HTMLSpanElement, PropsWithChildren<TextProps>>((props, ref) => {
   const {
     children,
     colorOverride,
@@ -77,7 +77,7 @@ export const Text = forwardRef<HTMLSpanElement, PropsWithChildren<Props>>((props
 });
 Text.displayName = 'Text';
 
-type StyledTextProps = Required<Pick<Props, 'isSubdued' | 'isHighlighted' | 'size'>>;
+type StyledTextProps = Required<Pick<TextProps, 'isSubdued' | 'isHighlighted' | 'size'>>;
 
 const BaseStyles = styled.span`
   max-width: var(--echoes-sizes-typography-max-width-default);
@@ -111,12 +111,14 @@ const BaseStyles = styled.span`
     font-style: italic;
   }
 `;
+BaseStyles.displayName = 'BaseStyles';
 
 const StyledText = styled(BaseStyles)<StyledTextProps>`
   font: ${getFontForSizeAndWeight};
 
   color: ${getColor};
 `;
+StyledText.displayName = 'StyledText';
 
 function getColor({ isSubdued }: Pick<StyledTextProps, 'isSubdued'>) {
   return isSubdued ? 'var(--echoes-color-text-subdued)' : 'var(--echoes-color-text-default)';

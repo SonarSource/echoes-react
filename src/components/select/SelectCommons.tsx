@@ -48,7 +48,7 @@ export interface SelectBaseProps extends ValidationProps, FormFieldPropsSubset {
   filter?: SelectFilterFunction;
   hasDropdownAutoWidth?: boolean;
   helpText?: TextNodeOptional;
-  highlight?: SelectHighlight;
+  highlight?: `${SelectHighlight}`;
   isDisabled?: boolean;
   isLoading?: boolean;
   isNotClearable?: boolean;
@@ -58,7 +58,7 @@ export interface SelectBaseProps extends ValidationProps, FormFieldPropsSubset {
   limit?: MantineSelectProps['limit'];
   name?: MantineSelectProps['name'];
   optionComponent?: OptionComponent;
-  optionType?: SelectOptionType;
+  optionType?: `${SelectOptionType}`;
   onChange: (value: string | null, option: SelectOption) => void;
   onOpen?: MantineSelectProps['onDropdownOpen'];
   onSearch?: MantineSelectProps['onSearchChange'];

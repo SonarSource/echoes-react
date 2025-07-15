@@ -23,7 +23,7 @@ import styled from '@emotion/styled';
 export interface LogoProps {
   className?: string;
   hasText?: boolean;
-  size?: LogoSize;
+  size?: `${LogoSize}`;
 }
 
 export enum LogoSize {
@@ -32,7 +32,8 @@ export enum LogoSize {
   Large = 'large',
 }
 
-export const LogoSvgWrapper = styled.svg<{ size: LogoSize | undefined }>`
+export const LogoSvgWrapper = styled.svg<Pick<LogoProps, 'size'>>`
   height: var(--echoes-sizes-logo-height-${({ size }) => size ?? LogoSize.Medium});
   width: auto;
 `;
+LogoSvgWrapper.displayName = 'LogoSvgWrapper';

@@ -18,4 +18,31 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-export { DropdownMenu, DropdownMenuAlign } from './DropdownMenu';
+import { DropdownMenuRoot } from './DropdownMenu';
+import { DropdownMenuGroupLabel } from './DropdownMenuGroupLabel';
+import { DropdownMenuItemButton } from './DropdownMenuItemButton';
+import { DropdownMenuItemButtonCheckable } from './DropdownMenuItemButtonCheckable';
+import { DropdownMenuItemButtonDestructive } from './DropdownMenuItemButtonDestructive';
+import { DropdownMenuItemLink } from './DropdownMenuItemLink';
+import { DropdownMenuItemLinkDownload } from './DropdownMenuItemLinkDownload';
+import { DropdownMenuSeparator } from './DropdownMenuSeparator';
+import { DropdownMenuSubMenu } from './DropdownMenuSubMenu';
+
+export { DropdownMenuAlign, type DropdownMenuProps } from './DropdownMenu';
+export { type DropdownMenuItemButtonProps } from './DropdownMenuItemButton';
+export { type DropdownMenuItemButtonCheckableProps } from './DropdownMenuItemButtonCheckable';
+export { type DropdownMenuItemButtonDestructiveProps } from './DropdownMenuItemButtonDestructive';
+export { type DropdownMenuItemLinkProps } from './DropdownMenuItemLink';
+export { type DropdownMenuItemLinkDownloadProps } from './DropdownMenuItemLinkDownload';
+export { type DropdownMenuSubProps } from './DropdownMenuSubMenu';
+
+export const DropdownMenu = Object.assign(DropdownMenuRoot, {
+  GroupLabel: DropdownMenuGroupLabel,
+  ItemButton: DropdownMenuItemButton,
+  ItemButtonCheckable: DropdownMenuItemButtonCheckable,
+  ItemButtonDestructive: DropdownMenuItemButtonDestructive,
+  ItemLink: DropdownMenuItemLink,
+  ItemLinkDownload: DropdownMenuItemLinkDownload,
+  Separator: DropdownMenuSeparator,
+  SubMenu: DropdownMenuSubMenu,
+});

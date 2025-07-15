@@ -24,14 +24,95 @@ import { NavLinkBase, NavLinkBaseProps } from '~common/components/NavLinkBase';
 import { IconLinkExternal } from '../icons/IconLinkExternal';
 import { DropdownMenuItemBase, DropdownMenuItemBaseProps } from './DropdownMenuItemBase';
 
-type Props = Omit<DropdownMenuItemBaseProps, 'isCheckable' | 'isChecked'> & {
+export type DropdownMenuItemLinkProps = Omit<
+  DropdownMenuItemBaseProps,
+  'isCheckable' | 'isChecked'
+> & {
   hasExternalIcon?: boolean;
 } & Pick<NavLinkBaseProps, 'download' | 'isMatchingFullPath' | 'shouldOpenInNewTab' | 'to'>;
+
+export const DropdownMenuItemLink = forwardRef<HTMLDivElement, DropdownMenuItemLinkProps>(
+  (props, ref) => {
+    const {
+      children,
+      download,
+      hasExternalIcon = true,
+      isDisabled,
+      isMatchingFullPath = false,
+      shouldOpenInNewTab = false,
+      suffix,
+      to,
+      ...radixProps
+    } = props;
+
+    const itemProps = {
+      ...radixProps,
+      isDisabled,
+      suffix: getComposedSuffix({
+        shouldOpenInNewTab: shouldOpenInNewTab && hasExternalIcon,
+        suffix,
+      }),
+    };
+
+    if (isDisabled) {
+      return (
+        <StyledDropdownMenuItemBase {...itemProps} ref={ref}>
+          {children}
+        </StyledDropdownMenuItemBase>
+      );
+    }
+
+    return (
+      <StyledDropdownMenuItemBase {...itemProps} ref={ref}>
+        {({ getStyledItemContents }) => (
+          <StyledNavLinkBase
+            download={download}
+            isMatchingFullPath={isMatchingFullPath}
+            shouldOpenInNewTab={shouldOpenInNewTab}
+            to={to}>
+            {getStyledItemContents({ label: children })}
+          </StyledNavLinkBase>
+        )}
+      </StyledDropdownMenuItemBase>
+    );
+  },
+);
+DropdownMenuItemLink.displayName = 'DropdownMenu.ItemLink';
+
+const StyledDropdownMenuItemBase = styled(DropdownMenuItemBase)`
+  /* when the current URL matches 'to', react-router adds an 'active' class to the 'a' tag */
+  &.active {
+    background-color: var(--echoes-color-background-default-active);
+  }
+
+  &[data-disabled] {
+    background-color: var(--echoes-color-background-default);
+  }
+`;
+StyledDropdownMenuItemBase.displayName = 'StyledDropdownMenuItemBase';
+
+const StyledNavLinkBase = styled(NavLinkBase)`
+  text-decoration: none;
+`;
+StyledNavLinkBase.displayName = 'StyledNavLinkBase';
+
+const StyledIconLinkExternal = styled(IconLinkExternal)`
+  font-size: var(--echoes-font-size-20);
+  padding-right: var(--echoes-dimension-space-25);
+`;
+StyledIconLinkExternal.displayName = 'StyledIconLinkExternal';
+
+const StyledSuffix = styled.span`
+  align-items: center;
+  display: flex;
+  gap: var(--echoes-dimension-space-50);
+`;
+StyledSuffix.displayName = 'StyledSuffix';
 
 const getComposedSuffix = ({
   shouldOpenInNewTab,
   suffix,
-}: Readonly<Pick<Props, 'shouldOpenInNewTab' | 'suffix'>>) => {
+}: Readonly<Pick<DropdownMenuItemLinkProps, 'shouldOpenInNewTab' | 'suffix'>>) => {
   const externalSuffix = shouldOpenInNewTab ? <StyledIconLinkExternal /> : undefined;
 
   if (suffix && externalSuffix) {
@@ -45,75 +126,3 @@ const getComposedSuffix = ({
 
   return suffix || externalSuffix;
 };
-
-export const DropdownMenuItemLink = forwardRef<HTMLDivElement, Props>((props, ref) => {
-  const {
-    children,
-    download,
-    hasExternalIcon = true,
-    isDisabled,
-    isMatchingFullPath = false,
-    shouldOpenInNewTab = false,
-    suffix,
-    to,
-    ...radixProps
-  } = props;
-
-  const itemProps = {
-    ...radixProps,
-    isDisabled,
-    suffix: getComposedSuffix({
-      shouldOpenInNewTab: shouldOpenInNewTab && hasExternalIcon,
-      suffix,
-    }),
-  };
-
-  if (isDisabled) {
-    return (
-      <StyledDropdownMenuItemBase {...itemProps} ref={ref}>
-        {children}
-      </StyledDropdownMenuItemBase>
-    );
-  }
-
-  return (
-    <StyledDropdownMenuItemBase {...itemProps} ref={ref}>
-      {({ getStyledItemContents }) => (
-        <StyledNavLinkBase
-          download={download}
-          isMatchingFullPath={isMatchingFullPath}
-          shouldOpenInNewTab={shouldOpenInNewTab}
-          to={to}>
-          {getStyledItemContents({ label: children })}
-        </StyledNavLinkBase>
-      )}
-    </StyledDropdownMenuItemBase>
-  );
-});
-DropdownMenuItemLink.displayName = 'DropdownMenu.ItemLink';
-
-const StyledDropdownMenuItemBase = styled(DropdownMenuItemBase)`
-  /* when the current URL matches 'to', react-router adds an 'active' class to the 'a' tag */
-  &.active {
-    background-color: var(--echoes-color-background-default-active);
-  }
-
-  &[data-disabled] {
-    background-color: var(--echoes-color-background-default);
-  }
-`;
-
-const StyledNavLinkBase = styled(NavLinkBase)`
-  text-decoration: none;
-`;
-
-const StyledIconLinkExternal = styled(IconLinkExternal)`
-  font-size: var(--echoes-font-size-20);
-  padding-right: var(--echoes-dimension-space-25);
-`;
-
-const StyledSuffix = styled.span`
-  align-items: center;
-  display: flex;
-  gap: var(--echoes-dimension-space-50);
-`;

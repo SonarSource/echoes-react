@@ -39,7 +39,7 @@ export enum TableSortDirection {
 export interface TableBaseProps extends PropsWithChildren<ComponentProps<'table'>> {
   className?: string;
   gridTemplate: string;
-  variety?: TableVariety;
+  variety?: `${TableVariety}`;
 }
 
 export interface TablePropsWithLabel extends TableBaseProps {

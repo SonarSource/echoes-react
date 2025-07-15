@@ -22,6 +22,9 @@ import { CardBody } from './CardBody';
 import { CardHeader } from './CardHeader';
 import { CardRoot } from './CardRoot';
 
+export type { CardBodyProps } from './CardBody';
+export type { CardHeaderProps } from './CardHeader';
+export type { CardProps } from './CardRoot';
 export { CardSize } from './CardSize';
 
 /**
