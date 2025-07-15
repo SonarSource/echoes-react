@@ -20,13 +20,13 @@
 
 import styled from '@emotion/styled';
 
-interface Props {
+export interface HelperTextProps {
   as?: 'div' | 'p' | 'span';
   className?: string;
   id?: string;
 }
 
-export const HelperText = styled.div<Props>`
+export const HelperText = styled.div<HelperTextProps>`
   font: var(--echoes-typography-others-helper-text);
   color: var(--echoes-color-text-subdued);
 

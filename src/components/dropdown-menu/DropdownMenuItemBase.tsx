@@ -135,16 +135,19 @@ export function isDropdownMenuItemComponent(node: any): boolean {
 const StyledIconCheck = styled(IconCheck)`
   font-size: var(--echoes-font-size-20);
 `;
+StyledIconCheck.displayName = 'StyledIconCheck';
 
 const CheckmarkPlaceholder = styled(StyledIconCheck)`
   visibility: hidden;
 `;
+CheckmarkPlaceholder.displayName = 'CheckmarkPlaceholder';
 
 const StyledPrefix = styled.span`
   align-items: center;
   display: flex;
   flex: 0 0 auto;
 `;
+StyledPrefix.displayName = 'StyledPrefix';
 
 const StyledLeftHandSide = styled.div`
   align-items: center;
@@ -154,6 +157,7 @@ const StyledLeftHandSide = styled.div`
   flex: 1 1 auto;
   justify-content: flex-start;
 `;
+StyledLeftHandSide.displayName = 'StyledLeftHandSide';
 
 const StyledLabelAndHelpText = styled.div`
   display: flex;
@@ -161,8 +165,9 @@ const StyledLabelAndHelpText = styled.div`
   flex-direction: column;
   justify-content: space-between;
   overflow: hidden;
-  row-gap: var(---echoes-dimension-space-25);
+  row-gap: var(--echoes-dimension-space-25);
 `;
+StyledLabelAndHelpText.displayName = 'StyledLabelAndHelpText';
 
 const StyledLabel = styled.span`
   overflow: hidden;
@@ -173,12 +178,14 @@ const StyledLabel = styled.span`
     white-space: nowrap;
   }
 `;
+StyledLabel.displayName = 'StyledLabel';
 
 const StyledHelpText = styled.span<{ isDisabled?: boolean }>`
   color: ${(props) =>
     props.isDisabled ? 'var(--echoes-color-text-disabled)' : 'var(--echoes-color-text-subdued)'};
   font: var(--echoes-typography-others-helper-text);
 `;
+StyledHelpText.displayName = 'StyledHelpText';
 
 const StyledSuffix = styled.span`
   align-items: center;
@@ -187,6 +194,7 @@ const StyledSuffix = styled.span`
   flex: 0 0 auto;
   justify-content: flex-end;
 `;
+StyledSuffix.displayName = 'StyledSuffix';
 
 const StyledRadixDropdownMenuItem = styled(radixDropdownMenu.Item)`
   background-color: var(--echoes-color-background-default);
@@ -224,3 +232,4 @@ const StyledRadixDropdownMenuItem = styled(radixDropdownMenu.Item)`
     cursor: default;
   }
 `;
+StyledRadixDropdownMenuItem.displayName = 'StyledRadixDropdownMenuItem';

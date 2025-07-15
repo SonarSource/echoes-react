@@ -24,11 +24,11 @@ import { useIntl } from 'react-intl';
 import { isStringDefined } from '~common/helpers/types';
 import { LogoProps, LogoSvgWrapper } from './logoUtils';
 
-interface Props extends LogoProps {
+export interface LogoSonarQubeCloudProps extends LogoProps {
   region?: string;
 }
 
-export const LogoSonarQubeCloud = forwardRef<SVGSVGElement, Props>(
+export const LogoSonarQubeCloud = forwardRef<SVGSVGElement, LogoSonarQubeCloudProps>(
   ({ hasText = false, region, size, ...props }, ref) => {
     const intl = useIntl();
 

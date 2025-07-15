@@ -64,6 +64,7 @@ const StyledHeading = styled.div<Required<Pick<HeadingProps, 'hasMarginBottom' |
   ${({ hasMarginBottom, size }) =>
     hasMarginBottom ? `margin-bottom: ${bottomMarginByHeadingSize({ size })}` : ''}
 `;
+StyledHeading.displayName = 'StyledHeading';
 
 function getHeadingFont({ size }: Required<Pick<HeadingProps, 'size'>>) {
   return HEADING_TYPOGRAPHY_MAP[size];

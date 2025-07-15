@@ -32,27 +32,6 @@ export interface GlobalNavigationDropdownItemProps extends DropdownMenuProps {
   disableActiveHighlight?: boolean;
 }
 
-// exported for tests
-export function isActive(pathname: string, item: ReactNode) {
-  if (isValidElement(item)) {
-    if (isDefined(item.props?.to) && matchPath(item.props.to, pathname) !== null) {
-      return true;
-    }
-
-    const targets: Array<string | undefined> = Children.map(item.props.children, (child) => {
-      return child?.props?.to;
-    });
-
-    for (const target of targets) {
-      if (isDefined(target) && matchPath(target, pathname) !== null) {
-        return true;
-      }
-    }
-  }
-
-  return false;
-}
-
 export const GlobalNavigationDropdownItem = forwardRef<
   HTMLButtonElement,
   GlobalNavigationDropdownItemProps
@@ -89,3 +68,24 @@ export const GlobalNavigationDropdownItem = forwardRef<
   },
 );
 GlobalNavigationDropdownItem.displayName = 'GlobalNavigationDropdownItem';
+
+// exported for tests
+export function isActive(pathname: string, item: ReactNode) {
+  if (isValidElement(item)) {
+    if (isDefined(item.props?.to) && matchPath(item.props.to, pathname) !== null) {
+      return true;
+    }
+
+    const targets: Array<string | undefined> = Children.map(item.props.children, (child) => {
+      return child?.props?.to;
+    });
+
+    for (const target of targets) {
+      if (isDefined(target) && matchPath(target, pathname) !== null) {
+        return true;
+      }
+    }
+  }
+
+  return false;
+}

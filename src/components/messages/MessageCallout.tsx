@@ -35,7 +35,7 @@ import {
 } from './MessageStyles';
 import { MessageVariety } from './MessageTypes';
 
-export interface MessageProps extends PropsWithChildren {
+export interface MessageCalloutProps extends PropsWithChildren {
   action?: ReactNode;
   className?: string;
   onDismiss?: VoidFunction;
@@ -44,7 +44,7 @@ export interface MessageProps extends PropsWithChildren {
   variety: `${MessageVariety}`;
 }
 
-export const MessageCallout = forwardRef<HTMLDivElement, MessageProps>((props, ref) => {
+export const MessageCallout = forwardRef<HTMLDivElement, MessageCalloutProps>((props, ref) => {
   const {
     action,
     children,

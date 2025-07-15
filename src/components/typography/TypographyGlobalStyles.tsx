@@ -40,3 +40,4 @@ export function TypographyGlobalStyles() {
     />
   );
 }
+TypographyGlobalStyles.displayName = 'TypographyGlobalStyles';

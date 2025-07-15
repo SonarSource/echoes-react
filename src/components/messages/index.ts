@@ -18,6 +18,6 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-export { MessageCallout } from './MessageCallout';
-export { MessageInline } from './MessageInline';
+export { MessageCallout, type MessageCalloutProps } from './MessageCallout';
+export { MessageInline, type MessageInlineProps } from './MessageInline';
 export { MessageInlineSize, MessageVariety } from './MessageTypes';
