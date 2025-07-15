@@ -23,7 +23,7 @@ import { screenReaderOnly } from '~common/helpers/styles';
 import { renderWithMemoryRouter } from '~common/helpers/test-utils';
 import { Link } from '../../links';
 import { Banner } from '../Banner';
-import { BannerProps, BannerType } from '../BannerTypes';
+import { BannerProps, BannerVariety } from '../BannerTypes';
 
 it('should display banner content', async () => {
   setupBanner({ children: 'Banner Content' });
@@ -37,19 +37,22 @@ it('should display banner content', async () => {
 });
 
 it.each([
-  [BannerType.Danger, 'Error banner:'],
-  [BannerType.Info, 'Information banner:'],
-  [BannerType.Success, 'Success banner:'],
-  [BannerType.Warning, 'Warning banner:'],
-])('should render with the type %s and a default screenreader prefix', (type, expectedPrefix) => {
-  setupBanner({ type });
+  [BannerVariety.Danger, 'Error banner:'],
+  [BannerVariety.Info, 'Information banner:'],
+  [BannerVariety.Success, 'Success banner:'],
+  [BannerVariety.Warning, 'Warning banner:'],
+])(
+  'should render with the type %s and a default screenreader prefix',
+  (variety, expectedPrefix) => {
+    setupBanner({ variety });
 
-  expect(screen.getByRole('alert')).toHaveTextContent(`${expectedPrefix} Default Banner Content`);
+    expect(screen.getByRole('alert')).toHaveTextContent(`${expectedPrefix} Default Banner Content`);
 
-  expect(screen.getByText(expectedPrefix)).toHaveStyle(
-    screenReaderOnly.styles.replace(/label:.*?;/, ''),
-  );
-});
+    expect(screen.getByText(expectedPrefix)).toHaveStyle(
+      screenReaderOnly.styles.replace(/label:.*?;/, ''),
+    );
+  },
+);
 
 it('should be dismissable', async () => {
   const onDismiss = jest.fn();
@@ -82,7 +85,7 @@ it('should add custom screen reader prefix when provided', () => {
 
 it('should correctly support Links in the banner content', async () => {
   const { user } = renderWithMemoryRouter(
-    <Banner type={BannerType.Info}>
+    <Banner variety={BannerVariety.Info}>
       Banner with <Link to="/second">link</Link>
     </Banner>,
   );
@@ -94,7 +97,7 @@ it('should correctly support Links in the banner content', async () => {
 
 function setupBanner({ children, ...props }: Partial<BannerProps> = {}) {
   return renderWithMemoryRouter(
-    <Banner type={BannerType.Info} {...props}>
+    <Banner variety={BannerVariety.Info} {...props}>
       {children ?? 'Default Banner Content'}
     </Banner>,
   );

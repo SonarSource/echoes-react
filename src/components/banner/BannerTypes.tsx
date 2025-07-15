@@ -20,7 +20,7 @@
 
 import { TextNodeOptional } from '~types/utils';
 
-export enum BannerType {
+export enum BannerVariety {
   Danger = 'danger',
   Info = 'info',
   Success = 'success',
@@ -42,13 +42,13 @@ export interface BannerProps {
    */
   onDismiss?: VoidFunction | ((event: React.MouseEvent<HTMLButtonElement>) => Promise<void>);
   /**
-   * The type of banner to display, controls the styling and icon.
-   */
-  type: `${BannerType}`;
-  /**
    * Prefix text for screen readers to announce before the banner content. Optional since a default value is provided.
    */
   screenReaderPrefix?: TextNodeOptional;
+  /**
+   * The variety of banner to display, controls the styling and icon.
+   */
+  variety: `${BannerVariety}`;
   /**
    * Custom z-index for the banner, defaults to 1.
    */
