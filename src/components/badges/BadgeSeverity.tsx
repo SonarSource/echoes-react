@@ -102,7 +102,7 @@ export const BadgeSeverity = forwardRef<HTMLButtonElement, BadgeSeverityProps>((
     onClick,
     quality,
     severity,
-    shouldPreventDefault = false,
+    enablePreventDefault = false,
     shouldStopPropagation = false,
     tooltipContent = props.ariaLabel,
     tooltipOptions = {},

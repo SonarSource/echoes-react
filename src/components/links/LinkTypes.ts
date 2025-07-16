@@ -41,7 +41,7 @@ interface LinkCommonProps {
   onClick?: (event: MouseEvent<HTMLElement>) => void;
   style?: CSSProperties;
   shouldBlurAfterClick?: boolean;
-  shouldPreventDefault?: boolean;
+  enablePreventDefault?: boolean;
   shouldStopPropagation?: boolean;
   title?: string;
 }

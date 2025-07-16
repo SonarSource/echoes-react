@@ -39,7 +39,7 @@ describe('Link', () => {
 
   it('should prevent default when preventDefault is true', async () => {
     const { user } = renderWithMemoryRouter(
-      <Link shouldPreventDefault to="/second">
+      <Link enablePreventDefault to="/second">
         Test
       </Link>,
     );

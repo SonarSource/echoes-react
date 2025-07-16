@@ -34,7 +34,7 @@ export interface ButtonCommonProps {
   onClick?: (event: MouseEvent<HTMLElement>) => unknown;
   size?: `${ButtonSize}`;
   style?: React.CSSProperties;
-  shouldPreventDefault?: boolean;
+  enablePreventDefault?: boolean;
   shouldStopPropagation?: boolean;
 }
 

@@ -107,7 +107,7 @@ describe('Button', () => {
     const onFormSubmit = jest.fn();
     const { user } = render(
       <form onSubmit={onFormSubmit}>
-        <Button shouldPreventDefault type="submit">
+        <Button enablePreventDefault type="submit">
           Click me
         </Button>
       </form>,
@@ -211,10 +211,10 @@ describe('Button as Link', () => {
     expect(link).toHaveTextContent('(opens in new tab)');
   });
 
-  it('should prevent default when shouldPreventDefault is true', async () => {
+  it('should prevent default when enablePreventDefault is true', async () => {
     const onClick = jest.fn();
     const { user } = renderWithMemoryRouter(
-      <Button onClick={onClick} shouldPreventDefault to="/second">
+      <Button enablePreventDefault onClick={onClick} to="/second">
         Click me
       </Button>,
     );
