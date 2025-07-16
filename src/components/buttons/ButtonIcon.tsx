@@ -70,7 +70,7 @@ export const ButtonIcon = forwardRef<HTMLButtonElement | HTMLAnchorElement, Butt
       isLoading,
       onClick,
       size = ButtonSize.Large,
-      shouldOpenInNewTab = false,
+      enableOpenInNewTab = false,
       shouldPreventDefault = false,
       shouldStopPropagation = false,
       to,
@@ -98,7 +98,7 @@ export const ButtonIcon = forwardRef<HTMLButtonElement | HTMLAnchorElement, Butt
         <Tooltip content={tooltipContent} {...tooltipOptions}>
           <ButtonIconAsLink
             {...restProps}
-            {...getShouldOpenInNewTabProps({ shouldOpenInNewTab, to })}
+            {...getShouldOpenInNewTabProps({ enableOpenInNewTab, to })}
             aria-label={ariaLabel}
             autoFocus={hasAutoFocus}
             css={commonStyles}

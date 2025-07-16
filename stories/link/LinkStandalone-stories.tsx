@@ -61,7 +61,7 @@ export const LinkStandaloneExternal: Story = {
   args: {
     ...defaultArgs,
     children: 'Standalone External Link',
-    shouldOpenInNewTab: true,
+    enableOpenInNewTab: true,
   },
 };
 

@@ -28,21 +28,21 @@ type RouterNavLinkPropsAllowed = 'download' | 'to';
 export interface NavLinkBaseProps extends Pick<RouterNavLinkProps, RouterNavLinkPropsAllowed> {
   children: React.ReactNode;
   isMatchingFullPath?: boolean;
-  shouldOpenInNewTab?: boolean;
+  enableOpenInNewTab?: boolean;
 }
 
 export const NavLinkBase = forwardRef<HTMLAnchorElement, NavLinkBaseProps>((props, ref) => {
   const {
     children,
     isMatchingFullPath = false,
-    shouldOpenInNewTab = false,
+    enableOpenInNewTab = false,
     to,
     ...restAndRadixProps
   } = props;
 
   const intl = useIntl();
 
-  const shouldOpenInNewTabProps = shouldOpenInNewTab
+  const enableOpenInNewTabProps = enableOpenInNewTab
     ? {
         rel: `noopener${typeof to === 'string' && isSonarLink(to) ? '' : ' noreferrer nofollow'}`,
         /* eslint-disable-next-line react/jsx-no-target-blank -- we only allow noopener noreferrer for known external links */
@@ -53,13 +53,13 @@ export const NavLinkBase = forwardRef<HTMLAnchorElement, NavLinkBaseProps>((prop
   return (
     <RouterNavLink
       {...(isMatchingFullPath ? { end: true } : {})}
-      {...shouldOpenInNewTabProps}
+      {...enableOpenInNewTabProps}
       {...restAndRadixProps}
       ref={ref}
       to={to}>
       {children}
 
-      {shouldOpenInNewTab && (
+      {enableOpenInNewTab && (
         <VisuallyHidden.Root>
           {intl.formatMessage({
             id: 'open_in_new_tab',

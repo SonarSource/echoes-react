@@ -47,7 +47,7 @@ interface LinkCommonProps {
 }
 
 export interface LinkBaseProps extends LinkCommonProps, RouterNavLinkPropsSubset {
-  shouldOpenInNewTab?: boolean;
+  enableOpenInNewTab?: boolean;
 }
 
 interface LinkAsLinkProps extends LinkBaseProps {
@@ -56,7 +56,7 @@ interface LinkAsLinkProps extends LinkBaseProps {
 
 type LinkPropsForbiddenForButton = {
   [K in keyof RouterNavLinkPropsSubset]?: never;
-} & { shouldOpenInNewTab?: never };
+} & { enableOpenInNewTab?: never };
 
 interface LinkAsButtonProps extends LinkCommonProps, LinkPropsForbiddenForButton {
   onClick: (event: MouseEvent<HTMLElement>) => void;

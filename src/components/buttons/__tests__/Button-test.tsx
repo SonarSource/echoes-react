@@ -164,7 +164,7 @@ describe('Button as Link', () => {
     const onClick = jest.fn();
 
     const { user } = renderWithMemoryRouter(
-      <Button isDisabled onClick={onClick} shouldOpenInNewTab to="/second">
+      <Button enableOpenInNewTab isDisabled onClick={onClick} to="/second">
         Click me
       </Button>,
       undefined,
@@ -198,9 +198,9 @@ describe('Button as Link', () => {
     expect(screen.getByRole('link', { name: 'Prefix Click me Suffix' })).toBeInTheDocument();
   });
 
-  it('should open in new tab when shouldOpenInNewTab is true', () => {
+  it('should open in new tab when enableOpenInNewTab is true', () => {
     renderWithMemoryRouter(
-      <Button onClick={jest.fn()} shouldOpenInNewTab to="https://example.com">
+      <Button enableOpenInNewTab onClick={jest.fn()} to="https://example.com">
         Click me
       </Button>,
     );

@@ -71,7 +71,7 @@ describe('Link', () => {
 
   it('should add noreferrer nofollow when link should open in new tab', () => {
     renderWithMemoryRouter(
-      <Link shouldOpenInNewTab to="https://google.com">
+      <Link enableOpenInNewTab to="https://google.com">
         external link
       </Link>,
     );
@@ -80,7 +80,7 @@ describe('Link', () => {
 
   it('should not add noreferrer nofollow when link is a sonar link', () => {
     renderWithMemoryRouter(
-      <Link shouldOpenInNewTab to="https://blog.sonarsource.com">
+      <Link enableOpenInNewTab to="https://blog.sonarsource.com">
         external link
       </Link>,
     );
@@ -111,7 +111,7 @@ describe('Link', () => {
 
   it('external links are indicated by additional text', async () => {
     const { container } = renderWithMemoryRouter(
-      <Link shouldOpenInNewTab to="https://google.com">
+      <Link enableOpenInNewTab to="https://google.com">
         external link
       </Link>,
     );

@@ -60,7 +60,7 @@ export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPr
       shouldStopPropagation = false,
       size = ButtonSize.Large,
       variety = ButtonVariety.Default,
-      shouldOpenInNewTab = false,
+      enableOpenInNewTab = false,
       suffix,
       to,
       type = 'button',
@@ -83,7 +83,7 @@ export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPr
       return (
         <ButtonAsLink
           {...restProps}
-          {...getShouldOpenInNewTabProps({ shouldOpenInNewTab, to })}
+          {...getShouldOpenInNewTabProps({ enableOpenInNewTab, to })}
           autoFocus={hasAutoFocus}
           css={commonStyles}
           onClick={handleClick}
@@ -92,7 +92,7 @@ export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPr
           <ButtonContent
             isLoading={isLoading}
             prefix={prefix}
-            suffix={suffix || <LinkOpenInNewTabSuffix shouldOpenInNewTab={shouldOpenInNewTab} />}>
+            suffix={suffix || <LinkOpenInNewTabSuffix enableOpenInNewTab={enableOpenInNewTab} />}>
             {children}
           </ButtonContent>
         </ButtonAsLink>

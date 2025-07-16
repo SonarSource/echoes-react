@@ -110,7 +110,7 @@ export const AsALink: Story = {
   args: {
     ariaLabel: 'click',
     to: 'https://example.com',
-    shouldOpenInNewTab: true,
+    enableOpenInNewTab: true,
     Icon: IconLink,
   },
   argTypes: {
