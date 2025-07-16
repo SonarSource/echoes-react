@@ -35,7 +35,7 @@ export interface ButtonCommonProps {
   size?: `${ButtonSize}`;
   style?: React.CSSProperties;
   enablePreventDefault?: boolean;
-  shouldStopPropagation?: boolean;
+  enableStopPropagation?: boolean;
 }
 
 export interface ButtonBaseProps extends ButtonCommonProps, HTMLButtonAttributesSubset {

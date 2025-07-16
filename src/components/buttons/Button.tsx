@@ -57,7 +57,7 @@ export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPr
       onClick,
       prefix,
       enablePreventDefault = false,
-      shouldStopPropagation = false,
+      enableStopPropagation = false,
       size = ButtonSize.Large,
       variety = ButtonVariety.Default,
       enableOpenInNewTab = false,
@@ -140,11 +140,11 @@ function ButtonContent(
 ButtonContent.displayName = 'ButtonContent';
 
 export function useButtonClickHandler(
-  props: Pick<ButtonBaseProps, 'isDisabled' | 'enablePreventDefault' | 'shouldStopPropagation'> & {
+  props: Pick<ButtonBaseProps, 'isDisabled' | 'enablePreventDefault' | 'enableStopPropagation'> & {
     onClick?: (event: MouseEvent<HTMLButtonElement | HTMLAnchorElement>) => unknown;
   },
 ) {
-  const { isDisabled, onClick, enablePreventDefault, shouldStopPropagation } = props;
+  const { isDisabled, onClick, enablePreventDefault, enableStopPropagation } = props;
 
   return useCallback(
     (event: MouseEvent<HTMLButtonElement | HTMLAnchorElement>) => {
@@ -152,7 +152,7 @@ export function useButtonClickHandler(
         event.preventDefault();
       }
 
-      if (shouldStopPropagation) {
+      if (enableStopPropagation) {
         event.stopPropagation();
       }
 
@@ -160,7 +160,7 @@ export function useButtonClickHandler(
         onClick(event);
       }
     },
-    [isDisabled, onClick, enablePreventDefault, shouldStopPropagation],
+    [isDisabled, onClick, enablePreventDefault, enableStopPropagation],
   );
 }
 

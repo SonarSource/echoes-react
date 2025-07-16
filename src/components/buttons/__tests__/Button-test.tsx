@@ -78,7 +78,7 @@ describe('Button', () => {
     const { user } = render(
       // eslint-disable-next-line jsx-a11y/no-static-element-interactions
       <div onClick={propagatedClick}>
-        <Button onClick={onButtonClick} shouldStopPropagation>
+        <Button enableStopPropagation onClick={onButtonClick}>
           Click me
         </Button>
       </div>,
@@ -230,7 +230,7 @@ describe('Button as Link', () => {
     const { user } = renderWithMemoryRouter(
       // eslint-disable-next-line jsx-a11y/no-static-element-interactions
       <div onClick={propagatedClick}>
-        <Button onClick={onLinkClick} shouldStopPropagation to="/second">
+        <Button enableStopPropagation onClick={onLinkClick} to="/second">
           Click me
         </Button>
       </div>,

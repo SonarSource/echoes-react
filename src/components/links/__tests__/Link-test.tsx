@@ -58,7 +58,7 @@ describe('Link', () => {
 
     const { user } = renderWithMemoryRouter(
       <button onClick={buttonOnClick} type="button">
-        <Link shouldStopPropagation to="/second">
+        <Link enableStopPropagation to="/second">
           Test
         </Link>
       </button>,
@@ -90,7 +90,7 @@ describe('Link', () => {
   it('should call onClick when one is passed', async () => {
     const onClick = jest.fn();
     const { user } = renderWithMemoryRouter(
-      <Link onClick={onClick} shouldStopPropagation to="/second">
+      <Link enableStopPropagation onClick={onClick} to="/second">
         Test
       </Link>,
     );

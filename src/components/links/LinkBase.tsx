@@ -31,7 +31,7 @@ export const LinkBase = forwardRef<HTMLAnchorElement | HTMLButtonElement, LinkPr
       shouldBlurAfterClick = false,
       onClick,
       enablePreventDefault = false,
-      shouldStopPropagation = false,
+      enableStopPropagation = false,
       enableOpenInNewTab = false,
       type = 'button',
       ...restProps
@@ -47,7 +47,7 @@ export const LinkBase = forwardRef<HTMLAnchorElement | HTMLButtonElement, LinkPr
           event.preventDefault();
         }
 
-        if (shouldStopPropagation) {
+        if (enableStopPropagation) {
           event.stopPropagation();
         }
 
@@ -55,7 +55,7 @@ export const LinkBase = forwardRef<HTMLAnchorElement | HTMLButtonElement, LinkPr
           onClick(event);
         }
       },
-      [onClick, shouldBlurAfterClick, enablePreventDefault, shouldStopPropagation],
+      [onClick, shouldBlurAfterClick, enablePreventDefault, enableStopPropagation],
     );
 
     if (isLinkAsButton(props)) {

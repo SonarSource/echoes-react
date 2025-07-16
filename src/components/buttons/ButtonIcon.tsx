@@ -72,7 +72,7 @@ export const ButtonIcon = forwardRef<HTMLButtonElement | HTMLAnchorElement, Butt
       size = ButtonSize.Large,
       enableOpenInNewTab = false,
       enablePreventDefault = false,
-      shouldStopPropagation = false,
+      enableStopPropagation = false,
       to,
       tooltipContent = props.ariaLabel,
       tooltipOptions = {},

@@ -42,7 +42,7 @@ interface LinkCommonProps {
   style?: CSSProperties;
   shouldBlurAfterClick?: boolean;
   enablePreventDefault?: boolean;
-  shouldStopPropagation?: boolean;
+  enableStopPropagation?: boolean;
   title?: string;
 }
 
