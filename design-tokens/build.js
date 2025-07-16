@@ -18,7 +18,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import { registerTransforms, transforms } from '@tokens-studio/sd-transforms';
+import { getTransforms, register } from '@tokens-studio/sd-transforms';
 import * as fs from 'node:fs';
 import StyleDictionary from 'style-dictionary';
 
@@ -33,6 +33,7 @@ const CUSTOM_FILTER_THEMED_TOKENS = 'sonar-themed-tokens';
 const CUSTOM_FILTER_TAILWIND = 'sonar-echoes-tailwind-preset';
 const THEME_DATA_ATTRIBUTE = 'data-echoes-theme';
 const TAILWIND_CONFIG_FILENAME = 'tailwindConfig.js';
+const LICENSE_HEADER_FILE_OPTION = 'licence-header';
 
 const licenseHeader = fs.readFileSync(`config/license/LICENSE-HEADER.txt`, 'utf-8');
 const tailwindTypographyUtilities = JSON.parse(
@@ -49,64 +50,64 @@ const baseDesignTokenGroup = designTokenGroups.find(
 
 const themedDesignTokenGroups = designTokenGroups.filter(({ group }) => group === 'Themes');
 
-initStyleDictionary(licenseHeader);
-buildBaseTokens(baseDesignTokenGroup);
-buildThemedTokens(themedDesignTokenGroups, baseDesignTokenGroup);
+const sd = initStyleDictionary(licenseHeader);
+await buildBaseTokens(baseDesignTokenGroup, sd);
+await buildThemedTokens(themedDesignTokenGroups, baseDesignTokenGroup, sd);
 buildCSSRootFile(designTokenGroups, licenseHeader);
 buildThemesEnumType(themedDesignTokenGroups, licenseHeader);
 buildTailwindConfig();
 
 function initStyleDictionary(licenseHeader) {
-  registerTransforms(StyleDictionary, { 'ts/color/modifiers': { format: 'hsl' } });
-
-  StyleDictionary.registerTransformGroup({
-    name: CUSTOM_TRANSFORM_GROUP,
-    transforms: [
-      'attribute/cti',
-      ...transforms,
-      'color/css',
-      'name/cti/kebab',
-      'ts/color/modifiers',
-    ],
-  });
-
-  StyleDictionary.registerFilter({
-    name: CUSTOM_FILTER_NO_COLOR,
-    matcher: ({ attributes }) =>
-      attributes.type !== 'color' || // Exclude colors
-      attributes.item === 'support', // but keep the support colors (black, white, transparent)
-  });
-
-  StyleDictionary.registerFilter({
-    name: CUSTOM_FILTER_TAILWIND,
-    matcher: ({ attributes: { type, item } }) => {
-      return type === 'dimension' && ['space', 'width', 'height'].includes(item);
+  const sd = new StyleDictionary({
+    // Preprocessors to use with tokens-studio: https://github.com/tokens-studio/sd-transforms#using-expand
+    preprocessors: ['tokens-studio'],
+    // Base configuration
+    hooks: {
+      transformGroups: {
+        [CUSTOM_TRANSFORM_GROUP]: [
+          'attribute/cti',
+          ...getTransforms({ platform: 'css' }),
+          'name/kebab',
+          'typography/css/shorthand',
+          'border/css/shorthand',
+          'shadow/css/shorthand',
+        ],
+      },
+      filters: {
+        [CUSTOM_FILTER_NO_COLOR]: ({ attributes }) =>
+          attributes.type !== 'color' || // Exclude colors
+          attributes.item === 'support', // but keep the support colors (black, white, transparent)
+        [CUSTOM_FILTER_TAILWIND]: ({ attributes: { type, item } }) => {
+          return type === 'dimension' && ['space', 'width', 'height'].includes(item);
+        },
+        [CUSTOM_FILTER_THEMED_TOKENS]: ({ attributes, filePath }) =>
+          !filePath.includes(`layer1`) &&
+          !(filePath.endsWith('base.json') && attributes.type !== 'color'),
+      },
+      fileHeaders: {
+        [LICENSE_HEADER_FILE_OPTION]: () => [
+          licenseHeader.replace(/(\/\*\n \* )|(\n \*\/\n)/gm, ''),
+          '',
+          'GENERATED FILE: do not edit directly.',
+        ],
+      },
     },
   });
 
-  StyleDictionary.registerFilter({
-    name: CUSTOM_FILTER_THEMED_TOKENS,
-    matcher: ({ attributes, filePath }) =>
-      !filePath.includes(`layer1`) &&
-      !(filePath.endsWith('base.json') && attributes.type !== 'color'),
+  register(sd, {
+    'ts/color/modifiers': { format: 'hsl' },
+    withSDBuiltins: false,
   });
 
-  StyleDictionary.registerFileHeader({
-    name: 'licence-header',
-    fileHeader: () => [
-      licenseHeader.replace(/(\/\*\n \* )|(\n \*\/\n)/gm, ''),
-      '',
-      'GENERATED FILE: do not edit directly.',
-    ],
-  });
+  return sd;
 }
 
 // Build base tokens: layer1 base + layer2 base without colors
-function buildBaseTokens(tokenGroup) {
+async function buildBaseTokens(tokenGroup, sd) {
   console.log('\nBuilding base tokens, no colors allowed...');
   console.log(`\nBuilding "${tokenGroup.name}" group...`);
 
-  StyleDictionary.extend({
+  const extendedSd = await sd.extend({
     source: Object.entries(tokenGroup.selectedTokenSets)
       .filter(([, val]) => val !== 'disabled')
       .map(([tokenset]) => `${DESIGN_TOKENS_PATH}/${tokenset}.json`),
@@ -120,7 +121,7 @@ function buildBaseTokens(tokenGroup) {
             format: 'css/variables',
             filter: CUSTOM_FILTER_NO_COLOR,
             options: {
-              fileHeader: 'licence-header',
+              fileHeader: LICENSE_HEADER_FILE_OPTION,
               selector: ':root',
             },
           },
@@ -129,7 +130,7 @@ function buildBaseTokens(tokenGroup) {
             format: 'json/nested',
             filter: CUSTOM_FILTER_NO_COLOR,
             options: {
-              fileHeader: 'licence-header',
+              fileHeader: LICENSE_HEADER_FILE_OPTION,
             },
           },
           {
@@ -137,67 +138,73 @@ function buildBaseTokens(tokenGroup) {
             filter: CUSTOM_FILTER_TAILWIND,
             format: 'javascript/module-flat',
             options: {
-              fileHeader: 'licence-header',
+              fileHeader: LICENSE_HEADER_FILE_OPTION,
             },
           },
         ],
       },
     },
-  }).buildAllPlatforms();
+  });
+
+  await extendedSd.buildAllPlatforms();
 
   console.log(`\nBase tokens builds done.`);
 }
 
 // Build themed tokens: 1 for each theme, without layer1 and layer2 base non-color tokens
-function buildThemedTokens(themedTokenGroups, baseDesignTokenGroup) {
+async function buildThemedTokens(themedTokenGroups, baseDesignTokenGroup, sd) {
   console.log('\nBuilding themed tokens, no layer1 or layer2 base non-colors...');
 
-  themedTokenGroups.forEach((theme) => {
-    console.log(`\nBuilding "${theme.name}" theme...`);
+  await Promise.all(
+    themedTokenGroups.map(async (theme) => {
+      console.log(`\nBuilding "${theme.name}" theme...`);
 
-    StyleDictionary.extend({
-      source: [
-        ...Object.entries(baseDesignTokenGroup.selectedTokenSets),
-        ...Object.entries(theme.selectedTokenSets),
-      ]
-        .filter(([, val]) => val !== 'disabled')
-        .map(([tokenset]) => `${DESIGN_TOKENS_PATH}/${tokenset}.json`),
-      platforms: {
-        tokens: {
-          transformGroup: CUSTOM_TRANSFORM_GROUP,
-          buildPath: BUILD_PATH,
-          files: [
-            {
-              destination: `${NAME_PREFIX}${theme.name}.css`,
-              format: 'css/variables',
-              filter: CUSTOM_FILTER_THEMED_TOKENS,
-              options: {
-                fileHeader: 'licence-header',
-                selector:
-                  /*
-                   * For any theme that is not the default theme, the `html`
-                   * attribute increases the specificity so that it can override
-                   * the default theme. Otherwise, the order in which the CSS
-                   * selectors appear in the CSS file would matter.
-                   */
-                  theme.name === DEFAULT_THEME
-                    ? `:root, [${THEME_DATA_ATTRIBUTE}='${theme.name}']`
-                    : `html[${THEME_DATA_ATTRIBUTE}='${theme.name}'], [${THEME_DATA_ATTRIBUTE}='${theme.name}']`,
+      const extendedSd = await sd.extend({
+        source: [
+          ...Object.entries(baseDesignTokenGroup.selectedTokenSets),
+          ...Object.entries(theme.selectedTokenSets),
+        ]
+          .filter(([, val]) => val !== 'disabled')
+          .map(([tokenset]) => `${DESIGN_TOKENS_PATH}/${tokenset}.json`),
+        platforms: {
+          tokens: {
+            transformGroup: CUSTOM_TRANSFORM_GROUP,
+            buildPath: BUILD_PATH,
+            files: [
+              {
+                destination: `${NAME_PREFIX}${theme.name}.css`,
+                format: 'css/variables',
+                filter: CUSTOM_FILTER_THEMED_TOKENS,
+                options: {
+                  fileHeader: LICENSE_HEADER_FILE_OPTION,
+                  selector:
+                    /*
+                     * For any theme that is not the default theme, the `html`
+                     * attribute increases the specificity so that it can override
+                     * the default theme. Otherwise, the order in which the CSS
+                     * selectors appear in the CSS file would matter.
+                     */
+                    theme.name === DEFAULT_THEME
+                      ? `:root, [${THEME_DATA_ATTRIBUTE}='${theme.name}']`
+                      : `html[${THEME_DATA_ATTRIBUTE}='${theme.name}'], [${THEME_DATA_ATTRIBUTE}='${theme.name}']`,
+                },
               },
-            },
-            DEFAULT_THEME === theme.name && {
-              destination: `${NAME_PREFIX}themed.json`,
-              format: 'json/flat',
-              filter: CUSTOM_FILTER_THEMED_TOKENS,
-              options: {
-                fileHeader: 'licence-header',
+              DEFAULT_THEME === theme.name && {
+                destination: `${NAME_PREFIX}themed.json`,
+                format: 'json/flat',
+                filter: CUSTOM_FILTER_THEMED_TOKENS,
+                options: {
+                  fileHeader: LICENSE_HEADER_FILE_OPTION,
+                },
               },
-            },
-          ].filter((file) => Boolean(file)),
+            ].filter((file) => Boolean(file)),
+          },
         },
-      },
-    }).buildAllPlatforms();
-  });
+      });
+
+      await extendedSd.buildAllPlatforms();
+    }),
+  );
 
   console.log(`\nThemed tokens builds done.`);
 }
@@ -237,7 +244,9 @@ function buildTailwindConfig() {
   // Preserve the license and the json but get rid of the `module.exports`
   const [license, json] = content.split('module.exports = ');
 
-  const jsonTokens = JSON.parse(json.replace(';', ''));
+  // Remove trailing semicolon and last trailing commas that make JSON invalid
+  const cleanJson = json.replace(/,(\s*});/, '$1');
+  const jsonTokens = JSON.parse(cleanJson);
 
   const spacing = mapTokens(jsonTokens, 'space');
   const width = mapTokens(jsonTokens, 'width');
