@@ -124,7 +124,7 @@ export const ModalForm = forwardRef<HTMLDivElement, ModalFormProps>((props, ref)
     onSubmit,
     onInvalid,
     secondaryButtonLabel,
-    shouldUseBrowserValidation,
+    enableBrowserValidation,
     submitButtonLabel,
     target,
     ...modalProps
@@ -175,13 +175,13 @@ export const ModalForm = forwardRef<HTMLDivElement, ModalFormProps>((props, ref)
       content={
         <Form
           action={action}
+          enableBrowserValidation={enableBrowserValidation}
           id={formId}
           method={method}
           name={name}
           onInvalid={onInvalid}
           onReset={onFormReset}
           onSubmit={onFormSubmit}
-          shouldUseBrowserValidation={shouldUseBrowserValidation}
           target={target}>
           {extraContent}
           {content}
