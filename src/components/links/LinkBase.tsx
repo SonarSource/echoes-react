@@ -28,7 +28,7 @@ export const LinkBase = forwardRef<HTMLAnchorElement | HTMLButtonElement, LinkPr
   (props, ref) => {
     const {
       children,
-      shouldBlurAfterClick = false,
+      enableBlurAfterClick = false,
       onClick,
       enablePreventDefault = false,
       enableStopPropagation = false,
@@ -39,7 +39,7 @@ export const LinkBase = forwardRef<HTMLAnchorElement | HTMLButtonElement, LinkPr
 
     const handleClick = useCallback(
       (event: MouseEvent<HTMLButtonElement | HTMLAnchorElement>) => {
-        if (shouldBlurAfterClick) {
+        if (enableBlurAfterClick) {
           event.currentTarget.blur();
         }
 
@@ -55,7 +55,7 @@ export const LinkBase = forwardRef<HTMLAnchorElement | HTMLButtonElement, LinkPr
           onClick(event);
         }
       },
-      [onClick, shouldBlurAfterClick, enablePreventDefault, enableStopPropagation],
+      [onClick, enableBlurAfterClick, enablePreventDefault, enableStopPropagation],
     );
 
     if (isLinkAsButton(props)) {

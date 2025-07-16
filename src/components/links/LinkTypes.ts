@@ -40,7 +40,7 @@ interface LinkCommonProps {
   highlight?: `${LinkHighlight}`;
   onClick?: (event: MouseEvent<HTMLElement>) => void;
   style?: CSSProperties;
-  shouldBlurAfterClick?: boolean;
+  enableBlurAfterClick?: boolean;
   enablePreventDefault?: boolean;
   enableStopPropagation?: boolean;
   title?: string;

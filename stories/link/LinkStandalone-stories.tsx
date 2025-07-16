@@ -90,6 +90,6 @@ export const LinkAsButton: Story = {
         defaultValue: { summary: 'button' },
       },
     },
-    ...toDisabledControlArgType('shouldBlurAfterClick', 'title'),
+    ...toDisabledControlArgType('enableBlurAfterClick', 'title'),
   },
 };

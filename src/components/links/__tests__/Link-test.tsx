@@ -26,7 +26,7 @@ import { Tooltip } from '../../tooltip';
 describe('Link', () => {
   it('should remove focus after link is clicked', async () => {
     const { user, container } = renderWithMemoryRouter(
-      <Link shouldBlurAfterClick to="/initial">
+      <Link enableBlurAfterClick to="/initial">
         Test
       </Link>,
     );
