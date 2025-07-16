@@ -1,9 +1,9 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`renders as default 1`] = `
 .emotion-0 {
   font: var(--echoes-typography-display-default);
-  color: var(--echoes-color-text-bold);
+  color: var(--echoes-color-text-strong);
 }
 
 <span
@@ -16,7 +16,7 @@ exports[`renders as default 1`] = `
 exports[`renders as div 1`] = `
 .emotion-0 {
   font: var(--echoes-typography-display-default);
-  color: var(--echoes-color-text-bold);
+  color: var(--echoes-color-text-strong);
 }
 
 <div
@@ -29,7 +29,7 @@ exports[`renders as div 1`] = `
 exports[`renders as paragraph 1`] = `
 .emotion-0 {
   font: var(--echoes-typography-display-default);
-  color: var(--echoes-color-text-bold);
+  color: var(--echoes-color-text-strong);
 }
 
 <p
@@ -42,7 +42,7 @@ exports[`renders as paragraph 1`] = `
 exports[`renders as span 1`] = `
 .emotion-0 {
   font: var(--echoes-typography-display-default);
-  color: var(--echoes-color-text-bold);
+  color: var(--echoes-color-text-strong);
 }
 
 <span
