@@ -30,7 +30,7 @@ export interface LabelProps {
 export const Label = styled.label<LabelProps>`
   font: var(--echoes-typography-others-label);
   color: ${({ isSubdued }) =>
-    isSubdued ? 'var(--echoes-color-text-subdued)' : 'var(--echoes-color-text-default)'};
+    isSubdued ? 'var(--echoes-color-text-subtle)' : 'var(--echoes-color-text-default)'};
 `;
 
 Label.displayName = 'Label';

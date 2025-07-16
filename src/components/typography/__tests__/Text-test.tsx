@@ -54,9 +54,9 @@ describe.each([
 
 it('allows to override the color', () => {
   const text = 'hi there';
-  setupText({ children: text, colorOverride: 'echoes-color-text-danger-bold' });
+  setupText({ children: text, colorOverride: 'echoes-color-text-danger' });
 
-  expect(screen.getByText(text)).toHaveStyle('color: var(--echoes-color-text-danger-bold)');
+  expect(screen.getByText(text)).toHaveStyle('color: var(--echoes-color-text-danger)');
 });
 
 function setupText(

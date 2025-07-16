@@ -25,19 +25,19 @@ import { BannerVariety } from './BannerTypes';
 
 export const BANNER_TYPE_STYLES = {
   [BannerVariety.Danger]: {
-    '--banner-color': 'var(--echoes-color-text-danger-bold)',
+    '--banner-color': 'var(--echoes-color-text-danger)',
     '--banner-background': 'var(--echoes-color-background-danger-weak-default)',
   },
   [BannerVariety.Info]: {
-    '--banner-color': 'var(--echoes-color-text-info-bold)',
+    '--banner-color': 'var(--echoes-color-text-info)',
     '--banner-background': 'var(--echoes-color-background-info-weak-default)',
   },
   [BannerVariety.Success]: {
-    '--banner-color': 'var(--echoes-color-text-success-bold)',
+    '--banner-color': 'var(--echoes-color-text-success)',
     '--banner-background': 'var(--echoes-color-background-success-weak-default)',
   },
   [BannerVariety.Warning]: {
-    '--banner-color': 'var(--echoes-color-text-warning-bold)',
+    '--banner-color': 'var(--echoes-color-text-warning)',
     '--banner-background': 'var(--echoes-color-background-warning-weak-default)',
   },
 };
@@ -71,7 +71,7 @@ BannerSkeleton.displayName = 'BannerSkeleton';
 // It also provides a stable non transparent background color for the BannerInner that has a transparent background when in dark mode
 export const BannerWrapper = styled.div`
   position: fixed;
-  background-color: var(--echoes-color-background-default);
+  background-color: var(--echoes-color-surface-default);
 
   height: inherit;
   width: 100%;

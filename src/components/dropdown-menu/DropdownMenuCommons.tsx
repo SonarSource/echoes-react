@@ -21,7 +21,7 @@
 import styled from '@emotion/styled';
 
 export const styleDropdownMenuOverlay = styled.div`
-  background-color: var(--echoes-color-background-default);
+  background-color: var(--echoes-color-surface-default);
   border: var(--echoes-border-width-default) solid var(--echoes-color-border-weak);
   border-radius: var(--echoes-dimension-space-100);
   box-shadow: var(--echoes-box-shadow-medium);

@@ -81,7 +81,7 @@ const RatingBadgeStyled = styled.div<{
   ${({ rating = RatingBadgeRating.Null }) => {
     if (rating === RatingBadgeRating.Null) {
       return `
-        background-color: var(--echoes-color-background-disabled);
+        background-color: var(--echoes-color-surface-disabled);
         color: var(--echoes-color-text-disabled);
     `;
     }
