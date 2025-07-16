@@ -20,23 +20,23 @@
 import { forwardRef } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { ScreenReaderPrefix } from '~common/components/ScreenReaderPrefix';
-import { BannerProps, BannerType } from './BannerTypes';
+import { BannerProps, BannerVariety } from './BannerTypes';
 
-type Props = Pick<BannerProps, 'screenReaderPrefix' | 'type'>;
+type Props = Pick<BannerProps, 'screenReaderPrefix' | 'variety'>;
 
 export const BannerScreenReaderPrefix = forwardRef<HTMLSpanElement, Props>((props, ref) => {
-  const { screenReaderPrefix, type, ...radixProps } = props;
+  const { screenReaderPrefix, variety, ...radixProps } = props;
   return (
     <ScreenReaderPrefix ref={ref} {...radixProps}>
-      {screenReaderPrefix ?? <BannerScreenReaderDefaultPrefix type={type} />}{' '}
+      {screenReaderPrefix ?? <BannerScreenReaderDefaultPrefix variety={variety} />}{' '}
     </ScreenReaderPrefix>
   );
 });
 BannerScreenReaderPrefix.displayName = 'BannerScreenReaderPrefix';
 
-function BannerScreenReaderDefaultPrefix({ type }: Readonly<Pick<BannerProps, 'type'>>) {
-  switch (type) {
-    case BannerType.Info:
+function BannerScreenReaderDefaultPrefix({ variety }: Readonly<Pick<BannerProps, 'variety'>>) {
+  switch (variety) {
+    case BannerVariety.Info:
       return (
         <FormattedMessage
           defaultMessage="Information banner:"
@@ -44,7 +44,7 @@ function BannerScreenReaderDefaultPrefix({ type }: Readonly<Pick<BannerProps, 't
           id="banner.prefix.info"
         />
       );
-    case BannerType.Danger:
+    case BannerVariety.Danger:
       return (
         <FormattedMessage
           defaultMessage="Error banner:"
@@ -52,7 +52,7 @@ function BannerScreenReaderDefaultPrefix({ type }: Readonly<Pick<BannerProps, 't
           id="banner.prefix.danger"
         />
       );
-    case BannerType.Warning:
+    case BannerVariety.Warning:
       return (
         <FormattedMessage
           defaultMessage="Warning banner:"
@@ -60,7 +60,7 @@ function BannerScreenReaderDefaultPrefix({ type }: Readonly<Pick<BannerProps, 't
           id="banner.prefix.warning"
         />
       );
-    case BannerType.Success:
+    case BannerVariety.Success:
       return (
         <FormattedMessage
           defaultMessage="Success banner:"
