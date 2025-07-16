@@ -21,58 +21,58 @@
  */
 
 :root, [data-echoes-theme='light'] {
-  --echoes-color-background-neutral-subtle-default: rgb(239,242,249); /* Use it in components with neutral sentiment */
-  --echoes-color-background-neutral-subtle-focus: rgb(239,242,249); /* Use it in components with neutral sentiment */
-  --echoes-color-background-neutral-subtle-hover: rgb(225,230,243); /* Use it in components with neutral sentiment */
-  --echoes-color-background-neutral-subtle-active: rgb(197,205,223); /* Use it in components with neutral sentiment */
-  --echoes-color-background-neutral-bolder-default: rgb(225,230,243); /* Use it in components with neutral sentiment that need a bolder highlight */
-  --echoes-color-background-accent-default: rgb(93,108,208); /* Used as the background color of components that reinforce our brand */
-  --echoes-color-background-accent-hover: rgb(75,86,187); /* Hover state of components that reinforce our brand */
+  --echoes-color-background-neutral-subtle-default: rgb(239,242,249); /** Use it in components with neutral sentiment */
+  --echoes-color-background-neutral-subtle-focus: rgb(239,242,249); /** Use it in components with neutral sentiment */
+  --echoes-color-background-neutral-subtle-hover: rgb(225,230,243); /** Use it in components with neutral sentiment */
+  --echoes-color-background-neutral-subtle-active: rgb(197,205,223); /** Use it in components with neutral sentiment */
+  --echoes-color-background-neutral-bolder-default: rgb(225,230,243); /** Use it in components with neutral sentiment that need a bolder highlight */
+  --echoes-color-background-accent-default: rgb(93,108,208); /** Used as the background color of components that reinforce our brand */
+  --echoes-color-background-accent-hover: rgb(75,86,187); /** Hover state of components that reinforce our brand */
   --echoes-color-background-accent-focus: rgb(93,108,208);
-  --echoes-color-background-accent-active: rgb(71,81,143); /* Active state of components that reinforce our brand */
-  --echoes-color-background-accent-weak-default: rgb(244,246,255); /* Used as the background color of components that reinforce our brand with less visual highlight */
-  --echoes-color-background-accent-weak-hover: rgb(232,235,255); /* Hover state of components that reinforce our brand with less visual highlight */
-  --echoes-color-background-accent-weak-active: rgb(209,215,254); /* Active state of components that reinforce our brand with less visual highlight */
-  --echoes-color-background-accent-weak-focus: rgb(232,235,255); /* Focus state of components that reinforce our brand with less visual highlight */
-  --echoes-color-background-warning-default: rgb(245,184,64); /* Use for backgrounds that communicate warning or caution */
-  --echoes-color-background-warning-hover: hsl(39.6 68.6% 54.4%); /* Use for backgrounds that communicate warning or caution */
-  --echoes-color-background-warning-focus: rgb(245,184,64); /* Use for backgrounds that communicate warning or caution */
-  --echoes-color-background-warning-active: rgb(174,122,41); /* Use for backgrounds that communicate warning or caution */
-  --echoes-color-background-warning-weak-default: rgb(252,245,228); /* Use for backgrounds that communicate warning or caution, with less visual highlight */
-  --echoes-color-background-warning-weak-hover: rgb(254,245,208); /* Use for backgrounds that communicate warning or caution, with less visual highlight */
-  --echoes-color-background-warning-weak-focus: rgb(252,245,228); /* Use for backgrounds that communicate warning or caution, with less visual highlight */
-  --echoes-color-background-warning-weak-active: rgb(252,233,163); /* Use for backgrounds that communicate warning or caution, with less visual highlight */
-  --echoes-color-background-success-default: rgb(83,128,39); /* Use for backgrounds that communicate positive or success messages */
-  --echoes-color-background-success-hover: rgb(63,104,29); /* Use for backgrounds that communicate positive or success messages */
-  --echoes-color-background-success-focus: rgb(83,128,39); /* Use for backgrounds that communicate positive or success messages */
-  --echoes-color-background-success-active: rgb(49,85,22); /* Use for backgrounds that communicate positive or success messages */
-  --echoes-color-background-success-weak-default: rgb(247,251,230); /* Use for backgrounds that communicate positive or success messages, with less visual highlight */
-  --echoes-color-background-success-weak-hover: rgb(241,250,210); /* Use for backgrounds that communicate positive or success messages, with less visual highlight */
-  --echoes-color-background-success-weak-active: rgb(225,245,168); /* Use for backgrounds that communicate positive or success messages, with less visual highlight */
-  --echoes-color-background-success-weak-focus: rgb(247,251,230); /* Use for backgrounds that communicate positive or success messages, with less visual highlight */
-  --echoes-color-background-danger-default: rgb(217,45,32); /* Use for backgrounds that communicate danger or destructive messages */
-  --echoes-color-background-danger-hover: rgb(180,35,24); /* Hover state for backgrounds that communicate danger or destructive messages */
-  --echoes-color-background-danger-focus: rgb(217,45,32); /* Focused state for backgrounds that communicate danger or destructive messages */
-  --echoes-color-background-danger-active: rgb(128,27,20); /* Active state for backgrounds that communicate danger or destructive messages */
-  --echoes-color-background-danger-weak-default: rgb(254,243,242); /* Use it for backgrounds that communicate danger or destructive messages, with less visual highlight */
-  --echoes-color-background-danger-weak-hover: rgb(254,228,226); /* Hover state for backgrounds that communicate danger or destructive messages, with less visual highlight */
-  --echoes-color-background-danger-weak-active: rgb(254,205,202); /* Active state for backgrounds that communicate danger or destructive messages, with less visual highlight */
+  --echoes-color-background-accent-active: rgb(71,81,143); /** Active state of components that reinforce our brand */
+  --echoes-color-background-accent-weak-default: rgb(244,246,255); /** Used as the background color of components that reinforce our brand with less visual highlight */
+  --echoes-color-background-accent-weak-hover: rgb(232,235,255); /** Hover state of components that reinforce our brand with less visual highlight */
+  --echoes-color-background-accent-weak-active: rgb(209,215,254); /** Active state of components that reinforce our brand with less visual highlight */
+  --echoes-color-background-accent-weak-focus: rgb(232,235,255); /** Focus state of components that reinforce our brand with less visual highlight */
+  --echoes-color-background-warning-default: rgb(245,184,64); /** Use for backgrounds that communicate warning or caution */
+  --echoes-color-background-warning-hover: hsl(39.712 78.206% 57.393%); /** Use for backgrounds that communicate warning or caution */
+  --echoes-color-background-warning-focus: rgb(245,184,64); /** Use for backgrounds that communicate warning or caution */
+  --echoes-color-background-warning-active: rgb(174,122,41); /** Use for backgrounds that communicate warning or caution */
+  --echoes-color-background-warning-weak-default: rgb(252,245,228); /** Use for backgrounds that communicate warning or caution, with less visual highlight */
+  --echoes-color-background-warning-weak-hover: rgb(254,245,208); /** Use for backgrounds that communicate warning or caution, with less visual highlight */
+  --echoes-color-background-warning-weak-focus: rgb(252,245,228); /** Use for backgrounds that communicate warning or caution, with less visual highlight */
+  --echoes-color-background-warning-weak-active: rgb(252,233,163); /** Use for backgrounds that communicate warning or caution, with less visual highlight */
+  --echoes-color-background-success-default: rgb(83,128,39); /** Use for backgrounds that communicate positive or success messages */
+  --echoes-color-background-success-hover: rgb(63,104,29); /** Use for backgrounds that communicate positive or success messages */
+  --echoes-color-background-success-focus: rgb(83,128,39); /** Use for backgrounds that communicate positive or success messages */
+  --echoes-color-background-success-active: rgb(49,85,22); /** Use for backgrounds that communicate positive or success messages */
+  --echoes-color-background-success-weak-default: rgb(247,251,230); /** Use for backgrounds that communicate positive or success messages, with less visual highlight */
+  --echoes-color-background-success-weak-hover: rgb(241,250,210); /** Use for backgrounds that communicate positive or success messages, with less visual highlight */
+  --echoes-color-background-success-weak-active: rgb(225,245,168); /** Use for backgrounds that communicate positive or success messages, with less visual highlight */
+  --echoes-color-background-success-weak-focus: rgb(247,251,230); /** Use for backgrounds that communicate positive or success messages, with less visual highlight */
+  --echoes-color-background-danger-default: rgb(217,45,32); /** Use for backgrounds that communicate danger or destructive messages */
+  --echoes-color-background-danger-hover: rgb(180,35,24); /** Hover state for backgrounds that communicate danger or destructive messages */
+  --echoes-color-background-danger-focus: rgb(217,45,32); /** Focused state for backgrounds that communicate danger or destructive messages */
+  --echoes-color-background-danger-active: rgb(128,27,20); /** Active state for backgrounds that communicate danger or destructive messages */
+  --echoes-color-background-danger-weak-default: rgb(254,243,242); /** Use it for backgrounds that communicate danger or destructive messages, with less visual highlight */
+  --echoes-color-background-danger-weak-hover: rgb(254,228,226); /** Hover state for backgrounds that communicate danger or destructive messages, with less visual highlight */
+  --echoes-color-background-danger-weak-active: rgb(254,205,202); /** Active state for backgrounds that communicate danger or destructive messages, with less visual highlight */
   --echoes-color-background-danger-weak-focus: rgb(254,243,242);
-  --echoes-color-background-info-default: rgb(49,108,146); /* Use for backgrounds that communicate information to the user */
-  --echoes-color-background-info-hover: rgb(23,67,97); /* Use for backgrounds that communicate information to the user */
-  --echoes-color-background-info-focus: rgb(49,108,146); /* Use for backgrounds that communicate information to the user */
-  --echoes-color-background-info-active: hsl(206 48.8% 16.4%); /* Use for backgrounds that communicate information to the user */
-  --echoes-color-background-info-weak-default: rgb(245,251,255); /* Use for backgrounds that communicate information to the user, with less visual highlight */
-  --echoes-color-background-info-weak-hover: rgb(233,244,251); /* Use for backgrounds that communicate information to the user, with less visual highlight */
-  --echoes-color-background-info-weak-focus: rgb(245,251,255); /* Use for backgrounds that communicate information to the user, with less visual highlight */
-  --echoes-color-background-info-weak-active: rgb(184,222,241); /* Use for backgrounds that communicate information to the user, with less visual highlight */
-  --echoes-color-background-utility-transparent: rgba(0,0,0,0); /* Use it when you need transparency in the background */
-  --echoes-color-background-selected-weak-default: rgb(244,246,255); /* Use it in backgrounds of components that have a selected state that need less visual highlight, like dropdown or selects */
-  --echoes-color-background-selected-weak-hover: rgb(232,235,255); /* Hover state of components that have a selected state that need less visual highlight, like dropdown or selects */
-  --echoes-color-background-selected-weak-pressed: rgb(209,215,254); /* Pressed state of components that have a selected state that need less visual highlight, like dropdown or selects */
-  --echoes-color-background-selected-bold-default: rgb(93,108,208); /* Use it in backgrounds of components that have a selected state, like checkboxes or radios */
-  --echoes-color-background-selected-bold-hover: rgb(75,86,187); /* Hover state of components that have a selected state, like checkboxes or radios */
-  --echoes-color-background-selected-bold-pressed: rgb(71,81,143); /* Pressed state of components that have a selected state, like checkboxes or radios */
+  --echoes-color-background-info-default: rgb(49,108,146); /** Use for backgrounds that communicate information to the user */
+  --echoes-color-background-info-hover: rgb(23,67,97); /** Use for backgrounds that communicate information to the user */
+  --echoes-color-background-info-focus: rgb(49,108,146); /** Use for backgrounds that communicate information to the user */
+  --echoes-color-background-info-active: hsl(205.42 54.621% 19.64%); /** Use for backgrounds that communicate information to the user */
+  --echoes-color-background-info-weak-default: rgb(245,251,255); /** Use for backgrounds that communicate information to the user, with less visual highlight */
+  --echoes-color-background-info-weak-hover: rgb(233,244,251); /** Use for backgrounds that communicate information to the user, with less visual highlight */
+  --echoes-color-background-info-weak-focus: rgb(245,251,255); /** Use for backgrounds that communicate information to the user, with less visual highlight */
+  --echoes-color-background-info-weak-active: rgb(184,222,241); /** Use for backgrounds that communicate information to the user, with less visual highlight */
+  --echoes-color-background-utility-transparent: rgba(0,0,0,0); /** Use it when you need transparency in the background */
+  --echoes-color-background-selected-weak-default: rgb(244,246,255); /** Use it in backgrounds of components that have a selected state that need less visual highlight, like dropdown or selects */
+  --echoes-color-background-selected-weak-hover: rgb(232,235,255); /** Hover state of components that have a selected state that need less visual highlight, like dropdown or selects */
+  --echoes-color-background-selected-weak-pressed: rgb(209,215,254); /** Pressed state of components that have a selected state that need less visual highlight, like dropdown or selects */
+  --echoes-color-background-selected-bold-default: rgb(93,108,208); /** Use it in backgrounds of components that have a selected state, like checkboxes or radios */
+  --echoes-color-background-selected-bold-hover: rgb(75,86,187); /** Hover state of components that have a selected state, like checkboxes or radios */
+  --echoes-color-background-selected-bold-pressed: rgb(71,81,143); /** Pressed state of components that have a selected state, like checkboxes or radios */
   --echoes-color-background-ghost-accent-default: rgba(0,0,0,0);
   --echoes-color-background-ghost-accent-hover: rgb(232,235,255);
   --echoes-color-background-ghost-accent-active: rgb(209,215,254);
@@ -95,16 +95,17 @@
   --echoes-color-background-emphasis-active: rgb(63,24,107);
   --echoes-color-background-favourite-default: rgb(209,152,52);
   --echoes-color-background-favourite-hover: rgb(174,122,41);
-  --echoes-color-surface-default: rgb(255,255,255); /* Go to color for surfaces.. eg: cards, modals, popovers, etc... */
-  --echoes-color-surface-hover: rgb(246,247,251); /* Hover color for bg-default */
-  --echoes-color-surface-active: rgb(225,230,243); /* Active color for bg-default */
-  --echoes-color-surface-canvas-default: rgb(252,252,253); /* Use it as page background */
-  --echoes-color-surface-inverse-default: rgb(42,47,64); /* Inverse color for bgs, creates high contrast against bg-default and bg-page */
+  --echoes-color-surface-default: rgb(255,255,255); /** Go to color for surfaces.. eg: cards, modals, popovers, etc... */
+  --echoes-color-surface-hover: rgb(246,247,251); /** Hover color for bg-default */
+  --echoes-color-surface-active: rgb(225,230,243); /** Active color for bg-default */
+  --echoes-color-surface-canvas-default: rgb(252,252,253); /** Use it as page background */
+  --echoes-color-surface-inverse-default: rgb(42,47,64); /** Inverse color for bgs, creates high contrast against bg-default and bg-page */
   --echoes-color-surface-inverse-hover: rgb(29,33,47);
   --echoes-color-surface-inverse-focus: rgb(42,47,64);
   --echoes-color-surface-inverse-active: rgb(18,20,29);
-  --echoes-color-surface-disabled: rgb(239,242,249); /* Use it as background for disabled components */
-  --echoes-color-overlays-back-drop-default: hsl(225 20% 3.92% / 0.45);
+  --echoes-color-surface-disabled: rgb(239,242,249); /** Use it as background for disabled components */
+  --echoes-color-overlays-back-drop-default: hsl(225 20% 3.9216% / 0.45);
+  --echoes-color-overlays-disabled: rgb(239,242,249); /** Use it as background for disabled components */
   --echoes-color-text-strong: rgb(29,33,47);
   --echoes-color-text-default: rgb(62,67,87);
   --echoes-color-text-disabled: rgb(166,173,194);
@@ -181,19 +182,19 @@
   --echoes-ratings-colors-border-rating-e-hover: rgb(240,68,56);
   --echoes-severity-badge-colors-background-severity-blocker-prefix-default: rgb(254,228,226);
   --echoes-severity-badge-colors-background-severity-blocker-suffix-default: rgb(254,205,202);
-  --echoes-severity-badge-colors-background-severity-blocker-suffix-hover: hsl(3.46 66.7% 85.4%);
+  --echoes-severity-badge-colors-background-severity-blocker-suffix-hover: hsl(3.4647 78.985% 87.401%);
   --echoes-severity-badge-colors-background-severity-high-prefix-default: rgb(254,243,242);
   --echoes-severity-badge-colors-background-severity-high-suffix-default: rgb(254,228,226);
-  --echoes-severity-badge-colors-background-severity-high-suffix-hover: hsl(4.29 51.8% 89.9%);
+  --echoes-severity-badge-colors-background-severity-high-suffix-hover: hsl(4.2869 66.904% 91.992%);
   --echoes-severity-badge-colors-background-severity-medium-prefix-default: rgb(255,240,235);
   --echoes-severity-badge-colors-background-severity-medium-suffix-default: rgb(255,232,218);
-  --echoes-severity-badge-colors-background-severity-medium-suffix-hover: hsl(21.8 68% 84.9%);
+  --echoes-severity-badge-colors-background-severity-medium-suffix-hover: hsl(21.816 79.895% 86.827%);
   --echoes-severity-badge-colors-background-severity-low-prefix-default: rgb(252,245,228);
   --echoes-severity-badge-colors-background-severity-low-suffix-default: rgb(254,245,208);
-  --echoes-severity-badge-colors-background-severity-low-suffix-hover: hsl(48.3 64% 86.5%);
+  --echoes-severity-badge-colors-background-severity-low-suffix-hover: hsl(48.256 76.86% 88.548%);
   --echoes-severity-badge-colors-background-severity-info-prefix-default: rgb(245,251,255);
   --echoes-severity-badge-colors-background-severity-info-suffix-default: rgb(233,244,251);
-  --echoes-severity-badge-colors-background-severity-info-suffix-hover: hsl(203 35.9% 90.7%);
+  --echoes-severity-badge-colors-background-severity-info-suffix-hover: hsl(203.33 47.545% 92.757%);
   --echoes-severity-badge-colors-foreground-blocker-icon-default: rgb(180,35,24);
   --echoes-severity-badge-colors-foreground-blocker-text-default: rgb(128,27,20);
   --echoes-severity-badge-colors-foreground-high-text-default: rgb(180,35,24);
