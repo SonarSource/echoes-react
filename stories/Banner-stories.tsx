@@ -20,7 +20,7 @@
 
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { useState } from 'react';
-import { Banner, BannerProps, BannerType, Button, Link } from '../src';
+import { Banner, BannerProps, BannerVariety, Button, Link } from '../src';
 import { toDisabledControlArgType, toTextControlArgTypes } from './helpers/arg-types';
 import { BasicWrapper } from './helpers/BasicWrapper';
 import { minWidthBodyDecorator, noPaddingBodyDecorator } from './helpers/decorators';
@@ -30,7 +30,7 @@ const meta: Meta<typeof Banner> = {
   title: 'Echoes/Banner',
 
   argTypes: {
-    type: { control: { type: 'select' }, options: Object.values(BannerType) },
+    variety: { control: { type: 'select' }, options: Object.values(BannerVariety) },
     ...toTextControlArgTypes('children', 'className', 'screenReaderPrefix'),
     ...toDisabledControlArgType('onDismiss'),
   },
@@ -46,7 +46,7 @@ export const Default: Story = {
   args: {
     children: 'My banner message',
     onDismiss: undefined,
-    type: 'warning',
+    variety: 'warning',
   },
   render: (args) => (
     <>
@@ -63,7 +63,7 @@ export const WithDismiss: Story = {
         My banner message <Link to="#">link</Link>
       </>
     ),
-    type: 'info',
+    variety: 'info',
   },
   render: (args) => <BannerWithDismiss {...args} />,
 };

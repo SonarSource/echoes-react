@@ -39,7 +39,7 @@ export const Banner = forwardRef<HTMLDivElement, BannerProps>((props, ref) => {
     disableFollowScroll = false,
     onDismiss,
     screenReaderPrefix,
-    type,
+    variety,
     zIndex = 1,
     ...htmlProps
   } = props;
@@ -49,23 +49,23 @@ export const Banner = forwardRef<HTMLDivElement, BannerProps>((props, ref) => {
 
   const wrapperLeftOffset = disableFollowScroll ? {} : { left: -leftScroll };
 
-  const { icon: BannerIcon, iconColor } = BANNER_TYPE_ICONS[type];
+  const { icon: BannerIcon, iconColor } = BANNER_TYPE_ICONS[variety];
 
   return (
     <BannerSkeleton
       css={useMemo(
         () => ({
-          ...BANNER_TYPE_STYLES[type],
+          ...BANNER_TYPE_STYLES[variety],
           '--banner-z-index': zIndex,
         }),
-        [type, zIndex],
+        [variety, zIndex],
       )}
       role="alert">
       <BannerWrapper style={wrapperLeftOffset}>
         <BannerInner ref={ref} {...htmlProps}>
           <BannerContent>
             <BannerIcon color={iconColor} />
-            <BannerScreenReaderPrefix screenReaderPrefix={screenReaderPrefix} type={type} />
+            <BannerScreenReaderPrefix screenReaderPrefix={screenReaderPrefix} variety={variety} />
             <BannerContentText>{children}</BannerContentText>
           </BannerContent>
 

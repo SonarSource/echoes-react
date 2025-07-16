@@ -21,41 +21,41 @@
 import styled from '@emotion/styled';
 import { truncate } from '~common/helpers/styles';
 import { IconCheckCircle, IconError, IconInfo, IconWarning } from '../icons';
-import { BannerType } from './BannerTypes';
+import { BannerVariety } from './BannerTypes';
 
 export const BANNER_TYPE_STYLES = {
-  [BannerType.Danger]: {
+  [BannerVariety.Danger]: {
     '--banner-color': 'var(--echoes-color-text-danger-bold)',
     '--banner-background': 'var(--echoes-color-background-danger-weak-default)',
   },
-  [BannerType.Info]: {
+  [BannerVariety.Info]: {
     '--banner-color': 'var(--echoes-color-text-info-bold)',
     '--banner-background': 'var(--echoes-color-background-info-weak-default)',
   },
-  [BannerType.Success]: {
+  [BannerVariety.Success]: {
     '--banner-color': 'var(--echoes-color-text-success-bold)',
     '--banner-background': 'var(--echoes-color-background-success-weak-default)',
   },
-  [BannerType.Warning]: {
+  [BannerVariety.Warning]: {
     '--banner-color': 'var(--echoes-color-text-warning-bold)',
     '--banner-background': 'var(--echoes-color-background-warning-weak-default)',
   },
 };
 
 export const BANNER_TYPE_ICONS = {
-  [BannerType.Danger]: {
+  [BannerVariety.Danger]: {
     icon: IconError,
     iconColor: 'echoes-color-icon-danger' as const,
   },
-  [BannerType.Info]: {
+  [BannerVariety.Info]: {
     icon: IconInfo,
     iconColor: 'echoes-color-icon-info' as const,
   },
-  [BannerType.Success]: {
+  [BannerVariety.Success]: {
     icon: IconCheckCircle,
     iconColor: 'echoes-color-icon-success' as const,
   },
-  [BannerType.Warning]: {
+  [BannerVariety.Warning]: {
     icon: IconWarning,
     iconColor: 'echoes-color-icon-warning' as const,
   },
