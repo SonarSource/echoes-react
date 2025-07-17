@@ -26,7 +26,7 @@ import { Tooltip } from '../../tooltip';
 describe('Link', () => {
   it('should remove focus after link is clicked', async () => {
     const { user, container } = renderWithMemoryRouter(
-      <Link shouldBlurAfterClick to="/initial">
+      <Link enableBlurAfterClick to="/initial">
         Test
       </Link>,
     );
@@ -39,7 +39,7 @@ describe('Link', () => {
 
   it('should prevent default when preventDefault is true', async () => {
     const { user } = renderWithMemoryRouter(
-      <Link shouldPreventDefault to="/second">
+      <Link enablePreventDefault to="/second">
         Test
       </Link>,
     );
@@ -58,7 +58,7 @@ describe('Link', () => {
 
     const { user } = renderWithMemoryRouter(
       <button onClick={buttonOnClick} type="button">
-        <Link shouldStopPropagation to="/second">
+        <Link enableStopPropagation to="/second">
           Test
         </Link>
       </button>,
@@ -71,7 +71,7 @@ describe('Link', () => {
 
   it('should add noreferrer nofollow when link should open in new tab', () => {
     renderWithMemoryRouter(
-      <Link shouldOpenInNewTab to="https://google.com">
+      <Link enableOpenInNewTab to="https://google.com">
         external link
       </Link>,
     );
@@ -80,7 +80,7 @@ describe('Link', () => {
 
   it('should not add noreferrer nofollow when link is a sonar link', () => {
     renderWithMemoryRouter(
-      <Link shouldOpenInNewTab to="https://blog.sonarsource.com">
+      <Link enableOpenInNewTab to="https://blog.sonarsource.com">
         external link
       </Link>,
     );
@@ -90,7 +90,7 @@ describe('Link', () => {
   it('should call onClick when one is passed', async () => {
     const onClick = jest.fn();
     const { user } = renderWithMemoryRouter(
-      <Link onClick={onClick} shouldStopPropagation to="/second">
+      <Link enableStopPropagation onClick={onClick} to="/second">
         Test
       </Link>,
     );
@@ -111,7 +111,7 @@ describe('Link', () => {
 
   it('external links are indicated by additional text', async () => {
     const { container } = renderWithMemoryRouter(
-      <Link shouldOpenInNewTab to="https://google.com">
+      <Link enableOpenInNewTab to="https://google.com">
         external link
       </Link>,
     );

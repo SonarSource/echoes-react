@@ -222,7 +222,7 @@ it('should render many different items', async () => {
           <DropdownMenu.ItemLink to="https://sonarcloud.io">
             detected external ItemLink
           </DropdownMenu.ItemLink>
-          <DropdownMenu.ItemLink shouldOpenInNewTab to={{ pathname: 'elsewhere 2' }}>
+          <DropdownMenu.ItemLink enableOpenInNewTab to={{ pathname: 'elsewhere 2' }}>
             forced external ItemLink
           </DropdownMenu.ItemLink>
           <DropdownMenu.ItemLink
@@ -247,7 +247,7 @@ it('should render many different items', async () => {
             ItemLink with suffix
           </DropdownMenu.ItemLink>
           <DropdownMenu.ItemLink
-            shouldOpenInNewTab
+            enableOpenInNewTab
             suffix={<IconBell color="echoes-color-icon-warning" />}
             to="elsewhere 8">
             Itemlink with suffix and external icon

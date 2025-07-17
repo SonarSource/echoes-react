@@ -120,7 +120,7 @@ export const AsALink: Story = {
   args: {
     children: 'My Link Button',
     to: 'https://example.com',
-    shouldOpenInNewTab: true,
+    enableOpenInNewTab: true,
   },
   argTypes: {
     variety: { control: { type: 'select' }, options: Object.values(ButtonAsLinkVariety) },

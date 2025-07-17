@@ -29,7 +29,7 @@ export type DropdownMenuItemLinkProps = Omit<
   'isCheckable' | 'isChecked'
 > & {
   hasExternalIcon?: boolean;
-} & Pick<NavLinkBaseProps, 'download' | 'isMatchingFullPath' | 'shouldOpenInNewTab' | 'to'>;
+} & Pick<NavLinkBaseProps, 'download' | 'isMatchingFullPath' | 'enableOpenInNewTab' | 'to'>;
 
 export const DropdownMenuItemLink = forwardRef<HTMLDivElement, DropdownMenuItemLinkProps>(
   (props, ref) => {
@@ -39,7 +39,7 @@ export const DropdownMenuItemLink = forwardRef<HTMLDivElement, DropdownMenuItemL
       hasExternalIcon = true,
       isDisabled,
       isMatchingFullPath = false,
-      shouldOpenInNewTab = false,
+      enableOpenInNewTab = false,
       suffix,
       to,
       ...radixProps
@@ -49,7 +49,7 @@ export const DropdownMenuItemLink = forwardRef<HTMLDivElement, DropdownMenuItemL
       ...radixProps,
       isDisabled,
       suffix: getComposedSuffix({
-        shouldOpenInNewTab: shouldOpenInNewTab && hasExternalIcon,
+        enableOpenInNewTab: enableOpenInNewTab && hasExternalIcon,
         suffix,
       }),
     };
@@ -67,8 +67,8 @@ export const DropdownMenuItemLink = forwardRef<HTMLDivElement, DropdownMenuItemL
         {({ getStyledItemContents }) => (
           <StyledNavLinkBase
             download={download}
+            enableOpenInNewTab={enableOpenInNewTab}
             isMatchingFullPath={isMatchingFullPath}
-            shouldOpenInNewTab={shouldOpenInNewTab}
             to={to}>
             {getStyledItemContents({ label: children })}
           </StyledNavLinkBase>
@@ -110,10 +110,10 @@ const StyledSuffix = styled.span`
 StyledSuffix.displayName = 'StyledSuffix';
 
 const getComposedSuffix = ({
-  shouldOpenInNewTab,
+  enableOpenInNewTab,
   suffix,
-}: Readonly<Pick<DropdownMenuItemLinkProps, 'shouldOpenInNewTab' | 'suffix'>>) => {
-  const externalSuffix = shouldOpenInNewTab ? <StyledIconLinkExternal /> : undefined;
+}: Readonly<Pick<DropdownMenuItemLinkProps, 'enableOpenInNewTab' | 'suffix'>>) => {
+  const externalSuffix = enableOpenInNewTab ? <StyledIconLinkExternal /> : undefined;
 
   if (suffix && externalSuffix) {
     return (
