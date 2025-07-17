@@ -77,11 +77,6 @@
       "increased": "0.02em",
       "decreased": "-0.02em"
     },
-    "paragraphSpacing": {
-      "small": "1rem",
-      "medium": "1.125rem",
-      "large": "1.375rem"
-    },
     "fontWeight": {
       "bold": "700",
       "semi-bold": "600",

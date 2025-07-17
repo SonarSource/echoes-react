@@ -78,9 +78,6 @@
   --echoes-letter-spacing-default: 0;
   --echoes-letter-spacing-increased: 0.02em;
   --echoes-letter-spacing-decreased: -0.02em;
-  --echoes-paragraph-spacing-small: 1rem;
-  --echoes-paragraph-spacing-medium: 1.125rem;
-  --echoes-paragraph-spacing-large: 1.375rem;
   --echoes-font-weight-bold: 700;
   --echoes-font-weight-semi-bold: 600;
   --echoes-font-weight-regular: 400;

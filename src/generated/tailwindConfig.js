@@ -113,19 +113,24 @@ const config = {
       "font": "var(--echoes-typography-code-comment)"
     },
     ".heading-xs": {
-      "font": "var(--echoes-typography-heading-xsmall)"
+      "font": "var(--echoes-typography-heading-xsmall)",
+      "letter-spacing": "var(--echoes-letter-spacing-decreased)"
     },
     ".heading-sm": {
-      "font": "var(--echoes-typography-heading-small)"
+      "font": "var(--echoes-typography-heading-small)",
+      "letter-spacing": "var(--echoes-letter-spacing-decreased)"
     },
     ".heading-md": {
-      "font": "var(--echoes-typography-heading-medium)"
+      "font": "var(--echoes-typography-heading-medium)",
+      "letter-spacing": "var(--echoes-letter-spacing-decreased)"
     },
     ".heading-lg": {
-      "font": "var(--echoes-typography-heading-large)"
+      "font": "var(--echoes-typography-heading-large)",
+      "letter-spacing": "var(--echoes-letter-spacing-decreased)"
     },
     ".heading-xl": {
-      "font": "var(--echoes-typography-heading-xlarge)"
+      "font": "var(--echoes-typography-heading-xlarge)",
+      "letter-spacing": "var(--echoes-letter-spacing-decreased)"
     },
     ".typo-default": {
       "font": "var(--echoes-typography-text-default-regular)"
@@ -155,7 +160,8 @@ const config = {
       "font": "var(--echoes-typography-others-helper-text)"
     },
     ".typo-display": {
-      "font": "var(--echoes-typography-display-default)"
+      "font": "var(--echoes-typography-display-default)",
+      "letter-spacing": "var(--echoes-letter-spacing-decreased)"
     }
   }
 };
