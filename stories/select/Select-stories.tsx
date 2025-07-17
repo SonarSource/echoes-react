@@ -20,7 +20,7 @@
 
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { ComponentProps, useState } from 'react';
-import { FormFieldWidth, IconBell, IconBug, IconMegaphone, Select } from '../../src';
+import { FormFieldWidth, IconBell, IconBug, IconMegaphone, Select, Table } from '../../src';
 import {
   formFieldsArgTypes,
   iconsElementsArgType,
@@ -111,6 +111,37 @@ export const Plain: Story = {
   },
   render: (args) => <SelectContainer {...args} />,
 };
+
+const list = Array(50).fill(0);
+
+export const Performance: Story = {
+  tags: ['!autodocs'], //exclude from the "docs" page
+  args: {
+    data,
+    width: 'small'
+  },
+  parameters: {
+    controls: { include: [] },
+  },
+  render: (args) => (
+    <Table ariaLabel='test select performance in a table' gridTemplate='1fr 2fr' style={{maxHeight: '50vh', overflow: 'auto'}}>
+      <Table.Body>
+      {list.map((_,i) => (
+        <Table.Row key={i}>
+          <Table.RowHeaderCell content={`This is list item ${i}`}/>
+          <Table.Cell>
+            <Select {...args}/>
+            <Select {...args}/>
+            <Select {...args}/>
+          </Table.Cell>
+        
+        </Table.Row>
+      ))}
+      </Table.Body>
+
+    </Table>
+  )
+}
 
 export const HelpTextNoLabel: Story = {
   args: {

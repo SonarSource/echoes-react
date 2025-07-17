@@ -166,6 +166,7 @@ export const SelectBase = forwardRef<HTMLInputElement, PropsWithLabels<SelectBas
           }
           clearable={isClearable}
           comboboxProps={{
+            keepMounted: false,
             portalProps: {
               target: portalContext.portalReference,
             },
