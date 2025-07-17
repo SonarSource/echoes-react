@@ -78,7 +78,7 @@ describe('Button', () => {
     const { user } = render(
       // eslint-disable-next-line jsx-a11y/no-static-element-interactions
       <div onClick={propagatedClick}>
-        <Button onClick={onButtonClick} shouldStopPropagation>
+        <Button enableStopPropagation onClick={onButtonClick}>
           Click me
         </Button>
       </div>,
@@ -107,7 +107,7 @@ describe('Button', () => {
     const onFormSubmit = jest.fn();
     const { user } = render(
       <form onSubmit={onFormSubmit}>
-        <Button shouldPreventDefault type="submit">
+        <Button enablePreventDefault type="submit">
           Click me
         </Button>
       </form>,
@@ -164,7 +164,7 @@ describe('Button as Link', () => {
     const onClick = jest.fn();
 
     const { user } = renderWithMemoryRouter(
-      <Button isDisabled onClick={onClick} shouldOpenInNewTab to="/second">
+      <Button enableOpenInNewTab isDisabled onClick={onClick} to="/second">
         Click me
       </Button>,
       undefined,
@@ -198,9 +198,9 @@ describe('Button as Link', () => {
     expect(screen.getByRole('link', { name: 'Prefix Click me Suffix' })).toBeInTheDocument();
   });
 
-  it('should open in new tab when shouldOpenInNewTab is true', () => {
+  it('should open in new tab when enableOpenInNewTab is true', () => {
     renderWithMemoryRouter(
-      <Button onClick={jest.fn()} shouldOpenInNewTab to="https://example.com">
+      <Button enableOpenInNewTab onClick={jest.fn()} to="https://example.com">
         Click me
       </Button>,
     );
@@ -211,10 +211,10 @@ describe('Button as Link', () => {
     expect(link).toHaveTextContent('(opens in new tab)');
   });
 
-  it('should prevent default when shouldPreventDefault is true', async () => {
+  it('should prevent default when enablePreventDefault is true', async () => {
     const onClick = jest.fn();
     const { user } = renderWithMemoryRouter(
-      <Button onClick={onClick} shouldPreventDefault to="/second">
+      <Button enablePreventDefault onClick={onClick} to="/second">
         Click me
       </Button>,
     );
@@ -230,7 +230,7 @@ describe('Button as Link', () => {
     const { user } = renderWithMemoryRouter(
       // eslint-disable-next-line jsx-a11y/no-static-element-interactions
       <div onClick={propagatedClick}>
-        <Button onClick={onLinkClick} shouldStopPropagation to="/second">
+        <Button enableStopPropagation onClick={onLinkClick} to="/second">
           Click me
         </Button>
       </div>,
