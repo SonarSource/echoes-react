@@ -18,13 +18,24 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import { Global, css } from '@emotion/react';
+import createCache from '@emotion/cache';
+import { CacheProvider, Global, css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { withThemeByDataAttribute } from '@storybook/addon-themes';
 import type { Preview } from '@storybook/react-vite';
 import { IntlProvider } from 'react-intl';
 import { MemoryRouter } from 'react-router-dom';
 import { EchoesProvider, Theme } from '../src';
+
+/**
+ * This prevents emotion from complaining about SSR
+ * See:
+ *  - https://github.com/emotion-js/emotion/issues/1105#issuecomment-1058225197
+ *  - https://github.com/emotion-js/emotion/issues/2917
+ *  - https://github.com/storybookjs/storybook/issues/18656
+ */
+const emotionCache = createCache({ key: 'css' });
+emotionCache.compat = true;
 
 const globalStyles = css`
   @font-face {
@@ -262,16 +273,18 @@ const preview: Preview = {
     }),
     (Story) => {
       return (
-        <IntlProvider defaultLocale="en-us" locale="en-us">
-          <MemoryRouter future={{ v7_relativeSplatPath: true, v7_startTransition: true }}>
-            <EchoesProvider>
-              <Global styles={globalStyles} />
-              <ResetLayerStack>
-                <Story />
-              </ResetLayerStack>
-            </EchoesProvider>
-          </MemoryRouter>
-        </IntlProvider>
+        <CacheProvider value={emotionCache}>
+          <IntlProvider defaultLocale="en-us" locale="en-us">
+            <MemoryRouter future={{ v7_relativeSplatPath: true, v7_startTransition: true }}>
+              <EchoesProvider>
+                <Global styles={globalStyles} />
+                <ResetLayerStack>
+                  <Story />
+                </ResetLayerStack>
+              </EchoesProvider>
+            </MemoryRouter>
+          </IntlProvider>
+        </CacheProvider>
       );
     },
   ],
