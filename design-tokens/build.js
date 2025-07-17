@@ -21,6 +21,7 @@
 import { getTransforms, register } from '@tokens-studio/sd-transforms';
 import * as fs from 'node:fs';
 import StyleDictionary from 'style-dictionary';
+import { transforms } from 'style-dictionary/enums';
 
 const DEFAULT_THEME = 'light';
 const DESIGN_TOKENS_PATH = 'design-tokens/tokens';
@@ -65,12 +66,13 @@ function initStyleDictionary(licenseHeader) {
     hooks: {
       transformGroups: {
         [CUSTOM_TRANSFORM_GROUP]: [
-          'attribute/cti',
+          transforms.attributeCti,
           ...getTransforms({ platform: 'css' }),
-          'name/kebab',
-          'typography/css/shorthand',
-          'border/css/shorthand',
-          'shadow/css/shorthand',
+          transforms.nameKebab,
+          transforms.typographyCssShorthand,
+          transforms.borderCssShorthand,
+          transforms.shadowCssShorthand,
+          transforms.colorHex,
         ],
       },
       filters: {
@@ -95,7 +97,7 @@ function initStyleDictionary(licenseHeader) {
   });
 
   register(sd, {
-    'ts/color/modifiers': { format: 'hsl' },
+    'ts/color/modifiers': { format: 'hex' },
     withSDBuiltins: false,
   });
 
