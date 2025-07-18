@@ -19,13 +19,15 @@
  */
 
 import styled from '@emotion/styled';
-import { forwardRef } from 'react';
+import { forwardRef, useMemo } from 'react';
 import { isStringDefined } from '~common/helpers/types';
+import { cssVar } from '~utils/design-tokens';
 import { ButtonVariety } from '../buttons';
 import { Button, ButtonAsButtonProps } from '../buttons/Button';
+
 import {
+  RATING_BADGE_SIZE,
   RatingBadge,
-  RatingBadgeDimensions,
   RatingBadgeProps,
   RatingBadgeRating,
   RatingBadgeSize,
@@ -41,7 +43,18 @@ export const RatingBadgeButton = forwardRef<HTMLButtonElement, RatingBadgeButton
     const rating = isStringDefined(ratingPropValue) ? ratingPropValue : RatingBadgeRating.Null;
 
     return (
-      <RatingBadgeButtonStyled ref={ref} {...{ className, rating, size, style, ...buttonProps }}>
+      <RatingBadgeButtonStyled
+        className={className}
+        css={useMemo(
+          () => ({
+            '--rating-badge-size': RATING_BADGE_SIZE[size],
+          }),
+          [size],
+        )}
+        data-rating={rating}
+        ref={ref}
+        style={style}
+        {...buttonProps}>
         <RatingBadge {...{ rating, size }} />
       </RatingBadgeButtonStyled>
     );
@@ -60,30 +73,39 @@ const RatingBadgeButtonInner = forwardRef<
 RatingBadgeButtonInner.displayName = 'RatingBadgeButtonInner';
 
 const RatingBadgeButtonStyled = styled(RatingBadgeButtonInner)`
-  border-radius: var(--echoes-border-radius-full);
+  border-radius: ${cssVar('border-radius-full')};
   padding: 0;
 
-  ${({ rating = RatingBadgeRating.Null }) =>
-    rating === RatingBadgeRating.Null
-      ? ''
-      : `
-          & div:hover {
-            box-sizing: border-box;
-            border: 1px solid var(--echoes-ratings-colors-border-rating-${rating.toLowerCase()}-hover);
-          }
-        `}
+  & div:hover {
+    box-sizing: border-box;
+  }
 
-  ${({ size = RatingBadgeSize.Medium }) => {
-    const dimensions = RatingBadgeDimensions[size];
+  &[data-rating='${RatingBadgeRating.A}'] div:hover {
+    border: ${cssVar('border-width-default')} solid
+      ${cssVar('ratings-colors-border-rating-a-hover')};
+  }
+  &[data-rating='${RatingBadgeRating.B}'] div:hover {
+    border: ${cssVar('border-width-default')} solid
+      ${cssVar('ratings-colors-border-rating-b-hover')};
+  }
+  &[data-rating='${RatingBadgeRating.C}'] div:hover {
+    border: ${cssVar('border-width-default')} solid
+      ${cssVar('ratings-colors-border-rating-c-hover')};
+  }
+  &[data-rating='${RatingBadgeRating.D}'] div:hover {
+    border: ${cssVar('border-width-default')} solid
+      ${cssVar('ratings-colors-border-rating-d-hover')};
+  }
+  &[data-rating='${RatingBadgeRating.E}'] div:hover {
+    border: ${cssVar('border-width-default')} solid
+      ${cssVar('ratings-colors-border-rating-e-hover')};
+  }
 
-    return `
-      &,
-      span {
-         height: var(--echoes-dimension-width-${dimensions.width});
-         min-height: var(--echoes-dimension-width-${dimensions.width});
-         min-width: var(--echoes-dimension-width-${dimensions.width});
-         width: var(--echoes-dimension-width-${dimensions.width});
-      }
-    `;
-  }}
+  &,
+  span {
+    height: var(--rating-badge-size);
+    min-height: var(--rating-badge-size);
+    min-width: var(--rating-badge-size);
+    width: var(--rating-badge-size);
+  }
 `;

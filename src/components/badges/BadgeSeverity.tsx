@@ -38,6 +38,8 @@ import { IconFilledProps } from '../icons/IconWrapper';
 import { SpinnerOverrideColor } from '../spinner/SpinnerOverrideColor';
 import { Tooltip } from '../tooltip';
 
+import { cssVar } from '~utils/design-tokens';
+
 export enum BadgeSeverityLevel {
   Blocker = 'blocker',
   High = 'high',
@@ -171,11 +173,11 @@ export const BadgeSeverity = forwardRef<HTMLButtonElement, BadgeSeverityProps>((
           autoFocus={hasAutoFocus}
           css={useMemo(
             () => ({
-              '--button-padding': 'var(--echoes-dimension-space-75)',
+              '--button-padding': cssVar('dimension-space-75'),
               '--button-height': 'auto',
               '--button-width': 'auto',
 
-              '--button-border': 'inherit solid var(--echoes-border-width-default)',
+              '--button-border': `inherit solid ${cssVar('border-width-default')}`,
               '--button-background': 'var(--badge-severity-icon-background-color)',
               '--button-background-focus': 'var(--badge-severity-icon-background-color)',
               '--button-background-disabled': 'var(--badge-severity-icon-background-color)',
@@ -191,7 +193,7 @@ export const BadgeSeverity = forwardRef<HTMLButtonElement, BadgeSeverityProps>((
           <StyledSeverityContent>
             <SpinnerOverrideColor
               css={{
-                marginRight: 'var(--echoes-dimension-space-50)',
+                marginRight: cssVar('dimension-space-50'),
               }}
               isLoading={isLoading}>
               <SeverityIcon />
@@ -221,18 +223,18 @@ const StyledWrapper = styled.div`
   color: var(--badge-severity-color);
   background-color: var(--badge-severity-background-color);
 
-  font: var(--echoes-typography-text-small-medium);
+  font: ${cssVar('typography-text-small-medium')};
 
   // Using outline so that the border doesn't take space in the flow
-  outline: var(--badge-severity-border-color) solid var(--echoes-border-width-default);
-  border-radius: var(--echoes-border-radius-200);
+  outline: var(--badge-severity-border-color) solid ${cssVar('border-width-default')};
+  border-radius: ${cssVar('border-radius-200')};
 `;
 
 const StyledContent = styled.div`
   display: flex;
   flex-direction: row;
-  padding: var(--echoes-dimension-space-50) var(--echoes-dimension-space-75);
-  gap: var(--echoes-dimension-space-50);
+  padding: ${cssVar('dimension-space-50')} ${cssVar('dimension-space-75')};
+  gap: ${cssVar('dimension-space-50')};
 `;
 
 const StyledSeverityContent = styled.div`
@@ -241,28 +243,28 @@ const StyledSeverityContent = styled.div`
   align-items: center;
 
   & > *:not(:first-child):not(:last-child) {
-    margin-right: var(--echoes-dimension-space-50);
+    margin-right: ${cssVar('dimension-space-50')};
   }
 `;
 
 const StyledSeverityText = styled.span`
-  font: var(--echoes-typography-text-small-medium);
+  font: ${cssVar('typography-text-small-medium')};
 `;
 
 const StyledDropdownIndicator = styled.div`
-  margin-left: calc(var(--echoes-dimension-space-25) * -1);
-  margin-right: calc(var(--echoes-dimension-space-25) * -1);
+  margin-left: calc(${cssVar('dimension-space-25')} * -1);
+  margin-right: calc(${cssVar('dimension-space-25')} * -1);
 `;
 
 const StyledButtonIconStyled = styled(ButtonIconStyled)`
-  border-radius: var(--echoes-border-radius-none) var(--echoes-border-radius-200)
-    var(--echoes-border-radius-200) var(--echoes-border-radius-none);
+  border-radius: ${cssVar('border-radius-none')} ${cssVar('border-radius-200')}
+    ${cssVar('border-radius-200')} ${cssVar('border-radius-none')};
 
   // This allows the outline to appear above the wrapper's border, and with uniform radii
   z-index: 1;
   &:focus,
   &:focus-visible {
-    border-radius: var(--echoes-border-radius-200);
+    border-radius: ${cssVar('border-radius-200')};
   }
 
   // Prevent disabled-specific styles
@@ -285,63 +287,73 @@ const BADGE_SEVERITY_ICON = {
 
 const BADGE_SEVERITY_STYLES = {
   [BadgeSeverityLevel.Blocker]: {
-    '--badge-severity-color': 'var(--echoes-severity-badge-colors-foreground-blocker-text-default)',
-    '--badge-severity-border-color': 'var(--echoes-severity-badge-colors-borders-blocker-default)',
-    '--badge-severity-background-color':
-      'var(--echoes-severity-badge-colors-background-severity-blocker-prefix-default)',
-    '--badge-severity-icon-background-color':
-      'var(--echoes-severity-badge-colors-background-severity-blocker-suffix-default)',
-    '--badge-severity-icon-background-color-hover':
-      'var(--echoes-severity-badge-colors-background-severity-blocker-suffix-hover)',
-    '--badge-severity-icon-color':
-      'var(--echoes-severity-badge-colors-foreground-blocker-icon-default)',
+    '--badge-severity-color': cssVar('severity-badge-colors-foreground-blocker-text-default'),
+    '--badge-severity-border-color': cssVar('severity-badge-colors-borders-blocker-default'),
+    '--badge-severity-background-color': cssVar(
+      'severity-badge-colors-background-severity-blocker-prefix-default',
+    ),
+    '--badge-severity-icon-background-color': cssVar(
+      'severity-badge-colors-background-severity-blocker-suffix-default',
+    ),
+    '--badge-severity-icon-background-color-hover': cssVar(
+      'severity-badge-colors-background-severity-blocker-suffix-hover',
+    ),
+    '--badge-severity-icon-color': cssVar('severity-badge-colors-foreground-blocker-icon-default'),
   },
   [BadgeSeverityLevel.High]: {
-    '--badge-severity-color': 'var(--echoes-severity-badge-colors-foreground-high-text-default)',
-    '--badge-severity-border-color': 'var(--echoes-severity-badge-colors-borders-high-default)',
-    '--badge-severity-background-color':
-      'var(--echoes-severity-badge-colors-background-severity-high-prefix-default)',
-    '--badge-severity-icon-background-color':
-      'var(--echoes-severity-badge-colors-background-severity-high-suffix-default)',
-    '--badge-severity-icon-background-color-hover':
-      'var(--echoes-severity-badge-colors-background-severity-high-suffix-hover)',
-    '--badge-severity-icon-color':
-      'var(--echoes-severity-badge-colors-foreground-high-icon-default)',
+    '--badge-severity-color': cssVar('severity-badge-colors-foreground-high-text-default'),
+    '--badge-severity-border-color': cssVar('severity-badge-colors-borders-high-default'),
+    '--badge-severity-background-color': cssVar(
+      'severity-badge-colors-background-severity-high-prefix-default',
+    ),
+    '--badge-severity-icon-background-color': cssVar(
+      'severity-badge-colors-background-severity-high-suffix-default',
+    ),
+    '--badge-severity-icon-background-color-hover': cssVar(
+      'severity-badge-colors-background-severity-high-suffix-hover',
+    ),
+    '--badge-severity-icon-color': cssVar('severity-badge-colors-foreground-high-icon-default'),
   },
   [BadgeSeverityLevel.Info]: {
-    '--badge-severity-color': 'var(--echoes-severity-badge-colors-foreground-info-text-default)',
-    '--badge-severity-border-color': 'var(--echoes-severity-badge-colors-borders-info-default)',
-    '--badge-severity-background-color':
-      'var(--echoes-severity-badge-colors-background-severity-info-prefix-default)',
-    '--badge-severity-icon-background-color':
-      'var(--echoes-severity-badge-colors-background-severity-info-suffix-default)',
-    '--badge-severity-icon-background-color-hover':
-      'var(--echoes-severity-badge-colors-background-severity-info-suffix-hover)',
-    '--badge-severity-icon-color':
-      'var(--echoes-severity-badge-colors-foreground-info-icon-default)',
+    '--badge-severity-color': cssVar('severity-badge-colors-foreground-info-text-default'),
+    '--badge-severity-border-color': cssVar('severity-badge-colors-borders-info-default'),
+    '--badge-severity-background-color': cssVar(
+      'severity-badge-colors-background-severity-info-prefix-default',
+    ),
+    '--badge-severity-icon-background-color': cssVar(
+      'severity-badge-colors-background-severity-info-suffix-default',
+    ),
+    '--badge-severity-icon-background-color-hover': cssVar(
+      'severity-badge-colors-background-severity-info-suffix-hover',
+    ),
+    '--badge-severity-icon-color': cssVar('severity-badge-colors-foreground-info-icon-default'),
   },
   [BadgeSeverityLevel.Low]: {
-    '--badge-severity-color': 'var(--echoes-severity-badge-colors-foreground-low-text-default)',
-    '--badge-severity-border-color': 'var(--echoes-severity-badge-colors-borders-low-default)',
-    '--badge-severity-background-color':
-      'var(--echoes-severity-badge-colors-background-severity-low-prefix-default)',
-    '--badge-severity-icon-background-color':
-      'var(--echoes-severity-badge-colors-background-severity-low-suffix-default)',
-    '--badge-severity-icon-background-color-hover':
-      'var(--echoes-severity-badge-colors-background-severity-low-suffix-hover)',
-    '--badge-severity-icon-color':
-      'var(--echoes-severity-badge-colors-foreground-low-icon-default)',
+    '--badge-severity-color': cssVar('severity-badge-colors-foreground-low-text-default'),
+    '--badge-severity-border-color': cssVar('severity-badge-colors-borders-low-default'),
+    '--badge-severity-background-color': cssVar(
+      'severity-badge-colors-background-severity-low-prefix-default',
+    ),
+    '--badge-severity-icon-background-color': cssVar(
+      'severity-badge-colors-background-severity-low-suffix-default',
+    ),
+    '--badge-severity-icon-background-color-hover': cssVar(
+      'severity-badge-colors-background-severity-low-suffix-hover',
+    ),
+    '--badge-severity-icon-color': cssVar('severity-badge-colors-foreground-low-icon-default'),
   },
   [BadgeSeverityLevel.Medium]: {
-    '--badge-severity-color': 'var(--echoes-severity-badge-colors-foreground-medium-text-default)',
-    '--badge-severity-border-color': 'var(--echoes-severity-badge-colors-borders-medium-default)',
-    '--badge-severity-background-color':
-      'var(--echoes-severity-badge-colors-background-severity-medium-prefix-default)',
-    '--badge-severity-icon-background-color':
-      'var(--echoes-severity-badge-colors-background-severity-medium-suffix-default)',
-    '--badge-severity-icon-background-color-hover':
-      'var(--echoes-severity-badge-colors-background-severity-medium-suffix-hover)',
-    '--badge-severity-icon-color':
-      'var(--echoes-severity-badge-colors-foreground-medium-icon-default)',
+    '--badge-severity-color': cssVar('severity-badge-colors-foreground-medium-text-default'),
+    '--badge-severity-border-color': cssVar('severity-badge-colors-borders-medium-default'),
+    '--badge-severity-background-color': cssVar(
+      'severity-badge-colors-background-severity-medium-prefix-default',
+    ),
+    '--badge-severity-icon-background-color': cssVar(
+      'severity-badge-colors-background-severity-medium-suffix-default',
+    ),
+    '--badge-severity-icon-background-color-hover': cssVar(
+      'severity-badge-colors-background-severity-medium-suffix-hover',
+    ),
+    '--badge-severity-icon-color': cssVar('severity-badge-colors-foreground-medium-icon-default'),
   },
 };

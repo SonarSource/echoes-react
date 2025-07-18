@@ -20,17 +20,19 @@
 
 import styled from '@emotion/styled';
 
+import { cssVar } from '~utils/design-tokens';
+
 export const styleDropdownMenuOverlay = styled.div`
-  background-color: var(--echoes-color-surface-default);
-  border: var(--echoes-border-width-default) solid var(--echoes-color-border-weak);
-  border-radius: var(--echoes-dimension-space-100);
-  box-shadow: var(--echoes-box-shadow-medium);
+  background-color: ${cssVar('color-surface-default')};
+  border: ${cssVar('border-width-default')} solid ${cssVar('color-border-weak')};
+  border-radius: ${cssVar('dimension-space-100')};
+  box-shadow: ${cssVar('box-shadow-medium')};
   box-sizing: border-box;
-  margin: var(--echoes-dimension-space-50) 0;
+  margin: ${cssVar('dimension-space-50')} 0;
   max-height: var(--radix-dropdown-menu-content-available-height);
-  max-width: var(--echoes-sizes-overlays-max-width-default);
-  min-width: var(--echoes-sizes-overlays-min-width-default);
+  max-width: ${cssVar('sizes-overlays-max-width-default')};
+  min-width: ${cssVar('sizes-overlays-min-width-default')};
   overflow-x: hidden;
   overflow-y: auto;
-  padding: var(--echoes-dimension-space-50) var(--echoes-dimension-space-0);
+  padding: ${cssVar('dimension-space-50')} ${cssVar('dimension-space-0')};
 `.withComponent;

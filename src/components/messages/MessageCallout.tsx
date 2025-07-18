@@ -35,6 +35,8 @@ import {
 } from './MessageStyles';
 import { MessageVariety } from './MessageTypes';
 
+import { cssVar } from '~utils/design-tokens';
+
 export interface MessageCalloutProps extends PropsWithChildren {
   action?: ReactNode;
   className?: string;
@@ -98,7 +100,7 @@ export const MessageCallout = forwardRef<HTMLDivElement, MessageCalloutProps>((p
 MessageCallout.displayName = 'MessageCallout';
 
 const MessageCalloutDismissButton = styled(DismissButton)`
-  margin-top: calc(-1 * var(--echoes-dimension-space-25));
-  margin-bottom: calc(-1 * var(--echoes-dimension-space-25));
+  margin-top: calc(-1 * ${cssVar('dimension-space-25')});
+  margin-bottom: calc(-1 * ${cssVar('dimension-space-25')});
 `;
 MessageCalloutDismissButton.displayName = 'MessageCalloutDismissButton';

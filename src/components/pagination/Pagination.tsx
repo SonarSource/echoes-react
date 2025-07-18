@@ -26,6 +26,8 @@ import { IconChevronLeft, IconChevronRight } from '../icons';
 import { PaginationProps } from './PaginationTypes';
 import { computePages } from './utils';
 
+import { cssVar } from '~utils/design-tokens';
+
 /**
  * This component shows the current page and buttons to move to other pages
  */
@@ -119,14 +121,14 @@ const PaginationWrapper = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: var(--echoes-dimension-space-100);
+  gap: ${cssVar('dimension-space-100')};
 `;
 PaginationWrapper.displayName = 'PaginationWrapper';
 
 const PaginationButton = styled(Button)`
-  font-weight: var(--echoes-font-weight-regular);
+  font-weight: ${cssVar('font-weight-regular')};
   justify-content: center;
-  min-width: var(--echoes-sizes-buttons-medium);
+  min-width: ${cssVar('sizes-buttons-medium')};
 `;
 PaginationButton.displayName = 'PaginationButton';
 
@@ -135,9 +137,9 @@ const EllipsisIndicator = styled.div`
   align-items: center;
 
   box-sizing: border-box;
-  height: var(--echoes-sizes-buttons-medium);
-  width: var(--echoes-sizes-buttons-medium);
-  padding: var(--echoes-dimension-space-75) var(--echoes-dimension-space-150);
-  font: var(--echoes-typography-text-default-regular);
+  height: ${cssVar('sizes-buttons-medium')};
+  width: ${cssVar('sizes-buttons-medium')};
+  padding: ${cssVar('dimension-space-75')} ${cssVar('dimension-space-150')};
+  font: ${cssVar('typography-text-default-regular')};
 `;
 EllipsisIndicator.displayName = 'EllipsisIndicator';

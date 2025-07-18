@@ -22,6 +22,8 @@ import styled from '@emotion/styled';
 import { forwardRef } from 'react';
 import { isStringDefined } from '~common/helpers/types';
 
+import { cssVar } from '~utils/design-tokens';
+
 export enum RatingBadgeRating {
   A = 'A',
   B = 'B',
@@ -54,7 +56,9 @@ export const RatingBadge = forwardRef<HTMLDivElement, RatingBadgeProps>(
     return (
       <RatingBadgeStyled
         aria-label={isStringDefined(ariaLabel) ? ariaLabel : rating}
-        {...{ rating, ref, size }}
+        data-rating={rating}
+        data-size={size}
+        ref={ref}
         {...htmlProps}>
         {rating}
       </RatingBadgeStyled>
@@ -64,46 +68,69 @@ export const RatingBadge = forwardRef<HTMLDivElement, RatingBadgeProps>(
 
 RatingBadge.displayName = 'RatingBadge';
 
-export const RatingBadgeDimensions: Record<RatingBadgeSize, { fontSize: number; width: number }> = {
-  [RatingBadgeSize.ExtraSmall]: { fontSize: 10, width: 200 },
-  [RatingBadgeSize.Small]: { fontSize: 10, width: 300 },
-  [RatingBadgeSize.Medium]: { fontSize: 20, width: 400 },
-  [RatingBadgeSize.Large]: { fontSize: 20, width: 600 },
-  [RatingBadgeSize.ExtraLarge]: { fontSize: 30, width: 700 },
+export const RATING_BADGE_SIZE: Record<`${RatingBadgeSize}`, string> = {
+  [RatingBadgeSize.ExtraSmall]: cssVar('dimension-width-200'),
+  [RatingBadgeSize.Small]: cssVar('dimension-width-300'),
+  [RatingBadgeSize.Medium]: cssVar('dimension-width-400'),
+  [RatingBadgeSize.Large]: cssVar('dimension-width-600'),
+  [RatingBadgeSize.ExtraLarge]: cssVar('dimension-width-700'),
 };
 
-const RatingBadgeStyled = styled.div<{
-  rating: `${RatingBadgeRating}`;
-  size: `${RatingBadgeSize}`;
-}>`
-  align-items: center;
-
-  ${({ rating = RatingBadgeRating.Null }) => {
-    if (rating === RatingBadgeRating.Null) {
-      return `
-        background-color: var(--echoes-color-surface-disabled);
-        color: var(--echoes-color-text-disabled);
-    `;
-    }
-
-    return `
-      background-color: var(--echoes-ratings-colors-background-rating-${rating.toLowerCase()}-default);
-      color: var(--echoes-ratings-colors-text-rating-${rating.toLowerCase()}-default);
-    `;
-  }};
-
-  border-radius: var(--echoes-border-radius-full);
+const RatingBadgeStyled = styled.div`
   display: inline-flex;
-  font-weight: var(--echoes-font-weight-semi-bold);
+  align-items: center;
   justify-content: center;
+  border-radius: ${cssVar('border-radius-full')};
+  font-weight: ${cssVar('font-weight-semi-bold')};
 
-  ${({ size = RatingBadgeSize.Small }) => {
-    const dimensions = RatingBadgeDimensions[size];
+  &[data-rating='${RatingBadgeRating.Null}'] {
+    background-color: ${cssVar('color-surface-disabled')};
+    color: ${cssVar('color-text-disabled')};
+  }
+  &[data-rating='${RatingBadgeRating.A}'] {
+    background-color: ${cssVar('ratings-colors-background-rating-a-default')};
+    color: ${cssVar('ratings-colors-text-rating-a-default')};
+  }
+  &[data-rating='${RatingBadgeRating.B}'] {
+    background-color: ${cssVar('ratings-colors-background-rating-b-default')};
+    color: ${cssVar('ratings-colors-text-rating-b-default')};
+  }
+  &[data-rating='${RatingBadgeRating.C}'] {
+    background-color: ${cssVar('ratings-colors-background-rating-c-default')};
+    color: ${cssVar('ratings-colors-text-rating-c-default')};
+  }
+  &[data-rating='${RatingBadgeRating.D}'] {
+    background-color: ${cssVar('ratings-colors-background-rating-d-default')};
+    color: ${cssVar('ratings-colors-text-rating-d-default')};
+  }
+  &[data-rating='${RatingBadgeRating.E}'] {
+    background-color: ${cssVar('ratings-colors-background-rating-e-default')};
+    color: ${cssVar('ratings-colors-text-rating-e-default')};
+  }
 
-    return `
-      height: var(--echoes-dimension-width-${dimensions.width});
-      font-size: var(--echoes-font-size-${dimensions.fontSize});
-      width: var(--echoes-dimension-width-${dimensions.width});
-    `;
-  }}
+  &[data-size='${RatingBadgeSize.ExtraSmall}'] {
+    font-size: ${cssVar('font-size-10')};
+    height: ${RATING_BADGE_SIZE[RatingBadgeSize.ExtraSmall]};
+    width: ${RATING_BADGE_SIZE[RatingBadgeSize.ExtraSmall]};
+  }
+  &[data-size='${RatingBadgeSize.Small}'] {
+    font-size: ${cssVar('font-size-10')};
+    height: ${RATING_BADGE_SIZE[RatingBadgeSize.Small]};
+    width: ${RATING_BADGE_SIZE[RatingBadgeSize.Small]};
+  }
+  &[data-size='${RatingBadgeSize.Medium}'] {
+    font-size: ${cssVar('font-size-20')};
+    height: ${RATING_BADGE_SIZE[RatingBadgeSize.Medium]};
+    width: ${RATING_BADGE_SIZE[RatingBadgeSize.Medium]};
+  }
+  &[data-size='${RatingBadgeSize.Large}'] {
+    font-size: ${cssVar('font-size-20')};
+    height: ${RATING_BADGE_SIZE[RatingBadgeSize.Large]};
+    width: ${RATING_BADGE_SIZE[RatingBadgeSize.Large]};
+  }
+  &[data-size='${RatingBadgeSize.ExtraLarge}'] {
+    font-size: ${cssVar('font-size-30')};
+    height: ${RATING_BADGE_SIZE[RatingBadgeSize.ExtraLarge]};
+    width: ${RATING_BADGE_SIZE[RatingBadgeSize.ExtraLarge]};
+  }
 `;

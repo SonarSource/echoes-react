@@ -30,6 +30,8 @@ import {
 } from '../form/FormField';
 import { useFormFieldA11y } from '../form/useFormFieldA11y';
 
+import { cssVar } from '~utils/design-tokens';
+
 /**
  * A checkbox group allows a user to select multiple items from a list of
  * options. A checkbox group must have at least one option.
@@ -259,10 +261,10 @@ interface CheckboxGroupPropsBase<T>
 export type CheckboxGroupProps<T = unknown> = PropsWithLabels<CheckboxGroupPropsBase<T>>;
 
 const CheckboxGroupRoot = styled.div`
-  column-gap: var(--echoes-dimension-space-300);
+  column-gap: ${cssVar('dimension-space-300')};
   display: flex;
   flex-direction: column;
-  row-gap: var(--echoes-dimension-space-100);
+  row-gap: ${cssVar('dimension-space-100')};
 
   &[data-alignment='horizontal'] {
     flex-direction: row;

@@ -20,13 +20,15 @@
 
 import { css, Global } from '@emotion/react';
 
+import { cssVar } from '~utils/design-tokens';
+
 export function TypographyGlobalStyles() {
   return (
     <Global
       styles={css`
         body {
-          font: var(--echoes-typography-text-default-regular);
-          color: var(--echoes-color-text-default);
+          font: ${cssVar('typography-text-default-regular')};
+          color: ${cssVar('color-text-default')};
         }
 
         pre,
@@ -34,7 +36,7 @@ export function TypographyGlobalStyles() {
         kbd,
         samp,
         tt {
-          font: var(--echoes-typography-code-default);
+          font: ${cssVar('typography-code-default')};
         }
       `}
     />

@@ -22,39 +22,41 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import * as radixNavigationMenu from '@radix-ui/react-navigation-menu';
 
-export const StyledNavMenuItem = styled(radixNavigationMenu.Item)<{ 'data-selected': boolean }>`
-  padding: var(--echoes-dimension-space-150) 0
-    calc(var(--echoes-dimension-space-150) - var(--echoes-focus-border-width-default));
+import { cssVar } from '~utils/design-tokens';
 
-  border-bottom: var(--echoes-focus-border-width-default) solid transparent;
+export const StyledNavMenuItem = styled(radixNavigationMenu.Item)<{ 'data-selected': boolean }>`
+  padding: ${cssVar('dimension-space-150')} 0
+    calc(${cssVar('dimension-space-150')} - ${cssVar('focus-border-width-default')});
+
+  border-bottom: ${cssVar('focus-border-width-default')} solid transparent;
 
   &[data-selected='true'] {
-    border-bottom-color: var(--echoes-color-border-accent-default);
+    border-bottom-color: ${cssVar('color-border-accent-default')};
   }
 `;
 StyledNavMenuItem.displayName = 'StyledNavMenuItem';
 
 export const globalNavigationItemStyle = css`
-  --hover: var(--echoes-color-text-default);
+  --hover: ${cssVar('color-text-default')};
 
   display: block;
 
-  padding: var(--echoes-dimension-space-75);
-  border-radius: var(--echoes-border-radius-200);
+  padding: ${cssVar('dimension-space-75')};
+  border-radius: ${cssVar('border-radius-200')};
 
-  font: var(--echoes-typography-text-default-semi-bold);
-  text-decoration-line: var(--echoes-text-decoration-none);
+  font: ${cssVar('typography-text-default-semi-bold')};
+  text-decoration-line: ${cssVar('text-decoration-none')};
 
   /* Fixed height to avoid alignment issues */
-  height: var(--echoes-dimension-height-500);
-  min-height: var(--echoes-dimension-height-500);
+  height: ${cssVar('dimension-height-500')};
+  min-height: ${cssVar('dimension-height-500')};
   box-sizing: content-box;
 
   &:hover {
-    background-color: var(--echoes-color-surface-hover);
+    background-color: ${cssVar('color-surface-hover')};
   }
 
   &:active {
-    background-color: var(--echoes-color-surface-active);
+    background-color: ${cssVar('color-surface-active')};
   }
 `;

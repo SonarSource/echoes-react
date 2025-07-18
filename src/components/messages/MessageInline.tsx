@@ -23,6 +23,8 @@ import { MessageScreenReaderPrefix } from './MessageScreenReaderPrefix';
 import { MESSAGE_VARIETY_ICON } from './MessageStyles';
 import { MessageInlineSize, MessageVariety } from './MessageTypes';
 
+import { cssVar } from '~utils/design-tokens';
+
 export interface MessageInlineProps {
   as?: 'div' | 'span';
   className?: string;
@@ -55,31 +57,31 @@ MessageInline.displayName = 'MessageInline';
 
 const MESSAGE_INLINE_VARIETY_STYLE = {
   [MessageVariety.Info]: {
-    '--message-text-color': 'var(--echoes-color-text-info)',
+    '--message-text-color': cssVar('color-text-info'),
   },
   [MessageVariety.Danger]: {
-    '--message-text-color': 'var(--echoes-color-text-danger)',
+    '--message-text-color': cssVar('color-text-danger'),
   },
   [MessageVariety.Warning]: {
-    '--message-text-color': 'var(--echoes-color-text-warning)',
+    '--message-text-color': cssVar('color-text-warning'),
   },
   [MessageVariety.Success]: {
-    '--message-text-color': 'var(--echoes-color-text-success)',
+    '--message-text-color': cssVar('color-text-success'),
   },
   [MessageVariety.Discover]: {
-    '--message-text-color': 'var(--echoes-color-text-accent)',
+    '--message-text-color': cssVar('color-text-accent'),
   },
 };
 
 const MESSAGE_INLINE_FONT = {
-  [MessageInlineSize.Small]: 'var(--echoes-typography-text-small-regular)',
-  [MessageInlineSize.Default]: 'var(--echoes-typography-text-default-regular)',
+  [MessageInlineSize.Small]: cssVar('typography-text-small-regular'),
+  [MessageInlineSize.Default]: cssVar('typography-text-default-regular'),
 };
 
 const MessageInlineContainer = styled.span<Pick<MessageInlineProps, 'size'>>`
   display: inline-flex;
   align-items: start;
-  gap: var(--echoes-dimension-space-50);
+  gap: ${cssVar('dimension-space-50')};
 
   ${({ size }) => (size ? `font: ${MESSAGE_INLINE_FONT[size]};` : '')}
 `;

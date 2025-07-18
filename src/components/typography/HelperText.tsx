@@ -20,6 +20,8 @@
 
 import styled from '@emotion/styled';
 
+import { cssVar } from '~utils/design-tokens';
+
 export interface HelperTextProps {
   as?: 'div' | 'p' | 'span';
   className?: string;
@@ -27,10 +29,10 @@ export interface HelperTextProps {
 }
 
 export const HelperText = styled.div<HelperTextProps>`
-  font: var(--echoes-typography-others-helper-text);
-  color: var(--echoes-color-text-subtle);
+  font: ${cssVar('typography-others-helper-text')};
+  color: ${cssVar('color-text-subtle')};
 
-  max-width: var(--echoes-sizes-typography-max-width-default);
+  max-width: ${cssVar('sizes-typography-max-width-default')};
 `;
 
 HelperText.displayName = 'HelperText';

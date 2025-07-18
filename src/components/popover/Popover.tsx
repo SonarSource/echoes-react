@@ -26,6 +26,8 @@ import { TextNodeOptional } from '~types/utils';
 import { THEME_DATA_ATTRIBUTE, ThemeContext } from '~utils/theme';
 import { Heading, HeadingSize, Text } from '../typography';
 
+import { cssVar } from '~utils/design-tokens';
+
 export enum PopoverAlign {
   Start = 'start',
   Center = 'center',
@@ -111,20 +113,20 @@ export const Popover = forwardRef<HTMLButtonElement, PopoverProps>((props, ref) 
 Popover.displayName = 'Popover';
 
 const PopoverExtraContent = styled.div`
-  margin-top: var(--echoes-dimension-space-200);
+  margin-top: ${cssVar('dimension-space-200')};
 `;
 
 const PopoverFooter = styled.div`
-  margin-top: var(--echoes-dimension-space-200);
+  margin-top: ${cssVar('dimension-space-200')};
 `;
 
 const PopoverContent = styled(RadixPopover.Content)`
-  border: var(--echoes-border-width-default) solid var(--echoes-color-border-weak);
-  border-radius: var(--echoes-border-radius-400);
-  padding: var(--echoes-dimension-space-300) var(--echoes-dimension-space-250);
-  background-color: var(--echoes-color-surface-default);
-  box-shadow: var(--echoes-box-shadow-large);
-  max-width: var(--echoes-dimension-width-5000);
+  border: ${cssVar('border-width-default')} solid ${cssVar('color-border-weak')};
+  border-radius: ${cssVar('border-radius-400')};
+  padding: ${cssVar('dimension-space-300')} ${cssVar('dimension-space-250')};
+  background-color: ${cssVar('color-surface-default')};
+  box-shadow: ${cssVar('box-shadow-large')};
+  max-width: ${cssVar('dimension-width-5000')};
   box-sizing: border-box;
 
   // We are in a modal context, so we don't want to display the focus ring
@@ -135,8 +137,8 @@ const PopoverContent = styled(RadixPopover.Content)`
 `;
 
 const PopoverArrow = styled(RadixPopover.Arrow)`
-  stroke: var(--echoes-color-border-weak);
-  fill: var(--echoes-color-surface-default);
+  stroke: ${cssVar('color-border-weak')};
+  fill: ${cssVar('color-surface-default')};
   height: 9px;
   width: 15px;
 

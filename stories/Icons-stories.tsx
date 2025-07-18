@@ -22,7 +22,7 @@ import styled from '@emotion/styled';
 import { Meta, StoryObj } from '@storybook/react-vite';
 import { useMemo, useState } from 'react';
 import { DesignTokensColors, DesignTokensColorsIcons } from '~types/design-tokens';
-import { Text, TextSize } from '../src';
+import { cssVar, Text, TextSize } from '../src';
 import * as icons from '../src/components/icons';
 import { basicWrapperDecorator } from './helpers/BasicWrapper';
 
@@ -174,16 +174,16 @@ const IconTile = styled.div`
 export const AutoSizing: StoryObj = {
   render: () => (
     <div>
-      <p style={{ font: 'var(--echoes-typography-text-large-regular)' }}>
+      <p style={{ font: cssVar('typography-text-large-regular') }}>
         <icons.IconMegaphone /> Warning warning!
       </p>
-      <p style={{ color: 'magenta', font: 'var(--echoes-typography-text-large-regular)' }}>
+      <p style={{ color: 'magenta', font: cssVar('typography-text-large-regular') }}>
         <icons.IconPin /> Pinned!
       </p>
-      <p style={{ font: 'var(--echoes-typography-text-default-regular)' }}>
+      <p style={{ font: cssVar('typography-text-default-regular') }}>
         This is pretty cool <icons.IconTarget />, innit?
       </p>
-      <p style={{ font: 'var(--echoes-typography-text-small-medium)' }}>
+      <p style={{ font: cssVar('typography-text-small-medium') }}>
         Tiny <icons.IconMegaphone /> text
       </p>
     </div>

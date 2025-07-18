@@ -28,6 +28,8 @@ import { ButtonIcon, ButtonSize, ButtonVariety } from '../buttons';
 import { IconX } from '../icons';
 import { Heading, HeadingProps, HeadingSize, Text } from '../typography';
 
+import { cssVar } from '~utils/design-tokens';
+
 export enum PromotedSectionVariety {
   Highlight = 'highlight',
   Neutral = 'neutral',
@@ -168,13 +170,13 @@ const BADGE_VARIETIES = {
 
 const PROMOTED_SECTION_STYLES = {
   [PromotedSectionVariety.Highlight]: {
-    '--promoted-section-background-color': 'var(--echoes-color-background-emphasis-weak-default)',
-    '--promoted-section-border': '1px solid var(--echoes-color-border-emphasis-weak)',
+    '--promoted-section-background-color': cssVar('color-background-emphasis-weak-default'),
+    '--promoted-section-border': `1px solid ${cssVar('color-border-emphasis-weak')}`,
   },
 
   [PromotedSectionVariety.Neutral]: {
-    '--promoted-section-background-color': 'var(--echoes-color-surface-default)',
-    '--promoted-section-border': '1px solid var(--echoes-color-border-weak)',
+    '--promoted-section-background-color': cssVar('color-surface-default'),
+    '--promoted-section-border': `1px solid ${cssVar('color-border-weak')}`,
   },
 };
 
@@ -189,7 +191,7 @@ const HeaderContainer = styled.div`
   align-items: flex-start;
   align-self: stretch;
   display: flex;
-  gap: var(--echoes-dimension-space-100);
+  gap: ${cssVar('dimension-space-100')};
 `;
 
 HeaderContainer.displayName = 'HeaderContainer';
@@ -201,7 +203,7 @@ const IllustrationContainer = styled.div`
   justify-content: center;
   max-height: 108px;
   max-width: 108px;
-  padding-left: var(--echoes-dimension-space-200);
+  padding-left: ${cssVar('dimension-space-200')};
 
   & img,
   svg {
@@ -234,7 +236,7 @@ MainContainerLeftSide.displayName = 'MainContainerLeftSide';
 const MainContainerRightSide = styled.div`
   align-items: center;
   display: flex;
-  padding-left: var(--echoes-dimension-space-200);
+  padding-left: ${cssVar('dimension-space-200')};
 `;
 
 MainContainerRightSide.displayName = 'MainContainerRightSide';
@@ -243,24 +245,24 @@ const PromotedSectionStyled = styled.div`
   align-items: center;
   background-color: var(--promoted-section-background-color);
   border: var(--promoted-section-border);
-  border-radius: var(--echoes-border-radius-400);
-  box-shadow: var(--echoes-box-shadow-xsmall);
-  gap: var(--echoes-dimension-space-100);
-  padding: var(--echoes-dimension-space-200);
+  border-radius: ${cssVar('border-radius-400')};
+  box-shadow: ${cssVar('box-shadow-xsmall')};
+  gap: ${cssVar('dimension-space-100')};
+  padding: ${cssVar('dimension-space-200')};
 `;
 
 PromotedSectionStyled.displayName = 'PromotedSectionStyled';
 
 const StyledButtonIcon = styled(ButtonIcon)`
   position: relative;
-  right: var(--echoes-dimension-negative-spacing-800);
-  top: var(--echoes-dimension-negative-spacing-600);
+  right: ${cssVar('dimension-negative-spacing-800')};
+  top: ${cssVar('dimension-negative-spacing-600')};
 `;
 
 StyledButtonIcon.displayName = 'StyledButtonIcon';
 
 const StyledHeading = styled(Heading)`
-  line-height: var(--echoes-dimension-height-500);
+  line-height: ${cssVar('dimension-height-500')};
 `;
 
 StyledHeading.displayName = 'StyledHeading';
@@ -270,7 +272,7 @@ const TextAndActions = styled.div`
   display: flex;
   flex: 1 0 0;
   flex-direction: column;
-  gap: var(--echoes-dimension-space-150);
+  gap: ${cssVar('dimension-space-150')};
 `;
 
 TextAndActions.displayName = 'TextAndActions';
@@ -279,7 +281,7 @@ const TextAndActionsContainer = styled.div`
   align-items: center;
   display: flex;
   flex: 1 0 0;
-  gap: var(--echoes-dimension-space-400);
+  gap: ${cssVar('dimension-space-400')};
 `;
 
 TextAndActionsContainer.displayName = 'TextAndActionsContainer';
@@ -289,7 +291,7 @@ const TextContainer = styled.div`
   align-self: stretch;
   display: flex;
   flex-direction: column;
-  gap: var(--echoes-dimension-space-100);
+  gap: ${cssVar('dimension-space-100')};
 `;
 
 TextContainer.displayName = 'TextContainer';

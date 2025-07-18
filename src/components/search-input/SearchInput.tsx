@@ -41,6 +41,8 @@ import {
 import { Text } from '../typography';
 import { SearchInputClearButton } from './SearchInputClearButton';
 
+import { cssVar } from '~utils/design-tokens';
+
 type InputAttributes = Pick<InputHTMLAttributes<HTMLInputElement>, 'id' | 'name' | 'maxLength'>;
 
 type SearchInputEventProps = Omit<InputEventProps<HTMLInputElement>, 'onChange'>;
@@ -285,30 +287,30 @@ SearchInputStyled.displayName = 'SearchInputStyled';
 
 const SearchInputWrapper = styled(InputWrapper)`
   &[data-width='medium'] {
-    width: var(--echoes-sizes-form-field-medium);
+    width: ${cssVar('sizes-form-field-medium')};
   }
   &[data-width='large'] {
-    width: var(--echoes-sizes-form-field-large);
+    width: ${cssVar('sizes-form-field-large')};
   }
   &[data-width='full'] {
-    width: var(--echoes-sizes-form-field-full);
+    width: ${cssVar('sizes-form-field-full')};
   }
 
   // ensure the input maintains its hover state when any child is hovered
   &:hover ${SearchInputStyled}:not(:disabled) {
-    background-color: var(--echoes-form-control-colors-background-hover);
+    background-color: ${cssVar('form-control-colors-background-hover')};
   }
 `;
 SearchInputWrapper.displayName = 'SearchInputWrapper';
 
 const SearchInputSpinner = styled(Spinner)`
-  margin: 0 var(--echoes-dimension-space-25);
+  margin: 0 ${cssVar('dimension-space-25')};
 `;
 SearchInputSpinner.displayName = 'SearchInputSpinner';
 
 const MinLengthMessage = styled(Text)`
   position: absolute;
-  right: calc(var(--echoes-dimension-space-150) + var(--echoes-dimension-width-300));
+  right: calc(${cssVar('dimension-space-150')} + ${cssVar('dimension-width-300')});
   text-align: right;
   pointer-events: none;
   margin-top: 1px;

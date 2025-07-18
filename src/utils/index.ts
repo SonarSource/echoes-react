@@ -25,5 +25,11 @@
  *
  */
 
+export {
+  cssVar,
+  type EchoesCSSVarString,
+  type EchoesCSSVarStringWithFallback,
+  type EchoesDesignTokens,
+} from './design-tokens';
 export { setTheme, ThemeProvider, type ThemeProviderProps } from './theme';
 export { toast, ToastDuration, ToastVariety, type ToastParams } from './toasts';

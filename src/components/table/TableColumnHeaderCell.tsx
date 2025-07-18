@@ -28,6 +28,8 @@ import { ToggleTip, ToggleTipProps } from '../toggle-tip';
 import { StyledTableColumnHeaderCell } from './TableStyles';
 import { TableCellJustify, TableSortDirection } from './TableTypes';
 
+import { cssVar } from '~utils/design-tokens';
+
 export interface TableColumnHeaderCellProps {
   className?: string;
   justify?: `${TableCellJustify}`;
@@ -61,7 +63,7 @@ export const TableColumnHeaderCell = forwardRef<HTMLTableCellElement, TableColum
           className={className}
           css={{
             justifyContent: justify,
-            padding: 'var(--echoes-dimension-space-100)',
+            padding: cssVar('dimension-space-100'),
           }}
           ref={ref}>
           <Button onClick={onSort} size="medium" suffix={sortProps.icon} variety="default-ghost">

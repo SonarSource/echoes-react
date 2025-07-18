@@ -18,18 +18,19 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 import styled from '@emotion/styled';
+import { cssVar } from '~utils/design-tokens';
 import { ModalSize } from './ModalTypes';
 
 const SIZES = {
-  [ModalSize.Default]: 'var(--echoes-sizes-overlays-width-default)',
-  [ModalSize.Wide]: 'var(--echoes-sizes-overlays-width-wide)',
+  [ModalSize.Default]: cssVar('sizes-overlays-width-default'),
+  [ModalSize.Wide]: cssVar('sizes-overlays-width-wide'),
 };
 
 export const styleModalOverlay = styled.div`
   position: fixed;
   inset: 0;
 
-  background: var(--echoes-color-overlays-back-drop-default);
+  background: ${cssVar('color-overlays-back-drop-default')};
 `.withComponent;
 
 export const styleModalWrapper = styled.div<{ size: `${ModalSize}` }>`
@@ -41,37 +42,37 @@ export const styleModalWrapper = styled.div<{ size: `${ModalSize}` }>`
   left: 50%;
   transform: translate(-50%, -50%);
 
-  max-height: var(--echoes-sizes-overlays-max-height-default);
+  max-height: ${cssVar('sizes-overlays-max-height-default')};
   width: ${(props) => SIZES[props.size]};
 
-  border-radius: var(--echoes-border-radius-400);
-  background: var(--echoes-color-surface-default);
-  box-shadow: var(--echoes-box-shadow-large);
+  border-radius: ${cssVar('border-radius-400')};
+  background: ${cssVar('color-surface-default')};
+  box-shadow: ${cssVar('box-shadow-large')};
 `.withComponent;
 
 export const styleModalTitle = styled.h2`
   flex: 0 0 auto;
 
-  font: var(--echoes-typography-heading-large);
-  letter-spacing: var(--echoes-letter-spacing-decreased);
-  color: var(--echoes-color-text-strong);
+  font: ${cssVar('typography-heading-large')};
+  letter-spacing: ${cssVar('letter-spacing-decreased')};
+  color: ${cssVar('color-text-strong')};
 
-  min-height: var(--echoes-dimension-height-800);
-  line-height: var(--echoes-dimension-height-800);
-  margin: var(--echoes-dimension-space-0);
-  padding: var(--echoes-dimension-space-300);
-  padding-bottom: var(--echoes-dimension-space-0);
+  min-height: ${cssVar('dimension-height-800')};
+  line-height: ${cssVar('dimension-height-800')};
+  margin: ${cssVar('dimension-space-0')};
+  padding: ${cssVar('dimension-space-300')};
+  padding-bottom: ${cssVar('dimension-space-0')};
   overflow-wrap: break-word;
 `.withComponent;
 
 export const styleModalDescription = styled.div`
-  font: var(--echoes-typography-text-default);
+  font: ${cssVar('typography-text-default-regular')};
 
-  margin: var(--echoes-dimension-space-0);
+  margin: ${cssVar('dimension-space-0')};
 `.withComponent;
 
 export const ModalContent = styled.div`
-  font: var(--echoes-typography-text-default);
+  font: ${cssVar('typography-text-default-regular')};
 `;
 ModalContent.displayName = 'ModalContent';
 
@@ -80,7 +81,7 @@ export const ModalFooter = styled.footer`
   justify-content: space-between;
   align-items: center;
 
-  padding: var(--echoes-dimension-space-300);
-  padding-top: var(--echoes-dimension-space-150);
+  padding: ${cssVar('dimension-space-300')};
+  padding-top: ${cssVar('dimension-space-150')};
 `;
 ModalFooter.displayName = 'ModalFooter';

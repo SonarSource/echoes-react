@@ -21,6 +21,8 @@
 import styled from '@emotion/styled';
 import { forwardRef } from 'react';
 
+import { cssVar } from '~utils/design-tokens';
+
 export interface BadgeCounterProps {
   className?: string;
   /**
@@ -44,13 +46,13 @@ BadgeCounter.displayName = 'BadgeCounter';
 
 const BadgeCounterStyled = styled.span`
   display: inline-block;
-  height: var(--echoes-line-height-10);
+  height: ${cssVar('line-height-10')};
 
-  border-radius: var(--echoes-border-radius-full);
-  padding: var(--echoes-dimension-space-0) var(--echoes-dimension-space-50);
+  border-radius: ${cssVar('border-radius-full')};
+  padding: ${cssVar('dimension-space-0')} ${cssVar('dimension-space-50')};
 
-  font: var(--echoes-typography-text-small-semi-bold);
-  color: var(--echoes-color-text-default);
+  font: ${cssVar('typography-text-small-semi-bold')};
+  color: ${cssVar('color-text-default')};
 
-  background-color: var(--echoes-color-background-neutral-bolder-default);
+  background-color: ${cssVar('color-background-neutral-bolder-default')};
 `;

@@ -20,17 +20,19 @@
 import styled from '@emotion/styled';
 import { Spinner } from './Spinner';
 
+import { cssVar } from '~utils/design-tokens';
+
 export const SpinnerOverrideColor = styled(Spinner)`
   background:
     linear-gradient(
         0deg,
-        var(--spinner-color-override, var(--echoes-color-background-accent-default)) 50%,
+        var(--spinner-color-override, ${cssVar('color-background-accent-default')}) 50%,
         transparent 50% 100%
       )
       border-box,
     linear-gradient(
         90deg,
-        var(--spinner-color-override, var(--echoes-color-background-accent-default)) 25%,
+        var(--spinner-color-override, ${cssVar('color-background-accent-default')}) 25%,
         transparent 75% 100%
       )
       border-box;

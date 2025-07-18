@@ -28,6 +28,8 @@ import { useFormFieldA11y } from '../form/useFormFieldA11y';
 import { RadioButton } from './RadioButton';
 import { RadioButtonGroupProps } from './RadioButtonTypes';
 
+import { cssVar } from '~utils/design-tokens';
+
 export const RadioButtonGroup = forwardRef<HTMLDivElement, PropsWithLabels<RadioButtonGroupProps>>(
   (props, ref) => {
     const {
@@ -111,10 +113,10 @@ const RadioGroupRoot = styled(RadioGroup.Root)`
 RadioGroupRoot.displayName = 'RadioGroupRoot';
 
 const RadioButtonsWrapper = styled.div`
-  column-gap: var(--echoes-dimension-space-300);
+  column-gap: ${cssVar('dimension-space-300')};
   display: flex;
   flex-direction: column;
-  row-gap: var(--echoes-dimension-space-100);
+  row-gap: ${cssVar('dimension-space-100')};
 
   [data-alignment='horizontal'] > & {
     flex-direction: row;

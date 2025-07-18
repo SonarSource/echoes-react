@@ -23,6 +23,8 @@ import { forwardRef } from 'react';
 import { ButtonIcon } from '../buttons';
 import { ButtonIconProps } from '../buttons/ButtonIcon';
 
+import { cssVar } from '~utils/design-tokens';
+
 export type GlobalNavigationActionProps = ButtonIconProps;
 
 export const GlobalNavigationAction = forwardRef<HTMLButtonElement, GlobalNavigationActionProps>(
@@ -33,6 +35,6 @@ export const GlobalNavigationAction = forwardRef<HTMLButtonElement, GlobalNaviga
 GlobalNavigationAction.displayName = 'GlobalNavigationAction';
 
 const StyledButtonIcon = styled(ButtonIcon)`
-  font-size: var(--echoes-font-size-30);
+  font-size: ${cssVar('font-size-30')};
 `;
 StyledButtonIcon.displayName = 'StyledButtonIcon';

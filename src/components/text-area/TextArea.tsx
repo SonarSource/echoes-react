@@ -22,6 +22,8 @@ import { forwardRef, InputHTMLAttributes, useId } from 'react';
 import { PropsWithLabels } from '~types/utils';
 import { FormField, FormFieldValidation } from '../form/FormField';
 import { useFormFieldA11y } from '../form/useFormFieldA11y';
+import { cssVar } from '~utils/design-tokens';
+
 import {
   InputEventProps,
   InputProps,
@@ -110,7 +112,7 @@ TextArea.displayName = 'TextArea';
 
 const TextAreaStyled = styled(InputStyled.withComponent('textarea'))`
   height: auto;
-  min-height: var(--echoes-form-control-sizes-height-default);
+  min-height: ${cssVar('form-control-sizes-height-default')};
 
   resize: none;
 

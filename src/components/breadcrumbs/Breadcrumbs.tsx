@@ -23,6 +23,8 @@ import React, { forwardRef } from 'react';
 import { IconSlash } from '../icons';
 import { BreadcrumbLink, BreadcrumbLinkProps } from './BreadcrumbLink';
 
+import { cssVar } from '~utils/design-tokens';
+
 export interface BreadcrumbsProps {
   className?: string;
   items: BreadcrumbLinkProps[];
@@ -53,8 +55,8 @@ BreadcrumbsBase.displayName = 'BreadcrumbsBase';
 export const Breadcrumbs = styled(BreadcrumbsBase)`
   display: flex;
   flex-wrap: wrap;
-  font: var(--echoes-typography-text-small-regular);
-  gap: var(--echoes-dimension-space-75);
+  font: ${cssVar('typography-text-small-regular')};
+  gap: ${cssVar('dimension-space-75')};
   max-width: 100%;
 `;
 
