@@ -28,7 +28,7 @@ export interface HelperTextProps {
 
 export const HelperText = styled.div<HelperTextProps>`
   font: var(--echoes-typography-others-helper-text);
-  color: var(--echoes-color-text-subdued);
+  color: var(--echoes-color-text-subtle);
 
   max-width: var(--echoes-sizes-typography-max-width-default);
 `;

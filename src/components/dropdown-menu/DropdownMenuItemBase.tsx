@@ -182,14 +182,14 @@ StyledLabel.displayName = 'StyledLabel';
 
 const StyledHelpText = styled.span<{ isDisabled?: boolean }>`
   color: ${(props) =>
-    props.isDisabled ? 'var(--echoes-color-text-disabled)' : 'var(--echoes-color-text-subdued)'};
+    props.isDisabled ? 'var(--echoes-color-text-disabled)' : 'var(--echoes-color-text-subtle)'};
   font: var(--echoes-typography-others-helper-text);
 `;
 StyledHelpText.displayName = 'StyledHelpText';
 
 const StyledSuffix = styled.span`
   align-items: center;
-  color: var(--echoes-color-text-subdued);
+  color: var(--echoes-color-text-subtle);
   display: flex;
   flex: 0 0 auto;
   justify-content: flex-end;
@@ -197,7 +197,7 @@ const StyledSuffix = styled.span`
 StyledSuffix.displayName = 'StyledSuffix';
 
 const StyledRadixDropdownMenuItem = styled(radixDropdownMenu.Item)`
-  background-color: var(--echoes-color-background-default);
+  background-color: var(--echoes-color-surface-default);
   color: var(--echoes-color-text-default);
   font: var(--echoes-typography-text-default-regular);
 
@@ -216,18 +216,18 @@ const StyledRadixDropdownMenuItem = styled(radixDropdownMenu.Item)`
   }
 
   &:hover {
-    background-color: var(--echoes-color-background-default-hover);
+    background-color: var(--echoes-color-surface-hover);
     border-radius: 0;
     outline: none;
   }
 
   /* when the item is clicked */
   &:active {
-    background-color: var(--echoes-color-background-default-active);
+    background-color: var(--echoes-color-surface-active);
   }
 
   &[data-disabled] {
-    background-color: var(--echoes-color-background-default);
+    background-color: var(--echoes-color-surface-default);
     color: var(--echoes-color-text-disabled);
     cursor: default;
   }

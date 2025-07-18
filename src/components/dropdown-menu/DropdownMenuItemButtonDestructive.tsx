@@ -48,7 +48,7 @@ const StyledDropdownMenuItemBase = styled(DropdownMenuItemBase)`
   }
 
   &[data-disabled] {
-    background-color: var(--echoes-color-background-default);
+    background-color: var(--echoes-color-surface-default);
   }
 `;
 StyledDropdownMenuItemBase.displayName = 'StyledDropdownMenuItemBase';

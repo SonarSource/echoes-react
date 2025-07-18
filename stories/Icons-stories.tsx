@@ -133,7 +133,11 @@ export const Grid: StoryObj<StoryArgs> = {
       name: 'color',
       description: 'Change the contextual color the icons will adapt to',
       type: 'string',
-      options: ['echoes-color-text-subdued', 'echoes-color-text-default', 'echoes-color-text-bold'],
+      options: [
+        'echoes-color-text-subtle',
+        'echoes-color-text-default',
+        'echoes-color-text-strong',
+      ],
       control: { type: 'select' },
     },
   },

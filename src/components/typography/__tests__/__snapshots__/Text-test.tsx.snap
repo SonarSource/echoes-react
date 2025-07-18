@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`default & regular renders as default 1`] = `
 .emotion-0 {
@@ -676,7 +676,7 @@ exports[`subdued & regular renders as default 1`] = `
 .emotion-0 {
   max-width: var(--echoes-sizes-typography-max-width-default);
   font: var(--echoes-typography-text-default-regular);
-  color: var(--echoes-color-text-subdued);
+  color: var(--echoes-color-text-subtle);
 }
 
 .emotion-0 ul {
@@ -724,7 +724,7 @@ exports[`subdued & regular renders as div 1`] = `
 .emotion-0 {
   max-width: var(--echoes-sizes-typography-max-width-default);
   font: var(--echoes-typography-text-default-regular);
-  color: var(--echoes-color-text-subdued);
+  color: var(--echoes-color-text-subtle);
 }
 
 .emotion-0 ul {
@@ -772,7 +772,7 @@ exports[`subdued & regular renders as paragraph 1`] = `
 .emotion-0 {
   max-width: var(--echoes-sizes-typography-max-width-default);
   font: var(--echoes-typography-text-default-regular);
-  color: var(--echoes-color-text-subdued);
+  color: var(--echoes-color-text-subtle);
 }
 
 .emotion-0 ul {
@@ -820,7 +820,7 @@ exports[`subdued & regular renders as span 1`] = `
 .emotion-0 {
   max-width: var(--echoes-sizes-typography-max-width-default);
   font: var(--echoes-typography-text-default-regular);
-  color: var(--echoes-color-text-subdued);
+  color: var(--echoes-color-text-subtle);
 }
 
 .emotion-0 ul {
@@ -868,7 +868,7 @@ exports[`subdued & regular renders with size default 1`] = `
 .emotion-0 {
   max-width: var(--echoes-sizes-typography-max-width-default);
   font: var(--echoes-typography-text-default-regular);
-  color: var(--echoes-color-text-subdued);
+  color: var(--echoes-color-text-subtle);
 }
 
 .emotion-0 ul {
@@ -916,7 +916,7 @@ exports[`subdued & regular renders with size large 1`] = `
 .emotion-0 {
   max-width: var(--echoes-sizes-typography-max-width-default);
   font: var(--echoes-typography-text-large-regular);
-  color: var(--echoes-color-text-subdued);
+  color: var(--echoes-color-text-subtle);
 }
 
 .emotion-0 ul {
@@ -964,7 +964,7 @@ exports[`subdued & regular renders with size small 1`] = `
 .emotion-0 {
   max-width: var(--echoes-sizes-typography-max-width-default);
   font: var(--echoes-typography-text-small-regular);
-  color: var(--echoes-color-text-subdued);
+  color: var(--echoes-color-text-subtle);
 }
 
 .emotion-0 ul {
@@ -1012,7 +1012,7 @@ exports[`subdued & strong renders as default 1`] = `
 .emotion-0 {
   max-width: var(--echoes-sizes-typography-max-width-default);
   font: var(--echoes-typography-text-default-semi-bold);
-  color: var(--echoes-color-text-subdued);
+  color: var(--echoes-color-text-subtle);
 }
 
 .emotion-0 ul {
@@ -1060,7 +1060,7 @@ exports[`subdued & strong renders as div 1`] = `
 .emotion-0 {
   max-width: var(--echoes-sizes-typography-max-width-default);
   font: var(--echoes-typography-text-default-semi-bold);
-  color: var(--echoes-color-text-subdued);
+  color: var(--echoes-color-text-subtle);
 }
 
 .emotion-0 ul {
@@ -1108,7 +1108,7 @@ exports[`subdued & strong renders as paragraph 1`] = `
 .emotion-0 {
   max-width: var(--echoes-sizes-typography-max-width-default);
   font: var(--echoes-typography-text-default-semi-bold);
-  color: var(--echoes-color-text-subdued);
+  color: var(--echoes-color-text-subtle);
 }
 
 .emotion-0 ul {
@@ -1156,7 +1156,7 @@ exports[`subdued & strong renders as span 1`] = `
 .emotion-0 {
   max-width: var(--echoes-sizes-typography-max-width-default);
   font: var(--echoes-typography-text-default-semi-bold);
-  color: var(--echoes-color-text-subdued);
+  color: var(--echoes-color-text-subtle);
 }
 
 .emotion-0 ul {
@@ -1204,7 +1204,7 @@ exports[`subdued & strong renders with size default 1`] = `
 .emotion-0 {
   max-width: var(--echoes-sizes-typography-max-width-default);
   font: var(--echoes-typography-text-default-semi-bold);
-  color: var(--echoes-color-text-subdued);
+  color: var(--echoes-color-text-subtle);
 }
 
 .emotion-0 ul {
@@ -1252,7 +1252,7 @@ exports[`subdued & strong renders with size large 1`] = `
 .emotion-0 {
   max-width: var(--echoes-sizes-typography-max-width-default);
   font: var(--echoes-typography-text-large-semi-bold);
-  color: var(--echoes-color-text-subdued);
+  color: var(--echoes-color-text-subtle);
 }
 
 .emotion-0 ul {
@@ -1300,7 +1300,7 @@ exports[`subdued & strong renders with size small 1`] = `
 .emotion-0 {
   max-width: var(--echoes-sizes-typography-max-width-default);
   font: var(--echoes-typography-text-small-semi-bold);
-  color: var(--echoes-color-text-subdued);
+  color: var(--echoes-color-text-subtle);
 }
 
 .emotion-0 ul {

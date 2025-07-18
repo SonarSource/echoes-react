@@ -121,7 +121,7 @@ const StyledText = styled(BaseStyles)<StyledTextProps>`
 StyledText.displayName = 'StyledText';
 
 function getColor({ isSubdued }: Pick<StyledTextProps, 'isSubdued'>) {
-  return isSubdued ? 'var(--echoes-color-text-subdued)' : 'var(--echoes-color-text-default)';
+  return isSubdued ? 'var(--echoes-color-text-subtle)' : 'var(--echoes-color-text-default)';
 }
 
 function getFontForSizeAndWeight({

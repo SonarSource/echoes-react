@@ -54,7 +54,7 @@ const GlobalNavigationContainer = styled.nav`
 
   padding-right: var(--echoes-dimension-space-300);
 
-  background-color: var(--echoes-color-background-default);
+  background-color: var(--echoes-color-surface-default);
   border-bottom: var(--echoes-border-width-default) solid var(--echoes-color-border-weak);
 `;
 GlobalNavigationContainer.displayName = 'GlobalNavigationContainer';

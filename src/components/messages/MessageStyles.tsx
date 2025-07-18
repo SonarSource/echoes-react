@@ -32,23 +32,23 @@ export const MESSAGE_VARIETY_ICON = {
 export const MESSAGE_CALLOUT_VARIETY_STYLE = {
   [MessageVariety.Info]: {
     '--message-background': 'var(--echoes-color-background-info-weak-default)',
-    '--message-title-color': 'var(--echoes-color-text-info-bold)',
+    '--message-title-color': 'var(--echoes-color-text-info)',
   },
   [MessageVariety.Danger]: {
     '--message-background': 'var(--echoes-color-background-danger-weak-default)',
-    '--message-title-color': 'var(--echoes-color-text-danger-bold)',
+    '--message-title-color': 'var(--echoes-color-text-danger)',
   },
   [MessageVariety.Warning]: {
     '--message-background': 'var(--echoes-color-background-warning-weak-default)',
-    '--message-title-color': 'var(--echoes-color-text-warning-bold)',
+    '--message-title-color': 'var(--echoes-color-text-warning)',
   },
   [MessageVariety.Success]: {
     '--message-background': 'var(--echoes-color-background-success-weak-default)',
-    '--message-title-color': 'var(--echoes-color-text-success-bold)',
+    '--message-title-color': 'var(--echoes-color-text-success)',
   },
   [MessageVariety.Discover]: {
     '--message-background': 'var(--echoes-color-background-accent-weak-default)',
-    '--message-title-color': 'var(--echoes-color-text-accent-bold)',
+    '--message-title-color': 'var(--echoes-color-text-accent)',
   },
 };
 

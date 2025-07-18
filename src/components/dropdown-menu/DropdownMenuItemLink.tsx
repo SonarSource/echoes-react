@@ -82,11 +82,11 @@ DropdownMenuItemLink.displayName = 'DropdownMenu.ItemLink';
 const StyledDropdownMenuItemBase = styled(DropdownMenuItemBase)`
   /* when the current URL matches 'to', react-router adds an 'active' class to the 'a' tag */
   &.active {
-    background-color: var(--echoes-color-background-default-active);
+    background-color: var(--echoes-color-surface-active);
   }
 
   &[data-disabled] {
-    background-color: var(--echoes-color-background-default);
+    background-color: var(--echoes-color-surface-default);
   }
 `;
 StyledDropdownMenuItemBase.displayName = 'StyledDropdownMenuItemBase';
