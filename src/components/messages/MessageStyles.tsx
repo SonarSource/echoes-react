@@ -84,6 +84,7 @@ MessageCalloutIconWrapper.displayName = 'MessageCalloutIconWrapper';
 export const MessageCalloutTitleWrapper = styled.div`
   flex: 1 0 auto;
   font: var(--echoes-typography-heading-medium);
+  letter-spacing: var(--echoes-letter-spacing-decreased);
   color: var(--message-title-color);
 `;
 MessageCalloutTitleWrapper.displayName = 'MessageCalloutTitleWrapper';
