@@ -23,6 +23,8 @@ import { forwardRef } from 'react';
 import { Heading, HelperText, Text } from '../typography';
 import { SpotlightModalProps } from './SpotlightTypes';
 
+import { cssVar } from '~utils/design-tokens';
+
 export const SpotlightModal = forwardRef<HTMLDivElement, Readonly<SpotlightModalProps>>(
   ({ actions, bodyText, headerText, helperText, image, ...otherProps }, ref) => (
     <SpotlightModalStyled
@@ -70,8 +72,8 @@ const ModalContainer = styled.div`
   border-radius: inherit;
   display: flex;
   flex-direction: column;
-  gap: var(--echoes-dimension-space-250);
-  padding: var(--echoes-dimension-space-250);
+  gap: ${cssVar('dimension-space-250')};
+  padding: ${cssVar('dimension-space-250')};
 `;
 
 ModalContainer.displayName = 'ModalContainer';
@@ -82,7 +84,7 @@ const ModalContentBodyContainer = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1 0 0;
-  gap: var(--echoes-dimension-space-75);
+  gap: ${cssVar('dimension-space-75')};
   justify-content: center;
 `;
 
@@ -93,7 +95,7 @@ const ModalContentContainer = styled.div`
   align-self: stretch;
   display: flex;
   flex-direction: column;
-  gap: var(--echoes-dimension-space-75);
+  gap: ${cssVar('dimension-space-75')};
 `;
 
 ModalContentContainer.displayName = 'ModalContentContainer';
@@ -109,13 +111,13 @@ const ModalFooterContainer = styled.div`
 ModalFooterContainer.displayName = 'ModalFooterContainer';
 
 const SpotlightModalStyled = styled.div`
-  background-color: var(--echoes-color-surface-default);
-  border-radius: var(--echoes-border-radius-400);
-  box-shadow: var(--echoes-box-shadow-large);
+  background-color: ${cssVar('color-surface-default')};
+  border-radius: ${cssVar('border-radius-400')};
+  box-shadow: ${cssVar('box-shadow-large')};
   display: flex;
   flex-direction: column;
   position: relative;
-  width: var(--echoes-sizes-overlays-width-small);
+  width: ${cssVar('sizes-overlays-width-small')};
 `;
 
 SpotlightModalStyled.displayName = 'SpotlightModalStyled';

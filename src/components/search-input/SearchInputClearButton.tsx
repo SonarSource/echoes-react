@@ -25,6 +25,8 @@ import { BUTTON_VARIETY_STYLES, ButtonIconStyled } from '../buttons/ButtonStyles
 import { ButtonBaseProps } from '../buttons/ButtonTypes';
 import { IconX } from '../icons';
 
+import { cssVar } from '~utils/design-tokens';
+
 interface SearchInputClearButtonProps extends Pick<ButtonBaseProps, 'className' | 'onClick'> {
   ariaLabel: string;
 }
@@ -51,12 +53,12 @@ SearchInputClearButton.displayName = 'SearchInputClearButton';
 
 const SearchInputClearButtonStyled = styled(ButtonIconStyled)`
   ${BUTTON_VARIETY_STYLES['default-ghost']};
-  --button-padding: var(--echoes-dimension-space-0);
-  --button-height: var(--echoes-dimension-height-500);
-  --button-width: var(--echoes-dimension-width-250);
+  --button-padding: ${cssVar('dimension-space-0')};
+  --button-height: ${cssVar('dimension-height-500')};
+  --button-width: ${cssVar('dimension-width-250')};
 
   display: flex;
-  font: var(--echoes-typography-text-small-regular);
-  border-radius: var(--echoes-border-radius-200);
+  font: ${cssVar('typography-text-small-regular')};
+  border-radius: ${cssVar('border-radius-200')};
 `;
 SearchInputClearButtonStyled.displayName = 'SearchInputClearButtonStyled';

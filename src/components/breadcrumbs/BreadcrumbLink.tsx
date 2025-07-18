@@ -25,6 +25,8 @@ import { LinkHighlight } from '../links';
 import { LinkStandalone } from '../links/LinkStandalone';
 import { LinkBaseProps, LinkStandaloneBaseProps } from '../links/LinkTypes';
 
+import { cssVar } from '~utils/design-tokens';
+
 export interface BreadcrumbLinkProps
   extends LinkStandaloneBaseProps,
     Omit<LinkBaseProps, 'children'> {
@@ -33,7 +35,7 @@ export interface BreadcrumbLinkProps
 }
 
 const BreadcrumbLinkContainer = styled.span`
-  max-width: var(--echoes-sizes-breadcrumbs-max-width-default);
+  max-width: ${cssVar('sizes-breadcrumbs-max-width-default')};
 
   ${truncate}
 `;
@@ -55,7 +57,7 @@ const BreadcrumbLinkBase = forwardRef<HTMLAnchorElement, BreadcrumbLinkProps>((p
 BreadcrumbLinkBase.displayName = 'BreadcrumbLinkBase';
 
 export const BreadcrumbLink = styled(BreadcrumbLinkBase)`
-  font: var(--echoes-typography-text-small-regular);
+  font: ${cssVar('typography-text-small-regular')};
   white-space: nowrap;
 `;
 

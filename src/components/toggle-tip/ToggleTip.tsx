@@ -25,6 +25,8 @@ import { ButtonIcon, ButtonVariety } from '../buttons';
 import { IconInfo } from '../icons';
 import { Popover, PopoverProps } from '../popover';
 
+import { cssVar } from '~utils/design-tokens';
+
 type PopoverPropsSubset = Omit<PopoverProps, 'children'>;
 
 export interface ToggleTipProps extends PopoverPropsSubset {
@@ -59,12 +61,12 @@ export const ToggleTip = forwardRef<HTMLButtonElement, ToggleTipProps>(
 );
 
 const ToggleTipButtonIcon = styled(ButtonIcon)`
-  line-height: var(--echoes-line-height-10);
-  font-size: var(--echoes-font-size-10);
-  border-radius: var(--echoes-border-radius-200);
-  --button-padding: var(--echoes-dimension-space-0);
-  --button-height: var(--echoes-sizes-toggletips-height);
-  --button-width: var(--echoes-sizes-toggletips-width);
+  line-height: ${cssVar('line-height-10')};
+  font-size: ${cssVar('font-size-10')};
+  border-radius: ${cssVar('border-radius-200')};
+  --button-padding: ${cssVar('dimension-space-0')};
+  --button-height: ${cssVar('sizes-toggletips-height')};
+  --button-width: ${cssVar('sizes-toggletips-width')};
 `;
 
 ToggleTip.displayName = 'ToggleTip';

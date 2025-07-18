@@ -24,6 +24,7 @@ import { forwardRef, useId } from 'react';
 import { isDefined, isStringDefined } from '~common/helpers/types';
 import { GroupAlignment } from '~types/GroupAlignment';
 import { PropsAriaLabel, PropsAriaLabelledBy } from '~types/utils';
+import { cssVar } from '~utils/design-tokens';
 import { RadioButtonGroupProps, RadioOption } from '../radio-button-group/RadioButtonTypes';
 import { HelperText, Label } from '../typography';
 
@@ -147,7 +148,7 @@ function SelectionCard(props: Readonly<SelectionCardOption>) {
 SelectionCard.displayName = 'SelectionCard';
 
 const SelectionCardsRoot = styled(RadioGroup.Root)`
-  gap: var(--echoes-dimension-space-200);
+  gap: ${cssVar('dimension-space-200')};
   display: inline-flex;
   flex-direction: column;
 
@@ -159,7 +160,7 @@ SelectionCardsRoot.displayName = 'SelectionCardsRoot';
 
 const StyledHelperText = styled(HelperText)`
   &[data-disabled] {
-    color: var(--echoes-color-text-disabled);
+    color: ${cssVar('color-text-disabled')};
   }
 `;
 StyledHelperText.displayName = 'StyledHelperText';
@@ -168,24 +169,24 @@ const SelectionCardContentWrapper = styled.div<{ hasIllustration: boolean }>`
   display: inline-flex;
   flex-direction: column;
   align-items: start;
-  gap: var(--echoes-dimension-space-100);
+  gap: ${cssVar('dimension-space-100')};
 
-  padding: var(--echoes-dimension-space-200);
+  padding: ${cssVar('dimension-space-200')};
 
   [data-state='checked'] & {
     /* Remove the extra width of the border from the padding */
     padding: calc(
-      var(--echoes-dimension-space-200) -
-        (var(--echoes-focus-border-width-default) - var(--echoes-border-width-default))
+      ${cssVar('dimension-space-200')} -
+        (${cssVar('focus-border-width-default')} - ${cssVar('border-width-default')})
     );
 
-    ${(props) => props.hasIllustration && 'padding-top: var(--echoes-dimension-space-200);'}
+    ${(props) => props.hasIllustration && `padding-top: ${cssVar('dimension-space-200')};`}
   }
 `;
 SelectionCardContentWrapper.displayName = 'SelectionCardContentWrapper';
 
 const StyledSelectionCard = styled(RadioGroup.Item)`
-  appearence: none;
+  appearance: none;
 
   display: inline-flex;
   flex-direction: column;
@@ -194,11 +195,11 @@ const StyledSelectionCard = styled(RadioGroup.Item)`
 
   text-align: start;
 
-  background: var(--echoes-color-surface-default);
-  border: var(--echoes-border-width-default) solid var(--echoes-color-border-bold);
-  border-radius: var(--echoes-border-radius-400);
+  background: ${cssVar('color-surface-default')};
+  border: ${cssVar('border-width-default')} solid ${cssVar('color-border-bold')};
+  border-radius: ${cssVar('border-radius-400')};
 
-  box-shadow: var(--echoes-box-shadow-xsmall);
+  box-shadow: ${cssVar('box-shadow-xsmall')};
 
   padding: 0;
 
@@ -209,29 +210,29 @@ const StyledSelectionCard = styled(RadioGroup.Item)`
   }
 
   &:hover {
-    background-color: var(--echoes-color-surface-hover);
-    box-shadow: var(--echoes-box-shadow-small);
+    background-color: ${cssVar('color-surface-hover')};
+    box-shadow: ${cssVar('box-shadow-small')};
   }
 
   &[data-state='checked'] {
-    border-color: var(--echoes-color-background-accent-default);
-    border-width: var(--echoes-focus-border-width-default);
-    box-shadow: var(--echoes-box-shadow-small);
+    border-color: ${cssVar('color-background-accent-default')};
+    border-width: ${cssVar('focus-border-width-default')};
+    box-shadow: ${cssVar('box-shadow-small')};
 
     &:not(:disabled):hover {
-      border-color: var(--echoes-color-background-selected-bold-hover);
+      border-color: ${cssVar('color-background-selected-bold-hover')};
     }
   }
 
   &:focus-visible {
-    outline: var(--echoes-color-focus-default) solid var(--echoes-focus-border-width-default);
-    outline-offset: var(--echoes-focus-border-offset-default);
+    outline: ${cssVar('color-focus-default')} solid ${cssVar('focus-border-width-default')};
+    outline-offset: ${cssVar('focus-border-offset-default')};
   }
 
   &:disabled {
     cursor: default;
-    background-color: var(--echoes-color-surface-disabled);
-    border-color: var(--echoes-color-border-disabled);
+    background-color: ${cssVar('color-surface-disabled')};
+    border-color: ${cssVar('color-border-disabled')};
     box-shadow: none;
   }
 `;
@@ -245,12 +246,12 @@ const IllustrationContainer = styled.div`
   justify-content: center;
   width: 100%;
 
-  border-radius: calc(var(--echoes-border-radius-400) - var(--echoes-border-width-default))
-    calc(var(--echoes-border-radius-400) - var(--echoes-border-width-default)) 0 0;
+  border-radius: calc(${cssVar('border-radius-400')} - ${cssVar('border-width-default')})
+    calc(${cssVar('border-radius-400')} - ${cssVar('border-width-default')}) 0 0;
 
   [data-state='checked'] & {
-    border-radius: calc(var(--echoes-border-radius-400) - var(--echoes-focus-border-width-default))
-      calc(var(--echoes-border-radius-400) - var(--echoes-focus-border-width-default)) 0 0;
+    border-radius: calc(${cssVar('border-radius-400')} - ${cssVar('focus-border-width-default')})
+      calc(${cssVar('border-radius-400')} - ${cssVar('focus-border-width-default')}) 0 0;
   }
 
   overflow: hidden;

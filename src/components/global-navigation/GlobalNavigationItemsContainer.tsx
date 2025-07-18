@@ -22,6 +22,8 @@ import styled from '@emotion/styled';
 import * as radixNavigationMenu from '@radix-ui/react-navigation-menu';
 import { PropsWithChildren, forwardRef } from 'react';
 
+import { cssVar } from '~utils/design-tokens';
+
 export interface GlobalNavigationItemsContainerProps
   extends PropsWithChildren<radixNavigationMenu.NavigationMenuProps> {
   className?: string;
@@ -45,7 +47,7 @@ const StyledNavigationMenuRoot = styled(radixNavigationMenu.List)`
   display: flex;
   align-items: center;
 
-  gap: var(--echoes-dimension-space-100);
+  gap: ${cssVar('dimension-space-100')};
 
   list-style: none;
   padding: 0;

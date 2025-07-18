@@ -22,6 +22,8 @@ import { forwardRef, ReactNode } from 'react';
 import { TextNode, TextNodeOptional } from '~types/utils';
 import { Heading, HeadingProps, Text } from '../typography';
 
+import { cssVar } from '~utils/design-tokens';
+
 export interface FormHeaderProps {
   className?: string;
   /**
@@ -66,7 +68,7 @@ const FormHeaderWrapper = styled.div`
   order: 1; // Ensure the header always appear first in the Form even if the dev scramble the order of components
   display: flex;
   flex-direction: column;
-  gap: var(--echoes-dimension-space-200);
+  gap: ${cssVar('dimension-space-200')};
 `;
 FormHeaderWrapper.displayName = 'FormHeaderWrapper';
 

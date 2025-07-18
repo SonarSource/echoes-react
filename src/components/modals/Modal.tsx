@@ -23,6 +23,7 @@ import { forwardRef, ReactNode, SyntheticEvent, useCallback } from 'react';
 import { useIntl } from 'react-intl';
 import { isDefined } from '~common/helpers/types';
 import { TextNodeOptional } from '~types/utils';
+import { cssVar } from '~utils/design-tokens';
 import { ButtonGroup, ButtonIcon, ButtonSize, ButtonVariety } from '../buttons';
 import { isDropdownMenuItemComponent } from '../dropdown-menu/DropdownMenuItemBase';
 import { IconX } from '../icons';
@@ -158,7 +159,7 @@ const ModalWrapper = styleModalWrapper(RadixDialog.Content);
 ModalWrapper.displayName = 'ModalWrapper';
 
 const ModalTitle = styled(styleModalTitle(RadixDialog.Title))`
-  padding-right: calc(var(--echoes-dimension-space-400) + var(--echoes-sizes-buttons-medium));
+  padding-right: calc(${cssVar('dimension-space-400')} + ${cssVar('sizes-buttons-medium')});
 `;
 ModalTitle.displayName = 'ModalTitle';
 
@@ -173,7 +174,7 @@ ModalFooterLinkWrapper.displayName = 'ModalFooterLinkWrapper';
 
 const ModalButtonIconClose = styled(ButtonIcon)`
   position: absolute;
-  top: var(--echoes-dimension-space-300);
-  right: var(--echoes-dimension-space-300);
+  top: ${cssVar('dimension-space-300')};
+  right: ${cssVar('dimension-space-300')};
 `;
 ModalButtonIconClose.displayName = 'ModalButtonIconClose';

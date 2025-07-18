@@ -8,6 +8,20 @@
         }
       }
     },
+    "badge": {
+      "sizes": {
+        "height": {
+          "small": {
+            "$type": "sizing",
+            "$value": "{echoes.dimension.height.500}"
+          },
+          "medium": {
+            "$type": "sizing",
+            "$value": "1.75rem"
+          }
+        }
+      }
+    },
     "form-control": {
       "borderRadius": {
         "default": {

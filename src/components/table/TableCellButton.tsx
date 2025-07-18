@@ -23,6 +23,8 @@ import { forwardRef } from 'react';
 import { Button, ButtonProps } from '../buttons/Button';
 import { StyledTableCell } from './TableStyles';
 
+import { cssVar } from '~utils/design-tokens';
+
 export type TableCellButtonProps = ButtonProps & {
   cellClassName?: string;
 };
@@ -40,6 +42,6 @@ export const TableCellButton = forwardRef<HTMLButtonElement, TableCellButtonProp
 TableCellButton.displayName = 'TableCellButton';
 
 const StyledTableCellButton = styled(StyledTableCell)`
-  padding: var(--echoes-dimension-space-100) var(--echoes-dimension-space-200);
+  padding: ${cssVar('dimension-space-100')} ${cssVar('dimension-space-200')};
 `;
 StyledTableCellButton.displayName = 'StyledTableCellButton';

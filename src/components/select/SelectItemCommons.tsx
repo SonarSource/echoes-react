@@ -24,6 +24,8 @@ import { ComponentType, useCallback } from 'react';
 import { IconCheck } from '..';
 import { SelectOption, SelectOptionType } from './SelectTypes';
 
+import { cssVar } from '~utils/design-tokens';
+
 export type RenderOptionParams = ComboboxLikeRenderOptionInput<SelectOption>;
 export type OptionComponent = ComponentType<SelectOption>;
 
@@ -67,35 +69,35 @@ const SelectItemWrapper = styled.div`
 
     display: flex;
     align-items: center;
-    gap: var(--echoes-dimension-space-100);
+    gap: ${cssVar('dimension-space-100')};
 
-    padding: calc(var(--echoes-dimension-space-100) - var(--echoes-focus-border-width-default))
-      var(--echoes-dimension-space-150);
+    padding: calc(${cssVar('dimension-space-100')} - ${cssVar('focus-border-width-default')})
+      ${cssVar('dimension-space-150')};
 
-    font: var(--echoes-typography-text-small-medium);
-    color: var(--echoes-color-text-default);
-    background-color: var(--echoes-color-surface-default);
+    font: ${cssVar('typography-text-small-medium')};
+    color: ${cssVar('color-text-default')};
+    background-color: ${cssVar('color-surface-default')};
 
-    border: var(--echoes-focus-border-width-default) solid transparent;
-    border-radius: var(--echoes-border-radius-none);
+    border: ${cssVar('focus-border-width-default')} solid transparent;
+    border-radius: ${cssVar('border-radius-none')};
 
     cursor: pointer;
   }
 
   .echoes-select-option:not([data-combobox-disabled]):hover &,
   .echoes-select-option:not([data-combobox-disabled])[data-combobox-selected] & {
-    background-color: var(--echoes-color-surface-hover);
+    background-color: ${cssVar('color-surface-hover')};
   }
   .echoes-select-option:not([data-combobox-disabled])[data-combobox-active] & {
-    background-color: var(--echoes-color-background-selected-weak-default);
+    background-color: ${cssVar('color-background-selected-weak-default')};
   }
   .echoes-select-option:not([data-combobox-disabled])[data-combobox-active]:hover &,
   .echoes-select-option:not([data-combobox-disabled])[data-combobox-active][data-combobox-selected]
     & {
-    background-color: var(--echoes-color-background-selected-weak-hover);
+    background-color: ${cssVar('color-background-selected-weak-hover')};
   }
   .echoes-select-option[data-combobox-disabled] & {
-    color: var(--echoes-color-text-disabled);
+    color: ${cssVar('color-text-disabled')};
     cursor: default;
   }
 `;
@@ -108,17 +110,17 @@ const SelectItemInner = styled.div`
   display: flex;
   flex-direction: column;
 
-  font: var(--echoes-typography-text-default-regular);
+  font: ${cssVar('typography-text-default-regular')};
 `;
 SelectItemInner.displayName = 'SelectItemInner';
 
 // Help text below the select item label
 const SelectItemHelpText = styled.span`
-  font: var(--echoes-typography-others-helper-text);
-  color: var(--echoes-color-text-subtle);
+  font: ${cssVar('typography-others-helper-text')};
+  color: ${cssVar('color-text-subtle')};
 
   .echoes-select-option[data-combobox-disabled] & {
-    color: var(--echoes-color-text-disabled);
+    color: ${cssVar('color-text-disabled')};
   }
 `;
 SelectItemHelpText.displayName = 'SelectItemHelpText';
@@ -142,14 +144,14 @@ function SelectItemStatus(props: Readonly<SelectItemStatusProps>) {
 
 // Wrapper around the Checkmark icon or Radio input icon
 const SelectItemStatusStyled = styled.div`
-  padding: var(--echoes-dimension-space-25);
-  min-width: var(--echoes-dimension-width-250);
+  padding: ${cssVar('dimension-space-25')};
+  min-width: ${cssVar('dimension-width-250')};
 
-  font: var(--echoes-typography-text-small-medium);
-  color: var(--echoes-color-icon-selected);
+  font: ${cssVar('typography-text-small-medium')};
+  color: ${cssVar('color-icon-selected')};
 
   .echoes-select-option[data-combobox-disabled] & {
-    color: var(--echoes-color-icon-disabled);
+    color: ${cssVar('color-icon-disabled')};
   }
 `;
 SelectItemStatusStyled.displayName = 'SelectItemStatusStyled';
@@ -157,18 +159,18 @@ SelectItemStatusStyled.displayName = 'SelectItemStatusStyled';
 // Radio input icon in front of the select item for Radio optionType
 const SelectItemStatusRadio = styled.div`
   box-sizing: border-box;
-  height: var(--echoes-dimension-height-400);
-  width: var(--echoes-dimension-width-200);
-  min-width: var(--echoes-dimension-width-200);
+  height: ${cssVar('dimension-height-400')};
+  width: ${cssVar('dimension-width-200')};
+  min-width: ${cssVar('dimension-width-200')};
   padding: 0;
 
-  background-color: var(--echoes-color-surface-default);
-  border: var(--echoes-border-width-default) solid var(--echoes-color-border-bolder);
-  border-radius: var(--echoes-border-radius-full);
+  background-color: ${cssVar('color-surface-default')};
+  border: ${cssVar('border-width-default')} solid ${cssVar('color-border-bolder')};
+  border-radius: ${cssVar('border-radius-full')};
 
   &[data-selected] {
-    border-color: var(--echoes-color-border-accent-default);
-    background-color: var(--echoes-color-background-accent-default);
+    border-color: ${cssVar('color-border-accent-default')};
+    background-color: ${cssVar('color-background-accent-default')};
 
     &::after {
       content: '';
@@ -177,20 +179,20 @@ const SelectItemStatusRadio = styled.div`
       height: 100%;
       width: 100%;
 
-      background-color: var(--echoes-color-icon-on-color);
-      border: 0.25rem solid var(--echoes-color-border-accent-default);
-      border-radius: var(--echoes-border-radius-full);
+      background-color: ${cssVar('color-icon-on-color')};
+      border: 0.25rem solid ${cssVar('color-border-accent-default')};
+      border-radius: ${cssVar('border-radius-full')};
     }
   }
 
   .echoes-select-option[data-combobox-disabled] & {
-    background-color: var(--echoes-color-surface-disabled);
-    border-color: var(--echoes-color-border-disabled);
-    border-width: var(--echoes-border-width-default);
+    background-color: ${cssVar('color-surface-disabled')};
+    border-color: ${cssVar('color-border-disabled')};
+    border-width: ${cssVar('border-width-default')};
 
     &[data-selected]::after {
-      background-color: var(--echoes-color-icon-disabled);
-      border-color: var(--echoes-color-surface-disabled);
+      background-color: ${cssVar('color-icon-disabled')};
+      border-color: ${cssVar('color-surface-disabled')};
     }
   }
 `;

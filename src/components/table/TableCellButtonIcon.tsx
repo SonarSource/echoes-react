@@ -24,6 +24,8 @@ import { ButtonVariety } from '../buttons';
 import { ButtonIcon, ButtonIconProps } from '../buttons/ButtonIcon';
 import { StyledTableCell } from './TableStyles';
 
+import { cssVar } from '~utils/design-tokens';
+
 export type TableCellButtonIconProps = ButtonIconProps & {
   cellClassName?: string;
 };
@@ -43,6 +45,6 @@ export const TableCellButtonIcon = forwardRef<HTMLButtonElement, TableCellButton
 TableCellButtonIcon.displayName = 'TableCellButtonIcon';
 
 const StyledTableCellButtonIcon = styled(StyledTableCell)`
-  padding: var(--echoes-dimension-space-100) var(--echoes-dimension-space-200);
+  padding: ${cssVar('dimension-space-100')} ${cssVar('dimension-space-200')};
 `;
 StyledTableCellButtonIcon.displayName = 'StyledTableCellButtonIcon';

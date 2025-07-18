@@ -20,6 +20,8 @@
 
 import styled from '@emotion/styled';
 
+import { cssVar } from '~utils/design-tokens';
+
 export interface LabelProps {
   as?: 'div' | 'label' | 'span';
   className?: string;
@@ -28,9 +30,9 @@ export interface LabelProps {
 }
 
 export const Label = styled.label<LabelProps>`
-  font: var(--echoes-typography-others-label);
+  font: ${cssVar('typography-others-label')};
   color: ${({ isSubdued }) =>
-    isSubdued ? 'var(--echoes-color-text-subtle)' : 'var(--echoes-color-text-default)'};
+    isSubdued ? cssVar('color-text-subtle') : cssVar('color-text-default')};
 `;
 
 Label.displayName = 'Label';

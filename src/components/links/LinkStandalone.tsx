@@ -24,6 +24,8 @@ import { forwardRef } from 'react';
 import { LinkBaseStyled } from './LinkBaseStyled';
 import { LinkStandaloneProps } from './LinkTypes';
 
+import { cssVar } from '~utils/design-tokens';
+
 const LinkStandaloneBase = forwardRef<HTMLAnchorElement, LinkStandaloneProps>((props, ref) => {
   const { children, iconLeft, ...linkProps } = props;
 
@@ -39,7 +41,7 @@ const LinkStandaloneBase = forwardRef<HTMLAnchorElement, LinkStandaloneProps>((p
 LinkStandaloneBase.displayName = 'LinkStandaloneBase';
 
 export const LinkStandalone = styled(LinkStandaloneBase)`
-  text-decoration-line: var(--echoes-text-decoration-none);
+  text-decoration-line: ${cssVar('text-decoration-none')};
 
   &:hover,
   &:focus,
@@ -49,7 +51,7 @@ export const LinkStandalone = styled(LinkStandaloneBase)`
   }
 
   &:hover {
-    text-decoration-line: var(--echoes-text-decoration-underline);
+    text-decoration-line: ${cssVar('text-decoration-underline')};
   }
 
   ${({ iconLeft }) =>
@@ -57,7 +59,7 @@ export const LinkStandalone = styled(LinkStandaloneBase)`
     css`
       & > svg,
       & > img {
-        margin-right: var(--echoes-dimension-space-50);
+        margin-right: ${cssVar('dimension-space-50')};
       }
     `};
 `;

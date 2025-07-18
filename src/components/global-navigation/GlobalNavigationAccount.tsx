@@ -25,6 +25,8 @@ import { BUTTON_VARIETY_STYLES, ButtonStyled } from '../buttons/ButtonStyles';
 import { DropdownMenu, DropdownMenuProps } from '../dropdown-menu';
 import { Tooltip } from '../tooltip';
 
+import { cssVar } from '~utils/design-tokens';
+
 type TooltipProps = ComponentPropsWithoutRef<typeof Tooltip>;
 
 export interface GlobalNavigationAccountProps extends Omit<DropdownMenuProps, 'children'> {
@@ -61,9 +63,9 @@ GlobalNavigationAccount.displayName = 'GlobalNavigationAccount';
 const StyledAccountButton = styled(ButtonStyled)`
   ${BUTTON_VARIETY_STYLES['default-ghost']}
 
-  height: var(--echoes-sizes-buttons-medium);
-  width: var(--echoes-sizes-buttons-medium);
-  padding: var(--echoes-dimension-space-50);
+  height: ${cssVar('sizes-buttons-medium')};
+  width: ${cssVar('sizes-buttons-medium')};
+  padding: ${cssVar('dimension-space-50')};
 
   & > * {
     height: 100%;

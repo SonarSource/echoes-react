@@ -34,6 +34,8 @@ import {
 import { BasicWrapper } from '../helpers/BasicWrapper';
 import { MenuButton } from '../helpers/MenuButton';
 
+import { cssVar } from '~utils/design-tokens';
+
 const meta: Meta<typeof DropdownMenu> = {
   component: DropdownMenu,
   title: 'Echoes/DropdownMenu',
@@ -137,7 +139,7 @@ export const MenuInADarkSideBar: Story = {
 };
 
 const FakeDarkSideBar = styled.div`
-  background-color: var(--echoes-color-surface-default);
+  background-color: ${cssVar('color-surface-default')};
   padding: 8px;
   height: 50vh;
   width: fit-content;
