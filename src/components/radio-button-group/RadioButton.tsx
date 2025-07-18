@@ -23,6 +23,8 @@ import * as RadioGroup from '@radix-ui/react-radio-group';
 import { HelperText, Label } from '../typography';
 import { RadioOption } from './RadioButtonTypes';
 
+import { cssVar } from '~utils/design-tokens';
+
 interface InternalRadioButtonProps {
   groupId: string;
   hasError?: boolean;
@@ -77,45 +79,45 @@ RadioButtonOptionWrapper.displayName = 'RadioButtonOptionWrapper';
 const RadioButtonInput = styled(RadioGroup.Item)`
   appearance: none;
   cursor: pointer;
-  background-color: var(--echoes-color-background-utility-transparent);
+  background-color: ${cssVar('color-background-utility-transparent')};
 
   box-sizing: border-box;
   padding: 0;
-  border: var(--echoes-border-width-default) solid var(--echoes-color-border-bolder);
-  border-radius: var(--echoes-border-radius-full);
+  border: ${cssVar('border-width-default')} solid ${cssVar('color-border-bolder')};
+  border-radius: ${cssVar('border-radius-full')};
 
-  height: var(--echoes-dimension-height-400);
-  width: var(--echoes-dimension-width-200);
-  min-width: var(--echoes-dimension-width-200);
+  height: ${cssVar('dimension-height-400')};
+  width: ${cssVar('dimension-width-200')};
+  min-width: ${cssVar('dimension-width-200')};
 
   &:hover {
-    background-color: var(--echoes-color-surface-hover);
+    background-color: ${cssVar('color-surface-hover')};
   }
 
   &[data-error='true'] {
-    border: var(--echoes-border-width-default) solid var(--echoes-color-border-danger-default);
+    border: ${cssVar('border-width-default')} solid ${cssVar('color-border-danger-default')};
   }
 
   &[data-state='checked'] {
-    background-color: var(--echoes-color-background-selected-bold-default);
-    border-color: var(--echoes-color-background-selected-bold-default);
+    background-color: ${cssVar('color-background-selected-bold-default')};
+    border-color: ${cssVar('color-background-selected-bold-default')};
 
     &:not(:disabled):hover {
-      background-color: var(--echoes-color-background-selected-bold-hover);
-      border-color: var(--echoes-color-background-selected-bold-hover);
+      background-color: ${cssVar('color-background-selected-bold-hover')};
+      border-color: ${cssVar('color-background-selected-bold-hover')};
     }
   }
 
   &:focus,
   &:focus-visible {
-    outline: var(--echoes-color-focus-default) solid var(--echoes-focus-border-width-default);
-    outline-offset: var(--echoes-focus-border-offset-default);
+    outline: ${cssVar('color-focus-default')} solid ${cssVar('focus-border-width-default')};
+    outline-offset: ${cssVar('focus-border-offset-default')};
   }
 
   &:disabled {
     cursor: default;
-    background-color: var(--echoes-color-surface-disabled);
-    border-color: var(--echoes-color-border-disabled);
+    background-color: ${cssVar('color-surface-disabled')};
+    border-color: ${cssVar('color-border-disabled')};
   }
 `;
 RadioButtonInput.displayName = 'RadioButtonInput';
@@ -133,28 +135,28 @@ const RadioButtonSelectionIndicator = styled(RadioGroup.Indicator)`
     display: block;
 
     box-sizing: border-box;
-    height: var(--echoes-dimension-height-150);
-    width: var(--echoes-dimension-width-75);
-    border-radius: var(--echoes-border-radius-full);
+    height: ${cssVar('dimension-height-150')};
+    width: ${cssVar('dimension-width-75')};
+    border-radius: ${cssVar('border-radius-full')};
 
-    background-color: var(--echoes-color-icon-on-color);
+    background-color: ${cssVar('color-icon-on-color')};
   }
 
   &[data-disabled]::after {
-    background-color: var(--echoes-color-icon-disabled);
+    background-color: ${cssVar('color-icon-disabled')};
   }
 `;
 RadioButtonSelectionIndicator.displayName = 'RadioButtonSelectionIndicator';
 
 const RadioButtonLabelWrapper = styled.span`
   display: inline-flex;
-  gap: var(--echoes-dimension-space-100);
+  gap: ${cssVar('dimension-space-100')};
   align-items: center;
 `;
 RadioButtonLabelWrapper.displayName = 'RadioButtonLabelWrapper';
 
 const RadoiButtonOptionLabel = styled(Label)`
-  font: var(--echoes-typography-others-label-medium);
+  font: ${cssVar('typography-others-label-medium')};
 
   display: block;
   width: 100%;
@@ -162,17 +164,17 @@ const RadoiButtonOptionLabel = styled(Label)`
   cursor: pointer;
 
   [data-disabled] > & {
-    color: var(--echoes-color-text-disabled);
+    color: ${cssVar('color-text-disabled')};
     cursor: default;
   }
 `;
 RadoiButtonOptionLabel.displayName = 'OptionLabel';
 
 const RadioButtonOptionHelpText = styled(HelperText)`
-  margin-left: calc(var(--echoes-dimension-space-200) + var(--echoes-dimension-space-100));
+  margin-left: calc(${cssVar('dimension-space-200')} + ${cssVar('dimension-space-100')});
 
   &[data-disabled] {
-    color: var(--echoes-color-text-disabled);
+    color: ${cssVar('color-text-disabled')};
   }
 `;
 RadioButtonOptionHelpText.displayName = 'RadioButtonOptionHelpText';

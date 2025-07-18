@@ -22,6 +22,8 @@ import { forwardRef, ReactNode, useId } from 'react';
 import { TextNodeOptional } from '~types/utils';
 import { Heading, HeadingProps, Text, TextSize } from '../typography';
 
+import { cssVar } from '~utils/design-tokens';
+
 export interface FormSectionProps {
   className?: string;
   /**
@@ -99,6 +101,6 @@ const FormSectionWrapper = styled.div`
   order: 2; // Ensure the section always appear between the header and footer in the Form even if the dev scramble the order of components
   display: flex;
   flex-direction: column;
-  gap: var(--echoes-dimension-space-300);
+  gap: ${cssVar('dimension-space-300')};
 `;
 FormSectionWrapper.displayName = 'FormSectionWrapper';

@@ -22,14 +22,16 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { TableProps, TableVariety } from './TableTypes';
 
+import { cssVar } from '~utils/design-tokens';
+
 const TABLE_VARIETY_STYLES = {
   [TableVariety.Surface]: {
-    '--table-header-background-color': 'var(--echoes-table-colors-background-header-default)',
-    border: 'var(--echoes-border-width-default) solid var(--echoes-color-border-bold)',
+    '--table-header-background-color': cssVar('table-colors-background-header-default'),
+    border: `${cssVar('border-width-default')} solid ${cssVar('color-border-bold')}`,
     'border-collapse': 'separate',
   },
   [TableVariety.Ghost]: {
-    '--table-header-background-color': 'var(--echoes-color-surface-default)',
+    '--table-header-background-color': cssVar('color-surface-default'),
     border: 'none',
     'border-collapse': 'collapse',
   },
@@ -40,7 +42,7 @@ export const StyledTable = styled.table<Required<Pick<TableProps, 'variety' | 'g
 
   grid-template-columns: ${(props) => props.gridTemplate};
 
-  border-radius: var(--echoes-border-radius-200);
+  border-radius: ${cssVar('border-radius-200')};
   border-spacing: 0;
 
   ${({ variety }) => TABLE_VARIETY_STYLES[variety]}
@@ -61,13 +63,13 @@ export const StyledTableRow = styled.tr`
   display: contents;
 
   .table-variety-surface thead &:first-of-type {
-    border-top-left-radius: var(--echoes-border-radius-200);
-    border-top-right-radius: var(--echoes-border-radius-200);
+    border-top-left-radius: ${cssVar('border-radius-200')};
+    border-top-right-radius: ${cssVar('border-radius-200')};
   }
 
   .table-variety-surface tbody &:last-of-type {
-    border-bottom-left-radius: var(--echoes-border-radius-200);
-    border-bottom-right-radius: var(--echoes-border-radius-200);
+    border-bottom-left-radius: ${cssVar('border-radius-200')};
+    border-bottom-right-radius: ${cssVar('border-radius-200')};
   }
 `;
 StyledTableRow.displayName = 'StyledTableRow';
@@ -76,32 +78,32 @@ export const cellBaseStyle = css`
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: var(--echoes-dimension-space-100);
+  gap: ${cssVar('dimension-space-100')};
 
   box-sizing: border-box;
-  min-height: var(--echoes-table-sizes-row-min-width-default);
-  padding: var(--echoes-dimension-space-100) var(--echoes-dimension-space-200);
+  min-height: ${cssVar('table-sizes-row-min-width-default')};
+  padding: ${cssVar('dimension-space-100')} ${cssVar('dimension-space-200')};
 
-  font: var(--echoes-typography-text-default-regular);
+  font: ${cssVar('typography-text-default-regular')};
 
   tbody & {
-    border-top: var(--echoes-border-width-default) solid var(--echoes-color-border-weak);
+    border-top: ${cssVar('border-width-default')} solid ${cssVar('color-border-weak')};
   }
 
   .table-variety-surface thead tr:first-child &:first-child {
-    border-top-left-radius: var(--echoes-border-radius-200);
+    border-top-left-radius: ${cssVar('border-radius-200')};
   }
 
   .table-variety-surface thead tr:first-child &:last-child {
-    border-top-right-radius: var(--echoes-border-radius-200);
+    border-top-right-radius: ${cssVar('border-radius-200')};
   }
 
   .table-variety-surface tbody tr:last-child &:first-child {
-    border-bottom-left-radius: var(--echoes-border-radius-200);
+    border-bottom-left-radius: ${cssVar('border-radius-200')};
   }
 
   .table-variety-surface tbody tr:last-child &:last-child {
-    border-bottom-right-radius: var(--echoes-border-radius-200);
+    border-bottom-right-radius: ${cssVar('border-radius-200')};
   }
 `;
 
@@ -111,15 +113,15 @@ export const StyledTableCell = styled.td`
   justify-content: center;
 
   ${StyledTableRow}:hover:not(.selected) & {
-    background-color: var(--echoes-color-surface-hover);
+    background-color: ${cssVar('color-surface-hover')};
   }
 
   ${StyledTableRow}.selected & {
-    background-color: var(--echoes-color-background-selected-weak-default);
+    background-color: ${cssVar('color-background-selected-weak-default')};
   }
 
   ${StyledTableRow}:hover.selected & {
-    background-color: var(--echoes-color-background-selected-weak-hover);
+    background-color: ${cssVar('color-background-selected-weak-hover')};
   }
 `;
 StyledTableCell.displayName = 'StyledTableCell';
@@ -130,7 +132,7 @@ export const StyledTableColumnHeaderCell = styled.th`
   /* justify-content is variable, defined in TableColumnHeaderCell */
 
   background-color: var(--table-header-background-color);
-  font: var(--echoes-typography-text-default-semi-bold);
+  font: ${cssVar('typography-text-default-semi-bold')};
 `;
 StyledTableColumnHeaderCell.displayName = 'StyledTableColumnHeaderCell';
 

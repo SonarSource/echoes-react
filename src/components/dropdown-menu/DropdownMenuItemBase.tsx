@@ -24,6 +24,8 @@ import { forwardRef, MouseEventHandler, ReactNode, useCallback } from 'react';
 import { TextNode } from '~types/utils';
 import { IconCheck } from '../icons/IconCheck';
 
+import { cssVar } from '~utils/design-tokens';
+
 type CheckProps =
   | {
       isCheckable: true;
@@ -133,7 +135,7 @@ export function isDropdownMenuItemComponent(node: any): boolean {
 }
 
 const StyledIconCheck = styled(IconCheck)`
-  font-size: var(--echoes-font-size-20);
+  font-size: ${cssVar('font-size-20')};
 `;
 StyledIconCheck.displayName = 'StyledIconCheck';
 
@@ -151,7 +153,7 @@ StyledPrefix.displayName = 'StyledPrefix';
 
 const StyledLeftHandSide = styled.div`
   align-items: center;
-  column-gap: var(--echoes-dimension-space-100);
+  column-gap: ${cssVar('dimension-space-100')};
   display: flex;
   min-width: 0; // Necessary for ellipsis
   flex: 1 1 auto;
@@ -165,7 +167,7 @@ const StyledLabelAndHelpText = styled.div`
   flex-direction: column;
   justify-content: space-between;
   overflow: hidden;
-  row-gap: var(--echoes-dimension-space-25);
+  row-gap: ${cssVar('dimension-space-25')};
 `;
 StyledLabelAndHelpText.displayName = 'StyledLabelAndHelpText';
 
@@ -182,14 +184,14 @@ StyledLabel.displayName = 'StyledLabel';
 
 const StyledHelpText = styled.span<{ isDisabled?: boolean }>`
   color: ${(props) =>
-    props.isDisabled ? 'var(--echoes-color-text-disabled)' : 'var(--echoes-color-text-subtle)'};
-  font: var(--echoes-typography-others-helper-text);
+    props.isDisabled ? cssVar('color-text-disabled') : cssVar('color-text-subtle')};
+  font: ${cssVar('typography-others-helper-text')};
 `;
 StyledHelpText.displayName = 'StyledHelpText';
 
 const StyledSuffix = styled.span`
   align-items: center;
-  color: var(--echoes-color-text-subtle);
+  color: ${cssVar('color-text-subtle')};
   display: flex;
   flex: 0 0 auto;
   justify-content: flex-end;
@@ -197,38 +199,38 @@ const StyledSuffix = styled.span`
 StyledSuffix.displayName = 'StyledSuffix';
 
 const StyledRadixDropdownMenuItem = styled(radixDropdownMenu.Item)`
-  background-color: var(--echoes-color-surface-default);
-  color: var(--echoes-color-text-default);
-  font: var(--echoes-typography-text-default-regular);
+  background-color: ${cssVar('color-surface-default')};
+  color: ${cssVar('color-text-default')};
+  font: ${cssVar('typography-text-default-regular')};
 
   display: flex;
   align-items: center;
   justify-content: space-between;
-  column-gap: var(--echoes-dimension-space-100);
-  padding: var(--echoes-dimension-space-100) var(--echoes-dimension-space-150);
+  column-gap: ${cssVar('dimension-space-100')};
+  padding: ${cssVar('dimension-space-100')} ${cssVar('dimension-space-150')};
 
   cursor: pointer;
 
   &:focus-visible {
-    border-radius: var(--echoes-border-radius-400);
-    outline: var(--echoes-color-focus-default) solid var(--echoes-focus-border-width-default);
+    border-radius: ${cssVar('border-radius-400')};
+    outline: ${cssVar('color-focus-default')} solid ${cssVar('focus-border-width-default')};
     outline-offset: -2px;
   }
 
   &:hover {
-    background-color: var(--echoes-color-surface-hover);
+    background-color: ${cssVar('color-surface-hover')};
     border-radius: 0;
     outline: none;
   }
 
   /* when the item is clicked */
   &:active {
-    background-color: var(--echoes-color-surface-active);
+    background-color: ${cssVar('color-surface-active')};
   }
 
   &[data-disabled] {
-    background-color: var(--echoes-color-surface-default);
-    color: var(--echoes-color-text-disabled);
+    background-color: ${cssVar('color-surface-default')};
+    color: ${cssVar('color-text-disabled')};
     cursor: default;
   }
 `;

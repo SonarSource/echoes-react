@@ -22,6 +22,8 @@ import styled from '@emotion/styled';
 import { forwardRef } from 'react';
 import { DropdownMenuItemBase, DropdownMenuItemBaseProps } from './DropdownMenuItemBase';
 
+import { cssVar } from '~utils/design-tokens';
+
 export type DropdownMenuItemButtonDestructiveProps = Omit<
   DropdownMenuItemBaseProps,
   'isCheckable' | 'isChecked' | 'prefix' | 'suffix'
@@ -36,19 +38,19 @@ export const DropdownMenuItemButtonDestructive = forwardRef<
 DropdownMenuItemButtonDestructive.displayName = 'DropdownMenu.ItemButtonDestructive';
 
 const StyledDropdownMenuItemBase = styled(DropdownMenuItemBase)`
-  color: var(--echoes-color-text-danger);
+  color: ${cssVar('color-text-danger')};
 
   &:hover {
-    background-color: var(--echoes-color-background-danger-weak-hover);
+    background-color: ${cssVar('color-background-danger-weak-hover')};
   }
 
   /* when the item is clicked */
   &:active {
-    background-color: var(--echoes-color-background-danger-weak-active);
+    background-color: ${cssVar('color-background-danger-weak-active')};
   }
 
   &[data-disabled] {
-    background-color: var(--echoes-color-surface-default);
+    background-color: ${cssVar('color-surface-default')};
   }
 `;
 StyledDropdownMenuItemBase.displayName = 'StyledDropdownMenuItemBase';

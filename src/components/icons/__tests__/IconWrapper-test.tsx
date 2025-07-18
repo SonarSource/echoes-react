@@ -22,6 +22,8 @@ import { screen } from '@testing-library/react';
 import { render } from '../../../common/helpers/test-utils';
 import { IconCustomWrapper, IconMaterialWrapper } from '../IconWrapper';
 
+import { cssVar } from '~utils/design-tokens';
+
 it('should render material icon correctly', () => {
   const { container } = render(
     <IconMaterialWrapper data-testid="icon">&#xE3A6;</IconMaterialWrapper>,
@@ -81,6 +83,6 @@ it('should accept custom color', () => {
   );
 
   expect(screen.getByTestId('colored icon')).toHaveStyle({
-    color: `var(--echoes-color-icon-success)`,
+    color: cssVar('color-icon-success'),
   });
 });

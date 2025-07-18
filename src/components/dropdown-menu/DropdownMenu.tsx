@@ -30,6 +30,8 @@ import { HelperText, Label } from '../typography';
 import { styleDropdownMenuOverlay } from './DropdownMenuCommons';
 import { DropdownMenuSeparator } from './DropdownMenuSeparator';
 
+import { cssVar } from '~utils/design-tokens';
+
 export enum DropdownMenuAlign {
   Center = 'center',
   End = 'end',
@@ -145,9 +147,9 @@ const StyledHeaderLabelAndHelpText = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin-bottom: var(--echoes-dimension-space-50);
-  padding: var(--echoes-dimension-space-100) var(--echoes-dimension-space-150);
-  row-gap: var(--echoes-dimension-space-50);
+  margin-bottom: ${cssVar('dimension-space-50')};
+  padding: ${cssVar('dimension-space-100')} ${cssVar('dimension-space-150')};
+  row-gap: ${cssVar('dimension-space-50')};
 `;
 StyledHeaderLabelAndHelpText.displayName = 'StyledHeaderLabelAndHelpText';
 
@@ -155,7 +157,7 @@ const StyledHeaderWithSuffix = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: var(--echoes-dimension-space-100);
+  gap: ${cssVar('dimension-space-100')};
 `;
 StyledHeaderWithSuffix.displayName = 'StyledHeaderWithSuffix';
 

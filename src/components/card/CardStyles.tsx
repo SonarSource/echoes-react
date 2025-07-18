@@ -21,11 +21,13 @@
 import styled from '@emotion/styled';
 import { CardSize } from './CardSize';
 
+import { cssVar } from '~utils/design-tokens';
+
 export const CardStyled = styled.div`
-  background-color: var(--echoes-color-surface-default);
-  border: var(--echoes-border-width-default) solid var(--echoes-color-border-weak);
-  border-radius: var(--echoes-border-radius-400);
-  box-shadow: var(--echoes-box-shadow-xsmall);
+  background-color: ${cssVar('color-surface-default')};
+  border: ${cssVar('border-width-default')} solid ${cssVar('color-border-weak')};
+  border-radius: ${cssVar('border-radius-400')};
+  box-shadow: ${cssVar('box-shadow-xsmall')};
 
   box-sizing: border-box;
   display: flex;
@@ -58,30 +60,30 @@ CardBodyStyled.displayName = 'CardBodyStyled';
 
 export const CARD_HEADER_SIZE_STYLES = {
   [CardSize.Small]: {
-    '--card-header-padding': `var(--echoes-dimension-space-100) var(--echoes-dimension-space-150)`,
+    '--card-header-padding': `${cssVar('dimension-space-100')} ${cssVar('dimension-space-150')}`,
     '--card-header-min-height': '36px',
   },
   [CardSize.Medium]: {
-    '--card-header-padding': `var(--echoes-dimension-space-150) var(--echoes-dimension-space-200)`,
+    '--card-header-padding': `${cssVar('dimension-space-150')} ${cssVar('dimension-space-200')}`,
     '--card-header-min-height': '45px',
   },
   [CardSize.Large]: {
-    '--card-header-padding': `var(--echoes-dimension-space-200) var(--echoes-dimension-space-300)`,
+    '--card-header-padding': `${cssVar('dimension-space-200')} ${cssVar('dimension-space-300')}`,
     '--card-header-min-height': '58px',
   },
 };
 
 export const CARD_SIZE_STYLES = {
   [CardSize.Small]: {
-    '--card-padding': 'var(--echoes-dimension-space-150)',
+    '--card-padding': cssVar('dimension-space-150'),
     '--card-body-min-height': '84px',
   },
   [CardSize.Medium]: {
-    '--card-padding': 'var(--echoes-dimension-space-200)',
+    '--card-padding': cssVar('dimension-space-200'),
     '--card-body-min-height': '92px',
   },
   [CardSize.Large]: {
-    '--card-padding': 'var(--echoes-dimension-space-300)',
+    '--card-padding': cssVar('dimension-space-300'),
     '--card-body-min-height': '108px',
   },
 };

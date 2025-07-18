@@ -21,6 +21,8 @@
 import styled from '@emotion/styled';
 import { forwardRef, PropsWithChildren } from 'react';
 
+import { cssVar } from '~utils/design-tokens';
+
 export interface DisplayProps {
   as?: 'p' | 'span' | 'div';
   className?: string;
@@ -40,8 +42,8 @@ export const Display = forwardRef<HTMLSpanElement, PropsWithChildren<DisplayProp
 Display.displayName = 'Display';
 
 const StyledDisplay = styled.span`
-  font: var(--echoes-typography-display-default);
-  letter-spacing: var(--echoes-letter-spacing-decreased);
-  color: var(--echoes-color-text-strong);
+  font: ${cssVar('typography-display-default')};
+  letter-spacing: ${cssVar('letter-spacing-decreased')};
+  color: ${cssVar('color-text-strong')};
 `;
 StyledDisplay.displayName = 'StyledDisplay';

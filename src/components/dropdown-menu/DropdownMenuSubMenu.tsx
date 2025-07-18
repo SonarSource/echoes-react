@@ -25,6 +25,8 @@ import { IconChevronRight } from '../icons';
 import { styleDropdownMenuOverlay } from './DropdownMenuCommons';
 import { DropdownMenuItemBase } from './DropdownMenuItemBase';
 
+import { cssVar } from '~utils/design-tokens';
+
 export interface DropdownMenuSubProps extends radixDropdownMenu.DropdownMenuSubProps {
   className?: string;
   id?: string;
@@ -70,9 +72,9 @@ DropdownMenuSubMenu.displayName = 'DropdownMenuSubMenu';
 const RADIX_SUBMENU_PANEL_VERTICAL_OFFSET = '4px';
 
 const StyledDropdownMenuSubContent = styled(styleDropdownMenuOverlay(radixDropdownMenu.SubContent))`
-  margin-left: var(--echoes-offset-dropdown-submenu-panel-horizontal);
+  margin-left: ${cssVar('offset-dropdown-submenu-panel-horizontal')};
   margin-top: calc(
-    var(--echoes-offset-dropdown-submenu-panel-vertical) - ${RADIX_SUBMENU_PANEL_VERTICAL_OFFSET}
+    ${cssVar('offset-dropdown-submenu-panel-vertical')} - ${RADIX_SUBMENU_PANEL_VERTICAL_OFFSET}
   );
 `;
 StyledDropdownMenuSubContent.displayName = 'StyledDropdownMenuSubContent';

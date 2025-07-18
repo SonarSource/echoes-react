@@ -22,6 +22,8 @@ import styled from '@emotion/styled';
 import { PropsWithChildren, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { PortalContext } from '../../common/components/PortalContext';
 
+import { cssVar } from '~utils/design-tokens';
+
 interface Props {
   isLast?: boolean;
 }
@@ -90,7 +92,7 @@ const ModalBodyWrapper = styled.div<Props>`
   overflow-y: hidden;
 
   ${({ isLast }) =>
-    isLast && 'border-radius: 0 0 var(--echoes-border-radius-400) var(--echoes-border-radius-400);'}
+    isLast && `border-radius: 0 0 ${cssVar('border-radius-400')} ${cssVar('border-radius-400')};`}
 `;
 ModalBodyWrapper.displayName = 'ModalBodyWrapper';
 
@@ -98,8 +100,8 @@ const ModalBodyInner = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: var(--echoes-dimension-space-200);
-  padding: var(--echoes-dimension-space-150) var(--echoes-dimension-space-300);
+  gap: ${cssVar('dimension-space-200')};
+  padding: ${cssVar('dimension-space-150')} ${cssVar('dimension-space-300')};
 
   max-height: 100%;
   width: 100%;
@@ -112,14 +114,14 @@ const ModalBodyBottomShadow = styled.div`
   position: absolute;
   bottom: 0;
 
-  min-height: var(--echoes-dimension-height-800);
+  min-height: ${cssVar('dimension-height-800')};
   width: 100%;
 
-  border-bottom: var(--echoes-border-width-default) solid var(--echoes-color-border-weak);
+  border-bottom: ${cssVar('border-width-default')} solid ${cssVar('color-border-weak')};
   background: radial-gradient(
       farthest-side at 50% 100%,
-      var(--echoes-modal-colors-shadow-gradient),
-      var(--echoes-color-support-transparent)
+      ${cssVar('modal-colors-shadow-gradient')},
+      ${cssVar('color-support-transparent')}
     )
     center bottom;
 `;

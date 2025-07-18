@@ -23,6 +23,8 @@ import { ComponentProps } from 'react';
 import { render } from '~common/helpers/test-utils';
 import { Text, TextSize } from '../Text';
 
+import { cssVar } from '~utils/design-tokens';
+
 describe.each([
   ['default & regular', false, false],
   ['subdued & regular', true, false],
@@ -56,7 +58,7 @@ it('allows to override the color', () => {
   const text = 'hi there';
   setupText({ children: text, colorOverride: 'echoes-color-text-danger' });
 
-  expect(screen.getByText(text)).toHaveStyle('color: var(--echoes-color-text-danger)');
+  expect(screen.getByText(text)).toHaveStyle(`color: ${cssVar('color-text-danger')}`);
 });
 
 function setupText(

@@ -22,6 +22,8 @@ import type { ComponentProps } from 'react';
 import { FormField, FormFieldValidation, FormFieldWidth } from '../src/components/form/FormField';
 import { toTextControlArgTypes } from './helpers/arg-types';
 
+import { cssVar } from '~utils/design-tokens';
+
 type FormField = typeof FormField;
 
 const meta: Meta<FormField> = {
@@ -150,7 +152,7 @@ export const Medium: Story = {
 
 export const Inline: Story = {
   render: (_args) => (
-    <div style={{ display: 'flex', gap: 'var(--echoes-dimension-space-300)' }}>
+    <div style={{ display: 'flex', gap: cssVar('dimension-space-300') }}>
       <FormField controlId="foo" label="First name" width="medium">
         <TextInput id="input-7" />
       </FormField>

@@ -35,6 +35,8 @@ import { useIntl } from 'react-intl';
 import { TextNode, TextNodeOptional } from '~types/utils';
 import { ScreenReaderPrefix } from './ScreenReaderPrefix';
 
+import { cssVar } from '~utils/design-tokens';
+
 /**
  * Represents the available visual varieties for toast notifications.
  */
@@ -189,14 +191,14 @@ Toast.displayName = 'Toast';
 const ToastWrapper = styled.div`
   display: flex;
   align-items: flex-start;
-  gap: var(--echoes-dimension-space-150);
-  padding: var(--echoes-dimension-space-200);
-  border-radius: var(--echoes-border-radius-400);
-  width: var(--echoes-toast-sizes-width);
+  gap: ${cssVar('dimension-space-150')};
+  padding: ${cssVar('dimension-space-200')};
+  border-radius: ${cssVar('border-radius-400')};
+  width: ${cssVar('toast-sizes-width')};
 
-  background: var(--echoes-color-surface-default);
-  box-shadow: var(--echoes-box-shadow-large);
-  border: var(--echoes-border-width-default) solid var(--echoes-color-border-weak);
+  background: ${cssVar('color-surface-default')};
+  box-shadow: ${cssVar('box-shadow-large')};
+  border: ${cssVar('border-width-default')} solid ${cssVar('color-border-weak')};
 `;
 ToastWrapper.displayName = 'ToastWrapper';
 
@@ -205,7 +207,7 @@ const ToastBody = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  gap: var(--echoes-dimension-space-150);
+  gap: ${cssVar('dimension-space-150')};
   flex: 1;
 `;
 ToastBody.displayName = 'ToastBody';
@@ -215,14 +217,14 @@ const ToastContent = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  gap: var(--echoes-dimension-space-75);
+  gap: ${cssVar('dimension-space-75')};
 `;
 ToastContent.displayName = 'ToastContent';
 
 const ToastDismissButton = styled(ButtonIcon)`
-  --button-padding: var(--echoes-dimension-space-0);
-  --button-height: var(--echoes-dimension-height-600);
-  --button-width: var(--echoes-dimension-width-300);
+  --button-padding: ${cssVar('dimension-space-0')};
+  --button-height: ${cssVar('dimension-height-600')};
+  --button-width: ${cssVar('dimension-width-300')};
 `;
 ToastDismissButton.displayName = 'ToastDismissButton';
 
@@ -272,12 +274,11 @@ export function ToastGlobalStyles() {
         }
 
         [data-sonner-toast] {
-          border-radius: var(--echoes-border-radius-400);
+          border-radius: ${cssVar('border-radius-400')};
 
           &:focus-visible {
-            outline: var(--echoes-color-focus-default) solid
-              var(--echoes-focus-border-width-default);
-            outline-offset: var(--echoes-focus-border-offset-default);
+            outline: ${cssVar('color-focus-default')} solid ${cssVar('focus-border-width-default')};
+            outline-offset: ${cssVar('focus-border-offset-default')};
             box-shadow: none;
           }
         }

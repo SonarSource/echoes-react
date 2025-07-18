@@ -22,6 +22,8 @@ import styled from '@emotion/styled';
 import { forwardRef, ReactNode } from 'react';
 import { ButtonIconStyled, ButtonStyled } from './ButtonStyles';
 
+import { cssVar } from '~utils/design-tokens';
+
 export interface ButtonGroupProps {
   children: ReactNode;
   className?: string;
@@ -42,7 +44,7 @@ ButtonGroup.displayName = 'ButtonGroup';
 const StyledButtonGroup = styled.span`
   display: inline-flex;
   align-items: center;
-  gap: var(--echoes-dimension-space-100);
+  gap: ${cssVar('dimension-space-100')};
 `;
 
 const StyledCombinedButtonGroup = styled(StyledButtonGroup)`

@@ -21,6 +21,8 @@
 import { Global } from '@emotion/react';
 import { Decorator } from '@storybook/react-vite';
 
+import { cssVar } from '~utils/design-tokens';
+
 export const noPaddingBodyDecorator: Decorator = (Story) => (
   <>
     <Global styles={{ body: { padding: '0 !important' } }} />
@@ -30,7 +32,7 @@ export const noPaddingBodyDecorator: Decorator = (Story) => (
 
 export const minWidthBodyDecorator: Decorator = (Story) => (
   <>
-    <Global styles={{ body: { minWidth: 'var(--echoes-layout-sizes-min-width-default)' } }} />
+    <Global styles={{ body: { minWidth: cssVar('layout-sizes-min-width-default') } }} />
     <Story />
   </>
 );

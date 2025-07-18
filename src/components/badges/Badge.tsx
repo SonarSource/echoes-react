@@ -21,6 +21,7 @@
 import styled from '@emotion/styled';
 import { forwardRef, PropsWithChildren, useMemo } from 'react';
 import { isDefined } from '~common/helpers/types';
+import { cssVar } from '~utils/design-tokens';
 import { IconFilledProps } from '../icons/IconWrapper';
 
 export enum BadgeSize {
@@ -120,23 +121,23 @@ Badge.displayName = 'Badge';
 const StyledBadge = styled.button<{ isInteractive: boolean }>`
   display: inline-flex;
   flex-direction: row;
-  gap: var(--echoes-dimension-space-50);
+  gap: ${cssVar('dimension-space-50')};
 
   box-sizing: border-box;
 
   color: var(--badge-color);
   background-color: var(--badge-background-color);
 
-  font-family: var(--echoes-font-family-sans);
-  font-weight: var(--echoes-font-weight-medium);
+  font-family: ${cssVar('font-family-sans')};
+  font-weight: ${cssVar('font-weight-medium')};
   font-size: var(--badge-font-size);
   line-height: var(--badge-line-height);
   white-space: nowrap;
 
   // Using outline so that the border doesn't take space in the flow
-  outline: var(--badge-border-color) solid var(--echoes-border-width-default);
+  outline: var(--badge-border-color) solid ${cssVar('border-width-default')};
   border: none;
-  border-radius: var(--echoes-border-radius-200);
+  border-radius: ${cssVar('border-radius-200')};
 
   padding: var(--badge-padding);
   height: var(--badge-height);
@@ -152,8 +153,8 @@ const StyledBadge = styled.button<{ isInteractive: boolean }>`
     }
 
     &:focus-visible {
-      outline: var(--echoes-color-focus-default) solid var(--echoes-focus-border-width-default);
-      outline-offset: var(--echoes-focus-border-offset-default);
+      outline: ${cssVar('color-focus-default')} solid ${cssVar('focus-border-width-default')};
+      outline-offset: ${cssVar('focus-border-offset-default')};
     }
 
     &:hover {
@@ -169,130 +170,117 @@ const StyledBadge = styled.button<{ isInteractive: boolean }>`
 
 const BADGE_SIZE_STYLES = {
   [BadgeSize.Small]: {
-    '--badge-padding': 'var(--echoes-dimension-space-25) var(--echoes-dimension-space-50)',
-    '--badge-height': 'var(--echoes-dimension-height-500)',
-    '--badge-font-size': 'var(--echoes-font-size-10)',
-    '--badge-line-height': 'var(--echoes-line-height-10)',
+    '--badge-padding': `${cssVar('dimension-space-25')} ${cssVar('dimension-space-50')}`,
+    '--badge-height': cssVar('badge-sizes-height-small'),
+    '--badge-font-size': cssVar('font-size-10'),
+    '--badge-line-height': cssVar('line-height-10'),
   },
   [BadgeSize.Medium]: {
-    '--badge-padding': 'var(--echoes-dimension-space-50) var(--echoes-dimension-space-75)',
-    '--badge-height': 'var(--echoes-dimension-height-700)',
-    '--badge-font-size': 'var(--echoes-font-size-20)',
-    '--badge-line-height': 'var(--echoes-line-height-20)',
+    '--badge-padding': `${cssVar('dimension-space-50')} ${cssVar('dimension-space-75')}`,
+    '--badge-height': cssVar('badge-sizes-height-medium'),
+    '--badge-font-size': cssVar('font-size-20'),
+    '--badge-line-height': cssVar('line-height-20'),
   },
 };
 
 const BADGE_VARIETY_STYLES = {
   [BadgeVariety.Danger]: {
-    '--badge-color': 'var(--echoes-color-text-danger)',
-    '--badge-border-color': 'var(--echoes-color-border-danger-weak)',
-    '--badge-background-color': 'var(--echoes-color-background-danger-weak-default)',
-    '--badge-interactive-backgroud-color-active':
-      'var(--echoes-color-background-danger-weak-active)',
-    '--badge-interactive-backgroud-color-focus': 'var(--echoes-color-background-danger-weak-focus)',
-    '--badge-interactive-backgroud-color-hover': 'var(--echoes-color-background-danger-weak-hover)',
+    '--badge-color': cssVar('color-text-danger'),
+    '--badge-border-color': cssVar('color-border-danger-weak'),
+    '--badge-background-color': cssVar('color-background-danger-weak-default'),
+    '--badge-interactive-backgroud-color-active': cssVar('color-background-danger-weak-active'),
+    '--badge-interactive-backgroud-color-focus': cssVar('color-background-danger-weak-focus'),
+    '--badge-interactive-backgroud-color-hover': cssVar('color-background-danger-weak-hover'),
   },
   [BadgeVariety.Highlight]: {
-    '--badge-color': 'var(--echoes-color-text-emphasis)',
-    '--badge-border-color': 'var(--echoes-color-border-emphasis-weak)',
-    '--badge-background-color': 'var(--echoes-color-background-emphasis-weak-default)',
-    '--badge-interactive-backgroud-color-active':
-      'var(--echoes-color-background-emphasis-weak-active)',
-    '--badge-interactive-backgroud-color-focus':
-      'var(--echoes-color-background-emphasis-weak-focus)',
-    '--badge-interactive-backgroud-color-hover':
-      'var(--echoes-color-background-emphasis-weak-hover)',
+    '--badge-color': cssVar('color-text-emphasis'),
+    '--badge-border-color': cssVar('color-border-emphasis-weak'),
+    '--badge-background-color': cssVar('color-background-emphasis-weak-default'),
+    '--badge-interactive-backgroud-color-active': cssVar('color-background-emphasis-weak-active'),
+    '--badge-interactive-backgroud-color-focus': cssVar('color-background-emphasis-weak-focus'),
+    '--badge-interactive-backgroud-color-hover': cssVar('color-background-emphasis-weak-hover'),
   },
   [BadgeVariety.Info]: {
-    '--badge-color': 'var(--echoes-color-text-info)',
-    '--badge-border-color': 'var(--echoes-color-border-info-weak)',
-    '--badge-background-color': 'var(--echoes-color-background-info-weak-default)',
-    '--badge-interactive-backgroud-color-active': 'var(--echoes-color-background-info-weak-active)',
-    '--badge-interactive-backgroud-color-focus': 'var(--echoes-color-background-info-weak-focus)',
-    '--badge-interactive-backgroud-color-hover': 'var(--echoes-color-background-info-weak-hover)',
+    '--badge-color': cssVar('color-text-info'),
+    '--badge-border-color': cssVar('color-border-info-weak'),
+    '--badge-background-color': cssVar('color-background-info-weak-default'),
+    '--badge-interactive-backgroud-color-active': cssVar('color-background-info-weak-active'),
+    '--badge-interactive-backgroud-color-focus': cssVar('color-background-info-weak-focus'),
+    '--badge-interactive-backgroud-color-hover': cssVar('color-background-info-weak-hover'),
   },
   [BadgeVariety.Neutral]: {
-    '--badge-color': 'var(--echoes-color-text-default)',
-    '--badge-border-color': 'var(--echoes-color-border-weak)',
-    '--badge-background-color': 'var(--echoes-color-background-neutral-subtle-default)',
-    '--badge-interactive-backgroud-color-active':
-      'var(--echoes-color-background-neutral-subtle-active)',
-    '--badge-interactive-backgroud-color-focus':
-      'var(--echoes-color-background-neutral-subtle-focus)',
-    '--badge-interactive-backgroud-color-hover':
-      'var(--echoes-color-background-neutral-subtle-hover)',
+    '--badge-color': cssVar('color-text-default'),
+    '--badge-border-color': cssVar('color-border-weak'),
+    '--badge-background-color': cssVar('color-background-neutral-subtle-default'),
+    '--badge-interactive-backgroud-color-active': cssVar('color-background-neutral-subtle-active'),
+    '--badge-interactive-backgroud-color-focus': cssVar('color-background-neutral-subtle-focus'),
+    '--badge-interactive-backgroud-color-hover': cssVar('color-background-neutral-subtle-hover'),
   },
   [BadgeVariety.Success]: {
-    '--badge-color': 'var(--echoes-color-text-success)',
-    '--badge-border-color': 'var(--echoes-color-border-success-weak)',
-    '--badge-background-color': 'var(--echoes-color-background-success-weak-default)',
-    '--badge-interactive-backgroud-color-active':
-      'var(--echoes-color-background-success-weak-active)',
-    '--badge-interactive-backgroud-color-focus':
-      'var(--echoes-color-background-success-weak-focus)',
-    '--badge-interactive-backgroud-color-hover':
-      'var(--echoes-color-background-success-weak-hover)',
+    '--badge-color': cssVar('color-text-success'),
+    '--badge-border-color': cssVar('color-border-success-weak'),
+    '--badge-background-color': cssVar('color-background-success-weak-default'),
+    '--badge-interactive-backgroud-color-active': cssVar('color-background-success-weak-active'),
+    '--badge-interactive-backgroud-color-focus': cssVar('color-background-success-weak-focus'),
+    '--badge-interactive-backgroud-color-hover': cssVar('color-background-success-weak-hover'),
   },
   [BadgeVariety.Warning]: {
-    '--badge-color': 'var(--echoes-color-text-warning)',
-    '--badge-border-color': 'var(--echoes-color-border-warning-weak)',
-    '--badge-background-color': 'var(--echoes-color-background-warning-weak-default)',
-    '--badge-interactive-backgroud-color-active':
-      'var(--echoes-color-background-warning-weak-active)',
-    '--badge-interactive-backgroud-color-focus':
-      'var(--echoes-color-background-warning-weak-focus)',
-    '--badge-interactive-backgroud-color-hover':
-      'var(--echoes-color-background-warning-weak-hover)',
+    '--badge-color': cssVar('color-text-warning'),
+    '--badge-border-color': cssVar('color-border-warning-weak'),
+    '--badge-background-color': cssVar('color-background-warning-weak-default'),
+    '--badge-interactive-backgroud-color-active': cssVar('color-background-warning-weak-active'),
+    '--badge-interactive-backgroud-color-focus': cssVar('color-background-warning-weak-focus'),
+    '--badge-interactive-backgroud-color-hover': cssVar('color-background-warning-weak-hover'),
   },
 };
 
 const BADGE_HIGH_CONTRAST_VARIETY_STYLES = {
   [BadgeVariety.Danger]: {
-    '--badge-color': 'var(--echoes-color-text-on-color)',
+    '--badge-color': cssVar('color-text-on-color'),
     '--badge-border-color': 'transparent',
-    '--badge-background-color': 'var(--echoes-color-background-danger-default)',
-    '--badge-interactive-backgroud-color-active': 'var(--echoes-color-background-danger-active)',
-    '--badge-interactive-backgroud-color-focus': 'var(--echoes-color-background-danger-focus)',
-    '--badge-interactive-backgroud-color-hover': 'var(--echoes-color-background-danger-hover)',
+    '--badge-background-color': cssVar('color-background-danger-default'),
+    '--badge-interactive-backgroud-color-active': cssVar('color-background-danger-active'),
+    '--badge-interactive-backgroud-color-focus': cssVar('color-background-danger-focus'),
+    '--badge-interactive-backgroud-color-hover': cssVar('color-background-danger-hover'),
   },
   [BadgeVariety.Highlight]: {
-    '--badge-color': 'var(--echoes-color-text-on-color)',
+    '--badge-color': cssVar('color-text-on-color'),
     '--badge-border-color': 'transparent',
-    '--badge-background-color': 'var(--echoes-color-background-emphasis-default)',
-    '--badge-interactive-backgroud-color-active': 'var(--echoes-color-background-emphasis-active)',
-    '--badge-interactive-backgroud-color-focus': 'var(--echoes-color-background-emphasis-focus)',
-    '--badge-interactive-backgroud-color-hover': 'var(--echoes-color-background-emphasis-hover)',
+    '--badge-background-color': cssVar('color-background-emphasis-default'),
+    '--badge-interactive-backgroud-color-active': cssVar('color-background-emphasis-active'),
+    '--badge-interactive-backgroud-color-focus': cssVar('color-background-emphasis-focus'),
+    '--badge-interactive-backgroud-color-hover': cssVar('color-background-emphasis-hover'),
   },
   [BadgeVariety.Info]: {
-    '--badge-color': 'var(--echoes-color-text-on-color)',
+    '--badge-color': cssVar('color-text-on-color'),
     '--badge-border-color': 'transparent',
-    '--badge-background-color': 'var(--echoes-color-background-info-default)',
-    '--badge-interactive-backgroud-color-active': 'var(--echoes-color-background-info-active)',
-    '--badge-interactive-backgroud-color-focus': 'var(--echoes-color-background-info-focus)',
-    '--badge-interactive-backgroud-color-hover': 'var(--echoes-color-background-info-hover)',
+    '--badge-background-color': cssVar('color-background-info-default'),
+    '--badge-interactive-backgroud-color-active': cssVar('color-background-info-active'),
+    '--badge-interactive-backgroud-color-focus': cssVar('color-background-info-focus'),
+    '--badge-interactive-backgroud-color-hover': cssVar('color-background-info-hover'),
   },
   [BadgeVariety.Neutral]: {
-    '--badge-color': 'var(--echoes-color-text-on-color)',
+    '--badge-color': cssVar('color-text-on-color'),
     '--badge-border-color': 'transparent',
-    '--badge-background-color': 'var(--echoes-color-surface-inverse-default)',
-    '--badge-interactive-backgroud-color-active': 'var(--echoes-color-surface-inverse-active)',
-    '--badge-interactive-backgroud-color-focus': 'var(--echoes-color-surface-inverse-focus)',
-    '--badge-interactive-backgroud-color-hover': 'var(--echoes-color-surface-inverse-hover)',
+    '--badge-background-color': cssVar('color-surface-inverse-default'),
+    '--badge-interactive-backgroud-color-active': cssVar('color-surface-inverse-active'),
+    '--badge-interactive-backgroud-color-focus': cssVar('color-surface-inverse-focus'),
+    '--badge-interactive-backgroud-color-hover': cssVar('color-surface-inverse-hover'),
   },
   [BadgeVariety.Success]: {
-    '--badge-color': 'var(--echoes-color-text-on-color)',
+    '--badge-color': cssVar('color-text-on-color'),
     '--badge-border-color': 'transparent',
-    '--badge-background-color': 'var(--echoes-color-background-success-default)',
-    '--badge-interactive-backgroud-color-active': 'var(--echoes-color-background-success-active)',
-    '--badge-interactive-backgroud-color-focus': 'var(--echoes-color-background-success-focus)',
-    '--badge-interactive-backgroud-color-hover': 'var(--echoes-color-background-success-hover)',
+    '--badge-background-color': cssVar('color-background-success-default'),
+    '--badge-interactive-backgroud-color-active': cssVar('color-background-success-active'),
+    '--badge-interactive-backgroud-color-focus': cssVar('color-background-success-focus'),
+    '--badge-interactive-backgroud-color-hover': cssVar('color-background-success-hover'),
   },
   [BadgeVariety.Warning]: {
-    '--badge-color': 'var(--echoes-color-text-on-color-inverse)',
+    '--badge-color': cssVar('color-text-on-color-inverse'),
     '--badge-border-color': 'transparent',
-    '--badge-background-color': 'var(--echoes-color-background-warning-default)',
-    '--badge-interactive-backgroud-color-active': 'var(--echoes-color-background-warning-active)',
-    '--badge-interactive-backgroud-color-focus': 'var(--echoes-color-background-warning-focus)',
-    '--badge-interactive-backgroud-color-hover': 'var(--echoes-color-background-warning-hover)',
+    '--badge-background-color': cssVar('color-background-warning-default'),
+    '--badge-interactive-backgroud-color-active': cssVar('color-background-warning-active'),
+    '--badge-interactive-backgroud-color-focus': cssVar('color-background-warning-focus'),
+    '--badge-interactive-backgroud-color-hover': cssVar('color-background-warning-hover'),
   },
 };

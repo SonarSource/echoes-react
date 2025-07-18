@@ -22,6 +22,8 @@ import { InputHTMLAttributes } from 'react';
 import { TextNodeOptional } from '~types/utils';
 import { type ValidationProps, FormFieldProps } from '../form/FormField';
 
+import { cssVar } from '~utils/design-tokens';
+
 type InputEventAttributesSubset =
   | 'onFocus'
   | 'onBlur'
@@ -48,41 +50,41 @@ export interface InputProps extends ValidationProps, FormFieldPropsSubset {
 }
 
 export const InputStyled = styled.input`
-  color: var(--echoes-color-text-default);
-  background-color: var(--echoes-form-control-colors-background-default);
-  border: var(--echoes-border-width-default) solid var(--echoes-form-control-colors-border-default);
-  border-radius: var(--echoes-form-control-border-radius-default);
+  color: ${cssVar('color-text-default')};
+  background-color: ${cssVar('form-control-colors-background-default')};
+  border: ${cssVar('border-width-default')} solid ${cssVar('form-control-colors-border-default')};
+  border-radius: ${cssVar('form-control-border-radius-default')};
 
-  font: var(--echoes-typography-text-default-regular);
+  font: ${cssVar('typography-text-default-regular')};
   text-overflow: ellipsis;
 
   box-sizing: border-box;
   width: 100%;
-  height: var(--echoes-form-control-sizes-height-default);
-  padding: var(--echoes-dimension-space-100) var(--echoes-dimension-space-150);
+  height: ${cssVar('form-control-sizes-height-default')};
+  padding: ${cssVar('dimension-space-100')} ${cssVar('dimension-space-150')};
 
   &::placeholder {
-    color: var(--echoes-color-text-placeholder);
+    color: ${cssVar('color-text-placeholder')};
   }
   &:hover {
-    background-color: var(--echoes-form-control-colors-background-hover);
+    background-color: ${cssVar('form-control-colors-background-hover')};
   }
   &[data-valid] {
-    border-color: var(--echoes-color-border-success-default);
+    border-color: ${cssVar('color-border-success-default')};
   }
   &[data-error] {
-    border-color: var(--echoes-color-border-danger-default);
+    border-color: ${cssVar('color-border-danger-default')};
   }
   &[data-prefix] {
     padding-left: calc(
-      var(--echoes-dimension-space-150) + var(--echoes-dimension-width-300) +
-        var(--echoes-dimension-space-100)
+      ${cssVar('dimension-space-150')} + ${cssVar('dimension-width-300')} +
+        ${cssVar('dimension-space-100')}
     );
   }
   &[data-suffix] {
     padding-right: calc(
-      var(--echoes-dimension-space-150) + var(--echoes-dimension-width-300) +
-        var(--echoes-dimension-space-100)
+      ${cssVar('dimension-space-150')} + ${cssVar('dimension-width-300')} +
+        ${cssVar('dimension-space-100')}
     );
   }
 
@@ -90,20 +92,20 @@ export const InputStyled = styled.input`
   &:focus,
   &:focus-within,
   &:focus-visible {
-    border-color: var(--echoes-form-control-colors-border-focus);
-    outline: var(--echoes-color-focus-default) solid var(--echoes-focus-border-width-default);
+    border-color: ${cssVar('form-control-colors-border-focus')};
+    outline: ${cssVar('color-focus-default')} solid ${cssVar('focus-border-width-default')};
   }
 
   &:disabled,
   &:disabled:hover {
-    color: var(--echoes-color-text-disabled);
-    background-color: var(--echoes-color-surface-disabled);
-    border-color: var(--echoes-color-border-disabled);
+    color: ${cssVar('color-text-disabled')};
+    background-color: ${cssVar('color-surface-disabled')};
+    border-color: ${cssVar('color-border-disabled')};
     outline: none;
     cursor: not-allowed;
 
     &::placeholder {
-      color: var(--echoes-color-text-disabled);
+      color: ${cssVar('color-text-disabled')};
     }
   }
 `;
@@ -121,22 +123,22 @@ InputWrapper.displayName = 'InputWrapper';
 const InputIconWrapper = styled.span`
   position: absolute;
 
-  font-size: var(--echoes-font-size-30);
-  color: var(--echoes-form-control-colors-icon-default);
+  font-size: ${cssVar('font-size-30')};
+  color: ${cssVar('form-control-colors-icon-default')};
 
   &[data-disabled] {
-    color: var(--echoes-color-icon-disabled);
+    color: ${cssVar('color-icon-disabled')};
     cursor: not-allowed;
   }
 `;
 InputIconWrapper.displayName = 'InputIconWrapper';
 
 export const InputPrefix = styled(InputIconWrapper)`
-  left: var(--echoes-dimension-space-150);
+  left: ${cssVar('dimension-space-150')};
 `;
 InputPrefix.displayName = 'InputPrefix';
 
 export const InputSuffix = styled(InputIconWrapper)`
-  right: var(--echoes-dimension-space-150);
+  right: ${cssVar('dimension-space-150')};
 `;
 InputSuffix.displayName = 'InputSuffix';

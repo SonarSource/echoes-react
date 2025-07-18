@@ -22,6 +22,8 @@ import styled from '@emotion/styled';
 import * as RadixToggleGroup from '@radix-ui/react-toggle-group';
 import { forwardRef, ReactNode, useCallback } from 'react';
 
+import { cssVar } from '~utils/design-tokens';
+
 interface ToggleOption {
   label: string;
   value: string;
@@ -109,8 +111,8 @@ const StyledRoot = styled(RadixToggleGroup.Root)`
   flex-direction: row;
   align-items: center;
 
-  background-color: var(--echoes-color-background-neutral-subtle-default);
-  border-radius: var(--echoes-border-radius-200);
+  background-color: ${cssVar('color-background-neutral-subtle-default')};
+  border-radius: ${cssVar('border-radius-200')};
 `;
 
 const StyledItemInner = styled.div`
@@ -118,9 +120,9 @@ const StyledItemInner = styled.div`
   flex-direction: row;
   align-items: center;
 
-  border-radius: var(--echoes-border-radius-200);
+  border-radius: ${cssVar('border-radius-200')};
 
-  padding: var(--echoes-dimension-space-50) var(--echoes-dimension-space-150);
+  padding: ${cssVar('dimension-space-50')} ${cssVar('dimension-space-150')};
 `;
 
 const StyledItemLabel = styled.div`
@@ -138,7 +140,7 @@ const StyledItemLabel = styled.div`
     display: block;
     height: 0;
     overflow: hidden;
-    font-weight: var(--echoes-font-weight-semi-bold);
+    font-weight: ${cssVar('font-weight-semi-bold')};
     visibility: hidden; // This makes the copy invisible to screen readers as well
   }
 `;
@@ -148,41 +150,41 @@ const StyledItem = styled(RadixToggleGroup.Item)`
   flex-direction: row;
   align-items: center;
 
-  font: var(--echoes-typography-text-default-regular);
-  color: var(--echoes-color-text-default);
+  font: ${cssVar('typography-text-default-regular')};
+  color: ${cssVar('color-text-default')};
 
-  gap: var(--echoes-dimension-space-50);
-  padding: var(--echoes-dimension-space-50);
+  gap: ${cssVar('dimension-space-50')};
+  padding: ${cssVar('dimension-space-50')};
 
   background-color: transparent;
-  border: var(--echoes-border-width-default) solid transparent;
-  border-radius: var(--echoes-border-radius-200);
+  border: ${cssVar('border-width-default')} solid transparent;
+  border-radius: ${cssVar('border-radius-200')};
 
   cursor: pointer;
 
   &:hover:not([data-state='on'], :disabled) ${StyledItemInner} {
-    background-color: var(--echoes-color-background-neutral-bolder-default);
+    background-color: ${cssVar('color-background-neutral-bolder-default')};
   }
 
   &:focus-visible {
-    outline: var(--echoes-color-focus-default) solid var(--echoes-focus-border-width-default);
-    outline-offset: var(--echoes-focus-border-offset-default);
-    border-radius: var(--echoes-border-radius-200);
+    outline: ${cssVar('color-focus-default')} solid ${cssVar('focus-border-width-default')};
+    outline-offset: ${cssVar('focus-border-offset-default')};
+    border-radius: ${cssVar('border-radius-200')};
     z-index: 1;
   }
 
   &:disabled {
-    color: var(--echoes-color-text-disabled);
-    background-color: var(--echoes-color-surface-disabled);
+    color: ${cssVar('color-text-disabled')};
+    background-color: ${cssVar('color-surface-disabled')};
     cursor: default;
   }
 
   &[data-state='on'] {
-    background-color: var(--echoes-color-surface-default);
-    border-color: var(--echoes-color-border-bold);
-    border-radius: var(--echoes-border-radius-200);
-    font-weight: var(--echoes-font-weight-semi-bold);
-    box-shadow: var(--echoes-box-shadow-xsmall);
+    background-color: ${cssVar('color-surface-default')};
+    border-color: ${cssVar('color-border-bold')};
+    border-radius: ${cssVar('border-radius-200')};
+    font-weight: ${cssVar('font-weight-semi-bold')};
+    box-shadow: ${cssVar('box-shadow-xsmall')};
     cursor: default;
   }
 
@@ -196,6 +198,6 @@ const StyledItem = styled(RadixToggleGroup.Item)`
   }
 
   &:not([data-state='on']) + &:not([data-state='on'])::before {
-    background-color: var(--echoes-color-border-weak);
+    background-color: ${cssVar('color-border-weak')};
   }
 `;

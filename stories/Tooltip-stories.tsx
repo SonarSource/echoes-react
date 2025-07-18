@@ -23,6 +23,8 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Button, Link, LinkStandalone, Tooltip, TooltipSide } from '../src';
 import { BasicWrapper } from './helpers/BasicWrapper';
 
+import { cssVar } from '~utils/design-tokens';
+
 const meta: Meta<typeof Tooltip> = {
   component: Tooltip,
   title: 'Echoes/Tooltip',
@@ -116,7 +118,7 @@ const ListLink = styled(Link)`
 const Pane = styled.div`
   height: 300px;
   width: 100px;
-  background: var(--echoes-color-background-neutral-subtle-default);
+  background: ${cssVar('color-background-neutral-subtle-default')};
   overflow: hidden;
   border: 1px solid black;
   margin: 1px;
