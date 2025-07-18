@@ -205,7 +205,7 @@ const globalStyles = css`
 
   body,
   .docs-story {
-    background-color: var(--echoes-color-background-default);
+    background-color: var(--echoes-color-surface-default);
   }
 
   p {

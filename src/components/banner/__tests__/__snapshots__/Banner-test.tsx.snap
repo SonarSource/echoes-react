@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`should display banner content 1`] = `
 .emotion-0 {
@@ -7,7 +7,7 @@ exports[`should display banner content 1`] = `
 
 .emotion-2 {
   position: fixed;
-  background-color: var(--echoes-color-background-default);
+  background-color: var(--echoes-color-surface-default);
   height: inherit;
   width: 100%;
   min-width: var(--echoes-layout-sizes-min-width-default);

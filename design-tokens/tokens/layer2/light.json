@@ -2,67 +2,36 @@
   "echoes": {
     "color": {
       "background": {
-        "neutral-weak": {
-          "default": {
-            "type": "color",
-            "value": "{echoes.color.grey.50}",
-            "description": "Use it in components with neutral sentiment"
+        "neutral": {
+          "subtle": {
+            "default": {
+              "type": "color",
+              "value": "{echoes.color.grey.50}",
+              "description": "Use it in components with neutral sentiment"
+            },
+            "focus": {
+              "type": "color",
+              "value": "{echoes.color.grey.50}",
+              "description": "Use it in components with neutral sentiment"
+            },
+            "hover": {
+              "type": "color",
+              "value": "{echoes.color.grey.100}",
+              "description": "Use it in components with neutral sentiment"
+            },
+            "active": {
+              "type": "color",
+              "value": "{echoes.color.grey.200}",
+              "description": "Use it in components with neutral sentiment"
+            }
           },
-          "focus": {
-            "type": "color",
-            "value": "{echoes.color.grey.50}",
-            "description": "Use it in components with neutral sentiment"
-          },
-          "hover": {
-            "type": "color",
-            "value": "{echoes.color.grey.100}",
-            "description": "Use it in components with neutral sentiment"
-          },
-          "active": {
-            "type": "color",
-            "value": "{echoes.color.grey.200}",
-            "description": "Use it in components with neutral sentiment"
+          "bolder": {
+            "default": {
+              "type": "color",
+              "value": "{echoes.color.grey.100}",
+              "description": "Use it in components with neutral sentiment that need a bolder highlight"
+            }
           }
-        },
-        "neutral-bolder": {
-          "type": "color",
-          "value": "{echoes.color.grey.100}",
-          "description": "Use it in components with neutral sentiment that need a bolder highlight"
-        },
-        "default": {
-          "type": "color",
-          "value": "{echoes.color.support.white}",
-          "description": "Go to color for backgrounds.. eg: cards, modals, popovers, etc..."
-        },
-        "default-hover": {
-          "type": "color",
-          "value": "{echoes.color.grey.40}",
-          "description": "Hover color for bg-default"
-        },
-        "default-active": {
-          "type": "color",
-          "value": "{echoes.color.grey.100}",
-          "description": "Active color for bg-default"
-        },
-        "default-disabled": {
-          "type": "color",
-          "value": "{echoes.color.grey.50}",
-          "description": "Disabled color for bg-default"
-        },
-        "page": {
-          "type": "color",
-          "value": "{echoes.color.grey.25}",
-          "description": "Use it as page background"
-        },
-        "inverse": {
-          "type": "color",
-          "value": "{echoes.color.grey.600}",
-          "description": "Inverse color for bgs, creates high contrast against bg-default and bg-page"
-        },
-        "disabled": {
-          "type": "color",
-          "value": "{echoes.color.grey.50}",
-          "description": "Use it as background for disabled components"
         },
         "accent": {
           "default": {
@@ -83,28 +52,28 @@
             "type": "color",
             "value": "{echoes.color.indigo.700}",
             "description": "Active state of components that reinforce our brand"
-          }
-        },
-        "accent-weak": {
-          "default": {
-            "type": "color",
-            "value": "{echoes.color.indigo.25}",
-            "description": "Used as the background color of components that reinforce our brand with less visual highlight"
           },
-          "hover": {
-            "type": "color",
-            "value": "{echoes.color.indigo.50}",
-            "description": "Hover state of components that reinforce our brand with less visual highlight"
-          },
-          "active": {
-            "type": "color",
-            "value": "{echoes.color.indigo.100}",
-            "description": "Active state of components that reinforce our brand with less visual highlight"
-          },
-          "focus": {
-            "type": "color",
-            "value": "{echoes.color.indigo.50}",
-            "description": "Focus state of components that reinforce our brand with less visual highlight"
+          "weak": {
+            "default": {
+              "type": "color",
+              "value": "{echoes.color.indigo.25}",
+              "description": "Used as the background color of components that reinforce our brand with less visual highlight"
+            },
+            "hover": {
+              "type": "color",
+              "value": "{echoes.color.indigo.50}",
+              "description": "Hover state of components that reinforce our brand with less visual highlight"
+            },
+            "active": {
+              "type": "color",
+              "value": "{echoes.color.indigo.100}",
+              "description": "Active state of components that reinforce our brand with less visual highlight"
+            },
+            "focus": {
+              "type": "color",
+              "value": "{echoes.color.indigo.50}",
+              "description": "Focus state of components that reinforce our brand with less visual highlight"
+            }
           }
         },
         "warning": {
@@ -136,28 +105,28 @@
             "type": "color",
             "value": "{echoes.color.yellow.700}",
             "description": "Use for backgrounds that communicate warning or caution"
-          }
-        },
-        "warning-weak": {
-          "default": {
-            "type": "color",
-            "value": "{echoes.color.yellow.50}",
-            "description": "Use for backgrounds that communicate warning or caution, with less visual highlight"
           },
-          "hover": {
-            "type": "color",
-            "value": "{echoes.color.yellow.100}",
-            "description": "Use for backgrounds that communicate warning or caution, with less visual highlight"
-          },
-          "focus": {
-            "type": "color",
-            "value": "{echoes.color.yellow.50}",
-            "description": "Use for backgrounds that communicate warning or caution, with less visual highlight"
-          },
-          "active": {
-            "type": "color",
-            "value": "{echoes.color.yellow.200}",
-            "description": "Use for backgrounds that communicate warning or caution, with less visual highlight"
+          "weak": {
+            "default": {
+              "type": "color",
+              "value": "{echoes.color.yellow.50}",
+              "description": "Use for backgrounds that communicate warning or caution, with less visual highlight"
+            },
+            "hover": {
+              "type": "color",
+              "value": "{echoes.color.yellow.100}",
+              "description": "Use for backgrounds that communicate warning or caution, with less visual highlight"
+            },
+            "focus": {
+              "type": "color",
+              "value": "{echoes.color.yellow.50}",
+              "description": "Use for backgrounds that communicate warning or caution, with less visual highlight"
+            },
+            "active": {
+              "type": "color",
+              "value": "{echoes.color.yellow.200}",
+              "description": "Use for backgrounds that communicate warning or caution, with less visual highlight"
+            }
           }
         },
         "success": {
@@ -180,28 +149,28 @@
             "type": "color",
             "value": "{echoes.color.yellowGreen.900}",
             "description": "Use for backgrounds that communicate positive or success messages"
-          }
-        },
-        "success-weak": {
-          "default": {
-            "type": "color",
-            "value": "{echoes.color.yellowGreen.50}",
-            "description": "Use for backgrounds that communicate positive or success messages, with less visual highlight"
           },
-          "hover": {
-            "type": "color",
-            "value": "{echoes.color.yellowGreen.100}",
-            "description": "Use for backgrounds that communicate positive or success messages, with less visual highlight"
-          },
-          "active": {
-            "type": "color",
-            "value": "{echoes.color.yellowGreen.200}",
-            "description": "Use for backgrounds that communicate positive or success messages, with less visual highlight"
-          },
-          "focus": {
-            "type": "color",
-            "value": "{echoes.color.yellowGreen.50}",
-            "description": "Use for backgrounds that communicate positive or success messages, with less visual highlight"
+          "weak": {
+            "default": {
+              "type": "color",
+              "value": "{echoes.color.yellowGreen.50}",
+              "description": "Use for backgrounds that communicate positive or success messages, with less visual highlight"
+            },
+            "hover": {
+              "type": "color",
+              "value": "{echoes.color.yellowGreen.100}",
+              "description": "Use for backgrounds that communicate positive or success messages, with less visual highlight"
+            },
+            "active": {
+              "type": "color",
+              "value": "{echoes.color.yellowGreen.200}",
+              "description": "Use for backgrounds that communicate positive or success messages, with less visual highlight"
+            },
+            "focus": {
+              "type": "color",
+              "value": "{echoes.color.yellowGreen.50}",
+              "description": "Use for backgrounds that communicate positive or success messages, with less visual highlight"
+            }
           }
         },
         "danger": {
@@ -224,27 +193,27 @@
             "type": "color",
             "value": "{echoes.color.red.800}",
             "description": "Active state for backgrounds that communicate danger or destructive messages"
-          }
-        },
-        "danger-weak": {
-          "default": {
-            "type": "color",
-            "value": "{echoes.color.red.50}",
-            "description": "Use it for backgrounds that communicate danger or destructive messages, with less visual highlight"
           },
-          "hover": {
-            "type": "color",
-            "value": "{echoes.color.red.100}",
-            "description": "Hover state for backgrounds that communicate danger or destructive messages, with less visual highlight"
-          },
-          "active": {
-            "type": "color",
-            "value": "{echoes.color.red.200}",
-            "description": "Active state for backgrounds that communicate danger or destructive messages, with less visual highlight"
-          },
-          "focus": {
-            "value": "{echoes.color.red.50}",
-            "type": "color"
+          "weak": {
+            "default": {
+              "type": "color",
+              "value": "{echoes.color.red.50}",
+              "description": "Use it for backgrounds that communicate danger or destructive messages, with less visual highlight"
+            },
+            "hover": {
+              "type": "color",
+              "value": "{echoes.color.red.100}",
+              "description": "Hover state for backgrounds that communicate danger or destructive messages, with less visual highlight"
+            },
+            "active": {
+              "type": "color",
+              "value": "{echoes.color.red.200}",
+              "description": "Active state for backgrounds that communicate danger or destructive messages, with less visual highlight"
+            },
+            "focus": {
+              "value": "{echoes.color.red.50}",
+              "type": "color"
+            }
           }
         },
         "info": {
@@ -276,34 +245,36 @@
               }
             },
             "description": "Use for backgrounds that communicate information to the user"
+          },
+          "weak": {
+            "default": {
+              "type": "color",
+              "value": "{echoes.color.blue.50}",
+              "description": "Use for backgrounds that communicate information to the user, with less visual highlight"
+            },
+            "hover": {
+              "type": "color",
+              "value": "{echoes.color.blue.100}",
+              "description": "Use for backgrounds that communicate information to the user, with less visual highlight"
+            },
+            "focus": {
+              "type": "color",
+              "value": "{echoes.color.blue.50}",
+              "description": "Use for backgrounds that communicate information to the user, with less visual highlight"
+            },
+            "active": {
+              "type": "color",
+              "value": "{echoes.color.blue.200}",
+              "description": "Use for backgrounds that communicate information to the user, with less visual highlight"
+            }
           }
         },
-        "info-weak": {
-          "default": {
+        "utility": {
+          "transparent": {
             "type": "color",
-            "value": "{echoes.color.blue.50}",
-            "description": "Use for backgrounds that communicate information to the user, with less visual highlight"
-          },
-          "hover": {
-            "type": "color",
-            "value": "{echoes.color.blue.100}",
-            "description": "Use for backgrounds that communicate information to the user, with less visual highlight"
-          },
-          "focus": {
-            "type": "color",
-            "value": "{echoes.color.blue.50}",
-            "description": "Use for backgrounds that communicate information to the user, with less visual highlight"
-          },
-          "active": {
-            "type": "color",
-            "value": "{echoes.color.blue.200}",
-            "description": "Use for backgrounds that communicate information to the user, with less visual highlight"
+            "value": "{echoes.color.support.transparent}",
+            "description": "Use it when you need transparency in the background"
           }
-        },
-        "transparent": {
-          "type": "color",
-          "value": "{echoes.color.support.transparent}",
-          "description": "Use it when you need transparency in the background"
         },
         "selected": {
           "weak": {
@@ -344,7 +315,7 @@
         "ghost": {
           "accent": {
             "default": {
-              "value": "{echoes.color.background.transparent}",
+              "value": "{echoes.color.background.utility.transparent}",
               "type": "color"
             },
             "hover": {
@@ -356,13 +327,13 @@
               "type": "color"
             },
             "focus": {
-              "value": "{echoes.color.background.transparent}",
+              "value": "{echoes.color.background.utility.transparent}",
               "type": "color"
             }
           },
           "neutral": {
             "default": {
-              "value": "{echoes.color.background.transparent}",
+              "value": "{echoes.color.background.utility.transparent}",
               "type": "color"
             },
             "hover": {
@@ -374,13 +345,13 @@
               "type": "color"
             },
             "focus": {
-              "value": "{echoes.color.background.transparent}",
+              "value": "{echoes.color.background.utility.transparent}",
               "type": "color"
             }
           },
           "danger": {
             "default": {
-              "value": "{echoes.color.background.transparent}",
+              "value": "{echoes.color.background.utility.transparent}",
               "type": "color"
             },
             "hover": {
@@ -392,45 +363,30 @@
               "type": "color"
             },
             "focus": {
-              "value": "{echoes.color.background.transparent}",
+              "value": "{echoes.color.background.utility.transparent}",
               "type": "color"
             }
           }
         },
-        "backDrop": {
-          "default": {
-            "value": "{echoes.color.grey.900}",
-            "type": "color",
-            "$extensions": {
-              "studio.tokens": {
-                "modify": {
-                  "type": "alpha",
-                  "value": "0.45",
-                  "space": "hsl"
-                }
-              }
-            }
-          }
-        },
-        "emphasis-weak": {
-          "default": {
-            "value": "{echoes.color.purple.100}",
-            "type": "color"
-          },
-          "hover": {
-            "value": "{echoes.color.purple.200}",
-            "type": "color"
-          },
-          "focus": {
-            "value": "{echoes.color.purple.100}",
-            "type": "color"
-          },
-          "active": {
-            "value": "{echoes.color.purple.300}",
-            "type": "color"
-          }
-        },
         "emphasis": {
+          "weak": {
+            "default": {
+              "value": "{echoes.color.purple.100}",
+              "type": "color"
+            },
+            "hover": {
+              "value": "{echoes.color.purple.200}",
+              "type": "color"
+            },
+            "focus": {
+              "value": "{echoes.color.purple.100}",
+              "type": "color"
+            },
+            "active": {
+              "value": "{echoes.color.purple.300}",
+              "type": "color"
+            }
+          },
           "default": {
             "value": "{echoes.color.purple.700}",
             "type": "color"
@@ -448,10 +404,45 @@
             "type": "color"
           }
         },
-        "neutral": {
+        "favourite": {
           "default": {
-            "value": "{echoes.color.grey.600}",
+            "value": "{echoes.color.yellow.600}",
             "type": "color"
+          },
+          "hover": {
+            "value": "{echoes.color.yellow.700}",
+            "type": "color"
+          }
+        }
+      },
+      "surface": {
+        "default": {
+          "type": "color",
+          "value": "{echoes.color.support.white}",
+          "description": "Go to color for surfaces.. eg: cards, modals, popovers, etc..."
+        },
+        "hover": {
+          "type": "color",
+          "value": "{echoes.color.grey.40}",
+          "description": "Hover color for bg-default"
+        },
+        "active": {
+          "type": "color",
+          "value": "{echoes.color.grey.100}",
+          "description": "Active color for bg-default"
+        },
+        "canvas": {
+          "default": {
+            "type": "color",
+            "value": "{echoes.color.grey.25}",
+            "description": "Use it as page background"
+          }
+        },
+        "inverse": {
+          "default": {
+            "type": "color",
+            "value": "{echoes.color.grey.600}",
+            "description": "Inverse color for bgs, creates high contrast against bg-default and bg-page"
           },
           "hover": {
             "value": "{echoes.color.grey.700}",
@@ -465,20 +456,38 @@
             "value": "{echoes.color.grey.800}",
             "type": "color"
           }
+        },
+        "disabled": {
+          "type": "color",
+          "value": "{echoes.color.grey.50}",
+          "description": "Use it as background for disabled components"
+        }
+      },
+      "overlays": {
+        "backDrop": {
+          "default": {
+            "value": "{echoes.color.grey.900}",
+            "type": "color",
+            "$extensions": {
+              "studio.tokens": {
+                "modify": {
+                  "type": "alpha",
+                  "value": "0.45",
+                  "space": "hsl"
+                }
+              }
+            }
+          }
         }
       },
       "text": {
-        "bold": {
+        "strong": {
           "type": "color",
           "value": "{echoes.color.grey.700}"
         },
         "default": {
           "type": "color",
           "value": "{echoes.color.grey.500}"
-        },
-        "subdued": {
-          "type": "color",
-          "value": "{echoes.color.grey.400}"
         },
         "disabled": {
           "type": "color",
@@ -488,49 +497,9 @@
           "type": "color",
           "value": "{echoes.color.grey.400}"
         },
-        "accent": {
+        "subtle": {
           "type": "color",
-          "value": "{echoes.color.indigo.500}"
-        },
-        "accent-hover": {
-          "type": "color",
-          "value": "{echoes.color.indigo.600}"
-        },
-        "accent-bold": {
-          "type": "color",
-          "value": "{echoes.color.indigo.600}"
-        },
-        "danger": {
-          "type": "color",
-          "value": "{echoes.color.red.700}"
-        },
-        "danger-bold": {
-          "type": "color",
-          "value": "{echoes.color.red.900}"
-        },
-        "warning": {
-          "type": "color",
-          "value": "{echoes.color.yellow.800}"
-        },
-        "warning-bold": {
-          "type": "color",
-          "value": "{echoes.color.yellow.900}"
-        },
-        "success": {
-          "type": "color",
-          "value": "{echoes.color.yellowGreen.800}"
-        },
-        "success-bold": {
-          "type": "color",
-          "value": "{echoes.color.yellowGreen.900}"
-        },
-        "info": {
-          "type": "color",
-          "value": "{echoes.color.blue.800}"
-        },
-        "info-bold": {
-          "type": "color",
-          "value": "{echoes.color.blue.900}"
+          "value": "{echoes.color.grey.400}"
         },
         "onColor": {
           "type": "color",
@@ -540,9 +509,35 @@
           "type": "color",
           "value": "{echoes.color.grey.500}"
         },
+        "accent": {
+          "type": "color",
+          "value": "{echoes.color.indigo.500}"
+        },
+        "danger": {
+          "type": "color",
+          "value": "{echoes.color.red.700}"
+        },
+        "warning": {
+          "type": "color",
+          "value": "{echoes.color.yellow.800}"
+        },
+        "success": {
+          "type": "color",
+          "value": "{echoes.color.yellowGreen.800}"
+        },
+        "info": {
+          "type": "color",
+          "value": "{echoes.color.blue.800}"
+        },
         "emphasis": {
           "value": "{echoes.color.purple.800}",
           "type": "color"
+        },
+        "link": {
+          "hover": {
+            "type": "color",
+            "value": "{echoes.color.indigo.600}"
+          }
         }
       },
       "icon": {

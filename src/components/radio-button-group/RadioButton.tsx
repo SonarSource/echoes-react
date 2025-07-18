@@ -77,7 +77,7 @@ RadioButtonOptionWrapper.displayName = 'RadioButtonOptionWrapper';
 const RadioButtonInput = styled(RadioGroup.Item)`
   appearance: none;
   cursor: pointer;
-  background-color: var(--echoes-color-background-transparent);
+  background-color: var(--echoes-color-background-utility-transparent);
 
   box-sizing: border-box;
   padding: 0;
@@ -89,7 +89,7 @@ const RadioButtonInput = styled(RadioGroup.Item)`
   min-width: var(--echoes-dimension-width-200);
 
   &:hover {
-    background-color: var(--echoes-color-background-default-hover);
+    background-color: var(--echoes-color-surface-hover);
   }
 
   &[data-error='true'] {
@@ -114,7 +114,7 @@ const RadioButtonInput = styled(RadioGroup.Item)`
 
   &:disabled {
     cursor: default;
-    background-color: var(--echoes-color-background-disabled);
+    background-color: var(--echoes-color-surface-disabled);
     border-color: var(--echoes-color-border-disabled);
   }
 `;

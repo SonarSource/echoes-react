@@ -69,12 +69,12 @@ const StyledLinkStandalone = styled(LinkStandalone)`
   border-radius: var(--echoes-border-radius-200);
 
   &:hover {
-    background-color: var(--echoes-color-background-default-hover);
+    background-color: var(--echoes-color-surface-hover);
     text-decoration-line: var(--echoes-text-decoration-none);
   }
 
   &:active {
-    background-color: var(--echoes-color-background-default-active);
+    background-color: var(--echoes-color-surface-active);
   }
 `;
 StyledLinkStandalone.displayName = 'StyledLinkStandalone';

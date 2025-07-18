@@ -122,7 +122,7 @@ const PopoverContent = styled(RadixPopover.Content)`
   border: var(--echoes-border-width-default) solid var(--echoes-color-border-weak);
   border-radius: var(--echoes-border-radius-400);
   padding: var(--echoes-dimension-space-300) var(--echoes-dimension-space-250);
-  background-color: var(--echoes-color-background-default);
+  background-color: var(--echoes-color-surface-default);
   box-shadow: var(--echoes-box-shadow-large);
   max-width: var(--echoes-dimension-width-5000);
   box-sizing: border-box;
@@ -136,7 +136,7 @@ const PopoverContent = styled(RadixPopover.Content)`
 
 const PopoverArrow = styled(RadixPopover.Arrow)`
   stroke: var(--echoes-color-border-weak);
-  fill: var(--echoes-color-background-default);
+  fill: var(--echoes-color-surface-default);
   height: 9px;
   width: 15px;
 

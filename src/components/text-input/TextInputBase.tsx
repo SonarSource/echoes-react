@@ -97,7 +97,7 @@ export const InputStyled = styled.input`
   &:disabled,
   &:disabled:hover {
     color: var(--echoes-color-text-disabled);
-    background-color: var(--echoes-color-background-disabled);
+    background-color: var(--echoes-color-surface-disabled);
     border-color: var(--echoes-color-border-disabled);
     outline: none;
     cursor: not-allowed;

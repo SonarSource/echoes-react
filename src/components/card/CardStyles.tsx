@@ -22,7 +22,7 @@ import styled from '@emotion/styled';
 import { CardSize } from './CardSize';
 
 export const CardStyled = styled.div`
-  background-color: var(--echoes-color-background-default);
+  background-color: var(--echoes-color-surface-default);
   border: var(--echoes-border-width-default) solid var(--echoes-color-border-weak);
   border-radius: var(--echoes-border-radius-400);
   box-shadow: var(--echoes-box-shadow-xsmall);
