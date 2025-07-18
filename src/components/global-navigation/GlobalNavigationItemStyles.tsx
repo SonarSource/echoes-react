@@ -51,10 +51,10 @@ export const globalNavigationItemStyle = css`
   box-sizing: content-box;
 
   &:hover {
-    background-color: var(--echoes-color-background-default-hover);
+    background-color: var(--echoes-color-surface-hover);
   }
 
   &:active {
-    background-color: var(--echoes-color-background-default-active);
+    background-color: var(--echoes-color-surface-active);
   }
 `;

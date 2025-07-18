@@ -137,7 +137,7 @@ export const MenuInADarkSideBar: Story = {
 };
 
 const FakeDarkSideBar = styled.div`
-  background-color: var(--echoes-color-background-default);
+  background-color: var(--echoes-color-surface-default);
   padding: 8px;
   height: 50vh;
   width: fit-content;

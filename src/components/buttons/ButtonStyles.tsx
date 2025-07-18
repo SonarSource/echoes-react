@@ -111,11 +111,11 @@ export const BUTTON_VARIETY_STYLES = {
   [ButtonVariety.Default]: {
     '--button-color': 'var(--echoes-color-text-default)',
     '--button-border': 'var(--echoes-color-border-bold) solid var(--echoes-border-width-default)',
-    '--button-background': 'var(--echoes-color-background-default)',
-    '--button-background-hover': 'var(--echoes-color-background-default-hover)',
-    '--button-background-active': 'var(--echoes-color-background-default-active)',
-    '--button-background-focus': 'var(--echoes-color-background-default)',
-    '--button-background-disabled': 'var(--echoes-color-background-disabled)',
+    '--button-background': 'var(--echoes-color-surface-default)',
+    '--button-background-hover': 'var(--echoes-color-surface-hover)',
+    '--button-background-active': 'var(--echoes-color-surface-active)',
+    '--button-background-focus': 'var(--echoes-color-surface-default)',
+    '--button-background-disabled': 'var(--echoes-color-surface-disabled)',
   },
   [ButtonVariety.DefaultGhost]: {
     '--button-color': 'var(--echoes-color-text-default)',
@@ -133,7 +133,7 @@ export const BUTTON_VARIETY_STYLES = {
     '--button-background-hover': 'var(--echoes-color-background-accent-hover)',
     '--button-background-active': 'var(--echoes-color-background-accent-active)',
     '--button-background-focus': 'var(--echoes-color-background-accent-focus)',
-    '--button-background-disabled': 'var(--echoes-color-background-disabled)',
+    '--button-background-disabled': 'var(--echoes-color-surface-disabled)',
     '--spinner-color-override': 'var(--echoes-color-icon-on-color)',
   },
   [ButtonVariety.PrimaryGhost]: {
@@ -152,7 +152,7 @@ export const BUTTON_VARIETY_STYLES = {
     '--button-background-hover': 'var(--echoes-color-background-danger-hover)',
     '--button-background-active': 'var(--echoes-color-background-danger-active)',
     '--button-background-focus': 'var(--echoes-color-background-danger-focus)',
-    '--button-background-disabled': 'var(--echoes-color-background-disabled)',
+    '--button-background-disabled': 'var(--echoes-color-surface-disabled)',
     '--spinner-color-override': 'var(--echoes-color-icon-on-color)',
   },
   [ButtonVariety.DangerGhost]: {
@@ -167,11 +167,11 @@ export const BUTTON_VARIETY_STYLES = {
   [ButtonVariety.DangerOutline]: {
     '--button-color': 'var(--echoes-color-text-danger)',
     '--button-border': 'var(--echoes-color-border-bold) solid var(--echoes-border-width-default)',
-    '--button-background': 'var(--echoes-color-background-default)',
-    '--button-background-hover': 'var(--echoes-color-background-default-hover)',
-    '--button-background-active': 'var(--echoes-color-background-default-active)',
-    '--button-background-focus': 'var(--echoes-color-background-default)',
-    '--button-background-disabled': 'var(--echoes-color-background-disabled)',
+    '--button-background': 'var(--echoes-color-surface-default)',
+    '--button-background-hover': 'var(--echoes-color-surface-hover)',
+    '--button-background-active': 'var(--echoes-color-surface-active)',
+    '--button-background-focus': 'var(--echoes-color-surface-default)',
+    '--button-background-disabled': 'var(--echoes-color-surface-disabled)',
   },
 };
 

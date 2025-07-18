@@ -194,7 +194,7 @@ const ToastWrapper = styled.div`
   border-radius: var(--echoes-border-radius-400);
   width: var(--echoes-toast-sizes-width);
 
-  background: var(--echoes-color-background-default);
+  background: var(--echoes-color-surface-default);
   box-shadow: var(--echoes-box-shadow-large);
   border: var(--echoes-border-width-default) solid var(--echoes-color-border-weak);
 `;

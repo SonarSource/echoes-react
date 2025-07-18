@@ -162,7 +162,7 @@ LogoWithTextWrapper.displayName = 'LogoWithTextWrapper';
 
 const RegionText = styled.span`
   margin-top: -3px;
-  color: var(--echoes-color-text-subdued);
+  color: var(--echoes-color-text-subtle);
   font: var(--echoes-typography-text-default-semi-bold);
   font-size: 0.688rem;
 `;

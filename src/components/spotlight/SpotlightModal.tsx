@@ -109,7 +109,7 @@ const ModalFooterContainer = styled.div`
 ModalFooterContainer.displayName = 'ModalFooterContainer';
 
 const SpotlightModalStyled = styled.div`
-  background-color: var(--echoes-color-background-default);
+  background-color: var(--echoes-color-surface-default);
   border-radius: var(--echoes-border-radius-400);
   box-shadow: var(--echoes-box-shadow-large);
   display: flex;

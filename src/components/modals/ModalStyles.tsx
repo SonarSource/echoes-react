@@ -29,7 +29,7 @@ export const styleModalOverlay = styled.div`
   position: fixed;
   inset: 0;
 
-  background: var(--echoes-color-background-back-drop-default);
+  background: var(--echoes-color-overlays-back-drop-default);
 `.withComponent;
 
 export const styleModalWrapper = styled.div<{ size: `${ModalSize}` }>`
@@ -45,7 +45,7 @@ export const styleModalWrapper = styled.div<{ size: `${ModalSize}` }>`
   width: ${(props) => SIZES[props.size]};
 
   border-radius: var(--echoes-border-radius-400);
-  background: var(--echoes-color-background-default);
+  background: var(--echoes-color-surface-default);
   box-shadow: var(--echoes-box-shadow-large);
 `.withComponent;
 
@@ -53,7 +53,7 @@ export const styleModalTitle = styled.h2`
   flex: 0 0 auto;
 
   font: var(--echoes-typography-heading-large);
-  color: var(--echoes-color-text-bold);
+  color: var(--echoes-color-text-strong);
 
   min-height: var(--echoes-dimension-height-800);
   line-height: var(--echoes-dimension-height-800);

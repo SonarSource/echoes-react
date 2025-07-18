@@ -29,7 +29,7 @@ const TABLE_VARIETY_STYLES = {
     'border-collapse': 'separate',
   },
   [TableVariety.Ghost]: {
-    '--table-header-background-color': 'var(--echoes-color-background-default)',
+    '--table-header-background-color': 'var(--echoes-color-surface-default)',
     border: 'none',
     'border-collapse': 'collapse',
   },
@@ -111,7 +111,7 @@ export const StyledTableCell = styled.td`
   justify-content: center;
 
   ${StyledTableRow}:hover:not(.selected) & {
-    background-color: var(--echoes-color-background-default-hover);
+    background-color: var(--echoes-color-surface-hover);
   }
 
   ${StyledTableRow}.selected & {

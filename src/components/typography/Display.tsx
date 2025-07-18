@@ -41,6 +41,6 @@ Display.displayName = 'Display';
 
 const StyledDisplay = styled.span`
   font: var(--echoes-typography-display-default);
-  color: var(--echoes-color-text-bold);
+  color: var(--echoes-color-text-strong);
 `;
 StyledDisplay.displayName = 'StyledDisplay';
