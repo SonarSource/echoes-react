@@ -3,6 +3,7 @@
 exports[`renders as default 1`] = `
 .emotion-0 {
   font: var(--echoes-typography-display-default);
+  letter-spacing: var(--echoes-letter-spacing-decreased);
   color: var(--echoes-color-text-strong);
 }
 
@@ -16,6 +17,7 @@ exports[`renders as default 1`] = `
 exports[`renders as div 1`] = `
 .emotion-0 {
   font: var(--echoes-typography-display-default);
+  letter-spacing: var(--echoes-letter-spacing-decreased);
   color: var(--echoes-color-text-strong);
 }
 
@@ -29,6 +31,7 @@ exports[`renders as div 1`] = `
 exports[`renders as paragraph 1`] = `
 .emotion-0 {
   font: var(--echoes-typography-display-default);
+  letter-spacing: var(--echoes-letter-spacing-decreased);
   color: var(--echoes-color-text-strong);
 }
 
@@ -42,6 +45,7 @@ exports[`renders as paragraph 1`] = `
 exports[`renders as span 1`] = `
 .emotion-0 {
   font: var(--echoes-typography-display-default);
+  letter-spacing: var(--echoes-letter-spacing-decreased);
   color: var(--echoes-color-text-strong);
 }
 

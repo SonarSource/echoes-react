@@ -57,6 +57,7 @@ const defaultSizeByTag: Record<HeadingTag, HeadingSize> = {
 
 const StyledHeading = styled.div<Required<Pick<HeadingProps, 'hasMarginBottom' | 'size'>>>`
   font: ${getHeadingFont};
+  letter-spacing: var(--echoes-letter-spacing-decreased);
   color: var(--echoes-color-text-strong);
   margin: 0;
   max-width: var(--echoes-sizes-typography-max-width-default);

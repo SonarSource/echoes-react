@@ -3,6 +3,7 @@
 exports[`renders a Heading as an h1 with no bottom margin 1`] = `
 .emotion-0 {
   font: var(--echoes-typography-heading-xlarge);
+  letter-spacing: var(--echoes-letter-spacing-decreased);
   color: var(--echoes-color-text-strong);
   margin: 0;
   max-width: var(--echoes-sizes-typography-max-width-default);
@@ -27,6 +28,7 @@ exports[`renders a Heading as an h1 with no bottom margin 1`] = `
 exports[`renders a Heading as an h2 with no bottom margin 1`] = `
 .emotion-0 {
   font: var(--echoes-typography-heading-large);
+  letter-spacing: var(--echoes-letter-spacing-decreased);
   color: var(--echoes-color-text-strong);
   margin: 0;
   max-width: var(--echoes-sizes-typography-max-width-default);
@@ -51,6 +53,7 @@ exports[`renders a Heading as an h2 with no bottom margin 1`] = `
 exports[`renders a Heading as an h3 with no bottom margin 1`] = `
 .emotion-0 {
   font: var(--echoes-typography-heading-medium);
+  letter-spacing: var(--echoes-letter-spacing-decreased);
   color: var(--echoes-color-text-strong);
   margin: 0;
   max-width: var(--echoes-sizes-typography-max-width-default);
@@ -75,6 +78,7 @@ exports[`renders a Heading as an h3 with no bottom margin 1`] = `
 exports[`renders a Heading as an h4 with no bottom margin 1`] = `
 .emotion-0 {
   font: var(--echoes-typography-heading-small);
+  letter-spacing: var(--echoes-letter-spacing-decreased);
   color: var(--echoes-color-text-strong);
   margin: 0;
   max-width: var(--echoes-sizes-typography-max-width-default);
@@ -99,6 +103,7 @@ exports[`renders a Heading as an h4 with no bottom margin 1`] = `
 exports[`renders a Heading as an h5 with no bottom margin 1`] = `
 .emotion-0 {
   font: var(--echoes-typography-heading-xsmall);
+  letter-spacing: var(--echoes-letter-spacing-decreased);
   color: var(--echoes-color-text-strong);
   margin: 0;
   max-width: var(--echoes-sizes-typography-max-width-default);
@@ -123,6 +128,7 @@ exports[`renders a Heading as an h5 with no bottom margin 1`] = `
 exports[`renders a Heading with size large and a bottom margin 1`] = `
 .emotion-0 {
   font: var(--echoes-typography-heading-large);
+  letter-spacing: var(--echoes-letter-spacing-decreased);
   color: var(--echoes-color-text-strong);
   margin: 0;
   max-width: var(--echoes-sizes-typography-max-width-default);
@@ -148,6 +154,7 @@ exports[`renders a Heading with size large and a bottom margin 1`] = `
 exports[`renders a Heading with size medium and a bottom margin 1`] = `
 .emotion-0 {
   font: var(--echoes-typography-heading-medium);
+  letter-spacing: var(--echoes-letter-spacing-decreased);
   color: var(--echoes-color-text-strong);
   margin: 0;
   max-width: var(--echoes-sizes-typography-max-width-default);
@@ -173,6 +180,7 @@ exports[`renders a Heading with size medium and a bottom margin 1`] = `
 exports[`renders a Heading with size small and a bottom margin 1`] = `
 .emotion-0 {
   font: var(--echoes-typography-heading-small);
+  letter-spacing: var(--echoes-letter-spacing-decreased);
   color: var(--echoes-color-text-strong);
   margin: 0;
   max-width: var(--echoes-sizes-typography-max-width-default);
@@ -198,6 +206,7 @@ exports[`renders a Heading with size small and a bottom margin 1`] = `
 exports[`renders a Heading with size xlarge and a bottom margin 1`] = `
 .emotion-0 {
   font: var(--echoes-typography-heading-xlarge);
+  letter-spacing: var(--echoes-letter-spacing-decreased);
   color: var(--echoes-color-text-strong);
   margin: 0;
   max-width: var(--echoes-sizes-typography-max-width-default);
@@ -223,6 +232,7 @@ exports[`renders a Heading with size xlarge and a bottom margin 1`] = `
 exports[`renders a Heading with size xsmall and a bottom margin 1`] = `
 .emotion-0 {
   font: var(--echoes-typography-heading-xsmall);
+  letter-spacing: var(--echoes-letter-spacing-decreased);
   color: var(--echoes-color-text-strong);
   margin: 0;
   max-width: var(--echoes-sizes-typography-max-width-default);
@@ -248,6 +258,7 @@ exports[`renders a Heading with size xsmall and a bottom margin 1`] = `
 exports[`uses the default size 1`] = `
 .emotion-0 {
   font: var(--echoes-typography-heading-xlarge);
+  letter-spacing: var(--echoes-letter-spacing-decreased);
   color: var(--echoes-color-text-strong);
   margin: 0;
   max-width: var(--echoes-sizes-typography-max-width-default);

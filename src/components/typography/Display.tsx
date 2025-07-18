@@ -41,6 +41,7 @@ Display.displayName = 'Display';
 
 const StyledDisplay = styled.span`
   font: var(--echoes-typography-display-default);
+  letter-spacing: var(--echoes-letter-spacing-decreased);
   color: var(--echoes-color-text-strong);
 `;
 StyledDisplay.displayName = 'StyledDisplay';

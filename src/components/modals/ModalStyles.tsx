@@ -53,6 +53,7 @@ export const styleModalTitle = styled.h2`
   flex: 0 0 auto;
 
   font: var(--echoes-typography-heading-large);
+  letter-spacing: var(--echoes-letter-spacing-decreased);
   color: var(--echoes-color-text-strong);
 
   min-height: var(--echoes-dimension-height-800);
