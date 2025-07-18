@@ -61,6 +61,7 @@ export const ModalAlert = forwardRef<HTMLDivElement, ModalAlertProps>((props, re
     content,
     isDefaultOpen,
     isOpen,
+    onClose,
     onOpenChange,
     title,
     primaryButton,
@@ -87,8 +88,21 @@ export const ModalAlert = forwardRef<HTMLDivElement, ModalAlertProps>((props, re
     event.preventDefault();
   }, []);
 
+  const handleOpenChange = useCallback(
+    (isOpen: boolean) => {
+      onOpenChange?.(isOpen);
+      if (!isOpen && isDefined(onClose)) {
+        onClose();
+      }
+    },
+    [onClose, onOpenChange],
+  );
+
   return (
-    <RadixAlertDialog.Root defaultOpen={isDefaultOpen} onOpenChange={onOpenChange} open={isOpen}>
+    <RadixAlertDialog.Root
+      defaultOpen={isDefaultOpen}
+      onOpenChange={handleOpenChange}
+      open={isOpen}>
       <RadixAlertDialog.Trigger
         asChild
         {...(isDropdownMenuItemComponent(children) && { onSelect: handleSelectForDropdownMenu })}>

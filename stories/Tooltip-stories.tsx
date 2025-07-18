@@ -116,7 +116,7 @@ const ListLink = styled(Link)`
 const Pane = styled.div`
   height: 300px;
   width: 100px;
-  background: var(--echoes-color-background-neutral-weak-default);
+  background: var(--echoes-color-background-neutral-subtle-default);
   overflow: hidden;
   border: 1px solid black;
   margin: 1px;

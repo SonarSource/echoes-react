@@ -23,59 +23,61 @@ import { PropsWithLabels } from '~types/utils';
 import { SelectBase, SelectBaseProps } from './SelectCommons';
 import { SelectOption } from './SelectTypes';
 
-type Props = Omit<SelectBaseProps, 'filter' | 'isSearchable' | 'onSearch'> &
+export type SelectAsyncProps = Omit<SelectBaseProps, 'filter' | 'isSearchable' | 'onSearch'> &
   Required<Pick<SelectBaseProps, 'onSearch'>>;
 
-export const SelectAsync = forwardRef<HTMLInputElement, PropsWithLabels<Props>>((props, ref) => {
-  const { onChange, onSearch, value, ...selectProps } = props;
+export const SelectAsync = forwardRef<HTMLInputElement, PropsWithLabels<SelectAsyncProps>>(
+  (props, ref) => {
+    const { onChange, onSearch, value, ...selectProps } = props;
 
-  const previousSearchQuery = useRef<string>();
-  const selectedOptionRef = useRef<SelectOption | null>();
+    const previousSearchQuery = useRef<string>();
+    const selectedOptionRef = useRef<SelectOption | null>();
 
-  const handleSearch = useCallback(
-    (searchQuery: string) => {
-      // Avoid repeated queries (this callback is triggered repeatedly with the same query)
-      const queryIsRepeated = searchQuery === previousSearchQuery.current;
-      if (onSearch === undefined || queryIsRepeated) {
-        return;
-      }
+    const handleSearch = useCallback(
+      (searchQuery: string) => {
+        // Avoid repeated queries (this callback is triggered repeatedly with the same query)
+        const queryIsRepeated = searchQuery === previousSearchQuery.current;
+        if (onSearch === undefined || queryIsRepeated) {
+          return;
+        }
 
-      // Prevent search from being triggered when we select a value
-      const searchQueryIsCurrentOptionLabel = searchQuery === selectedOptionRef.current?.label;
+        // Prevent search from being triggered when we select a value
+        const searchQueryIsCurrentOptionLabel = searchQuery === selectedOptionRef.current?.label;
 
-      if (!searchQueryIsCurrentOptionLabel) {
-        previousSearchQuery.current = searchQuery;
-        onSearch(searchQuery);
-      }
-    },
-    [onSearch],
-  );
+        if (!searchQueryIsCurrentOptionLabel) {
+          previousSearchQuery.current = searchQuery;
+          onSearch(searchQuery);
+        }
+      },
+      [onSearch],
+    );
 
-  const handleChange = useCallback(
-    (value: string | null, option: SelectOption) => {
-      /*
-       * Current selected option value is saved to prevent the search
-       * from being triggered when we select a value. (See comment above `selectedOptionLabel`)
-       */
-      selectedOptionRef.current = option;
+    const handleChange = useCallback(
+      (value: string | null, option: SelectOption) => {
+        /*
+         * Current selected option value is saved to prevent the search
+         * from being triggered when we select a value. (See comment above `selectedOptionLabel`)
+         */
+        selectedOptionRef.current = option;
 
-      if (onChange) {
-        onChange(value, option);
-      }
-    },
-    [onChange],
-  );
+        if (onChange) {
+          onChange(value, option);
+        }
+      },
+      [onChange],
+    );
 
-  return (
-    <SelectBase
-      filter={() => true} // Filtering is done on search
-      isSearchable
-      onChange={handleChange}
-      onSearch={handleSearch}
-      ref={ref}
-      value={value ?? null}
-      {...selectProps}
-    />
-  );
-});
+    return (
+      <SelectBase
+        filter={() => true} // Filtering is done on search
+        isSearchable
+        onChange={handleChange}
+        onSearch={handleSearch}
+        ref={ref}
+        value={value ?? null}
+        {...selectProps}
+      />
+    );
+  },
+);
 SelectAsync.displayName = 'SelectAsync';

@@ -24,11 +24,11 @@ import { useIntl } from 'react-intl';
 import { isStringDefined } from '~common/helpers/types';
 import { LogoProps, LogoSvgWrapper } from './logoUtils';
 
-interface Props extends LogoProps {
+export interface LogoSonarQubeCloudProps extends LogoProps {
   region?: string;
 }
 
-export const LogoSonarQubeCloud = forwardRef<SVGSVGElement, Props>(
+export const LogoSonarQubeCloud = forwardRef<SVGSVGElement, LogoSonarQubeCloudProps>(
   ({ hasText = false, region, size, ...props }, ref) => {
     const intl = useIntl();
 
@@ -162,7 +162,7 @@ LogoWithTextWrapper.displayName = 'LogoWithTextWrapper';
 
 const RegionText = styled.span`
   margin-top: -3px;
-  color: var(--echoes-color-text-subdued);
+  color: var(--echoes-color-text-subtle);
   font: var(--echoes-typography-text-default-semi-bold);
   font-size: 0.688rem;
 `;

@@ -194,7 +194,7 @@ const StyledSelectionCard = styled(RadioGroup.Item)`
 
   text-align: start;
 
-  background: var(--echoes-color-background-default);
+  background: var(--echoes-color-surface-default);
   border: var(--echoes-border-width-default) solid var(--echoes-color-border-bold);
   border-radius: var(--echoes-border-radius-400);
 
@@ -209,7 +209,7 @@ const StyledSelectionCard = styled(RadioGroup.Item)`
   }
 
   &:hover {
-    background-color: var(--echoes-color-background-default-hover);
+    background-color: var(--echoes-color-surface-hover);
     box-shadow: var(--echoes-box-shadow-small);
   }
 
@@ -230,7 +230,7 @@ const StyledSelectionCard = styled(RadioGroup.Item)`
 
   &:disabled {
     cursor: default;
-    background-color: var(--echoes-color-background-disabled);
+    background-color: var(--echoes-color-surface-disabled);
     border-color: var(--echoes-color-border-disabled);
     box-shadow: none;
   }

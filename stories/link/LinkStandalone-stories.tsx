@@ -61,7 +61,7 @@ export const LinkStandaloneExternal: Story = {
   args: {
     ...defaultArgs,
     children: 'Standalone External Link',
-    shouldOpenInNewTab: true,
+    enableOpenInNewTab: true,
   },
 };
 
@@ -90,6 +90,6 @@ export const LinkAsButton: Story = {
         defaultValue: { summary: 'button' },
       },
     },
-    ...toDisabledControlArgType('shouldBlurAfterClick', 'title'),
+    ...toDisabledControlArgType('enableBlurAfterClick', 'title'),
   },
 };

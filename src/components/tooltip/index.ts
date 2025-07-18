@@ -18,5 +18,5 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-export { Tooltip, TooltipAlign, TooltipSide } from './Tooltip';
-export { TooltipProvider } from './TooltipProvider';
+export { Tooltip, TooltipAlign, TooltipSide, type TooltipProps } from './Tooltip';
+export { TooltipProvider, type TooltipProviderProps } from './TooltipProvider';

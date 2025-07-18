@@ -56,11 +56,11 @@ export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPr
       isLoading,
       onClick,
       prefix,
-      shouldPreventDefault = false,
-      shouldStopPropagation = false,
+      enablePreventDefault = false,
+      enableStopPropagation = false,
       size = ButtonSize.Large,
       variety = ButtonVariety.Default,
-      shouldOpenInNewTab = false,
+      enableOpenInNewTab = false,
       suffix,
       to,
       type = 'button',
@@ -83,7 +83,7 @@ export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPr
       return (
         <ButtonAsLink
           {...restProps}
-          {...getShouldOpenInNewTabProps({ shouldOpenInNewTab, to })}
+          {...getShouldOpenInNewTabProps({ enableOpenInNewTab, to })}
           autoFocus={hasAutoFocus}
           css={commonStyles}
           onClick={handleClick}
@@ -92,7 +92,7 @@ export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPr
           <ButtonContent
             isLoading={isLoading}
             prefix={prefix}
-            suffix={suffix || <LinkOpenInNewTabSuffix shouldOpenInNewTab={shouldOpenInNewTab} />}>
+            suffix={suffix || <LinkOpenInNewTabSuffix enableOpenInNewTab={enableOpenInNewTab} />}>
             {children}
           </ButtonContent>
         </ButtonAsLink>
@@ -140,19 +140,19 @@ function ButtonContent(
 ButtonContent.displayName = 'ButtonContent';
 
 export function useButtonClickHandler(
-  props: Pick<ButtonBaseProps, 'isDisabled' | 'shouldPreventDefault' | 'shouldStopPropagation'> & {
+  props: Pick<ButtonBaseProps, 'isDisabled' | 'enablePreventDefault' | 'enableStopPropagation'> & {
     onClick?: (event: MouseEvent<HTMLButtonElement | HTMLAnchorElement>) => unknown;
   },
 ) {
-  const { isDisabled, onClick, shouldPreventDefault, shouldStopPropagation } = props;
+  const { isDisabled, onClick, enablePreventDefault, enableStopPropagation } = props;
 
   return useCallback(
     (event: MouseEvent<HTMLButtonElement | HTMLAnchorElement>) => {
-      if (shouldPreventDefault || isDisabled) {
+      if (enablePreventDefault || isDisabled) {
         event.preventDefault();
       }
 
-      if (shouldStopPropagation) {
+      if (enableStopPropagation) {
         event.stopPropagation();
       }
 
@@ -160,7 +160,7 @@ export function useButtonClickHandler(
         onClick(event);
       }
     },
-    [isDisabled, onClick, shouldPreventDefault, shouldStopPropagation],
+    [isDisabled, onClick, enablePreventDefault, enableStopPropagation],
   );
 }
 

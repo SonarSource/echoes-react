@@ -20,7 +20,7 @@
 
 import './icons.css';
 
-export type { IconProps } from './IconWrapper';
+export type { IconFilledProps, IconProps } from './IconWrapper';
 
 export { IconArrowDown } from './IconArrowDown';
 export { IconArrowDownRight } from './IconArrowDownRight';

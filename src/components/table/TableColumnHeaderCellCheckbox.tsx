@@ -22,7 +22,7 @@ import { forwardRef } from 'react';
 import { Checkbox, CheckboxProps } from '../checkbox';
 import { StyledTableColumnHeaderCell } from './TableStyles';
 
-export interface Props {
+interface Props {
   cellClassName?: string;
 }
 

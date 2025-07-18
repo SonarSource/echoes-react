@@ -228,7 +228,7 @@ export const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>((props
 
   return (
     <SearchInputWrapper className={className} data-width={width}>
-      <InputPrefix>
+      <InputPrefix data-disabled={isDisabled || undefined}>
         <IconSearch />
       </InputPrefix>
       <SearchInputStyled

@@ -22,15 +22,15 @@ import styled from '@emotion/styled';
 import * as radixNavigationMenu from '@radix-ui/react-navigation-menu';
 import { PropsWithChildren, forwardRef } from 'react';
 
-export interface GlobalNavigationItemProps
+export interface GlobalNavigationItemsContainerProps
   extends PropsWithChildren<radixNavigationMenu.NavigationMenuProps> {
   className?: string;
 }
 
 export const GlobalNavigationItemsContainer = forwardRef<
   HTMLUListElement,
-  GlobalNavigationItemProps
->(({ children, className, ...radixProps }: Readonly<GlobalNavigationItemProps>, ref) => {
+  GlobalNavigationItemsContainerProps
+>(({ children, className, ...radixProps }: Readonly<GlobalNavigationItemsContainerProps>, ref) => {
   return (
     <radixNavigationMenu.Root>
       <StyledNavigationMenuRoot ref={ref} {...radixProps}>

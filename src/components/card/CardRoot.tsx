@@ -19,16 +19,16 @@
  */
 
 import React, { createContext } from 'react';
-import { CardStyled } from './CardStyles';
 import { CardSize } from './CardSize';
+import { CardStyled } from './CardStyles';
 
 export interface CardProps {
   children: React.ReactNode;
   className?: string;
-  size?: CardSize;
+  size?: `${CardSize}`;
 }
 
-const CardContext = createContext<CardSize>(CardSize.Medium);
+const CardContext = createContext<`${CardSize}`>(CardSize.Medium);
 
 export function useCardSize() {
   return React.useContext(CardContext);

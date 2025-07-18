@@ -19,14 +19,14 @@
  */
 
 import { HeadlessMantineProvider } from '@mantine/core';
-import { ComponentProps, PropsWithChildren } from 'react';
+import { PropsWithChildren } from 'react';
 import { useIntl } from 'react-intl';
 import { Toaster as ToastContainer } from 'sonner';
 import { ToastGlobalStyles } from '~common/components/Toast';
-import { TooltipProvider, TypographyGlobalStyles } from '..';
+import { TooltipProvider, TooltipProviderProps, TypographyGlobalStyles } from '..';
 import { SelectGlobalStyles } from '../select/SelectCommons';
 
-interface Props {
+export interface EchoesProviderProps {
   /**
    * Custom class name for all the toasts (optional).
    */
@@ -42,7 +42,7 @@ interface Props {
    * Controls the global delay duration for all tooltips in the application.
    * If not specified, the default tooltip delay of 500ms will be used.
    */
-  tooltipsDelayDuration?: ComponentProps<typeof TooltipProvider>['delayDuration'];
+  tooltipsDelayDuration?: TooltipProviderProps['delayDuration'];
 }
 
 /**
@@ -86,7 +86,7 @@ interface Props {
  * }
  * ```
  */
-export function EchoesProvider(props: PropsWithChildren<Props>) {
+export function EchoesProvider(props: PropsWithChildren<EchoesProviderProps>) {
   const { children, tooltipsDelayDuration, toastsClassName, toastsVisibleNb = 5 } = props;
   const intl = useIntl();
 

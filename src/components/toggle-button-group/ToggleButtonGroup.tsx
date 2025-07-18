@@ -109,7 +109,7 @@ const StyledRoot = styled(RadixToggleGroup.Root)`
   flex-direction: row;
   align-items: center;
 
-  background-color: var(--echoes-color-background-neutral-weak-default);
+  background-color: var(--echoes-color-background-neutral-subtle-default);
   border-radius: var(--echoes-border-radius-200);
 `;
 
@@ -161,7 +161,7 @@ const StyledItem = styled(RadixToggleGroup.Item)`
   cursor: pointer;
 
   &:hover:not([data-state='on'], :disabled) ${StyledItemInner} {
-    background-color: var(--echoes-color-background-neutral-bolder);
+    background-color: var(--echoes-color-background-neutral-bolder-default);
   }
 
   &:focus-visible {
@@ -173,12 +173,12 @@ const StyledItem = styled(RadixToggleGroup.Item)`
 
   &:disabled {
     color: var(--echoes-color-text-disabled);
-    background-color: var(--echoes-color-background-disabled);
+    background-color: var(--echoes-color-surface-disabled);
     cursor: default;
   }
 
   &[data-state='on'] {
-    background-color: var(--echoes-color-background-default);
+    background-color: var(--echoes-color-surface-default);
     border-color: var(--echoes-color-border-bold);
     border-radius: var(--echoes-border-radius-200);
     font-weight: var(--echoes-font-weight-semi-bold);

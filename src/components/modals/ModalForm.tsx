@@ -119,11 +119,12 @@ export const ModalForm = forwardRef<HTMLDivElement, ModalFormProps>((props, ref)
     isSubmitting = false,
     method,
     name,
+    onClose,
     onReset,
     onSubmit,
     onInvalid,
     secondaryButtonLabel,
-    shouldUseBrowserValidation,
+    enableBrowserValidation,
     submitButtonLabel,
     target,
     ...modalProps
@@ -135,23 +136,29 @@ export const ModalForm = forwardRef<HTMLDivElement, ModalFormProps>((props, ref)
       const submitResult = onSubmit?.(event);
       if (submitResult instanceof Promise) {
         return submitResult.then(
-          () => setIsOpen(false),
+          () => {
+            setIsOpen(false);
+            onClose?.();
+          },
           () => {
             // Do nothing on reject
           },
         );
       }
       setIsOpen(false);
+      onClose?.();
+      return undefined;
     },
-    [onSubmit],
+    [onClose, onSubmit],
   );
 
   const onFormReset = useCallback(
     (event: FormEvent<HTMLFormElement>) => {
       onReset?.(event);
       setIsOpen(false);
+      onClose?.();
     },
-    [onReset],
+    [onClose, onReset],
   );
 
   const defaultId = `${useId()}modal-form`;
@@ -168,19 +175,20 @@ export const ModalForm = forwardRef<HTMLDivElement, ModalFormProps>((props, ref)
       content={
         <Form
           action={action}
+          enableBrowserValidation={enableBrowserValidation}
           id={formId}
           method={method}
           name={name}
           onInvalid={onInvalid}
           onReset={onFormReset}
           onSubmit={onFormSubmit}
-          shouldUseBrowserValidation={shouldUseBrowserValidation}
           target={target}>
           {extraContent}
           {content}
         </Form>
       }
       isOpen={isOpen}
+      onClose={onClose}
       onOpenChange={setIsOpen}
       primaryButton={
         <Button

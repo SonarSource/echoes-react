@@ -135,24 +135,29 @@ export function isDropdownMenuItemComponent(node: any): boolean {
 const StyledIconCheck = styled(IconCheck)`
   font-size: var(--echoes-font-size-20);
 `;
+StyledIconCheck.displayName = 'StyledIconCheck';
 
 const CheckmarkPlaceholder = styled(StyledIconCheck)`
   visibility: hidden;
 `;
+CheckmarkPlaceholder.displayName = 'CheckmarkPlaceholder';
 
 const StyledPrefix = styled.span`
   align-items: center;
   display: flex;
   flex: 0 0 auto;
 `;
+StyledPrefix.displayName = 'StyledPrefix';
 
 const StyledLeftHandSide = styled.div`
   align-items: center;
   column-gap: var(--echoes-dimension-space-100);
   display: flex;
+  min-width: 0; // Necessary for ellipsis
   flex: 1 1 auto;
   justify-content: flex-start;
 `;
+StyledLeftHandSide.displayName = 'StyledLeftHandSide';
 
 const StyledLabelAndHelpText = styled.div`
   display: flex;
@@ -160,33 +165,39 @@ const StyledLabelAndHelpText = styled.div`
   flex-direction: column;
   justify-content: space-between;
   overflow: hidden;
-  row-gap: var(---echoes-dimension-space-25);
+  row-gap: var(--echoes-dimension-space-25);
 `;
+StyledLabelAndHelpText.displayName = 'StyledLabelAndHelpText';
 
 const StyledLabel = styled.span`
+  overflow: hidden;
+
   &,
   * {
     text-overflow: ellipsis;
     white-space: nowrap;
   }
 `;
+StyledLabel.displayName = 'StyledLabel';
 
 const StyledHelpText = styled.span<{ isDisabled?: boolean }>`
   color: ${(props) =>
-    props.isDisabled ? 'var(--echoes-color-text-disabled)' : 'var(--echoes-color-text-subdued)'};
+    props.isDisabled ? 'var(--echoes-color-text-disabled)' : 'var(--echoes-color-text-subtle)'};
   font: var(--echoes-typography-others-helper-text);
 `;
+StyledHelpText.displayName = 'StyledHelpText';
 
 const StyledSuffix = styled.span`
   align-items: center;
-  color: var(--echoes-color-text-subdued);
+  color: var(--echoes-color-text-subtle);
   display: flex;
   flex: 0 0 auto;
   justify-content: flex-end;
 `;
+StyledSuffix.displayName = 'StyledSuffix';
 
 const StyledRadixDropdownMenuItem = styled(radixDropdownMenu.Item)`
-  background-color: var(--echoes-color-background-default);
+  background-color: var(--echoes-color-surface-default);
   color: var(--echoes-color-text-default);
   font: var(--echoes-typography-text-default-regular);
 
@@ -198,10 +209,6 @@ const StyledRadixDropdownMenuItem = styled(radixDropdownMenu.Item)`
 
   cursor: pointer;
 
-  * {
-    overflow: hidden;
-  }
-
   &:focus-visible {
     border-radius: var(--echoes-border-radius-400);
     outline: var(--echoes-color-focus-default) solid var(--echoes-focus-border-width-default);
@@ -209,19 +216,20 @@ const StyledRadixDropdownMenuItem = styled(radixDropdownMenu.Item)`
   }
 
   &:hover {
-    background-color: var(--echoes-color-background-default-hover);
+    background-color: var(--echoes-color-surface-hover);
     border-radius: 0;
     outline: none;
   }
 
   /* when the item is clicked */
   &:active {
-    background-color: var(--echoes-color-background-default-active);
+    background-color: var(--echoes-color-surface-active);
   }
 
   &[data-disabled] {
-    background-color: var(--echoes-color-background-default);
+    background-color: var(--echoes-color-surface-default);
     color: var(--echoes-color-text-disabled);
     cursor: default;
   }
 `;
+StyledRadixDropdownMenuItem.displayName = 'StyledRadixDropdownMenuItem';

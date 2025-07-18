@@ -19,5 +19,5 @@
  */
 
 export { Banner } from './Banner';
-export { BannerType } from './BannerTypes';
+export { BannerVariety } from './BannerTypes';
 export type { BannerProps } from './BannerTypes';

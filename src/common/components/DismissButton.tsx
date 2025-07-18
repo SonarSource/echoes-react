@@ -57,7 +57,7 @@ const DismissButtonStyled = styled(ButtonStyled)`
 
   justify-content: center;
 
-  background-color: var(--echoes-color-background-transparent);
+  background-color: var(--echoes-color-background-utility-transparent);
   border-radius: var(--echoes-border-radius-200);
 `;
 DismissButtonStyled.displayName = 'DismissButtonStyled';

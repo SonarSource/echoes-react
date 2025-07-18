@@ -22,19 +22,19 @@ import styled from '@emotion/styled';
 import { ComponentPropsWithoutRef, forwardRef, ReactNode } from 'react';
 import { useIntl } from 'react-intl';
 import { BUTTON_VARIETY_STYLES, ButtonStyled } from '../buttons/ButtonStyles';
-import { DropdownMenu, DropdownMenuProps } from '../dropdown-menu/DropdownMenu';
+import { DropdownMenu, DropdownMenuProps } from '../dropdown-menu';
 import { Tooltip } from '../tooltip';
 
 type TooltipProps = ComponentPropsWithoutRef<typeof Tooltip>;
 
-export interface GlobalNavigationActionProps extends Omit<DropdownMenuProps, 'children'> {
+export interface GlobalNavigationAccountProps extends Omit<DropdownMenuProps, 'children'> {
   ariaLabel?: string;
   avatar: ReactNode;
   tooltipContent?: TooltipProps['content'];
 }
 
-export const GlobalNavigationAccount = forwardRef<HTMLButtonElement, GlobalNavigationActionProps>(
-  (props: Readonly<GlobalNavigationActionProps>, ref) => {
+export const GlobalNavigationAccount = forwardRef<HTMLButtonElement, GlobalNavigationAccountProps>(
+  (props: Readonly<GlobalNavigationAccountProps>, ref) => {
     const { ariaLabel, avatar, tooltipContent = props.ariaLabel, ...dropdownProps } = props;
 
     const intl = useIntl();

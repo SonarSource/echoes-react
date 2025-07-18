@@ -214,13 +214,13 @@ const BADGE_VARIETY_STYLES = {
   [BadgeVariety.Neutral]: {
     '--badge-color': 'var(--echoes-color-text-default)',
     '--badge-border-color': 'var(--echoes-color-border-weak)',
-    '--badge-background-color': 'var(--echoes-color-background-neutral-weak-default)',
+    '--badge-background-color': 'var(--echoes-color-background-neutral-subtle-default)',
     '--badge-interactive-backgroud-color-active':
-      'var(--echoes-color-background-neutral-weak-active)',
+      'var(--echoes-color-background-neutral-subtle-active)',
     '--badge-interactive-backgroud-color-focus':
-      'var(--echoes-color-background-neutral-weak-focus)',
+      'var(--echoes-color-background-neutral-subtle-focus)',
     '--badge-interactive-backgroud-color-hover':
-      'var(--echoes-color-background-neutral-weak-hover)',
+      'var(--echoes-color-background-neutral-subtle-hover)',
   },
   [BadgeVariety.Success]: {
     '--badge-color': 'var(--echoes-color-text-success)',
@@ -274,10 +274,10 @@ const BADGE_HIGH_CONTRAST_VARIETY_STYLES = {
   [BadgeVariety.Neutral]: {
     '--badge-color': 'var(--echoes-color-text-on-color)',
     '--badge-border-color': 'transparent',
-    '--badge-background-color': 'var(--echoes-color-background-inverse)',
-    '--badge-interactive-backgroud-color-active': 'var(--echoes-color-background-neutral-active)',
-    '--badge-interactive-backgroud-color-focus': 'var(--echoes-color-background-neutral-focus)',
-    '--badge-interactive-backgroud-color-hover': 'var(--echoes-color-background-neutral-hover)',
+    '--badge-background-color': 'var(--echoes-color-surface-inverse-default)',
+    '--badge-interactive-backgroud-color-active': 'var(--echoes-color-surface-inverse-active)',
+    '--badge-interactive-backgroud-color-focus': 'var(--echoes-color-surface-inverse-focus)',
+    '--badge-interactive-backgroud-color-hover': 'var(--echoes-color-surface-inverse-hover)',
   },
   [BadgeVariety.Success]: {
     '--badge-color': 'var(--echoes-color-text-on-color)',

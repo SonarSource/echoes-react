@@ -26,7 +26,7 @@ import { ButtonCommonProps, HTMLButtonAttributesSubset } from './ButtonTypes';
 
 type LinkPropsSubset = Pick<
   LinkBaseProps,
-  'to' | 'download' | 'reloadDocument' | 'shouldOpenInNewTab' | 'state'
+  'to' | 'download' | 'reloadDocument' | 'enableOpenInNewTab' | 'state'
 >;
 
 export type LinkPropsForbiddenForButton = {

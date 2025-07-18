@@ -3,23 +3,23 @@
     "banner": {
       "sizes": {
         "height": {
-          "value": "2.75rem",
-          "type": "sizing"
+          "$type": "sizing",
+          "$value": "2.75rem"
         }
       }
     },
     "form-control": {
       "borderRadius": {
         "default": {
-          "value": "{echoes.borderRadius.400}",
-          "type": "borderRadius"
+          "$type": "borderRadius",
+          "$value": "{echoes.borderRadius.400}"
         }
       },
       "sizes": {
         "height": {
           "default": {
-            "value": "{echoes.dimension.height.900}",
-            "type": "sizing"
+            "$type": "sizing",
+            "$value": "{echoes.dimension.height.900}"
           }
         }
       }
@@ -29,24 +29,24 @@
         "max": {
           "width": {
             "default": {
-              "value": "1280px",
-              "type": "sizing"
+              "$type": "sizing",
+              "$value": "1280px"
             },
             "large": {
-              "value": "1560px",
-              "type": "sizing"
+              "$type": "sizing",
+              "$value": "1560px"
             },
             "full": {
-              "value": "100%",
-              "type": "sizing"
+              "$type": "sizing",
+              "$value": "100%"
             }
           }
         },
         "min": {
           "width": {
             "default": {
-              "value": "1280px",
-              "type": "sizing"
+              "$type": "sizing",
+              "$value": "1280px"
             }
           }
         }
@@ -56,105 +56,105 @@
       "overlays": {
         "maxWidth": {
           "default": {
-            "value": "{echoes.dimension.width.5000}",
-            "type": "sizing"
+            "$type": "sizing",
+            "$value": "{echoes.dimension.width.5000}"
           }
         },
         "minWidth": {
           "default": {
-            "value": "150px",
-            "type": "sizing"
+            "$type": "sizing",
+            "$value": "150px"
           }
         },
         "width": {
           "small": {
-            "value": "25rem",
-            "type": "sizing"
+            "$type": "sizing",
+            "$value": "25rem"
           },
           "default": {
-            "value": "37.5rem",
-            "type": "sizing"
+            "$type": "sizing",
+            "$value": "37.5rem"
           },
           "wide": {
-            "value": "62.5rem",
-            "type": "sizing"
+            "$type": "sizing",
+            "$value": "62.5rem"
           }
         },
         "maxHeight": {
           "default": {
-            "value": "80vh",
-            "type": "sizing"
+            "$type": "sizing",
+            "$value": "80vh"
           }
         }
       },
       "form-field": {
         "small": {
-          "value": "150px",
-          "type": "sizing"
+          "$type": "sizing",
+          "$value": "150px"
         },
         "medium": {
-          "value": "250px",
-          "type": "sizing"
+          "$type": "sizing",
+          "$value": "250px"
         },
         "large": {
-          "value": "350px",
-          "type": "sizing"
+          "$type": "sizing",
+          "$value": "350px"
         },
         "full": {
-          "value": "100%",
-          "type": "sizing"
+          "$type": "sizing",
+          "$value": "100%"
         }
       },
       "buttons": {
         "medium": {
-          "value": "{echoes.dimension.height.800}",
-          "type": "sizing"
+          "$type": "sizing",
+          "$value": "{echoes.dimension.height.800}"
         },
         "large": {
-          "value": "{echoes.dimension.height.900}",
-          "type": "sizing"
+          "$type": "sizing",
+          "$value": "{echoes.dimension.height.900}"
         }
       },
       "toggletips": {
         "height": {
-          "value": "1rem",
-          "type": "sizing"
+          "$type": "sizing",
+          "$value": "1rem"
         },
         "width": {
-          "value": "1rem",
-          "type": "sizing"
+          "$type": "sizing",
+          "$value": "1rem"
         }
       },
       "typography": {
         "maxWidth": {
           "default": {
-            "value": "650px",
-            "type": "sizing",
-            "description": "Use as max width in typography components"
+            "$type": "sizing",
+            "$value": "650px",
+            "$description": "Use as max width in typography components"
           }
         }
       },
       "logo": {
         "height": {
           "small": {
-            "value": "2rem",
-            "type": "sizing"
+            "$type": "sizing",
+            "$value": "2rem"
           },
           "medium": {
-            "value": "2.25rem",
-            "type": "sizing"
+            "$type": "sizing",
+            "$value": "2.25rem"
           },
           "large": {
-            "value": "2.5rem",
-            "type": "sizing"
+            "$type": "sizing",
+            "$value": "2.5rem"
           }
         }
       },
       "breadcrumbs": {
         "maxWidth": {
           "default": {
-            "value": "300px",
-            "type": "sizing"
+            "$type": "sizing",
+            "$value": "300px"
           }
         }
       }
@@ -164,12 +164,12 @@
         "submenu": {
           "panel": {
             "vertical": {
-              "value": "0px",
-              "type": "sizing"
+              "$type": "sizing",
+              "$value": "0px"
             },
             "horizontal": {
-              "value": "8px",
-              "type": "sizing"
+              "$type": "sizing",
+              "$value": "8px"
             }
           }
         }
@@ -180,9 +180,9 @@
         "row": {
           "minWidth": {
             "default": {
-              "value": "53px",
-              "type": "sizing",
-              "description": "This is the minimum size we want for the row, regardless of the padding. It includes the 1px border, and as such must be used with box-sizing: border-box."
+              "$type": "sizing",
+              "$value": "53px",
+              "$description": "This is the minimum size we want for the row, regardless of the padding. It includes the 1px border, and as such must be used with box-sizing: border-box."
             }
           }
         }
@@ -191,8 +191,8 @@
     "toast": {
       "sizes": {
         "width": {
-          "value": "25rem",
-          "type": "sizing"
+          "$type": "sizing",
+          "$value": "25rem"
         }
       }
     }

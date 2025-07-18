@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`renders correctly 1`] = `
 .emotion-0 {
@@ -25,7 +25,7 @@ exports[`renders correctly 1`] = `
 exports[`renders correctly with isSubdued 1`] = `
 .emotion-0 {
   font: var(--echoes-typography-others-label);
-  color: var(--echoes-color-text-subdued);
+  color: var(--echoes-color-text-subtle);
 }
 
 <div>

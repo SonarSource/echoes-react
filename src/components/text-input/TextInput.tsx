@@ -100,7 +100,7 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>((props, re
       validationMessageId={validationMessageId}
       width={width}>
       <InputWrapper>
-        {prefix && <InputPrefix>{prefix}</InputPrefix>}
+        {prefix && <InputPrefix data-disabled={isDisabled || undefined}>{prefix}</InputPrefix>}
         <InputStyled
           aria-describedby={describedBy}
           aria-invalid={validation === FormFieldValidation.Invalid}
@@ -117,7 +117,7 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>((props, re
           type={type}
           {...rest}
         />
-        {suffix && <InputSuffix>{suffix}</InputSuffix>}
+        {suffix && <InputSuffix data-disabled={isDisabled || undefined}>{suffix}</InputSuffix>}
       </InputWrapper>
     </FormField>
   );

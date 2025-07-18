@@ -20,17 +20,17 @@
 
 import styled from '@emotion/styled';
 
-interface Props {
+export interface LabelProps {
   as?: 'div' | 'label' | 'span';
   className?: string;
   htmlFor?: string;
   isSubdued?: boolean;
 }
 
-export const Label = styled.label<Props>`
+export const Label = styled.label<LabelProps>`
   font: var(--echoes-typography-others-label);
   color: ${({ isSubdued }) =>
-    isSubdued ? 'var(--echoes-color-text-subdued)' : 'var(--echoes-color-text-default)'};
+    isSubdued ? 'var(--echoes-color-text-subtle)' : 'var(--echoes-color-text-default)'};
 `;
 
 Label.displayName = 'Label';

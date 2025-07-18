@@ -37,31 +37,6 @@ export interface TableColumnHeaderCellProps {
   toggleTip?: ToggleTipProps;
 }
 
-function getSortProps(direction?: TableColumnHeaderCellProps['sortDirection']): {
-  aria: React.AriaAttributes['aria-sort'];
-  icon: ReactNode;
-} {
-  switch (direction) {
-    case TableSortDirection.Asc:
-      return {
-        aria: 'ascending',
-        icon: <IconArrowUp />,
-      };
-
-    case TableSortDirection.Desc:
-      return {
-        aria: 'descending',
-        icon: <IconArrowDown />,
-      };
-
-    default:
-      return {
-        aria: undefined,
-        icon: <StyledSortIconPlaceholder />,
-      };
-  }
-}
-
 export const TableColumnHeaderCell = forwardRef<HTMLTableCellElement, TableColumnHeaderCellProps>(
   (props, ref) => {
     const {
@@ -123,8 +98,35 @@ const StyledSortIconPlaceholder = styled(IconArrowUp)`
     visibility: visible;
   }
 `;
+StyledSortIconPlaceholder.displayName = 'StyledSortIconPlaceholder';
 
 /* Necessary to play well with 'min-content' */
 const StyledToggleTip = styled(ToggleTip)`
   flex: 0 0 auto;
 `;
+StyledToggleTip.displayName = 'StyledToggleTip';
+
+function getSortProps(direction?: TableColumnHeaderCellProps['sortDirection']): {
+  aria: React.AriaAttributes['aria-sort'];
+  icon: ReactNode;
+} {
+  switch (direction) {
+    case TableSortDirection.Asc:
+      return {
+        aria: 'ascending',
+        icon: <IconArrowUp />,
+      };
+
+    case TableSortDirection.Desc:
+      return {
+        aria: 'descending',
+        icon: <IconArrowDown />,
+      };
+
+    default:
+      return {
+        aria: undefined,
+        icon: <StyledSortIconPlaceholder />,
+      };
+  }
+}

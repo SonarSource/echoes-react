@@ -28,26 +28,26 @@ export const LinkBase = forwardRef<HTMLAnchorElement | HTMLButtonElement, LinkPr
   (props, ref) => {
     const {
       children,
-      shouldBlurAfterClick = false,
+      enableBlurAfterClick = false,
       onClick,
-      shouldPreventDefault = false,
-      shouldStopPropagation = false,
-      shouldOpenInNewTab = false,
+      enablePreventDefault = false,
+      enableStopPropagation = false,
+      enableOpenInNewTab = false,
       type = 'button',
       ...restProps
     } = props;
 
     const handleClick = useCallback(
       (event: MouseEvent<HTMLButtonElement | HTMLAnchorElement>) => {
-        if (shouldBlurAfterClick) {
+        if (enableBlurAfterClick) {
           event.currentTarget.blur();
         }
 
-        if (shouldPreventDefault) {
+        if (enablePreventDefault) {
           event.preventDefault();
         }
 
-        if (shouldStopPropagation) {
+        if (enableStopPropagation) {
           event.stopPropagation();
         }
 
@@ -55,7 +55,7 @@ export const LinkBase = forwardRef<HTMLAnchorElement | HTMLButtonElement, LinkPr
           onClick(event);
         }
       },
-      [onClick, shouldBlurAfterClick, shouldPreventDefault, shouldStopPropagation],
+      [onClick, enableBlurAfterClick, enablePreventDefault, enableStopPropagation],
     );
 
     if (isLinkAsButton(props)) {
@@ -75,13 +75,13 @@ export const LinkBase = forwardRef<HTMLAnchorElement | HTMLButtonElement, LinkPr
 
     return (
       <RouterLink
-        {...getShouldOpenInNewTabProps({ shouldOpenInNewTab, to })}
+        {...getShouldOpenInNewTabProps({ enableOpenInNewTab, to })}
         {...restProps}
         onClick={handleClick}
         ref={ref as ForwardedRef<HTMLAnchorElement>}
         to={to}>
         {children}
-        <LinkOpenInNewTabSuffix hasUnbreakableSpace shouldOpenInNewTab={shouldOpenInNewTab} />
+        <LinkOpenInNewTabSuffix enableOpenInNewTab={enableOpenInNewTab} hasUnbreakableSpace />
       </RouterLink>
     );
   },
@@ -90,10 +90,10 @@ export const LinkBase = forwardRef<HTMLAnchorElement | HTMLButtonElement, LinkPr
 LinkBase.displayName = 'LinkBase';
 
 export function getShouldOpenInNewTabProps({
-  shouldOpenInNewTab,
+  enableOpenInNewTab,
   to,
-}: Pick<LinkProps, 'shouldOpenInNewTab' | 'to'>) {
-  return shouldOpenInNewTab
+}: Pick<LinkProps, 'enableOpenInNewTab' | 'to'>) {
+  return enableOpenInNewTab
     ? {
         rel: `noopener${typeof to === 'string' && isSonarLink(to) ? '' : ' noreferrer nofollow'}`,
         /* eslint-disable-next-line react/jsx-no-target-blank -- we only allow noopener noreferrer for known external links */

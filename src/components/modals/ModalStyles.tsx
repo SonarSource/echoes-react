@@ -29,10 +29,10 @@ export const styleModalOverlay = styled.div`
   position: fixed;
   inset: 0;
 
-  background: var(--echoes-color-background-back-drop-default);
+  background: var(--echoes-color-overlays-back-drop-default);
 `.withComponent;
 
-export const styleModalWrapper = styled.div<{ size: ModalSize }>`
+export const styleModalWrapper = styled.div<{ size: `${ModalSize}` }>`
   display: flex;
   flex-direction: column;
 
@@ -45,7 +45,7 @@ export const styleModalWrapper = styled.div<{ size: ModalSize }>`
   width: ${(props) => SIZES[props.size]};
 
   border-radius: var(--echoes-border-radius-400);
-  background: var(--echoes-color-background-default);
+  background: var(--echoes-color-surface-default);
   box-shadow: var(--echoes-box-shadow-large);
 `.withComponent;
 
@@ -53,12 +53,13 @@ export const styleModalTitle = styled.h2`
   flex: 0 0 auto;
 
   font: var(--echoes-typography-heading-large);
-  color: var(--echoes-color-text-bold);
+  letter-spacing: var(--echoes-letter-spacing-decreased);
+  color: var(--echoes-color-text-strong);
 
   min-height: var(--echoes-dimension-height-800);
   line-height: var(--echoes-dimension-height-800);
   margin: var(--echoes-dimension-space-0);
-  padding: var(--echoes-dimension-space-400) var(--echoes-dimension-space-400);
+  padding: var(--echoes-dimension-space-300);
   padding-bottom: var(--echoes-dimension-space-0);
   overflow-wrap: break-word;
 `.withComponent;
@@ -79,6 +80,7 @@ export const ModalFooter = styled.footer`
   justify-content: space-between;
   align-items: center;
 
-  padding: var(--echoes-dimension-space-400);
+  padding: var(--echoes-dimension-space-300);
+  padding-top: var(--echoes-dimension-space-150);
 `;
 ModalFooter.displayName = 'ModalFooter';

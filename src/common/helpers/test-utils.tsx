@@ -22,7 +22,7 @@ import userEvent, { Options as UserEventsOptions } from '@testing-library/user-e
 import React, { ComponentProps, PropsWithChildren } from 'react';
 import { IntlProvider } from 'react-intl';
 import { MemoryRouter, Route, Routes, useLocation } from 'react-router-dom';
-import { PropsWithLabels } from '~types/utils';
+import { PropsWithLabels, PropsWithLabelsAndHelpText } from '~types/utils';
 import { EchoesProvider } from '../../components/echoes-provider';
 
 export function render(
@@ -36,13 +36,42 @@ export function render(
   };
 }
 
-function ContextWrapper({ children }: PropsWithChildren<{}>) {
-  return (
-    <IntlProvider defaultLocale="en-us" locale="en-us">
-      <EchoesProvider tooltipsDelayDuration={0}>{children}</EchoesProvider>
-    </IntlProvider>
-  );
-}
+export const renderWithMemoryRouter = (
+  ui: JSX.Element,
+  initialEntries = ['/initial'],
+  options?: RenderOptions,
+  userEventOptions?: UserEventsOptions,
+) => {
+  return {
+    ...rtlRender(
+      <MemoryRouter
+        future={{ v7_relativeSplatPath: true, v7_startTransition: true }}
+        initialEntries={initialEntries}>
+        <ContextWrapper>
+          <Routes>
+            <Route
+              element={
+                <>
+                  {ui}
+                  <ShowPath />
+                </>
+              }
+              path="/initial"
+            />
+            <Route element={<ShowPath />} path="/second" />
+          </Routes>
+        </ContextWrapper>
+      </MemoryRouter>,
+      options,
+    ),
+    user: userEvent.setup(userEventOptions),
+  };
+};
+
+export type OmitPropsWithLabelsAndHelpText<T extends React.JSXElementConstructor<any>> = Partial<
+  Omit<ComponentProps<T>, keyof PropsWithLabelsAndHelpText<{}>>
+> &
+  PropsWithLabelsAndHelpText<{}>;
 
 export type OmitPropsWithLabels<T extends React.JSXElementConstructor<any>> = Partial<
   Omit<ComponentProps<T>, keyof PropsWithLabels<{}>>
@@ -54,28 +83,10 @@ function ShowPath() {
   return <pre>{pathname}</pre>;
 }
 
-export const renderWithMemoryRouter = (
-  ui: JSX.Element,
-  initialEntries = ['/initial'],
-  options?: RenderOptions,
-  userEventOptions?: UserEventsOptions,
-) => {
-  return render(
-    <MemoryRouter initialEntries={initialEntries}>
-      <Routes>
-        <Route
-          element={
-            <>
-              {ui}
-              <ShowPath />
-            </>
-          }
-          path="/initial"
-        />
-        <Route element={<ShowPath />} path="/second" />
-      </Routes>
-    </MemoryRouter>,
-    options,
-    userEventOptions,
+function ContextWrapper({ children }: PropsWithChildren<{}>) {
+  return (
+    <IntlProvider defaultLocale="en-us" locale="en-us">
+      <EchoesProvider tooltipsDelayDuration={0}>{children}</EchoesProvider>
+    </IntlProvider>
   );
-};
+}

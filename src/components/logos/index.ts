@@ -19,8 +19,8 @@
  */
 
 export { LogoSonar } from './LogoSonar';
-export { LogoSonarQubeCloud } from './LogoSonarQubeCloud';
+export { LogoSonarQubeCloud, type LogoSonarQubeCloudProps } from './LogoSonarQubeCloud';
 export { LogoSonarQubeCommunity } from './LogoSonarQubeCommunity';
 export { LogoSonarQubeIde } from './LogoSonarQubeIde';
 export { LogoSonarQubeServer } from './LogoSonarQubeServer';
-export { LogoSize } from './logoUtils';
+export { LogoSize, type LogoProps } from './logoUtils';

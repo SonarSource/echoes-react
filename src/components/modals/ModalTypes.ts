@@ -37,7 +37,14 @@ interface CommonProps {
    * Optional since a dialog could have only the title and description.
    */
   content?: ReactNode;
+  /**
+   * Force the dialog to be open by default.
+   */
   isDefaultOpen?: boolean;
+  /**
+   * Callback function triggered when the dialog is closed.
+   */
+  onClose?: VoidFunction;
   /** An accessible title to be announced when the dialog is opened. */
   title?: TextNodeOptional;
 }

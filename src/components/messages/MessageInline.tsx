@@ -20,51 +20,53 @@
 import styled from '@emotion/styled';
 import { forwardRef, PropsWithChildren, useMemo } from 'react';
 import { MessageScreenReaderPrefix } from './MessageScreenReaderPrefix';
-import { MESSAGE_TYPE_ICON } from './MessageStyles';
-import { MessageInlineSize, MessageType } from './MessageTypes';
+import { MESSAGE_VARIETY_ICON } from './MessageStyles';
+import { MessageInlineSize, MessageVariety } from './MessageTypes';
 
-interface Props {
+export interface MessageInlineProps {
   as?: 'div' | 'span';
   className?: string;
   id?: string;
   screenReaderPrefix?: string;
   size?: `${MessageInlineSize}`;
-  type: `${MessageType}`;
+  variety: `${MessageVariety}`;
 }
 
-export const MessageInline = forwardRef<HTMLDivElement, PropsWithChildren<Props>>((props, ref) => {
-  const { children, className, screenReaderPrefix, size, type, ...radixProps } = props;
-  return (
-    <MessageInlineContainer
-      className={className}
-      css={useMemo(() => MESSAGE_INLINE_TYPE_STYLE[type], [type])}
-      ref={ref}
-      size={size}
-      {...radixProps}>
-      {MESSAGE_TYPE_ICON[type]}
-      <MessageInlineTextWrapper>
-        <MessageScreenReaderPrefix screenReaderPrefix={screenReaderPrefix} type={type} />
-        {children}
-      </MessageInlineTextWrapper>
-    </MessageInlineContainer>
-  );
-});
+export const MessageInline = forwardRef<HTMLDivElement, PropsWithChildren<MessageInlineProps>>(
+  (props, ref) => {
+    const { children, className, screenReaderPrefix, size, variety, ...radixProps } = props;
+    return (
+      <MessageInlineContainer
+        className={className}
+        css={useMemo(() => MESSAGE_INLINE_VARIETY_STYLE[variety], [variety])}
+        ref={ref}
+        size={size}
+        {...radixProps}>
+        <span>{MESSAGE_VARIETY_ICON[variety]}</span>
+        <MessageInlineTextWrapper>
+          <MessageScreenReaderPrefix screenReaderPrefix={screenReaderPrefix} variety={variety} />
+          {children}
+        </MessageInlineTextWrapper>
+      </MessageInlineContainer>
+    );
+  },
+);
 MessageInline.displayName = 'MessageInline';
 
-const MESSAGE_INLINE_TYPE_STYLE = {
-  [MessageType.Info]: {
+const MESSAGE_INLINE_VARIETY_STYLE = {
+  [MessageVariety.Info]: {
     '--message-text-color': 'var(--echoes-color-text-info)',
   },
-  [MessageType.Danger]: {
+  [MessageVariety.Danger]: {
     '--message-text-color': 'var(--echoes-color-text-danger)',
   },
-  [MessageType.Warning]: {
+  [MessageVariety.Warning]: {
     '--message-text-color': 'var(--echoes-color-text-warning)',
   },
-  [MessageType.Success]: {
+  [MessageVariety.Success]: {
     '--message-text-color': 'var(--echoes-color-text-success)',
   },
-  [MessageType.Discover]: {
+  [MessageVariety.Discover]: {
     '--message-text-color': 'var(--echoes-color-text-accent)',
   },
 };
@@ -74,13 +76,16 @@ const MESSAGE_INLINE_FONT = {
   [MessageInlineSize.Default]: 'var(--echoes-typography-text-default-regular)',
 };
 
-const MessageInlineContainer = styled.span<Pick<Props, 'size'>>`
+const MessageInlineContainer = styled.span<Pick<MessageInlineProps, 'size'>>`
+  display: inline-flex;
+  align-items: start;
+  gap: var(--echoes-dimension-space-50);
+
   ${({ size }) => (size ? `font: ${MESSAGE_INLINE_FONT[size]};` : '')}
 `;
 MessageInlineContainer.displayName = 'MessageInlineContainer';
 
 const MessageInlineTextWrapper = styled.span`
-  padding-left: var(--echoes-dimension-space-50);
   color: var(--message-text-color);
 `;
 MessageInlineTextWrapper.displayName = 'MessageInlineTextWrapper';

@@ -21,9 +21,14 @@
 import { forwardRef } from 'react';
 import { DropdownMenuItemBase, DropdownMenuItemBaseProps } from './DropdownMenuItemBase';
 
-type Props = Omit<DropdownMenuItemBaseProps, 'isCheckable' | 'isChecked'>;
+export type DropdownMenuItemButtonProps = Omit<
+  DropdownMenuItemBaseProps,
+  'isCheckable' | 'isChecked'
+>;
 
-export const DropdownMenuItemButton = forwardRef<HTMLDivElement, Props>((props, ref) => {
-  return <DropdownMenuItemBase {...props} ref={ref} />;
-});
+export const DropdownMenuItemButton = forwardRef<HTMLDivElement, DropdownMenuItemButtonProps>(
+  (props, ref) => {
+    return <DropdownMenuItemBase {...props} ref={ref} />;
+  },
+);
 DropdownMenuItemButton.displayName = 'DropdownMenu.ItemButton';

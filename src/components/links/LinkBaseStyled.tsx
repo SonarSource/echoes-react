@@ -26,19 +26,19 @@ import { LinkHighlight } from './LinkTypes';
 const LinkBaseStyledHighlight = {
   [LinkHighlight.Accent]: css`
     --color: var(--echoes-color-text-accent);
-    --hover: var(--echoes-color-text-accent-hover);
+    --hover: var(--echoes-color-text-link-hover);
   `,
   [LinkHighlight.Default]: css`
     --color: var(--echoes-color-text-default);
-    --hover: var(--echoes-color-text-accent-hover);
+    --hover: var(--echoes-color-text-link-hover);
   `,
   [LinkHighlight.Subdued]: css`
-    --color: var(--echoes-color-text-subdued);
-    --hover: var(--echoes-color-text-accent-hover);
+    --color: var(--echoes-color-text-subtle);
+    --hover: var(--echoes-color-text-link-hover);
   `,
   [LinkHighlight.CurrentColor]: css`
     --color: 'currentColor';
-    --hover: var(--echoes-color-text-accent-hover);
+    --hover: var(--echoes-color-text-link-hover);
   `,
 };
 

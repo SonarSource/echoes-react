@@ -52,5 +52,5 @@ const BadgeCounterStyled = styled.span`
   font: var(--echoes-typography-text-small-semi-bold);
   color: var(--echoes-color-text-default);
 
-  background-color: var(--echoes-color-background-neutral-bolder);
+  background-color: var(--echoes-color-background-neutral-bolder-default);
 `;

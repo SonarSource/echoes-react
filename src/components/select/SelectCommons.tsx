@@ -25,7 +25,7 @@ import { forwardRef, useContext, useEffect, useId } from 'react';
 import { useIntl } from 'react-intl';
 import { isDefined, isStringDefined } from '~common/helpers/types';
 import { useForwardedRefWithState } from '~common/helpers/useForwardedRef';
-import { PropsWithLabels } from '~types/utils';
+import { PropsWithLabels, TextNodeOptional } from '~types/utils';
 import { IconChevronDown, IconX, Spinner } from '..';
 import { PortalContext } from '../../common/components/PortalContext';
 import {
@@ -47,7 +47,8 @@ export interface SelectBaseProps extends ValidationProps, FormFieldPropsSubset {
   defaultValue?: MantineSelectProps['defaultValue'];
   filter?: SelectFilterFunction;
   hasDropdownAutoWidth?: boolean;
-  highlight?: SelectHighlight;
+  helpText?: TextNodeOptional;
+  highlight?: `${SelectHighlight}`;
   isDisabled?: boolean;
   isLoading?: boolean;
   isNotClearable?: boolean;
@@ -57,7 +58,7 @@ export interface SelectBaseProps extends ValidationProps, FormFieldPropsSubset {
   limit?: MantineSelectProps['limit'];
   name?: MantineSelectProps['name'];
   optionComponent?: OptionComponent;
-  optionType?: SelectOptionType;
+  optionType?: `${SelectOptionType}`;
   onChange: (value: string | null, option: SelectOption) => void;
   onOpen?: MantineSelectProps['onDropdownOpen'];
   onSearch?: MantineSelectProps['onSearchChange'];
@@ -262,7 +263,7 @@ export const SelectStyled = styled(MantineSelect)`
     padding-left: var(--echoes-dimension-space-150);
 
     font: var(--echoes-typography-text-default-regular);
-    color: var(--echoes-color-text-bold);
+    color: var(--echoes-color-text-strong);
     text-align: left;
     text-overflow: ellipsis;
 
@@ -297,7 +298,7 @@ export const SelectStyled = styled(MantineSelect)`
     &[data-disabled],
     &[data-disabled]:hover {
       color: var(--echoes-color-text-disabled);
-      background-color: var(--echoes-color-background-disabled);
+      background-color: var(--echoes-color-surface-disabled);
       border-color: var(--echoes-color-border-disabled);
       outline: none;
       cursor: not-allowed;
@@ -347,7 +348,7 @@ export const SelectStyled = styled(MantineSelect)`
         justify-content: center;
 
         font: var(--echoes-typography-text-small-medium);
-        background-color: var(--echoes-color-background-transparent);
+        background-color: var(--echoes-color-background-utility-transparent);
         color: var(--echoes-form-control-colors-icon-default);
 
         border: none;
@@ -357,7 +358,7 @@ export const SelectStyled = styled(MantineSelect)`
         pointer-events: auto;
 
         &:hover {
-          background-color: var(--echoes-color-background-default-hover);
+          background-color: var(--echoes-color-surface-hover);
         }
 
         &:focus,
@@ -393,7 +394,7 @@ export function SelectGlobalStyles() {
 
           overflow: hidden;
 
-          background-color: var(--echoes-color-background-default);
+          background-color: var(--echoes-color-surface-default);
           border: var(--echoes-border-width-default) solid var(--echoes-color-border-weak);
           border-radius: var(--echoes-border-radius-400);
 
@@ -439,7 +440,7 @@ export function SelectGlobalStyles() {
 
         .echoes-select-empty {
           font: var(--echoes-typography-text-small-medium);
-          color: var(--echoes-color-text-subdued);
+          color: var(--echoes-color-text-subtle);
           text-align: center;
 
           padding: var(--echoes-dimension-space-50) var(--echoes-dimension-space-0);

@@ -43,7 +43,7 @@ interface ModalBaseProps {
   footerLink?: ReactNode;
   primaryButton?: ReactNode;
   secondaryButton?: ReactNode;
-  size?: ModalSize;
+  size?: `${ModalSize}`;
 }
 
 export type ModalProps = ModalCommonProps & ModalBaseProps;
@@ -56,6 +56,7 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
     footerLink,
     isDefaultOpen,
     isOpen,
+    onClose,
     onOpenChange,
     primaryButton,
     secondaryButton,
@@ -74,8 +75,18 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
     event.preventDefault();
   }, []);
 
+  const handleOpenChange = useCallback(
+    (isOpen: boolean) => {
+      onOpenChange?.(isOpen);
+      if (!isOpen && isDefined(onClose)) {
+        onClose();
+      }
+    },
+    [onClose, onOpenChange],
+  );
+
   return (
-    <RadixDialog.Root defaultOpen={isDefaultOpen} onOpenChange={onOpenChange} open={isOpen}>
+    <RadixDialog.Root defaultOpen={isDefaultOpen} onOpenChange={handleOpenChange} open={isOpen}>
       <RadixDialog.Trigger
         asChild
         {...(isDropdownMenuItemComponent(children) && { onSelect: handleSelectForDropdownMenu })}>
@@ -162,7 +173,7 @@ ModalFooterLinkWrapper.displayName = 'ModalFooterLinkWrapper';
 
 const ModalButtonIconClose = styled(ButtonIcon)`
   position: absolute;
-  top: var(--echoes-dimension-space-400);
-  right: var(--echoes-dimension-space-400);
+  top: var(--echoes-dimension-space-300);
+  right: var(--echoes-dimension-space-300);
 `;
 ModalButtonIconClose.displayName = 'ModalButtonIconClose';

@@ -140,7 +140,7 @@ export const External: Story = {
     ...defaultProps,
     helpText: '',
     prefix: '',
-    shouldOpenInNewTab: true,
+    enableOpenInNewTab: true,
     suffix: '',
   },
   render,
@@ -151,7 +151,7 @@ export const ExternalWithSuffix: Story = {
     ...defaultProps,
     helpText: '',
     prefix: '',
-    shouldOpenInNewTab: true,
+    enableOpenInNewTab: true,
   },
   render,
 };
@@ -160,7 +160,7 @@ export const Full: Story = {
   args: {
     ...defaultProps,
     ariaLabel: 'ARIA label',
-    shouldOpenInNewTab: true,
+    enableOpenInNewTab: true,
     to: '/',
   },
   render,

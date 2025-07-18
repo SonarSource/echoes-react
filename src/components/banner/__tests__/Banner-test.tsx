@@ -19,12 +19,11 @@
  */
 
 import { screen } from '@testing-library/react';
-import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import { screenReaderOnly } from '~common/helpers/styles';
-import { render } from '~common/helpers/test-utils';
+import { renderWithMemoryRouter } from '~common/helpers/test-utils';
 import { Link } from '../../links';
 import { Banner } from '../Banner';
-import { BannerProps, BannerType } from '../BannerTypes';
+import { BannerProps, BannerVariety } from '../BannerTypes';
 
 it('should display banner content', async () => {
   setupBanner({ children: 'Banner Content' });
@@ -38,19 +37,22 @@ it('should display banner content', async () => {
 });
 
 it.each([
-  [BannerType.Danger, 'Error banner:'],
-  [BannerType.Info, 'Information banner:'],
-  [BannerType.Success, 'Success banner:'],
-  [BannerType.Warning, 'Warning banner:'],
-])('should render with the type %s and a default screenreader prefix', (type, expectedPrefix) => {
-  setupBanner({ type });
+  [BannerVariety.Danger, 'Error banner:'],
+  [BannerVariety.Info, 'Information banner:'],
+  [BannerVariety.Success, 'Success banner:'],
+  [BannerVariety.Warning, 'Warning banner:'],
+])(
+  'should render with the type %s and a default screenreader prefix',
+  (variety, expectedPrefix) => {
+    setupBanner({ variety });
 
-  expect(screen.getByRole('alert')).toHaveTextContent(`${expectedPrefix} Default Banner Content`);
+    expect(screen.getByRole('alert')).toHaveTextContent(`${expectedPrefix} Default Banner Content`);
 
-  expect(screen.getByText(expectedPrefix)).toHaveStyle(
-    screenReaderOnly.styles.replace(/label:.*?;/, ''),
-  );
-});
+    expect(screen.getByText(expectedPrefix)).toHaveStyle(
+      screenReaderOnly.styles.replace(/label:.*?;/, ''),
+    );
+  },
+);
 
 it('should be dismissable', async () => {
   const onDismiss = jest.fn();
@@ -82,30 +84,20 @@ it('should add custom screen reader prefix when provided', () => {
 });
 
 it('should correctly support Links in the banner content', async () => {
-  const { user } = render(
-    <MemoryRouter initialEntries={['/initial']}>
-      <Routes>
-        <Route
-          element={
-            <Banner type={BannerType.Info}>
-              Banner with <Link to="/test">link</Link>
-            </Banner>
-          }
-          path="/initial"
-        />
-        <Route element={<>Test page</>} path="/test" />
-      </Routes>
-    </MemoryRouter>,
+  const { user } = renderWithMemoryRouter(
+    <Banner variety={BannerVariety.Info}>
+      Banner with <Link to="/second">link</Link>
+    </Banner>,
   );
 
   expect(screen.getByRole('link', { name: 'link' })).toBeInTheDocument();
   await user.click(screen.getByRole('link', { name: 'link' }));
-  expect(screen.getByText('Test page')).toBeInTheDocument();
+  expect(screen.getByText('/second')).toBeInTheDocument();
 });
 
 function setupBanner({ children, ...props }: Partial<BannerProps> = {}) {
-  return render(
-    <Banner type={BannerType.Info} {...props}>
+  return renderWithMemoryRouter(
+    <Banner variety={BannerVariety.Info} {...props}>
       {children ?? 'Default Banner Content'}
     </Banner>,
   );

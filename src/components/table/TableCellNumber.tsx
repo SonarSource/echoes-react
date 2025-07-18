@@ -24,13 +24,13 @@ import { TextNode } from '~types/utils';
 import { Text } from '../typography';
 import { StyledContentWrapper, StyledTableCell } from './TableStyles';
 
-export interface TableCellTextProps {
+export interface TableCellNumberProps {
   className?: string;
   content: TextNode;
   description?: TextNode;
 }
 
-export const TableCellNumber = forwardRef<HTMLTableCellElement, TableCellTextProps>(
+export const TableCellNumber = forwardRef<HTMLTableCellElement, TableCellNumberProps>(
   (props, ref) => {
     const { className, content, description, ...radixProps } = props;
 

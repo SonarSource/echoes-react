@@ -57,13 +57,15 @@ const defaultSizeByTag: Record<HeadingTag, HeadingSize> = {
 
 const StyledHeading = styled.div<Required<Pick<HeadingProps, 'hasMarginBottom' | 'size'>>>`
   font: ${getHeadingFont};
-  color: var(--echoes-color-text-bold);
+  letter-spacing: var(--echoes-letter-spacing-decreased);
+  color: var(--echoes-color-text-strong);
   margin: 0;
   max-width: var(--echoes-sizes-typography-max-width-default);
 
   ${({ hasMarginBottom, size }) =>
     hasMarginBottom ? `margin-bottom: ${bottomMarginByHeadingSize({ size })}` : ''}
 `;
+StyledHeading.displayName = 'StyledHeading';
 
 function getHeadingFont({ size }: Required<Pick<HeadingProps, 'size'>>) {
   return HEADING_TYPOGRAPHY_MAP[size];

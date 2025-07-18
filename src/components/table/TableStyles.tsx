@@ -29,7 +29,7 @@ const TABLE_VARIETY_STYLES = {
     'border-collapse': 'separate',
   },
   [TableVariety.Ghost]: {
-    '--table-header-background-color': 'var(--echoes-color-background-default)',
+    '--table-header-background-color': 'var(--echoes-color-surface-default)',
     border: 'none',
     'border-collapse': 'collapse',
   },
@@ -45,14 +45,17 @@ export const StyledTable = styled.table<Required<Pick<TableProps, 'variety' | 'g
 
   ${({ variety }) => TABLE_VARIETY_STYLES[variety]}
 `;
+StyledTable.displayName = 'StyledTable';
 
 export const StyledTableHeader = styled.thead`
   display: contents;
 `;
+StyledTableHeader.displayName = 'StyledTableHeader';
 
 export const StyledTableBody = styled.tbody`
   display: contents;
 `;
+StyledTableBody.displayName = 'StyledTableBody';
 
 export const StyledTableRow = styled.tr`
   display: contents;
@@ -67,6 +70,7 @@ export const StyledTableRow = styled.tr`
     border-bottom-right-radius: var(--echoes-border-radius-200);
   }
 `;
+StyledTableRow.displayName = 'StyledTableRow';
 
 export const cellBaseStyle = css`
   display: flex;
@@ -107,7 +111,7 @@ export const StyledTableCell = styled.td`
   justify-content: center;
 
   ${StyledTableRow}:hover:not(.selected) & {
-    background-color: var(--echoes-color-background-default-hover);
+    background-color: var(--echoes-color-surface-hover);
   }
 
   ${StyledTableRow}.selected & {
@@ -118,6 +122,7 @@ export const StyledTableCell = styled.td`
     background-color: var(--echoes-color-background-selected-weak-hover);
   }
 `;
+StyledTableCell.displayName = 'StyledTableCell';
 
 export const StyledTableColumnHeaderCell = styled.th`
   ${cellBaseStyle}
@@ -127,6 +132,7 @@ export const StyledTableColumnHeaderCell = styled.th`
   background-color: var(--table-header-background-color);
   font: var(--echoes-typography-text-default-semi-bold);
 `;
+StyledTableColumnHeaderCell.displayName = 'StyledTableColumnHeaderCell';
 
 export const StyledContentWrapper = styled.div`
   display: flex;
@@ -135,3 +141,4 @@ export const StyledContentWrapper = styled.div`
   justify-content: center;
   flex: 1;
 `;
+StyledContentWrapper.displayName = 'StyledContentWrapper';

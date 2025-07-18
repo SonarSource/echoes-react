@@ -44,11 +44,11 @@ export interface FormRootProps extends FormAttributes {
    * `noValidate` attribute is added by default on the form to not use the browser form validation.
    * Set this prop to `true` to remove the `noValidate` attribute.
    */
-  shouldUseBrowserValidation?: boolean;
+  enableBrowserValidation?: boolean;
 }
 
 export const FormRoot = forwardRef<HTMLFormElement, FormRootProps>((props, ref) => {
-  const { children, shouldUseBrowserValidation = false, onSubmit, action, ...rest } = props;
+  const { children, enableBrowserValidation = false, onSubmit, action, ...rest } = props;
 
   const onSubmitHandler = useCallback(
     (event: FormEvent<HTMLFormElement>) => {
@@ -65,7 +65,7 @@ export const FormRoot = forwardRef<HTMLFormElement, FormRootProps>((props, ref) 
   return (
     <FormStyled
       action={action}
-      noValidate={!shouldUseBrowserValidation}
+      noValidate={!enableBrowserValidation}
       onSubmit={onSubmitHandler}
       ref={ref}
       {...rest}>

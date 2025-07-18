@@ -37,7 +37,9 @@ it('should render without active indicator', () => {
 
 const setupWithContext = (component: JSX.Element) => {
   return render(
-    <MemoryRouter initialEntries={['/']}>
+    <MemoryRouter
+      future={{ v7_relativeSplatPath: true, v7_startTransition: true }}
+      initialEntries={['/']}>
       <Routes>
         <Route
           element={<GlobalNavigation.ItemsContainer>{component}</GlobalNavigation.ItemsContainer>}

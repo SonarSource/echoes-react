@@ -21,41 +21,41 @@
 import styled from '@emotion/styled';
 import { truncate } from '~common/helpers/styles';
 import { IconCheckCircle, IconError, IconInfo, IconWarning } from '../icons';
-import { BannerType } from './BannerTypes';
+import { BannerVariety } from './BannerTypes';
 
 export const BANNER_TYPE_STYLES = {
-  [BannerType.Danger]: {
-    '--banner-color': 'var(--echoes-color-text-danger-bold)',
+  [BannerVariety.Danger]: {
+    '--banner-color': 'var(--echoes-color-text-danger)',
     '--banner-background': 'var(--echoes-color-background-danger-weak-default)',
   },
-  [BannerType.Info]: {
-    '--banner-color': 'var(--echoes-color-text-info-bold)',
+  [BannerVariety.Info]: {
+    '--banner-color': 'var(--echoes-color-text-info)',
     '--banner-background': 'var(--echoes-color-background-info-weak-default)',
   },
-  [BannerType.Success]: {
-    '--banner-color': 'var(--echoes-color-text-success-bold)',
+  [BannerVariety.Success]: {
+    '--banner-color': 'var(--echoes-color-text-success)',
     '--banner-background': 'var(--echoes-color-background-success-weak-default)',
   },
-  [BannerType.Warning]: {
-    '--banner-color': 'var(--echoes-color-text-warning-bold)',
+  [BannerVariety.Warning]: {
+    '--banner-color': 'var(--echoes-color-text-warning)',
     '--banner-background': 'var(--echoes-color-background-warning-weak-default)',
   },
 };
 
 export const BANNER_TYPE_ICONS = {
-  [BannerType.Danger]: {
+  [BannerVariety.Danger]: {
     icon: IconError,
     iconColor: 'echoes-color-icon-danger' as const,
   },
-  [BannerType.Info]: {
+  [BannerVariety.Info]: {
     icon: IconInfo,
     iconColor: 'echoes-color-icon-info' as const,
   },
-  [BannerType.Success]: {
+  [BannerVariety.Success]: {
     icon: IconCheckCircle,
     iconColor: 'echoes-color-icon-success' as const,
   },
-  [BannerType.Warning]: {
+  [BannerVariety.Warning]: {
     icon: IconWarning,
     iconColor: 'echoes-color-icon-warning' as const,
   },
@@ -71,7 +71,7 @@ BannerSkeleton.displayName = 'BannerSkeleton';
 // It also provides a stable non transparent background color for the BannerInner that has a transparent background when in dark mode
 export const BannerWrapper = styled.div`
   position: fixed;
-  background-color: var(--echoes-color-background-default);
+  background-color: var(--echoes-color-surface-default);
 
   height: inherit;
   width: 100%;
@@ -115,6 +115,8 @@ export const BannerContentText = styled.div`
   display: flex;
   align-items: center;
   gap: var(--echoes-dimension-space-50);
+  padding: var(--echoes-dimension-space-50);
+  margin-left: calc(-1 * var(--echoes-dimension-space-50));
 
   ${truncate}
 `;

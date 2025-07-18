@@ -21,23 +21,27 @@
 import styled from '@emotion/styled';
 import { forwardRef, PropsWithChildren } from 'react';
 
-interface Props {
+export interface DisplayProps {
   as?: 'p' | 'span' | 'div';
   className?: string;
 }
 
-export const Display = forwardRef<HTMLSpanElement, PropsWithChildren<Props>>((props, ref) => {
-  const { children, ...restAndRadixProps } = props;
+export const Display = forwardRef<HTMLSpanElement, PropsWithChildren<DisplayProps>>(
+  (props, ref) => {
+    const { children, ...restAndRadixProps } = props;
 
-  return (
-    <StyledDisplay ref={ref} {...restAndRadixProps}>
-      {children}
-    </StyledDisplay>
-  );
-});
+    return (
+      <StyledDisplay ref={ref} {...restAndRadixProps}>
+        {children}
+      </StyledDisplay>
+    );
+  },
+);
 Display.displayName = 'Display';
 
 const StyledDisplay = styled.span`
   font: var(--echoes-typography-display-default);
-  color: var(--echoes-color-text-bold);
+  letter-spacing: var(--echoes-letter-spacing-decreased);
+  color: var(--echoes-color-text-strong);
 `;
+StyledDisplay.displayName = 'StyledDisplay';

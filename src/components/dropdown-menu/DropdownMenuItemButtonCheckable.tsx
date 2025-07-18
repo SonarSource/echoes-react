@@ -22,9 +22,12 @@ import styled from '@emotion/styled';
 import { forwardRef } from 'react';
 import { DropdownMenuItemBase, DropdownMenuItemBaseProps } from './DropdownMenuItemBase';
 
-type Props = Omit<DropdownMenuItemBaseProps, 'isCheckable'>;
+export type DropdownMenuItemButtonCheckableProps = Omit<DropdownMenuItemBaseProps, 'isCheckable'>;
 
-export const DropdownMenuItemButtonCheckable = forwardRef<HTMLDivElement, Props>((props, ref) => {
+export const DropdownMenuItemButtonCheckable = forwardRef<
+  HTMLDivElement,
+  DropdownMenuItemButtonCheckableProps
+>((props, ref) => {
   return <StyledDropdownMenuItemBase {...props} isCheckable ref={ref} />;
 });
 DropdownMenuItemButtonCheckable.displayName = 'DropdownMenu.ItemButtonCheckable';
@@ -35,13 +38,13 @@ const StyledDropdownMenuItemBase = styled(DropdownMenuItemBase)<
   background-color: ${(props) =>
     props.isChecked
       ? 'var(--echoes-color-background-selected-weak-default)'
-      : 'var(--echoes-color-background-default)'};
+      : 'var(--echoes-color-surface-default)'};
 
   &:hover {
     background-color: ${(props) =>
       props.isChecked
         ? 'var(--echoes-color-background-selected-weak-hover)'
-        : 'var(--echoes-color-background-default-hover)'};
+        : 'var(--echoes-color-surface-hover)'};
   }
 
   /* when the item is clicked */
@@ -49,13 +52,14 @@ const StyledDropdownMenuItemBase = styled(DropdownMenuItemBase)<
     background-color: ${(props) =>
       props.isChecked
         ? 'var(--echoes-color-background-selected-weak-pressed)'
-        : 'var(--echoes-color-background-default-active)'};
+        : 'var(--echoes-color-surface-active)'};
   }
 
   &[data-disabled] {
     background-color: ${(props) =>
       props.isChecked
-        ? 'var(--echoes-color-background-disabled)'
-        : 'var(--echoes-color-background-default)'};
+        ? 'var(--echoes-color-surface-disabled)'
+        : 'var(--echoes-color-surface-default)'};
   }
 `;
+StyledDropdownMenuItemBase.displayName = 'StyledDropdownMenuItemBase';

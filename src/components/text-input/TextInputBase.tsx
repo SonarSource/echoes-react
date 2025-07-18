@@ -19,6 +19,7 @@
  */
 import styled from '@emotion/styled';
 import { InputHTMLAttributes } from 'react';
+import { TextNodeOptional } from '~types/utils';
 import { type ValidationProps, FormFieldProps } from '../form/FormField';
 
 type InputEventAttributesSubset =
@@ -40,6 +41,7 @@ type FormFieldPropsSubset = Pick<FormFieldProps, 'helpToggletipProps' | 'isRequi
 
 export interface InputProps extends ValidationProps, FormFieldPropsSubset {
   className?: string;
+  helpText?: TextNodeOptional;
   isDisabled?: boolean;
   placeholder?: string;
   value?: string | number;
@@ -95,7 +97,7 @@ export const InputStyled = styled.input`
   &:disabled,
   &:disabled:hover {
     color: var(--echoes-color-text-disabled);
-    background-color: var(--echoes-color-background-disabled);
+    background-color: var(--echoes-color-surface-disabled);
     border-color: var(--echoes-color-border-disabled);
     outline: none;
     cursor: not-allowed;
@@ -122,7 +124,7 @@ const InputIconWrapper = styled.span`
   font-size: var(--echoes-font-size-30);
   color: var(--echoes-form-control-colors-icon-default);
 
-  [data-disabled] & {
+  &[data-disabled] {
     color: var(--echoes-color-icon-disabled);
     cursor: not-allowed;
   }

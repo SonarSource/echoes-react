@@ -18,38 +18,52 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 import { screen } from '@testing-library/react';
-import { ComponentProps, useState } from 'react';
+import { PointerEventsCheckLevel, Options as UserEventsOptions } from '@testing-library/user-event';
+import { useState } from 'react';
 import { render } from '~common/helpers/test-utils';
 import { Button } from '../../buttons';
 import { DropdownMenu } from '../../dropdown-menu';
-import { Modal } from '../Modal';
+import { Modal, ModalProps } from '../Modal';
 
 it('should appear/disappear as expected', async () => {
-  const { user } = renderModal();
+  const onClose = jest.fn();
+  const { user } = renderModal({ onClose });
 
   expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
-
   await user.click(screen.getByRole('button', { name: 'Toggle' }));
 
   expect(screen.getByRole('dialog')).toBeInTheDocument();
-
   await user.click(screen.getByRole('button', { name: 'Close' }));
 
   expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+  expect(onClose).toHaveBeenCalledTimes(1);
 });
 
 it('should allow to be controlled', async () => {
   const { user } = renderControlledModal();
+  expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+
+  await user.click(screen.getByRole('button', { name: 'Toggle' }));
+  expect(screen.getByRole('dialog')).toBeInTheDocument();
+
+  await user.click(screen.getByRole('button', { name: 'Quit' }));
+  expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+});
+
+it('should call onClose and close the dialog when clicking outside in controlled mode', async () => {
+  const onClose = jest.fn();
+  const { container, user } = renderControlledModal(onClose, {
+    pointerEventsCheck: PointerEventsCheckLevel.Never,
+  });
 
   expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
 
   await user.click(screen.getByRole('button', { name: 'Toggle' }));
-
   expect(screen.getByRole('dialog')).toBeInTheDocument();
 
-  await user.click(screen.getByRole('button', { name: 'Quit' }));
-
+  await user.click(container);
   expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+  expect(onClose).toHaveBeenCalledTimes(1);
 });
 
 it('should render content and description and extra buttons', async () => {
@@ -63,13 +77,11 @@ it('should render content and description and extra buttons', async () => {
   expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
 
   await user.click(screen.getByRole('button', { name: 'Toggle' }));
-
   expect(screen.getByText('special content')).toBeInTheDocument();
   expect(screen.getByText('description')).toBeInTheDocument();
   expect(screen.getByRole('button', { name: 'Accept' })).toBeInTheDocument();
 
   await user.click(screen.getByRole('button', { name: 'Cancel' }));
-
   expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
 });
 
@@ -100,7 +112,7 @@ it("shouldn't have any a11y violation", async () => {
   await expect(container).toHaveNoA11yViolations();
 });
 
-function renderModal(args: Partial<ComponentProps<typeof Modal>> = {}) {
+function renderModal(args: Partial<ModalProps> = {}) {
   const { isOpen, onOpenChange, ...overrides } = args;
   return render(
     <Modal {...overrides}>
@@ -109,13 +121,17 @@ function renderModal(args: Partial<ComponentProps<typeof Modal>> = {}) {
   );
 }
 
-function renderControlledModal() {
+function renderControlledModal(
+  onClose?: ModalProps['onClose'],
+  userEventOptions?: UserEventsOptions,
+) {
   function Controller() {
     const [open, setOpen] = useState(false);
 
     return (
       <Modal
         isOpen={open}
+        onClose={onClose}
         onOpenChange={setOpen}
         primaryButton={<Button onClick={() => setOpen}>Approve</Button>}
         secondaryButton={<Button onClick={() => setOpen(false)}>Quit</Button>}>
@@ -124,5 +140,5 @@ function renderControlledModal() {
     );
   }
 
-  return render(<Controller />);
+  return render(<Controller />, undefined, userEventOptions);
 }

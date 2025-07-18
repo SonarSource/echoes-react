@@ -173,7 +173,7 @@ const PROMOTED_SECTION_STYLES = {
   },
 
   [PromotedSectionVariety.Neutral]: {
-    '--promoted-section-background-color': 'var(--echoes-color-background-default)',
+    '--promoted-section-background-color': 'var(--echoes-color-surface-default)',
     '--promoted-section-border': '1px solid var(--echoes-color-border-weak)',
   },
 };

@@ -34,7 +34,7 @@ export interface OptionComponentProps extends SelectOption {
 // Returns the renderOption function to be used in the renderOption prop of the Mantine Select
 export function useSelectOptionFunction(
   OptionComponent: OptionComponent | undefined,
-  optionType: SelectOptionType,
+  optionType: `${SelectOptionType}`,
 ) {
   return useCallback(
     ({ option, checked }: RenderOptionParams) => {
@@ -74,7 +74,7 @@ const SelectItemWrapper = styled.div`
 
     font: var(--echoes-typography-text-small-medium);
     color: var(--echoes-color-text-default);
-    background-color: var(--echoes-color-background-default);
+    background-color: var(--echoes-color-surface-default);
 
     border: var(--echoes-focus-border-width-default) solid transparent;
     border-radius: var(--echoes-border-radius-none);
@@ -84,7 +84,7 @@ const SelectItemWrapper = styled.div`
 
   .echoes-select-option:not([data-combobox-disabled]):hover &,
   .echoes-select-option:not([data-combobox-disabled])[data-combobox-selected] & {
-    background-color: var(--echoes-color-background-default-hover);
+    background-color: var(--echoes-color-surface-hover);
   }
   .echoes-select-option:not([data-combobox-disabled])[data-combobox-active] & {
     background-color: var(--echoes-color-background-selected-weak-default);
@@ -115,7 +115,7 @@ SelectItemInner.displayName = 'SelectItemInner';
 // Help text below the select item label
 const SelectItemHelpText = styled.span`
   font: var(--echoes-typography-others-helper-text);
-  color: var(--echoes-color-text-subdued);
+  color: var(--echoes-color-text-subtle);
 
   .echoes-select-option[data-combobox-disabled] & {
     color: var(--echoes-color-text-disabled);
@@ -124,7 +124,7 @@ const SelectItemHelpText = styled.span`
 SelectItemHelpText.displayName = 'SelectItemHelpText';
 
 interface SelectItemStatusProps {
-  optionType: SelectOptionType;
+  optionType: `${SelectOptionType}`;
   checked?: boolean;
 }
 
@@ -162,7 +162,7 @@ const SelectItemStatusRadio = styled.div`
   min-width: var(--echoes-dimension-width-200);
   padding: 0;
 
-  background-color: var(--echoes-color-background-default);
+  background-color: var(--echoes-color-surface-default);
   border: var(--echoes-border-width-default) solid var(--echoes-color-border-bolder);
   border-radius: var(--echoes-border-radius-full);
 
@@ -184,13 +184,13 @@ const SelectItemStatusRadio = styled.div`
   }
 
   .echoes-select-option[data-combobox-disabled] & {
-    background-color: var(--echoes-color-background-disabled);
+    background-color: var(--echoes-color-surface-disabled);
     border-color: var(--echoes-color-border-disabled);
     border-width: var(--echoes-border-width-default);
 
     &[data-selected]::after {
       background-color: var(--echoes-color-icon-disabled);
-      border-color: var(--echoes-color-background-disabled);
+      border-color: var(--echoes-color-surface-disabled);
     }
   }
 `;

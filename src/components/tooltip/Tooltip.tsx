@@ -37,12 +37,12 @@ export enum TooltipSide {
   Left = 'left',
 }
 
-interface Props {
-  align?: TooltipAlign;
+export interface TooltipProps {
+  align?: `${TooltipAlign}`;
   children: ReactElement;
   content: ReactNode | undefined;
   isOpen?: boolean;
-  side?: TooltipSide;
+  side?: `${TooltipSide}`;
 }
 
 /* This is the distance between the point of the arrow and the trigger */
@@ -68,7 +68,7 @@ const ARROW_PADDING = 12;
  *
  * Since the tooltips are appended to the body, they are in the root Stacking Context. If other elements are also there, the z-index will determine which appears on top. By creating a new Stacking Context for your app, it ensures that z-indexed elements will stay within that context, while tooltips will be painted on top, in the parent Stacking Context.
  */
-export const Tooltip = forwardRef<HTMLElement, Props>((props, ref) => {
+export const Tooltip = forwardRef<HTMLElement, TooltipProps>((props, ref) => {
   const { align, children, content, isOpen, side, ...radixProps } = props;
   const theme = useContext(ThemeContext);
   const themeOverrideProp = isDefined(theme) ? { [THEME_DATA_ATTRIBUTE]: theme } : {};
@@ -111,13 +111,15 @@ const TooltipContent = styled(radixTooltip.Content)`
   padding: var(--echoes-dimension-space-50) var(--echoes-dimension-space-150);
   font: var(--echoes-typography-text-small-medium);
   color: var(--echoes-color-text-on-color);
-  background-color: var(--echoes-color-background-inverse);
+  background-color: var(--echoes-color-surface-inverse-default);
   box-shadow: var(--echoes-box-shadow-medium);
   max-width: var(--echoes-dimension-width-5000);
   box-sizing: border-box;
 `;
+TooltipContent.displayName = 'TooltipContent';
 
 const TooltipArrow = styled(radixTooltip.Arrow)`
-  fill: var(--echoes-color-background-inverse);
+  fill: var(--echoes-color-surface-inverse-default);
   height: 7px;
 `;
+TooltipArrow.displayName = 'TooltipArrow';

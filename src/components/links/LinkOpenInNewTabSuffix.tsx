@@ -23,14 +23,14 @@ import { FormattedMessage } from 'react-intl';
 import { IconLinkExternal } from '../icons/IconLinkExternal';
 import { LinkBaseProps } from './LinkTypes';
 
-type Props = Pick<LinkBaseProps, 'shouldOpenInNewTab'> & {
+type Props = Pick<LinkBaseProps, 'enableOpenInNewTab'> & {
   hasUnbreakableSpace?: boolean;
 };
 
 export function LinkOpenInNewTabSuffix(props: Readonly<Props>) {
-  const { shouldOpenInNewTab, hasUnbreakableSpace = false } = props;
+  const { enableOpenInNewTab, hasUnbreakableSpace = false } = props;
 
-  if (!shouldOpenInNewTab) {
+  if (!enableOpenInNewTab) {
     return null;
   }
 

@@ -20,11 +20,11 @@
 
 import styled from '@emotion/styled';
 import React, { useMemo } from 'react';
+import { Divider } from '../divider';
 import { Heading } from '../typography';
 import { useCardSize } from './CardRoot';
-import { CARD_HEADER_SIZE_STYLES, CardHeaderStyled } from './CardStyles';
-import { Divider } from '../divider';
 import { CardSize } from './CardSize';
+import { CARD_HEADER_SIZE_STYLES, CardHeaderStyled } from './CardStyles';
 
 export interface CardHeaderProps {
   title: React.ReactNode;
@@ -89,6 +89,7 @@ const CardHeaderContentStyled = styled.div`
   flex-direction: column;
   width: 100%;
 `;
+CardHeaderContentStyled.displayName = 'CardHeaderContentStyled';
 
 const CardHeaderTextStyled = styled.div`
   align-items: center;
@@ -96,13 +97,16 @@ const CardHeaderTextStyled = styled.div`
   justify-content: space-between;
   width: 100%;
 `;
+CardHeaderTextStyled.displayName = 'CardHeaderTextStyled';
 
 const RightContentStyled = styled.div`
   display: flex;
 `;
+RightContentStyled.displayName = 'RightContentStyled';
 
 const DescriptionStyled = styled.div`
   align-items: center;
-  diplay: flex;
+  display: flex;
   justify-content: space-between;
 `;
+DescriptionStyled.displayName = 'DescriptionStyled';

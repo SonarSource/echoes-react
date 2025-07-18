@@ -21,13 +21,16 @@
 import * as radixTooltip from '@radix-ui/react-tooltip';
 import { PropsWithChildren } from 'react';
 
-interface Props {
+export interface TooltipProviderProps {
   delayDuration?: number;
 }
 
 const DEFAULT_TOOLTIP_DELAY_DURATION = 500;
 
-export function TooltipProvider({ children, delayDuration }: PropsWithChildren<Props>) {
+export function TooltipProvider({
+  children,
+  delayDuration,
+}: PropsWithChildren<TooltipProviderProps>) {
   return (
     <radixTooltip.Provider delayDuration={delayDuration ?? DEFAULT_TOOLTIP_DELAY_DURATION}>
       {children}
