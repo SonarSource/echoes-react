@@ -129,7 +129,7 @@ async function buildBaseTokens(tokenGroup, sd) {
           },
           {
             destination: `${NAME_PREFIX}${tokenGroup.name}.json`,
-            format: 'json/nested',
+            format: 'json/flat',
             filter: CUSTOM_FILTER_NO_COLOR,
             options: {
               fileHeader: LICENSE_HEADER_FILE_OPTION,

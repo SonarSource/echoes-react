@@ -24,7 +24,7 @@
  *
  * Usage:
  *   Run from the project root directory:
- *   node config/scripts/update-design-tokens.js
+ *   node config/scripts/migrate-design-tokens-text.js
  *
  * To add new token mappings, update the TOKEN_MAPPINGS object below.
  */
