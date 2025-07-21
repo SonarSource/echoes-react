@@ -39,8 +39,12 @@ type Story = StoryObj<typeof Tooltip>;
 
 export const Basic: Story = {
   args: {
-    content:
-      'This tooltip content is intentionaly very long to test the max width. It should have wrapped already.',
+    content: (
+      <>
+        This tooltip content is <strong>intentionaly</strong> very long to test the max width. It
+        should have wrapped already.
+      </>
+    ),
   },
   render: (args) => (
     <BasicWrapper>
