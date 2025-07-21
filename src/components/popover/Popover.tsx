@@ -126,8 +126,11 @@ const PopoverContent = styled(RadixPopover.Content)`
   padding: ${cssVar('dimension-space-300')} ${cssVar('dimension-space-250')};
   background-color: ${cssVar('color-surface-default')};
   box-shadow: ${cssVar('box-shadow-large')};
-  max-width: ${cssVar('dimension-width-5000')};
+
   box-sizing: border-box;
+  max-width: ${cssVar('dimension-width-5000')};
+  max-height: ${cssVar('sizes-overlays-max-height-default')};
+  overflow-y: auto;
 
   // We are in a modal context, so we don't want to display the focus ring
   &:focus,
