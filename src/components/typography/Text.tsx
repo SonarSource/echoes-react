@@ -78,11 +78,7 @@ export const Text = forwardRef<HTMLSpanElement, PropsWithChildren<TextProps>>((p
 });
 Text.displayName = 'Text';
 
-type StyledTextProps = Required<Pick<TextProps, 'isSubtle' | 'isHighlighted' | 'size'>>;
-
-const BaseStyles = styled.span`
-  max-width: ${cssVar('sizes-typography-max-width-default')};
-
+export const TextTypographyStyle = styled.span`
   & ul {
     list-style-type: disc;
   }
@@ -108,13 +104,19 @@ const BaseStyles = styled.span`
     font-weight: ${cssVar('font-weight-bold')};
   }
 
+  & em,
+  & i,
   &:is(em, i) {
-    font-style: italic;
+    font-style: ${cssVar('font-weight-italic-style')};
   }
 `;
-BaseStyles.displayName = 'BaseStyles';
+TextTypographyStyle.displayName = 'TextTypographyStyle';
 
-const StyledText = styled(BaseStyles)<StyledTextProps>`
+type StyledTextProps = Required<Pick<TextProps, 'isSubtle' | 'isHighlighted' | 'size'>>;
+
+const StyledText = styled(TextTypographyStyle)<StyledTextProps>`
+  max-width: ${cssVar('sizes-typography-max-width-default')};
+
   font: ${getFontForSizeAndWeight};
 
   color: ${({ isSubtle }) =>

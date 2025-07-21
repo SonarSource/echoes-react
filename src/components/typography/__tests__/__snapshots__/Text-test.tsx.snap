@@ -37,8 +37,10 @@ exports[`default & regular renders as default 1`] = `
   font-weight: var(--echoes-font-weight-bold);
 }
 
+.emotion-0 em,
+.emotion-0 i,
 .emotion-0:is(em, i) {
-  font-style: italic;
+  font-style: var(--echoes-font-weight-italic-style);
 }
 
 <span
@@ -85,8 +87,10 @@ exports[`default & regular renders as div 1`] = `
   font-weight: var(--echoes-font-weight-bold);
 }
 
+.emotion-0 em,
+.emotion-0 i,
 .emotion-0:is(em, i) {
-  font-style: italic;
+  font-style: var(--echoes-font-weight-italic-style);
 }
 
 <div
@@ -133,8 +137,10 @@ exports[`default & regular renders as paragraph 1`] = `
   font-weight: var(--echoes-font-weight-bold);
 }
 
+.emotion-0 em,
+.emotion-0 i,
 .emotion-0:is(em, i) {
-  font-style: italic;
+  font-style: var(--echoes-font-weight-italic-style);
 }
 
 <p
@@ -181,8 +187,10 @@ exports[`default & regular renders as span 1`] = `
   font-weight: var(--echoes-font-weight-bold);
 }
 
+.emotion-0 em,
+.emotion-0 i,
 .emotion-0:is(em, i) {
-  font-style: italic;
+  font-style: var(--echoes-font-weight-italic-style);
 }
 
 <span
@@ -229,8 +237,10 @@ exports[`default & regular renders with size default 1`] = `
   font-weight: var(--echoes-font-weight-bold);
 }
 
+.emotion-0 em,
+.emotion-0 i,
 .emotion-0:is(em, i) {
-  font-style: italic;
+  font-style: var(--echoes-font-weight-italic-style);
 }
 
 <span
@@ -277,8 +287,10 @@ exports[`default & regular renders with size large 1`] = `
   font-weight: var(--echoes-font-weight-bold);
 }
 
+.emotion-0 em,
+.emotion-0 i,
 .emotion-0:is(em, i) {
-  font-style: italic;
+  font-style: var(--echoes-font-weight-italic-style);
 }
 
 <span
@@ -325,8 +337,10 @@ exports[`default & regular renders with size small 1`] = `
   font-weight: var(--echoes-font-weight-bold);
 }
 
+.emotion-0 em,
+.emotion-0 i,
 .emotion-0:is(em, i) {
-  font-style: italic;
+  font-style: var(--echoes-font-weight-italic-style);
 }
 
 <span
@@ -373,8 +387,10 @@ exports[`default & strong renders as default 1`] = `
   font-weight: var(--echoes-font-weight-bold);
 }
 
+.emotion-0 em,
+.emotion-0 i,
 .emotion-0:is(em, i) {
-  font-style: italic;
+  font-style: var(--echoes-font-weight-italic-style);
 }
 
 <span
@@ -421,8 +437,10 @@ exports[`default & strong renders as div 1`] = `
   font-weight: var(--echoes-font-weight-bold);
 }
 
+.emotion-0 em,
+.emotion-0 i,
 .emotion-0:is(em, i) {
-  font-style: italic;
+  font-style: var(--echoes-font-weight-italic-style);
 }
 
 <div
@@ -469,8 +487,10 @@ exports[`default & strong renders as paragraph 1`] = `
   font-weight: var(--echoes-font-weight-bold);
 }
 
+.emotion-0 em,
+.emotion-0 i,
 .emotion-0:is(em, i) {
-  font-style: italic;
+  font-style: var(--echoes-font-weight-italic-style);
 }
 
 <p
@@ -517,8 +537,10 @@ exports[`default & strong renders as span 1`] = `
   font-weight: var(--echoes-font-weight-bold);
 }
 
+.emotion-0 em,
+.emotion-0 i,
 .emotion-0:is(em, i) {
-  font-style: italic;
+  font-style: var(--echoes-font-weight-italic-style);
 }
 
 <span
@@ -565,8 +587,10 @@ exports[`default & strong renders with size default 1`] = `
   font-weight: var(--echoes-font-weight-bold);
 }
 
+.emotion-0 em,
+.emotion-0 i,
 .emotion-0:is(em, i) {
-  font-style: italic;
+  font-style: var(--echoes-font-weight-italic-style);
 }
 
 <span
@@ -613,8 +637,10 @@ exports[`default & strong renders with size large 1`] = `
   font-weight: var(--echoes-font-weight-bold);
 }
 
+.emotion-0 em,
+.emotion-0 i,
 .emotion-0:is(em, i) {
-  font-style: italic;
+  font-style: var(--echoes-font-weight-italic-style);
 }
 
 <span
@@ -661,8 +687,10 @@ exports[`default & strong renders with size small 1`] = `
   font-weight: var(--echoes-font-weight-bold);
 }
 
+.emotion-0 em,
+.emotion-0 i,
 .emotion-0:is(em, i) {
-  font-style: italic;
+  font-style: var(--echoes-font-weight-italic-style);
 }
 
 <span
@@ -709,8 +737,10 @@ exports[`subtle & regular renders as default 1`] = `
   font-weight: var(--echoes-font-weight-bold);
 }
 
+.emotion-0 em,
+.emotion-0 i,
 .emotion-0:is(em, i) {
-  font-style: italic;
+  font-style: var(--echoes-font-weight-italic-style);
 }
 
 <span
@@ -757,8 +787,10 @@ exports[`subtle & regular renders as div 1`] = `
   font-weight: var(--echoes-font-weight-bold);
 }
 
+.emotion-0 em,
+.emotion-0 i,
 .emotion-0:is(em, i) {
-  font-style: italic;
+  font-style: var(--echoes-font-weight-italic-style);
 }
 
 <div
@@ -805,8 +837,10 @@ exports[`subtle & regular renders as paragraph 1`] = `
   font-weight: var(--echoes-font-weight-bold);
 }
 
+.emotion-0 em,
+.emotion-0 i,
 .emotion-0:is(em, i) {
-  font-style: italic;
+  font-style: var(--echoes-font-weight-italic-style);
 }
 
 <p
@@ -853,8 +887,10 @@ exports[`subtle & regular renders as span 1`] = `
   font-weight: var(--echoes-font-weight-bold);
 }
 
+.emotion-0 em,
+.emotion-0 i,
 .emotion-0:is(em, i) {
-  font-style: italic;
+  font-style: var(--echoes-font-weight-italic-style);
 }
 
 <span
@@ -901,8 +937,10 @@ exports[`subtle & regular renders with size default 1`] = `
   font-weight: var(--echoes-font-weight-bold);
 }
 
+.emotion-0 em,
+.emotion-0 i,
 .emotion-0:is(em, i) {
-  font-style: italic;
+  font-style: var(--echoes-font-weight-italic-style);
 }
 
 <span
@@ -949,8 +987,10 @@ exports[`subtle & regular renders with size large 1`] = `
   font-weight: var(--echoes-font-weight-bold);
 }
 
+.emotion-0 em,
+.emotion-0 i,
 .emotion-0:is(em, i) {
-  font-style: italic;
+  font-style: var(--echoes-font-weight-italic-style);
 }
 
 <span
@@ -997,8 +1037,10 @@ exports[`subtle & regular renders with size small 1`] = `
   font-weight: var(--echoes-font-weight-bold);
 }
 
+.emotion-0 em,
+.emotion-0 i,
 .emotion-0:is(em, i) {
-  font-style: italic;
+  font-style: var(--echoes-font-weight-italic-style);
 }
 
 <span
@@ -1045,8 +1087,10 @@ exports[`subtle & strong renders as default 1`] = `
   font-weight: var(--echoes-font-weight-bold);
 }
 
+.emotion-0 em,
+.emotion-0 i,
 .emotion-0:is(em, i) {
-  font-style: italic;
+  font-style: var(--echoes-font-weight-italic-style);
 }
 
 <span
@@ -1093,8 +1137,10 @@ exports[`subtle & strong renders as div 1`] = `
   font-weight: var(--echoes-font-weight-bold);
 }
 
+.emotion-0 em,
+.emotion-0 i,
 .emotion-0:is(em, i) {
-  font-style: italic;
+  font-style: var(--echoes-font-weight-italic-style);
 }
 
 <div
@@ -1141,8 +1187,10 @@ exports[`subtle & strong renders as paragraph 1`] = `
   font-weight: var(--echoes-font-weight-bold);
 }
 
+.emotion-0 em,
+.emotion-0 i,
 .emotion-0:is(em, i) {
-  font-style: italic;
+  font-style: var(--echoes-font-weight-italic-style);
 }
 
 <p
@@ -1189,8 +1237,10 @@ exports[`subtle & strong renders as span 1`] = `
   font-weight: var(--echoes-font-weight-bold);
 }
 
+.emotion-0 em,
+.emotion-0 i,
 .emotion-0:is(em, i) {
-  font-style: italic;
+  font-style: var(--echoes-font-weight-italic-style);
 }
 
 <span
@@ -1237,8 +1287,10 @@ exports[`subtle & strong renders with size default 1`] = `
   font-weight: var(--echoes-font-weight-bold);
 }
 
+.emotion-0 em,
+.emotion-0 i,
 .emotion-0:is(em, i) {
-  font-style: italic;
+  font-style: var(--echoes-font-weight-italic-style);
 }
 
 <span
@@ -1285,8 +1337,10 @@ exports[`subtle & strong renders with size large 1`] = `
   font-weight: var(--echoes-font-weight-bold);
 }
 
+.emotion-0 em,
+.emotion-0 i,
 .emotion-0:is(em, i) {
-  font-style: italic;
+  font-style: var(--echoes-font-weight-italic-style);
 }
 
 <span
@@ -1333,8 +1387,10 @@ exports[`subtle & strong renders with size small 1`] = `
   font-weight: var(--echoes-font-weight-bold);
 }
 
+.emotion-0 em,
+.emotion-0 i,
 .emotion-0:is(em, i) {
-  font-style: italic;
+  font-style: var(--echoes-font-weight-italic-style);
 }
 
 <span

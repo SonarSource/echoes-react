@@ -20,11 +20,12 @@
 
 import styled from '@emotion/styled';
 import * as radixTooltip from '@radix-ui/react-tooltip';
-import { ReactElement, ReactNode, Ref, forwardRef, useContext } from 'react';
+import { ReactElement, Ref, forwardRef, useContext } from 'react';
 import { isDefined } from '~common/helpers/types';
-import { THEME_DATA_ATTRIBUTE, ThemeContext } from '~utils/theme';
-
+import { TextNodeOptional } from '~types/utils';
 import { cssVar } from '~utils/design-tokens';
+import { THEME_DATA_ATTRIBUTE, ThemeContext } from '~utils/theme';
+import { TextTypographyStyle } from '../typography/Text';
 
 export enum TooltipAlign {
   Start = 'start',
@@ -40,10 +41,33 @@ export enum TooltipSide {
 }
 
 export interface TooltipProps {
+  /**
+   * The preferred alignment against the trigger. May change when collisions occur.
+   * @default 'center'
+   */
   align?: `${TooltipAlign}`;
+  /**
+   * The component that triggers the tooltip. It must be an interactive element to ensure the tooltip is accessible.
+   *
+   * It must be a single child element, so it can be wrapped by the tooltip trigger and should forward the ref
+   * to it's underlying DOM element as well as the extra props.
+   */
   children: ReactElement;
-  content: ReactNode | undefined;
+  /**
+   * The content of the tooltip.
+   * It can be a string or JSX.Element, in the case of a JSX.Element it doens't need to be wrapped in
+   * a `<Text>` component, the tooltip already handles the typography styling for you. You can use `<b>`,
+   * `<strong>`, `<i>`, `<em>` and other typography HTML tags also supported in the `<Text>` component.
+   */
+  content: TextNodeOptional | undefined;
+  /**
+   * Used to control/override the visibility of the tooltip, optional and not needed in most cases.
+   */
   isOpen?: boolean;
+  /**
+   * The preferred side of the trigger to render against when open. Will be reversed when collisions occur.
+   * @default 'top'
+   */
   side?: `${TooltipSide}`;
 }
 
@@ -55,7 +79,8 @@ const ARROW_PADDING = 12;
 
 /**
  * **Tooltips must be attached to an interactive element to be accessible.**
- * This is acceptable if the trigger element has an accessible label that contains the same information.
+ * Using a non-interactive element is acceptable if the trigger element has an accessible label
+ * (aria-label or aria-description) that contains the same information.
  *
  * ### Stacking Context
  *
@@ -108,16 +133,20 @@ export const Tooltip = forwardRef<HTMLElement, TooltipProps>((props, ref) => {
 
 Tooltip.displayName = 'Tooltip';
 
-const TooltipContent = styled(radixTooltip.Content)`
-  border-radius: ${cssVar('border-radius-200')};
+const StyledTooltipContent = styled(TextTypographyStyle)`
+  box-sizing: border-box;
+  max-width: ${cssVar('sizes-overlays-max-width-default')};
   padding: ${cssVar('dimension-space-50')} ${cssVar('dimension-space-150')};
+  border-radius: ${cssVar('border-radius-200')};
+  box-shadow: ${cssVar('box-shadow-medium')};
+
+  background-color: ${cssVar('color-surface-inverse-default')};
   font: ${cssVar('typography-text-small-medium')};
   color: ${cssVar('color-text-on-color')};
-  background-color: ${cssVar('color-surface-inverse-default')};
-  box-shadow: ${cssVar('box-shadow-medium')};
-  max-width: ${cssVar('dimension-width-5000')};
-  box-sizing: border-box;
 `;
+StyledTooltipContent.displayName = 'StyledTooltipContent';
+
+const TooltipContent = StyledTooltipContent.withComponent(radixTooltip.Content);
 TooltipContent.displayName = 'TooltipContent';
 
 const TooltipArrow = styled(radixTooltip.Arrow)`

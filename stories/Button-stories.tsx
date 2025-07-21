@@ -94,7 +94,7 @@ export const WithEllipsis: Story = {
         padding: '8px',
         border: '1px solid hotpink',
       }}>
-      <Tooltip content={args.children}>
+      <Tooltip content="Tooltip content for a very long button">
         <Button {...args} />
       </Tooltip>
     </div>
