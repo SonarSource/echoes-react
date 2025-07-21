@@ -53,7 +53,7 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>((props, re
   return (
     <PaginationWrapper ref={ref} {...radixProps}>
       <PaginationButton
-        aria-label={intl.formatMessage({
+        ariaLabel={intl.formatMessage({
           id: 'pagination.previous_page',
           defaultMessage: 'Previous page',
           description: 'ARIA-label for the pagination button that takes you to the previous page',
@@ -76,7 +76,7 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>((props, re
         ) : (
           <PaginationButton
             aria-current={p === `${page}` ? 'page' : undefined}
-            aria-label={intl.formatMessage(
+            ariaLabel={intl.formatMessage(
               {
                 id: 'pagination.page_x',
                 defaultMessage: 'page {page}',
@@ -95,7 +95,7 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>((props, re
       )}
 
       <PaginationButton
-        aria-label={intl.formatMessage({
+        ariaLabel={intl.formatMessage({
           id: 'pagination.next_page',
           defaultMessage: 'Next page',
           description: 'ARIA-label for the pagination button that takes you to the next page',

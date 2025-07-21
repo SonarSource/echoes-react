@@ -18,7 +18,13 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import { ComponentPropsWithoutRef, ForwardedRef, forwardRef, useMemo } from 'react';
+import {
+  ComponentPropsWithoutRef,
+  ForwardedRef,
+  forwardRef,
+  ForwardRefExoticComponent,
+  useMemo,
+} from 'react';
 import { isDefined } from '~common/helpers/types';
 import { IconFilledProps } from '../icons/IconWrapper';
 import { getShouldOpenInNewTabProps } from '../links/LinkBase';
@@ -41,10 +47,8 @@ type TooltipProps = ComponentPropsWithoutRef<typeof Tooltip>;
 type TooltipOptions = Omit<TooltipProps, 'children' | 'content' | 'key'>;
 
 interface CommonProps {
-  Icon: React.ForwardRefExoticComponent<IconFilledProps & React.RefAttributes<HTMLSpanElement>>;
+  Icon: ForwardRefExoticComponent<IconFilledProps & React.RefAttributes<HTMLSpanElement>>;
   isIconFilled?: IconFilledProps['isFilled'];
-
-  ariaLabel: string;
 
   tooltipContent?: TooltipProps['content'];
   tooltipOptions?: TooltipOptions;
@@ -53,9 +57,13 @@ interface CommonProps {
 export interface ButtonIconAsButtonProps
   extends CommonProps,
     ButtonBaseProps,
-    LinkPropsForbiddenForButton {}
+    LinkPropsForbiddenForButton {
+  ariaLabel: string;
+}
 
-interface ButtonIconAsLinkProps extends CommonProps, ButtonAsLinkBaseProps {}
+interface ButtonIconAsLinkProps extends CommonProps, ButtonAsLinkBaseProps {
+  ariaLabel: string;
+}
 
 export type ButtonIconProps = ButtonIconAsButtonProps | ButtonIconAsLinkProps;
 
