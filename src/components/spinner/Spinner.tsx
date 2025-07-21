@@ -28,7 +28,6 @@ import {
   SpinnerLabel,
   SpinnerPlaceholder,
   SpinnerStyled,
-  SpinnerWrapper,
 } from './SpinnerStyles';
 
 export interface SpinnerProps {
@@ -41,7 +40,7 @@ export interface SpinnerProps {
   wrapperClassName?: string;
 }
 
-export const Spinner = forwardRef<HTMLSpanElement, SpinnerProps>((props, ref) => {
+export const Spinner = forwardRef<HTMLOutputElement, SpinnerProps>((props, ref) => {
   const {
     ariaLabel,
     className,
@@ -57,39 +56,36 @@ export const Spinner = forwardRef<HTMLSpanElement, SpinnerProps>((props, ref) =>
 
   return (
     <>
-      <SpinnerWrapper className={wrapperClassName} inline={isInline}>
-        <SpinnerInner
-          {...radixProps}
-          aria-live="polite"
-          className={classNames({
-            it__loading: isLoading,
-          })}
+      <SpinnerInner
+        {...radixProps}
+        aria-live="polite"
+        className={classNames(wrapperClassName, {
+          it__loading: isLoading,
+        })}
+        /** Needs to also be inline if a visible label is present next to the Spinner icon */
+        inline={isInline || isDefined(label)}
+        isLoading={isLoading}
+        ref={ref}>
+        <SpinnerStyled
+          className={className}
           /** Needs to also be inline if a visible label is present next to the Spinner icon */
           inline={isInline || isDefined(label)}
-          isLoading={isLoading}
-          ref={ref}
-          role="status">
-          <SpinnerStyled
-            className={className}
-            /** Needs to also be inline if a visible label is present next to the Spinner icon */
-            inline={isInline || isDefined(label)}
-          />
-          {isLoading &&
-            (label ? (
-              <SpinnerLabel>{label}</SpinnerLabel>
-            ) : (
-              <SpinnerAriaLabel>
-                {ariaLabel ?? (
-                  <FormattedMessage
-                    defaultMessage="Loading..."
-                    description="aria-label text, to indicate that there is a spinner rotating in this place"
-                    id="loading"
-                  />
-                )}
-              </SpinnerAriaLabel>
-            ))}
-        </SpinnerInner>
-      </SpinnerWrapper>
+        />
+        {isLoading &&
+          (label ? (
+            <SpinnerLabel>{label}</SpinnerLabel>
+          ) : (
+            <SpinnerAriaLabel>
+              {ariaLabel ?? (
+                <FormattedMessage
+                  defaultMessage="Loading..."
+                  description="aria-label text, to indicate that there is a spinner rotating in this place"
+                  id="loading"
+                />
+              )}
+            </SpinnerAriaLabel>
+          ))}
+      </SpinnerInner>
       {!isLoading &&
         (children ?? (hasPlaceholder && <SpinnerPlaceholder className={className} />) ?? null)}
     </>
