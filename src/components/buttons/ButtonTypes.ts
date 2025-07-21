@@ -26,6 +26,7 @@ export type HTMLButtonAttributesSubset = Pick<
 >;
 
 export interface ButtonCommonProps {
+  ariaLabel?: string;
   className?: string;
   hasAutoFocus?: boolean;
   id?: string;

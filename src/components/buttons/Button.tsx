@@ -50,6 +50,7 @@ export type ButtonProps = ButtonAsButtonProps | ButtonAsLinkProps;
 export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonProps>(
   (props, ref) => {
     const {
+      ariaLabel,
       children,
       hasAutoFocus = false,
       isDisabled = false,
@@ -84,6 +85,7 @@ export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPr
         <ButtonAsLink
           {...restProps}
           {...getShouldOpenInNewTabProps({ enableOpenInNewTab, to })}
+          aria-label={ariaLabel}
           autoFocus={hasAutoFocus}
           css={commonStyles}
           onClick={handleClick}
@@ -105,6 +107,7 @@ export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPr
     return (
       <ButtonStyled
         {...htmlProps}
+        aria-label={ariaLabel}
         autoFocus={hasAutoFocus}
         css={commonStyles}
         disabled={isDisabled}
