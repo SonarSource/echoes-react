@@ -27,15 +27,15 @@ import { cssVar } from '~utils/design-tokens';
 
 describe.each([
   ['default & regular', false, false],
-  ['subdued & regular', true, false],
+  ['subtle & regular', true, false],
   ['default & strong', false, true],
-  ['subdued & strong', true, true],
-])('%s', (_, isSubdued, isHighlighted) => {
+  ['subtle & strong', true, true],
+])('%s', (_, isSubtle, isHighlighted) => {
   it.each([[TextSize.Small], [TextSize.Default], [TextSize.Large]])(
     'renders with size %s',
     (size) => {
       const text = 'hi there';
-      setupText({ children: text, size, isHighlighted, isSubdued });
+      setupText({ children: text, size, isHighlighted, isSubtle });
 
       expect(screen.getByText(text)).toMatchSnapshot();
     },
@@ -48,7 +48,7 @@ describe.each([
     ['span', 'span'],
   ] as Array<[_: string, as: ComponentProps<typeof Text>['as']]>)('renders as %s', (_, as) => {
     const text = 'hi there';
-    setupText({ as, children: text, isSubdued, isHighlighted });
+    setupText({ as, children: text, isSubtle, isHighlighted });
 
     expect(screen.getByText(text)).toMatchSnapshot();
   });

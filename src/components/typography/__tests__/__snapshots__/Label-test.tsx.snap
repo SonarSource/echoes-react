@@ -22,7 +22,7 @@ exports[`renders correctly 1`] = `
 </div>
 `;
 
-exports[`renders correctly with isSubdued 1`] = `
+exports[`renders correctly with isSubtle 1`] = `
 .emotion-0 {
   font: var(--echoes-typography-others-label);
   color: var(--echoes-color-text-subtle);

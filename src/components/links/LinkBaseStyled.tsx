@@ -34,7 +34,7 @@ const LinkBaseStyledHighlight = {
     --color: ${cssVar('color-text-default')};
     --hover: ${cssVar('color-text-link-hover')};
   `,
-  [LinkHighlight.Subdued]: css`
+  [LinkHighlight.Subtle]: css`
     --color: ${cssVar('color-text-subtle')};
     --hover: ${cssVar('color-text-link-hover')};
   `,

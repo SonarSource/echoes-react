@@ -28,8 +28,8 @@ it('renders correctly', () => {
   expect(container).toMatchSnapshot();
 });
 
-it('renders correctly with isSubdued', () => {
-  const { container } = setupLabel({ isSubdued: true });
+it('renders correctly with isSubtle', () => {
+  const { container } = setupLabel({ isSubtle: true });
 
   expect(container).toMatchSnapshot();
 });

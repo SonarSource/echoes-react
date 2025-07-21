@@ -122,7 +122,7 @@ html[data-echoes-theme='dark'], [data-echoes-theme='dark'] {
   --echoes-color-text-link-hover: #bdc6ff;
   --echoes-color-icon-bold: #fcfcfd;
   --echoes-color-icon-default: #e1e6f3;
-  --echoes-color-icon-subdued: #c5cddf;
+  --echoes-color-icon-subtle: #c5cddf;
   --echoes-color-icon-disabled: #637192;
   --echoes-color-icon-placeholder: #c5cddf;
   --echoes-color-icon-accent: #bdc6ff;

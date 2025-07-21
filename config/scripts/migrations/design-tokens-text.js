@@ -55,6 +55,7 @@ const TOKEN_MAPPINGS = {
   'echoes-color-background-default-disabled': 'echoes-color-surface-disabled',
   'echoes-color-text-bold': 'echoes-color-text-strong',
   'echoes-color-text-subdued': 'echoes-color-text-subtle',
+  'echoes-color-icon-subdued': 'echoes-color-icon-subtle',
   'echoes-color-text-accent-hover': 'echoes-color-text-link-hover',
   'echoes-color-background-neutral-default': 'echoes-color-surface-inverse-default',
   'echoes-color-background-neutral-hover': 'echoes-color-surface-inverse-hover',

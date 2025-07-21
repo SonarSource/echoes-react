@@ -37,7 +37,7 @@ const BreadcrumbsBase = forwardRef<HTMLDivElement, BreadcrumbsProps>((props, ref
     <div ref={ref} {...rest}>
       {items.map((item, index) => (
         <React.Fragment key={`${index}-${item.to.toString()}`}>
-          {index > 0 && <IconSlash color="echoes-color-icon-subdued" />}
+          {index > 0 && <IconSlash color="echoes-color-icon-subtle" />}
 
           {index === items.length - 1 ? (
             <span className={item.className}>{item.linkElement}</span>

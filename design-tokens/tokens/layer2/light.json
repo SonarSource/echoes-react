@@ -554,7 +554,7 @@
           "$type": "color",
           "$value": "{echoes.color.grey.500}"
         },
-        "subdued": {
+        "subtle": {
           "$type": "color",
           "$value": "{echoes.color.grey.400}"
         },

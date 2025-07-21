@@ -31,7 +31,7 @@ export enum LinkHighlight {
   Accent = 'accent',
   CurrentColor = 'current-color',
   Default = 'default',
-  Subdued = 'subdued',
+  Subtle = 'subtle',
 }
 
 interface LinkCommonProps {
