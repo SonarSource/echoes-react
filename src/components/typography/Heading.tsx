@@ -21,6 +21,8 @@
 import styled from '@emotion/styled';
 import { forwardRef, PropsWithChildren } from 'react';
 
+import { cssVar } from '~utils/design-tokens';
+
 export enum HeadingSize {
   ExtraSmall = 'xsmall',
   Small = 'small',
@@ -57,10 +59,10 @@ const defaultSizeByTag: Record<HeadingTag, HeadingSize> = {
 
 const StyledHeading = styled.div<Required<Pick<HeadingProps, 'hasMarginBottom' | 'size'>>>`
   font: ${getHeadingFont};
-  letter-spacing: var(--echoes-letter-spacing-decreased);
-  color: var(--echoes-color-text-strong);
+  letter-spacing: ${cssVar('letter-spacing-decreased')};
+  color: ${cssVar('color-text-strong')};
   margin: 0;
-  max-width: var(--echoes-sizes-typography-max-width-default);
+  max-width: ${cssVar('sizes-typography-max-width-default')};
 
   ${({ hasMarginBottom, size }) =>
     hasMarginBottom ? `margin-bottom: ${bottomMarginByHeadingSize({ size })}` : ''}
@@ -72,20 +74,20 @@ function getHeadingFont({ size }: Required<Pick<HeadingProps, 'size'>>) {
 }
 
 const HEADING_TYPOGRAPHY_MAP = {
-  [HeadingSize.ExtraSmall]: 'var(--echoes-typography-heading-xsmall)',
-  [HeadingSize.Small]: 'var(--echoes-typography-heading-small)',
-  [HeadingSize.Medium]: 'var(--echoes-typography-heading-medium)',
-  [HeadingSize.Large]: 'var(--echoes-typography-heading-large)',
-  [HeadingSize.ExtraLarge]: 'var(--echoes-typography-heading-xlarge)',
+  [HeadingSize.ExtraSmall]: cssVar('typography-heading-xsmall'),
+  [HeadingSize.Small]: cssVar('typography-heading-small'),
+  [HeadingSize.Medium]: cssVar('typography-heading-medium'),
+  [HeadingSize.Large]: cssVar('typography-heading-large'),
+  [HeadingSize.ExtraLarge]: cssVar('typography-heading-xlarge'),
 };
 
 const bottomMarginByHeadingSize = ({ size }: Required<Pick<HeadingProps, 'size'>>) => {
   switch (size) {
     case HeadingSize.Large:
-      return 'var(--echoes-dimension-space-200)';
+      return cssVar('dimension-space-200');
     case HeadingSize.ExtraLarge:
-      return 'var(--echoes-dimension-space-250)';
+      return cssVar('dimension-space-250');
     default:
-      return 'var(--echoes-dimension-space-100)';
+      return cssVar('dimension-space-100');
   }
 };

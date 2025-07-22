@@ -21,6 +21,8 @@
 import styled from '@emotion/styled';
 import { AriaRole, forwardRef } from 'react';
 
+import { cssVar } from '~utils/design-tokens';
+
 export interface DividerProps {
   /**
    * Additional CSS class name
@@ -79,7 +81,7 @@ export const Divider = forwardRef<HTMLHRElement | HTMLDivElement, Readonly<Divid
 );
 
 const StyledDivider = styled.hr<{ isVertical: boolean }>`
-  background-color: var(--echoes-color-border-weak);
+  background-color: ${cssVar('color-border-weak')};
   border: none;
   box-sizing: border-box;
   margin: 0;
@@ -117,7 +119,7 @@ const DividerContainer = styled.div<{ isVertical: boolean }>`
 `;
 
 const DividerLine = styled.div<{ isVertical: boolean }>`
-  background-color: var(--echoes-color-border-weak);
+  background-color: ${cssVar('color-border-weak')};
   flex-grow: 1;
 
   ${({ isVertical }) =>
@@ -132,12 +134,12 @@ const DividerLine = styled.div<{ isVertical: boolean }>`
 `;
 
 const DividerText = styled.span<{ isVertical: boolean }>`
-  font-size: var(--echoes-font-size-10);
-  font-weight: var(--echoes-font-weight-regular);
-  line-height: var(--echoes-line-height-10);
-  max-width: var(--echoes-sizes-typography-max-width-default);
+  font-size: ${cssVar('font-size-10')};
+  font-weight: ${cssVar('font-weight-regular')};
+  line-height: ${cssVar('line-height-10')};
+  max-width: ${cssVar('sizes-typography-max-width-default')};
   padding: ${({ isVertical }) =>
-    !isVertical ? '0 var(--echoes-dimension-space-25)' : 'var(--echoes-dimension-space-25) 0'};
+    !isVertical ? `0 ${cssVar('dimension-space-25')}` : `${cssVar('dimension-space-25')} 0`};
   white-space: nowrap;
 `;
 

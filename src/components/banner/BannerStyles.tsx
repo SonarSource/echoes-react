@@ -23,22 +23,24 @@ import { truncate } from '~common/helpers/styles';
 import { IconCheckCircle, IconError, IconInfo, IconWarning } from '../icons';
 import { BannerVariety } from './BannerTypes';
 
+import { cssVar } from '~utils/design-tokens';
+
 export const BANNER_TYPE_STYLES = {
   [BannerVariety.Danger]: {
-    '--banner-color': 'var(--echoes-color-text-danger)',
-    '--banner-background': 'var(--echoes-color-background-danger-weak-default)',
+    '--banner-color': cssVar('color-text-danger'),
+    '--banner-background': cssVar('color-background-danger-weak-default'),
   },
   [BannerVariety.Info]: {
-    '--banner-color': 'var(--echoes-color-text-info)',
-    '--banner-background': 'var(--echoes-color-background-info-weak-default)',
+    '--banner-color': cssVar('color-text-info'),
+    '--banner-background': cssVar('color-background-info-weak-default'),
   },
   [BannerVariety.Success]: {
-    '--banner-color': 'var(--echoes-color-text-success)',
-    '--banner-background': 'var(--echoes-color-background-success-weak-default)',
+    '--banner-color': cssVar('color-text-success'),
+    '--banner-background': cssVar('color-background-success-weak-default'),
   },
   [BannerVariety.Warning]: {
-    '--banner-color': 'var(--echoes-color-text-warning)',
-    '--banner-background': 'var(--echoes-color-background-warning-weak-default)',
+    '--banner-color': cssVar('color-text-warning'),
+    '--banner-background': cssVar('color-background-warning-weak-default'),
   },
 };
 
@@ -63,7 +65,7 @@ export const BANNER_TYPE_ICONS = {
 
 // The BannerSkeleton is used to make sure the banner that is fixed position still takes up space in the layout
 export const BannerSkeleton = styled.div`
-  height: var(--echoes-banner-sizes-height);
+  height: ${cssVar('banner-sizes-height')};
 `;
 BannerSkeleton.displayName = 'BannerSkeleton';
 
@@ -71,12 +73,12 @@ BannerSkeleton.displayName = 'BannerSkeleton';
 // It also provides a stable non transparent background color for the BannerInner that has a transparent background when in dark mode
 export const BannerWrapper = styled.div`
   position: fixed;
-  background-color: var(--echoes-color-surface-default);
+  background-color: ${cssVar('color-surface-default')};
 
   height: inherit;
   width: 100%;
-  min-width: var(--echoes-layout-sizes-min-width-default);
-  max-width: var(--echoes-layout-sizes-max-width-full);
+  min-width: ${cssVar('layout-sizes-min-width-default')};
+  max-width: ${cssVar('layout-sizes-max-width-full')};
 
   // Not great but should be revisted when Echoes provide a framework for z-indexes
   z-index: var(--banner-z-index);
@@ -87,24 +89,24 @@ export const BannerInner = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: var(--echoes-dimension-space-300);
+  gap: ${cssVar('dimension-space-300')};
 
   box-sizing: border-box;
   height: inherit;
   width: 100%;
-  padding: var(--echoes-dimension-space-75) var(--echoes-dimension-space-200);
+  padding: ${cssVar('dimension-space-75')} ${cssVar('dimension-space-200')};
   overflow: hidden;
 
   background-color: var(--banner-background);
   color: var(--banner-color);
-  font: var(--echoes-typography-text-default-regular);
+  font: ${cssVar('typography-text-default-regular')};
 `;
 BannerInner.displayName = 'BannerInner';
 
 export const BannerContent = styled.div`
   display: flex;
   align-items: center;
-  gap: var(--echoes-dimension-space-200);
+  gap: ${cssVar('dimension-space-200')};
   width: 100%;
 
   ${truncate}
@@ -114,9 +116,9 @@ BannerContent.displayName = 'BannerContent';
 export const BannerContentText = styled.div`
   display: flex;
   align-items: center;
-  gap: var(--echoes-dimension-space-50);
-  padding: var(--echoes-dimension-space-50);
-  margin-left: calc(-1 * var(--echoes-dimension-space-50));
+  gap: ${cssVar('dimension-space-50')};
+  padding: ${cssVar('dimension-space-50')};
+  margin-left: calc(-1 * ${cssVar('dimension-space-50')});
 
   ${truncate}
 `;

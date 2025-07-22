@@ -24,6 +24,8 @@ import { NavLinkBase, NavLinkBaseProps } from '~common/components/NavLinkBase';
 import { IconLinkExternal } from '../icons/IconLinkExternal';
 import { DropdownMenuItemBase, DropdownMenuItemBaseProps } from './DropdownMenuItemBase';
 
+import { cssVar } from '~utils/design-tokens';
+
 export type DropdownMenuItemLinkProps = Omit<
   DropdownMenuItemBaseProps,
   'isCheckable' | 'isChecked'
@@ -82,11 +84,11 @@ DropdownMenuItemLink.displayName = 'DropdownMenu.ItemLink';
 const StyledDropdownMenuItemBase = styled(DropdownMenuItemBase)`
   /* when the current URL matches 'to', react-router adds an 'active' class to the 'a' tag */
   &.active {
-    background-color: var(--echoes-color-surface-active);
+    background-color: ${cssVar('color-surface-active')};
   }
 
   &[data-disabled] {
-    background-color: var(--echoes-color-surface-default);
+    background-color: ${cssVar('color-surface-default')};
   }
 `;
 StyledDropdownMenuItemBase.displayName = 'StyledDropdownMenuItemBase';
@@ -97,15 +99,15 @@ const StyledNavLinkBase = styled(NavLinkBase)`
 StyledNavLinkBase.displayName = 'StyledNavLinkBase';
 
 const StyledIconLinkExternal = styled(IconLinkExternal)`
-  font-size: var(--echoes-font-size-20);
-  padding-right: var(--echoes-dimension-space-25);
+  font-size: ${cssVar('font-size-20')};
+  padding-right: ${cssVar('dimension-space-25')};
 `;
 StyledIconLinkExternal.displayName = 'StyledIconLinkExternal';
 
 const StyledSuffix = styled.span`
   align-items: center;
   display: flex;
-  gap: var(--echoes-dimension-space-50);
+  gap: ${cssVar('dimension-space-50')};
 `;
 StyledSuffix.displayName = 'StyledSuffix';
 

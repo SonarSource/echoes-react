@@ -23,22 +23,24 @@ import styled from '@emotion/styled';
 import { LinkBase } from './LinkBase';
 import { LinkHighlight } from './LinkTypes';
 
+import { cssVar } from '~utils/design-tokens';
+
 const LinkBaseStyledHighlight = {
   [LinkHighlight.Accent]: css`
-    --color: var(--echoes-color-text-accent);
-    --hover: var(--echoes-color-text-link-hover);
+    --color: ${cssVar('color-text-accent')};
+    --hover: ${cssVar('color-text-link-hover')};
   `,
   [LinkHighlight.Default]: css`
-    --color: var(--echoes-color-text-default);
-    --hover: var(--echoes-color-text-link-hover);
+    --color: ${cssVar('color-text-default')};
+    --hover: ${cssVar('color-text-link-hover')};
   `,
   [LinkHighlight.Subdued]: css`
-    --color: var(--echoes-color-text-subtle);
-    --hover: var(--echoes-color-text-link-hover);
+    --color: ${cssVar('color-text-subtle')};
+    --hover: ${cssVar('color-text-link-hover')};
   `,
   [LinkHighlight.CurrentColor]: css`
     --color: 'currentColor';
-    --hover: var(--echoes-color-text-link-hover);
+    --hover: ${cssVar('color-text-link-hover')};
   `,
 };
 
@@ -50,8 +52,8 @@ export const LinkBaseStyled = styled(LinkBase)`
   color: var(--color);
 
   font: inherit;
-  font-weight: var(--echoes-font-weight-semi-bold);
-  text-decoration-line: var(--echoes-text-decoration-underline);
+  font-weight: ${cssVar('font-weight-semi-bold')};
+  text-decoration-line: ${cssVar('text-decoration-underline')};
   text-decoration-color: var(--color);
   text-decoration-style: solid;
   text-decoration-skip-ink: auto;
@@ -72,9 +74,9 @@ export const LinkBaseStyled = styled(LinkBase)`
   }
 
   &:focus-visible {
-    outline: var(--echoes-color-focus-default) solid var(--echoes-focus-border-width-default);
-    outline-offset: var(--echoes-focus-border-offset-default);
-    border-radius: var(--echoes-border-radius-200);
+    outline: ${cssVar('color-focus-default')} solid ${cssVar('focus-border-width-default')};
+    outline-offset: ${cssVar('focus-border-offset-default')};
+    border-radius: ${cssVar('border-radius-200')};
   }
 
   & > svg {

@@ -21,6 +21,8 @@ import styled from '@emotion/styled';
 import { IconCheckCircle, IconError, IconInfo, IconQuestionMark, IconWarning } from '../icons';
 import { MessageVariety } from './MessageTypes';
 
+import { cssVar } from '~utils/design-tokens';
+
 export const MESSAGE_VARIETY_ICON = {
   [MessageVariety.Info]: <IconInfo color="echoes-color-icon-info" />,
   [MessageVariety.Danger]: <IconError color="echoes-color-icon-danger" />,
@@ -31,44 +33,44 @@ export const MESSAGE_VARIETY_ICON = {
 
 export const MESSAGE_CALLOUT_VARIETY_STYLE = {
   [MessageVariety.Info]: {
-    '--message-background': 'var(--echoes-color-background-info-weak-default)',
-    '--message-title-color': 'var(--echoes-color-text-info)',
+    '--message-background': cssVar('color-background-info-weak-default'),
+    '--message-title-color': cssVar('color-text-info'),
   },
   [MessageVariety.Danger]: {
-    '--message-background': 'var(--echoes-color-background-danger-weak-default)',
-    '--message-title-color': 'var(--echoes-color-text-danger)',
+    '--message-background': cssVar('color-background-danger-weak-default'),
+    '--message-title-color': cssVar('color-text-danger'),
   },
   [MessageVariety.Warning]: {
-    '--message-background': 'var(--echoes-color-background-warning-weak-default)',
-    '--message-title-color': 'var(--echoes-color-text-warning)',
+    '--message-background': cssVar('color-background-warning-weak-default'),
+    '--message-title-color': cssVar('color-text-warning'),
   },
   [MessageVariety.Success]: {
-    '--message-background': 'var(--echoes-color-background-success-weak-default)',
-    '--message-title-color': 'var(--echoes-color-text-success)',
+    '--message-background': cssVar('color-background-success-weak-default'),
+    '--message-title-color': cssVar('color-text-success'),
   },
   [MessageVariety.Discover]: {
-    '--message-background': 'var(--echoes-color-background-accent-weak-default)',
-    '--message-title-color': 'var(--echoes-color-text-accent)',
+    '--message-background': cssVar('color-background-accent-weak-default'),
+    '--message-title-color': cssVar('color-text-accent'),
   },
 };
 
 export const MessageCalloutContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: var(--echoes-dimension-space-100);
-  border-radius: var(--echoes-border-radius-400);
+  gap: ${cssVar('dimension-space-100')};
+  border-radius: ${cssVar('border-radius-400')};
 
-  color: var(--echoes-color-text-default);
+  color: ${cssVar('color-text-default')};
 
   background-color: var(--message-background);
-  padding: var(--echoes-dimension-space-200);
+  padding: ${cssVar('dimension-space-200')};
 `;
 MessageCalloutContainer.displayName = 'MessageCalloutContainer';
 
 export const MessageCalloutMainContent = styled.div`
   display: flex;
   flex-direction: row;
-  gap: var(--echoes-dimension-space-100);
+  gap: ${cssVar('dimension-space-100')};
   align-items: start;
 `;
 MessageCalloutMainContent.displayName = 'MessageCalloutMainContent';
@@ -76,15 +78,15 @@ MessageCalloutMainContent.displayName = 'MessageCalloutMainContent';
 export const MessageCalloutIconWrapper = styled.div<{ addMargin: boolean }>`
   flex: 0 0 auto;
 
-  font: var(--echoes-typography-text-default-regular);
-  ${({ addMargin: offset }) => (offset ? 'margin-top: var(--echoes-dimension-space-25);' : '')}
+  font: ${cssVar('typography-text-default-regular')};
+  ${({ addMargin: offset }) => (offset ? `margin-top: ${cssVar('dimension-space-25')};` : '')}
 `;
 MessageCalloutIconWrapper.displayName = 'MessageCalloutIconWrapper';
 
 export const MessageCalloutTitleWrapper = styled.div`
   flex: 1 0 auto;
-  font: var(--echoes-typography-heading-medium);
-  letter-spacing: var(--echoes-letter-spacing-decreased);
+  font: ${cssVar('typography-heading-medium')};
+  letter-spacing: ${cssVar('letter-spacing-decreased')};
   color: var(--message-title-color);
 `;
 MessageCalloutTitleWrapper.displayName = 'MessageCalloutTitleWrapper';
@@ -94,13 +96,13 @@ export const MessageCalloutTextWrapper = styled.div`
 
   display: flex;
   flex-direction: column;
-  gap: var(--echoes-dimension-space-100);
+  gap: ${cssVar('dimension-space-100')};
 
-  font: var(--echoes-typography-text-default-regular);
+  font: ${cssVar('typography-text-default-regular')};
 `;
 MessageCalloutTextWrapper.displayName = 'MessageCalloutTextWrapper';
 
 export const MessageCalloutFooter = styled.div`
-  margin-left: var(--echoes-dimension-space-200);
+  margin-left: ${cssVar('dimension-space-200')};
 `;
 MessageCalloutFooter.displayName = 'MessageCalloutFooter';

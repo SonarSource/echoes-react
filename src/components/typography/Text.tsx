@@ -22,6 +22,7 @@ import styled from '@emotion/styled';
 import { CSSProperties, forwardRef, PropsWithChildren } from 'react';
 import { isDefined } from '~common/helpers/types';
 import { DesignTokensColorsText } from '~types/design-tokens';
+import { cssVar } from '~utils/design-tokens';
 
 export enum TextSize {
   Small = 'small',
@@ -80,7 +81,7 @@ Text.displayName = 'Text';
 type StyledTextProps = Required<Pick<TextProps, 'isSubdued' | 'isHighlighted' | 'size'>>;
 
 const BaseStyles = styled.span`
-  max-width: var(--echoes-sizes-typography-max-width-default);
+  max-width: ${cssVar('sizes-typography-max-width-default')};
 
   & ul {
     list-style-type: disc;
@@ -92,19 +93,19 @@ const BaseStyles = styled.span`
 
   & ul,
   & ol {
-    margin-block-start: var(--echoes-dimension-space-100);
+    margin-block-start: ${cssVar('dimension-space-100')};
     margin-block-end: 0;
     padding-inline-start: 28px;
 
     display: flex;
     flex-direction: column;
-    gap: var(--echoes-dimension-space-100);
+    gap: ${cssVar('dimension-space-100')};
   }
 
   & strong,
   & b,
   &:is(strong, b) {
-    font-weight: var(--echoes-font-weight-bold);
+    font-weight: ${cssVar('font-weight-bold')};
   }
 
   &:is(em, i) {
@@ -116,13 +117,10 @@ BaseStyles.displayName = 'BaseStyles';
 const StyledText = styled(BaseStyles)<StyledTextProps>`
   font: ${getFontForSizeAndWeight};
 
-  color: ${getColor};
+  color: ${({ isSubdued }) =>
+    isSubdued ? cssVar('color-text-subtle') : cssVar('color-text-default')};
 `;
 StyledText.displayName = 'StyledText';
-
-function getColor({ isSubdued }: Pick<StyledTextProps, 'isSubdued'>) {
-  return isSubdued ? 'var(--echoes-color-text-subtle)' : 'var(--echoes-color-text-default)';
-}
 
 function getFontForSizeAndWeight({
   size,
@@ -134,14 +132,14 @@ function getFontForSizeAndWeight({
 const TYPOGRAPHY_MAP = {
   /* isHighlighted is true */
   true: {
-    [TextSize.Small]: 'var(--echoes-typography-text-small-semi-bold)',
-    [TextSize.Default]: 'var(--echoes-typography-text-default-semi-bold)',
-    [TextSize.Large]: 'var(--echoes-typography-text-large-semi-bold)',
+    [TextSize.Small]: cssVar('typography-text-small-semi-bold'),
+    [TextSize.Default]: cssVar('typography-text-default-semi-bold'),
+    [TextSize.Large]: cssVar('typography-text-large-semi-bold'),
   },
   /* isHighlighted is false */
   false: {
-    [TextSize.Small]: 'var(--echoes-typography-text-small-regular)',
-    [TextSize.Default]: 'var(--echoes-typography-text-default-regular)',
-    [TextSize.Large]: 'var(--echoes-typography-text-large-regular)',
+    [TextSize.Small]: cssVar('typography-text-small-regular'),
+    [TextSize.Default]: cssVar('typography-text-default-regular'),
+    [TextSize.Large]: cssVar('typography-text-large-regular'),
   },
 };

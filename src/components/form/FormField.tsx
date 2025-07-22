@@ -24,6 +24,8 @@ import { MessageInline, MessageInlineSize, MessageVariety } from '../messages';
 import { HelperText } from '../typography';
 import { FormFieldLabel, FormFieldLabelProps } from './FormFieldLabel';
 
+import { cssVar } from '~utils/design-tokens';
+
 /**
  * Form fields wrap form controls and help create standardization between them.
  * They may have a label, a description, and validation.
@@ -209,16 +211,16 @@ export interface FormFieldProps extends ValidationProps, WhiteListedProps {
 
 const FormFieldStyled = styled.div`
   &[data-width='small'] {
-    width: var(--echoes-sizes-form-field-small);
+    width: ${cssVar('sizes-form-field-small')};
   }
   &[data-width='medium'] {
-    width: var(--echoes-sizes-form-field-medium);
+    width: ${cssVar('sizes-form-field-medium')};
   }
   &[data-width='large'] {
-    width: var(--echoes-sizes-form-field-large);
+    width: ${cssVar('sizes-form-field-large')};
   }
   &[data-width='full'] {
-    width: var(--echoes-sizes-form-field-full);
+    width: ${cssVar('sizes-form-field-full')};
   }
 `;
 
@@ -226,13 +228,13 @@ FormFieldStyled.displayName = 'FormFieldStyled';
 
 const ValidationMessage = styled(MessageInline)`
   display: block;
-  margin-top: var(--echoes-dimension-space-75);
+  margin-top: ${cssVar('dimension-space-75')};
 `;
 
 ValidationMessage.displayName = 'ValidationMessage';
 
 const HelpText = styled(HelperText)`
-  margin-top: var(--echoes-dimension-space-75);
+  margin-top: ${cssVar('dimension-space-75')};
 `;
 
 HelpText.displayName = 'HelpText';

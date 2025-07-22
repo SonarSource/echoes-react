@@ -27,6 +27,8 @@ import { Spinner } from '../spinner';
 import { HelperText } from '../typography';
 import { CheckboxIcon } from './CheckboxIcon';
 
+import { cssVar } from '~utils/design-tokens';
+
 interface CheckboxPropsBase {
   checked: boolean | 'indeterminate';
   className?: string;
@@ -131,14 +133,14 @@ const CheckboxInnerContainer = styled.span`
 CheckboxInnerContainer.displayName = 'CheckboxInnerContainer';
 
 const CheckboxRoot = styled(RadixCheckbox.Root)`
-  color: var(--echoes-color-text-on-color);
-  background-color: var(--echoes-color-surface-default);
-  border: var(--echoes-border-width-default) solid var(--echoes-color-border-bolder);
+  color: ${cssVar('color-text-on-color')};
+  background-color: ${cssVar('color-surface-default')};
+  border: ${cssVar('border-width-default')} solid ${cssVar('color-border-bolder')};
 
-  height: var(--echoes-dimension-height-400);
-  width: var(--echoes-dimension-width-200);
-  border-radius: var(--echoes-border-radius-100);
-  margin: var(--echoes-dimension-space-25) 0;
+  height: ${cssVar('dimension-height-400')};
+  width: ${cssVar('dimension-width-200')};
+  border-radius: ${cssVar('border-radius-100')};
+  margin: ${cssVar('dimension-space-25')} 0;
   box-sizing: border-box;
   display: inline-flex;
   align-items: center;
@@ -147,53 +149,53 @@ const CheckboxRoot = styled(RadixCheckbox.Root)`
 
   &:focus,
   &:focus-visible {
-    outline: var(--echoes-color-focus-default) solid var(--echoes-focus-border-width-default);
-    outline-offset: var(--echoes-focus-border-offset-default);
+    outline: ${cssVar('color-focus-default')} solid ${cssVar('focus-border-width-default')};
+    outline-offset: ${cssVar('focus-border-offset-default')};
   }
 
   &[aria-disabled='true'] {
-    color: var(--echoes-color-icon-disabled);
-    background-color: var(--echoes-color-surface-disabled);
-    border-color: var(--echoes-color-border-disabled);
+    color: ${cssVar('color-icon-disabled')};
+    background-color: ${cssVar('color-surface-disabled')};
+    border-color: ${cssVar('color-border-disabled')};
 
     &[aria-checked='true'],
     &[aria-checked='mixed'] {
-      background-color: var(--echoes-color-surface-disabled);
-      border-color: var(--echoes-color-border-disabled);
+      background-color: ${cssVar('color-surface-disabled')};
+      border-color: ${cssVar('color-border-disabled')};
     }
   }
 
   &:not([aria-disabled='true']) {
     &:hover {
-      background-color: var(--echoes-color-surface-hover);
+      background-color: ${cssVar('color-surface-hover')};
     }
 
     &[aria-checked='true'],
     &[aria-checked='mixed'] {
-      background-color: var(--echoes-color-background-selected-bold-default);
-      border-color: var(--echoes-color-background-selected-bold-default);
+      background-color: ${cssVar('color-background-selected-bold-default')};
+      border-color: ${cssVar('color-background-selected-bold-default')};
 
       &:hover {
-        background-color: var(--echoes-color-background-selected-bold-hover);
-        border: var(--echoes-color-background-selected-bold-hover);
+        background-color: ${cssVar('color-background-selected-bold-hover')};
+        border: ${cssVar('color-background-selected-bold-hover')};
       }
     }
 
     &[data-error] {
-      border-color: var(--echoes-color-border-danger-default);
+      border-color: ${cssVar('color-border-danger-default')};
     }
   }
 `;
 CheckboxRoot.displayName = 'CheckboxRoot';
 
 const CheckboxSpinner = styled(Spinner)`
-  margin: var(--echoes-dimension-space-25) 0;
+  margin: ${cssVar('dimension-space-25')} 0;
 `;
 CheckboxSpinner.displayName = 'CheckboxSpinner';
 
 const CheckboxIndicator = styled(RadixCheckbox.Indicator)`
-  height: var(--echoes-dimension-height-400);
-  width: var(--echoes-dimension-width-200);
+  height: ${cssVar('dimension-height-400')};
+  width: ${cssVar('dimension-width-200')};
 `;
 CheckboxIndicator.displayName = 'CheckboxIndicator';
 
@@ -202,12 +204,12 @@ const CheckboxLabelWrapper = styled.span`
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  margin-left: var(--echoes-dimension-space-100);
+  margin-left: ${cssVar('dimension-space-100')};
 `;
 CheckboxLabelWrapper.displayName = 'CheckboxLabelWrapper';
 
 const CheckboxLabel = styled(FormFieldLabel)`
-  color: var(--echoes-color-text-default);
-  font: var(--echoes-typography-others-label-medium);
+  color: ${cssVar('color-text-default')};
+  font: ${cssVar('typography-others-label-medium')};
 `;
 CheckboxLabel.displayName = 'CheckboxLabel';

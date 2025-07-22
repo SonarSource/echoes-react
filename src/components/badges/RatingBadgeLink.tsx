@@ -24,6 +24,8 @@ import { LinkStandalone } from '../links';
 import { LinkBaseProps } from '../links/LinkTypes';
 import { RatingBadge, RatingBadgeProps } from './RatingBadge';
 
+import { cssVar } from '~utils/design-tokens';
+
 export type RatingBadgeLinkProps = Omit<LinkBaseProps, 'children' | 'highlight'> & RatingBadgeProps;
 
 export const RatingBadgeLink = forwardRef<HTMLAnchorElement, RatingBadgeLinkProps>(
@@ -38,15 +40,15 @@ RatingBadgeLink.displayName = 'RatingBadgeLink';
 
 const LinkStandaloneStyled = styled(LinkStandalone)`
   & div:hover {
-    text-decoration-line: var(--echoes-text-decoration-underline);
+    text-decoration-line: ${cssVar('text-decoration-underline')};
   }
 
   &:focus-visible {
     outline: none; // remove the one from LinkBaseStyled
 
     & div {
-      outline: var(--echoes-color-focus-default) solid var(--echoes-focus-border-width-default);
-      outline-offset: var(--echoes-focus-border-offset-default);
+      outline: ${cssVar('color-focus-default')} solid ${cssVar('focus-border-width-default')};
+      outline-offset: ${cssVar('focus-border-offset-default')};
     }
   }
 `;

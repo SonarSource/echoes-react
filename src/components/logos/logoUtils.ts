@@ -19,6 +19,7 @@
  */
 
 import styled from '@emotion/styled';
+import { cssVar, EchoesCSSVarString } from '~utils/design-tokens';
 
 export interface LogoProps {
   className?: string;
@@ -33,7 +34,13 @@ export enum LogoSize {
 }
 
 export const LogoSvgWrapper = styled.svg<Pick<LogoProps, 'size'>>`
-  height: var(--echoes-sizes-logo-height-${({ size }) => size ?? LogoSize.Medium});
+  height: ${({ size }) => LOGO_HEIGHT_STYLES[size ?? LogoSize.Medium]};
   width: auto;
 `;
 LogoSvgWrapper.displayName = 'LogoSvgWrapper';
+
+const LOGO_HEIGHT_STYLES: Record<`${LogoSize}`, EchoesCSSVarString> = {
+  [LogoSize.Small]: cssVar('sizes-logo-height-small'),
+  [LogoSize.Medium]: cssVar('sizes-logo-height-medium'),
+  [LogoSize.Large]: cssVar('sizes-logo-height-large'),
+};

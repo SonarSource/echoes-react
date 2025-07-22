@@ -19,13 +19,15 @@
  */
 
 import styled from '@emotion/styled';
-import { forwardRef } from 'react';
+import { forwardRef, useMemo } from 'react';
 import { isStringDefined } from '~common/helpers/types';
+import { cssVar } from '~utils/design-tokens';
 import { ButtonVariety } from '../buttons';
 import { Button, ButtonAsButtonProps } from '../buttons/Button';
+
 import {
+  RATING_BADGE_SIZE,
   RatingBadge,
-  RatingBadgeDimensions,
   RatingBadgeProps,
   RatingBadgeRating,
   RatingBadgeSize,
@@ -41,7 +43,19 @@ export const RatingBadgeButton = forwardRef<HTMLButtonElement, RatingBadgeButton
     const rating = isStringDefined(ratingPropValue) ? ratingPropValue : RatingBadgeRating.Null;
 
     return (
-      <RatingBadgeButtonStyled ref={ref} {...{ className, rating, size, style, ...buttonProps }}>
+      <RatingBadgeButtonStyled
+        className={className}
+        css={useMemo(
+          () => ({
+            ...RATING_BADGE_SIZE[size],
+            ...RATING_BADGE_BORDER_STYLES[rating],
+          }),
+          [rating, size],
+        )}
+        data-rating={rating}
+        ref={ref}
+        style={style}
+        {...buttonProps}>
         <RatingBadge {...{ rating, size }} />
       </RatingBadgeButtonStyled>
     );
@@ -60,30 +74,40 @@ const RatingBadgeButtonInner = forwardRef<
 RatingBadgeButtonInner.displayName = 'RatingBadgeButtonInner';
 
 const RatingBadgeButtonStyled = styled(RatingBadgeButtonInner)`
-  border-radius: var(--echoes-border-radius-full);
+  border-radius: ${cssVar('border-radius-full')};
   padding: 0;
 
-  ${({ rating = RatingBadgeRating.Null }) =>
-    rating === RatingBadgeRating.Null
-      ? ''
-      : `
-          & div:hover {
-            box-sizing: border-box;
-            border: 1px solid var(--echoes-ratings-colors-border-rating-${rating.toLowerCase()}-hover);
-          }
-        `}
+  & div:hover {
+    box-sizing: border-box;
+    border: ${cssVar('border-width-default')} solid var(--rating-badge-border-color);
+  }
 
-  ${({ size = RatingBadgeSize.Medium }) => {
-    const dimensions = RatingBadgeDimensions[size];
-
-    return `
-      &,
-      span {
-         height: var(--echoes-dimension-width-${dimensions.width});
-         min-height: var(--echoes-dimension-width-${dimensions.width});
-         min-width: var(--echoes-dimension-width-${dimensions.width});
-         width: var(--echoes-dimension-width-${dimensions.width});
-      }
-    `;
-  }}
+  &,
+  span {
+    height: var(--rating-badge-size);
+    min-height: var(--rating-badge-size);
+    min-width: var(--rating-badge-size);
+    width: var(--rating-badge-size);
+  }
 `;
+
+const RATING_BADGE_BORDER_STYLES = {
+  [RatingBadgeRating.Null]: {
+    '--rating-badge-border-color': cssVar('color-border-disabled'),
+  },
+  [RatingBadgeRating.A]: {
+    '--rating-badge-border-color': cssVar('ratings-colors-border-rating-a-hover'),
+  },
+  [RatingBadgeRating.B]: {
+    '--rating-badge-border-color': cssVar('ratings-colors-border-rating-b-hover'),
+  },
+  [RatingBadgeRating.C]: {
+    '--rating-badge-border-color': cssVar('ratings-colors-border-rating-c-hover'),
+  },
+  [RatingBadgeRating.D]: {
+    '--rating-badge-border-color': cssVar('ratings-colors-border-rating-d-hover'),
+  },
+  [RatingBadgeRating.E]: {
+    '--rating-badge-border-color': cssVar('ratings-colors-border-rating-e-hover'),
+  },
+};

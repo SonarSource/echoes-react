@@ -21,6 +21,8 @@ import styled from '@emotion/styled';
 import { FormEvent, FormHTMLAttributes, forwardRef, ReactNode, useCallback } from 'react';
 import { isDefined } from '~common/helpers/types';
 
+import { cssVar } from '~utils/design-tokens';
+
 type FormAttributesSubset =
   | 'action'
   | 'className'
@@ -78,6 +80,6 @@ FormRoot.displayName = 'FormRoot';
 const FormStyled = styled.form`
   display: flex;
   flex-direction: column;
-  gap: var(--echoes-dimension-space-300);
+  gap: ${cssVar('dimension-space-300')};
 `;
 FormStyled.displayName = 'FormStyled';

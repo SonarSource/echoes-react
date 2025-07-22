@@ -23,11 +23,13 @@ import type { ComponentProps } from 'react';
 import { Text, Theme, ThemeProvider } from '../src';
 import { basicWrapperDecorator } from './helpers/BasicWrapper';
 
+import { cssVar } from '~utils/design-tokens';
+
 function Background({ children, style }: ComponentProps<'div'>) {
   return (
     <div
       style={{
-        backgroundColor: 'var(--echoes-color-background-neutral-subtle-default)',
+        backgroundColor: cssVar('color-background-neutral-subtle-default'),
         ...style,
       }}>
       {children}

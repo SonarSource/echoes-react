@@ -24,6 +24,8 @@ import { useIntl } from 'react-intl';
 import { LinkProps } from 'react-router-dom';
 import { LinkStandalone } from '../links';
 
+import { cssVar } from '~utils/design-tokens';
+
 export interface GlobalNavigationHomeProps {
   children: React.ReactNode;
   className?: string;
@@ -57,7 +59,7 @@ export const GlobalNavigationHome = forwardRef<HTMLDivElement, GlobalNavigationH
 GlobalNavigationHome.displayName = 'GlobalNavigationHome';
 
 const HomeContainer = styled.div`
-  padding: 0 var(--echoes-dimension-space-300);
+  padding: 0 ${cssVar('dimension-space-300')};
 `;
 HomeContainer.displayName = 'HomeContainer';
 
@@ -65,16 +67,16 @@ const StyledLinkStandalone = styled(LinkStandalone)`
   display: flex;
   align-items: center;
 
-  padding: var(--echoes-dimension-space-50);
-  border-radius: var(--echoes-border-radius-200);
+  padding: ${cssVar('dimension-space-50')};
+  border-radius: ${cssVar('border-radius-200')};
 
   &:hover {
-    background-color: var(--echoes-color-surface-hover);
-    text-decoration-line: var(--echoes-text-decoration-none);
+    background-color: ${cssVar('color-surface-hover')};
+    text-decoration-line: ${cssVar('text-decoration-none')};
   }
 
   &:active {
-    background-color: var(--echoes-color-surface-active);
+    background-color: ${cssVar('color-surface-active')};
   }
 `;
 StyledLinkStandalone.displayName = 'StyledLinkStandalone';
@@ -85,7 +87,7 @@ const LogoContainer = styled.div`
 
   /* Prevent image distortion of custom logos */
   & > img {
-    max-height: var(--echoes-sizes-logo-height-small);
+    max-height: ${cssVar('sizes-logo-height-small')};
     max-width: 150px;
     object-fit: contain;
   }

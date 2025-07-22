@@ -21,11 +21,13 @@
 import styled from '@emotion/styled';
 import * as radixDropdownMenu from '@radix-ui/react-dropdown-menu';
 
+import { cssVar } from '~utils/design-tokens';
+
 export const DropdownMenuGroupLabel = styled(radixDropdownMenu.Label)`
-  color: var(--echoes-color-text-default);
-  font: var(--echoes-typography-text-small-semi-bold);
-  padding: var(--echoes-dimension-space-100) var(--echoes-dimension-space-150)
-    var(--echoes-dimension-space-50);
+  color: ${cssVar('color-text-default')};
+  font: ${cssVar('typography-text-small-semi-bold')};
+  padding: ${cssVar('dimension-space-100')} ${cssVar('dimension-space-150')}
+    ${cssVar('dimension-space-50')};
 `;
 
 DropdownMenuGroupLabel.displayName = 'DropdownMenuGroupLabel';
