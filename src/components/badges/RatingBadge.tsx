@@ -19,8 +19,10 @@
  */
 
 import styled from '@emotion/styled';
-import { forwardRef } from 'react';
+import { forwardRef, useMemo } from 'react';
 import { isStringDefined } from '~common/helpers/types';
+
+import { cssVar } from '~utils/design-tokens';
 
 export enum RatingBadgeRating {
   A = 'A',
@@ -54,7 +56,14 @@ export const RatingBadge = forwardRef<HTMLDivElement, RatingBadgeProps>(
     return (
       <RatingBadgeStyled
         aria-label={isStringDefined(ariaLabel) ? ariaLabel : rating}
-        {...{ rating, ref, size }}
+        css={useMemo(
+          () => ({
+            ...RATING_BADGE_STYLES[rating],
+            ...RATING_BADGE_SIZE[size],
+          }),
+          [size, rating],
+        )}
+        ref={ref}
         {...htmlProps}>
         {rating}
       </RatingBadgeStyled>
@@ -64,46 +73,66 @@ export const RatingBadge = forwardRef<HTMLDivElement, RatingBadgeProps>(
 
 RatingBadge.displayName = 'RatingBadge';
 
-export const RatingBadgeDimensions: Record<RatingBadgeSize, { fontSize: number; width: number }> = {
-  [RatingBadgeSize.ExtraSmall]: { fontSize: 10, width: 200 },
-  [RatingBadgeSize.Small]: { fontSize: 10, width: 300 },
-  [RatingBadgeSize.Medium]: { fontSize: 20, width: 400 },
-  [RatingBadgeSize.Large]: { fontSize: 20, width: 600 },
-  [RatingBadgeSize.ExtraLarge]: { fontSize: 30, width: 700 },
+const RatingBadgeStyled = styled.div`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: ${cssVar('border-radius-full')};
+  font-weight: ${cssVar('font-weight-semi-bold')};
+
+  background-color: var(--rating-badge-background);
+  color: var(--rating-badge-color);
+  font-size: var(--rating-badge-font-size);
+  height: var(--rating-badge-size);
+  width: var(--rating-badge-size);
+`;
+
+const RATING_BADGE_STYLES = {
+  [RatingBadgeRating.Null]: {
+    '--rating-badge-background': cssVar('color-surface-disabled'),
+    '--rating-badge-color': cssVar('color-text-disabled'),
+  },
+  [RatingBadgeRating.A]: {
+    '--rating-badge-background': cssVar('ratings-colors-background-rating-a-default'),
+    '--rating-badge-color': cssVar('ratings-colors-text-rating-a-default'),
+  },
+  [RatingBadgeRating.B]: {
+    '--rating-badge-background': cssVar('ratings-colors-background-rating-b-default'),
+    '--rating-badge-color': cssVar('ratings-colors-text-rating-b-default'),
+  },
+  [RatingBadgeRating.C]: {
+    '--rating-badge-background': cssVar('ratings-colors-background-rating-c-default'),
+    '--rating-badge-color': cssVar('ratings-colors-text-rating-c-default'),
+  },
+  [RatingBadgeRating.D]: {
+    '--rating-badge-background': cssVar('ratings-colors-background-rating-d-default'),
+    '--rating-badge-color': cssVar('ratings-colors-text-rating-d-default'),
+  },
+  [RatingBadgeRating.E]: {
+    '--rating-badge-background': cssVar('ratings-colors-background-rating-e-default'),
+    '--rating-badge-color': cssVar('ratings-colors-text-rating-e-default'),
+  },
 };
 
-const RatingBadgeStyled = styled.div<{
-  rating: `${RatingBadgeRating}`;
-  size: `${RatingBadgeSize}`;
-}>`
-  align-items: center;
-
-  ${({ rating = RatingBadgeRating.Null }) => {
-    if (rating === RatingBadgeRating.Null) {
-      return `
-        background-color: var(--echoes-color-surface-disabled);
-        color: var(--echoes-color-text-disabled);
-    `;
-    }
-
-    return `
-      background-color: var(--echoes-ratings-colors-background-rating-${rating.toLowerCase()}-default);
-      color: var(--echoes-ratings-colors-text-rating-${rating.toLowerCase()}-default);
-    `;
-  }};
-
-  border-radius: var(--echoes-border-radius-full);
-  display: inline-flex;
-  font-weight: var(--echoes-font-weight-semi-bold);
-  justify-content: center;
-
-  ${({ size = RatingBadgeSize.Small }) => {
-    const dimensions = RatingBadgeDimensions[size];
-
-    return `
-      height: var(--echoes-dimension-width-${dimensions.width});
-      font-size: var(--echoes-font-size-${dimensions.fontSize});
-      width: var(--echoes-dimension-width-${dimensions.width});
-    `;
-  }}
-`;
+export const RATING_BADGE_SIZE = {
+  [RatingBadgeSize.ExtraSmall]: {
+    '--rating-badge-font-size': cssVar('font-size-10'),
+    '--rating-badge-size': cssVar('dimension-width-200'),
+  },
+  [RatingBadgeSize.Small]: {
+    '--rating-badge-font-size': cssVar('font-size-10'),
+    '--rating-badge-size': cssVar('dimension-width-300'),
+  },
+  [RatingBadgeSize.Medium]: {
+    '--rating-badge-font-size': cssVar('font-size-20'),
+    '--rating-badge-size': cssVar('dimension-width-400'),
+  },
+  [RatingBadgeSize.Large]: {
+    '--rating-badge-font-size': cssVar('font-size-20'),
+    '--rating-badge-size': cssVar('dimension-width-600'),
+  },
+  [RatingBadgeSize.ExtraLarge]: {
+    '--rating-badge-font-size': cssVar('font-size-30'),
+    '--rating-badge-size': cssVar('dimension-width-700'),
+  },
+};

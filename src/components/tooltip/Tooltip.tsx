@@ -24,6 +24,8 @@ import { ReactElement, ReactNode, Ref, forwardRef, useContext } from 'react';
 import { isDefined } from '~common/helpers/types';
 import { THEME_DATA_ATTRIBUTE, ThemeContext } from '~utils/theme';
 
+import { cssVar } from '~utils/design-tokens';
+
 export enum TooltipAlign {
   Start = 'start',
   Center = 'center',
@@ -107,19 +109,19 @@ export const Tooltip = forwardRef<HTMLElement, TooltipProps>((props, ref) => {
 Tooltip.displayName = 'Tooltip';
 
 const TooltipContent = styled(radixTooltip.Content)`
-  border-radius: var(--echoes-border-radius-200);
-  padding: var(--echoes-dimension-space-50) var(--echoes-dimension-space-150);
-  font: var(--echoes-typography-text-small-medium);
-  color: var(--echoes-color-text-on-color);
-  background-color: var(--echoes-color-surface-inverse-default);
-  box-shadow: var(--echoes-box-shadow-medium);
-  max-width: var(--echoes-dimension-width-5000);
+  border-radius: ${cssVar('border-radius-200')};
+  padding: ${cssVar('dimension-space-50')} ${cssVar('dimension-space-150')};
+  font: ${cssVar('typography-text-small-medium')};
+  color: ${cssVar('color-text-on-color')};
+  background-color: ${cssVar('color-surface-inverse-default')};
+  box-shadow: ${cssVar('box-shadow-medium')};
+  max-width: ${cssVar('dimension-width-5000')};
   box-sizing: border-box;
 `;
 TooltipContent.displayName = 'TooltipContent';
 
 const TooltipArrow = styled(radixTooltip.Arrow)`
-  fill: var(--echoes-color-surface-inverse-default);
+  fill: ${cssVar('color-surface-inverse-default')};
   height: 7px;
 `;
 TooltipArrow.displayName = 'TooltipArrow';

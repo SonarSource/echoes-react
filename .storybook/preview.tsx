@@ -27,6 +27,8 @@ import { IntlProvider } from 'react-intl';
 import { MemoryRouter } from 'react-router-dom';
 import { EchoesProvider, Theme } from '../src';
 
+import { cssVar } from '~utils/design-tokens';
+
 /**
  * This prevents emotion from complaining about SSR
  * See:
@@ -216,7 +218,7 @@ const globalStyles = css`
 
   body,
   .docs-story {
-    background-color: var(--echoes-color-surface-default);
+    background-color: ${cssVar('color-surface-default')};
   }
 
   p {
@@ -224,10 +226,10 @@ const globalStyles = css`
   }
 
   code {
-    font: var(--echoes-typography-code-default);
-    background: var(--echoes-color-background-accent-weak-default);
-    color: var(--echoes-color-text-accent);
-    padding: 0 var(--echoes-dimension-space-200);
+    font: ${cssVar('typography-code-default')};
+    background: ${cssVar('color-background-accent-weak-default')};
+    color: ${cssVar('color-text-accent')};
+    padding: 0 ${cssVar('dimension-space-200')};
   }
 `;
 

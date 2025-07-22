@@ -21,10 +21,12 @@
 import styled from '@emotion/styled';
 import * as radixDropdownMenu from '@radix-ui/react-dropdown-menu';
 
+import { cssVar } from '~utils/design-tokens';
+
 export const DropdownMenuSeparator = styled(radixDropdownMenu.Separator)`
-  border-top: var(--echoes-border-width-default) solid var(--echoes-color-border-weak);
+  border-top: ${cssVar('border-width-default')} solid ${cssVar('color-border-weak')};
   box-sizing: border-box;
-  margin: var(--echoes-dimension-space-25) 0;
+  margin: ${cssVar('dimension-space-25')} 0;
   width: 100%;
 `;
 

@@ -22,6 +22,8 @@ import { keyframes } from '@emotion/react';
 import styled from '@emotion/styled';
 import { screenReaderOnly } from '~common/helpers/styles';
 
+import { cssVar } from '~utils/design-tokens';
+
 export const SpinnerWrapper = styled.span<{ inline: boolean }>`
   position: relative;
   display: ${displaySwitcher};
@@ -41,7 +43,7 @@ export const SpinnerAriaLabel = styled.span`
 SpinnerAriaLabel.displayName = 'SpinnerAriaLabel';
 
 export const SpinnerLabel = styled.span`
-  margin-left: var(--echoes-dimension-space-50);
+  margin-left: ${cssVar('dimension-space-50')};
 `;
 SpinnerLabel.displayName = 'SpinnerLabel';
 
@@ -58,9 +60,9 @@ const spinAnimation = keyframes`
 export const SpinnerStyled = styled.span<{ inline: boolean }>`
   border: 2px solid transparent;
   background:
-    linear-gradient(0deg, var(--echoes-color-background-accent-default) 50%, transparent 50% 100%)
+    linear-gradient(0deg, ${cssVar('color-background-accent-default')} 50%, transparent 50% 100%)
       border-box,
-    linear-gradient(90deg, var(--echoes-color-background-accent-default) 25%, transparent 75% 100%)
+    linear-gradient(90deg, ${cssVar('color-background-accent-default')} 25%, transparent 75% 100%)
       border-box;
   mask:
     linear-gradient(#fff 0 0) padding-box,
@@ -71,9 +73,9 @@ export const SpinnerStyled = styled.span<{ inline: boolean }>`
 
   display: ${displaySwitcher};
   box-sizing: border-box;
-  height: var(--echoes-dimension-height-400);
-  width: var(--echoes-dimension-width-200);
-  border-radius: var(--echoes-border-radius-full);
+  height: ${cssVar('dimension-height-400')};
+  width: ${cssVar('dimension-width-200')};
+  border-radius: ${cssVar('border-radius-full')};
   vertical-align: text-bottom;
 `;
 SpinnerStyled.displayName = 'SpinnerStyled';
@@ -82,8 +84,8 @@ export const SpinnerPlaceholder = styled.div`
   display: inline-block;
   vertical-align: text-bottom;
   visibility: hidden;
-  height: var(--echoes-dimension-height-400);
-  width: var(--echoes-dimension-width-200);
+  height: ${cssVar('dimension-height-400')};
+  width: ${cssVar('dimension-width-200')};
 `;
 SpinnerPlaceholder.displayName = 'SpinnerPlaceholder';
 

@@ -21,6 +21,8 @@
 import { render } from '~common/helpers/test-utils';
 import { Button, ButtonGroup } from '..';
 
+import { cssVar } from '~utils/design-tokens';
+
 const buttons = (
   <>
     <Button>First</Button>
@@ -36,7 +38,7 @@ it('should default to an un-combined group', () => {
   // eslint-disable-next-line testing-library/no-container
   const buttonGroup = container.getElementsByClassName('__test__')[0];
 
-  expect(buttonGroup).toHaveStyle('gap: var(--echoes-dimension-space-100)');
+  expect(buttonGroup).toHaveStyle(`gap: ${cssVar('dimension-space-100')}`);
 });
 
 it('should combine the buttons', () => {

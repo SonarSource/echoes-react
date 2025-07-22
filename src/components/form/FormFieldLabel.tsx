@@ -24,6 +24,8 @@ import { PopoverSide } from '../popover';
 import { ToggleTip, ToggleTipProps } from '../toggle-tip';
 import { Label } from '../typography';
 
+import { cssVar } from '~utils/design-tokens';
+
 export interface FormFieldLabelProps {
   children?: TextNodeOptional;
   /**
@@ -84,9 +86,9 @@ FormFieldLabel.displayName = 'FormFieldLabel';
 const LabelWrapper = styled.div`
   display: flex;
   align-items: center;
-  gap: var(--echoes-dimension-space-75);
+  gap: ${cssVar('dimension-space-75')};
 
-  margin-bottom: var(--echoes-dimension-space-75);
+  margin-bottom: ${cssVar('dimension-space-75')};
 `;
 LabelWrapper.displayName = 'LabelWrapper';
 
@@ -102,9 +104,9 @@ const LabelStyled = styled(Label)`
 LabelStyled.displayName = 'LabelStyled';
 
 const RequiredIndicator = styled.span`
-  color: var(--echoes-color-text-danger);
-  font: var(--echoes-typography-others-label-medium);
-  margin-left: var(--echoes-dimension-space-25);
+  color: ${cssVar('color-text-danger')};
+  font: ${cssVar('typography-others-label-medium')};
+  margin-left: ${cssVar('dimension-space-25')};
 `;
 
 RequiredIndicator.displayName = 'RequiredIndicator';

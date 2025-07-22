@@ -19,6 +19,7 @@
  */
 import styled from '@emotion/styled';
 import { forwardRef } from 'react';
+import { cssVar } from '~utils/design-tokens';
 import { useButtonClickHandler } from '../../components/buttons/Button';
 import { ButtonStyled } from '../../components/buttons/ButtonStyles';
 import { ButtonBaseProps } from '../../components/buttons/ButtonTypes';
@@ -52,12 +53,12 @@ DismissButton.displayName = 'DismissButton';
 const DismissButtonStyled = styled(ButtonStyled)`
   flex: 0 0 auto;
 
-  height: var(--echoes-dimension-height-600);
-  width: var(--echoes-dimension-width-300);
+  height: ${cssVar('dimension-height-600')};
+  width: ${cssVar('dimension-width-300')};
 
   justify-content: center;
 
-  background-color: var(--echoes-color-background-utility-transparent);
-  border-radius: var(--echoes-border-radius-200);
+  background-color: ${cssVar('color-background-utility-transparent')};
+  border-radius: ${cssVar('border-radius-200')};
 `;
 DismissButtonStyled.displayName = 'DismissButtonStyled';

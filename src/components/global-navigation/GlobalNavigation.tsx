@@ -22,6 +22,8 @@ import styled from '@emotion/styled';
 import { forwardRef } from 'react';
 import { useIntl } from 'react-intl';
 
+import { cssVar } from '~utils/design-tokens';
+
 export interface GlobalNavigationProps extends React.PropsWithChildren {
   className?: string;
   ariaLabel?: string;
@@ -52,10 +54,10 @@ const GlobalNavigationContainer = styled.nav`
   justify-content: space-between;
   align-items: center;
 
-  padding-right: var(--echoes-dimension-space-300);
+  padding-right: ${cssVar('dimension-space-300')};
 
-  background-color: var(--echoes-color-surface-default);
-  border-bottom: var(--echoes-border-width-default) solid var(--echoes-color-border-weak);
+  background-color: ${cssVar('color-surface-default')};
+  border-bottom: ${cssVar('border-width-default')} solid ${cssVar('color-border-weak')};
 `;
 GlobalNavigationContainer.displayName = 'GlobalNavigationContainer';
 
@@ -64,7 +66,7 @@ export const GlobalNavigationPrimary = styled.div`
   align-items: center;
   height: 100%;
 
-  gap: var(--echoes-dimension-space-150);
+  gap: ${cssVar('dimension-space-150')};
 `;
 GlobalNavigationPrimary.displayName = 'GlobalNavigationPrimary';
 
@@ -73,6 +75,6 @@ export const GlobalNavigationSecondary = styled.div`
   align-items: center;
   height: 100%;
 
-  gap: var(--echoes-dimension-space-100);
+  gap: ${cssVar('dimension-space-100')};
 `;
 GlobalNavigationSecondary.displayName = 'GlobalNavigationSecondary';

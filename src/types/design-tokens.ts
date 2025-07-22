@@ -18,23 +18,29 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+import designTokensBase from '~generated/design-tokens-base.json';
 import designTokensThemed from '~generated/design-tokens-themed.json';
 
-export type DesignTokens = keyof typeof designTokensThemed;
+export type DesignTokensThemed = keyof typeof designTokensThemed;
+export type DesignTokensBase = keyof typeof designTokensBase;
+
+export type DesignTokens = DesignTokensThemed | DesignTokensBase;
 
 export type DesignTokensColors = {
-  [K in DesignTokens]: K extends `echoes-color-${string}` ? K : never;
-}[DesignTokens];
+  [K in DesignTokensThemed]: K extends `echoes-color-${string}` ? K : never;
+}[DesignTokensThemed];
 
 export type DesignTokensColorsIcons = {
-  [K in DesignTokens]: K extends
+  [K in DesignTokensThemed]: K extends
     | `echoes-color-icon-${string}`
     | `echoes-severity-badge-colors-foreground-${string}-icon-${string}`
     | `echoes-logos-colors-brand`
     ? K
     : never;
-}[DesignTokens];
+}[DesignTokensThemed];
 
 export type DesignTokensColorsText = {
-  [K in DesignTokens]: K extends `echoes-color-text-${string}` ? K : never;
-}[DesignTokens];
+  [K in DesignTokensThemed]: K extends `echoes-color-text-${string}` ? K : never;
+}[DesignTokensThemed];
+
+export type WithoutEchoesPrefix<T> = T extends `echoes-${infer P}` ? P : never;
