@@ -42,7 +42,7 @@ export const TableCellLink = forwardRef<HTMLAnchorElement, TableCellLinkProps>((
         </LinkStandalone>
 
         {isDefined(description) && (
-          <Text isSubdued size="small">
+          <Text isSubtle size="small">
             {description}
           </Text>
         )}

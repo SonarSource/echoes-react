@@ -116,7 +116,7 @@ export const Vertical: Story = {
 export const WithText: Story = {
   args: {
     text: (
-      <Text isSubdued size={TextSize.Small}>
+      <Text isSubtle size={TextSize.Small}>
         OR
       </Text>
     ),
@@ -134,7 +134,7 @@ export const VerticalWithText: Story = {
   args: {
     isVertical: true,
     text: (
-      <Text isSubdued size={TextSize.Small}>
+      <Text isSubtle size={TextSize.Small}>
         OR
       </Text>
     ),

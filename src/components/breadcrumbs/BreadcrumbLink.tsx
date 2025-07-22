@@ -46,7 +46,7 @@ const BreadcrumbLinkBase = forwardRef<HTMLAnchorElement, BreadcrumbLinkProps>((p
   const title = hasEllipsis ? (linkElement as string) : undefined;
 
   const Link = (
-    <LinkStandalone {...linkProps} highlight={LinkHighlight.Subdued} ref={ref} title={title}>
+    <LinkStandalone {...linkProps} highlight={LinkHighlight.Subtle} ref={ref} title={title}>
       {linkElement}
     </LinkStandalone>
   );

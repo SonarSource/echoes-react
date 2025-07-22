@@ -38,7 +38,7 @@ export const Default: Story = {
     as: 'span',
     children: 'I am a Text!',
     isHighlighted: false,
-    isSubdued: false,
+    isSubtle: false,
     size: TextSize.Default,
   },
   parameters: {
@@ -51,7 +51,7 @@ export const OverrideColor: Story = {
     children: 'I am a Text!',
   },
   parameters: {
-    controls: { exclude: ['children', 'as', 'isSubdued'] },
+    controls: { exclude: ['children', 'as', 'isSubtle'] },
   },
   render: (args: ComponentProps<typeof Text>) => (
     <>
@@ -65,7 +65,7 @@ export const OverrideColor: Story = {
 
 export const RichContent: Story = {
   parameters: {
-    controls: { exclude: ['children', 'as', 'isSubdued'] },
+    controls: { exclude: ['children', 'as', 'isSubtle'] },
   },
   render: (args: ComponentProps<typeof Text>) => (
     <>

@@ -43,11 +43,11 @@ export type TextProps = {
 type ColorProps =
   | {
       colorOverride?: DesignTokensColorsText;
-      isSubdued?: never;
+      isSubtle?: never;
     }
   | {
       colorOverride?: never;
-      isSubdued: boolean;
+      isSubtle: boolean;
     };
 
 export const Text = forwardRef<HTMLSpanElement, PropsWithChildren<TextProps>>((props, ref) => {
@@ -55,7 +55,7 @@ export const Text = forwardRef<HTMLSpanElement, PropsWithChildren<TextProps>>((p
     children,
     colorOverride,
     isHighlighted = false,
-    isSubdued = false,
+    isSubtle = false,
     size = TextSize.Default,
     ...restAndRadixProps
   } = props;
@@ -67,7 +67,7 @@ export const Text = forwardRef<HTMLSpanElement, PropsWithChildren<TextProps>>((p
   return (
     <StyledText
       isHighlighted={isHighlighted}
-      isSubdued={isSubdued}
+      isSubtle={isSubtle}
       ref={ref}
       size={size}
       {...additionalProps}
@@ -78,7 +78,7 @@ export const Text = forwardRef<HTMLSpanElement, PropsWithChildren<TextProps>>((p
 });
 Text.displayName = 'Text';
 
-type StyledTextProps = Required<Pick<TextProps, 'isSubdued' | 'isHighlighted' | 'size'>>;
+type StyledTextProps = Required<Pick<TextProps, 'isSubtle' | 'isHighlighted' | 'size'>>;
 
 const BaseStyles = styled.span`
   max-width: ${cssVar('sizes-typography-max-width-default')};
@@ -117,8 +117,8 @@ BaseStyles.displayName = 'BaseStyles';
 const StyledText = styled(BaseStyles)<StyledTextProps>`
   font: ${getFontForSizeAndWeight};
 
-  color: ${({ isSubdued }) =>
-    isSubdued ? cssVar('color-text-subtle') : cssVar('color-text-default')};
+  color: ${({ isSubtle }) =>
+    isSubtle ? cssVar('color-text-subtle') : cssVar('color-text-default')};
 `;
 StyledText.displayName = 'StyledText';
 

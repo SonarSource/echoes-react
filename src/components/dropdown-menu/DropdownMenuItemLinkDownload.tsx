@@ -39,7 +39,7 @@ export const DropdownMenuItemLinkDownload = forwardRef<
       {...props}
       enableOpenInNewTab
       hasExternalIcon={false}
-      prefix={<IconDownload color="echoes-color-icon-subdued" />}
+      prefix={<IconDownload color="echoes-color-icon-subtle" />}
       ref={ref}
     />
   );
