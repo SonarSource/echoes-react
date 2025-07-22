@@ -18,9 +18,8 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 import styled from '@emotion/styled';
-import { Spinner } from './Spinner';
-
 import { cssVar } from '~utils/design-tokens';
+import { Spinner } from './Spinner';
 
 export const SpinnerOverrideColor = styled(Spinner)`
   background:

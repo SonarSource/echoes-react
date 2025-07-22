@@ -22,6 +22,7 @@ import styled from '@emotion/styled';
 import { forwardRef, useMemo } from 'react';
 import { useIntl } from 'react-intl';
 import { isDefined } from '~common/helpers/types';
+import { cssVar } from '~utils/design-tokens';
 import { useButtonClickHandler } from '../buttons/Button';
 import { ButtonIconProps } from '../buttons/ButtonIcon';
 import { ButtonIconStyled, ButtonText } from '../buttons/ButtonStyles';
@@ -35,10 +36,8 @@ import {
   IconSeverityMedium,
 } from '../icons';
 import { IconFilledProps } from '../icons/IconWrapper';
-import { SpinnerOverrideColor } from '../spinner/SpinnerOverrideColor';
+import { Spinner } from '../spinner';
 import { Tooltip } from '../tooltip';
-
-import { cssVar } from '~utils/design-tokens';
 
 export enum BadgeSeverityLevel {
   Blocker = 'blocker',
@@ -191,13 +190,9 @@ export const BadgeSeverity = forwardRef<HTMLButtonElement, BadgeSeverityProps>((
           ref={ref}
           type="button">
           <StyledSeverityContent>
-            <SpinnerOverrideColor
-              css={{
-                marginRight: cssVar('dimension-space-50'),
-              }}
-              isLoading={isLoading}>
+            <Spinner isLoading={isLoading}>
               <SeverityIcon />
-            </SpinnerOverrideColor>
+            </Spinner>
             <StyledSeverityText>{severityLabel}</StyledSeverityText>
             {variety === BadgeSeverityVariety.Dropdown && (
               <StyledDropdownIndicator>
@@ -241,10 +236,7 @@ const StyledSeverityContent = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-
-  & > *:not(:first-child):not(:last-child) {
-    margin-right: ${cssVar('dimension-space-50')};
-  }
+  gap: ${cssVar('dimension-space-50')};
 `;
 
 const StyledSeverityText = styled.span`
