@@ -56,7 +56,7 @@ export const Link: Story = {
 export const LinkExternal: Story = {
   args: {
     children: 'External link',
-    highlight: LinkHighlight.Subdued,
+    highlight: LinkHighlight.Subtle,
     enableOpenInNewTab: true,
     to: 'https://abc.com/path/new',
   },
@@ -129,7 +129,7 @@ export const LinkAsButton: Story = {
     ...toDisabledControlArgType('enableBlurAfterClick', 'title'),
   },
   render: (args) => (
-    <Text isSubdued>
+    <Text isSubtle>
       This is a paragraph with a <LinkComp {...args} /> inside
     </Text>
   ),

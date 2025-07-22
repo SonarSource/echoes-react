@@ -26,13 +26,13 @@ export interface LabelProps {
   as?: 'div' | 'label' | 'span';
   className?: string;
   htmlFor?: string;
-  isSubdued?: boolean;
+  isSubtle?: boolean;
 }
 
 export const Label = styled.label<LabelProps>`
   font: ${cssVar('typography-others-label')};
-  color: ${({ isSubdued }) =>
-    isSubdued ? cssVar('color-text-subtle') : cssVar('color-text-default')};
+  color: ${({ isSubtle }) =>
+    isSubtle ? cssVar('color-text-subtle') : cssVar('color-text-default')};
 `;
 
 Label.displayName = 'Label';

@@ -43,7 +43,7 @@ export const SpotlightModal = forwardRef<HTMLDivElement, Readonly<SpotlightModal
               {headerText}
             </Heading>
 
-            <Text isSubdued>{bodyText}</Text>
+            <Text isSubtle>{bodyText}</Text>
           </ModalContentBodyContainer>
         </ModalContentContainer>
 

@@ -672,7 +672,7 @@ exports[`default & strong renders with size small 1`] = `
 </span>
 `;
 
-exports[`subdued & regular renders as default 1`] = `
+exports[`subtle & regular renders as default 1`] = `
 .emotion-0 {
   max-width: var(--echoes-sizes-typography-max-width-default);
   font: var(--echoes-typography-text-default-regular);
@@ -720,7 +720,7 @@ exports[`subdued & regular renders as default 1`] = `
 </span>
 `;
 
-exports[`subdued & regular renders as div 1`] = `
+exports[`subtle & regular renders as div 1`] = `
 .emotion-0 {
   max-width: var(--echoes-sizes-typography-max-width-default);
   font: var(--echoes-typography-text-default-regular);
@@ -768,7 +768,7 @@ exports[`subdued & regular renders as div 1`] = `
 </div>
 `;
 
-exports[`subdued & regular renders as paragraph 1`] = `
+exports[`subtle & regular renders as paragraph 1`] = `
 .emotion-0 {
   max-width: var(--echoes-sizes-typography-max-width-default);
   font: var(--echoes-typography-text-default-regular);
@@ -816,7 +816,7 @@ exports[`subdued & regular renders as paragraph 1`] = `
 </p>
 `;
 
-exports[`subdued & regular renders as span 1`] = `
+exports[`subtle & regular renders as span 1`] = `
 .emotion-0 {
   max-width: var(--echoes-sizes-typography-max-width-default);
   font: var(--echoes-typography-text-default-regular);
@@ -864,7 +864,7 @@ exports[`subdued & regular renders as span 1`] = `
 </span>
 `;
 
-exports[`subdued & regular renders with size default 1`] = `
+exports[`subtle & regular renders with size default 1`] = `
 .emotion-0 {
   max-width: var(--echoes-sizes-typography-max-width-default);
   font: var(--echoes-typography-text-default-regular);
@@ -912,7 +912,7 @@ exports[`subdued & regular renders with size default 1`] = `
 </span>
 `;
 
-exports[`subdued & regular renders with size large 1`] = `
+exports[`subtle & regular renders with size large 1`] = `
 .emotion-0 {
   max-width: var(--echoes-sizes-typography-max-width-default);
   font: var(--echoes-typography-text-large-regular);
@@ -960,7 +960,7 @@ exports[`subdued & regular renders with size large 1`] = `
 </span>
 `;
 
-exports[`subdued & regular renders with size small 1`] = `
+exports[`subtle & regular renders with size small 1`] = `
 .emotion-0 {
   max-width: var(--echoes-sizes-typography-max-width-default);
   font: var(--echoes-typography-text-small-regular);
@@ -1008,7 +1008,7 @@ exports[`subdued & regular renders with size small 1`] = `
 </span>
 `;
 
-exports[`subdued & strong renders as default 1`] = `
+exports[`subtle & strong renders as default 1`] = `
 .emotion-0 {
   max-width: var(--echoes-sizes-typography-max-width-default);
   font: var(--echoes-typography-text-default-semi-bold);
@@ -1056,7 +1056,7 @@ exports[`subdued & strong renders as default 1`] = `
 </span>
 `;
 
-exports[`subdued & strong renders as div 1`] = `
+exports[`subtle & strong renders as div 1`] = `
 .emotion-0 {
   max-width: var(--echoes-sizes-typography-max-width-default);
   font: var(--echoes-typography-text-default-semi-bold);
@@ -1104,7 +1104,7 @@ exports[`subdued & strong renders as div 1`] = `
 </div>
 `;
 
-exports[`subdued & strong renders as paragraph 1`] = `
+exports[`subtle & strong renders as paragraph 1`] = `
 .emotion-0 {
   max-width: var(--echoes-sizes-typography-max-width-default);
   font: var(--echoes-typography-text-default-semi-bold);
@@ -1152,7 +1152,7 @@ exports[`subdued & strong renders as paragraph 1`] = `
 </p>
 `;
 
-exports[`subdued & strong renders as span 1`] = `
+exports[`subtle & strong renders as span 1`] = `
 .emotion-0 {
   max-width: var(--echoes-sizes-typography-max-width-default);
   font: var(--echoes-typography-text-default-semi-bold);
@@ -1200,7 +1200,7 @@ exports[`subdued & strong renders as span 1`] = `
 </span>
 `;
 
-exports[`subdued & strong renders with size default 1`] = `
+exports[`subtle & strong renders with size default 1`] = `
 .emotion-0 {
   max-width: var(--echoes-sizes-typography-max-width-default);
   font: var(--echoes-typography-text-default-semi-bold);
@@ -1248,7 +1248,7 @@ exports[`subdued & strong renders with size default 1`] = `
 </span>
 `;
 
-exports[`subdued & strong renders with size large 1`] = `
+exports[`subtle & strong renders with size large 1`] = `
 .emotion-0 {
   max-width: var(--echoes-sizes-typography-max-width-default);
   font: var(--echoes-typography-text-large-semi-bold);
@@ -1296,7 +1296,7 @@ exports[`subdued & strong renders with size large 1`] = `
 </span>
 `;
 
-exports[`subdued & strong renders with size small 1`] = `
+exports[`subtle & strong renders with size small 1`] = `
 .emotion-0 {
   max-width: var(--echoes-sizes-typography-max-width-default);
   font: var(--echoes-typography-text-small-semi-bold);

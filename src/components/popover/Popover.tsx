@@ -98,7 +98,7 @@ export const Popover = forwardRef<HTMLButtonElement, PopoverProps>((props, ref) 
             </Heading>
           )}
 
-          {description && <Text isSubdued>{description}</Text>}
+          {description && <Text isSubtle>{description}</Text>}
 
           {extraContent && <PopoverExtraContent>{extraContent}</PopoverExtraContent>}
 

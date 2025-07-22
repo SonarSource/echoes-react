@@ -46,7 +46,7 @@ export const TableCellText = forwardRef<HTMLTableCellElement, TableCellTextProps
         {content}
 
         {isDefined(description) && (
-          <Text isSubdued size="small">
+          <Text isSubtle size="small">
             {description}
           </Text>
         )}

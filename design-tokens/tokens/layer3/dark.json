@@ -25,7 +25,7 @@
         "icon": {
           "default": {
             "$type": "color",
-            "$value": "{echoes.color.icon.subdued}"
+            "$value": "{echoes.color.icon.subtle}"
           }
         }
       }

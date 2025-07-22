@@ -250,7 +250,7 @@ export const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>((props
       />
 
       {!isLoading && !isDisabled && showMinLengthMessage && (
-        <MinLengthMessage isSubdued>{minLengthLabel}</MinLengthMessage>
+        <MinLengthMessage isSubtle>{minLengthLabel}</MinLengthMessage>
       )}
       {!isDisabled && (isLoading || showClearButton) && (
         <InputSuffix>
