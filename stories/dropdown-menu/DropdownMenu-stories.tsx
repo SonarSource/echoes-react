@@ -138,6 +138,16 @@ export const MenuInADarkSideBar: Story = {
   ),
 };
 
+export const MenuWithADisabledButton: Story = {
+  render: () => (
+    <DropdownMenu align={DropdownMenuAlign.Start} items={items}>
+      <MenuButton isDisabled variety="primary">
+        Trigger
+      </MenuButton>
+    </DropdownMenu>
+  ),
+};
+
 const FakeDarkSideBar = styled.div`
   background-color: ${cssVar('color-surface-default')};
   padding: 8px;

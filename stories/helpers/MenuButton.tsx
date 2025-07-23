@@ -18,16 +18,16 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import { PropsWithChildren, forwardRef } from 'react';
-import { Button, ButtonVariety, IconChevronDown } from '../../src';
+import { forwardRef } from 'react';
+import { Button, ButtonProps, ButtonVariety, IconChevronDown } from '../../src';
 
-export const MenuButton = forwardRef<HTMLButtonElement, PropsWithChildren<{}>>(
-  ({ children = 'Menu', ...radixProps }, ref) => (
+export const MenuButton = forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ children = 'Menu', ...restProps }, ref) => (
     <Button
       ref={ref}
       suffix={<IconChevronDown />}
       variety={ButtonVariety.DefaultGhost}
-      {...radixProps}>
+      {...restProps}>
       {children}
     </Button>
   ),
