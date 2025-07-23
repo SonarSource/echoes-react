@@ -20,6 +20,7 @@
 
 import { ForwardedRef, forwardRef, MouseEvent, useCallback } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
+import { isDefined } from '~common/helpers/types';
 import { isSonarLink } from '~common/helpers/url';
 import { LinkOpenInNewTabSuffix } from './LinkOpenInNewTabSuffix';
 import { isLinkAsButton, LinkProps } from './LinkTypes';
@@ -71,11 +72,12 @@ export const LinkBase = forwardRef<HTMLAnchorElement | HTMLButtonElement, LinkPr
       );
     }
 
-    const { to } = props;
+    const { download, to } = props;
 
     return (
       <RouterLink
         {...getShouldOpenInNewTabProps({ enableOpenInNewTab, to })}
+        {...(isDefined(download) ? { download, reloadDocument: true } : {})}
         {...restProps}
         onClick={handleClick}
         ref={ref as ForwardedRef<HTMLAnchorElement>}
