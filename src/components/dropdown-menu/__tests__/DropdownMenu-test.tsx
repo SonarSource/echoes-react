@@ -23,10 +23,11 @@ import { renderWithMemoryRouter } from '~common/helpers/test-utils';
 import { Theme } from '~generated/themes';
 import { ThemeProvider } from '~utils/theme';
 import { DropdownMenu, DropdownMenuAlign } from '..';
+import { Button } from '../../buttons';
 import { IconBell, IconCalendar } from '../../icons';
 
 const items = <DropdownMenu.ItemButton>An item</DropdownMenu.ItemButton>;
-const trigger = <button type="button">Trigger</button>;
+const trigger = <Button>Trigger</Button>;
 
 it('should render without items', async () => {
   const { container } = renderWithMemoryRouter(
@@ -127,18 +128,15 @@ it('should handle onClose', async () => {
   expect(screen.queryByText('An item')).not.toBeInTheDocument();
 });
 
-it('should not show items when clicked if isDisabled', async () => {
-  const { user } = renderWithMemoryRouter(
-    <DropdownMenu align={DropdownMenuAlign.End} isDisabled items={items}>
-      {trigger}
+it('should not be able to click the trigger if isDisabled', () => {
+  renderWithMemoryRouter(
+    <DropdownMenu align={DropdownMenuAlign.Center} items={items}>
+      <Button isDisabled>Trigger</Button>
     </DropdownMenu>,
   );
 
   expect(screen.queryByText('An item')).not.toBeInTheDocument();
-
-  await user.click(screen.getByText('Trigger'));
-
-  expect(screen.queryByText('An item')).not.toBeInTheDocument();
+  expect(screen.getByRole('button', { name: 'Trigger' })).toBeDisabled();
 });
 
 it('should render many different items', async () => {

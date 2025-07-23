@@ -20,9 +20,9 @@
 import styled from '@emotion/styled';
 import { forwardRef, InputHTMLAttributes, useId } from 'react';
 import { PropsWithLabels } from '~types/utils';
+import { cssVar } from '~utils/design-tokens';
 import { FormField, FormFieldValidation } from '../form/FormField';
 import { useFormFieldA11y } from '../form/useFormFieldA11y';
-import { cssVar } from '~utils/design-tokens';
 
 import {
   InputEventProps,
@@ -62,7 +62,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>((props, r
     rows = 3,
     validation,
     width,
-    ...rest
+    ...restProps
   } = props;
 
   const defaultId = `${useId()}textarea`;
@@ -93,6 +93,8 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>((props, r
           aria-invalid={validation === FormFieldValidation.Invalid}
           aria-label={ariaLabel}
           aria-labelledby={ariaLabelledBy}
+          // Everything above this line can be overridden by the `restProps` object
+          {...restProps}
           data-error={validation === FormFieldValidation.Invalid ? '' : undefined}
           data-resizable={isResizable ? '' : undefined}
           data-valid={validation === FormFieldValidation.Valid ? '' : undefined}
@@ -101,7 +103,6 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>((props, r
           ref={ref}
           required={isRequired}
           rows={rows}
-          {...rest}
         />
       </InputWrapper>
     </FormField>

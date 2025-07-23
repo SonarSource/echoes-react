@@ -40,10 +40,11 @@ export const SearchInputClearButton = forwardRef<HTMLButtonElement, SearchInputC
     return (
       <SearchInputClearButtonStyled
         aria-label={ariaLabel}
+        // Everything above this line can be overridden by the `htmlProps` object
+        {...htmlProps}
         onClick={handleClick}
         ref={ref}
-        type="button"
-        {...htmlProps}>
+        type="button">
         <IconX />
       </SearchInputClearButtonStyled>
     );

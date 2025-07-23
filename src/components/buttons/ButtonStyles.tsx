@@ -76,6 +76,7 @@ export const ButtonStyled = styled.button`
 
     cursor: not-allowed;
     pointer-events: none;
+    user-select: none;
   }
 `;
 

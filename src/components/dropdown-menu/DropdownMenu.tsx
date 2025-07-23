@@ -44,7 +44,6 @@ export interface DropdownMenuProps extends radixDropdownMenu.DropdownMenuTrigger
   className?: string;
   header?: Pick<PropsLabelAndHelpText, 'helpText' | 'label'> & { suffix?: ReactNode };
   id?: string;
-  isDisabled?: boolean;
   isModal?: boolean;
   isOpen?: boolean;
   isOpenOnMount?: boolean;
@@ -61,7 +60,6 @@ export const DropdownMenuRoot = forwardRef<HTMLButtonElement, DropdownMenuProps>
       className,
       header,
       id = 'dropdown-menu',
-      isDisabled = false,
       isModal = false,
       isOpen,
       isOpenOnMount,
@@ -75,10 +73,6 @@ export const DropdownMenuRoot = forwardRef<HTMLButtonElement, DropdownMenuProps>
     const portalContext = useContext(PortalContext);
     const theme = useContext(ThemeContext);
     const themeOverrideProp = isDefined(theme) ? { [THEME_DATA_ATTRIBUTE]: theme } : {};
-
-    if (isDisabled) {
-      return <>{children}</>;
-    }
 
     // Radix fully handles a11y binding with generated ids, but we have to do it manually because
     // this id format is extensively used by SQS ITs to locate dropdown elements

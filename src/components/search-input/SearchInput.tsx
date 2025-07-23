@@ -182,7 +182,7 @@ export const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>((props
     }),
     value,
     width = SearchInputWidth.Full,
-    ...rest
+    ...restProps
   } = props;
 
   const [ref, setRef] = useForwardedRef(forwardedRef);
@@ -236,6 +236,8 @@ export const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>((props
       <SearchInputStyled
         aria-describedby={ariaDescribedBy}
         aria-label={ariaLabelWithMinLength}
+        // Everything above this line can be overridden by the `restProps` object
+        {...restProps}
         autoComplete="off"
         data-prefix
         data-suffix={showClearButton || isLoading ? '' : undefined}
@@ -246,7 +248,6 @@ export const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>((props
         ref={setRef}
         type="search"
         value={value}
-        {...rest}
       />
 
       {!isLoading && !isDisabled && showMinLengthMessage && (
