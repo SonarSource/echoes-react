@@ -193,7 +193,7 @@ yarn build-intl-keys
 
 #### "Cannot resolve module" errors with Vite/Webpack
 
-Make sure all peer dependencies are installed, see [Installation](#installation) section above.
+Make sure all peer dependencies are installed, see the [Installation](#installation) section above.
 
 #### Missing component styles or functionality
 
