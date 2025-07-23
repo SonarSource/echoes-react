@@ -98,7 +98,6 @@ export const SelectionCards = forwardRef<HTMLDivElement, SelectionCardsProps>((p
 
   return (
     <SelectionCardsRoot
-      {...radixRadioGroupProps}
       aria-label={ariaLabel}
       aria-labelledby={ariaLabelledBy}
       className={className}
@@ -107,7 +106,8 @@ export const SelectionCards = forwardRef<HTMLDivElement, SelectionCardsProps>((p
       id={id ?? defaultId}
       onValueChange={onChange}
       ref={ref}
-      value={value}>
+      value={value}
+      {...radixRadioGroupProps}>
       {options.map(({ isDisabled: disabledOption, ...o }) => (
         <SelectionCard
           isDisabled={disabled ? true : disabledOption} // Group disabled takes precedence

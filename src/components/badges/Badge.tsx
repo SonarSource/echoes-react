@@ -94,7 +94,6 @@ export const Badge = forwardRef<HTMLButtonElement, BadgeProps>((props, ref) => {
 
   return (
     <StyledBadge
-      {...otherProps}
       aria-label={ariaLabel}
       as={isInteractive ? 'button' : 'span'}
       css={useMemo(
@@ -109,7 +108,7 @@ export const Badge = forwardRef<HTMLButtonElement, BadgeProps>((props, ref) => {
       isInteractive={isInteractive}
       ref={ref}
       type="button" // ignored when rendering a span
-    >
+      {...otherProps}>
       {isDefined(IconLeft) && <IconLeft isFilled={isIconFilled} />}
       {children}
     </StyledBadge>

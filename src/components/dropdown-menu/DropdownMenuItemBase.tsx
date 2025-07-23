@@ -117,13 +117,13 @@ export const DropdownMenuItemBase = forwardRef<HTMLDivElement, Props>((props, re
 
   return (
     <MenuItemComponent
-      {...radixProps}
       aria-label={ariaLabel}
       {...(isItemWrapped ? { asChild: true } : {})}
       className={className}
       disabled={isDisabled}
       onClick={isDisabled ? undefined : onClick}
-      ref={ref}>
+      ref={ref}
+      {...radixProps}>
       {itemContainer}
     </MenuItemComponent>
   );
