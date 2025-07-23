@@ -21,6 +21,7 @@ import styled from '@emotion/styled';
 import { type ReactNode, type RefAttributes, forwardRef, useId, useMemo } from 'react';
 import { GroupAlignment } from '~types/GroupAlignment';
 import { PropsWithLabels, TextNodeOptional } from '~types/utils';
+import { cssVar } from '~utils/design-tokens';
 import { type CheckboxProps, Checkbox } from '../checkbox/Checkbox';
 import {
   type ValidationProps,
@@ -29,8 +30,6 @@ import {
   FormFieldValidation,
 } from '../form/FormField';
 import { useFormFieldA11y } from '../form/useFormFieldA11y';
-
-import { cssVar } from '~utils/design-tokens';
 
 /**
  * A checkbox group allows a user to select multiple items from a list of
