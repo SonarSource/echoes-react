@@ -99,7 +99,7 @@ You can also configure the `EchoesProvider` with `tooltipsDelayDuration={0}` to 
 
 #### Jest
 
-The lib only provides es module bundle. If you use Jest for your tests (or a similar library) make sure your transform preprocessor goes through `@sonarsource/echoes-react` to make it runnable on Node.js.
+The lib only provides an ES module bundle. If you use Jest for your tests (or a similar library) make sure your transform preprocessor goes through `@sonarsource/echoes-react` to make it runnable on Node.js.
 You can do that by adding an exception in your `transformIgnorePatterns`, for example:
 
 ```js
