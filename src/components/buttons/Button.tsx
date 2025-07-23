@@ -107,7 +107,7 @@ export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPr
     );
 
     if (isButtonAsLink(props)) {
-      const { to } = props;
+      const { download, to } = props;
 
       return (
         <ButtonAsLink
@@ -115,6 +115,7 @@ export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPr
           aria-label={ariaLabel}
           autoFocus={hasAutoFocus}
           css={commonStyles}
+          {...(isDefined(download) ? { download, reloadDocument: true } : {})}
           onClick={handleClick}
           ref={ref as ForwardedRef<HTMLAnchorElement>}
           to={to}
@@ -130,7 +131,7 @@ export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPr
     }
 
     // Extracting the rest of the link props to avoid passing them to the button element.
-    const { download, reloadDocument, state, ...htmlProps } = restProps;
+    const { download,reloadDocument, state, ...htmlProps } = restProps;
 
     return (
       <ButtonStyled
