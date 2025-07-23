@@ -4,9 +4,29 @@ A React implementation of Echoes, Sonar's Design System.
 
 ## Installation
 
+### Requirements
+
+This library requires to be installed with **Yarn** to work properly due to a patch applied to one of our dependencies. Using npm or other package managers is not currently supported.
+
+### Install the library
+
 ```bash
 yarn add @sonarsource/echoes-react
 ```
+
+### Install peer dependencies
+
+Echoes React has several peer dependencies that must be installed in your project:
+
+```bash
+yarn add @emotion/react @emotion/styled react-intl react-router-dom
+```
+
+These dependencies are required for:
+
+- **@emotion/react & @emotion/styled**: CSS-in-JS styling
+- **react-intl**: Internationalization support
+- **react-router-dom**: Routing functionality for certain components (Links, Breadcrumbs, etc.)
 
 ## Usage
 
@@ -14,16 +34,53 @@ yarn add @sonarsource/echoes-react
 
 Make sure to setup the following Providers at the root of your app:
 
+#### Echoes Provider
+
+The `EchoesProvider` is required to provide theming and configuration context for all Echoes components.
+
 #### Intl Provider
 
-The `IntlProvider` from `react-intl` is necessary for translations. See [this page](https://formatjs.io/docs/react-intl/components/#intlprovider) for more information.
-The [i18n keys file](i18n/keys.json) contains the list of keys that should be translated.
+The `IntlProvider` from `react-intl` is necessary for translations. See [this page](https://formatjs.github.io/docs/react-intl/components#intlprovider) for more information.
+The [i18n keys file](i18n/keys.json) contains the list of keys that should be translated and provided by your `IntlProvider`.
+Make sure to have the `IntlProvider` wrapping the `EchoesProvider`.
 
-#### Tooltip Provider
+#### Router Provider
 
-The `TooltipProvider` is required to allow the Tooltips to work.
+The `BrowserRouter` (or other router) from `react-router-dom` is required for components that use routing functionality (such as Links, Breadcrumbs, etc.).
+Make sure to have the Router wrapping the `EchoesProvider`.
 
-`import { TooltipProvider } from '@sonarsource/echoes-react';` and wrap the root of your app.
+#### Stacking Context
+
+In order to have tooltips and other overlay components appear above the rest of the UI, it is probably necessary to have a [Stacking Context](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_positioned_layout/Understanding_z-index/Stacking_context) for your app. This means the root app component should define a new one, or be wrapped in a component that does it.
+
+The easiest way to start a new Stacking Context is to provide your app root with the following CSS properties:
+
+```css
+isolation: isolate;
+position: relative;
+```
+
+#### Complete Setup Example
+
+```tsx
+import { BrowserRouter } from 'react-router-dom';
+import { IntlProvider } from 'react-intl';
+import { EchoesProvider } from '@sonarsource/echoes-react';
+
+function App() {
+  return (
+    <IntlProvider locale="en" messages={messages}>
+      <BrowserRouter>
+        <EchoesProvider>
+          <div className="app-root" style={{ isolation: 'isolate', position: 'relative' }}>
+            <YourAppRoot />
+          </div>
+        </EchoesProvider>
+      </BrowserRouter>
+    </IntlProvider>
+  );
+}
+```
 
 ### Use components
 
@@ -33,20 +90,23 @@ import { Checkbox } from '@sonarsource/echoes-react';
 
 See available components and usage in storybook: <https://echoes-react.netlify.app/>
 
-> **Tooltips and stacking context**
->
-> If tooltips do not appear above the rest of the UI, read the jsdoc of [Tooltips](src/components/tooltip/Tooltip.tsx)
+### Testing with Echoes components in your app
 
-### Make it work in Jest
+#### Rendering components
 
-The lib only provides es module bundle. If you use Jest for your tests (or a similar library) make sure your transform preprocessor goes through `echoes-react` to make it runnable on Node.js.
+To render app components that use Echoes components internally you need to make sure your test render function also provides the necessary context providers detailed in the [Providers](#providers) section above.
+You can also configure the `EchoesProvider` with `tooltipsDelayDuration={0}` to disable the tooltip delay during tests, which can help avoid flaky tests due to tooltips not appearing on time.
+
+#### Jest
+
+The lib only provides an ES module bundle. If you use Jest for your tests (or a similar library) make sure your transform preprocessor goes through `@sonarsource/echoes-react` to make it runnable on Node.js.
 You can do that by adding an exception in your `transformIgnorePatterns`, for example:
 
 ```js
 transformIgnorePatterns: [`/node_modules/(?!@sonarsource/echoes-react)`],
 ```
 
-## Local Development
+## Contributing
 
 ### VSCode Configuration
 
@@ -59,7 +119,11 @@ There is a `.vscode` folder containing:
   - Copy it and save it as `settings.json`
   - You must open the project directly. Adding its folder in an existing workspace might not work, as the typescript configuration must be defined at workspace level.
 
-You should also [set up your vscode to work](https://yarnpkg.com/getting-started/editor-sdks) with the `yarn` pnp setup, using the following command: `yarn dlx @yarnpkg/sdks vscode`
+You also must [set up your vscode to work](https://yarnpkg.com/getting-started/editor-sdks) with the `yarn` pnp setup, using the following command:
+
+```shell
+yarn dlx @yarnpkg/sdks vscode
+```
 
 ### Run storybook
 
@@ -71,7 +135,7 @@ yarn dev
 
 ### Tests
 
-To run tests, run:
+To run tests, use the following command:
 
 ```bash
 yarn jest
@@ -79,7 +143,7 @@ yarn jest
 
 ### Build
 
-To build the lib, run:
+To build the lib, use the following command:
 
 ```bash
 yarn build
@@ -119,9 +183,29 @@ If you add new translation keys, you must run the following command to generate 
 yarn build-intl-keys
 ```
 
-### Deployment
+### Releasing
 
-[Release process definition](docs/RELEASING.md)
+[Release process](docs/RELEASING.md)
+
+## Troubleshooting
+
+### Common Issues
+
+#### "Cannot resolve module" errors with Vite/Webpack
+
+Make sure all peer dependencies are installed, see the [Installation](#installation) section above.
+
+#### Missing component styles or functionality
+
+Ensure you have wrapped your app with all required providers in the correct order and configured a proper stacking context, see [Providers](#providers) section above.
+
+#### Tooltips not appearing above other UI elements
+
+If tooltips or other overlay components don't appear correctly, ensure you have configured a stacking context, see [Providers](#providers) section above.
+
+#### Router context errors
+
+If you encounter errors about missing router context when using Link components or other routing-related components, make sure you have wrapped your app with a Router provider from `react-router-dom` (e.g., `BrowserRouter`, `HashRouter`, or `MemoryRouter`).
 
 ## License
 
