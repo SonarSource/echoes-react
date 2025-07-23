@@ -92,6 +92,11 @@ export interface BadgeSeverityProps extends InheritedButtonProps {
   variety?: `${BadgeSeverityVariety}`;
 }
 
+/**
+ * BadgeSeverity is a visual indicator used to quickly communicate an issue's categorizations and severity.
+ * It can be used as a static badge, or clickable with a popover explaining the severity or as a dropdown
+ * to change the severity of an issue.
+ */
 export const BadgeSeverity = forwardRef<HTMLButtonElement, BadgeSeverityProps>((props, ref) => {
   const {
     IconLeft,
@@ -224,6 +229,7 @@ const StyledWrapper = styled.div`
   outline: var(--badge-severity-border-color) solid ${cssVar('border-width-default')};
   border-radius: ${cssVar('border-radius-200')};
 `;
+StyledWrapper.displayName = 'StyledWrapper';
 
 const StyledContent = styled.div`
   display: flex;
@@ -231,6 +237,7 @@ const StyledContent = styled.div`
   padding: ${cssVar('dimension-space-50')} ${cssVar('dimension-space-75')};
   gap: ${cssVar('dimension-space-50')};
 `;
+StyledContent.displayName = 'StyledContent';
 
 const StyledSeverityContent = styled.div`
   display: flex;
@@ -238,15 +245,18 @@ const StyledSeverityContent = styled.div`
   align-items: center;
   gap: ${cssVar('dimension-space-50')};
 `;
+StyledSeverityContent.displayName = 'StyledSeverityContent';
 
 const StyledSeverityText = styled.span`
   font: ${cssVar('typography-text-small-medium')};
 `;
+StyledSeverityText.displayName = 'StyledSeverityText';
 
 const StyledDropdownIndicator = styled.div`
   margin-left: calc(${cssVar('dimension-space-25')} * -1);
   margin-right: calc(${cssVar('dimension-space-25')} * -1);
 `;
+StyledDropdownIndicator.displayName = 'StyledDropdownIndicator';
 
 const StyledButtonIconStyled = styled(ButtonIconStyled)`
   border-radius: ${cssVar('border-radius-none')} ${cssVar('border-radius-200')}
@@ -268,6 +278,7 @@ const StyledButtonIconStyled = styled(ButtonIconStyled)`
     border: var(--button-border);
   }
 `;
+StyledButtonIconStyled.displayName = 'StyledButtonIconStyled';
 
 const BADGE_SEVERITY_ICON = {
   [BadgeSeverityLevel.Blocker]: IconSeverityBlocker,

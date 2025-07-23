@@ -79,6 +79,10 @@ export interface BadgeProps extends PropsWithChildren {
   variety: `${BadgeVariety}`;
 }
 
+/**
+ * Badge is used to highlight metadata and pieces of information associated with another element.
+ * Can be used as a static badge or interactive with a popover that explains the badge's meaning.
+ */
 export const Badge = forwardRef<HTMLButtonElement, BadgeProps>((props, ref) => {
   const {
     IconLeft,
@@ -166,6 +170,7 @@ const StyledBadge = styled.button<{ isInteractive: boolean }>`
   `
       : ''}
 `;
+StyledBadge.displayName = 'StyledBadge';
 
 const BADGE_SIZE_STYLES = {
   [BadgeSize.Small]: {

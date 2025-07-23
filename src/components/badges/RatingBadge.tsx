@@ -21,34 +21,85 @@
 import styled from '@emotion/styled';
 import { forwardRef, useMemo } from 'react';
 import { isStringDefined } from '~common/helpers/types';
-
 import { cssVar } from '~utils/design-tokens';
 
+/**
+ * Represents the available rating values for the RatingBadge component.
+ */
 export enum RatingBadgeRating {
+  /**
+   * The highest rating (A).
+   */
   A = 'A',
+  /**
+   * The second-highest rating (B).
+   */
   B = 'B',
+  /**
+   * The middle rating (C).
+   */
   C = 'C',
+  /**
+   * The second-lowest rating (D).
+   */
   D = 'D',
+  /**
+   * The lowest rating (E).
+   */
   E = 'E',
+  /**
+   * No rating available (displayed as "—").
+   */
   Null = '—',
 }
 
+/**
+ * The available size options for the RatingBadge component.
+ */
 export enum RatingBadgeSize {
-  ExtraSmall = 'xs', // 16px
-  Small = 'sm', // 24px (default)
-  Medium = 'md', // 32px
-  Large = 'lg', // 48px
-  ExtraLarge = 'xl', // 56px
+  /**
+   * Extra small size (1rem).
+   */
+  ExtraSmall = 'xs', // 1rem
+  /**
+   * Small size (1.5rem) - default.
+   */
+  Small = 'sm', // 1.5rem (default)
+  /**
+   * Medium size (2rem).
+   */
+  Medium = 'md', // 2rem
+  /**
+   * Large size (3rem).
+   */
+  Large = 'lg', // 3rem
+  /**
+   * Extra large size (3.5rem).
+   */
+  ExtraLarge = 'xl', // 3.5rem
 }
 
 export interface RatingBadgeProps {
+  /**
+   * Custom ARIA label for accessibility (optional). If not provided, the rating value will be used.
+   */
   ariaLabel?: string;
   className?: string;
+  /**
+   * The rating to display (optional). If not provided, displays "—" (null rating).
+   */
   rating?: `${RatingBadgeRating}`;
+  /**
+   * The size of the badge (optional). The default is `small`.
+   */
   size?: `${RatingBadgeSize}`;
   style?: React.CSSProperties;
 }
 
+/**
+ * The A-E ratings badge component visually represents the quality of the code or the severity of issues,
+ * providing a quick and intuitive assessment.
+ */
 export const RatingBadge = forwardRef<HTMLDivElement, RatingBadgeProps>(
   ({ ariaLabel, rating: ratingPropValue, size = RatingBadgeSize.Small, ...htmlProps }, ref) => {
     const rating = isStringDefined(ratingPropValue) ? ratingPropValue : RatingBadgeRating.Null;
@@ -86,6 +137,7 @@ const RatingBadgeStyled = styled.div`
   height: var(--rating-badge-size);
   width: var(--rating-badge-size);
 `;
+RatingBadgeStyled.displayName = 'RatingBadgeStyled';
 
 const RATING_BADGE_STYLES = {
   [RatingBadgeRating.Null]: {

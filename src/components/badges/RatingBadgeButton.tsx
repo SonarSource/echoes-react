@@ -24,7 +24,6 @@ import { isStringDefined } from '~common/helpers/types';
 import { cssVar } from '~utils/design-tokens';
 import { ButtonVariety } from '../buttons';
 import { Button, ButtonAsButtonProps } from '../buttons/Button';
-
 import {
   RATING_BADGE_SIZE,
   RatingBadge,
@@ -33,8 +32,15 @@ import {
   RatingBadgeSize,
 } from './RatingBadge';
 
+/**
+ * Props for the RatingBadgeButton component.
+ * Combines button click functionality with all RatingBadge properties.
+ */
 export type RatingBadgeButtonProps = Pick<ButtonAsButtonProps, 'onClick'> & RatingBadgeProps;
 
+/**
+ * An interactive button version of the RatingBadge component.
+ */
 export const RatingBadgeButton = forwardRef<HTMLButtonElement, RatingBadgeButtonProps>(
   (
     { className, rating: ratingPropValue, size = RatingBadgeSize.Medium, style, ...buttonProps },
@@ -90,6 +96,7 @@ const RatingBadgeButtonStyled = styled(RatingBadgeButtonInner)`
     width: var(--rating-badge-size);
   }
 `;
+RatingBadgeButtonStyled.displayName = 'RatingBadgeButtonStyled';
 
 const RATING_BADGE_BORDER_STYLES = {
   [RatingBadgeRating.Null]: {

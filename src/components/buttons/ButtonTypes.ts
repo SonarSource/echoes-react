@@ -26,34 +26,93 @@ export type HTMLButtonAttributesSubset = Pick<
 >;
 
 export interface ButtonCommonProps {
+  /**
+   * Custom ARIA label for accessibility (optional).
+   */
   ariaLabel?: string;
   className?: string;
+  /**
+   * Whether the button should receive focus when the component mounts (optional).
+   * Equivalent to the HTML `autofocus` attribute.
+   */
   hasAutoFocus?: boolean;
   id?: string;
+  /**
+   * Whether the button is disabled (optional).
+   * Disabled buttons cannot be interacted with and have reduced visual emphasis.
+   */
   isDisabled?: boolean;
+  /**
+   * Whether the button is in a loading state (optional).
+   * When true, displays a spinner. Usually used with `isDisabled` to prevent interaction.
+   */
   isLoading?: boolean;
+  /**
+   * Click event handler (optional).
+   */
   onClick?: (event: MouseEvent<HTMLElement>) => unknown;
+  /**
+   * The size of the button (optional). Default is `large`.
+   */
   size?: `${ButtonSize}`;
   style?: React.CSSProperties;
+  /**
+   * Whether to call preventDefault on click events (optional).
+   * Useful for preventing default browser behavior like form submission.
+   */
   enablePreventDefault?: boolean;
+  /**
+   * Whether to call stopPropagation on click events (optional).
+   * Prevents the click event from bubbling up to parent elements.
+   */
   enableStopPropagation?: boolean;
 }
 
 export interface ButtonBaseProps extends ButtonCommonProps, HTMLButtonAttributesSubset {
+  /**
+   * The appearance, colors and emphasis of the button (optional). Default is `default`.
+   */
   variety?: `${ButtonVariety}`;
 }
 
 export enum ButtonSize {
+  /**
+   * Compact size for dense interfaces.
+   */
   Medium = 'medium',
+  /**
+   * Standard size with comfortable touch targets (default).
+   */
   Large = 'large',
 }
 
 export enum ButtonVariety {
+  /**
+   * The "default" style is the go-to button. Used for most actions.
+   */
   Default = 'default',
+  /**
+   * Minimal button with transparent background for tertiary actions.
+   */
   DefaultGhost = 'default-ghost',
+  /**
+   * Emphasized button for primary actions and call-to-action scenarios. Should be used once per section.
+   */
   Primary = 'primary',
+  /**
+   * Primary styling with transparent background for tertiary actions.
+   */
   PrimaryGhost = 'primary-ghost',
+  /**
+   * Red-themed button for destructive actions that remove data and are not reversible.
+   */
   Danger = 'danger',
+  /**
+   * Danger styling with outline appearance for secondary destructive actions.
+   */
   DangerOutline = 'danger-outline',
+  /**
+   * Danger styling with transparent background for tertiary destructive actions.
+   */
   DangerGhost = 'danger-ghost',
 }

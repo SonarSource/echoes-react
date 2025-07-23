@@ -33,6 +33,27 @@ import {
 } from './BannerStyles';
 import { BannerProps } from './BannerTypes';
 
+/**
+ * The Banner is used to communicate system status or to promote a feature.
+ * They are not related to a specific page or element. They are displayed at the top of the screen.
+ *
+ * /!\ This component must be used sparingly and only when truly necessary to commmunicate critical information.
+ * To avoid disrupting the user experience, ensure banners are contextually relevant with clear, concise messaging.
+ * Display only one banner at a time to prevent alert fatigue.
+ *
+ * **Varieties**
+ *
+ * - `info`: To provide neutral information about updates. Be careful not to overuse it.
+ * - `success`: To provide a success message. e.g when a feature is activated to all org members.
+ * - `warning`: For messages that need the user's attention or acknowledgment but might not cause errors.
+ * - `danger`: For errors, system malfunctions, and critical issues, such as license expiration.
+ *
+ * **Behavior**
+ *
+ * - Content is ellipsized if too long to maintain single-line display
+ * - Automatically follows horizontal scroll to remain visible (can be disabled)
+ * - Dismiss button appears only when `onDismiss` callback is provided
+ */
 export const Banner = forwardRef<HTMLDivElement, BannerProps>((props, ref) => {
   const {
     children,

@@ -33,10 +33,26 @@ export type LinkPropsForbiddenForButton = {
   [K in keyof LinkPropsSubset]?: never;
 };
 
+/**
+ * Available visual style variants for buttons that render as links.
+ * Limited to varieties that work well with navigation elements.
+ */
 export enum ButtonAsLinkVariety {
+  /**
+   * The "default" style is the go-to button.
+   */
   Default = 'default',
+  /**
+   * Minimal button with transparent background for tertiary actions.
+   */
   DefaultGhost = 'default-ghost',
+  /**
+   * Emphasized button for primary actions and call-to-action scenarios. Should be used once per section.
+   */
   Primary = 'primary',
+  /**
+   * Primary styling with transparent background for tertiary actions.
+   */
   PrimaryGhost = 'primary-ghost',
 }
 
@@ -48,6 +64,10 @@ export interface ButtonAsLinkBaseProps
   extends ButtonCommonProps,
     LinkPropsSubset,
     ButtonPropsForbiddenForLink {
+  /**
+   * The visual style variant of the link button (optional).
+   * Limited to varieties appropriate for navigation elements. Default is `default`.
+   */
   variety?: `${ButtonAsLinkVariety}`;
 }
 

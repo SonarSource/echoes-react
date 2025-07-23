@@ -20,7 +20,6 @@
 
 import styled from '@emotion/styled';
 import { forwardRef } from 'react';
-
 import { cssVar } from '~utils/design-tokens';
 
 export interface BadgeCounterProps {
@@ -56,3 +55,4 @@ const BadgeCounterStyled = styled.span`
 
   background-color: ${cssVar('color-background-neutral-bolder-default')};
 `;
+BadgeCounterStyled.displayName = 'BadgeCounterStyled';

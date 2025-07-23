@@ -20,14 +20,20 @@
 
 import styled from '@emotion/styled';
 import { forwardRef } from 'react';
+import { cssVar } from '~utils/design-tokens';
 import { LinkStandalone } from '../links';
 import { LinkBaseProps } from '../links/LinkTypes';
 import { RatingBadge, RatingBadgeProps } from './RatingBadge';
 
-import { cssVar } from '~utils/design-tokens';
-
+/**
+ * Props for the RatingBadgeLink component.
+ * Combines link functionality with all RatingBadge properties.
+ */
 export type RatingBadgeLinkProps = Omit<LinkBaseProps, 'children' | 'highlight'> & RatingBadgeProps;
 
+/**
+ * A link version of the RatingBadge component.
+ */
 export const RatingBadgeLink = forwardRef<HTMLAnchorElement, RatingBadgeLinkProps>(
   ({ className, rating, size, style, ...linkProps }, ref) => (
     <LinkStandaloneStyled ref={ref} {...linkProps}>
@@ -52,3 +58,4 @@ const LinkStandaloneStyled = styled(LinkStandalone)`
     }
   }
 `;
+LinkStandaloneStyled.displayName = 'LinkStandaloneStyled';
