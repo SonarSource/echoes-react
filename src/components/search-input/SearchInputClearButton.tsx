@@ -39,11 +39,11 @@ export const SearchInputClearButton = forwardRef<HTMLButtonElement, SearchInputC
 
     return (
       <SearchInputClearButtonStyled
-        {...htmlProps}
         aria-label={ariaLabel}
         onClick={handleClick}
         ref={ref}
-        type="button">
+        type="button"
+        {...htmlProps}>
         <IconX />
       </SearchInputClearButtonStyled>
     );

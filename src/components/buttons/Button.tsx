@@ -83,14 +83,14 @@ export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPr
 
       return (
         <ButtonAsLink
-          {...restProps}
           {...getShouldOpenInNewTabProps({ enableOpenInNewTab, to })}
           aria-label={ariaLabel}
           autoFocus={hasAutoFocus}
           css={commonStyles}
           onClick={handleClick}
           ref={ref as ForwardedRef<HTMLAnchorElement>}
-          to={to}>
+          to={to}
+          {...restProps}>
           <ButtonContent
             isLoading={isLoading}
             prefix={prefix}
@@ -106,14 +106,14 @@ export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPr
 
     return (
       <ButtonStyled
-        {...htmlProps}
         aria-label={ariaLabel}
         autoFocus={hasAutoFocus}
         css={commonStyles}
         disabled={isDisabled}
         onClick={handleClick}
         ref={ref as ForwardedRef<HTMLButtonElement>}
-        type={type}>
+        type={type}
+        {...htmlProps}>
         <ButtonContent isLoading={isLoading} prefix={prefix} suffix={suffix}>
           {children}
         </ButtonContent>

@@ -105,14 +105,14 @@ export const ButtonIcon = forwardRef<HTMLButtonElement | HTMLAnchorElement, Butt
       return (
         <Tooltip content={tooltipContent} {...tooltipOptions}>
           <ButtonIconAsLink
-            {...restProps}
             {...getShouldOpenInNewTabProps({ enableOpenInNewTab, to })}
             aria-label={ariaLabel}
             autoFocus={hasAutoFocus}
             css={commonStyles}
             onClick={handleClick}
             ref={ref as ForwardedRef<HTMLAnchorElement>}
-            to={to}>
+            to={to}
+            {...restProps}>
             <ButtonIconContent Icon={Icon} isIconFilled={isIconFilled} isLoading={isLoading} />
           </ButtonIconAsLink>
         </Tooltip>
@@ -125,14 +125,14 @@ export const ButtonIcon = forwardRef<HTMLButtonElement | HTMLAnchorElement, Butt
     return (
       <Tooltip content={tooltipContent} {...tooltipOptions}>
         <ButtonIconStyled
-          {...htmlProps}
           aria-label={ariaLabel}
           autoFocus={hasAutoFocus}
           css={commonStyles}
           disabled={isDisabled}
           onClick={handleClick}
           ref={ref as ForwardedRef<HTMLButtonElement>}
-          type={type}>
+          type={type}
+          {...htmlProps}>
           <ButtonIconContent Icon={Icon} isIconFilled={isIconFilled} isLoading={isLoading} />
         </ButtonIconStyled>
       </Tooltip>

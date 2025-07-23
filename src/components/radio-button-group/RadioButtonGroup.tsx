@@ -76,7 +76,6 @@ export const RadioButtonGroup = forwardRef<HTMLDivElement, PropsWithLabels<Radio
         validationMessageId={validationMessageId}
         width={width}>
         <RadioGroupRoot
-          {...radixRadioGroupProps}
           aria-describedby={describedBy}
           aria-invalid={validation === FormFieldValidation.Invalid}
           aria-label={ariaLabel}
@@ -86,7 +85,8 @@ export const RadioButtonGroup = forwardRef<HTMLDivElement, PropsWithLabels<Radio
           id={controlId}
           onValueChange={onChange}
           ref={ref}
-          required={required}>
+          required={required}
+          {...radixRadioGroupProps}>
           <RadioButtonsWrapper>
             {options.map(({ isDisabled: disabledOption, ...o }) => (
               <RadioButton
