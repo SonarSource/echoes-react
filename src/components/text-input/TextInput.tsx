@@ -74,7 +74,7 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>((props, re
     type = 'text',
     validation,
     width,
-    ...rest
+    ...restProps
   } = props;
 
   const defaultId = `${useId()}textinput`;
@@ -106,6 +106,8 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>((props, re
           aria-invalid={validation === FormFieldValidation.Invalid}
           aria-label={ariaLabel}
           aria-labelledby={ariaLabelledBy}
+          // Everything above this line can be overridden by the `restProps` object
+          {...restProps}
           data-error={validation === FormFieldValidation.Invalid ? '' : undefined}
           data-prefix={prefix ? '' : undefined}
           data-suffix={suffix ? '' : undefined}
@@ -115,7 +117,6 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>((props, re
           ref={ref}
           required={isRequired}
           type={type}
-          {...rest}
         />
         {suffix && <InputSuffix data-disabled={isDisabled || undefined}>{suffix}</InputSuffix>}
       </InputWrapper>

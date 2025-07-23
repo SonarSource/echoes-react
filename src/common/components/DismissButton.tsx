@@ -39,10 +39,11 @@ export const DismissButton = forwardRef<HTMLButtonElement, DismissButtonProps>((
     <Tooltip content={ariaLabel}>
       <DismissButtonStyled
         aria-label={ariaLabel}
+        // Everything above this line can be overridden by the `htmlProps` object
+        {...htmlProps}
         onClick={handleClick}
         ref={ref}
-        type="button"
-        {...htmlProps}>
+        type="button">
         <IconX />
       </DismissButtonStyled>
     </Tooltip>

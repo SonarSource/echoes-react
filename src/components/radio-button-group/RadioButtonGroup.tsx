@@ -80,13 +80,14 @@ export const RadioButtonGroup = forwardRef<HTMLDivElement, PropsWithLabels<Radio
           aria-invalid={validation === FormFieldValidation.Invalid}
           aria-label={ariaLabel}
           aria-labelledby={ariaLabelledBy ?? labelId}
+          // Everything above this line can be overridden by the `radixRadioGroupProps` object
+          {...radixRadioGroupProps}
           data-alignment={alignment}
           disabled={disabled}
           id={controlId}
           onValueChange={onChange}
           ref={ref}
-          required={required}
-          {...radixRadioGroupProps}>
+          required={required}>
           <RadioButtonsWrapper>
             {options.map(({ isDisabled: disabledOption, ...o }) => (
               <RadioButton

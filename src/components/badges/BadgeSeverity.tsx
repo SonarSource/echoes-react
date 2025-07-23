@@ -173,6 +173,8 @@ export const BadgeSeverity = forwardRef<HTMLButtonElement, BadgeSeverityProps>((
       <Tooltip content={tooltipContent} {...tooltipOptions}>
         <StyledButtonIconStyled
           aria-label={ariaLabel}
+          // Everything above this line can be overridden by the `htmlProps` object
+          {...htmlProps}
           autoFocus={hasAutoFocus}
           css={useMemo(
             () => ({
@@ -192,8 +194,7 @@ export const BadgeSeverity = forwardRef<HTMLButtonElement, BadgeSeverityProps>((
           disabled={isDisabled}
           onClick={handleClick}
           ref={ref}
-          type="button"
-          {...htmlProps}>
+          type="button">
           <StyledSeverityContent>
             <Spinner isLoading={isLoading}>
               <SeverityIcon />

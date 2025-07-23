@@ -62,6 +62,7 @@ export const LinkBase = forwardRef<HTMLAnchorElement | HTMLButtonElement, LinkPr
     if (isLinkAsButton(props)) {
       return (
         <button
+          // Everything above this line can be overridden by the `restProps` object
           {...restProps}
           onClick={handleClick}
           ref={ref as ForwardedRef<HTMLButtonElement>}
@@ -76,9 +77,10 @@ export const LinkBase = forwardRef<HTMLAnchorElement | HTMLButtonElement, LinkPr
 
     return (
       <RouterLink
-        {...getShouldOpenInNewTabProps({ enableOpenInNewTab, to })}
         {...(isDefined(download) ? { download, reloadDocument: true } : {})}
+        // Everything above this line can be overridden by the `restProps` object
         {...restProps}
+        {...getShouldOpenInNewTabProps({ enableOpenInNewTab, to })}
         onClick={handleClick}
         ref={ref as ForwardedRef<HTMLAnchorElement>}
         to={to}>

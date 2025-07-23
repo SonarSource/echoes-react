@@ -111,15 +111,16 @@ export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPr
 
       return (
         <ButtonAsLink
-          {...getShouldOpenInNewTabProps({ enableOpenInNewTab, to })}
           aria-label={ariaLabel}
+          {...(isDefined(download) ? { download, reloadDocument: true } : {})}
+          // Everything above this line can be overridden by the `restProps` object
+          {...restProps}
+          {...getShouldOpenInNewTabProps({ enableOpenInNewTab, to })}
           autoFocus={hasAutoFocus}
           css={commonStyles}
-          {...(isDefined(download) ? { download, reloadDocument: true } : {})}
           onClick={handleClick}
           ref={ref as ForwardedRef<HTMLAnchorElement>}
-          to={to}
-          {...restProps}>
+          to={to}>
           <ButtonContent
             isLoading={isLoading}
             prefix={prefix}
@@ -131,18 +132,19 @@ export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPr
     }
 
     // Extracting the rest of the link props to avoid passing them to the button element.
-    const { download,reloadDocument, state, ...htmlProps } = restProps;
+    const { download, reloadDocument, state, ...htmlProps } = restProps;
 
     return (
       <ButtonStyled
         aria-label={ariaLabel}
+        // Everything above this line can be overridden by the `htmlProps` object
+        {...htmlProps}
         autoFocus={hasAutoFocus}
         css={commonStyles}
         disabled={isDisabled}
         onClick={handleClick}
         ref={ref as ForwardedRef<HTMLButtonElement>}
-        type={type}
-        {...htmlProps}>
+        type={type}>
         <ButtonContent isLoading={isLoading} prefix={prefix} suffix={suffix}>
           {children}
         </ButtonContent>
