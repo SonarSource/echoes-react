@@ -94,7 +94,7 @@ See available components and usage in storybook: <https://echoes-react.netlify.a
 
 #### Rendering components
 
-To render app components that uses Echoes components internally you need to make sure your test render function also provides the necessary context providers detailed in the [Providers](#providers) section above.
+To render app components that use Echoes components internally you need to make sure your test render function also provides the necessary context providers detailed in the [Providers](#providers) section above.
 You can also configure the `EchoesProvider` with `tooltipsDelayDuration={0}` to disable the tooltips delay during tests, which can help avoid flaky tests due to tooltips not appearing in time.
 
 #### Jest
