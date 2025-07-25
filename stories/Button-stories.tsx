@@ -26,6 +26,7 @@ import {
   ButtonVariety,
   IconCalendar,
   IconChevronDown,
+  IconDownload,
   IconRocket,
   Tooltip,
 } from '../src';
@@ -121,6 +122,18 @@ export const AsALink: Story = {
     children: 'My Link Button',
     to: 'https://example.com',
     enableOpenInNewTab: true,
+  },
+  argTypes: {
+    variety: { control: { type: 'select' }, options: Object.values(ButtonAsLinkVariety) },
+  },
+};
+
+export const AsADownloadLink: Story = {
+  args: {
+    children: 'Download favicon',
+    download: 'favicon.svg',
+    prefix: <IconDownload />,
+    to: '/favicon.svg',
   },
   argTypes: {
     variety: { control: { type: 'select' }, options: Object.values(ButtonAsLinkVariety) },

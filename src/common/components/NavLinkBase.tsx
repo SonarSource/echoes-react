@@ -21,6 +21,7 @@ import * as VisuallyHidden from '@radix-ui/react-visually-hidden';
 import { forwardRef } from 'react';
 import { useIntl } from 'react-intl';
 import { NavLink as RouterNavLink, NavLinkProps as RouterNavLinkProps } from 'react-router-dom';
+import { isDefined } from '~common/helpers/types';
 import { isSonarLink } from '~common/helpers/url';
 
 type RouterNavLinkPropsAllowed = 'download' | 'to';
@@ -34,6 +35,7 @@ export interface NavLinkBaseProps extends Pick<RouterNavLinkProps, RouterNavLink
 export const NavLinkBase = forwardRef<HTMLAnchorElement, NavLinkBaseProps>((props, ref) => {
   const {
     children,
+    download,
     isMatchingFullPath = false,
     enableOpenInNewTab = false,
     to,
@@ -42,24 +44,26 @@ export const NavLinkBase = forwardRef<HTMLAnchorElement, NavLinkBaseProps>((prop
 
   const intl = useIntl();
 
-  const enableOpenInNewTabProps = enableOpenInNewTab
-    ? {
-        rel: `noopener${typeof to === 'string' && isSonarLink(to) ? '' : ' noreferrer nofollow'}`,
-        /* eslint-disable-next-line react/jsx-no-target-blank -- we only allow noopener noreferrer for known external links */
-        target: '_blank',
-      }
-    : {};
+  const enableOpenInNewTabProps =
+    !download && enableOpenInNewTab
+      ? {
+          rel: `noopener${typeof to === 'string' && isSonarLink(to) ? '' : ' noreferrer nofollow'}`,
+          /* eslint-disable-next-line react/jsx-no-target-blank -- we only allow noopener noreferrer for known external links */
+          target: '_blank',
+        }
+      : {};
 
   return (
     <RouterNavLink
       {...(isMatchingFullPath ? { end: true } : {})}
       {...enableOpenInNewTabProps}
+      {...(isDefined(download) ? { download, reloadDocument: true } : {})}
       {...restAndRadixProps}
       ref={ref}
       to={to}>
       {children}
 
-      {enableOpenInNewTab && (
+      {!download && enableOpenInNewTab && (
         <VisuallyHidden.Root>
           {intl.formatMessage({
             id: 'open_in_new_tab',

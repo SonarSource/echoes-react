@@ -80,7 +80,7 @@ export const LinkBase = forwardRef<HTMLAnchorElement | HTMLButtonElement, LinkPr
         {...(isDefined(download) ? { download, reloadDocument: true } : {})}
         // Everything above this line can be overridden by the `restProps` object
         {...restProps}
-        {...getShouldOpenInNewTabProps({ enableOpenInNewTab, to })}
+        {...getShouldOpenInNewTabProps({ download, enableOpenInNewTab, to })}
         onClick={handleClick}
         ref={ref as ForwardedRef<HTMLAnchorElement>}
         to={to}>
@@ -94,10 +94,11 @@ export const LinkBase = forwardRef<HTMLAnchorElement | HTMLButtonElement, LinkPr
 LinkBase.displayName = 'LinkBase';
 
 export function getShouldOpenInNewTabProps({
+  download,
   enableOpenInNewTab,
   to,
-}: Pick<LinkProps, 'enableOpenInNewTab' | 'to'>) {
-  return enableOpenInNewTab
+}: Pick<LinkProps, 'download' | 'enableOpenInNewTab' | 'to'>) {
+  return !download && enableOpenInNewTab
     ? {
         rel: `noopener${typeof to === 'string' && isSonarLink(to) ? '' : ' noreferrer nofollow'}`,
         /* eslint-disable-next-line react/jsx-no-target-blank -- we only allow noopener noreferrer for known external links */
