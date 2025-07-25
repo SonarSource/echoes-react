@@ -20,7 +20,12 @@
 
 /* eslint-disable no-console */
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { IconLink, LinkHighlight, LinkStandalone as LinkStandaloneComp } from '../../src';
+import {
+  IconDownload,
+  IconLink,
+  LinkHighlight,
+  LinkStandalone as LinkStandaloneComp,
+} from '../../src';
 import { toDisabledControlArgType } from '../helpers/arg-types';
 
 const meta: Meta<typeof LinkStandaloneComp> = {
@@ -70,7 +75,11 @@ export const LinkStandaloneWithIcon: Story = {
     ...defaultArgs,
     children: 'Standalone Link With Icon',
     highlight: LinkHighlight.Default,
-    iconLeft: <IconLink />,
+    iconLeft: (
+      <span style={{ marginRight: '8px' }}>
+        <IconLink />
+      </span>
+    ),
   },
 };
 
@@ -91,5 +100,20 @@ export const LinkAsButton: Story = {
       },
     },
     ...toDisabledControlArgType('enableBlurAfterClick', 'title'),
+  },
+};
+
+export const DownloadLink: Story = {
+  args: {
+    ...defaultArgs,
+    children: 'Download favicon',
+    download: 'favicon.svg',
+    highlight: LinkHighlight.Default,
+    iconLeft: (
+      <span style={{ marginRight: '8px' }}>
+        <IconDownload />
+      </span>
+    ),
+    to: '/favicon.svg',
   },
 };

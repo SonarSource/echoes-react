@@ -115,7 +115,7 @@ export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPr
           {...(isDefined(download) ? { download, reloadDocument: true } : {})}
           // Everything above this line can be overridden by the `restProps` object
           {...restProps}
-          {...getShouldOpenInNewTabProps({ enableOpenInNewTab, to })}
+          {...getShouldOpenInNewTabProps({ download, enableOpenInNewTab, to })}
           autoFocus={hasAutoFocus}
           css={commonStyles}
           onClick={handleClick}
