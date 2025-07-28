@@ -1,8 +1,8 @@
 {
   "codeConnect": {
     "include": [
-      "src/figma-connect/**/*.{tsx,jsx}",
-      "src/components/**/*.{tsx,jsx}"
+      "src/figma-connect/**/*.tsx",
+      "src/index.tsx"
     ],
     "label": "React",
     "parser": "react",

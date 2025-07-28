@@ -17,6 +17,7 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
+
 import { ForwardedRef, MouseEvent, ReactNode, forwardRef, useCallback, useMemo } from 'react';
 import { isDefined } from '~common/helpers/types';
 import { getShouldOpenInNewTabProps } from '../links/LinkBase';
@@ -145,9 +146,7 @@ export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPr
         onClick={handleClick}
         ref={ref as ForwardedRef<HTMLButtonElement>}
         type={type}>
-        <ButtonContent isLoading={isLoading} prefix={prefix} suffix={suffix}>
-          {children}
-        </ButtonContent>
+        <ButtonContent {...{ isLoading, prefix, suffix }}>{children}</ButtonContent>
       </ButtonStyled>
     );
   },
