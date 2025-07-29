@@ -21,7 +21,6 @@
 import styled from '@emotion/styled';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Spinner } from '../src';
-import { basicWrapperDecorator } from './helpers/BasicWrapper';
 
 const meta: Meta<typeof Spinner> = {
   component: Spinner,
@@ -29,7 +28,6 @@ const meta: Meta<typeof Spinner> = {
   parameters: {
     controls: { exclude: ['checked', 'onCheck'] },
   },
-  decorators: [basicWrapperDecorator],
 };
 
 export default meta;
@@ -64,25 +62,24 @@ export const WithPlaceHolder: Story = {
   ),
 };
 
-export const WithMargin: Story = {
+export const Centered: Story = {
   args: {
     isLoading: true,
     children: <span>Loading complete!</span>,
-    label: `I've got a margin!`,
-    wrapperClassName: 'margins',
+    wrapperClassName: 'center-spinner',
   },
   render: (args) => (
-    <WithMarginWrapper>
-      <p>
-        Spinners can get tailwind classes: <Spinner {...args} />
-      </p>
-    </WithMarginWrapper>
+    <CenterSpinner>
+      <Spinner {...args} />
+    </CenterSpinner>
   ),
 };
 
-const WithMarginWrapper = styled.div`
-  .margins {
-    margin-left: 20px;
+const CenterSpinner = styled.div`
+  .center-spinner {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
   }
 `;
 
@@ -93,11 +90,13 @@ export const Display: Story = {
   render: (args) => (
     <div>
       <p>
-        We are processing the reports <Spinner {...args} /> 8/10
+        We are processing the reports
+        <Spinner {...args} />
+        8/10
       </p>
 
       <div>
-        <Spinner {...args}>
+        <Spinner>
           <ul>
             <li>random</li>
             <li>content</li>
@@ -110,32 +109,3 @@ export const Display: Story = {
     </div>
   ),
 };
-
-export const InAGrid: Story = {
-  args: {
-    isLoading: true,
-    label: 'hold on...',
-  },
-  render: (args) => (
-    <>
-      <p>
-        This example shows that the Spinner behaves correctly when it needs to be a single node, for
-        instance in a grid layout. Toggling its loading state does not break the layout.
-        <br />
-      </p>
-      <Grid>
-        <Spinner {...args}>
-          <span>Loading complete</span>
-        </Spinner>
-        <div>Right column</div>
-      </Grid>
-    </>
-  ),
-};
-
-const Grid = styled.div`
-  display: grid;
-  width: 300px;
-  grid-template-columns: 1fr 2fr;
-  height: 24px;
-`;
