@@ -255,7 +255,10 @@ function buildTailwindConfig() {
   const height = mapTokens(jsonTokens, 'height');
 
   addCoreTokens(height);
+  height.screen = '100vh';
+
   addCoreTokens(width);
+  width.screen = '100vw';
 
   const result = {
     echoesPreset: {
@@ -297,6 +300,14 @@ function addCoreTokens(tokens) {
   tokens.fit = 'fit-content';
   tokens.min = 'min-content';
   tokens.max = 'max-content';
+
+  tokens.px = '1px';
+  tokens.dvw = '100dvw';
+  tokens.dvh = '100dvh';
+  tokens.lvw = '100lvw';
+  tokens.lvh = '100lvh';
+  tokens.svw = '100svw';
+  tokens.svh = '100svh';
 
   tokens['1/2'] = '50%';
   tokens['1/3'] = '33.333333%';

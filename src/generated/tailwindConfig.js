@@ -55,6 +55,13 @@ const config = {
         "fit": "fit-content",
         "min": "min-content",
         "max": "max-content",
+        "px": "1px",
+        "dvw": "100dvw",
+        "dvh": "100dvh",
+        "lvw": "100lvw",
+        "lvh": "100lvh",
+        "svw": "100svw",
+        "svh": "100svh",
         "1/2": "50%",
         "1/3": "33.333333%",
         "2/3": "66.666667%",
@@ -65,7 +72,8 @@ const config = {
         "2/5": "40%",
         "3/5": "60%",
         "4/5": "80%",
-        "full": "100%"
+        "full": "100%",
+        "screen": "100vh"
       },
       "width": {
         "0": "0px",
@@ -88,6 +96,13 @@ const config = {
         "fit": "fit-content",
         "min": "min-content",
         "max": "max-content",
+        "px": "1px",
+        "dvw": "100dvw",
+        "dvh": "100dvh",
+        "lvw": "100lvw",
+        "lvh": "100lvh",
+        "svw": "100svw",
+        "svh": "100svh",
         "1/2": "50%",
         "1/3": "33.333333%",
         "2/3": "66.666667%",
@@ -98,7 +113,8 @@ const config = {
         "2/5": "40%",
         "3/5": "60%",
         "4/5": "80%",
-        "full": "100%"
+        "full": "100%",
+        "screen": "100vw"
       }
     }
   },
