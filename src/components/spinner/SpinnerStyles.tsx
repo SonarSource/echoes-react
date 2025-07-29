@@ -30,9 +30,10 @@ export const SpinnerWrapper = styled.span<{ inline: boolean }>`
 `;
 SpinnerWrapper.displayName = 'SpinnerWrapper';
 
-export const SpinnerInner = styled.output<{ inline: boolean; isLoading: boolean }>`
+export const SpinnerInner = styled.span<{ inline: boolean; isLoading: boolean }>`
   position: relative;
   display: ${displaySwitcher};
+  height: var(--echoes-dimension-height-400);
   ${({ isLoading }) => (isLoading ? '' : screenReaderOnly)}
 `;
 SpinnerInner.displayName = 'SpinnerInner';
