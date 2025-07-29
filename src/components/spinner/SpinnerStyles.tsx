@@ -24,6 +24,10 @@ import { screenReaderOnly } from '~common/helpers/styles';
 
 import { cssVar } from '~utils/design-tokens';
 
+/*
+ * The SpinnerWrapper gives a relative container to the SpinnerInner, this is needed to position
+ * the SpinnerInner when it's not visible because of the screenReaderOnly style which makes it position: absolute.
+ */
 export const SpinnerWrapper = styled.span<{ inline: boolean }>`
   position: relative;
   display: ${displaySwitcher};
