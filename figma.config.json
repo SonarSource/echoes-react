@@ -1,0 +1,8 @@
+{
+  "codeConnect": {
+    "include": ["figma-connect/**/*.tsx", "src/index.tsx"],
+    "label": "React",
+    "parser": "react",
+    "interactiveSetupFigmaFileUrl": "https://www.figma.com/design/3bo9DCW9JD52Lc21Fcyea8/-0.22.0-Echoes--Components?m=auto&node-id=3411-838"
+  }
+}
