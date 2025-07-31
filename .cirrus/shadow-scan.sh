@@ -23,7 +23,7 @@ echo "[DEBUG] PROJECT_KEY: ${PROJECT_KEY}"
 
 echo "[DEBUG] Entering main conditional: PULL_REQUEST='${PULL_REQUEST}', GITHUB_BRANCH='${GITHUB_BRANCH}'"
 if [[ "${PULL_REQUEST}" ]] || [[ "${GITHUB_BRANCH}" == "main" ]]; then
-  scanner_params=()
+  scanner_params=("$@")
 
   if [[ "${GITHUB_BASE_BRANCH}" ]]; then
     git fetch origin "${GITHUB_BASE_BRANCH}"
@@ -49,6 +49,8 @@ if [[ "${PULL_REQUEST}" ]] || [[ "${GITHUB_BRANCH}" == "main" ]]; then
     "-Dsonar.exclusions=**/src/test/**,**/src/testFixtures/**,**/tests/**"
     "-Dsonar.tests=."
     "-Dsonar.test.inclusions=**/src/test/**,**/tests/**"
+    "-Dsonar.log.level=DEBUG"
+    "-Dsonar.verbose=true"
   )
 
   echo "[DEBUG] Running sonar-scanner with params: ${scanner_params[*]}"
