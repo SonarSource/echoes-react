@@ -42,7 +42,7 @@
         },
         "sonar-whale": {
           "$type": "color",
-          "$value": "#D3121D"
+          "$value": "#d3121d"
         }
       }
     },
@@ -51,7 +51,7 @@
         "shadow": {
           "gradient": {
             "$type": "color",
-            "$value": "rgba(255,255,255,0.2)"
+            "$value": "#ffffff33"
           }
         }
       }
@@ -65,7 +65,7 @@
             "y": "-6",
             "blur": "10",
             "spread": "0",
-            "color": "rgba(255,255,255,0.1)",
+            "color": "#ffffff1a",
             "type": "innerShadow"
           }
         }
