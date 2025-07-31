@@ -688,7 +688,7 @@
           "y": "1",
           "blur": "02",
           "spread": "0",
-          "color": "rgba(0,0,0,0.05)",
+          "color": "#0000000d",
           "type": "dropShadow"
         }
       },
@@ -700,7 +700,7 @@
             "y": "1",
             "blur": "25",
             "spread": "0",
-            "color": "rgba(29,33,47,0.05)",
+            "color": "#1d212f0d",
             "type": "dropShadow"
           },
           {
@@ -708,7 +708,7 @@
             "y": "1",
             "blur": "3",
             "spread": "0",
-            "color": "rgba(29,33,47,0.05)",
+            "color": "#1d212f0d",
             "type": "dropShadow"
           }
         ]
@@ -721,7 +721,7 @@
             "y": "2",
             "blur": "15",
             "spread": "-2",
-            "color": "rgba(29,33,47,0.06)",
+            "color": "#1d212f0f",
             "type": "dropShadow"
           },
           {
@@ -729,7 +729,7 @@
             "y": "4",
             "blur": "8",
             "spread": "-2",
-            "color": "rgba(29,33,47,0.1)",
+            "color": "#1d212f1a",
             "type": "dropShadow"
           }
         ]
@@ -742,7 +742,7 @@
             "y": "4",
             "blur": "6",
             "spread": "-2",
-            "color": "rgba(29,33,47,0.05)",
+            "color": "#1d212f0d",
             "type": "dropShadow"
           },
           {
@@ -750,7 +750,7 @@
             "y": "12",
             "blur": "16",
             "spread": "-4",
-            "color": "rgba(29,33,47,0.1)",
+            "color": "#1d212f1a",
             "type": "dropShadow"
           }
         ]
@@ -763,7 +763,7 @@
             "y": "8",
             "blur": "8",
             "spread": "-4",
-            "color": "rgba(29,33,47,0.04)",
+            "color": "#1d212f0a",
             "type": "dropShadow"
           },
           {
@@ -771,7 +771,7 @@
             "y": "20",
             "blur": "24",
             "spread": "-4",
-            "color": "rgba(29,33,47,0.1)",
+            "color": "#1d212f1a",
             "type": "dropShadow"
           }
         ]

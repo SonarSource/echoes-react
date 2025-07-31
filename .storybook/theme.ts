@@ -28,8 +28,8 @@ export default create({
   //brandImage: 'https://storybook.js.org/images/placeholders/350x150.png',
   brandTarget: '_self',
 
-  //colorPrimary: '#3A10E5',
-  //colorSecondary: '#585C6D',
+  //colorPrimary: '#3a10e5',
+  //colorSecondary: '#585c6d',
 
   // Typography
   fontBase: '"Open Sans", sans-serif',
@@ -38,21 +38,21 @@ export default create({
   // UI
   //appBg: '#ffffff',
   //appContentBg: '#ffffff',
-  //appBorderColor: '#585C6D',
+  //appBorderColor: '#585c6d',
   //appBorderRadius: 4,
 
   // Text colors
-  //textColor: '#10162F',
+  //textColor: '#10162f',
   //textInverseColor: '#ffffff',
 
   // Toolbar default and active colors
-  //barTextColor: '#9E9E9E',
-  //barSelectedColor: '#585C6D',
+  //barTextColor: '#9e9e9e',
+  //barSelectedColor: '#585c6d',
   //barBg: '#ffffff',
 
   // Form colors
   //inputBg: '#ffffff',
-  //inputBorder: '#10162F',
-  //inputTextColor: '#10162F',
+  //inputBorder: '#10162f',
+  //inputTextColor: '#10162f',
   //inputBorderRadius: 2,
 });

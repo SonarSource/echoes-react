@@ -43,7 +43,7 @@
       }
     },
     {
-      "files": ["**/*.snap"],
+      "files": ["config/scripts/migrations/*", "**/*.snap"],
       "rules": {
         "header/header": "off"
       }

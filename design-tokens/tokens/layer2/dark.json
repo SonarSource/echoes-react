@@ -416,15 +416,15 @@
           "weak": {
             "default": {
               "$type": "color",
-              "$value": "#5D6CD033"
+              "$value": "#5d6cd033"
             },
             "hover": {
               "$type": "color",
-              "$value": "#5D6CD04D"
+              "$value": "#5d6cd04d"
             },
             "pressed": {
               "$type": "color",
-              "$value": "#5D6CD04D"
+              "$value": "#5d6cd04d"
             }
           },
           "bold": {
@@ -928,7 +928,7 @@
           "y": "1",
           "blur": "4",
           "spread": "0",
-          "color": "rgba(8,9,12,0.4)",
+          "color": "#08090c66",
           "type": "dropShadow"
         }
       },
@@ -940,7 +940,7 @@
             "y": "1",
             "blur": "10",
             "spread": "0",
-            "color": "rgba(8,9,12,0.4)",
+            "color": "#08090c66",
             "type": "dropShadow"
           },
           {
@@ -948,7 +948,7 @@
             "y": "1",
             "blur": "3",
             "spread": "0",
-            "color": "rgba(8,9,12,0.4)",
+            "color": "#08090c66",
             "type": "dropShadow"
           }
         ]
@@ -961,7 +961,7 @@
             "y": "2",
             "blur": "15",
             "spread": "-2",
-            "color": "rgba(8,9,12,0.06)",
+            "color": "#08090c0f",
             "type": "innerShadow"
           },
           {
@@ -969,7 +969,7 @@
             "y": "4",
             "blur": "15",
             "spread": "-2",
-            "color": "rgba(8,9,12,0.5)",
+            "color": "#08090c80",
             "type": "dropShadow"
           }
         ]
@@ -982,7 +982,7 @@
             "y": "4",
             "blur": "6",
             "spread": "-2",
-            "color": "rgba(8,9,12,0.05)",
+            "color": "#08090c0d",
             "type": "dropShadow"
           },
           {
@@ -990,7 +990,7 @@
             "y": "12",
             "blur": "20",
             "spread": "-4",
-            "color": "rgba(8,9,12,0.5)",
+            "color": "#08090c80",
             "type": "dropShadow"
           }
         ]
@@ -1003,7 +1003,7 @@
             "y": "8",
             "blur": "8",
             "spread": "-4",
-            "color": "rgba(8,9,12,0.04)",
+            "color": "#08090c0a",
             "type": "dropShadow"
           },
           {
@@ -1011,7 +1011,7 @@
             "y": "20",
             "blur": "30",
             "spread": "-4",
-            "color": "rgba(8,9,12,0.5)",
+            "color": "#08090c80",
             "type": "dropShadow"
           }
         ]
