@@ -42,13 +42,6 @@ if [[ "${PULL_REQUEST}" ]] || [[ "${GITHUB_BRANCH}" == "main" ]]; then
     "-Dsonar.analysis.sha1=${GIT_SHA1}"
     "-Dsonar.organization=sonarsource"
     "-Dsonar.projectKey=${PROJECT_KEY}"
-    "-Dsonar.python.version=3"
-    "-Dsonar.python.coverage.reportPaths=**/build/coverage.xml"
-    "-Dsonar.coverage.jacoco.xmlReportPaths=**/build/jacoco-coverage.xml"
-    "-Dsonar.sources=."
-    "-Dsonar.exclusions=**/src/test/**,**/src/testFixtures/**,**/tests/**"
-    "-Dsonar.tests=."
-    "-Dsonar.test.inclusions=**/src/test/**,**/tests/**"
     "-Dsonar.log.level=DEBUG"
     "-Dsonar.verbose=true"
   )
