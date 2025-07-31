@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 /*
  * Echoes React
  * Copyright (C) 2023-2025 SonarSource SA
