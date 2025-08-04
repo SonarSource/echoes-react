@@ -9,6 +9,23 @@
       "groupSlug": "storybook"
     },
     {
+      "description": "Group all design tokens dependencies in the same PR",
+      "matchPackageNames": ["@tokens-studio/sd-transforms", "style-dictionary"],
+      "groupName": "design-tokens dependencies",
+      "groupSlug": "design-tokens"
+    },
+    {
+      "description": "Group all fonts related dependencies in the same PR",
+      "matchPackageNames": [
+        "@yarnpkg/fslib",
+        "@yarnpkg/libzip",
+        "subset-font",
+        "@material-symbols/font-400"
+      ],
+      "groupName": "fonts dependencies",
+      "groupSlug": "fonts"
+    },
+    {
       "description": "Don't automatically update major versions of our peer dependencies",
       "matchPackageNames": [
         "@emotion/react",
@@ -27,12 +44,7 @@
       "description": "ECHOES-761 Mantine next major version has breaking changes.",
       "matchPackageNames": ["@mantine/**"],
       "matchUpdateTypes": ["patch", "minor", "major"],
-      "dependencyDashboardApproval": true
-    },
-    {
-      "description": "ECHOES-711 Style Dictionary updates need migration work.",
-      "matchPackageNames": ["@tokens-studio/sd-transforms", "style-dictionary"],
-      "matchUpdateTypes": ["patch", "minor", "major"],
+      "groupName": null,
       "dependencyDashboardApproval": true
     },
     {
