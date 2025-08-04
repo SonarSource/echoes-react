@@ -15,6 +15,17 @@
       "groupSlug": "design-tokens"
     },
     {
+      "description": "Group all fonts related dependencies in the same PR",
+      "matchPackageNames": [
+        "@yarnpkg/fslib",
+        "@yarnpkg/libzip",
+        "subset-font",
+        "@material-symbols/font-400"
+      ],
+      "groupName": "fonts dependencies",
+      "groupSlug": "fonts"
+    },
+    {
       "description": "Don't automatically update major versions of our peer dependencies",
       "matchPackageNames": [
         "@emotion/react",
