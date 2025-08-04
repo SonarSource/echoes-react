@@ -67,7 +67,7 @@ mend_scan_task:
       path: 'whitesource/**/*'
 
 sonar_shadow_scan_sqc_eu_task:
-  # only_if: $CIRRUS_CRON == "daily"
+  only_if: $CIRRUS_CRON == "daily"
   <<: *YARN_CACHE_TEMPLATE
   eks_container:
     <<: *CONTAINER_DEFINITION
@@ -85,7 +85,7 @@ sonar_shadow_scan_sqc_eu_task:
     - yarn_build_deploy_analyze
 
 sonar_shadow_scan_sqc_us_task:
-  # only_if: $CIRRUS_CRON == "daily"
+  only_if: $CIRRUS_CRON == "daily"
   <<: *YARN_CACHE_TEMPLATE
   eks_container:
     <<: *CONTAINER_DEFINITION
@@ -104,6 +104,7 @@ sonar_shadow_scan_sqc_us_task:
     - yarn_build_deploy_analyze
 
 run_iris_task:
+  only_if: $CIRRUS_CRON == "daily"
   eks_container:
     <<: *CONTAINER_DEFINITION
   depends_on:
