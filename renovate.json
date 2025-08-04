@@ -45,6 +45,7 @@
       "matchPackageNames": ["@mantine/**"],
       "matchUpdateTypes": ["patch", "minor", "major"],
       "groupName": null,
+      "groupSlug": null,
       "dependencyDashboardApproval": true
     },
     {
