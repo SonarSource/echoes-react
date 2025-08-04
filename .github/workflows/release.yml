@@ -11,7 +11,7 @@ on:
 
 jobs:
   release:
-    uses: SonarSource/gh-action_release/.github/workflows/main.yaml@f42df91661e3f3e6d81d92e86c88edd073dc1264 # 5.12.0
+    uses: SonarSource/gh-action_release/.github/workflows/main.yaml@cf51473f4832845d9e0771d4331a36c7e10feb57 # 5.17.0
     with:
       publishToNpmJS: true
       skipJavascriptReleasabilityChecks: true # Temporary, until the releasability version check handles an `rc` suffix
