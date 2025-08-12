@@ -21,6 +21,7 @@
 import styled from '@emotion/styled';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Spinner } from '../src';
+import { basicWrapperDecorator } from './helpers/BasicWrapper';
 
 const meta: Meta<typeof Spinner> = {
   component: Spinner,
@@ -87,16 +88,15 @@ export const Display: Story = {
   args: {
     isLoading: true,
   },
+  decorators: [basicWrapperDecorator],
   render: (args) => (
     <div>
       <p>
-        We are processing the reports
-        <Spinner {...args} />
-        8/10
+        We are processing the reports <Spinner {...args} /> 8/10
       </p>
 
-      <div>
-        <Spinner>
+      <div style={{ overflow: 'auto' }}>
+        <Spinner {...args}>
           <ul>
             <li>random</li>
             <li>content</li>

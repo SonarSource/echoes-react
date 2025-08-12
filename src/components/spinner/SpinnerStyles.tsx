@@ -31,10 +31,16 @@ import { cssVar } from '~utils/design-tokens';
 export const SpinnerWrapper = styled.span<{ inline: boolean }>`
   position: relative;
   display: ${displaySwitcher};
+
+  /* 
+   * This prevents the scrollbar from appearing when only the spinner is present in an overflow:auto parent 
+   */
+  overflow: hidden;
+  vertical-align: bottom;
 `;
 SpinnerWrapper.displayName = 'SpinnerWrapper';
 
-export const SpinnerInner = styled.span<{ inline: boolean; isLoading: boolean }>`
+export const SpinnerInner = styled.output<{ inline: boolean; isLoading: boolean }>`
   position: relative;
   display: ${displaySwitcher};
   height: var(--echoes-dimension-height-400);
@@ -64,11 +70,13 @@ const spinAnimation = keyframes`
 
 export const SpinnerStyled = styled.span<{ inline: boolean }>`
   border: 2px solid transparent;
-  background:
+  background: var(
+    --spinner-background,
     linear-gradient(0deg, ${cssVar('color-background-accent-default')} 50%, transparent 50% 100%)
       border-box,
     linear-gradient(90deg, ${cssVar('color-background-accent-default')} 25%, transparent 75% 100%)
-      border-box;
+      border-box
+  );
   mask:
     linear-gradient(#fff 0 0) padding-box,
     linear-gradient(#fff 0 0);
