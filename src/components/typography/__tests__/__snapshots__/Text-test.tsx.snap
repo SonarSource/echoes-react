@@ -7,16 +7,19 @@ exports[`default & regular renders as default 1`] = `
   color: var(--echoes-color-text-default);
 }
 
-.emotion-0 ul {
+.emotion-0 ul,
+.emotion-0:is(ul) {
   list-style-type: disc;
 }
 
-.emotion-0 ol {
+.emotion-0 ol,
+.emotion-0:is(ol) {
   list-style-type: decimal;
 }
 
 .emotion-0 ul,
-.emotion-0 ol {
+.emotion-0 ol,
+.emotion-0:is(ul, ol) {
   margin-block-start: var(--echoes-dimension-space-100);
   margin-block-end: 0;
   -webkit-padding-start: 28px;
@@ -57,16 +60,19 @@ exports[`default & regular renders as div 1`] = `
   color: var(--echoes-color-text-default);
 }
 
-.emotion-0 ul {
+.emotion-0 ul,
+.emotion-0:is(ul) {
   list-style-type: disc;
 }
 
-.emotion-0 ol {
+.emotion-0 ol,
+.emotion-0:is(ol) {
   list-style-type: decimal;
 }
 
 .emotion-0 ul,
-.emotion-0 ol {
+.emotion-0 ol,
+.emotion-0:is(ul, ol) {
   margin-block-start: var(--echoes-dimension-space-100);
   margin-block-end: 0;
   -webkit-padding-start: 28px;
@@ -107,16 +113,19 @@ exports[`default & regular renders as paragraph 1`] = `
   color: var(--echoes-color-text-default);
 }
 
-.emotion-0 ul {
+.emotion-0 ul,
+.emotion-0:is(ul) {
   list-style-type: disc;
 }
 
-.emotion-0 ol {
+.emotion-0 ol,
+.emotion-0:is(ol) {
   list-style-type: decimal;
 }
 
 .emotion-0 ul,
-.emotion-0 ol {
+.emotion-0 ol,
+.emotion-0:is(ul, ol) {
   margin-block-start: var(--echoes-dimension-space-100);
   margin-block-end: 0;
   -webkit-padding-start: 28px;
@@ -157,16 +166,19 @@ exports[`default & regular renders as span 1`] = `
   color: var(--echoes-color-text-default);
 }
 
-.emotion-0 ul {
+.emotion-0 ul,
+.emotion-0:is(ul) {
   list-style-type: disc;
 }
 
-.emotion-0 ol {
+.emotion-0 ol,
+.emotion-0:is(ol) {
   list-style-type: decimal;
 }
 
 .emotion-0 ul,
-.emotion-0 ol {
+.emotion-0 ol,
+.emotion-0:is(ul, ol) {
   margin-block-start: var(--echoes-dimension-space-100);
   margin-block-end: 0;
   -webkit-padding-start: 28px;
@@ -207,16 +219,19 @@ exports[`default & regular renders with size default 1`] = `
   color: var(--echoes-color-text-default);
 }
 
-.emotion-0 ul {
+.emotion-0 ul,
+.emotion-0:is(ul) {
   list-style-type: disc;
 }
 
-.emotion-0 ol {
+.emotion-0 ol,
+.emotion-0:is(ol) {
   list-style-type: decimal;
 }
 
 .emotion-0 ul,
-.emotion-0 ol {
+.emotion-0 ol,
+.emotion-0:is(ul, ol) {
   margin-block-start: var(--echoes-dimension-space-100);
   margin-block-end: 0;
   -webkit-padding-start: 28px;
@@ -257,16 +272,19 @@ exports[`default & regular renders with size large 1`] = `
   color: var(--echoes-color-text-default);
 }
 
-.emotion-0 ul {
+.emotion-0 ul,
+.emotion-0:is(ul) {
   list-style-type: disc;
 }
 
-.emotion-0 ol {
+.emotion-0 ol,
+.emotion-0:is(ol) {
   list-style-type: decimal;
 }
 
 .emotion-0 ul,
-.emotion-0 ol {
+.emotion-0 ol,
+.emotion-0:is(ul, ol) {
   margin-block-start: var(--echoes-dimension-space-100);
   margin-block-end: 0;
   -webkit-padding-start: 28px;
@@ -307,16 +325,19 @@ exports[`default & regular renders with size small 1`] = `
   color: var(--echoes-color-text-default);
 }
 
-.emotion-0 ul {
+.emotion-0 ul,
+.emotion-0:is(ul) {
   list-style-type: disc;
 }
 
-.emotion-0 ol {
+.emotion-0 ol,
+.emotion-0:is(ol) {
   list-style-type: decimal;
 }
 
 .emotion-0 ul,
-.emotion-0 ol {
+.emotion-0 ol,
+.emotion-0:is(ul, ol) {
   margin-block-start: var(--echoes-dimension-space-100);
   margin-block-end: 0;
   -webkit-padding-start: 28px;
@@ -357,16 +378,19 @@ exports[`default & strong renders as default 1`] = `
   color: var(--echoes-color-text-default);
 }
 
-.emotion-0 ul {
+.emotion-0 ul,
+.emotion-0:is(ul) {
   list-style-type: disc;
 }
 
-.emotion-0 ol {
+.emotion-0 ol,
+.emotion-0:is(ol) {
   list-style-type: decimal;
 }
 
 .emotion-0 ul,
-.emotion-0 ol {
+.emotion-0 ol,
+.emotion-0:is(ul, ol) {
   margin-block-start: var(--echoes-dimension-space-100);
   margin-block-end: 0;
   -webkit-padding-start: 28px;
@@ -407,16 +431,19 @@ exports[`default & strong renders as div 1`] = `
   color: var(--echoes-color-text-default);
 }
 
-.emotion-0 ul {
+.emotion-0 ul,
+.emotion-0:is(ul) {
   list-style-type: disc;
 }
 
-.emotion-0 ol {
+.emotion-0 ol,
+.emotion-0:is(ol) {
   list-style-type: decimal;
 }
 
 .emotion-0 ul,
-.emotion-0 ol {
+.emotion-0 ol,
+.emotion-0:is(ul, ol) {
   margin-block-start: var(--echoes-dimension-space-100);
   margin-block-end: 0;
   -webkit-padding-start: 28px;
@@ -457,16 +484,19 @@ exports[`default & strong renders as paragraph 1`] = `
   color: var(--echoes-color-text-default);
 }
 
-.emotion-0 ul {
+.emotion-0 ul,
+.emotion-0:is(ul) {
   list-style-type: disc;
 }
 
-.emotion-0 ol {
+.emotion-0 ol,
+.emotion-0:is(ol) {
   list-style-type: decimal;
 }
 
 .emotion-0 ul,
-.emotion-0 ol {
+.emotion-0 ol,
+.emotion-0:is(ul, ol) {
   margin-block-start: var(--echoes-dimension-space-100);
   margin-block-end: 0;
   -webkit-padding-start: 28px;
@@ -507,16 +537,19 @@ exports[`default & strong renders as span 1`] = `
   color: var(--echoes-color-text-default);
 }
 
-.emotion-0 ul {
+.emotion-0 ul,
+.emotion-0:is(ul) {
   list-style-type: disc;
 }
 
-.emotion-0 ol {
+.emotion-0 ol,
+.emotion-0:is(ol) {
   list-style-type: decimal;
 }
 
 .emotion-0 ul,
-.emotion-0 ol {
+.emotion-0 ol,
+.emotion-0:is(ul, ol) {
   margin-block-start: var(--echoes-dimension-space-100);
   margin-block-end: 0;
   -webkit-padding-start: 28px;
@@ -557,16 +590,19 @@ exports[`default & strong renders with size default 1`] = `
   color: var(--echoes-color-text-default);
 }
 
-.emotion-0 ul {
+.emotion-0 ul,
+.emotion-0:is(ul) {
   list-style-type: disc;
 }
 
-.emotion-0 ol {
+.emotion-0 ol,
+.emotion-0:is(ol) {
   list-style-type: decimal;
 }
 
 .emotion-0 ul,
-.emotion-0 ol {
+.emotion-0 ol,
+.emotion-0:is(ul, ol) {
   margin-block-start: var(--echoes-dimension-space-100);
   margin-block-end: 0;
   -webkit-padding-start: 28px;
@@ -607,16 +643,19 @@ exports[`default & strong renders with size large 1`] = `
   color: var(--echoes-color-text-default);
 }
 
-.emotion-0 ul {
+.emotion-0 ul,
+.emotion-0:is(ul) {
   list-style-type: disc;
 }
 
-.emotion-0 ol {
+.emotion-0 ol,
+.emotion-0:is(ol) {
   list-style-type: decimal;
 }
 
 .emotion-0 ul,
-.emotion-0 ol {
+.emotion-0 ol,
+.emotion-0:is(ul, ol) {
   margin-block-start: var(--echoes-dimension-space-100);
   margin-block-end: 0;
   -webkit-padding-start: 28px;
@@ -657,16 +696,19 @@ exports[`default & strong renders with size small 1`] = `
   color: var(--echoes-color-text-default);
 }
 
-.emotion-0 ul {
+.emotion-0 ul,
+.emotion-0:is(ul) {
   list-style-type: disc;
 }
 
-.emotion-0 ol {
+.emotion-0 ol,
+.emotion-0:is(ol) {
   list-style-type: decimal;
 }
 
 .emotion-0 ul,
-.emotion-0 ol {
+.emotion-0 ol,
+.emotion-0:is(ul, ol) {
   margin-block-start: var(--echoes-dimension-space-100);
   margin-block-end: 0;
   -webkit-padding-start: 28px;
@@ -707,16 +749,19 @@ exports[`subtle & regular renders as default 1`] = `
   color: var(--echoes-color-text-subtle);
 }
 
-.emotion-0 ul {
+.emotion-0 ul,
+.emotion-0:is(ul) {
   list-style-type: disc;
 }
 
-.emotion-0 ol {
+.emotion-0 ol,
+.emotion-0:is(ol) {
   list-style-type: decimal;
 }
 
 .emotion-0 ul,
-.emotion-0 ol {
+.emotion-0 ol,
+.emotion-0:is(ul, ol) {
   margin-block-start: var(--echoes-dimension-space-100);
   margin-block-end: 0;
   -webkit-padding-start: 28px;
@@ -757,16 +802,19 @@ exports[`subtle & regular renders as div 1`] = `
   color: var(--echoes-color-text-subtle);
 }
 
-.emotion-0 ul {
+.emotion-0 ul,
+.emotion-0:is(ul) {
   list-style-type: disc;
 }
 
-.emotion-0 ol {
+.emotion-0 ol,
+.emotion-0:is(ol) {
   list-style-type: decimal;
 }
 
 .emotion-0 ul,
-.emotion-0 ol {
+.emotion-0 ol,
+.emotion-0:is(ul, ol) {
   margin-block-start: var(--echoes-dimension-space-100);
   margin-block-end: 0;
   -webkit-padding-start: 28px;
@@ -807,16 +855,19 @@ exports[`subtle & regular renders as paragraph 1`] = `
   color: var(--echoes-color-text-subtle);
 }
 
-.emotion-0 ul {
+.emotion-0 ul,
+.emotion-0:is(ul) {
   list-style-type: disc;
 }
 
-.emotion-0 ol {
+.emotion-0 ol,
+.emotion-0:is(ol) {
   list-style-type: decimal;
 }
 
 .emotion-0 ul,
-.emotion-0 ol {
+.emotion-0 ol,
+.emotion-0:is(ul, ol) {
   margin-block-start: var(--echoes-dimension-space-100);
   margin-block-end: 0;
   -webkit-padding-start: 28px;
@@ -857,16 +908,19 @@ exports[`subtle & regular renders as span 1`] = `
   color: var(--echoes-color-text-subtle);
 }
 
-.emotion-0 ul {
+.emotion-0 ul,
+.emotion-0:is(ul) {
   list-style-type: disc;
 }
 
-.emotion-0 ol {
+.emotion-0 ol,
+.emotion-0:is(ol) {
   list-style-type: decimal;
 }
 
 .emotion-0 ul,
-.emotion-0 ol {
+.emotion-0 ol,
+.emotion-0:is(ul, ol) {
   margin-block-start: var(--echoes-dimension-space-100);
   margin-block-end: 0;
   -webkit-padding-start: 28px;
@@ -907,16 +961,19 @@ exports[`subtle & regular renders with size default 1`] = `
   color: var(--echoes-color-text-subtle);
 }
 
-.emotion-0 ul {
+.emotion-0 ul,
+.emotion-0:is(ul) {
   list-style-type: disc;
 }
 
-.emotion-0 ol {
+.emotion-0 ol,
+.emotion-0:is(ol) {
   list-style-type: decimal;
 }
 
 .emotion-0 ul,
-.emotion-0 ol {
+.emotion-0 ol,
+.emotion-0:is(ul, ol) {
   margin-block-start: var(--echoes-dimension-space-100);
   margin-block-end: 0;
   -webkit-padding-start: 28px;
@@ -957,16 +1014,19 @@ exports[`subtle & regular renders with size large 1`] = `
   color: var(--echoes-color-text-subtle);
 }
 
-.emotion-0 ul {
+.emotion-0 ul,
+.emotion-0:is(ul) {
   list-style-type: disc;
 }
 
-.emotion-0 ol {
+.emotion-0 ol,
+.emotion-0:is(ol) {
   list-style-type: decimal;
 }
 
 .emotion-0 ul,
-.emotion-0 ol {
+.emotion-0 ol,
+.emotion-0:is(ul, ol) {
   margin-block-start: var(--echoes-dimension-space-100);
   margin-block-end: 0;
   -webkit-padding-start: 28px;
@@ -1007,16 +1067,19 @@ exports[`subtle & regular renders with size small 1`] = `
   color: var(--echoes-color-text-subtle);
 }
 
-.emotion-0 ul {
+.emotion-0 ul,
+.emotion-0:is(ul) {
   list-style-type: disc;
 }
 
-.emotion-0 ol {
+.emotion-0 ol,
+.emotion-0:is(ol) {
   list-style-type: decimal;
 }
 
 .emotion-0 ul,
-.emotion-0 ol {
+.emotion-0 ol,
+.emotion-0:is(ul, ol) {
   margin-block-start: var(--echoes-dimension-space-100);
   margin-block-end: 0;
   -webkit-padding-start: 28px;
@@ -1057,16 +1120,19 @@ exports[`subtle & strong renders as default 1`] = `
   color: var(--echoes-color-text-subtle);
 }
 
-.emotion-0 ul {
+.emotion-0 ul,
+.emotion-0:is(ul) {
   list-style-type: disc;
 }
 
-.emotion-0 ol {
+.emotion-0 ol,
+.emotion-0:is(ol) {
   list-style-type: decimal;
 }
 
 .emotion-0 ul,
-.emotion-0 ol {
+.emotion-0 ol,
+.emotion-0:is(ul, ol) {
   margin-block-start: var(--echoes-dimension-space-100);
   margin-block-end: 0;
   -webkit-padding-start: 28px;
@@ -1107,16 +1173,19 @@ exports[`subtle & strong renders as div 1`] = `
   color: var(--echoes-color-text-subtle);
 }
 
-.emotion-0 ul {
+.emotion-0 ul,
+.emotion-0:is(ul) {
   list-style-type: disc;
 }
 
-.emotion-0 ol {
+.emotion-0 ol,
+.emotion-0:is(ol) {
   list-style-type: decimal;
 }
 
 .emotion-0 ul,
-.emotion-0 ol {
+.emotion-0 ol,
+.emotion-0:is(ul, ol) {
   margin-block-start: var(--echoes-dimension-space-100);
   margin-block-end: 0;
   -webkit-padding-start: 28px;
@@ -1157,16 +1226,19 @@ exports[`subtle & strong renders as paragraph 1`] = `
   color: var(--echoes-color-text-subtle);
 }
 
-.emotion-0 ul {
+.emotion-0 ul,
+.emotion-0:is(ul) {
   list-style-type: disc;
 }
 
-.emotion-0 ol {
+.emotion-0 ol,
+.emotion-0:is(ol) {
   list-style-type: decimal;
 }
 
 .emotion-0 ul,
-.emotion-0 ol {
+.emotion-0 ol,
+.emotion-0:is(ul, ol) {
   margin-block-start: var(--echoes-dimension-space-100);
   margin-block-end: 0;
   -webkit-padding-start: 28px;
@@ -1207,16 +1279,19 @@ exports[`subtle & strong renders as span 1`] = `
   color: var(--echoes-color-text-subtle);
 }
 
-.emotion-0 ul {
+.emotion-0 ul,
+.emotion-0:is(ul) {
   list-style-type: disc;
 }
 
-.emotion-0 ol {
+.emotion-0 ol,
+.emotion-0:is(ol) {
   list-style-type: decimal;
 }
 
 .emotion-0 ul,
-.emotion-0 ol {
+.emotion-0 ol,
+.emotion-0:is(ul, ol) {
   margin-block-start: var(--echoes-dimension-space-100);
   margin-block-end: 0;
   -webkit-padding-start: 28px;
@@ -1257,16 +1332,19 @@ exports[`subtle & strong renders with size default 1`] = `
   color: var(--echoes-color-text-subtle);
 }
 
-.emotion-0 ul {
+.emotion-0 ul,
+.emotion-0:is(ul) {
   list-style-type: disc;
 }
 
-.emotion-0 ol {
+.emotion-0 ol,
+.emotion-0:is(ol) {
   list-style-type: decimal;
 }
 
 .emotion-0 ul,
-.emotion-0 ol {
+.emotion-0 ol,
+.emotion-0:is(ul, ol) {
   margin-block-start: var(--echoes-dimension-space-100);
   margin-block-end: 0;
   -webkit-padding-start: 28px;
@@ -1307,16 +1385,19 @@ exports[`subtle & strong renders with size large 1`] = `
   color: var(--echoes-color-text-subtle);
 }
 
-.emotion-0 ul {
+.emotion-0 ul,
+.emotion-0:is(ul) {
   list-style-type: disc;
 }
 
-.emotion-0 ol {
+.emotion-0 ol,
+.emotion-0:is(ol) {
   list-style-type: decimal;
 }
 
 .emotion-0 ul,
-.emotion-0 ol {
+.emotion-0 ol,
+.emotion-0:is(ul, ol) {
   margin-block-start: var(--echoes-dimension-space-100);
   margin-block-end: 0;
   -webkit-padding-start: 28px;
@@ -1357,16 +1438,19 @@ exports[`subtle & strong renders with size small 1`] = `
   color: var(--echoes-color-text-subtle);
 }
 
-.emotion-0 ul {
+.emotion-0 ul,
+.emotion-0:is(ul) {
   list-style-type: disc;
 }
 
-.emotion-0 ol {
+.emotion-0 ol,
+.emotion-0:is(ol) {
   list-style-type: decimal;
 }
 
 .emotion-0 ul,
-.emotion-0 ol {
+.emotion-0 ol,
+.emotion-0:is(ul, ol) {
   margin-block-start: var(--echoes-dimension-space-100);
   margin-block-end: 0;
   -webkit-padding-start: 28px;

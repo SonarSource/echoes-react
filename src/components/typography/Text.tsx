@@ -30,7 +30,7 @@ export enum TextSize {
   Large = 'large',
 }
 
-type TextTags = 'span' | 'p' | 'div' | 'strong' | 'b' | 'em' | 'i';
+type TextTags = 'span' | 'p' | 'div' | 'strong' | 'b' | 'em' | 'i' | 'ul' | 'ol' | 'li';
 
 export type TextProps = {
   as?: TextTags;
@@ -79,16 +79,19 @@ export const Text = forwardRef<HTMLSpanElement, PropsWithChildren<TextProps>>((p
 Text.displayName = 'Text';
 
 export const TextTypographyStyle = styled.span`
-  & ul {
+  & ul,
+  &:is(ul) {
     list-style-type: disc;
   }
 
-  & ol {
+  & ol,
+  &:is(ol) {
     list-style-type: decimal;
   }
 
   & ul,
-  & ol {
+  & ol,
+  &:is(ul, ol) {
     margin-block-start: ${cssVar('dimension-space-100')};
     margin-block-end: 0;
     padding-inline-start: 28px;
