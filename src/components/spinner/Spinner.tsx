@@ -41,7 +41,7 @@ export interface SpinnerProps {
   wrapperClassName?: string;
 }
 
-export const Spinner = forwardRef<HTMLSpanElement, SpinnerProps>((props, ref) => {
+export const Spinner = forwardRef<HTMLOutputElement, SpinnerProps>((props, ref) => {
   const {
     ariaLabel,
     className,
@@ -61,16 +61,17 @@ export const Spinner = forwardRef<HTMLSpanElement, SpinnerProps>((props, ref) =>
         <SpinnerInner
           {...radixProps}
           aria-live="polite"
-          className={classNames({
-            it__loading: isLoading,
-          })}
+          className={classNames(
+            {
+              it__loading: isLoading,
+            },
+            className,
+          )}
           /** Needs to also be inline if a visible label is present next to the Spinner icon */
           inline={isInline || isDefined(label)}
           isLoading={isLoading}
-          ref={ref}
-          role="status">
+          ref={ref}>
           <SpinnerStyled
-            className={className}
             /** Needs to also be inline if a visible label is present next to the Spinner icon */
             inline={isInline || isDefined(label)}
           />

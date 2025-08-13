@@ -23,7 +23,7 @@ import { Spinner } from './Spinner';
 import { cssVar } from '~utils/design-tokens';
 
 export const SpinnerOverrideColor = styled(Spinner)`
-  background:
+  --spinner-background:
     linear-gradient(
         0deg,
         var(--spinner-color-override, ${cssVar('color-background-accent-default')}) 50%,
