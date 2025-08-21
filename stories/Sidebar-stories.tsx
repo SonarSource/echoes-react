@@ -20,6 +20,7 @@
 
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { IconOverview } from '../src';
+import { SidebarNavigationGroup } from '../src/components/sidebar-navigation/SidebarNavigationGroup';
 import { SidebarNavigationItem } from '../src/components/sidebar-navigation/SidebarNavigationItem';
 
 const meta: Meta<typeof SidebarNavigationItem> = {
@@ -40,6 +41,21 @@ export const NavigationItem: Story = {
   render: (args) => (
     <div style={{ width: '200px' }}>
       <SidebarNavigationItem {...args} />
+    </div>
+  ),
+};
+
+export const NavigationGroup: Story = {
+  parameters: {
+    exclude: ['children', 'Icon', 'to'],
+  },
+  render: () => (
+    <div style={{ width: '200px' }}>
+      <SidebarNavigationGroup label="Group name">
+        <SidebarNavigationItem to="somwhereelse1">Thing 1</SidebarNavigationItem>
+        <SidebarNavigationItem to="somwhereelse2">Amazing project 2</SidebarNavigationItem>
+        <SidebarNavigationItem to="somwhereelse3">Blabla 3</SidebarNavigationItem>
+      </SidebarNavigationGroup>
     </div>
   ),
 };
