@@ -19,7 +19,8 @@
  */
 
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { IconOverview } from '../src';
+import { IconBranch, IconOverview } from '../src';
+import { SidebarNavigationAccordionItem } from '../src/components/sidebar-navigation/SidebarNavigationAccordionItem';
 import { SidebarNavigationGroup } from '../src/components/sidebar-navigation/SidebarNavigationGroup';
 import { SidebarNavigationItem } from '../src/components/sidebar-navigation/SidebarNavigationItem';
 
@@ -39,8 +40,16 @@ export const NavigationItem: Story = {
     children: 'Item label',
   },
   render: (args) => (
-    <div style={{ width: '200px' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', width: '200px' }}>
       <SidebarNavigationItem {...args} />
+      <SidebarNavigationAccordionItem Icon={IconBranch} label="Accordion item">
+        <>
+          <SidebarNavigationItem {...args} to="/1" />
+          <SidebarNavigationItem {...args} to="/2" />
+          <SidebarNavigationItem {...args} to="/3" />
+        </>
+      </SidebarNavigationAccordionItem>
+      <SidebarNavigationItem {...args} to="/4" />
     </div>
   ),
 };

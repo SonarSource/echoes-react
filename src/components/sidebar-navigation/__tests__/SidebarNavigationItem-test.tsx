@@ -49,7 +49,7 @@ it('should handle onClick events', async () => {
   expect(handleClick).toHaveBeenCalledTimes(1);
 });
 
-describe('Ellipsis behavior', () => {
+describe('ellipsis behavior', () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
@@ -72,7 +72,7 @@ describe('Ellipsis behavior', () => {
   });
 });
 
-describe('Navigation behavior', () => {
+describe('navigation behavior', () => {
   it('should navigate to the correct path', async () => {
     const { user } = setupSidebarNavigationItem();
 
