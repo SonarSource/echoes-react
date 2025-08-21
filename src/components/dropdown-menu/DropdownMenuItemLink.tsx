@@ -21,10 +21,9 @@
 import styled from '@emotion/styled';
 import { forwardRef } from 'react';
 import { NavLinkBase, NavLinkBaseProps } from '~common/components/NavLinkBase';
+import { cssVar } from '~utils/design-tokens';
 import { IconLinkExternal } from '../icons/IconLinkExternal';
 import { DropdownMenuItemBase, DropdownMenuItemBaseProps } from './DropdownMenuItemBase';
-
-import { cssVar } from '~utils/design-tokens';
 
 export type DropdownMenuItemLinkProps = Omit<
   DropdownMenuItemBaseProps,

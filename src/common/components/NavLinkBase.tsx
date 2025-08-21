@@ -27,6 +27,7 @@ import { isSonarLink } from '~common/helpers/url';
 type RouterNavLinkPropsAllowed = 'download' | 'to';
 
 export interface NavLinkBaseProps extends Pick<RouterNavLinkProps, RouterNavLinkPropsAllowed> {
+  className?: string;
   children: React.ReactNode;
   isMatchingFullPath?: boolean;
   enableOpenInNewTab?: boolean;
