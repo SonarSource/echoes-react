@@ -112,7 +112,7 @@ const RAW_RUNTIME_STATE =
           ["typescript", "patch:typescript@npm%3A5.8.3#optional!builtin<compat/typescript>::version=5.8.3&hash=5786d5"],\
           ["vite", "virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#npm:7.0.6"],\
           ["vite-plugin-dts", "virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#npm:4.5.4"],\
-          ["vite-plugin-static-copy", "virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#npm:3.1.1"]\
+          ["vite-plugin-static-copy", "virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#npm:3.1.2"]\
         ],\
         "linkType": "SOFT"\
       }]\
@@ -6494,7 +6494,7 @@ const RAW_RUNTIME_STATE =
           ["typescript", "patch:typescript@npm%3A5.8.3#optional!builtin<compat/typescript>::version=5.8.3&hash=5786d5"],\
           ["vite", "virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#npm:7.0.6"],\
           ["vite-plugin-dts", "virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#npm:4.5.4"],\
-          ["vite-plugin-static-copy", "virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#npm:3.1.1"]\
+          ["vite-plugin-static-copy", "virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#npm:3.1.2"]\
         ],\
         "linkType": "SOFT"\
       }]\
@@ -17268,15 +17268,15 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["vite-plugin-static-copy", [\
-      ["npm:3.1.1", {\
-        "packageLocation": "./.yarn/cache/vite-plugin-static-copy-npm-3.1.1-c79159936d-e44d8f5ec2.zip/node_modules/vite-plugin-static-copy/",\
+      ["npm:3.1.2", {\
+        "packageLocation": "./.yarn/cache/vite-plugin-static-copy-npm-3.1.2-0179648e42-a51999bbc4.zip/node_modules/vite-plugin-static-copy/",\
         "packageDependencies": [\
-          ["vite-plugin-static-copy", "npm:3.1.1"]\
+          ["vite-plugin-static-copy", "npm:3.1.2"]\
         ],\
         "linkType": "SOFT"\
       }],\
-      ["virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#npm:3.1.1", {\
-        "packageLocation": "./.yarn/__virtual__/vite-plugin-static-copy-virtual-ebe640cef5/0/cache/vite-plugin-static-copy-npm-3.1.1-c79159936d-e44d8f5ec2.zip/node_modules/vite-plugin-static-copy/",\
+      ["virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#npm:3.1.2", {\
+        "packageLocation": "./.yarn/__virtual__/vite-plugin-static-copy-virtual-1f57cf8eda/0/cache/vite-plugin-static-copy-npm-3.1.2-0179648e42-a51999bbc4.zip/node_modules/vite-plugin-static-copy/",\
         "packageDependencies": [\
           ["@types/vite", null],\
           ["chokidar", "npm:3.6.0"],\
@@ -17285,7 +17285,7 @@ const RAW_RUNTIME_STATE =
           ["picocolors", "npm:1.1.1"],\
           ["tinyglobby", "npm:0.2.14"],\
           ["vite", "virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#npm:7.0.6"],\
-          ["vite-plugin-static-copy", "virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#npm:3.1.1"]\
+          ["vite-plugin-static-copy", "virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#npm:3.1.2"]\
         ],\
         "packagePeers": [\
           "@types/vite",\

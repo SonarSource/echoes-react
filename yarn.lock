@@ -4222,7 +4222,7 @@ __metadata:
     typescript: "npm:5.8.3"
     vite: "npm:7.0.6"
     vite-plugin-dts: "npm:4.5.4"
-    vite-plugin-static-copy: "npm:3.1.1"
+    vite-plugin-static-copy: "npm:3.1.2"
   peerDependencies:
     "@emotion/react": ^11.0.0
     "@emotion/styled": ^11.0.0
@@ -13133,9 +13133,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite-plugin-static-copy@npm:3.1.1":
-  version: 3.1.1
-  resolution: "vite-plugin-static-copy@npm:3.1.1"
+"vite-plugin-static-copy@npm:3.1.2":
+  version: 3.1.2
+  resolution: "vite-plugin-static-copy@npm:3.1.2"
   dependencies:
     chokidar: "npm:^3.6.0"
     fs-extra: "npm:^11.3.0"
@@ -13144,7 +13144,7 @@ __metadata:
     tinyglobby: "npm:^0.2.14"
   peerDependencies:
     vite: ^5.0.0 || ^6.0.0 || ^7.0.0
-  checksum: 10/e44d8f5ec21d7e5d9bc76f881f537d260dba0e0dad0757a86cabfc7be086c84368e956b9a2a56a55d8566e1fe9e90be96ded11b16a129b3aec5ac8f1f8474a9a
+  checksum: 10/a51999bbc4f2a88976a70f9e359ee6b8deb822d9ec7a9ae5bece6d61997810fe2600b78012abc0867594e9fcb7688842b62e520008c2cd7b778e0ffabce6c2db
   languageName: node
   linkType: hard
 
