@@ -29,7 +29,7 @@ exports[`should render with an icon 1`] = `
 }
 
 .emotion-0:hover {
-  background-color: var(--echoes-color-background-selected-weak-default);
+  background-color: var(--echoes-color-surface-hover);
 }
 
 .emotion-0:focus-visible {
@@ -40,7 +40,7 @@ exports[`should render with an icon 1`] = `
 
 .emotion-0:active,
 .emotion-0.active {
-  background-color: var(--echoes-color-surface-hover);
+  background-color: var(--echoes-color-background-selected-weak-default);
   color: var(--echoes-color-text-accent);
   font: var(--echoes-typography-text-default-semi-bold);
 }
