@@ -33,7 +33,8 @@
     {
       "files": ["*-stories.tsx", "vite.config.ts"],
       "rules": {
-        "import/no-default-export": "off"
+        "import/no-default-export": "off",
+        "testing-library/prefer-screen-queries": "off"
       }
     },
     {

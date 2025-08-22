@@ -21,6 +21,7 @@
 import { useDebouncedCallback } from '@mantine/hooks';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { PropsWithChildren, useState } from 'react';
+import { expect } from 'storybook/test';
 import {
   ButtonIcon,
   cssVar,
@@ -70,6 +71,28 @@ export const NavigationAccordionItem: Story = {
       <SidebarNavigationItem to="/4">Item Label 2</SidebarNavigationItem>
     </div>
   ),
+  play: async ({ canvas, userEvent }) => {
+    const accordionButton = canvas.getByRole('button', { name: 'Accordion item' });
+
+    // Only the two SidebarNavigationItems outside the accordion are visible
+    expect(canvas.getAllByRole('link')).toHaveLength(2);
+
+    await userEvent.click(accordionButton);
+
+    // The accordion is open, all the SidebarNavigationItems are visible
+    expect(canvas.getAllByRole('link')).toHaveLength(5);
+
+    await userEvent.click(canvas.getByRole('link', { name: 'Sub Item 2' }));
+    await userEvent.click(accordionButton);
+
+    // The accordion is closed, only the two SidebarNavigationItems outside and active sub item in the accordion are visible
+    expect(canvas.getAllByRole('link')).toHaveLength(3);
+
+    await userEvent.click(canvas.getByRole('link', { name: 'Item Label 2' }));
+
+    // No more sub item in the accordion should be visible now
+    expect(canvas.getAllByRole('link')).toHaveLength(2);
+  },
 };
 
 export const NavigationGroup: Story = {
