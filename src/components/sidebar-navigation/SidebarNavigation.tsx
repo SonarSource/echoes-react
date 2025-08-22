@@ -35,7 +35,9 @@ export const SidebarNavigation = forwardRef<
   return (
     <SidebarNavigationWrapper
       css={{
-        '--sidebar-nav-width': collapsed ? '48px' : '240px',
+        '--sidebar-navigation-width': collapsed
+          ? cssVar('sidebar-navigation-sizes-width-collapsed')
+          : cssVar('sidebar-navigation-sizes-width-expanded'),
       }}
       data-sidebar-collapsed={collapsed}
       ref={ref}>
@@ -49,8 +51,9 @@ SidebarNavigation.displayName = 'SidebarNavigation';
 const SidebarNavigationWrapper = styled.div`
   box-sizing: content-box;
   height: 100%;
-  width: var(--sidebar-nav-width);
-  border-right: 1px solid black;
+  width: var(--sidebar-navigation-width);
+  background-color: ${cssVar('color-surface-canvas-default')};
+  border-right: ${cssVar('border-width-default')} solid ${cssVar('color-border-weak')};
 
   overflow: hidden;
 

@@ -93,8 +93,6 @@ const HeaderContainer = styled.button`
 
   overflow: hidden;
 
-  background-color: ${cssVar('color-surface-default')};
-
   [data-sidebar-collapsed='true'] & {
     margin: ${cssVar('dimension-space-50')};
   }
