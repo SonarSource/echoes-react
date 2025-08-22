@@ -120,7 +120,7 @@
     "typescript": "5.8.3",
     "vite": "7.0.6",
     "vite-plugin-dts": "4.5.4",
-    "vite-plugin-static-copy": "3.1.1"
+    "vite-plugin-static-copy": "3.1.2"
   },
   "dependencies": {
     "@mantine/core": "patch:@mantine/core@7.12.2#./.yarn/patches/@mantine-core-npm-7.12.2-7aad505c0f.patch",
