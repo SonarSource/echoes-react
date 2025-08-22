@@ -17,18 +17,20 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import classNames from 'classnames';
 import { forwardRef, ForwardRefExoticComponent, MouseEventHandler, useRef } from 'react';
 import { NavLinkBase, NavLinkBaseProps } from '~common/components/NavLinkBase';
-import { truncate } from '~common/helpers/styles';
 import { useIsOverflow } from '~common/helpers/useIsOverflow';
 import { TextNode } from '~types/utils';
 import { cssVar } from '~utils/design-tokens';
 import { IconProps } from '../icons';
 import { Tooltip } from '../tooltip';
+import {
+  sidebarNavigationBaseItemStyles,
+  SidebarNavigationItemLabel,
+} from './SidebarNavigationItemStyles';
 
 export interface SidebarNavigationItemProps
   extends Pick<NavLinkBaseProps, 'isMatchingFullPath' | 'enableOpenInNewTab' | 'to'> {
@@ -68,13 +70,14 @@ export const SidebarNavigationItem = forwardRef<HTMLAnchorElement, SidebarNaviga
 
     return (
       <Tooltip content={isOverflow ? children : undefined} side="right">
-        <SidebarNavigationItemStyled
+        <NavigationItem
           {...htmlProps}
           className={classNames({ active: isActive }, className)}
           ref={ref}>
-          {Icon ? <Icon css={sidebarNavigationItemIconStyles} /> : undefined}
+          {Icon ? <Icon css={itemIconStyles} /> : undefined}
+
           <SidebarNavigationItemLabel ref={labelRef}>{children}</SidebarNavigationItemLabel>
-        </SidebarNavigationItemStyled>
+        </NavigationItem>
       </Tooltip>
     );
   },
@@ -82,37 +85,19 @@ export const SidebarNavigationItem = forwardRef<HTMLAnchorElement, SidebarNaviga
 
 SidebarNavigationItem.displayName = 'SidebarNavigationItem';
 
-const SidebarNavigationItemStyled = styled(NavLinkBase)`
-  all: unset;
+const NavigationItem = styled(NavLinkBase)`
+  ${sidebarNavigationBaseItemStyles}
 
-  display: flex;
-  align-items: center;
-  gap: ${cssVar('dimension-space-100')};
-  flex-grow: 1;
-  flex-shrink: 0;
-
-  box-sizing: border-box;
-  height: ${cssVar('dimension-height-800')};
-  padding: ${cssVar('dimension-space-100')};
-  border-radius: ${cssVar('border-radius-400')};
-
-  color: ${cssVar('color-text-default')};
-  font: ${cssVar('typography-text-default-regular')};
-
-  cursor: pointer;
-
-  &:hover {
-    background-color: ${cssVar('color-surface-hover')};
-  }
-
-  &:focus-visible {
-    outline: ${cssVar('color-focus-default')} solid ${cssVar('focus-border-width-default')};
-    outline-offset: ${cssVar('focus-border-offset-default')};
-    border-radius: ${cssVar('border-radius-400')};
-  }
+  // When the item is inside an accordion, the display value change based on the state of the accordion, hidding the items when collapsed
+  // This css property is set by the SidebarNavigationAccordionItem component
+  // Fallback to flex if not inside an accordion
+  display: var(--sidebar-navigation-accordion-children-display, flex);
 
   &:active,
   &.active {
+    // Always display the item when active even if behind a collapsed accordion, this override the previously set display value from the css property
+    display: flex;
+
     background-color: ${cssVar('color-background-selected-weak-default')};
     color: ${cssVar('color-text-accent')};
     font: ${cssVar('typography-text-default-semi-bold')};
@@ -122,19 +107,13 @@ const SidebarNavigationItemStyled = styled(NavLinkBase)`
     }
   }
 `;
-SidebarNavigationItemStyled.displayName = 'SidebarNavigationItemStyled';
+NavigationItem.displayName = 'NavigationItem';
 
-const SidebarNavigationItemLabel = styled.span`
-  ${truncate}
-`;
-
-SidebarNavigationItemLabel.displayName = 'SidebarNavigationItemLabel';
-
-const sidebarNavigationItemIconStyles = css`
+const itemIconStyles = css`
   color: ${cssVar('color-icon-subtle')};
 
-  ${SidebarNavigationItemStyled}.active > &,
-  ${SidebarNavigationItemStyled}:active > & {
+  ${NavigationItem}.active > &,
+  ${NavigationItem}:active > & {
     color: ${cssVar('color-icon-accent')};
   }
 `;
