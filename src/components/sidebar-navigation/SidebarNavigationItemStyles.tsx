@@ -67,17 +67,28 @@ export const itemIconStyles = css`
   font-size: ${cssVar('font-size-30')};
 `;
 
-export const SidebarNavigationBody = styled.div`
+export const sidebarNavigationContentStyles = css`
   display: flex;
   flex-direction: column;
   gap: ${cssVar('dimension-space-50')};
 
+  padding: ${cssVar('dimension-space-50')} ${cssVar('dimension-space-100')};
+`;
+
+export const SidebarNavigationBody = styled.div`
+  ${sidebarNavigationContentStyles}
+  flex: 1;
+
   overflow-y: auto;
   overflow-x: visible;
-
-  padding: ${cssVar('dimension-space-50')} ${cssVar('dimension-space-100')};
 
   [data-sidebar-collapsed='true'] > & {
     overflow-y: hidden;
   }
 `;
+SidebarNavigationBody.displayName = 'SidebarNavigationBody';
+
+export const SidebarNavigationFooter = styled.div`
+  ${sidebarNavigationContentStyles}
+`;
+SidebarNavigationFooter.displayName = 'SidebarNavigationFooter';

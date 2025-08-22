@@ -85,7 +85,7 @@ export const SidebarNavigationAccordionItem = forwardRef<
   }, [onOpen, onClose]);
 
   return (
-    <>
+    <AccordionWrapper>
       <AccordionItem
         {...htmlProps}
         aria-controls={accordionPanelId}
@@ -107,11 +107,18 @@ export const SidebarNavigationAccordionItem = forwardRef<
         id={accordionPanelId}>
         {children}
       </AccordionItemPanel>
-    </>
+    </AccordionWrapper>
   );
 });
 
 SidebarNavigationAccordionItem.displayName = 'SidebarNavigationAccordionItem';
+
+const AccordionWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: ${cssVar('dimension-space-50')};
+`;
+AccordionWrapper.displayName = 'AccordionWrapper';
 
 const AccordionItem = styled.button`
   ${sidebarNavigationBaseItemStyles}

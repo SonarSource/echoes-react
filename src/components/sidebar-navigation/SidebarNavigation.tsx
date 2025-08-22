@@ -23,23 +23,23 @@ import { forwardRef, PropsWithChildren } from 'react';
 import { cssVar } from '~utils/design-tokens';
 
 interface SidebarNavigationProps {
-  collapsed: boolean;
+  isCollapsed: boolean;
 }
 
 export const SidebarNavigation = forwardRef<
   HTMLDivElement,
   PropsWithChildren<SidebarNavigationProps>
 >((props, ref) => {
-  const { children, collapsed } = props;
+  const { children, isCollapsed } = props;
 
   return (
     <SidebarNavigationWrapper
       css={{
-        '--sidebar-navigation-width': collapsed
+        '--sidebar-navigation-width': isCollapsed
           ? cssVar('sidebar-navigation-sizes-width-collapsed')
           : cssVar('sidebar-navigation-sizes-width-expanded'),
       }}
-      data-sidebar-collapsed={collapsed}
+      data-sidebar-collapsed={isCollapsed}
       ref={ref}>
       {children}
     </SidebarNavigationWrapper>
@@ -57,10 +57,11 @@ const SidebarNavigationWrapper = styled.div`
 
   overflow: hidden;
 
-  padding: ${cssVar('dimension-space-100')} 0;
+  padding-top: ${cssVar('dimension-space-100')};
 
   display: flex;
   flex-direction: column;
 
   transition: width 0.1s;
 `;
+SidebarNavigationWrapper.displayName = 'SidebarNavigationWrapper';

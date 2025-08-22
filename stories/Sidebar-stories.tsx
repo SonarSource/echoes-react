@@ -36,7 +36,10 @@ import { SidebarNavigationAccordionItem } from '../src/components/sidebar-naviga
 import { SidebarNavigationGroup } from '../src/components/sidebar-navigation/SidebarNavigationGroup';
 import { SidebarNavigationHeader } from '../src/components/sidebar-navigation/SidebarNavigationHeader';
 import { SidebarNavigationItem } from '../src/components/sidebar-navigation/SidebarNavigationItem';
-import { SidebarNavigationBody } from '../src/components/sidebar-navigation/SidebarNavigationItemStyles';
+import {
+  SidebarNavigationBody,
+  SidebarNavigationFooter,
+} from '../src/components/sidebar-navigation/SidebarNavigationItemStyles';
 
 const meta: Meta<typeof SidebarNavigationItem> = {
   component: SidebarNavigationItem,
@@ -83,7 +86,7 @@ export const NavigationGroup: Story = {
   ),
 };
 
-const items = Array.from(Array(20));
+const items = Array.from(Array(10));
 
 export const Full: Story = {
   parameters: {
@@ -144,6 +147,19 @@ export const Full: Story = {
           );
         })}
       </SidebarNavigationBody>
+      <SidebarNavigationFooter>
+        <SidebarNavigationAccordionItem Icon={IconBranch} label="Accordion item">
+          <SidebarNavigationItem enableTooltip to="/1">
+            child 1 with a long name hahahah
+          </SidebarNavigationItem>
+          <SidebarNavigationItem enableTooltip to="/2">
+            child 2
+          </SidebarNavigationItem>
+          <SidebarNavigationItem enableTooltip to="/3">
+            child 3
+          </SidebarNavigationItem>
+        </SidebarNavigationAccordionItem>
+      </SidebarNavigationFooter>
     </CollapseStateManager>
   ),
 };
@@ -166,7 +182,7 @@ function CollapseStateManager({ children }: PropsWithChildren) {
           display: 'inline-block',
           height: 'calc(100vh - 140px)',
         }}>
-        <SidebarNavigation collapsed={collapsed && !open}>{children}</SidebarNavigation>
+        <SidebarNavigation isCollapsed={collapsed && !open}>{children}</SidebarNavigation>
       </div>
       <br />
       <ButtonIcon
