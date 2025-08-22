@@ -86,17 +86,20 @@ SidebarNavigationHeader.displayName = 'SidebarNavigationHeader';
 const HeaderContainer = styled.button`
   all: unset;
 
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: space-between;
 
   gap: ${cssVar('dimension-space-100')};
   padding: ${cssVar('dimension-space-100')};
-  width: 100%;
 
   overflow: hidden;
 
   background-color: ${cssVar('color-surface-default')};
+
+  [data-sidebar-collapsed='true'] & {
+    margin: -4px;
+  }
 
   /* If it is interactive, we want mouse interactivity */
   :is(button) {
@@ -145,6 +148,7 @@ const TextContent = styled.div`
   display: flex;
   flex-direction: column;
   min-width: 0;
+  overflow: hidden;
 
   & > span {
     ${truncate}

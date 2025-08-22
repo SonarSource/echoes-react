@@ -34,6 +34,7 @@ import { cssVar } from '~utils/design-tokens';
 import { IconChevronDown, IconChevronRight, IconProps } from '../icons';
 import { Tooltip } from '../tooltip';
 import {
+  itemIconStyles,
   sidebarNavigationBaseItemStyles,
   SidebarNavigationItemLabel,
 } from './SidebarNavigationItemStyles';
@@ -98,12 +99,12 @@ export const SidebarNavigationAccordionItem = forwardRef<
           id={accordionId}
           onClick={handleClick}
           ref={ref}>
-          {Icon ? <Icon color="echoes-color-icon-subtle" /> : undefined}
+          {Icon ? <Icon css={itemIconStyles} /> : undefined}
           <SidebarNavigationItemLabel ref={labelRef}>{label}</SidebarNavigationItemLabel>
           {open ? (
-            <IconChevronDown color="echoes-color-icon-subtle" />
+            <IconChevronDown css={itemIconStyles} />
           ) : (
-            <IconChevronRight color="echoes-color-icon-subtle" />
+            <IconChevronRight css={itemIconStyles} />
           )}
         </AccordionItem>
       </Tooltip>
@@ -133,16 +134,19 @@ const AccordionItemPanel = styled.section`
   flex-direction: column;
   gap: ${cssVar('dimension-space-50')};
 
-  margin-left: ${cssVar('dimension-space-300')};
-  padding-left: ${cssVar('dimension-space-100')};
-  padding-right: ${cssVar('dimension-space-200')};
-  border-left: ${cssVar('border-width-default')} solid ${cssVar('color-border-weak')};
+  [data-sidebar-collapsed='false'] & {
+    margin-left: ${cssVar('dimension-space-300')};
+    padding-left: ${cssVar('dimension-space-100')};
+    padding-right: ${cssVar('dimension-space-200')};
+    border-left: ${cssVar('border-width-default')} solid ${cssVar('color-border-weak')};
+  }
 
   // The children SidebarNavigationItems rely on this css property to set their display value, falling back to flex if not inside an accordion
   --sidebar-navigation-accordion-children-display: flex;
 
   // We force the children SidebarNavigationItems to be hidden when the accordion is closed
-  &[data-accordion-open='false'] {
+  &[data-accordion-open='false'],
+  [data-sidebar-collapsed='true'] & {
     --sidebar-navigation-accordion-children-display: none;
   }
 `;

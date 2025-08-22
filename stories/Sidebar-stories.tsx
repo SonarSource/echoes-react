@@ -19,9 +19,18 @@
  */
 
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { IconBranch, IconOverview } from '../src';
+import {
+  cssVar,
+  IconBell,
+  IconBranch,
+  IconCalendar,
+  IconOverview,
+  IconSparkleInShieldError,
+} from '../src';
+import { SidebarNavigation } from '../src/components/sidebar-navigation/SidebarNavigation';
 import { SidebarNavigationAccordionItem } from '../src/components/sidebar-navigation/SidebarNavigationAccordionItem';
 import { SidebarNavigationGroup } from '../src/components/sidebar-navigation/SidebarNavigationGroup';
+import { SidebarNavigationHeader } from '../src/components/sidebar-navigation/SidebarNavigationHeader';
 import { SidebarNavigationItem } from '../src/components/sidebar-navigation/SidebarNavigationItem';
 
 const meta: Meta<typeof SidebarNavigationItem> = {
@@ -66,5 +75,50 @@ export const NavigationGroup: Story = {
         <SidebarNavigationItem to="somwhereelse3">Blabla 3</SidebarNavigationItem>
       </SidebarNavigationGroup>
     </div>
+  ),
+};
+
+export const Full: Story = {
+  parameters: {
+    exclude: ['children', 'Icon', 'to'],
+  },
+  render: () => (
+    <SidebarNavigation>
+      <SidebarNavigationHeader
+        avatar={
+          <div
+            style={{
+              backgroundColor: cssVar('color-background-emphasis-active'),
+              color: cssVar('color-text-on-color'),
+              width: '100%',
+              height: '100%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              borderRadius: cssVar('border-radius-400'),
+            }}>
+            S
+          </div>
+        }
+        isInteractive
+        name="Hello this is a bit long, I think!"
+      />
+      <SidebarNavigationGroup label="Group name">
+        <SidebarNavigationItem Icon={IconBell} to="somwhereelse1">
+          Thing 1
+        </SidebarNavigationItem>
+        <SidebarNavigationItem Icon={IconCalendar} to="somwhereelse2">
+          Amazing project 2Amazing project 2Amazing project 2Amazing project 2Amazing project 2
+        </SidebarNavigationItem>
+        <SidebarNavigationItem Icon={IconSparkleInShieldError} to="somwhereelse3">
+          Blabla 3
+        </SidebarNavigationItem>
+      </SidebarNavigationGroup>
+      <SidebarNavigationAccordionItem Icon={IconBranch} label="Accordion item">
+        <SidebarNavigationItem to="/1">child 1 with a long name hahahah</SidebarNavigationItem>
+        <SidebarNavigationItem to="/2">child 2</SidebarNavigationItem>
+        <SidebarNavigationItem to="/3">child 3</SidebarNavigationItem>
+      </SidebarNavigationAccordionItem>
+    </SidebarNavigation>
   ),
 };

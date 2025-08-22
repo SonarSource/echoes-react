@@ -60,7 +60,6 @@ export const SidebarNavigationGroup = forwardRef<
 SidebarNavigationGroup.displayName = 'SidebarNavigationGroup';
 
 const SidebarNavigationGroupContainer = styled.div`
-  padding: ${cssVar('dimension-space-100')};
   display: flex;
   flex-direction: column;
   gap: ${cssVar('dimension-space-50')};
@@ -72,5 +71,9 @@ const SidebarNavigationGroupLabel = styled.label`
   align-items: center;
   height: ${cssVar('dimension-height-800')};
   padding: 0 ${cssVar('dimension-space-100')};
+
+  [data-sidebar-collapsed='true'] & {
+    display: none;
+  }
 `;
 SidebarNavigationGroupLabel.displayName = 'SidebarNavigationGroupLabel';

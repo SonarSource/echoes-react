@@ -28,6 +28,7 @@ import { cssVar } from '~utils/design-tokens';
 import { IconProps } from '../icons';
 import { Tooltip } from '../tooltip';
 import {
+  itemIconStyles,
   sidebarNavigationBaseItemStyles,
   SidebarNavigationItemLabel,
 } from './SidebarNavigationItemStyles';
@@ -74,7 +75,7 @@ export const SidebarNavigationItem = forwardRef<HTMLAnchorElement, SidebarNaviga
           {...htmlProps}
           className={classNames({ active: isActive }, className)}
           ref={ref}>
-          {Icon ? <Icon css={itemIconStyles} /> : undefined}
+          {Icon ? <Icon css={navigationItemIconStyles} /> : undefined}
 
           <SidebarNavigationItemLabel ref={labelRef}>{children}</SidebarNavigationItemLabel>
         </NavigationItem>
@@ -109,8 +110,8 @@ const NavigationItem = styled(NavLinkBase)`
 `;
 NavigationItem.displayName = 'NavigationItem';
 
-const itemIconStyles = css`
-  color: ${cssVar('color-icon-subtle')};
+const navigationItemIconStyles = css`
+  ${itemIconStyles}
 
   ${NavigationItem}.active > &,
   ${NavigationItem}:active > & {

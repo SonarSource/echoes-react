@@ -29,7 +29,9 @@ export const sidebarNavigationBaseItemStyles = css`
   display: flex;
   align-items: center;
   gap: ${cssVar('dimension-space-100')};
-  flex: 1 0 auto;
+  flex: 1 1 auto;
+
+  overflow: hidden;
 
   box-sizing: border-box;
   height: ${cssVar('dimension-height-800')};
@@ -54,8 +56,13 @@ export const sidebarNavigationBaseItemStyles = css`
 `;
 
 export const SidebarNavigationItemLabel = styled.span`
-  flex: 1 0 auto;
+  flex: 1 1 auto;
 
   ${truncate}
 `;
 SidebarNavigationItemLabel.displayName = 'SidebarNavigationItemLabel';
+
+export const itemIconStyles = css`
+  color: ${cssVar('color-icon-subtle')};
+  font-size: ${cssVar('font-size-30')};
+`;
