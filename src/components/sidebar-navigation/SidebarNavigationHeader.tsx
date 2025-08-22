@@ -94,7 +94,7 @@ const HeaderContainer = styled.button`
   background-color: ${cssVar('color-surface-default')};
 
   [data-sidebar-collapsed='true'] & {
-    margin: -4px;
+    margin: 0 -4px;
   }
 
   /* If it is interactive, we want mouse interactivity */
@@ -144,7 +144,7 @@ const TextContent = styled.div`
   display: flex;
   flex-direction: column;
   min-width: 0;
-  overflow: hidden;
+  overflow: auto;
 
   & > span {
     ${truncate}

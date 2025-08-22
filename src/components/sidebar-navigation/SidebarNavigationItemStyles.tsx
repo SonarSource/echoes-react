@@ -29,7 +29,6 @@ export const sidebarNavigationBaseItemStyles = css`
   display: flex;
   align-items: center;
   gap: ${cssVar('dimension-space-100')};
-  flex: 1 1 auto;
 
   overflow: hidden;
 

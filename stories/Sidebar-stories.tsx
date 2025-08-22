@@ -18,12 +18,16 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+import { useDebouncedCallback } from '@mantine/hooks';
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { PropsWithChildren, useState } from 'react';
 import {
+  ButtonIcon,
   cssVar,
   IconBell,
   IconBranch,
   IconCalendar,
+  IconExpand,
   IconOverview,
   IconSparkleInShieldError,
 } from '../src';
@@ -83,7 +87,7 @@ export const Full: Story = {
     exclude: ['children', 'Icon', 'to'],
   },
   render: () => (
-    <SidebarNavigation>
+    <CollapseStateManager>
       <SidebarNavigationHeader
         avatar={
           <div
@@ -125,6 +129,41 @@ export const Full: Story = {
           child 3
         </SidebarNavigationItem>
       </SidebarNavigationAccordionItem>
-    </SidebarNavigation>
+    </CollapseStateManager>
   ),
 };
+
+function CollapseStateManager({ children }: PropsWithChildren) {
+  const [collapsed, setCollapsed] = useState(false);
+  const [open, setOpen] = useState(true);
+
+  const debounceOpen = useDebouncedCallback((v: boolean) => {
+    setOpen(v);
+  }, 500);
+
+  return (
+    <div>
+      <div
+        onMouseEnter={() => debounceOpen(true)}
+        onMouseLeave={() => debounceOpen(false)}
+        style={{
+          boxShadow: open && collapsed ? '4px 0 4px 0 black' : 'none',
+          display: 'inline-block',
+          height: 'calc(100vh - 140px)',
+        }}>
+        <SidebarNavigation collapsed={collapsed && !open}>{children}</SidebarNavigation>
+      </div>
+      <br />
+      <ButtonIcon
+        Icon={IconExpand}
+        ariaLabel="toggle"
+        onClick={() => {
+          setCollapsed((s) => !s);
+        }}
+        size="medium"
+        style={{ marginTop: '32px' }}
+        variety="danger"
+      />
+    </div>
+  );
+}

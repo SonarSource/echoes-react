@@ -19,35 +19,27 @@
  */
 
 import styled from '@emotion/styled';
-import { forwardRef, PropsWithChildren, useState } from 'react';
+import { forwardRef, PropsWithChildren } from 'react';
 import { cssVar } from '~utils/design-tokens';
-import { ButtonIcon } from '../buttons';
-import { IconExpand } from '../icons';
 
-interface SidebarNavigationProps {}
+interface SidebarNavigationProps {
+  collapsed: boolean;
+}
 
 export const SidebarNavigation = forwardRef<
   HTMLDivElement,
   PropsWithChildren<SidebarNavigationProps>
 >((props, ref) => {
-  const { children } = props;
-  const [collapsed, setCollapsed] = useState(false);
+  const { children, collapsed } = props;
 
   return (
     <SidebarNavigationWrapper
       css={{
-        '--sidebar-nav-width': collapsed ? '32px' : '224px',
+        '--sidebar-nav-width': collapsed ? '48px' : '240px',
       }}
       data-sidebar-collapsed={collapsed}
       ref={ref}>
       {children}
-      <ButtonIcon
-        Icon={IconExpand}
-        ariaLabel="toggle"
-        onClick={() => {
-          setCollapsed((s) => !s);
-        }}
-      />
     </SidebarNavigationWrapper>
   );
 });
@@ -55,12 +47,19 @@ export const SidebarNavigation = forwardRef<
 SidebarNavigation.displayName = 'SidebarNavigation';
 
 const SidebarNavigationWrapper = styled.div`
+box-sizing: border-box;  
+height: 100%;
   width: var(--sidebar-nav-width);
-  border: 1px solid black;
+  border-right: 1px solid black;
+
   overflow: hidden;
+
   padding: ${cssVar('dimension-space-100')};
+
   display: flex;
   flex-direction: column;
+  justifyContent: start
+  gap: ${cssVar('dimension-space-50')};
 
   transition: width 0.1s;
 `;
