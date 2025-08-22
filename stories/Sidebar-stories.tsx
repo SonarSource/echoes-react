@@ -28,6 +28,7 @@ import {
   IconBranch,
   IconCalendar,
   IconExpand,
+  IconGear,
   IconOverview,
   IconSparkleInShieldError,
 } from '../src';
@@ -50,7 +51,7 @@ export default meta;
 
 type Story = StoryObj<typeof SidebarNavigationItem>;
 
-export const NavigationItem: Story = {
+export const NavigationAccordionItem: Story = {
   args: {
     Icon: IconOverview,
     to: '/overview',
@@ -61,12 +62,12 @@ export const NavigationItem: Story = {
       <SidebarNavigationItem {...args} />
       <SidebarNavigationAccordionItem Icon={IconBranch} label="Accordion item">
         <>
-          <SidebarNavigationItem {...args} to="/1" />
-          <SidebarNavigationItem {...args} to="/2" />
-          <SidebarNavigationItem {...args} to="/3" />
+          <SidebarNavigationItem to="/1">Sub Item 1</SidebarNavigationItem>
+          <SidebarNavigationItem to="/2">Sub Item 2</SidebarNavigationItem>
+          <SidebarNavigationItem to="/3">Sub Item 3</SidebarNavigationItem>
         </>
       </SidebarNavigationAccordionItem>
-      <SidebarNavigationItem {...args} to="/4" />
+      <SidebarNavigationItem to="/4">Item Label 2</SidebarNavigationItem>
     </div>
   ),
 };
@@ -148,15 +149,15 @@ export const Full: Story = {
         })}
       </SidebarNavigationBody>
       <SidebarNavigationFooter>
-        <SidebarNavigationAccordionItem Icon={IconBranch} label="Accordion item">
-          <SidebarNavigationItem enableTooltip to="/1">
-            child 1 with a long name hahahah
+        <SidebarNavigationAccordionItem Icon={IconGear} label="Settings">
+          <SidebarNavigationItem enableTooltip to="/settings-1">
+            Child settings 1
           </SidebarNavigationItem>
-          <SidebarNavigationItem enableTooltip to="/2">
-            child 2
+          <SidebarNavigationItem enableTooltip to="/settings-2">
+            Child settings 2
           </SidebarNavigationItem>
-          <SidebarNavigationItem enableTooltip to="/3">
-            child 3
+          <SidebarNavigationItem enableTooltip to="/settings-3">
+            Child settings 3
           </SidebarNavigationItem>
         </SidebarNavigationAccordionItem>
       </SidebarNavigationFooter>

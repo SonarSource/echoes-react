@@ -98,14 +98,17 @@ exports[`should render with an icon 1`] = `
   -ms-flex-direction: column;
   flex-direction: column;
   gap: var(--echoes-dimension-space-50);
-  --sidebar-navigation-accordion-children-display: flex;
-}
-
-[data-sidebar-collapsed='false'] .emotion-10 {
   margin-left: var(--echoes-dimension-space-300);
   padding-left: var(--echoes-dimension-space-100);
   padding-right: var(--echoes-dimension-space-200);
   border-left: var(--echoes-border-width-default) solid var(--echoes-color-border-weak);
+  --sidebar-navigation-accordion-children-display: flex;
+}
+
+[data-sidebar-collapsed='true'] .emotion-10 {
+  margin: 0;
+  padding: 0;
+  border-left: none;
 }
 
 .emotion-10[data-accordion-open='false'],

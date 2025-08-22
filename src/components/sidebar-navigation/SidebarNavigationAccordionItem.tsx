@@ -134,17 +134,21 @@ const AccordionItemPanel = styled.section`
   flex-direction: column;
   gap: ${cssVar('dimension-space-50')};
 
-  [data-sidebar-collapsed='false'] & {
-    margin-left: ${cssVar('dimension-space-300')};
-    padding-left: ${cssVar('dimension-space-100')};
-    padding-right: ${cssVar('dimension-space-200')};
-    border-left: ${cssVar('border-width-default')} solid ${cssVar('color-border-weak')};
+  margin-left: ${cssVar('dimension-space-300')};
+  padding-left: ${cssVar('dimension-space-100')};
+  padding-right: ${cssVar('dimension-space-200')};
+  border-left: ${cssVar('border-width-default')} solid ${cssVar('color-border-weak')};
+
+  [data-sidebar-collapsed='true'] & {
+    margin: 0;
+    padding: 0;
+    border-left: none;
   }
 
   // The children SidebarNavigationItems rely on this css property to set their display value, falling back to flex if not inside an accordion
   --sidebar-navigation-accordion-children-display: flex;
 
-  // We force the children SidebarNavigationItems to be hidden when the accordion is closed
+  // We force the children SidebarNavigationItems to be hidden when the accordion is closed or the sidebar is collapsed
   &[data-accordion-open='false'],
   [data-sidebar-collapsed='true'] & {
     --sidebar-navigation-accordion-children-display: none;
