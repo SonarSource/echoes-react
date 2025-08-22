@@ -25,14 +25,11 @@ import {
   ReactNode,
   useCallback,
   useId,
-  useRef,
   useState,
 } from 'react';
-import { useIsOverflow } from '~common/helpers/useIsOverflow';
 import { TextNode } from '~types/utils';
 import { cssVar } from '~utils/design-tokens';
 import { IconChevronDown, IconChevronRight, IconProps } from '../icons';
-import { Tooltip } from '../tooltip';
 import {
   itemIconStyles,
   sidebarNavigationBaseItemStyles,
@@ -72,8 +69,6 @@ export const SidebarNavigationAccordionItem = forwardRef<
 >((props, ref) => {
   const { children, Icon, label, onClose, onOpen, ...htmlProps } = props;
   const [open, setOpen] = useState(false);
-  const labelRef = useRef<HTMLSpanElement>(null);
-  const [isOverflow] = useIsOverflow(labelRef, [label]);
 
   const accordionId = `${useId()}sidebar-accordion`;
   const accordionPanelId = `${accordionId}-panel`;
@@ -91,23 +86,21 @@ export const SidebarNavigationAccordionItem = forwardRef<
 
   return (
     <>
-      <Tooltip content={isOverflow ? label : undefined} side="right">
-        <AccordionItem
-          {...htmlProps}
-          aria-controls={accordionPanelId}
-          aria-expanded={open}
-          id={accordionId}
-          onClick={handleClick}
-          ref={ref}>
-          {Icon ? <Icon css={itemIconStyles} /> : undefined}
-          <SidebarNavigationItemLabel ref={labelRef}>{label}</SidebarNavigationItemLabel>
-          {open ? (
-            <IconChevronDown css={itemIconStyles} />
-          ) : (
-            <IconChevronRight css={itemIconStyles} />
-          )}
-        </AccordionItem>
-      </Tooltip>
+      <AccordionItem
+        {...htmlProps}
+        aria-controls={accordionPanelId}
+        aria-expanded={open}
+        id={accordionId}
+        onClick={handleClick}
+        ref={ref}>
+        {Icon ? <Icon css={itemIconStyles} /> : undefined}
+        <SidebarNavigationItemLabel>{label}</SidebarNavigationItemLabel>
+        {open ? (
+          <IconChevronDown css={itemIconStyles} />
+        ) : (
+          <IconChevronRight css={itemIconStyles} />
+        )}
+      </AccordionItem>
       <AccordionItemPanel
         aria-labelledby={accordionId}
         data-accordion-open={open}

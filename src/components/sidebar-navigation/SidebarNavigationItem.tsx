@@ -20,9 +20,8 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import classNames from 'classnames';
-import { forwardRef, ForwardRefExoticComponent, MouseEventHandler, useRef } from 'react';
+import { forwardRef, ForwardRefExoticComponent, MouseEventHandler } from 'react';
 import { NavLinkBase, NavLinkBaseProps } from '~common/components/NavLinkBase';
-import { useIsOverflow } from '~common/helpers/useIsOverflow';
 import { TextNode } from '~types/utils';
 import { cssVar } from '~utils/design-tokens';
 import { IconProps } from '../icons';
@@ -44,6 +43,11 @@ export interface SidebarNavigationItemProps
   children: TextNode;
   className?: string;
   /**
+   * Whether to display the tooltip on the item or not.
+   * By default the tooltip is disabled, it should only be enabled if you expect the content to be ellipsed.
+   */
+  enableTooltip?: boolean;
+  /**
    * Control whether the SidebarNavigationItem is active or not.
    * If true, the item will have a different style to indicate it is active.
    *
@@ -64,20 +68,17 @@ export interface SidebarNavigationItemProps
 
 export const SidebarNavigationItem = forwardRef<HTMLAnchorElement, SidebarNavigationItemProps>(
   (props, ref) => {
-    const { children, className, Icon, isActive = false, ...htmlProps } = props;
-
-    const labelRef = useRef<HTMLSpanElement>(null);
-    const [isOverflow] = useIsOverflow(labelRef, [children]);
+    const { children, className, enableTooltip, Icon, isActive = false, ...htmlProps } = props;
 
     return (
-      <Tooltip content={isOverflow ? children : undefined} side="right">
+      <Tooltip content={enableTooltip ? children : undefined} side="right">
         <NavigationItem
           {...htmlProps}
           className={classNames({ active: isActive }, className)}
           ref={ref}>
           {Icon ? <Icon css={navigationItemIconStyles} /> : undefined}
 
-          <SidebarNavigationItemLabel ref={labelRef}>{children}</SidebarNavigationItemLabel>
+          <SidebarNavigationItemLabel>{children}</SidebarNavigationItemLabel>
         </NavigationItem>
       </Tooltip>
     );

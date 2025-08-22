@@ -12,9 +12,10 @@ exports[`should render with an icon 1`] = `
   -ms-flex-align: center;
   align-items: center;
   gap: var(--echoes-dimension-space-100);
-  -webkit-flex: 1 0 auto;
-  -ms-flex: 1 0 auto;
-  flex: 1 0 auto;
+  -webkit-flex: 1 1 auto;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  overflow: hidden;
   box-sizing: border-box;
   height: var(--echoes-dimension-height-800);
   padding: var(--echoes-dimension-space-100);
@@ -68,9 +69,9 @@ exports[`should render with an icon 1`] = `
 }
 
 .emotion-4 {
-  -webkit-flex: 1 0 auto;
-  -ms-flex: 1 0 auto;
-  flex: 1 0 auto;
+  -webkit-flex: 1 1 auto;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;

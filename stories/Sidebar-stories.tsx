@@ -107,7 +107,7 @@ export const Full: Story = {
         <SidebarNavigationItem Icon={IconBell} to="somwhereelse1">
           Thing 1
         </SidebarNavigationItem>
-        <SidebarNavigationItem Icon={IconCalendar} to="somwhereelse2">
+        <SidebarNavigationItem Icon={IconCalendar} enableTooltip to="somwhereelse2">
           Amazing project 2Amazing project 2Amazing project 2Amazing project 2Amazing project 2
         </SidebarNavigationItem>
         <SidebarNavigationItem Icon={IconSparkleInShieldError} to="somwhereelse3">
@@ -115,9 +115,15 @@ export const Full: Story = {
         </SidebarNavigationItem>
       </SidebarNavigationGroup>
       <SidebarNavigationAccordionItem Icon={IconBranch} label="Accordion item">
-        <SidebarNavigationItem to="/1">child 1 with a long name hahahah</SidebarNavigationItem>
-        <SidebarNavigationItem to="/2">child 2</SidebarNavigationItem>
-        <SidebarNavigationItem to="/3">child 3</SidebarNavigationItem>
+        <SidebarNavigationItem enableTooltip to="/1">
+          child 1 with a long name hahahah
+        </SidebarNavigationItem>
+        <SidebarNavigationItem enableTooltip to="/2">
+          child 2
+        </SidebarNavigationItem>
+        <SidebarNavigationItem enableTooltip to="/3">
+          child 3
+        </SidebarNavigationItem>
       </SidebarNavigationAccordionItem>
     </SidebarNavigation>
   ),

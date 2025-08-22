@@ -21,7 +21,6 @@
 import { matchers } from '@emotion/jest';
 import { screen } from '@testing-library/react';
 import { renderWithMemoryRouter } from '~common/helpers/test-utils';
-import { useIsOverflow } from '~common/helpers/useIsOverflow';
 import { IconBranch } from '../../icons';
 import {
   SidebarNavigationAccordionItem,
@@ -58,29 +57,6 @@ it('should expand hidden elements when clicked', async () => {
 it('should render with an icon', () => {
   const { container } = setupSidebarNavigationAccordionItem({ Icon: IconBranch });
   expect(container).toMatchSnapshot();
-});
-
-describe('ellipsis behavior', () => {
-  beforeEach(() => {
-    jest.clearAllMocks();
-  });
-
-  it('should show tooltip when label is overflowing', async () => {
-    jest.mocked(useIsOverflow).mockReturnValueOnce([true]);
-    const { user } = setupSidebarNavigationAccordionItem();
-
-    await user.hover(screen.getByRole('button'));
-    const tooltip = await screen.findByRole('tooltip');
-    expect(tooltip).toBeInTheDocument();
-    expect(tooltip).toHaveTextContent('Accordion Item');
-  });
-
-  it('should not show tooltip when label is not overflowing', async () => {
-    const { user } = setupSidebarNavigationAccordionItem();
-
-    await user.hover(screen.getByRole('button'));
-    expect(screen.queryByRole('tooltip')).not.toBeInTheDocument();
-  });
 });
 
 it("shouldn't have any a11y violation", async () => {
