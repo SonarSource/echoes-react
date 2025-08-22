@@ -85,16 +85,18 @@ const HeaderContainer = styled.button`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-shrink: 0;
 
   gap: ${cssVar('dimension-space-100')};
   padding: ${cssVar('dimension-space-100')};
+  margin: 0 ${cssVar('dimension-space-100')} ${cssVar('dimension-space-50')};
 
   overflow: hidden;
 
   background-color: ${cssVar('color-surface-default')};
 
   [data-sidebar-collapsed='true'] & {
-    margin: 0 -4px;
+    margin: ${cssVar('dimension-space-50')};
   }
 
   /* If it is interactive, we want mouse interactivity */

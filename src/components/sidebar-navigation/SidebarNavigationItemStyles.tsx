@@ -37,6 +37,8 @@ export const sidebarNavigationBaseItemStyles = css`
   padding: ${cssVar('dimension-space-100')};
   border-radius: ${cssVar('border-radius-400')};
 
+  flex-shrink: 0;
+
   background-color: ${cssVar('color-surface-default')};
   color: ${cssVar('color-text-default')};
   font: ${cssVar('typography-text-default-regular')};
@@ -64,4 +66,19 @@ SidebarNavigationItemLabel.displayName = 'SidebarNavigationItemLabel';
 export const itemIconStyles = css`
   color: ${cssVar('color-icon-subtle')};
   font-size: ${cssVar('font-size-30')};
+`;
+
+export const SidebarNavigationBody = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: ${cssVar('dimension-space-50')};
+
+  overflow-y: auto;
+  overflow-x: visible;
+
+  padding: ${cssVar('dimension-space-50')} ${cssVar('dimension-space-100')};
+
+  [data-sidebar-collapsed='true'] > & {
+    overflow-y: hidden;
+  }
 `;

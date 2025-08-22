@@ -36,6 +36,7 @@ import { SidebarNavigationAccordionItem } from '../src/components/sidebar-naviga
 import { SidebarNavigationGroup } from '../src/components/sidebar-navigation/SidebarNavigationGroup';
 import { SidebarNavigationHeader } from '../src/components/sidebar-navigation/SidebarNavigationHeader';
 import { SidebarNavigationItem } from '../src/components/sidebar-navigation/SidebarNavigationItem';
+import { SidebarNavigationBody } from '../src/components/sidebar-navigation/SidebarNavigationItemStyles';
 
 const meta: Meta<typeof SidebarNavigationItem> = {
   component: SidebarNavigationItem,
@@ -82,6 +83,8 @@ export const NavigationGroup: Story = {
   ),
 };
 
+const items = Array.from(Array(20));
+
 export const Full: Story = {
   parameters: {
     exclude: ['children', 'Icon', 'to'],
@@ -107,39 +110,51 @@ export const Full: Story = {
         isInteractive
         name="Hello this is a bit long, I think!"
       />
-      <SidebarNavigationGroup label="Group name">
-        <SidebarNavigationItem Icon={IconBell} to="somwhereelse1">
-          Thing 1
+      <SidebarNavigationBody>
+        <SidebarNavigationItem enableTooltip to="/pouet">
+          blablablba
         </SidebarNavigationItem>
-        <SidebarNavigationItem Icon={IconCalendar} enableTooltip to="somwhereelse2">
-          Amazing project 2Amazing project 2Amazing project 2Amazing project 2Amazing project 2
-        </SidebarNavigationItem>
-        <SidebarNavigationItem Icon={IconSparkleInShieldError} to="somwhereelse3">
-          Blabla 3
-        </SidebarNavigationItem>
-      </SidebarNavigationGroup>
-      <SidebarNavigationAccordionItem Icon={IconBranch} label="Accordion item">
-        <SidebarNavigationItem enableTooltip to="/1">
-          child 1 with a long name hahahah
-        </SidebarNavigationItem>
-        <SidebarNavigationItem enableTooltip to="/2">
-          child 2
-        </SidebarNavigationItem>
-        <SidebarNavigationItem enableTooltip to="/3">
-          child 3
-        </SidebarNavigationItem>
-      </SidebarNavigationAccordionItem>
+        <SidebarNavigationGroup label="Group name">
+          <SidebarNavigationItem Icon={IconBell} to="somwhereelse1">
+            Thing 1
+          </SidebarNavigationItem>
+          <SidebarNavigationItem Icon={IconCalendar} enableTooltip to="somwhereelse2">
+            Amazing project 2Amazing project 2Amazing project 2Amazing project 2Amazing project 2
+          </SidebarNavigationItem>
+          <SidebarNavigationItem Icon={IconSparkleInShieldError} to="somwhereelse3">
+            Blabla 3
+          </SidebarNavigationItem>
+        </SidebarNavigationGroup>
+        <SidebarNavigationAccordionItem Icon={IconBranch} label="Accordion item">
+          <SidebarNavigationItem enableTooltip to="/1">
+            child 1 with a long name hahahah
+          </SidebarNavigationItem>
+          <SidebarNavigationItem enableTooltip to="/2">
+            child 2
+          </SidebarNavigationItem>
+          <SidebarNavigationItem enableTooltip to="/3">
+            child 3
+          </SidebarNavigationItem>
+        </SidebarNavigationAccordionItem>
+        {items.map((_, i) => {
+          return (
+            <SidebarNavigationItem key={i} to={`/place-${i}`}>
+              Menu Item {i.toString()}
+            </SidebarNavigationItem>
+          );
+        })}
+      </SidebarNavigationBody>
     </CollapseStateManager>
   ),
 };
 
 function CollapseStateManager({ children }: PropsWithChildren) {
   const [collapsed, setCollapsed] = useState(false);
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
 
   const debounceOpen = useDebouncedCallback((v: boolean) => {
     setOpen(v);
-  }, 500);
+  }, 300);
 
   return (
     <div>

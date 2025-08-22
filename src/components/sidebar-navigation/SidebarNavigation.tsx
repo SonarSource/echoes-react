@@ -47,19 +47,17 @@ export const SidebarNavigation = forwardRef<
 SidebarNavigation.displayName = 'SidebarNavigation';
 
 const SidebarNavigationWrapper = styled.div`
-box-sizing: border-box;  
-height: 100%;
+  box-sizing: content-box;
+  height: 100%;
   width: var(--sidebar-nav-width);
   border-right: 1px solid black;
 
   overflow: hidden;
 
-  padding: ${cssVar('dimension-space-100')};
+  padding: ${cssVar('dimension-space-100')} 0;
 
   display: flex;
   flex-direction: column;
-  justifyContent: start
-  gap: ${cssVar('dimension-space-50')};
 
   transition: width 0.1s;
 `;
