@@ -71,11 +71,7 @@ export const SidebarNavigationHeader = forwardRef<HTMLButtonElement, SidebarNavi
               )}
             </TextContent>
           </MainContent>
-          {isInteractive && (
-            <div>
-              <IconExpandAll />
-            </div>
-          )}
+          {isInteractive && <IconExpandAll />}
         </HeaderContainer>
       </Tooltip>
     );
@@ -133,7 +129,7 @@ const MainContent = styled.div`
   display: flex;
   align-items: center;
   gap: ${cssVar('dimension-space-100')};
-  min-width: 0;
+  min-width: ${cssVar('dimension-width-300')};
 `;
 MainContent.displayName = 'MainContent';
 
