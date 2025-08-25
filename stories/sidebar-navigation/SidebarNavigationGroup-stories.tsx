@@ -21,14 +21,12 @@
 /* eslint-disable no-console */
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import { cssVar } from '../../src';
-import { SidebarNavigationGroup } from '../../src/components/sidebar-navigation/SidebarNavigationGroup';
-import { SidebarNavigationItem } from '../../src/components/sidebar-navigation/SidebarNavigationItem';
+import { cssVar, SidebarNavigation } from '../../src';
 import { basicWrapperDecorator } from '../helpers/BasicWrapper';
 
 const meta: Meta = {
   title: 'Echoes/Sidebar/Group',
-  component: SidebarNavigationGroup,
+  component: SidebarNavigation.Group,
   decorators: [
     (Story) => (
       <div
@@ -47,14 +45,14 @@ const meta: Meta = {
 
 export default meta;
 
-type Story = StoryObj<typeof SidebarNavigationGroup>;
+type Story = StoryObj<typeof SidebarNavigation.Group>;
 
 export const base: Story = {
   args: {
     children: (
       <>
-        <SidebarNavigationItem to="/1">Item 1</SidebarNavigationItem>
-        <SidebarNavigationItem to="/2">Item 2</SidebarNavigationItem>
+        <SidebarNavigation.Item to="/1">Item 1</SidebarNavigation.Item>
+        <SidebarNavigation.Item to="/2">Item 2</SidebarNavigation.Item>
       </>
     ),
     label: 'Group name',

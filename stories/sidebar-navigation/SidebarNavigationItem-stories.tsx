@@ -21,13 +21,12 @@
 /* eslint-disable no-console */
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import { cssVar, IconBranch } from '../../src';
-import { SidebarNavigationItem } from '../../src/components/sidebar-navigation/SidebarNavigationItem';
+import { cssVar, IconBranch, SidebarNavigation } from '../../src';
 import { basicWrapperDecorator } from '../helpers/BasicWrapper';
 
 const meta: Meta = {
   title: 'Echoes/Sidebar/Item',
-  component: SidebarNavigationItem,
+  component: SidebarNavigation.Item,
   decorators: [
     (Story) => (
       <div
@@ -55,7 +54,7 @@ const meta: Meta = {
 
 export default meta;
 
-type Story = StoryObj<typeof SidebarNavigationItem>;
+type Story = StoryObj<typeof SidebarNavigation.Item>;
 
 export const base: Story = {
   args: {

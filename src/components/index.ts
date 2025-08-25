@@ -42,6 +42,7 @@ export * from './radio-button-group';
 export * from './search-input';
 export * from './select';
 export * from './selection-cards';
+export * from './sidebar-navigation';
 export * from './spinner';
 export * from './spotlight';
 export * from './table';

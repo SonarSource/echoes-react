@@ -26,16 +26,8 @@ import {
   IconCalendar,
   IconGear,
   IconSparkleInShieldError,
+  SidebarNavigation,
 } from '../../src';
-import { SidebarNavigation } from '../../src/components/sidebar-navigation/SidebarNavigation';
-import { SidebarNavigationAccordionItem } from '../../src/components/sidebar-navigation/SidebarNavigationAccordionItem';
-import { SidebarNavigationGroup } from '../../src/components/sidebar-navigation/SidebarNavigationGroup';
-import { SidebarNavigationHeader } from '../../src/components/sidebar-navigation/SidebarNavigationHeader';
-import { SidebarNavigationItem } from '../../src/components/sidebar-navigation/SidebarNavigationItem';
-import {
-  SidebarNavigationBody,
-  SidebarNavigationFooter,
-} from '../../src/components/sidebar-navigation/SidebarNavigationItemStyles';
 
 const meta: Meta<typeof SidebarNavigation> = {
   component: SidebarNavigation,
@@ -58,7 +50,7 @@ export const Full: Story = {
   render: (args) => (
     <div style={{ display: 'flex', height: 'calc(100vh - 32px)' }}>
       <SidebarNavigation {...args}>
-        <SidebarNavigationHeader
+        <SidebarNavigation.Header
           avatar={
             <div
               style={{
@@ -77,74 +69,74 @@ export const Full: Story = {
           isInteractive
           name="Hello this is a bit long, I think!"
         />
-        <SidebarNavigationBody>
-          <SidebarNavigationItem enableTooltip to="/pouet">
+        <SidebarNavigation.Body>
+          <SidebarNavigation.Item enableTooltip to="/pouet">
             blablablba
-          </SidebarNavigationItem>
-          <SidebarNavigationGroup label="Group name">
-            <SidebarNavigationItem Icon={IconBell} to="somwhereelse1">
+          </SidebarNavigation.Item>
+          <SidebarNavigation.Group label="Group name">
+            <SidebarNavigation.Item Icon={IconBell} to="somwhereelse1">
               Thing 1
-            </SidebarNavigationItem>
-            <SidebarNavigationItem Icon={IconCalendar} enableTooltip to="somwhereelse2">
+            </SidebarNavigation.Item>
+            <SidebarNavigation.Item Icon={IconCalendar} enableTooltip to="somwhereelse2">
               Amazing project 2Amazing project 2Amazing project 2Amazing project 2Amazing project 2
-            </SidebarNavigationItem>
-            <SidebarNavigationItem Icon={IconSparkleInShieldError} to="somwhereelse3">
+            </SidebarNavigation.Item>
+            <SidebarNavigation.Item Icon={IconSparkleInShieldError} to="somwhereelse3">
               Blabla 3
-            </SidebarNavigationItem>
-          </SidebarNavigationGroup>
-          <SidebarNavigationAccordionItem Icon={IconBranch} label="Accordion item">
-            <SidebarNavigationItem enableTooltip to="/1">
+            </SidebarNavigation.Item>
+          </SidebarNavigation.Group>
+          <SidebarNavigation.AccordionItem Icon={IconBranch} label="Accordion item">
+            <SidebarNavigation.Item enableTooltip to="/1">
               child 1 with a long name hahahah
-            </SidebarNavigationItem>
-            <SidebarNavigationItem enableTooltip to="/2">
+            </SidebarNavigation.Item>
+            <SidebarNavigation.Item enableTooltip to="/2">
               child 2
-            </SidebarNavigationItem>
-            <SidebarNavigationItem enableTooltip to="/3">
+            </SidebarNavigation.Item>
+            <SidebarNavigation.Item enableTooltip to="/3">
               child 3
-            </SidebarNavigationItem>
-          </SidebarNavigationAccordionItem>
-          <SidebarNavigationGroup label="Repeated items">
+            </SidebarNavigation.Item>
+          </SidebarNavigation.AccordionItem>
+          <SidebarNavigation.Group label="Repeated items">
             {items.map((v) => {
               return (
-                <SidebarNavigationItem key={v} to={`/place-${v}`}>
+                <SidebarNavigation.Item key={v} to={`/place-${v}`}>
                   Menu Item {v.toString()}
-                </SidebarNavigationItem>
+                </SidebarNavigation.Item>
               );
             })}
-          </SidebarNavigationGroup>
+          </SidebarNavigation.Group>
 
-          <SidebarNavigationGroup label="Group with accordions">
-            <SidebarNavigationAccordionItem label="a1">
-              <SidebarNavigationItem enableTooltip to="/a1-1">
+          <SidebarNavigation.Group label="Group with accordions">
+            <SidebarNavigation.AccordionItem label="a1">
+              <SidebarNavigation.Item enableTooltip to="/a1-1">
                 asdf
-              </SidebarNavigationItem>
-              <SidebarNavigationItem enableTooltip to="/a1-2">
+              </SidebarNavigation.Item>
+              <SidebarNavigation.Item enableTooltip to="/a1-2">
                 zxcv
-              </SidebarNavigationItem>
-            </SidebarNavigationAccordionItem>
-            <SidebarNavigationAccordionItem label="a2">
-              <SidebarNavigationItem enableTooltip to="/a2-1">
+              </SidebarNavigation.Item>
+            </SidebarNavigation.AccordionItem>
+            <SidebarNavigation.AccordionItem label="a2">
+              <SidebarNavigation.Item enableTooltip to="/a2-1">
                 asdf
-              </SidebarNavigationItem>
-              <SidebarNavigationItem enableTooltip to="/a2-2">
+              </SidebarNavigation.Item>
+              <SidebarNavigation.Item enableTooltip to="/a2-2">
                 zxcv
-              </SidebarNavigationItem>
-            </SidebarNavigationAccordionItem>
-          </SidebarNavigationGroup>
-        </SidebarNavigationBody>
-        <SidebarNavigationFooter>
-          <SidebarNavigationAccordionItem Icon={IconGear} label="Settings">
-            <SidebarNavigationItem enableTooltip to="/settings-1">
+              </SidebarNavigation.Item>
+            </SidebarNavigation.AccordionItem>
+          </SidebarNavigation.Group>
+        </SidebarNavigation.Body>
+        <SidebarNavigation.Footer>
+          <SidebarNavigation.AccordionItem Icon={IconGear} label="Settings">
+            <SidebarNavigation.Item enableTooltip to="/settings-1">
               Child settings 1
-            </SidebarNavigationItem>
-            <SidebarNavigationItem enableTooltip to="/settings-2">
+            </SidebarNavigation.Item>
+            <SidebarNavigation.Item enableTooltip to="/settings-2">
               Child settings 2
-            </SidebarNavigationItem>
-            <SidebarNavigationItem enableTooltip to="/settings-3">
+            </SidebarNavigation.Item>
+            <SidebarNavigation.Item enableTooltip to="/settings-3">
               Child settings 3
-            </SidebarNavigationItem>
-          </SidebarNavigationAccordionItem>
-        </SidebarNavigationFooter>
+            </SidebarNavigation.Item>
+          </SidebarNavigation.AccordionItem>
+        </SidebarNavigation.Footer>
       </SidebarNavigation>
     </div>
   ),
