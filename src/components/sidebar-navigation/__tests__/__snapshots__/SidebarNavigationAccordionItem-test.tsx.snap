@@ -2,6 +2,7 @@
 
 exports[`should render with an icon 1`] = `
 .emotion-0 {
+  all: unset;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -34,7 +35,6 @@ exports[`should render with an icon 1`] = `
   color: var(--echoes-color-text-default);
   font: var(--echoes-typography-text-default-regular);
   cursor: pointer;
-  width: 100%;
 }
 
 .emotion-2:hover {
@@ -119,6 +119,14 @@ exports[`should render with an icon 1`] = `
 
 .emotion-12 {
   all: unset;
+}
+
+.emotion-14 {
+  all: unset;
+}
+
+.emotion-16 {
+  all: unset;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -142,18 +150,18 @@ exports[`should render with an icon 1`] = `
   display: var(--sidebar-navigation-accordion-children-display, flex);
 }
 
-.emotion-12:hover {
+.emotion-16:hover {
   background-color: var(--echoes-color-surface-hover);
 }
 
-.emotion-12:focus-visible {
+.emotion-16:focus-visible {
   outline: var(--echoes-color-focus-default) solid var(--echoes-focus-border-width-default);
   outline-offset: var(--echoes-focus-border-offset-default);
   border-radius: var(--echoes-border-radius-400);
 }
 
-.emotion-12:active,
-.emotion-12.active {
+.emotion-16:active,
+.emotion-16.active {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -163,8 +171,8 @@ exports[`should render with an icon 1`] = `
   font: var(--echoes-typography-text-default-semi-bold);
 }
 
-.emotion-12:active:hover,
-.emotion-12.active:hover {
+.emotion-16:active:hover,
+.emotion-16.active:hover {
   background-color: var(--echoes-color-background-selected-weak-hover);
 }
 
@@ -205,10 +213,14 @@ exports[`should render with an icon 1`] = `
         data-accordion-open="false"
         id=":r1:sidebar-accordion-panel"
       >
-        <ul>
-          <li>
+        <ul
+          class="emotion-12 emotion-13"
+        >
+          <li
+            class="emotion-14 emotion-15"
+          >
             <a
-              class="active emotion-12 emotion-13"
+              class="active emotion-16 emotion-17"
               href="/sub-item-1"
             >
               <span
@@ -218,9 +230,11 @@ exports[`should render with an icon 1`] = `
               </span>
             </a>
           </li>
-          <li>
+          <li
+            class="emotion-14 emotion-15"
+          >
             <a
-              class="emotion-12 emotion-13"
+              class="emotion-16 emotion-17"
               href="/sub-item-2"
             >
               <span
