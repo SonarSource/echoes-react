@@ -163,7 +163,7 @@ html[data-echoes-theme='dark'], [data-echoes-theme='dark'] {
   --echoes-logos-colors-text: #ffffff;
   --echoes-logos-colors-brand: #ffffff;
   --echoes-logos-colors-sonar-whale: #d3121d;
-  --echoes-modal-colors-shadow-gradient: #ffffff33;
+  --echoes-bottom-scroll-colors-shadow-gradient: #ffffff33;
   --echoes-overlays-inner-shadow-default: inset 0 -6px 10px 0 #ffffff1a;
   --echoes-ratings-colors-background-rating-a-default: #027a48;
   --echoes-ratings-colors-background-rating-b-default: #538027;

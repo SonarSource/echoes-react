@@ -19,9 +19,10 @@
  */
 
 import styled from '@emotion/styled';
-import { PropsWithChildren, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { PropsWithChildren, useMemo, useRef, useState } from 'react';
 import { PortalContext } from '../../common/components/PortalContext';
 
+import { BottomShadowScroll, useBottomShadowScroll } from '~common/helpers/useBottomShadowScroll';
 import { cssVar } from '~utils/design-tokens';
 
 interface Props {
@@ -30,31 +31,9 @@ interface Props {
 
 export function ModalBody(props: PropsWithChildren<Props>) {
   const { children, isLast = false } = props;
-  const [showBottomShadow, setShowBottomShadow] = useState(false);
-  const shadowRef = useRef<HTMLDivElement | null>(null);
-
-  const updateShadow = useCallback(() => {
-    if (shadowRef.current) {
-      const { scrollHeight, clientHeight, scrollTop } = shadowRef.current;
-      setShowBottomShadow(scrollTop + clientHeight < scrollHeight - 16); // -16px for bottom padding
-    }
-  }, []);
-
-  const initShadows = useCallback(
-    (node: HTMLDivElement) => {
-      if (node) {
-        shadowRef.current = node;
-        updateShadow();
-      }
-    },
-    [updateShadow],
-  );
-
-  useEffect(() => {
-    window.addEventListener('resize', updateShadow);
-
-    return () => window.removeEventListener('resize', updateShadow);
-  }, [updateShadow]);
+  const scrollableContainerRef = useRef<HTMLDivElement>(null);
+  const resizableContentRef = useRef<HTMLDivElement>(null);
+  const [showBottomShadow] = useBottomShadowScroll(scrollableContainerRef, resizableContentRef);
 
   const [portalRef, setPortalRef] = useState<HTMLDivElement | null>(null);
 
@@ -67,11 +46,10 @@ export function ModalBody(props: PropsWithChildren<Props>) {
     <>
       <PortalContext.Provider value={modalContextProviderValue}>
         <ModalBodyWrapper isLast={isLast}>
-          <ModalBodyInner onScroll={updateShadow} ref={initShadows}>
-            {children}
-          </ModalBodyInner>
-
-          {showBottomShadow && <ModalBodyBottomShadow />}
+          <ModalBodyScrollContainer ref={scrollableContainerRef}>
+            <ModalBodyInner ref={resizableContentRef}>{children}</ModalBodyInner>
+          </ModalBodyScrollContainer>
+          {showBottomShadow && <BottomShadowScroll />}
         </ModalBodyWrapper>
       </PortalContext.Provider>
 
@@ -85,6 +63,7 @@ export function ModalBody(props: PropsWithChildren<Props>) {
 }
 ModalBody.displayName = 'ModalBody';
 
+// This first layer wrapper allows to hold the bottom scroll shadow in place.
 const ModalBodyWrapper = styled.div<Props>`
   position: relative;
   display: flex;
@@ -96,33 +75,24 @@ const ModalBodyWrapper = styled.div<Props>`
 `;
 ModalBodyWrapper.displayName = 'ModalBodyWrapper';
 
+// This second layer wrapper holds the scrollbar, it's monitored by the useBottomShadowScroll hook to
+// recompute the shadow visibility when it scrolls or resizes.
+const ModalBodyScrollContainer = styled.div`
+  position: relative;
+  flex: 1;
+
+  overflow-y: auto;
+`;
+ModalBodyScrollContainer.displayName = 'ModalBodyScrollContainer';
+
+// This third layer wrapper contains inner content of the modal body, its height can eventually
+// change if there is dynamic content, when its height changes it impact the scroll height of its
+// parent but not its size. So we also monitor this element resizes to recompute the shadow visibility.
 const ModalBodyInner = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
   gap: ${cssVar('dimension-space-200')};
   padding: ${cssVar('dimension-space-150')} ${cssVar('dimension-space-300')};
-
-  max-height: 100%;
-  width: 100%;
-
-  overflow-y: auto;
 `;
 ModalBodyInner.displayName = 'ModalBodyInner';
-
-const ModalBodyBottomShadow = styled.div`
-  position: absolute;
-  bottom: 0;
-
-  min-height: ${cssVar('dimension-height-800')};
-  width: 100%;
-
-  border-bottom: ${cssVar('border-width-default')} solid ${cssVar('color-border-weak')};
-  background: radial-gradient(
-      farthest-side at 50% 100%,
-      ${cssVar('modal-colors-shadow-gradient')},
-      ${cssVar('color-support-transparent')}
-    )
-    center bottom;
-`;
-ModalBodyBottomShadow.displayName = 'ModalBodyBottomShadow';

@@ -75,19 +75,6 @@ export const sidebarNavigationContentStyles = css`
   padding: ${cssVar('dimension-space-50')} ${cssVar('dimension-space-100')};
 `;
 
-export const SidebarNavigationBody = styled.div`
-  ${sidebarNavigationContentStyles}
-  flex: 1;
-
-  overflow-y: auto;
-  overflow-x: visible;
-
-  [data-sidebar-collapsed='true'] > & {
-    overflow-y: hidden;
-  }
-`;
-SidebarNavigationBody.displayName = 'SidebarNavigationBody';
-
 export const SidebarNavigationFooter = styled.div`
   ${sidebarNavigationContentStyles}
 `;
