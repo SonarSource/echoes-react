@@ -34,6 +34,7 @@ import {
   itemIconStyles,
   sidebarNavigationBaseItemStyles,
   SidebarNavigationItemLabel,
+  UnstyledUList,
 } from './SidebarNavigationItemStyles';
 
 export interface SidebarNavigationAccordionItemProps {
@@ -105,7 +106,7 @@ export const SidebarNavigationAccordionItem = forwardRef<
         aria-labelledby={accordionId}
         data-accordion-open={open}
         id={accordionPanelId}>
-        <ul>{children}</ul>
+        <UnstyledUList>{children}</UnstyledUList>
       </AccordionItemPanel>
     </AccordionWrapper>
   );
@@ -114,6 +115,8 @@ export const SidebarNavigationAccordionItem = forwardRef<
 SidebarNavigationAccordionItem.displayName = 'SidebarNavigationAccordionItem';
 
 const AccordionWrapper = styled.li`
+  all: unset;
+
   display: flex;
   flex-direction: column;
   gap: ${cssVar('dimension-space-50')};
@@ -122,8 +125,6 @@ AccordionWrapper.displayName = 'AccordionWrapper';
 
 const AccordionItem = styled.button`
   ${sidebarNavigationBaseItemStyles}
-
-  width: 100%;
 
   &:active {
     background-color: ${cssVar('color-surface-active')};

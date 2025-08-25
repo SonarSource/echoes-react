@@ -67,7 +67,6 @@ SidebarNavigation.displayName = 'SidebarNavigation';
 
 const SidebarNavigationWrapper = styled.nav`
   box-sizing: content-box;
-  height: 100%;
   width: var(--sidebar-navigation-width);
   background-color: ${cssVar('color-surface-canvas-default')};
   border-right: ${cssVar('border-width-default')} solid ${cssVar('color-border-weak')};
@@ -80,9 +79,5 @@ const SidebarNavigationWrapper = styled.nav`
   flex-direction: column;
 
   transition: width 0.1s;
-
-  & :is(li, ul) {
-    all: unset;
-  }
 `;
 SidebarNavigationWrapper.displayName = 'SidebarNavigationWrapper';

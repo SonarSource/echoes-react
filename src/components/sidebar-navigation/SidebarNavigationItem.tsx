@@ -30,6 +30,7 @@ import {
   itemIconStyles,
   sidebarNavigationBaseItemStyles,
   SidebarNavigationItemLabel,
+  UnstyledListItem,
 } from './SidebarNavigationItemStyles';
 
 export interface SidebarNavigationItemProps
@@ -71,7 +72,7 @@ export const SidebarNavigationItem = forwardRef<HTMLAnchorElement, SidebarNaviga
     const { children, className, enableTooltip, Icon, isActive = false, ...htmlProps } = props;
 
     return (
-      <li>
+      <UnstyledListItem>
         <Tooltip content={enableTooltip ? children : undefined} side="right">
           <NavigationItem
             {...htmlProps}
@@ -82,7 +83,7 @@ export const SidebarNavigationItem = forwardRef<HTMLAnchorElement, SidebarNaviga
             <SidebarNavigationItemLabel>{children}</SidebarNavigationItemLabel>
           </NavigationItem>
         </Tooltip>
-      </li>
+      </UnstyledListItem>
     );
   },
 );

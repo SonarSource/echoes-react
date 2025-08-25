@@ -23,6 +23,7 @@ import { forwardRef, PropsWithChildren, useId } from 'react';
 import { TextNode } from '~types/utils';
 import { cssVar } from '~utils/design-tokens';
 import { Text } from '../typography';
+import { UnstyledListItem, UnstyledUList } from './SidebarNavigationItemStyles';
 
 export interface SidebarNavigationGroupProps {
   className?: string;
@@ -43,7 +44,7 @@ export const SidebarNavigationGroup = forwardRef<
   const id = `${useId()}-sidebar-nav-group`;
 
   return (
-    <li>
+    <UnstyledListItem>
       <SidebarNavigationGroupContainer
         aria-labelledby={id}
         className={className}
@@ -53,9 +54,9 @@ export const SidebarNavigationGroup = forwardRef<
         <SidebarNavigationGroupLabel id={id}>
           <Text isSubtle>{label}</Text>
         </SidebarNavigationGroupLabel>
-        <ul>{children}</ul>
+        <UnstyledUList>{children}</UnstyledUList>
       </SidebarNavigationGroupContainer>
-    </li>
+    </UnstyledListItem>
   );
 });
 
