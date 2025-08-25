@@ -21,13 +21,14 @@
 /* eslint-disable no-console */
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import { cssVar, DropdownMenu } from '../../src';
-import { SidebarNavigationHeader } from '../../src/components/sidebar-navigation/SidebarNavigationHeader';
+import { cssVar, IconBranch } from '../../src';
+import { SidebarNavigationAccordionItem } from '../../src/components/sidebar-navigation/SidebarNavigationAccordionItem';
+import { SidebarNavigationItem } from '../../src/components/sidebar-navigation/SidebarNavigationItem';
 import { basicWrapperDecorator } from '../helpers/BasicWrapper';
 
 const meta: Meta = {
-  title: 'Echoes/Sidebar/Header',
-  component: SidebarNavigationHeader,
+  title: 'Echoes/Sidebar/AccordionItem',
+  component: SidebarNavigationAccordionItem,
   decorators: [
     (Story) => (
       <div
@@ -42,63 +43,29 @@ const meta: Meta = {
     basicWrapperDecorator,
   ],
   argTypes: {
-    avatar: {
+    Icon: {
       control: { type: 'select' },
       mapping: {
-        default: (
-          <div
-            style={{
-              backgroundColor: cssVar('color-background-emphasis-active'),
-              color: cssVar('color-text-on-color'),
-              width: '100%',
-              height: '100%',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              borderRadius: cssVar('border-radius-400'),
-            }}>
-            S
-          </div>
-        ),
+        default: IconBranch,
         none: undefined,
       },
       options: ['default', 'none'],
     },
-    qualifier: { type: 'string' },
   },
 };
 
 export default meta;
 
-type Story = StoryObj<typeof SidebarNavigationHeader>;
+type Story = StoryObj<typeof SidebarNavigationAccordionItem>;
 
 export const base: Story = {
   args: {
-    avatar: 'none',
-    isInteractive: false,
-    name: 'Administration',
-  },
-};
-
-export const dropdown: Story = {
-  args: {
-    avatar: 'default',
-    isInteractive: true,
-    qualifier: 'Project',
-    name: 'SonarQube Server - webapp',
-  },
-  render(args) {
-    return (
-      <DropdownMenu
-        align="end"
-        items={
-          <>
-            <DropdownMenu.ItemButton>Project 1</DropdownMenu.ItemButton>
-            <DropdownMenu.ItemButton>Other project</DropdownMenu.ItemButton>
-          </>
-        }>
-        <SidebarNavigationHeader {...args} />
-      </DropdownMenu>
-    );
+    children: (
+      <>
+        <SidebarNavigationItem to="/1">Item 1</SidebarNavigationItem>
+        <SidebarNavigationItem to="/2">Item 2</SidebarNavigationItem>
+      </>
+    ),
+    label: 'Accordion',
   },
 };
