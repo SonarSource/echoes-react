@@ -26,7 +26,7 @@ import { SidebarNavigationHeader } from '../../src/components/sidebar-navigation
 import { basicWrapperDecorator } from '../helpers/BasicWrapper';
 
 const meta: Meta = {
-  title: 'Echoes/Sidebar',
+  title: 'Echoes/Sidebar/Header',
   component: SidebarNavigationHeader,
   decorators: [
     basicWrapperDecorator,
