@@ -71,16 +71,18 @@ export const SidebarNavigationItem = forwardRef<HTMLAnchorElement, SidebarNaviga
     const { children, className, enableTooltip, Icon, isActive = false, ...htmlProps } = props;
 
     return (
-      <Tooltip content={enableTooltip ? children : undefined} side="right">
-        <NavigationItem
-          {...htmlProps}
-          className={classNames({ active: isActive }, className)}
-          ref={ref}>
-          {Icon ? <Icon css={navigationItemIconStyles} /> : undefined}
+      <li>
+        <Tooltip content={enableTooltip ? children : undefined} side="right">
+          <NavigationItem
+            {...htmlProps}
+            className={classNames({ active: isActive }, className)}
+            ref={ref}>
+            {Icon ? <Icon css={navigationItemIconStyles} /> : undefined}
 
-          <SidebarNavigationItemLabel>{children}</SidebarNavigationItemLabel>
-        </NavigationItem>
-      </Tooltip>
+            <SidebarNavigationItemLabel>{children}</SidebarNavigationItemLabel>
+          </NavigationItem>
+        </Tooltip>
+      </li>
     );
   },
 );

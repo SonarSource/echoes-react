@@ -74,5 +74,9 @@ const SidebarNavigationWrapper = styled.nav`
   flex-direction: column;
 
   transition: width 0.1s;
+
+  & :is(li, ul) {
+    all: unset;
+  }
 `;
 SidebarNavigationWrapper.displayName = 'SidebarNavigationWrapper';

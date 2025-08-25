@@ -25,9 +25,11 @@ import { SidebarNavigationItem } from '../SidebarNavigationItem';
 
 it('should render correctly', async () => {
   const { container } = renderWithMemoryRouter(
-    <SidebarNavigationGroup label="group label">
-      <SidebarNavigationItem to="#">item1</SidebarNavigationItem>
-    </SidebarNavigationGroup>,
+    <ul>
+      <SidebarNavigationGroup label="group label">
+        <SidebarNavigationItem to="#">item1</SidebarNavigationItem>
+      </SidebarNavigationGroup>
+    </ul>,
   );
 
   expect(screen.getByLabelText('group label')).toBeInTheDocument();

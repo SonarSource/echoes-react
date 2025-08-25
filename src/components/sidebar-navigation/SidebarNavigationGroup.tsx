@@ -43,17 +43,19 @@ export const SidebarNavigationGroup = forwardRef<
   const id = `${useId()}-sidebar-nav-group`;
 
   return (
-    <SidebarNavigationGroupContainer
-      aria-labelledby={id}
-      className={className}
-      ref={ref}
-      role="group"
-      {...radixProps}>
-      <SidebarNavigationGroupLabel id={id}>
-        <Text isSubtle>{label}</Text>
-      </SidebarNavigationGroupLabel>
-      {children}
-    </SidebarNavigationGroupContainer>
+    <li>
+      <SidebarNavigationGroupContainer
+        aria-labelledby={id}
+        className={className}
+        ref={ref}
+        role="group"
+        {...radixProps}>
+        <SidebarNavigationGroupLabel id={id}>
+          <Text isSubtle>{label}</Text>
+        </SidebarNavigationGroupLabel>
+        <ul>{children}</ul>
+      </SidebarNavigationGroupContainer>
+    </li>
   );
 });
 

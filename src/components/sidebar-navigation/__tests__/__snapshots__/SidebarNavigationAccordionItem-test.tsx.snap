@@ -34,6 +34,7 @@ exports[`should render with an icon 1`] = `
   color: var(--echoes-color-text-default);
   font: var(--echoes-typography-text-default-regular);
   cursor: pointer;
+  width: 100%;
 }
 
 .emotion-2:hover {
@@ -168,63 +169,71 @@ exports[`should render with an icon 1`] = `
 }
 
 <div>
-  <div
-    class="emotion-0 emotion-1"
-  >
-    <button
-      aria-controls=":r1:sidebar-accordion-panel"
-      aria-expanded="false"
-      class="emotion-2 emotion-3"
-      id=":r1:sidebar-accordion"
+  <ul>
+    <li
+      class="emotion-0 emotion-1"
     >
-      <span
-        aria-hidden="true"
-        class="emotion-4 emotion-5"
-        css="[object Object]"
+      <button
+        aria-controls=":r1:sidebar-accordion-panel"
+        aria-expanded="false"
+        class="emotion-2 emotion-3"
+        id=":r1:sidebar-accordion"
       >
-        !
-      </span>
-      <span
-        class="emotion-6 emotion-7"
-      >
-        Accordion Item
-      </span>
-      <span
-        aria-hidden="true"
-        class="emotion-8 emotion-9"
-        css="[object Object]"
-      >
-        
-      </span>
-    </button>
-    <section
-      aria-labelledby=":r1:sidebar-accordion"
-      class="emotion-10 emotion-11"
-      data-accordion-open="false"
-      id=":r1:sidebar-accordion-panel"
-    >
-      <a
-        class="active emotion-12 emotion-13"
-        href="/sub-item-1"
-      >
+        <span
+          aria-hidden="true"
+          class="emotion-4 emotion-5"
+          css="[object Object]"
+        >
+          !
+        </span>
         <span
           class="emotion-6 emotion-7"
         >
-          Sub Item 1
+          Accordion Item
         </span>
-      </a>
-      <a
-        class="emotion-12 emotion-13"
-        href="/sub-item-2"
-      >
         <span
-          class="emotion-6 emotion-7"
+          aria-hidden="true"
+          class="emotion-8 emotion-9"
+          css="[object Object]"
         >
-          Sub Item 2
+          
         </span>
-      </a>
-    </section>
-  </div>
+      </button>
+      <section
+        aria-labelledby=":r1:sidebar-accordion"
+        class="emotion-10 emotion-11"
+        data-accordion-open="false"
+        id=":r1:sidebar-accordion-panel"
+      >
+        <ul>
+          <li>
+            <a
+              class="active emotion-12 emotion-13"
+              href="/sub-item-1"
+            >
+              <span
+                class="emotion-6 emotion-7"
+              >
+                Sub Item 1
+              </span>
+            </a>
+          </li>
+          <li>
+            <a
+              class="emotion-12 emotion-13"
+              href="/sub-item-2"
+            >
+              <span
+                class="emotion-6 emotion-7"
+              >
+                Sub Item 2
+              </span>
+            </a>
+          </li>
+        </ul>
+      </section>
+    </li>
+  </ul>
   <pre>
     /initial
   </pre>

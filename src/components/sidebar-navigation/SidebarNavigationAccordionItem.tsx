@@ -105,7 +105,7 @@ export const SidebarNavigationAccordionItem = forwardRef<
         aria-labelledby={accordionId}
         data-accordion-open={open}
         id={accordionPanelId}>
-        {children}
+        <ul>{children}</ul>
       </AccordionItemPanel>
     </AccordionWrapper>
   );
@@ -113,7 +113,7 @@ export const SidebarNavigationAccordionItem = forwardRef<
 
 SidebarNavigationAccordionItem.displayName = 'SidebarNavigationAccordionItem';
 
-const AccordionWrapper = styled.div`
+const AccordionWrapper = styled.li`
   display: flex;
   flex-direction: column;
   gap: ${cssVar('dimension-space-50')};
@@ -122,6 +122,8 @@ AccordionWrapper.displayName = 'AccordionWrapper';
 
 const AccordionItem = styled.button`
   ${sidebarNavigationBaseItemStyles}
+
+  width: 100%;
 
   &:active {
     background-color: ${cssVar('color-surface-active')};

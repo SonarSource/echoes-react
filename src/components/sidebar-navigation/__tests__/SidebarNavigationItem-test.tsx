@@ -84,8 +84,10 @@ it("shouldn't have any a11y violation", async () => {
 
 function setupSidebarNavigationItem(props: Partial<SidebarNavigationItemProps> = {}) {
   return renderWithMemoryRouter(
-    <SidebarNavigationItem to="/second" {...props}>
-      Test Item
-    </SidebarNavigationItem>,
+    <ul>
+      <SidebarNavigationItem to="/second" {...props}>
+        Test Item
+      </SidebarNavigationItem>
+    </ul>,
   );
 }

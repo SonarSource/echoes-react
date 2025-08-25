@@ -101,15 +101,17 @@ function setupSidebarNavigationAccordionItem(
   props: Partial<SidebarNavigationAccordionItemProps> = {},
 ) {
   return renderWithMemoryRouter(
-    <SidebarNavigationAccordionItem label="Accordion Item" {...props}>
-      {props.children ?? (
-        <>
-          <SidebarNavigationItem isActive to="/sub-item-1">
-            Sub Item 1
-          </SidebarNavigationItem>
-          <SidebarNavigationItem to="/sub-item-2">Sub Item 2</SidebarNavigationItem>
-        </>
-      )}
-    </SidebarNavigationAccordionItem>,
+    <ul>
+      <SidebarNavigationAccordionItem label="Accordion Item" {...props}>
+        {props.children ?? (
+          <>
+            <SidebarNavigationItem isActive to="/sub-item-1">
+              Sub Item 1
+            </SidebarNavigationItem>
+            <SidebarNavigationItem to="/sub-item-2">Sub Item 2</SidebarNavigationItem>
+          </>
+        )}
+      </SidebarNavigationAccordionItem>
+    </ul>,
   );
 }
