@@ -23,8 +23,14 @@ import { forwardRef, PropsWithChildren } from 'react';
 import { useIntl } from 'react-intl';
 import { cssVar } from '~utils/design-tokens';
 
-interface SidebarNavigationProps {
+export interface SidebarNavigationProps {
+  /**
+   * Sidebar navigation Aria-label, defaults to "Secondary navigation"
+   */
   ariaLabel?: string;
+  /**
+   * Whether the sidebar is collapsed (narrow) or expanded (wide)
+   */
   isCollapsed: boolean;
 }
 
