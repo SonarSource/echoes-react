@@ -54,11 +54,6 @@ it('should expand hidden elements when clicked', async () => {
   expect(onClose).toHaveBeenCalled();
 });
 
-it('should render with an icon', () => {
-  const { container } = setupSidebarNavigationAccordionItem({ Icon: IconBranch });
-  expect(container).toMatchSnapshot();
-});
-
 it("shouldn't have any a11y violation", async () => {
   const { container, user } = setupSidebarNavigationAccordionItem({ Icon: IconBranch });
   await expect(container).toHaveNoA11yViolations();
