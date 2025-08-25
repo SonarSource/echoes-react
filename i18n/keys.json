@@ -154,6 +154,10 @@
     "defaultMessage": "Medium",
     "description": "Label for medium severity level"
   },
+  "sidebar_navigation.label": {
+    "defaultMessage": "Secondary navigation",
+    "description": "ARIA-label for the sidebar navigation"
+  },
   "spotlight.close": {
     "defaultMessage": "Close",
     "description": "The label for the Close button on a Spotlight"

@@ -20,9 +20,11 @@
 
 import styled from '@emotion/styled';
 import { forwardRef, PropsWithChildren } from 'react';
+import { useIntl } from 'react-intl';
 import { cssVar } from '~utils/design-tokens';
 
 interface SidebarNavigationProps {
+  ariaLabel?: string;
   isCollapsed: boolean;
 }
 
@@ -30,10 +32,19 @@ export const SidebarNavigation = forwardRef<
   HTMLDivElement,
   PropsWithChildren<SidebarNavigationProps>
 >((props, ref) => {
-  const { children, isCollapsed } = props;
+  const { ariaLabel, children, isCollapsed } = props;
+
+  const intl = useIntl();
+
+  const defaultAriaLabel = intl.formatMessage({
+    id: 'sidebar_navigation.label',
+    defaultMessage: 'Secondary navigation',
+    description: 'ARIA-label for the sidebar navigation',
+  });
 
   return (
     <SidebarNavigationWrapper
+      aria-label={ariaLabel ?? defaultAriaLabel}
       css={{
         '--sidebar-navigation-width': isCollapsed
           ? cssVar('sidebar-navigation-sizes-width-collapsed')
@@ -48,7 +59,7 @@ export const SidebarNavigation = forwardRef<
 
 SidebarNavigation.displayName = 'SidebarNavigation';
 
-const SidebarNavigationWrapper = styled.div`
+const SidebarNavigationWrapper = styled.nav`
   box-sizing: content-box;
   height: 100%;
   width: var(--sidebar-navigation-width);
