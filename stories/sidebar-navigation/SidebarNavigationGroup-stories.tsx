@@ -21,7 +21,7 @@
 /* eslint-disable no-console */
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import { cssVar, SidebarNavigation } from '../../src';
+import { cssVar, IconDirectory, SidebarNavigation } from '../../src';
 import { basicWrapperDecorator } from '../helpers/BasicWrapper';
 
 const meta: Meta = {
@@ -51,8 +51,12 @@ export const base: Story = {
   args: {
     children: (
       <>
-        <SidebarNavigation.Item to="/1">Item 1</SidebarNavigation.Item>
-        <SidebarNavigation.Item to="/2">Item 2</SidebarNavigation.Item>
+        <SidebarNavigation.Item Icon={IconDirectory} to="/1">
+          Item 1
+        </SidebarNavigation.Item>
+        <SidebarNavigation.Item Icon={IconDirectory} to="/2">
+          Item 2
+        </SidebarNavigation.Item>
       </>
     ),
     label: 'Group name',
