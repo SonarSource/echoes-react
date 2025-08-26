@@ -20,14 +20,8 @@
 
 import { screen } from '@testing-library/react';
 import { renderWithMemoryRouter } from '~common/helpers/test-utils';
-import { useIsOverflow } from '~common/helpers/useIsOverflow';
 import { IconBranch } from '../../icons';
 import { SidebarNavigationItem, SidebarNavigationItemProps } from '../SidebarNavigationItem';
-
-// Mock the useIsOverflow hook
-jest.mock('~common/helpers/useIsOverflow', () => ({
-  useIsOverflow: jest.fn().mockReturnValue([false]),
-}));
 
 it('should render with an icon', () => {
   setupSidebarNavigationItem({ Icon: IconBranch });
@@ -54,9 +48,8 @@ describe('ellipsis behavior', () => {
     jest.clearAllMocks();
   });
 
-  it('should show tooltip when content is overflowing', async () => {
-    jest.mocked(useIsOverflow).mockReturnValueOnce([true]);
-    const { user } = setupSidebarNavigationItem();
+  it('should show tooltip when enableTooltip prop is true', async () => {
+    const { user } = setupSidebarNavigationItem({ enableTooltip: true });
 
     await user.hover(screen.getByRole('link'));
     const tooltip = await screen.findByRole('tooltip');
@@ -64,7 +57,7 @@ describe('ellipsis behavior', () => {
     expect(tooltip).toHaveTextContent('Test Item');
   });
 
-  it('should not show tooltip when content is not overflowing', async () => {
+  it('should not show tooltip when eenableTooltip prop is false', async () => {
     const { user } = setupSidebarNavigationItem();
 
     await user.hover(screen.getByRole('link'));
@@ -91,8 +84,10 @@ it("shouldn't have any a11y violation", async () => {
 
 function setupSidebarNavigationItem(props: Partial<SidebarNavigationItemProps> = {}) {
   return renderWithMemoryRouter(
-    <SidebarNavigationItem to="/second" {...props}>
-      Test Item
-    </SidebarNavigationItem>,
+    <ul>
+      <SidebarNavigationItem to="/second" {...props}>
+        Test Item
+      </SidebarNavigationItem>
+    </ul>,
   );
 }

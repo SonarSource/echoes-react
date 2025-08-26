@@ -25,17 +25,16 @@ import {
   ReactNode,
   useCallback,
   useId,
-  useRef,
   useState,
 } from 'react';
-import { useIsOverflow } from '~common/helpers/useIsOverflow';
 import { TextNode } from '~types/utils';
 import { cssVar } from '~utils/design-tokens';
 import { IconChevronDown, IconChevronRight, IconProps } from '../icons';
-import { Tooltip } from '../tooltip';
 import {
   sidebarNavigationBaseItemStyles,
+  sidebarNavigationItemIconStyles,
   SidebarNavigationItemLabel,
+  UnstyledUList,
 } from './SidebarNavigationItemStyles';
 
 export interface SidebarNavigationAccordionItemProps {
@@ -71,8 +70,6 @@ export const SidebarNavigationAccordionItem = forwardRef<
 >((props, ref) => {
   const { children, Icon, label, onClose, onOpen, ...htmlProps } = props;
   const [open, setOpen] = useState(false);
-  const labelRef = useRef<HTMLSpanElement>(null);
-  const [isOverflow] = useIsOverflow(labelRef, [label]);
 
   const accordionId = `${useId()}sidebar-accordion`;
   const accordionPanelId = `${accordionId}-panel`;
@@ -89,35 +86,42 @@ export const SidebarNavigationAccordionItem = forwardRef<
   }, [onOpen, onClose]);
 
   return (
-    <>
-      <Tooltip content={isOverflow ? label : undefined} side="right">
-        <AccordionItem
-          {...htmlProps}
-          aria-controls={accordionPanelId}
-          aria-expanded={open}
-          id={accordionId}
-          onClick={handleClick}
-          ref={ref}>
-          {Icon ? <Icon color="echoes-color-icon-subtle" /> : undefined}
-          <SidebarNavigationItemLabel ref={labelRef}>{label}</SidebarNavigationItemLabel>
-          {open ? (
-            <IconChevronDown color="echoes-color-icon-subtle" />
-          ) : (
-            <IconChevronRight color="echoes-color-icon-subtle" />
-          )}
-        </AccordionItem>
-      </Tooltip>
+    <AccordionWrapper>
+      <AccordionItem
+        {...htmlProps}
+        aria-controls={accordionPanelId}
+        aria-expanded={open}
+        id={accordionId}
+        onClick={handleClick}
+        ref={ref}>
+        {Icon ? <Icon css={sidebarNavigationItemIconStyles} /> : undefined}
+        <SidebarNavigationItemLabel>{label}</SidebarNavigationItemLabel>
+        {open ? (
+          <IconChevronDown css={sidebarNavigationItemIconStyles} />
+        ) : (
+          <IconChevronRight css={sidebarNavigationItemIconStyles} />
+        )}
+      </AccordionItem>
       <AccordionItemPanel
         aria-labelledby={accordionId}
         data-accordion-open={open}
         id={accordionPanelId}>
-        {children}
+        <UnstyledUList>{children}</UnstyledUList>
       </AccordionItemPanel>
-    </>
+    </AccordionWrapper>
   );
 });
 
 SidebarNavigationAccordionItem.displayName = 'SidebarNavigationAccordionItem';
+
+const AccordionWrapper = styled.li`
+  all: unset;
+
+  display: flex;
+  flex-direction: column;
+  gap: ${cssVar('dimension-space-50')};
+`;
+AccordionWrapper.displayName = 'AccordionWrapper';
 
 const AccordionItem = styled.button`
   ${sidebarNavigationBaseItemStyles}
@@ -138,11 +142,18 @@ const AccordionItemPanel = styled.section`
   padding-right: ${cssVar('dimension-space-200')};
   border-left: ${cssVar('border-width-default')} solid ${cssVar('color-border-weak')};
 
+  [data-sidebar-collapsed='true'] & {
+    margin: 0;
+    padding: 0;
+    border-left: none;
+  }
+
   // The children SidebarNavigationItems rely on this css property to set their display value, falling back to flex if not inside an accordion
   --sidebar-navigation-accordion-children-display: flex;
 
-  // We force the children SidebarNavigationItems to be hidden when the accordion is closed
-  &[data-accordion-open='false'] {
+  // We force the children SidebarNavigationItems to be hidden when the accordion is closed or the sidebar is collapsed
+  &[data-accordion-open='false'],
+  [data-sidebar-collapsed='true'] & {
     --sidebar-navigation-accordion-children-display: none;
   }
 `;

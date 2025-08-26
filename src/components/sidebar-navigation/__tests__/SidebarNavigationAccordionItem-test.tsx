@@ -21,7 +21,6 @@
 import { matchers } from '@emotion/jest';
 import { screen } from '@testing-library/react';
 import { renderWithMemoryRouter } from '~common/helpers/test-utils';
-import { useIsOverflow } from '~common/helpers/useIsOverflow';
 import { IconBranch } from '../../icons';
 import {
   SidebarNavigationAccordionItem,
@@ -53,34 +52,6 @@ it('should expand hidden elements when clicked', async () => {
   await user.click(accordionButton);
   checkAccordionPanelVisibility(false);
   expect(onClose).toHaveBeenCalled();
-});
-
-it('should render with an icon', () => {
-  const { container } = setupSidebarNavigationAccordionItem({ Icon: IconBranch });
-  expect(container).toMatchSnapshot();
-});
-
-describe('ellipsis behavior', () => {
-  beforeEach(() => {
-    jest.clearAllMocks();
-  });
-
-  it('should show tooltip when label is overflowing', async () => {
-    jest.mocked(useIsOverflow).mockReturnValueOnce([true]);
-    const { user } = setupSidebarNavigationAccordionItem();
-
-    await user.hover(screen.getByRole('button'));
-    const tooltip = await screen.findByRole('tooltip');
-    expect(tooltip).toBeInTheDocument();
-    expect(tooltip).toHaveTextContent('Accordion Item');
-  });
-
-  it('should not show tooltip when label is not overflowing', async () => {
-    const { user } = setupSidebarNavigationAccordionItem();
-
-    await user.hover(screen.getByRole('button'));
-    expect(screen.queryByRole('tooltip')).not.toBeInTheDocument();
-  });
 });
 
 it("shouldn't have any a11y violation", async () => {
@@ -125,15 +96,17 @@ function setupSidebarNavigationAccordionItem(
   props: Partial<SidebarNavigationAccordionItemProps> = {},
 ) {
   return renderWithMemoryRouter(
-    <SidebarNavigationAccordionItem label="Accordion Item" {...props}>
-      {props.children ?? (
-        <>
-          <SidebarNavigationItem isActive to="/sub-item-1">
-            Sub Item 1
-          </SidebarNavigationItem>
-          <SidebarNavigationItem to="/sub-item-2">Sub Item 2</SidebarNavigationItem>
-        </>
-      )}
-    </SidebarNavigationAccordionItem>,
+    <ul>
+      <SidebarNavigationAccordionItem label="Accordion Item" {...props}>
+        {props.children ?? (
+          <>
+            <SidebarNavigationItem isActive to="/sub-item-1">
+              Sub Item 1
+            </SidebarNavigationItem>
+            <SidebarNavigationItem to="/sub-item-2">Sub Item 2</SidebarNavigationItem>
+          </>
+        )}
+      </SidebarNavigationAccordionItem>
+    </ul>,
   );
 }

@@ -20,18 +20,22 @@
 
 import { screen } from '@testing-library/react';
 import { renderWithMemoryRouter } from '~common/helpers/test-utils';
-import { SidebarNavigationGroup } from '../SidebarNavigationGroup';
-import { SidebarNavigationItem } from '../SidebarNavigationItem';
+import { SidebarNavigation } from '../SidebarNavigation';
 
-it('should render correctly', async () => {
-  const { container } = renderWithMemoryRouter(
-    <ul>
-      <SidebarNavigationGroup label="group label">
-        <SidebarNavigationItem to="#">item1</SidebarNavigationItem>
-      </SidebarNavigationGroup>
-    </ul>,
-  );
+it('should have no a11y issues', async () => {
+  const { container } = renderWithMemoryRouter(<SidebarNavigation isCollapsed />);
 
-  expect(screen.getByLabelText('group label')).toBeInTheDocument();
   await expect(container).toHaveNoA11yViolations();
+});
+
+it.each([
+  ['collapsed', true, 'true'],
+  ['expanded', false, 'false'],
+])('should render correctly when %s', (_, isCollapsed, expected) => {
+  renderWithMemoryRouter(<SidebarNavigation isCollapsed={isCollapsed} />);
+
+  expect(screen.getByLabelText('Secondary navigation')).toHaveAttribute(
+    'data-sidebar-collapsed',
+    expected,
+  );
 });

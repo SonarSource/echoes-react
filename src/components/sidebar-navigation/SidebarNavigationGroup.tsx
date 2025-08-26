@@ -23,6 +23,7 @@ import { forwardRef, PropsWithChildren, useId } from 'react';
 import { TextNode } from '~types/utils';
 import { cssVar } from '~utils/design-tokens';
 import { Text } from '../typography';
+import { UnstyledListItem, UnstyledUList } from './SidebarNavigationItemStyles';
 
 export interface SidebarNavigationGroupProps {
   className?: string;
@@ -43,26 +44,27 @@ export const SidebarNavigationGroup = forwardRef<
   const id = `${useId()}-sidebar-nav-group`;
 
   return (
-    <SidebarNavigationGroupContainer
-      aria-labelledby={id}
-      className={className}
-      ref={ref}
-      role="group"
-      {...radixProps}>
-      <SidebarNavigationGroupLabel id={id}>
-        <Text isSubtle size="small">
-          {label}
-        </Text>
-      </SidebarNavigationGroupLabel>
-      {children}
-    </SidebarNavigationGroupContainer>
+    <UnstyledListItem>
+      <SidebarNavigationGroupContainer
+        aria-labelledby={id}
+        className={className}
+        ref={ref}
+        role="group"
+        {...radixProps}>
+        <SidebarNavigationGroupLabel id={id}>
+          <Text isSubtle size="small">
+            {label}
+          </Text>
+        </SidebarNavigationGroupLabel>
+        <UnstyledUList>{children}</UnstyledUList>
+      </SidebarNavigationGroupContainer>
+    </UnstyledListItem>
   );
 });
 
 SidebarNavigationGroup.displayName = 'SidebarNavigationGroup';
 
 const SidebarNavigationGroupContainer = styled.div`
-  padding: ${cssVar('dimension-space-100')};
   display: flex;
   flex-direction: column;
   gap: ${cssVar('dimension-space-50')};
@@ -74,5 +76,9 @@ const SidebarNavigationGroupLabel = styled.label`
   align-items: center;
   height: ${cssVar('dimension-height-800')};
   padding: 0 ${cssVar('dimension-space-100')};
+
+  [data-sidebar-collapsed='true'] & {
+    display: none;
+  }
 `;
 SidebarNavigationGroupLabel.displayName = 'SidebarNavigationGroupLabel';
