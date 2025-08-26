@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`BottomShadowScroll component should render with correct styling 1`] = `
+.emotion-0 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  min-height: var(--echoes-dimension-height-400);
+  border-bottom: var(--echoes-border-width-default) solid var(--echoes-color-border-weak);
+  background: radial-gradient(
+        farthest-side at 50% 100%,
+        var(--echoes-bottom-scroll-colors-shadow-gradient),
+        var(--echoes-color-support-transparent)
+      ) center bottom;
+}
+
+<div
+  class="emotion-0 emotion-1"
+  data-testid="bottom-shadow"
+/>
+`;

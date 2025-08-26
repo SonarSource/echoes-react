@@ -46,7 +46,7 @@
         }
       }
     },
-    "modal": {
+    "bottom-scroll": {
       "colors": {
         "shadow": {
           "gradient": {

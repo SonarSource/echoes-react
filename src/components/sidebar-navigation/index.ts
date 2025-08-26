@@ -20,10 +20,11 @@
 
 import { SidebarNavigation as SidebarNavigationRoot } from './SidebarNavigation';
 import { SidebarNavigationAccordionItem } from './SidebarNavigationAccordionItem';
+import { SidebarNavigationBody } from './SidebarNavigationBody';
 import { SidebarNavigationGroup } from './SidebarNavigationGroup';
 import { SidebarNavigationHeader } from './SidebarNavigationHeader';
 import { SidebarNavigationItem } from './SidebarNavigationItem';
-import { SidebarNavigationBody, SidebarNavigationFooter } from './SidebarNavigationItemStyles';
+import { SidebarNavigationFooter } from './SidebarNavigationItemStyles';
 
 export { type SidebarNavigationProps } from './SidebarNavigation';
 export { type SidebarNavigationAccordionItemProps } from './SidebarNavigationAccordionItem';
