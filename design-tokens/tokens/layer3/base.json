@@ -66,6 +66,20 @@
         }
       }
     },
+    "sidebar-navigation": {
+      "sizes": {
+        "width": {
+          "collapsed": {
+            "$type": "sizing",
+            "$value": "3rem"
+          },
+          "expanded": {
+            "$type": "sizing",
+            "$value": "15rem"
+          }
+        }
+      }
+    },
     "sizes": {
       "overlays": {
         "maxWidth": {

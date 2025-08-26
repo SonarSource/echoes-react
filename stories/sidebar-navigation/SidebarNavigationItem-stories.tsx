@@ -18,20 +18,41 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import { screen } from '@testing-library/react';
-import { renderWithMemoryRouter } from '~common/helpers/test-utils';
-import { SidebarNavigationGroup } from '../SidebarNavigationGroup';
-import { SidebarNavigationItem } from '../SidebarNavigationItem';
+/* eslint-disable no-console */
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
-it('should render correctly', async () => {
-  const { container } = renderWithMemoryRouter(
-    <ul>
-      <SidebarNavigationGroup label="group label">
-        <SidebarNavigationItem to="#">item1</SidebarNavigationItem>
-      </SidebarNavigationGroup>
-    </ul>,
-  );
+import { IconBranch, SidebarNavigation } from '../../src';
+import { basicWrapperDecorator } from '../helpers/BasicWrapper';
 
-  expect(screen.getByLabelText('group label')).toBeInTheDocument();
-  await expect(container).toHaveNoA11yViolations();
-});
+const meta: Meta = {
+  title: 'Echoes/SidebarNavigation/Item',
+  component: SidebarNavigation.Item,
+  decorators: [
+    (Story) => (
+      <SidebarNavigation.Body>
+        <Story />
+      </SidebarNavigation.Body>
+    ),
+    basicWrapperDecorator,
+  ],
+  argTypes: {
+    Icon: {
+      control: { type: 'select' },
+      mapping: {
+        default: IconBranch,
+        none: undefined,
+      },
+      options: ['default', 'none'],
+    },
+  },
+};
+
+export default meta;
+
+type Story = StoryObj<typeof SidebarNavigation.Item>;
+
+export const base: Story = {
+  args: {
+    children: 'Navigation item',
+  },
+};

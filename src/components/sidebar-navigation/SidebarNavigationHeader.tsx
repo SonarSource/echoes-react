@@ -71,11 +71,7 @@ export const SidebarNavigationHeader = forwardRef<HTMLButtonElement, SidebarNavi
               )}
             </TextContent>
           </MainContent>
-          {isInteractive && (
-            <div>
-              <IconExpandAll />
-            </div>
-          )}
+          {isInteractive && <IconExpandAll />}
         </HeaderContainer>
       </Tooltip>
     );
@@ -86,17 +82,20 @@ SidebarNavigationHeader.displayName = 'SidebarNavigationHeader';
 const HeaderContainer = styled.button`
   all: unset;
 
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-shrink: 0;
 
   gap: ${cssVar('dimension-space-100')};
   padding: ${cssVar('dimension-space-100')};
-  width: 100%;
+  margin: 0 ${cssVar('dimension-space-100')} ${cssVar('dimension-space-50')};
 
   overflow: hidden;
 
-  background-color: ${cssVar('color-surface-default')};
+  [data-sidebar-collapsed='true'] & {
+    margin: ${cssVar('dimension-space-50')};
+  }
 
   /* If it is interactive, we want mouse interactivity */
   :is(button) {
@@ -130,7 +129,7 @@ const MainContent = styled.div`
   display: flex;
   align-items: center;
   gap: ${cssVar('dimension-space-100')};
-  min-width: 0;
+  min-width: ${cssVar('dimension-width-300')};
 `;
 MainContent.displayName = 'MainContent';
 
@@ -145,6 +144,7 @@ const TextContent = styled.div`
   display: flex;
   flex-direction: column;
   min-width: 0;
+  overflow: auto;
 
   & > span {
     ${truncate}

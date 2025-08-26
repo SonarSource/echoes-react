@@ -29,14 +29,16 @@ export const sidebarNavigationBaseItemStyles = css`
   display: flex;
   align-items: center;
   gap: ${cssVar('dimension-space-100')};
-  flex: 1 0 auto;
+
+  overflow: hidden;
 
   box-sizing: border-box;
   height: ${cssVar('dimension-height-800')};
   padding: ${cssVar('dimension-space-100')};
   border-radius: ${cssVar('border-radius-400')};
 
-  background-color: ${cssVar('color-surface-default')};
+  flex-shrink: 0;
+
   color: ${cssVar('color-text-default')};
   font: ${cssVar('typography-text-default-regular')};
 
@@ -54,8 +56,49 @@ export const sidebarNavigationBaseItemStyles = css`
 `;
 
 export const SidebarNavigationItemLabel = styled.span`
-  flex: 1 0 auto;
+  flex: 1 1 auto;
 
   ${truncate}
 `;
 SidebarNavigationItemLabel.displayName = 'SidebarNavigationItemLabel';
+
+export const sidebarNavigationItemIconStyles = css`
+  color: ${cssVar('color-icon-subtle')};
+  font-size: ${cssVar('font-size-30')};
+`;
+
+export const sidebarNavigationContentStyles = css`
+  display: flex;
+  flex-direction: column;
+  gap: ${cssVar('dimension-space-50')};
+
+  padding: ${cssVar('dimension-space-50')} ${cssVar('dimension-space-100')};
+`;
+
+export const SidebarNavigationBody = styled.div`
+  ${sidebarNavigationContentStyles}
+  flex: 1;
+
+  overflow-y: auto;
+  overflow-x: visible;
+
+  [data-sidebar-collapsed='true'] > & {
+    overflow-y: hidden;
+  }
+`;
+SidebarNavigationBody.displayName = 'SidebarNavigationBody';
+
+export const SidebarNavigationFooter = styled.div`
+  ${sidebarNavigationContentStyles}
+`;
+SidebarNavigationFooter.displayName = 'SidebarNavigationFooter';
+
+export const UnstyledListItem = styled.li`
+  all: unset;
+`;
+UnstyledListItem.displayName = 'UnstyledListItem';
+
+export const UnstyledUList = styled.ul`
+  all: unset;
+`;
+UnstyledUList.displayName = 'UnstyledUList';

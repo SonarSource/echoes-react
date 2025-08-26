@@ -21,20 +21,24 @@
 /* eslint-disable no-console */
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import { cssVar, DropdownMenu } from '../../src';
-import { SidebarNavigationHeader } from '../../src/components/sidebar-navigation/SidebarNavigationHeader';
+import { cssVar, DropdownMenu, SidebarNavigation } from '../../src';
 import { basicWrapperDecorator } from '../helpers/BasicWrapper';
 
 const meta: Meta = {
-  title: 'Echoes/Sidebar',
-  component: SidebarNavigationHeader,
+  title: 'Echoes/SidebarNavigation/Header',
+  component: SidebarNavigation.Header,
   decorators: [
-    basicWrapperDecorator,
     (Story) => (
-      <div style={{ width: '300px' }}>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          width: cssVar('sidebar-navigation-sizes-width-expanded'),
+        }}>
         <Story />
       </div>
     ),
+    basicWrapperDecorator,
   ],
   argTypes: {
     avatar: {
@@ -65,7 +69,7 @@ const meta: Meta = {
 
 export default meta;
 
-type Story = StoryObj<typeof SidebarNavigationHeader>;
+type Story = StoryObj<typeof SidebarNavigation.Header>;
 
 export const base: Story = {
   args: {
@@ -92,7 +96,7 @@ export const dropdown: Story = {
             <DropdownMenu.ItemButton>Other project</DropdownMenu.ItemButton>
           </>
         }>
-        <SidebarNavigationHeader {...args} />
+        <SidebarNavigation.Header {...args} />
       </DropdownMenu>
     );
   },
