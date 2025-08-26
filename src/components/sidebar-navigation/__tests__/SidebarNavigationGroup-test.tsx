@@ -20,6 +20,7 @@
 
 import { screen } from '@testing-library/react';
 import { renderWithMemoryRouter } from '~common/helpers/test-utils';
+import { IconBranch } from '../../icons';
 import { SidebarNavigationGroup } from '../SidebarNavigationGroup';
 import { SidebarNavigationItem } from '../SidebarNavigationItem';
 
@@ -27,7 +28,9 @@ it('should render correctly', async () => {
   const { container } = renderWithMemoryRouter(
     <ul>
       <SidebarNavigationGroup label="group label">
-        <SidebarNavigationItem to="#">item1</SidebarNavigationItem>
+        <SidebarNavigationItem Icon={IconBranch} to="#">
+          item1
+        </SidebarNavigationItem>
       </SidebarNavigationGroup>
     </ul>,
   );

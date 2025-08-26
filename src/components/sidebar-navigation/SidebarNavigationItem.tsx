@@ -44,6 +44,12 @@ export interface SidebarNavigationItemProps
   children: TextNode;
   className?: string;
   /**
+   * Whether to hide the Icon when the sidebar is expanded.
+   * The purpose is to have the icon appear only when the sidebar is collapsed,
+   * and for accordion child items only.
+   */
+  disableIconWhenExpanded?: boolean;
+  /**
    * Whether to display the tooltip on the item or not.
    * By default the tooltip is disabled, it should only be enabled if you expect the content to be ellipsed.
    */
@@ -64,12 +70,20 @@ export interface SidebarNavigationItemProps
    * The icon component to display at the start of the SidebarNavigationItem.
    * Must be an Echoes Icon component.
    */
-  Icon?: ForwardRefExoticComponent<IconProps & React.RefAttributes<HTMLSpanElement>>;
+  Icon: ForwardRefExoticComponent<IconProps & React.RefAttributes<HTMLSpanElement>>;
 }
 
 export const SidebarNavigationItem = forwardRef<HTMLAnchorElement, SidebarNavigationItemProps>(
   (props, ref) => {
-    const { children, className, enableTooltip, Icon, isActive = false, ...htmlProps } = props;
+    const {
+      children,
+      className,
+      disableIconWhenExpanded = false,
+      enableTooltip,
+      Icon,
+      isActive = false,
+      ...htmlProps
+    } = props;
 
     return (
       <UnstyledListItem>
@@ -78,8 +92,12 @@ export const SidebarNavigationItem = forwardRef<HTMLAnchorElement, SidebarNaviga
             {...htmlProps}
             className={classNames({ active: isActive }, className)}
             ref={ref}>
-            {Icon ? <Icon css={navigationItemIconStyles} /> : undefined}
-
+            <Icon
+              css={[
+                navigationItemIconStyles,
+                disableIconWhenExpanded ? hideWhenExpandedStyles : undefined,
+              ]}
+            />
             <SidebarNavigationItemLabel>{children}</SidebarNavigationItemLabel>
           </NavigationItem>
         </Tooltip>
@@ -120,5 +138,11 @@ const navigationItemIconStyles = css`
   ${NavigationItem}.active > &,
   ${NavigationItem}:active > & {
     color: ${cssVar('color-icon-accent')};
+  }
+`;
+
+const hideWhenExpandedStyles = css`
+  [data-sidebar-collapsed='false'] & {
+    display: none;
   }
 `;

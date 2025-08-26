@@ -61,7 +61,7 @@ export interface SidebarNavigationAccordionItemProps {
    * The icon component to display at the start of the SidebarNavigationAccordionItem.
    * Must be an Echoes Icon component.
    */
-  Icon?: ForwardRefExoticComponent<IconProps & React.RefAttributes<HTMLSpanElement>>;
+  Icon: ForwardRefExoticComponent<IconProps & React.RefAttributes<HTMLSpanElement>>;
 }
 
 export const SidebarNavigationAccordionItem = forwardRef<
@@ -94,7 +94,7 @@ export const SidebarNavigationAccordionItem = forwardRef<
         id={accordionId}
         onClick={handleClick}
         ref={ref}>
-        {Icon ? <Icon css={sidebarNavigationItemIconStyles} /> : undefined}
+        <Icon css={sidebarNavigationItemIconStyles} />
         <SidebarNavigationItemLabel>{label}</SidebarNavigationItemLabel>
         {open ? (
           <IconChevronDown css={sidebarNavigationItemIconStyles} />
