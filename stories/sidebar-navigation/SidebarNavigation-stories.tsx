@@ -31,7 +31,7 @@ import {
 
 const meta: Meta<typeof SidebarNavigation> = {
   component: SidebarNavigation,
-  title: 'Echoes/Sidebar',
+  title: 'Echoes/SidebarNavigation',
 };
 
 export default meta;

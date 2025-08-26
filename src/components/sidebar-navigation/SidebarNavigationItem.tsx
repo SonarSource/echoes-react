@@ -27,8 +27,8 @@ import { cssVar } from '~utils/design-tokens';
 import { IconProps } from '../icons';
 import { Tooltip } from '../tooltip';
 import {
-  itemIconStyles,
   sidebarNavigationBaseItemStyles,
+  sidebarNavigationItemIconStyles,
   SidebarNavigationItemLabel,
   UnstyledListItem,
 } from './SidebarNavigationItemStyles';
@@ -115,7 +115,7 @@ const NavigationItem = styled(NavLinkBase)`
 NavigationItem.displayName = 'NavigationItem';
 
 const navigationItemIconStyles = css`
-  ${itemIconStyles}
+  ${sidebarNavigationItemIconStyles}
 
   ${NavigationItem}.active > &,
   ${NavigationItem}:active > & {

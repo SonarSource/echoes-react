@@ -31,8 +31,8 @@ import { TextNode } from '~types/utils';
 import { cssVar } from '~utils/design-tokens';
 import { IconChevronDown, IconChevronRight, IconProps } from '../icons';
 import {
-  itemIconStyles,
   sidebarNavigationBaseItemStyles,
+  sidebarNavigationItemIconStyles,
   SidebarNavigationItemLabel,
   UnstyledUList,
 } from './SidebarNavigationItemStyles';
@@ -94,12 +94,12 @@ export const SidebarNavigationAccordionItem = forwardRef<
         id={accordionId}
         onClick={handleClick}
         ref={ref}>
-        {Icon ? <Icon css={itemIconStyles} /> : undefined}
+        {Icon ? <Icon css={sidebarNavigationItemIconStyles} /> : undefined}
         <SidebarNavigationItemLabel>{label}</SidebarNavigationItemLabel>
         {open ? (
-          <IconChevronDown css={itemIconStyles} />
+          <IconChevronDown css={sidebarNavigationItemIconStyles} />
         ) : (
-          <IconChevronRight css={itemIconStyles} />
+          <IconChevronRight css={sidebarNavigationItemIconStyles} />
         )}
       </AccordionItem>
       <AccordionItemPanel

@@ -25,7 +25,7 @@ import { cssVar, SidebarNavigation } from '../../src';
 import { basicWrapperDecorator } from '../helpers/BasicWrapper';
 
 const meta: Meta = {
-  title: 'Echoes/Sidebar/Group',
+  title: 'Echoes/SidebarNavigation/Group',
   component: SidebarNavigation.Group,
   decorators: [
     (Story) => (

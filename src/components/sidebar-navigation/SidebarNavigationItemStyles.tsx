@@ -62,7 +62,7 @@ export const SidebarNavigationItemLabel = styled.span`
 `;
 SidebarNavigationItemLabel.displayName = 'SidebarNavigationItemLabel';
 
-export const itemIconStyles = css`
+export const sidebarNavigationItemIconStyles = css`
   color: ${cssVar('color-icon-subtle')};
   font-size: ${cssVar('font-size-30')};
 `;

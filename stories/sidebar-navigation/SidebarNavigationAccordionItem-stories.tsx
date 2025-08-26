@@ -21,22 +21,17 @@
 /* eslint-disable no-console */
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import { cssVar, IconBranch, SidebarNavigation } from '../../src';
+import { IconBranch, SidebarNavigation } from '../../src';
 import { basicWrapperDecorator } from '../helpers/BasicWrapper';
 
 const meta: Meta = {
-  title: 'Echoes/Sidebar/AccordionItem',
+  title: 'Echoes/SidebarNavigation/AccordionItem',
   component: SidebarNavigation.AccordionItem,
   decorators: [
     (Story) => (
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          width: cssVar('sidebar-navigation-sizes-width-expanded'),
-        }}>
+      <SidebarNavigation.Body>
         <Story />
-      </div>
+      </SidebarNavigation.Body>
     ),
     basicWrapperDecorator,
   ],
