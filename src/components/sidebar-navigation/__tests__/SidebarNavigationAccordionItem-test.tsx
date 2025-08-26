@@ -21,7 +21,7 @@
 import { matchers } from '@emotion/jest';
 import { screen } from '@testing-library/react';
 import { renderWithMemoryRouter } from '~common/helpers/test-utils';
-import { IconBranch } from '../../icons';
+import { IconBranch, IconExpand, IconGitBranch } from '../../icons';
 import {
   SidebarNavigationAccordionItem,
   SidebarNavigationAccordionItemProps,
@@ -67,8 +67,12 @@ describe('integration with SidebarNavigationItem', () => {
     setupSidebarNavigationAccordionItem({
       children: (
         <>
-          <SidebarNavigationItem to="/initial">Sub Item 1</SidebarNavigationItem>
-          <SidebarNavigationItem to="/sub-item-2">Sub Item 2</SidebarNavigationItem>
+          <SidebarNavigationItem Icon={IconGitBranch} to="/initial">
+            Sub Item 1
+          </SidebarNavigationItem>
+          <SidebarNavigationItem Icon={IconGitBranch} to="/sub-item-2">
+            Sub Item 2
+          </SidebarNavigationItem>
         </>
       ),
     });
@@ -97,13 +101,15 @@ function setupSidebarNavigationAccordionItem(
 ) {
   return renderWithMemoryRouter(
     <ul>
-      <SidebarNavigationAccordionItem label="Accordion Item" {...props}>
+      <SidebarNavigationAccordionItem Icon={IconExpand} label="Accordion Item" {...props}>
         {props.children ?? (
           <>
-            <SidebarNavigationItem isActive to="/sub-item-1">
+            <SidebarNavigationItem Icon={IconBranch} isActive to="/sub-item-1">
               Sub Item 1
             </SidebarNavigationItem>
-            <SidebarNavigationItem to="/sub-item-2">Sub Item 2</SidebarNavigationItem>
+            <SidebarNavigationItem Icon={IconBranch} to="/sub-item-2">
+              Sub Item 2
+            </SidebarNavigationItem>
           </>
         )}
       </SidebarNavigationAccordionItem>

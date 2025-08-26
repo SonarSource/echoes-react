@@ -20,17 +20,11 @@
 
 import { screen } from '@testing-library/react';
 import { renderWithMemoryRouter } from '~common/helpers/test-utils';
-import { IconBranch } from '../../icons';
+import { IconBranch, IconClock } from '../../icons';
 import { SidebarNavigationItem, SidebarNavigationItemProps } from '../SidebarNavigationItem';
 
-it('should render with an icon', () => {
-  setupSidebarNavigationItem({ Icon: IconBranch });
-
-  expect(screen.getByRole('link')).toMatchSnapshot();
-});
-
 it('should apply active class when isActive is true', () => {
-  setupSidebarNavigationItem({ isActive: true });
+  setupSidebarNavigationItem({ isActive: true, disableIconWhenExpanded: true });
 
   expect(screen.getByRole('link')).toHaveClass('active');
 });
@@ -57,7 +51,7 @@ describe('ellipsis behavior', () => {
     expect(tooltip).toHaveTextContent('Test Item');
   });
 
-  it('should not show tooltip when eenableTooltip prop is false', async () => {
+  it('should not show tooltip when enableTooltip prop is false', async () => {
     const { user } = setupSidebarNavigationItem();
 
     await user.hover(screen.getByRole('link'));
@@ -85,7 +79,7 @@ it("shouldn't have any a11y violation", async () => {
 function setupSidebarNavigationItem(props: Partial<SidebarNavigationItemProps> = {}) {
   return renderWithMemoryRouter(
     <ul>
-      <SidebarNavigationItem to="/second" {...props}>
+      <SidebarNavigationItem Icon={IconClock} to="/second" {...props}>
         Test Item
       </SidebarNavigationItem>
     </ul>,

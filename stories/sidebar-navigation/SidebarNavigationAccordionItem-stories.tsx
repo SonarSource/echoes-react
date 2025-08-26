@@ -35,16 +35,6 @@ const meta: Meta = {
     ),
     basicWrapperDecorator,
   ],
-  argTypes: {
-    Icon: {
-      control: { type: 'select' },
-      mapping: {
-        default: IconBranch,
-        none: undefined,
-      },
-      options: ['default', 'none'],
-    },
-  },
 };
 
 export default meta;
@@ -53,10 +43,15 @@ type Story = StoryObj<typeof SidebarNavigation.AccordionItem>;
 
 export const base: Story = {
   args: {
+    Icon: IconBranch,
     children: (
       <>
-        <SidebarNavigation.Item to="/1">Item 1</SidebarNavigation.Item>
-        <SidebarNavigation.Item to="/2">Item 2</SidebarNavigation.Item>
+        <SidebarNavigation.Item Icon={IconBranch} disableIconWhenExpanded to="/1">
+          Item 1
+        </SidebarNavigation.Item>
+        <SidebarNavigation.Item Icon={IconBranch} disableIconWhenExpanded to="/2">
+          Item 2
+        </SidebarNavigation.Item>
       </>
     ),
     label: 'Accordion',
