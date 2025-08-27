@@ -89,7 +89,8 @@ const HeaderContainer = styled.button`
 
   gap: ${cssVar('dimension-space-100')};
   padding: ${cssVar('dimension-space-100')};
-  margin: 0 ${cssVar('dimension-space-100')} ${cssVar('dimension-space-50')};
+  margin: ${cssVar('dimension-space-100')};
+  margin-bottom: ${cssVar('dimension-space-50')};
 
   overflow: hidden;
 
