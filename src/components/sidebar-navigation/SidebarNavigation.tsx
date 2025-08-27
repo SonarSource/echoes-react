@@ -73,7 +73,7 @@ const SidebarNavigationWrapper = styled.nav`
 
   overflow: hidden;
 
-  padding-top: ${cssVar('dimension-space-100')};
+  padding-top: ${cssVar('dimension-space-250')};
 
   display: flex;
   flex-direction: column;
