@@ -58,6 +58,7 @@ export const Full: Story = {
   },
   render: (args) => (
     <Layout>
+      <HeaderWrapper />
       <SidebarNavigation {...args}>
         <SidebarNavigation.Header
           avatar={
@@ -184,7 +185,9 @@ function ToggleSidebarCollapse() {
   const { isSidebarCollapsed, setIsSidebarCollapsed } = useContext(LayoutContext);
   return (
     <ContentWrapper>
-      <div>Page content</div>
+      <div>
+        Page content that is long enough to be visible when the sidebar is open on small screen
+      </div>
       <Button
         onClick={() => setIsSidebarCollapsed((isSidebarCollapsed) => !isSidebarCollapsed)}
         variety="primary">
@@ -203,3 +206,10 @@ const ContentWrapper = styled.div`
     display: none;
   }
 `;
+
+const HeaderWrapper = styled.div`
+  grid-area: header;
+  height: 42px;
+  background-color: ${cssVar('color-background-success-weak-default')};
+`;
+HeaderWrapper.displayName = 'HeaderWrapper';

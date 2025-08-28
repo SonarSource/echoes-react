@@ -77,7 +77,7 @@ const SidebarNavigationGroupLabel = styled.label`
   height: ${cssVar('dimension-height-800')};
   padding: 0 ${cssVar('dimension-space-100')};
 
-  [data-sidebar-collapsed='true'] > nav:not(:hover, :focus-within) & {
+  [data-sidebar-collapsed='true'] nav:not(:hover, :focus-within) & {
     display: none;
   }
 `;

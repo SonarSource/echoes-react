@@ -150,7 +150,7 @@ const AccordionItemPanel = styled.section`
     --sidebar-navigation-accordion-children-display: none;
   }
 
-  [data-sidebar-collapsed='true'] > nav:not(:hover, :focus-within) & {
+  [data-sidebar-collapsed='true'] nav:not(:hover, :focus-within) & {
     margin: 0;
     padding: 0;
     border-left: none;
