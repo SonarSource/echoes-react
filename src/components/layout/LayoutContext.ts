@@ -18,35 +18,18 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-/* eslint-disable no-console */
-import type { Meta, StoryObj } from '@storybook/react-vite';
-import { IconBranch, SidebarNavigation } from '../../src';
-import { toDisabledControlArgType } from '../helpers/arg-types';
-import { basicWrapperDecorator } from '../helpers/BasicWrapper';
+import { createContext, Dispatch, SetStateAction } from 'react';
 
-const meta: Meta = {
-  title: 'Echoes/SidebarNavigation/Item',
-  component: SidebarNavigation.Item,
-  decorators: [
-    (Story) => (
-      <SidebarNavigation.Body>
-        <Story />
-      </SidebarNavigation.Body>
-    ),
-    basicWrapperDecorator,
-  ],
-  argTypes: {
-    ...toDisabledControlArgType('Icon'),
-  },
-};
+export interface LayoutContextShape {
+  hasSidebar: boolean;
+  isSidebarCollapsed: boolean;
+  setHasSidebar: Dispatch<SetStateAction<boolean>>;
+  setIsSidebarCollapsed: Dispatch<SetStateAction<boolean>>;
+}
 
-export default meta;
-
-type Story = StoryObj<typeof SidebarNavigation.Item>;
-
-export const base: Story = {
-  args: {
-    Icon: IconBranch,
-    children: 'Navigation item',
-  },
-};
+export const LayoutContext = createContext<LayoutContextShape>({
+  hasSidebar: false,
+  isSidebarCollapsed: false,
+  setHasSidebar: () => {},
+  setIsSidebarCollapsed: () => {},
+});

@@ -21,7 +21,6 @@
 import styled from '@emotion/styled';
 import { forwardRef } from 'react';
 import { useIntl } from 'react-intl';
-
 import { cssVar } from '~utils/design-tokens';
 import { GlobalGridArea } from '../layout/LayoutTypes';
 

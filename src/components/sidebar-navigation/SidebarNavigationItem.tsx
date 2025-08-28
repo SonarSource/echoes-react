@@ -142,7 +142,8 @@ const navigationItemIconStyles = css`
 `;
 
 const hideWhenExpandedStyles = css`
-  [data-sidebar-collapsed='false'] & {
+  [data-sidebar-collapsed='false'],
+  [data-sidebar-collapsed='true'] > nav:is(:hover, :focus-within) & {
     display: none;
   }
 `;

@@ -19,28 +19,32 @@
  */
 
 import styled from '@emotion/styled';
-import { forwardRef, PropsWithChildren } from 'react';
+import { forwardRef, PropsWithChildren, useContext, useEffect } from 'react';
 import { useIntl } from 'react-intl';
 import { cssVar } from '~utils/design-tokens';
+import { LayoutContext } from '../layout/LayoutContext';
 
 export interface SidebarNavigationProps {
   /**
    * Sidebar navigation Aria-label, defaults to "Secondary navigation"
    */
   ariaLabel?: string;
-  /**
-   * Whether the sidebar is collapsed (narrow) or expanded (wide)
-   */
-  isCollapsed: boolean;
 }
 
 export const SidebarNavigation = forwardRef<
   HTMLDivElement,
   PropsWithChildren<SidebarNavigationProps>
 >((props, ref) => {
-  const { ariaLabel, children, isCollapsed } = props;
-
+  const { ariaLabel, children } = props;
   const intl = useIntl();
+  const { setHasSidebar } = useContext(LayoutContext);
+
+  useEffect(() => {
+    setHasSidebar(true);
+    return () => {
+      setHasSidebar(false);
+    };
+  }, [setHasSidebar]);
 
   const defaultAriaLabel = intl.formatMessage({
     id: 'sidebar_navigation.label',
@@ -49,15 +53,7 @@ export const SidebarNavigation = forwardRef<
   });
 
   return (
-    <SidebarNavigationWrapper
-      aria-label={ariaLabel ?? defaultAriaLabel}
-      css={{
-        '--sidebar-navigation-width': isCollapsed
-          ? cssVar('sidebar-navigation-sizes-width-collapsed')
-          : cssVar('sidebar-navigation-sizes-width-expanded'),
-      }}
-      data-sidebar-collapsed={isCollapsed}
-      ref={ref}>
+    <SidebarNavigationWrapper aria-label={ariaLabel ?? defaultAriaLabel} ref={ref}>
       {children}
     </SidebarNavigationWrapper>
   );
@@ -66,6 +62,8 @@ export const SidebarNavigation = forwardRef<
 SidebarNavigation.displayName = 'SidebarNavigation';
 
 const SidebarNavigationWrapper = styled.nav`
+  grid-area: sidebar;
+
   box-sizing: content-box;
   width: var(--sidebar-navigation-width);
   background-color: ${cssVar('color-surface-canvas-default')};
@@ -79,5 +77,11 @@ const SidebarNavigationWrapper = styled.nav`
   flex-direction: column;
 
   transition: width 0.1s;
+
+  --sidebar-navigation-width: ${cssVar('sidebar-navigation-sizes-width-expanded')};
+
+  [data-sidebar-collapsed='true'] &:not(:hover, :focus-within) {
+    --sidebar-navigation-width: ${cssVar('sidebar-navigation-sizes-width-collapsed')};
+  }
 `;
 SidebarNavigationWrapper.displayName = 'SidebarNavigationWrapper';
