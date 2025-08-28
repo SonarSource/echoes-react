@@ -19,7 +19,9 @@
  */
 
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { useContext } from 'react';
 import {
+  Button,
   cssVar,
   IconBell,
   IconBranch,
@@ -30,12 +32,17 @@ import {
   IconProject,
   IconSparkleInShieldError,
   IconTarget,
+  Layout,
   SidebarNavigation,
 } from '../../src';
+import { LayoutContext } from '../../src/components/layout/LayoutContext';
 
 const meta: Meta<typeof SidebarNavigation> = {
   component: SidebarNavigation,
   title: 'Echoes/SidebarNavigation',
+  parameters: {
+    layout: 'fullscreen',
+  },
 };
 
 export default meta;
@@ -48,11 +55,8 @@ export const Full: Story = {
   parameters: {
     exclude: ['children'],
   },
-  args: {
-    isCollapsed: false,
-  },
   render: (args) => (
-    <div style={{ display: 'flex', height: 'calc(100vh - 32px)' }}>
+    <Layout>
       <SidebarNavigation {...args}>
         <SidebarNavigation.Header
           avatar={
@@ -170,6 +174,20 @@ export const Full: Story = {
           </SidebarNavigation.AccordionItem>
         </SidebarNavigation.Footer>
       </SidebarNavigation>
-    </div>
+      <ToggleSidebarCollapse />
+    </Layout>
   ),
 };
+
+function ToggleSidebarCollapse() {
+  const { isSidebarCollapsed, setIsSidebarCollapsed } = useContext(LayoutContext);
+  return (
+    <div style={{ gridArea: 'content', padding: '2rem' }}>
+      <Button
+        onClick={() => setIsSidebarCollapsed((isSidebarCollapsed) => !isSidebarCollapsed)}
+        variety="primary">
+        {isSidebarCollapsed ? 'Expand Sidebar' : 'Collapse Sidebar'}
+      </Button>
+    </div>
+  );
+}

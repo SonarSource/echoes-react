@@ -58,7 +58,7 @@ const SidebarNavigationBodyScrollContainer = styled.div`
   overflow-x: hidden;
   overflow-y: auto;
 
-  [data-sidebar-collapsed='true'] & {
+  [data-sidebar-collapsed='true'] > nav:not(:hover, :focus-within) & {
     overflow-y: hidden;
   }
 `;
@@ -74,7 +74,7 @@ const SidebarNavigationBodyInner = styled.ul`
 SidebarNavigationBodyInner.displayName = 'SidebarNavigationBodyInner';
 
 const SidebarNavigationBottomShadowScroll = styled(BottomShadowScroll)`
-  [data-sidebar-collapsed='true'] & {
+  [data-sidebar-collapsed='true'] > nav:not(:hover, :focus-within) & {
     display: none;
   }
 `;

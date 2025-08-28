@@ -94,8 +94,9 @@ const HeaderContainer = styled.button`
 
   overflow: hidden;
 
-  [data-sidebar-collapsed='true'] & {
+  [data-sidebar-collapsed='true'] > nav:not(:hover, :focus-within) & {
     margin: ${cssVar('dimension-space-50')};
+    margin-top: ${cssVar('dimension-space-100')};
   }
 
   /* If it is interactive, we want mouse interactivity */

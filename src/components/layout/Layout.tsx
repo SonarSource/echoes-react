@@ -19,12 +19,27 @@
  */
 
 import styled from '@emotion/styled';
-import { PropsWithChildren } from 'react';
+import { PropsWithChildren, useMemo, useState } from 'react';
+import { LayoutContext } from './LayoutContext';
 
 export function Layout({ children }: PropsWithChildren) {
+  const [hasSidebar, setHasSidebar] = useState(false);
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+  const layoutContextValue = useMemo(
+    () => ({
+      hasSidebar,
+      isSidebarCollapsed,
+      setHasSidebar,
+      setIsSidebarCollapsed,
+    }),
+    [hasSidebar, isSidebarCollapsed],
+  );
+
   return (
     <Viewport>
-      <MainGrid>{children}</MainGrid>
+      <MainGrid data-sidebar-collapsed={isSidebarCollapsed} data-sidebar-exist={hasSidebar}>
+        <LayoutContext.Provider value={layoutContextValue}>{children}</LayoutContext.Provider>
+      </MainGrid>
     </Viewport>
   );
 }
