@@ -20,9 +20,9 @@
 
 import styled from '@emotion/styled';
 import { forwardRef, ReactNode } from 'react';
-
 import { cssVar } from '~utils/design-tokens';
 import { Divider } from '../divider';
+import { PageGridArea } from '../layout/LayoutTypes';
 
 export interface PageHeaderProps {
   /**
@@ -103,11 +103,15 @@ export const PageHeaderRoot = forwardRef<HTMLDivElement, PageHeaderProps>((props
 PageHeaderRoot.displayName = 'PageHeader';
 
 const StyledPageHeader = styled.div`
-  align-items: flex-start;
-  align-self: stretch;
+  grid-area: ${PageGridArea.header};
+
   display: flex;
+  align-items: flex-start;
   flex-direction: column;
   gap: ${cssVar('dimension-space-300')};
+
+  padding-top: ${cssVar('dimension-space-300')};
+  padding-right: ${cssVar('dimension-space-300')};
 `;
 
 StyledPageHeader.displayName = 'StyledPageHeader';
