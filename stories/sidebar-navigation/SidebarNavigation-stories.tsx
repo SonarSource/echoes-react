@@ -18,6 +18,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+import styled from '@emotion/styled';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { useContext } from 'react';
 import {
@@ -182,12 +183,23 @@ export const Full: Story = {
 function ToggleSidebarCollapse() {
   const { isSidebarCollapsed, setIsSidebarCollapsed } = useContext(LayoutContext);
   return (
-    <div style={{ gridArea: 'content', padding: '2rem' }}>
+    <ContentWrapper>
+      <div>Page content</div>
       <Button
         onClick={() => setIsSidebarCollapsed((isSidebarCollapsed) => !isSidebarCollapsed)}
         variety="primary">
         {isSidebarCollapsed ? 'Expand Sidebar' : 'Collapse Sidebar'}
       </Button>
-    </div>
+    </ContentWrapper>
   );
 }
+
+const ContentWrapper = styled.div`
+  grid-area: content;
+  padding: 2rem;
+  background-color: ${cssVar('color-background-accent-weak-default')};
+
+  [data-sidebar-is-dockable='false'] & button {
+    display: none;
+  }
+`;
