@@ -53,35 +53,56 @@ export const SidebarNavigation = forwardRef<
   });
 
   return (
-    <SidebarNavigationWrapper aria-label={ariaLabel ?? defaultAriaLabel} ref={ref}>
-      {children}
-    </SidebarNavigationWrapper>
+    <SidebarNavigationContainer>
+      <SidebarNavigationWrapper aria-label={ariaLabel ?? defaultAriaLabel} ref={ref}>
+        {children}
+      </SidebarNavigationWrapper>
+    </SidebarNavigationContainer>
   );
 });
 
 SidebarNavigation.displayName = 'SidebarNavigation';
 
-const SidebarNavigationWrapper = styled.nav`
+const SidebarNavigationContainer = styled.div`
   grid-area: sidebar;
+  position: relative;
 
-  box-sizing: content-box;
-  width: var(--sidebar-navigation-width);
-  background-color: ${cssVar('color-surface-canvas-default')};
-  border-right: ${cssVar('border-width-default')} solid ${cssVar('color-border-weak')};
+  width: calc(var(--sidebar-navigation-container-width) + ${cssVar('border-width-default')});
 
-  overflow: hidden;
+  --sidebar-navigation-container-width: ${cssVar('sidebar-navigation-sizes-width-expanded')};
 
-  padding-top: ${cssVar('dimension-space-250')};
+  [data-sidebar-collapsed='true'] & {
+    --sidebar-navigation-container-width: ${cssVar('sidebar-navigation-sizes-width-collapsed')};
+  }
+`;
+SidebarNavigationContainer.displayName = 'SidebarNavigationContainer';
+
+const SidebarNavigationWrapper = styled.nav`
+  position: absolute;
+  top: 0;
+  bottom: 0;
 
   display: flex;
   flex-direction: column;
+  box-sizing: content-box;
+  overflow: hidden;
+
+  padding-top: ${cssVar('dimension-space-250')};
+  border-right: ${cssVar('border-width-default')} solid ${cssVar('color-border-weak')};
+  background-color: ${cssVar('color-surface-canvas-default')};
 
   transition: width 0.1s;
+
+  width: var(--sidebar-navigation-width);
 
   --sidebar-navigation-width: ${cssVar('sidebar-navigation-sizes-width-expanded')};
 
   [data-sidebar-collapsed='true'] &:not(:hover, :focus-within) {
     --sidebar-navigation-width: ${cssVar('sidebar-navigation-sizes-width-collapsed')};
+  }
+
+  [data-sidebar-collapsed='true'] &:is(:hover, :focus-within) {
+    box-shadow: ${cssVar('box-shadow-x-large')};
   }
 `;
 SidebarNavigationWrapper.displayName = 'SidebarNavigationWrapper';
