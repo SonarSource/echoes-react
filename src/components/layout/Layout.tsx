@@ -19,14 +19,22 @@
  */
 
 import styled from '@emotion/styled';
-import { PropsWithChildren, useMemo, useState } from 'react';
+import { PropsWithChildren, useEffect, useMemo, useState } from 'react';
 import { cssVar } from '~utils/design-tokens';
 import { LayoutContext } from './LayoutContext';
 import { GlobalGridArea } from './LayoutTypes';
 
+const LAYOUT_SIDEBAR_BREAKPOINT = 1320;
+
 export function Layout({ children }: PropsWithChildren) {
+  const mediaQueryList = useMemo(
+    () => window.matchMedia(`(min-width: ${LAYOUT_SIDEBAR_BREAKPOINT}px)`),
+    [],
+  );
   const [hasSidebar, setHasSidebar] = useState(false);
-  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(() => mediaQueryList.matches);
+  const [isSidebarDockable, setIsSidebarDockable] = useState(() => mediaQueryList.matches);
+
   const layoutContextValue = useMemo(
     () => ({
       hasSidebar,
@@ -37,9 +45,24 @@ export function Layout({ children }: PropsWithChildren) {
     [hasSidebar, isSidebarCollapsed],
   );
 
+  useEffect(() => {
+    const handleMediaQueryChange = ({ matches: canDockSidebar }: MediaQueryListEvent) => {
+      setIsSidebarDockable(canDockSidebar);
+    };
+
+    mediaQueryList.addEventListener('change', handleMediaQueryChange);
+
+    return () => {
+      mediaQueryList.removeEventListener('change', handleMediaQueryChange);
+    };
+  }, [mediaQueryList]);
+
   return (
     <Viewport>
-      <MainGrid data-sidebar-collapsed={isSidebarCollapsed} data-sidebar-exist={hasSidebar}>
+      <MainGrid
+        data-sidebar-collapsed={isSidebarCollapsed || !isSidebarDockable}
+        data-sidebar-exist={hasSidebar}
+        data-sidebar-is-dockable={isSidebarDockable}>
         <LayoutContext.Provider value={layoutContextValue}>{children}</LayoutContext.Provider>
       </MainGrid>
     </Viewport>
