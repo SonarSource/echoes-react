@@ -18,18 +18,22 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+import styled from '@emotion/styled';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import {
   Banner,
   Button,
+  cssVar,
   DropdownMenu,
   GlobalNavigation,
-  IconBell,
-  IconPlus,
   IconQuestionMark,
+  IconSearch,
   Layout,
+  LinkStandalone,
   LogoSonarQubeServer,
+  Text,
 } from '../../src';
+import { AsideSize } from '../../src/components/layout/LayoutSlots';
 import { Sidebar } from '../../src/components/layout/LayoutStyles';
 
 const meta: Meta = {
@@ -43,6 +47,10 @@ const meta: Meta = {
         false: undefined,
       },
     },
+    asideSize: {
+      control: 'select',
+      options: [AsideSize.small, AsideSize.medium, AsideSize.large],
+    },
   },
 };
 
@@ -52,6 +60,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
+    asideSize: AsideSize.medium,
     banner: false,
   },
   render: (args) => (
@@ -59,20 +68,21 @@ export const Default: Story = {
     <div style={{ margin: '-1rem' }}>
       <Layout>
         <Layout.BannerContainer>{args.banner}</Layout.BannerContainer>
-        <Layout.Header>
+        <Layout.GlobalNavContainer>
           <GlobalNav />
-        </Layout.Header>
+        </Layout.GlobalNavContainer>
         <Sidebar isCollapsed={false}>Sidebar</Sidebar>
-        <Layout.ContentWrapper fixed>
-          <Layout.Aside>
-            <div
-              style={{
-                height: '4309px',
-                background: 'linear-gradient(rgb(122, 108, 108), rgb(130, 44, 44))',
-              }}
-            />
-          </Layout.Aside>
-          <Layout.PageWrapper>
+        <Layout.ContentGrid fixed>
+          <Layout.AsideLeft size={args.asideSize}>
+            <List>
+              {items.map((k) => (
+                <li key={k}>
+                  <Button variety="default-ghost">Item {k + 1}</Button>
+                </li>
+              ))}
+            </List>
+          </Layout.AsideLeft>
+          <Layout.PageGrid>
             <Layout.PageHeader sticky>
               <h1>asdf</h1>
               <Button
@@ -96,9 +106,30 @@ export const Default: Story = {
               {text}
               {text}
             </Layout.PageContent>
-            <Layout.PageFooter />
-          </Layout.PageWrapper>
-        </Layout.ContentWrapper>
+            <Layout.PageFooter>
+              <Footer>
+                <Text isSubtle>2018-2025 SonarSource SA. All rights reserved</Text>
+                <Links>
+                  <LinkStandalone highlight="subtle" to="/1">
+                    Terms
+                  </LinkStandalone>
+                  <LinkStandalone highlight="subtle" to="/2">
+                    Pricing
+                  </LinkStandalone>
+                  <LinkStandalone highlight="subtle" to="/3">
+                    Privacy
+                  </LinkStandalone>
+                  <LinkStandalone highlight="subtle" to="/4">
+                    Cookies
+                  </LinkStandalone>
+                  <LinkStandalone highlight="subtle" to="/5">
+                    Terms
+                  </LinkStandalone>
+                </Links>
+              </Footer>
+            </Layout.PageFooter>
+          </Layout.PageGrid>
+        </Layout.ContentGrid>
       </Layout>
     </div>
   ),
@@ -123,42 +154,56 @@ function GlobalNav() {
         </GlobalNavigation.Home>
 
         <GlobalNavigation.ItemsContainer>
-          <>
-            <GlobalNavigation.Item to="/">Home</GlobalNavigation.Item>
-            <GlobalNavigation.Item to="/qp">Quality Profiles</GlobalNavigation.Item>
-          </>
+          <GlobalNavigation.Item to="/">Home</GlobalNavigation.Item>
+          <GlobalNavigation.Item to="/qp">Quality Profiles</GlobalNavigation.Item>
           <GlobalNavigation.Item to="/rules">Rules</GlobalNavigation.Item>
-          <GlobalNavigation.DropdownItem
-            items={
-              <>
-                <DropdownMenu.ItemLink to="/3456">option 1</DropdownMenu.ItemLink>
-                <DropdownMenu.ItemLink to="/hiya">hiya</DropdownMenu.ItemLink>
-              </>
-            }>
-            More
-          </GlobalNavigation.DropdownItem>
         </GlobalNavigation.ItemsContainer>
       </GlobalNavigation.Primary>
       <GlobalNavigation.Secondary>
-        <GlobalNavigation.Action Icon={IconBell} ariaLabel="Ding" />
+        <GlobalNavigation.Action Icon={IconSearch} ariaLabel="?" />
         <GlobalNavigation.Action Icon={IconQuestionMark} ariaLabel="Help" isIconFilled />
-        <DropdownMenu items={<DropdownMenu.ItemLink to="/create">project</DropdownMenu.ItemLink>}>
-          <GlobalNavigation.Action Icon={IconPlus} ariaLabel="Create..." />
-        </DropdownMenu>
         <GlobalNavigation.Account
           avatar={<Avatar />}
-          items={<DropdownMenu.ItemLink to="/account">account settings</DropdownMenu.ItemLink>}
+          items={<DropdownMenu.ItemLink to="/account">Settings</DropdownMenu.ItemLink>}
         />
       </GlobalNavigation.Secondary>
     </GlobalNavigation>
   );
 }
 
-function Avatar() {
-  return (
-    <img
-      alt="smiley avatar"
-      src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAApgAAAKYB3X3/OAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAANCSURBVEiJtZZPbBtFFMZ/M7ubXdtdb1xSFyeilBapySVU8h8OoFaooFSqiihIVIpQBKci6KEg9Q6H9kovIHoCIVQJJCKE1ENFjnAgcaSGC6rEnxBwA04Tx43t2FnvDAfjkNibxgHxnWb2e/u992bee7tCa00YFsffekFY+nUzFtjW0LrvjRXrCDIAaPLlW0nHL0SsZtVoaF98mLrx3pdhOqLtYPHChahZcYYO7KvPFxvRl5XPp1sN3adWiD1ZAqD6XYK1b/dvE5IWryTt2udLFedwc1+9kLp+vbbpoDh+6TklxBeAi9TL0taeWpdmZzQDry0AcO+jQ12RyohqqoYoo8RDwJrU+qXkjWtfi8Xxt58BdQuwQs9qC/afLwCw8tnQbqYAPsgxE1S6F3EAIXux2oQFKm0ihMsOF71dHYx+f3NND68ghCu1YIoePPQN1pGRABkJ6Bus96CutRZMydTl+TvuiRW1m3n0eDl0vRPcEysqdXn+jsQPsrHMquGeXEaY4Yk4wxWcY5V/9scqOMOVUFthatyTy8QyqwZ+kDURKoMWxNKr2EeqVKcTNOajqKoBgOE28U4tdQl5p5bwCw7BWquaZSzAPlwjlithJtp3pTImSqQRrb2Z8PHGigD4RZuNX6JYj6wj7O4TFLbCO/Mn/m8R+h6rYSUb3ekokRY6f/YukArN979jcW+V/S8g0eT/N3VN3kTqWbQ428m9/8k0P/1aIhF36PccEl6EhOcAUCrXKZXXWS3XKd2vc/TRBG9O5ELC17MmWubD2nKhUKZa26Ba2+D3P+4/MNCFwg59oWVeYhkzgN/JDR8deKBoD7Y+ljEjGZ0sosXVTvbc6RHirr2reNy1OXd6pJsQ+gqjk8VWFYmHrwBzW/n+uMPFiRwHB2I7ih8ciHFxIkd/3Omk5tCDV1t+2nNu5sxxpDFNx+huNhVT3/zMDz8usXC3ddaHBj1GHj/As08fwTS7Kt1HBTmyN29vdwAw+/wbwLVOJ3uAD1wi/dUH7Qei66PfyuRj4Ik9is+hglfbkbfR3cnZm7chlUWLdwmprtCohX4HUtlOcQjLYCu+fzGJH2QRKvP3UNz8bWk1qMxjGTOMThZ3kvgLI5AzFfo379UAAAAASUVORK5CYII="
-    />
-  );
-}
+const Avatar = styled.div`
+  width: 24px;
+  height: 24px;
+  background: radial-gradient(white, ${cssVar('color-background-accent-active')});
+`;
+
+const Footer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: ${[
+    cssVar('dimension-space-200'),
+    cssVar('dimension-space-200'),
+    cssVar('dimension-space-300'),
+  ].join(' ')};
+`;
+
+const Links = styled.div`
+  display: flex;
+  gap: ${cssVar('dimension-space-200')};
+`;
+
+const items = Array.from(Array(100)).map((_, i) => i);
+
+const List = styled.ul`
+  all: unset;
+
+  & li {
+    padding: 0 8px;
+  }
+
+  & button {
+    width: 100%;
+  }
+`;

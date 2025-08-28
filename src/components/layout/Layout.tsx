@@ -52,7 +52,7 @@ const MainGrid = styled.div`
   grid-template-rows: auto auto 1fr;
   grid-template-areas:
     '${GlobalGridArea.banner} ${GlobalGridArea.banner}'
-    '${GlobalGridArea.header} ${GlobalGridArea.header}'
+    '${GlobalGridArea.globalNav} ${GlobalGridArea.globalNav}'
     '${GlobalGridArea.sidebar} ${GlobalGridArea.content}';
 `;
 MainGrid.displayName = 'MainGrid';

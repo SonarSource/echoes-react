@@ -20,10 +20,12 @@
 
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
+import { PropsWithChildren } from 'react';
+import { cssVar } from '~utils/design-tokens';
 
 export enum GlobalGridArea {
-  header = 'header',
   banner = 'banner',
+  globalNav = 'global-nav',
   sidebar = 'sidebar',
   content = 'content',
 }
@@ -40,6 +42,18 @@ export enum PageGridArea {
   footer = 'footer',
 }
 
+export enum AsideSize {
+  small = 'small',
+  medium = 'medium',
+  large = 'large',
+}
+
+const AsideWidth = {
+  [AsideSize.small]: cssVar('layout-aside-width-small'),
+  [AsideSize.medium]: cssVar('layout-aside-width-medium'),
+  [AsideSize.large]: cssVar('layout-aside-width-large'),
+};
+
 /*
  * Layer 1 Grid components
  */
@@ -48,12 +62,12 @@ export const BannerContainer = styled.div`
 `;
 BannerContainer.displayName = 'BannerContainer';
 
-export const Header = styled.div`
-  grid-area: ${GlobalGridArea.header};
+export const GlobalNavContainer = styled.div`
+  grid-area: ${GlobalGridArea.globalNav};
 `;
-Header.displayName = 'Header';
+GlobalNavContainer.displayName = 'GlobalNavContainer';
 
-export const ContentWrapper = styled.div<{ fixed?: boolean }>`
+export const ContentGrid = styled.div<{ fixed?: boolean }>`
   position: relative;
   grid-area: ${GlobalGridArea.content};
   overflow-y: hidden;
@@ -63,7 +77,7 @@ export const ContentWrapper = styled.div<{ fixed?: boolean }>`
       ? css`
           margin-left: auto;
           margin-right: auto;
-          max-width: 1550px;
+          max-width: ${cssVar('layout-sizes-max-width-large')};
         `
       : ''}
 
@@ -74,23 +88,31 @@ export const ContentWrapper = styled.div<{ fixed?: boolean }>`
     '${ContentGridArea.header} ${ContentGridArea.header}'
     '${ContentGridArea.aside} ${ContentGridArea.page}';
 `;
-ContentWrapper.displayName = 'ContentWrapper';
+ContentGrid.displayName = 'ContentGrid';
 
 /*
  * Layer 2 Grid components
  * (ContentGrid)
  */
-
-export const Aside = styled.div`
+export interface AsideProps {
+  className?: string;
+  size: `${AsideSize}`;
+}
+export function AsideLeft(props: PropsWithChildren<AsideProps>) {
+  const { children, size, ...restProps } = props;
+  return (
+    <StyledAside {...restProps} css={{ width: AsideWidth[size] }}>
+      {children}
+    </StyledAside>
+  );
+}
+const StyledAside = styled.div`
   grid-area: ${ContentGridArea.aside};
-  background-color: rgba(10, 120, 30, 0.6);
-  padding: 16px;
-  width: 200px;
   overflow-y: auto;
 `;
-Aside.displayName = 'Aside';
+StyledAside.displayName = 'StyledAside';
 
-export const PageWrapper = styled.div`
+export const PageGrid = styled.div`
   grid-area: ${ContentGridArea.page};
   overflow-y: auto;
 
@@ -101,6 +123,7 @@ export const PageWrapper = styled.div`
     '${PageGridArea.main}'
     '${PageGridArea.footer}';
 `;
+PageGrid.displayName = 'PageGrid';
 
 export const PageHeader = styled.div<{ sticky: boolean }>`
   grid-area: ${PageGridArea.header};
@@ -110,14 +133,15 @@ export const PageHeader = styled.div<{ sticky: boolean }>`
   background-color: aliceblue;
   padding: 16px;
 `;
+PageHeader.displayName = 'PageHeader';
 
 export const PageContent = styled.div`
   grid-area: ${PageGridArea.main};
   padding: 16px;
 `;
+PageContent.displayName = 'PageContent';
 
 export const PageFooter = styled.div`
   grid-area: ${PageGridArea.footer};
-  height: 120px;
-  background: linear-gradient(rgb(122, 108, 108), rgb(130, 44, 44));
 `;
+PageFooter.displayName = 'PageFooter';

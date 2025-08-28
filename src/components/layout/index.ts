@@ -20,14 +20,14 @@
 
 import { Layout as LayoutRoot } from './Layout';
 import {
-  Aside,
+  AsideLeft,
   BannerContainer,
-  ContentWrapper,
-  Header,
+  ContentGrid,
+  GlobalNavContainer,
   PageContent,
   PageFooter,
+  PageGrid,
   PageHeader,
-  PageWrapper,
 } from './LayoutSlots';
 
 /**
@@ -56,11 +56,42 @@ import {
  * The ContentWrapper has its own internal sub-structure
  */
 export const Layout = Object.assign(LayoutRoot, {
-  Header,
-  Aside,
+  GlobalNavContainer,
+  AsideLeft,
   BannerContainer,
-  ContentWrapper,
-  PageWrapper,
+
+  /**
+   * The Content Grid defines the layout that includes
+   * the Page and the optional Aside & Header:
+   *```
+   * +-------------------------------+
+   * |          PageHeader           |
+   * +-------------------------------+
+   * |  Aside  |        Page         |
+   * |         |                     |
+   * +-------------------------------+
+   * ```
+   */
+  ContentGrid,
+
+  /**
+   * The Page Grid defines the layout for the page elements
+   * proper:
+   * ```
+   * +---------------------+
+   * |      PageHeader     |
+   * +---------------------+
+   * |        Main         |
+   * +---------------------+
+   * |       Footer        |
+   * +---------------------+
+   * ```
+   *
+   * The PageHeader is optional and can be placed in the outer grid
+   * (see ContentGrid).
+   *
+   */
+  PageGrid,
   PageContent,
   PageFooter,
   PageHeader,
