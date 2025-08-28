@@ -18,5 +18,50 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-export { Layout } from './Layout';
-export * from './LayoutStyles';
+import { Layout as LayoutRoot } from './Layout';
+import {
+  Aside,
+  BannerContainer,
+  ContentWrapper,
+  Header,
+  PageContent,
+  PageFooter,
+  PageHeader,
+  PageWrapper,
+} from './LayoutSlots';
+
+/**
+ * The Layout component is meant to be placed at the very root of
+ * your project. It provides the base viewport and a CSS grid definition
+ * for the BannerContainer, Header, Sidebar and ContentWrapper components
+ * to occupy.
+ *
+ * The resulting layout looks like this:
+ * ```
+ * +------------------------------------------------------+
+ * |                    BannerContainer                   |
+ * +------------------------------------------------------+
+ * |                        Header                        |
+ * +------------------------------------------------------+
+ * |         |                                            |
+ * | Sidebar |               ContentWrapper               |
+ * |         |                                            |
+ * |         |                                            |
+ * |         |                                            |
+ * |         |                                            |
+ * |         |                                            |
+ * +---------+--------------------------------------------+
+ * ```
+ *
+ * The ContentWrapper has its own internal sub-structure
+ */
+export const Layout = Object.assign(LayoutRoot, {
+  Header,
+  Aside,
+  BannerContainer,
+  ContentWrapper,
+  PageWrapper,
+  PageContent,
+  PageFooter,
+  PageHeader,
+});
