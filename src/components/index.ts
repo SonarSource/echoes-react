@@ -31,6 +31,7 @@ export * from './echoes-provider';
 export * from './form';
 export * from './global-navigation';
 export * from './icons';
+export * from './layout';
 export * from './links';
 export * from './logos';
 export * from './messages';
