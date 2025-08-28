@@ -124,7 +124,6 @@ const render = ({
       border: '1px dotted blue',
       display: 'flex',
       flexDirection: 'column',
-      padding: '32px 24px',
       width: '800px',
     }}>
     <PageHeader

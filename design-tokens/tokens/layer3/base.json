@@ -39,6 +39,22 @@
       }
     },
     "layout": {
+      "aside": {
+        "width": {
+          "small": {
+            "$type": "sizing",
+            "$value": "200px"
+          },
+          "medium": {
+            "$type": "sizing",
+            "$value": "300px"
+          },
+          "large": {
+            "$type": "sizing",
+            "$value": "400px"
+          }
+        }
+      },
       "sizes": {
         "max": {
           "width": {
