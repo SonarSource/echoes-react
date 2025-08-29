@@ -106,6 +106,7 @@
   "echoes-layout-aside-width-small": "200px",
   "echoes-layout-aside-width-medium": "300px",
   "echoes-layout-aside-width-large": "400px",
+  "echoes-layout-global-navigation-sizes-height-default": "56px",
   "echoes-layout-sizes-max-width-default": "1280px",
   "echoes-layout-sizes-max-width-large": "1560px",
   "echoes-layout-sizes-max-width-full": "100%",

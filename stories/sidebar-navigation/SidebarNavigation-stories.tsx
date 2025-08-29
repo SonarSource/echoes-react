@@ -20,10 +20,9 @@
 
 import styled from '@emotion/styled';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { useContext } from 'react';
 import {
-  Button,
   cssVar,
+  GlobalNavigation,
   IconBell,
   IconBranch,
   IconCalendar,
@@ -34,9 +33,9 @@ import {
   IconSparkleInShieldError,
   IconTarget,
   Layout,
+  LogoSonarQubeServer,
   SidebarNavigation,
 } from '../../src';
-import { LayoutContext } from '../../src/components/layout/LayoutContext';
 
 const meta: Meta<typeof SidebarNavigation> = {
   component: SidebarNavigation,
@@ -58,7 +57,19 @@ export const Full: Story = {
   },
   render: (args) => (
     <Layout>
-      <HeaderWrapper />
+      <GlobalNavigation>
+        <GlobalNavigation.Primary>
+          <GlobalNavigation.Home>
+            <LogoSonarQubeServer hasText size="small" />
+          </GlobalNavigation.Home>
+
+          <GlobalNavigation.ItemsContainer>
+            <GlobalNavigation.Item to="/">Home</GlobalNavigation.Item>
+            <GlobalNavigation.Item to="/qp">Quality Profiles</GlobalNavigation.Item>
+            <GlobalNavigation.Item to="/rules">Rules</GlobalNavigation.Item>
+          </GlobalNavigation.ItemsContainer>
+        </GlobalNavigation.Primary>
+      </GlobalNavigation>
       <SidebarNavigation {...args}>
         <SidebarNavigation.Header
           avatar={
@@ -175,27 +186,13 @@ export const Full: Story = {
             </SidebarNavigation.Item>
           </SidebarNavigation.AccordionItem>
         </SidebarNavigation.Footer>
-      </SidebarNavigation>
-      <ToggleSidebarCollapse />
+      </SidebarNavigation>{' '}
+      <ContentWrapper>
+        Page content that is long enough to be visible when the sidebar is open on small screen
+      </ContentWrapper>
     </Layout>
   ),
 };
-
-function ToggleSidebarCollapse() {
-  const { isSidebarCollapsed, setIsSidebarCollapsed } = useContext(LayoutContext);
-  return (
-    <ContentWrapper>
-      <div>
-        Page content that is long enough to be visible when the sidebar is open on small screen
-      </div>
-      <Button
-        onClick={() => setIsSidebarCollapsed((isSidebarCollapsed) => !isSidebarCollapsed)}
-        variety="primary">
-        {isSidebarCollapsed ? 'Expand Sidebar' : 'Collapse Sidebar'}
-      </Button>
-    </ContentWrapper>
-  );
-}
 
 const ContentWrapper = styled.div`
   grid-area: content;
@@ -206,10 +203,3 @@ const ContentWrapper = styled.div`
     display: none;
   }
 `;
-
-const HeaderWrapper = styled.div`
-  grid-area: header;
-  height: 42px;
-  background-color: ${cssVar('color-background-success-weak-default')};
-`;
-HeaderWrapper.displayName = 'HeaderWrapper';

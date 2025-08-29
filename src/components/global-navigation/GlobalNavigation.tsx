@@ -51,26 +51,18 @@ GlobalNavigationRoot.displayName = 'GlobalNavigation';
 const GlobalNavigationContainer = styled.nav`
   grid-area: ${GlobalGridArea.globalNav};
 
-  height: 56px;
+  height: ${cssVar('layout-global-navigation-sizes-height-default')};
   display: flex;
   justify-content: space-between;
   align-items: center;
 
+  padding-left: ${cssVar('dimension-space-150')};
   padding-right: ${cssVar('dimension-space-300')};
 
   background-color: ${cssVar('color-surface-default')};
   border-bottom: ${cssVar('border-width-default')} solid ${cssVar('color-border-weak')};
 `;
 GlobalNavigationContainer.displayName = 'GlobalNavigationContainer';
-
-export const GlobalNavigationPrimary = styled.div`
-  display: flex;
-  align-items: center;
-  height: 100%;
-
-  gap: ${cssVar('dimension-space-150')};
-`;
-GlobalNavigationPrimary.displayName = 'GlobalNavigationPrimary';
 
 export const GlobalNavigationSecondary = styled.div`
   display: flex;
