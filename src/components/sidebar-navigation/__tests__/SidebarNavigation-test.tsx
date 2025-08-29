@@ -29,13 +29,13 @@ it('should have no a11y issues', async () => {
 });
 
 it.each([
-  ['collapsed', true, 'true'],
-  ['expanded', false, 'false'],
+  ['docked', true, 'true'],
+  ['undocked', false, 'false'],
 ])('should render correctly when %s', (_, isCollapsed, expected) => {
   renderWithMemoryRouter(<SidebarNavigation isCollapsed={isCollapsed} />);
 
   expect(screen.getByLabelText('Secondary navigation')).toHaveAttribute(
-    'data-sidebar-collapsed',
+    'data-sidebar-docked',
     expected,
   );
 });

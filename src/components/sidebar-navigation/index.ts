@@ -33,8 +33,8 @@ export { type SidebarNavigationHeaderProps } from './SidebarNavigationHeader';
 export { type SidebarNavigationItemProps } from './SidebarNavigationItem';
 
 /**
- * {@link SidebarNavigationRoot | SidebarNavigation} is a collapsible secondary navigation component for application sidebars.
- * Supports expanded (full-width with labels) and collapsed (icon-only with tooltips) states.
+ * {@link SidebarNavigationRoot | SidebarNavigation} is a dockable secondary navigation component for application sidebars.
+ * Supports open (full-width with labels) and closed (icon-only with tooltips) states.
  *
  * **Components**
  * - {@link SidebarNavigationHeader | Header} - Header with avatar and dropdown
@@ -45,7 +45,7 @@ export { type SidebarNavigationItemProps } from './SidebarNavigationItem';
  * - {@link SidebarNavigationFooter | Footer} - Fixed footer section
  *
  * ```tsx
- * <SidebarNavigation isCollapsed={false}>
+ * <SidebarNavigation>
  *   <SidebarNavigation.Header name="My Project" />
  *   <SidebarNavigation.Body>
  *     <SidebarNavigation.Group label="Main">
@@ -79,7 +79,7 @@ export const SidebarNavigation = Object.assign(SidebarNavigationRoot, {
 
   /**
    * {@link SidebarNavigationBody | Body} provides the main scrollable content area for navigation items.
-   * Should contain groups, items, and accordions. Automatically handles overflow in collapsed state.
+   * Should contain groups, items, and accordions. Automatically handles overflow in closed state.
    *
    * ```tsx
    * <SidebarNavigation.Body>
@@ -137,7 +137,7 @@ export const SidebarNavigation = Object.assign(SidebarNavigationRoot, {
    * icons, active states, and router integration. Do not wrap children in Text components.
    *
    * ```tsx
-   * <SidebarNavigation.Item Icon={HomeIcon} to="/dashboard" enableTooltip={isCollapsed}>
+   * <SidebarNavigation.Item Icon={HomeIcon} to="/dashboard" enableTooltip>
    *   Dashboard
    * </SidebarNavigation.Item>
    * ```

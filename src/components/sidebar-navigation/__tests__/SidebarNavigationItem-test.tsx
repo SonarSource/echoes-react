@@ -24,7 +24,7 @@ import { IconBranch, IconClock } from '../../icons';
 import { SidebarNavigationItem, SidebarNavigationItemProps } from '../SidebarNavigationItem';
 
 it('should apply active class when isActive is true', () => {
-  setupSidebarNavigationItem({ isActive: true, disableIconWhenExpanded: true });
+  setupSidebarNavigationItem({ isActive: true, disableIconWhenSidebarOpen: true });
 
   expect(screen.getByRole('link')).toHaveClass('active');
 });

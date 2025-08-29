@@ -93,7 +93,7 @@ const HeaderContainer = styled.button`
 
   overflow: hidden;
 
-  [data-sidebar-collapsed='true'] nav:not(:hover, :focus-within) & {
+  [data-sidebar-docked='false'] nav:not(:hover, :focus-within) & {
     margin: ${cssVar('dimension-space-100')} ${cssVar('dimension-space-50')};
   }
 

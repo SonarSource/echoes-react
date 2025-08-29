@@ -33,31 +33,29 @@ export interface GlobalNavigationPrimaryProps extends React.PropsWithChildren {
 export const GlobalNavigationPrimary = forwardRef<HTMLDivElement, GlobalNavigationPrimaryProps>(
   (props, ref) => {
     const { children, ...htmlProps } = props;
-    const { hasSidebar, isSidebarCollapsed, setIsSidebarCollapsed } = useContext(LayoutContext);
+    const { isSidebarDocked, setIsSidebarDocked } = useContext(LayoutContext);
     const intl = useIntl();
 
     return (
       <GlobalNavigationPrimaryContainer ref={ref} {...htmlProps}>
-        {hasSidebar && (
-          <GlobalNavigationSidebarCollapse
-            Icon={IconDockToRight}
-            ariaLabel={
-              isSidebarCollapsed
-                ? intl.formatMessage({
-                    id: 'global_navigation.sidebar.dock',
-                    defaultMessage: 'Dock sidebar',
-                  })
-                : intl.formatMessage({
-                    id: 'global_navigation.sidebar.undock',
-                    defaultMessage: 'Undock sidebar',
-                  })
-            }
-            onClick={() => {
-              setIsSidebarCollapsed((isCollapsed) => !isCollapsed);
-            }}
-            variety="default-ghost"
-          />
-        )}
+        <GlobalNavigationSidebarDockButton
+          Icon={IconDockToRight}
+          ariaLabel={
+            isSidebarDocked
+              ? intl.formatMessage({
+                  id: 'global_navigation.sidebar.undock',
+                  defaultMessage: 'Undock sidebar',
+                })
+              : intl.formatMessage({
+                  id: 'global_navigation.sidebar.dock',
+                  defaultMessage: 'Dock sidebar',
+                })
+          }
+          onClick={() => {
+            setIsSidebarDocked((isSidebarDocked) => !isSidebarDocked);
+          }}
+          variety="default-ghost"
+        />
         {children}
       </GlobalNavigationPrimaryContainer>
     );
@@ -74,11 +72,12 @@ const GlobalNavigationPrimaryContainer = styled.div`
 `;
 GlobalNavigationPrimaryContainer.displayName = 'GlobalNavigationPrimaryContainer';
 
-const GlobalNavigationSidebarCollapse = styled(ButtonIcon)`
+const GlobalNavigationSidebarDockButton = styled(ButtonIcon)`
+  display: none;
   color: ${cssVar('color-icon-subtle')};
 
-  [data-sidebar-is-dockable='false'] & {
-    display: none;
+  [data-sidebar-is-dockable='true'][data-sidebar-exist='true'] & {
+    display: inline-flex;
   }
 `;
-GlobalNavigationSidebarCollapse.displayName = 'GlobalNavigationSidebarCollapse';
+GlobalNavigationSidebarDockButton.displayName = 'GlobalNavigationSidebarDockButton';
