@@ -21,7 +21,7 @@
 import styled from '@emotion/styled';
 import { PropsWithChildren } from 'react';
 import { cssVar } from '~utils/design-tokens';
-import { GlobalGridArea } from './LayoutSlots';
+import { GlobalGridArea } from './LayoutTypes';
 
 export function Layout({ children }: PropsWithChildren) {
   return (

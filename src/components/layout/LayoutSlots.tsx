@@ -18,52 +18,35 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import { PropsWithChildren } from 'react';
+import { CSSProperties, forwardRef, PropsWithChildren } from 'react';
 import { cssVar } from '~utils/design-tokens';
+import {
+  AsideSize,
+  ContentGridArea,
+  ContentWidth,
+  GlobalGridArea,
+  PageGridArea,
+} from './LayoutTypes';
 
-export enum GlobalGridArea {
-  banner = 'banner',
-  globalNav = 'global-nav',
-  sidebar = 'sidebar',
-  content = 'content',
-}
-
-export enum ContentGridArea {
-  header = 'header',
-  aside = 'aside',
-  page = 'page',
-}
-
-export enum PageGridArea {
-  header = 'header',
-  main = 'main',
-  footer = 'footer',
-}
-
-export enum AsideSize {
-  small = 'small',
-  medium = 'medium',
-  large = 'large',
-}
-
-export enum ContentWidth {
-  fixed = 'fixed',
-  fluid = 'fluid',
-  legacy = 'legacy',
-}
-
-const ContentMaxWidth = {
-  [ContentWidth.fixed]: cssVar('layout-sizes-max-width-default'),
-  [ContentWidth.fluid]: cssVar('layout-sizes-max-width-full'),
-  [ContentWidth.legacy]: cssVar('layout-sizes-max-width-large'),
+const ContentWidthStyles: Record<ContentWidth, CSSProperties> = {
+  [ContentWidth.fixed]: {
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    maxWidth: cssVar('layout-sizes-max-width-default'),
+  },
+  [ContentWidth.legacy]: {
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    maxWidth: cssVar('layout-sizes-max-width-large'),
+  },
+  [ContentWidth.fluid]: {},
 };
 
-const AsideWidth = {
-  [AsideSize.small]: cssVar('layout-aside-width-small'),
-  [AsideSize.medium]: cssVar('layout-aside-width-medium'),
-  [AsideSize.large]: cssVar('layout-aside-width-large'),
+const AsideSizeStyles: Record<AsideSize, CSSProperties> = {
+  [AsideSize.small]: { width: cssVar('layout-aside-width-small') },
+  [AsideSize.medium]: { width: cssVar('layout-aside-width-medium') },
+  [AsideSize.large]: { width: cssVar('layout-aside-width-large') },
 };
 
 /*
@@ -74,24 +57,25 @@ export const BannerContainer = styled.div`
 `;
 BannerContainer.displayName = 'BannerContainer';
 
-export const GlobalNavContainer = styled.div`
-  grid-area: ${GlobalGridArea.globalNav};
-`;
-GlobalNavContainer.displayName = 'GlobalNavContainer';
+export interface ContentGridProps {
+  className?: string;
+  width: ContentWidth;
+}
+export const ContentGrid = forwardRef<HTMLDivElement, PropsWithChildren<ContentGridProps>>(
+  (props, ref) => {
+    const { children, width, ...restProps } = props;
+    return (
+      <StyledContentGrid {...restProps} ref={ref} style={ContentWidthStyles[width]}>
+        {children}
+      </StyledContentGrid>
+    );
+  },
+);
 
-export const ContentGrid = styled.div<{ width: ContentWidth }>`
+const StyledContentGrid = styled.div`
   position: relative;
   grid-area: ${GlobalGridArea.content};
   overflow-y: hidden;
-
-  ${(props) =>
-    props.width !== ContentWidth.fluid
-      ? css`
-          margin-left: auto;
-          margin-right: auto;
-          max-width: ${ContentMaxWidth[props.width]};
-        `
-      : ''}
 
   display: grid;
   grid-template-columns: auto 1fr;
@@ -110,14 +94,16 @@ export interface AsideProps {
   className?: string;
   size: `${AsideSize}`;
 }
-export function AsideLeft(props: PropsWithChildren<AsideProps>) {
+export const AsideLeft = forwardRef<HTMLDivElement, PropsWithChildren<AsideProps>>((props, ref) => {
   const { children, size, ...restProps } = props;
   return (
-    <StyledAside {...restProps} css={{ width: AsideWidth[size] }}>
+    <StyledAside {...restProps} ref={ref} style={AsideSizeStyles[size]}>
       {children}
     </StyledAside>
   );
-}
+});
+AsideLeft.displayName = 'AsideLeft';
+
 const StyledAside = styled.div`
   grid-area: ${ContentGridArea.aside};
   overflow-y: auto;
@@ -137,23 +123,23 @@ export const PageGrid = styled.div`
 `;
 PageGrid.displayName = 'PageGrid';
 
-export const PageHeader = styled.div<{ sticky: boolean }>`
-  grid-area: ${PageGridArea.header};
-  height: 200px;
-  ${(props) => (props.sticky ? 'position: sticky;' : '')}
-  top: -150px;
-  background-color: aliceblue;
-  padding: 16px;
-`;
-PageHeader.displayName = 'PageHeader';
-
 export const PageContent = styled.div`
   grid-area: ${PageGridArea.main};
-  padding: 16px;
+  padding: ${cssVar('dimension-space-200')};
 `;
 PageContent.displayName = 'PageContent';
 
 export const PageFooter = styled.div`
   grid-area: ${PageGridArea.footer};
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: ${[
+    cssVar('dimension-space-200'),
+    cssVar('dimension-space-200'),
+    cssVar('dimension-space-300'),
+  ].join(' ')};
 `;
 PageFooter.displayName = 'PageFooter';

@@ -33,8 +33,8 @@ import {
   LogoSonarQubeServer,
   Text,
 } from '../../src';
-import { AsideSize } from '../../src/components/layout/LayoutSlots';
 import { Sidebar } from '../../src/components/layout/LayoutStyles';
+import { AsideSize, PageGridArea } from '../../src/components/layout/LayoutTypes';
 
 const meta: Meta = {
   component: Layout,
@@ -73,9 +73,7 @@ export const Default: Story = {
     <div style={{ margin: '-1rem' }}>
       <Layout>
         <Layout.BannerContainer>{args.banner}</Layout.BannerContainer>
-        <Layout.GlobalNavContainer>
-          <GlobalNav />
-        </Layout.GlobalNavContainer>
+        <GlobalNav />
         <Sidebar isCollapsed={false}>Sidebar</Sidebar>
         <Layout.ContentGrid width={args.contentWidth}>
           <Layout.AsideLeft size={args.asideSize}>
@@ -88,7 +86,7 @@ export const Default: Story = {
             </List>
           </Layout.AsideLeft>
           <Layout.PageGrid>
-            <Layout.PageHeader sticky>
+            <PageHeader sticky>
               <h1>asdf</h1>
               <Button
                 style={{ float: 'right', marginTop: '20px', position: 'sticky', top: '16px' }}>
@@ -104,7 +102,7 @@ export const Default: Story = {
                   background: 'lightgrey',
                 }}
               />
-            </Layout.PageHeader>
+            </PageHeader>
             <Layout.PageContent>
               {text}
               {text}
@@ -112,26 +110,24 @@ export const Default: Story = {
               {text}
             </Layout.PageContent>
             <Layout.PageFooter>
-              <Footer>
-                <Text isSubtle>2018-2025 SonarSource SA. All rights reserved</Text>
-                <Links>
-                  <LinkStandalone highlight="subtle" to="/1">
-                    Terms
-                  </LinkStandalone>
-                  <LinkStandalone highlight="subtle" to="/2">
-                    Pricing
-                  </LinkStandalone>
-                  <LinkStandalone highlight="subtle" to="/3">
-                    Privacy
-                  </LinkStandalone>
-                  <LinkStandalone highlight="subtle" to="/4">
-                    Cookies
-                  </LinkStandalone>
-                  <LinkStandalone highlight="subtle" to="/5">
-                    Terms
-                  </LinkStandalone>
-                </Links>
-              </Footer>
+              <Text isSubtle>2018-2025 SonarSource SA. All rights reserved</Text>
+              <Links>
+                <LinkStandalone highlight="subtle" to="/1">
+                  Terms
+                </LinkStandalone>
+                <LinkStandalone highlight="subtle" to="/2">
+                  Pricing
+                </LinkStandalone>
+                <LinkStandalone highlight="subtle" to="/3">
+                  Privacy
+                </LinkStandalone>
+                <LinkStandalone highlight="subtle" to="/4">
+                  Cookies
+                </LinkStandalone>
+                <LinkStandalone highlight="subtle" to="/5">
+                  Terms
+                </LinkStandalone>
+              </Links>
             </Layout.PageFooter>
           </Layout.PageGrid>
         </Layout.ContentGrid>
@@ -176,22 +172,20 @@ function GlobalNav() {
   );
 }
 
+const PageHeader = styled.div<{ sticky: boolean }>`
+  grid-area: ${PageGridArea.header};
+  height: 200px;
+  ${(props) => (props.sticky ? 'position: sticky;' : '')}
+  top: -150px;
+  background-color: aliceblue;
+  padding: 16px;
+`;
+PageHeader.displayName = 'PageHeader';
+
 const Avatar = styled.div`
   width: 24px;
   height: 24px;
   background: radial-gradient(white, ${cssVar('color-background-accent-active')});
-`;
-
-const Footer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  padding: ${[
-    cssVar('dimension-space-200'),
-    cssVar('dimension-space-200'),
-    cssVar('dimension-space-300'),
-  ].join(' ')};
 `;
 
 const Links = styled.div`

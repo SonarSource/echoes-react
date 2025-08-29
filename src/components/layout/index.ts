@@ -23,11 +23,9 @@ import {
   AsideLeft,
   BannerContainer,
   ContentGrid,
-  GlobalNavContainer,
   PageContent,
   PageFooter,
   PageGrid,
-  PageHeader,
 } from './LayoutSlots';
 
 /**
@@ -56,7 +54,6 @@ import {
  * The ContentWrapper has its own internal sub-structure
  */
 export const Layout = Object.assign(LayoutRoot, {
-  GlobalNavContainer,
   AsideLeft,
   BannerContainer,
 
@@ -94,5 +91,4 @@ export const Layout = Object.assign(LayoutRoot, {
   PageGrid,
   PageContent,
   PageFooter,
-  PageHeader,
 });

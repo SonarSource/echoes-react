@@ -23,6 +23,7 @@ import { forwardRef } from 'react';
 import { useIntl } from 'react-intl';
 
 import { cssVar } from '~utils/design-tokens';
+import { GlobalGridArea } from '../layout/LayoutTypes';
 
 export interface GlobalNavigationProps extends React.PropsWithChildren {
   className?: string;
@@ -49,6 +50,8 @@ export const GlobalNavigationRoot = forwardRef<HTMLElement, GlobalNavigationProp
 GlobalNavigationRoot.displayName = 'GlobalNavigation';
 
 const GlobalNavigationContainer = styled.nav`
+  grid-area: ${GlobalGridArea.globalNav};
+
   height: 56px;
   display: flex;
   justify-content: space-between;
