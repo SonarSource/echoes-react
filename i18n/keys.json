@@ -31,6 +31,12 @@
     "defaultMessage": "Main navigation",
     "description": "ARIA-label for the main navigation"
   },
+  "global_navigation.sidebar.dock": {
+    "defaultMessage": "Dock sidebar"
+  },
+  "global_navigation.sidebar.undock": {
+    "defaultMessage": "Undock sidebar"
+  },
   "loading": {
     "defaultMessage": "Loading...",
     "description": "aria-label text, to indicate that there is a spinner rotating in this place"
