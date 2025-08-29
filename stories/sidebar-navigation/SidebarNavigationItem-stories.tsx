@@ -21,7 +21,6 @@
 /* eslint-disable no-console */
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { IconBranch, SidebarNavigation } from '../../src';
-import { toDisabledControlArgType } from '../helpers/arg-types';
 import { basicWrapperDecorator } from '../helpers/BasicWrapper';
 
 const meta: Meta = {
@@ -35,9 +34,7 @@ const meta: Meta = {
     ),
     basicWrapperDecorator,
   ],
-  argTypes: {
-    ...toDisabledControlArgType('Icon'),
-  },
+  parameters: { controls: { exclude: ['Icon'] } },
 };
 
 export default meta;
