@@ -102,7 +102,7 @@ const SidebarNavigationWrapper = styled.nav`
     --sidebar-navigation-width: ${cssVar('sidebar-navigation-sizes-width-closed')};
   }
 
-  [data-sidebar-docked='true'] &:is(:hover, :focus-within) {
+  [data-sidebar-docked='false'] &:is(:hover, :focus-within) {
     box-shadow: ${cssVar('box-shadow-x-large')};
   }
 `;

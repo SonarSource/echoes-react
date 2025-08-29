@@ -18,24 +18,33 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import { screen } from '@testing-library/react';
 import { renderWithMemoryRouter } from '~common/helpers/test-utils';
+import { LayoutContext } from '../../layout/LayoutContext';
 import { SidebarNavigation } from '../SidebarNavigation';
 
 it('should have no a11y issues', async () => {
-  const { container } = renderWithMemoryRouter(<SidebarNavigation isCollapsed />);
+  const { container } = renderWithMemoryRouter(<SidebarNavigation />);
 
   await expect(container).toHaveNoA11yViolations();
 });
 
-it.each([
-  ['docked', true, 'true'],
-  ['undocked', false, 'false'],
-])('should render correctly when %s', (_, isCollapsed, expected) => {
-  renderWithMemoryRouter(<SidebarNavigation isCollapsed={isCollapsed} />);
-
-  expect(screen.getByLabelText('Secondary navigation')).toHaveAttribute(
-    'data-sidebar-docked',
-    expected,
+it('should set the layout context correctly', () => {
+  const setHasSidebar = jest.fn();
+  const { unmount } = renderWithMemoryRouter(
+    <LayoutContext.Provider
+      value={{
+        hasSidebar: true,
+        isSidebarDocked: false,
+        setHasSidebar,
+        setIsSidebarDocked: jest.fn(),
+      }}>
+      <SidebarNavigation />
+    </LayoutContext.Provider>,
   );
+
+  expect(setHasSidebar).toHaveBeenCalledWith(true);
+
+  unmount();
+
+  expect(setHasSidebar).toHaveBeenCalledWith(false);
 });

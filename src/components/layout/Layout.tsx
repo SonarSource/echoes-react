@@ -26,7 +26,7 @@ import { GlobalGridArea } from './LayoutTypes';
 
 const LAYOUT_SIDEBAR_BREAKPOINT = 1320;
 
-export function Layout({ children }: PropsWithChildren) {
+export function Layout({ children, ...htmlProps }: PropsWithChildren) {
   const mediaQueryList = useMemo(
     () => window.matchMedia(`(min-width: ${LAYOUT_SIDEBAR_BREAKPOINT}px)`),
     [],
@@ -62,7 +62,8 @@ export function Layout({ children }: PropsWithChildren) {
       <MainGrid
         data-sidebar-docked={isSidebarDocked && isSidebarDockable}
         data-sidebar-exist={hasSidebar}
-        data-sidebar-is-dockable={isSidebarDockable}>
+        data-sidebar-is-dockable={isSidebarDockable}
+        {...htmlProps}>
         <LayoutContext.Provider value={layoutContextValue}>{children}</LayoutContext.Provider>
       </MainGrid>
     </Viewport>
