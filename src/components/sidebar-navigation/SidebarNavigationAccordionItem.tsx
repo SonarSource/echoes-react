@@ -142,10 +142,12 @@ const AccordionItemPanel = styled.section`
   padding-right: ${cssVar('dimension-space-200')};
   border-left: ${cssVar('border-width-default')} solid ${cssVar('color-border-weak')};
 
-  // The children SidebarNavigationItems rely on this css property to set their display value, falling back to flex if not inside an accordion
+  // The children SidebarNavigationItems rely on this css property to set their display value, falling
+  // back to flex if not inside an accordion
   --sidebar-navigation-accordion-children-display: flex;
 
-  // We force the children SidebarNavigationItems to be hidden when the accordion is closed or the sidebar is closed
+  // The next two rules hide the child SidebarNavigationItems when the accordion is closed, and also
+  // when the sidebar is neither docked nor open (hovered or focused).
   &[data-accordion-open='false'] {
     --sidebar-navigation-accordion-children-display: none;
   }

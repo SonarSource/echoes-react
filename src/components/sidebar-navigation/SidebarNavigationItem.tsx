@@ -45,8 +45,7 @@ export interface SidebarNavigationItemProps
   className?: string;
   /**
    * Whether to hide the Icon when the sidebar is open.
-   * The purpose is to have the icon appear only when the sidebar is open,
-   * and for accordion child items only.
+   * The purpose is to have the icon appear only when the sidebar is not open, and for accordion child items only.
    */
   disableIconWhenSidebarOpen?: boolean;
   /**
