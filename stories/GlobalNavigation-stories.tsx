@@ -44,7 +44,9 @@ const meta: Meta<typeof GlobalNavigation> = {
       options: ['SQServerLogo', 'SQCloudLogo', 'customLogo'],
     },
   },
-  decorators: [(Story) => <Story />],
+  parameters: {
+    layout: 'fullscreen',
+  },
 };
 
 export default meta;

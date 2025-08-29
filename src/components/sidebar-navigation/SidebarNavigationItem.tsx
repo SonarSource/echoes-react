@@ -44,11 +44,10 @@ export interface SidebarNavigationItemProps
   children: TextNode;
   className?: string;
   /**
-   * Whether to hide the Icon when the sidebar is expanded.
-   * The purpose is to have the icon appear only when the sidebar is collapsed,
-   * and for accordion child items only.
+   * Whether to hide the Icon when the sidebar is open.
+   * The purpose is to have the icon appear only when the sidebar is not open, and for accordion child items only.
    */
-  disableIconWhenExpanded?: boolean;
+  disableIconWhenSidebarOpen?: boolean;
   /**
    * Whether to display the tooltip on the item or not.
    * By default the tooltip is disabled, it should only be enabled if you expect the content to be ellipsed.
@@ -78,7 +77,7 @@ export const SidebarNavigationItem = forwardRef<HTMLAnchorElement, SidebarNaviga
     const {
       children,
       className,
-      disableIconWhenExpanded = false,
+      disableIconWhenSidebarOpen = false,
       enableTooltip,
       Icon,
       isActive = false,
@@ -95,7 +94,7 @@ export const SidebarNavigationItem = forwardRef<HTMLAnchorElement, SidebarNaviga
             <Icon
               css={[
                 navigationItemIconStyles,
-                disableIconWhenExpanded ? hideWhenExpandedStyles : undefined,
+                disableIconWhenSidebarOpen ? hideWhenSidebarOpenStyles : undefined,
               ]}
             />
             <SidebarNavigationItemLabel>{children}</SidebarNavigationItemLabel>
@@ -111,14 +110,14 @@ SidebarNavigationItem.displayName = 'SidebarNavigationItem';
 const NavigationItem = styled(NavLinkBase)`
   ${sidebarNavigationBaseItemStyles}
 
-  // When the item is inside an accordion, the display value change based on the state of the accordion, hidding the items when collapsed
+  // When the item is inside an accordion, the display value change based on the state of the accordion, hidding the items when sidebar is closed
   // This css property is set by the SidebarNavigationAccordionItem component
   // Fallback to flex if not inside an accordion
   display: var(--sidebar-navigation-accordion-children-display, flex);
 
   &:active,
   &.active {
-    // Always display the item when active even if behind a collapsed accordion, this override the previously set display value from the css property
+    // Always display the item when active even if behind a closed accordion, this override the previously set display value from the css property
     display: flex;
 
     background-color: ${cssVar('color-background-selected-weak-default')};
@@ -141,8 +140,9 @@ const navigationItemIconStyles = css`
   }
 `;
 
-const hideWhenExpandedStyles = css`
-  [data-sidebar-collapsed='false'] & {
+const hideWhenSidebarOpenStyles = css`
+  [data-sidebar-docked='true'],
+  [data-sidebar-docked='false'] nav:is(:hover, :focus-within) & {
     display: none;
   }
 `;

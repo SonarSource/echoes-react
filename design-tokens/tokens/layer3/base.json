@@ -39,6 +39,16 @@
       }
     },
     "layout": {
+      "global-navigation": {
+        "sizes": {
+          "height": {
+            "default": {
+              "$type": "sizing",
+              "$value": "56px"
+            }
+          }
+        }
+      },
       "sizes": {
         "max": {
           "width": {
@@ -69,11 +79,11 @@
     "sidebar-navigation": {
       "sizes": {
         "width": {
-          "collapsed": {
+          "closed": {
             "$type": "sizing",
             "$value": "3rem"
           },
-          "expanded": {
+          "open": {
             "$type": "sizing",
             "$value": "15rem"
           }

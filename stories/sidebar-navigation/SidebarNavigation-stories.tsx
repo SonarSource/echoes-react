@@ -18,9 +18,11 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+import styled from '@emotion/styled';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import {
   cssVar,
+  GlobalNavigation,
   IconBell,
   IconBranch,
   IconCalendar,
@@ -30,12 +32,17 @@ import {
   IconProject,
   IconSparkleInShieldError,
   IconTarget,
+  Layout,
+  LogoSonarQubeServer,
   SidebarNavigation,
 } from '../../src';
 
 const meta: Meta<typeof SidebarNavigation> = {
   component: SidebarNavigation,
   title: 'Echoes/SidebarNavigation',
+  parameters: {
+    layout: 'fullscreen',
+  },
 };
 
 export default meta;
@@ -48,11 +55,21 @@ export const Full: Story = {
   parameters: {
     exclude: ['children'],
   },
-  args: {
-    isCollapsed: false,
-  },
   render: (args) => (
-    <div style={{ display: 'flex', height: 'calc(100vh - 32px)' }}>
+    <Layout>
+      <GlobalNavigation>
+        <GlobalNavigation.Primary>
+          <GlobalNavigation.Home>
+            <LogoSonarQubeServer hasText size="small" />
+          </GlobalNavigation.Home>
+
+          <GlobalNavigation.ItemsContainer>
+            <GlobalNavigation.Item to="/">Home</GlobalNavigation.Item>
+            <GlobalNavigation.Item to="/qp">Quality Profiles</GlobalNavigation.Item>
+            <GlobalNavigation.Item to="/rules">Rules</GlobalNavigation.Item>
+          </GlobalNavigation.ItemsContainer>
+        </GlobalNavigation.Primary>
+      </GlobalNavigation>
       <SidebarNavigation {...args}>
         <SidebarNavigation.Header
           avatar={
@@ -89,13 +106,25 @@ export const Full: Story = {
             </SidebarNavigation.Item>
           </SidebarNavigation.Group>
           <SidebarNavigation.AccordionItem Icon={IconBranch} label="Accordion item">
-            <SidebarNavigation.Item Icon={IconBranch} disableIconWhenExpanded enableTooltip to="/1">
+            <SidebarNavigation.Item
+              Icon={IconBranch}
+              disableIconWhenSidebarOpen
+              enableTooltip
+              to="/1">
               child 1 with a long name hahahah
             </SidebarNavigation.Item>
-            <SidebarNavigation.Item Icon={IconBranch} disableIconWhenExpanded enableTooltip to="/2">
+            <SidebarNavigation.Item
+              Icon={IconBranch}
+              disableIconWhenSidebarOpen
+              enableTooltip
+              to="/2">
               child 2
             </SidebarNavigation.Item>
-            <SidebarNavigation.Item Icon={IconBranch} disableIconWhenExpanded enableTooltip to="/3">
+            <SidebarNavigation.Item
+              Icon={IconBranch}
+              disableIconWhenSidebarOpen
+              enableTooltip
+              to="/3">
               child 3
             </SidebarNavigation.Item>
           </SidebarNavigation.AccordionItem>
@@ -113,14 +142,14 @@ export const Full: Story = {
             <SidebarNavigation.AccordionItem Icon={IconTarget} label="a1">
               <SidebarNavigation.Item
                 Icon={IconTarget}
-                disableIconWhenExpanded
+                disableIconWhenSidebarOpen
                 enableTooltip
                 to="/a1-1">
                 asdf
               </SidebarNavigation.Item>
               <SidebarNavigation.Item
                 Icon={IconTarget}
-                disableIconWhenExpanded
+                disableIconWhenSidebarOpen
                 enableTooltip
                 to="/a1-2">
                 zxcv
@@ -129,14 +158,14 @@ export const Full: Story = {
             <SidebarNavigation.AccordionItem Icon={IconPeople} label="a2">
               <SidebarNavigation.Item
                 Icon={IconPeople}
-                disableIconWhenExpanded
+                disableIconWhenSidebarOpen
                 enableTooltip
                 to="/a2-1">
                 asdf
               </SidebarNavigation.Item>
               <SidebarNavigation.Item
                 Icon={IconPeople}
-                disableIconWhenExpanded
+                disableIconWhenSidebarOpen
                 enableTooltip
                 to="/a2-2">
                 zxcv
@@ -148,28 +177,37 @@ export const Full: Story = {
           <SidebarNavigation.AccordionItem Icon={IconGear} label="Settings">
             <SidebarNavigation.Item
               Icon={IconGear}
-              disableIconWhenExpanded
+              disableIconWhenSidebarOpen
               enableTooltip
               to="/settings-1">
               Child settings 1
             </SidebarNavigation.Item>
             <SidebarNavigation.Item
               Icon={IconGear}
-              disableIconWhenExpanded
+              disableIconWhenSidebarOpen
               enableTooltip
               to="/settings-2">
               Child settings 2
             </SidebarNavigation.Item>
             <SidebarNavigation.Item
               Icon={IconGear}
-              disableIconWhenExpanded
+              disableIconWhenSidebarOpen
               enableTooltip
               to="/settings-3">
               Child settings 3
             </SidebarNavigation.Item>
           </SidebarNavigation.AccordionItem>
         </SidebarNavigation.Footer>
-      </SidebarNavigation>
-    </div>
+      </SidebarNavigation>{' '}
+      <ContentWrapper>
+        Page content that is long enough to be visible when the sidebar is open on small screen
+      </ContentWrapper>
+    </Layout>
   ),
 };
+
+const ContentWrapper = styled.div`
+  grid-area: content;
+  padding: 2rem;
+  background-color: ${cssVar('color-background-accent-weak-default')};
+`;
