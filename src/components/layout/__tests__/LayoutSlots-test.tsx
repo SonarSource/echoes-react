@@ -20,7 +20,7 @@
 
 import { screen } from '@testing-library/react';
 import { render } from '../../../common/helpers/test-utils';
-import { AsideLeft, AsideSize, ContentGrid, ContentWidth } from '../LayoutSlots';
+import { AsideLeft, AsideSize, ContentGrid, ContentWidth, PageHeader } from '../LayoutSlots';
 
 describe('ContentGrid', () => {
   it.each([
@@ -61,5 +61,23 @@ describe('AsideLeft', () => {
      * Instead, we do this empty check...
      */
     expect(screen.getByText('content')).toMatchSnapshot();
+  });
+});
+
+describe('PageHeader', () => {
+  it('should render correctly when sticky', () => {
+    render(<PageHeader sticky>content</PageHeader>);
+
+    expect(screen.getByText('content')).toHaveStyle({
+      position: 'sticky',
+    });
+  });
+
+  it('should render correctly when not sticky', () => {
+    render(<PageHeader sticky={false}>content</PageHeader>);
+
+    expect(screen.getByText('content')).not.toHaveStyle({
+      position: 'sticky',
+    });
   });
 });

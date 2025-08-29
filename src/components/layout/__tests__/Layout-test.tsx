@@ -19,8 +19,8 @@
  */
 
 import { screen } from '@testing-library/react';
+import { Layout } from '..';
 import { render } from '../../../common/helpers/test-utils';
-import { Layout } from '../Layout';
 
 it('should render correctly', () => {
   const { container } = render(<Layout>content</Layout>);
