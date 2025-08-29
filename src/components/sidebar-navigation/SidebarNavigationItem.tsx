@@ -20,7 +20,13 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import classNames from 'classnames';
-import { forwardRef, ForwardRefExoticComponent, MouseEventHandler } from 'react';
+import {
+  forwardRef,
+  ForwardRefExoticComponent,
+  MouseEvent,
+  MouseEventHandler,
+  useCallback,
+} from 'react';
 import { NavLinkBase, NavLinkBaseProps } from '~common/components/NavLinkBase';
 import { TextNode } from '~types/utils';
 import { cssVar } from '~utils/design-tokens';
@@ -81,8 +87,17 @@ export const SidebarNavigationItem = forwardRef<HTMLAnchorElement, SidebarNaviga
       enableTooltip,
       Icon,
       isActive = false,
+      onClick,
       ...htmlProps
     } = props;
+
+    const handleClick = useCallback(
+      (event: MouseEvent<HTMLAnchorElement>) => {
+        event.currentTarget.blur();
+        onClick?.(event);
+      },
+      [onClick],
+    );
 
     return (
       <UnstyledListItem>
@@ -90,6 +105,7 @@ export const SidebarNavigationItem = forwardRef<HTMLAnchorElement, SidebarNaviga
           <NavigationItem
             {...htmlProps}
             className={classNames({ active: isActive }, className)}
+            onClick={handleClick}
             ref={ref}>
             <Icon
               css={[

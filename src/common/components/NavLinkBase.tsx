@@ -24,7 +24,7 @@ import { NavLink as RouterNavLink, NavLinkProps as RouterNavLinkProps } from 're
 import { isDefined } from '~common/helpers/types';
 import { isSonarLink } from '~common/helpers/url';
 
-type RouterNavLinkPropsAllowed = 'download' | 'to';
+type RouterNavLinkPropsAllowed = 'download' | 'to' | 'onClick';
 
 export interface NavLinkBaseProps extends Pick<RouterNavLinkProps, RouterNavLinkPropsAllowed> {
   className?: string;
