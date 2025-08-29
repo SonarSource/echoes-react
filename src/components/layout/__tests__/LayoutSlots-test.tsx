@@ -20,7 +20,7 @@
 
 import { screen } from '@testing-library/react';
 import { render } from '../../../common/helpers/test-utils';
-import { ContentGrid, ContentWidth } from '../LayoutSlots';
+import { AsideLeft, AsideSize, ContentGrid, ContentWidth } from '../LayoutSlots';
 
 describe('ContentGrid', () => {
   it.each([
@@ -38,5 +38,28 @@ describe('ContentGrid', () => {
     expect(screen.getByText('content')).not.toHaveStyle({
       maxWidth: 'var(--echoes-layout-sizes-max-width-default)',
     });
+  });
+});
+
+describe('AsideLeft', () => {
+  it.each([
+    [AsideSize.small, 'var(--echoes-layout-aside-width-small)'],
+    // Useless to run these (see below):
+
+    // [AsideSize.medium, 'var(--echoes-layout-aside-width-medium)'],
+    // [AsideSize.large, 'var(--echoes-layout-aside-width-large)'],
+  ])('should render correctly when %s', (size, _expected) => {
+    render(<AsideLeft size={size}>content</AsideLeft>);
+
+    /* There is a bug with emotion-jest preventing the styles from being included
+     * This means we can't validate the style.
+     * https://github.com/emotion-js/emotion/issues/3178
+     *
+     * This is what we'd like to check:
+     * expect(screen.getByText('content')).toHaveStyle({ width: expected });
+     *
+     * Instead, we do this empty check...
+     */
+    expect(screen.getByText('content')).toMatchSnapshot();
   });
 });
