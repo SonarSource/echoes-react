@@ -39,6 +39,16 @@
       }
     },
     "layout": {
+      "global-navigation": {
+        "sizes": {
+          "height": {
+            "default": {
+              "$type": "sizing",
+              "$value": "56px"
+            }
+          }
+        }
+      },
       "sizes": {
         "max": {
           "width": {

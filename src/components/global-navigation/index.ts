@@ -17,17 +17,14 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-import {
-  GlobalNavigationPrimary,
-  GlobalNavigationRoot,
-  GlobalNavigationSecondary,
-} from './GlobalNavigation';
+import { GlobalNavigationRoot, GlobalNavigationSecondary } from './GlobalNavigation';
 import { GlobalNavigationAccount } from './GlobalNavigationAccount';
 import { GlobalNavigationAction } from './GlobalNavigationAction';
 import { GlobalNavigationDropdownItem } from './GlobalNavigationDropdownItem';
 import { GlobalNavigationHome } from './GlobalNavigationHome';
 import { GlobalNavigationItem } from './GlobalNavigationItem';
 import { GlobalNavigationItemsContainer } from './GlobalNavigationItemsContainer';
+import { GlobalNavigationPrimary } from './GlobalNavigationPrimary';
 
 export { type GlobalNavigationProps } from './GlobalNavigation';
 export { type GlobalNavigationAccountProps } from './GlobalNavigationAccount';
@@ -36,6 +33,7 @@ export { type GlobalNavigationDropdownItemProps } from './GlobalNavigationDropdo
 export { type GlobalNavigationHomeProps } from './GlobalNavigationHome';
 export { type GlobalNavigationItemProps } from './GlobalNavigationItem';
 export { type GlobalNavigationItemsContainerProps } from './GlobalNavigationItemsContainer';
+export { type GlobalNavigationPrimaryProps } from './GlobalNavigationPrimary';
 
 /**
  * {@link GlobalNavigationRoot | GlobalNavigation} is a navigation element that wraps {@link GlobalNavigationPrimary | GlobalNavigation.Primary}, and
