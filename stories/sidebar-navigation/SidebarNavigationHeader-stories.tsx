@@ -32,7 +32,7 @@ const meta: Meta = {
         style={{
           display: 'flex',
           flexDirection: 'column',
-          width: cssVar('sidebar-navigation-sizes-width-expanded'),
+          width: cssVar('sidebar-navigation-sizes-width-open'),
         }}>
         <Story />
       </div>

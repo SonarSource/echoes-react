@@ -145,12 +145,12 @@ const AccordionItemPanel = styled.section`
   // The children SidebarNavigationItems rely on this css property to set their display value, falling back to flex if not inside an accordion
   --sidebar-navigation-accordion-children-display: flex;
 
-  // We force the children SidebarNavigationItems to be hidden when the accordion is closed or the sidebar is collapsed
+  // We force the children SidebarNavigationItems to be hidden when the accordion is closed or the sidebar is closed
   &[data-accordion-open='false'] {
     --sidebar-navigation-accordion-children-display: none;
   }
 
-  [data-sidebar-collapsed='true'] nav:not(:hover, :focus-within) & {
+  [data-sidebar-docked='false'] nav:not(:hover, :focus-within) & {
     margin: 0;
     padding: 0;
     border-left: none;

@@ -69,10 +69,10 @@ const SidebarNavigationContainer = styled.div`
 
   width: calc(var(--sidebar-navigation-container-width) + ${cssVar('border-width-default')});
 
-  --sidebar-navigation-container-width: ${cssVar('sidebar-navigation-sizes-width-expanded')};
+  --sidebar-navigation-container-width: ${cssVar('sidebar-navigation-sizes-width-closed')};
 
-  [data-sidebar-collapsed='true'] & {
-    --sidebar-navigation-container-width: ${cssVar('sidebar-navigation-sizes-width-collapsed')};
+  [data-sidebar-docked='true'] & {
+    --sidebar-navigation-container-width: ${cssVar('sidebar-navigation-sizes-width-open')};
   }
 `;
 SidebarNavigationContainer.displayName = 'SidebarNavigationContainer';
@@ -95,13 +95,14 @@ const SidebarNavigationWrapper = styled.nav`
 
   width: var(--sidebar-navigation-width);
 
-  --sidebar-navigation-width: ${cssVar('sidebar-navigation-sizes-width-expanded')};
+  --sidebar-navigation-width: ${cssVar('sidebar-navigation-sizes-width-open')};
 
-  [data-sidebar-collapsed='true'] &:not(:hover, :focus-within) {
-    --sidebar-navigation-width: ${cssVar('sidebar-navigation-sizes-width-collapsed')};
+  // hover and focus-within pilotes the open state of the sidebar
+  [data-sidebar-docked='false'] &:not(:hover, :focus-within) {
+    --sidebar-navigation-width: ${cssVar('sidebar-navigation-sizes-width-closed')};
   }
 
-  [data-sidebar-collapsed='true'] &:is(:hover, :focus-within) {
+  [data-sidebar-docked='true'] &:is(:hover, :focus-within) {
     box-shadow: ${cssVar('box-shadow-x-large')};
   }
 `;

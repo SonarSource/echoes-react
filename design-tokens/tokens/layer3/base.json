@@ -95,11 +95,11 @@
     "sidebar-navigation": {
       "sizes": {
         "width": {
-          "collapsed": {
+          "closed": {
             "$type": "sizing",
             "$value": "3rem"
           },
-          "expanded": {
+          "open": {
             "$type": "sizing",
             "$value": "15rem"
           }

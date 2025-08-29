@@ -22,14 +22,14 @@ import { createContext, Dispatch, SetStateAction } from 'react';
 
 export interface LayoutContextShape {
   hasSidebar: boolean;
-  isSidebarCollapsed: boolean;
+  isSidebarDocked: boolean;
   setHasSidebar: Dispatch<SetStateAction<boolean>>;
-  setIsSidebarCollapsed: Dispatch<SetStateAction<boolean>>;
+  setIsSidebarDocked: Dispatch<SetStateAction<boolean>>;
 }
 
 export const LayoutContext = createContext<LayoutContextShape>({
   hasSidebar: false,
-  isSidebarCollapsed: false,
+  isSidebarDocked: false,
   setHasSidebar: () => {},
-  setIsSidebarCollapsed: () => {},
+  setIsSidebarDocked: () => {},
 });

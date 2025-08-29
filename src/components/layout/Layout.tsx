@@ -32,17 +32,17 @@ export function Layout({ children }: PropsWithChildren) {
     [],
   );
   const [hasSidebar, setHasSidebar] = useState(false);
-  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(() => mediaQueryList.matches);
+  const [isSidebarDocked, setIsSidebarDocked] = useState(() => mediaQueryList.matches);
   const [isSidebarDockable, setIsSidebarDockable] = useState(() => mediaQueryList.matches);
 
   const layoutContextValue = useMemo(
     () => ({
       hasSidebar,
-      isSidebarCollapsed,
+      isSidebarDocked,
       setHasSidebar,
-      setIsSidebarCollapsed,
+      setIsSidebarDocked,
     }),
-    [hasSidebar, isSidebarCollapsed],
+    [hasSidebar, isSidebarDocked],
   );
 
   useEffect(() => {
@@ -60,7 +60,7 @@ export function Layout({ children }: PropsWithChildren) {
   return (
     <Viewport>
       <MainGrid
-        data-sidebar-collapsed={isSidebarCollapsed || !isSidebarDockable}
+        data-sidebar-docked={isSidebarDocked && isSidebarDockable}
         data-sidebar-exist={hasSidebar}
         data-sidebar-is-dockable={isSidebarDockable}>
         <LayoutContext.Provider value={layoutContextValue}>{children}</LayoutContext.Provider>
