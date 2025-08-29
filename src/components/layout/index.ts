@@ -18,5 +18,77 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-export { Layout } from './Layout';
-export * from './LayoutStyles';
+import { Layout as LayoutRoot } from './Layout';
+import {
+  AsideLeft,
+  BannerContainer,
+  ContentGrid,
+  PageContent,
+  PageFooter,
+  PageGrid,
+} from './LayoutSlots';
+
+/**
+ * The Layout component is meant to be placed at the very root of
+ * your project. It provides the base viewport and a CSS grid definition
+ * for the BannerContainer, Header, Sidebar and ContentWrapper components
+ * to occupy.
+ *
+ * The resulting layout looks like this:
+ * ```
+ * +------------------------------------------------------+
+ * |                    BannerContainer                   |
+ * +------------------------------------------------------+
+ * |                        Header                        |
+ * +------------------------------------------------------+
+ * |         |                                            |
+ * | Sidebar |               ContentWrapper               |
+ * |         |                                            |
+ * |         |                                            |
+ * |         |                                            |
+ * |         |                                            |
+ * |         |                                            |
+ * +---------+--------------------------------------------+
+ * ```
+ *
+ * The ContentWrapper has its own internal sub-structure
+ */
+export const Layout = Object.assign(LayoutRoot, {
+  AsideLeft,
+  BannerContainer,
+
+  /**
+   * The Content Grid defines the layout that includes
+   * the Page and the optional Aside & Header:
+   *```
+   * +-------------------------------+
+   * |          PageHeader           |
+   * +-------------------------------+
+   * |  Aside  |        Page         |
+   * |         |                     |
+   * +-------------------------------+
+   * ```
+   */
+  ContentGrid,
+
+  /**
+   * The Page Grid defines the layout for the page elements
+   * proper:
+   * ```
+   * +---------------------+
+   * |      PageHeader     |
+   * +---------------------+
+   * |        Main         |
+   * +---------------------+
+   * |       Footer        |
+   * +---------------------+
+   * ```
+   *
+   * The PageHeader is optional and can be placed in the outer grid
+   * (see ContentGrid).
+   *
+   */
+  PageGrid,
+  PageContent,
+  PageFooter,
+});

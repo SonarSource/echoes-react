@@ -18,49 +18,74 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+import styled from '@emotion/styled';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import {
-  Aside,
-  BannerContainer,
+  Banner,
   Button,
-  ContentWrapper,
-  Header,
+  cssVar,
+  DropdownMenu,
+  GlobalNavigation,
+  IconQuestionMark,
+  IconSearch,
   Layout,
-  PageContent,
-  PageFooter,
-  PageHeader,
-  PageWrapper,
-  Sidebar,
+  LinkStandalone,
+  LogoSonarQubeServer,
+  Text,
 } from '../../src';
+import { Sidebar } from '../../src/components/layout/LayoutStyles';
+import { AsideSize, PageGridArea } from '../../src/components/layout/LayoutTypes';
 
-const meta: Meta<typeof Layout> = {
+const meta: Meta = {
   component: Layout,
   title: 'Echoes/Layout',
+  argTypes: {
+    banner: {
+      control: 'boolean',
+      mapping: {
+        true: <Banner variety="warning">This is a general notification!</Banner>,
+        false: undefined,
+      },
+    },
+    asideSize: {
+      control: 'select',
+      options: [AsideSize.small, AsideSize.medium, AsideSize.large],
+    },
+    contentWidth: {
+      control: 'select',
+      options: ['fixed', 'fluid', 'legacy'],
+    },
+  },
 };
 
 export default meta;
 
-type Story = StoryObj<typeof Layout>;
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  args: {},
-  render: () => (
+  args: {
+    asideSize: AsideSize.medium,
+    banner: false,
+    contentWidth: 'fixed',
+  },
+  render: (args) => (
     // Compensate storybook's padding
     <div style={{ margin: '-1rem' }}>
       <Layout>
-        <BannerContainer />
-        <Header>Header</Header>
+        <Layout.BannerContainer>{args.banner}</Layout.BannerContainer>
+        <GlobalNav />
         <Sidebar isCollapsed={false}>Sidebar</Sidebar>
-        <ContentWrapper fixed>
-          <Aside>
-            <div
-              style={{
-                height: '4309px',
-                background: 'linear-gradient(rgb(122, 108, 108), rgb(130, 44, 44))',
-              }}
-            />
-          </Aside>
-          <PageWrapper>
+        <Layout.ContentGrid width={args.contentWidth}>
+          <Layout.AsideLeft size={args.asideSize}>
+            <List>
+              {items.map((k) => (
+                <li key={k}>
+                  <Button variety="default-ghost">Item {k + 1}</Button>
+                </li>
+              ))}
+            </List>
+          </Layout.AsideLeft>
+          <Layout.PageGrid>
             <PageHeader sticky>
               <h1>asdf</h1>
               <Button
@@ -78,15 +103,34 @@ export const Default: Story = {
                 }}
               />
             </PageHeader>
-            <PageContent>
+            <Layout.PageContent>
               {text}
               {text}
               {text}
               {text}
-            </PageContent>
-            <PageFooter />
-          </PageWrapper>
-        </ContentWrapper>
+            </Layout.PageContent>
+            <Layout.PageFooter>
+              <Text isSubtle>2018-2025 SonarSource SA. All rights reserved</Text>
+              <Links>
+                <LinkStandalone highlight="subtle" to="/1">
+                  Terms
+                </LinkStandalone>
+                <LinkStandalone highlight="subtle" to="/2">
+                  Pricing
+                </LinkStandalone>
+                <LinkStandalone highlight="subtle" to="/3">
+                  Privacy
+                </LinkStandalone>
+                <LinkStandalone highlight="subtle" to="/4">
+                  Cookies
+                </LinkStandalone>
+                <LinkStandalone highlight="subtle" to="/5">
+                  Terms
+                </LinkStandalone>
+              </Links>
+            </Layout.PageFooter>
+          </Layout.PageGrid>
+        </Layout.ContentGrid>
       </Layout>
     </div>
   ),
@@ -101,3 +145,64 @@ Maecenas finibus gravida molestie. Suspendisse sed ex dictum, dictum neque vel, 
 Nam erat nibh, tincidunt vel cursus et, facilisis quis risus. Donec congue vel dui eget fermentum. Ut commodo fermentum metus a elementum. Aenean malesuada arcu quam, vel blandit lacus bibendum eu. Vestibulum ornare rhoncus libero hendrerit maximus. Sed sed efficitur arcu. Nulla ut ipsum sed tellus commodo egestas. Sed aliquam blandit purus. Phasellus faucibus et nulla at semper. Donec massa risus, aliquam sed eros a, molestie tristique felis. Nam sed justo pulvinar, tincidunt sapien ac, tincidunt ipsum. Duis commodo imperdiet dui nec faucibus. Pellentesque nec leo id odio fermentum pulvinar. Aliquam eu ex ultrices, mollis diam non, maximus nibh. Phasellus sed faucibus magna, vel malesuada ligula.
 
 Morbi imperdiet sollicitudin turpis, eu varius sem tempus et. Sed posuere egestas malesuada. Morbi dolor enim, laoreet nec consectetur sed, tempus vel odio. Quisque venenatis neque sapien, nec porttitor nisl elementum quis. Fusce id vulputate velit. Etiam ac auctor erat. Morbi ac nisi felis. Curabitur sed eros at augue varius molestie. Mauris pharetra, orci ut ornare posuere, odio orci bibendum felis, non ornare risus arcu eu purus. Duis dignissim lacus turpis, vitae blandit turpis pretium sed. Duis quis nunc ac libero imperdiet ultrices. Morbi id dictum sem, ac feugiat urna. Vestibulum maximus turpis sapien, in eleifend metus lobortis vitae.`;
+
+function GlobalNav() {
+  return (
+    <GlobalNavigation>
+      <GlobalNavigation.Primary>
+        <GlobalNavigation.Home>
+          <LogoSonarQubeServer hasText />
+        </GlobalNavigation.Home>
+
+        <GlobalNavigation.ItemsContainer>
+          <GlobalNavigation.Item to="/">Home</GlobalNavigation.Item>
+          <GlobalNavigation.Item to="/qp">Quality Profiles</GlobalNavigation.Item>
+          <GlobalNavigation.Item to="/rules">Rules</GlobalNavigation.Item>
+        </GlobalNavigation.ItemsContainer>
+      </GlobalNavigation.Primary>
+      <GlobalNavigation.Secondary>
+        <GlobalNavigation.Action Icon={IconSearch} ariaLabel="?" />
+        <GlobalNavigation.Action Icon={IconQuestionMark} ariaLabel="Help" isIconFilled />
+        <GlobalNavigation.Account
+          avatar={<Avatar />}
+          items={<DropdownMenu.ItemLink to="/account">Settings</DropdownMenu.ItemLink>}
+        />
+      </GlobalNavigation.Secondary>
+    </GlobalNavigation>
+  );
+}
+
+const PageHeader = styled.div<{ sticky: boolean }>`
+  grid-area: ${PageGridArea.header};
+  height: 200px;
+  ${(props) => (props.sticky ? 'position: sticky;' : '')}
+  top: -150px;
+  background-color: aliceblue;
+  padding: 16px;
+`;
+PageHeader.displayName = 'PageHeader';
+
+const Avatar = styled.div`
+  width: 24px;
+  height: 24px;
+  background: radial-gradient(white, ${cssVar('color-background-accent-active')});
+`;
+
+const Links = styled.div`
+  display: flex;
+  gap: ${cssVar('dimension-space-200')};
+`;
+
+const items = Array.from(Array(100)).map((_, i) => i);
+
+const List = styled.ul`
+  all: unset;
+
+  & li {
+    padding: 0 8px;
+  }
+
+  & button {
+    width: 100%;
+  }
+`;

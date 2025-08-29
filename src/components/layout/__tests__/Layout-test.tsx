@@ -18,11 +18,13 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import styled from '@emotion/styled';
+import { screen } from '@testing-library/react';
+import { Layout } from '..';
+import { render } from '../../../common/helpers/test-utils';
 
-export const Sidebar = styled.div<{ isCollapsed: boolean }>`
-  grid-area: sidebar;
-  background-color: rgba(10, 120, 120, 0.6);
-  padding: 16px;
-  width: ${(props) => (props.isCollapsed ? '48px' : '240px')};
-`;
+it('should render correctly', () => {
+  const { container } = render(<Layout>content</Layout>);
+
+  expect(container.childNodes[0]).toHaveStyle({ height: '100vh', width: '100vw' });
+  expect(screen.getByText('content')).toHaveStyle({ display: 'grid' });
+});

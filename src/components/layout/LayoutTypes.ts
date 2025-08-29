@@ -18,11 +18,33 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import styled from '@emotion/styled';
+export enum GlobalGridArea {
+  banner = 'banner',
+  globalNav = 'global-nav',
+  sidebar = 'sidebar',
+  content = 'content',
+}
 
-export const Sidebar = styled.div<{ isCollapsed: boolean }>`
-  grid-area: sidebar;
-  background-color: rgba(10, 120, 120, 0.6);
-  padding: 16px;
-  width: ${(props) => (props.isCollapsed ? '48px' : '240px')};
-`;
+export enum ContentGridArea {
+  header = 'header',
+  aside = 'aside',
+  page = 'page',
+}
+
+export enum PageGridArea {
+  header = 'header',
+  main = 'main',
+  footer = 'footer',
+}
+
+export enum AsideSize {
+  small = 'small',
+  medium = 'medium',
+  large = 'large',
+}
+
+export enum ContentWidth {
+  fixed = 'fixed',
+  fluid = 'fluid',
+  legacy = 'legacy',
+}

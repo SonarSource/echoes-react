@@ -20,6 +20,8 @@
 
 import styled from '@emotion/styled';
 import { PropsWithChildren } from 'react';
+import { cssVar } from '~utils/design-tokens';
+import { GlobalGridArea } from './LayoutTypes';
 
 export function Layout({ children }: PropsWithChildren) {
   return (
@@ -37,18 +39,20 @@ const Viewport = styled.div`
   height: 100vh;
   width: 100vw;
 `;
+Viewport.displayName = 'Viewport';
 
 const MainGrid = styled.div`
   position: relative;
 
   height: 100%;
-  min-width: 1280px;
+  min-width: ${cssVar('layout-sizes-min-width-default')};
 
   display: grid;
   grid-template-columns: auto 1fr;
   grid-template-rows: auto auto 1fr;
   grid-template-areas:
-    'banner banner'
-    'header header'
-    'sidebar content';
+    '${GlobalGridArea.banner} ${GlobalGridArea.banner}'
+    '${GlobalGridArea.globalNav} ${GlobalGridArea.globalNav}'
+    '${GlobalGridArea.sidebar} ${GlobalGridArea.content}';
 `;
+MainGrid.displayName = 'MainGrid';
