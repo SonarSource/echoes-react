@@ -48,6 +48,18 @@ export enum AsideSize {
   large = 'large',
 }
 
+export enum ContentWidth {
+  fixed = 'fixed',
+  fluid = 'fluid',
+  legacy = 'legacy',
+}
+
+const ContentMaxWidth = {
+  [ContentWidth.fixed]: cssVar('layout-sizes-max-width-default'),
+  [ContentWidth.fluid]: cssVar('layout-sizes-max-width-full'),
+  [ContentWidth.legacy]: cssVar('layout-sizes-max-width-large'),
+};
+
 const AsideWidth = {
   [AsideSize.small]: cssVar('layout-aside-width-small'),
   [AsideSize.medium]: cssVar('layout-aside-width-medium'),
@@ -67,17 +79,17 @@ export const GlobalNavContainer = styled.div`
 `;
 GlobalNavContainer.displayName = 'GlobalNavContainer';
 
-export const ContentGrid = styled.div<{ fixed?: boolean }>`
+export const ContentGrid = styled.div<{ width: ContentWidth }>`
   position: relative;
   grid-area: ${GlobalGridArea.content};
   overflow-y: hidden;
 
   ${(props) =>
-    props.fixed
+    props.width !== ContentWidth.fluid
       ? css`
           margin-left: auto;
           margin-right: auto;
-          max-width: ${cssVar('layout-sizes-max-width-large')};
+          max-width: ${ContentMaxWidth[props.width]};
         `
       : ''}
 

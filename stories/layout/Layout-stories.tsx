@@ -51,6 +51,10 @@ const meta: Meta = {
       control: 'select',
       options: [AsideSize.small, AsideSize.medium, AsideSize.large],
     },
+    contentWidth: {
+      control: 'select',
+      options: ['fixed', 'fluid', 'legacy'],
+    },
   },
 };
 
@@ -62,6 +66,7 @@ export const Default: Story = {
   args: {
     asideSize: AsideSize.medium,
     banner: false,
+    contentWidth: 'fixed',
   },
   render: (args) => (
     // Compensate storybook's padding
@@ -72,7 +77,7 @@ export const Default: Story = {
           <GlobalNav />
         </Layout.GlobalNavContainer>
         <Sidebar isCollapsed={false}>Sidebar</Sidebar>
-        <Layout.ContentGrid fixed>
+        <Layout.ContentGrid width={args.contentWidth}>
           <Layout.AsideLeft size={args.asideSize}>
             <List>
               {items.map((k) => (
