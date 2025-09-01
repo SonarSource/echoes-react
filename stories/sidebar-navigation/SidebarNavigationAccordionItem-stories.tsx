@@ -20,7 +20,6 @@
 
 /* eslint-disable no-console */
 import type { Meta, StoryObj } from '@storybook/react-vite';
-
 import { IconBranch, SidebarNavigation } from '../../src';
 import { basicWrapperDecorator } from '../helpers/BasicWrapper';
 
@@ -46,10 +45,10 @@ export const base: Story = {
     Icon: IconBranch,
     children: (
       <>
-        <SidebarNavigation.Item Icon={IconBranch} disableIconWhenExpanded to="/1">
+        <SidebarNavigation.Item Icon={IconBranch} disableIconWhenSidebarOpen to="/1">
           Item 1
         </SidebarNavigation.Item>
-        <SidebarNavigation.Item Icon={IconBranch} disableIconWhenExpanded to="/2">
+        <SidebarNavigation.Item Icon={IconBranch} disableIconWhenSidebarOpen to="/2">
           Item 2
         </SidebarNavigation.Item>
       </>

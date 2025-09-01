@@ -20,7 +20,6 @@
 
 /* eslint-disable no-console */
 import type { Meta, StoryObj } from '@storybook/react-vite';
-
 import { IconBranch, SidebarNavigation } from '../../src';
 import { basicWrapperDecorator } from '../helpers/BasicWrapper';
 
@@ -35,16 +34,7 @@ const meta: Meta = {
     ),
     basicWrapperDecorator,
   ],
-  argTypes: {
-    Icon: {
-      control: { type: 'select' },
-      mapping: {
-        default: IconBranch,
-        none: undefined,
-      },
-      options: ['default', 'none'],
-    },
-  },
+  parameters: { controls: { exclude: ['Icon'] } },
 };
 
 export default meta;
@@ -53,6 +43,7 @@ type Story = StoryObj<typeof SidebarNavigation.Item>;
 
 export const base: Story = {
   args: {
+    Icon: IconBranch,
     children: 'Navigation item',
   },
 };

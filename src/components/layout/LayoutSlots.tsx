@@ -54,12 +54,14 @@ const AsideSizeStyles: Record<AsideSize, CSSProperties> = {
  */
 export const BannerContainer = styled.div`
   grid-area: ${GlobalGridArea.banner};
+
+  z-index: 1; // Ensure the banners are showing over the content
 `;
 BannerContainer.displayName = 'BannerContainer';
 
 export interface ContentGridProps {
   className?: string;
-  width: ContentWidth;
+  width: `${ContentWidth}`;
 }
 export const ContentGrid = forwardRef<HTMLDivElement, PropsWithChildren<ContentGridProps>>(
   (props, ref) => {
@@ -76,6 +78,7 @@ const StyledContentGrid = styled.div`
   position: relative;
   grid-area: ${GlobalGridArea.content};
   overflow-y: hidden;
+  isolation: isolate; // Reset stacking context
 
   display: grid;
   grid-template-columns: auto 1fr;
