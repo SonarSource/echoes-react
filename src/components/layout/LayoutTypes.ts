@@ -43,8 +43,7 @@ export enum AsideSize {
   large = 'large',
 }
 
-export enum ContentWidth {
-  fixed = 'fixed',
+export enum PageWidth {
+  default = 'default',
   fluid = 'fluid',
-  legacy = 'legacy',
 }

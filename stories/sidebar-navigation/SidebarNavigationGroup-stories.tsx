@@ -20,8 +20,7 @@
 
 /* eslint-disable no-console */
 import type { Meta, StoryObj } from '@storybook/react-vite';
-
-import { cssVar, IconDirectory, SidebarNavigation } from '../../src';
+import { IconDirectory, SidebarNavigation } from '../../src';
 import { basicWrapperDecorator } from '../helpers/BasicWrapper';
 
 const meta: Meta = {
@@ -29,14 +28,9 @@ const meta: Meta = {
   component: SidebarNavigation.Group,
   decorators: [
     (Story) => (
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          width: cssVar('sidebar-navigation-sizes-width-expanded'),
-        }}>
+      <SidebarNavigation.Body>
         <Story />
-      </div>
+      </SidebarNavigation.Body>
     ),
     basicWrapperDecorator,
   ],

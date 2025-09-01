@@ -21,27 +21,7 @@
 import styled from '@emotion/styled';
 import { CSSProperties, forwardRef, PropsWithChildren } from 'react';
 import { cssVar } from '~utils/design-tokens';
-import {
-  AsideSize,
-  ContentGridArea,
-  ContentWidth,
-  GlobalGridArea,
-  PageGridArea,
-} from './LayoutTypes';
-
-const ContentWidthStyles: Record<ContentWidth, CSSProperties> = {
-  [ContentWidth.fixed]: {
-    marginLeft: 'auto',
-    marginRight: 'auto',
-    maxWidth: cssVar('layout-sizes-max-width-default'),
-  },
-  [ContentWidth.legacy]: {
-    marginLeft: 'auto',
-    marginRight: 'auto',
-    maxWidth: cssVar('layout-sizes-max-width-large'),
-  },
-  [ContentWidth.fluid]: {},
-};
+import { AsideSize, ContentGridArea, GlobalGridArea, PageGridArea, PageWidth } from './LayoutTypes';
 
 const AsideSizeStyles: Record<AsideSize, CSSProperties> = {
   [AsideSize.small]: { width: cssVar('layout-aside-width-small') },
@@ -54,28 +34,17 @@ const AsideSizeStyles: Record<AsideSize, CSSProperties> = {
  */
 export const BannerContainer = styled.div`
   grid-area: ${GlobalGridArea.banner};
+
+  z-index: 1; // Ensure the banners are showing over the content
 `;
 BannerContainer.displayName = 'BannerContainer';
 
-export interface ContentGridProps {
-  className?: string;
-  width: ContentWidth;
-}
-export const ContentGrid = forwardRef<HTMLDivElement, PropsWithChildren<ContentGridProps>>(
-  (props, ref) => {
-    const { children, width, ...restProps } = props;
-    return (
-      <StyledContentGrid {...restProps} ref={ref} style={ContentWidthStyles[width]}>
-        {children}
-      </StyledContentGrid>
-    );
-  },
-);
-
-const StyledContentGrid = styled.div`
-  position: relative;
+export const ContentGrid = styled.div`
   grid-area: ${GlobalGridArea.content};
+
+  position: relative;
   overflow-y: hidden;
+  isolation: isolate; // Reset stacking context
 
   display: grid;
   grid-template-columns: auto 1fr;
@@ -116,7 +85,24 @@ const StyledAside = styled.div`
 `;
 StyledAside.displayName = 'StyledAside';
 
-export const PageGrid = styled.div`
+export interface PageGridProps {
+  className?: string;
+  width: `${PageWidth}`;
+}
+
+export const PageGrid = forwardRef<HTMLDivElement, PropsWithChildren<PageGridProps>>(
+  (props, ref) => {
+    const { children, width, ...restProps } = props;
+    return (
+      <PageGridContainer {...restProps} ref={ref}>
+        <PageGridInner style={PageWidthStyles[width]}>{children}</PageGridInner>
+      </PageGridContainer>
+    );
+  },
+);
+PageGrid.displayName = 'PageGrid';
+
+const PageGridContainer = styled.div`
   grid-area: ${ContentGridArea.page};
   overflow-y: auto;
 
@@ -127,7 +113,27 @@ export const PageGrid = styled.div`
     '${PageGridArea.main}'
     '${PageGridArea.footer}';
 `;
-PageGrid.displayName = 'PageGrid';
+PageGridContainer.displayName = 'PageGridContainer';
+
+const PageGridInner = styled.div`
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas:
+    '${PageGridArea.header}'
+    '${PageGridArea.main}'
+    '${PageGridArea.footer}';
+`;
+PageGridInner.displayName = 'PageGridInner';
+
+const PageWidthStyles: Record<PageWidth, CSSProperties> = {
+  [PageWidth.default]: {
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    maxWidth: cssVar('layout-sizes-max-width-default'),
+  },
+
+  [PageWidth.fluid]: {},
+};
 
 export const PageContent = styled.div`
   grid-area: ${PageGridArea.main};

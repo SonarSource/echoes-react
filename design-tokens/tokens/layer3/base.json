@@ -55,16 +55,22 @@
           }
         }
       },
+      "global-navigation": {
+        "sizes": {
+          "height": {
+            "default": {
+              "$type": "sizing",
+              "$value": "56px"
+            }
+          }
+        }
+      },
       "sizes": {
         "max": {
           "width": {
             "default": {
               "$type": "sizing",
-              "$value": "1280px"
-            },
-            "large": {
-              "$type": "sizing",
-              "$value": "1560px"
+              "$value": "1160px"
             },
             "full": {
               "$type": "sizing",
@@ -85,11 +91,11 @@
     "sidebar-navigation": {
       "sizes": {
         "width": {
-          "collapsed": {
+          "closed": {
             "$type": "sizing",
             "$value": "3rem"
           },
-          "expanded": {
+          "open": {
             "$type": "sizing",
             "$value": "15rem"
           }

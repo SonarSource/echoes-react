@@ -18,11 +18,18 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import styled from '@emotion/styled';
+import { createContext, Dispatch, SetStateAction } from 'react';
 
-export const Sidebar = styled.div<{ isCollapsed: boolean }>`
-  grid-area: sidebar;
-  background-color: rgba(10, 120, 120, 0.6);
-  padding: 16px;
-  width: ${(props) => (props.isCollapsed ? '48px' : '240px')};
-`;
+export interface LayoutContextShape {
+  hasSidebar: boolean;
+  isSidebarDocked: boolean;
+  setHasSidebar: Dispatch<SetStateAction<boolean>>;
+  setIsSidebarDocked: Dispatch<SetStateAction<boolean>>;
+}
+
+export const LayoutContext = createContext<LayoutContextShape>({
+  hasSidebar: false,
+  isSidebarDocked: false,
+  setHasSidebar: () => {},
+  setIsSidebarDocked: () => {},
+});
