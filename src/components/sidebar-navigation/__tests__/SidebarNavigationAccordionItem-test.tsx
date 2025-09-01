@@ -30,11 +30,6 @@ import { SidebarNavigationItem } from '../SidebarNavigationItem';
 
 expect.extend(matchers);
 
-// Mock the useIsOverflow hook
-jest.mock('~common/helpers/useIsOverflow', () => ({
-  useIsOverflow: jest.fn().mockReturnValue([false]),
-}));
-
 it('should expand hidden elements when clicked', async () => {
   const onOpen = jest.fn();
   const onClose = jest.fn();

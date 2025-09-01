@@ -20,7 +20,6 @@
 
 /* eslint-disable no-console */
 import type { Meta, StoryObj } from '@storybook/react-vite';
-
 import { cssVar, DropdownMenu, SidebarNavigation } from '../../src';
 import { basicWrapperDecorator } from '../helpers/BasicWrapper';
 
@@ -33,7 +32,7 @@ const meta: Meta = {
         style={{
           display: 'flex',
           flexDirection: 'column',
-          width: cssVar('sidebar-navigation-sizes-width-expanded'),
+          width: cssVar('sidebar-navigation-sizes-width-open'),
         }}>
         <Story />
       </div>

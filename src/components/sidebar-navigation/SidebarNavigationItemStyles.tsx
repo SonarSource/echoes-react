@@ -67,16 +67,12 @@ export const sidebarNavigationItemIconStyles = css`
   font-size: ${cssVar('font-size-30')};
 `;
 
-export const sidebarNavigationContentStyles = css`
+export const SidebarNavigationFooter = styled.div`
   display: flex;
   flex-direction: column;
   gap: ${cssVar('dimension-space-50')};
 
   padding: ${cssVar('dimension-space-50')} ${cssVar('dimension-space-100')};
-`;
-
-export const SidebarNavigationFooter = styled.div`
-  ${sidebarNavigationContentStyles}
 `;
 SidebarNavigationFooter.displayName = 'SidebarNavigationFooter';
 

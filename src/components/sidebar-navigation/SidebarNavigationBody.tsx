@@ -20,7 +20,7 @@
 import styled from '@emotion/styled';
 import { PropsWithChildren, useRef } from 'react';
 import { BottomShadowScroll, useBottomShadowScroll } from '~common/helpers/useBottomShadowScroll';
-import { sidebarNavigationContentStyles } from './SidebarNavigationItemStyles';
+import { cssVar } from '~utils/design-tokens';
 
 export function SidebarNavigationBody({ children }: PropsWithChildren<{}>) {
   const scrollableContainerRef = useRef<HTMLDivElement>(null);
@@ -47,6 +47,8 @@ const SidebarNavigationBodyScrollWrapper = styled.div`
   position: relative;
   display: flex;
   overflow-y: hidden;
+
+  padding: ${cssVar('dimension-space-50')} 0;
 `;
 SidebarNavigationBodyScrollWrapper.displayName = 'SidebarNavigationBodyScrollWrapper';
 
@@ -58,7 +60,7 @@ const SidebarNavigationBodyScrollContainer = styled.div`
   overflow-x: hidden;
   overflow-y: auto;
 
-  [data-sidebar-collapsed='true'] & {
+  [data-sidebar-docked='false'] nav:not(:hover, :focus-within) & {
     overflow-y: hidden;
   }
 `;
@@ -69,12 +71,17 @@ SidebarNavigationBodyScrollContainer.displayName = 'SidebarNavigationBodyScrollC
 // parent but not its size. So we also monitor this element resizes to recompute the shadow visibility.
 const SidebarNavigationBodyInner = styled.ul`
   all: unset;
-  ${sidebarNavigationContentStyles}
+
+  display: flex;
+  flex-direction: column;
+  gap: ${cssVar('dimension-space-50')};
+
+  padding: ${cssVar('dimension-space-50')} ${cssVar('dimension-space-100')};
 `;
 SidebarNavigationBodyInner.displayName = 'SidebarNavigationBodyInner';
 
 const SidebarNavigationBottomShadowScroll = styled(BottomShadowScroll)`
-  [data-sidebar-collapsed='true'] & {
+  [data-sidebar-docked='false'] nav:not(:hover, :focus-within) & {
     display: none;
   }
 `;

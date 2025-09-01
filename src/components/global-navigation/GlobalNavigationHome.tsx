@@ -59,7 +59,8 @@ export const GlobalNavigationHome = forwardRef<HTMLDivElement, GlobalNavigationH
 GlobalNavigationHome.displayName = 'GlobalNavigationHome';
 
 const HomeContainer = styled.div`
-  padding: 0 ${cssVar('dimension-space-300')};
+  padding-left: ${cssVar('dimension-space-150')};
+  padding-right: ${cssVar('dimension-space-300')};
 `;
 HomeContainer.displayName = 'HomeContainer';
 

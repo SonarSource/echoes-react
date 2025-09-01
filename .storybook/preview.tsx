@@ -25,9 +25,7 @@ import { withThemeByDataAttribute } from '@storybook/addon-themes';
 import type { Preview } from '@storybook/react-vite';
 import { IntlProvider } from 'react-intl';
 import { MemoryRouter } from 'react-router-dom';
-import { EchoesProvider, Theme } from '../src';
-
-import { cssVar } from '~utils/design-tokens';
+import { EchoesProvider, Theme, cssVar } from '../src';
 
 /**
  * This prevents emotion from complaining about SSR

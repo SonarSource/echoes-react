@@ -128,12 +128,12 @@
   --echoes-layout-aside-width-small: 200px;
   --echoes-layout-aside-width-medium: 300px;
   --echoes-layout-aside-width-large: 400px;
-  --echoes-layout-sizes-max-width-default: 1280px;
-  --echoes-layout-sizes-max-width-large: 1560px;
+  --echoes-layout-global-navigation-sizes-height-default: 56px;
+  --echoes-layout-sizes-max-width-default: 1160px;
   --echoes-layout-sizes-max-width-full: 100%;
   --echoes-layout-sizes-min-width-default: 1280px;
-  --echoes-sidebar-navigation-sizes-width-collapsed: 3rem;
-  --echoes-sidebar-navigation-sizes-width-expanded: 15rem;
+  --echoes-sidebar-navigation-sizes-width-closed: 3rem;
+  --echoes-sidebar-navigation-sizes-width-open: 15rem;
   --echoes-sizes-overlays-max-width-default: 25rem;
   --echoes-sizes-overlays-min-width-default: 150px;
   --echoes-sizes-overlays-width-small: 25rem;

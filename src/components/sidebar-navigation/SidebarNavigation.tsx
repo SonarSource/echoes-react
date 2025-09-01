@@ -19,28 +19,33 @@
  */
 
 import styled from '@emotion/styled';
-import { forwardRef, PropsWithChildren } from 'react';
+import { forwardRef, PropsWithChildren, useContext, useEffect } from 'react';
 import { useIntl } from 'react-intl';
 import { cssVar } from '~utils/design-tokens';
+import { LayoutContext } from '../layout/LayoutContext';
+import { GlobalGridArea } from '../layout/LayoutTypes';
 
 export interface SidebarNavigationProps {
   /**
    * Sidebar navigation Aria-label, defaults to "Secondary navigation"
    */
   ariaLabel?: string;
-  /**
-   * Whether the sidebar is collapsed (narrow) or expanded (wide)
-   */
-  isCollapsed: boolean;
 }
 
 export const SidebarNavigation = forwardRef<
   HTMLDivElement,
   PropsWithChildren<SidebarNavigationProps>
 >((props, ref) => {
-  const { ariaLabel, children, isCollapsed } = props;
-
+  const { ariaLabel, children } = props;
   const intl = useIntl();
+  const { setHasSidebar } = useContext(LayoutContext);
+
+  useEffect(() => {
+    setHasSidebar(true);
+    return () => {
+      setHasSidebar(false);
+    };
+  }, [setHasSidebar]);
 
   const defaultAriaLabel = intl.formatMessage({
     id: 'sidebar_navigation.label',
@@ -49,35 +54,59 @@ export const SidebarNavigation = forwardRef<
   });
 
   return (
-    <SidebarNavigationWrapper
-      aria-label={ariaLabel ?? defaultAriaLabel}
-      css={{
-        '--sidebar-navigation-width': isCollapsed
-          ? cssVar('sidebar-navigation-sizes-width-collapsed')
-          : cssVar('sidebar-navigation-sizes-width-expanded'),
-      }}
-      data-sidebar-collapsed={isCollapsed}
-      ref={ref}>
-      {children}
-    </SidebarNavigationWrapper>
+    <SidebarNavigationContainer>
+      <SidebarNavigationWrapper aria-label={ariaLabel ?? defaultAriaLabel} ref={ref}>
+        {children}
+      </SidebarNavigationWrapper>
+    </SidebarNavigationContainer>
   );
 });
 
 SidebarNavigation.displayName = 'SidebarNavigation';
 
+const SidebarNavigationContainer = styled.div`
+  grid-area: ${GlobalGridArea.sidebar};
+  position: relative;
+
+  width: calc(var(--sidebar-navigation-container-width) + ${cssVar('border-width-default')});
+
+  z-index: 1; // Ensure the sidebar is showing over the content
+
+  --sidebar-navigation-container-width: ${cssVar('sidebar-navigation-sizes-width-closed')};
+
+  [data-sidebar-docked='true'] & {
+    --sidebar-navigation-container-width: ${cssVar('sidebar-navigation-sizes-width-open')};
+  }
+`;
+SidebarNavigationContainer.displayName = 'SidebarNavigationContainer';
+
 const SidebarNavigationWrapper = styled.nav`
-  box-sizing: content-box;
-  width: var(--sidebar-navigation-width);
-  background-color: ${cssVar('color-surface-canvas-default')};
-  border-right: ${cssVar('border-width-default')} solid ${cssVar('color-border-weak')};
-
-  overflow: hidden;
-
-  padding-top: ${cssVar('dimension-space-250')};
+  position: absolute;
+  top: 0;
+  bottom: 0;
 
   display: flex;
   flex-direction: column;
+  box-sizing: content-box;
+  overflow: hidden;
+
+  padding-top: ${cssVar('dimension-space-250')};
+  border-right: ${cssVar('border-width-default')} solid ${cssVar('color-border-weak')};
+  background-color: ${cssVar('color-surface-canvas-default')};
 
   transition: width 0.1s;
+
+  width: var(--sidebar-navigation-width);
+
+  --sidebar-navigation-width: ${cssVar('sidebar-navigation-sizes-width-open')};
+
+  // hover and focus-within pilotes the open state of the sidebar
+  [data-sidebar-docked='false'] &:not(:hover, :focus-within) {
+    --sidebar-navigation-width: ${cssVar('sidebar-navigation-sizes-width-closed')};
+  }
+
+  [data-sidebar-docked='false'] &:is(:hover, :focus-within) {
+    box-shadow: ${cssVar('box-shadow-x-large')};
+  }
 `;
 SidebarNavigationWrapper.displayName = 'SidebarNavigationWrapper';

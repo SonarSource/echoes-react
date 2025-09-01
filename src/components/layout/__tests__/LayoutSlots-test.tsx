@@ -20,21 +20,21 @@
 
 import { screen } from '@testing-library/react';
 import { render } from '~common/helpers/test-utils';
-import { AsideLeft, ContentGrid } from '../LayoutSlots';
-import { AsideSize, ContentWidth } from '../LayoutTypes';
+import { AsideLeft, PageGrid } from '../LayoutSlots';
+import { AsideSize, PageWidth } from '../LayoutTypes';
 
-describe('ContentGrid', () => {
-  it.each([
-    [ContentWidth.fixed, 'var(--echoes-layout-sizes-max-width-default)'],
-    [ContentWidth.legacy, 'var(--echoes-layout-sizes-max-width-large)'],
-  ])('should render correctly when %s', (width, expected) => {
-    render(<ContentGrid width={width}>content</ContentGrid>);
+describe('PageGrid', () => {
+  it.each([[PageWidth.default, 'var(--echoes-layout-sizes-max-width-default)']])(
+    'should render correctly when %s',
+    (width, expected) => {
+      render(<PageGrid width={width}>content</PageGrid>);
 
-    expect(screen.getByText('content')).toHaveStyle({ maxWidth: expected });
-  });
+      expect(screen.getByText('content')).toHaveStyle({ maxWidth: expected });
+    },
+  );
 
   it('should render correctly when fluid', () => {
-    render(<ContentGrid width={ContentWidth.fluid}>content</ContentGrid>);
+    render(<PageGrid width={PageWidth.fluid}>content</PageGrid>);
 
     expect(screen.getByText('content')).not.toHaveStyle({
       maxWidth: 'var(--echoes-layout-sizes-max-width-default)',
