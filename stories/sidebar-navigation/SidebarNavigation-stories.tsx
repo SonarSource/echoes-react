@@ -19,6 +19,7 @@
  */
 
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { PropsWithChildren } from 'react';
 import {
   cssVar,
   GlobalNavigation,
@@ -33,6 +34,7 @@ import {
   IconTarget,
   Layout,
   LogoSonarQubeServer,
+  MessageCallout,
   SidebarNavigation,
 } from '../../src';
 
@@ -55,7 +57,7 @@ export const Full: Story = {
     exclude: ['children'],
   },
   render: (args) => (
-    <Layout>
+    <LayoutWithSidebarStateSaved>
       <GlobalNavigation>
         <GlobalNavigation.Primary>
           <GlobalNavigation.Home>
@@ -198,13 +200,31 @@ export const Full: Story = {
           </SidebarNavigation.AccordionItem>
         </SidebarNavigation.Footer>
       </SidebarNavigation>
-      <Layout.ContentGrid width="fluid">
-        <Layout.PageGrid>
+      <Layout.ContentGrid>
+        <Layout.PageGrid width="fluid">
           <Layout.PageContent>
-            Page content that is long enough to be visible when the sidebar is open on small screen
+            Page content that is long enough to be visible when the sidebar is open on a small screen.
+            <br />
+            <br />
+            <MessageCallout variety="info">
+              Your last choice for docking the sidebar is saved in the browser local storage.
+            </MessageCallout>
           </Layout.PageContent>
         </Layout.PageGrid>
       </Layout.ContentGrid>
-    </Layout>
+    </LayoutWithSidebarStateSaved>
   ),
 };
+
+function LayoutWithSidebarStateSaved({ children }: PropsWithChildren) {
+  const isSidebarDocked = window.localStorage.getItem('echoes-sidebar-docked');
+  return (
+    <Layout
+      isSidebarInitiallyDocked={isSidebarDocked != null ? isSidebarDocked === 'true' : undefined}
+      onSidebarDockedChange={(isDocked) => {
+        window.localStorage.setItem('echoes-sidebar-docked', isDocked.toString());
+      }}>
+      {children}
+    </Layout>
+  );
+}

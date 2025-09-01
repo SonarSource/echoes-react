@@ -28,6 +28,9 @@ import {
   PageGrid,
 } from './LayoutSlots';
 
+export type { LayoutProps } from './Layout';
+export type { AsideProps, PageGridProps } from './LayoutSlots';
+
 /**
  * The Layout component is meant to be placed at the very root of
  * your project. It provides the base viewport and a CSS grid definition
