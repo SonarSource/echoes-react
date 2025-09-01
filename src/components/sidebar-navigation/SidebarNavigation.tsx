@@ -23,6 +23,7 @@ import { forwardRef, PropsWithChildren, useContext, useEffect } from 'react';
 import { useIntl } from 'react-intl';
 import { cssVar } from '~utils/design-tokens';
 import { LayoutContext } from '../layout/LayoutContext';
+import { GlobalGridArea } from '../layout/LayoutTypes';
 
 export interface SidebarNavigationProps {
   /**
@@ -64,10 +65,12 @@ export const SidebarNavigation = forwardRef<
 SidebarNavigation.displayName = 'SidebarNavigation';
 
 const SidebarNavigationContainer = styled.div`
-  grid-area: sidebar;
+  grid-area: ${GlobalGridArea.sidebar};
   position: relative;
 
   width: calc(var(--sidebar-navigation-container-width) + ${cssVar('border-width-default')});
+
+  z-index: 1; // Ensure the sidebar is showing over the content
 
   --sidebar-navigation-container-width: ${cssVar('sidebar-navigation-sizes-width-closed')};
 

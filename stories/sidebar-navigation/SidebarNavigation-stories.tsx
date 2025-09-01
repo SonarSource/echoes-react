@@ -18,7 +18,6 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import styled from '@emotion/styled';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import {
   cssVar,
@@ -198,16 +197,14 @@ export const Full: Story = {
             </SidebarNavigation.Item>
           </SidebarNavigation.AccordionItem>
         </SidebarNavigation.Footer>
-      </SidebarNavigation>{' '}
-      <ContentWrapper>
-        Page content that is long enough to be visible when the sidebar is open on small screen
-      </ContentWrapper>
+      </SidebarNavigation>
+      <Layout.ContentGrid width="fluid">
+        <Layout.PageGrid>
+          <Layout.PageContent>
+            Page content that is long enough to be visible when the sidebar is open on small screen
+          </Layout.PageContent>
+        </Layout.PageGrid>
+      </Layout.ContentGrid>
     </Layout>
   ),
 };
-
-const ContentWrapper = styled.div`
-  grid-area: content;
-  padding: 2rem;
-  background-color: ${cssVar('color-background-accent-weak-default')};
-`;

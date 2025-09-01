@@ -26,14 +26,18 @@ import {
   cssVar,
   DropdownMenu,
   GlobalNavigation,
+  IconBell,
+  IconCalendar,
+  IconGear,
+  IconProject,
   IconQuestionMark,
   IconSearch,
   Layout,
   LinkStandalone,
   LogoSonarQubeServer,
+  SidebarNavigation,
   Text,
 } from '../../src';
-import { Sidebar } from '../../src/components/layout/LayoutStyles';
 import { AsideSize, PageGridArea } from '../../src/components/layout/LayoutTypes';
 
 const meta: Meta = {
@@ -47,13 +51,38 @@ const meta: Meta = {
         false: undefined,
       },
     },
-    asideSize: {
+    aside: {
       control: 'select',
-      options: [AsideSize.small, AsideSize.medium, AsideSize.large],
+      mapping: {
+        [AsideSize.small]: (
+          <Layout.AsideLeft size={AsideSize.small}>
+            <AsideContent />
+          </Layout.AsideLeft>
+        ),
+        [AsideSize.medium]: (
+          <Layout.AsideLeft size={AsideSize.medium}>
+            <AsideContent />
+          </Layout.AsideLeft>
+        ),
+        [AsideSize.large]: (
+          <Layout.AsideLeft size={AsideSize.large}>
+            <AsideContent />
+          </Layout.AsideLeft>
+        ),
+        none: undefined,
+      },
+      options: [AsideSize.small, AsideSize.medium, AsideSize.large, 'none'],
     },
     contentWidth: {
       control: 'select',
       options: ['fixed', 'fluid', 'legacy'],
+    },
+    sidebar: {
+      control: 'boolean',
+      mapping: {
+        true: <SidebarNav />,
+        false: undefined,
+      },
     },
   },
 };
@@ -64,9 +93,10 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    asideSize: AsideSize.medium,
+    aside: AsideSize.medium,
     banner: false,
     contentWidth: 'fixed',
+    sidebar: true,
   },
   render: (args) => (
     // Compensate storybook's padding
@@ -74,17 +104,9 @@ export const Default: Story = {
       <Layout>
         <Layout.BannerContainer>{args.banner}</Layout.BannerContainer>
         <GlobalNav />
-        <Sidebar isCollapsed={false}>Sidebar</Sidebar>
+        {args.sidebar}
         <Layout.ContentGrid width={args.contentWidth}>
-          <Layout.AsideLeft size={args.asideSize}>
-            <List>
-              {items.map((k) => (
-                <li key={k}>
-                  <Button variety="default-ghost">Item {k + 1}</Button>
-                </li>
-              ))}
-            </List>
-          </Layout.AsideLeft>
+          {args.aside}
           <Layout.PageGrid>
             <PageHeader sticky>
               <h1>asdf</h1>
@@ -169,6 +191,62 @@ function GlobalNav() {
         />
       </GlobalNavigation.Secondary>
     </GlobalNavigation>
+  );
+}
+
+function SidebarNav() {
+  return (
+    <SidebarNavigation>
+      <SidebarNavigation.Header
+        avatar={
+          <div
+            style={{
+              backgroundColor: cssVar('color-background-emphasis-active'),
+              color: cssVar('color-text-on-color'),
+              width: '100%',
+              height: '100%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              borderRadius: cssVar('border-radius-400'),
+            }}>
+            S
+          </div>
+        }
+        isInteractive
+        name="Hello this is a bit long, I think!"
+      />
+      <SidebarNavigation.Body>
+        <SidebarNavigation.Item Icon={IconProject} enableTooltip to="/pouet">
+          blablablba
+        </SidebarNavigation.Item>
+        <SidebarNavigation.Group label="Group name">
+          <SidebarNavigation.Item Icon={IconBell} to="somwhereelse1">
+            Thing 1
+          </SidebarNavigation.Item>
+          <SidebarNavigation.Item Icon={IconCalendar} enableTooltip to="somwhereelse2">
+            Amazing project 2Amazing project 2Amazing project 2Amazing project 2Amazing project 2
+          </SidebarNavigation.Item>
+        </SidebarNavigation.Group>
+      </SidebarNavigation.Body>
+      <SidebarNavigation.Footer>
+        <SidebarNavigation.Item Icon={IconGear} to="/settings">
+          Settings
+        </SidebarNavigation.Item>
+      </SidebarNavigation.Footer>
+    </SidebarNavigation>
+  );
+}
+
+function AsideContent() {
+  return (
+    <List>
+      {items.map((k) => (
+        <li key={k}>
+          <Button variety="default-ghost">Item {k + 1}</Button>
+        </li>
+      ))}
+    </List>
   );
 }
 

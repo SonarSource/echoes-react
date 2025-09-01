@@ -61,6 +61,8 @@ const GlobalNavigationContainer = styled.nav`
 
   background-color: ${cssVar('color-surface-default')};
   border-bottom: ${cssVar('border-width-default')} solid ${cssVar('color-border-weak')};
+
+  z-index: 1; // Ensure the global navigation is showing over the content
 `;
 GlobalNavigationContainer.displayName = 'GlobalNavigationContainer';
 
