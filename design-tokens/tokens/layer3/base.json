@@ -70,11 +70,7 @@
           "width": {
             "default": {
               "$type": "sizing",
-              "$value": "1280px"
-            },
-            "large": {
-              "$type": "sizing",
-              "$value": "1560px"
+              "$value": "1160px"
             },
             "full": {
               "$type": "sizing",

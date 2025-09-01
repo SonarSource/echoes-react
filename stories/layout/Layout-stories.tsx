@@ -74,10 +74,6 @@ const meta: Meta = {
       },
       options: [AsideSize.small, AsideSize.medium, AsideSize.large, 'none'],
     },
-    contentWidth: {
-      control: 'select',
-      options: ['fixed', 'fluid', 'legacy'],
-    },
     contentHeader: {
       control: 'boolean',
       mapping: {
@@ -91,6 +87,10 @@ const meta: Meta = {
         true: <Header />,
         false: undefined,
       },
+    },
+    pageWidth: {
+      control: 'select',
+      options: ['default', 'fluid'],
     },
     sidebar: {
       control: 'boolean',
@@ -110,7 +110,7 @@ export const Default: Story = {
   args: {
     aside: AsideSize.medium,
     banner: false,
-    contentWidth: 'fixed',
+    pageWidth: 'default',
     pageHeader: true,
     sidebar: true,
   },
@@ -121,10 +121,10 @@ export const Default: Story = {
         <Layout.BannerContainer>{args.banner}</Layout.BannerContainer>
         <GlobalNav />
         {args.sidebar}
-        <Layout.ContentGrid width={args.contentWidth}>
+        <Layout.ContentGrid>
           {args.contentHeader}
           {args.aside}
-          <Layout.PageGrid>
+          <Layout.PageGrid width={args.pageWidth}>
             {args.pageHeader}
             <Layout.PageContent>
               {text}
