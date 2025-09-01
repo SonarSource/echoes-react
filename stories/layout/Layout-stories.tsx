@@ -20,6 +20,7 @@
 
 import styled from '@emotion/styled';
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { PageHeaderBehavior } from 'src/components/layout/page-header/PageHeader';
 import {
   AsideSize,
   Button,
@@ -89,9 +90,13 @@ const meta: Meta = {
     pageHeader: {
       control: 'boolean',
       mapping: {
-        true: <Header />,
-        false: undefined,
+        true: (behavior: PageHeaderBehavior) => <Header behavior={behavior} />,
+        false: (_: boolean) => undefined,
       },
+    },
+    pageHeaderScrollBehavior: {
+      control: 'select',
+      options: [PageHeaderBehavior.collapse, PageHeaderBehavior.scroll, PageHeaderBehavior.sticky],
     },
     pageWidth: {
       control: 'select',
@@ -115,8 +120,10 @@ export const Default: Story = {
   args: {
     aside: AsideSize.medium,
     banner: 'none',
-    pageWidth: 'default',
+    contentHeader: false,
     pageHeader: true,
+    pageHeaderScrollBehavior: PageHeaderBehavior.scroll,
+    pageWidth: 'default',
     sidebar: true,
   },
   render: (args) => (
@@ -129,8 +136,9 @@ export const Default: Story = {
         <Layout.ContentGrid>
           {args.contentHeader}
           {args.aside}
+
           <Layout.PageGrid width={args.pageWidth}>
-            {args.pageHeader}
+            {args.pageHeader(args.pageHeaderScrollBehavior)}
             <Layout.PageContent>
               {text}
               {text}
@@ -256,7 +264,7 @@ function AsideContent() {
   );
 }
 
-function Header() {
+function Header({ behavior }: Readonly<{ behavior?: PageHeaderBehavior }>) {
   return (
     <Layout.PageHeader
       actions={
@@ -270,6 +278,7 @@ function Header() {
           <Layout.PageHeader.NavigationItem to="/2">Nav Item 2</Layout.PageHeader.NavigationItem>
         </Layout.PageHeader.Navigation>
       }
+      scrollBehavior={behavior}
       title={<Layout.PageHeader.Title>Content title</Layout.PageHeader.Title>}
     />
   );

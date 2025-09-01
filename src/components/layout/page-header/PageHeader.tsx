@@ -19,10 +19,30 @@
  */
 
 import styled from '@emotion/styled';
-import { forwardRef, ReactNode } from 'react';
+import { CSSProperties, forwardRef, ReactNode } from 'react';
+import { useForwardedRef } from '~common/helpers/useForwardedRef';
+import { useResizeObserver } from '~common/helpers/useResizeObserver';
 import { cssVar } from '~utils/design-tokens';
 import { Divider } from '../../divider';
 import { PageGridArea } from '../LayoutTypes';
+
+export enum PageHeaderBehavior {
+  collapse = 'collapse',
+  scroll = 'scroll',
+  sticky = 'sticky',
+}
+
+const PageHeaderBehaviorStyles: Record<PageHeaderBehavior, CSSProperties> = {
+  [PageHeaderBehavior.collapse]: {
+    position: 'sticky',
+    top: 'var(--page-header-collapse-position)',
+  },
+  [PageHeaderBehavior.scroll]: {},
+  [PageHeaderBehavior.sticky]: {
+    position: 'sticky',
+    top: 0,
+  },
+};
 
 export interface PageHeaderProps {
   /**
@@ -39,6 +59,11 @@ export interface PageHeaderProps {
    * Additional CSS class name(s)
    */
   className?: string;
+  /**
+   * When `scrollBehavior` is `collapse`, the pageHeader will scroll down to a default size of XXX.
+   * You may override this number with this prop.
+   */
+  overrideCollapseHeight?: number;
   /**
    * Description text to display below the title. Use <PageHeader.Description> to wrap it.
    */
@@ -57,6 +82,15 @@ export interface PageHeaderProps {
    */
   navigation?: ReactNode;
   /**
+   * When the PageHeader is in the PageGrid container, it scrolls with the content by default.
+   *
+   *  - `scroll`: default, the header scrolls with the content
+   *  - `sticky`: the header sticks to the top
+   *  - `collapse`: the header collapses partially
+   *
+   */
+  scrollBehavior?: PageHeaderBehavior;
+  /**
    * The main title content (required). Use <PageHeader.Title> to wrap it.
    */
   title: ReactNode;
@@ -67,12 +101,35 @@ export interface PageHeaderProps {
  * breadcrumbs, and actions. Can optionally include a divider, and <PageHeader.Navigation> elements
  * as children.
  */
-export const PageHeaderRoot = forwardRef<HTMLDivElement, PageHeaderProps>((props, ref) => {
-  const { actions, breadcrumbs, description, hasDivider, metadata, navigation, title, ...rest } =
-    props;
+export const PageHeaderRoot = forwardRef<HTMLDivElement, PageHeaderProps>((props, forwardedRef) => {
+  const {
+    actions,
+    breadcrumbs,
+    description,
+    hasDivider,
+    metadata,
+    navigation,
+    overrideCollapseHeight,
+    scrollBehavior = PageHeaderBehavior.scroll,
+    title,
+    ...rest
+  } = props;
+
+  const [ref, setRef] = useForwardedRef(forwardedRef);
+  const { height = 0 } = useResizeObserver(ref);
+
+  const collapsePosition = (overrideCollapseHeight ?? 56) - height - 24;
 
   return (
-    <StyledPageHeader ref={ref} {...rest}>
+    <StyledPageHeader
+      ref={setRef}
+      {...rest}
+      style={
+        {
+          '--page-header-collapse-position': `${collapsePosition}px`,
+          ...PageHeaderBehaviorStyles[scrollBehavior],
+        } as CSSProperties
+      }>
       <StyledPageHeaderTop>
         {breadcrumbs}
 
@@ -112,6 +169,8 @@ const StyledPageHeader = styled.div`
 
   padding-top: ${cssVar('dimension-space-300')};
   padding-right: ${cssVar('dimension-space-300')};
+
+  background-color: ${cssVar('color-surface-default')};
 `;
 
 StyledPageHeader.displayName = 'StyledPageHeader';
