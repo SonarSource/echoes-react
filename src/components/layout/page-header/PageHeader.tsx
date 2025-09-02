@@ -32,10 +32,16 @@ export enum PageHeaderBehavior {
   sticky = 'sticky',
 }
 
+/**
+ * Height of the minimal visible portion of the PageHeader when `scrollBehavior` is `collapse`
+ */
+const COLLAPSED_HEIGHT = 56;
+
 const PageHeaderBehaviorStyles: Record<PageHeaderBehavior, CSSProperties> = {
   [PageHeaderBehavior.collapse]: {
     position: 'sticky',
-    top: 'var(--page-header-collapse-position)',
+    // The top position is the target height to which we remove the total height and the top margin
+    top: `calc(${COLLAPSED_HEIGHT}px - var(--page-header-total-height) - var(--echoes-dimension-space-300))`,
   },
   [PageHeaderBehavior.scroll]: {},
   [PageHeaderBehavior.sticky]: {
@@ -51,6 +57,11 @@ export interface PageHeaderProps {
    */
   actions?: ReactNode;
   /**
+   * When `scrollBehavior` is `collapsed`, the actions become sticky and scroll down
+   * to align with the navigation items. Set this to true to let them scroll out of view.
+   */
+  disableStickyActions?: boolean;
+  /**
    * Breadcrumb navigation elements to display above the title.
    * Use <PageHeader.Breadcrumbs> to wrap them.
    */
@@ -59,11 +70,6 @@ export interface PageHeaderProps {
    * Additional CSS class name(s)
    */
   className?: string;
-  /**
-   * When `scrollBehavior` is `collapse`, the pageHeader will scroll down to a default size of XXX.
-   * You may override this number with this prop.
-   */
-  overrideCollapseHeight?: number;
   /**
    * Description text to display below the title. Use <PageHeader.Description> to wrap it.
    */
@@ -106,10 +112,10 @@ export const PageHeaderRoot = forwardRef<HTMLDivElement, PageHeaderProps>((props
     actions,
     breadcrumbs,
     description,
+    disableStickyActions = false,
     hasDivider,
     metadata,
     navigation,
-    overrideCollapseHeight,
     scrollBehavior = PageHeaderBehavior.scroll,
     title,
     ...rest
@@ -118,54 +124,62 @@ export const PageHeaderRoot = forwardRef<HTMLDivElement, PageHeaderProps>((props
   const [ref, setRef] = useForwardedRef(forwardedRef);
   const { height = 0 } = useResizeObserver(ref);
 
-  const collapsePosition = (overrideCollapseHeight ?? 56) - height - 24;
+  //
+  const stickyActions = scrollBehavior === PageHeaderBehavior.collapse && !disableStickyActions;
 
   return (
     <StyledPageHeader
       ref={setRef}
       {...rest}
+      hasFullWidthNav={!stickyActions}
       style={
         {
-          '--page-header-collapse-position': `${collapsePosition}px`,
+          '--page-header-total-height': `${height}px`,
           ...PageHeaderBehaviorStyles[scrollBehavior],
         } as CSSProperties
       }>
-      <StyledPageHeaderTop>
-        {breadcrumbs}
+      {breadcrumbs && <StyledPageHeaderBreadcrumbs>{breadcrumbs}</StyledPageHeaderBreadcrumbs>}
 
-        <StyledPageHeaderMain>
-          <StyledPageHeaderMainLeft>
-            {title}
+      <StyledPageHeaderMain>
+        {title}
 
-            {metadata}
+        {metadata}
 
-            {description}
-          </StyledPageHeaderMainLeft>
+        {description}
+      </StyledPageHeaderMain>
 
-          {actions && <StyledPageHeaderMainRight>{actions}</StyledPageHeaderMainRight>}
-        </StyledPageHeaderMain>
-      </StyledPageHeaderTop>
-
-      {(hasDivider || navigation) && (
-        <StyledPageHeaderBottom>
-          {navigation}
-
-          {navigation ? <StyledDividerWithOverlap /> : <Divider />}
-        </StyledPageHeaderBottom>
+      {actions && (
+        <StyledPageHeaderActions
+          style={stickyActions ? { top: cssVar('dimension-space-100'), position: 'sticky' } : {}}>
+          {actions}
+        </StyledPageHeaderActions>
       )}
+
+      {navigation && (
+        <>
+          <StyledPageHeaderBottom>{navigation}</StyledPageHeaderBottom>
+          <StyledDividerWithOverlap />
+        </>
+      )}
+      {hasDivider && !navigation && <StyledDivider />}
     </StyledPageHeader>
   );
 });
 
 PageHeaderRoot.displayName = 'PageHeader';
 
-const StyledPageHeader = styled.div`
+const StyledPageHeader = styled.div<{ hasFullWidthNav: boolean }>`
   grid-area: ${PageGridArea.header};
 
-  display: flex;
-  align-items: flex-start;
-  flex-direction: column;
-  gap: ${cssVar('dimension-space-300')};
+  display: grid;
+
+  grid-template-columns: auto min-content;
+  grid-template-rows: repeat(4, auto);
+  grid-template-areas:
+    'breadcrumbs breadcrumbs'
+    'main actions'
+    '${({ hasFullWidthNav }) => (hasFullWidthNav ? 'nav nav' : 'nav _')}'
+    'divider divider';
 
   padding-top: ${cssVar('dimension-space-300')};
   padding-right: ${cssVar('dimension-space-300')};
@@ -175,52 +189,50 @@ const StyledPageHeader = styled.div`
 
 StyledPageHeader.displayName = 'StyledPageHeader';
 
-const StyledPageHeaderTop = styled.div`
-  align-items: flex-start;
-  align-self: stretch;
-  display: flex;
-  flex-direction: column;
-  gap: ${cssVar('dimension-space-200')};
-`;
+const StyledPageHeaderBreadcrumbs = styled.div`
+  grid-area: breadcrumbs;
 
-StyledPageHeaderTop.displayName = 'StyledPageHeaderTop';
+  margin-bottom: ${cssVar('dimension-space-200')};
+`;
+StyledPageHeaderBreadcrumbs.displayName = 'StyledPageHeaderBreadcrumbs';
 
 const StyledPageHeaderBottom = styled.div`
+  grid-area: nav;
+
   white-space: nowrap;
-  width: 100%;
+
+  margin-top: ${cssVar('dimension-space-300')};
 `;
 
 StyledPageHeaderBottom.displayName = 'StyledPageHeaderBottom';
 
 const StyledPageHeaderMain = styled.div`
-  align-items: center;
-  align-self: stretch;
-  display: flex;
-  gap: ${cssVar('dimension-space-100')};
-  justify-content: space-between;
-`;
+  grid-area: main;
 
-StyledPageHeaderMain.displayName = 'StyledPageHeaderMain';
-
-const StyledPageHeaderMainLeft = styled.div`
   align-items: flex-start;
   display: flex;
   flex-direction: column;
   gap: ${cssVar('dimension-space-150')};
+  margin-right: ${cssVar('dimension-space-100')};
 `;
+StyledPageHeaderMain.displayName = 'StyledPageHeaderMain';
 
-StyledPageHeaderMainLeft.displayName = 'StyledPageHeaderMainLeft';
+const StyledPageHeaderActions = styled.div`
+  grid-area: actions;
 
-const StyledPageHeaderMainRight = styled.div`
   display: flex;
   gap: ${cssVar('dimension-space-100')};
   white-space: nowrap;
 `;
+StyledPageHeaderActions.displayName = 'StyledPageHeaderActions';
 
-StyledPageHeaderMainRight.displayName = 'StyledPageHeaderMainRight';
+const StyledDivider = styled(Divider)`
+  grid-area: divider;
+  margin-top: ${cssVar('dimension-space-300')};
+`;
+StyledDivider.displayName = 'StyledDivider';
 
-const StyledDividerWithOverlap = styled(Divider)`
+const StyledDividerWithOverlap = styled(StyledDivider)`
   margin-top: -1px;
 `;
-
 StyledDividerWithOverlap.displayName = 'StyledDividerWithOverlap';
