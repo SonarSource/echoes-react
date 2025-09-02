@@ -95,7 +95,7 @@ export const PageGrid = forwardRef<HTMLDivElement, PropsWithChildren<PageGridPro
     const { children, width, ...restProps } = props;
     return (
       <PageGridContainer {...restProps} ref={ref}>
-        <PageGridInner style={PageWidthStyles[width]}>{children}</PageGridInner>
+        <PageGridInner style={PAGE_WIDTH_STYLES[width]}>{children}</PageGridInner>
       </PageGridContainer>
     );
   },
@@ -125,7 +125,7 @@ const PageGridInner = styled.div`
 `;
 PageGridInner.displayName = 'PageGridInner';
 
-const PageWidthStyles: Record<PageWidth, CSSProperties> = {
+const PAGE_WIDTH_STYLES: Record<PageWidth, CSSProperties> = {
   [PageWidth.default]: {
     marginLeft: 'auto',
     marginRight: 'auto',
