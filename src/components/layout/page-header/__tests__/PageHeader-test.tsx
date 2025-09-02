@@ -23,7 +23,7 @@ import { ComponentProps } from 'react';
 import { renderWithMemoryRouter } from '~common/helpers/test-utils';
 import { PageHeader } from '..';
 import { Button, ButtonIcon, ButtonVariety, DropdownMenu, IconArrowLeft, IconEdit } from '../../..';
-import { PageHeaderBehavior } from '../PageHeader';
+import { PageHeaderScrollBehavior } from '../../LayoutTypes';
 
 it('should display a full PageHeader properly', async () => {
   const { container } = setup();
@@ -56,12 +56,12 @@ it('should display a minimal PageHeader properly', () => {
 
 describe('scroll behavior', () => {
   it.each([
-    [PageHeaderBehavior.collapse, false, 'sticky'],
-    [PageHeaderBehavior.collapse, true, ''],
-    [PageHeaderBehavior.scroll, false, ''],
-    [PageHeaderBehavior.scroll, true, ''],
-    [PageHeaderBehavior.sticky, false, ''],
-    [PageHeaderBehavior.sticky, true, ''],
+    [PageHeaderScrollBehavior.collapse, false, 'sticky'],
+    [PageHeaderScrollBehavior.collapse, true, ''],
+    [PageHeaderScrollBehavior.scroll, false, ''],
+    [PageHeaderScrollBehavior.scroll, true, ''],
+    [PageHeaderScrollBehavior.sticky, false, ''],
+    [PageHeaderScrollBehavior.sticky, true, ''],
   ])(
     '%s (sticky actions disabled = %s) behavior should work as expected',
     (scrollBehavior, disableStickyActions, expectedPosition) => {

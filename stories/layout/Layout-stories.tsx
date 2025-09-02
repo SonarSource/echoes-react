@@ -20,9 +20,7 @@
 
 import styled from '@emotion/styled';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { PageHeaderBehavior } from 'src/components/layout/page-header/PageHeader';
 import {
-  AsideSize,
   Button,
   cssVar,
   DropdownMenu,
@@ -37,6 +35,7 @@ import {
   LogoSonarQubeServer,
   Text,
 } from '../../src';
+import { AsideSize, PageHeaderScrollBehavior } from '../../src/components/layout/LayoutTypes';
 
 const meta: Meta = {
   component: Layout,
@@ -90,13 +89,17 @@ const meta: Meta = {
     pageHeader: {
       control: 'boolean',
       mapping: {
-        true: (behavior: PageHeaderBehavior) => <Header behavior={behavior} />,
+        true: (behavior: PageHeaderScrollBehavior) => <Header behavior={behavior} />,
         false: (_: boolean) => undefined,
       },
     },
     pageHeaderScrollBehavior: {
       control: 'select',
-      options: [PageHeaderBehavior.collapse, PageHeaderBehavior.scroll, PageHeaderBehavior.sticky],
+      options: [
+        PageHeaderScrollBehavior.collapse,
+        PageHeaderScrollBehavior.scroll,
+        PageHeaderScrollBehavior.sticky,
+      ],
     },
     pageWidth: {
       control: 'select',
@@ -122,7 +125,7 @@ export const Default: Story = {
     banner: 'none',
     contentHeader: false,
     pageHeader: true,
-    pageHeaderScrollBehavior: PageHeaderBehavior.scroll,
+    pageHeaderScrollBehavior: PageHeaderScrollBehavior.scroll,
     pageWidth: 'default',
     sidebar: true,
   },
@@ -264,7 +267,7 @@ function AsideContent() {
   );
 }
 
-function Header({ behavior }: Readonly<{ behavior?: PageHeaderBehavior }>) {
+function Header({ behavior }: Readonly<{ behavior?: PageHeaderScrollBehavior }>) {
   return (
     <Layout.PageHeader
       actions={

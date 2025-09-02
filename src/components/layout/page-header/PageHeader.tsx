@@ -24,15 +24,9 @@ import { useForwardedRef } from '~common/helpers/useForwardedRef';
 import { useResizeObserver } from '~common/helpers/useResizeObserver';
 import { cssVar } from '~utils/design-tokens';
 import { Divider } from '../../divider';
-import { PageGridArea } from '../LayoutTypes';
+import { PageGridArea, PageHeaderScrollBehavior } from '../LayoutTypes';
 
-export enum PageHeaderBehavior {
-  collapse = 'collapse',
-  scroll = 'scroll',
-  sticky = 'sticky',
-}
-
-export enum PageHeaderArea {
+enum PageHeaderArea {
   breadcrumbs = 'breadcrumbs',
   main = 'main',
   actions = 'actions',
@@ -40,8 +34,8 @@ export enum PageHeaderArea {
   divider = 'divider',
 }
 
-const PageHeaderBehaviorStyles: Record<PageHeaderBehavior, CSSProperties> = {
-  [PageHeaderBehavior.collapse]: {
+const PageHeaderBehaviorStyles: Record<PageHeaderScrollBehavior, CSSProperties> = {
+  [PageHeaderScrollBehavior.collapse]: {
     position: 'sticky',
     // The top position is the target height from which we remove the total height and the top margin
     top: `calc(
@@ -49,8 +43,8 @@ const PageHeaderBehaviorStyles: Record<PageHeaderBehavior, CSSProperties> = {
       - var(--page-header-total-height)
       - ${cssVar('dimension-space-300')})`,
   },
-  [PageHeaderBehavior.scroll]: {},
-  [PageHeaderBehavior.sticky]: {
+  [PageHeaderScrollBehavior.scroll]: {},
+  [PageHeaderScrollBehavior.sticky]: {
     position: 'sticky',
     top: 0,
   },
@@ -102,7 +96,7 @@ export interface PageHeaderProps {
    *
    * /!\ This has no effect when PageHeader is in the ContentGrid container!
    */
-  scrollBehavior?: PageHeaderBehavior;
+  scrollBehavior?: `${PageHeaderScrollBehavior}`;
   /**
    * The main title content (required). Use <PageHeader.Title> to wrap it.
    */
@@ -122,7 +116,7 @@ export const PageHeaderRoot = forwardRef<HTMLDivElement, PageHeaderProps>((props
     hasDivider,
     metadata,
     navigation,
-    scrollBehavior = PageHeaderBehavior.scroll,
+    scrollBehavior = PageHeaderScrollBehavior.scroll,
     title,
     ...rest
   } = props;
@@ -130,8 +124,10 @@ export const PageHeaderRoot = forwardRef<HTMLDivElement, PageHeaderProps>((props
   const [ref, setRef] = useForwardedRef(forwardedRef);
   const { height = 0 } = useResizeObserver(ref);
 
-  //
-  const stickyActions = scrollBehavior === PageHeaderBehavior.collapse && !disableStickyActions;
+  // The actions are sticky when the PageHeader's behavior is `collapse`.
+  // `disableStickyActions` cancels that.
+  const stickyActions =
+    scrollBehavior === PageHeaderScrollBehavior.collapse && !disableStickyActions;
 
   return (
     <StyledPageHeader
