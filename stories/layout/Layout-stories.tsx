@@ -21,7 +21,7 @@
 import styled from '@emotion/styled';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import {
-  Banner,
+  AsideSize,
   Button,
   cssVar,
   DropdownMenu,
@@ -36,18 +36,26 @@ import {
   LogoSonarQubeServer,
   Text,
 } from '../../src';
-import { AsideSize } from '../../src/components/layout/LayoutTypes';
 
 const meta: Meta = {
   component: Layout,
   title: 'Echoes/Layout',
   argTypes: {
     banner: {
-      control: 'boolean',
+      control: 'select',
       mapping: {
-        true: <Banner variety="warning">This is a general notification!</Banner>,
-        false: undefined,
+        one: <Layout.Banner variety="warning">This is a general notification!</Layout.Banner>,
+        two: (
+          <>
+            <Layout.Banner onDismiss={() => {}} variety="danger">
+              Oups something is wrong!
+            </Layout.Banner>
+            <Layout.Banner variety="warning">This is a general notification!</Layout.Banner>
+          </>
+        ),
+        none: undefined,
       },
+      options: ['one', 'two', 'none'],
     },
     aside: {
       control: 'select',
@@ -106,7 +114,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     aside: AsideSize.medium,
-    banner: false,
+    banner: 'none',
     pageWidth: 'default',
     pageHeader: true,
     sidebar: true,

@@ -19,20 +19,22 @@
  */
 
 import { TextNodeOptional } from '~types/utils';
-import { BannerVariety } from '../layout';
 
-export interface LegacyBannerProps {
+export enum BannerVariety {
+  Danger = 'danger',
+  Info = 'info',
+  Success = 'success',
+  Warning = 'warning',
+}
+
+export interface BannerProps {
   /**
    * The content to be displayed in the banner, keep it short and concise. It can't break into multiple lines and will be ellipsized if too long.
    */
   children: TextNodeOptional;
   className?: string;
   /**
-   * Set to true to disable the follow horizontal scroll behavior of the banner.
-   */
-  disableFollowScroll?: boolean;
-  /**
-   * Function that will be called when the dismiss button is clicked, the dismiss button is only showed if this function is defined.
+   * Function that will be called when the dismiss button is clicked. The dismiss button is only shown if this function is defined.
    */
   onDismiss?: VoidFunction | ((event: React.MouseEvent<HTMLButtonElement>) => Promise<void>);
   /**
@@ -40,11 +42,7 @@ export interface LegacyBannerProps {
    */
   screenReaderPrefix?: TextNodeOptional;
   /**
-   * The variety of banner to display, controls the styling and icon.
+   * The variety of banner to display. Controls the styling and icon.
    */
   variety: `${BannerVariety}`;
-  /**
-   * Custom z-index for the banner, defaults to 1.
-   */
-  zIndex?: number;
 }

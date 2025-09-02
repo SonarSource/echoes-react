@@ -2,20 +2,6 @@
 
 exports[`should display banner content 1`] = `
 .emotion-0 {
-  height: var(--echoes-banner-sizes-height);
-}
-
-.emotion-2 {
-  position: fixed;
-  background-color: var(--echoes-color-surface-default);
-  height: inherit;
-  width: 100%;
-  min-width: var(--echoes-layout-sizes-min-width-default);
-  max-width: var(--echoes-layout-sizes-max-width-full);
-  z-index: var(--banner-z-index);
-}
-
-.emotion-4 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -29,8 +15,7 @@ exports[`should display banner content 1`] = `
   justify-content: space-between;
   gap: var(--echoes-dimension-space-300);
   box-sizing: border-box;
-  height: inherit;
-  width: 100%;
+  height: var(--echoes-banner-sizes-height);
   padding: var(--echoes-dimension-space-75) var(--echoes-dimension-space-200);
   overflow: hidden;
   background-color: var(--banner-background);
@@ -38,7 +23,7 @@ exports[`should display banner content 1`] = `
   font: var(--echoes-typography-text-default-regular);
 }
 
-.emotion-6 {
+.emotion-2 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -53,7 +38,7 @@ exports[`should display banner content 1`] = `
   white-space: nowrap;
 }
 
-.emotion-8 {
+.emotion-4 {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   display: inline-block;
@@ -70,7 +55,7 @@ exports[`should display banner content 1`] = `
   font-family: 'Material Symbols Rounded';
 }
 
-.emotion-10 {
+.emotion-6 {
   position: absolute;
   width: 1px;
   height: 1px;
@@ -82,7 +67,7 @@ exports[`should display banner content 1`] = `
   border-width: 0;
 }
 
-.emotion-12 {
+.emotion-8 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -105,32 +90,23 @@ exports[`should display banner content 1`] = `
 >
   <div
     class="emotion-2 emotion-3"
-    style="left: 0px;"
   >
-    <div
+    <span
+      aria-hidden="true"
       class="emotion-4 emotion-5"
     >
-      <div
-        class="emotion-6 emotion-7"
-      >
-        <span
-          aria-hidden="true"
-          class="emotion-8 emotion-9"
-        >
-          
-        </span>
-        <span
-          class="emotion-10 emotion-11"
-        >
-          Information banner:
-           
-        </span>
-        <div
-          class="emotion-12 emotion-13"
-        >
-          Banner Content
-        </div>
-      </div>
+      
+    </span>
+    <span
+      class="emotion-6 emotion-7"
+    >
+      Information banner:
+       
+    </span>
+    <div
+      class="emotion-8 emotion-9"
+    >
+      Banner Content
     </div>
   </div>
 </div>

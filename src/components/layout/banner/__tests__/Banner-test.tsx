@@ -21,10 +21,9 @@
 import { screen } from '@testing-library/react';
 import { screenReaderOnly } from '~common/helpers/styles';
 import { renderWithMemoryRouter } from '~common/helpers/test-utils';
-import { BannerVariety } from '../../layout';
-import { Link } from '../../links';
+import { Link } from '../../../links';
 import { Banner } from '../Banner';
-import { LegacyBannerProps } from '../BannerTypes';
+import { BannerProps, BannerVariety } from '../BannerTypes';
 
 it('should display banner content', async () => {
   setupBanner({ children: 'Banner Content' });
@@ -96,7 +95,7 @@ it('should correctly support Links in the banner content', async () => {
   expect(screen.getByText('/second')).toBeInTheDocument();
 });
 
-function setupBanner({ children, ...props }: Partial<LegacyBannerProps> = {}) {
+function setupBanner({ children, ...props }: Partial<BannerProps> = {}) {
   return renderWithMemoryRouter(
     <Banner variety={BannerVariety.Info} {...props}>
       {children ?? 'Default Banner Content'}

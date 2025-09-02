@@ -19,49 +19,7 @@
  */
 
 import styled from '@emotion/styled';
-import { truncate } from '~common/helpers/styles';
-import { IconCheckCircle, IconError, IconInfo, IconWarning } from '../icons';
-import { BannerVariety } from './BannerTypes';
-
 import { cssVar } from '~utils/design-tokens';
-
-export const BANNER_TYPE_STYLES = {
-  [BannerVariety.Danger]: {
-    '--banner-color': cssVar('color-text-danger'),
-    '--banner-background': cssVar('color-background-danger-weak-default'),
-  },
-  [BannerVariety.Info]: {
-    '--banner-color': cssVar('color-text-info'),
-    '--banner-background': cssVar('color-background-info-weak-default'),
-  },
-  [BannerVariety.Success]: {
-    '--banner-color': cssVar('color-text-success'),
-    '--banner-background': cssVar('color-background-success-weak-default'),
-  },
-  [BannerVariety.Warning]: {
-    '--banner-color': cssVar('color-text-warning'),
-    '--banner-background': cssVar('color-background-warning-weak-default'),
-  },
-};
-
-export const BANNER_TYPE_ICONS = {
-  [BannerVariety.Danger]: {
-    icon: IconError,
-    iconColor: 'echoes-color-icon-danger' as const,
-  },
-  [BannerVariety.Info]: {
-    icon: IconInfo,
-    iconColor: 'echoes-color-icon-info' as const,
-  },
-  [BannerVariety.Success]: {
-    icon: IconCheckCircle,
-    iconColor: 'echoes-color-icon-success' as const,
-  },
-  [BannerVariety.Warning]: {
-    icon: IconWarning,
-    iconColor: 'echoes-color-icon-warning' as const,
-  },
-};
 
 // The BannerSkeleton is used to make sure the banner that is fixed position still takes up space in the layout
 export const BannerSkeleton = styled.div`
@@ -102,24 +60,3 @@ export const BannerInner = styled.div`
   font: ${cssVar('typography-text-default-regular')};
 `;
 BannerInner.displayName = 'BannerInner';
-
-export const BannerContent = styled.div`
-  display: flex;
-  align-items: center;
-  gap: ${cssVar('dimension-space-200')};
-  width: 100%;
-
-  ${truncate}
-`;
-BannerContent.displayName = 'BannerContent';
-
-export const BannerContentText = styled.div`
-  display: flex;
-  align-items: center;
-  gap: ${cssVar('dimension-space-50')};
-  padding: ${cssVar('dimension-space-50')};
-  margin-left: calc(-1 * ${cssVar('dimension-space-50')});
-
-  ${truncate}
-`;
-BannerContentText.displayName = 'BannerContentText';

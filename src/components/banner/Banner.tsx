@@ -22,40 +22,21 @@ import { forwardRef, useMemo } from 'react';
 import { useIntl } from 'react-intl';
 import { DismissButton } from '~common/components/DismissButton';
 import { useFollowScroll } from '~common/helpers/useFollowScroll';
-import { BannerScreenReaderPrefix } from './BannerScreenReaderPrefix';
+import { BannerScreenReaderPrefix } from '../layout/banner/BannerScreenReaderPrefix';
 import {
   BANNER_TYPE_ICONS,
   BANNER_TYPE_STYLES,
   BannerContent,
   BannerContentText,
-  BannerInner,
-  BannerSkeleton,
-  BannerWrapper,
-} from './BannerStyles';
-import { BannerProps } from './BannerTypes';
+} from '../layout/banner/BannerStyles';
+import { BannerInner, BannerSkeleton, BannerWrapper } from './BannerStyles';
+import { LegacyBannerProps } from './BannerTypes';
 
 /**
- * The Banner is used to communicate system status or to promote a feature.
- * They are not related to a specific page or element. They are displayed at the top of the screen.
- *
- * /!\ This component must be used sparingly and only when truly necessary to commmunicate critical information.
- * To avoid disrupting the user experience, ensure banners are contextually relevant with clear, concise messaging.
- * Display only one banner at a time to prevent alert fatigue.
- *
- * **Varieties**
- *
- * - `info`: To provide neutral information about updates. Be careful not to overuse it.
- * - `success`: To provide a success message. e.g when a feature is activated to all org members.
- * - `warning`: For messages that need the user's attention or acknowledgment but might not cause errors.
- * - `danger`: For errors, system malfunctions, and critical issues, such as license expiration.
- *
- * **Behavior**
- *
- * - Content is ellipsized if too long to maintain single-line display
- * - Automatically follows horizontal scroll to remain visible (can be disabled)
- * - Dismiss button appears only when `onDismiss` callback is provided
+ * @deprecated Legacy Banner, use the new Layout.Banner instead. If your Banner is not displayed
+ * within the Layout.BannerContainer, then it should most probably be migrated to a MessageCallout instead.
  */
-export const Banner = forwardRef<HTMLDivElement, BannerProps>((props, ref) => {
+export const Banner = forwardRef<HTMLDivElement, LegacyBannerProps>((props, ref) => {
   const {
     children,
     disableFollowScroll = false,
@@ -108,4 +89,4 @@ export const Banner = forwardRef<HTMLDivElement, BannerProps>((props, ref) => {
   );
 });
 
-Banner.displayName = 'Banner';
+Banner.displayName = 'LegacyBanner';
