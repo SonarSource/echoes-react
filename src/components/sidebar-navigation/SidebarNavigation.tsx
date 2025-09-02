@@ -72,10 +72,10 @@ const SidebarNavigationContainer = styled.div`
 
   z-index: 1; // Ensure the sidebar is showing over the content
 
-  --sidebar-navigation-container-width: ${cssVar('sidebar-navigation-sizes-width-closed')};
+  --sidebar-navigation-container-width: ${cssVar('layout-sidebar-navigation-sizes-width-closed')};
 
   [data-sidebar-docked='true'] & {
-    --sidebar-navigation-container-width: ${cssVar('sidebar-navigation-sizes-width-open')};
+    --sidebar-navigation-container-width: ${cssVar('layout-sidebar-navigation-sizes-width-open')};
   }
 `;
 SidebarNavigationContainer.displayName = 'SidebarNavigationContainer';
@@ -98,11 +98,11 @@ const SidebarNavigationWrapper = styled.nav`
 
   width: var(--sidebar-navigation-width);
 
-  --sidebar-navigation-width: ${cssVar('sidebar-navigation-sizes-width-open')};
+  --sidebar-navigation-width: ${cssVar('layout-sidebar-navigation-sizes-width-open')};
 
   // hover and focus-within pilotes the open state of the sidebar
   [data-sidebar-docked='false'] &:not(:hover, :focus-within) {
-    --sidebar-navigation-width: ${cssVar('sidebar-navigation-sizes-width-closed')};
+    --sidebar-navigation-width: ${cssVar('layout-sidebar-navigation-sizes-width-closed')};
   }
 
   [data-sidebar-docked='false'] &:is(:hover, :focus-within) {

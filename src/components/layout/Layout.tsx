@@ -20,11 +20,9 @@
 
 import styled from '@emotion/styled';
 import { forwardRef, ReactNode, useEffect, useMemo, useState } from 'react';
-import { cssVar } from '~utils/design-tokens';
+import { cssVar, designToken } from '~utils/design-tokens';
 import { LayoutContext } from './LayoutContext';
 import { GlobalGridArea } from './LayoutTypes';
-
-const LAYOUT_SIDEBAR_BREAKPOINT = 1320;
 
 export interface LayoutProps {
   className?: string;
@@ -42,7 +40,10 @@ export interface LayoutProps {
 export const Layout = forwardRef<HTMLDivElement, LayoutProps>((props, ref) => {
   const { children, isSidebarInitiallyDocked, onSidebarDockedChange, ...htmlProps } = props;
   const mediaQueryList = useMemo(
-    () => window.matchMedia(`(min-width: ${LAYOUT_SIDEBAR_BREAKPOINT}px)`),
+    () =>
+      window.matchMedia(
+        `(min-width: ${designToken('layout-sidebar-navigation-sizes-breakpoint-dockable')}px)`,
+      ),
     [],
   );
   const [hasSidebar, setHasSidebar] = useState(false);

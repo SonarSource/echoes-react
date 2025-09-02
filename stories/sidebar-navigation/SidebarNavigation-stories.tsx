@@ -203,7 +203,8 @@ export const Full: Story = {
       <Layout.ContentGrid>
         <Layout.PageGrid width="fluid">
           <Layout.PageContent>
-            Page content that is long enough to be visible when the sidebar is open on a small screen.
+            Page content that is long enough to be visible when the sidebar is open on a small
+            screen.
             <br />
             <br />
             <MessageCallout variety="info">
