@@ -65,6 +65,26 @@
           }
         }
       },
+      "sidebar-navigation": {
+        "sizes": {
+          "breakpoint": {
+            "dockable": {
+              "$type": "sizing",
+              "$value": "1320px"
+            }
+          },
+          "width": {
+            "closed": {
+              "$type": "sizing",
+              "$value": "3rem"
+            },
+            "open": {
+              "$type": "sizing",
+              "$value": "15rem"
+            }
+          }
+        }
+      },
       "sizes": {
         "max": {
           "width": {
@@ -84,20 +104,6 @@
               "$type": "sizing",
               "$value": "1280px"
             }
-          }
-        }
-      }
-    },
-    "sidebar-navigation": {
-      "sizes": {
-        "width": {
-          "closed": {
-            "$type": "sizing",
-            "$value": "3rem"
-          },
-          "open": {
-            "$type": "sizing",
-            "$value": "15rem"
           }
         }
       }

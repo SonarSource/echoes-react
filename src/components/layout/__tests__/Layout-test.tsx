@@ -19,7 +19,7 @@
  */
 
 import { act, screen } from '@testing-library/react';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { Layout } from '..';
 import { render } from '../../../common/helpers/test-utils';
 import { LayoutContext } from '../LayoutContext';
@@ -96,9 +96,10 @@ describe('Layout Sidebar docking behavior', () => {
 });
 
 describe('LayoutContext', () => {
-  it('should update hasSidebar when setHasSidebar is called', async () => {
+  it('should update LayoutContext state when it changes', async () => {
+    const onSidebarDockedChange = jest.fn();
     const { user } = render(
-      <Layout>
+      <Layout onSidebarDockedChange={onSidebarDockedChange}>
         <TestContextConsumer />
       </Layout>,
     );
@@ -108,14 +109,33 @@ describe('LayoutContext', () => {
     await user.click(screen.getByRole('button', { name: 'Set Sidebar' }));
     expect(screen.getByText('hasSidebar:true')).toBeInTheDocument();
     expect(screen.getByText('isSidebarDocked:true')).toBeInTheDocument();
+    expect(onSidebarDockedChange).toHaveBeenLastCalledWith(true);
 
     await user.click(screen.getByRole('button', { name: 'Unset Docked' }));
+    expect(screen.getByText('isSidebarDocked:false')).toBeInTheDocument();
+    expect(onSidebarDockedChange).toHaveBeenLastCalledWith(false);
+  });
+
+  it('should respect isSidebarInitiallyDocked prop when its present', () => {
+    render(
+      <Layout isSidebarInitiallyDocked={false}>
+        <TestContextConsumer hasSidebarDefault />
+      </Layout>,
+    );
+
+    expect(screen.getByText('hasSidebar:true')).toBeInTheDocument();
     expect(screen.getByText('isSidebarDocked:false')).toBeInTheDocument();
   });
 });
 
-function TestContextConsumer() {
+function TestContextConsumer({ hasSidebarDefault }: { hasSidebarDefault?: boolean }) {
   const context = useContext(LayoutContext);
+
+  useEffect(() => {
+    if (hasSidebarDefault !== undefined) {
+      context.setHasSidebar(hasSidebarDefault);
+    }
+  }, [context, hasSidebarDefault]);
 
   return (
     <div>

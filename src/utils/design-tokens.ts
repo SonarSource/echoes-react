@@ -19,7 +19,8 @@
  */
 
 import { isStringDefined } from '~common/helpers/types';
-import { DesignTokens, WithoutEchoesPrefix } from '~types/design-tokens';
+import designTokensBase from '~generated/design-tokens-base.json';
+import { DesignTokens, DesignTokensBase, WithoutEchoesPrefix } from '~types/design-tokens';
 
 export type EchoesDesignTokens = WithoutEchoesPrefix<DesignTokens>;
 export type EchoesCSSVarString = `var(--echoes-${EchoesDesignTokens})`;
@@ -61,4 +62,16 @@ export function cssVar(
 ): EchoesCSSVarString | EchoesCSSVarStringWithFallback {
   const variableName = `--echoes-${token}` as const;
   return isStringDefined(fallback) ? `var(${variableName}, ${fallback})` : `var(${variableName})`;
+}
+
+export type EchoesBaseDesignTokens = WithoutEchoesPrefix<DesignTokensBase>;
+
+/**
+ * Get the string value of a base Echoes design token.
+ *
+ * @param token - The design token to retrieve the value for.
+ * @returns The value of the design token as a string.
+ */
+export function designToken(token: EchoesBaseDesignTokens): string {
+  return designTokensBase[`echoes-${token}`].toString();
 }
