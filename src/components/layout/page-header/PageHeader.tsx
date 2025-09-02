@@ -32,16 +32,22 @@ export enum PageHeaderBehavior {
   sticky = 'sticky',
 }
 
-/**
- * Height of the minimal visible portion of the PageHeader when `scrollBehavior` is `collapse`
- */
-const COLLAPSED_HEIGHT = 56;
+export enum PageHeaderArea {
+  breadcrumbs = 'breadcrumbs',
+  main = 'main',
+  actions = 'actions',
+  nav = 'nav',
+  divider = 'divider',
+}
 
 const PageHeaderBehaviorStyles: Record<PageHeaderBehavior, CSSProperties> = {
   [PageHeaderBehavior.collapse]: {
     position: 'sticky',
-    // The top position is the target height to which we remove the total height and the top margin
-    top: `calc(${COLLAPSED_HEIGHT}px - var(--page-header-total-height) - var(--echoes-dimension-space-300))`,
+    // The top position is the target height from which we remove the total height and the top margin
+    top: `calc(
+      ${cssVar('layout-page-header-sizes-height-collapsed')}
+      - var(--page-header-total-height)
+      - ${cssVar('dimension-space-300')})`,
   },
   [PageHeaderBehavior.scroll]: {},
   [PageHeaderBehavior.sticky]: {
@@ -105,8 +111,7 @@ export interface PageHeaderProps {
 
 /**
  * A flexible page header component that displays a title, optional metadata, description,
- * breadcrumbs, and actions. Can optionally include a divider, and <PageHeader.Navigation> elements
- * as children.
+ * breadcrumbs, actions and navigation.
  */
 export const PageHeaderRoot = forwardRef<HTMLDivElement, PageHeaderProps>((props, forwardedRef) => {
   const {
@@ -149,7 +154,11 @@ export const PageHeaderRoot = forwardRef<HTMLDivElement, PageHeaderProps>((props
 
       {actions && (
         <StyledPageHeaderActions
-          style={stickyActions ? { top: cssVar('dimension-space-100'), position: 'sticky' } : {}}>
+          style={
+            stickyActions
+              ? { top: cssVar('layout-page-header-actions-offset'), position: 'sticky' }
+              : {}
+          }>
           {actions}
         </StyledPageHeaderActions>
       )}
@@ -175,10 +184,10 @@ const StyledPageHeader = styled.div<{ hasFullWidthNav: boolean }>`
   grid-template-columns: auto min-content;
   grid-template-rows: repeat(4, auto);
   grid-template-areas:
-    'breadcrumbs breadcrumbs'
-    'main actions'
-    '${({ hasFullWidthNav }) => (hasFullWidthNav ? 'nav nav' : 'nav _')}'
-    'divider divider';
+    '${PageHeaderArea.breadcrumbs}  ${PageHeaderArea.breadcrumbs}'
+    '${PageHeaderArea.main}         ${PageHeaderArea.actions}'
+    '${PageHeaderArea.nav} ${({ hasFullWidthNav }) => (hasFullWidthNav ? PageHeaderArea.nav : '_')}'
+    '${PageHeaderArea.divider}      ${PageHeaderArea.divider}';
 
   padding-top: ${cssVar('dimension-space-300')};
   padding-right: ${cssVar('dimension-space-300')};
@@ -189,14 +198,14 @@ const StyledPageHeader = styled.div<{ hasFullWidthNav: boolean }>`
 StyledPageHeader.displayName = 'StyledPageHeader';
 
 const StyledPageHeaderBreadcrumbs = styled.div`
-  grid-area: breadcrumbs;
+  grid-area: ${PageHeaderArea.breadcrumbs};
 
   margin-bottom: ${cssVar('dimension-space-200')};
 `;
 StyledPageHeaderBreadcrumbs.displayName = 'StyledPageHeaderBreadcrumbs';
 
 const StyledPageHeaderBottom = styled.div`
-  grid-area: nav;
+  grid-area: ${PageHeaderArea.nav};
 
   white-space: nowrap;
 
@@ -206,7 +215,7 @@ const StyledPageHeaderBottom = styled.div`
 StyledPageHeaderBottom.displayName = 'StyledPageHeaderBottom';
 
 const StyledPageHeaderMain = styled.div`
-  grid-area: main;
+  grid-area: ${PageHeaderArea.main};
 
   align-items: flex-start;
   display: flex;
@@ -217,7 +226,7 @@ const StyledPageHeaderMain = styled.div`
 StyledPageHeaderMain.displayName = 'StyledPageHeaderMain';
 
 const StyledPageHeaderActions = styled.div`
-  grid-area: actions;
+  grid-area: ${PageHeaderArea.actions};
 
   display: flex;
   gap: ${cssVar('dimension-space-100')};
@@ -226,7 +235,7 @@ const StyledPageHeaderActions = styled.div`
 StyledPageHeaderActions.displayName = 'StyledPageHeaderActions';
 
 const StyledDivider = styled(Divider)`
-  grid-area: divider;
+  grid-area: ${PageHeaderArea.divider};
   margin-top: ${cssVar('dimension-space-300')};
 `;
 StyledDivider.displayName = 'StyledDivider';

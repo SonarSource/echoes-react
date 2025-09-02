@@ -272,7 +272,6 @@ function Header({ behavior }: Readonly<{ behavior?: PageHeaderBehavior }>) {
           <Button>Action!</Button>
         </Layout.PageHeader.Actions>
       }
-      // disableStickyActions
       navigation={
         <Layout.PageHeader.Navigation>
           <Layout.PageHeader.NavigationItem to="/1">Nav Item 1</Layout.PageHeader.NavigationItem>
