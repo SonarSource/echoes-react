@@ -27,6 +27,8 @@
 
 export {
   cssVar,
+  designToken,
+  type EchoesBaseDesignTokens,
   type EchoesCSSVarString,
   type EchoesCSSVarStringWithFallback,
   type EchoesDesignTokens,
