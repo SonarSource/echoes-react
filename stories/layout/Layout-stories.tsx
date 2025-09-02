@@ -25,7 +25,6 @@ import {
   Button,
   cssVar,
   DropdownMenu,
-  GlobalNavigation,
   IconBell,
   IconCalendar,
   IconGear,
@@ -35,8 +34,6 @@ import {
   Layout,
   LinkStandalone,
   LogoSonarQubeServer,
-  PageHeader,
-  SidebarNavigation,
   Text,
 } from '../../src';
 import { AsideSize } from '../../src/components/layout/LayoutTypes';
@@ -171,34 +168,34 @@ Morbi imperdiet sollicitudin turpis, eu varius sem tempus et. Sed posuere egesta
 
 function GlobalNav() {
   return (
-    <GlobalNavigation>
-      <GlobalNavigation.Primary>
-        <GlobalNavigation.Home>
+    <Layout.GlobalNavigation>
+      <Layout.GlobalNavigation.Primary>
+        <Layout.GlobalNavigation.Home>
           <LogoSonarQubeServer hasText />
-        </GlobalNavigation.Home>
+        </Layout.GlobalNavigation.Home>
 
-        <GlobalNavigation.ItemsContainer>
-          <GlobalNavigation.Item to="/">Home</GlobalNavigation.Item>
-          <GlobalNavigation.Item to="/qp">Quality Profiles</GlobalNavigation.Item>
-          <GlobalNavigation.Item to="/rules">Rules</GlobalNavigation.Item>
-        </GlobalNavigation.ItemsContainer>
-      </GlobalNavigation.Primary>
-      <GlobalNavigation.Secondary>
-        <GlobalNavigation.Action Icon={IconSearch} ariaLabel="?" />
-        <GlobalNavigation.Action Icon={IconQuestionMark} ariaLabel="Help" isIconFilled />
-        <GlobalNavigation.Account
+        <Layout.GlobalNavigation.ItemsContainer>
+          <Layout.GlobalNavigation.Item to="/">Home</Layout.GlobalNavigation.Item>
+          <Layout.GlobalNavigation.Item to="/qp">Quality Profiles</Layout.GlobalNavigation.Item>
+          <Layout.GlobalNavigation.Item to="/rules">Rules</Layout.GlobalNavigation.Item>
+        </Layout.GlobalNavigation.ItemsContainer>
+      </Layout.GlobalNavigation.Primary>
+      <Layout.GlobalNavigation.Secondary>
+        <Layout.GlobalNavigation.Action Icon={IconSearch} ariaLabel="?" />
+        <Layout.GlobalNavigation.Action Icon={IconQuestionMark} ariaLabel="Help" isIconFilled />
+        <Layout.GlobalNavigation.Account
           avatar={<Avatar />}
           items={<DropdownMenu.ItemLink to="/account">Settings</DropdownMenu.ItemLink>}
         />
-      </GlobalNavigation.Secondary>
-    </GlobalNavigation>
+      </Layout.GlobalNavigation.Secondary>
+    </Layout.GlobalNavigation>
   );
 }
 
 function SidebarNav() {
   return (
-    <SidebarNavigation>
-      <SidebarNavigation.Header
+    <Layout.SidebarNavigation>
+      <Layout.SidebarNavigation.Header
         avatar={
           <div
             style={{
@@ -217,25 +214,25 @@ function SidebarNav() {
         isInteractive
         name="Hello this is a bit long, I think!"
       />
-      <SidebarNavigation.Body>
-        <SidebarNavigation.Item Icon={IconProject} enableTooltip to="/pouet">
+      <Layout.SidebarNavigation.Body>
+        <Layout.SidebarNavigation.Item Icon={IconProject} enableTooltip to="/pouet">
           blablablba
-        </SidebarNavigation.Item>
-        <SidebarNavigation.Group label="Group name">
-          <SidebarNavigation.Item Icon={IconBell} to="somwhereelse1">
+        </Layout.SidebarNavigation.Item>
+        <Layout.SidebarNavigation.Group label="Group name">
+          <Layout.SidebarNavigation.Item Icon={IconBell} to="somwhereelse1">
             Thing 1
-          </SidebarNavigation.Item>
-          <SidebarNavigation.Item Icon={IconCalendar} enableTooltip to="somwhereelse2">
+          </Layout.SidebarNavigation.Item>
+          <Layout.SidebarNavigation.Item Icon={IconCalendar} enableTooltip to="somwhereelse2">
             Amazing project 2Amazing project 2Amazing project 2Amazing project 2Amazing project 2
-          </SidebarNavigation.Item>
-        </SidebarNavigation.Group>
-      </SidebarNavigation.Body>
-      <SidebarNavigation.Footer>
-        <SidebarNavigation.Item Icon={IconGear} to="/settings">
+          </Layout.SidebarNavigation.Item>
+        </Layout.SidebarNavigation.Group>
+      </Layout.SidebarNavigation.Body>
+      <Layout.SidebarNavigation.Footer>
+        <Layout.SidebarNavigation.Item Icon={IconGear} to="/settings">
           Settings
-        </SidebarNavigation.Item>
-      </SidebarNavigation.Footer>
-    </SidebarNavigation>
+        </Layout.SidebarNavigation.Item>
+      </Layout.SidebarNavigation.Footer>
+    </Layout.SidebarNavigation>
   );
 }
 
@@ -253,19 +250,19 @@ function AsideContent() {
 
 function Header() {
   return (
-    <PageHeader
+    <Layout.PageHeader
       actions={
-        <PageHeader.Actions>
+        <Layout.PageHeader.Actions>
           <Button>Action!</Button>
-        </PageHeader.Actions>
+        </Layout.PageHeader.Actions>
       }
       navigation={
-        <PageHeader.Navigation>
-          <PageHeader.NavigationItem to="/1">Nav Item 1</PageHeader.NavigationItem>
-          <PageHeader.NavigationItem to="/2">Nav Item 2</PageHeader.NavigationItem>
-        </PageHeader.Navigation>
+        <Layout.PageHeader.Navigation>
+          <Layout.PageHeader.NavigationItem to="/1">Nav Item 1</Layout.PageHeader.NavigationItem>
+          <Layout.PageHeader.NavigationItem to="/2">Nav Item 2</Layout.PageHeader.NavigationItem>
+        </Layout.PageHeader.Navigation>
       }
-      title={<PageHeader.Title>Content title</PageHeader.Title>}
+      title={<Layout.PageHeader.Title>Content title</Layout.PageHeader.Title>}
     />
   );
 }
