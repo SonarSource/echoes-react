@@ -94,6 +94,7 @@ export interface PageHeaderProps {
    *  - `sticky`: the header sticks to the top
    *  - `collapse`: the header collapses partially
    *
+   * /!\ This has no effect when PageHeader is in the ContentGrid container!
    */
   scrollBehavior?: PageHeaderBehavior;
   /**
@@ -131,13 +132,11 @@ export const PageHeaderRoot = forwardRef<HTMLDivElement, PageHeaderProps>((props
     <StyledPageHeader
       ref={setRef}
       {...rest}
-      hasFullWidthNav={!stickyActions}
-      style={
-        {
-          '--page-header-total-height': `${height}px`,
-          ...PageHeaderBehaviorStyles[scrollBehavior],
-        } as CSSProperties
-      }>
+      css={{
+        '--page-header-total-height': `${height}px`,
+        ...PageHeaderBehaviorStyles[scrollBehavior],
+      }}
+      hasFullWidthNav={!stickyActions}>
       {breadcrumbs && <StyledPageHeaderBreadcrumbs>{breadcrumbs}</StyledPageHeaderBreadcrumbs>}
 
       <StyledPageHeaderMain>
