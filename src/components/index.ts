@@ -19,7 +19,6 @@
  */
 
 export * from './badges';
-export * from './banner';
 export * from './breadcrumbs';
 export * from './buttons';
 export * from './card';
@@ -31,6 +30,7 @@ export * from './echoes-provider';
 export * from './form';
 export * from './icons';
 export * from './layout';
+export * from './legacy-banner';
 export * from './links';
 export * from './logos';
 export * from './messages';

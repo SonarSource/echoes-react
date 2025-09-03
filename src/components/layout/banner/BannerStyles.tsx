@@ -20,7 +20,7 @@
 
 import styled from '@emotion/styled';
 import { truncate } from '~common/helpers/styles';
-import { IconCheckCircle, IconError, IconInfo, IconWarning } from '../icons';
+import { IconCheckCircle, IconError, IconInfo, IconWarning } from '../../icons';
 import { BannerVariety } from './BannerTypes';
 
 import { cssVar } from '~utils/design-tokens';
@@ -47,53 +47,30 @@ export const BANNER_TYPE_STYLES = {
 export const BANNER_TYPE_ICONS = {
   [BannerVariety.Danger]: {
     icon: IconError,
-    iconColor: 'echoes-color-icon-danger' as const,
+    iconColor: 'echoes-color-icon-danger',
   },
   [BannerVariety.Info]: {
     icon: IconInfo,
-    iconColor: 'echoes-color-icon-info' as const,
+    iconColor: 'echoes-color-icon-info',
   },
   [BannerVariety.Success]: {
     icon: IconCheckCircle,
-    iconColor: 'echoes-color-icon-success' as const,
+    iconColor: 'echoes-color-icon-success',
   },
   [BannerVariety.Warning]: {
     icon: IconWarning,
-    iconColor: 'echoes-color-icon-warning' as const,
+    iconColor: 'echoes-color-icon-warning',
   },
-};
+} as const;
 
-// The BannerSkeleton is used to make sure the banner that is fixed position still takes up space in the layout
-export const BannerSkeleton = styled.div`
-  height: ${cssVar('banner-sizes-height')};
-`;
-BannerSkeleton.displayName = 'BannerSkeleton';
-
-// The BannerWrapper is in fixed position to ensure it stays a the top of the viewport even when scrolling
-// It also provides a stable non transparent background color for the BannerInner that has a transparent background when in dark mode
 export const BannerWrapper = styled.div`
-  position: fixed;
-  background-color: ${cssVar('color-surface-default')};
-
-  height: inherit;
-  width: 100%;
-  min-width: ${cssVar('layout-sizes-min-width-default')};
-  max-width: ${cssVar('layout-sizes-max-width-full')};
-
-  // Not great but should be revisted when Echoes provide a framework for z-indexes
-  z-index: var(--banner-z-index);
-`;
-BannerWrapper.displayName = 'BannerWrapper';
-
-export const BannerInner = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: ${cssVar('dimension-space-300')};
 
   box-sizing: border-box;
-  height: inherit;
-  width: 100%;
+  height: ${cssVar('banner-sizes-height')};
   padding: ${cssVar('dimension-space-75')} ${cssVar('dimension-space-200')};
   overflow: hidden;
 
@@ -101,13 +78,12 @@ export const BannerInner = styled.div`
   color: var(--banner-color);
   font: ${cssVar('typography-text-default-regular')};
 `;
-BannerInner.displayName = 'BannerInner';
+BannerWrapper.displayName = 'BannerWrapper';
 
 export const BannerContent = styled.div`
   display: flex;
   align-items: center;
   gap: ${cssVar('dimension-space-200')};
-  width: 100%;
 
   ${truncate}
 `;

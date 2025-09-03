@@ -19,15 +19,9 @@
  */
 
 import { TextNodeOptional } from '~types/utils';
+import { BannerVariety } from '../layout';
 
-export enum BannerVariety {
-  Danger = 'danger',
-  Info = 'info',
-  Success = 'success',
-  Warning = 'warning',
-}
-
-export interface BannerProps {
+export interface LegacyBannerProps {
   /**
    * The content to be displayed in the banner, keep it short and concise. It can't break into multiple lines and will be ellipsized if too long.
    */
