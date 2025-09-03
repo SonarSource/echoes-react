@@ -65,6 +65,24 @@
           }
         }
       },
+      "page-header": {
+        "sizes": {
+          "height": {
+            "collapsed": {
+              "$type": "sizing",
+              "$value": "56px"
+            }
+          }
+        }  
+      },
+      "page-header-actions": {
+        "offset": {
+          "collapsed": {
+            "$type": "sizing",
+            "$value": "10px"
+          }
+        }
+      },
       "sidebar-navigation": {
         "sizes": {
           "breakpoint": {

@@ -21,7 +21,6 @@
 import styled from '@emotion/styled';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import {
-  AsideSize,
   Button,
   cssVar,
   DropdownMenu,
@@ -36,6 +35,7 @@ import {
   LogoSonarQubeServer,
   Text,
 } from '../../src';
+import { AsideSize, PageHeaderScrollBehavior } from '../../src/components/layout/LayoutTypes';
 
 const meta: Meta = {
   component: Layout,
@@ -89,9 +89,17 @@ const meta: Meta = {
     pageHeader: {
       control: 'boolean',
       mapping: {
-        true: <Header />,
-        false: undefined,
+        true: (behavior: PageHeaderScrollBehavior) => <Header behavior={behavior} />,
+        false: (_: boolean) => undefined,
       },
+    },
+    pageHeaderScrollBehavior: {
+      control: 'select',
+      options: [
+        PageHeaderScrollBehavior.collapse,
+        PageHeaderScrollBehavior.scroll,
+        PageHeaderScrollBehavior.sticky,
+      ],
     },
     pageWidth: {
       control: 'select',
@@ -115,8 +123,10 @@ export const Default: Story = {
   args: {
     aside: AsideSize.medium,
     banner: 'none',
-    pageWidth: 'default',
+    contentHeader: false,
     pageHeader: true,
+    pageHeaderScrollBehavior: PageHeaderScrollBehavior.scroll,
+    pageWidth: 'default',
     sidebar: true,
   },
   render: (args) => (
@@ -129,8 +139,9 @@ export const Default: Story = {
         <Layout.ContentGrid>
           {args.contentHeader}
           {args.aside}
+
           <Layout.PageGrid width={args.pageWidth}>
-            {args.pageHeader}
+            {args.pageHeader(args.pageHeaderScrollBehavior)}
             <Layout.PageContent>
               {text}
               {text}
@@ -256,7 +267,7 @@ function AsideContent() {
   );
 }
 
-function Header() {
+function Header({ behavior }: Readonly<{ behavior?: PageHeaderScrollBehavior }>) {
   return (
     <Layout.PageHeader
       actions={
@@ -270,6 +281,7 @@ function Header() {
           <Layout.PageHeader.NavigationItem to="/2">Nav Item 2</Layout.PageHeader.NavigationItem>
         </Layout.PageHeader.Navigation>
       }
+      scrollBehavior={behavior}
       title={<Layout.PageHeader.Title>Content title</Layout.PageHeader.Title>}
     />
   );
