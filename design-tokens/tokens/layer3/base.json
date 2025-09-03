@@ -65,7 +65,7 @@
           }
         }
       },
-       "page-header": {
+      "page-header": {
         "sizes": {
           "height": {
             "collapsed": {
@@ -73,15 +73,15 @@
               "$value": "56px"
             }
           }
-        }
-        
+        }  
       },
       "page-header-actions": {
         "offset": {
-          "$type": "sizing",
-          "$value": "10px"
+          "collapsed": {
+            "$type": "sizing",
+            "$value": "10px"
+          }
         }
-
       },
       "sidebar-navigation": {
         "sizes": {

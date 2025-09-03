@@ -108,7 +108,7 @@
   "echoes-layout-aside-width-large": "400px",
   "echoes-layout-global-navigation-sizes-height-default": "56px",
   "echoes-layout-page-header-sizes-height-collapsed": "56px",
-  "echoes-layout-page-header-actions-offset": "10px",
+  "echoes-layout-page-header-actions-offset-collapsed": "10px",
   "echoes-layout-sidebar-navigation-sizes-breakpoint-dockable": "1320px",
   "echoes-layout-sidebar-navigation-sizes-width-closed": "3rem",
   "echoes-layout-sidebar-navigation-sizes-width-open": "15rem",

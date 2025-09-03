@@ -34,20 +34,9 @@ enum PageHeaderArea {
   divider = 'divider',
 }
 
-const PageHeaderBehaviorStyles: Record<PageHeaderScrollBehavior, CSSProperties> = {
-  [PageHeaderScrollBehavior.collapse]: {
-    position: 'sticky',
-    // The top position is the target height from which we remove the total height and the top margin
-    top: `calc(
-      ${cssVar('layout-page-header-sizes-height-collapsed')}
-      - var(--page-header-total-height)
-      - ${cssVar('dimension-space-300')})`,
-  },
-  [PageHeaderScrollBehavior.scroll]: {},
-  [PageHeaderScrollBehavior.sticky]: {
-    position: 'sticky',
-    top: 0,
-  },
+const STICKY_ACTIONS_STYLES: CSSProperties = {
+  top: cssVar('layout-page-header-actions-offset-collapsed'),
+  position: 'sticky',
 };
 
 export interface PageHeaderProps {
@@ -135,7 +124,7 @@ export const PageHeaderRoot = forwardRef<HTMLDivElement, PageHeaderProps>((props
       {...rest}
       css={{
         '--page-header-total-height': `${height}px`,
-        ...PageHeaderBehaviorStyles[scrollBehavior],
+        ...pageHeaderBehaviorStyles[scrollBehavior],
       }}
       hasFullWidthNav={!stickyActions}>
       {breadcrumbs && <StyledPageHeaderBreadcrumbs>{breadcrumbs}</StyledPageHeaderBreadcrumbs>}
@@ -149,12 +138,7 @@ export const PageHeaderRoot = forwardRef<HTMLDivElement, PageHeaderProps>((props
       </StyledPageHeaderMain>
 
       {actions && (
-        <StyledPageHeaderActions
-          style={
-            stickyActions
-              ? { top: cssVar('layout-page-header-actions-offset'), position: 'sticky' }
-              : {}
-          }>
+        <StyledPageHeaderActions style={stickyActions ? STICKY_ACTIONS_STYLES : undefined}>
           {actions}
         </StyledPageHeaderActions>
       )}
@@ -169,8 +153,23 @@ export const PageHeaderRoot = forwardRef<HTMLDivElement, PageHeaderProps>((props
     </StyledPageHeader>
   );
 });
-
 PageHeaderRoot.displayName = 'PageHeader';
+
+const pageHeaderBehaviorStyles: Record<PageHeaderScrollBehavior, CSSProperties> = {
+  [PageHeaderScrollBehavior.collapse]: {
+    position: 'sticky',
+    // The top position is the target height from which we remove the total height and the top margin
+    top: `calc(
+      ${cssVar('layout-page-header-sizes-height-collapsed')}
+      - var(--page-header-total-height)
+      - ${cssVar('dimension-space-300')})`,
+  },
+  [PageHeaderScrollBehavior.scroll]: {},
+  [PageHeaderScrollBehavior.sticky]: {
+    position: 'sticky',
+    top: 0,
+  },
+};
 
 const StyledPageHeader = styled.div<{ hasFullWidthNav: boolean }>`
   grid-area: ${PageGridArea.header};
@@ -179,11 +178,20 @@ const StyledPageHeader = styled.div<{ hasFullWidthNav: boolean }>`
 
   grid-template-columns: auto min-content;
   grid-template-rows: repeat(4, auto);
-  grid-template-areas:
-    '${PageHeaderArea.breadcrumbs}  ${PageHeaderArea.breadcrumbs}'
-    '${PageHeaderArea.main}         ${PageHeaderArea.actions}'
-    '${PageHeaderArea.nav} ${({ hasFullWidthNav }) => (hasFullWidthNav ? PageHeaderArea.nav : '_')}'
-    '${PageHeaderArea.divider}      ${PageHeaderArea.divider}';
+  grid-template-areas: ${({ hasFullWidthNav }) =>
+    hasFullWidthNav
+      ? `
+      '${PageHeaderArea.breadcrumbs}  ${PageHeaderArea.breadcrumbs}'
+      '${PageHeaderArea.main}         ${PageHeaderArea.actions}'
+      '${PageHeaderArea.nav}          ${PageHeaderArea.nav}'
+      '${PageHeaderArea.divider}      ${PageHeaderArea.divider}'
+    `
+      : `
+      '${PageHeaderArea.breadcrumbs}  ${PageHeaderArea.breadcrumbs}'
+      '${PageHeaderArea.main}         ${PageHeaderArea.actions}'
+      '${PageHeaderArea.nav}          _'
+      '${PageHeaderArea.divider}      ${PageHeaderArea.divider}'
+    `};
 
   padding-top: ${cssVar('dimension-space-300')};
   padding-right: ${cssVar('dimension-space-300')};
