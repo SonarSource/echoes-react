@@ -18,6 +18,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+import { Banner } from './banner';
 import { GlobalNavigation } from './global-navigation';
 import { Layout as LayoutRoot } from './Layout';
 import {
@@ -31,6 +32,7 @@ import {
 import { PageHeader } from './page-header';
 import { SidebarNavigation } from './sidebar-navigation';
 
+export { BannerVariety, type BannerProps } from './banner';
 export type {
   GlobalNavigationAccountProps,
   GlobalNavigationActionProps,
@@ -43,6 +45,7 @@ export type {
 } from './global-navigation';
 export type { LayoutProps } from './Layout';
 export type { AsideProps, PageGridProps } from './LayoutSlots';
+export { AsideSize, PageWidth } from './LayoutTypes';
 export type { PageHeaderMetadataProps, PageHeaderProps, PageHeaderTitleProps } from './page-header';
 export type {
   SidebarNavigationAccordionItemProps,
@@ -86,9 +89,30 @@ export const Layout = Object.assign(LayoutRoot, {
 
   /**
    * The banner container, that holds all the product banners and fills BannerContainer area of the
-   * Layout grid. It can eventually hold multiple banners but ideally should only hold one at a time.
+   * Layout grid. It can optionally hold multiple banners but ideally should only hold one at a time.
    */
   BannerContainer,
+  /**
+   * The Banner is used to communicate system status or to promote a feature.
+   * They are not related to a specific page or element. They are displayed in the {@link BannerContainer}.
+   *
+   * /!\ This component must be used sparingly and only when truly necessary to commmunicate critical information.
+   * To avoid disrupting the user experience, ensure banners are contextually relevant with clear, concise messaging.
+   * Display only one banner at a time to prevent alert fatigue.
+   *
+   * **Varieties**
+   *
+   * - `info`: To provide neutral information about updates. Be careful not to overuse it.
+   * - `success`: To provide a success message. e.g when a feature is activated to all org members.
+   * - `warning`: For messages that need the user's attention or acknowledgment but might not cause errors.
+   * - `danger`: For errors, system malfunctions, and critical issues, such as license expiration.
+   *
+   * **Behavior**
+   *
+   * - Content is ellipsized if too long to maintain single-line display
+   * - Dismiss button appears only when `onDismiss` callback is provided
+   */
+  Banner,
 
   /**
    * The Content Grid defines the layout that includes the Page and the optional Aside & Header.

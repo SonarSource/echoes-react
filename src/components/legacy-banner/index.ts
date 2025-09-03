@@ -18,13 +18,5 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import { Global } from '@emotion/react';
-import { Decorator } from '@storybook/react-vite';
-import { cssVar } from '~utils/design-tokens';
-
-export const minWidthBodyDecorator: Decorator = (Story) => (
-  <>
-    <Global styles={{ body: { minWidth: cssVar('layout-sizes-min-width-default') } }} />
-    <Story />
-  </>
-);
+export { Banner } from './Banner';
+export type { LegacyBannerProps } from './BannerTypes';
