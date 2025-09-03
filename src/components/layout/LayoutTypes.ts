@@ -47,3 +47,9 @@ export enum PageWidth {
   default = 'default',
   fluid = 'fluid',
 }
+
+export enum PageHeaderScrollBehavior {
+  collapse = 'collapse',
+  scroll = 'scroll',
+  sticky = 'sticky',
+}
