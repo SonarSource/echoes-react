@@ -210,4 +210,8 @@ html[data-echoes-theme='dark'], [data-echoes-theme='dark'] {
   --echoes-severity-badge-colors-borders-medium-default: #fd712266;
   --echoes-severity-badge-colors-borders-low-default: #fadc7966;
   --echoes-severity-badge-colors-borders-info-default: #8fcaea66;
+  --echoes-sidebar-navigation-colors-background-default: #1d212f;
+  --echoes-sidebar-navigation-item-colors-background-default: #1d212f;
+  --echoes-sidebar-navigation-item-colors-background-hover: #12141d;
+  --echoes-sidebar-navigation-item-colors-background-active: #08090c;
 }

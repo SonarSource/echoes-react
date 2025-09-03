@@ -553,6 +553,34 @@
         }
       }
     },
+    "sidebar-navigation": {
+      "colors": {
+        "background": {
+          "default": {
+            "$type": "color",
+            "$value": "{echoes.color.grey.700}"
+          }
+        }
+      }
+    },
+    "sidebar-navigation-item": {
+      "colors": {
+        "background": {
+          "default": {
+            "$type": "color",
+            "$value": "{echoes.color.grey.700}"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{echoes.color.grey.800}"
+          },
+          "active": {
+            "$type": "color",
+            "$value": "{echoes.color.grey.900}"
+          }
+        }
+      }
+    },
     "table": {
       "colors": {
         "background": {

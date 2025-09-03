@@ -92,7 +92,7 @@ const SidebarNavigationWrapper = styled.nav`
 
   padding-top: ${cssVar('dimension-space-250')};
   border-right: ${cssVar('border-width-default')} solid ${cssVar('color-border-weak')};
-  background-color: ${cssVar('color-surface-canvas-default')};
+  background-color: ${cssVar('sidebar-navigation-colors-background-default')};
 
   transition: width 0.1s;
 

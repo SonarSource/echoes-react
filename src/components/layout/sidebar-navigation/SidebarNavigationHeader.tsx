@@ -106,7 +106,7 @@ const HeaderContainer = styled.button`
 
     &:focus,
     &:focus-visible {
-      background-color: ${cssVar('color-surface-hover')};
+      background-color: ${cssVar('sidebar-navigation-item-colors-background-hover')};
     }
 
     &:focus-visible {
@@ -115,11 +115,11 @@ const HeaderContainer = styled.button`
     }
 
     &:hover {
-      background-color: ${cssVar('color-surface-hover')};
+      background-color: ${cssVar('sidebar-navigation-item-colors-background-hover')};
     }
 
     &:active {
-      background-color: ${cssVar('color-surface-active')};
+      background-color: ${cssVar('sidebar-navigation-item-colors-background-active')};
     }
   }
 `;

@@ -45,7 +45,7 @@ export const sidebarNavigationBaseItemStyles = css`
   cursor: pointer;
 
   &:hover {
-    background-color: ${cssVar('color-surface-hover')};
+    background-color: ${cssVar('sidebar-navigation-item-colors-background-hover')};
   }
 
   &:focus-visible {
