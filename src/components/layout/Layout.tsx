@@ -42,10 +42,11 @@ export const Layout = forwardRef<HTMLDivElement, LayoutProps>((props, ref) => {
   const mediaQueryList = useMemo(
     () =>
       window.matchMedia(
-        `(min-width: ${designToken('layout-sidebar-navigation-sizes-breakpoint-dockable')}px)`,
+        `(min-width: ${designToken('layout-sidebar-navigation-sizes-breakpoint-dockable')})`,
       ),
     [],
   );
+
   const [hasSidebar, setHasSidebar] = useState(false);
   const [isSidebarDocked, setIsSidebarDocked] = useState(
     () => isSidebarInitiallyDocked ?? mediaQueryList.matches,

@@ -20,14 +20,14 @@
 
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { useState } from 'react';
-import { Banner, BannerProps, BannerVariety, Button, Link } from '../src';
-import { toDisabledControlArgType, toTextControlArgTypes } from './helpers/arg-types';
-import { BasicWrapper } from './helpers/BasicWrapper';
-import { minWidthBodyDecorator, noPaddingBodyDecorator } from './helpers/decorators';
+import { BannerProps, BannerVariety, Button, Layout, Link } from '../../src';
+import { toDisabledControlArgType, toTextControlArgTypes } from '../helpers/arg-types';
+import { BasicWrapper } from '../helpers/BasicWrapper';
+import { minWidthBodyDecorator } from '../helpers/decorators';
 
-const meta: Meta<typeof Banner> = {
-  component: Banner,
-  title: 'Echoes/Banner',
+const meta: Meta<typeof Layout.Banner> = {
+  component: Layout.Banner,
+  title: 'Echoes/Layout/Banner',
 
   argTypes: {
     variety: { control: { type: 'select' }, options: Object.values(BannerVariety) },
@@ -35,12 +35,16 @@ const meta: Meta<typeof Banner> = {
     ...toDisabledControlArgType('onDismiss'),
   },
 
-  decorators: [noPaddingBodyDecorator, minWidthBodyDecorator],
+  parameters: {
+    layout: 'fullscreen',
+  },
+
+  decorators: [minWidthBodyDecorator],
 };
 
 export default meta;
 
-type Story = StoryObj<typeof Banner>;
+type Story = StoryObj<typeof Layout.Banner>;
 
 export const Default: Story = {
   args: {
@@ -48,12 +52,6 @@ export const Default: Story = {
     onDismiss: undefined,
     variety: 'warning',
   },
-  render: (args) => (
-    <>
-      <Banner {...args} />
-      <div style={{ width: '300px', height: '2000px', border: '2px dashed grey' }}>Scroll me!</div>
-    </>
-  ),
 };
 
 export const WithDismiss: Story = {
@@ -85,7 +83,7 @@ function BannerWithDismiss(args: Readonly<BannerProps>) {
   }
 
   return (
-    <Banner
+    <Layout.Banner
       {...args}
       onDismiss={() => {
         setDismissed(true);

@@ -21,7 +21,7 @@
 import { screen } from '@testing-library/react';
 import { screenReaderOnly } from '~common/helpers/styles';
 import { renderWithMemoryRouter } from '~common/helpers/test-utils';
-import { Link } from '../../links';
+import { Link } from '../../../links';
 import { Banner } from '../Banner';
 import { BannerProps, BannerVariety } from '../BannerTypes';
 

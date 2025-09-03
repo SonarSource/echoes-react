@@ -48,7 +48,6 @@ exports[`should display banner content 1`] = `
   -ms-flex-align: center;
   align-items: center;
   gap: var(--echoes-dimension-space-200);
-  width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
