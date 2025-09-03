@@ -24,12 +24,15 @@ import {
   Button,
   cssVar,
   DropdownMenu,
-  IconBell,
-  IconCalendar,
+  IconBranch,
+  IconComment,
   IconGear,
+  IconGitBranch,
   IconProject,
+  IconPullrequest,
   IconQuestionMark,
   IconSearch,
+  IconSecurityFinding,
   Layout,
   LinkStandalone,
   LogoSonarQubeServer,
@@ -40,6 +43,9 @@ import { AsideSize, PageHeaderScrollBehavior } from '../../src/components/layout
 const meta: Meta = {
   component: Layout,
   title: 'Echoes/Layout',
+  parameters: {
+    layout: 'fullscreen',
+  },
   argTypes: {
     banner: {
       control: 'select',
@@ -130,60 +136,64 @@ export const Default: Story = {
     sidebar: true,
   },
   render: (args) => (
-    // Compensate storybook's padding
-    <div style={{ margin: '-1rem' }}>
-      <Layout>
-        <Layout.BannerContainer>{args.banner}</Layout.BannerContainer>
-        <GlobalNav />
-        {args.sidebar}
-        <Layout.ContentGrid>
-          {args.contentHeader}
-          {args.aside}
+    <Layout>
+      <Layout.BannerContainer>{args.banner}</Layout.BannerContainer>
+      <GlobalNav />
+      {args.sidebar}
+      <Layout.ContentGrid>
+        {args.contentHeader}
+        {args.aside}
 
-          <Layout.PageGrid width={args.pageWidth}>
-            {args.pageHeader(args.pageHeaderScrollBehavior)}
-            <Layout.PageContent>
-              {text}
-              {text}
-              {text}
-              {text}
-            </Layout.PageContent>
-            <Layout.PageFooter>
-              <Text isSubtle>2018-2025 SonarSource SA. All rights reserved</Text>
-              <Links>
-                <LinkStandalone highlight="subtle" to="/1">
-                  Terms
-                </LinkStandalone>
-                <LinkStandalone highlight="subtle" to="/2">
-                  Pricing
-                </LinkStandalone>
-                <LinkStandalone highlight="subtle" to="/3">
-                  Privacy
-                </LinkStandalone>
-                <LinkStandalone highlight="subtle" to="/4">
-                  Cookies
-                </LinkStandalone>
-                <LinkStandalone highlight="subtle" to="/5">
-                  Terms
-                </LinkStandalone>
-              </Links>
-            </Layout.PageFooter>
-          </Layout.PageGrid>
-        </Layout.ContentGrid>
-      </Layout>
-    </div>
+        <Layout.PageGrid width={args.pageWidth}>
+          {args.pageHeader(args.pageHeaderScrollBehavior)}
+          <Layout.PageContent>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+              incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+              exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+              dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+              Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+              mollit anim id est laborum.
+            </p>
+            <div
+              style={{
+                display: 'flex',
+                gap: '16px',
+                flexWrap: 'wrap',
+                alignItems: 'center',
+                justifyContent: 'space-around',
+                marginTop: '32px',
+              }}>
+              {Array.from({ length: 20 }).map((_, i) => (
+                <ColorBox key={i} />
+              ))}
+            </div>
+          </Layout.PageContent>
+          <Layout.PageFooter>
+            <Text isSubtle>2018-2025 SonarSource SA. All rights reserved</Text>
+            <Links>
+              <LinkStandalone highlight="subtle" to="/1">
+                Terms
+              </LinkStandalone>
+              <LinkStandalone highlight="subtle" to="/2">
+                Pricing
+              </LinkStandalone>
+              <LinkStandalone highlight="subtle" to="/3">
+                Privacy
+              </LinkStandalone>
+              <LinkStandalone highlight="subtle" to="/4">
+                Cookies
+              </LinkStandalone>
+              <LinkStandalone highlight="subtle" to="/5">
+                Terms
+              </LinkStandalone>
+            </Links>
+          </Layout.PageFooter>
+        </Layout.PageGrid>
+      </Layout.ContentGrid>
+    </Layout>
   ),
 };
-
-const text = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non enim vel justo porttitor laoreet. Proin quis lobortis orci. Sed convallis tortor nec ullamcorper interdum. Integer massa augue, tempus nec accumsan vel, tincidunt in augue. Suspendisse mollis bibendum erat vitae vestibulum. Nunc aliquam mollis velit eu congue. Vestibulum viverra metus faucibus orci laoreet interdum. Suspendisse potenti. Sed id enim sagittis nunc porttitor egestas a a turpis. Cras venenatis nibh vitae purus blandit congue. Aenean sapien diam, aliquet sit amet venenatis vel, rutrum nec nunc. Phasellus varius congue sem non sodales. Sed mattis ante et scelerisque fermentum. Aenean elementum viverra ultricies. Integer accumsan, diam in pulvinar lobortis, quam turpis vulputate elit, ut eleifend mauris tellus et quam. Nullam sed leo non augue venenatis imperdiet.
-
-Nam venenatis purus at risus condimentum laoreet. Nulla varius ultrices mi et mollis. Praesent pulvinar tincidunt turpis et lobortis. Duis pulvinar pellentesque magna, vitae semper magna vulputate eu. Morbi molestie ultrices iaculis. Nulla a felis semper, vehicula ipsum eget, iaculis mi. Pellentesque leo sem, rhoncus sit amet consequat ac, tempor ut erat. Etiam volutpat ligula gravida dictum placerat. Etiam mollis eros eget vehicula faucibus. Phasellus id justo porta, pellentesque libero ac, tincidunt nibh.
-
-Maecenas finibus gravida molestie. Suspendisse sed ex dictum, dictum neque vel, commodo purus. Aliquam ultricies facilisis tortor eu malesuada. Nulla at risus suscipit, porttitor quam sit amet, maximus tortor. Aenean venenatis augue in nulla ultricies, quis iaculis sem rhoncus. Sed vel ante et sem porttitor porttitor. Mauris dolor turpis, finibus et facilisis vel, luctus vel mi. Etiam congue id metus ut tristique. Vestibulum quis nibh et nisi dignissim lobortis. Proin rutrum nisi lorem, aliquam lobortis lacus semper nec. Duis rhoncus enim id elit pretium, vitae bibendum ex accumsan. Aenean vitae velit dui. Pellentesque magna tellus, condimentum sed rhoncus nec, condimentum at nisi. Morbi id euismod velit. Mauris orci nunc, molestie molestie purus sed, vehicula semper nisi.
-
-Nam erat nibh, tincidunt vel cursus et, facilisis quis risus. Donec congue vel dui eget fermentum. Ut commodo fermentum metus a elementum. Aenean malesuada arcu quam, vel blandit lacus bibendum eu. Vestibulum ornare rhoncus libero hendrerit maximus. Sed sed efficitur arcu. Nulla ut ipsum sed tellus commodo egestas. Sed aliquam blandit purus. Phasellus faucibus et nulla at semper. Donec massa risus, aliquam sed eros a, molestie tristique felis. Nam sed justo pulvinar, tincidunt sapien ac, tincidunt ipsum. Duis commodo imperdiet dui nec faucibus. Pellentesque nec leo id odio fermentum pulvinar. Aliquam eu ex ultrices, mollis diam non, maximus nibh. Phasellus sed faucibus magna, vel malesuada ligula.
-
-Morbi imperdiet sollicitudin turpis, eu varius sem tempus et. Sed posuere egestas malesuada. Morbi dolor enim, laoreet nec consectetur sed, tempus vel odio. Quisque venenatis neque sapien, nec porttitor nisl elementum quis. Fusce id vulputate velit. Etiam ac auctor erat. Morbi ac nisi felis. Curabitur sed eros at augue varius molestie. Mauris pharetra, orci ut ornare posuere, odio orci bibendum felis, non ornare risus arcu eu purus. Duis dignissim lacus turpis, vitae blandit turpis pretium sed. Duis quis nunc ac libero imperdiet ultrices. Morbi id dictum sem, ac feugiat urna. Vestibulum maximus turpis sapien, in eleifend metus lobortis vitae.`;
 
 function GlobalNav() {
   return (
@@ -231,18 +241,41 @@ function SidebarNav() {
           </div>
         }
         isInteractive
-        name="Hello this is a bit long, I think!"
+        name="My Project name"
       />
       <Layout.SidebarNavigation.Body>
-        <Layout.SidebarNavigation.Item Icon={IconProject} enableTooltip to="/pouet">
-          blablablba
+        <Layout.SidebarNavigation.Item Icon={IconProject} to="/overview">
+          Overview
         </Layout.SidebarNavigation.Item>
-        <Layout.SidebarNavigation.Group label="Group name">
-          <Layout.SidebarNavigation.Item Icon={IconBell} to="somwhereelse1">
-            Thing 1
+        <Layout.SidebarNavigation.AccordionItem Icon={IconGitBranch} label="Branches and PRs">
+          <Layout.SidebarNavigation.Item
+            Icon={IconBranch}
+            disableIconWhenSidebarOpen
+            enableTooltip
+            to="/main-branch">
+            Main branch
           </Layout.SidebarNavigation.Item>
-          <Layout.SidebarNavigation.Item Icon={IconCalendar} enableTooltip to="somwhereelse2">
-            Amazing project 2Amazing project 2Amazing project 2Amazing project 2Amazing project 2
+          <Layout.SidebarNavigation.Item
+            Icon={IconPullrequest}
+            disableIconWhenSidebarOpen
+            enableTooltip
+            to="/pr-1">
+            Amazing Pull Request that updates a lot of things
+          </Layout.SidebarNavigation.Item>
+          <Layout.SidebarNavigation.Item
+            Icon={IconPullrequest}
+            disableIconWhenSidebarOpen
+            enableTooltip
+            to="/pr-2">
+            Small PR
+          </Layout.SidebarNavigation.Item>
+        </Layout.SidebarNavigation.AccordionItem>
+        <Layout.SidebarNavigation.Group label="Reporting">
+          <Layout.SidebarNavigation.Item Icon={IconSecurityFinding} to="/security-reports">
+            Reports
+          </Layout.SidebarNavigation.Item>
+          <Layout.SidebarNavigation.Item Icon={IconComment} to="/measures">
+            Measures
           </Layout.SidebarNavigation.Item>
         </Layout.SidebarNavigation.Group>
       </Layout.SidebarNavigation.Body>
@@ -302,6 +335,9 @@ const items = Array.from(Array(100)).map((_, i) => i);
 
 const List = styled.ul`
   all: unset;
+  display: flex;
+  flex-direction: column;
+  gap: ${cssVar('dimension-space-50')};
 
   & li {
     padding: 0 8px;
@@ -311,3 +347,26 @@ const List = styled.ul`
     width: 100%;
   }
 `;
+
+function getRandomColor() {
+  return `hsl(${Math.random() * 360}, 100%, 75%)`;
+}
+
+function getRandomSize() {
+  return `${150 + Math.random() * 300}px`;
+}
+
+function ColorBox() {
+  const color = getRandomColor();
+  return (
+    <div
+      style={{
+        height: getRandomSize(),
+        width: getRandomSize(),
+        backgroundColor: color,
+        borderRadius: '10px',
+        boxShadow: `0 0 6px rgba(0, 0, 0, 0.2)`,
+      }}
+    />
+  );
+}
