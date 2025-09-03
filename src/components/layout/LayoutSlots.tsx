@@ -79,6 +79,8 @@ const StyledAside = styled.div`
   grid-area: ${ContentGridArea.aside};
   overflow-y: auto;
 
+  box-sizing: border-box;
+  padding-left: ${cssVar('dimension-space-50')};
   padding-right: ${cssVar('dimension-space-100')};
   padding-top: ${cssVar('dimension-space-300')};
   margin-right: ${cssVar('dimension-space-200')};
