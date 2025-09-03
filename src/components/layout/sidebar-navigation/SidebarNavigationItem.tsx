@@ -157,7 +157,7 @@ const navigationItemIconStyles = css`
 `;
 
 const hideWhenSidebarOpenStyles = css`
-  [data-sidebar-docked='true'],
+  [data-sidebar-docked='true'] &,
   [data-sidebar-docked='false'] nav:is(:hover, :focus-within) & {
     display: none;
   }
