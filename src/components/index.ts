@@ -30,6 +30,7 @@ export * from './echoes-provider';
 export * from './form';
 export * from './icons';
 export * from './layout';
+export { DirectImportGlobalNavigation as GlobalNavigation } from './layout/global-navigation';
 export * from './legacy-banner';
 export * from './links';
 export * from './logos';

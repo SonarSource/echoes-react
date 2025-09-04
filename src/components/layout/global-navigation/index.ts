@@ -81,3 +81,8 @@ export const GlobalNavigation = Object.assign(GlobalNavigationRoot, {
    */
   Home: GlobalNavigationHome,
 });
+
+/**
+ * @deprecated Use Layout.GlobalNavigation instead
+ */
+export const DirectImportGlobalNavigation = GlobalNavigation;
