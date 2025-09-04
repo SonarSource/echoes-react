@@ -202,7 +202,9 @@ export const BadgeSeverity = forwardRef<HTMLButtonElement, BadgeSeverityProps>((
                 marginRight: cssVar('dimension-space-50'),
               }}
               isLoading={isLoading}>
-              <SeverityIcon />
+              <StyledSeverityIcon>
+                <SeverityIcon />
+              </StyledSeverityIcon>
             </SpinnerOverrideColor>
             <StyledSeverityText>{severityLabel}</StyledSeverityText>
             {variety === BadgeSeverityVariety.Dropdown && (
@@ -260,6 +262,11 @@ const StyledSeverityText = styled.span`
   font: ${cssVar('typography-text-small-medium')};
 `;
 StyledSeverityText.displayName = 'StyledSeverityText';
+
+const StyledSeverityIcon = styled.span`
+  color: var(--badge-severity-icon-color);
+`;
+StyledSeverityIcon.displayName = 'StyledSeverityIcon';
 
 const StyledDropdownIndicator = styled.div`
   margin-left: calc(${cssVar('dimension-space-25')} * -1);
