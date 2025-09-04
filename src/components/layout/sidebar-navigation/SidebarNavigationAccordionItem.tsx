@@ -127,7 +127,7 @@ const AccordionItem = styled.button`
   ${sidebarNavigationBaseItemStyles}
 
   &:active {
-    background-color: ${cssVar('color-surface-active')};
+    background-color: ${cssVar('sidebar-navigation-item-colors-background-active')};
   }
 `;
 AccordionItem.displayName = 'AccordionItem';

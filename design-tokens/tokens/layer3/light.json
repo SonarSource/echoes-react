@@ -418,6 +418,34 @@
         }
       }
     },
+        "sidebar-navigation": {
+      "colors": {
+        "background": {
+          "default": {
+            "$type": "color",
+            "$value": "{echoes.color.grey.25}"
+          }
+        }
+      }
+    },
+    "sidebar-navigation-item": {
+      "colors": {
+        "background": {
+          "default": {
+            "$type": "color",
+            "$value": "{echoes.color.grey.25}"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{echoes.color.grey.40}"
+          },
+          "active": {
+            "$type": "color",
+            "$value": "{echoes.color.grey.50}"
+          }
+        }
+      }
+    },
     "table": {
       "colors": {
         "background": {

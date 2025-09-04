@@ -187,5 +187,9 @@
   "echoes-severity-badge-colors-borders-high-default": "#fee4e2",
   "echoes-severity-badge-colors-borders-medium-default": "#ffe8da",
   "echoes-severity-badge-colors-borders-low-default": "#fef5d0",
-  "echoes-severity-badge-colors-borders-info-default": "#e9f4fb"
+  "echoes-severity-badge-colors-borders-info-default": "#e9f4fb",
+  "echoes-sidebar-navigation-colors-background-default": "#fcfcfd",
+  "echoes-sidebar-navigation-item-colors-background-default": "#fcfcfd",
+  "echoes-sidebar-navigation-item-colors-background-hover": "#f6f7fb",
+  "echoes-sidebar-navigation-item-colors-background-active": "#eff2f9"
 }

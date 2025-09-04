@@ -136,12 +136,12 @@ const NavigationItem = styled(NavLinkBase)`
     // Always display the item when active even if behind a closed accordion, this overrides the previously set display value from the css property
     display: flex;
 
-    background-color: ${cssVar('color-background-selected-weak-default')};
+    background-color: ${cssVar('sidebar-navigation-item-colors-background-active')};
     color: ${cssVar('color-text-accent')};
     font: ${cssVar('typography-text-default-semi-bold')};
 
     &:hover {
-      background-color: ${cssVar('color-background-selected-weak-hover')};
+      background-color: ${cssVar('sidebar-navigation-item-colors-background-hover')};
     }
   }
 `;
