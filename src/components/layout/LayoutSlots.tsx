@@ -108,12 +108,9 @@ const PageGridContainer = styled.div`
   grid-area: ${ContentGridArea.page};
   overflow-y: auto;
 
-  display: grid;
-  grid-template-rows: auto 1fr auto;
-  grid-template-areas:
-    '${PageGridArea.header}'
-    '${PageGridArea.main}'
-    '${PageGridArea.footer}';
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
 `;
 PageGridContainer.displayName = 'PageGridContainer';
 
