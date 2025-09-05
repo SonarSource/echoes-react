@@ -30,6 +30,7 @@ import {
 import { TextNode } from '~types/utils';
 import { cssVar } from '~utils/design-tokens';
 import { IconChevronDown, IconChevronRight, IconProps } from '../../icons';
+import { Tooltip } from '../../tooltip';
 import {
   sidebarNavigationBaseItemStyles,
   sidebarNavigationItemIconStyles,
@@ -46,6 +47,11 @@ export interface SidebarNavigationAccordionItemProps {
   children: ReactNode;
   className?: string;
   /**
+   * Whether to display the tooltip on the accordion item or not.
+   * By default the tooltip is disabled, it should only be enabled if you expect the content to be ellipsed.
+   */
+  enableTooltip?: boolean;
+  /**
    * The label for the SidebarNavigationAccordionItem.
    */
   label: TextNode;
@@ -58,6 +64,10 @@ export interface SidebarNavigationAccordionItemProps {
    */
   onOpen?: VoidFunction;
   /**
+   * Optional content to display on the right, before the chevron. Typically badges, item count and similar metadata.
+   */
+  suffix?: ReactNode;
+  /**
    * The icon component to display at the start of the SidebarNavigationAccordionItem.
    * Must be an Echoes Icon component.
    */
@@ -68,7 +78,7 @@ export const SidebarNavigationAccordionItem = forwardRef<
   HTMLButtonElement,
   SidebarNavigationAccordionItemProps
 >((props, ref) => {
-  const { children, Icon, label, onClose, onOpen, ...htmlProps } = props;
+  const { children, enableTooltip, Icon, label, onClose, onOpen, suffix, ...htmlProps } = props;
   const [open, setOpen] = useState(false);
 
   const accordionId = `${useId()}sidebar-accordion`;
@@ -87,21 +97,24 @@ export const SidebarNavigationAccordionItem = forwardRef<
 
   return (
     <AccordionWrapper>
-      <AccordionItem
-        {...htmlProps}
-        aria-controls={accordionPanelId}
-        aria-expanded={open}
-        id={accordionId}
-        onClick={handleClick}
-        ref={ref}>
-        <Icon css={sidebarNavigationItemIconStyles} />
-        <SidebarNavigationItemLabel>{label}</SidebarNavigationItemLabel>
-        {open ? (
-          <IconChevronDown css={sidebarNavigationItemIconStyles} />
-        ) : (
-          <IconChevronRight css={sidebarNavigationItemIconStyles} />
-        )}
-      </AccordionItem>
+      <Tooltip content={enableTooltip ? label : undefined} side="right">
+        <AccordionItem
+          {...htmlProps}
+          aria-controls={accordionPanelId}
+          aria-expanded={open}
+          id={accordionId}
+          onClick={handleClick}
+          ref={ref}>
+          <Icon css={sidebarNavigationItemIconStyles} />
+          <SidebarNavigationItemLabel>{label}</SidebarNavigationItemLabel>
+          {suffix}
+          {open ? (
+            <IconChevronDown css={sidebarNavigationItemIconStyles} />
+          ) : (
+            <IconChevronRight css={sidebarNavigationItemIconStyles} />
+          )}
+        </AccordionItem>
+      </Tooltip>
       <AccordionItemPanel
         aria-labelledby={accordionId}
         data-accordion-open={open}
@@ -139,7 +152,7 @@ const AccordionItemPanel = styled.section`
 
   margin-left: ${cssVar('dimension-space-300')};
   padding-left: ${cssVar('dimension-space-100')};
-  padding-right: ${cssVar('dimension-space-200')};
+  padding-right: ${cssVar('dimension-space-100')};
   border-left: ${cssVar('border-width-default')} solid ${cssVar('color-border-weak')};
 
   // The children SidebarNavigationItems rely on this css property to set their display value, falling

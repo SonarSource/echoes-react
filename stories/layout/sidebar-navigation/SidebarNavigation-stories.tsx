@@ -21,6 +21,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { PropsWithChildren } from 'react';
 import {
+  Badge,
   cssVar,
   IconBell,
   IconBranch,
@@ -100,15 +101,23 @@ export const Full: Story = {
             <Layout.SidebarNavigation.Item Icon={IconCalendar} enableTooltip to="somwhereelse2">
               Amazing project 2Amazing project 2Amazing project 2Amazing project 2Amazing project 2
             </Layout.SidebarNavigation.Item>
-            <Layout.SidebarNavigation.Item Icon={IconSparkleInShieldError} to="somwhereelse3">
+            <Layout.SidebarNavigation.Item
+              Icon={IconSparkleInShieldError}
+              suffix={<NewSuffix />}
+              to="somwhereelse3">
               Blabla 3
             </Layout.SidebarNavigation.Item>
           </Layout.SidebarNavigation.Group>
-          <Layout.SidebarNavigation.AccordionItem Icon={IconBranch} label="Accordion item">
+          <Layout.SidebarNavigation.AccordionItem
+            Icon={IconBranch}
+            enableTooltip
+            label="Accordion Item with a long name"
+            suffix={<NewSuffix />}>
             <Layout.SidebarNavigation.Item
               Icon={IconBranch}
               disableIconWhenSidebarOpen
               enableTooltip
+              suffix={<NewSuffix />}
               to="/1">
               child 1 with a long name hahahah
             </Layout.SidebarNavigation.Item>
@@ -225,5 +234,13 @@ function LayoutWithSidebarStateSaved({ children }: PropsWithChildren) {
       }}>
       {children}
     </Layout>
+  );
+}
+
+function NewSuffix() {
+  return (
+    <Badge isHighContrast variety="highlight">
+      New!
+    </Badge>
   );
 }

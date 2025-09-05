@@ -57,6 +57,28 @@ it("shouldn't have any a11y violation", async () => {
   await expect(container).toHaveNoA11yViolations();
 });
 
+describe('ellipsis behavior', () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
+  it('should show tooltip when enableTooltip prop is true', async () => {
+    const { user } = setupSidebarNavigationAccordionItem({ enableTooltip: true });
+
+    await user.hover(screen.getByRole('button'));
+    const tooltip = await screen.findByRole('tooltip');
+    expect(tooltip).toBeInTheDocument();
+    expect(tooltip).toHaveTextContent('Accordion Item');
+  });
+
+  it('should not show tooltip when enableTooltip prop is false', async () => {
+    const { user } = setupSidebarNavigationAccordionItem();
+
+    await user.hover(screen.getByRole('button'));
+    expect(screen.queryByRole('tooltip')).not.toBeInTheDocument();
+  });
+});
+
 describe('integration with SidebarNavigationItem', () => {
   it('should have active class and rely on the css property passed set form the accordion', () => {
     setupSidebarNavigationAccordionItem({

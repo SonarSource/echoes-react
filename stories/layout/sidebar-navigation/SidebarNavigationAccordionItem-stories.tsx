@@ -20,7 +20,7 @@
 
 /* eslint-disable no-console */
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { IconBranch, Layout } from '../../../src';
+import { Badge, IconBranch, Layout } from '../../../src';
 import { basicWrapperDecorator } from '../../helpers/BasicWrapper';
 
 const meta: Meta = {
@@ -54,5 +54,27 @@ export const base: Story = {
       </>
     ),
     label: 'Accordion',
+  },
+};
+
+export const suffixed: Story = {
+  args: {
+    Icon: IconBranch,
+    children: (
+      <>
+        <Layout.SidebarNavigation.Item Icon={IconBranch} disableIconWhenSidebarOpen to="/1">
+          Item 1
+        </Layout.SidebarNavigation.Item>
+        <Layout.SidebarNavigation.Item Icon={IconBranch} disableIconWhenSidebarOpen to="/2">
+          Item 2
+        </Layout.SidebarNavigation.Item>
+      </>
+    ),
+    label: 'Accordion',
+    suffix: (
+      <Badge isHighContrast variety="highlight">
+        New
+      </Badge>
+    ),
   },
 };
