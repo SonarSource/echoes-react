@@ -20,7 +20,7 @@
 
 /* eslint-disable no-console */
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { IconBranch, Layout } from '../../../src';
+import { Badge, IconBranch, Layout } from '../../../src';
 import { basicWrapperDecorator } from '../../helpers/BasicWrapper';
 
 const meta: Meta = {
@@ -45,5 +45,17 @@ export const base: Story = {
   args: {
     Icon: IconBranch,
     children: 'Navigation item',
+  },
+};
+
+export const suffixed: Story = {
+  args: {
+    Icon: IconBranch,
+    children: 'New navigation item',
+    suffix: (
+      <Badge isHighContrast variety="highlight">
+        New!
+      </Badge>
+    ),
   },
 };

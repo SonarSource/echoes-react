@@ -25,6 +25,7 @@ import {
   ForwardRefExoticComponent,
   MouseEvent,
   MouseEventHandler,
+  ReactNode,
   useCallback,
 } from 'react';
 import { NavLinkBase, NavLinkBaseProps } from '~common/components/NavLinkBase';
@@ -72,6 +73,10 @@ export interface SidebarNavigationItemProps
    */
   onClick?: MouseEventHandler<HTMLAnchorElement>;
   /**
+   * Optional content to display on the right. Typically badges and similar metadata.
+   */
+  suffix?: ReactNode;
+  /**
    * The icon component to display at the start of the SidebarNavigationItem.
    * Must be an Echoes Icon component.
    */
@@ -88,6 +93,7 @@ export const SidebarNavigationItem = forwardRef<HTMLAnchorElement, SidebarNaviga
       Icon,
       isActive = false,
       onClick,
+      suffix,
       ...htmlProps
     } = props;
 
@@ -114,6 +120,7 @@ export const SidebarNavigationItem = forwardRef<HTMLAnchorElement, SidebarNaviga
               ]}
             />
             <SidebarNavigationItemLabel>{children}</SidebarNavigationItemLabel>
+            {suffix}
           </NavigationItem>
         </Tooltip>
       </UnstyledListItem>
