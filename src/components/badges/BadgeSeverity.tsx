@@ -126,7 +126,7 @@ export const BadgeSeverity = forwardRef<HTMLButtonElement, BadgeSeverityProps>((
 
   const { formatMessage } = useIntl();
 
-  const SeverityIcon = BADGE_SEVERITY_ICON[severity];
+  const { SeverityIcon, severityIconColor } = BADGE_SEVERITY_ICON[severity];
   const BADGE_SEVERITY_LABEL = {
     [BadgeSeverityLevel.Blocker]: formatMessage({
       id: 'severity_impact.BLOCKER',
@@ -202,9 +202,7 @@ export const BadgeSeverity = forwardRef<HTMLButtonElement, BadgeSeverityProps>((
                 marginRight: cssVar('dimension-space-50'),
               }}
               isLoading={isLoading}>
-              <StyledSeverityIcon>
-                <SeverityIcon />
-              </StyledSeverityIcon>
+              <SeverityIcon color={severityIconColor} />
             </SpinnerOverrideColor>
             <StyledSeverityText>{severityLabel}</StyledSeverityText>
             {variety === BadgeSeverityVariety.Dropdown && (
@@ -263,10 +261,6 @@ const StyledSeverityText = styled.span`
 `;
 StyledSeverityText.displayName = 'StyledSeverityText';
 
-const StyledSeverityIcon = styled.span`
-  color: var(--badge-severity-icon-color);
-`;
-StyledSeverityIcon.displayName = 'StyledSeverityIcon';
 
 const StyledDropdownIndicator = styled.div`
   margin-left: calc(${cssVar('dimension-space-25')} * -1);
@@ -297,11 +291,26 @@ const StyledButtonIconStyled = styled(ButtonIconStyled)`
 StyledButtonIconStyled.displayName = 'StyledButtonIconStyled';
 
 const BADGE_SEVERITY_ICON = {
-  [BadgeSeverityLevel.Blocker]: IconSeverityBlocker,
-  [BadgeSeverityLevel.High]: IconSeverityHigh,
-  [BadgeSeverityLevel.Info]: IconInfo,
-  [BadgeSeverityLevel.Low]: IconSeverityLow,
-  [BadgeSeverityLevel.Medium]: IconSeverityMedium,
+  [BadgeSeverityLevel.Blocker]: {
+    SeverityIcon: IconSeverityBlocker,
+    severityIconColor: 'echoes-severity-badge-colors-foreground-blocker-icon-default',
+  },
+  [BadgeSeverityLevel.High]: {
+    SeverityIcon: IconSeverityHigh,
+    severityIconColor: 'echoes-severity-badge-colors-foreground-high-icon-default',
+  },
+  [BadgeSeverityLevel.Info]: {
+    SeverityIcon: IconInfo,
+    severityIconColor: 'echoes-severity-badge-colors-foreground-info-icon-default',
+  },
+  [BadgeSeverityLevel.Low]: {
+    SeverityIcon: IconSeverityLow,
+    severityIconColor: 'echoes-severity-badge-colors-foreground-low-icon-default',
+  },
+  [BadgeSeverityLevel.Medium]: {
+    SeverityIcon: IconSeverityMedium,
+    severityIconColor: 'echoes-severity-badge-colors-foreground-medium-icon-default',
+  },
 };
 
 const BADGE_SEVERITY_STYLES = {
@@ -317,7 +326,6 @@ const BADGE_SEVERITY_STYLES = {
     '--badge-severity-icon-background-color-hover': cssVar(
       'severity-badge-colors-background-severity-blocker-suffix-hover',
     ),
-    '--badge-severity-icon-color': cssVar('severity-badge-colors-foreground-blocker-icon-default'),
   },
   [BadgeSeverityLevel.High]: {
     '--badge-severity-color': cssVar('severity-badge-colors-foreground-high-text-default'),
@@ -331,7 +339,6 @@ const BADGE_SEVERITY_STYLES = {
     '--badge-severity-icon-background-color-hover': cssVar(
       'severity-badge-colors-background-severity-high-suffix-hover',
     ),
-    '--badge-severity-icon-color': cssVar('severity-badge-colors-foreground-high-icon-default'),
   },
   [BadgeSeverityLevel.Info]: {
     '--badge-severity-color': cssVar('severity-badge-colors-foreground-info-text-default'),
@@ -345,7 +352,6 @@ const BADGE_SEVERITY_STYLES = {
     '--badge-severity-icon-background-color-hover': cssVar(
       'severity-badge-colors-background-severity-info-suffix-hover',
     ),
-    '--badge-severity-icon-color': cssVar('severity-badge-colors-foreground-info-icon-default'),
   },
   [BadgeSeverityLevel.Low]: {
     '--badge-severity-color': cssVar('severity-badge-colors-foreground-low-text-default'),
@@ -359,7 +365,6 @@ const BADGE_SEVERITY_STYLES = {
     '--badge-severity-icon-background-color-hover': cssVar(
       'severity-badge-colors-background-severity-low-suffix-hover',
     ),
-    '--badge-severity-icon-color': cssVar('severity-badge-colors-foreground-low-icon-default'),
   },
   [BadgeSeverityLevel.Medium]: {
     '--badge-severity-color': cssVar('severity-badge-colors-foreground-medium-text-default'),
@@ -373,6 +378,5 @@ const BADGE_SEVERITY_STYLES = {
     '--badge-severity-icon-background-color-hover': cssVar(
       'severity-badge-colors-background-severity-medium-suffix-hover',
     ),
-    '--badge-severity-icon-color': cssVar('severity-badge-colors-foreground-medium-icon-default'),
   },
 };
