@@ -63,10 +63,10 @@ ContentGrid.displayName = 'ContentGrid';
  */
 export interface AsideProps {
   className?: string;
-  size: `${AsideSize}`;
+  size?: `${AsideSize}`;
 }
 export const AsideLeft = forwardRef<HTMLDivElement, PropsWithChildren<AsideProps>>((props, ref) => {
-  const { children, size, ...restProps } = props;
+  const { children, size = 'medium', ...restProps } = props;
   return (
     <StyledAside {...restProps} ref={ref} style={AsideSizeStyles[size]}>
       {children}
@@ -89,12 +89,12 @@ StyledAside.displayName = 'StyledAside';
 
 export interface PageGridProps {
   className?: string;
-  width: `${PageWidth}`;
+  width?: `${PageWidth}`;
 }
 
 export const PageGrid = forwardRef<HTMLDivElement, PropsWithChildren<PageGridProps>>(
   (props, ref) => {
-    const { children, width, ...restProps } = props;
+    const { children, width = 'default', ...restProps } = props;
     return (
       <PageGridContainer {...restProps} ref={ref}>
         <PageGridInner style={PAGE_WIDTH_STYLES[width]}>{children}</PageGridInner>
