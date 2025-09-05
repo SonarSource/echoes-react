@@ -261,7 +261,6 @@ const StyledSeverityText = styled.span`
 `;
 StyledSeverityText.displayName = 'StyledSeverityText';
 
-
 const StyledDropdownIndicator = styled.div`
   margin-left: calc(${cssVar('dimension-space-25')} * -1);
   margin-right: calc(${cssVar('dimension-space-25')} * -1);
