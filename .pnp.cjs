@@ -44,7 +44,7 @@ const RAW_RUNTIME_STATE =
           ["@formatjs/cli", "virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#npm:6.7.2"],\
           ["@mantine/core", "virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#patch:@mantine/core@npm%3A7.12.2#./.yarn/patches/@mantine-core-npm-7.12.2-7aad505c0f.patch::version=7.12.2&hash=cab555&locator=%40sonarsource%2Fechoes-react%40workspace%3A."],\
           ["@mantine/hooks", "virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#npm:7.12.2"],\
-          ["@material-symbols/font-400", "npm:0.33.0"],\
+          ["@material-symbols/font-400", "npm:0.34.1"],\
           ["@radix-ui/react-alert-dialog", "virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#npm:1.1.14"],\
           ["@radix-ui/react-checkbox", "virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#npm:1.3.2"],\
           ["@radix-ui/react-dialog", "virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#npm:1.1.14"],\
@@ -4718,10 +4718,10 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["@material-symbols/font-400", [\
-      ["npm:0.33.0", {\
-        "packageLocation": "./.yarn/cache/@material-symbols-font-400-npm-0.33.0-4dcc46b0af-5bfe160d9d.zip/node_modules/@material-symbols/font-400/",\
+      ["npm:0.34.1", {\
+        "packageLocation": "./.yarn/cache/@material-symbols-font-400-npm-0.34.1-781054cf43-2ed5bcde20.zip/node_modules/@material-symbols/font-400/",\
         "packageDependencies": [\
-          ["@material-symbols/font-400", "npm:0.33.0"]\
+          ["@material-symbols/font-400", "npm:0.34.1"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -6426,7 +6426,7 @@ const RAW_RUNTIME_STATE =
           ["@formatjs/cli", "virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#npm:6.7.2"],\
           ["@mantine/core", "virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#patch:@mantine/core@npm%3A7.12.2#./.yarn/patches/@mantine-core-npm-7.12.2-7aad505c0f.patch::version=7.12.2&hash=cab555&locator=%40sonarsource%2Fechoes-react%40workspace%3A."],\
           ["@mantine/hooks", "virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#npm:7.12.2"],\
-          ["@material-symbols/font-400", "npm:0.33.0"],\
+          ["@material-symbols/font-400", "npm:0.34.1"],\
           ["@radix-ui/react-alert-dialog", "virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#npm:1.1.14"],\
           ["@radix-ui/react-checkbox", "virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#npm:1.3.2"],\
           ["@radix-ui/react-dialog", "virtual:9b02b400b80cd4c7a70834eaa7170c5eae7b0a8fa111e7ccd0f6ac576d8f73a01e4ed60ac3ab9a19d9c162a7147321b8aadda9283b2a8b27be3616ae00496bf7#npm:1.1.14"],\

@@ -2841,10 +2841,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@material-symbols/font-400@npm:0.33.0":
-  version: 0.33.0
-  resolution: "@material-symbols/font-400@npm:0.33.0"
-  checksum: 10/5bfe160d9d727457f9e400caa3c19d31dc2774a438feb666630945f8533a46f4d2d6f35858ddbebcfa56a5922fc58c2574939a6c7e980443859ec94f225b63ed
+"@material-symbols/font-400@npm:0.34.1":
+  version: 0.34.1
+  resolution: "@material-symbols/font-400@npm:0.34.1"
+  checksum: 10/2ed5bcde20c6107e7b3cec533ff1a5ea0b39ce41c495a0b2a57ca9dd1459b6f81bf842c01acf17ce68342bc0d657b43e23544fbc5324a63d2cf5944259115c51
   languageName: node
   linkType: hard
 
@@ -4155,7 +4155,7 @@ __metadata:
     "@formatjs/cli": "npm:6.7.2"
     "@mantine/core": "patch:@mantine/core@7.12.2#./.yarn/patches/@mantine-core-npm-7.12.2-7aad505c0f.patch"
     "@mantine/hooks": "npm:7.12.2"
-    "@material-symbols/font-400": "npm:0.33.0"
+    "@material-symbols/font-400": "npm:0.34.1"
     "@radix-ui/react-alert-dialog": "npm:1.1.14"
     "@radix-ui/react-checkbox": "npm:1.3.2"
     "@radix-ui/react-dialog": "npm:1.1.14"
