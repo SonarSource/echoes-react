@@ -311,7 +311,7 @@ const BADGE_SEVERITY_ICON = {
     SeverityIcon: IconSeverityMedium,
     severityIconColor: 'echoes-severity-badge-colors-foreground-medium-icon-default',
   },
-};
+} as const;
 
 const BADGE_SEVERITY_STYLES = {
   [BadgeSeverityLevel.Blocker]: {
