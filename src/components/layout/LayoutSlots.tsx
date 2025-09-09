@@ -63,8 +63,11 @@ ContentGrid.displayName = 'ContentGrid';
  */
 export interface AsideProps {
   className?: string;
+  id?: string;
+  role?: string;
   size?: `${AsideSize}`;
 }
+
 export const AsideLeft = forwardRef<HTMLDivElement, PropsWithChildren<AsideProps>>((props, ref) => {
   const { children, size = 'medium', ...restProps } = props;
   return (
