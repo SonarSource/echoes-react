@@ -107,10 +107,6 @@ PageGrid.displayName = 'PageGrid';
 const PageGridContainer = styled.div`
   grid-area: ${ContentGridArea.page};
   overflow-y: auto;
-
-  display: flex;
-  flex-direction: row;
-  align-items: stretch;
 `;
 PageGridContainer.displayName = 'PageGridContainer';
 
@@ -121,6 +117,8 @@ const PageGridInner = styled.div`
     '${PageGridArea.header}'
     '${PageGridArea.main}'
     '${PageGridArea.footer}';
+
+  min-height: 100%;
 `;
 PageGridInner.displayName = 'PageGridInner';
 

@@ -17,25 +17,16 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
+import { css, Global } from '@emotion/react';
 import styled from '@emotion/styled';
 import { forwardRef, ReactNode, useCallback, useMemo } from 'react';
-import { toast as sonnerToast } from 'sonner';
-import {
-  ButtonIcon,
-  IconCheckCircle,
-  IconError,
-  IconInfo,
-  IconWarning,
-  IconX,
-  Text,
-} from '../../components';
-
-import { css, Global } from '@emotion/react';
 import { useIntl } from 'react-intl';
+import { toast as sonnerToast } from 'sonner';
 import { TextNode, TextNodeOptional } from '~types/utils';
-import { ScreenReaderPrefix } from './ScreenReaderPrefix';
-
 import { cssVar } from '~utils/design-tokens';
+import { ButtonIcon, Text } from '../../components';
+import { IconCheckCircle, IconError, IconInfo, IconWarning, IconX } from '../../components/icons';
+import { ScreenReaderPrefix } from './ScreenReaderPrefix';
 
 /**
  * Represents the available visual varieties for toast notifications.
