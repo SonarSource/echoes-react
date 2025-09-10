@@ -34,8 +34,7 @@ export function computePages({ page, totalPages }: Pick<PaginationProps, 'page' 
 
   // If we don't start at 1, add the first page and an ellipsis
   if (start !== 1) {
-    pages.push(`${1}`);
-    pages.push('ellipsis-low');
+    pages.push(`${1}`, 'ellipsis-low');
   }
 
   // Add the range computed above
@@ -45,8 +44,7 @@ export function computePages({ page, totalPages }: Pick<PaginationProps, 'page' 
 
   // If we don't end at the total, add the last page and an ellipsis
   if (end !== totalPages) {
-    pages.push('ellipsis-high');
-    pages.push(`${totalPages}`);
+    pages.push('ellipsis-high', `${totalPages}`);
   }
 
   return pages;

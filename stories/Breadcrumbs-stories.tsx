@@ -40,7 +40,7 @@ const FixedWrapper = styled.div`
   width: 900px;
 `;
 
-const indices = Array.from(Array(6).keys());
+const indices = Array.from({ length: 6 }, (_, i) => i);
 
 const leaf = 'Child element (never truncated)';
 

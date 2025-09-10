@@ -73,10 +73,10 @@ function FormWithValidation(props: ComponentProps<typeof Form>) {
         setEmailValidation(FormFieldValidation.Valid);
       }
 
-      if (!countryValue) {
-        setCountryValidation(FormFieldValidation.Invalid);
-      } else {
+      if (countryValue) {
         setCountryValidation(FormFieldValidation.Valid);
+      } else {
+        setCountryValidation(FormFieldValidation.Invalid);
       }
     },
     [countryValue, emailInputRef],

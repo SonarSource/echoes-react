@@ -103,7 +103,7 @@ export const CheckboxGroup: CheckboxGroup = forwardRef<HTMLDivElement, CheckboxG
     });
 
     const serializedValue = useMemo(() => {
-      return name ? value.map(serializeValue) : [];
+      return name ? value.map((value) => serializeValue(value)) : [];
     }, [name, serializeValue, value]);
 
     return (
@@ -273,4 +273,4 @@ const CheckboxGroupRoot = styled.div`
 /**
  * Takes an unknown value and coerces it to a string.
  */
-const defaultSerializer = (value: unknown) => String(value);
+const defaultSerializer = String;

@@ -86,7 +86,7 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>((props, re
             )}
             isDisabled={isDisabled}
             key={p}
-            onClick={() => onChange(parseInt(p, 10))}
+            onClick={() => onChange(Number.parseInt(p, 10))}
             size="medium"
             variety={p === `${page}` ? 'primary' : 'default-ghost'}>
             {p}
