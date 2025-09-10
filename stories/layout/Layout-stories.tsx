@@ -331,7 +331,7 @@ const Links = styled.div`
   gap: ${cssVar('dimension-space-200')};
 `;
 
-const items = Array.from(Array(100)).map((_, i) => i);
+const items = Array.from({ length: 100 }).map((_, i) => i);
 
 const List = styled.ul`
   all: unset;

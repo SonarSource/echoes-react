@@ -49,7 +49,7 @@ export default meta;
 
 type Story = StoryObj<typeof Layout.SidebarNavigation>;
 
-const items = Array.from(Array(10)).map((_, i) => i + 1);
+const items = Array.from({ length: 10 }).map((_, i) => i + 1);
 
 export const Full: Story = {
   parameters: {
@@ -225,12 +225,12 @@ export const Full: Story = {
 };
 
 function LayoutWithSidebarStateSaved({ children }: PropsWithChildren) {
-  const isSidebarDocked = window.localStorage.getItem('echoes-sidebar-docked');
+  const isSidebarDocked = globalThis.localStorage.getItem('echoes-sidebar-docked');
   return (
     <Layout
-      isSidebarInitiallyDocked={isSidebarDocked != null ? isSidebarDocked === 'true' : undefined}
+      isSidebarInitiallyDocked={isSidebarDocked === null ? undefined : isSidebarDocked === 'true'}
       onSidebarDockedChange={(isDocked) => {
-        window.localStorage.setItem('echoes-sidebar-docked', isDocked.toString());
+        globalThis.localStorage.setItem('echoes-sidebar-docked', isDocked.toString());
       }}>
       {children}
     </Layout>

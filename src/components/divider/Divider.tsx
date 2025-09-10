@@ -87,16 +87,16 @@ const StyledDivider = styled.hr<{ isVertical: boolean }>`
   margin: 0;
 
   ${({ isVertical }) =>
-    !isVertical
+    isVertical
       ? `
-        height: 1px;
-        width: 100%;
-      `
-      : `
         display: inline-block;
         height: 100%;
         min-height: 60px;
         width: 1px;
+      `
+      : `
+        height: 1px;
+        width: 100%;
       `}
 `;
 
@@ -123,14 +123,14 @@ const DividerLine = styled.div<{ isVertical: boolean }>`
   flex-grow: 1;
 
   ${({ isVertical }) =>
-    !isVertical
+    isVertical
       ? `
-        height: 1px;
-      `
-      : `
       height: 100%;
       width: 1px;
-      `}
+      `
+      : `
+       height: 1px;
+     `}
 `;
 
 const DividerText = styled.span<{ isVertical: boolean }>`
@@ -139,7 +139,7 @@ const DividerText = styled.span<{ isVertical: boolean }>`
   line-height: ${cssVar('line-height-10')};
   max-width: ${cssVar('sizes-typography-max-width-default')};
   padding: ${({ isVertical }) =>
-    !isVertical ? `0 ${cssVar('dimension-space-25')}` : `${cssVar('dimension-space-25')} 0`};
+    isVertical ? `${cssVar('dimension-space-25')} 0` : `0 ${cssVar('dimension-space-25')}`};
   white-space: nowrap;
 `;
 

@@ -97,7 +97,7 @@ const DATA = [
 function getSelectionState(selectedRows: Record<string, boolean>) {
   const values = Object.values(selectedRows);
 
-  if (values.every((v) => v)) {
+  if (values.every(Boolean)) {
     return true;
   }
 
@@ -137,9 +137,9 @@ function StateManager(props: TableProps) {
 
   const toggleAll = useCallback(() => {
     setSelectedRows((selectedRows) => {
-      DATA.forEach((d) => {
+      for (const d of DATA) {
         selectedRows[d.name] = selectionState === 'indeterminate' || !selectionState;
-      });
+      }
 
       return { ...selectedRows };
     });

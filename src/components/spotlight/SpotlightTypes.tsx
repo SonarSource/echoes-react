@@ -19,13 +19,10 @@
  */
 
 import { ReactNode } from 'react';
-import {
-  Callback as JoyrideCallback,
-  CallBackProps as SpotlightCallbackProps,
-} from 'react-joyride';
+import { Callback as JoyrideCallback } from 'react-joyride';
 import { TextNodeOptional } from '~types/utils';
 
-export type { SpotlightCallbackProps };
+export type { CallBackProps as SpotlightCallbackProps } from 'react-joyride';
 
 export enum SpotlightModalPlacement {
   Auto = 'auto',

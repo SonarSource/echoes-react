@@ -41,7 +41,7 @@ export const Layout = forwardRef<HTMLDivElement, LayoutProps>((props, ref) => {
   const { children, isSidebarInitiallyDocked, onSidebarDockedChange, ...htmlProps } = props;
   const mediaQueryList = useMemo(
     () =>
-      window.matchMedia(
+      globalThis.matchMedia(
         `(min-width: ${designToken('layout-sidebar-navigation-sizes-breakpoint-dockable')})`,
       ),
     [],
