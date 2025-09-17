@@ -26,16 +26,32 @@ import { LinkBaseStyled } from '../../links/LinkBaseStyled';
 import { globalNavigationItemStyle, StyledNavMenuItem } from './GlobalNavigationItemStyles';
 
 export interface GlobalNavigationItemProps {
+  /**
+   * The label of the GlobalNavigationItem.
+   * It can be a string or a JSX.Element, in the case of a JSX.Element it should not be wrapped in
+   * a `<Text>` component, the GlobalNavigationItem already handles the typography styling for you.
+   */
   children: ReactNode;
   className?: string;
+  /**
+   * Control whether the GlobalNavigationItem is active or not.
+   * If true, the item will have a different style to indicate it is active.
+   *
+   * By default this behavior uses react-router-dom's URL matching utility.
+   * Overriding this is only needed for complex scenarios.
+   */
+  isActive?: boolean;
   to: RouterLinkProps['to'];
 }
 
 export const GlobalNavigationItem = forwardRef<HTMLAnchorElement, GlobalNavigationItemProps>(
-  ({ children, className, to, ...otherProps }: Readonly<GlobalNavigationItemProps>, ref) => {
+  (
+    { children, className, isActive, to, ...otherProps }: Readonly<GlobalNavigationItemProps>,
+    ref,
+  ) => {
     const resolved = useResolvedPath(to);
     const match = useMatch(`${resolved.pathname}/*`);
-    const active = isDefined(match);
+    const active = isActive ?? isDefined(match);
 
     return (
       <StyledNavMenuItem data-selected={active}>
