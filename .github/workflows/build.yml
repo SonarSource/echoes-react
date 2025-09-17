@@ -1,0 +1,75 @@
+name: Build
+on:
+  push:
+    branches: [master, branch-*]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build
+    runs-on: sonar-s-public
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+      cancel-in-progress: true
+    permissions:
+      id-token: write
+      contents: write
+    steps:
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+      - uses: jdx/mise-action@5ac50f778e26fac95da98d50503682459e86d566 # v3.2.0
+        with:
+          version: 2025.9.12
+      - name: Build, Test, Analyze and deploy
+        uses: SonarSource/ci-github-actions/build-yarn@v1
+        with:
+          artifactory-reader-role: public-reader
+          artifactory-deploy-repo: sonarsource-npm-public-qa
+          artifactory-deployer-role: qa-deployer
+          deploy-pull-request: true
+          sonar-platform: next
+          cache-yarn: true
+
+  promote:
+    name: Promote
+    needs:
+      - build
+    runs-on: sonar-xs-public
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+      cancel-in-progress: ${{ github.ref_name != github.event.repository.default_branch }}
+    permissions:
+      id-token: write
+      contents: write
+    steps:
+      - uses: SonarSource/ci-github-actions/promote@v1
+        with:
+          promote-pull-request: true
+
+  slack-notifications:
+    runs-on: github-ubuntu-latest-s # Public GH runner is required, runners starting with sonar-* do not support this action
+    if: failure() && (contains(fromJSON('["main", "master"]'), github.ref_name) || startsWith(github.ref_name, 'branch-'))
+    needs: [ build, promote ]
+    permissions:
+      id-token: write
+    steps:
+      - name: Vault Secrets
+        id: secrets
+        uses: SonarSource/vault-action-wrapper@v3
+        with:
+          secrets: |
+            development/kv/data/slack token | SLACK_TOKEN;
+
+      - name: Slack Notification rtCamp
+        uses: rtCamp/action-slack-notify@e31e87e03dd19038e411e38ae27cbad084a90661  # v2.3.3
+        env:
+          SLACK_TOKEN: >-
+            ${{ fromJSON(steps.secrets.outputs.vault).SLACK_TOKEN }}
+          SLACK_CHANNEL: ops-sonarcloud-webapp
+          SLACK_TITLE: Build failed 🚨
+          SLACK_USERNAME: BuildBot
+          SLACK_COLOR: danger
+          SLACK_MESSAGE: |
+            Workflow failed in ${{ github.repository }}
+            ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+            Branch: ${{ github.head_ref || github.ref_name }}

@@ -1,5 +1,9 @@
 # echoes-react
 
+[![Build Status](https://github.com/SonarSource/echoes-react/actions/workflows/build.yml/badge.svg)](https://github.com/SonarSource/echoes-react/actions/workflows/build.yml)
+[![Releasability status](https://github.com/SonarSource/echoes-react/actions/workflows/releasability.yml/badge.svg)](https://github.com/SonarSource/echoes-react/actions/workflows/releasability.yml)
+[![Quality Gate Status](https://next.sonarqube.com/sonarqube/api/project_badges/measure?project=SonarSource_echoes-react&metric=alert_status&token=sqb_ced4ef7f562917d10af6bb2e9f1649c62a882ff9)](https://next.sonarqube.com/sonarqube/dashboard?id=SonarSource_echoes-react)
+
 A React implementation of Echoes, Sonar's Design System.
 
 ## Installation
