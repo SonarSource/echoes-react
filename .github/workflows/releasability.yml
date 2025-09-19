@@ -1,24 +1,25 @@
 name: Releasability status
+
 on:
-  check_suite:
+  workflow_run:
+    workflows: ["Build"]
     types:
       - completed
+    branches:
+      - master
+      - branch-*
+  workflow_dispatch:
+
 jobs:
-  update_releasability_status:
-    runs-on: github-ubuntu-latest-s
+  releasability-status:
     name: Releasability status
+    runs-on: sonar-xs-public
     permissions:
       id-token: write
       statuses: write
       contents: read
-    if: >-
-      (contains(fromJSON('["main", "master"]'),
-      github.event.check_suite.head_branch) ||
-      startsWith(github.event.check_suite.head_branch, 'dogfood-') ||
-      startsWith(github.event.check_suite.head_branch, 'branch-')) &&
-      github.event.check_suite.conclusion == 'success' &&
-      github.event.check_suite.app.slug == 'cirrus-ci'
+    if: github.event.workflow_run.conclusion == 'success'
     steps:
-      - uses: SonarSource/gh-action_releasability/releasability-status@48220006021661f66278901a369cfede25b1d458 # 2.2.0
+      - uses: SonarSource/gh-action_releasability/releasability-status@v3
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ github.token }}
