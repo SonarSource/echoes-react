@@ -25,10 +25,12 @@ jobs:
       - name: Build, Test, Analyze and deploy
         uses: SonarSource/ci-github-actions/build-yarn@v1
         with:
+          artifactory-reader-role: public-reader
           artifactory-deploy-repo: sonarsource-npm-public-qa
-          artifactory-deployer-role: qa-deployer
+          artifactory-deployer-role: public-deployer
           deploy-pull-request: true
           sonar-platform: next
+          cache-yarn: true
 
   promote:
     name: Promote
