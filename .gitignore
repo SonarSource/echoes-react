@@ -1,3 +1,5 @@
+# Yarn Modern
+.pnp.*
 .yarn/*
 !.yarn/patches
 !.yarn/plugins
@@ -5,9 +7,9 @@
 !.yarn/sdks
 !.yarn/versions
 
-# Documentation here: https://yarnpkg.com/features/zero-installs
-!.yarn/cache
-#.pnp.*
+# Documentation for pnp here: https://yarnpkg.com/features/zero-installs
+#!.yarn/cache
+#!.pnp.*
 
 # ---- IntelliJ IDEA
 *.iws

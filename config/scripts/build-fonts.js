@@ -21,26 +21,20 @@ import * as fslib from '@yarnpkg/fslib';
 import { ZipOpenFS } from '@yarnpkg/libzip';
 import fs from 'fs';
 import { join } from 'node:path';
-import pnpApi from 'pnpapi';
 import subsetFont from 'subset-font';
 
 console.log(`Generating optimized material-symbols-rounded font...`);
-
-// This will transparently open zip archives in yarn cache
-const zipOpenFs = new ZipOpenFS();
-
-// This will convert all paths into a Posix variant, required for cross-platform compatibility
-const crossFs = new fslib.PosixFS(zipOpenFs);
 
 // Get the current working directory
 const workDir = process.cwd();
 
 // Load material-symbols font
-const materialFontPath = pnpApi.resolveRequest(
-  '@material-symbols/font-400/material-symbols-rounded.woff2',
+const materialFontPath = join(
   workDir,
+  'node_modules',
+  '@material-symbols/font-400/material-symbols-rounded.woff2',
 );
-const materialFontBuffer = crossFs.readFileSync(materialFontPath);
+const materialFontBuffer = fs.readFileSync(materialFontPath);
 
 // Gather all icons glyphs codepoints from the icons folder
 const codepointRegex = /IconMaterialWrapper.*&#x(.*);/s;

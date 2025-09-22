@@ -123,12 +123,6 @@ There is a `.vscode` folder containing:
   - Copy it and save it as `settings.json`
   - You must open the project directly. Adding its folder in an existing workspace might not work, as the typescript configuration must be defined at workspace level.
 
-You also must [set up your vscode to work](https://yarnpkg.com/getting-started/editor-sdks) with the `yarn` pnp setup, using the following command:
-
-```shell
-yarn dlx @yarnpkg/sdks vscode
-```
-
 ### Run storybook
 
 Use the following command to run both the build watcher and the storybook server in `dev` mode:
