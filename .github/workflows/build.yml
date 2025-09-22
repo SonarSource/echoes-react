@@ -8,7 +8,7 @@ on:
 jobs:
   build:
     name: Build
-    runs-on: sonar-s-public
+    runs-on: github-ubuntu-latest-m
     concurrency:
       group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
       cancel-in-progress: true
@@ -28,13 +28,13 @@ jobs:
           artifactory-deployer-role: public-deployer
           deploy-pull-request: true
           sonar-platform: next
-          cache-yarn: true
+          cache-yarn: false
 
   promote:
     name: Promote
     needs:
       - build
-    runs-on: sonar-xs-public
+    runs-on: github-ubuntu-latest-s
     concurrency:
       group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
       cancel-in-progress: ${{ github.ref_name != github.event.repository.default_branch }}
