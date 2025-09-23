@@ -17,19 +17,21 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-import { RenderOptions, render as rtlRender } from '@testing-library/react';
-import userEvent, { Options as UserEventsOptions } from '@testing-library/user-event';
+import { RenderOptions, render as rtlRender, RenderResult } from '@testing-library/react';
+import userEvent, { UserEvent, Options as UserEventsOptions } from '@testing-library/user-event';
 import React, { ComponentProps, PropsWithChildren } from 'react';
 import { IntlProvider } from 'react-intl';
 import { MemoryRouter, Route, Routes, useLocation } from 'react-router-dom';
 import { PropsWithLabels, PropsWithLabelsAndHelpText } from '~types/utils';
 import { EchoesProvider } from '../../components/echoes-provider';
 
+type RenderResultWithUser = RenderResult & { user: UserEvent };
+
 export function render(
   ui: React.ReactElement,
   options?: RenderOptions,
   userEventOptions?: UserEventsOptions,
-) {
+): RenderResultWithUser {
   return {
     ...rtlRender(ui, { wrapper: ContextWrapper, ...options }),
     user: userEvent.setup(userEventOptions),
@@ -41,7 +43,7 @@ export const renderWithMemoryRouter = (
   initialEntries = ['/initial'],
   options?: RenderOptions,
   userEventOptions?: UserEventsOptions,
-) => {
+): RenderResultWithUser => {
   return {
     ...rtlRender(
       <MemoryRouter

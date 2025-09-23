@@ -1,4 +1,4 @@
-name: release
+name: Release
 
 on:
   release:
@@ -11,10 +11,38 @@ on:
 
 jobs:
   release:
-    uses: SonarSource/gh-action_release/.github/workflows/main.yaml@e887e05abda17241a57c7f3d6118e5b3d0705acd # 5.18.0
+    uses: SonarSource/gh-action_release/.github/workflows/main.yaml@v6
     with:
       publishToNpmJS: true
       skipJavascriptReleasabilityChecks: true # Temporary, until the releasability version check handles an `rc` suffix
     permissions:
       id-token: write
       contents: write
+
+  slack-notifications:
+    runs-on: github-ubuntu-latest-s # Public GH runner is required, runners starting with sonar-* do not support this action
+    needs: [ release ]
+    permissions:
+      id-token: write
+    steps:
+      - name: Vault Secrets
+        id: secrets
+        uses: SonarSource/vault-action-wrapper@v3
+        with:
+          secrets: |
+            development/kv/data/slack token | SLACK_TOKEN;
+
+      - name: Slack Notification rtCamp
+        uses: rtCamp/action-slack-notify@e31e87e03dd19038e411e38ae27cbad084a90661  # v2.3.3
+        env:
+          SLACK_TOKEN: >-
+            ${{ fromJSON(steps.secrets.outputs.vault).SLACK_TOKEN }}
+          SLACK_CHANNEL: ops-sonarcloud-webapp
+          SLACK_TITLE: "Release ${{ job.status == 'failure' && 'Failed 🚨' || 'Succeeded 🎉' }}"
+          SLACK_USERNAME: BuildBot
+          SLACK_COLOR: ${{ job.status }}
+          SLACK_MESSAGE: |
+            Workflow in ${{ github.repository }}
+            ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+            Branch: ${{ github.head_ref || github.ref_name }}
+            Released version: ${{ github.event.release.tag_name || inputs.release_version }}

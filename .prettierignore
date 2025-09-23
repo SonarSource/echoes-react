@@ -3,9 +3,10 @@ design-tokens/tokens/
 dist/
 node_modules/
 .vscode/
-.yarn/
 .github/
+.yarn/
 yarn.lock
 .yarnrc.yml
 .pnp.*
 tsconfig.*
+.jfrog/

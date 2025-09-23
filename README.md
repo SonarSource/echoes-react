@@ -1,5 +1,9 @@
 # echoes-react
 
+[![Build Status](https://github.com/SonarSource/echoes-react/actions/workflows/build.yml/badge.svg)](https://github.com/SonarSource/echoes-react/actions/workflows/build.yml)
+[![Releasability status](https://github.com/SonarSource/echoes-react/actions/workflows/releasability.yml/badge.svg)](https://github.com/SonarSource/echoes-react/actions/workflows/releasability.yml)
+[![Quality Gate Status](https://next.sonarqube.com/sonarqube/api/project_badges/measure?project=SonarSource_echoes-react&metric=alert_status&token=sqb_ced4ef7f562917d10af6bb2e9f1649c62a882ff9)](https://next.sonarqube.com/sonarqube/dashboard?id=SonarSource_echoes-react)
+
 A React implementation of Echoes, Sonar's Design System.
 
 ## Installation
@@ -118,12 +122,6 @@ There is a `.vscode` folder containing:
 - A template for necessary (and recommended) settings: `settings.template.json`
   - Copy it and save it as `settings.json`
   - You must open the project directly. Adding its folder in an existing workspace might not work, as the typescript configuration must be defined at workspace level.
-
-You also must [set up your vscode to work](https://yarnpkg.com/getting-started/editor-sdks) with the `yarn` pnp setup, using the following command:
-
-```shell
-yarn dlx @yarnpkg/sdks vscode
-```
 
 ### Run storybook
 
