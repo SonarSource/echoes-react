@@ -5,7 +5,7 @@ on:
     types: [published]
   workflow_dispatch:
     inputs:
-      release_version:
+      version:
         description: 'Version'
         required: false
 
@@ -14,7 +14,8 @@ jobs:
     uses: SonarSource/gh-action_release/.github/workflows/main.yaml@v6
     with:
       publishToNpmJS: true
-      skipJavascriptReleasabilityChecks: true # Temporary, until the releasability version check handles an `rc` suffix
+      skipJavascriptReleasabilityChecks: false
+      version: ${{ inputs.version || github.event.release.tag_name }}
     permissions:
       id-token: write
       contents: write
@@ -45,4 +46,4 @@ jobs:
             Workflow in ${{ github.repository }}
             ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
             Branch: ${{ github.head_ref || github.ref_name }}
-            Released version: ${{ github.event.release.tag_name || inputs.release_version }}
+            Released version: ${{ inputs.version || github.event.release.tag_name }}
