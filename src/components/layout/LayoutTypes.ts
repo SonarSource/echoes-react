@@ -26,13 +26,13 @@ export enum GlobalGridArea {
 }
 
 export enum ContentGridArea {
-  header = 'header',
+  header = 'content-header',
   aside = 'aside',
   page = 'page',
 }
 
 export enum PageGridArea {
-  header = 'header',
+  header = 'page-header',
   main = 'main',
   footer = 'footer',
 }

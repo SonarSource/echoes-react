@@ -29,7 +29,7 @@ import {
   PageFooter,
   PageGrid,
 } from './LayoutSlots';
-import { PageHeader } from './page-header';
+import { ContentHeader, PageHeader } from './page-header';
 import { SidebarNavigation } from './sidebar-navigation';
 
 export { BannerVariety, type BannerProps } from './banner';
@@ -115,14 +115,12 @@ export const Layout = Object.assign(LayoutRoot, {
   Banner,
 
   /**
-   * The Content Grid defines the layout that includes the Page and the optional AsideLeft & PageHeader.
-   * Scrollable areas are the AsideLeft and the PageGrid. The PageHeader does not scroll.
-   *
-   * The PageHeader can alternatively be placed inside the PageGrid.
+   * The Content Grid defines the layout that includes the Page and the optional AsideLeft & ContentHeader.
+   * Scrollable areas are the AsideLeft and the PageGrid. The ContentHeader does not scroll.
    *
    *```
    * +-------------------------------+
-   * |          PageHeader           |
+   * |         ContentHeader         |
    * +-------------------------------+
    * |  Aside  |      PageGrid       |
    * |  Left   |                     |
@@ -130,6 +128,73 @@ export const Layout = Object.assign(LayoutRoot, {
    * ```
    */
   ContentGrid,
+
+  /**
+   * {@link ContentHeader} is a flexible header component for displaying page titles,
+   * metadata, description, breadcrumbs, and actions at the top of application pages.
+   *
+   * **Components**
+   * - {@link ContentHeader.Actions} - Action buttons or controls
+   * - {@link ContentHeader.Breadcrumbs} - Navigation breadcrumb trail
+   * - {@link ContentHeader.Description} - Descriptive text content
+   * - {@link ContentHeader.Metadata} - Subtle metadata information
+   * - {@link ContentHeader.Navigation} - Navigation items container
+   * - {@link ContentHeader.NavigationDropdownItem} - Dropdown navigation item
+   * - {@link ContentHeader.NavigationItem} - Regular navigation item
+   * - {@link ContentHeader.Title} - Main page title (required) with optional prefix/suffix
+   *
+   * ```tsx
+   * <Layout.ContentHeader
+   *   actions={
+   *     <Layout.ContentHeader.Actions>
+   *       <Button>Secondary action</Button>
+   *       <Button variety={ButtonVariety.Primary}>Primary action</Button>
+   *     </Layout.ContentHeader.Actions>
+   *   }
+   *   breadcrumbs={
+   *     <Layout.ContentHeader.Breadcrumbs
+   *       items={[
+   *         { linkElement: 'Breadcrumb item 1', to: 'https://sonarsource.com' },
+   *         { linkElement: 'Breadcrumb item 2', to: '' },
+   *       ]}
+   *     />
+   *   }
+   *   description={<Layout.ContentHeader.Description>Page description</Layout.ContentHeader.Description>}
+   *   metadata={<Layout.ContentHeader.Metadata>Page metadata</Layout.ContentHeader.Metadata>}
+   *   navigation={
+   *     <Layout.ContentHeader.Navigation>
+   *       <Layout.ContentHeader.NavigationItem to="/">Home</Layout.ContentHeader.NavigationItem>
+   *
+   *       <Layout.ContentHeader.NavigationDropdownItem
+   *         items={
+   *           <>
+   *             <DropdownMenu.ItemLink to="/option1">option 1</DropdownMenu.ItemLink>
+   *             <DropdownMenu.ItemLink to="/option2">option 2</DropdownMenu.ItemLink>
+   *           </>
+   *         }>
+   *         More
+   *       </Layout.ContentHeader.NavigationDropdownItem>
+   *     </Layout.ContentHeader.Navigation>
+   *   }
+   *   title={
+   *     <Layout.ContentHeader.Title
+   *       prefix={
+   *         <ButtonIcon
+   *           Icon={IconArrowLeft}
+   *           ariaLabel="Go back"
+   *           variety={ButtonVariety.DefaultGhost}
+   *         />
+   *       }
+   *       suffix={
+   *         <ButtonIcon Icon={IconEdit} ariaLabel="Edit" variety={ButtonVariety.DefaultGhost} />
+   *       }>
+   *       Page title
+   *     </Layout.ContentHeader.Title>
+   *   }
+   * />
+   * ```
+   */
+  ContentHeader,
 
   /**
    * {@link GlobalNavigation} is a navigation element that wraps {@link GlobalNavigation.Primary}, and
@@ -180,8 +245,9 @@ export const Layout = Object.assign(LayoutRoot, {
   GlobalNavigation,
 
   /**
-   * The Page Grid defines the layout for the page elements, including the header which is optional and
-   * can be sticky to the top, main content which is mandatory, and footer that comes after the main content:
+   * The Page Grid defines the layout for the page elements. PageContent is the main container and is mandatory.
+   * PageHeader and PageFooter are optional.
+   *
    * ```
    * +---------------------+
    * |     PageHeader      |
@@ -191,9 +257,6 @@ export const Layout = Object.assign(LayoutRoot, {
    * |     PageFooter      |
    * +---------------------+
    * ```
-   *
-   * The PageHeader is optional and can be placed in the outer grid instead
-   * (see ContentGrid).
    *
    */
   PageGrid,

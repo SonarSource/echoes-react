@@ -88,14 +88,16 @@ const meta: Meta = {
     contentHeader: {
       control: 'boolean',
       mapping: {
-        true: <Header />,
+        true: <Layout.ContentHeader {...getHeaderProps()} />,
         false: undefined,
       },
     },
     pageHeader: {
       control: 'boolean',
       mapping: {
-        true: (behavior: PageHeaderScrollBehavior) => <Header behavior={behavior} />,
+        true: (behavior: PageHeaderScrollBehavior) => (
+          <Layout.PageHeader {...getHeaderProps()} scrollBehavior={behavior} />
+        ),
         false: (_: boolean) => undefined,
       },
     },
@@ -300,24 +302,21 @@ function AsideContent() {
   );
 }
 
-function Header({ behavior }: Readonly<{ behavior?: PageHeaderScrollBehavior }>) {
-  return (
-    <Layout.PageHeader
-      actions={
-        <Layout.PageHeader.Actions>
-          <Button>Action!</Button>
-        </Layout.PageHeader.Actions>
-      }
-      navigation={
-        <Layout.PageHeader.Navigation>
-          <Layout.PageHeader.NavigationItem to="/1">Nav Item 1</Layout.PageHeader.NavigationItem>
-          <Layout.PageHeader.NavigationItem to="/2">Nav Item 2</Layout.PageHeader.NavigationItem>
-        </Layout.PageHeader.Navigation>
-      }
-      scrollBehavior={behavior}
-      title={<Layout.PageHeader.Title>Content title</Layout.PageHeader.Title>}
-    />
-  );
+function getHeaderProps() {
+  return {
+    actions: (
+      <Layout.PageHeader.Actions>
+        <Button>Action!</Button>
+      </Layout.PageHeader.Actions>
+    ),
+    navigation: (
+      <Layout.PageHeader.Navigation>
+        <Layout.PageHeader.NavigationItem to="/1">Nav Item 1</Layout.PageHeader.NavigationItem>
+        <Layout.PageHeader.NavigationItem to="/2">Nav Item 2</Layout.PageHeader.NavigationItem>
+      </Layout.PageHeader.Navigation>
+    ),
+    title: <Layout.PageHeader.Title>Content title</Layout.PageHeader.Title>,
+  };
 }
 
 const Avatar = styled.div`
