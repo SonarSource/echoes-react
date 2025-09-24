@@ -21,62 +21,64 @@
 import { screen } from '@testing-library/react';
 import { ComponentProps } from 'react';
 import { renderWithMemoryRouter } from '~common/helpers/test-utils';
-import { PageHeader } from '..';
+import { ContentHeader, PageHeader } from '..';
 import { Button, ButtonIcon, ButtonVariety, DropdownMenu, IconArrowLeft, IconEdit } from '../../..';
 import { PageHeaderScrollBehavior } from '../../LayoutTypes';
 
-it('should display a full PageHeader properly', async () => {
-  const { container } = setup();
+describe('[PageHeader]', () => {
+  it('should display a full PageHeader properly', async () => {
+    const { container } = setup();
 
-  expect(
-    screen.getByRole('button', {
-      name: 'Primary action',
-    }),
-  ).toBeInTheDocument();
+    expect(
+      screen.getByRole('button', {
+        name: 'Primary action',
+      }),
+    ).toBeInTheDocument();
 
-  expect(
-    screen.getByRole('link', {
-      name: 'Breadcrumb item 1',
-    }),
-  ).toBeInTheDocument();
+    expect(
+      screen.getByRole('link', {
+        name: 'Breadcrumb item 1',
+      }),
+    ).toBeInTheDocument();
 
-  expect(screen.getByText('Page description')).toBeInTheDocument();
-  expect(screen.getByText('Page metadata')).toBeInTheDocument();
-  expect(screen.getByText('Page title')).toBeInTheDocument();
-  expect(screen.getByText('More')).toBeInTheDocument();
+    expect(screen.getByText('Page description')).toBeInTheDocument();
+    expect(screen.getByText('Page metadata')).toBeInTheDocument();
+    expect(screen.getByText('Page title')).toBeInTheDocument();
+    expect(screen.getByText('More')).toBeInTheDocument();
 
-  await expect(container).toHaveNoA11yViolations();
-});
+    await expect(container).toHaveNoA11yViolations();
+  });
 
-it('should display a minimal PageHeader properly', () => {
-  renderWithMemoryRouter(<PageHeader title={<PageHeader.Title>Page title</PageHeader.Title>} />);
+  it('should display a minimal PageHeader properly', () => {
+    renderWithMemoryRouter(<PageHeader title={<PageHeader.Title>Page title</PageHeader.Title>} />);
 
-  expect(screen.getByText('Page title')).toBeInTheDocument();
-});
+    expect(screen.getByText('Page title')).toBeInTheDocument();
+  });
 
-describe('scroll behavior', () => {
-  it.each([
-    [PageHeaderScrollBehavior.collapse, false, 'sticky'],
-    [PageHeaderScrollBehavior.collapse, true, ''],
-    [PageHeaderScrollBehavior.scroll, false, ''],
-    [PageHeaderScrollBehavior.scroll, true, ''],
-    [PageHeaderScrollBehavior.sticky, false, ''],
-    [PageHeaderScrollBehavior.sticky, true, ''],
-  ])(
-    '%s (sticky actions disabled = %s) behavior should work as expected',
-    (scrollBehavior, disableStickyActions, expectedPosition) => {
-      setup({
-        actions: <Button>action!</Button>,
-        scrollBehavior,
-        disableStickyActions,
-      });
+  describe('scroll behavior', () => {
+    it.each([
+      [PageHeaderScrollBehavior.collapse, false, 'sticky'],
+      [PageHeaderScrollBehavior.collapse, true, ''],
+      [PageHeaderScrollBehavior.scroll, false, ''],
+      [PageHeaderScrollBehavior.scroll, true, ''],
+      [PageHeaderScrollBehavior.sticky, false, ''],
+      [PageHeaderScrollBehavior.sticky, true, ''],
+    ])(
+      '%s (sticky actions disabled = %s) behavior should work as expected',
+      (scrollBehavior, disableStickyActions, expectedPosition) => {
+        setup({
+          actions: <Button>action!</Button>,
+          scrollBehavior,
+          disableStickyActions,
+        });
 
-      // eslint-disable-next-line testing-library/no-node-access
-      expect(screen.getByRole('button', { name: 'action!' }).parentNode).toHaveStyle({
-        position: expectedPosition,
-      });
-    },
-  );
+        // eslint-disable-next-line testing-library/no-node-access
+        expect(screen.getByRole('button', { name: 'action!' }).parentNode).toHaveStyle({
+          position: expectedPosition,
+        });
+      },
+    );
+  });
 });
 
 function setup(props: Partial<ComponentProps<typeof PageHeader>> = {}) {
@@ -132,3 +134,11 @@ function setup(props: Partial<ComponentProps<typeof PageHeader>> = {}) {
     />,
   );
 }
+
+describe('[ContentHeader]', () => {
+  it('should display a ContentHeader properly', async () => {
+    const { container } = renderWithMemoryRouter(<ContentHeader title="Awesome content header" />);
+
+    await expect(container).toHaveNoA11yViolations();
+  });
+});
