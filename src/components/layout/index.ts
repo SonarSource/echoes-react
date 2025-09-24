@@ -115,14 +115,17 @@ export const Layout = Object.assign(LayoutRoot, {
   Banner,
 
   /**
-   * The Content Grid defines the layout that includes the Page and the optional Aside & Header.
-   * Scrollable areas are the Aside and the Page, the PageHeader is not scrollable.
+   * The Content Grid defines the layout that includes the Page and the optional AsideLeft & PageHeader.
+   * Scrollable areas are the AsideLeft and the PageGrid. The PageHeader does not scroll.
+   *
+   * The PageHeader can alternatively be placed inside the PageGrid.
+   *
    *```
    * +-------------------------------+
    * |          PageHeader           |
    * +-------------------------------+
-   * |  Aside  |        Page         |
-   * |         |                     |
+   * |  Aside  |      PageGrid       |
+   * |  Left   |                     |
    * +-------------------------------+
    * ```
    */
@@ -181,15 +184,15 @@ export const Layout = Object.assign(LayoutRoot, {
    * can be sticky to the top, main content which is mandatory, and footer that comes after the main content:
    * ```
    * +---------------------+
-   * |      PageHeader     |
+   * |     PageHeader      |
    * +---------------------+
-   * |        Main         |
+   * |     PageContent     |
    * +---------------------+
-   * |       Footer        |
+   * |     PageFooter      |
    * +---------------------+
    * ```
    *
-   * The PageHeader is optional and can be placed in the outer grid
+   * The PageHeader is optional and can be placed in the outer grid instead
    * (see ContentGrid).
    *
    */
