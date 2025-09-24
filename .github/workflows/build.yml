@@ -1,7 +1,9 @@
 name: Build
 on:
   push:
-    branches: [master, branch-*]
+    branches:
+      - main
+      - branch-*
   pull_request:
   workflow_dispatch:
 
