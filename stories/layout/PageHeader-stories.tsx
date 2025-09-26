@@ -135,7 +135,7 @@ const render = ({
       }
       metadata={metadata && <Layout.PageHeader.Metadata>{metadata}</Layout.PageHeader.Metadata>}
       title={
-        <Layout.PageHeader.Title prefix={prefix} suffix={suffix}>
+        <Layout.PageHeader.Title headingLevel="h1" prefix={prefix} suffix={suffix}>
           {title}
         </Layout.PageHeader.Title>
       }

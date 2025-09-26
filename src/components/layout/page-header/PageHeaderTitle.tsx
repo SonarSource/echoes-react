@@ -19,46 +19,70 @@
  */
 
 import styled from '@emotion/styled';
-import { forwardRef, PropsWithChildren, ReactNode } from 'react';
+import { ForwardedRef, forwardRef, PropsWithChildren, ReactNode } from 'react';
 import { cssVar } from '~utils/design-tokens';
-import { Heading } from '../../typography';
+import { Heading, HeadingProps } from '../../typography';
 
-export interface PageHeaderTitleProps {
+export interface ContentHeaderTitleProps {
   /**
    * Additional CSS class name(s)
    */
+  // eslint-disable-next-line react/no-unused-prop-types
   className?: string;
   /**
    * Content (e.g. a ButtonIcon) to display before the title
    */
+  // eslint-disable-next-line react/no-unused-prop-types
   prefix?: ReactNode;
   /**
    * Content (e.g. a ButtonIcon) to display after the title
    */
+  // eslint-disable-next-line react/no-unused-prop-types
   suffix?: ReactNode;
 }
 
+export interface PageHeaderTitleProps extends ContentHeaderTitleProps {
+  /**
+   * The heading tag to use for the title itself
+   */
+  headingLevel?: HeadingProps['as'];
+}
+
+function renderFunction(
+  props: PropsWithChildren<PageHeaderTitleProps>,
+  ref: ForwardedRef<HTMLDivElement>,
+) {
+  const { children, headingLevel = 'h1', prefix, suffix, ...rest } = props;
+
+  return (
+    <StyledPageHeaderTitle ref={ref} {...rest}>
+      {prefix}
+
+      <Heading as={headingLevel}>{children}</Heading>
+
+      {suffix}
+    </StyledPageHeaderTitle>
+  );
+}
+
 /**
- * Displays the main title in the page header. The title is rendered as an h1 heading
+ * Displays the main title in the page header. The title is rendered as a heading of your choice
  * and can optionally include prefix and suffix elements.
  */
 export const PageHeaderTitle = forwardRef<HTMLDivElement, PropsWithChildren<PageHeaderTitleProps>>(
-  (props, ref) => {
-    const { children, prefix, suffix, ...rest } = props;
-
-    return (
-      <StyledPageHeaderTitle ref={ref} {...rest}>
-        {prefix}
-
-        <Heading as="h1">{children}</Heading>
-
-        {suffix}
-      </StyledPageHeaderTitle>
-    );
-  },
+  renderFunction,
 );
-
 PageHeaderTitle.displayName = 'PageHeaderTitle';
+
+/**
+ * Displays the main title in the content header. The title is rendered as an h1 heading
+ * and can optionally include prefix and suffix elements.
+ */
+export const ContentHeaderTitle = forwardRef<
+  HTMLDivElement,
+  PropsWithChildren<ContentHeaderTitleProps>
+>((props, ref) => renderFunction({ ...props, headingLevel: 'h1' }, ref));
+ContentHeaderTitle.displayName = 'ContentHeaderTitle';
 
 const StyledPageHeaderTitle = styled.div`
   align-items: center;

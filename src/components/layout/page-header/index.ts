@@ -26,13 +26,13 @@ import { GlobalNavigationItem } from '../global-navigation/GlobalNavigationItem'
 import { GlobalNavigationItemsContainer } from '../global-navigation/GlobalNavigationItemsContainer';
 import { ContentHeaderRoot, PageHeaderRoot } from './PageHeader';
 import { PageHeaderMetadata } from './PageHeaderMetadata';
-import { PageHeaderTitle } from './PageHeaderTitle';
+import { ContentHeaderTitle, PageHeaderTitle } from './PageHeaderTitle';
 
 export type { HeaderProps, PageHeaderProps } from './PageHeader';
 export type { PageHeaderMetadataProps } from './PageHeaderMetadata';
 export type { PageHeaderTitleProps } from './PageHeaderTitle';
 
-const internalComponents = {
+const commonComponents = {
   /**
    * Action elements container (button group)
    */
@@ -61,11 +61,19 @@ const internalComponents = {
    * Individual navigation item component
    */
   NavigationItem: GlobalNavigationItem,
+};
+
+export const PageHeader = Object.assign(PageHeaderRoot, {
+  ...commonComponents,
   /**
    * Page title component (required) with optional prefix/suffix
    */
   Title: PageHeaderTitle,
-};
-
-export const PageHeader = Object.assign(PageHeaderRoot, internalComponents);
-export const ContentHeader = Object.assign(ContentHeaderRoot, internalComponents);
+});
+export const ContentHeader = Object.assign(ContentHeaderRoot, {
+  ...commonComponents,
+  /**
+   * Content title component (required) with optional prefix/suffix
+   */
+  Title: ContentHeaderTitle,
+});

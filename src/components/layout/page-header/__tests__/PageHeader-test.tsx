@@ -117,6 +117,7 @@ function setup(props: Partial<ComponentProps<typeof PageHeader>> = {}) {
       }
       title={
         <PageHeader.Title
+          headingLevel="h1"
           prefix={
             <ButtonIcon
               Icon={IconArrowLeft}
@@ -137,7 +138,9 @@ function setup(props: Partial<ComponentProps<typeof PageHeader>> = {}) {
 
 describe('[ContentHeader]', () => {
   it('should display a ContentHeader properly', async () => {
-    const { container } = renderWithMemoryRouter(<ContentHeader title="Awesome content header" />);
+    const { container } = renderWithMemoryRouter(
+      <ContentHeader title={<ContentHeader.Title>Awesome content header</ContentHeader.Title>} />,
+    );
 
     await expect(container).toHaveNoA11yViolations();
   });
