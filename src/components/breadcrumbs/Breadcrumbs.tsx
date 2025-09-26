@@ -20,14 +20,26 @@
 
 import styled from '@emotion/styled';
 import React, { forwardRef } from 'react';
+import { createPath, resolvePath } from 'react-router-dom';
 import { IconSlash } from '../icons';
 import { BreadcrumbLink, BreadcrumbLinkProps } from './BreadcrumbLink';
 
 import { cssVar } from '~utils/design-tokens';
 
+type BreadcrumbItemWithOptionalTo = Omit<BreadcrumbLinkProps, 'to'> & {
+  to?: BreadcrumbLinkProps['to'];
+};
+
+export type BreadcrumbsItems =
+  | [...BreadcrumbLinkProps[], BreadcrumbItemWithOptionalTo]
+  | BreadcrumbLinkProps[];
+
 export interface BreadcrumbsProps {
   className?: string;
-  items: BreadcrumbLinkProps[];
+  /**
+   * A list of breadcrumb props. The last item can (and probably should, in most cases) omit the `to` prop.
+   */
+  items: BreadcrumbsItems;
 }
 
 const BreadcrumbsBase = forwardRef<HTMLDivElement, BreadcrumbsProps>((props, ref) => {
@@ -36,13 +48,13 @@ const BreadcrumbsBase = forwardRef<HTMLDivElement, BreadcrumbsProps>((props, ref
   return (
     <div ref={ref} {...rest}>
       {items.map((item, index) => (
-        <React.Fragment key={`${index}-${item.to.toString()}`}>
+        <React.Fragment key={`${index}-${stringifyTo(item)}`}>
           {index > 0 && <IconSlash color="echoes-color-icon-subtle" />}
 
           {index === items.length - 1 ? (
             <span className={item.className}>{item.linkElement}</span>
           ) : (
-            <BreadcrumbLink {...item} />
+            <BreadcrumbLink {...(item as BreadcrumbLinkProps)} />
           )}
         </React.Fragment>
       ))}
@@ -61,3 +73,8 @@ export const Breadcrumbs = styled(BreadcrumbsBase)`
 `;
 
 Breadcrumbs.displayName = 'Breadcrumbs';
+
+function stringifyTo(item: BreadcrumbLinkProps | BreadcrumbItemWithOptionalTo) {
+  // Resolve + create stringifies `to` regardless of its original type.
+  return item.to ? createPath(resolvePath(item.to)) : '';
+}
