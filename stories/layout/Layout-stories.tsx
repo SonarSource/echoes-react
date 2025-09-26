@@ -88,7 +88,12 @@ const meta: Meta = {
     contentHeader: {
       control: 'boolean',
       mapping: {
-        true: <Layout.ContentHeader {...getHeaderProps()} />,
+        true: (
+          <Layout.ContentHeader
+            {...getHeaderProps()}
+            title={<Layout.ContentHeader.Title>Content title</Layout.ContentHeader.Title>}
+          />
+        ),
         false: undefined,
       },
     },
@@ -96,7 +101,11 @@ const meta: Meta = {
       control: 'boolean',
       mapping: {
         true: (behavior: PageHeaderScrollBehavior) => (
-          <Layout.PageHeader {...getHeaderProps()} scrollBehavior={behavior} />
+          <Layout.PageHeader
+            {...getHeaderProps()}
+            scrollBehavior={behavior}
+            title={<Layout.PageHeader.Title headingLevel="h2">Page title</Layout.PageHeader.Title>}
+          />
         ),
         false: (_: boolean) => undefined,
       },
@@ -315,7 +324,6 @@ function getHeaderProps() {
         <Layout.PageHeader.NavigationItem to="/2">Nav Item 2</Layout.PageHeader.NavigationItem>
       </Layout.PageHeader.Navigation>
     ),
-    title: <Layout.PageHeader.Title>Content title</Layout.PageHeader.Title>,
   };
 }
 
