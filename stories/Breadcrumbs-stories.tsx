@@ -104,7 +104,6 @@ export const WithIcons: Story = {
             {
               iconLeft: <IconStar color="echoes-color-icon-danger" isFilled />,
               linkElement: 'My favorite',
-              to: '',
             },
           ]}
         />
