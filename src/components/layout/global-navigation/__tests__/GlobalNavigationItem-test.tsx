@@ -35,6 +35,26 @@ it('should render without active indicator', () => {
   expect(screen.getByRole('link')).not.toHaveAttribute('data-active');
 });
 
+it('should render with active indicator when forced', () => {
+  setupWithContext(
+    <GlobalNavigation.Item isActive to="/elsewhere">
+      Take me home
+    </GlobalNavigation.Item>,
+  );
+
+  expect(screen.getByRole('link')).toHaveAttribute('data-active');
+});
+
+it('should render without active indicator when forced', () => {
+  setupWithContext(
+    <GlobalNavigation.Item isActive={false} to="/">
+      Take me home
+    </GlobalNavigation.Item>,
+  );
+
+  expect(screen.getByRole('link')).not.toHaveAttribute('data-active');
+});
+
 const setupWithContext = (component: JSX.Element) => {
   return render(
     <MemoryRouter
