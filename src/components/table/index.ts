@@ -42,7 +42,7 @@ export { type TableCellTextProps } from './TableCellText';
 export { type TableColumnHeaderCellProps } from './TableColumnHeaderCell';
 export { type TableColumnHeaderCellCheckboxProps } from './TableColumnHeaderCellCheckbox';
 export { type TableRowProps } from './TableRow';
-export { TableVariety, type TableBaseProps, type TableProps } from './TableTypes';
+export { TableVariety, TableCellJustify, type TableBaseProps, type TableProps } from './TableTypes';
 
 /**
  * {@link TableRoot | Table}
