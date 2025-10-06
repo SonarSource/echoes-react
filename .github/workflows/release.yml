@@ -14,7 +14,7 @@ jobs:
     uses: SonarSource/gh-action_release/.github/workflows/main.yaml@v6
     with:
       publishToNpmJS: true
-      skipJavascriptReleasabilityChecks: true # Temporary, until the releasability version check handles an `rc` suffix
+      skipJavascriptReleasabilityChecks: false
     permissions:
       id-token: write
       contents: write
