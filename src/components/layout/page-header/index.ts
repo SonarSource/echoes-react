@@ -24,13 +24,14 @@ import { Text } from '../../typography';
 import { GlobalNavigationDropdownItem } from '../global-navigation/GlobalNavigationDropdownItem';
 import { GlobalNavigationItem } from '../global-navigation/GlobalNavigationItem';
 import { GlobalNavigationItemsContainer } from '../global-navigation/GlobalNavigationItemsContainer';
-import { ContentHeaderRoot, PageHeaderRoot } from './PageHeader';
+import { ContentHeaderRoot } from './ContentHeader';
+import { ContentHeaderTitle, PageHeaderTitle } from './HeaderTitle';
+import { PageHeaderRoot } from './PageHeader';
 import { PageHeaderMetadata } from './PageHeaderMetadata';
-import { ContentHeaderTitle, PageHeaderTitle } from './PageHeaderTitle';
 
-export type { HeaderProps, PageHeaderProps } from './PageHeader';
+export type { ContentHeaderTitleProps, PageHeaderTitleProps } from './HeaderTitle';
+export type { HeaderProps as ContentHeaderProps, PageHeaderProps } from './HeaderTypes';
 export type { PageHeaderMetadataProps } from './PageHeaderMetadata';
-export type { PageHeaderTitleProps } from './PageHeaderTitle';
 
 const commonComponents = {
   /**

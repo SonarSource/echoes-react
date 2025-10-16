@@ -19,7 +19,7 @@
  */
 
 import styled from '@emotion/styled';
-import { ForwardedRef, forwardRef, PropsWithChildren, ReactNode } from 'react';
+import { forwardRef, PropsWithChildren, ReactNode } from 'react';
 import { cssVar } from '~utils/design-tokens';
 import { Heading, HeadingProps } from '../../typography';
 
@@ -48,29 +48,29 @@ export interface PageHeaderTitleProps extends ContentHeaderTitleProps {
   headingLevel?: HeadingProps['as'];
 }
 
-function renderFunction(
-  props: PropsWithChildren<PageHeaderTitleProps>,
-  ref: ForwardedRef<HTMLDivElement>,
-) {
-  const { children, headingLevel = 'h1', prefix, suffix, ...rest } = props;
+const HeaderTitle = forwardRef<HTMLDivElement, PropsWithChildren<PageHeaderTitleProps>>(
+  (props, ref) => {
+    const { children, headingLevel = 'h1', prefix, suffix, ...rest } = props;
 
-  return (
-    <StyledPageHeaderTitle ref={ref} {...rest}>
-      {prefix}
+    return (
+      <StyledPageHeaderTitle ref={ref} {...rest}>
+        {prefix}
 
-      <Heading as={headingLevel}>{children}</Heading>
+        <Heading as={headingLevel}>{children}</Heading>
 
-      {suffix}
-    </StyledPageHeaderTitle>
-  );
-}
+        {suffix}
+      </StyledPageHeaderTitle>
+    );
+  },
+);
+HeaderTitle.displayName = 'HeaderTitle';
 
 /**
  * Displays the main title in the page header. The title is rendered as a heading of your choice
  * and can optionally include prefix and suffix elements.
  */
 export const PageHeaderTitle = forwardRef<HTMLDivElement, PropsWithChildren<PageHeaderTitleProps>>(
-  renderFunction,
+  (props, ref) => <HeaderTitle {...props} ref={ref} />,
 );
 PageHeaderTitle.displayName = 'PageHeaderTitle';
 
@@ -81,7 +81,7 @@ PageHeaderTitle.displayName = 'PageHeaderTitle';
 export const ContentHeaderTitle = forwardRef<
   HTMLDivElement,
   PropsWithChildren<ContentHeaderTitleProps>
->((props, ref) => renderFunction({ ...props, headingLevel: 'h1' }, ref));
+>((props, ref) => <HeaderTitle {...props} headingLevel="h1" ref={ref} />);
 ContentHeaderTitle.displayName = 'ContentHeaderTitle';
 
 const StyledPageHeaderTitle = styled.div`

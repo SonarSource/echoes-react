@@ -19,321 +19,76 @@
  */
 
 import styled from '@emotion/styled';
-import { CSSProperties, forwardRef, ReactNode } from 'react';
+import { forwardRef } from 'react';
 import { useForwardedRef } from '~common/helpers/useForwardedRef';
 import { useResizeObserver } from '~common/helpers/useResizeObserver';
 import { cssVar } from '~utils/design-tokens';
-import { Divider } from '../../divider';
-import { ContentGridArea, PageGridArea, PageHeaderScrollBehavior } from '../LayoutTypes';
-
-enum PageHeaderArea {
-  breadcrumbs = 'breadcrumbs',
-  callout = 'callout',
-  main = 'main',
-  actions = 'actions',
-  nav = 'nav',
-  divider = 'divider',
-}
-
-const STICKY_ACTIONS_STYLES: CSSProperties = {
-  top: cssVar('layout-page-header-actions-offset-collapsed'),
-  position: 'sticky',
-};
-
-export interface HeaderProps {
-  /**
-   * Action elements (e.g. a set of <Button>s) to display on the right side of the header.
-   * Use <PageHeader.Actions> to wrap them.
-   */
-  actions?: ReactNode;
-  /**
-   * Breadcrumb navigation elements to display above the title.
-   * Use <PageHeader.Breadcrumbs> to wrap them.
-   *
-   * If you need to reuse most of a PageHeader across multiple pages but breadcrumbs change for each,
-   * it can be a bit tricky to implement in a KISS way.
-   * We suggest you create a *[SpecificSpace]PageTemplate* component that renders the entire PageGrid
-   * and expects props to render the page specifics (breadcrumbs, contents and whatever else).
-   *
-   * For instance:
-   *
-   * ```
-   * function ExamplePageTemplate(props) {
-   *   return (
-   *     <Layout.PageGrid>
-   *       <Layout.PageHeader
-   *         breadcrumbs={
-   *           <Layout.PageHeader.Breadcrumbs
-   *             items={[
-   *               { linkElement: 'root', to: '/scope' },
-   *               { linkElement: 'example', to: '/scope/example' },
-   *               props.pageBreadcrumb,
-   *             ]}
-   *           />
-   *         }
-   *         {...otherHeaderProps}
-   *       />
-   *
-   *       <Layout.PageContent>{props.children}</Layout.PageContent>
-   *
-   *       <GlobalFooter />
-   *     </Layout.PageGrid>
-   *   );
-   * }
-   * ```
-   *
-   * Each page can then use it as a root element:
-   * ```
-   * function PageOne() {
-   *   return (
-   *     <ExamplePageTemplate pageBreadcrumb={{ linkElement: 'Page 1', to: '/scope/example/p1' }}>
-   *       Whatever content
-   *     </ExamplePageTemplate>
-   *   );
-   * }
-   * ```
-   *
-   */
-  breadcrumbs?: ReactNode;
-  /**
-   * Optional callout message to display at the very top, above the breadcrumbs.
-   * Use <MessageCallout> for it.
-   */
-  callout?: ReactNode;
-  /**
-   * Additional CSS class name(s)
-   */
-  className?: string;
-  /**
-   * Description text to display below the title. Use <PageHeader.Description> to wrap it.
-   */
-  description?: ReactNode;
-  /**
-   * Whether to show a divider line at the bottom of the header
-   * @default false
-   */
-  hasDivider?: boolean;
-  /**
-   * Metadata elements to display below the title. Use <PageHeader.Metadata> to wrap them.
-   */
-  metadata?: ReactNode;
-  /**
-   * Navigation elements to display at the bottom. Use <PageHeader.Navigation> to wrap them.
-   */
-  navigation?: ReactNode;
-  /**
-   * The main title content (required). Use <PageHeader.Title> to wrap it.
-   */
-  title: ReactNode;
-}
-
-export interface PageHeaderProps extends HeaderProps {
-  /**
-   * When `scrollBehavior` is `collapsed`, the actions become sticky and scroll down
-   * to align with the navigation items. Set this to true to let them scroll out of view.
-   */
-  disableStickyActions?: boolean;
-  /**
-   * When the PageHeader is in the PageGrid container, it scrolls with the content by default.
-   *
-   *  - `scroll`: default, the header scrolls with the content
-   *  - `sticky`: the header sticks to the top
-   *  - `collapse`: the header collapses partially
-   */
-  scrollBehavior?: `${PageHeaderScrollBehavior}`;
-}
-
-/**
- * A flexible content header component that displays a title, optional metadata, description,
- * breadcrumbs, actions and navigation.
- */
-export const ContentHeaderRoot = forwardRef<HTMLDivElement, HeaderProps>((props, forwardedRef) => (
-  <BaseHeader {...props} gridArea={ContentGridArea.header} ref={forwardedRef} />
-));
-ContentHeaderRoot.displayName = 'ContentHeader';
+import { PageGridArea } from '../LayoutTypes';
+import { StyledHeaderBase } from './HeaderBase';
+import { PageHeaderProps, PageHeaderScrollBehavior } from './HeaderTypes';
 
 /**
  * A flexible page header component that displays a title, optional metadata, description,
- * breadcrumbs, actions and navigation.
+ * breadcrumbs, actions and navigation. And that has special scroll behaviors.
  */
-export const PageHeaderRoot = forwardRef<HTMLDivElement, PageHeaderProps>((props, forwardedRef) => (
-  <BaseHeader {...props} gridArea={PageGridArea.header} ref={forwardedRef} />
-));
+export const PageHeaderRoot = forwardRef<HTMLDivElement, PageHeaderProps>((props, forwardedRef) => {
+  const {
+    disableStickyActions = false,
+    hasDivider,
+    navigation,
+    scrollBehavior = PageHeaderScrollBehavior.scroll,
+    ...rest
+  } = props;
+
+  const [ref, setRef] = useForwardedRef(forwardedRef);
+  const { height = 0 } = useResizeObserver(ref);
+
+  // The actions are sticky when the PageHeader's behavior is `collapse`.
+  // `disableStickyActions` cancels that.
+  const stickyActions =
+    scrollBehavior === PageHeaderScrollBehavior.collapse && !disableStickyActions;
+
+  return (
+    <StyledPageHeader
+      ref={setRef}
+      {...rest}
+      actionsStyles={
+        stickyActions
+          ? {
+              top: cssVar('layout-page-header-actions-offset-collapsed'),
+              position: 'sticky',
+            }
+          : undefined
+      }
+      css={{
+        '--page-header-total-height': `${height}px`,
+      }}
+      data-scroll-behavior={scrollBehavior}
+      hasDivider={hasDivider || Boolean(navigation)}
+      hasFullWidthNav={!stickyActions}
+      navigation={navigation}
+    />
+  );
+});
 PageHeaderRoot.displayName = 'PageHeader';
 
-interface InternalProps {
-  gridArea: ContentGridArea | PageGridArea;
-}
+const StyledPageHeader = styled(StyledHeaderBase)`
+  grid-area: ${PageGridArea.header};
 
-const BaseHeader = forwardRef<HTMLDivElement, PageHeaderProps & InternalProps>(
-  (props, forwardedRef) => {
-    const {
-      actions,
-      breadcrumbs,
-      callout,
-      description,
-      disableStickyActions = false,
-      gridArea,
-      hasDivider,
-      metadata,
-      navigation,
-      scrollBehavior = PageHeaderScrollBehavior.scroll,
-      title,
-      ...rest
-    } = props;
+  background-color: ${cssVar('color-surface-canvas-default')};
 
-    const [ref, setRef] = useForwardedRef(forwardedRef);
-    const { height = 0 } = useResizeObserver(ref);
-
-    // The actions are sticky when the PageHeader's behavior is `collapse`.
-    // `disableStickyActions` cancels that.
-    const stickyActions =
-      scrollBehavior === PageHeaderScrollBehavior.collapse && !disableStickyActions;
-
-    return (
-      <StyledPageHeader
-        ref={setRef}
-        {...rest}
-        css={{
-          '--header-grid-area': gridArea,
-          '--page-header-total-height': `${height}px`,
-          ...pageHeaderBehaviorStyles[scrollBehavior],
-        }}
-        hasFullWidthNav={!stickyActions}>
-        {callout && <StyledPageHeaderCallout>{callout}</StyledPageHeaderCallout>}
-
-        {breadcrumbs && <StyledPageHeaderBreadcrumbs>{breadcrumbs}</StyledPageHeaderBreadcrumbs>}
-
-        <StyledPageHeaderMain>
-          {title}
-
-          {metadata}
-
-          {description}
-        </StyledPageHeaderMain>
-
-        {actions && (
-          <StyledPageHeaderActions style={stickyActions ? STICKY_ACTIONS_STYLES : undefined}>
-            {actions}
-          </StyledPageHeaderActions>
-        )}
-
-        {navigation && (
-          <>
-            <StyledPageHeaderBottom>{navigation}</StyledPageHeaderBottom>
-
-            <StyledDividerWithOverlap />
-          </>
-        )}
-
-        {hasDivider && !navigation && <StyledDivider />}
-      </StyledPageHeader>
-    );
-  },
-);
-BaseHeader.displayName = 'BaseHeader';
-
-const pageHeaderBehaviorStyles: Record<PageHeaderScrollBehavior, CSSProperties> = {
-  [PageHeaderScrollBehavior.collapse]: {
-    position: 'sticky',
+  &[data-scroll-behavior='${PageHeaderScrollBehavior.collapse}'] {
+    position: sticky;
     // The top position is the target height from which we remove the total height and the top margin
-    top: `calc(
-      ${cssVar('layout-page-header-sizes-height-collapsed')}
-      - var(--page-header-total-height)
-      - ${cssVar('dimension-space-300')})`,
-  },
+    top: calc(
+      ${cssVar('layout-page-header-sizes-height-collapsed')} - var(--page-header-total-height) -
+        ${cssVar('dimension-space-300')}
+    );
+  }
 
-  [PageHeaderScrollBehavior.scroll]: {},
-
-  [PageHeaderScrollBehavior.sticky]: {
-    position: 'sticky',
-    top: 0,
-  },
-};
-
-const StyledPageHeader = styled.div<{ hasFullWidthNav: boolean }>`
-  grid-area: var(--header-grid-area);
-
-  display: grid;
-
-  grid-template-columns: auto min-content;
-  grid-template-rows: repeat(4, auto);
-  grid-template-areas: ${({ hasFullWidthNav }) =>
-    hasFullWidthNav
-      ? `
-      '${PageHeaderArea.callout}      ${PageHeaderArea.callout}'
-      '${PageHeaderArea.breadcrumbs}  ${PageHeaderArea.breadcrumbs}'
-      '${PageHeaderArea.main}         ${PageHeaderArea.actions}'
-      '${PageHeaderArea.nav}          ${PageHeaderArea.nav}'
-      '${PageHeaderArea.divider}      ${PageHeaderArea.divider}'
-    `
-      : `
-      '${PageHeaderArea.callout}      ${PageHeaderArea.callout}'
-      '${PageHeaderArea.breadcrumbs}  ${PageHeaderArea.breadcrumbs}'
-      '${PageHeaderArea.main}         ${PageHeaderArea.actions}'
-      '${PageHeaderArea.nav}          _'
-      '${PageHeaderArea.divider}      ${PageHeaderArea.divider}'
-    `};
-
-  padding-top: ${cssVar('dimension-space-300')};
-  padding-right: ${cssVar('dimension-space-300')};
-
-  background-color: ${cssVar('color-surface-default')};
+  &[data-scroll-behavior='${PageHeaderScrollBehavior.sticky}'] {
+    position: sticky;
+    top: 0;
+  }
 `;
-
 StyledPageHeader.displayName = 'StyledPageHeader';
-
-const StyledPageHeaderCallout = styled.div`
-  grid-area: ${PageHeaderArea.callout};
-
-  margin-bottom: ${cssVar('dimension-space-300')};
-`;
-StyledPageHeaderCallout.displayName = 'StyledPageHeaderCallout';
-
-const StyledPageHeaderBreadcrumbs = styled.div`
-  grid-area: ${PageHeaderArea.breadcrumbs};
-
-  margin-bottom: ${cssVar('dimension-space-200')};
-`;
-StyledPageHeaderBreadcrumbs.displayName = 'StyledPageHeaderBreadcrumbs';
-
-const StyledPageHeaderBottom = styled.div`
-  grid-area: ${PageHeaderArea.nav};
-
-  white-space: nowrap;
-
-  margin-top: ${cssVar('dimension-space-300')};
-`;
-
-StyledPageHeaderBottom.displayName = 'StyledPageHeaderBottom';
-
-const StyledPageHeaderMain = styled.div`
-  grid-area: ${PageHeaderArea.main};
-
-  align-items: flex-start;
-  display: flex;
-  flex-direction: column;
-  gap: ${cssVar('dimension-space-150')};
-  margin-right: ${cssVar('dimension-space-100')};
-`;
-StyledPageHeaderMain.displayName = 'StyledPageHeaderMain';
-
-const StyledPageHeaderActions = styled.div`
-  grid-area: ${PageHeaderArea.actions};
-
-  display: flex;
-  gap: ${cssVar('dimension-space-100')};
-  white-space: nowrap;
-`;
-StyledPageHeaderActions.displayName = 'StyledPageHeaderActions';
-
-const StyledDivider = styled(Divider)`
-  grid-area: ${PageHeaderArea.divider};
-  margin-top: ${cssVar('dimension-space-300')};
-`;
-StyledDivider.displayName = 'StyledDivider';
-
-const StyledDividerWithOverlap = styled(StyledDivider)`
-  margin-top: -1px;
-`;
-StyledDividerWithOverlap.displayName = 'StyledDividerWithOverlap';

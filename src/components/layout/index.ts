@@ -46,7 +46,13 @@ export type {
 export type { LayoutProps } from './Layout';
 export type { AsideProps, PageGridProps } from './LayoutSlots';
 export { AsideSize, PageWidth } from './LayoutTypes';
-export type { PageHeaderMetadataProps, PageHeaderProps, PageHeaderTitleProps } from './page-header';
+export type {
+  ContentHeaderProps,
+  ContentHeaderTitleProps,
+  PageHeaderMetadataProps,
+  PageHeaderProps,
+  PageHeaderTitleProps,
+} from './page-header';
 export type {
   SidebarNavigationAccordionItemProps,
   SidebarNavigationGroupProps,

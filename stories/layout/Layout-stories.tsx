@@ -38,7 +38,8 @@ import {
   LogoSonarQubeServer,
   Text,
 } from '../../src';
-import { AsideSize, PageHeaderScrollBehavior } from '../../src/components/layout/LayoutTypes';
+import { AsideSize } from '../../src/components/layout/LayoutTypes';
+import { PageHeaderScrollBehavior } from '../../src/components/layout/page-header/HeaderTypes';
 
 const meta: Meta = {
   component: Layout,

@@ -18,32 +18,13 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-export enum GlobalGridArea {
-  banner = 'banner',
-  globalNav = 'global-nav',
-  sidebar = 'sidebar',
-  content = 'content',
-}
+import { renderWithMemoryRouter } from '~common/helpers/test-utils';
+import { ContentHeader } from '..';
 
-export enum ContentGridArea {
-  header = 'content-header',
-  aside = 'aside',
-  page = 'page',
-}
+it('should display a ContentHeader properly', async () => {
+  const { container } = renderWithMemoryRouter(
+    <ContentHeader title={<ContentHeader.Title>Awesome content header</ContentHeader.Title>} />,
+  );
 
-export enum PageGridArea {
-  header = 'page-header',
-  main = 'main',
-  footer = 'footer',
-}
-
-export enum AsideSize {
-  small = 'small',
-  medium = 'medium',
-  large = 'large',
-}
-
-export enum PageWidth {
-  default = 'default',
-  fluid = 'fluid',
-}
+  await expect(container).toHaveNoA11yViolations();
+});

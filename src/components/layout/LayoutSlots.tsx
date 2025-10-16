@@ -53,7 +53,7 @@ export const ContentGrid = styled.div`
     '${ContentGridArea.header} ${ContentGridArea.header}'
     '${ContentGridArea.aside} ${ContentGridArea.page}';
 
-  padding-left: ${cssVar('dimension-space-300')};
+  background-color: ${cssVar('color-surface-canvas-default')};
 `;
 ContentGrid.displayName = 'ContentGrid';
 
@@ -71,24 +71,26 @@ export interface AsideProps {
 export const AsideLeft = forwardRef<HTMLDivElement, PropsWithChildren<AsideProps>>((props, ref) => {
   const { children, size = 'medium', ...restProps } = props;
   return (
-    <StyledAside {...restProps} ref={ref} style={AsideSizeStyles[size]}>
+    <StyledAsideLeft {...restProps} ref={ref} style={AsideSizeStyles[size]}>
       {children}
-    </StyledAside>
+    </StyledAsideLeft>
   );
 });
 AsideLeft.displayName = 'AsideLeft';
 
-const StyledAside = styled.div`
+const StyledAsideLeft = styled.div`
   grid-area: ${ContentGridArea.aside};
   overflow-y: auto;
 
+  background-color: ${cssVar('color-surface-default')};
+  border-right: ${cssVar('border-width-default')} solid ${cssVar('color-border-weak')};
+
   box-sizing: border-box;
-  padding-left: ${cssVar('dimension-space-50')};
+  padding-left: ${cssVar('dimension-space-300')};
   padding-right: ${cssVar('dimension-space-100')};
   padding-top: ${cssVar('dimension-space-300')};
-  margin-right: ${cssVar('dimension-space-200')};
 `;
-StyledAside.displayName = 'StyledAside';
+StyledAsideLeft.displayName = 'StyledAside';
 
 export interface PageGridProps {
   className?: string;
@@ -135,24 +137,21 @@ const PAGE_WIDTH_STYLES: Record<PageWidth, CSSProperties> = {
   [PageWidth.fluid]: {},
 };
 
-export const PageContent = styled.div`
+export const PageContent = styled.main`
   grid-area: ${PageGridArea.main};
 
-  padding-top: ${cssVar('dimension-space-300')};
-  padding-bottom: ${cssVar('dimension-space-300')};
-  padding-right: ${cssVar('dimension-space-300')};
+  padding: ${cssVar('dimension-space-300')};
 `;
 PageContent.displayName = 'PageContent';
 
-export const PageFooter = styled.div`
+export const PageFooter = styled.footer`
   grid-area: ${PageGridArea.footer};
 
   display: flex;
   justify-content: space-between;
   align-items: center;
 
+  padding: ${cssVar('dimension-space-300')};
   padding-top: ${cssVar('dimension-space-200')};
-  padding-bottom: ${cssVar('dimension-space-300')};
-  padding-right: ${cssVar('dimension-space-300')};
 `;
 PageFooter.displayName = 'PageFooter';
