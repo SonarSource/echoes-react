@@ -22,7 +22,16 @@ import { screen } from '@testing-library/react';
 import { ComponentProps } from 'react';
 import { renderWithMemoryRouter } from '~common/helpers/test-utils';
 import { ContentHeader, PageHeader } from '..';
-import { Button, ButtonIcon, ButtonVariety, DropdownMenu, IconArrowLeft, IconEdit } from '../../..';
+import {
+  Button,
+  ButtonIcon,
+  ButtonVariety,
+  DropdownMenu,
+  IconArrowLeft,
+  IconEdit,
+  MessageCallout,
+  MessageVariety,
+} from '../../..';
 import { PageHeaderScrollBehavior } from '../../LayoutTypes';
 
 describe('[PageHeader]', () => {
@@ -98,6 +107,7 @@ function setup(props: Partial<ComponentProps<typeof PageHeader>> = {}) {
           ]}
         />
       }
+      callout={<MessageCallout variety={MessageVariety.Warning}>Watch out!</MessageCallout>}
       description={<PageHeader.Description>Page description</PageHeader.Description>}
       metadata={<PageHeader.Metadata>Page metadata</PageHeader.Metadata>}
       navigation={

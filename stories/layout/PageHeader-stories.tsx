@@ -27,6 +27,8 @@ import {
   IconArrowLeft,
   IconEdit,
   Layout,
+  MessageCallout,
+  MessageVariety,
   PageHeaderProps,
   PageHeaderTitleProps,
 } from '../../src';
@@ -56,6 +58,13 @@ const meta: Meta<typeof Layout.PageHeader | typeof Layout.PageHeader.Title> = {
             ]}
           />
         ),
+        false: false,
+      },
+    },
+    callout: {
+      control: { type: 'boolean' },
+      mapping: {
+        true: <MessageCallout variety={MessageVariety.Warning}>Watch out!</MessageCallout>,
         false: false,
       },
     },
@@ -147,6 +156,7 @@ export const Full: Story = {
   args: {
     actions: true,
     breadcrumbs: true,
+    callout: true,
     description: 'Page description',
     metadata: 'Page metadata',
     hasDivider: false,
