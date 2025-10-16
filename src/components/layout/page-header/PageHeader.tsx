@@ -28,6 +28,7 @@ import { ContentGridArea, PageGridArea, PageHeaderScrollBehavior } from '../Layo
 
 enum PageHeaderArea {
   breadcrumbs = 'breadcrumbs',
+  callout = 'callout',
   main = 'main',
   actions = 'actions',
   nav = 'nav',
@@ -58,35 +59,47 @@ export interface HeaderProps {
    *
    * ```
    * function ExamplePageTemplate(props) {
-   *   return <Layout.PageGrid>
-   *     <Layout.PageHeader breadcrumbs={<Layout.PageHeader.Breadcrumbs
-   *       items={[
-   *         { linkElement: 'root', to: '/scope' },
-   *         { linkElement: 'example', to: '/scope/example' },
-   *         props.pageBreadcrumb
-   *       ]}
-   *     />} {...otherHeaderProps} />
+   *   return (
+   *     <Layout.PageGrid>
+   *       <Layout.PageHeader
+   *         breadcrumbs={
+   *           <Layout.PageHeader.Breadcrumbs
+   *             items={[
+   *               { linkElement: 'root', to: '/scope' },
+   *               { linkElement: 'example', to: '/scope/example' },
+   *               props.pageBreadcrumb,
+   *             ]}
+   *           />
+   *         }
+   *         {...otherHeaderProps}
+   *       />
    *
-   *     <Layout.PageContent>
-   *       {props.children}
-   *     </Layout.PageContent>
+   *       <Layout.PageContent>{props.children}</Layout.PageContent>
    *
-   *     <GlobalFooter />
-   *   </Layout.PageGrid>
+   *       <GlobalFooter />
+   *     </Layout.PageGrid>
+   *   );
    * }
    * ```
    *
    * Each page can then use it as a root element:
    * ```
    * function PageOne() {
-   *   return <ExamplePageTemplate pageBreadcrumb={{ linkElement: 'Page 1', to: '/scope/example/p1' }}>
-   *      Whatever content
-   *   </ExamplePageTemplate>
+   *   return (
+   *     <ExamplePageTemplate pageBreadcrumb={{ linkElement: 'Page 1', to: '/scope/example/p1' }}>
+   *       Whatever content
+   *     </ExamplePageTemplate>
+   *   );
    * }
    * ```
    *
    */
   breadcrumbs?: ReactNode;
+  /**
+   * Optional callout message to display at the very top, above the breadcrumbs.
+   * Use <MessageCallout> for it.
+   */
+  callout?: ReactNode;
   /**
    * Additional CSS class name(s)
    */
@@ -157,6 +170,7 @@ const BaseHeader = forwardRef<HTMLDivElement, PageHeaderProps & InternalProps>(
     const {
       actions,
       breadcrumbs,
+      callout,
       description,
       disableStickyActions = false,
       gridArea,
@@ -186,6 +200,8 @@ const BaseHeader = forwardRef<HTMLDivElement, PageHeaderProps & InternalProps>(
           ...pageHeaderBehaviorStyles[scrollBehavior],
         }}
         hasFullWidthNav={!stickyActions}>
+        {callout && <StyledPageHeaderCallout>{callout}</StyledPageHeaderCallout>}
+
         {breadcrumbs && <StyledPageHeaderBreadcrumbs>{breadcrumbs}</StyledPageHeaderBreadcrumbs>}
 
         <StyledPageHeaderMain>
@@ -205,9 +221,11 @@ const BaseHeader = forwardRef<HTMLDivElement, PageHeaderProps & InternalProps>(
         {navigation && (
           <>
             <StyledPageHeaderBottom>{navigation}</StyledPageHeaderBottom>
+
             <StyledDividerWithOverlap />
           </>
         )}
+
         {hasDivider && !navigation && <StyledDivider />}
       </StyledPageHeader>
     );
@@ -224,7 +242,9 @@ const pageHeaderBehaviorStyles: Record<PageHeaderScrollBehavior, CSSProperties> 
       - var(--page-header-total-height)
       - ${cssVar('dimension-space-300')})`,
   },
+
   [PageHeaderScrollBehavior.scroll]: {},
+
   [PageHeaderScrollBehavior.sticky]: {
     position: 'sticky',
     top: 0,
@@ -241,12 +261,14 @@ const StyledPageHeader = styled.div<{ hasFullWidthNav: boolean }>`
   grid-template-areas: ${({ hasFullWidthNav }) =>
     hasFullWidthNav
       ? `
+      '${PageHeaderArea.callout}      ${PageHeaderArea.callout}'
       '${PageHeaderArea.breadcrumbs}  ${PageHeaderArea.breadcrumbs}'
       '${PageHeaderArea.main}         ${PageHeaderArea.actions}'
       '${PageHeaderArea.nav}          ${PageHeaderArea.nav}'
       '${PageHeaderArea.divider}      ${PageHeaderArea.divider}'
     `
       : `
+      '${PageHeaderArea.callout}      ${PageHeaderArea.callout}'
       '${PageHeaderArea.breadcrumbs}  ${PageHeaderArea.breadcrumbs}'
       '${PageHeaderArea.main}         ${PageHeaderArea.actions}'
       '${PageHeaderArea.nav}          _'
@@ -260,6 +282,13 @@ const StyledPageHeader = styled.div<{ hasFullWidthNav: boolean }>`
 `;
 
 StyledPageHeader.displayName = 'StyledPageHeader';
+
+const StyledPageHeaderCallout = styled.div`
+  grid-area: ${PageHeaderArea.callout};
+
+  margin-bottom: ${cssVar('dimension-space-300')};
+`;
+StyledPageHeaderCallout.displayName = 'StyledPageHeaderCallout';
 
 const StyledPageHeaderBreadcrumbs = styled.div`
   grid-area: ${PageHeaderArea.breadcrumbs};
