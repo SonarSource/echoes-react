@@ -18,9 +18,14 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 import * as VisuallyHidden from '@radix-ui/react-visually-hidden';
+import classNames from 'classnames';
 import { forwardRef } from 'react';
 import { useIntl } from 'react-intl';
-import { NavLink as RouterNavLink, NavLinkProps as RouterNavLinkProps } from 'react-router-dom';
+import {
+  Link as RouterLink,
+  NavLink as RouterNavLink,
+  NavLinkProps as RouterNavLinkProps,
+} from 'react-router-dom';
 import { isDefined } from '~common/helpers/types';
 import { isSonarLink } from '~common/helpers/url';
 
@@ -29,14 +34,17 @@ type RouterNavLinkPropsAllowed = 'download' | 'to' | 'onClick';
 export interface NavLinkBaseProps extends Pick<RouterNavLinkProps, RouterNavLinkPropsAllowed> {
   className?: string;
   children: React.ReactNode;
+  isActive?: boolean;
   isMatchingFullPath?: boolean;
   enableOpenInNewTab?: boolean;
 }
 
 export const NavLinkBase = forwardRef<HTMLAnchorElement, NavLinkBaseProps>((props, ref) => {
   const {
+    className,
     children,
     download,
+    isActive = undefined,
     isMatchingFullPath = false,
     enableOpenInNewTab = false,
     to,
@@ -54,8 +62,12 @@ export const NavLinkBase = forwardRef<HTMLAnchorElement, NavLinkBaseProps>((prop
         }
       : {};
 
+  const LinkComponent = isDefined(isActive) ? RouterLink : RouterNavLink;
+
   return (
-    <RouterNavLink
+    <LinkComponent
+      className={classNames({ active: isActive }, className)}
+      {...(isActive ? { 'aria-current': 'page' } : {})}
       {...(isMatchingFullPath ? { end: true } : {})}
       {...enableOpenInNewTabProps}
       {...(isDefined(download) ? { download, reloadDocument: true } : {})}
@@ -73,7 +85,7 @@ export const NavLinkBase = forwardRef<HTMLAnchorElement, NavLinkBaseProps>((prop
           })}
         </VisuallyHidden.Root>
       )}
-    </RouterNavLink>
+    </LinkComponent>
   );
 });
 
