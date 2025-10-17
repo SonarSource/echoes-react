@@ -20,7 +20,7 @@
 
 import styled from '@emotion/styled';
 import { cssVar } from '~utils/design-tokens';
-import { Divider } from '../../divider';
+import { Divider } from '../../../divider';
 import { PageHeaderArea } from './HeaderTypes';
 
 export const StyledPageHeaderCallout = styled.div`

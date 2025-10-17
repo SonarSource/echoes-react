@@ -39,7 +39,7 @@ import {
   Text,
 } from '../../src';
 import { AsideSize } from '../../src/components/layout/LayoutTypes';
-import { PageHeaderScrollBehavior } from '../../src/components/layout/page-header/HeaderTypes';
+import { PageHeaderScrollBehavior } from '../../src/components/layout/header/common/HeaderTypes';
 
 const meta: Meta = {
   component: Layout,

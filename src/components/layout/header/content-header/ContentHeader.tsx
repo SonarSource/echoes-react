@@ -21,10 +21,10 @@
 import styled from '@emotion/styled';
 import { forwardRef } from 'react';
 import { cssVar } from '~utils/design-tokens';
-import { ContentGridArea } from '../LayoutTypes';
-import { StyledHeaderBase } from './HeaderBase';
-import { StyledDivider, StyledDividerWithOverlap } from './HeaderStyles';
-import { HeaderProps } from './HeaderTypes';
+import { ContentGridArea } from '../../LayoutTypes';
+import { StyledHeaderBase } from '../common/HeaderBase';
+import { StyledDivider, StyledDividerWithOverlap } from '../common/HeaderStyles';
+import { HeaderProps } from '../common/HeaderTypes';
 
 /**
  * A flexible content header component that displays a title, optional metadata, description,

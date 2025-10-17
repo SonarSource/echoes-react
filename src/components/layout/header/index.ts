@@ -24,14 +24,14 @@ import { Text } from '../../typography';
 import { GlobalNavigationDropdownItem } from '../global-navigation/GlobalNavigationDropdownItem';
 import { GlobalNavigationItem } from '../global-navigation/GlobalNavigationItem';
 import { GlobalNavigationItemsContainer } from '../global-navigation/GlobalNavigationItemsContainer';
-import { ContentHeaderRoot } from './ContentHeader';
-import { ContentHeaderTitle, PageHeaderTitle } from './HeaderTitle';
-import { PageHeaderRoot } from './PageHeader';
-import { PageHeaderMetadata } from './PageHeaderMetadata';
+import { HeaderMetadata } from './common/HeaderMetadata';
+import { ContentHeaderTitle, PageHeaderTitle } from './common/HeaderTitle';
+import { ContentHeaderRoot } from './content-header/ContentHeader';
+import { PageHeaderRoot } from './page-header/PageHeader';
 
-export type { ContentHeaderTitleProps, PageHeaderTitleProps } from './HeaderTitle';
-export type { HeaderProps as ContentHeaderProps, PageHeaderProps } from './HeaderTypes';
-export type { PageHeaderMetadataProps } from './PageHeaderMetadata';
+export type { HeaderMetadataProps as PageHeaderMetadataProps } from './common/HeaderMetadata';
+export type { ContentHeaderTitleProps, PageHeaderTitleProps } from './common/HeaderTitle';
+export type { HeaderProps as ContentHeaderProps, PageHeaderProps } from './common/HeaderTypes';
 
 const commonComponents = {
   /**
@@ -49,7 +49,7 @@ const commonComponents = {
   /**
    * Metadata information component
    */
-  Metadata: PageHeaderMetadata,
+  Metadata: HeaderMetadata,
   /**
    * Global navigation items container
    */

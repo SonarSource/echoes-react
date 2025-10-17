@@ -23,9 +23,9 @@ import { forwardRef } from 'react';
 import { useForwardedRef } from '~common/helpers/useForwardedRef';
 import { useResizeObserver } from '~common/helpers/useResizeObserver';
 import { cssVar } from '~utils/design-tokens';
-import { PageGridArea } from '../LayoutTypes';
-import { StyledHeaderBase } from './HeaderBase';
-import { PageHeaderProps, PageHeaderScrollBehavior } from './HeaderTypes';
+import { PageGridArea } from '../../LayoutTypes';
+import { StyledHeaderBase } from '../common/HeaderBase';
+import { PageHeaderProps, PageHeaderScrollBehavior } from '../common/HeaderTypes';
 
 /**
  * A flexible page header component that displays a title, optional metadata, description,

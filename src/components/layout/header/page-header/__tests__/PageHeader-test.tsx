@@ -21,7 +21,7 @@
 import { screen } from '@testing-library/react';
 import { ComponentProps } from 'react';
 import { renderWithMemoryRouter } from '~common/helpers/test-utils';
-import { PageHeader } from '..';
+import { PageHeader } from '../..';
 import {
   Button,
   ButtonIcon,
@@ -31,8 +31,8 @@ import {
   IconEdit,
   MessageCallout,
   MessageVariety,
-} from '../../..';
-import { PageHeaderScrollBehavior } from '../HeaderTypes';
+} from '../../../..';
+import { PageHeaderScrollBehavior } from '../../common/HeaderTypes';
 
 it('should display a full PageHeader properly', async () => {
   const { container } = setup();

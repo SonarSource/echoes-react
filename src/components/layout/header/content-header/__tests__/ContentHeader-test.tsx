@@ -19,7 +19,7 @@
  */
 
 import { renderWithMemoryRouter } from '~common/helpers/test-utils';
-import { ContentHeader } from '..';
+import { ContentHeader } from '../..';
 
 it('should display a ContentHeader properly', async () => {
   const { container } = renderWithMemoryRouter(
