@@ -19,7 +19,6 @@
  */
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import classNames from 'classnames';
 import {
   forwardRef,
   ForwardRefExoticComponent,
@@ -63,6 +62,7 @@ export interface SidebarNavigationItemProps
   /**
    * Control whether the SidebarNavigationItem is active or not.
    * If true, the item will have a different style to indicate it is active.
+   * If false it will override any default behavior and not indicate it is active.
    *
    * By default this behavior is handled by the underlying react-router's NavLink component,
    * overriding this is only needed for complex scenarios.
@@ -87,11 +87,9 @@ export const SidebarNavigationItem = forwardRef<HTMLAnchorElement, SidebarNaviga
   (props, ref) => {
     const {
       children,
-      className,
       disableIconWhenSidebarOpen = false,
       enableTooltip,
       Icon,
-      isActive = false,
       onClick,
       suffix,
       ...htmlProps
@@ -108,11 +106,7 @@ export const SidebarNavigationItem = forwardRef<HTMLAnchorElement, SidebarNaviga
     return (
       <UnstyledListItem>
         <Tooltip content={enableTooltip ? children : undefined} side="right">
-          <NavigationItem
-            {...htmlProps}
-            className={classNames({ active: isActive }, className)}
-            onClick={handleClick}
-            ref={ref}>
+          <NavigationItem {...htmlProps} onClick={handleClick} ref={ref}>
             <Icon
               css={[
                 navigationItemIconStyles,

@@ -23,12 +23,6 @@ import { renderWithMemoryRouter } from '~common/helpers/test-utils';
 import { IconBranch, IconClock } from '../../../icons';
 import { SidebarNavigationItem, SidebarNavigationItemProps } from '../SidebarNavigationItem';
 
-it('should apply active class when isActive is true', () => {
-  setupSidebarNavigationItem({ isActive: true, disableIconWhenSidebarOpen: true });
-
-  expect(screen.getByRole('link')).toHaveClass('active');
-});
-
 it('should handle onClick events', async () => {
   const handleClick = jest.fn();
   const { user } = setupSidebarNavigationItem({ onClick: handleClick });
@@ -68,6 +62,32 @@ describe('navigation behavior', () => {
     await user.click(screen.getByRole('link', { name: 'Test Item' }));
     expect(screen.getByText('/second')).toBeInTheDocument();
     expect(screen.queryByRole('link', { name: 'Test Item' })).not.toBeInTheDocument();
+  });
+});
+
+describe('active state behavior', () => {
+  it('should apply active class when isActive is true', () => {
+    setupSidebarNavigationItem({ isActive: true, disableIconWhenSidebarOpen: true });
+
+    expect(screen.getByRole('link')).toHaveClass('active');
+  });
+
+  it('should automatically apply active class for active link', () => {
+    setupSidebarNavigationItem({ to: '/initial' });
+
+    expect(screen.getByRole('link')).toHaveClass('active');
+  });
+
+  it('should not have active class when isActive is false', () => {
+    setupSidebarNavigationItem({ isActive: false, to: '/initial' });
+
+    expect(screen.getByRole('link')).not.toHaveClass('active');
+  });
+
+  it('should not have active class for non active link', () => {
+    setupSidebarNavigationItem({ to: '/second' });
+
+    expect(screen.getByRole('link')).not.toHaveClass('active');
   });
 });
 
