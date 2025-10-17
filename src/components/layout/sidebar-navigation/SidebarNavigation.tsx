@@ -84,15 +84,15 @@ const SidebarNavigationWrapper = styled.nav`
   position: absolute;
   top: 0;
   bottom: 0;
-
   display: flex;
   flex-direction: column;
   box-sizing: content-box;
   overflow: hidden;
 
-  padding-top: ${cssVar('dimension-space-250')};
+  padding-top: ${cssVar('dimension-space-100')};
+  padding-bottom: ${cssVar('dimension-space-100')};
   border-right: ${cssVar('border-width-default')} solid ${cssVar('color-border-weak')};
-  background-color: ${cssVar('sidebar-navigation-colors-background-default')};
+  background-color: ${cssVar('color-surface-default')};
 
   transition: width 0.1s;
 

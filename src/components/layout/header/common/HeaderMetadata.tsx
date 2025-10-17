@@ -21,9 +21,9 @@
 import styled from '@emotion/styled';
 import { forwardRef, PropsWithChildren } from 'react';
 import { cssVar } from '~utils/design-tokens';
-import { Text } from '../../typography';
+import { Text } from '../../../typography';
 
-export interface PageHeaderMetadataProps {
+export interface HeaderMetadataProps {
   /**
    * Additional CSS class name(s)
    */
@@ -34,25 +34,24 @@ export interface PageHeaderMetadataProps {
  * Displays metadata information in the page header, below the title.
  * Content is automatically styled as "subtle" text in a div.
  */
-export const PageHeaderMetadata = forwardRef<
-  HTMLDivElement,
-  PropsWithChildren<PageHeaderMetadataProps>
->((props, ref) => {
-  const { children, ...rest } = props;
+export const HeaderMetadata = forwardRef<HTMLDivElement, PropsWithChildren<HeaderMetadataProps>>(
+  (props, ref) => {
+    const { children, ...rest } = props;
 
-  return (
-    <StyledPageHeaderMetadata as="div" isSubtle ref={ref} {...rest}>
-      {children}
-    </StyledPageHeaderMetadata>
-  );
-});
+    return (
+      <StyledHeaderMetadata as="div" isSubtle ref={ref} {...rest}>
+        {children}
+      </StyledHeaderMetadata>
+    );
+  },
+);
 
-PageHeaderMetadata.displayName = 'PageHeaderMetadata';
+HeaderMetadata.displayName = 'HeaderMetadata';
 
-const StyledPageHeaderMetadata = styled(Text)`
+const StyledHeaderMetadata = styled(Text)`
   align-items: center;
   display: flex;
   gap: ${cssVar('dimension-space-100')};
 `;
 
-StyledPageHeaderMetadata.displayName = 'StyledPageHeaderMetadata';
+StyledHeaderMetadata.displayName = 'StyledHeaderMetadata';

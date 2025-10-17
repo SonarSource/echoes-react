@@ -20,6 +20,7 @@
 
 import { Banner } from './banner';
 import { GlobalNavigation } from './global-navigation';
+import { ContentHeader, PageHeader } from './header';
 import { Layout as LayoutRoot } from './Layout';
 import {
   AsideLeft,
@@ -29,7 +30,6 @@ import {
   PageFooter,
   PageGrid,
 } from './LayoutSlots';
-import { ContentHeader, PageHeader } from './page-header';
 import { SidebarNavigation } from './sidebar-navigation';
 
 export { BannerVariety, type BannerProps } from './banner';
@@ -43,10 +43,16 @@ export type {
   GlobalNavigationPrimaryProps,
   GlobalNavigationProps,
 } from './global-navigation';
+export type {
+  ContentHeaderProps,
+  ContentHeaderTitleProps,
+  PageHeaderMetadataProps,
+  PageHeaderProps,
+  PageHeaderTitleProps,
+} from './header';
 export type { LayoutProps } from './Layout';
 export type { AsideProps, PageGridProps } from './LayoutSlots';
 export { AsideSize, PageWidth } from './LayoutTypes';
-export type { PageHeaderMetadataProps, PageHeaderProps, PageHeaderTitleProps } from './page-header';
 export type {
   SidebarNavigationAccordionItemProps,
   SidebarNavigationGroupProps,

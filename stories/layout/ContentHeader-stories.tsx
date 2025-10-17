@@ -23,26 +23,26 @@ import {
   Button,
   ButtonIcon,
   ButtonVariety,
+  ContentHeaderProps,
+  ContentHeaderTitleProps,
   DropdownMenu,
   IconArrowLeft,
   IconEdit,
   Layout,
   MessageCallout,
   MessageVariety,
-  PageHeaderProps,
-  PageHeaderTitleProps,
 } from '../../src';
 
-const meta: Meta<typeof Layout.PageHeader | typeof Layout.PageHeader.Title> = {
+const meta: Meta<typeof Layout.ContentHeader | typeof Layout.ContentHeader.Title> = {
   argTypes: {
     actions: {
       control: { type: 'boolean' },
       mapping: {
         true: (
-          <Layout.PageHeader.Actions>
+          <Layout.ContentHeader.Actions>
             <Button>Secondary action</Button>
             <Button variety={ButtonVariety.Primary}>Primary action</Button>
-          </Layout.PageHeader.Actions>
+          </Layout.ContentHeader.Actions>
         ),
         false: false,
       },
@@ -51,7 +51,7 @@ const meta: Meta<typeof Layout.PageHeader | typeof Layout.PageHeader.Title> = {
       control: { type: 'boolean' },
       mapping: {
         true: (
-          <Layout.PageHeader.Breadcrumbs
+          <Layout.ContentHeader.Breadcrumbs
             items={[
               { linkElement: 'Breadcrumb item', to: 'https://sonarsource.com' },
               { linkElement: 'Breadcrumb item', to: '' },
@@ -72,14 +72,16 @@ const meta: Meta<typeof Layout.PageHeader | typeof Layout.PageHeader.Title> = {
       control: { type: 'boolean' },
       mapping: {
         true: (
-          <Layout.PageHeader.Navigation>
-            <Layout.PageHeader.NavigationItem to="/">Home</Layout.PageHeader.NavigationItem>
-            <Layout.PageHeader.NavigationItem to="/qp">
+          <Layout.ContentHeader.Navigation>
+            <Layout.ContentHeader.NavigationItem to="/">Home</Layout.ContentHeader.NavigationItem>
+            <Layout.ContentHeader.NavigationItem to="/qp">
               Quality Profiles
-            </Layout.PageHeader.NavigationItem>
-            <Layout.PageHeader.NavigationItem to="/rules">Rules</Layout.PageHeader.NavigationItem>
+            </Layout.ContentHeader.NavigationItem>
+            <Layout.ContentHeader.NavigationItem to="/rules">
+              Rules
+            </Layout.ContentHeader.NavigationItem>
 
-            <Layout.PageHeader.NavigationDropdownItem
+            <Layout.ContentHeader.NavigationDropdownItem
               items={
                 <>
                   <DropdownMenu.ItemLink to="/3456">option 1</DropdownMenu.ItemLink>
@@ -87,8 +89,8 @@ const meta: Meta<typeof Layout.PageHeader | typeof Layout.PageHeader.Title> = {
                 </>
               }>
               More
-            </Layout.PageHeader.NavigationDropdownItem>
-          </Layout.PageHeader.Navigation>
+            </Layout.ContentHeader.NavigationDropdownItem>
+          </Layout.ContentHeader.Navigation>
         ),
         false: false,
       },
@@ -114,13 +116,13 @@ const meta: Meta<typeof Layout.PageHeader | typeof Layout.PageHeader.Title> = {
       },
     },
   },
-  component: Layout.PageHeader,
-  title: 'Echoes/Layout/PageHeader',
+  component: Layout.ContentHeader,
+  title: 'Echoes/Layout/ContentHeader',
 };
 
 export default meta;
 
-type Story = StoryObj<typeof Layout.PageHeader | typeof Layout.PageHeader.Title>;
+type Story = StoryObj<typeof Layout.ContentHeader | typeof Layout.ContentHeader.Title>;
 
 const render = ({
   description,
@@ -129,23 +131,27 @@ const render = ({
   suffix,
   title,
   ...args
-}: PageHeaderProps & PageHeaderTitleProps) => (
+}: ContentHeaderProps & ContentHeaderTitleProps) => (
   <div
     style={{
       display: 'flex',
       flexDirection: 'column',
       width: '800px',
     }}>
-    <Layout.PageHeader
+    <Layout.ContentHeader
       {...args}
       description={
-        description && <Layout.PageHeader.Description>{description}</Layout.PageHeader.Description>
+        description && (
+          <Layout.ContentHeader.Description>{description}</Layout.ContentHeader.Description>
+        )
       }
-      metadata={metadata && <Layout.PageHeader.Metadata>{metadata}</Layout.PageHeader.Metadata>}
+      metadata={
+        metadata && <Layout.ContentHeader.Metadata>{metadata}</Layout.ContentHeader.Metadata>
+      }
       title={
-        <Layout.PageHeader.Title headingLevel="h1" prefix={prefix} suffix={suffix}>
+        <Layout.ContentHeader.Title prefix={prefix} suffix={suffix}>
           {title}
-        </Layout.PageHeader.Title>
+        </Layout.ContentHeader.Title>
       }
     />
   </div>
@@ -156,20 +162,20 @@ export const Full: Story = {
     actions: true,
     breadcrumbs: true,
     callout: true,
-    description: 'Page description',
-    metadata: 'Page metadata',
+    description: 'Content description',
+    metadata: 'Content metadata',
     hasDivider: false,
     navigation: true,
     prefix: true,
     suffix: true,
-    title: 'Page title',
+    title: 'Content title',
   },
   render,
 };
 
 export const Basic: Story = {
   args: {
-    title: 'Page title',
+    title: 'Content title',
   },
   render,
 };
