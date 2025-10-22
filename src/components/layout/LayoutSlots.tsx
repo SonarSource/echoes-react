@@ -111,6 +111,7 @@ PageGrid.displayName = 'PageGrid';
 
 const PageGridContainer = styled.div`
   grid-area: ${ContentGridArea.page};
+  position: relative; // Prevent scroll issues with sr-only elements we can have inside
   overflow-y: auto;
 `;
 PageGridContainer.displayName = 'PageGridContainer';
