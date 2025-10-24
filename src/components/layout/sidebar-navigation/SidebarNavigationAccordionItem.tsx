@@ -35,7 +35,6 @@ import {
   sidebarNavigationBaseItemStyles,
   sidebarNavigationItemIconStyles,
   SidebarNavigationItemLabel,
-  UnstyledUList,
 } from './SidebarNavigationItemStyles';
 
 export interface SidebarNavigationAccordionItemProps {
@@ -119,7 +118,7 @@ export const SidebarNavigationAccordionItem = forwardRef<
         aria-labelledby={accordionId}
         data-accordion-open={open}
         id={accordionPanelId}>
-        <UnstyledUList>{children}</UnstyledUList>
+        <AccordionItemsList>{children}</AccordionItemsList>
       </AccordionItemPanel>
     </AccordionWrapper>
   );
@@ -146,10 +145,6 @@ const AccordionItem = styled.button`
 AccordionItem.displayName = 'AccordionItem';
 
 const AccordionItemPanel = styled.section`
-  display: flex;
-  flex-direction: column;
-  gap: ${cssVar('dimension-space-50')};
-
   margin-left: ${cssVar('dimension-space-300')};
   padding-left: ${cssVar('dimension-space-100')};
   padding-right: ${cssVar('dimension-space-100')};
@@ -158,11 +153,13 @@ const AccordionItemPanel = styled.section`
   // The children SidebarNavigationItems rely on this css property to set their display value, falling
   // back to flex if not inside an accordion
   --sidebar-navigation-accordion-children-display: flex;
+  --sidebar-navigation-accordion-children-gap: ${cssVar('dimension-space-50')};
 
   // The next two rules hide the child SidebarNavigationItems when the accordion is closed, and also
   // when the sidebar is neither docked nor open (hovered or focused).
   &[data-accordion-open='false'] {
     --sidebar-navigation-accordion-children-display: none;
+    --sidebar-navigation-accordion-children-gap: ${cssVar('dimension-space-0')};
   }
 
   [data-sidebar-docked='false'] nav:not(:hover, :focus-within) & {
@@ -171,6 +168,16 @@ const AccordionItemPanel = styled.section`
     border-left: none;
 
     --sidebar-navigation-accordion-children-display: none;
+    --sidebar-navigation-accordion-children-gap: ${cssVar('dimension-space-0')};
   }
 `;
 AccordionItemPanel.displayName = 'AccordionItemPanel';
+
+export const AccordionItemsList = styled.ul`
+  all: unset;
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--sidebar-navigation-accordion-children-gap);
+`;
+AccordionItemsList.displayName = 'AccordionItemsList';

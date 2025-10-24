@@ -80,8 +80,3 @@ export const UnstyledListItem = styled.li`
   all: unset;
 `;
 UnstyledListItem.displayName = 'UnstyledListItem';
-
-export const UnstyledUList = styled.ul`
-  all: unset;
-`;
-UnstyledUList.displayName = 'UnstyledUList';

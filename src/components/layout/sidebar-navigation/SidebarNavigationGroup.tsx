@@ -23,7 +23,7 @@ import { forwardRef, PropsWithChildren, useId } from 'react';
 import { TextNode } from '~types/utils';
 import { cssVar } from '~utils/design-tokens';
 import { Text } from '../../typography';
-import { UnstyledListItem, UnstyledUList } from './SidebarNavigationItemStyles';
+import { UnstyledListItem } from './SidebarNavigationItemStyles';
 
 export interface SidebarNavigationGroupProps {
   className?: string;
@@ -56,7 +56,7 @@ export const SidebarNavigationGroup = forwardRef<
             {label}
           </Text>
         </SidebarNavigationGroupLabel>
-        <UnstyledUList>{children}</UnstyledUList>
+        <SidebarNavigationGroupList>{children}</SidebarNavigationGroupList>
       </SidebarNavigationGroupContainer>
     </UnstyledListItem>
   );
@@ -82,3 +82,12 @@ const SidebarNavigationGroupLabel = styled.label`
   }
 `;
 SidebarNavigationGroupLabel.displayName = 'SidebarNavigationGroupLabel';
+
+export const SidebarNavigationGroupList = styled.ul`
+  all: unset;
+
+  display: flex;
+  flex-direction: column;
+  gap: ${cssVar('dimension-space-50')};
+`;
+SidebarNavigationGroupList.displayName = 'SidebarNavigationGroupList';
