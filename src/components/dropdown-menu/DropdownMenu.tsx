@@ -38,6 +38,13 @@ export enum DropdownMenuAlign {
   Start = 'start',
 }
 
+export enum DropdownMenuSide {
+  Bottom = 'bottom',
+  Left = 'left',
+  Right = 'right',
+  Top = 'top',
+}
+
 export interface DropdownMenuProps extends radixDropdownMenu.DropdownMenuTriggerProps {
   align?: `${DropdownMenuAlign}`;
   children: ReactNode;
@@ -50,6 +57,7 @@ export interface DropdownMenuProps extends radixDropdownMenu.DropdownMenuTrigger
   items: ReactNode | undefined;
   onClose?: () => void;
   onOpen?: () => void;
+  side?: `${DropdownMenuSide}`;
 }
 
 export const DropdownMenuRoot = forwardRef<HTMLButtonElement, DropdownMenuProps>(
@@ -66,6 +74,7 @@ export const DropdownMenuRoot = forwardRef<HTMLButtonElement, DropdownMenuProps>
       items,
       onClose,
       onOpen,
+      side = DropdownMenuSide.Bottom,
       ...radixProps
     }: Readonly<DropdownMenuProps>,
     ref,
@@ -107,7 +116,8 @@ export const DropdownMenuRoot = forwardRef<HTMLButtonElement, DropdownMenuProps>
             align={align}
             aria-labelledby={`${dropdownId}-trigger`}
             className={className}
-            id={`${dropdownId}-dropdown`}>
+            id={`${dropdownId}-dropdown`}
+            side={side}>
             {header && (
               <>
                 <StyledHeaderLabelAndHelpText>

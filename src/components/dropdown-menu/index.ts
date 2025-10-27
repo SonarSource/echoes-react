@@ -28,7 +28,7 @@ import { DropdownMenuItemLinkDownload } from './DropdownMenuItemLinkDownload';
 import { DropdownMenuSeparator } from './DropdownMenuSeparator';
 import { DropdownMenuSubMenu } from './DropdownMenuSubMenu';
 
-export { DropdownMenuAlign, type DropdownMenuProps } from './DropdownMenu';
+export { DropdownMenuAlign, DropdownMenuSide, type DropdownMenuProps } from './DropdownMenu';
 export { type DropdownMenuItemButtonProps } from './DropdownMenuItemButton';
 export { type DropdownMenuItemButtonCheckableProps } from './DropdownMenuItemButtonCheckable';
 export { type DropdownMenuItemButtonDestructiveProps } from './DropdownMenuItemButtonDestructive';
