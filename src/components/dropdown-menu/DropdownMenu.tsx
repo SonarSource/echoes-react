@@ -20,7 +20,7 @@
 
 import styled from '@emotion/styled';
 import * as radixDropdownMenu from '@radix-ui/react-dropdown-menu';
-import { ReactNode, forwardRef, useContext } from 'react';
+import { ReactNode, forwardRef, useContext, useId } from 'react';
 import { truncate } from '~common/helpers/styles';
 import { isDefined } from '~common/helpers/types';
 import { PropsLabelAndHelpText } from '~types/utils';
@@ -59,7 +59,7 @@ export const DropdownMenuRoot = forwardRef<HTMLButtonElement, DropdownMenuProps>
       children,
       className,
       header,
-      id = 'dropdown-menu',
+      id,
       isModal = false,
       isOpen,
       isOpenOnMount,
@@ -74,12 +74,15 @@ export const DropdownMenuRoot = forwardRef<HTMLButtonElement, DropdownMenuProps>
     const theme = useContext(ThemeContext);
     const themeOverrideProp = isDefined(theme) ? { [THEME_DATA_ATTRIBUTE]: theme } : {};
 
+    const defaultId = `${useId()}dropdown-menu`;
+    const dropdownId = id ?? defaultId;
+
     // Radix fully handles a11y binding with generated ids, but we have to do it manually because
     // this id format is extensively used by SQS ITs to locate dropdown elements
     // We can drop that and rely on Radix implem once we stop relying on ids in SQS ITs
     const a11yAttrs = {
-      'aria-controls': `${id}-dropdown`,
-      id: `${id}-trigger`,
+      'aria-controls': `${dropdownId}-dropdown`,
+      id: `${dropdownId}-trigger`,
     };
 
     return (
@@ -102,9 +105,9 @@ export const DropdownMenuRoot = forwardRef<HTMLButtonElement, DropdownMenuProps>
           <StyledDropdownMenuContent
             {...themeOverrideProp}
             align={align}
-            aria-labelledby={`${id}-trigger`}
+            aria-labelledby={`${dropdownId}-trigger`}
             className={className}
-            id={`${id}-dropdown`}>
+            id={`${dropdownId}-dropdown`}>
             {header && (
               <>
                 <StyledHeaderLabelAndHelpText>
