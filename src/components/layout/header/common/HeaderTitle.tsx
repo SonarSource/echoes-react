@@ -30,6 +30,10 @@ export interface ContentHeaderTitleProps {
   // eslint-disable-next-line react/no-unused-prop-types
   className?: string;
   /**
+   * The heading tag to use for the title itself
+   */
+  headingLevel?: HeadingProps['as'];
+  /**
    * Content (e.g. a ButtonIcon) to display before the title
    */
   // eslint-disable-next-line react/no-unused-prop-types
@@ -42,13 +46,13 @@ export interface ContentHeaderTitleProps {
 }
 
 /**
- * Displays the main title in the content header. The title is rendered as an h1 heading
+ * Displays the main title in the content header. The title is rendered as a heading (h2 by default)
  * and can optionally include prefix and suffix elements.
  */
 export const ContentHeaderTitle = forwardRef<
   HTMLDivElement,
   PropsWithChildren<ContentHeaderTitleProps>
->((props, ref) => <HeaderTitle {...props} headingLevel="h1" ref={ref} />);
+>((props, ref) => <HeaderTitle headingLevel="h2" {...props} ref={ref} />);
 ContentHeaderTitle.displayName = 'ContentHeaderTitle';
 
 const StyledPageHeaderTitle = styled.div`
@@ -59,15 +63,10 @@ const StyledPageHeaderTitle = styled.div`
 
 StyledPageHeaderTitle.displayName = 'StyledPageHeaderTitle';
 
-export interface PageHeaderTitleProps extends ContentHeaderTitleProps {
-  /**
-   * The heading tag to use for the title itself
-   */
-  headingLevel?: HeadingProps['as'];
-}
+export interface PageHeaderTitleProps extends ContentHeaderTitleProps {}
 
 /**
- * Displays the main title in the page header. The title is rendered as a heading of your choice
+ * Displays the main title in the page header. The title is rendered as a heading (h1 by default)
  * and can optionally include prefix and suffix elements.
  */
 export const PageHeaderTitle = forwardRef<HTMLDivElement, PropsWithChildren<PageHeaderTitleProps>>(
