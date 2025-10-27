@@ -30,7 +30,10 @@ export type DropdownMenuItemLinkProps = Omit<
   'isCheckable' | 'isChecked'
 > & {
   hasExternalIcon?: boolean;
-} & Pick<NavLinkBaseProps, 'download' | 'isMatchingFullPath' | 'enableOpenInNewTab' | 'to'>;
+} & Pick<
+    NavLinkBaseProps,
+    'download' | 'isActive' | 'isMatchingFullPath' | 'enableOpenInNewTab' | 'to'
+  >;
 
 export const DropdownMenuItemLink = forwardRef<HTMLDivElement, DropdownMenuItemLinkProps>(
   (props, ref) => {
@@ -39,6 +42,7 @@ export const DropdownMenuItemLink = forwardRef<HTMLDivElement, DropdownMenuItemL
       download,
       hasExternalIcon = true,
       isDisabled,
+      isActive,
       isMatchingFullPath = false,
       enableOpenInNewTab = false,
       suffix,
@@ -69,6 +73,7 @@ export const DropdownMenuItemLink = forwardRef<HTMLDivElement, DropdownMenuItemL
           <StyledNavLinkBase
             download={download}
             enableOpenInNewTab={enableOpenInNewTab}
+            isActive={isActive}
             isMatchingFullPath={isMatchingFullPath}
             to={to}>
             {getStyledItemContents({ label: children })}
