@@ -43,6 +43,7 @@ export { IconClock } from './IconClock';
 export { IconCodeSmell } from './IconCodeSmell';
 export { IconCollapse } from './IconCollapse';
 export { IconComment } from './IconComment';
+export { IconContentCut } from './IconContentCut';
 export { IconContract } from './IconContract';
 export { IconCopy } from './IconCopy';
 export { IconCreditCardGear } from './IconCreditCardGear';
