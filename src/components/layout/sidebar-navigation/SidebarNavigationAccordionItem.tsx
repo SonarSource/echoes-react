@@ -29,7 +29,7 @@ import {
 } from 'react';
 import { TextNode } from '~types/utils';
 import { cssVar } from '~utils/design-tokens';
-import { IconChevronDown, IconChevronRight, IconProps } from '../../icons';
+import { IconChevronDown, IconChevronRight, IconFilledProps } from '../../icons';
 import { Tooltip } from '../../tooltip';
 import {
   sidebarNavigationBaseItemStyles,
@@ -70,7 +70,7 @@ export interface SidebarNavigationAccordionItemProps {
    * The icon component to display at the start of the SidebarNavigationAccordionItem.
    * Must be an Echoes Icon component.
    */
-  Icon: ForwardRefExoticComponent<IconProps & React.RefAttributes<HTMLSpanElement>>;
+  Icon: ForwardRefExoticComponent<IconFilledProps & React.RefAttributes<HTMLSpanElement>>;
 }
 
 export const SidebarNavigationAccordionItem = forwardRef<
@@ -104,7 +104,7 @@ export const SidebarNavigationAccordionItem = forwardRef<
           id={accordionId}
           onClick={handleClick}
           ref={ref}>
-          <Icon css={sidebarNavigationItemIconStyles} />
+          <Icon css={sidebarNavigationItemIconStyles} isFilled={false} />
           <SidebarNavigationItemLabel>{label}</SidebarNavigationItemLabel>
           {suffix}
           {open ? (

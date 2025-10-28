@@ -30,7 +30,7 @@ import {
 import { NavLinkBase, NavLinkBaseProps } from '~common/components/NavLinkBase';
 import { TextNode } from '~types/utils';
 import { cssVar } from '~utils/design-tokens';
-import { IconProps } from '../../icons';
+import { IconFilledProps } from '../../icons';
 import { Tooltip } from '../../tooltip';
 import {
   sidebarNavigationBaseItemStyles,
@@ -80,7 +80,7 @@ export interface SidebarNavigationItemProps
    * The icon component to display at the start of the SidebarNavigationItem.
    * Must be an Echoes Icon component.
    */
-  Icon: ForwardRefExoticComponent<IconProps & React.RefAttributes<HTMLSpanElement>>;
+  Icon: ForwardRefExoticComponent<IconFilledProps & React.RefAttributes<HTMLSpanElement>>;
 }
 
 export const SidebarNavigationItem = forwardRef<HTMLAnchorElement, SidebarNavigationItemProps>(
@@ -112,6 +112,7 @@ export const SidebarNavigationItem = forwardRef<HTMLAnchorElement, SidebarNaviga
                 navigationItemIconStyles,
                 disableIconWhenSidebarOpen ? hideWhenSidebarOpenStyles : undefined,
               ]}
+              isFilled={false}
             />
             <SidebarNavigationItemLabel>{children}</SidebarNavigationItemLabel>
             {suffix}
