@@ -65,6 +65,7 @@ export { IconFileCode } from './IconFileCode';
 export { IconFilter } from './IconFilter';
 export { IconGear } from './IconGear';
 export { IconGitBranch } from './IconGitBranch';
+export { IconGraph3 } from './IconGraph3';
 export { IconHome } from './IconHome';
 export { IconInfo } from './IconInfo';
 export { IconInheritance } from './IconInheritance';
