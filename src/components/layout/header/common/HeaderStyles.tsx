@@ -26,7 +26,13 @@ import { PageHeaderArea } from './HeaderTypes';
 export const StyledPageHeaderCallout = styled.div`
   grid-area: ${PageHeaderArea.callout};
 
-  margin-bottom: ${cssVar('dimension-space-300')};
+  display: flex;
+  flex-direction: column;
+  gap: ${cssVar('dimension-space-100')};
+
+  & > :last-child {
+    margin-bottom: ${cssVar('dimension-space-300')};
+  }
 `;
 StyledPageHeaderCallout.displayName = 'StyledPageHeaderCallout';
 
