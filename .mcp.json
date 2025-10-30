@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "storybook-mcp": {
+      "type": "http",
+      "url": "http://localhost:6006/mcp",
+      "headers": {
+        "X-MCP-Toolsets": "docs"
+      }
+    }
+  }
+}

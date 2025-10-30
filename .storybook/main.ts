@@ -1,3 +1,5 @@
+// This file has been automatically migrated to valid ESM format by Storybook.
+import { createRequire } from "node:module";
 /*
  * Echoes react
  * Copyright (C) 2023-2025 SonarSource SA
@@ -21,17 +23,31 @@
 import type { StorybookConfig } from '@storybook/react-vite';
 import { dirname, join } from 'node:path';
 
+const require = createRequire(import.meta.url);
+
 const config: StorybookConfig = {
   addons: [
     getAbsolutePath('@storybook/addon-a11y'),
     getAbsolutePath('@storybook/addon-docs'),
     getAbsolutePath('@storybook/addon-links'),
     getAbsolutePath('@storybook/addon-themes'),
+    {
+			name: '@storybook/addon-mcp',
+			options: {
+				toolsets: {
+					dev: true,
+					docs: true,
+        },
+			},
+		},
   ],
   framework: '@storybook/react-vite',
   staticDirs: ['../public'],
   stories: ['../stories/**/*-stories.tsx'],
-  typescript: { check: false, reactDocgen: 'react-docgen-typescript' },
+  // typescript: { check: false, reactDocgen: 'react-docgen-typescript' },
+  features: {
+		experimentalComponentsManifest: true,
+	},
 };
 
 export default config;

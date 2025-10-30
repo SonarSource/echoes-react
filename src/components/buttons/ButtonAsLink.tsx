@@ -19,7 +19,6 @@
  */
 
 import { Link as RouterLink } from 'react-router-dom';
-import { styled } from 'storybook/internal/theming';
 import { LinkBaseProps } from '../links/LinkTypes';
 import { buttonIconStyles, ButtonStyled } from './ButtonStyles';
 import { ButtonCommonProps, HTMLButtonAttributesSubset } from './ButtonTypes';
@@ -75,5 +74,5 @@ export const ButtonAsLink = ButtonStyled.withComponent(RouterLink);
 ButtonAsLink.displayName = 'ButtonAsLink';
 
 // We can't use `withComponent` here because it breaks the TS types adding some references
-export const ButtonIconAsLink = styled(ButtonAsLink)(buttonIconStyles);
+export const ButtonIconAsLink = ButtonAsLink
 ButtonIconAsLink.displayName = 'ButtonIconAsLink';
