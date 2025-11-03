@@ -4520,7 +4520,7 @@ __metadata:
     sonarqube-scanner: "npm:4.3.2"
     sonner: "npm:2.0.7"
     storybook: "npm:9.0.18"
-    style-dictionary: "npm:5.0.4"
+    style-dictionary: "npm:5.1.1"
     subset-font: "npm:2.4.0"
     typescript: "npm:5.9.3"
     vite: "npm:7.1.12"
@@ -12639,9 +12639,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"style-dictionary@npm:5.0.4":
-  version: 5.0.4
-  resolution: "style-dictionary@npm:5.0.4"
+"style-dictionary@npm:5.1.1":
+  version: 5.1.1
+  resolution: "style-dictionary@npm:5.1.1"
   dependencies:
     "@bundled-es-modules/deepmerge": "npm:^4.3.1"
     "@bundled-es-modules/glob": "npm:^11.0.3"
@@ -12657,7 +12657,7 @@ __metadata:
     tinycolor2: "npm:^1.6.0"
   bin:
     style-dictionary: bin/style-dictionary.js
-  checksum: 10/d17fe1e58e4bef6aeed1616a99b8ed889a1e2d81b2d091cb313ccef00e168300b3ea811c0ce8f53601f43bf1f89da54c4d49fabb23e8080387d63e9e1f2877c8
+  checksum: 10/8ae83f67ee6900d7c0f433b6d1678d88dd92ae7176af11f164544266aa706638ab9818cb72e90808383da3ecabaf0cfc128aa20bec9bf3b955a7cfbcfec13a86
   languageName: node
   linkType: hard
 
