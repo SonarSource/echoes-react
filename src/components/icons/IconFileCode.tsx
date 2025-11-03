@@ -19,14 +19,14 @@
  */
 
 import { forwardRef } from 'react';
-import { IconCustomWrapper, IconProps } from './IconWrapper';
+import { IconMaterialWrapper, IconProps } from './IconWrapper';
 
 export const IconFileCode = forwardRef<HTMLSpanElement, IconProps>((props, ref) => {
-  // This is an icon from the "Echoes" custom font
+  // This is Material Symbols' "code" icon
   return (
-    <IconCustomWrapper {...props} ref={ref}>
-      &#x23;
-    </IconCustomWrapper>
+    <IconMaterialWrapper {...props} ref={ref}>
+      &#xE86F;
+    </IconMaterialWrapper>
   );
 });
 IconFileCode.displayName = 'IconFileCode';

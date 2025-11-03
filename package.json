@@ -35,6 +35,7 @@
     "format-check": "prettier --check .",
     "fonts-check": "./config/scripts/validate-fonts.sh",
     "intl-keys-check": "./config/scripts/validate-intl-keys.sh",
+    "icons-check": "./config/scripts/validate-icons.sh",
     "lint": "eslint --ext js,ts,tsx,snap --quiet .",
     "lint-report": "eslint --ext js,ts,tsx,snap -f json -o build-reports/eslint-report/eslint-report.json .",
     "storybook": "storybook dev -p 6006",
@@ -43,7 +44,7 @@
     "ts-check-files": "tsc --noEmit",
     "ts-check-declarations": "tsc --noEmit false --emitDeclarationOnly --isolatedModules false --outFile ./build-reports/ts-declarations/all-declarations",
     "validate": "yarn ts-check && yarn format-check && yarn lint",
-    "validate-ci": "yarn dep-check && yarn intl-keys-check && yarn tokens-check && yarn fonts-check && yarn ts-check && yarn format-check && yarn lint-report"
+    "validate-ci": "yarn dep-check && yarn intl-keys-check && yarn tokens-check && yarn icons-check && yarn fonts-check && yarn ts-check && yarn format-check && yarn lint-report"
   },
   "peerDependencies": {
     "@emotion/react": "^11.0.0",
