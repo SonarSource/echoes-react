@@ -1,6 +1,6 @@
 /*
  * Echoes React
- * Copyright (C) 2023-2025 SonarSource SA
+ * Copyright (C) 2023-2025 SonarSource Sàrl
  * mailto:info AT sonarsource DOT com
  *
  * This program is free software; you can redistribute it and/or
@@ -42,7 +42,7 @@ export { type TableCellTextProps } from './TableCellText';
 export { type TableColumnHeaderCellProps } from './TableColumnHeaderCell';
 export { type TableColumnHeaderCellCheckboxProps } from './TableColumnHeaderCellCheckbox';
 export { type TableRowProps } from './TableRow';
-export { TableVariety, TableCellJustify, type TableBaseProps, type TableProps } from './TableTypes';
+export { TableCellJustify, TableVariety, type TableBaseProps, type TableProps } from './TableTypes';
 
 /**
  * {@link TableRoot | Table}

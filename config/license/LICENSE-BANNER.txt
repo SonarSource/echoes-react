@@ -1,7 +1,7 @@
 Echoes React
 Version: <%= pkg.version %>
 Generated: <%= moment().format('YYYY-MM-DD') %>
-Copyright (C) 2023-<%= moment().format('YYYY') %> SonarSource SA
+Copyright (C) 2023-<%= moment().format('YYYY') %> SonarSource Sàrl
 mailto:info AT sonarsource DOT com
 
 This program is free software; you can redistribute it and/or

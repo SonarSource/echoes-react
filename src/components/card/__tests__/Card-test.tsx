@@ -1,6 +1,6 @@
 /*
  * Echoes React
- * Copyright (C) 2023-2025 SonarSource SA
+ * Copyright (C) 2023-2025 SonarSource Sàrl
  * mailto:info AT sonarsource DOT com
  *
  * This program is free software; you can redistribute it and/or
@@ -20,10 +20,10 @@
 import { screen } from '@testing-library/react';
 import React from 'react';
 
-import { CardRoot } from '../CardRoot';
-import { CardHeader } from '../CardHeader';
-import { CardBody } from '../CardBody';
 import { render } from '~common/helpers/test-utils';
+import { CardBody } from '../CardBody';
+import { CardHeader } from '../CardHeader';
+import { CardRoot } from '../CardRoot';
 import { CardSize } from '../CardSize';
 
 describe('Card components', () => {

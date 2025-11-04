@@ -1,6 +1,6 @@
 /*
  * Echoes React
- * Copyright (C) 2023-2025 SonarSource SA
+ * Copyright (C) 2023-2025 SonarSource Sàrl
  * mailto:info AT sonarsource DOT com
  *
  * This program is free software; you can redistribute it and/or
@@ -33,5 +33,5 @@ export {
   type EchoesCSSVarStringWithFallback,
   type EchoesDesignTokens,
 } from './design-tokens';
-export { setTheme, ThemeProvider, type ThemeProviderProps } from './theme';
-export { toast, ToastDuration, ToastVariety, type ToastParams } from './toasts';
+export { ThemeProvider, setTheme, type ThemeProviderProps } from './theme';
+export { ToastDuration, ToastVariety, toast, type ToastParams } from './toasts';

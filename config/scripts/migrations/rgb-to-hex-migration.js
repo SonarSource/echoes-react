@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /*
  * Echoes React
- * Copyright (C) 2023-2025 SonarSource SA
+ * Copyright (C) 2023-2025 SonarSource Sàrl
  * mailto:info AT sonarsource DOT com
  *
  * This program is free software; you can redistribute it and/or
@@ -224,4 +224,4 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   migrateColorsToHex(filePath);
 }
 
-export { convertColorValue, migrateColorsToHex, rgbaToHex8, rgbToHex };
+export { convertColorValue, migrateColorsToHex, rgbToHex, rgbaToHex8 };

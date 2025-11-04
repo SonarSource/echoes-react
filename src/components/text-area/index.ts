@@ -1,6 +1,6 @@
 /*
  * Echoes React
- * Copyright (C) 2023-2025 SonarSource SA
+ * Copyright (C) 2023-2025 SonarSource Sàrl
  * mailto:info AT sonarsource DOT com
  *
  * This program is free software; you can redistribute it and/or
@@ -17,4 +17,4 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-export { type TextAreaProps, TextArea } from './TextArea';
+export { TextArea, type TextAreaProps } from './TextArea';
