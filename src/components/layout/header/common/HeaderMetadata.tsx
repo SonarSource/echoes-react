@@ -52,6 +52,7 @@ const StyledHeaderMetadata = styled(Text)`
   align-items: center;
   display: flex;
   gap: ${cssVar('dimension-space-100')};
+  max-width: 100%;
 `;
 
 StyledHeaderMetadata.displayName = 'StyledHeaderMetadata';
