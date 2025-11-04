@@ -21,12 +21,12 @@
 import { forwardRef } from 'react';
 import { IconMaterialWrapper, IconProps } from './IconWrapper';
 
-export const IconSecurityFinding = forwardRef<HTMLSpanElement, IconProps>((props, ref) => {
-  // This is Material Symbols' "shield" icon
+export const IconInventory = forwardRef<HTMLSpanElement, IconProps>((props, ref) => {
+  // This is Material Symbols' "inventory_2" icon
   return (
-    <IconMaterialWrapper isFilled {...props} ref={ref}>
-      &#xE9E0;
+    <IconMaterialWrapper {...props} ref={ref}>
+      &#xE1A1;
     </IconMaterialWrapper>
   );
 });
-IconSecurityFinding.displayName = 'IconSecurityFinding';
+IconInventory.displayName = 'IconInventory';
