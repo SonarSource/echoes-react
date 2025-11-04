@@ -1,6 +1,6 @@
 /*
  * Echoes React
- * Copyright (C) 2023-2025 SonarSource SA
+ * Copyright (C) 2023-2025 SonarSource Sàrl
  * mailto:info AT sonarsource DOT com
  *
  * This program is free software; you can redistribute it and/or
@@ -17,7 +17,7 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-import { RenderOptions, render as rtlRender, RenderResult } from '@testing-library/react';
+import { RenderOptions, RenderResult, render as rtlRender } from '@testing-library/react';
 import userEvent, { UserEvent, Options as UserEventsOptions } from '@testing-library/user-event';
 import React, { ComponentProps, PropsWithChildren } from 'react';
 import { IntlProvider } from 'react-intl';

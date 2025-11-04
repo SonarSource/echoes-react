@@ -1,6 +1,6 @@
 /*
  * Echoes React
- * Copyright (C) 2023-2025 SonarSource SA
+ * Copyright (C) 2023-2025 SonarSource Sàrl
  * mailto:info AT sonarsource DOT com
  *
  * This program is free software; you can redistribute it and/or
@@ -182,7 +182,7 @@ export const Default: Story = {
             </div>
           </Layout.PageContent>
           <Layout.PageFooter>
-            <Text isSubtle>2018-2025 SonarSource SA. All rights reserved</Text>
+            <Text isSubtle>2018-2025 SonarSource Sàrl. All rights reserved</Text>
             <Links>
               <LinkStandalone highlight="subtle" to="/1">
                 Terms

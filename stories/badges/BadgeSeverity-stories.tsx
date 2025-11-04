@@ -1,6 +1,6 @@
 /*
  * Echoes React
- * Copyright (C) 2023-2025 SonarSource SA
+ * Copyright (C) 2023-2025 SonarSource Sàrl
  * mailto:info AT sonarsource DOT com
  *
  * This program is free software; you can redistribute it and/or
@@ -20,9 +20,9 @@
 
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { BadgeSeverity, BadgeSeverityLevel, DropdownMenu } from '../../src';
+import { BadgeSeverityVariety } from '../../src/components/badges/BadgeSeverity';
 import { iconsComponentsArgType } from '../helpers/arg-types';
 import { basicWrapperDecorator } from '../helpers/BasicWrapper';
-import { BadgeSeverityVariety } from '../../src/components/badges/BadgeSeverity';
 
 const { mapping, options = [] } = iconsComponentsArgType;
 
