@@ -42,7 +42,7 @@ const FixedWrapper = styled.div`
 
 const indices = Array.from({ length: 6 }, (_, i) => i);
 
-const leaf = 'Child element (never truncated)';
+const leaf = "Child element that doesn't have a link";
 
 export const Default: Story = {
   render: () => {
@@ -80,7 +80,7 @@ export const LongLinksWithEllipsis: Story = {
       hasEllipsis: true,
       linkElement:
         i === indices.length - 1
-          ? leaf
+          ? leaf + ` with a name so long that it overflows the max width too`
           : `Breadcrumb with a name so long that it overflows the max width #${i + 1}`,
       to: `https://google.com/search?q=${i + 1}`,
     }));
