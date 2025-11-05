@@ -18,11 +18,19 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-export { Breadcrumbs } from './Breadcrumbs';
+import { screen } from '@testing-library/react';
+import { renderWithMemoryRouter } from '~common/helpers/test-utils';
+import { BreadcrumbItem } from '../BreadcrumbItem';
 
-export type {
-  BreadcrumbItemWithOptionalTo,
-  BreadcrumbLinkProps,
-  BreadcrumbsItems,
-  BreadcrumbsProps,
-} from './BreadcrumbTypes';
+it('should truncate long item when hasEllipsis', () => {
+  renderWithMemoryRouter(
+    <BreadcrumbItem
+      hasEllipsis
+      linkElement="A long breadcrumb link with an ellipsis because it overflows the max width"
+    />,
+  );
+
+  expect(
+    screen.getByText('A long breadcrumb link with an ellipsis because it overflows the max width'),
+  ).toHaveProperty('title');
+});

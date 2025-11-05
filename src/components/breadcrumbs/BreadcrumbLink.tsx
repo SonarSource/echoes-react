@@ -18,47 +18,29 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import styled from '@emotion/styled';
-import { forwardRef, ReactNode } from 'react';
-import { truncate } from '~common/helpers/styles';
+import classNames from 'classnames';
+import { forwardRef } from 'react';
 import { LinkHighlight } from '../links';
 import { LinkStandalone } from '../links/LinkStandalone';
-import { LinkBaseProps, LinkStandaloneBaseProps } from '../links/LinkTypes';
+import { BreadcrumbItemBase, breadcrumbItemStyle } from './BreadcrumbItem';
+import { BreadcrumbLinkProps } from './BreadcrumbTypes';
 
-import { cssVar } from '~utils/design-tokens';
-
-export interface BreadcrumbLinkProps
-  extends LinkStandaloneBaseProps,
-    Omit<LinkBaseProps, 'children'> {
-  hasEllipsis?: boolean;
-  linkElement: ReactNode;
-}
-
-const BreadcrumbLinkContainer = styled.span`
-  max-width: ${cssVar('sizes-breadcrumbs-max-width-default')};
-
-  ${truncate}
-`;
-
-const BreadcrumbLinkBase = forwardRef<HTMLAnchorElement, BreadcrumbLinkProps>((props, ref) => {
-  const { hasEllipsis, linkElement, ...linkProps } = props;
+export const BreadcrumbLink = forwardRef<HTMLAnchorElement, BreadcrumbLinkProps>((props, ref) => {
+  const { className, hasEllipsis, linkElement, ...linkProps } = props;
 
   const title = hasEllipsis ? (linkElement as string) : undefined;
 
-  const Link = (
-    <LinkStandalone {...linkProps} highlight={LinkHighlight.Subtle} ref={ref} title={title}>
-      {linkElement}
-    </LinkStandalone>
+  return (
+    <BreadcrumbItemBase hasEllipsis={hasEllipsis}>
+      <LinkStandalone
+        {...linkProps}
+        className={classNames(className, breadcrumbItemStyle)}
+        highlight={LinkHighlight.Subtle}
+        ref={ref}
+        title={title}>
+        {linkElement}
+      </LinkStandalone>
+    </BreadcrumbItemBase>
   );
-
-  return hasEllipsis ? <BreadcrumbLinkContainer>{Link}</BreadcrumbLinkContainer> : Link;
 });
-
-BreadcrumbLinkBase.displayName = 'BreadcrumbLinkBase';
-
-export const BreadcrumbLink = styled(BreadcrumbLinkBase)`
-  font: ${cssVar('typography-text-small-regular')};
-  white-space: nowrap;
-`;
-
 BreadcrumbLink.displayName = 'BreadcrumbLink';

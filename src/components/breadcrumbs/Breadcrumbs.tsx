@@ -21,26 +21,15 @@
 import styled from '@emotion/styled';
 import React, { forwardRef } from 'react';
 import { createPath, resolvePath } from 'react-router-dom';
-import { IconSlash } from '../icons';
-import { BreadcrumbLink, BreadcrumbLinkProps } from './BreadcrumbLink';
-
 import { cssVar } from '~utils/design-tokens';
-
-type BreadcrumbItemWithOptionalTo = Omit<BreadcrumbLinkProps, 'to'> & {
-  to?: BreadcrumbLinkProps['to'];
-};
-
-export type BreadcrumbsItems =
-  | [...BreadcrumbLinkProps[], BreadcrumbItemWithOptionalTo]
-  | BreadcrumbLinkProps[];
-
-export interface BreadcrumbsProps {
-  className?: string;
-  /**
-   * A list of breadcrumb props. The last item can (and probably should, in most cases) omit the `to` prop.
-   */
-  items: BreadcrumbsItems;
-}
+import { IconSlash } from '../icons';
+import { BreadcrumbItem } from './BreadcrumbItem';
+import { BreadcrumbLink } from './BreadcrumbLink';
+import {
+  BreadcrumbItemWithOptionalTo,
+  BreadcrumbLinkProps,
+  BreadcrumbsProps,
+} from './BreadcrumbTypes';
 
 const BreadcrumbsBase = forwardRef<HTMLDivElement, BreadcrumbsProps>((props, ref) => {
   const { items, ...rest } = props;
@@ -52,7 +41,7 @@ const BreadcrumbsBase = forwardRef<HTMLDivElement, BreadcrumbsProps>((props, ref
           {index > 0 && <IconSlash color="echoes-color-icon-subtle" />}
 
           {index === items.length - 1 ? (
-            <span className={item.className}>{item.linkElement}</span>
+            <BreadcrumbItem {...item} />
           ) : (
             <BreadcrumbLink {...(item as BreadcrumbLinkProps)} />
           )}

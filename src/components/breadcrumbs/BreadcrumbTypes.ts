@@ -18,11 +18,28 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-export { Breadcrumbs } from './Breadcrumbs';
+import { ReactNode } from 'react';
+import { LinkBaseProps, LinkStandaloneBaseProps } from '../links/LinkTypes';
 
-export type {
-  BreadcrumbItemWithOptionalTo,
-  BreadcrumbLinkProps,
-  BreadcrumbsItems,
-  BreadcrumbsProps,
-} from './BreadcrumbTypes';
+export interface BreadcrumbLinkProps
+  extends LinkStandaloneBaseProps,
+    Omit<LinkBaseProps, 'children'> {
+  hasEllipsis?: boolean;
+  linkElement: ReactNode;
+}
+
+export type BreadcrumbItemWithOptionalTo = Omit<BreadcrumbLinkProps, 'to'> & {
+  to?: BreadcrumbLinkProps['to'];
+};
+
+export type BreadcrumbsItems =
+  | [...BreadcrumbLinkProps[], BreadcrumbItemWithOptionalTo]
+  | BreadcrumbLinkProps[];
+
+export interface BreadcrumbsProps {
+  className?: string;
+  /**
+   * A list of breadcrumb props. The last item can (and probably should, in most cases) omit the `to` prop, it will not be a link anyway.
+   */
+  items: BreadcrumbsItems;
+}
