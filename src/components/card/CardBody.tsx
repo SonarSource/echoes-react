@@ -19,7 +19,7 @@
  */
 
 import React, { useMemo } from 'react';
-import { useCardSize } from './CardRoot';
+import { useCardContext } from './CardRoot';
 import { CARD_SIZE_STYLES, CardBodyStyled } from './CardStyles';
 
 export interface CardBodyProps {
@@ -30,12 +30,17 @@ export interface CardBodyProps {
 
 export const CardBody = React.forwardRef<HTMLDivElement, Readonly<CardBodyProps>>(
   ({ children, className, insetContent = false }, ref) => {
-    const size = useCardSize();
+    const { isCollapsible, isOpen, size } = useCardContext();
+    const sizeStyles = useMemo(() => ({ ...CARD_SIZE_STYLES[size] }), [size]);
+
+    if (isCollapsible && !isOpen) {
+      return undefined;
+    }
 
     return (
       <CardBodyStyled
         className={className}
-        css={useMemo(() => ({ ...CARD_SIZE_STYLES[size] }), [size])}
+        css={sizeStyles}
         insetContent={insetContent}
         ref={ref}
         size={size}>

@@ -66,6 +66,24 @@ export { CardSize } from './CardSize';
  *   <Card.Body>Card content without a header</Card.Body>
  * </Card>
  * ```
+ *
+ * **Collapsible example (uncontrolled)**
+ *
+ * ```tsx
+ * <Card isCollapsible>
+ *   <Card.Header title="Collapsible Card" />
+ *   <Card.Body>This content can be collapsed.</Card.Body>
+ * </Card>
+ * ```
+ *
+ * **Collapsible example (controlled)**
+ *
+ * ```tsx
+ * <Card isCollapsible isOpen={isOpen} onOpenChange={setIsOpen}>
+ *   <Card.Header title="Controlled Collapsible Card" />
+ *   <Card.Body>This content can be collapsed externally.</Card.Body>
+ * </Card>
+ * ```
  */
 export const Card = Object.assign(CardRoot, {
   /**

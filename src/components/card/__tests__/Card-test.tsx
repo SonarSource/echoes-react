@@ -17,6 +17,7 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
+
 import { screen } from '@testing-library/react';
 import React from 'react';
 
@@ -52,6 +53,7 @@ describe('Card components', () => {
           <CardHeader title="Default Size Card" />
         </CardRoot>,
       );
+
       expect(screen.getByRole('heading', { level: 3 })).toHaveTextContent('Default Size Card');
     });
   });
@@ -63,6 +65,7 @@ describe('Card components', () => {
           <CardHeader title="Card Title" />
         </CardRoot>,
       );
+
       expect(screen.getByText('Card Title')).toBeInTheDocument();
     });
 
@@ -72,6 +75,7 @@ describe('Card components', () => {
           <CardHeader description="Card Description" title="Card Title" />
         </CardRoot>,
       );
+
       expect(screen.getByText('Card Description')).toBeInTheDocument();
     });
 
@@ -81,6 +85,7 @@ describe('Card components', () => {
           <CardHeader rightContent={<button type="button">Action</button>} title="Card Title" />
         </CardRoot>,
       );
+
       expect(screen.getByRole('button', { name: 'Action' })).toBeInTheDocument();
     });
 
@@ -98,6 +103,7 @@ describe('Card components', () => {
           <CardHeader title="Medium Card" />
         </CardRoot>,
       );
+
       expect(screen.getByRole('heading', { level: 3 })).toHaveTextContent('Medium Card');
 
       rerender(
@@ -105,6 +111,7 @@ describe('Card components', () => {
           <CardHeader title="Large Card" />
         </CardRoot>,
       );
+
       expect(screen.getByRole('heading', { level: 2 })).toHaveTextContent('Large Card');
     });
   });
@@ -116,6 +123,7 @@ describe('Card components', () => {
           <CardBody>Body Content</CardBody>
         </CardRoot>,
       );
+
       expect(screen.getByText('Body Content')).toBeInTheDocument();
     });
 
@@ -125,17 +133,20 @@ describe('Card components', () => {
           <CardBody className="custom-body-class">Content</CardBody>
         </CardRoot>,
       );
+
       const body = screen.getByText('Content');
       expect(body).toHaveClass('custom-body-class');
     });
 
     it('forwards ref correctly', () => {
       const ref = React.createRef<HTMLDivElement>();
+
       render(
         <CardRoot>
           <CardBody ref={ref}>Content</CardBody>
         </CardRoot>,
       );
+
       expect(ref.current).not.toBeNull();
     });
 
@@ -169,6 +180,7 @@ describe('Card components', () => {
       render(
         <CardRoot>
           <CardHeader description="Card Description" title="Card Title" />
+
           <CardBody>Card Content</CardBody>
         </CardRoot>,
       );
@@ -187,6 +199,7 @@ describe('Card components', () => {
             rightContent={<span>Actions</span>}
             title="Card Title"
           />
+
           <CardBody>Card Content</CardBody>
         </CardRoot>,
       );
@@ -194,6 +207,132 @@ describe('Card components', () => {
       expect(screen.getByText('Card Title')).toBeInTheDocument();
       expect(screen.getByText('Card Description')).toBeInTheDocument();
       expect(screen.getByText('Actions')).toBeInTheDocument();
+    });
+  });
+
+  describe('Collapsible Card', () => {
+    it('shows body by default when isCollapsible is true', () => {
+      render(
+        <CardRoot isCollapsible>
+          <CardHeader title="Collapsible Card" />
+
+          <CardBody>Card Content</CardBody>
+        </CardRoot>,
+      );
+
+      expect(screen.getByText('Card Content')).toBeInTheDocument();
+    });
+
+    it('hides body when isCollapsible and isOpen is false', () => {
+      render(
+        <CardRoot isCollapsible isOpen={false}>
+          <CardHeader title="Collapsible Card" />
+
+          <CardBody>Card Content</CardBody>
+        </CardRoot>,
+      );
+
+      expect(screen.queryByText('Card Content')).not.toBeInTheDocument();
+    });
+
+    it('renders a toggle button in the header when isCollapsible', () => {
+      render(
+        <CardRoot isCollapsible>
+          <CardHeader title="Collapsible Card" />
+
+          <CardBody>Card Content</CardBody>
+        </CardRoot>,
+      );
+
+      expect(screen.getByRole('button', { name: 'Collapse' })).toBeInTheDocument();
+    });
+
+    it('does not render a toggle button when isCollapsible is false', () => {
+      render(
+        <CardRoot>
+          <CardHeader title="Regular Card" />
+
+          <CardBody>Card Content</CardBody>
+        </CardRoot>,
+      );
+
+      expect(screen.queryByRole('button')).not.toBeInTheDocument();
+    });
+
+    it('toggles the body visibility when the header button is clicked', async () => {
+      const { user } = render(
+        <CardRoot isCollapsible>
+          <CardHeader title="Collapsible Card" />
+
+          <CardBody>Card Content</CardBody>
+        </CardRoot>,
+      );
+
+      expect(screen.getByText('Card Content')).toBeInTheDocument();
+
+      await user.click(screen.getByRole('button', { name: 'Collapse' }));
+      expect(screen.queryByText('Card Content')).not.toBeInTheDocument();
+
+      await user.click(screen.getByRole('button', { name: 'Expand' }));
+      expect(screen.getByText('Card Content')).toBeInTheDocument();
+    });
+
+    it('calls onOpenChange when the header button is clicked', async () => {
+      const onOpenChange = jest.fn();
+
+      const { user } = render(
+        <CardRoot isCollapsible onOpenChange={onOpenChange}>
+          <CardHeader title="Collapsible Card" />
+
+          <CardBody>Card Content</CardBody>
+        </CardRoot>,
+      );
+
+      await user.click(screen.getByRole('button', { name: 'Collapse' }));
+      expect(onOpenChange).toHaveBeenCalledWith(false);
+
+      await user.click(screen.getByRole('button', { name: 'Expand' }));
+      expect(onOpenChange).toHaveBeenCalledWith(true);
+    });
+
+    it('toggles the body visibility when the title is clicked', async () => {
+      const { user } = render(
+        <CardRoot isCollapsible>
+          <CardHeader title="Collapsible Card" />
+
+          <CardBody>Card Content</CardBody>
+        </CardRoot>,
+      );
+
+      expect(screen.getByText('Card Content')).toBeInTheDocument();
+
+      await user.click(screen.getByRole('button', { name: 'Collapsible Card' }));
+      expect(screen.queryByText('Card Content')).not.toBeInTheDocument();
+
+      await user.click(screen.getByRole('button', { name: 'Collapsible Card' }));
+      expect(screen.getByText('Card Content')).toBeInTheDocument();
+    });
+
+    it('respects external isOpen prop in controlled mode', () => {
+      const { rerender } = render(
+        <CardRoot isCollapsible isOpen>
+          <CardHeader title="Collapsible Card" />
+
+          <CardBody>Card Content</CardBody>
+        </CardRoot>,
+      );
+
+      expect(screen.getByText('Card Content')).toBeInTheDocument();
+
+      rerender(
+        <CardRoot isCollapsible isOpen={false}>
+          <CardHeader title="Collapsible Card" />
+
+          <CardBody>Card Content</CardBody>
+        </CardRoot>,
+      );
+
+      expect(screen.queryByText('Card Content')).not.toBeInTheDocument();
     });
   });
 });
