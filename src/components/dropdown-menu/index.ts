@@ -29,6 +29,7 @@ import { DropdownMenuSeparator } from './DropdownMenuSeparator';
 import { DropdownMenuSubMenu } from './DropdownMenuSubMenu';
 
 export { DropdownMenuAlign, DropdownMenuSide, type DropdownMenuProps } from './DropdownMenu';
+export { type DropdownMenuGroupLabelProps } from './DropdownMenuGroupLabel';
 export { type DropdownMenuItemButtonProps } from './DropdownMenuItemButton';
 export { type DropdownMenuItemButtonCheckableProps } from './DropdownMenuItemButtonCheckable';
 export { type DropdownMenuItemButtonDestructiveProps } from './DropdownMenuItemButtonDestructive';

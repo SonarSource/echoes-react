@@ -48,16 +48,8 @@ export default meta;
 
 type Story = StoryObj<typeof DropdownMenu>;
 
-const items = (
+const enterpriseItems = (
   <>
-    <DropdownMenu.ItemButton>Your account</DropdownMenu.ItemButton>
-
-    <DropdownMenu.ItemLink to="/">Your organization</DropdownMenu.ItemLink>
-
-    <DropdownMenu.Separator />
-
-    <DropdownMenu.GroupLabel>Enterprises</DropdownMenu.GroupLabel>
-
     <DropdownMenu.ItemButton
       prefix={<IconGear color="echoes-color-icon-bold" />}
       suffix={<Badge variety="info">Public</Badge>}>
@@ -75,6 +67,28 @@ const items = (
       prefix={<IconBug color="echoes-color-icon-default" />}>
       SonarQube Server
     </DropdownMenu.ItemButton>
+  </>
+);
+
+const themeItems = (
+  <>
+    <DropdownMenu.ItemButtonCheckable isChecked>Light Mode</DropdownMenu.ItemButtonCheckable>
+
+    <DropdownMenu.ItemButtonCheckable>Dark Mode</DropdownMenu.ItemButtonCheckable>
+  </>
+);
+
+const items = (
+  <>
+    <DropdownMenu.ItemButton>Your account</DropdownMenu.ItemButton>
+
+    <DropdownMenu.ItemLink to="/">Your organization</DropdownMenu.ItemLink>
+
+    <DropdownMenu.Separator />
+
+    <DropdownMenu.GroupLabel>Enterprises</DropdownMenu.GroupLabel>
+
+    {enterpriseItems}
 
     <DropdownMenu.Separator />
 
@@ -93,9 +107,7 @@ const items = (
 
     <DropdownMenu.GroupLabel>Theme</DropdownMenu.GroupLabel>
 
-    <DropdownMenu.ItemButtonCheckable isChecked>Light Mode</DropdownMenu.ItemButtonCheckable>
-
-    <DropdownMenu.ItemButtonCheckable>Dark Mode</DropdownMenu.ItemButtonCheckable>
+    {themeItems}
 
     <DropdownMenu.Separator />
 
@@ -145,6 +157,35 @@ export const MenuWithADisabledButton: Story = {
         Trigger
       </MenuButton>
     </DropdownMenu>
+  ),
+};
+
+export const MenuWithGroupLabelSuffix: Story = {
+  render: () => (
+    <BasicWrapper>
+      <DropdownMenu
+        items={
+          <>
+            <DropdownMenu.GroupLabel
+              suffix={<LinkStandalone to="/enterprises">View all</LinkStandalone>}>
+              Enterprises
+            </DropdownMenu.GroupLabel>
+
+            {enterpriseItems}
+
+            <DropdownMenu.Separator />
+
+            <DropdownMenu.GroupLabel
+              suffix={<LinkStandalone to="/theme-settings">Configure</LinkStandalone>}>
+              Theme
+            </DropdownMenu.GroupLabel>
+
+            {themeItems}
+          </>
+        }>
+        <MenuButton>Menu with suffix links</MenuButton>
+      </DropdownMenu>
+    </BasicWrapper>
   ),
 };
 

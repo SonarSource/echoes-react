@@ -20,14 +20,42 @@
 
 import styled from '@emotion/styled';
 import * as radixDropdownMenu from '@radix-ui/react-dropdown-menu';
+import { forwardRef, ReactNode } from 'react';
 
 import { cssVar } from '~utils/design-tokens';
 
-export const DropdownMenuGroupLabel = styled(radixDropdownMenu.Label)`
+export interface DropdownMenuGroupLabelProps extends radixDropdownMenu.DropdownMenuLabelProps {
+  /**
+   * Optional content to display at the end of the group label element.
+   */
+  suffix?: ReactNode;
+}
+
+export const DropdownMenuGroupLabel = forwardRef<HTMLDivElement, DropdownMenuGroupLabelProps>(
+  (props, ref) => {
+    const { children, suffix, ...rest } = props;
+
+    return (
+      <StyledDropdownMenuGroupLabel ref={ref} {...rest}>
+        {children}
+
+        {suffix}
+      </StyledDropdownMenuGroupLabel>
+    );
+  },
+);
+
+DropdownMenuGroupLabel.displayName = 'DropdownMenuGroupLabel';
+
+const StyledDropdownMenuGroupLabel = styled(radixDropdownMenu.Label)`
+  align-items: center;
   color: ${cssVar('color-text-default')};
+  display: flex;
   font: ${cssVar('typography-text-small-semi-bold')};
+  justify-content: space-between;
+
   padding: ${cssVar('dimension-space-100')} ${cssVar('dimension-space-150')}
     ${cssVar('dimension-space-50')};
 `;
 
-DropdownMenuGroupLabel.displayName = 'DropdownMenuGroupLabel';
+StyledDropdownMenuGroupLabel.displayName = 'StyledDropdownMenuGroupLabel';

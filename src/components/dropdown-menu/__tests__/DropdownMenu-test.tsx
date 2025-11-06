@@ -25,6 +25,7 @@ import { ThemeProvider } from '~utils/theme';
 import { DropdownMenu, DropdownMenuAlign } from '..';
 import { Button } from '../../buttons';
 import { IconBell, IconCalendar } from '../../icons';
+import { LinkStandalone } from '../../links';
 
 const items = <DropdownMenu.ItemButton>An item</DropdownMenu.ItemButton>;
 const trigger = <Button>Trigger</Button>;
@@ -302,4 +303,57 @@ it('should render with a sub-menu', () => {
   );
 
   expect(screen.getByText('An item')).toBeVisible();
+});
+
+it('should render GroupLabel without suffix', () => {
+  renderWithMemoryRouter(
+    <DropdownMenu
+      isOpen
+      items={
+        <>
+          <DropdownMenu.GroupLabel>My Group</DropdownMenu.GroupLabel>
+          <DropdownMenu.ItemButton>Item in group</DropdownMenu.ItemButton>
+        </>
+      }>
+      {trigger}
+    </DropdownMenu>,
+  );
+
+  expect(screen.getByText('My Group')).toBeVisible();
+  expect(screen.getByText('Item in group')).toBeVisible();
+});
+
+it('should render GroupLabel with suffix', () => {
+  renderWithMemoryRouter(
+    <DropdownMenu
+      isOpen
+      items={
+        <>
+          <DropdownMenu.GroupLabel
+            suffix={<LinkStandalone to="/view-all">View all</LinkStandalone>}>
+            My Group
+          </DropdownMenu.GroupLabel>
+          <DropdownMenu.ItemButton>Item in group</DropdownMenu.ItemButton>
+        </>
+      }>
+      {trigger}
+    </DropdownMenu>,
+  );
+
+  expect(screen.getByText('My Group')).toBeVisible();
+  expect(screen.getByRole('link', { name: 'View all' })).toBeVisible();
+});
+
+it('should forward ref to GroupLabel', () => {
+  const ref = { current: null };
+
+  renderWithMemoryRouter(
+    <DropdownMenu
+      isOpen
+      items={<DropdownMenu.GroupLabel ref={ref}>My Group</DropdownMenu.GroupLabel>}>
+      {trigger}
+    </DropdownMenu>,
+  );
+
+  expect(ref.current).toBeInstanceOf(HTMLDivElement);
 });
