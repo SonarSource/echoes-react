@@ -37,9 +37,12 @@ export const DropdownMenuGroupLabel = forwardRef<HTMLDivElement, DropdownMenuGro
 
     return (
       <StyledDropdownMenuGroupLabel ref={ref} {...rest}>
-        {children}
+        {/* Fragment wrapper to ensure single child structure, needed for compatibility */}
+        <>
+          {children}
 
-        {suffix}
+          {suffix && <StyledSuffix>{suffix}</StyledSuffix>}
+        </>
       </StyledDropdownMenuGroupLabel>
     );
   },
@@ -59,3 +62,12 @@ const StyledDropdownMenuGroupLabel = styled(radixDropdownMenu.Label)`
 `;
 
 StyledDropdownMenuGroupLabel.displayName = 'StyledDropdownMenuGroupLabel';
+
+const StyledSuffix = styled.span`
+  align-items: center;
+  display: flex;
+  flex: 0 0 auto;
+  justify-content: flex-end;
+`;
+
+StyledSuffix.displayName = 'StyledSuffix';
