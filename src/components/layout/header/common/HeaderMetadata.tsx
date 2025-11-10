@@ -49,8 +49,9 @@ export const HeaderMetadata = forwardRef<HTMLDivElement, PropsWithChildren<Heade
 HeaderMetadata.displayName = 'HeaderMetadata';
 
 const StyledHeaderMetadata = styled(Text)`
-  align-items: center;
   display: flex;
+  flex-wrap: wrap;
+  align-items: center;
   gap: ${cssVar('dimension-space-100')};
   max-width: 100%;
 `;
