@@ -86,9 +86,7 @@ const StyledAsideLeft = styled.div`
   border-right: ${cssVar('border-width-default')} solid ${cssVar('color-border-weak')};
 
   box-sizing: border-box;
-  padding-left: ${cssVar('dimension-space-300')};
-  padding-right: ${cssVar('dimension-space-100')};
-  padding-top: ${cssVar('dimension-space-300')};
+  padding: ${cssVar('dimension-space-250')};
 `;
 StyledAsideLeft.displayName = 'StyledAside';
 
