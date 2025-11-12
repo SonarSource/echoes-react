@@ -160,14 +160,13 @@ export const MenuWithADisabledButton: Story = {
   ),
 };
 
-export const MenuWithGroupLabelSuffix: Story = {
+export const MenuWithGroupLabelAction: Story = {
   render: () => (
     <BasicWrapper>
       <DropdownMenu
         items={
           <>
-            <DropdownMenu.GroupLabel
-              suffix={<LinkStandalone to="/enterprises">View all</LinkStandalone>}>
+            <DropdownMenu.GroupLabel link={{ linkElement: 'View all', to: '/enterprises' }}>
               Enterprises
             </DropdownMenu.GroupLabel>
 
@@ -175,15 +174,14 @@ export const MenuWithGroupLabelSuffix: Story = {
 
             <DropdownMenu.Separator />
 
-            <DropdownMenu.GroupLabel
-              suffix={<LinkStandalone to="/theme-settings">Configure</LinkStandalone>}>
+            <DropdownMenu.GroupLabel link={{ linkElement: 'Configure', to: '/theme-settings' }}>
               Theme
             </DropdownMenu.GroupLabel>
 
             {themeItems}
           </>
         }>
-        <MenuButton>Menu with suffix links</MenuButton>
+        <MenuButton>Menu with links</MenuButton>
       </DropdownMenu>
     </BasicWrapper>
   ),
