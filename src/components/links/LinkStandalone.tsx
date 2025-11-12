@@ -27,7 +27,7 @@ import { LinkStandaloneProps } from './LinkTypes';
 import { cssVar } from '~utils/design-tokens';
 
 const LinkStandaloneBase = forwardRef<HTMLAnchorElement, LinkStandaloneProps>((props, ref) => {
-  const { children, iconLeft, ...linkProps } = props;
+  const { children, iconLeft, isDiscreet, ...linkProps } = props;
 
   return (
     <LinkBaseStyled {...linkProps} ref={ref}>
@@ -41,17 +41,23 @@ const LinkStandaloneBase = forwardRef<HTMLAnchorElement, LinkStandaloneProps>((p
 LinkStandaloneBase.displayName = 'LinkStandaloneBase';
 
 export const LinkStandalone = styled(LinkStandaloneBase)`
+  ${({ isDiscreet }) =>
+    isDiscreet &&
+    css`
+      font-weight: ${cssVar('font-weight-regular')};
+    `}
+
   text-decoration-line: ${cssVar('text-decoration-none')};
+
+  &:hover {
+    text-decoration-line: ${cssVar('text-decoration-underline')};
+  }
 
   &:hover,
   &:focus,
   &:active {
     color: var(--color);
     text-decoration-color: var(--color);
-  }
-
-  &:hover {
-    text-decoration-line: ${cssVar('text-decoration-underline')};
   }
 
   ${({ iconLeft }) =>

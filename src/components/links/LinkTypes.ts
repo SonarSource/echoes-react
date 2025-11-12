@@ -65,7 +65,10 @@ interface LinkAsButtonProps extends LinkCommonProps, LinkPropsForbiddenForButton
 
 export type LinkProps = LinkAsLinkProps | LinkAsButtonProps;
 
-export type LinkStandaloneBaseProps = { iconLeft?: ReactNode };
+export type LinkStandaloneBaseProps = {
+  iconLeft?: ReactNode;
+  isDiscreet?: boolean;
+};
 
 export type LinkStandaloneProps = LinkProps & LinkStandaloneBaseProps;
 

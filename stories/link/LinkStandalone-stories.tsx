@@ -32,6 +32,11 @@ const meta: Meta<typeof LinkStandaloneComp> = {
   component: LinkStandaloneComp,
   title: 'Echoes/Link/LinkStandalone',
   argTypes: {
+    isDiscreet: {
+      control: {
+        type: 'boolean',
+      },
+    },
     highlight: {
       control: {
         type: 'select',
@@ -51,7 +56,7 @@ export default meta;
 type Story = StoryObj<typeof LinkStandaloneComp>;
 
 const defaultArgs = {
-  highlight: undefined,
+  highlight: LinkHighlight.Accent,
   to: '/projects/new',
 };
 
