@@ -36,6 +36,7 @@ export const BreadcrumbLink = forwardRef<HTMLAnchorElement, BreadcrumbLinkProps>
         {...linkProps}
         className={classNames(className, breadcrumbItemStyle)}
         highlight={LinkHighlight.Subtle}
+        isDiscreet
         ref={ref}
         title={title}>
         {linkElement}
@@ -43,4 +44,5 @@ export const BreadcrumbLink = forwardRef<HTMLAnchorElement, BreadcrumbLinkProps>
     </BreadcrumbItemBase>
   );
 });
+
 BreadcrumbLink.displayName = 'BreadcrumbLink';
