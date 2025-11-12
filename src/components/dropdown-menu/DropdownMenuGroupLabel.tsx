@@ -20,42 +20,53 @@
 
 import styled from '@emotion/styled';
 import * as radixDropdownMenu from '@radix-ui/react-dropdown-menu';
-import { forwardRef, ReactNode } from 'react';
+import { forwardRef } from 'react';
+import { LinkStandalone } from '../links';
+import { LinkBaseProps } from '../links/LinkTypes';
 
 import { cssVar } from '~utils/design-tokens';
 
 export interface DropdownMenuGroupLabelProps extends radixDropdownMenu.DropdownMenuLabelProps {
   /**
-   * Optional content to display at the end of the group label element.
+   * Optional link to display at the end of the group label element.
    */
-  suffix?: ReactNode;
+  link?: {
+    linkElement: LinkBaseProps['children'];
+    to: LinkBaseProps['to'];
+  };
 }
 
 export const DropdownMenuGroupLabel = forwardRef<HTMLDivElement, DropdownMenuGroupLabelProps>(
   (props, ref) => {
-    const { children, suffix, ...rest } = props;
+    const { children, link, ...rest } = props;
 
     return (
-      <StyledDropdownMenuGroupLabel ref={ref} {...rest}>
-        {/* Fragment wrapper to ensure single child structure, needed for compatibility */}
-        <>
+      <StyledWrapper>
+        <StyledDropdownMenuGroupLabel ref={ref} {...rest}>
           {children}
+        </StyledDropdownMenuGroupLabel>
 
-          {suffix && <StyledSuffix>{suffix}</StyledSuffix>}
-        </>
-      </StyledDropdownMenuGroupLabel>
+        {link && (
+          <StyledMenuItem asChild>
+            <StyledLink to={link.to}>{link.linkElement}</StyledLink>
+          </StyledMenuItem>
+        )}
+      </StyledWrapper>
     );
   },
 );
 
 DropdownMenuGroupLabel.displayName = 'DropdownMenuGroupLabel';
 
-const StyledDropdownMenuGroupLabel = styled(radixDropdownMenu.Label)`
+const StyledWrapper = styled.div`
   align-items: center;
-  color: ${cssVar('color-text-default')};
   display: flex;
-  font: ${cssVar('typography-text-small-semi-bold')};
   justify-content: space-between;
+`;
+
+const StyledDropdownMenuGroupLabel = styled(radixDropdownMenu.Label)`
+  color: ${cssVar('color-text-default')};
+  font: ${cssVar('typography-text-small-semi-bold')};
 
   padding: ${cssVar('dimension-space-100')} ${cssVar('dimension-space-150')}
     ${cssVar('dimension-space-50')};
@@ -63,11 +74,31 @@ const StyledDropdownMenuGroupLabel = styled(radixDropdownMenu.Label)`
 
 StyledDropdownMenuGroupLabel.displayName = 'StyledDropdownMenuGroupLabel';
 
-const StyledSuffix = styled.span`
-  align-items: center;
-  display: flex;
-  flex: 0 0 auto;
-  justify-content: flex-end;
+const StyledMenuItem = styled(radixDropdownMenu.Item)`
+  /* With asChild, these styles apply directly to the <a> tag */
+  background: none;
+  padding: ${cssVar('dimension-space-50')} ${cssVar('dimension-space-100')};
+
+  &:hover,
+  &[data-highlighted] {
+    background: none;
+  }
 `;
 
-StyledSuffix.displayName = 'StyledSuffix';
+const StyledLink = styled(LinkStandalone)`
+  /* Match the label typography (same as StyledDropdownMenuGroupLabel) */
+  font: ${cssVar('typography-text-small-semi-bold')};
+  margin-right: ${cssVar('dimension-space-100')};
+
+  /* Show focus ring only for keyboard navigation - && needed for extra specificity */
+  &&:focus-visible {
+    border-radius: ${cssVar('border-radius-200')};
+    outline: ${cssVar('color-focus-default')} solid ${cssVar('focus-border-width-default')};
+    outline-offset: ${cssVar('focus-border-offset-default')};
+  }
+
+  /* Hide focus ring on mouse hover - && needed for extra specificity */
+  &&:hover {
+    outline: none;
+  }
+`;

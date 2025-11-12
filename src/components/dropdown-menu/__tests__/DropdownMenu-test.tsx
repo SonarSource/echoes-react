@@ -25,7 +25,6 @@ import { ThemeProvider } from '~utils/theme';
 import { DropdownMenu, DropdownMenuAlign } from '..';
 import { Button } from '../../buttons';
 import { IconBell, IconCalendar } from '../../icons';
-import { LinkStandalone } from '../../links';
 
 const items = <DropdownMenu.ItemButton>An item</DropdownMenu.ItemButton>;
 const trigger = <Button>Trigger</Button>;
@@ -323,14 +322,13 @@ it('should render GroupLabel without suffix', () => {
   expect(screen.getByText('Item in group')).toBeVisible();
 });
 
-it('should render GroupLabel with suffix', () => {
+it('should render GroupLabel with link', () => {
   renderWithMemoryRouter(
     <DropdownMenu
       isOpen
       items={
         <>
-          <DropdownMenu.GroupLabel
-            suffix={<LinkStandalone to="/view-all">View all</LinkStandalone>}>
+          <DropdownMenu.GroupLabel link={{ linkElement: 'View all', to: '/view-all' }}>
             My Group
           </DropdownMenu.GroupLabel>
           <DropdownMenu.ItemButton>Item in group</DropdownMenu.ItemButton>
@@ -341,7 +339,11 @@ it('should render GroupLabel with suffix', () => {
   );
 
   expect(screen.getByText('My Group')).toBeVisible();
-  expect(screen.getByRole('link', { name: 'View all' })).toBeVisible();
+
+  const link = screen.getByRole('menuitem', { name: 'View all' });
+
+  expect(link).toBeVisible();
+  expect(link).toHaveAttribute('href', '/view-all');
 });
 
 it('should forward ref to GroupLabel', () => {
