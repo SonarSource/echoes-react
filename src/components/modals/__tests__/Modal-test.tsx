@@ -41,6 +41,7 @@ it('should appear/disappear as expected', async () => {
 
 it('should allow to be controlled', async () => {
   const { user } = renderControlledModal();
+
   expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
 
   await user.click(screen.getByRole('button', { name: 'Toggle' }));
@@ -112,8 +113,31 @@ it("shouldn't have any a11y violation", async () => {
   await expect(container).toHaveNoA11yViolations();
 });
 
+it('should call onOpenChange for uncontrolled modal', async () => {
+  const onOpenChange = jest.fn();
+
+  const { user } = render(
+    <Modal
+      content="Modal content"
+      onOpenChange={onOpenChange}
+      secondaryButton={<Button>Close</Button>}
+      title="Test Modal">
+      <Button>Toggle</Button>
+    </Modal>,
+  );
+
+  expect(onOpenChange).not.toHaveBeenCalled();
+
+  await user.click(screen.getByRole('button', { name: 'Toggle' }));
+  expect(onOpenChange).toHaveBeenCalledWith(true);
+
+  await user.click(screen.getByText('Close'));
+  expect(onOpenChange).toHaveBeenCalledWith(false);
+});
+
 function renderModal(args: Partial<ModalProps> = {}) {
   const { isOpen, onOpenChange, ...overrides } = args;
+
   return render(
     <Modal {...overrides}>
       <Button>Toggle</Button>
