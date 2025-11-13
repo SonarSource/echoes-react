@@ -45,13 +45,18 @@ interface CommonProps {
    * Callback function triggered when the dialog is closed.
    */
   onClose?: VoidFunction;
-  /** An accessible title to be announced when the dialog is opened. */
+  /**
+   * Callback function triggered when the dialog state changes.
+   */
+  onOpenChange?: (isOpen: boolean) => void;
+  /**
+   * An accessible title to be announced when the dialog is opened.
+   */
   title?: TextNodeOptional;
 }
 
 interface UncontrolledProps extends CommonProps {
   isOpen?: never;
-  onOpenChange?: never;
 }
 
 interface ControlledProps extends CommonProps {

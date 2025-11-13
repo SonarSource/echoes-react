@@ -210,3 +210,25 @@ export const WithADropdownItemTrigger: Story = {
     </DropdownMenu>
   ),
 };
+
+export const UncontrolledWithOnOpenChange: Story = {
+  args: {
+    description: 'This is an uncontrolled modal using onOpenChange to alert open/close events.',
+    footerLink: 'link',
+    primaryButton: 'default',
+    secondaryButton: 'default',
+    title: 'Uncontrolled Modal with onOpenChange',
+  },
+
+  render: (args) => (
+    <Modal
+      content={<div>Modal content, anything can be set in there.</div>}
+      {...args}
+      onOpenChange={(open) => {
+        // eslint-disable-next-line no-alert
+        alert(`Modal open state changed: ${open}`);
+      }}>
+      <Button>Show Modal</Button>
+    </Modal>
+  ),
+};
