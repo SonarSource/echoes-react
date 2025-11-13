@@ -44,6 +44,7 @@ export enum PopoverSide {
 export interface PopoverProps {
   align?: `${PopoverAlign}`;
   children: ReactElement;
+  className?: string;
   description?: TextNodeOptional;
   extraContent?: ReactNode;
   footer?: ReactNode; // Enforce Button, ButtonGroup or Link ?
@@ -75,8 +76,18 @@ const ARROW_PADDING = 16;
  * Since the popovers are appended to the body, they are in the root Stacking Context. If other elements are also there, the z-index will determine which appears on top. By creating a new Stacking Context for your app, it ensures that z-indexed elements will stay within that context, while popovers will be painted on top, in the parent Stacking Context.
  */
 export const Popover = forwardRef<HTMLButtonElement, PopoverProps>((props, ref) => {
-  const { align, children, description, extraContent, footer, isOpen, side, title, ...radixProps } =
-    props;
+  const {
+    align,
+    children,
+    className,
+    description,
+    extraContent,
+    footer,
+    isOpen,
+    side,
+    title,
+    ...radixProps
+  } = props;
   const theme = useContext(ThemeContext);
   const themeOverrideProp = isDefined(theme) ? { [THEME_DATA_ATTRIBUTE]: theme } : {};
 
@@ -90,6 +101,7 @@ export const Popover = forwardRef<HTMLButtonElement, PopoverProps>((props, ref) 
           {...themeOverrideProp}
           align={align}
           arrowPadding={ARROW_PADDING}
+          className={className}
           side={side}
           sideOffset={POPOVER_OFFSET}>
           {title && (
