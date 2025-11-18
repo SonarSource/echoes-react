@@ -123,6 +123,14 @@ export interface SpotlightProps {
   nextLabel?: string;
 
   /**
+   * A nonce value for inline styles (Content Security Policy - CSP) (optional).
+   * In most cases, you should configure the nonce once in the EchoesProvider
+   * instead of passing it to individual components. This prop is only needed
+   * if you need to override the global nonce for this specific Spotlight instance.
+   */
+  nonce?: string;
+
+  /**
    * Shoud we disable closing the spotlight when clicking the overlay?
    * Defaults to false when there's only one step, true otherwise (optional)
    */

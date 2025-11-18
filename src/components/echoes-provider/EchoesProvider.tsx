@@ -18,15 +18,29 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+import createCache from '@emotion/cache';
+import { CacheProvider } from '@emotion/react';
 import { HeadlessMantineProvider } from '@mantine/core';
-import { PropsWithChildren } from 'react';
+import { PropsWithChildren, useMemo } from 'react';
 import { useIntl } from 'react-intl';
 import { Toaster as ToastContainer } from 'sonner';
 import { ToastGlobalStyles } from '~common/components/Toast';
 import { TooltipProvider, TooltipProviderProps, TypographyGlobalStyles } from '..';
 import { SelectGlobalStyles } from '../select/SelectCommons';
+import { NonceContext } from './NonceContext';
 
 export interface EchoesProviderProps {
+  /**
+   * A nonce value for inline styles (Content Security Policy - CSP) (optional).
+   * When provided, this nonce will be:
+   * - Applied to Emotion's CSS-in-JS style tags
+   * - Made available to components like Spotlight that need it for inline styles
+   * - Used to comply with strict Content Security Policy requirements
+   *
+   * This should be set once at the application root and will automatically
+   * propagate to all Echoes components that require it.
+   */
+  nonce?: string;
   /**
    * Custom class name for all the toasts (optional).
    */
@@ -55,7 +69,8 @@ export interface EchoesProviderProps {
  * It must be placed at the root of your application (or at least wrap all
  * components that use the Echoes design system). To ensure all Echoes components work properly,
  * the EchoesProvider should be placed inside the react-intl provider and react-router provider.
- * Ideally, you should also wrap your application with a div that reset the [Stacking Context](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_positioned_layout/Understanding_z-index/Stacking_context)
+ * Ideally, you should also wrap your application with a div that reset the
+ * [Stacking Context](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_positioned_layout/Understanding_z-index/Stacking_context)
  * for your app to ensure that tooltips and toasts from Echoes appear above the rest of the UI.
  *
  * **Usage**
@@ -85,13 +100,44 @@ export interface EchoesProviderProps {
  *   );
  * }
  * ```
+ *
+ * **Content Security Policy (CSP) Support**
+ *
+ * If your application uses a strict Content Security Policy, you can provide a nonce
+ * to enable inline styles required by Echoes components:
+ *
+ * ```tsx
+ * function App() {
+ *   // Get nonce from meta tag or server context
+ *   const nonce = document.querySelector('meta[name="csp-nonce"]')?.getAttribute('content');
+ *
+ *   return (
+ *     <EchoesProvider nonce={nonce}>
+ *       {children}
+ *     </EchoesProvider>
+ *   );
+ * }
+ * ```
  */
 export function EchoesProvider(props: PropsWithChildren<EchoesProviderProps>) {
-  const { children, tooltipsDelayDuration, toastsClassName, toastsVisibleNb = 5 } = props;
+  const { children, nonce, tooltipsDelayDuration, toastsClassName, toastsVisibleNb = 5 } = props;
   const intl = useIntl();
 
-  return (
-    <>
+  // Create Emotion cache with nonce support for CSP compliance
+  // Use 'echoes' as the key for better namespace isolation and debugging
+  const emotionCache = useMemo(() => {
+    if (!nonce) {
+      return undefined;
+    }
+
+    const cache = createCache({ key: 'echoes', nonce });
+    cache.compat = true;
+
+    return cache;
+  }, [nonce]);
+
+  const providerContent = (
+    <NonceContext.Provider value={nonce}>
       <TypographyGlobalStyles />
       <SelectGlobalStyles />
       <ToastGlobalStyles />
@@ -108,7 +154,14 @@ export function EchoesProvider(props: PropsWithChildren<EchoesProviderProps>) {
           visibleToasts={toastsVisibleNb}
         />
       </TooltipProvider>
-    </>
+    </NonceContext.Provider>
+  );
+
+  // Only wrap with CacheProvider if a nonce is provided
+  return emotionCache ? (
+    <CacheProvider value={emotionCache}>{providerContent}</CacheProvider>
+  ) : (
+    providerContent
   );
 }
 
