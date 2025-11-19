@@ -18,5 +18,22 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-export { EchoesProvider, type EchoesProviderProps } from './EchoesProvider';
-export { useNonce } from './NonceContext';
+import { createContext, useContext } from 'react';
+
+/**
+ * Context for providing CSP nonce value to components that need it.
+ * This is used internally by Echoes components to access the nonce
+ * configured in the EchoesProvider.
+ */
+export const NonceContext = createContext<string | undefined>(undefined);
+
+/**
+ * Hook to access the CSP nonce from the EchoesProvider.
+ * Components that need to apply nonces to inline styles for CSP compliance
+ * can use this hook to retrieve the globally configured nonce value.
+ *
+ * @returns The nonce string if configured, undefined otherwise
+ */
+export function useNonce(): string | undefined {
+  return useContext(NonceContext);
+}
