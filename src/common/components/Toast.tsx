@@ -257,24 +257,22 @@ function ToastPrefix({ variety }: Pick<ToastProps, 'variety'>) {
 ToastPrefix.displayName = 'ToastPrefix';
 
 export function ToastGlobalStyles() {
-  return (
-    <Global
-      styles={css`
-        [data-sonner-toaster] {
-          z-index: 0;
-        }
-
-        [data-sonner-toast] {
-          border-radius: ${cssVar('border-radius-400')};
-
-          &:focus-visible {
-            outline: ${cssVar('color-focus-default')} solid ${cssVar('focus-border-width-default')};
-            outline-offset: ${cssVar('focus-border-offset-default')};
-            box-shadow: none;
-          }
-        }
-      `}
-    />
-  );
+  return <Global styles={toastGlobalStyles} />;
 }
 ToastGlobalStyles.displayName = 'ToastGlobalStyles';
+
+const toastGlobalStyles = css`
+  [data-sonner-toaster] {
+    z-index: 0;
+  }
+
+  [data-sonner-toast] {
+    border-radius: ${cssVar('border-radius-400')};
+
+    &:focus-visible {
+      outline: ${cssVar('color-focus-default')} solid ${cssVar('focus-border-width-default')};
+      outline-offset: ${cssVar('focus-border-offset-default')};
+      box-shadow: none;
+    }
+  }
+`;

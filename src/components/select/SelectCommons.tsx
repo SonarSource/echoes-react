@@ -385,71 +385,69 @@ export const SelectStyled = styled(MantineSelect)`
  * Instead, these styles are added as Global emotion styles in the EchoesProvider.
  */
 export function SelectGlobalStyles() {
-  return (
-    <Global
-      styles={css`
-        // Dropdown element - wrapper around the select items
-        .echoes-select-dropdown,
-        .echoes-select-dropdown-auto-width {
-          position: absolute;
-
-          overflow: hidden;
-
-          background-color: ${cssVar('color-surface-default')};
-          border: ${cssVar('border-width-default')} solid ${cssVar('color-border-weak')};
-          border-radius: ${cssVar('border-radius-400')};
-
-          box-shadow: ${cssVar('box-shadow-medium')};
-
-          & .echoes-select-options-wrapper {
-            max-height: 250px;
-            overflow-y: auto;
-
-            padding: ${cssVar('dimension-space-100')} ${cssVar('dimension-space-0')};
-          }
-        }
-
-        .echoes-select-dropdown-auto-width {
-          width: auto !important; // We need to override the element width set by Mantine
-        }
-
-        // Inside the dropdown - Group wrapper, contains a group label and all the items of a group
-        .echoes-select-group {
-          display: flex;
-          flex-direction: column;
-          padding: ${cssVar('dimension-space-0')};
-        }
-
-        // Inside the dropdown - Group header label
-        .echoes-select-group-label {
-          padding: ${cssVar('dimension-space-50')} ${cssVar('dimension-space-200')}
-            ${cssVar('dimension-space-100')};
-
-          font: ${cssVar('typography-text-small-semi-bold')};
-          color: ${cssVar('color-text-default')};
-        }
-
-        // Inside the dropdown - Adds a divider between two groups
-        .echoes-select-group + .echoes-select-group::before {
-          content: '';
-
-          flex: 1;
-          padding: ${cssVar('dimension-space-25')} ${cssVar('dimension-space-0')};
-
-          border-top: ${cssVar('border-width-default')} solid ${cssVar('color-border-weak')};
-        }
-
-        .echoes-select-empty {
-          font: ${cssVar('typography-text-small-medium')};
-          color: ${cssVar('color-text-subtle')};
-          text-align: center;
-
-          padding: ${cssVar('dimension-space-50')} ${cssVar('dimension-space-0')};
-        }
-      `}
-    />
-  );
+  return <Global styles={selectGlobalStyles} />;
 }
+
+const selectGlobalStyles = css`
+  // Dropdown element - wrapper around the select items
+  .echoes-select-dropdown,
+  .echoes-select-dropdown-auto-width {
+    position: absolute;
+
+    overflow: hidden;
+
+    background-color: ${cssVar('color-surface-default')};
+    border: ${cssVar('border-width-default')} solid ${cssVar('color-border-weak')};
+    border-radius: ${cssVar('border-radius-400')};
+
+    box-shadow: ${cssVar('box-shadow-medium')};
+
+    & .echoes-select-options-wrapper {
+      max-height: 250px;
+      overflow-y: auto;
+
+      padding: ${cssVar('dimension-space-100')} ${cssVar('dimension-space-0')};
+    }
+  }
+
+  .echoes-select-dropdown-auto-width {
+    width: auto !important; // We need to override the element width set by Mantine
+  }
+
+  // Inside the dropdown - Group wrapper, contains a group label and all the items of a group
+  .echoes-select-group {
+    display: flex;
+    flex-direction: column;
+    padding: ${cssVar('dimension-space-0')};
+  }
+
+  // Inside the dropdown - Group header label
+  .echoes-select-group-label {
+    padding: ${`${cssVar('dimension-space-50')} ${cssVar('dimension-space-200')}
+      ${cssVar('dimension-space-100')}`};
+
+    font: ${cssVar('typography-text-small-semi-bold')};
+    color: ${cssVar('color-text-default')};
+  }
+
+  // Inside the dropdown - Adds a divider between two groups
+  .echoes-select-group + .echoes-select-group::before {
+    content: '';
+
+    flex: 1;
+    padding: ${cssVar('dimension-space-25')} ${cssVar('dimension-space-0')};
+
+    border-top: ${cssVar('border-width-default')} solid ${cssVar('color-border-weak')};
+  }
+
+  .echoes-select-empty {
+    font: ${cssVar('typography-text-small-medium')};
+    color: ${cssVar('color-text-subtle')};
+    text-align: center;
+
+    padding: ${cssVar('dimension-space-50')} ${cssVar('dimension-space-0')};
+  }
+`;
 
 interface SelectRightSectionProps extends Pick<SelectBaseProps, 'isLoading'> {
   hasValue: boolean;

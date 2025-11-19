@@ -18,7 +18,6 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { LinkBase } from './LinkBase';
 import { LinkHighlight } from './LinkTypes';
@@ -26,19 +25,19 @@ import { LinkHighlight } from './LinkTypes';
 import { cssVar } from '~utils/design-tokens';
 
 const LinkBaseStyledHighlight = {
-  [LinkHighlight.Accent]: css`
+  [LinkHighlight.Accent]: `
     --color: ${cssVar('color-text-accent')};
     --hover: ${cssVar('color-text-link-hover')};
   `,
-  [LinkHighlight.Default]: css`
+  [LinkHighlight.Default]: `
     --color: ${cssVar('color-text-default')};
     --hover: ${cssVar('color-text-link-hover')};
   `,
-  [LinkHighlight.Subtle]: css`
+  [LinkHighlight.Subtle]: `
     --color: ${cssVar('color-text-subtle')};
     --hover: ${cssVar('color-text-link-hover')};
   `,
-  [LinkHighlight.CurrentColor]: css`
+  [LinkHighlight.CurrentColor]: `
     --color: 'currentColor';
     --hover: ${cssVar('color-text-link-hover')};
   `,

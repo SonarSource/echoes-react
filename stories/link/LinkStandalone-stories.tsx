@@ -80,11 +80,7 @@ export const LinkStandaloneWithIcon: Story = {
     ...defaultArgs,
     children: 'Standalone Link With Icon',
     highlight: LinkHighlight.Default,
-    iconLeft: (
-      <span style={{ marginRight: '8px' }}>
-        <IconLink />
-      </span>
-    ),
+    iconLeft: <IconLink />,
   },
 };
 
