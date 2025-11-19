@@ -18,7 +18,6 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { forwardRef } from 'react';
 import { LinkBaseStyled } from './LinkBaseStyled';
@@ -26,11 +25,15 @@ import { LinkStandaloneProps } from './LinkTypes';
 
 import { cssVar } from '~utils/design-tokens';
 
-const LinkStandaloneBase = forwardRef<HTMLAnchorElement, LinkStandaloneProps>((props, ref) => {
+export const LinkStandalone = forwardRef<HTMLAnchorElement, LinkStandaloneProps>((props, ref) => {
   const { children, iconLeft, isDiscreet, ...linkProps } = props;
 
   return (
-    <LinkBaseStyled {...linkProps} ref={ref}>
+    <LinkBaseStyled
+      {...linkProps}
+      data-icon-left={Boolean(iconLeft) || undefined}
+      data-is-discreet={isDiscreet || undefined}
+      ref={ref}>
       {iconLeft}
 
       {children}
@@ -38,15 +41,9 @@ const LinkStandaloneBase = forwardRef<HTMLAnchorElement, LinkStandaloneProps>((p
   );
 });
 
-LinkStandaloneBase.displayName = 'LinkStandaloneBase';
+LinkStandalone.displayName = 'LinkStandalone';
 
-export const LinkStandalone = styled(LinkStandaloneBase)`
-  ${({ isDiscreet }) =>
-    isDiscreet &&
-    css`
-      font-weight: ${cssVar('font-weight-regular')};
-    `}
-
+const LinkStandaloneStyled = styled(LinkBaseStyled)`
   text-decoration-line: ${cssVar('text-decoration-none')};
 
   &:hover {
@@ -60,14 +57,14 @@ export const LinkStandalone = styled(LinkStandaloneBase)`
     text-decoration-color: var(--color);
   }
 
-  ${({ iconLeft }) =>
-    iconLeft &&
-    css`
-      & > svg,
-      & > img {
-        margin-right: ${cssVar('dimension-space-50')};
-      }
-    `};
+  &[data-is-discreet] {
+    font-weight: ${cssVar('font-weight-regular')};
+  }
+
+  &[data-icon-left] > svg,
+  &[data-icon-left] > img {
+    margin-right: ${cssVar('dimension-space-50')};
+  }
 `;
 
-LinkStandalone.displayName = 'LinkStandalone';
+LinkStandaloneStyled.displayName = 'LinkStandaloneStyled';
