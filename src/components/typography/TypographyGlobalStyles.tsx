@@ -23,23 +23,21 @@ import { css, Global } from '@emotion/react';
 import { cssVar } from '~utils/design-tokens';
 
 export function TypographyGlobalStyles() {
-  return (
-    <Global
-      styles={css`
-        body {
-          font: ${cssVar('typography-text-default-regular')};
-          color: ${cssVar('color-text-default')};
-        }
-
-        pre,
-        code,
-        kbd,
-        samp,
-        tt {
-          font: ${cssVar('typography-code-default')};
-        }
-      `}
-    />
-  );
+  return <Global styles={typographyGlobalStyles} />;
 }
 TypographyGlobalStyles.displayName = 'TypographyGlobalStyles';
+
+const typographyGlobalStyles = css`
+  body {
+    font: ${cssVar('typography-text-default-regular')};
+    color: ${cssVar('color-text-default')};
+  }
+
+  pre,
+  code,
+  kbd,
+  samp,
+  tt {
+    font: ${cssVar('typography-code-default')};
+  }
+`;
