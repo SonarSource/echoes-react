@@ -39,6 +39,8 @@ import {
   UnstyledListItem,
 } from './SidebarNavigationItemStyles';
 
+const TOOLTIP_DELAY_IN_MS = 1000;
+
 export interface SidebarNavigationItemProps
   extends Pick<NavLinkBaseProps, 'isMatchingFullPath' | 'enableOpenInNewTab' | 'to'> {
   ariaLabel?: string;
@@ -55,10 +57,10 @@ export interface SidebarNavigationItemProps
    */
   disableIconWhenSidebarOpen?: boolean;
   /**
-   * Whether to display the tooltip on the item or not.
-   * By default the tooltip is disabled, it should only be enabled if you expect the content to be ellipsed.
+   * Whether to disable the tooltip on the item or not.
+   * By default the tooltip is enabled, it should only be disabled if you don't expect the content to be ellipsed.
    */
-  enableTooltip?: boolean;
+  disableTooltip?: boolean;
   /**
    * Control whether the SidebarNavigationItem is active or not.
    * If true, the item will have a different style to indicate it is active.
@@ -88,7 +90,7 @@ export const SidebarNavigationItem = forwardRef<HTMLAnchorElement, SidebarNaviga
     const {
       children,
       disableIconWhenSidebarOpen = false,
-      enableTooltip,
+      disableTooltip = false,
       Icon,
       onClick,
       suffix,
@@ -105,7 +107,10 @@ export const SidebarNavigationItem = forwardRef<HTMLAnchorElement, SidebarNaviga
 
     return (
       <UnstyledListItem>
-        <Tooltip content={enableTooltip ? children : undefined} side="right">
+        <Tooltip
+          content={disableTooltip ? undefined : children}
+          delayDuration={TOOLTIP_DELAY_IN_MS}
+          side="right">
           <NavigationItem {...htmlProps} onClick={handleClick} ref={ref}>
             <Icon
               css={[

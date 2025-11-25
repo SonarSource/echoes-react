@@ -62,8 +62,8 @@ describe('ellipsis behavior', () => {
     jest.clearAllMocks();
   });
 
-  it('should show tooltip when enableTooltip prop is true', async () => {
-    const { user } = setupSidebarNavigationAccordionItem({ enableTooltip: true });
+  it('should show tooltip by default', async () => {
+    const { user } = setupSidebarNavigationAccordionItem();
 
     await user.hover(screen.getByRole('button'));
     const tooltip = await screen.findByRole('tooltip');
@@ -71,8 +71,8 @@ describe('ellipsis behavior', () => {
     expect(tooltip).toHaveTextContent('Accordion Item');
   });
 
-  it('should not show tooltip when enableTooltip prop is false', async () => {
-    const { user } = setupSidebarNavigationAccordionItem();
+  it('should not show tooltip when disableTooltip prop is true', async () => {
+    const { user } = setupSidebarNavigationAccordionItem({ disableTooltip: true });
 
     await user.hover(screen.getByRole('button'));
     expect(screen.queryByRole('tooltip')).not.toBeInTheDocument();
