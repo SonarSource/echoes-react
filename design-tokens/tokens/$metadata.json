@@ -2,7 +2,6 @@
   "tokenSetOrder": [
     "layer1/base",
     "layer1/colors",
-    "layer2/base",
     "layer2/light",
     "layer2/dark",
     "layer3/base",

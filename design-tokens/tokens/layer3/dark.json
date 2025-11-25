@@ -77,13 +77,13 @@
           "ratingA": {
             "default": {
               "$type": "color",
-              "$value": "{echoes.color.green.700}"
+              "$value": "{echoes.color.green(deprecated).700}"
             }
           },
           "ratingB": {
             "default": {
               "$type": "color",
-              "$value": "{echoes.color.yellowGreen.700}"
+              "$value": "{echoes.color.newGreen.700}"
             }
           },
           "ratingC": {
@@ -109,13 +109,13 @@
           "ratingA": {
             "default": {
               "$type": "color",
-              "$value": "{echoes.color.green.50}"
+              "$value": "{echoes.color.green(deprecated).50}"
             }
           },
           "ratingB": {
             "default": {
               "$type": "color",
-              "$value": "{echoes.color.yellowGreen.50}"
+              "$value": "{echoes.color.newGreen.50}"
             }
           },
           "ratingC": {
@@ -141,13 +141,13 @@
           "ratingA": {
             "hover": {
               "$type": "color",
-              "$value": "{echoes.color.green.400}"
+              "$value": "{echoes.color.green(deprecated).400}"
             }
           },
           "ratingB": {
             "hover": {
               "$type": "color",
-              "$value": "{echoes.color.yellowGreen.400}"
+              "$value": "{echoes.color.newGreen.400}"
             }
           },
           "ratingC": {
