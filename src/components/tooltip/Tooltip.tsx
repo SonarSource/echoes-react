@@ -60,6 +60,11 @@ export interface TooltipProps {
    */
   content: ReactNode;
   /**
+   * The duration in milliseconds to wait before showing the tooltip.
+   * @default 700
+   */
+  delayDuration?: number;
+  /**
    * Used to control/override the visibility of the tooltip, optional and not needed in most cases.
    */
   isOpen?: boolean;
@@ -95,7 +100,7 @@ const ARROW_PADDING = 12;
  * Since the tooltips are appended to the body, they are in the root Stacking Context. If other elements are also there, the z-index will determine which appears on top. By creating a new Stacking Context for your app, it ensures that z-indexed elements will stay within that context, while tooltips will be painted on top, in the parent Stacking Context.
  */
 export const Tooltip = forwardRef<HTMLElement, TooltipProps>((props, ref) => {
-  const { align, children, content, isOpen, side, ...radixProps } = props;
+  const { align, children, content, delayDuration, isOpen, side, ...radixProps } = props;
   const theme = useContext(ThemeContext);
   const themeOverrideProp = isDefined(theme) ? { [THEME_DATA_ATTRIBUTE]: theme } : {};
 
@@ -111,7 +116,7 @@ export const Tooltip = forwardRef<HTMLElement, TooltipProps>((props, ref) => {
   }
 
   return (
-    <radixTooltip.Root open={isOpen}>
+    <radixTooltip.Root delayDuration={delayDuration} open={isOpen}>
       <radixTooltip.Trigger asChild ref={ref as Ref<HTMLButtonElement> | undefined} {...radixProps}>
         {children}
       </radixTooltip.Trigger>

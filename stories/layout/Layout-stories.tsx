@@ -263,21 +263,18 @@ function SidebarNav() {
           <Layout.SidebarNavigation.Item
             Icon={IconBranch}
             disableIconWhenSidebarOpen
-            enableTooltip
             to="/main-branch">
             Main branch
           </Layout.SidebarNavigation.Item>
           <Layout.SidebarNavigation.Item
             Icon={IconPullrequest}
             disableIconWhenSidebarOpen
-            enableTooltip
             to="/pr-1">
             Amazing Pull Request that updates a lot of things
           </Layout.SidebarNavigation.Item>
           <Layout.SidebarNavigation.Item
             Icon={IconPullrequest}
             disableIconWhenSidebarOpen
-            enableTooltip
             to="/pr-2">
             Small PR
           </Layout.SidebarNavigation.Item>

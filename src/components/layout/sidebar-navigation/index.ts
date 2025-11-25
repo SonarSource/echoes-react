@@ -107,7 +107,7 @@ export const SidebarNavigation = Object.assign(SidebarNavigationRoot, {
    * icons, active states, and router integration. Do not wrap children in Text components.
    *
    * ```tsx
-   * <SidebarNavigation.Item Icon={HomeIcon} to="/dashboard" enableTooltip>
+   * <SidebarNavigation.Item Icon={HomeIcon} to="/dashboard">
    *   Dashboard
    * </SidebarNavigation.Item>
    * ```

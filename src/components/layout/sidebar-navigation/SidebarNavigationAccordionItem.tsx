@@ -37,6 +37,8 @@ import {
   SidebarNavigationItemLabel,
 } from './SidebarNavigationItemStyles';
 
+const TOOLTIP_DELAY_IN_MS = 1000;
+
 export interface SidebarNavigationAccordionItemProps {
   ariaLabel?: string;
   /**
@@ -46,10 +48,10 @@ export interface SidebarNavigationAccordionItemProps {
   children: ReactNode;
   className?: string;
   /**
-   * Whether to display the tooltip on the accordion item or not.
-   * By default the tooltip is disabled, it should only be enabled if you expect the content to be ellipsed.
+   * Whether to disable the tooltip on the accordion item or not.
+   * By default the tooltip is enabled, it should only be disabled if you don't expect the content to be ellipsed.
    */
-  enableTooltip?: boolean;
+  disableTooltip?: boolean;
   /**
    * The label for the SidebarNavigationAccordionItem.
    */
@@ -77,7 +79,16 @@ export const SidebarNavigationAccordionItem = forwardRef<
   HTMLButtonElement,
   SidebarNavigationAccordionItemProps
 >((props, ref) => {
-  const { children, enableTooltip, Icon, label, onClose, onOpen, suffix, ...htmlProps } = props;
+  const {
+    children,
+    disableTooltip = false,
+    Icon,
+    label,
+    onClose,
+    onOpen,
+    suffix,
+    ...htmlProps
+  } = props;
   const [open, setOpen] = useState(false);
 
   const accordionId = `${useId()}sidebar-accordion`;
@@ -89,6 +100,7 @@ export const SidebarNavigationAccordionItem = forwardRef<
         onOpen?.();
         return true;
       }
+
       onClose?.();
       return false;
     });
@@ -96,7 +108,10 @@ export const SidebarNavigationAccordionItem = forwardRef<
 
   return (
     <AccordionWrapper>
-      <Tooltip content={enableTooltip ? label : undefined} side="right">
+      <Tooltip
+        content={disableTooltip ? undefined : label}
+        delayDuration={TOOLTIP_DELAY_IN_MS}
+        side="right">
         <AccordionItem
           {...htmlProps}
           aria-controls={accordionPanelId}
@@ -114,6 +129,7 @@ export const SidebarNavigationAccordionItem = forwardRef<
           )}
         </AccordionItem>
       </Tooltip>
+
       <AccordionItemPanel
         aria-labelledby={accordionId}
         data-accordion-open={open}
@@ -133,6 +149,7 @@ const AccordionWrapper = styled.li`
   flex-direction: column;
   gap: ${cssVar('dimension-space-50')};
 `;
+
 AccordionWrapper.displayName = 'AccordionWrapper';
 
 const AccordionItem = styled.button`
@@ -142,6 +159,7 @@ const AccordionItem = styled.button`
     background-color: ${cssVar('sidebar-navigation-item-colors-background-active')};
   }
 `;
+
 AccordionItem.displayName = 'AccordionItem';
 
 const AccordionItemPanel = styled.section`
@@ -171,6 +189,7 @@ const AccordionItemPanel = styled.section`
     --sidebar-navigation-accordion-children-gap: ${cssVar('dimension-space-0')};
   }
 `;
+
 AccordionItemPanel.displayName = 'AccordionItemPanel';
 
 export const AccordionItemsList = styled.ul`
@@ -180,4 +199,5 @@ export const AccordionItemsList = styled.ul`
   flex-direction: column;
   gap: var(--sidebar-navigation-accordion-children-gap);
 `;
+
 AccordionItemsList.displayName = 'AccordionItemsList';

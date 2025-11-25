@@ -36,8 +36,8 @@ describe('ellipsis behavior', () => {
     jest.clearAllMocks();
   });
 
-  it('should show tooltip when enableTooltip prop is true', async () => {
-    const { user } = setupSidebarNavigationItem({ enableTooltip: true });
+  it('should show tooltip by default', async () => {
+    const { user } = setupSidebarNavigationItem();
 
     await user.hover(screen.getByRole('link'));
     const tooltip = await screen.findByRole('tooltip');
@@ -45,8 +45,8 @@ describe('ellipsis behavior', () => {
     expect(tooltip).toHaveTextContent('Test Item');
   });
 
-  it('should not show tooltip when enableTooltip prop is false', async () => {
-    const { user } = setupSidebarNavigationItem();
+  it('should not show tooltip when disableTooltip prop is true', async () => {
+    const { user } = setupSidebarNavigationItem({ disableTooltip: true });
 
     await user.hover(screen.getByRole('link'));
     expect(screen.queryByRole('tooltip')).not.toBeInTheDocument();

@@ -91,14 +91,14 @@ export const Full: Story = {
           name="Hello this is a bit long, I think!"
         />
         <Layout.SidebarNavigation.Body>
-          <Layout.SidebarNavigation.Item Icon={IconProject} enableTooltip to="/pouet">
+          <Layout.SidebarNavigation.Item Icon={IconProject} to="/pouet">
             blablablba
           </Layout.SidebarNavigation.Item>
           <Layout.SidebarNavigation.Group label="Group name">
             <Layout.SidebarNavigation.Item Icon={IconBell} to="somwhereelse1">
               Thing 1
             </Layout.SidebarNavigation.Item>
-            <Layout.SidebarNavigation.Item Icon={IconCalendar} enableTooltip to="somwhereelse2">
+            <Layout.SidebarNavigation.Item Icon={IconCalendar} to="somwhereelse2">
               Amazing project 2Amazing project 2Amazing project 2Amazing project 2Amazing project 2
             </Layout.SidebarNavigation.Item>
             <Layout.SidebarNavigation.Item
@@ -110,29 +110,19 @@ export const Full: Story = {
           </Layout.SidebarNavigation.Group>
           <Layout.SidebarNavigation.AccordionItem
             Icon={IconBranch}
-            enableTooltip
             label="Accordion Item with a long name"
             suffix={<NewSuffix />}>
             <Layout.SidebarNavigation.Item
               Icon={IconBranch}
               disableIconWhenSidebarOpen
-              enableTooltip
               suffix={<NewSuffix />}
               to="/1">
               child 1 with a long name hahahah
             </Layout.SidebarNavigation.Item>
-            <Layout.SidebarNavigation.Item
-              Icon={IconBranch}
-              disableIconWhenSidebarOpen
-              enableTooltip
-              to="/2">
+            <Layout.SidebarNavigation.Item Icon={IconBranch} disableIconWhenSidebarOpen to="/2">
               child 2
             </Layout.SidebarNavigation.Item>
-            <Layout.SidebarNavigation.Item
-              Icon={IconBranch}
-              disableIconWhenSidebarOpen
-              enableTooltip
-              to="/3">
+            <Layout.SidebarNavigation.Item Icon={IconBranch} disableIconWhenSidebarOpen to="/3">
               child 3
             </Layout.SidebarNavigation.Item>
           </Layout.SidebarNavigation.AccordionItem>
@@ -151,14 +141,12 @@ export const Full: Story = {
               <Layout.SidebarNavigation.Item
                 Icon={IconTarget}
                 disableIconWhenSidebarOpen
-                enableTooltip
                 to="/a1-1">
                 asdf
               </Layout.SidebarNavigation.Item>
               <Layout.SidebarNavigation.Item
                 Icon={IconTarget}
                 disableIconWhenSidebarOpen
-                enableTooltip
                 to="/a1-2">
                 zxcv
               </Layout.SidebarNavigation.Item>
@@ -167,14 +155,12 @@ export const Full: Story = {
               <Layout.SidebarNavigation.Item
                 Icon={IconPeople}
                 disableIconWhenSidebarOpen
-                enableTooltip
                 to="/a2-1">
                 asdf
               </Layout.SidebarNavigation.Item>
               <Layout.SidebarNavigation.Item
                 Icon={IconPeople}
                 disableIconWhenSidebarOpen
-                enableTooltip
                 to="/a2-2">
                 zxcv
               </Layout.SidebarNavigation.Item>
@@ -186,21 +172,18 @@ export const Full: Story = {
             <Layout.SidebarNavigation.Item
               Icon={IconGear}
               disableIconWhenSidebarOpen
-              enableTooltip
               to="/settings-1">
               Child settings 1
             </Layout.SidebarNavigation.Item>
             <Layout.SidebarNavigation.Item
               Icon={IconGear}
               disableIconWhenSidebarOpen
-              enableTooltip
               to="/settings-2">
               Child settings 2
             </Layout.SidebarNavigation.Item>
             <Layout.SidebarNavigation.Item
               Icon={IconGear}
               disableIconWhenSidebarOpen
-              enableTooltip
               to="/settings-3">
               Child settings 3
             </Layout.SidebarNavigation.Item>
