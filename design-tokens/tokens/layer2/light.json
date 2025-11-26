@@ -132,43 +132,43 @@
         "success": {
           "default": {
             "$type": "color",
-            "$value": "{echoes.color.newGreen.700}",
+            "$value": "{echoes.color.green.700}",
             "$description": "Use for backgrounds that communicate positive or success messages"
           },
           "hover": {
             "$type": "color",
-            "$value": "{echoes.color.newGreen.800}",
+            "$value": "{echoes.color.green.800}",
             "$description": "Use for backgrounds that communicate positive or success messages"
           },
           "focus": {
             "$type": "color",
-            "$value": "{echoes.color.newGreen.700}",
+            "$value": "{echoes.color.green.700}",
             "$description": "Use for backgrounds that communicate positive or success messages"
           },
           "active": {
             "$type": "color",
-            "$value": "{echoes.color.newGreen.900}",
+            "$value": "{echoes.color.green.900}",
             "$description": "Use for backgrounds that communicate positive or success messages"
           },
           "weak": {
             "default": {
               "$type": "color",
-              "$value": "{echoes.color.newGreen.50}",
+              "$value": "{echoes.color.green.50}",
               "$description": "Use for backgrounds that communicate positive or success messages, with less visual highlight"
             },
             "hover": {
               "$type": "color",
-              "$value": "{echoes.color.newGreen.100}",
+              "$value": "{echoes.color.green.100}",
               "$description": "Use for backgrounds that communicate positive or success messages, with less visual highlight"
             },
             "active": {
               "$type": "color",
-              "$value": "{echoes.color.newGreen.200}",
+              "$value": "{echoes.color.green.200}",
               "$description": "Use for backgrounds that communicate positive or success messages, with less visual highlight"
             },
             "focus": {
               "$type": "color",
-              "$value": "{echoes.color.newGreen.50}",
+              "$value": "{echoes.color.green.50}",
               "$description": "Use for backgrounds that communicate positive or success messages, with less visual highlight"
             }
           }
@@ -528,7 +528,7 @@
         },
         "success": {
           "$type": "color",
-          "$value": "{echoes.color.newGreen.800}"
+          "$value": "{echoes.color.green.800}"
         },
         "info": {
           "$type": "color",
@@ -580,7 +580,7 @@
         },
         "success": {
           "$type": "color",
-          "$value": "{echoes.color.newGreen.600}"
+          "$value": "{echoes.color.green.600}"
         },
         "info": {
           "$type": "color",
@@ -647,11 +647,11 @@
         "success": {
           "weak": {
             "$type": "color",
-            "$value": "{echoes.color.newGreen.100}"
+            "$value": "{echoes.color.green.100}"
           },
           "default": {
             "$type": "color",
-            "$value": "{echoes.color.newGreen.700}"
+            "$value": "{echoes.color.green.700}"
           }
         },
         "warning": {

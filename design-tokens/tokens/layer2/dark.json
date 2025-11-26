@@ -193,19 +193,19 @@
         "success": {
           "default": {
             "$type": "color",
-            "$value": "{echoes.color.newGreen.300}"
+            "$value": "{echoes.color.green.300}"
           },
           "hover": {
             "$type": "color",
-            "$value": "{echoes.color.newGreen.200}"
+            "$value": "{echoes.color.green.200}"
           },
           "focus": {
             "$type": "color",
-            "$value": "{echoes.color.newGreen.300}"
+            "$value": "{echoes.color.green.300}"
           },
           "active": {
             "$type": "color",
-            "$value": "{echoes.color.newGreen.100}"
+            "$value": "{echoes.color.green.100}"
           },
           "weak": {
             "default": {
@@ -219,7 +219,7 @@
                 }
               },
               "$type": "color",
-              "$value": "{echoes.color.newGreen.300}"
+              "$value": "{echoes.color.green.300}"
             },
             "hover": {
               "$extensions": {
@@ -232,7 +232,7 @@
                 }
               },
               "$type": "color",
-              "$value": "{echoes.color.newGreen.300}"
+              "$value": "{echoes.color.green.300}"
             },
             "focus": {
               "$extensions": {
@@ -245,7 +245,7 @@
                 }
               },
               "$type": "color",
-              "$value": "{echoes.color.newGreen.300}"
+              "$value": "{echoes.color.green.300}"
             },
             "active": {
               "$extensions": {
@@ -258,7 +258,7 @@
                 }
               },
               "$type": "color",
-              "$value": "{echoes.color.newGreen.300}"
+              "$value": "{echoes.color.green.300}"
             }
           }
         },
@@ -723,7 +723,7 @@
         },
         "success": {
           "$type": "color",
-          "$value": "{echoes.color.newGreen.300}"
+          "$value": "{echoes.color.green.300}"
         },
         "warning": {
           "$type": "color",
@@ -775,7 +775,7 @@
         },
         "success": {
           "$type": "color",
-          "$value": "{echoes.color.newGreen.200}"
+          "$value": "{echoes.color.green.200}"
         },
         "info": {
           "$type": "color",
@@ -860,11 +860,11 @@
               }
             },
             "$type": "color",
-            "$value": "{echoes.color.newGreen.300}"
+            "$value": "{echoes.color.green.300}"
           },
           "default": {
             "$type": "color",
-            "$value": "{echoes.color.newGreen.400}"
+            "$value": "{echoes.color.green.400}"
           }
         },
         "warning": {
