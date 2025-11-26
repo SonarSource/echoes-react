@@ -134,6 +134,8 @@ export { IconTriangleUp } from './IconTriangleUp';
 export { IconUnfold } from './IconUnfold';
 export { IconUnfoldDown } from './IconUnfoldDown';
 export { IconUnfoldUp } from './IconUnfoldUp';
+export { IconVisibility } from './IconVisibility';
+export { IconVisibilityOff } from './IconVisibilityOff';
 export { IconVulnerability } from './IconVulnerability';
 export { IconWarning } from './IconWarning';
 export { IconX } from './IconX';
