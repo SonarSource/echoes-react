@@ -58,6 +58,11 @@
       "description": "React-intl minor patch version upgrade to 6.7.3 has broken types",
       "matchPackageNames": ["react-intl"],
       "dependencyDashboardApproval": true
+    },
+    {
+      "description": "Sonner updates require manual CSP hash verification. The CSP configuration includes version-specific SHA-256 hashes for inline styles. See README.md Content Security Policy section.",
+      "matchPackageNames": ["sonner"],
+      "dependencyDashboardApproval": true
     }
   ],
   "ignoreDeps": []

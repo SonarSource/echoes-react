@@ -21,6 +21,7 @@
 import { PropsWithChildren } from 'react';
 import { useIntl } from 'react-intl';
 import ReactJoyride, { TooltipRenderProps } from 'react-joyride';
+import { useNonce } from '../echoes-provider/NonceContext';
 import { SpotlightModalForStep } from './SpotlightModalForStep';
 import { SpotlightModalPlacement, SpotlightProps, SpotlightStep } from './SpotlightTypes';
 
@@ -97,6 +98,7 @@ export function Spotlight(props: Readonly<SpotlightProps>) {
     image,
     isRunning = true,
     nextLabel,
+    nonce: nonceProp,
     shouldDisableOverlayClose,
     skipLabel,
     stepIndex,
@@ -105,6 +107,10 @@ export function Spotlight(props: Readonly<SpotlightProps>) {
   } = props;
 
   const intl = useIntl();
+  const nonceFromContext = useNonce();
+
+  // Use prop nonce if provided, otherwise fall back to context nonce
+  const nonce = nonceProp ?? nonceFromContext;
 
   const labels = {
     back: intl.formatMessage({
@@ -152,6 +158,7 @@ export function Spotlight(props: Readonly<SpotlightProps>) {
         nextLabelWithProgress: nextLabel ?? labels.next,
         skip: skipLabel ?? labels.skip,
       }}
+      nonce={nonce}
       run={isRunning}
       stepIndex={stepIndex}
       /*--------------------------------------------------------------------------------------------

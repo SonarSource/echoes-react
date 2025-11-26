@@ -17,6 +17,8 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
+import createCache from '@emotion/cache';
+import { CacheProvider } from '@emotion/react';
 import { RenderOptions, RenderResult, render as rtlRender } from '@testing-library/react';
 import userEvent, { UserEvent, Options as UserEventsOptions } from '@testing-library/user-event';
 import React, { ComponentProps, PropsWithChildren } from 'react';
@@ -24,6 +26,11 @@ import { IntlProvider } from 'react-intl';
 import { MemoryRouter, Route, Routes, useLocation } from 'react-router-dom';
 import { PropsWithLabels, PropsWithLabelsAndHelpText } from '~types/utils';
 import { EchoesProvider } from '../../components/echoes-provider';
+
+// Create a singleton Emotion cache for all tests to ensure consistent class name generation
+// This matches the key used in EchoesProvider when a nonce is provided
+const testEmotionCache = createCache({ key: 'echoes' });
+testEmotionCache.compat = true;
 
 type RenderResultWithUser = RenderResult & { user: UserEvent };
 
@@ -87,8 +94,10 @@ function ShowPath() {
 
 function ContextWrapper({ children }: PropsWithChildren<{}>) {
   return (
-    <IntlProvider defaultLocale="en-us" locale="en-us">
-      <EchoesProvider tooltipsDelayDuration={0}>{children}</EchoesProvider>
-    </IntlProvider>
+    <CacheProvider value={testEmotionCache}>
+      <IntlProvider defaultLocale="en-us" locale="en-us">
+        <EchoesProvider tooltipsDelayDuration={0}>{children}</EchoesProvider>
+      </IntlProvider>
+    </CacheProvider>
   );
 }

@@ -42,6 +42,21 @@ Make sure to setup the following Providers at the root of your app:
 
 The `EchoesProvider` is required to provide theming and configuration context for all Echoes components.
 
+If your application uses a strict Content Security Policy (CSP), you can provide a nonce to the `EchoesProvider` to enable inline styles required by Echoes components:
+
+```tsx
+const nonce = document.querySelector('meta[name="csp-nonce"]')?.getAttribute('content');
+
+<EchoesProvider nonce={nonce}>{/* your app */}</EchoesProvider>;
+```
+
+This nonce will be automatically applied to:
+
+- Emotion's CSS-in-JS style tags
+- react-joyride inline styles used in the Spotlight component
+
+For more information about CSP configuration, see the [Content Security Policy](#content-security-policy) section.
+
 #### Intl Provider
 
 The `IntlProvider` from `react-intl` is necessary for translations. See [this page](https://formatjs.github.io/docs/react-intl/components#intlprovider) for more information.
@@ -204,6 +219,61 @@ If tooltips or other overlay components don't appear correctly, ensure you have 
 #### Router context errors
 
 If you encounter errors about missing router context when using Link components or other routing-related components, make sure you have wrapped your app with a Router provider from `react-router-dom` (e.g., `BrowserRouter`, `HashRouter`, or `MemoryRouter`).
+
+## Content Security Policy
+
+Echoes React supports strict Content Security Policy (CSP) configurations. To use Echoes with a CSP that restricts inline styles, you need to configure nonces.
+
+### CSP Configuration
+
+Configure your CSP header as follows:
+
+```http
+Content-Security-Policy:
+  style-src
+    'self'
+    'nonce-RANDOM_VALUE'
+    'unsafe-hashes'
+    'sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU='
+    'sha256-qixoDh78J8vISHKC3rLI7qSXmTShr8mhsUgjJL7W7aU='
+    'sha256-3gJFr3n77fnX5qwQpGju/zCOsoHW5RMqQd5XOb9WFcA=';
+```
+
+Where:
+
+- `'nonce-RANDOM_VALUE'` - A cryptographically secure random nonce generated per request (required for Emotion CSS-in-JS and Spotlight/react-joyride inline styles)
+- `'unsafe-hashes'` with three SHA-256 hashes - Required only for sonner toast notification animations
+
+### Application Setup
+
+Pass the nonce to the `EchoesProvider`:
+
+```tsx
+import { EchoesProvider } from '@sonarsource/echoes-react';
+
+function App() {
+  // Get nonce from meta tag or server-rendered context
+  const nonce = document.querySelector('meta[name="csp-nonce"]')?.getAttribute('content');
+
+  return (
+    <EchoesProvider nonce={nonce}>
+      <YourApp />
+    </EchoesProvider>
+  );
+}
+```
+
+The nonce will be automatically applied to:
+
+- All Emotion CSS-in-JS style tags
+- Spotlight component's inline styles (via react-joyride)
+
+### Notes
+
+- **The three SHA-256 hashes are specific to sonner v2.0.7** (the toast notification library). If you upgrade sonner, these hashes may need to be updated. See the [sonner CSP issue](https://github.com/emilkowalski/sonner/issues/449) for details on how to generate new hashes.
+- **Automated dependency updates**: Renovate is configured to require manual approval for sonner updates to ensure CSP hashes are verified before upgrading.
+- Without the nonce configuration, applications with strict CSP will block Echoes components from rendering correctly.
+- For development environments without CSP, the nonce prop is optional and can be omitted.
 
 ## License
 
