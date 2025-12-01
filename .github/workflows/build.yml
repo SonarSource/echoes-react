@@ -23,7 +23,7 @@ jobs:
         with:
           version: 2025.9.12
       - name: Build, Test, Analyze and deploy
-        uses: SonarSource/ci-github-actions/build-yarn@v1
+        uses: SonarSource/ci-github-actions/build-yarn@c0d3d58087e483ef268fc6b3d406c47ab855a0e0 # v1.3.7
         with:
           artifactory-reader-role: public-reader
           artifactory-deploy-repo: sonarsource-npm-public-qa
