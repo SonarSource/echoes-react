@@ -78,7 +78,7 @@
     "@testing-library/jest-dom": "6.9.1",
     "@testing-library/react": "16.3.0",
     "@testing-library/user-event": "14.6.1",
-    "@tokens-studio/sd-transforms": "2.0.1",
+    "@tokens-studio/sd-transforms": "2.0.2",
     "@types/aria-query": "5.0.4",
     "@types/eslint": "8.56.12",
     "@types/jest": "30.0.0",
