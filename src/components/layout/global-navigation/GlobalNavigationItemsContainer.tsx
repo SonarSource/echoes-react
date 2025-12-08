@@ -23,8 +23,7 @@ import * as radixNavigationMenu from '@radix-ui/react-navigation-menu';
 import { PropsWithChildren, forwardRef } from 'react';
 import { cssVar } from '~utils/design-tokens';
 
-export interface GlobalNavigationItemsContainerProps
-  extends PropsWithChildren<radixNavigationMenu.NavigationMenuProps> {
+export interface GlobalNavigationItemsContainerProps extends PropsWithChildren<radixNavigationMenu.NavigationMenuProps> {
   className?: string;
 }
 
