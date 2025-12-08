@@ -4455,7 +4455,7 @@ __metadata:
     "@testing-library/jest-dom": "npm:6.9.1"
     "@testing-library/react": "npm:16.3.0"
     "@testing-library/user-event": "npm:14.6.1"
-    "@tokens-studio/sd-transforms": "npm:2.0.1"
+    "@tokens-studio/sd-transforms": "npm:2.0.2"
     "@types/aria-query": "npm:5.0.4"
     "@types/eslint": "npm:8.56.12"
     "@types/jest": "npm:30.0.0"
@@ -4734,19 +4734,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tokens-studio/sd-transforms@npm:2.0.1":
-  version: 2.0.1
-  resolution: "@tokens-studio/sd-transforms@npm:2.0.1"
+"@tokens-studio/sd-transforms@npm:2.0.2":
+  version: 2.0.2
+  resolution: "@tokens-studio/sd-transforms@npm:2.0.2"
   dependencies:
     "@bundled-es-modules/deepmerge": "npm:^4.3.1"
     "@bundled-es-modules/postcss-calc-ast-parser": "npm:^0.1.6"
     "@tokens-studio/types": "npm:^0.5.1"
     colorjs.io: "npm:^0.5.2"
-    expr-eval-fork: "npm:^2.0.2"
+    expr-eval-fork: "npm:^3.0.0"
     is-mergeable-object: "npm:^1.1.1"
   peerDependencies:
     style-dictionary: ^5.0.0
-  checksum: 10/587c0aec32ad25dc22bff9355bb3eb885e3af9752dcb3b9190d6fa53b2bd703a69cbe3b49d8dcf6dea68e75889f9763207936c979b3f196f0a84d9a9cb356384
+  checksum: 10/c4f03d23c943eb916d963c5b23aa4aa25906c01bd37d9e1c7ff25530b9bf3e2a1b3994615fa26ef23d30d7bf249a50e9d047cd88c560b74865f8350c27932d40
   languageName: node
   linkType: hard
 
@@ -7858,10 +7858,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"expr-eval-fork@npm:^2.0.2":
-  version: 2.0.2
-  resolution: "expr-eval-fork@npm:2.0.2"
-  checksum: 10/f88219215365bbf57d3cd0a6af5dfda62789dc81a771ae9ab9b98365f32b38deb28651f5630b77b0f75272cedbbbbe77f7e448ac959a7300b0ea4435d5abc554
+"expr-eval-fork@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "expr-eval-fork@npm:3.0.0"
+  checksum: 10/595bf686515260e558aaa734c67b571d567a34ab128c523c444956b099b2c86e7b9e09b6e0be7158c51e78b7ecd084e9a563e0158f67a38ee9686273e540e235
   languageName: node
   linkType: hard
 
