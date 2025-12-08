@@ -47,9 +47,7 @@ type InputAttributes = Pick<
 >;
 
 interface TextInputPropsBase
-  extends InputProps,
-    InputAttributes,
-    InputEventProps<HTMLInputElement> {
+  extends InputProps, InputAttributes, InputEventProps<HTMLInputElement> {
   prefix?: ReactNode;
   suffix?: ReactNode;
   type?: 'email' | 'number' | 'password' | 'search' | 'tel' | 'text' | 'url';

@@ -203,9 +203,7 @@ type CheckboxOption<T = unknown> = Pick<
 type FormFieldPropsSubset = Pick<FormFieldProps, 'helpToggletipProps' | 'isRequired' | 'width'>;
 
 interface CheckboxGroupPropsBase<T>
-  extends RefAttributes<HTMLDivElement>,
-    ValidationProps,
-    FormFieldPropsSubset {
+  extends RefAttributes<HTMLDivElement>, ValidationProps, FormFieldPropsSubset {
   /**
    * Controls the alignment of the checkboxes in the group (optional). The
    * default is `vertical`.

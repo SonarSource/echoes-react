@@ -49,9 +49,7 @@ interface CommonProps {
 }
 
 export interface ButtonAsButtonProps
-  extends CommonProps,
-    ButtonBaseProps,
-    LinkPropsForbiddenForButton {}
+  extends CommonProps, ButtonBaseProps, LinkPropsForbiddenForButton {}
 
 interface ButtonAsLinkProps extends CommonProps, ButtonAsLinkBaseProps {}
 

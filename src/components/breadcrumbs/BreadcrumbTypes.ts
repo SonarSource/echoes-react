@@ -22,8 +22,7 @@ import { ReactNode } from 'react';
 import { LinkBaseProps, LinkStandaloneBaseProps } from '../links/LinkTypes';
 
 export interface BreadcrumbLinkProps
-  extends LinkStandaloneBaseProps,
-    Omit<LinkBaseProps, 'children'> {
+  extends LinkStandaloneBaseProps, Omit<LinkBaseProps, 'children'> {
   hasEllipsis?: boolean;
   linkElement: ReactNode;
 }

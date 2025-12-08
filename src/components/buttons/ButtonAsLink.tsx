@@ -61,9 +61,7 @@ type ButtonPropsForbiddenForLink = {
 };
 
 export interface ButtonAsLinkBaseProps
-  extends ButtonCommonProps,
-    LinkPropsSubset,
-    ButtonPropsForbiddenForLink {
+  extends ButtonCommonProps, LinkPropsSubset, ButtonPropsForbiddenForLink {
   /**
    * The visual style variant of the link button (optional).
    * Limited to varieties appropriate for navigation elements. Default is `default`.

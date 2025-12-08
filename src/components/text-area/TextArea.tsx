@@ -37,9 +37,7 @@ type InputAttributes = Pick<
 >;
 
 interface TextAreaPropsBase
-  extends InputProps,
-    InputAttributes,
-    InputEventProps<HTMLTextAreaElement> {
+  extends InputProps, InputAttributes, InputEventProps<HTMLTextAreaElement> {
   isResizable?: boolean;
   rows?: number;
 }

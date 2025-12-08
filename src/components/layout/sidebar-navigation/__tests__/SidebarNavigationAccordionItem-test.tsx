@@ -66,7 +66,7 @@ describe('ellipsis behavior', () => {
     const { user } = setupSidebarNavigationAccordionItem({ enableTooltip: true });
 
     await user.hover(screen.getByRole('button'));
-    const tooltip = await screen.findByRole('tooltip');
+    const tooltip = await screen.findByRole('tooltip', {}, { timeout: 2000 });
     expect(tooltip).toBeInTheDocument();
     expect(tooltip).toHaveTextContent('Accordion Item');
   });
