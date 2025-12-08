@@ -35,11 +35,10 @@ export type SelectionCardOption = RadioOption & {
   illustration?: React.ReactNode;
 };
 
-interface BaseProps
-  extends Pick<
-    RadioButtonGroupProps,
-    'alignment' | 'className' | 'isDisabled' | 'onChange' | 'value'
-  > {
+interface BaseProps extends Pick<
+  RadioButtonGroupProps,
+  'alignment' | 'className' | 'isDisabled' | 'onChange' | 'value'
+> {
   /**
    * Callback fired when the selected card changes.
    *

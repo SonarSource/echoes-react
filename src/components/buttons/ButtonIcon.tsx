@@ -70,9 +70,7 @@ interface CommonProps {
 }
 
 export interface ButtonIconAsButtonProps
-  extends CommonProps,
-    ButtonBaseProps,
-    LinkPropsForbiddenForButton {
+  extends CommonProps, ButtonBaseProps, LinkPropsForbiddenForButton {
   /**
    * Accessible label for screen readers (required).
    * Since icon buttons have no visible text, this is essential for accessibility.

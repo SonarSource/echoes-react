@@ -41,8 +41,10 @@ import {
 
 const TOOLTIP_DELAY_IN_MS = 1000;
 
-export interface SidebarNavigationItemProps
-  extends Pick<NavLinkBaseProps, 'isMatchingFullPath' | 'enableOpenInNewTab' | 'to'> {
+export interface SidebarNavigationItemProps extends Pick<
+  NavLinkBaseProps,
+  'isMatchingFullPath' | 'enableOpenInNewTab' | 'to'
+> {
   ariaLabel?: string;
   /**
    * The label of the SidebarNavigationItem.
