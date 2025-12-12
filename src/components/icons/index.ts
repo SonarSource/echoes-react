@@ -92,6 +92,7 @@ export { IconMegaphone } from './IconMegaphone';
 export { IconMoreVertical } from './IconMoreVertical';
 export { IconOrganization } from './IconOrganization';
 export { IconOverview } from './IconOverview';
+export { IconPackage } from './IconPackage';
 export { IconPeople } from './IconPeople';
 export { IconPin } from './IconPin';
 export { IconPlus } from './IconPlus';
