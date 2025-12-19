@@ -18,8 +18,8 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+import styled from '@emotion/styled';
 import { Link as RouterLink } from 'react-router-dom';
-import { styled } from 'storybook/internal/theming';
 import { LinkBaseProps } from '../links/LinkTypes';
 import { buttonIconStyles, ButtonStyled } from './ButtonStyles';
 import { ButtonCommonProps, HTMLButtonAttributesSubset } from './ButtonTypes';

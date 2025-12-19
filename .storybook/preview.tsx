@@ -249,16 +249,17 @@ const preview: Preview = {
     },
     backgrounds: {
       disabled: undefined,
-      values: [
-        {
+      options: {
+        light: {
           name: 'light',
           value: 'rgb(255,255,255)',
         },
-        {
+
+        dark: {
           name: 'dark',
           value: 'rgb(42,47,64)',
         },
-      ],
+      },
     },
     docs: {
       codePanel: true,

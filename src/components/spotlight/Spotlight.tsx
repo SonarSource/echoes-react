@@ -178,7 +178,7 @@ export function Spotlight(props: Readonly<SpotlightProps>) {
       tooltipComponent={({
         step,
         ...stepModalPropsWithoutStep
-      }: PropsWithChildren<TooltipRenderProps & { step: SpotlightStep }>) => (
+      }: PropsWithChildren<TooltipRenderProps>) => (
         <SpotlightModalForStep
           {...{ activeTargetClassName, image, stepXofYLabel }}
           {...stepModalPropsWithoutStep}

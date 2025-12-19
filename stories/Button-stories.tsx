@@ -102,11 +102,11 @@ export const WithEllipsis: Story = {
   ),
 };
 
-export const AllVarieties: Story = {
+export const AllVarieties: StoryObj<ButtonAsButtonProps> = {
   args: {
     onClick: () => console.log('Button clicked'),
   },
-  render: (args: ButtonAsButtonProps) => (
+  render: (args) => (
     <>
       {Object.values(ButtonVariety).map((variety) => (
         <Button key={variety} {...args} variety={variety}>

@@ -18,6 +18,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+import { MouseEvent } from 'react';
 import { TextNodeOptional } from '~types/utils';
 
 export enum BannerVariety {
@@ -36,7 +37,7 @@ export interface BannerProps {
   /**
    * Function that will be called when the dismiss button is clicked. The dismiss button is only shown if this function is defined.
    */
-  onDismiss?: VoidFunction | ((event: React.MouseEvent<HTMLButtonElement>) => Promise<void>);
+  onDismiss?: VoidFunction | ((event: MouseEvent<HTMLElement>) => Promise<void>);
   /**
    * Prefix text for screen readers to announce before the banner content. Optional since a default value is provided.
    */
