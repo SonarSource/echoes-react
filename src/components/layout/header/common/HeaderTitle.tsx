@@ -27,21 +27,22 @@ export interface ContentHeaderTitleProps {
   /**
    * Additional CSS class name(s)
    */
-  // eslint-disable-next-line react/no-unused-prop-types
   className?: string;
   /**
    * The heading tag to use for the title itself
    */
   headingLevel?: HeadingProps['as'];
   /**
+   * The size of the heading for the title
+   */
+  headingSize?: HeadingProps['size'];
+  /**
    * Content (e.g. a ButtonIcon) to display before the title
    */
-  // eslint-disable-next-line react/no-unused-prop-types
   prefix?: ReactNode;
   /**
    * Content (e.g. a ButtonIcon) to display after the title
    */
-  // eslint-disable-next-line react/no-unused-prop-types
   suffix?: ReactNode;
 }
 
@@ -76,13 +77,15 @@ PageHeaderTitle.displayName = 'PageHeaderTitle';
 
 const HeaderTitle = forwardRef<HTMLDivElement, PropsWithChildren<PageHeaderTitleProps>>(
   (props, ref) => {
-    const { children, headingLevel = 'h1', prefix, suffix, ...rest } = props;
+    const { children, headingLevel = 'h1', headingSize, prefix, suffix, ...rest } = props;
 
     return (
       <StyledPageHeaderTitle ref={ref} {...rest}>
         {prefix}
 
-        <Heading as={headingLevel}>{children}</Heading>
+        <Heading as={headingLevel} size={headingSize}>
+          {children}
+        </Heading>
 
         {suffix}
       </StyledPageHeaderTitle>
