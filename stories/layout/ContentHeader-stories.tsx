@@ -34,6 +34,7 @@ import {
 } from '../../src';
 
 const meta: Meta<typeof Layout.ContentHeader | typeof Layout.ContentHeader.Title> = {
+  title: 'Echoes/Layout/ContentHeader',
   argTypes: {
     actions: {
       control: { type: 'boolean' },
@@ -116,8 +117,6 @@ const meta: Meta<typeof Layout.ContentHeader | typeof Layout.ContentHeader.Title
       },
     },
   },
-  component: Layout.ContentHeader,
-  title: 'Echoes/Layout/ContentHeader',
 };
 
 export default meta;

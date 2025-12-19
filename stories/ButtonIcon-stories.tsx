@@ -87,7 +87,7 @@ export const TooltipDetails: Story = {
   },
 };
 
-export const AllVarieties: Story = {
+export const AllVarieties: StoryObj<ButtonIconAsButtonProps> = {
   args: {
     ariaLabel: 'click',
     tooltipOptions: {
@@ -97,7 +97,7 @@ export const AllVarieties: Story = {
     Icon: IconClock,
     onClick: () => console.log('Button clicked'),
   },
-  render: (args: ButtonIconAsButtonProps) => (
+  render: (args) => (
     <>
       {Object.values(ButtonVariety).map((variety) => (
         <ButtonIcon key={variety} {...args} variety={variety} />

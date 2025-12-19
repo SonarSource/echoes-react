@@ -70,6 +70,13 @@ import { useFormFieldA11y } from '../form/useFormFieldA11y';
  * />
  * ```
  */
+/*
+ * TypeScript cannot infer the generic type T with forwardRef, causing a type error
+ * where (value: T) => string in serializeValue is incompatible with (value: unknown) => string.
+ * Making forwardRef generic would fix this but make inference worse - users would have to always
+ * specify the type explicitly: <CheckboxGroup<string> ...> we don't want that.
+ */
+/* @ts-expect-error: Generic type inference limitation with forwardRef */
 export const CheckboxGroup: CheckboxGroup = forwardRef<HTMLDivElement, CheckboxGroupProps>(
   (props, ref) => {
     const {

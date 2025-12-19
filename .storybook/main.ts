@@ -19,14 +19,16 @@
  */
 
 import type { StorybookConfig } from '@storybook/react-vite';
-import { dirname, join } from 'node:path';
+import { createRequire } from 'node:module';
+
+const require = createRequire(import.meta.url);
 
 const config: StorybookConfig = {
   addons: [
-    getAbsolutePath('@storybook/addon-a11y'),
-    getAbsolutePath('@storybook/addon-docs'),
-    getAbsolutePath('@storybook/addon-links'),
-    getAbsolutePath('@storybook/addon-themes'),
+    '@storybook/addon-a11y',
+    '@storybook/addon-docs',
+    '@storybook/addon-links',
+    '@storybook/addon-themes',
   ],
   framework: '@storybook/react-vite',
   staticDirs: ['../public'],
@@ -35,7 +37,3 @@ const config: StorybookConfig = {
 };
 
 export default config;
-
-function getAbsolutePath(value: string) {
-  return dirname(require.resolve(join(value, 'package.json')));
-}
