@@ -18,6 +18,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+import { MouseEvent } from 'react';
 import { TextNodeOptional } from '~types/utils';
 import { BannerVariety } from '../layout';
 
@@ -34,7 +35,7 @@ export interface LegacyBannerProps {
   /**
    * Function that will be called when the dismiss button is clicked, the dismiss button is only showed if this function is defined.
    */
-  onDismiss?: VoidFunction | ((event: React.MouseEvent<HTMLButtonElement>) => Promise<void>);
+  onDismiss?: VoidFunction | ((event: MouseEvent<HTMLElement>) => Promise<void>);
   /**
    * Prefix text for screen readers to announce before the banner content. Optional since a default value is provided.
    */

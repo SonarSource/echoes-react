@@ -26,7 +26,7 @@ import { basicWrapperDecorator } from './helpers/BasicWrapper';
 import { toDisabledControlArgType, toTextControlArgTypes } from './helpers/arg-types';
 
 const meta: Meta<ToastParams> = {
-  component: Toast,
+  component: toast,
   title: 'Echoes/Toast',
   argTypes: {
     ...toDisabledControlArgType('actions'),

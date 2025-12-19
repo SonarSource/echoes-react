@@ -29,9 +29,9 @@ it('uses the default size', () => {
   expect(container).toMatchSnapshot();
 });
 
-it.each(['h1', 'h2', 'h3', 'h4', 'h5'])(
+it.each(['h1', 'h2', 'h3', 'h4', 'h5'] as const)(
   'renders a Heading as an %s with no bottom margin',
-  async (as: ComponentProps<typeof Heading>['as']) => {
+  async (as) => {
     const children = `This is a heading rendered as "${as}" with no bottom margin`;
 
     const { container } = setupHeading({ as, children });
