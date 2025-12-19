@@ -30,7 +30,7 @@ export interface GlobalNavigationItemsContainerProps extends PropsWithChildren<r
 export const GlobalNavigationItemsContainer = forwardRef<
   HTMLUListElement,
   GlobalNavigationItemsContainerProps
->(({ children, className, ...radixProps }: Readonly<GlobalNavigationItemsContainerProps>, ref) => {
+>(({ children, ...radixProps }: Readonly<GlobalNavigationItemsContainerProps>, ref) => {
   return (
     <radixNavigationMenu.Root>
       <StyledNavigationMenuRoot ref={ref} {...radixProps}>
