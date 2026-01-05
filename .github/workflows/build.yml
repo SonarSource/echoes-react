@@ -21,7 +21,7 @@ jobs:
       - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
       - uses: jdx/mise-action@146a28175021df8ca24f8ee1828cc2a60f980bd5 # v3.5.1
         with:
-          version: 2025.9.12
+          version: 2025.12.13
       - name: Build, Test, Analyze and deploy
         uses: SonarSource/ci-github-actions/build-yarn@c25d440672c0f21574eda6cad861163cc07a0def # 1.3.9
         with:
