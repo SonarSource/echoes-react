@@ -139,4 +139,5 @@ export { IconVisibility } from './IconVisibility';
 export { IconVisibilityOff } from './IconVisibilityOff';
 export { IconVulnerability } from './IconVulnerability';
 export { IconWarning } from './IconWarning';
+export { IconWebhook } from './IconWebhook';
 export { IconX } from './IconX';
