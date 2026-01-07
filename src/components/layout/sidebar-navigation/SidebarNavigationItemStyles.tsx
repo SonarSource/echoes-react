@@ -72,7 +72,7 @@ export const SidebarNavigationFooter = styled.div`
   flex-direction: column;
   gap: ${cssVar('dimension-space-50')};
 
-  padding: ${cssVar('dimension-space-50')} ${cssVar('dimension-space-100')};
+  padding: ${cssVar('dimension-space-100')};
 `;
 SidebarNavigationFooter.displayName = 'SidebarNavigationFooter';
 
