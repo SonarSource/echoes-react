@@ -78,6 +78,7 @@ export { IconInventory } from './IconInventory';
 export { IconIssues } from './IconIssues';
 export { IconKey } from './IconKey';
 export { IconLicense } from './IconLicense';
+export { IconLicenseProfiles } from './IconLicenseProfiles';
 export { IconLightBulb } from './IconLightBulb';
 export { IconLink } from './IconLink';
 export { IconLinkExternal } from './IconLinkExternal';
