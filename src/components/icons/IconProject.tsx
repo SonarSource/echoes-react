@@ -22,10 +22,10 @@ import { forwardRef } from 'react';
 import { IconMaterialWrapper, IconProps } from './IconWrapper';
 
 export const IconProject = forwardRef<HTMLSpanElement, IconProps>((props, ref) => {
-  // This is Material Symbols' "view_kanban" icon
+  // This is Material Symbols' "folder_code" icon
   return (
     <IconMaterialWrapper {...props} ref={ref}>
-      &#xEB7F;
+      &#xF3C8;
     </IconMaterialWrapper>
   );
 });
