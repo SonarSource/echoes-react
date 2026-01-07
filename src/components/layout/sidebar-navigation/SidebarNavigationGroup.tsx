@@ -68,6 +68,7 @@ const SidebarNavigationGroupContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: ${cssVar('dimension-space-50')};
+  margin: ${cssVar('dimension-space-50')} 0;
 `;
 SidebarNavigationGroupContainer.displayName = 'SidebarNavigationGroupContainer';
 
