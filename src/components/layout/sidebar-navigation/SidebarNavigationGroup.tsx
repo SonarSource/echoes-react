@@ -44,7 +44,7 @@ export const SidebarNavigationGroup = forwardRef<
   const id = `${useId()}-sidebar-nav-group`;
 
   return (
-    <UnstyledListItem>
+    <SidebarNavigationGroupListItem>
       <SidebarNavigationGroupContainer
         aria-labelledby={id}
         className={className}
@@ -58,17 +58,27 @@ export const SidebarNavigationGroup = forwardRef<
         </SidebarNavigationGroupLabel>
         <SidebarNavigationGroupList>{children}</SidebarNavigationGroupList>
       </SidebarNavigationGroupContainer>
-    </UnstyledListItem>
+    </SidebarNavigationGroupListItem>
   );
 });
 
 SidebarNavigationGroup.displayName = 'SidebarNavigationGroup';
 
+const SidebarNavigationGroupListItem = styled(UnstyledListItem)`
+  margin-top: ${cssVar('dimension-space-50')};
+  margin-bottom: ${cssVar('dimension-space-100')};
+
+  // Reduce double margin when stacking groups, doesn't match figma for which it's too complex to implement
+  & + & {
+    margin-top: calc(-1 * ${cssVar('dimension-space-50')});
+  }
+`;
+SidebarNavigationGroupListItem.displayName = 'SidebarNavigationGroupListItem';
+
 const SidebarNavigationGroupContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: ${cssVar('dimension-space-50')};
-  margin: ${cssVar('dimension-space-50')} 0;
 `;
 SidebarNavigationGroupContainer.displayName = 'SidebarNavigationGroupContainer';
 
