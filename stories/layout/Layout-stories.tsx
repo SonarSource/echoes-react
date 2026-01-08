@@ -37,6 +37,7 @@ import {
   LinkStandalone,
   LogoSonarQubeServer,
   Text,
+  TextInput,
 } from '../../src';
 import { AsideSize } from '../../src/components/layout/LayoutTypes';
 import { PageHeaderScrollBehavior } from '../../src/components/layout/header/common/HeaderTypes';
@@ -158,6 +159,7 @@ export const Default: Story = {
 
         <Layout.PageGrid width={args.pageWidth}>
           {args.pageHeader(args.pageHeaderScrollBehavior)}
+
           <Layout.PageContent>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
@@ -167,6 +169,14 @@ export const Default: Story = {
               Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
               mollit anim id est laborum.
             </p>
+            <br />
+            <TextInput
+              ariaLabel="should scroll under a sticky header"
+              prefix={<IconSearch />}
+              suffix={<IconBranch />}
+              width="large"
+            />
+
             <div
               style={{
                 display: 'flex',
@@ -181,6 +191,7 @@ export const Default: Story = {
               ))}
             </div>
           </Layout.PageContent>
+
           <Layout.PageFooter>
             <Text isSubtle>2018-2025 SonarSource Sàrl. All rights reserved</Text>
             <Links>

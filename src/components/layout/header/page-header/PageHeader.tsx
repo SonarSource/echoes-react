@@ -84,11 +84,13 @@ const StyledPageHeader = styled(StyledHeaderBase)`
       ${cssVar('layout-page-header-sizes-height-collapsed')} - var(--page-header-total-height) -
         ${cssVar('dimension-space-300')}
     );
+    z-index: 1;
   }
 
   &[data-scroll-behavior='${PageHeaderScrollBehavior.sticky}'] {
     position: sticky;
     top: 0;
+    z-index: 1;
   }
 `;
 StyledPageHeader.displayName = 'StyledPageHeader';
