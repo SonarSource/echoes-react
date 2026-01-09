@@ -18,10 +18,13 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+import { matchers } from '@emotion/jest';
 import { screen } from '@testing-library/react';
 import { renderWithMemoryRouter } from '~common/helpers/test-utils';
 import { IconBranch, IconClock } from '../../../icons';
 import { SidebarNavigationItem, SidebarNavigationItemProps } from '../SidebarNavigationItem';
+
+expect.extend(matchers);
 
 it('should handle onClick events', async () => {
   const handleClick = jest.fn();
@@ -88,6 +91,29 @@ describe('active state behavior', () => {
     setupSidebarNavigationItem({ to: '/second' });
 
     expect(screen.getByRole('link')).not.toHaveClass('active');
+  });
+});
+
+describe('CSS custom properties for accordion integration', () => {
+  it('should use CSS custom properties for display, visibility and outline', () => {
+    setupSidebarNavigationItem();
+
+    const link = screen.getByRole('link');
+
+    // Check that display CSS custom property is used with fallback
+    expect(link).toHaveStyleRule(
+      'display',
+      'var(--sidebar-navigation-accordion-children-display, flex)',
+    );
+
+    // Check that visibility CSS custom property is used with fallback
+    expect(link).toHaveStyleRule(
+      'visibility',
+      'var(--sidebar-navigation-accordion-children-visibility, visible)',
+    );
+
+    // Check that outline CSS custom property is used (no fallback needed)
+    expect(link).toHaveStyleRule('outline', 'var(--sidebar-navigation-accordion-children-outline)');
   });
 });
 
