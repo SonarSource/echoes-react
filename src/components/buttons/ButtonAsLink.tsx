@@ -21,7 +21,7 @@
 import styled from '@emotion/styled';
 import { Link as RouterLink } from 'react-router-dom';
 import { LinkBaseProps } from '../links/LinkTypes';
-import { buttonIconStyles, ButtonStyled } from './ButtonStyles';
+import { ButtonStyled, buttonIconStyles } from './ButtonStyles';
 import { ButtonCommonProps, HTMLButtonAttributesSubset } from './ButtonTypes';
 
 type LinkPropsSubset = Pick<
