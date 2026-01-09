@@ -80,7 +80,7 @@ describe('ellipsis behavior', () => {
 });
 
 describe('integration with SidebarNavigationItem', () => {
-  it('should have active class and rely on the css property passed set form the accordion', () => {
+  it('should set CSS custom properties and active class on children', () => {
     setupSidebarNavigationAccordionItem({
       children: (
         <>
@@ -94,17 +94,42 @@ describe('integration with SidebarNavigationItem', () => {
       ),
     });
 
-    expect(screen.getByRole('link', { name: 'Sub Item 1' })).toHaveStyleRule(
-      'display',
-      'var(--sidebar-navigation-accordion-children-display, flex)',
-    );
-    expect(screen.getByRole('link', { name: 'Sub Item 1' })).toHaveClass('active');
+    const subItem1 = screen.getByRole('link', { name: 'Sub Item 1' });
+    const subItem2 = screen.getByRole('link', { name: 'Sub Item 2' });
 
-    expect(screen.queryByRole('link', { name: 'Sub Item 2' })).toHaveStyleRule(
+    // Check active class
+    expect(subItem1).toHaveClass('active');
+    expect(subItem2).not.toHaveClass('active');
+
+    // Check that display CSS custom property is set
+    expect(subItem1).toHaveStyleRule(
       'display',
       'var(--sidebar-navigation-accordion-children-display, flex)',
     );
-    expect(screen.getByRole('link', { name: 'Sub Item 2' })).not.toHaveClass('active');
+    expect(subItem2).toHaveStyleRule(
+      'display',
+      'var(--sidebar-navigation-accordion-children-display, flex)',
+    );
+
+    // Check that visibility CSS custom property is set
+    expect(subItem1).toHaveStyleRule(
+      'visibility',
+      'var(--sidebar-navigation-accordion-children-visibility, visible)',
+    );
+    expect(subItem2).toHaveStyleRule(
+      'visibility',
+      'var(--sidebar-navigation-accordion-children-visibility, visible)',
+    );
+
+    // Check that outline CSS custom property is set
+    expect(subItem1).toHaveStyleRule(
+      'outline',
+      'var(--sidebar-navigation-accordion-children-outline)',
+    );
+    expect(subItem2).toHaveStyleRule(
+      'outline',
+      'var(--sidebar-navigation-accordion-children-outline)',
+    );
   });
 });
 

@@ -99,7 +99,7 @@ const SidebarNavigationWrapper = styled.nav`
 
   --sidebar-navigation-width: ${cssVar('layout-sidebar-navigation-sizes-width-open')};
 
-  // hover and focus-within pilotes the open state of the sidebar
+  // hover and focus-within pilots the open state of the sidebar
   [data-sidebar-docked='false'] &:not(:hover, :focus-within) {
     --sidebar-navigation-width: ${cssVar('layout-sidebar-navigation-sizes-width-closed')};
   }

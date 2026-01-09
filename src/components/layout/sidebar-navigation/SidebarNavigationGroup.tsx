@@ -22,6 +22,7 @@ import styled from '@emotion/styled';
 import { forwardRef, PropsWithChildren, useId } from 'react';
 import { TextNode } from '~types/utils';
 import { cssVar } from '~utils/design-tokens';
+import { Divider } from '../../divider';
 import { Text } from '../../typography';
 import { UnstyledListItem } from './SidebarNavigationItemStyles';
 
@@ -52,9 +53,11 @@ export const SidebarNavigationGroup = forwardRef<
         role="group"
         {...radixProps}>
         <SidebarNavigationGroupLabel id={id}>
-          <Text isSubtle size="small">
+          <SidebarNavigationGroupLabelText isSubtle size="small">
             {label}
-          </Text>
+          </SidebarNavigationGroupLabelText>
+
+          <SidebarNavigationGroupLabelDivider />
         </SidebarNavigationGroupLabel>
         <SidebarNavigationGroupList>{children}</SidebarNavigationGroupList>
       </SidebarNavigationGroupContainer>
@@ -87,12 +90,24 @@ const SidebarNavigationGroupLabel = styled.label`
   align-items: center;
   height: ${cssVar('dimension-height-800')};
   padding: 0 ${cssVar('dimension-space-100')};
+  white-space: nowrap;
+`;
+SidebarNavigationGroupLabel.displayName = 'SidebarNavigationGroupLabel';
 
+const SidebarNavigationGroupLabelText = styled(Text)`
   [data-sidebar-docked='false'] nav:not(:hover, :focus-within) & {
     display: none;
   }
 `;
-SidebarNavigationGroupLabel.displayName = 'SidebarNavigationGroupLabel';
+SidebarNavigationGroupLabelText.displayName = 'SidebarNavigationGroupLabelText';
+
+const SidebarNavigationGroupLabelDivider = styled(Divider)`
+  [data-sidebar-docked='true'] &,
+  [data-sidebar-docked='false'] nav:is(:hover, :focus-within) & {
+    display: none;
+  }
+`;
+SidebarNavigationGroupLabelDivider.displayName = 'SidebarNavigationGroupLabelDivider';
 
 export const SidebarNavigationGroupList = styled.ul`
   all: unset;

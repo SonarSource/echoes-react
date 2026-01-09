@@ -130,15 +130,24 @@ SidebarNavigationItem.displayName = 'SidebarNavigationItem';
 const NavigationItem = styled(NavLinkBase)`
   ${sidebarNavigationBaseItemStyles}
 
-  // When the item is inside an accordion, the display value changes based on the state of the accordion, hiding the items when the sidebar is closed
-  // This css property is set by the SidebarNavigationAccordionItem component
-  // Fallback to flex if not inside an accordion
+  // When the item is inside an accordion, the display/visibility value changes based on the state
+  // of the accordion, hiding the items when the sidebar is closed.
+  // These css properties are set by the SidebarNavigationAccordionItem component
+  // Fallback to flex/visible if not inside an accordion
   display: var(--sidebar-navigation-accordion-children-display, flex);
+  visibility: var(--sidebar-navigation-accordion-children-visibility, visible);
+
+  // Outline provided by the accordion item when the sidebar is collapsed, it's only visible for the
+  // active element, but we don't put it inside the active rule to make sure it doesn't have higher
+  // specificity than the outline provided by the sidebarNavigationBaseItemStyles on focus.
+  // Also it doesn't matter if it's present when not active since non active items are not visible anyway.
+  outline: var(--sidebar-navigation-accordion-children-outline);
 
   &:active,
   &.active {
     // Always display the item when active even if behind a closed accordion, this overrides the previously set display value from the css property
     display: flex;
+    visibility: visible;
 
     background-color: ${cssVar('sidebar-navigation-item-colors-background-active')};
     color: ${cssVar('color-text-accent')};
