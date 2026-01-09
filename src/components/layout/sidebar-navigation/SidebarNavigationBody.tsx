@@ -82,7 +82,7 @@ SidebarNavigationBodyInner.displayName = 'SidebarNavigationBodyInner';
 
 const SidebarNavigationBottomShadowScroll = styled(BottomShadowScroll)`
   [data-sidebar-docked='false'] nav:not(:hover, :focus-within) & {
-    display: none;
+    opacity: 0.5;
   }
 `;
 SidebarNavigationBottomShadowScroll.displayName = 'SidebarNavigationBottomShadowScroll';
