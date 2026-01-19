@@ -123,7 +123,7 @@ const StyledPromotedSectionMainStyles = styled(PromotedSectionMainStyles)`
   gap: ${cssVar('dimension-space-100')};
   align-items: start;
   opacity: 1;
-  /* step-end makes it appear at the very end, when the sidebar has reached is full size.
+  /* step-end makes it appear at the very end, when the sidebar has reached its full size.
    * This prevents showing it resizing
    */
   transition: opacity 0.1s step-end;
