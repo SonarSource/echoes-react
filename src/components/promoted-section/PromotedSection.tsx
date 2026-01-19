@@ -23,17 +23,20 @@ import { forwardRef, useMemo } from 'react';
 import { useIntl } from 'react-intl';
 import { isDefined } from '~common/helpers/types';
 import { TextNode } from '~types/utils';
-import { Badge, BadgeSize, BadgeVariety } from '../badges';
+import { Badge, BadgeSize } from '../badges';
 import { ButtonIcon, ButtonSize, ButtonVariety } from '../buttons';
 import { IconX } from '../icons';
 import { Heading, HeadingProps, HeadingSize, Text } from '../typography';
 
+import {
+  BADGE_VARIETIES,
+  PROMOTED_SECTION_STYLES,
+  PromotedSectionMainStyles,
+  PromotedSectionTextAndActions,
+  PromotedSectionTextContainer,
+  PromotedSectionVariety,
+} from '~common/components/PromotedSectionStyles';
 import { cssVar } from '~utils/design-tokens';
-
-export enum PromotedSectionVariety {
-  Highlight = 'highlight',
-  Neutral = 'neutral',
-}
 
 export interface PromotedSectionProps {
   /**
@@ -104,7 +107,7 @@ export const PromotedSection = forwardRef<HTMLDivElement, Readonly<PromotedSecti
     const intl = useIntl();
 
     return (
-      <PromotedSectionStyled
+      <PromotedSectionMainStyles
         className={className}
         css={useMemo(() => PROMOTED_SECTION_STYLES[variety], [variety])}
         ref={ref}
@@ -113,8 +116,8 @@ export const PromotedSection = forwardRef<HTMLDivElement, Readonly<PromotedSecti
         <MainContainer>
           <MainContainerLeftSide>
             <TextAndActionsContainer>
-              <TextAndActions>
-                <TextContainer>
+              <PromotedSectionTextAndActions>
+                <PromotedSectionTextContainer>
                   <HeaderContainer>
                     <StyledHeading as={titleAs} hasMarginBottom={false} size={HeadingSize.Medium}>
                       {headerText}
@@ -131,10 +134,10 @@ export const PromotedSection = forwardRef<HTMLDivElement, Readonly<PromotedSecti
                   </HeaderContainer>
 
                   <Text>{text}</Text>
-                </TextContainer>
+                </PromotedSectionTextContainer>
 
                 {actions && <ActionsContainer>{actions}</ActionsContainer>}
-              </TextAndActions>
+              </PromotedSectionTextAndActions>
             </TextAndActionsContainer>
 
             {illustration && <IllustrationContainer>{illustration}</IllustrationContainer>}
@@ -156,29 +159,12 @@ export const PromotedSection = forwardRef<HTMLDivElement, Readonly<PromotedSecti
             </MainContainerRightSide>
           )}
         </MainContainer>
-      </PromotedSectionStyled>
+      </PromotedSectionMainStyles>
     );
   },
 );
 
 PromotedSection.displayName = 'PromotedSection';
-
-const BADGE_VARIETIES = {
-  [PromotedSectionVariety.Highlight]: BadgeVariety.Highlight,
-  [PromotedSectionVariety.Neutral]: BadgeVariety.Neutral,
-};
-
-const PROMOTED_SECTION_STYLES = {
-  [PromotedSectionVariety.Highlight]: {
-    '--promoted-section-background-color': cssVar('color-background-emphasis-weak-default'),
-    '--promoted-section-border': `1px solid ${cssVar('color-border-emphasis-weak')}`,
-  },
-
-  [PromotedSectionVariety.Neutral]: {
-    '--promoted-section-background-color': cssVar('color-surface-default'),
-    '--promoted-section-border': `1px solid ${cssVar('color-border-weak')}`,
-  },
-};
 
 const ActionsContainer = styled.div`
   align-items: center;
@@ -241,18 +227,6 @@ const MainContainerRightSide = styled.div`
 
 MainContainerRightSide.displayName = 'MainContainerRightSide';
 
-const PromotedSectionStyled = styled.div`
-  align-items: center;
-  background-color: var(--promoted-section-background-color);
-  border: var(--promoted-section-border);
-  border-radius: ${cssVar('border-radius-400')};
-  box-shadow: ${cssVar('box-shadow-xsmall')};
-  gap: ${cssVar('dimension-space-100')};
-  padding: ${cssVar('dimension-space-200')};
-`;
-
-PromotedSectionStyled.displayName = 'PromotedSectionStyled';
-
 const StyledButtonIcon = styled(ButtonIcon)`
   position: relative;
   right: ${cssVar('dimension-negative-spacing-800')};
@@ -267,16 +241,6 @@ const StyledHeading = styled(Heading)`
 
 StyledHeading.displayName = 'StyledHeading';
 
-const TextAndActions = styled.div`
-  align-items: flex-start;
-  display: flex;
-  flex: 1 0 0;
-  flex-direction: column;
-  gap: ${cssVar('dimension-space-150')};
-`;
-
-TextAndActions.displayName = 'TextAndActions';
-
 const TextAndActionsContainer = styled.div`
   align-items: center;
   display: flex;
@@ -285,13 +249,3 @@ const TextAndActionsContainer = styled.div`
 `;
 
 TextAndActionsContainer.displayName = 'TextAndActionsContainer';
-
-const TextContainer = styled.div`
-  align-items: flex-start;
-  align-self: stretch;
-  display: flex;
-  flex-direction: column;
-  gap: ${cssVar('dimension-space-100')};
-`;
-
-TextContainer.displayName = 'TextContainer';

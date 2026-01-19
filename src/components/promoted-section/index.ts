@@ -18,6 +18,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-export { PromotedSection, PromotedSectionVariety } from './PromotedSection';
+export { PromotedSectionVariety } from '~common/components/PromotedSectionStyles';
+export { PromotedSection } from './PromotedSection';
 
 export type { PromotedSectionProps } from './PromotedSection';
