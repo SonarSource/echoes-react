@@ -21,6 +21,7 @@
 import { SidebarNavigation as SidebarNavigationRoot } from './SidebarNavigation';
 import { SidebarNavigationAccordionItem } from './SidebarNavigationAccordionItem';
 import { SidebarNavigationBody } from './SidebarNavigationBody';
+import { SidebarNavigationFooterPromotionCard } from './SidebarNavigationFooterPromotionCard';
 import { SidebarNavigationGroup } from './SidebarNavigationGroup';
 import { SidebarNavigationHeader } from './SidebarNavigationHeader';
 import { SidebarNavigationItem } from './SidebarNavigationItem';
@@ -71,7 +72,31 @@ export const SidebarNavigation = Object.assign(SidebarNavigationRoot, {
    * </SidebarNavigation.Footer>
    * ```
    */
-  Footer: SidebarNavigationFooter,
+  Footer: Object.assign(SidebarNavigationFooter, {
+    /**
+     * {@link SidebarNavigationFooterPromotionCard | PromotionCard} is a special PromotedSection-like component
+     * specifically designed for the Sidebar's footer.
+     *
+     * It is a simplified version, and as such only has a few options
+     *
+     * ```tsx
+     * <SidebarNavigation.Footer>
+     *   <SidebarNavigation.Footer.PromotionCard
+     *     actions={
+     *      <>
+     *        <Button>Try</Button>
+     *        <LinkStandalone to="/somewhere">No thanks</LinkStandalone>
+     *      </>
+     *    }
+     *    badgeText="..."
+     *    headerText="..."
+     *    text="..."
+     *   />
+     * </SidebarNavigation.Footer>
+     * ```
+     */
+    PromotionCard: SidebarNavigationFooterPromotionCard,
+  }),
 
   /**
    * {@link SidebarNavigationGroup | Group} organizes navigation items under a common label,
