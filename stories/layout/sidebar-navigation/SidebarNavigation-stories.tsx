@@ -22,6 +22,8 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { PropsWithChildren } from 'react';
 import {
   Badge,
+  Button,
+  ButtonGroup,
   cssVar,
   IconBell,
   IconBranch,
@@ -33,6 +35,7 @@ import {
   IconSparkleInShieldError,
   IconTarget,
   Layout,
+  LinkStandalone,
   LogoSonarQubeServer,
   MessageCallout,
 } from '../../../src';
@@ -168,6 +171,17 @@ export const Full: Story = {
           </Layout.SidebarNavigation.Group>
         </Layout.SidebarNavigation.Body>
         <Layout.SidebarNavigation.Footer>
+          <Layout.SidebarNavigation.Footer.PromotionCard
+            actions={
+              <ButtonGroup>
+                <Button>Try now</Button>
+                <LinkStandalone to="/eh">Maybe later</LinkStandalone>
+              </ButtonGroup>
+            }
+            badgeText="Beta"
+            headerText="My feature is available now"
+            text="Learn how you can improve your code base simply by cleaning your new code."
+          />
           <Layout.SidebarNavigation.AccordionItem Icon={IconGear} label="Settings">
             <Layout.SidebarNavigation.Item
               Icon={IconGear}
