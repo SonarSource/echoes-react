@@ -19,7 +19,7 @@
  */
 
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { BadgeSeverity, BadgeSeverityLevel, DropdownMenu } from '../../src';
+import { BadgeSeverity, BadgeSeverityLevel, DropdownMenu, Label } from '../../src';
 import { BadgeSeverityVariety } from '../../src/components/badges/BadgeSeverity';
 import { iconsComponentsArgType } from '../helpers/arg-types';
 import { basicWrapperDecorator } from '../helpers/BasicWrapper';
@@ -89,6 +89,10 @@ export const AllSeverities: Story = {
       <BadgeSeverity ariaLabel="Medium severity" quality="Maintainability" severity="medium" />
       <BadgeSeverity ariaLabel="Low severity" quality="Security" severity="low" />
       <BadgeSeverity ariaLabel="Info severity" quality="Reliability" severity="info" />
+      <Label style={{ marginTop: 16 }}>Standard Experience</Label>
+      <BadgeSeverity ariaLabel="Critical severity" quality="Reliability" severity="critical" />
+      <BadgeSeverity ariaLabel="Major severity" quality="Reliability" severity="major" />
+      <BadgeSeverity ariaLabel="Minor severity" quality="Reliability" severity="minor" />
     </div>
   ),
 };
