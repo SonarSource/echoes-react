@@ -46,6 +46,10 @@ export enum BadgeSeverityLevel {
   Medium = 'medium',
   Low = 'low',
   Info = 'info',
+  // Standard mode
+  Critical = 'critical',
+  Major = 'major',
+  Minor = 'minor',
 }
 
 export enum BadgeSeverityVariety {
@@ -152,6 +156,22 @@ export const BadgeSeverity = forwardRef<HTMLButtonElement, BadgeSeverityProps>((
       id: 'severity_impact.MEDIUM',
       defaultMessage: 'Medium',
       description: 'Label for medium severity level',
+    }),
+    // Standard mode labels
+    [BadgeSeverityLevel.Critical]: formatMessage({
+      id: 'severity.CRITICAL',
+      defaultMessage: 'Critical',
+      description: 'Label for critical severity level',
+    }),
+    [BadgeSeverityLevel.Major]: formatMessage({
+      id: 'severity.MAJOR',
+      defaultMessage: 'Major',
+      description: 'Label for major severity level',
+    }),
+    [BadgeSeverityLevel.Minor]: formatMessage({
+      id: 'severity.MINOR',
+      defaultMessage: 'Minor',
+      description: 'Label for minor severity level',
     }),
   };
   const severityLabel = BADGE_SEVERITY_LABEL[severity];
@@ -310,72 +330,98 @@ const BADGE_SEVERITY_ICON = {
     SeverityIcon: IconSeverityMedium,
     severityIconColor: 'echoes-severity-badge-colors-foreground-medium-icon-default',
   },
+  // Standard mode icons
+  [BadgeSeverityLevel.Critical]: {
+    SeverityIcon: IconSeverityHigh,
+    severityIconColor: 'echoes-severity-badge-colors-foreground-high-icon-default',
+  },
+  [BadgeSeverityLevel.Major]: {
+    SeverityIcon: IconSeverityMedium,
+    severityIconColor: 'echoes-severity-badge-colors-foreground-medium-icon-default',
+  },
+  [BadgeSeverityLevel.Minor]: {
+    SeverityIcon: IconSeverityLow,
+    severityIconColor: 'echoes-severity-badge-colors-foreground-low-icon-default',
+  },
 } as const;
 
+const BADGE_SEVERITY_BLOCKER_STYLE = {
+  '--badge-severity-color': cssVar('severity-badge-colors-foreground-blocker-text-default'),
+  '--badge-severity-border-color': cssVar('severity-badge-colors-borders-blocker-default'),
+  '--badge-severity-background-color': cssVar(
+    'severity-badge-colors-background-severity-blocker-prefix-default',
+  ),
+  '--badge-severity-icon-background-color': cssVar(
+    'severity-badge-colors-background-severity-blocker-suffix-default',
+  ),
+  '--badge-severity-icon-background-color-hover': cssVar(
+    'severity-badge-colors-background-severity-blocker-suffix-hover',
+  ),
+};
+
+const BADGE_SEVERITY_HIGH_STYLE = {
+  '--badge-severity-color': cssVar('severity-badge-colors-foreground-high-text-default'),
+  '--badge-severity-border-color': cssVar('severity-badge-colors-borders-high-default'),
+  '--badge-severity-background-color': cssVar(
+    'severity-badge-colors-background-severity-high-prefix-default',
+  ),
+  '--badge-severity-icon-background-color': cssVar(
+    'severity-badge-colors-background-severity-high-suffix-default',
+  ),
+  '--badge-severity-icon-background-color-hover': cssVar(
+    'severity-badge-colors-background-severity-high-suffix-hover',
+  ),
+};
+
+const BADGE_SEVERITY_LOW_STYLE = {
+  '--badge-severity-color': cssVar('severity-badge-colors-foreground-low-text-default'),
+  '--badge-severity-border-color': cssVar('severity-badge-colors-borders-low-default'),
+  '--badge-severity-background-color': cssVar(
+    'severity-badge-colors-background-severity-low-prefix-default',
+  ),
+  '--badge-severity-icon-background-color': cssVar(
+    'severity-badge-colors-background-severity-low-suffix-default',
+  ),
+  '--badge-severity-icon-background-color-hover': cssVar(
+    'severity-badge-colors-background-severity-low-suffix-hover',
+  ),
+};
+
+const BADGE_SEVERITY_MEDIUM_STYLE = {
+  '--badge-severity-color': cssVar('severity-badge-colors-foreground-medium-text-default'),
+  '--badge-severity-border-color': cssVar('severity-badge-colors-borders-medium-default'),
+  '--badge-severity-background-color': cssVar(
+    'severity-badge-colors-background-severity-medium-prefix-default',
+  ),
+  '--badge-severity-icon-background-color': cssVar(
+    'severity-badge-colors-background-severity-medium-suffix-default',
+  ),
+  '--badge-severity-icon-background-color-hover': cssVar(
+    'severity-badge-colors-background-severity-medium-suffix-hover',
+  ),
+};
+
+const BADGE_SEVERITY_INFO_STYLE = {
+  '--badge-severity-color': cssVar('severity-badge-colors-foreground-info-text-default'),
+  '--badge-severity-border-color': cssVar('severity-badge-colors-borders-info-default'),
+  '--badge-severity-background-color': cssVar(
+    'severity-badge-colors-background-severity-info-prefix-default',
+  ),
+  '--badge-severity-icon-background-color': cssVar(
+    'severity-badge-colors-background-severity-info-suffix-default',
+  ),
+  '--badge-severity-icon-background-color-hover': cssVar(
+    'severity-badge-colors-background-severity-info-suffix-hover',
+  ),
+};
 const BADGE_SEVERITY_STYLES = {
-  [BadgeSeverityLevel.Blocker]: {
-    '--badge-severity-color': cssVar('severity-badge-colors-foreground-blocker-text-default'),
-    '--badge-severity-border-color': cssVar('severity-badge-colors-borders-blocker-default'),
-    '--badge-severity-background-color': cssVar(
-      'severity-badge-colors-background-severity-blocker-prefix-default',
-    ),
-    '--badge-severity-icon-background-color': cssVar(
-      'severity-badge-colors-background-severity-blocker-suffix-default',
-    ),
-    '--badge-severity-icon-background-color-hover': cssVar(
-      'severity-badge-colors-background-severity-blocker-suffix-hover',
-    ),
-  },
-  [BadgeSeverityLevel.High]: {
-    '--badge-severity-color': cssVar('severity-badge-colors-foreground-high-text-default'),
-    '--badge-severity-border-color': cssVar('severity-badge-colors-borders-high-default'),
-    '--badge-severity-background-color': cssVar(
-      'severity-badge-colors-background-severity-high-prefix-default',
-    ),
-    '--badge-severity-icon-background-color': cssVar(
-      'severity-badge-colors-background-severity-high-suffix-default',
-    ),
-    '--badge-severity-icon-background-color-hover': cssVar(
-      'severity-badge-colors-background-severity-high-suffix-hover',
-    ),
-  },
-  [BadgeSeverityLevel.Info]: {
-    '--badge-severity-color': cssVar('severity-badge-colors-foreground-info-text-default'),
-    '--badge-severity-border-color': cssVar('severity-badge-colors-borders-info-default'),
-    '--badge-severity-background-color': cssVar(
-      'severity-badge-colors-background-severity-info-prefix-default',
-    ),
-    '--badge-severity-icon-background-color': cssVar(
-      'severity-badge-colors-background-severity-info-suffix-default',
-    ),
-    '--badge-severity-icon-background-color-hover': cssVar(
-      'severity-badge-colors-background-severity-info-suffix-hover',
-    ),
-  },
-  [BadgeSeverityLevel.Low]: {
-    '--badge-severity-color': cssVar('severity-badge-colors-foreground-low-text-default'),
-    '--badge-severity-border-color': cssVar('severity-badge-colors-borders-low-default'),
-    '--badge-severity-background-color': cssVar(
-      'severity-badge-colors-background-severity-low-prefix-default',
-    ),
-    '--badge-severity-icon-background-color': cssVar(
-      'severity-badge-colors-background-severity-low-suffix-default',
-    ),
-    '--badge-severity-icon-background-color-hover': cssVar(
-      'severity-badge-colors-background-severity-low-suffix-hover',
-    ),
-  },
-  [BadgeSeverityLevel.Medium]: {
-    '--badge-severity-color': cssVar('severity-badge-colors-foreground-medium-text-default'),
-    '--badge-severity-border-color': cssVar('severity-badge-colors-borders-medium-default'),
-    '--badge-severity-background-color': cssVar(
-      'severity-badge-colors-background-severity-medium-prefix-default',
-    ),
-    '--badge-severity-icon-background-color': cssVar(
-      'severity-badge-colors-background-severity-medium-suffix-default',
-    ),
-    '--badge-severity-icon-background-color-hover': cssVar(
-      'severity-badge-colors-background-severity-medium-suffix-hover',
-    ),
-  },
+  [BadgeSeverityLevel.Blocker]: BADGE_SEVERITY_BLOCKER_STYLE,
+  [BadgeSeverityLevel.High]: BADGE_SEVERITY_HIGH_STYLE,
+  [BadgeSeverityLevel.Info]: BADGE_SEVERITY_INFO_STYLE,
+  [BadgeSeverityLevel.Low]: BADGE_SEVERITY_LOW_STYLE,
+  [BadgeSeverityLevel.Medium]: BADGE_SEVERITY_MEDIUM_STYLE,
+  // Standard mode styles
+  [BadgeSeverityLevel.Critical]: BADGE_SEVERITY_HIGH_STYLE,
+  [BadgeSeverityLevel.Minor]: BADGE_SEVERITY_LOW_STYLE,
+  [BadgeSeverityLevel.Major]: BADGE_SEVERITY_MEDIUM_STYLE,
 };
