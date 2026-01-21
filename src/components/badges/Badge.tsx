@@ -70,6 +70,7 @@ export interface BadgeProps extends PropsWithChildren {
 
   /**
    * Specifies the size of the badge. Must match `BadgeSize`.
+   * Default is Small.
    */
   size?: `${BadgeSize}`;
 

@@ -20,6 +20,7 @@
 
 import { screen } from '@testing-library/react';
 import { render } from '~common/helpers/test-utils';
+import { Badge } from '../../../badges';
 import { Button } from '../../../buttons';
 import { SidebarNavigationFooterPromotionCard } from '../SidebarNavigationFooterPromotionCard';
 
@@ -42,7 +43,7 @@ it('should render correctly with a badge', () => {
   render(
     <SidebarNavigationFooterPromotionCard
       actions={<Button>action</Button>}
-      badgeText="beta"
+      badge={<Badge variety="info">beta</Badge>}
       headerText="title"
       text="description"
     />,
