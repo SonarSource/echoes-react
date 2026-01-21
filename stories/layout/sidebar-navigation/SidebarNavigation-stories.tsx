@@ -192,7 +192,7 @@ export const Full: Story = {
                 <LinkStandalone to="/eh">Maybe later</LinkStandalone>
               </ButtonGroup>
             }
-            badgeText="Beta"
+            badge={<Badge variety="info">Beta</Badge>}
             headerText="My feature is available now"
             text="Learn how you can improve your code base simply by cleaning your new code."
           />
