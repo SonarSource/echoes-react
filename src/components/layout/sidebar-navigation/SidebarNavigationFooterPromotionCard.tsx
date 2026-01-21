@@ -21,7 +21,6 @@
 import styled from '@emotion/styled';
 import { forwardRef, useMemo } from 'react';
 import {
-  BADGE_VARIETIES,
   PROMOTED_SECTION_STYLES,
   PromotedSectionMainStyles,
   PromotedSectionTextAndActions,
@@ -30,7 +29,6 @@ import {
 } from '~common/components/PromotedSectionStyles';
 import { TextNode } from '~types/utils';
 import { cssVar } from '~utils/design-tokens';
-import { Badge, BadgeSize } from '../../../components/badges';
 import { Heading, HeadingSize, Text } from '../../typography';
 
 export interface SidebarNavigationFooterPromotionCard {
@@ -41,10 +39,9 @@ export interface SidebarNavigationFooterPromotionCard {
   actions: React.ReactNode;
 
   /**
-   * The text to display on a badge above the header (optional).
-   * No badge appears if this is undefined or the empty string `""`
+   * Define a Badge to display at the top.
    */
-  badgeText?: TextNode;
+  badge?: React.ReactNode;
 
   /**
    * CSS class name(s) to apply to the section (optional)
@@ -60,60 +57,34 @@ export interface SidebarNavigationFooterPromotionCard {
    * The main text for the section
    */
   text: TextNode;
-
-  /**
-   * The variety: either PromotedSectionVariety.Highlight/'highlight' or PromotedSectionVariety.Neutral/'neutral'.
-   * Defaults to PromotedSectionVariety.Neutral/'neutral' (optional)
-   */
-  variety?: `${PromotedSectionVariety}`;
 }
 
 export const SidebarNavigationFooterPromotionCard = forwardRef<
   HTMLDivElement,
   Readonly<SidebarNavigationFooterPromotionCard>
->(
-  (
-    {
-      actions,
-      badgeText,
-      className,
-      headerText,
-      text,
-      variety = PromotedSectionVariety.Neutral,
-      ...otherProps
-    },
-    ref,
-  ) => {
-    return (
-      <StyledPromotedSectionMainStyles
-        className={className}
-        css={useMemo(() => PROMOTED_SECTION_STYLES[variety], [variety])}
-        ref={ref}
-        {...otherProps}>
-        <PromotedSectionTextAndActions>
-          <PromotedSectionTextContainer>
-            {badgeText && (
-              <Badge
-                isHighContrast={variety === PromotedSectionVariety.Highlight}
-                size={BadgeSize.Small}
-                variety={BADGE_VARIETIES[variety]}>
-                {badgeText}
-              </Badge>
-            )}
+>(({ actions, badge, className, headerText, text, ...otherProps }, ref) => {
+  return (
+    <StyledPromotedSectionMainStyles
+      className={className}
+      css={useMemo(() => PROMOTED_SECTION_STYLES[PromotedSectionVariety.Neutral], [])}
+      ref={ref}
+      {...otherProps}>
+      <PromotedSectionTextAndActions>
+        <PromotedSectionTextContainer>
+          {badge}
 
-            <Heading as="h2" hasMarginBottom={false} size={HeadingSize.Medium}>
-              {headerText}
-            </Heading>
+          <Heading as="h2" hasMarginBottom={false} size={HeadingSize.Medium}>
+            {headerText}
+          </Heading>
 
-            <Text>{text}</Text>
-          </PromotedSectionTextContainer>
+          <Text>{text}</Text>
+        </PromotedSectionTextContainer>
 
-          {actions}
-        </PromotedSectionTextAndActions>
-      </StyledPromotedSectionMainStyles>
-    );
-  },
-);
+        {actions}
+      </PromotedSectionTextAndActions>
+    </StyledPromotedSectionMainStyles>
+  );
+});
 
 SidebarNavigationFooterPromotionCard.displayName = 'SidebarNavigationFooterPromotionCard';
 
