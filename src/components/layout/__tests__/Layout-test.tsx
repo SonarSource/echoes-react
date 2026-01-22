@@ -43,7 +43,7 @@ beforeEach(() => {
 it('should render correctly', () => {
   const { container } = render(<Layout>content</Layout>);
 
-  expect(container.childNodes[0]).toHaveStyle({ height: '100vh', width: '100vw' });
+  expect(container.childNodes[0].childNodes[0]).toHaveStyle({ height: '100vh', width: '100vw' });
   expect(screen.getByText('content')).toHaveStyle({ display: 'grid' });
 });
 

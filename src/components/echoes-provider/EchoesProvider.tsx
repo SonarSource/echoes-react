@@ -24,6 +24,7 @@ import { useIntl } from 'react-intl';
 import { Toaster as ToastContainer } from 'sonner';
 import { ToastGlobalStyles } from '~common/components/Toast';
 import { TooltipProvider, TooltipProviderProps, TypographyGlobalStyles } from '..';
+import { ModalPortal } from '../modals/ModalPortal';
 import { SelectGlobalStyles } from '../select/SelectCommons';
 
 export interface EchoesProviderProps {
@@ -96,7 +97,9 @@ export function EchoesProvider(props: PropsWithChildren<EchoesProviderProps>) {
       <SelectGlobalStyles />
       <ToastGlobalStyles />
       <TooltipProvider delayDuration={tooltipsDelayDuration}>
-        <HeadlessMantineProvider>{children}</HeadlessMantineProvider>
+        <ModalPortal>
+          <HeadlessMantineProvider>{children}</HeadlessMantineProvider>
+        </ModalPortal>
         <ToastContainer
           containerAriaLabel={intl.formatMessage({
             id: 'toasts.keyboard_shortcut_aria_label',
