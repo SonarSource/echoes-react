@@ -108,7 +108,7 @@ it('should be triggered by DropdownMenu Items', async () => {
 });
 
 it("shouldn't have any a11y violation", async () => {
-  const { container } = renderModal({ isDefaultOpen: true });
+  const { container } = renderModal({ isDefaultOpen: true, title: 'title' });
 
   await expect(container).toHaveNoA11yViolations();
 });
