@@ -269,6 +269,9 @@ const toastGlobalStyles = css`
   [data-sonner-toast] {
     border-radius: ${cssVar('border-radius-400')};
 
+    /* This is important to allow toasts to be interacted with when a Modal is open */
+    pointer-events: auto;
+
     &:focus-visible {
       outline: ${cssVar('color-focus-default')} solid ${cssVar('focus-border-width-default')};
       outline-offset: ${cssVar('focus-border-offset-default')};

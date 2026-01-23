@@ -31,6 +31,7 @@ import {
   Modal,
   ModalSize,
   Select,
+  toast,
 } from '../src';
 import { basicWrapperDecorator } from './helpers/BasicWrapper';
 
@@ -229,6 +230,28 @@ export const UncontrolledWithOnOpenChange: Story = {
         alert(`Modal open state changed: ${open}`);
       }}>
       <Button>Show Modal</Button>
+    </Modal>
+  ),
+};
+
+export const WithToastMessages: Story = {
+  render: () => (
+    <Modal
+      content={
+        <Button
+          onClick={() =>
+            toast.error({
+              description: 'interact with me',
+              isDismissable: true,
+              duration: 'infinite',
+            })
+          }>
+          toast!
+        </Button>
+      }
+      description="Clicking on the button will add a toast message. This shows that they appear on top and can be interacted with without closing the modal"
+      title="Toast compatibility">
+      <Button>go!</Button>
     </Modal>
   ),
 };

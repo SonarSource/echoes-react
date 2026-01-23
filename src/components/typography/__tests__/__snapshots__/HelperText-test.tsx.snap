@@ -8,10 +8,12 @@ exports[`renders correctly 1`] = `
 }
 
 <div>
-  <div
-    class="emotion-0 emotion-1"
-  >
-    The helper text
+  <div>
+    <div
+      class="emotion-0 emotion-1"
+    >
+      The helper text
+    </div>
   </div>
   <section
     aria-atomic="false"

@@ -28,6 +28,7 @@ import { ButtonGroup, ButtonIcon, ButtonSize, ButtonVariety } from '../buttons';
 import { isDropdownMenuItemComponent } from '../dropdown-menu/DropdownMenuItemBase';
 import { IconX } from '../icons';
 import { ModalBody } from './ModalBody';
+import { useModalPortalRef } from './ModalPortal';
 import {
   ModalContent,
   ModalFooter,
@@ -68,6 +69,8 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
 
   const intl = useIntl();
 
+  const modalPortalRef = useModalPortalRef();
+
   const hasActionButtons = isDefined(primaryButton) || isDefined(secondaryButton);
   const hasFooter = hasActionButtons || isDefined(footerLink);
   const isControlled = isDefined(isOpen) && isDefined(onOpenChange);
@@ -86,6 +89,16 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
     [onClose, onOpenChange],
   );
 
+  /**
+   * This allows Modals to stay open when the user interacts with toast messages
+   */
+  const clickHandler = useCallback((e: CustomEvent) => {
+    const isToastItem = (e.target as Element)?.closest('[data-sonner-toaster]');
+    if (isToastItem) {
+      e.preventDefault();
+    }
+  }, []);
+
   return (
     <RadixDialog.Root defaultOpen={isDefaultOpen} onOpenChange={handleOpenChange} open={isOpen}>
       <RadixDialog.Trigger
@@ -93,10 +106,12 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
         {...(isDropdownMenuItemComponent(children) && { onSelect: handleSelectForDropdownMenu })}>
         {children}
       </RadixDialog.Trigger>
-      <RadixDialog.Portal>
+      <RadixDialog.Portal container={modalPortalRef}>
         <ModalOverlay />
         <ModalWrapper
           {...(!isDefined(description) && { 'aria-describedby': undefined })}
+          onInteractOutside={clickHandler}
+          onPointerDownOutside={clickHandler}
           ref={ref}
           size={size}
           {...radixProps}>
