@@ -55,8 +55,8 @@
     "react-router-dom": "^6.0.0"
   },
   "devDependencies": {
-    "@babel/core": "7.28.6",
-    "@babel/preset-env": "7.28.6",
+    "@babel/core": "7.29.0",
+    "@babel/preset-env": "7.29.0",
     "@babel/preset-react": "7.28.5",
     "@babel/preset-typescript": "7.28.5",
     "@emotion/babel-plugin": "11.13.5",
@@ -68,7 +68,7 @@
     "@emotion/styled": "11.14.1",
     "@emotion/utils": "1.4.2",
     "@figma/code-connect": "1.3.12",
-    "@formatjs/cli": "6.12.0",
+    "@formatjs/cli": "6.12.1",
     "@storybook/addon-a11y": "10.1.11",
     "@storybook/addon-docs": "10.1.11",
     "@storybook/addon-links": "10.1.11",
