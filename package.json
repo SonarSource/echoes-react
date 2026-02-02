@@ -113,16 +113,16 @@
     "react-dom": "18.3.1",
     "react-intl": "6.7.1",
     "react-router-dom": "6.30.1",
-    "rollup": "4.54.0",
+    "rollup": "4.57.0",
     "rollup-plugin-license": "3.6.0",
     "sonarqube-scanner": "4.3.4",
     "storybook": "10.1.11",
     "style-dictionary": "5.1.1",
     "subset-font": "2.4.0",
     "typescript": "5.9.3",
-    "vite": "7.3.0",
+    "vite": "7.3.1",
     "vite-plugin-dts": "4.5.4",
-    "vite-plugin-static-copy": "3.1.4"
+    "vite-plugin-static-copy": "3.2.0"
   },
   "dependencies": {
     "@mantine/core": "patch:@mantine/core@7.12.2#./.yarn/patches/@mantine-core-npm-7.12.2-7aad505c0f.patch",
