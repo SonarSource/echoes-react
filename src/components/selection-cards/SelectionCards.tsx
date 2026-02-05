@@ -29,6 +29,7 @@ import { RadioButtonGroupProps, RadioOption } from '../radio-button-group/RadioB
 import { HelperText, Label } from '../typography';
 
 export type SelectionCardOption = RadioOption & {
+  className?: string;
   /**
    * Illustration to display at the top (optional)
    */
@@ -122,7 +123,7 @@ export const SelectionCards = forwardRef<HTMLDivElement, SelectionCardsProps>((p
 SelectionCards.displayName = 'SelectionCards';
 
 function SelectionCard(props: Readonly<SelectionCardOption>) {
-  const { ariaLabel, helpText, illustration, isDisabled, label, value } = props;
+  const { ariaLabel, className, helpText, illustration, isDisabled, label, value } = props;
 
   /*
    * Although the HTML spec defines buttons as valid targets for labels,
@@ -133,7 +134,11 @@ function SelectionCard(props: Readonly<SelectionCardOption>) {
   const inputLabel = ariaLabel ?? (typeof label === 'string' ? label : undefined);
 
   return (
-    <StyledSelectionCard aria-label={inputLabel} disabled={isDisabled} value={value}>
+    <StyledSelectionCard
+      aria-label={inputLabel}
+      className={className}
+      disabled={isDisabled}
+      value={value}>
       {illustration && <IllustrationContainer>{illustration}</IllustrationContainer>}
       <SelectionCardContentWrapper hasIllustration={isDefined(illustration)}>
         <Label>{label}</Label>
