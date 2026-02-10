@@ -10,13 +10,14 @@ exports[`renders a Heading as an h1 with no bottom margin 1`] = `
 }
 
 <div>
-  <div>
-    <h1
-      class="emotion-0 emotion-1"
-    >
-      This is a heading rendered as "h1" with no bottom margin
-    </h1>
-  </div>
+  <h1
+    class="emotion-0 emotion-1"
+  >
+    This is a heading rendered as "h1" with no bottom margin
+  </h1>
+  <div
+    class="echoes-modal-portal"
+  />
   <section
     aria-atomic="false"
     aria-label="Focus toasts messages with alt+T"
@@ -37,13 +38,14 @@ exports[`renders a Heading as an h2 with no bottom margin 1`] = `
 }
 
 <div>
-  <div>
-    <h2
-      class="emotion-0 emotion-1"
-    >
-      This is a heading rendered as "h2" with no bottom margin
-    </h2>
-  </div>
+  <h2
+    class="emotion-0 emotion-1"
+  >
+    This is a heading rendered as "h2" with no bottom margin
+  </h2>
+  <div
+    class="echoes-modal-portal"
+  />
   <section
     aria-atomic="false"
     aria-label="Focus toasts messages with alt+T"
@@ -64,13 +66,14 @@ exports[`renders a Heading as an h3 with no bottom margin 1`] = `
 }
 
 <div>
-  <div>
-    <h3
-      class="emotion-0 emotion-1"
-    >
-      This is a heading rendered as "h3" with no bottom margin
-    </h3>
-  </div>
+  <h3
+    class="emotion-0 emotion-1"
+  >
+    This is a heading rendered as "h3" with no bottom margin
+  </h3>
+  <div
+    class="echoes-modal-portal"
+  />
   <section
     aria-atomic="false"
     aria-label="Focus toasts messages with alt+T"
@@ -91,13 +94,14 @@ exports[`renders a Heading as an h4 with no bottom margin 1`] = `
 }
 
 <div>
-  <div>
-    <h4
-      class="emotion-0 emotion-1"
-    >
-      This is a heading rendered as "h4" with no bottom margin
-    </h4>
-  </div>
+  <h4
+    class="emotion-0 emotion-1"
+  >
+    This is a heading rendered as "h4" with no bottom margin
+  </h4>
+  <div
+    class="echoes-modal-portal"
+  />
   <section
     aria-atomic="false"
     aria-label="Focus toasts messages with alt+T"
@@ -118,13 +122,14 @@ exports[`renders a Heading as an h5 with no bottom margin 1`] = `
 }
 
 <div>
-  <div>
-    <h5
-      class="emotion-0 emotion-1"
-    >
-      This is a heading rendered as "h5" with no bottom margin
-    </h5>
-  </div>
+  <h5
+    class="emotion-0 emotion-1"
+  >
+    This is a heading rendered as "h5" with no bottom margin
+  </h5>
+  <div
+    class="echoes-modal-portal"
+  />
   <section
     aria-atomic="false"
     aria-label="Focus toasts messages with alt+T"
@@ -146,13 +151,14 @@ exports[`renders a Heading with size large and a bottom margin 1`] = `
 }
 
 <div>
-  <div>
-    <div
-      class="emotion-0 emotion-1"
-    >
-      This is a heading with size "large" with a bottom margin
-    </div>
+  <div
+    class="emotion-0 emotion-1"
+  >
+    This is a heading with size "large" with a bottom margin
   </div>
+  <div
+    class="echoes-modal-portal"
+  />
   <section
     aria-atomic="false"
     aria-label="Focus toasts messages with alt+T"
@@ -174,13 +180,14 @@ exports[`renders a Heading with size medium and a bottom margin 1`] = `
 }
 
 <div>
-  <div>
-    <div
-      class="emotion-0 emotion-1"
-    >
-      This is a heading with size "medium" with a bottom margin
-    </div>
+  <div
+    class="emotion-0 emotion-1"
+  >
+    This is a heading with size "medium" with a bottom margin
   </div>
+  <div
+    class="echoes-modal-portal"
+  />
   <section
     aria-atomic="false"
     aria-label="Focus toasts messages with alt+T"
@@ -202,13 +209,14 @@ exports[`renders a Heading with size small and a bottom margin 1`] = `
 }
 
 <div>
-  <div>
-    <div
-      class="emotion-0 emotion-1"
-    >
-      This is a heading with size "small" with a bottom margin
-    </div>
+  <div
+    class="emotion-0 emotion-1"
+  >
+    This is a heading with size "small" with a bottom margin
   </div>
+  <div
+    class="echoes-modal-portal"
+  />
   <section
     aria-atomic="false"
     aria-label="Focus toasts messages with alt+T"
@@ -230,13 +238,14 @@ exports[`renders a Heading with size xlarge and a bottom margin 1`] = `
 }
 
 <div>
-  <div>
-    <div
-      class="emotion-0 emotion-1"
-    >
-      This is a heading with size "xlarge" with a bottom margin
-    </div>
+  <div
+    class="emotion-0 emotion-1"
+  >
+    This is a heading with size "xlarge" with a bottom margin
   </div>
+  <div
+    class="echoes-modal-portal"
+  />
   <section
     aria-atomic="false"
     aria-label="Focus toasts messages with alt+T"
@@ -258,13 +267,14 @@ exports[`renders a Heading with size xsmall and a bottom margin 1`] = `
 }
 
 <div>
-  <div>
-    <div
-      class="emotion-0 emotion-1"
-    >
-      This is a heading with size "xsmall" with a bottom margin
-    </div>
+  <div
+    class="emotion-0 emotion-1"
+  >
+    This is a heading with size "xsmall" with a bottom margin
   </div>
+  <div
+    class="echoes-modal-portal"
+  />
   <section
     aria-atomic="false"
     aria-label="Focus toasts messages with alt+T"
@@ -285,13 +295,14 @@ exports[`uses the default size 1`] = `
 }
 
 <div>
-  <div>
-    <h1
-      class="emotion-0 emotion-1"
-    >
-      Text goes here
-    </h1>
-  </div>
+  <h1
+    class="emotion-0 emotion-1"
+  >
+    Text goes here
+  </h1>
+  <div
+    class="echoes-modal-portal"
+  />
   <section
     aria-atomic="false"
     aria-label="Focus toasts messages with alt+T"

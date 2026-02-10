@@ -21,7 +21,7 @@
 /* eslint-disable no-console */
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { ComponentProps, useCallback, useState } from 'react';
-import { Button, ButtonVariety, ModalAlert } from '../src';
+import { Button, ButtonVariety, ModalAlert, toast } from '../src';
 import { basicWrapperDecorator } from './helpers/BasicWrapper';
 
 const meta: Meta<typeof ModalAlert> = {
@@ -104,3 +104,27 @@ function Controller(args: ComponentProps<typeof ModalAlert>) {
     </ModalAlert>
   );
 }
+
+export const WithToastMessages: Story = {
+  render: () => (
+    <ModalAlert
+      content={
+        <Button
+          onClick={() =>
+            toast.error({
+              description: 'interact with me',
+              isDismissable: true,
+              duration: 'infinite',
+            })
+          }>
+          toast!
+        </Button>
+      }
+      description="Clicking on the button will add a toast message. This shows that they appear on top and can be interacted with without closing the modal"
+      primaryButton={<Button variety={ButtonVariety.Primary}>Approve</Button>}
+      secondaryButtonLabel="Cancel"
+      title="Toast compatibility">
+      <Button>go!</Button>
+    </ModalAlert>
+  ),
+};
