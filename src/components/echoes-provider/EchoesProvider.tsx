@@ -116,3 +116,41 @@ export function EchoesProvider(props: PropsWithChildren<EchoesProviderProps>) {
 }
 
 EchoesProvider.displayName = 'EchoesProvider';
+
+/**
+ * EchoesProviderForTests is a simplified version of EchoesProvider that does not include portals that polute the DOM during testing.
+ * It should only be used in testing environments, and is not intended for use in production code.
+ *
+ * The following portals are removed:
+ * * ModalPortal
+ *
+ * It doesn't prevent tests using Modals to work fine.
+ */
+export function EchoesProviderForTests(props: PropsWithChildren<EchoesProviderProps>) {
+  const { children, tooltipsDelayDuration, toastsClassName, toastsVisibleNb = 5 } = props;
+  const intl = useIntl();
+
+  return (
+    <>
+      <TypographyGlobalStyles />
+      <SelectGlobalStyles />
+      <ToastGlobalStyles />
+      <TooltipProvider delayDuration={tooltipsDelayDuration}>
+        <HeadlessMantineProvider>{children}</HeadlessMantineProvider>
+
+        <ToastContainer
+          containerAriaLabel={intl.formatMessage({
+            id: 'toasts.keyboard_shortcut_aria_label',
+            defaultMessage: 'Focus toasts messages with',
+            description: 'ARIA-label for the toasts container keyboard shortcut',
+          })}
+          position="bottom-right"
+          toastOptions={{ className: toastsClassName }}
+          visibleToasts={toastsVisibleNb}
+        />
+      </TooltipProvider>
+    </>
+  );
+}
+
+EchoesProviderForTests.displayName = 'EchoesProviderForTests';

@@ -7,13 +7,14 @@ exports[`renders correctly 1`] = `
 }
 
 <div>
-  <div>
-    <label
-      class="emotion-0 emotion-1"
-    >
-      The label text
-    </label>
-  </div>
+  <label
+    class="emotion-0 emotion-1"
+  >
+    The label text
+  </label>
+  <div
+    class="echoes-modal-portal"
+  />
   <section
     aria-atomic="false"
     aria-label="Focus toasts messages with alt+T"
@@ -31,11 +32,12 @@ exports[`renders correctly with isSubtle 1`] = `
 }
 
 <div>
-  <div>
-    <label
-      class="emotion-0 emotion-1"
-    />
-  </div>
+  <label
+    class="emotion-0 emotion-1"
+  />
+  <div
+    class="echoes-modal-portal"
+  />
   <section
     aria-atomic="false"
     aria-label="Focus toasts messages with alt+T"

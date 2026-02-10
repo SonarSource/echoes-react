@@ -39,9 +39,10 @@ export function ModalPortal({ children }: Readonly<PropsWithChildren>) {
   const value = useMemo(() => ({ portalRef: portalNode }), [portalNode]);
 
   return (
-    <div ref={setPortalNode}>
+    <>
       <ModalPortalRefContext.Provider value={value}>{children}</ModalPortalRefContext.Provider>
-    </div>
+      <div className="echoes-modal-portal" ref={setPortalNode} />
+    </>
   );
 }
 
