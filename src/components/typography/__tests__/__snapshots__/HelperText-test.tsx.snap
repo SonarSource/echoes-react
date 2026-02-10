@@ -8,13 +8,14 @@ exports[`renders correctly 1`] = `
 }
 
 <div>
-  <div>
-    <div
-      class="emotion-0 emotion-1"
-    >
-      The helper text
-    </div>
+  <div
+    class="emotion-0 emotion-1"
+  >
+    The helper text
   </div>
+  <div
+    class="echoes-modal-portal"
+  />
   <section
     aria-atomic="false"
     aria-label="Focus toasts messages with alt+T"
