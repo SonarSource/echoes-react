@@ -56,3 +56,6 @@ build-reports/
 
 dist/
 .env/
+
+# SonarQube LLM code context files
+.sonar-code-context/

@@ -31,10 +31,14 @@ export interface GlobalNavigationHomeProps {
   className?: string;
   ariaLabel?: string;
   reloadDocument?: LinkProps['reloadDocument'];
+  to?: LinkProps['to'];
 }
 
 export const GlobalNavigationHome = forwardRef<HTMLDivElement, GlobalNavigationHomeProps>(
-  ({ children, ariaLabel, reloadDocument, ...rest }: Readonly<GlobalNavigationHomeProps>, ref) => {
+  (
+    { children, ariaLabel, reloadDocument, to = '/', ...rest }: Readonly<GlobalNavigationHomeProps>,
+    ref,
+  ) => {
     const intl = useIntl();
 
     const defaultAriaLabel = intl.formatMessage({
@@ -48,7 +52,7 @@ export const GlobalNavigationHome = forwardRef<HTMLDivElement, GlobalNavigationH
         <StyledLinkStandalone
           aria-label={ariaLabel ?? defaultAriaLabel}
           reloadDocument={reloadDocument}
-          to="/">
+          to={to}>
           <LogoContainer>{children}</LogoContainer>
         </StyledLinkStandalone>
       </HomeContainer>
