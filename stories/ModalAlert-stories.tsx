@@ -21,7 +21,7 @@
 /* eslint-disable no-console */
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { ComponentProps, useCallback, useState } from 'react';
-import { Button, ButtonVariety, ModalAlert, toast } from '../src';
+import { Button, ButtonVariety, ModalAlert, Popover, Select, toast } from '../src';
 import { basicWrapperDecorator } from './helpers/BasicWrapper';
 
 const meta: Meta<typeof ModalAlert> = {
@@ -128,3 +128,56 @@ export const WithToastMessages: Story = {
     </ModalAlert>
   ),
 };
+
+export const WithSelectAndPopover: Story = {
+  render: () => <WithSelectAndPopoverComponent />,
+};
+
+function WithSelectAndPopoverComponent() {
+  const [selected, setSelected] = useState<string | null>(null);
+
+  return (
+    <ModalAlert
+      content={
+        <div>
+          <p style={{ marginBottom: '16px' }}>
+            This story demonstrates the ESC key behavior fix (ECHOES-1038).
+            <br />
+            <strong>Test steps:</strong>
+            <br />
+            1. Open the Select dropdown below and press ESC - only the dropdown should close
+            <br />
+            2. Press ESC again - the ModalAlert should close
+            <br />
+            3. Open the Popover below and press ESC - only the Popover should close
+            <br />
+            4. Press ESC again - the ModalAlert should close
+          </p>
+          <div style={{ marginBottom: '16px' }}>
+            <Select
+              ariaLabel="Example select"
+              data={[1, 2, 3, 4, 5].map((i) => ({
+                value: `${i}`,
+                label: `Option ${i}`,
+              }))}
+              onChange={(v) => {
+                setSelected(v);
+              }}
+              value={selected}
+            />
+          </div>
+          <div>
+            <Popover description="This is a popover with some content" title="Popover Title">
+              <Button>Open Popover</Button>
+            </Popover>
+          </div>
+        </div>
+      }
+      description="Test the ESC key behavior with nested Select and Popover components"
+      primaryButton={<Button variety={ButtonVariety.Primary}>Approve</Button>}
+      secondaryButtonLabel="Cancel"
+      title="ESC Key Testing (ECHOES-1038)">
+      <Button>Open ModalAlert</Button>
+    </ModalAlert>
+  );
+}
