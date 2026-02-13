@@ -24,13 +24,13 @@ import { ReactNode, forwardRef, useContext, useId } from 'react';
 import { truncate } from '~common/helpers/styles';
 import { isDefined } from '~common/helpers/types';
 import { PropsLabelAndHelpText } from '~types/utils';
+import { cssVar } from '~utils/design-tokens';
 import { THEME_DATA_ATTRIBUTE, ThemeContext } from '~utils/theme';
 import { PortalContext } from '../../common/components/PortalContext';
+import { useModalPortalRef } from '../modals/ModalPortal';
 import { HelperText, Label } from '../typography';
 import { styleDropdownMenuOverlay } from './DropdownMenuCommons';
 import { DropdownMenuSeparator } from './DropdownMenuSeparator';
-
-import { cssVar } from '~utils/design-tokens';
 
 export enum DropdownMenuAlign {
   Center = 'center',
@@ -80,6 +80,7 @@ export const DropdownMenuRoot = forwardRef<HTMLButtonElement, DropdownMenuProps>
     ref,
   ) => {
     const portalContext = useContext(PortalContext);
+    const modalPortalRef = useModalPortalRef();
     const theme = useContext(ThemeContext);
     const themeOverrideProp = isDefined(theme) ? { [THEME_DATA_ATTRIBUTE]: theme } : {};
 
@@ -110,7 +111,7 @@ export const DropdownMenuRoot = forwardRef<HTMLButtonElement, DropdownMenuProps>
           {children}
         </radixDropdownMenu.Trigger>
 
-        <radixDropdownMenu.Portal container={portalContext.portalReference}>
+        <radixDropdownMenu.Portal container={portalContext.portalReference ?? modalPortalRef}>
           <StyledDropdownMenuContent
             {...themeOverrideProp}
             align={align}
