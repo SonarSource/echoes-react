@@ -78,6 +78,8 @@ export const GlobalNavigation = Object.assign(GlobalNavigationRoot, {
    * Place it inside {@link GlobalNavigationPrimary | GlobalNavigation.Primary} to render the brand logo.
    *
    * Its children should be your brand logo.
+   *
+   * By default, it navigates to "/", but you can customize the destination using the optional `to` prop.
    */
   Home: GlobalNavigationHome,
 });

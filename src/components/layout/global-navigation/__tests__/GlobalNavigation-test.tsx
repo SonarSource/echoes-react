@@ -89,6 +89,44 @@ describe('GlobalNavigation.Home', () => {
     await user.click(screen.getByRole('link', { name: /Link to home page/ }));
     expect(screen.getByText('Home Page')).toBeInTheDocument();
   });
+
+  it('should default to "/" when no to prop is provided', () => {
+    setupWithMemoryRouter(
+      <GlobalNavigation>
+        <GlobalNavigation.Primary>
+          <GlobalNavigation.Home>
+            <LogoSonarQubeCloud />
+          </GlobalNavigation.Home>
+        </GlobalNavigation.Primary>
+      </GlobalNavigation>,
+    );
+
+    const link = screen.getByRole('link', { name: /Link to home page/ });
+    expect(link).toHaveAttribute('href', '/');
+  });
+
+  it('should navigate to custom destination when to prop is provided', async () => {
+    const { user } = setupWithMemoryRouter(
+      <Routes>
+        <Route element={<div>Dashboard Page</div>} path="/dashboard" />
+        <Route
+          element={
+            <GlobalNavigation>
+              <GlobalNavigation.Primary>
+                <GlobalNavigation.Home to="/dashboard">
+                  <LogoSonarQubeCloud />
+                </GlobalNavigation.Home>
+              </GlobalNavigation.Primary>
+            </GlobalNavigation>
+          }
+          path="/initial"
+        />
+      </Routes>,
+    );
+
+    await user.click(screen.getByRole('link', { name: /Link to home page/ }));
+    expect(screen.getByText('Dashboard Page')).toBeInTheDocument();
+  });
 });
 
 const setupWithMemoryRouter = (children: React.ReactNode) => {
