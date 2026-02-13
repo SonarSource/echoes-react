@@ -27,6 +27,7 @@ import {
   useEffect,
 } from 'react';
 import { useIntl } from 'react-intl';
+import { truncate } from '~common/helpers/styles';
 import { isDefined, isStringDefined } from '~common/helpers/types';
 import { useForwardedRef } from '~common/helpers/useForwardedRef';
 import { IconSearch } from '../icons';
@@ -251,7 +252,9 @@ export const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>((props
       />
 
       {!isLoading && !isDisabled && showMinLengthMessage && (
-        <MinLengthMessage isSubtle>{minLengthLabel}</MinLengthMessage>
+        <MinLengthMessage isSubtle value={value}>
+          {minLengthLabel}
+        </MinLengthMessage>
       )}
       {!isDisabled && (isLoading || showClearButton) && (
         <InputSuffix>
@@ -309,11 +312,17 @@ const SearchInputSpinner = styled(Spinner)`
 `;
 SearchInputSpinner.displayName = 'SearchInputSpinner';
 
-const MinLengthMessage = styled(Text)`
+const MinLengthMessage = styled(Text)<{ value: string }>`
   position: absolute;
+  left: calc(
+    ${cssVar('dimension-space-150')} + ${cssVar('dimension-width-300')} +
+      (${cssVar('dimension-space-100')} * ${({ value }) => value.length + 1})
+  );
   right: calc(${cssVar('dimension-space-150')} + ${cssVar('dimension-width-300')});
   text-align: right;
   pointer-events: none;
   margin-top: 1px;
+
+  ${truncate}
 `;
 MinLengthMessage.displayName = 'MinLengthMessage';
