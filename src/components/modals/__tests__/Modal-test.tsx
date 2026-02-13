@@ -17,12 +17,13 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-import { screen } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import { PointerEventsCheckLevel, Options as UserEventsOptions } from '@testing-library/user-event';
 import { useState } from 'react';
 import { render } from '~common/helpers/test-utils';
 import { Button } from '../../buttons';
 import { DropdownMenu } from '../../dropdown-menu';
+import { Select } from '../../select';
 import { Modal, ModalProps } from '../Modal';
 
 it('should appear/disappear as expected', async () => {
@@ -166,3 +167,51 @@ function renderControlledModal(
 
   return render(<Controller />, undefined, userEventOptions);
 }
+
+it('should not close Modal on ESC when Select dropdown is open', async () => {
+  const { user } = render(
+    <Modal
+      content={
+        <Select
+          ariaLabel="Test select"
+          data={[
+            { value: '1', label: 'Option 1' },
+            { value: '2', label: 'Option 2' },
+            { value: '3', label: 'Option 3' },
+          ]}
+          onChange={() => {}}
+          value={null}
+        />
+      }
+      isDefaultOpen
+      title="Modal with Select">
+      <Button>Toggle</Button>
+    </Modal>,
+  );
+
+  // Modal should be open
+  expect(screen.getByRole('dialog')).toBeInTheDocument();
+
+  // Open Select dropdown
+  await user.click(screen.getByRole('combobox', { name: 'Test select' }));
+
+  // Wait for dropdown to appear
+  await waitFor(() => {
+    expect(screen.getByRole('listbox')).toBeInTheDocument();
+  });
+
+  // Press ESC once - dropdown should close, Modal should stay open
+  await user.keyboard('[Escape]');
+
+  await waitFor(() => {
+    expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
+  });
+  expect(screen.getByRole('dialog')).toBeInTheDocument();
+
+  // Press ESC again - Modal should close
+  await user.keyboard('[Escape]');
+
+  await waitFor(() => {
+    expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+  });
+});

@@ -45,7 +45,7 @@ export function ModalBody(props: PropsWithChildren<Props>) {
   return (
     <>
       <PortalContext.Provider value={modalContextProviderValue}>
-        <ModalBodyWrapper isLast={isLast}>
+        <ModalBodyWrapper className="echoes-modal-body" isLast={isLast}>
           <ModalBodyScrollContainer ref={scrollableContainerRef}>
             <ModalBodyInner ref={resizableContentRef}>{children}</ModalBodyInner>
           </ModalBodyScrollContainer>
@@ -57,7 +57,7 @@ export function ModalBody(props: PropsWithChildren<Props>) {
        * This node is the portal anchor for other overlay types that need to break out of the scrolling content
        * e.g. Select
        */}
-      <div ref={setPortalRef} />
+      <div className="echoes-modal-body-portal" ref={setPortalRef} />
     </>
   );
 }

@@ -38,6 +38,7 @@ import {
   styleModalWrapper,
 } from './ModalStyles';
 import { ModalCommonProps, ModalSize } from './ModalTypes';
+import { onModalEscapeKeyDown } from './utils';
 
 interface ModalBaseProps {
   /** An optional accessible description to be announced when the dialog is opened. */
@@ -112,6 +113,7 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
           {...(!isDefined(description) && { 'aria-describedby': undefined })}
           onInteractOutside={clickHandler}
           onPointerDownOutside={clickHandler}
+          onEscapeKeyDown={onModalEscapeKeyDown}
           ref={ref}
           size={size}
           {...radixProps}>

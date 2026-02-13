@@ -136,7 +136,7 @@ function ControlledModal(props: ComponentProps<typeof Modal>) {
 export const WithSelectAndDropdown: Story = {
   args: {
     description:
-      'This Modal has both a Select and a Dropdown, to see how they nicely overflow out of the content',
+      'This Modal has both a Select and a Dropdown, to see how they nicely overflow out of the content. Also useful for testing ESC key behavior (ECHOES-1038) - press ESC to close dropdown/menu first, then ESC again to close Modal.',
     footerLink: 'link',
     primaryButton: 'default',
     secondaryButton: 'default',

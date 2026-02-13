@@ -36,6 +36,7 @@ import {
   styleModalWrapper,
 } from './ModalStyles';
 import { ModalCommonProps, ModalSize } from './ModalTypes';
+import { onModalEscapeKeyDown } from './utils';
 
 interface BaseProps {
   /** A mandatory accessible description to be announced when the ModalAlert is opened. */
@@ -113,7 +114,11 @@ export const ModalAlert = forwardRef<HTMLDivElement, ModalAlertProps>((props, re
       </RadixAlertDialog.Trigger>
       <RadixAlertDialog.Portal container={modalPortalRef}>
         <ModalAlertOverlay />
-        <ModalAlertWrapper ref={ref} size={ModalSize.Default} {...radixProps}>
+        <ModalAlertWrapper
+          onEscapeKeyDown={onModalEscapeKeyDown}
+          ref={ref}
+          size={ModalSize.Default}
+          {...radixProps}>
           <ModalAlertTitle>{title}</ModalAlertTitle>
 
           <ModalBody>
