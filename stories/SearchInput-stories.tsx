@@ -47,6 +47,49 @@ export const Basic: Story = {
   render: (args) => <InputSearchWrapper {...args} />,
 };
 
+export const MinLengthInDifferentSizes: Story = {
+  args: {
+    minLength: 3,
+    width: SearchInputWidth.Full,
+  },
+  render: (args) => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+      <div>
+        <div style={{ width: '150px', border: '1px dashed #ccc', padding: '8px' }}>
+          <InputSearchWrapper {...args} value="ab" />
+        </div>
+        <p style={{ fontSize: '12px', marginTop: '4px', color: '#666' }}>
+          Very small (150px) - Message truncated with ellipsis
+        </p>
+      </div>
+      <div>
+        <div style={{ width: '200px', border: '1px dashed #ccc', padding: '8px' }}>
+          <InputSearchWrapper {...args} value="ab" />
+        </div>
+        <p style={{ fontSize: '12px', marginTop: '4px', color: '#666' }}>
+          Small (200px) - Message may truncate
+        </p>
+      </div>
+      <div>
+        <div style={{ width: '250px', border: '1px dashed #ccc', padding: '8px' }}>
+          <InputSearchWrapper {...args} value="ab" />
+        </div>
+        <p style={{ fontSize: '12px', marginTop: '4px', color: '#666' }}>
+          Medium (250px) - Message typically visible
+        </p>
+      </div>
+      <div>
+        <div style={{ width: '350px', border: '1px dashed #ccc', padding: '8px' }}>
+          <InputSearchWrapper {...args} value="ab" />
+        </div>
+        <p style={{ fontSize: '12px', marginTop: '4px', color: '#666' }}>
+          Large (350px) - Full message always visible
+        </p>
+      </div>
+    </div>
+  ),
+};
+
 function InputSearchWrapper(props: Readonly<SearchInputProps>) {
   const [value, setValue] = useState(props.value || '');
 
