@@ -14,7 +14,7 @@ exports[`renders correctly 1`] = `
     The helper text
   </div>
   <div
-    class="echoes-modal-portal"
+    class="echoes-overlays-portal"
   />
   <section
     aria-atomic="false"

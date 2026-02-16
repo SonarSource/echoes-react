@@ -19,12 +19,12 @@
  */
 
 import { HeadlessMantineProvider } from '@mantine/core';
-import { PropsWithChildren } from 'react';
+import { PropsWithChildren, useMemo, useState } from 'react';
 import { useIntl } from 'react-intl';
 import { Toaster as ToastContainer } from 'sonner';
+import { PortalContext } from '~common/components/PortalContext';
 import { ToastGlobalStyles } from '~common/components/Toast';
 import { TooltipProvider, TooltipProviderProps, TypographyGlobalStyles } from '..';
-import { ModalPortal } from '../modals/ModalPortal';
 import { SelectGlobalStyles } from '../select/SelectCommons';
 
 export interface EchoesProviderProps {
@@ -90,6 +90,12 @@ export interface EchoesProviderProps {
 export function EchoesProvider(props: PropsWithChildren<EchoesProviderProps>) {
   const { children, tooltipsDelayDuration, toastsClassName, toastsVisibleNb = 5 } = props;
   const intl = useIntl();
+  const [portalRef, setPortalRef] = useState<HTMLDivElement | null>(null);
+
+  const modalContextProviderValue = useMemo(
+    () => ({ portalReference: portalRef ?? undefined }),
+    [portalRef],
+  );
 
   return (
     <>
@@ -97,10 +103,13 @@ export function EchoesProvider(props: PropsWithChildren<EchoesProviderProps>) {
       <SelectGlobalStyles />
       <ToastGlobalStyles />
       <TooltipProvider delayDuration={tooltipsDelayDuration}>
-        <ModalPortal>
+        <PortalContext.Provider value={modalContextProviderValue}>
           <HeadlessMantineProvider>{children}</HeadlessMantineProvider>
-        </ModalPortal>
+        </PortalContext.Provider>
+
+        <div className="echoes-overlays-portal" ref={setPortalRef} />
         <ToastContainer
+          className="echoes-toasts-portal"
           containerAriaLabel={intl.formatMessage({
             id: 'toasts.keyboard_shortcut_aria_label',
             defaultMessage: 'Focus toasts messages with',

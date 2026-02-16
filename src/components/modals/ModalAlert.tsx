@@ -20,14 +20,14 @@
 
 import styled from '@emotion/styled';
 import * as RadixAlertDialog from '@radix-ui/react-alert-dialog';
-import { ReactNode, SyntheticEvent, forwardRef, useCallback } from 'react';
+import { ReactNode, SyntheticEvent, forwardRef, useCallback, useContext } from 'react';
 import { FormattedMessage } from 'react-intl';
+import { PortalContext } from '~common/components/PortalContext';
 import { isDefined } from '~common/helpers/types';
 import { TextNode, TextNodeOptional } from '~types/utils';
 import { Button, ButtonGroup, ButtonVariety } from '../buttons';
 import { isDropdownMenuItemComponent } from '../dropdown-menu/DropdownMenuItemBase';
 import { ModalBody } from './ModalBody';
-import { useModalPortalRef } from './ModalPortal';
 import {
   ModalFooter,
   styleModalDescription,
@@ -72,7 +72,7 @@ export const ModalAlert = forwardRef<HTMLDivElement, ModalAlertProps>((props, re
     ...radixProps
   } = props;
 
-  const modalPortalRef = useModalPortalRef();
+  const portalContext = useContext(PortalContext);
 
   const isControlled = isDefined(isOpen) && isDefined(onOpenChange);
 
@@ -112,7 +112,7 @@ export const ModalAlert = forwardRef<HTMLDivElement, ModalAlertProps>((props, re
         {...(isDropdownMenuItemComponent(children) && { onSelect: handleSelectForDropdownMenu })}>
         {children}
       </RadixAlertDialog.Trigger>
-      <RadixAlertDialog.Portal container={modalPortalRef}>
+      <RadixAlertDialog.Portal container={portalContext.portalReference}>
         <ModalAlertOverlay />
         <ModalAlertWrapper
           onEscapeKeyDown={onModalEscapeKeyDown}

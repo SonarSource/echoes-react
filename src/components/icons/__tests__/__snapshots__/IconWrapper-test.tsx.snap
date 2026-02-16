@@ -25,7 +25,7 @@ exports[`should render material icon correctly 1`] = `
     
   </span>
   <div
-    class="echoes-modal-portal"
+    class="echoes-overlays-portal"
   />
   <section
     aria-atomic="false"
