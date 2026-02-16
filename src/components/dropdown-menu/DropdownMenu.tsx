@@ -24,13 +24,12 @@ import { ReactNode, forwardRef, useContext, useId } from 'react';
 import { truncate } from '~common/helpers/styles';
 import { isDefined } from '~common/helpers/types';
 import { PropsLabelAndHelpText } from '~types/utils';
+import { cssVar } from '~utils/design-tokens';
 import { THEME_DATA_ATTRIBUTE, ThemeContext } from '~utils/theme';
 import { PortalContext } from '../../common/components/PortalContext';
 import { HelperText, Label } from '../typography';
 import { styleDropdownMenuOverlay } from './DropdownMenuCommons';
 import { DropdownMenuSeparator } from './DropdownMenuSeparator';
-
-import { cssVar } from '~utils/design-tokens';
 
 export enum DropdownMenuAlign {
   Center = 'center',

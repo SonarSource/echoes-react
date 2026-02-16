@@ -19,8 +19,9 @@
  */
 import styled from '@emotion/styled';
 import * as RadixDialog from '@radix-ui/react-dialog';
-import { forwardRef, ReactNode, SyntheticEvent, useCallback } from 'react';
+import { forwardRef, ReactNode, SyntheticEvent, useCallback, useContext } from 'react';
 import { useIntl } from 'react-intl';
+import { PortalContext } from '~common/components/PortalContext';
 import { isDefined } from '~common/helpers/types';
 import { TextNodeOptional } from '~types/utils';
 import { cssVar } from '~utils/design-tokens';
@@ -28,7 +29,6 @@ import { ButtonGroup, ButtonIcon, ButtonSize, ButtonVariety } from '../buttons';
 import { isDropdownMenuItemComponent } from '../dropdown-menu/DropdownMenuItemBase';
 import { IconX } from '../icons';
 import { ModalBody } from './ModalBody';
-import { useModalPortalRef } from './ModalPortal';
 import {
   ModalContent,
   ModalFooter,
@@ -70,7 +70,7 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
 
   const intl = useIntl();
 
-  const modalPortalRef = useModalPortalRef();
+  const portalContext = useContext(PortalContext);
 
   const hasActionButtons = isDefined(primaryButton) || isDefined(secondaryButton);
   const hasFooter = hasActionButtons || isDefined(footerLink);
@@ -107,7 +107,7 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
         {...(isDropdownMenuItemComponent(children) && { onSelect: handleSelectForDropdownMenu })}>
         {children}
       </RadixDialog.Trigger>
-      <RadixDialog.Portal container={modalPortalRef}>
+      <RadixDialog.Portal container={portalContext.portalReference}>
         <ModalOverlay />
         <ModalWrapper
           {...(!isDefined(description) && { 'aria-describedby': undefined })}

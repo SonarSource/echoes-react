@@ -13,7 +13,7 @@ exports[`renders correctly 1`] = `
     The label text
   </label>
   <div
-    class="echoes-modal-portal"
+    class="echoes-overlays-portal"
   />
   <section
     aria-atomic="false"
@@ -36,7 +36,7 @@ exports[`renders correctly with isSubtle 1`] = `
     class="emotion-0 emotion-1"
   />
   <div
-    class="echoes-modal-portal"
+    class="echoes-overlays-portal"
   />
   <section
     aria-atomic="false"
