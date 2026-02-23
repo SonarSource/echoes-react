@@ -20,8 +20,12 @@
 
 import styled from '@emotion/styled';
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { useState } from 'react';
 import {
+  Badge,
+  BadgeVariety,
   Button,
+  ButtonSize,
   ButtonVariety,
   Card,
   CardSize,
@@ -160,14 +164,16 @@ export const WithRightContent: Story = {
 };
 
 export const Sizes: Story = {
-  render: () => (
+  parameters: {
+    controls: { include: ['isCollapsible'] },
+  },
+  render: (args) => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', padding: '40px' }}>
       {Object.values(CardSize).map((size) => (
-        <Card key={size} size={size}>
+        <Card key={size} size={size} {...args}>
           <Card.Header
             description={`A ${size} card`}
             hasDivider
-            rightContent="some right content"
             title={`${size.charAt(0).toUpperCase() + size.slice(1)} Card`}
           />
           <CardBodyStyled>
@@ -232,4 +238,98 @@ export const NoDivider: Story = {
       </Card>
     </div>
   ),
+};
+
+export const Collapsible: Story = {
+  parameters: {
+    controls: { include: [] },
+  },
+  render: (_) => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', padding: '40px' }}>
+      <Card isCollapsible size={CardSize.Large}>
+        <Card.Header hasDivider title="Large Card" />
+
+        <CardBodyStyled>
+          <Text as="div">Content for the large card.</Text>
+        </CardBodyStyled>
+      </Card>
+
+      <Card isCollapsible size={CardSize.Medium}>
+        <Card.Header
+          description="With a badge in the right slot"
+          hasDivider
+          rightContent={<Badge variety={BadgeVariety.Highlight}>New</Badge>}
+          title="Medium Card"
+        />
+
+        <CardBodyStyled>
+          <Text as="div">Content for the medium card.</Text>
+        </CardBodyStyled>
+      </Card>
+
+      <Card isCollapsible size={CardSize.Small}>
+        <Card.Header
+          description="With an action button in the right slot"
+          hasDivider
+          rightContent={
+            <Button
+              onClick={() => {
+                // eslint-disable-next-line no-alert
+                alert('Action triggered from the right slot');
+              }}
+              size={ButtonSize.Medium}>
+              Action
+            </Button>
+          }
+          title="Small Card"
+        />
+
+        <CardBodyStyled>
+          <Text as="div">Content for the small card.</Text>
+        </CardBodyStyled>
+      </Card>
+    </div>
+  ),
+};
+
+function ControlledCollapsibleCard() {
+  const [isOpen, setIsOpen] = useState(true);
+
+  return (
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '20px',
+        maxWidth: '500px',
+        padding: '40px',
+      }}>
+      <Button
+        onClick={() => {
+          setIsOpen((prev) => !prev);
+        }}
+        variety={ButtonVariety.Primary}>
+        Click this button to toggle the card collapse state from outside
+      </Button>
+
+      <Card isCollapsible isOpen={isOpen} onOpenChange={setIsOpen} size={CardSize.Medium}>
+        <Card.Header
+          description="Controlled externally, but the title or chevron can still toggle"
+          hasDivider
+          title="Collapsible Card (Controlled)"
+        />
+
+        <CardBodyStyled>
+          <Text as="div">This content can be collapsed externally.</Text>
+        </CardBodyStyled>
+      </Card>
+    </div>
+  );
+}
+
+export const CollapsibleControlled: Story = {
+  parameters: {
+    controls: { include: [] },
+  },
+  render: (_) => <ControlledCollapsibleCard />,
 };

@@ -18,30 +18,78 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import React, { createContext } from 'react';
+import React, { createContext, useCallback, useEffect, useMemo, useState } from 'react';
 import { CardSize } from './CardSize';
 import { CardStyled } from './CardStyles';
 
 export interface CardProps {
   children: React.ReactNode;
   className?: string;
+  isCollapsible?: boolean;
+  isOpen?: boolean;
+  onOpenChange?: (isOpen: boolean) => void;
   size?: `${CardSize}`;
 }
 
-const CardContext = createContext<`${CardSize}`>(CardSize.Medium);
+interface CardContextValue {
+  isCollapsible: boolean;
+  isOpen: boolean;
+  onToggle: () => void;
+  size: `${CardSize}`;
+}
 
-export function useCardSize() {
+const CardContext = createContext<CardContextValue>({
+  isCollapsible: false,
+  isOpen: true,
+  onToggle: () => undefined,
+  size: CardSize.Medium,
+});
+
+export function useCardContext() {
   return React.useContext(CardContext);
 }
 
 export const CardRoot = React.forwardRef<HTMLDivElement, Readonly<CardProps>>(
-  ({ children, className, size = CardSize.Medium, ...rest }, ref) => (
-    <CardContext.Provider value={size}>
-      <CardStyled className={className} ref={ref} {...rest}>
-        {children}
-      </CardStyled>
-    </CardContext.Provider>
-  ),
+  (
+    {
+      children,
+      className,
+      isCollapsible = false,
+      isOpen,
+      onOpenChange,
+      size = CardSize.Medium,
+      ...rest
+    },
+    ref,
+  ) => {
+    const [internalOpen, setInternalOpen] = useState(isOpen ?? true);
+
+    useEffect(() => {
+      if (isOpen !== undefined) {
+        setInternalOpen(isOpen);
+      }
+    }, [isOpen]);
+
+    const handleToggle = useCallback(() => {
+      const newOpen = !internalOpen;
+
+      setInternalOpen(newOpen);
+      onOpenChange?.(newOpen);
+    }, [internalOpen, onOpenChange]);
+
+    const contextValue = useMemo(
+      () => ({ isCollapsible, isOpen: internalOpen, onToggle: handleToggle, size }),
+      [handleToggle, isCollapsible, internalOpen, size],
+    );
+
+    return (
+      <CardContext.Provider value={contextValue}>
+        <CardStyled className={className} ref={ref} {...rest}>
+          {children}
+        </CardStyled>
+      </CardContext.Provider>
+    );
+  },
 );
 
 CardRoot.displayName = 'CardRoot';

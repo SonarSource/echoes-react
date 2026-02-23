@@ -20,40 +20,95 @@
 
 import styled from '@emotion/styled';
 import React, { useMemo } from 'react';
+import { isDefined } from '~common/helpers/types';
+import { cssVar } from '~utils/design-tokens';
+import { ButtonIcon, ButtonSize, ButtonVariety } from '../buttons';
 import { Divider } from '../divider';
+import { IconChevronDown, IconChevronUp } from '../icons';
 import { Heading } from '../typography';
-import { useCardSize } from './CardRoot';
+import { useCardContext } from './CardRoot';
 import { CardSize } from './CardSize';
-import { CARD_HEADER_SIZE_STYLES, CardHeaderStyled } from './CardStyles';
+import {
+  CARD_HEADER_SIZE_STYLES,
+  CardHeaderStyled,
+  CardHeaderTextStyled,
+  CardHeaderTitleButtonStyled,
+  CardHeaderTitleStyled,
+  DescriptionStyled,
+  RightContentStyled,
+} from './CardStyles';
 
 export interface CardHeaderProps {
-  title: React.ReactNode;
+  className?: string;
   description?: React.ReactNode;
   hasDivider?: boolean;
   rightContent?: React.ReactNode;
-  className?: string;
+  title: React.ReactNode;
 }
 
+// There is no public "small" button size, by design
+const CardChevronButtonSmallStyled = styled(ButtonIcon)`
+  --button-height: ${cssVar('dimension-height-600')};
+  --button-width: ${cssVar('dimension-height-600')};
+`;
+CardChevronButtonSmallStyled.displayName = 'CardChevronButtonSmallStyled';
+
 const CARD_SIZE_CONFIG = {
-  [CardSize.Small]: {
-    headingLevel: 'h4' as const,
-    styles: CARD_HEADER_SIZE_STYLES[CardSize.Small],
+  [CardSize.Large]: {
+    ChevronButton: ButtonIcon,
+    chevronSize: ButtonSize.Large,
+    headingLevel: 'h2' as const,
+    styles: CARD_HEADER_SIZE_STYLES[CardSize.Large],
   },
   [CardSize.Medium]: {
+    ChevronButton: ButtonIcon,
+    chevronSize: ButtonSize.Medium,
     headingLevel: 'h3' as const,
     styles: CARD_HEADER_SIZE_STYLES[CardSize.Medium],
   },
-  [CardSize.Large]: {
-    headingLevel: 'h2' as const,
-    styles: CARD_HEADER_SIZE_STYLES[CardSize.Large],
+  [CardSize.Small]: {
+    ChevronButton: CardChevronButtonSmallStyled,
+    chevronSize: undefined,
+    headingLevel: 'h4' as const,
+    styles: CARD_HEADER_SIZE_STYLES[CardSize.Small],
   },
 };
 
 export const CardHeader = React.forwardRef<HTMLDivElement, Readonly<CardHeaderProps>>(
   ({ className, description, hasDivider = false, rightContent, title }, ref) => {
-    const size = useCardSize();
+    const { isCollapsible, isOpen, onToggle, size } = useCardContext();
 
     const sizeConfig = CARD_SIZE_CONFIG[size];
+
+    const isFullyCollapsible = isCollapsible && !isDefined(rightContent);
+
+    const ChevronIcon = isOpen ? IconChevronUp : IconChevronDown;
+
+    const content = (
+      <CardHeaderTextStyled>
+        <CardHeaderTitleStyled>
+          <Heading as={sizeConfig.headingLevel}>{title}</Heading>
+
+          {description && <DescriptionStyled>{description}</DescriptionStyled>}
+        </CardHeaderTitleStyled>
+        <RightContentStyled>
+          {rightContent}
+
+          {isCollapsible &&
+            (isDefined(rightContent) ? (
+              <sizeConfig.ChevronButton
+                Icon={ChevronIcon}
+                ariaLabel={isOpen ? 'Collapse' : 'Expand'}
+                onClick={onToggle}
+                size={sizeConfig.chevronSize}
+                variety={ButtonVariety.DefaultGhost}
+              />
+            ) : (
+              <ChevronIcon />
+            ))}
+        </RightContentStyled>
+      </CardHeaderTextStyled>
+    );
 
     return (
       <>
@@ -65,15 +120,18 @@ export const CardHeader = React.forwardRef<HTMLDivElement, Readonly<CardHeaderPr
             }),
             [sizeConfig.styles],
           )}
+          noPadding={isFullyCollapsible}
           ref={ref}>
-          <CardHeaderContentStyled>
-            <CardHeaderTextStyled>
-              <Heading as={sizeConfig.headingLevel}>{title}</Heading>
-              {rightContent && <RightContentStyled>{rightContent}</RightContentStyled>}
-            </CardHeaderTextStyled>
-
-            {description && <DescriptionStyled>{description}</DescriptionStyled>}
-          </CardHeaderContentStyled>
+          {isFullyCollapsible ? (
+            <CardHeaderTitleButtonStyled
+              aria-label={isOpen ? 'Collapse' : 'Expand'}
+              onClick={onToggle}
+              type="button">
+              {content}
+            </CardHeaderTitleButtonStyled>
+          ) : (
+            content
+          )}
         </CardHeaderStyled>
 
         {hasDivider && <Divider />}
@@ -83,30 +141,3 @@ export const CardHeader = React.forwardRef<HTMLDivElement, Readonly<CardHeaderPr
 );
 
 CardHeader.displayName = 'CardHeader';
-
-const CardHeaderContentStyled = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-`;
-CardHeaderContentStyled.displayName = 'CardHeaderContentStyled';
-
-const CardHeaderTextStyled = styled.div`
-  align-items: center;
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-`;
-CardHeaderTextStyled.displayName = 'CardHeaderTextStyled';
-
-const RightContentStyled = styled.div`
-  display: flex;
-`;
-RightContentStyled.displayName = 'RightContentStyled';
-
-const DescriptionStyled = styled.div`
-  align-items: center;
-  display: flex;
-  justify-content: space-between;
-`;
-DescriptionStyled.displayName = 'DescriptionStyled';
