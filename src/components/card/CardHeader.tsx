@@ -20,6 +20,7 @@
 
 import styled from '@emotion/styled';
 import React, { useMemo } from 'react';
+import { isDefined } from '~common/helpers/types';
 import { cssVar } from '~utils/design-tokens';
 import { ButtonIcon, ButtonSize, ButtonVariety } from '../buttons';
 import { Divider } from '../divider';
@@ -30,7 +31,11 @@ import { CardSize } from './CardSize';
 import {
   CARD_HEADER_SIZE_STYLES,
   CardHeaderStyled,
+  CardHeaderTextStyled,
   CardHeaderTitleButtonStyled,
+  CardHeaderTitleStyled,
+  DescriptionStyled,
+  RightContentStyled,
 } from './CardStyles';
 
 export interface CardHeaderProps {
@@ -75,12 +80,34 @@ export const CardHeader = React.forwardRef<HTMLDivElement, Readonly<CardHeaderPr
 
     const sizeConfig = CARD_SIZE_CONFIG[size];
 
-    const titleContent = (
-      <>
-        <Heading as={sizeConfig.headingLevel}>{title}</Heading>
+    const isFullyCollapsible = isCollapsible && !isDefined(rightContent);
 
-        {description && <DescriptionStyled>{description}</DescriptionStyled>}
-      </>
+    const ChevronIcon = isOpen ? IconChevronUp : IconChevronDown;
+
+    const content = (
+      <CardHeaderTextStyled>
+        <CardHeaderTitleStyled>
+          <Heading as={sizeConfig.headingLevel}>{title}</Heading>
+
+          {description && <DescriptionStyled>{description}</DescriptionStyled>}
+        </CardHeaderTitleStyled>
+        <RightContentStyled>
+          {rightContent}
+
+          {isCollapsible &&
+            (isDefined(rightContent) ? (
+              <sizeConfig.ChevronButton
+                Icon={ChevronIcon}
+                ariaLabel={isOpen ? 'Collapse' : 'Expand'}
+                onClick={onToggle}
+                size={sizeConfig.chevronSize}
+                variety={ButtonVariety.DefaultGhost}
+              />
+            ) : (
+              <ChevronIcon />
+            ))}
+        </RightContentStyled>
+      </CardHeaderTextStyled>
     );
 
     return (
@@ -93,30 +120,18 @@ export const CardHeader = React.forwardRef<HTMLDivElement, Readonly<CardHeaderPr
             }),
             [sizeConfig.styles],
           )}
+          noPadding={isFullyCollapsible}
           ref={ref}>
-          <CardHeaderTextStyled>
-            {isCollapsible ? (
-              <CardHeaderTitleButtonStyled onClick={onToggle} type="button">
-                {titleContent}
-              </CardHeaderTitleButtonStyled>
-            ) : (
-              <CardHeaderTitleStyled>{titleContent}</CardHeaderTitleStyled>
-            )}
-
-            <RightContentStyled>
-              {rightContent}
-
-              {isCollapsible && (
-                <sizeConfig.ChevronButton
-                  Icon={isOpen ? IconChevronUp : IconChevronDown}
-                  ariaLabel={isOpen ? 'Collapse' : 'Expand'}
-                  onClick={onToggle}
-                  size={sizeConfig.chevronSize}
-                  variety={ButtonVariety.DefaultGhost}
-                />
-              )}
-            </RightContentStyled>
-          </CardHeaderTextStyled>
+          {isFullyCollapsible ? (
+            <CardHeaderTitleButtonStyled
+              aria-label={isOpen ? 'Collapse' : 'Expand'}
+              onClick={onToggle}
+              type="button">
+              {content}
+            </CardHeaderTitleButtonStyled>
+          ) : (
+            content
+          )}
         </CardHeaderStyled>
 
         {hasDivider && <Divider />}
@@ -126,34 +141,3 @@ export const CardHeader = React.forwardRef<HTMLDivElement, Readonly<CardHeaderPr
 );
 
 CardHeader.displayName = 'CardHeader';
-
-const CardHeaderTextStyled = styled.div`
-  align-items: center;
-  display: flex;
-  gap: ${cssVar('dimension-space-100')};
-  justify-content: space-between;
-  width: 100%;
-`;
-CardHeaderTextStyled.displayName = 'CardHeaderTextStyled';
-
-const CardHeaderTitleStyled = styled.div`
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-`;
-CardHeaderTitleStyled.displayName = 'CardHeaderTitleStyled';
-
-const RightContentStyled = styled.div`
-  align-items: center;
-  display: flex;
-  gap: ${cssVar('dimension-space-100')};
-  max-height: var(--card-header-heading-height);
-`;
-RightContentStyled.displayName = 'RightContentStyled';
-
-const DescriptionStyled = styled.div`
-  align-items: center;
-  display: flex;
-  justify-content: space-between;
-`;
-DescriptionStyled.displayName = 'DescriptionStyled';

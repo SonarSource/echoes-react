@@ -164,14 +164,17 @@ export const WithRightContent: Story = {
 };
 
 export const Sizes: Story = {
-  render: () => (
+  parameters: {
+    controls: { include: ['isCollapsible'] },
+  },
+  render: (args) => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', padding: '40px' }}>
       {Object.values(CardSize).map((size) => (
-        <Card key={size} size={size}>
+        <Card key={size} size={size} {...args}>
           <Card.Header
             description={`A ${size} card`}
             hasDivider
-            rightContent="some right content"
+            // rightContent="some right content"
             title={`${size.charAt(0).toUpperCase() + size.slice(1)} Card`}
           />
           <CardBodyStyled>
@@ -239,7 +242,10 @@ export const NoDivider: Story = {
 };
 
 export const Collapsible: Story = {
-  render: () => (
+  parameters: {
+    controls: { include: [] },
+  },
+  render: (_) => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', padding: '40px' }}>
       <Card isCollapsible size={CardSize.Large}>
         <Card.Header hasDivider title="Large Card" />
@@ -323,5 +329,8 @@ function ControlledCollapsibleCard() {
 }
 
 export const CollapsibleControlled: Story = {
-  render: () => <ControlledCollapsibleCard />,
+  parameters: {
+    controls: { include: [] },
+  },
+  render: (_) => <ControlledCollapsibleCard />,
 };

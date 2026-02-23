@@ -22,6 +22,7 @@ import { screen } from '@testing-library/react';
 import React from 'react';
 
 import { render } from '~common/helpers/test-utils';
+import { Button } from '../../buttons/Button';
 import { CardBody } from '../CardBody';
 import { CardHeader } from '../CardHeader';
 import { CardRoot } from '../CardRoot';
@@ -262,7 +263,7 @@ describe('Card components', () => {
     it('toggles the body visibility when the header button is clicked', async () => {
       const { user } = render(
         <CardRoot isCollapsible>
-          <CardHeader title="Collapsible Card" />
+          <CardHeader rightContent={<Button>other button</Button>} title="Collapsible Card" />
 
           <CardBody>Card Content</CardBody>
         </CardRoot>,
@@ -306,10 +307,10 @@ describe('Card components', () => {
 
       expect(screen.getByText('Card Content')).toBeInTheDocument();
 
-      await user.click(screen.getByRole('button', { name: 'Collapsible Card' }));
+      await user.click(screen.getByRole('button', { name: 'Collapse' }));
       expect(screen.queryByText('Card Content')).not.toBeInTheDocument();
 
-      await user.click(screen.getByRole('button', { name: 'Collapsible Card' }));
+      await user.click(screen.getByRole('button', { name: 'Expand' }));
       expect(screen.getByText('Card Content')).toBeInTheDocument();
     });
 
