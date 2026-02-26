@@ -116,7 +116,7 @@
     "rollup": "4.57.1",
     "rollup-plugin-license": "3.6.0",
     "sonarqube-scanner": "4.3.4",
-    "storybook": "10.2.7",
+    "storybook": "10.2.10",
     "style-dictionary": "5.2.0",
     "subset-font": "2.4.0",
     "typescript": "5.9.3",
