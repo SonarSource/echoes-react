@@ -4751,7 +4751,7 @@ __metadata:
     rollup-plugin-license: "npm:3.6.0"
     sonarqube-scanner: "npm:4.3.4"
     sonner: "npm:2.0.7"
-    storybook: "npm:10.2.7"
+    storybook: "npm:10.2.10"
     style-dictionary: "npm:5.2.0"
     subset-font: "npm:2.4.0"
     typescript: "npm:5.9.3"
@@ -12803,9 +12803,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"storybook@npm:10.2.7":
-  version: 10.2.7
-  resolution: "storybook@npm:10.2.7"
+"storybook@npm:10.2.10":
+  version: 10.2.10
+  resolution: "storybook@npm:10.2.10"
   dependencies:
     "@storybook/global": "npm:^5.0.0"
     "@storybook/icons": "npm:^2.0.1"
@@ -12826,7 +12826,7 @@ __metadata:
       optional: true
   bin:
     storybook: ./dist/bin/dispatcher.js
-  checksum: 10/444da70fd790afff860f381d1584ede173c21b955ef4d067f245f9b02821ac895e405f393111771629461214cda1e1cde89139855b91bcad97723bb8b1bd42b3
+  checksum: 10/275f7b8773ee6e03ae3099204dfb7329c20d81f519b91d8da6923e223b2df8dfe951086ded9a361eabf221f7bb9dbfb2c913bf4b6012d0ae9af90c46d3327dbf
   languageName: node
   linkType: hard
 
