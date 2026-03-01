@@ -1914,22 +1914,22 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@bundled-es-modules/glob@npm:^11.1.0":
-  version: 11.1.0
-  resolution: "@bundled-es-modules/glob@npm:11.1.0"
+"@bundled-es-modules/glob@npm:^13.0.3":
+  version: 13.0.6
+  resolution: "@bundled-es-modules/glob@npm:13.0.6"
   dependencies:
     buffer: "npm:^6.0.3"
     events: "npm:^3.3.0"
-    glob: "npm:^11.1.0"
+    glob: "npm:^13.0.6"
     path: "npm:^0.12.7"
     stream: "npm:^0.0.3"
     string_decoder: "npm:^1.3.0"
     url: "npm:^0.11.4"
-  checksum: 10/85b823a9ddcc35a57b422b64746419ea5466e3fc77caa2af5c7d575286ea2e2c881adfefd2595ea393086943ca4b5975f2c7f898d239e209cf3fa9b6098a6fda
+  checksum: 10/bb812230682679acbcf96d1700cb8203e6a8f9bb09cbee633b39e3522975a3801bd9f77fca8ae973b42bcfbc5919c33a5cb02847c6f2d2a330f6a8506ce511fa
   languageName: node
   linkType: hard
 
-"@bundled-es-modules/memfs@npm:^4.9.4":
+"@bundled-es-modules/memfs@npm:^4.17.0":
   version: 4.17.0
   resolution: "@bundled-es-modules/memfs@npm:4.17.0"
   dependencies:
@@ -4745,7 +4745,7 @@ __metadata:
     sonarqube-scanner: "npm:4.3.4"
     sonner: "npm:2.0.7"
     storybook: "npm:10.2.10"
-    style-dictionary: "npm:5.2.0"
+    style-dictionary: "npm:5.3.2"
     subset-font: "npm:2.4.0"
     typescript: "npm:5.9.3"
     vite: "npm:7.3.1"
@@ -8618,7 +8618,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"glob@npm:^11.0.4, glob@npm:^11.1.0":
+"glob@npm:^11.0.4":
   version: 11.1.0
   resolution: "glob@npm:11.1.0"
   dependencies:
@@ -8634,7 +8634,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"glob@npm:^13.0.1":
+"glob@npm:^13.0.1, glob@npm:^13.0.6":
   version: 13.0.6
   resolution: "glob@npm:13.0.6"
   dependencies:
@@ -13102,16 +13102,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"style-dictionary@npm:5.2.0":
-  version: 5.2.0
-  resolution: "style-dictionary@npm:5.2.0"
+"style-dictionary@npm:5.3.2":
+  version: 5.3.2
+  resolution: "style-dictionary@npm:5.3.2"
   dependencies:
     "@bundled-es-modules/deepmerge": "npm:^4.3.1"
-    "@bundled-es-modules/glob": "npm:^11.1.0"
-    "@bundled-es-modules/memfs": "npm:^4.9.4"
+    "@bundled-es-modules/glob": "npm:^13.0.3"
+    "@bundled-es-modules/memfs": "npm:^4.17.0"
     "@zip.js/zip.js": "npm:^2.7.44"
     chalk: "npm:^5.3.0"
     change-case: "npm:^5.3.0"
+    colorjs.io: "npm:^0.5.2"
     commander: "npm:^12.1.0"
     is-plain-obj: "npm:^4.1.0"
     json5: "npm:^2.2.2"
@@ -13120,7 +13121,7 @@ __metadata:
     tinycolor2: "npm:^1.6.0"
   bin:
     style-dictionary: bin/style-dictionary.js
-  checksum: 10/7e53c85115ab3179ddcf7c4647fd4a8cdbc767afbf94c195a777c93fc525fc207d3808df652f1f7ad7d4da828decbc9a23207933e5875a1154d7c0ccc14922fb
+  checksum: 10/fd7d42aeef9cea7831d8a911976519c5e4a3aecadbb89a3dc8753e563c6522e87af795e03c895015ac14c49087bb1bf1c612a856e303cbe3e270c2ba5ec42a59
   languageName: node
   linkType: hard
 
