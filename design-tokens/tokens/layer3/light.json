@@ -452,7 +452,7 @@
           "header": {
             "default": {
               "$type": "color",
-              "$value": "{echoes.color.grey.40}"
+              "$value": "{echoes.color.grey.50}"
             }
           }
         }
