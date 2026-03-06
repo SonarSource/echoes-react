@@ -78,3 +78,30 @@ export const suffixed: Story = {
     ),
   },
 };
+
+const fourNavItems = Array.from({ length: 4 }, (_, i) => (
+  <Layout.SidebarNavigation.Item Icon={IconBranch} key={i} to={`/item-${i}`}>
+    Item {`${i + 1}`}
+  </Layout.SidebarNavigation.Item>
+));
+
+export const scrollLastChildIntoView: Story = {
+  decorators: [basicWrapperDecorator],
+  args: {
+    scrollLastChildIntoViewOnOpen: true,
+  },
+  render: ({ scrollLastChildIntoViewOnOpen }) => (
+    <div style={{ border: '2px dashed #ccc', height: '200px', overflow: 'auto', width: '240px' }}>
+      <Layout.SidebarNavigation.Body>
+        {fourNavItems}
+
+        <Layout.SidebarNavigation.AccordionItem
+          Icon={IconBranch}
+          label="Accordion"
+          scrollLastChildIntoViewOnOpen={scrollLastChildIntoViewOnOpen}>
+          {fourNavItems}
+        </Layout.SidebarNavigation.AccordionItem>
+      </Layout.SidebarNavigation.Body>
+    </div>
+  ),
+};

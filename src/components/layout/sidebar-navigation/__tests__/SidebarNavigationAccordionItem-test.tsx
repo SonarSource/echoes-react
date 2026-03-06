@@ -79,6 +79,20 @@ describe('ellipsis behavior', () => {
   });
 });
 
+it('should scroll the last child into view when opened with scrollLastChildIntoViewOnOpen', async () => {
+  const scrollIntoView = jest.fn();
+  globalThis.HTMLElement.prototype.scrollIntoView = scrollIntoView;
+
+  const { user } = setupSidebarNavigationAccordionItem({ scrollLastChildIntoViewOnOpen: true });
+
+  await user.click(screen.getByRole('button', { name: 'Accordion Item' }));
+
+  expect(scrollIntoView).toHaveBeenCalledWith({ behavior: 'smooth', block: 'end' });
+
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  globalThis.HTMLElement.prototype.scrollIntoView = () => {};
+});
+
 describe('integration with SidebarNavigationItem', () => {
   it('should set CSS custom properties and active class on children', () => {
     setupSidebarNavigationAccordionItem({
