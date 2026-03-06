@@ -23,6 +23,7 @@ import './icons.css';
 export type { IconFilledProps, IconProps } from './IconWrapper';
 
 export { IconActivity } from './IconActivity';
+export { IconAppearance } from './IconAppearance';
 export { IconArchitecture } from './IconArchitecture';
 export { IconArrowDown } from './IconArrowDown';
 export { IconArrowDownRight } from './IconArrowDownRight';
