@@ -95,17 +95,20 @@ it('should show loading spinner when isLoading is true', () => {
 });
 
 it('should warn when input is too short', async () => {
-  const { user } = setupWithProps({ value: 'f', minLength: 3 });
+  const { user } = setupWithProps({ value: '', minLength: 3 });
   expect(
     screen.getByRole('searchbox', { name: 'Search (minimum 3 characters)' }),
   ).toBeInTheDocument();
-  expect(screen.getByText(MIN_LENGTH_MESSAGE)).toBeInTheDocument();
+
+  await user.type(screen.getByRole('searchbox'), 'f');
+
+  expect(await screen.findByRole('tooltip')).toHaveTextContent(MIN_LENGTH_MESSAGE);
 
   await user.type(screen.getByRole('searchbox'), 'oo');
-  expect(screen.queryByText(MIN_LENGTH_MESSAGE)).not.toBeInTheDocument();
+  expect(screen.queryByRole('tooltip')).not.toBeInTheDocument();
 
   await user.clear(screen.getByRole('searchbox'));
-  expect(screen.queryByText(MIN_LENGTH_MESSAGE)).not.toBeInTheDocument();
+  expect(screen.queryByRole('tooltip')).not.toBeInTheDocument();
 });
 
 it('should not show min length message when minLength is 1 or less', () => {
@@ -132,15 +135,16 @@ it('should allow to customize labels', async () => {
     minLengthLabel,
     value: '',
   });
-  expect(
-    screen.getByPlaceholderText(`${SEARCH_PRODUCTS_LABEL} ${minLengthLabel}`),
-  ).toBeInTheDocument();
+  expect(screen.getByLabelText(`${SEARCH_PRODUCTS_LABEL} ${minLengthLabel}`)).toBeInTheDocument();
+
+  expect(screen.getByPlaceholderText(SEARCH_PRODUCTS_LABEL)).toBeInTheDocument();
 
   await user.type(screen.getByRole('searchbox'), 'a');
   expect(
     screen.getByRole('searchbox', { name: `${SEARCH_PRODUCTS_LABEL} ${minLengthLabel}` }),
   ).toBeInTheDocument();
-  expect(screen.getByText(minLengthLabel)).toBeInTheDocument();
+
+  expect(await screen.findByRole('tooltip')).toHaveTextContent(minLengthLabel);
 });
 
 it('should call onKeyDown for other keys', async () => {

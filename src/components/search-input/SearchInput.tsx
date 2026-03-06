@@ -25,9 +25,9 @@ import {
   KeyboardEvent,
   useCallback,
   useEffect,
+  useState,
 } from 'react';
 import { useIntl } from 'react-intl';
-import { truncate } from '~common/helpers/styles';
 import { isDefined, isStringDefined } from '~common/helpers/types';
 import { useForwardedRef } from '~common/helpers/useForwardedRef';
 import { IconSearch } from '../icons';
@@ -39,10 +39,10 @@ import {
   InputSuffix,
   InputWrapper,
 } from '../text-input/TextInputBase';
-import { Text } from '../typography';
 import { SearchInputClearButton } from './SearchInputClearButton';
 
 import { cssVar } from '~utils/design-tokens';
+import { Tooltip } from '../tooltip';
 
 type InputAttributes = Pick<InputHTMLAttributes<HTMLInputElement>, 'id' | 'name' | 'maxLength'>;
 
@@ -187,12 +187,13 @@ export const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>((props
   } = props;
 
   const [ref, setRef] = useForwardedRef(forwardedRef);
+  const [focused, setFocused] = useState(false);
   const showClearButton = isStringDefined(value);
   const isMinLengthDefined = isDefined(minLength) && minLength > 1;
   const showMinLengthMessage =
     isMinLengthDefined && isStringDefined(value) && value.length > 0 && value.length < minLength;
-  const placeholder = placeholderLabel + (isMinLengthDefined ? ` ${minLengthLabel}` : '');
-  let ariaLabelWithMinLength = placeholder;
+
+  let ariaLabelWithMinLength = placeholderLabel + (isMinLengthDefined ? ` ${minLengthLabel}` : '');
   if (isStringDefined(ariaLabel)) {
     ariaLabelWithMinLength = `${ariaLabel} ${isMinLengthDefined ? minLengthLabel : ''}`;
   }
@@ -234,28 +235,30 @@ export const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>((props
       <InputPrefix data-disabled={isDisabled || undefined}>
         <IconSearch />
       </InputPrefix>
-      <SearchInputStyled
-        aria-describedby={ariaDescribedBy}
-        aria-label={ariaLabelWithMinLength}
-        // Everything above this line can be overridden by the `restProps` object
-        {...restProps}
-        autoComplete="off"
-        data-prefix
-        data-suffix={showClearButton || isLoading ? '' : undefined}
-        disabled={isDisabled}
-        onChange={handleChange}
-        onKeyDown={handleInputKeyDown}
-        placeholder={placeholder}
-        ref={setRef}
-        type="search"
-        value={value}
-      />
+      <Tooltip
+        content={minLengthLabel}
+        isOpen={!isLoading && !isDisabled && showMinLengthMessage && focused}
+        side="right">
+        <SearchInputStyled
+          aria-describedby={ariaDescribedBy}
+          aria-label={ariaLabelWithMinLength}
+          // Everything above this line can be overridden by the `restProps` object
+          {...restProps}
+          autoComplete="off"
+          data-prefix
+          data-suffix={showClearButton || isLoading ? '' : undefined}
+          disabled={isDisabled}
+          onBlur={() => setFocused(false)}
+          onChange={handleChange}
+          onFocus={() => setFocused(true)}
+          onKeyDown={handleInputKeyDown}
+          placeholder={placeholderLabel}
+          ref={setRef}
+          type="search"
+          value={value}
+        />
+      </Tooltip>
 
-      {!isLoading && !isDisabled && showMinLengthMessage && (
-        <MinLengthMessage isSubtle value={value}>
-          {minLengthLabel}
-        </MinLengthMessage>
-      )}
       {!isDisabled && (isLoading || showClearButton) && (
         <InputSuffix>
           <SearchInputSpinner isLoading={isLoading}>
@@ -311,18 +314,3 @@ const SearchInputSpinner = styled(Spinner)`
   margin: 0 ${cssVar('dimension-space-25')};
 `;
 SearchInputSpinner.displayName = 'SearchInputSpinner';
-
-const MinLengthMessage = styled(Text)<{ value: string }>`
-  position: absolute;
-  left: calc(
-    ${cssVar('dimension-space-150')} + ${cssVar('dimension-width-300')} +
-      (${cssVar('dimension-space-100')} * ${({ value }) => value.length + 1})
-  );
-  right: calc(${cssVar('dimension-space-150')} + ${cssVar('dimension-width-300')});
-  text-align: right;
-  pointer-events: none;
-  margin-top: 1px;
-
-  ${truncate}
-`;
-MinLengthMessage.displayName = 'MinLengthMessage';
