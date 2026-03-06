@@ -132,7 +132,7 @@
   "echoes-form-control-colors-border-default": "#637192",
   "echoes-form-control-colors-border-focus": "#e1e6f3",
   "echoes-form-control-colors-icon-default": "#637192",
-  "echoes-table-colors-background-header-default": "#f6f7fb",
+  "echoes-table-colors-background-header-default": "#eff2f9",
   "echoes-box-shadow-xsmall": "0 1px 02px 0 #0000000d",
   "echoes-box-shadow-small": "0 1px 25px 0 #1d212f0d, 0 1px 3px 0 #1d212f0d",
   "echoes-box-shadow-medium": "0 2px 15px -2px #1d212f0f, 0 4px 8px -2px #1d212f1a",
