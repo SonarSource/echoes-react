@@ -45,13 +45,16 @@ BadgeCounter.displayName = 'BadgeCounter';
 
 const BadgeCounterStyled = styled.span`
   display: inline-block;
+  box-sizing: border-box;
   height: ${cssVar('line-height-10')};
+  min-width: ${cssVar('dimension-width-200')};
 
   border-radius: ${cssVar('border-radius-full')};
   padding: ${cssVar('dimension-space-0')} ${cssVar('dimension-space-50')};
 
   font: ${cssVar('typography-text-small-semi-bold')};
   color: ${cssVar('color-text-default')};
+  text-align: center;
 
   background-color: ${cssVar('color-background-neutral-bolder-default')};
 `;
