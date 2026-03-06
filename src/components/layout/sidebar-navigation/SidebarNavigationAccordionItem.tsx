@@ -24,7 +24,9 @@ import {
   ForwardRefExoticComponent,
   ReactNode,
   useCallback,
+  useEffect,
   useId,
+  useRef,
   useState,
 } from 'react';
 import { TextNode } from '~types/utils';
@@ -65,6 +67,11 @@ export interface SidebarNavigationAccordionItemProps {
    */
   onOpen?: VoidFunction;
   /**
+   * When true, scrolls the last child item into view when the accordion opens.
+   * Useful when the accordion is near the bottom of a scrollable container.
+   */
+  scrollLastChildIntoViewOnOpen?: boolean;
+  /**
    * Optional content to display on the right, before the chevron. Typically badges, item count and similar metadata.
    */
   suffix?: ReactNode;
@@ -86,10 +93,20 @@ export const SidebarNavigationAccordionItem = forwardRef<
     label,
     onClose,
     onOpen,
+    scrollLastChildIntoViewOnOpen,
     suffix,
     ...htmlProps
   } = props;
+
   const [open, setOpen] = useState(false);
+  const panelRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    if (open && scrollLastChildIntoViewOnOpen) {
+      const lastChild = panelRef.current?.querySelector(':last-child');
+      (lastChild as HTMLElement | null)?.scrollIntoView({ behavior: 'smooth', block: 'end' });
+    }
+  }, [open, scrollLastChildIntoViewOnOpen]);
 
   const accordionId = `${useId()}sidebar-accordion`;
   const accordionPanelId = `${accordionId}-panel`;
@@ -98,10 +115,12 @@ export const SidebarNavigationAccordionItem = forwardRef<
     setOpen((open) => {
       if (!open) {
         onOpen?.();
+
         return true;
       }
 
       onClose?.();
+
       return false;
     });
   }, [onOpen, onClose]);
@@ -120,8 +139,11 @@ export const SidebarNavigationAccordionItem = forwardRef<
           onClick={handleClick}
           ref={ref}>
           <Icon css={sidebarNavigationItemIconStyles} isFilled={false} />
+
           <SidebarNavigationItemLabel>{label}</SidebarNavigationItemLabel>
+
           {suffix}
+
           {open ? (
             <IconChevronDown css={sidebarNavigationItemIconStyles} />
           ) : (
@@ -133,7 +155,8 @@ export const SidebarNavigationAccordionItem = forwardRef<
       <AccordionItemPanel
         aria-labelledby={accordionId}
         data-accordion-open={open}
-        id={accordionPanelId}>
+        id={accordionPanelId}
+        ref={panelRef}>
         <AccordionItemsList>{children}</AccordionItemsList>
       </AccordionItemPanel>
     </AccordionWrapper>
