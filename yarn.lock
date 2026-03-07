@@ -4741,7 +4741,7 @@ __metadata:
     react-joyride: "npm:2.9.3"
     react-router-dom: "npm:6.30.1"
     rollup: "npm:4.59.0"
-    rollup-plugin-license: "npm:3.6.0"
+    rollup-plugin-license: "npm:3.7.0"
     sonarqube-scanner: "npm:4.3.4"
     sonner: "npm:2.0.7"
     storybook: "npm:10.2.10"
@@ -7023,7 +7023,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"commenting@npm:~1.1.0":
+"commenting@npm:^1.1.0":
   version: 1.1.0
   resolution: "commenting@npm:1.1.0"
   checksum: 10/e172a2b6234c089ae826a1ff7c42811b88e8cf7166ebde461ad0b6cddd3822c16996b8175ce1d3c1a49d1475b1c1d8acdc906c18d3126cb4b0432df29529f232
@@ -10390,7 +10390,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lodash@npm:^4.17.21, lodash@npm:~4.17.15, lodash@npm:~4.17.21":
+"lodash@npm:^4.17.21, lodash@npm:~4.17.15":
   version: 4.17.21
   resolution: "lodash@npm:4.17.21"
   checksum: 10/c08619c038846ea6ac754abd6dd29d2568aa705feb69339e836dfa8d8b09abbb2f859371e86863eda41848221f9af43714491467b5b0299122431e202bb0c532
@@ -10466,7 +10466,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"magic-string@npm:^0.30.0, magic-string@npm:^0.30.17, magic-string@npm:~0.30.0":
+"magic-string@npm:^0.30.0, magic-string@npm:^0.30.17":
   version: 0.30.17
   resolution: "magic-string@npm:0.30.17"
   dependencies:
@@ -10750,7 +10750,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"moment@npm:~2.30.1":
+"moment@npm:^2.30.1":
   version: 2.30.1
   resolution: "moment@npm:2.30.1"
   checksum: 10/ae42d876d4ec831ef66110bdc302c0657c664991e45cf2afffc4b0f6cd6d251dde11375c982a5c0564ccc0fa593fc564576ddceb8c8845e87c15f58aa6baca69
@@ -11120,7 +11120,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"package-name-regex@npm:~2.0.6":
+"package-name-regex@npm:^2.0.6":
   version: 2.0.6
   resolution: "package-name-regex@npm:2.0.6"
   checksum: 10/a889d52cdd860dd4feafebb3b9a2fed47d36408fd62bfab07f6386a80395d66e89f9c913bc8ea8ff62108f23d6e6470e5342e20e660a2743465cd4c45f676d4e
@@ -12179,21 +12179,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rollup-plugin-license@npm:3.6.0":
-  version: 3.6.0
-  resolution: "rollup-plugin-license@npm:3.6.0"
+"rollup-plugin-license@npm:3.7.0":
+  version: 3.7.0
+  resolution: "rollup-plugin-license@npm:3.7.0"
   dependencies:
-    commenting: "npm:~1.1.0"
+    commenting: "npm:^1.1.0"
     fdir: "npm:^6.4.3"
-    lodash: "npm:~4.17.21"
-    magic-string: "npm:~0.30.0"
-    moment: "npm:~2.30.1"
-    package-name-regex: "npm:~2.0.6"
-    spdx-expression-validate: "npm:~2.0.0"
-    spdx-satisfies: "npm:~5.0.1"
+    lodash: "npm:^4.17.21"
+    magic-string: "npm:^0.30.0"
+    moment: "npm:^2.30.1"
+    package-name-regex: "npm:^2.0.6"
+    spdx-expression-validate: "npm:^2.0.0"
+    spdx-satisfies: "npm:^5.0.1"
   peerDependencies:
     rollup: ^1.0.0 || ^2.0.0 || ^3.0.0 || ^4.0.0
-  checksum: 10/0aa7a86f9f453435bafb9db5d0dbc4d5b159e5bb9774202e7a0b879daa8f42b7ba68185379c07454460e23dea514604a31d775572070d2ee86da12b1e2571e19
+  checksum: 10/87ed02fc88c6da8fd5b221393a9628c3359dc0ecad9670dbbc8272dc4dda8fe1367375a2571930ff24bb2f7b3abf175858709fb30fea501001bebae40a4d19e5
   languageName: node
   linkType: hard
 
@@ -12778,7 +12778,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"spdx-expression-validate@npm:~2.0.0":
+"spdx-expression-validate@npm:^2.0.0":
   version: 2.0.0
   resolution: "spdx-expression-validate@npm:2.0.0"
   dependencies:
@@ -12801,7 +12801,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"spdx-satisfies@npm:~5.0.1":
+"spdx-satisfies@npm:^5.0.1":
   version: 5.0.1
   resolution: "spdx-satisfies@npm:5.0.1"
   dependencies:
