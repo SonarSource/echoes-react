@@ -139,31 +139,96 @@
         },
         "border": {
           "ratingA": {
+            "default": {
+              "$type": "color",
+              "$value": "#12b76a"
+            },
             "hover": {
+              "$extensions": {
+                "studio.tokens": {
+                  "modify": {
+                    "type": "darken",
+                    "value": "0.05",
+                    "space": "lch"
+                  }
+                }
+              },
               "$type": "color",
               "$value": "#12b76a"
             }
           },
           "ratingB": {
+            "default": {
+              "$type": "color",
+              "$value": "{echoes.color.green.500}"
+            },
             "hover": {
+              "$extensions": {
+                "studio.tokens": {
+                  "modify": {
+                    "type": "darken",
+                    "value": "0.05",
+                    "space": "lch"
+                  }
+                }
+              },
               "$type": "color",
               "$value": "{echoes.color.green.500}"
             }
           },
           "ratingC": {
-            "hover": {
+            "default": {
               "$type": "color",
-              "$value": "{echoes.color.yellow.600}"
+              "$value": "{echoes.color.yellow.500}"
+            },
+            "hover": {
+              "$extensions": {
+                "studio.tokens": {
+                  "modify": {
+                    "type": "darken",
+                    "value": "0.05",
+                    "space": "lch"
+                  }
+                }
+              },
+              "$type": "color",
+              "$value": "{echoes.color.yellow.500}"
             }
           },
           "ratingD": {
+            "default": {
+              "$type": "color",
+              "$value": "{echoes.color.orange.400}"
+            },
             "hover": {
+              "$extensions": {
+                "studio.tokens": {
+                  "modify": {
+                    "type": "darken",
+                    "value": "0.05",
+                    "space": "lch"
+                  }
+                }
+              },
               "$type": "color",
               "$value": "{echoes.color.orange.400}"
             }
           },
           "ratingE": {
+            "default": {
+              "$type": "color",
+              "$value": "{echoes.color.red.500}"
+            },
             "hover": {
+              "$extensions": {
+                "studio.tokens": {
+                  "modify": {
+                    "type": "darken",
+                    "value": "0.05",
+                    "space": "lch"
+                  }
+                }
+              },
               "$type": "color",
               "$value": "{echoes.color.red.500}"
             }
