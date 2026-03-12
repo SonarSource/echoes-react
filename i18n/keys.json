@@ -196,6 +196,25 @@
     "defaultMessage": "{currentStepNumber} of {totalNumberOfSteps}",
     "description": "The helper text showing the step progress on a Spotlight"
   },
+  "toast.dismiss": {
+    "defaultMessage": "Dismiss toast",
+    "description": "ARIA-label for the dismiss button in the top-right corner of the Toast."
+  },
+  "toast.prefix.background-task": {
+    "defaultMessage": "Background task:"
+  },
+  "toast.prefix.danger": {
+    "defaultMessage": "Error:"
+  },
+  "toast.prefix.info": {
+    "defaultMessage": "Information:"
+  },
+  "toast.prefix.success": {
+    "defaultMessage": "Success:"
+  },
+  "toast.prefix.warning": {
+    "defaultMessage": "Warning:"
+  },
   "toasts.keyboard_shortcut_aria_label": {
     "defaultMessage": "Focus toasts messages with",
     "description": "ARIA-label for the toasts container keyboard shortcut"
