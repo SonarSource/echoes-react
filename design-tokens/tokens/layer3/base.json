@@ -38,6 +38,38 @@
         }
       }
     },
+    "indicator": {
+      "sizes": {
+        "width": {
+          "xsmall": {
+            "$type": "sizing",
+            "$value": "{echoes.dimension.width.200}"
+          },
+          "small": {
+            "$type": "sizing",
+            "$value": "{echoes.dimension.width.300}"
+          },
+          "medium": {
+            "$type": "sizing",
+            "$value": "{echoes.dimension.width.500}"
+          }
+        },
+        "height": {
+          "xsmall": {
+            "$type": "sizing",
+            "$value": "0.9375rem"
+          },
+          "small": {
+            "$type": "sizing",
+            "$value": "1.4375rem"
+          },
+          "medium": {
+            "$type": "sizing",
+            "$value": "2.375rem"
+          }
+        }
+      }
+    },
     "layout": {
       "aside": {
         "width": {

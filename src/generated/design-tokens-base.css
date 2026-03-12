@@ -125,6 +125,12 @@
   --echoes-badge-sizes-height-medium: 1.75rem;
   --echoes-form-control-border-radius-default: 8px;
   --echoes-form-control-sizes-height-default: 2.25rem;
+  --echoes-indicator-sizes-width-xsmall: 1rem;
+  --echoes-indicator-sizes-width-small: 1.5rem;
+  --echoes-indicator-sizes-width-medium: 2.5rem;
+  --echoes-indicator-sizes-height-xsmall: 0.9375rem;
+  --echoes-indicator-sizes-height-small: 1.4375rem;
+  --echoes-indicator-sizes-height-medium: 2.375rem;
   --echoes-layout-aside-width-small: 200px;
   --echoes-layout-aside-width-medium: 300px;
   --echoes-layout-aside-width-large: 400px;
