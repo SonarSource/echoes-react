@@ -56,16 +56,19 @@ export const LinkStandalone = styled(LinkStandaloneBase)`
     text-decoration-color: var(--color);
   }
 
-  ${({ iconLeft }) =>
-    iconLeft &&
-    `
+  ${({ iconLeft }) => {
+    if (iconLeft) {
+      return `
       & > svg,
       & > img,
       & > ${IconMaterialWrapper},
       & > ${IconCustomWrapper} {
         margin-right: ${cssVar('dimension-space-50')};
       }
-    `};
+    `;
+    }
+    return null;
+  }}
 `;
 
 LinkStandalone.displayName = 'LinkStandalone';

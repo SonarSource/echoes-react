@@ -30,8 +30,8 @@ export const SelectAsync = forwardRef<HTMLInputElement, PropsWithLabels<SelectAs
   (props, ref) => {
     const { onChange, onSearch, value, ...selectProps } = props;
 
-    const previousSearchQuery = useRef<string>();
-    const selectedOptionRef = useRef<SelectOption | null>();
+    const previousSearchQuery = useRef<string>('');
+    const selectedOptionRef = useRef<SelectOption | null>(null);
 
     const handleSearch = useCallback(
       (searchQuery: string) => {

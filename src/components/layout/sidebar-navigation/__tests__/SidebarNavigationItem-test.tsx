@@ -35,10 +35,6 @@ it('should handle onClick events', async () => {
 });
 
 describe('ellipsis behavior', () => {
-  beforeEach(() => {
-    jest.clearAllMocks();
-  });
-
   it('should show tooltip by default', async () => {
     const { user } = setupSidebarNavigationItem();
 

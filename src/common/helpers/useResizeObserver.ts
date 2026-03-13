@@ -20,7 +20,7 @@
 
 import { RefObject, useCallback, useEffect, useState } from 'react';
 
-export function useResizeObserver(ref: RefObject<HTMLElement>) {
+export function useResizeObserver(ref: RefObject<HTMLElement | null>) {
   const [width, setWidth] = useState<number>();
   const [height, setHeight] = useState<number>();
 
