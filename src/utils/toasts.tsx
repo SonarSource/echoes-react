@@ -215,6 +215,8 @@ export const toast: ToastFn = Object.assign(toastFn, {
   warning: (params: ToastShortcutParams, ref?: Ref<HTMLDivElement>) =>
     toastFn({ ...params, variety: 'warning' }, ref),
   dismiss: (id: ToastId) => sonnerToast.dismiss(id),
+  backgroundTask: (params: ToastShortcutParams, ref?: Ref<HTMLDivElement>) =>
+    toastFn({ ...params, variety: 'background-task' }, ref),
 });
 
 const TOAST_DURATION_MAP = {
