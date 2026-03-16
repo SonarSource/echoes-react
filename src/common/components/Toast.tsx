@@ -49,7 +49,7 @@ export enum ToastVariety {
    */
   Warning = 'warning',
   /**
-   * Used for background tasks in prorgess.
+   * Used for background tasks in progress.
    */
   BackgroundTask = 'background-task',
 }
