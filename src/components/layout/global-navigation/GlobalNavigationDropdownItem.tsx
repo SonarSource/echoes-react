@@ -71,14 +71,15 @@ GlobalNavigationDropdownItem.displayName = 'GlobalNavigationDropdownItem';
 
 // exported for tests
 export function isActive(pathname: string, item: ReactNode) {
-  if (isValidElement(item)) {
+  if (isValidElement<{ children?: ReactNode; to?: string }>(item)) {
     if (isDefined(item.props?.to) && matchPath(item.props.to, pathname) !== null) {
       return true;
     }
 
-    const targets: Array<string | undefined> = Children.map(item.props.children, (child) => {
-      return child?.props?.to;
-    });
+    const targets: Array<string | undefined> =
+      Children.map(item.props.children, (child) => {
+        return isValidElement<{ to?: string }>(child) ? child?.props?.to : undefined;
+      }) ?? [];
 
     for (const target of targets) {
       if (isDefined(target) && matchPath(target, pathname) !== null) {

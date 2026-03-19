@@ -25,7 +25,7 @@ import { useResizeObserver } from '../useResizeObserver';
 
 it('should return the correct width and height of the element', () => {
   function ExampleFunctionComponent() {
-    const containerRef = useRef(null);
+    const containerRef = useRef<HTMLDivElement>(null);
     const { width, height } = useResizeObserver(containerRef);
     return (
       <div ref={containerRef}>

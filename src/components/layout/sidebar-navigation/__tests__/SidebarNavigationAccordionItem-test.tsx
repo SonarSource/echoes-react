@@ -58,10 +58,6 @@ it("shouldn't have any a11y violation", async () => {
 });
 
 describe('ellipsis behavior', () => {
-  beforeEach(() => {
-    jest.clearAllMocks();
-  });
-
   it('should show tooltip by default', async () => {
     const { user } = setupSidebarNavigationAccordionItem();
 

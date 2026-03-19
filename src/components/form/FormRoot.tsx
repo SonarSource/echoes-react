@@ -18,7 +18,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 import styled from '@emotion/styled';
-import { FormEvent, FormHTMLAttributes, forwardRef, ReactNode, useCallback } from 'react';
+import { FormHTMLAttributes, forwardRef, ReactNode, SubmitEvent, useCallback } from 'react';
 import { isDefined } from '~common/helpers/types';
 
 import { cssVar } from '~utils/design-tokens';
@@ -53,7 +53,7 @@ export const FormRoot = forwardRef<HTMLFormElement, FormRootProps>((props, ref) 
   const { children, enableBrowserValidation = false, onSubmit, action, ...rest } = props;
 
   const onSubmitHandler = useCallback(
-    (event: FormEvent<HTMLFormElement>) => {
+    (event: SubmitEvent<HTMLFormElement>) => {
       if (onSubmit) {
         if (!isDefined(action)) {
           event.preventDefault();

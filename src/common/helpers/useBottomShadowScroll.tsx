@@ -31,8 +31,8 @@ import { useResizeObserver } from './useResizeObserver';
  * @returns {boolean} Whether the bottom shadow should be shown
  */
 export function useBottomShadowScroll(
-  scrollableContainerRef: RefObject<HTMLElement>,
-  resizableContentRef: RefObject<HTMLElement>,
+  scrollableContainerRef: RefObject<HTMLElement | null>,
+  resizableContentRef: RefObject<HTMLElement | null>,
 ) {
   const [showBottomShadow, setShowBottomShadow] = useState(false);
 

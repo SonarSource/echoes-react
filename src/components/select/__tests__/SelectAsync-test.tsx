@@ -52,7 +52,7 @@ it('should behave as expected', async () => {
 
   await user.type(screen.getByRole('combobox', { name: 'select' }), 'ad');
 
-  expect(onSearch).toHaveBeenCalledTimes(3); // initial, 'a', and 'ad'
+  expect(onSearch).toHaveBeenCalledTimes(2); // 'a', and 'ad'
   expect(onSearch).toHaveBeenLastCalledWith('ad');
 
   onSearch.mockClear();
