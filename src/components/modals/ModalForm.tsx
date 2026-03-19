@@ -18,7 +18,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import { FormEvent, forwardRef, useCallback, useId, useState } from 'react';
+import { forwardRef, SubmitEvent, useCallback, useId, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { TextNodeOptional } from '~types/utils';
 import { Button, ButtonVariety } from '../buttons';
@@ -57,7 +57,7 @@ interface ModalFormBaseProps extends FormRootPropsSubset {
    * Callback to be called when the form submit event is triggered. If the callback returns a Promise, the modal will
    * only close when the promise is resolved.
    */
-  onSubmit?: (event: FormEvent<HTMLFormElement>) => Promise<any> | void;
+  onSubmit?: (event: SubmitEvent<HTMLFormElement>) => Promise<any> | void;
   /**
    * Allows to override the default text of the secondary button.
    */
@@ -132,7 +132,7 @@ export const ModalForm = forwardRef<HTMLDivElement, ModalFormProps>((props, ref)
   const [isOpen, setIsOpen] = useState(modalProps.isDefaultOpen ?? false);
 
   const onFormSubmit = useCallback(
-    (event: FormEvent<HTMLFormElement>) => {
+    (event: SubmitEvent<HTMLFormElement>) => {
       const submitResult = onSubmit?.(event);
       if (submitResult instanceof Promise) {
         return submitResult.then(
@@ -153,7 +153,7 @@ export const ModalForm = forwardRef<HTMLDivElement, ModalFormProps>((props, ref)
   );
 
   const onFormReset = useCallback(
-    (event: FormEvent<HTMLFormElement>) => {
+    (event: SubmitEvent<HTMLFormElement>) => {
       onReset?.(event);
       setIsOpen(false);
       onClose?.();

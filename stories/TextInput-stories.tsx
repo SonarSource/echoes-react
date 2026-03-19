@@ -18,7 +18,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { ComponentProps, createRef, FormEvent, useCallback, useState } from 'react';
+import { ComponentProps, createRef, SubmitEvent, useCallback, useState } from 'react';
 import {
   Button,
   ButtonVariety,
@@ -97,7 +97,7 @@ function InputWithValidation(props: ComponentProps<typeof TextInput>) {
   const [messageInvalid, setMessageInvalid] = useState<string | undefined>();
 
   const onSubmit = useCallback(
-    (event: FormEvent<HTMLFormElement>) => {
+    (event: SubmitEvent<HTMLFormElement>) => {
       event.preventDefault();
 
       if (emailInputRef.current?.validity.typeMismatch) {
