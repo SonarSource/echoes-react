@@ -18,7 +18,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import { DependencyList, MutableRefObject, useLayoutEffect, useState } from 'react';
+import { DependencyList, RefObject, useLayoutEffect, useState } from 'react';
 
 /**
  * This hook checks if the content of a given ref is overflowing its container horizontally.
@@ -28,7 +28,7 @@ import { DependencyList, MutableRefObject, useLayoutEffect, useState } from 'rea
  * @param deps - Optional dependencies array to re-compute the overflow state.
  */
 export function useIsOverflow(
-  forwardedRef: MutableRefObject<HTMLElement | null>,
+  forwardedRef: RefObject<HTMLElement | null>,
   deps: DependencyList = [],
 ) {
   const [isOverflow, setIsOverflow] = useState<boolean | undefined>(undefined);
