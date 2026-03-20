@@ -19,16 +19,24 @@
  */
 import styled from '@emotion/styled';
 import { PropsWithChildren, useRef } from 'react';
-import { BottomShadowScroll, useBottomShadowScroll } from '~common/helpers/useBottomShadowScroll';
+import {
+  BottomShadowScroll,
+  TopShadowScroll,
+  useShadowScroll,
+} from '~common/helpers/useShadowScroll';
 import { cssVar } from '~utils/design-tokens';
 
 export function SidebarNavigationBody({ children }: PropsWithChildren<{}>) {
   const scrollableContainerRef = useRef<HTMLDivElement>(null);
   const resizableContentRef = useRef<HTMLUListElement>(null);
-  const [showBottomShadow] = useBottomShadowScroll(scrollableContainerRef, resizableContentRef);
+  const { showBottomShadow, showTopShadow } = useShadowScroll(
+    scrollableContainerRef,
+    resizableContentRef,
+  );
 
   return (
     <SidebarNavigationBodyScrollWrapper>
+      {showTopShadow && <SidebarNavigationTopShadowScroll />}
       <SidebarNavigationBodyScrollContainer ref={scrollableContainerRef}>
         <SidebarNavigationBodyInner ref={resizableContentRef}>
           {children}
@@ -86,3 +94,10 @@ const SidebarNavigationBottomShadowScroll = styled(BottomShadowScroll)`
   }
 `;
 SidebarNavigationBottomShadowScroll.displayName = 'SidebarNavigationBottomShadowScroll';
+
+const SidebarNavigationTopShadowScroll = styled(TopShadowScroll)`
+  [data-sidebar-docked='false'] nav:not(:hover, :focus-within) & {
+    opacity: 0.5;
+  }
+`;
+SidebarNavigationTopShadowScroll.displayName = 'SidebarNavigationTopShadowScroll';
