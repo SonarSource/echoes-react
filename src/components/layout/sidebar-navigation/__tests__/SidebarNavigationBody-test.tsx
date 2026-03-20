@@ -20,14 +20,15 @@
 
 import { screen } from '@testing-library/react';
 import { renderWithMemoryRouter } from '~common/helpers/test-utils';
-import { useBottomShadowScroll } from '~common/helpers/useBottomShadowScroll';
+import { useShadowScroll } from '~common/helpers/useShadowScroll';
 import { IconBranch } from '../../../icons';
 import { SidebarNavigationBody } from '../SidebarNavigationBody';
 import { SidebarNavigationItem } from '../SidebarNavigationItem';
 
-jest.mock('~common/helpers/useBottomShadowScroll', () => ({
-  useBottomShadowScroll: jest.fn(() => [false]),
+jest.mock('~common/helpers/useShadowScroll', () => ({
+  useShadowScroll: jest.fn(() => ({ showBottomShadow: false, showTopShadow: false })),
   BottomShadowScroll: jest.fn(() => <div>bottom-shadow</div>),
+  TopShadowScroll: jest.fn(() => <div>top-shadow</div>),
 }));
 
 beforeEach(() => {
@@ -50,8 +51,8 @@ it('should render correctly', async () => {
   await expect(container).toHaveNoA11yViolations();
 });
 
-it('should render with a bottom scroll shadow', () => {
-  jest.mocked(useBottomShadowScroll).mockReturnValue([true]);
+it('should render with scroll shadows', () => {
+  jest.mocked(useShadowScroll).mockReturnValue({ showBottomShadow: true, showTopShadow: true });
 
   renderWithMemoryRouter(
     <SidebarNavigationBody>
@@ -63,4 +64,5 @@ it('should render with a bottom scroll shadow', () => {
 
   expect(screen.getByRole('list')).toBeInTheDocument();
   expect(screen.getByText('bottom-shadow')).toBeInTheDocument();
+  expect(screen.getByText('top-shadow')).toBeInTheDocument();
 });

@@ -22,7 +22,11 @@ import styled from '@emotion/styled';
 import { PropsWithChildren, useMemo, useRef, useState } from 'react';
 import { PortalContext } from '../../common/components/PortalContext';
 
-import { BottomShadowScroll, useBottomShadowScroll } from '~common/helpers/useBottomShadowScroll';
+import {
+  BottomShadowScroll,
+  TopShadowScroll,
+  useShadowScroll,
+} from '~common/helpers/useShadowScroll';
 import { cssVar } from '~utils/design-tokens';
 
 interface Props {
@@ -33,7 +37,10 @@ export function ModalBody(props: PropsWithChildren<Props>) {
   const { children, isLast = false } = props;
   const scrollableContainerRef = useRef<HTMLDivElement>(null);
   const resizableContentRef = useRef<HTMLDivElement>(null);
-  const [showBottomShadow] = useBottomShadowScroll(scrollableContainerRef, resizableContentRef);
+  const { showBottomShadow, showTopShadow } = useShadowScroll(
+    scrollableContainerRef,
+    resizableContentRef,
+  );
 
   const [portalRef, setPortalRef] = useState<HTMLDivElement | null>(null);
 
@@ -46,6 +53,7 @@ export function ModalBody(props: PropsWithChildren<Props>) {
     <>
       <PortalContext.Provider value={modalContextProviderValue}>
         <ModalBodyWrapper className="echoes-modal-body" isLast={isLast}>
+          {showTopShadow && <TopShadowScroll />}
           <ModalBodyScrollContainer ref={scrollableContainerRef}>
             <ModalBodyInner ref={resizableContentRef}>{children}</ModalBodyInner>
           </ModalBodyScrollContainer>
