@@ -26,6 +26,10 @@ import { SidebarNavigationItem, SidebarNavigationItemProps } from '../SidebarNav
 
 expect.extend(matchers);
 
+jest.mock('../utils', () => ({
+  TOOLTIP_DELAY_IN_MS: 0,
+}));
+
 it('should handle onClick events', async () => {
   const handleClick = jest.fn();
   const { user } = setupSidebarNavigationItem({ onClick: handleClick });
@@ -125,5 +129,8 @@ function setupSidebarNavigationItem(props: Partial<SidebarNavigationItemProps> =
         Test Item
       </SidebarNavigationItem>
     </ul>,
+    undefined,
+    undefined,
+    { advanceTimers: jest.advanceTimersByTime },
   );
 }

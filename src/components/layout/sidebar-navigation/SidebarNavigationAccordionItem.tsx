@@ -38,8 +38,7 @@ import {
   sidebarNavigationItemIconStyles,
   SidebarNavigationItemLabel,
 } from './SidebarNavigationItemStyles';
-
-const TOOLTIP_DELAY_IN_MS = 1000;
+import { TOOLTIP_DELAY_IN_MS } from './utils';
 
 export interface SidebarNavigationAccordionItemProps {
   ariaLabel?: string;
