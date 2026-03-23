@@ -109,32 +109,26 @@ CardBodyStyled.displayName = 'CardBodyStyled';
 export const CARD_HEADER_SIZE_STYLES = {
   [CardSize.Large]: {
     '--card-header-heading-height': '1.875rem',
-    '--card-header-min-height': '58px',
     '--card-header-padding': `${cssVar('dimension-space-200')} ${cssVar('dimension-space-300')}`,
   },
   [CardSize.Medium]: {
     '--card-header-heading-height': '1.5rem',
-    '--card-header-min-height': '45px',
     '--card-header-padding': `${cssVar('dimension-space-150')} ${cssVar('dimension-space-200')}`,
   },
   [CardSize.Small]: {
     '--card-header-heading-height': '1.25rem',
-    '--card-header-min-height': '36px',
     '--card-header-padding': `${cssVar('dimension-space-100')} ${cssVar('dimension-space-150')}`,
   },
 };
 
 export const CARD_SIZE_STYLES = {
   [CardSize.Large]: {
-    '--card-body-min-height': '108px',
     '--card-padding': cssVar('dimension-space-300'),
   },
   [CardSize.Medium]: {
-    '--card-body-min-height': '92px',
     '--card-padding': cssVar('dimension-space-200'),
   },
   [CardSize.Small]: {
-    '--card-body-min-height': '84px',
     '--card-padding': cssVar('dimension-space-150'),
   },
 };
