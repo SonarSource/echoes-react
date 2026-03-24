@@ -17,7 +17,7 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-import { type ForwardedRef, useRef, useState } from 'react';
+import { type ForwardedRef, useCallback, useRef, useState } from 'react';
 
 /**
  * This hook may be used to intercept a forwarded ref, providing a local ref
@@ -35,16 +35,29 @@ import { type ForwardedRef, useRef, useState } from 'react';
  */
 export function useForwardedRefWithState<T>(forwardedRef: ForwardedRef<T>) {
   const [ref, setRef] = useState<T | null>(null);
+  const previousElementRef = useRef<T | null>(null);
 
-  const setForwardedRef = (element: T | null) => {
-    if (typeof forwardedRef === 'function') {
-      forwardedRef(element);
-    } else if (forwardedRef) {
-      forwardedRef.current = element;
-    }
+  const setForwardedRef = useCallback(
+    (element: T | null) => {
+      // React 19 can invoke function refs with null during detach/reattach cycles.
+      // Skip null for function refs to avoid commit-phase state update feedback loops.
+      if (typeof forwardedRef === 'function') {
+        if (element !== null) {
+          forwardedRef(element);
+        }
+      } else if (forwardedRef) {
+        forwardedRef.current = element;
+      }
 
-    setRef(element);
-  };
+      if (element === null || previousElementRef.current === element) {
+        return;
+      }
+
+      previousElementRef.current = element;
+      setRef(element);
+    },
+    [forwardedRef],
+  );
 
   return [ref, setForwardedRef] as const;
 }
@@ -66,14 +79,22 @@ export function useForwardedRefWithState<T>(forwardedRef: ForwardedRef<T>) {
 export function useForwardedRef<T>(forwardedRef: ForwardedRef<T>) {
   const ref = useRef<T | null>(null);
 
-  const setForwardedRef = (element: T | null) => {
-    if (typeof forwardedRef === 'function') {
-      forwardedRef(element);
-    } else if (forwardedRef) {
-      forwardedRef.current = element;
-    }
-    ref.current = element;
-  };
+  const setForwardedRef = useCallback(
+    (element: T | null) => {
+      if (typeof forwardedRef === 'function') {
+        if (element !== null) {
+          forwardedRef(element);
+        }
+      } else if (forwardedRef) {
+        forwardedRef.current = element;
+      }
+
+      if (element !== null) {
+        ref.current = element;
+      }
+    },
+    [forwardedRef],
+  );
 
   return [ref, setForwardedRef] as const;
 }
