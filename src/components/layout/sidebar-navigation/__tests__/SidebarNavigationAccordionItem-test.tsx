@@ -30,6 +30,10 @@ import { SidebarNavigationItem } from '../SidebarNavigationItem';
 
 expect.extend(matchers);
 
+jest.mock('../utils', () => ({
+  TOOLTIP_DELAY_IN_MS: 0,
+}));
+
 it('should expand hidden elements when clicked', async () => {
   const onOpen = jest.fn();
   const onClose = jest.fn();
