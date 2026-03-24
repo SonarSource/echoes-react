@@ -38,8 +38,7 @@ import {
   SidebarNavigationItemLabel,
   UnstyledListItem,
 } from './SidebarNavigationItemStyles';
-
-const TOOLTIP_DELAY_IN_MS = 1000;
+import { TOOLTIP_DELAY_IN_MS } from './utils';
 
 export interface SidebarNavigationItemProps extends Pick<
   NavLinkBaseProps,
