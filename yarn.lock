@@ -3525,14 +3525,14 @@ __metadata:
 
 "@radix-ui/react-compose-refs@patch:@radix-ui/react-compose-refs@npm%3A1.1.2#./.yarn/patches/@radix-ui-react-compose-refs-npm-1.1.2-f0371f8267.patch::locator=%40sonarsource%2Fechoes-react%40workspace%3A.":
   version: 1.1.2
-  resolution: "@radix-ui/react-compose-refs@patch:@radix-ui/react-compose-refs@npm%3A1.1.2#./.yarn/patches/@radix-ui-react-compose-refs-npm-1.1.2-f0371f8267.patch::version=1.1.2&hash=dc9d5d&locator=%40sonarsource%2Fechoes-react%40workspace%3A."
+  resolution: "@radix-ui/react-compose-refs@patch:@radix-ui/react-compose-refs@npm%3A1.1.2#./.yarn/patches/@radix-ui-react-compose-refs-npm-1.1.2-f0371f8267.patch::version=1.1.2&hash=4040ab&locator=%40sonarsource%2Fechoes-react%40workspace%3A."
   peerDependencies:
     "@types/react": "*"
     react: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
   peerDependenciesMeta:
     "@types/react":
       optional: true
-  checksum: 10/7bb2f8147fa61a50ab9b692dcecbd265c1e4452f266916378befb1d3d7a7195f8dbd2f0b7fdd48ae664252bfeac83d760f128ca207eff4266dd1313badd2c4b2
+  checksum: 10/b2681497344808bf042d7ab7165e28ab24b5a84a4b8e34ecfa636960107ac262dfd625fa223210bf06ad5d4a7dbfcb830bbdab02ea22c46120ec2fd7556cade4
   languageName: node
   linkType: hard
 
