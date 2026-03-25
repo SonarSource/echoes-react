@@ -13,6 +13,21 @@ index 5ba7a95bc7a29605f32aa010a14224ad87bf6589..699fc222db43d83ac2e3218c0aa5c9db
    } else if (ref !== null && ref !== void 0) {
      ref.current = value;
    }
+@@ -47,7 +47,12 @@ function setRef(ref, value) {
+ }
+ function composeRefs(...refs) {
+-  return (node) => {
+-    let hasCleanup = false;
++  let previousNode = void 0;
++  return (node) => {
++    if (node === previousNode) {
++      return;
++    }
++    previousNode = node;
++    let hasCleanup = false;
+     const cleanups = refs.map((ref) => {
+       const cleanup = setRef(ref, node);
+       if (!hasCleanup && typeof cleanup == "function") {
 diff --git a/dist/index.mjs b/dist/index.mjs
 index 7dd9172a7228d70a25f708d0fd577cfc69ea15a8..d8a2f56ecb5951410e1a5748d9a8db56eb966351 100644
 --- a/dist/index.mjs
@@ -28,3 +43,18 @@ index 7dd9172a7228d70a25f708d0fd577cfc69ea15a8..d8a2f56ecb5951410e1a5748d9a8db56
    } else if (ref !== null && ref !== void 0) {
      ref.current = value;
    }
+@@ -10,7 +10,12 @@ function setRef(ref, value) {
+ }
+ function composeRefs(...refs) {
+-  return (node) => {
+-    let hasCleanup = false;
++  let previousNode = void 0;
++  return (node) => {
++    if (node === previousNode) {
++      return;
++    }
++    previousNode = node;
++    let hasCleanup = false;
+     const cleanups = refs.map((ref) => {
+       const cleanup = setRef(ref, node);
+       if (!hasCleanup && typeof cleanup == "function") {
