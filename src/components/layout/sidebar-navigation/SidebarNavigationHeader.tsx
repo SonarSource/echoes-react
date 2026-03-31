@@ -98,7 +98,7 @@ HeaderWrapper.displayName = 'HeaderWrapper';
 const HeaderInnerRow = styled.div`
   display: flex;
   align-items: center;
-  gap: ${cssVar('dimension-space-50')};
+  gap: ${cssVar('dimension-space-100')};
   border-radius: ${cssVar('border-radius-400')};
   width: 100%;
 `;
@@ -155,8 +155,8 @@ MainContent.displayName = 'MainContent';
 
 const AvatarWrapper = styled.div`
   flex: 1 0 auto;
-  width: ${cssVar('dimension-width-400')};
-  height: ${cssVar('dimension-width-400')};
+  width: ${cssVar('dimension-width-300')};
+  height: ${cssVar('dimension-width-300')};
 `;
 AvatarWrapper.displayName = 'AvatarWrapper';
 

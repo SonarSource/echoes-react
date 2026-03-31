@@ -33,7 +33,7 @@ expect.extend(matchers);
 it('should expand hidden elements when clicked', async () => {
   const onOpen = jest.fn();
   const onClose = jest.fn();
-  const { user } = setupSidebarNavigationAccordionItem({ onOpen, onClose });
+  const { user } = setupSidebarNavigationAccordionItem({ onOpen, onClose, defaultOpen: false });
 
   const accordionButton = screen.getByRole('button', { name: 'Accordion Item' });
   expect(accordionButton).toBeInTheDocument();
@@ -83,7 +83,10 @@ it('should scroll the last child into view when opened with scrollLastChildIntoV
   const scrollIntoView = jest.fn();
   globalThis.HTMLElement.prototype.scrollIntoView = scrollIntoView;
 
-  const { user } = setupSidebarNavigationAccordionItem({ scrollLastChildIntoViewOnOpen: true });
+  const { user } = setupSidebarNavigationAccordionItem({
+    defaultOpen: false,
+    scrollLastChildIntoViewOnOpen: true,
+  });
 
   await user.click(screen.getByRole('button', { name: 'Accordion Item' }));
 
