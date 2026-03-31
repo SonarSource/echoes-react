@@ -157,8 +157,6 @@ const AvatarWrapper = styled.div`
   flex: 1 0 auto;
   width: ${cssVar('dimension-width-400')};
   height: ${cssVar('dimension-width-400')};
-  border: ${cssVar('border-width-default')} solid ${cssVar('color-border-weak')};
-  border-radius: 50%;
 `;
 AvatarWrapper.displayName = 'AvatarWrapper';
 
