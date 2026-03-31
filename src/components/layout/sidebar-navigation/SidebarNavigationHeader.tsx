@@ -58,7 +58,9 @@ export const SidebarNavigationHeader = forwardRef<HTMLButtonElement, SidebarNavi
     return (
       <HeaderWrapper>
         <HeaderInnerRow>
-          <Tooltip content={isOverflow && isInteractive ? name : undefined} side={TooltipSide.Right}>
+          <Tooltip
+            content={isOverflow && isInteractive ? name : undefined}
+            side={TooltipSide.Right}>
             <HeaderContainer as={isInteractive ? 'button' : 'div'} ref={ref} {...radixProps}>
               <MainContent>
                 {avatar && <AvatarWrapper>{avatar}</AvatarWrapper>}
