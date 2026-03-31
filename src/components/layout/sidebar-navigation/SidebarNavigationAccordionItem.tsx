@@ -67,6 +67,10 @@ export interface SidebarNavigationAccordionItemProps {
    */
   onOpen?: VoidFunction;
   /**
+   * Whether the accordion is open by default. Defaults to true.
+   */
+  defaultOpen?: boolean;
+  /**
    * When true, scrolls the last child item into view when the accordion opens.
    * Useful when the accordion is near the bottom of a scrollable container.
    */
@@ -88,6 +92,7 @@ export const SidebarNavigationAccordionItem = forwardRef<
 >((props, ref) => {
   const {
     children,
+    defaultOpen = true,
     disableTooltip = false,
     Icon,
     label,
@@ -98,7 +103,7 @@ export const SidebarNavigationAccordionItem = forwardRef<
     ...htmlProps
   } = props;
 
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(defaultOpen);
   const panelRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
