@@ -92,7 +92,7 @@ export const SidebarNavigationAccordionItem = forwardRef<
 >((props, ref) => {
   const {
     children,
-    defaultOpen = true,
+    defaultOpen = false,
     disableTooltip = false,
     Icon,
     label,
