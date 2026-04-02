@@ -30,10 +30,14 @@ import { SidebarNavigationItem } from '../SidebarNavigationItem';
 
 expect.extend(matchers);
 
+jest.mock('../utils', () => ({
+  TOOLTIP_DELAY_IN_MS: 0,
+}));
+
 it('should expand hidden elements when clicked', async () => {
   const onOpen = jest.fn();
   const onClose = jest.fn();
-  const { user } = setupSidebarNavigationAccordionItem({ onOpen, onClose, defaultOpen: false });
+  const { user } = setupSidebarNavigationAccordionItem({ onOpen, onClose });
 
   const accordionButton = screen.getByRole('button', { name: 'Accordion Item' });
   expect(accordionButton).toBeInTheDocument();
@@ -58,10 +62,6 @@ it("shouldn't have any a11y violation", async () => {
 });
 
 describe('ellipsis behavior', () => {
-  beforeEach(() => {
-    jest.clearAllMocks();
-  });
-
   it('should show tooltip by default', async () => {
     const { user } = setupSidebarNavigationAccordionItem();
 
@@ -83,10 +83,7 @@ it('should scroll the last child into view when opened with scrollLastChildIntoV
   const scrollIntoView = jest.fn();
   globalThis.HTMLElement.prototype.scrollIntoView = scrollIntoView;
 
-  const { user } = setupSidebarNavigationAccordionItem({
-    defaultOpen: false,
-    scrollLastChildIntoViewOnOpen: true,
-  });
+  const { user } = setupSidebarNavigationAccordionItem({ scrollLastChildIntoViewOnOpen: true });
 
   await user.click(screen.getByRole('button', { name: 'Accordion Item' }));
 
