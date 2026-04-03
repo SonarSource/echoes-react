@@ -3266,10 +3266,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@material-symbols/font-400@npm:0.40.2":
-  version: 0.40.2
-  resolution: "@material-symbols/font-400@npm:0.40.2"
-  checksum: 10/5c360993d2e94c41f3edb1f29e09252dec4cc43481e4d90ee58e454ca123fa23364b622706bcd2f507ece0fc3f483133d6bc57908282dddee23a8fa0905e1b32
+"@material-symbols/font-400@npm:0.43.0":
+  version: 0.43.0
+  resolution: "@material-symbols/font-400@npm:0.43.0"
+  checksum: 10/a3ecd29a1b1205655a7f0306c7ca82a623311ed1a81adba72aad8d11ba73e8ec19c9ffd1f448bf23a4fa4e82f0aaaee2b5698ee19c7f4c15312fa859466af749
   languageName: node
   linkType: hard
 
@@ -4723,7 +4723,7 @@ __metadata:
     "@formatjs/cli": "npm:6.13.0"
     "@mantine/core": "patch:@mantine/core@7.12.2#./.yarn/patches/@mantine-core-npm-7.12.2-7aad505c0f.patch"
     "@mantine/hooks": "npm:7.12.2"
-    "@material-symbols/font-400": "npm:0.40.2"
+    "@material-symbols/font-400": "npm:0.43.0"
     "@radix-ui/react-alert-dialog": "npm:1.1.15"
     "@radix-ui/react-checkbox": "npm:1.3.3"
     "@radix-ui/react-dialog": "npm:1.1.15"
@@ -4756,7 +4756,7 @@ __metadata:
     "@typescript-eslint/parser": "npm:8.56.1"
     "@typescript-eslint/types": "npm:8.56.1"
     "@vitejs/plugin-react": "npm:5.1.4"
-    "@yarnpkg/fslib": "npm:3.1.4"
+    "@yarnpkg/fslib": "npm:3.1.5"
     "@yarnpkg/libzip": "npm:3.2.2"
     aria-query: "npm:5.3.2"
     babel-jest: "npm:30.2.0"
@@ -5961,12 +5961,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@yarnpkg/fslib@npm:3.1.4":
-  version: 3.1.4
-  resolution: "@yarnpkg/fslib@npm:3.1.4"
+"@yarnpkg/fslib@npm:3.1.5":
+  version: 3.1.5
+  resolution: "@yarnpkg/fslib@npm:3.1.5"
   dependencies:
     tslib: "npm:^2.4.0"
-  checksum: 10/9587a154768e61fbcf71ae745b1bf84e4ce0cbaa94163137ec88bd5005000a5b893dacbccbed7ac5f7643f957781c4f481d11ab3baf421ccafffbf43c275073d
+  checksum: 10/67b4850cdfbf0c11460302d997c0eacab46246cc8c7718a045beca346c494163e15768e2d20ab719ff6a98adbe7eaa9efcecdfd5cb0b8539f84a96449ac7ceaa
   languageName: node
   linkType: hard
 
