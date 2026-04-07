@@ -57,28 +57,26 @@ export const SidebarNavigationHeader = forwardRef<HTMLButtonElement, SidebarNavi
 
     return (
       <HeaderWrapper>
-        <HeaderInnerRow>
-          <Tooltip
-            content={isOverflow && isInteractive ? name : undefined}
-            side={TooltipSide.Right}>
-            <HeaderContainer as={isInteractive ? 'button' : 'div'} ref={ref} {...radixProps}>
-              <MainContent>
-                {avatar && <AvatarWrapper>{avatar}</AvatarWrapper>}
-                <TextContent>
-                  <Text isHighlighted ref={labelRef}>
-                    {name}
+        <Tooltip
+          content={isOverflow && isInteractive ? name : undefined}
+          side={TooltipSide.Right}>
+          <HeaderContainer as={isInteractive ? 'button' : 'div'} ref={ref} {...radixProps}>
+            <MainContent>
+              {avatar && <AvatarWrapper>{avatar}</AvatarWrapper>}
+              <TextContent>
+                <Text isHighlighted ref={labelRef}>
+                  {name}
+                </Text>
+                {qualifier && (
+                  <Text isSubtle size="small">
+                    {qualifier}
                   </Text>
-                  {qualifier && (
-                    <Text isSubtle size="small">
-                      {qualifier}
-                    </Text>
-                  )}
-                </TextContent>
-              </MainContent>
-              {isInteractive && <IconExpandAll />}
-            </HeaderContainer>
-          </Tooltip>
-        </HeaderInnerRow>
+                )}
+              </TextContent>
+            </MainContent>
+            {isInteractive && <IconExpandAll />}
+          </HeaderContainer>
+        </Tooltip>
       </HeaderWrapper>
     );
   },
@@ -87,22 +85,17 @@ SidebarNavigationHeader.displayName = 'SidebarNavigationHeader';
 
 const HeaderWrapper = styled.div`
   padding: ${cssVar('dimension-space-100')};
+  display: flex;
   border-bottom: ${cssVar('border-width-default')} solid ${cssVar('color-border-weak')};
 
   [data-sidebar-docked='false'] nav:not(:hover, :focus-within) & {
-    padding-inline: ${cssVar('dimension-space-50')};
+    padding-left: ${cssVar('dimension-space-50')};
+    padding-right: ${cssVar('dimension-space-50')};
   }
 `;
 HeaderWrapper.displayName = 'HeaderWrapper';
 
-const HeaderInnerRow = styled.div`
-  display: flex;
-  align-items: center;
-  gap: ${cssVar('dimension-space-100')};
-  border-radius: ${cssVar('border-radius-400')};
-  width: 100%;
-`;
-HeaderInnerRow.displayName = 'HeaderInnerRow';
+
 
 const HeaderContainer = styled.button`
   all: unset;
@@ -111,6 +104,7 @@ const HeaderContainer = styled.button`
   align-items: center;
   justify-content: space-between;
   flex: 1 0 0;
+  border: 1px solid red;
 
   gap: ${cssVar('dimension-space-100')};
   padding: ${cssVar('dimension-space-100')};
