@@ -54,7 +54,7 @@ it('should expand hidden elements when clicked', async () => {
 });
 
 it('should render the accordion open when defaultOpen is true', () => {
-  setupSidebarNavigationAccordionItem({ defaultOpen: true });
+  setupSidebarNavigationAccordionItem({ isDefaultOpen: true });
 
   checkAccordionPanelVisibility(true);
   expect(screen.getAllByRole('link')).toHaveLength(2);

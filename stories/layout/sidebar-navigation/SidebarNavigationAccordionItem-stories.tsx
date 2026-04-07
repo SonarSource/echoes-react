@@ -51,7 +51,7 @@ const meta: Meta<typeof Layout.SidebarNavigation.AccordionItem> = {
   title: 'Echoes/Layout/SidebarNavigation/AccordionItem',
   component: Layout.SidebarNavigation.AccordionItem,
   argTypes: {
-    defaultOpen: {
+    isDefaultOpen: {
       control: { type: 'boolean' },
     },
   },
@@ -63,10 +63,10 @@ const meta: Meta<typeof Layout.SidebarNavigation.AccordionItem> = {
     ),
     basicWrapperDecorator,
   ],
-  render: ({ defaultOpen = false, ...args }) => (
+  render: ({ isDefaultOpen = false, ...args }) => (
     <Layout.SidebarNavigation.AccordionItem
-      defaultOpen={defaultOpen}
-      key={`accordion-default-open-${defaultOpen.toString()}`}
+      isDefaultOpen={isDefaultOpen}
+      key={`accordion-default-open-${isDefaultOpen.toString()}`}
       {...args}
     />
   ),
@@ -80,7 +80,7 @@ export const base: Story = {
   args: {
     Icon: IconBranch,
     children: baseAccordionChildren,
-    defaultOpen: false,
+    isDefaultOpen: false,
     label: 'Accordion',
   },
 };
@@ -89,7 +89,7 @@ export const suffixed: Story = {
   args: {
     Icon: IconBranch,
     children: baseAccordionChildren,
-    defaultOpen: false,
+    isDefaultOpen: false,
     label: 'Accordion',
     suffix: (
       <Badge isHighContrast variety="highlight">
@@ -103,34 +103,24 @@ export const withDefaultOpen: Story = {
   args: {
     Icon: IconBranch,
     children: baseAccordionChildren,
-    defaultOpen: true,
+    isDefaultOpen: true,
     label: 'Accordion',
-  },
-  parameters: {
-    controls: {
-      include: ['defaultOpen'],
-    },
   },
 };
 
 export const withDisableIconWhenSidebarOpen: Story = {
   args: {
     Icon: IconBranch,
-    defaultOpen: true,
+    isDefaultOpen: true,
     label: 'Accordion',
   },
-  parameters: {
-    controls: {
-      include: ['defaultOpen'],
-    },
-  },
-  render: ({ defaultOpen = true, ...args }) => (
+  render: ({ isDefaultOpen = true, ...args }) => (
     <div
       data-sidebar-docked="true"
       style={{ width: cssVar('layout-sidebar-navigation-sizes-width-open') }}>
       <Layout.SidebarNavigation.AccordionItem
-        defaultOpen={defaultOpen}
-        key={`accordion-disable-icon-when-sidebar-open-${defaultOpen.toString()}`}
+        isDefaultOpen={isDefaultOpen}
+        key={`accordion-disable-icon-when-sidebar-open-${isDefaultOpen.toString()}`}
         {...args}>
         {dockedSidebarAccordionChildren}
       </Layout.SidebarNavigation.AccordionItem>
