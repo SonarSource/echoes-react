@@ -24,8 +24,8 @@ import { useIsOverflow } from '~common/helpers/useIsOverflow';
 import { SidebarNavigationHeader } from '../SidebarNavigationHeader';
 
 // Mock the useIsOverflow hook
-jest.mock('~common/helpers/useIsOverflow', () => ({
-  useIsOverflow: jest.fn().mockReturnValue([false]),
+vi.mock('~common/helpers/useIsOverflow', () => ({
+  useIsOverflow: vi.fn().mockReturnValue([false]),
 }));
 
 it('should render correctly', async () => {
@@ -33,7 +33,7 @@ it('should render correctly', async () => {
 
   expect(screen.getByText('main text')).toBeInTheDocument();
 
-  await expect(container).toHaveNoA11yViolations();
+  await expect(container).toHaveNoViolations();
 });
 
 it('should render with an avatar and subtext', async () => {
@@ -45,16 +45,16 @@ it('should render with an avatar and subtext', async () => {
   expect(screen.getByText('subtext')).toBeInTheDocument();
   expect(screen.getByAltText('avatar')).toBeInTheDocument();
 
-  await expect(container).toHaveNoA11yViolations();
+  await expect(container).toHaveNoViolations();
 });
 
 describe('Ellipsis behavior', () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   it('should show tooltip when content is overflowing', async () => {
-    jest.mocked(useIsOverflow).mockReturnValueOnce([true]);
+    vi.mocked(useIsOverflow).mockReturnValueOnce([true]);
     const { user } = render(<SidebarNavigationHeader isInteractive name="main text" />);
 
     await user.hover(screen.getByRole('button'));
@@ -71,7 +71,7 @@ describe('Ellipsis behavior', () => {
   });
 
   it('should not show tooltip when header is not interactive', async () => {
-    jest.mocked(useIsOverflow).mockReturnValueOnce([true]);
+    vi.mocked(useIsOverflow).mockReturnValueOnce([true]);
     const { user } = render(<SidebarNavigationHeader name="main text" />);
 
     await user.hover(screen.getByText('main text'));

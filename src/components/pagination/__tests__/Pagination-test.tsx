@@ -23,7 +23,7 @@ import { render } from '~common/helpers/test-utils';
 import { Pagination } from '../Pagination';
 
 it('should render correctly', async () => {
-  const { container } = render(<Pagination onChange={jest.fn()} page={6} totalPages={13} />);
+  const { container } = render(<Pagination onChange={vi.fn()} page={6} totalPages={13} />);
 
   // current page, 2 neighbors on each side, first, last, previous and next
   expect(screen.getAllByRole('button')).toHaveLength(9);
@@ -31,7 +31,7 @@ it('should render correctly', async () => {
   expect(screen.getByRole('button', { name: 'page 6' })).toHaveAttribute('aria-current', 'page');
   expect(screen.getByRole('button', { name: 'page 4' })).not.toHaveAttribute('aria-current');
 
-  await expect(container).toHaveNoA11yViolations();
+  await expect(container).toHaveNoViolations();
 });
 
 it.each([
@@ -39,7 +39,7 @@ it.each([
   ['Previous page', { page: 5, totalPages: 7 }, 4],
   ['Next page', { page: 5, totalPages: 7 }, 6],
 ])('should call onChange when the "%s" button is clicked', async (buttonLabel, props, expected) => {
-  const onChange = jest.fn();
+  const onChange = vi.fn();
   const { user } = render(<Pagination onChange={onChange} {...props} />);
 
   await user.click(screen.getByRole('button', { name: buttonLabel }));
@@ -48,14 +48,14 @@ it.each([
 });
 
 it('should not allow to go to previous or next page', () => {
-  render(<Pagination onChange={jest.fn()} page={1} totalPages={1} />);
+  render(<Pagination onChange={vi.fn()} page={1} totalPages={1} />);
 
   expect(screen.getByRole('button', { name: 'Previous page' })).toBeDisabled();
   expect(screen.getByRole('button', { name: 'Next page' })).toBeDisabled();
 });
 
 it('should handle being disabled', () => {
-  render(<Pagination isDisabled onChange={jest.fn()} page={6} totalPages={13} />);
+  render(<Pagination isDisabled onChange={vi.fn()} page={6} totalPages={13} />);
 
   screen.getAllByRole('button').forEach((button) => expect(button).toBeDisabled());
 });

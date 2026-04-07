@@ -28,15 +28,16 @@ import {
 } from '../SidebarNavigationAccordionItem';
 import { SidebarNavigationItem } from '../SidebarNavigationItem';
 
-expect.extend(matchers);
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+expect.extend(matchers as any);
 
-jest.mock('../utils', () => ({
+vi.mock('../utils', () => ({
   TOOLTIP_DELAY_IN_MS: 0,
 }));
 
 it('should expand hidden elements when clicked', async () => {
-  const onOpen = jest.fn();
-  const onClose = jest.fn();
+  const onOpen = vi.fn();
+  const onClose = vi.fn();
   const { user } = setupSidebarNavigationAccordionItem({ onOpen, onClose });
 
   const accordionButton = screen.getByRole('button', { name: 'Accordion Item' });
@@ -55,10 +56,10 @@ it('should expand hidden elements when clicked', async () => {
 
 it("shouldn't have any a11y violation", async () => {
   const { container, user } = setupSidebarNavigationAccordionItem({ Icon: IconBranch });
-  await expect(container).toHaveNoA11yViolations();
+  await expect(container).toHaveNoViolations();
 
   await user.click(screen.getByRole('button'));
-  await expect(container).toHaveNoA11yViolations();
+  await expect(container).toHaveNoViolations();
 });
 
 describe('ellipsis behavior', () => {
@@ -80,7 +81,7 @@ describe('ellipsis behavior', () => {
 });
 
 it('should scroll the last child into view when opened with scrollLastChildIntoViewOnOpen', async () => {
-  const scrollIntoView = jest.fn();
+  const scrollIntoView = vi.fn();
   globalThis.HTMLElement.prototype.scrollIntoView = scrollIntoView;
 
   const { user } = setupSidebarNavigationAccordionItem({ scrollLastChildIntoViewOnOpen: true });

@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`BottomShadowScroll component should render with correct styling 1`] = `
+exports[`BottomShadowScroll component > should render with correct styling 1`] = `
 .emotion-0 {
   position: absolute;
   left: 0;
@@ -21,7 +21,7 @@ exports[`BottomShadowScroll component should render with correct styling 1`] = `
 />
 `;
 
-exports[`TopShadowScroll component should render with correct styling 1`] = `
+exports[`TopShadowScroll component > should render with correct styling 1`] = `
 .emotion-0 {
   position: absolute;
   left: 0;

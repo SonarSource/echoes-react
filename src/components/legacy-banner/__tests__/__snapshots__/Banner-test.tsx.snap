@@ -1,8 +1,11 @@
-// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`should display banner content 1`] = `
 .emotion-0 {
   height: var(--echoes-banner-sizes-height);
+  --banner-color: var(--echoes-color-text-info);
+  --banner-background: var(--echoes-color-background-info-weak-default);
+  --banner-z-index: 1;
 }
 
 .emotion-2 {

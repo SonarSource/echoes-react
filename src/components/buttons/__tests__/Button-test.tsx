@@ -24,7 +24,7 @@ import { Button } from '../Button';
 
 describe('Button', () => {
   it('should call onClick function when clicked', async () => {
-    const onClick = jest.fn();
+    const onClick = vi.fn();
     const { user } = render(<Button onClick={onClick}>Click me</Button>);
 
     await user.click(screen.getByRole('button', { name: 'Click me' }));
@@ -32,7 +32,7 @@ describe('Button', () => {
   });
 
   it('should not call onClick function when disabled', async () => {
-    const onClick = jest.fn();
+    const onClick = vi.fn();
 
     const { user } = render(
       <Button isDisabled onClick={onClick}>
@@ -51,7 +51,7 @@ describe('Button', () => {
 
   it("should show a loading state, it doesn't prevent clicking", () => {
     render(
-      <Button isLoading onClick={jest.fn()}>
+      <Button isLoading onClick={vi.fn()}>
         Click me
       </Button>,
     );
@@ -62,7 +62,7 @@ describe('Button', () => {
 
   it('should render with prefix and suffix', () => {
     render(
-      <Button onClick={jest.fn()} prefix={<span>Prefix</span>} suffix={<span>Suffix</span>}>
+      <Button onClick={vi.fn()} prefix={<span>Prefix</span>} suffix={<span>Suffix</span>}>
         Click me
       </Button>,
     );
@@ -73,8 +73,8 @@ describe('Button', () => {
   });
 
   it('should stop propagation of event', async () => {
-    const propagatedClick = jest.fn();
-    const onButtonClick = jest.fn();
+    const propagatedClick = vi.fn();
+    const onButtonClick = vi.fn();
     const { user } = render(
       // eslint-disable-next-line jsx-a11y/no-static-element-interactions
       <div onClick={propagatedClick}>
@@ -91,7 +91,7 @@ describe('Button', () => {
   });
 
   it('should be able to submit a form', async () => {
-    const onFormSubmit = jest.fn().mockImplementation((e) => e.preventDefault());
+    const onFormSubmit = vi.fn().mockImplementation((e) => e.preventDefault());
     const { user } = render(
       <form onSubmit={onFormSubmit}>
         <Button type="submit">Click me</Button>
@@ -104,7 +104,7 @@ describe('Button', () => {
   });
 
   it('should prevent default action', async () => {
-    const onFormSubmit = jest.fn();
+    const onFormSubmit = vi.fn();
     const { user } = render(
       <form onSubmit={onFormSubmit}>
         <Button enablePreventDefault type="submit">
@@ -119,7 +119,7 @@ describe('Button', () => {
   });
 
   it('should handle keyboard events', async () => {
-    const onClick = jest.fn();
+    const onClick = vi.fn();
     const { user } = render(<Button onClick={onClick}>Click me</Button>);
 
     await user.tab();
@@ -130,15 +130,15 @@ describe('Button', () => {
   });
 
   it("shouldn't have any a11y violation", async () => {
-    const { container } = render(<Button onClick={jest.fn()}>Click me</Button>);
-    await expect(container).toHaveNoA11yViolations();
+    const { container } = render(<Button onClick={vi.fn()}>Click me</Button>);
+    await expect(container).toHaveNoViolations();
   });
 });
 
 describe('Button as Link', () => {
   it('should render as a link when "to" prop is provided', () => {
     renderWithMemoryRouter(
-      <Button onClick={jest.fn()} to="/second">
+      <Button onClick={vi.fn()} to="/second">
         Click me
       </Button>,
     );
@@ -148,7 +148,7 @@ describe('Button as Link', () => {
   });
 
   it('should call onClick function and navigate when link is clicked', async () => {
-    const onClick = jest.fn();
+    const onClick = vi.fn();
     const { user } = renderWithMemoryRouter(
       <Button onClick={onClick} to="/second">
         Click me
@@ -161,7 +161,7 @@ describe('Button as Link', () => {
   });
 
   it('should not call onClick function when link is disabled', async () => {
-    const onClick = jest.fn();
+    const onClick = vi.fn();
 
     const { user } = renderWithMemoryRouter(
       <Button enableOpenInNewTab isDisabled onClick={onClick} to="/second">
@@ -184,7 +184,7 @@ describe('Button as Link', () => {
   it('should have prefix and suffix as link', () => {
     renderWithMemoryRouter(
       <Button
-        onClick={jest.fn()}
+        onClick={vi.fn()}
         prefix={<span>Prefix</span>}
         suffix={<span>Suffix</span>}
         to="/second">
@@ -200,7 +200,7 @@ describe('Button as Link', () => {
 
   it('should open in new tab when enableOpenInNewTab is true', () => {
     renderWithMemoryRouter(
-      <Button enableOpenInNewTab onClick={jest.fn()} to="https://example.com">
+      <Button enableOpenInNewTab onClick={vi.fn()} to="https://example.com">
         Click me
       </Button>,
     );
@@ -212,7 +212,7 @@ describe('Button as Link', () => {
   });
 
   it('should prevent default when enablePreventDefault is true', async () => {
-    const onClick = jest.fn();
+    const onClick = vi.fn();
     const { user } = renderWithMemoryRouter(
       <Button enablePreventDefault onClick={onClick} to="/second">
         Click me
@@ -225,8 +225,8 @@ describe('Button as Link', () => {
   });
 
   it('should stop propagation of event as link', async () => {
-    const propagatedClick = jest.fn();
-    const onLinkClick = jest.fn();
+    const propagatedClick = vi.fn();
+    const onLinkClick = vi.fn();
     const { user } = renderWithMemoryRouter(
       // eslint-disable-next-line jsx-a11y/no-static-element-interactions
       <div onClick={propagatedClick}>
@@ -244,6 +244,6 @@ describe('Button as Link', () => {
 
   it("shouldn't have any a11y violation as link", async () => {
     const { container } = renderWithMemoryRouter(<Button to="/second">Click me</Button>);
-    await expect(container).toHaveNoA11yViolations();
+    await expect(container).toHaveNoViolations();
   });
 });

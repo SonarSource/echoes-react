@@ -26,7 +26,7 @@ import { ThemeProvider, setTheme } from '..';
 
 describe('setTheme', () => {
   it('should set the theme on the document element', () => {
-    const setAttribute = jest.spyOn(document.documentElement, 'setAttribute');
+    const setAttribute = vi.spyOn(document.documentElement, 'setAttribute');
 
     setTheme(Theme.dark);
     expect(setAttribute).toHaveBeenCalledWith(THEME_DATA_ATTRIBUTE, Theme.dark);

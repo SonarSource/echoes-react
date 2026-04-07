@@ -54,7 +54,7 @@ describe('RatingBadge', () => {
   });
 
   it('forwards ref to the root element', () => {
-    const ref = jest.fn();
+    const ref = vi.fn();
 
     render(<RatingBadge ref={ref} />);
 

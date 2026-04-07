@@ -26,7 +26,7 @@ import { SpotlightModalPlacement, SpotlightProps } from '../SpotlightTypes';
 
 it('should display the spotlight', async () => {
   const user = userEvent.setup();
-  const callback = jest.fn();
+  const callback = vi.fn();
   renderSpotlight({ callback, image: <>a fake image</> });
 
   expect(await screen.findByRole('alertdialog')).toBeInTheDocument();

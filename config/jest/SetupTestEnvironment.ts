@@ -18,8 +18,9 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 import React from 'react';
+import { vi } from 'vitest';
 
-(window as any).React = React;
+(globalThis as Record<string, unknown>).React = React;
 
 /*
  * ResizeObserver
@@ -31,26 +32,42 @@ const MockResizeObserverEntries = [
       height: 200,
     },
   },
-];
+] as ResizeObserverEntry[];
 
-const MockResizeObserver = {
-  observe: jest.fn(),
-  unobserve: jest.fn(),
-  disconnect: jest.fn(),
-};
+class MockResizeObserver {
+  observe = vi.fn();
+  unobserve = vi.fn();
+  disconnect = vi.fn();
+  constructor(callback: ResizeObserverCallback) {
+    callback(MockResizeObserverEntries, this);
+  }
+}
+vi.stubGlobal('ResizeObserver', MockResizeObserver);
 
-global.ResizeObserver = jest.fn().mockImplementation((callback) => {
-  callback(MockResizeObserverEntries, MockResizeObserver);
-  return MockResizeObserver;
+/*
+ * matchMedia - not implemented in jsdom
+ */
+Object.defineProperty(globalThis, 'matchMedia', {
+  writable: true,
+  value: vi.fn((query: string) => ({
+    matches: false,
+    media: query,
+    onchange: null,
+    addListener: vi.fn(),
+    removeListener: vi.fn(),
+    addEventListener: vi.fn(),
+    removeEventListener: vi.fn(),
+    dispatchEvent: vi.fn(),
+  })),
 });
 
 /*
  * Pointer Capture API - required for Sonner toast library
  */
 if (!Element.prototype.setPointerCapture) {
-  Element.prototype.setPointerCapture = jest.fn();
+  Element.prototype.setPointerCapture = vi.fn();
 }
 
 if (!Element.prototype.releasePointerCapture) {
-  Element.prototype.releasePointerCapture = jest.fn();
+  Element.prototype.releasePointerCapture = vi.fn();
 }

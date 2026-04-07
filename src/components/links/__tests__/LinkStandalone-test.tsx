@@ -30,7 +30,7 @@ describe('LinkStandalone', () => {
       <LinkStandalone to="/path">standalone link</LinkStandalone>,
     );
     expect(screen.getByRole('link')).toBeVisible();
-    await expect(container).toHaveNoA11yViolations();
+    await expect(container).toHaveNoViolations();
   });
 
   it('should support a left icon', async () => {
@@ -41,7 +41,7 @@ describe('LinkStandalone', () => {
     );
     expect(screen.getByRole('link')).toBeVisible();
     expect(screen.getByTestId('link icon')).toBeInTheDocument();
-    await expect(container).toHaveNoA11yViolations();
+    await expect(container).toHaveNoViolations();
   });
 
   it('should correctly support tooltips', async () => {
@@ -58,7 +58,7 @@ describe('LinkStandalone', () => {
 
 describe('LinkStandalone as button', () => {
   it('should render as a button when there is no "to" prop', async () => {
-    const onClick = jest.fn();
+    const onClick = vi.fn();
     const { user } = render(<LinkStandalone onClick={onClick}>Button Link</LinkStandalone>);
 
     expect(screen.getByRole('button')).toBeInTheDocument();

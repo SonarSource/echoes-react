@@ -29,7 +29,7 @@ it('should show a message', async () => {
   const { container } = setupMessageInline({ children: 'Fancy Content' });
 
   expect(screen.getByText('Fancy Content')).toBeInTheDocument();
-  await expect(container).toHaveNoA11yViolations();
+  await expect(container).toHaveNoViolations();
 });
 
 it.each([

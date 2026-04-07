@@ -18,8 +18,17 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-declare namespace jest {
-  interface Matchers<R> {
-    toHaveNoA11yViolations(axeOptions?: Object): Promise<CustomMatcherResult>;
+import 'vitest';
+import type { RunOptions } from 'axe-core';
+
+declare module 'vitest' {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  interface Assertion<T = any> {
+    toHaveNoViolations(axeOptions?: RunOptions): Promise<void>;
+    toHaveStyleRule(property: string, value: unknown, options?: object): T;
+  }
+  interface AsymmetricMatchersContaining {
+    toHaveNoViolations(axeOptions?: RunOptions): Promise<void>;
+    toHaveStyleRule(property: string, value: unknown, options?: object): void;
   }
 }

@@ -30,7 +30,7 @@ it('should display a message', async () => {
   const { container } = setupMessageCallout({ children: 'Fancy Content' });
 
   expect(screen.getByText('Fancy Content')).toBeInTheDocument();
-  await expect(container).toHaveNoA11yViolations();
+  await expect(container).toHaveNoViolations();
 });
 
 it.each([
@@ -49,7 +49,7 @@ it('should display a title', async () => {
   const { container } = setupMessageCallout({ title: 'Fancy Title' });
 
   expect(screen.getByText('Fancy Title')).toBeInTheDocument();
-  await expect(container).toHaveNoA11yViolations();
+  await expect(container).toHaveNoViolations();
 });
 
 it('should display an action', async () => {
@@ -58,16 +58,16 @@ it('should display an action', async () => {
   });
 
   expect(screen.getByRole('button', { name: 'Nice button' })).toBeInTheDocument();
-  await expect(container).toHaveNoA11yViolations();
+  await expect(container).toHaveNoViolations();
 });
 
 it('should be dismissable', async () => {
-  const onDismiss = jest.fn();
+  const onDismiss = vi.fn();
   const { container, user } = setupMessageCallout({
     onDismiss,
   });
 
-  await expect(container).toHaveNoA11yViolations();
+  await expect(container).toHaveNoViolations();
 
   const dismissButton = screen.getByRole('button', { name: 'Dismiss' });
   expect(dismissButton).toBeInTheDocument();

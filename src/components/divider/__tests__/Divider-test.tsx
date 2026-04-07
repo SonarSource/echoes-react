@@ -91,13 +91,13 @@ describe('Divider', () => {
   });
 
   it('forwards ref to the root element', () => {
-    const ref = jest.fn();
+    const ref = vi.fn();
     render(<Divider ref={ref} />);
     expect(ref).toHaveBeenCalled();
   });
 
   it('forwards ref to the container with text', () => {
-    const ref = jest.fn();
+    const ref = vi.fn();
     render(<Divider ref={ref} text="OR" />);
     expect(ref).toHaveBeenCalled();
   });

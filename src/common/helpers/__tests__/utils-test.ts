@@ -24,16 +24,16 @@ const TEST_DELAY = 100;
 const TEST_NUMBER = 123;
 
 beforeEach(() => {
-  jest.useFakeTimers();
+  vi.useFakeTimers();
 });
 
 afterEach(() => {
-  jest.runOnlyPendingTimers();
-  jest.useRealTimers();
+  vi.runOnlyPendingTimers();
+  vi.useRealTimers();
 });
 
 it('should call the callback immediately on first call', () => {
-  const callback = jest.fn();
+  const callback = vi.fn();
   const throttledCallback = throttle(callback, TEST_DELAY);
 
   throttledCallback();
@@ -42,7 +42,7 @@ it('should call the callback immediately on first call', () => {
 });
 
 it('should not call the callback again during the delay period', () => {
-  const callback = jest.fn();
+  const callback = vi.fn();
   const throttledCallback = throttle(callback, TEST_DELAY);
 
   throttledCallback();
@@ -53,20 +53,20 @@ it('should not call the callback again during the delay period', () => {
 });
 
 it('should call the callback again after the delay period', () => {
-  const callback = jest.fn();
+  const callback = vi.fn();
   const throttledCallback = throttle(callback, TEST_DELAY);
 
   throttledCallback();
   expect(callback).toHaveBeenCalledTimes(1);
 
-  jest.advanceTimersByTime(TEST_DELAY);
+  vi.advanceTimersByTime(TEST_DELAY);
   throttledCallback();
 
   expect(callback).toHaveBeenCalledTimes(2);
 });
 
 it('should pass arguments to the callback correctly', () => {
-  const callback = jest.fn();
+  const callback = vi.fn();
   const throttledCallback = throttle(callback, TEST_DELAY);
 
   throttledCallback('arg1', 'arg2', TEST_NUMBER);
@@ -75,7 +75,7 @@ it('should pass arguments to the callback correctly', () => {
 });
 
 it('should ignore subsequent calls with different arguments during throttle period', () => {
-  const callback = jest.fn();
+  const callback = vi.fn();
   const throttledCallback = throttle(callback, TEST_DELAY);
 
   throttledCallback('first');
@@ -87,8 +87,8 @@ it('should ignore subsequent calls with different arguments during throttle peri
 });
 
 it('should maintain separate throttle states for different instances', () => {
-  const callback1 = jest.fn();
-  const callback2 = jest.fn();
+  const callback1 = vi.fn();
+  const callback2 = vi.fn();
   const throttledCallback1 = throttle(callback1, TEST_DELAY);
   const throttledCallback2 = throttle(callback2, TEST_DELAY);
 

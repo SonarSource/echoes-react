@@ -26,5 +26,5 @@ it('should display a ContentHeader properly', async () => {
     <ContentHeader title={<ContentHeader.Title>Awesome content header</ContentHeader.Title>} />,
   );
 
-  await expect(container).toHaveNoA11yViolations();
+  await expect(container).toHaveNoViolations();
 });

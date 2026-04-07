@@ -1,6 +1,6 @@
 {
-  "extends": ["sonarqube"],
-  "plugins": ["header"],
+  "extends": ["sonarqube", "plugin:vitest/recommended"],
+  "plugins": ["header", "vitest"],
   "ignorePatterns": [
     ".github",
     ".yarn",
@@ -22,11 +22,11 @@
     "react/jsx-uses-react": "off",
     "react/no-unstable-nested-components": ["error", { "allowAsProps": true }],
     "react/react-in-jsx-scope": "off",
-    "jest/no-large-snapshots": ["error", { "maxSize": 250 }],
+    "vitest/no-large-snapshots": ["error", { "maxSize": 250 }],
     "header/header": ["error", "config/license/LICENSE-HEADER.txt"],
 
     // New rules added after updating eslint packages to more recent versions than eslint-config-sonarqube
-    "jest/prefer-mock-promise-shorthand": "error",
+    "vitest/prefer-mock-promise-shorthand": "error",
     "promise/catch-or-return": ["warn", { "allowThen": true, "allowFinally": true }]
   },
   "overrides": [

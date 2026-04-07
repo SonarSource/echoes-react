@@ -26,18 +26,18 @@ import { LayoutContext } from '../LayoutContext';
 
 const mediaQueryListMock = {
   matches: true,
-  addEventListener: jest.fn(),
-  removeEventListener: jest.fn(),
+  addEventListener: vi.fn(),
+  removeEventListener: vi.fn(),
 };
 
 // Mock window.matchMedia globally
 Object.defineProperty(window, 'matchMedia', {
   writable: true,
-  value: jest.fn().mockReturnValue(mediaQueryListMock),
+  value: vi.fn().mockReturnValue(mediaQueryListMock),
 });
 
 beforeEach(() => {
-  jest.clearAllMocks();
+  vi.clearAllMocks();
 });
 
 it('should render correctly', () => {
@@ -97,7 +97,7 @@ describe('Layout Sidebar docking behavior', () => {
 
 describe('LayoutContext', () => {
   it('should update LayoutContext state when it changes', async () => {
-    const onSidebarDockedChange = jest.fn();
+    const onSidebarDockedChange = vi.fn();
     const { user } = render(
       <Layout onSidebarDockedChange={onSidebarDockedChange}>
         <TestContextConsumer />

@@ -30,7 +30,7 @@ const DEFAULT_OPTIONS: ToggleButtonGroupProps['options'] = [
 
 describe('RadioButtonGroup', () => {
   it('should render a button for each option', async () => {
-    const onChange = jest.fn();
+    const onChange = vi.fn();
     const { container, user } = renderToggleButtonGroup({ onChange });
 
     expect(screen.getAllByRole('radio')).toHaveLength(DEFAULT_OPTIONS.length);
@@ -38,11 +38,11 @@ describe('RadioButtonGroup', () => {
     await user.click(screen.getByRole('radio', { name: 'b' }));
 
     expect(onChange).toHaveBeenCalledWith('2');
-    await expect(container).toHaveNoA11yViolations();
+    await expect(container).toHaveNoViolations();
   });
 
   it('should not react to clicking the selected option', async () => {
-    const onChange = jest.fn();
+    const onChange = vi.fn();
     const { user } = renderToggleButtonGroup({ onChange });
 
     await user.click(screen.getByRole('radio', { name: 'a' }));
@@ -51,7 +51,7 @@ describe('RadioButtonGroup', () => {
   });
 
   it('should not react to clicking when disabled', async () => {
-    const onChange = jest.fn();
+    const onChange = vi.fn();
     const { user } = renderToggleButtonGroup({ isDisabled: true, onChange });
 
     await user.click(screen.getByRole('radio', { name: 'b' }));
@@ -62,11 +62,6 @@ describe('RadioButtonGroup', () => {
 
 function renderToggleButtonGroup(overrides: Partial<ToggleButtonGroupProps> = {}) {
   return render(
-    <ToggleButtonGroup
-      onChange={jest.fn()}
-      options={DEFAULT_OPTIONS}
-      selected="1"
-      {...overrides}
-    />,
+    <ToggleButtonGroup onChange={vi.fn()} options={DEFAULT_OPTIONS} selected="1" {...overrides} />,
   );
 }

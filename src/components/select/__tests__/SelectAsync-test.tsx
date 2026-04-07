@@ -30,8 +30,8 @@ const data = [
 ];
 
 it('should behave as expected', async () => {
-  const onChange = jest.fn();
-  const onSearch = jest.fn();
+  const onChange = vi.fn();
+  const onSearch = vi.fn();
 
   const { user, container } = render(
     <SelectAsync
@@ -48,7 +48,7 @@ it('should behave as expected', async () => {
   expect(screen.getByRole('listbox')).toBeInTheDocument();
   expect(screen.getAllByRole('option')).toHaveLength(4);
 
-  await expect(container).toHaveNoA11yViolations();
+  await expect(container).toHaveNoViolations();
 
   await user.type(screen.getByRole('combobox', { name: 'select' }), 'ad');
 

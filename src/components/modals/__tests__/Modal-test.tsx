@@ -27,7 +27,7 @@ import { Select } from '../../select';
 import { Modal, ModalProps } from '../Modal';
 
 it('should appear/disappear as expected', async () => {
-  const onClose = jest.fn();
+  const onClose = vi.fn();
   const { user } = renderModal({ onClose });
 
   expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
@@ -53,7 +53,7 @@ it('should allow to be controlled', async () => {
 });
 
 it('should call onClose and close the dialog when clicking outside in controlled mode', async () => {
-  const onClose = jest.fn();
+  const onClose = vi.fn();
   const { container, user } = renderControlledModal(onClose, {
     pointerEventsCheck: PointerEventsCheckLevel.Never,
   });
@@ -111,11 +111,11 @@ it('should be triggered by DropdownMenu Items', async () => {
 it("shouldn't have any a11y violation", async () => {
   const { container } = renderModal({ isDefaultOpen: true, title: 'title' });
 
-  await expect(container).toHaveNoA11yViolations();
+  await expect(container).toHaveNoViolations();
 });
 
 it('should call onOpenChange for uncontrolled modal', async () => {
-  const onOpenChange = jest.fn();
+  const onOpenChange = vi.fn();
 
   const { user } = render(
     <Modal

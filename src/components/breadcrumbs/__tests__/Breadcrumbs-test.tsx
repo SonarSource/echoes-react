@@ -46,5 +46,5 @@ it('should display Breadcrumbs properly', async () => {
 
   expect(screen.getByText('child crumb')).toBeInTheDocument();
 
-  await expect(container).toHaveNoA11yViolations();
+  await expect(container).toHaveNoViolations();
 });

@@ -28,13 +28,13 @@ it('can be controlled by the isLoading prop', async () => {
   const { container, rerender } = setupSpinner({ isLoading: true });
   expect(screen.getByRole('status')).toBeVisible();
   expect(screen.getByRole('status')).toHaveTextContent('Loading...');
-  await expect(container).toHaveNoA11yViolations();
+  await expect(container).toHaveNoViolations();
 
   rerender({ isLoading: false });
   expect(screen.getByRole('status')).toBeVisible();
   expect(screen.getByRole('status')).not.toHaveTextContent('Loading...');
   expect(screen.queryByText('Loading...')).not.toBeInTheDocument();
-  await expect(container).toHaveNoA11yViolations();
+  await expect(container).toHaveNoViolations();
 });
 
 it('allows setting a custom label to the spinner', () => {
@@ -70,7 +70,7 @@ it('should display a placeholder when not loading', async () => {
 
   // eslint-disable-next-line testing-library/no-node-access  -- this is purely visual element that isn't accessible
   expect(container.querySelector('.my-classname')).toBeInTheDocument();
-  await expect(container).toHaveNoA11yViolations();
+  await expect(container).toHaveNoViolations();
 });
 
 it('should correctly support tooltips', async () => {

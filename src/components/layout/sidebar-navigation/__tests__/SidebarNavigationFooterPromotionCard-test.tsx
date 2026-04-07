@@ -36,7 +36,7 @@ it('should render correctly', async () => {
   expect(screen.getByRole('heading')).toHaveTextContent('title');
   expect(screen.getByText('description')).toBeInTheDocument();
   expect(screen.getByRole('button', { name: 'action' })).toBeInTheDocument();
-  await expect(container).toHaveNoA11yViolations();
+  await expect(container).toHaveNoViolations();
 });
 
 it('should render correctly with a badge', () => {

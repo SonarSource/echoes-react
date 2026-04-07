@@ -23,18 +23,17 @@ import { renderWithMemoryRouter } from '~common/helpers/test-utils';
 import { Table } from '..';
 import { IconEdit } from '../../icons';
 
-it('should be accessible', () => {
+it('should be accessible', async () => {
   setupTable();
 
-  expect(screen.getByRole('table')).toHaveNoA11yViolations({
-    // We accept non-visible labels
+  await expect(screen.getByRole('table')).toHaveNoViolations({
     rules: { 'empty-table-header': { enabled: false } },
   });
 });
 
 it('should allow selection', async () => {
-  const onCheckHeader = jest.fn();
-  const onCheckRow = jest.fn();
+  const onCheckHeader = vi.fn();
+  const onCheckRow = vi.fn();
   const { user } = setupTable({ onCheckRow, onCheckHeader });
 
   expect(screen.getByRole('checkbox', { name: 'Select 1' })).toBeChecked();
@@ -49,7 +48,7 @@ it('should allow selection', async () => {
 });
 
 it('should handle sorting', async () => {
-  const onSort = jest.fn();
+  const onSort = vi.fn();
   const { user } = setupTable({ onSort });
 
   expect(screen.getByRole('columnheader', { name: 'col 1' })).not.toHaveAttribute('aria-sort');
@@ -74,8 +73,8 @@ function setupTable(
   } = {},
 ) {
   const {
-    onCheckHeader = jest.fn(),
-    onCheckRow = jest.fn(),
+    onCheckHeader = vi.fn(),
+    onCheckRow = vi.fn(),
     onSort,
     rows = [
       [true, '1', 'first', 'cool'],

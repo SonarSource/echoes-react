@@ -25,7 +25,7 @@ import { ButtonIcon } from '../ButtonIcon';
 
 describe('ButtonIcon', () => {
   it('should render and handle click', async () => {
-    const onClick = jest.fn();
+    const onClick = vi.fn();
     const { user } = render(
       <ButtonIcon Icon={IconClock} ariaLabel="click the clock" onClick={onClick} />,
     );
@@ -72,7 +72,7 @@ describe('Button as Link', () => {
       <ButtonIcon
         Icon={IconPeople}
         ariaLabel="click this people button"
-        onClick={jest.fn()}
+        onClick={vi.fn()}
         to="/second"
         tooltipContent="people button"
       />,
@@ -83,7 +83,7 @@ describe('Button as Link', () => {
   });
 
   it('should call onClick function and navigate when link is clicked', async () => {
-    const onClick = jest.fn();
+    const onClick = vi.fn();
     const { user } = renderWithMemoryRouter(
       <ButtonIcon
         Icon={IconPeople}

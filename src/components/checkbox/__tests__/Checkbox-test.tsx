@@ -29,11 +29,11 @@ const checkboxIdMatcher = expect.stringMatching(/_r_\d_checkbox/);
 
 it("shouldn't have any a11y violations", async () => {
   const { container } = setupCheckbox({ label: 'Label' });
-  await expect(container).toHaveNoA11yViolations();
+  await expect(container).toHaveNoViolations();
 });
 
 it('should call check function when clicked without label', async () => {
-  const onCheck = jest.fn();
+  const onCheck = vi.fn();
   const { container, rerender, user } = setupCheckbox({
     ariaLabel: 'me',
     label: undefined,
@@ -45,16 +45,16 @@ it('should call check function when clicked without label', async () => {
   await user.click(screen.getByRole('checkbox', { name: 'me' }));
   expect(onCheck).toHaveBeenCalledWith(true, checkboxIdMatcher);
   expect(screen.getByTitle('title')).toBeVisible();
-  await expect(container).toHaveNoA11yViolations();
+  await expect(container).toHaveNoViolations();
 
   rerender({ ariaLabel: undefined, checked: true });
   await user.click(screen.getByRole('checkbox', { name: 'title' }));
   expect(onCheck).toHaveBeenCalledWith(false, checkboxIdMatcher);
-  await expect(container).toHaveNoA11yViolations();
+  await expect(container).toHaveNoViolations();
 });
 
 it("should call check function when clicked on it's label", async () => {
-  const onCheck = jest.fn();
+  const onCheck = vi.fn();
   const { rerender, user } = setupCheckbox({ label: 'me', onCheck, checked: false });
 
   await user.click(screen.getByText('me'));
@@ -66,7 +66,7 @@ it("should call check function when clicked on it's label", async () => {
 });
 
 it('should work with indeterminate state', async () => {
-  const onCheck = jest.fn();
+  const onCheck = vi.fn();
   const { user } = setupCheckbox({ label: 'me', checked: 'indeterminate', onCheck });
   expect(screen.getByRole('checkbox', { name: 'me' })).not.toBeChecked();
 
@@ -78,7 +78,7 @@ it('should work with indeterminate state', async () => {
 });
 
 it('should show a loading state', async () => {
-  const onCheck = jest.fn();
+  const onCheck = vi.fn();
   const { container, user } = setupCheckbox({
     label: 'me',
     checked: false,
@@ -90,14 +90,14 @@ it('should show a loading state', async () => {
 
   await user.click(screen.getByText('me'));
   expect(onCheck).not.toHaveBeenCalled();
-  await expect(container).toHaveNoA11yViolations();
+  await expect(container).toHaveNoViolations();
 });
 
 it('should display a help text', async () => {
   const { container } = setupCheckbox({ label: 'me', helpText: 'help' });
   expect(screen.getByText('me')).toBeVisible();
   expect(screen.getByText('help')).toBeVisible();
-  await expect(container).toHaveNoA11yViolations({ rules: { 'button-name': { enabled: false } } });
+  await expect(container).toHaveNoViolations({ rules: { 'button-name': { enabled: false } } });
 });
 
 it('should have a error style when not checked', async () => {
@@ -106,11 +106,11 @@ it('should have a error style when not checked', async () => {
 
   rerender({ checked: false });
   expect(screen.getByRole('checkbox', { name: 'me' })).toHaveAttribute('data-error', 'true');
-  await expect(container).toHaveNoA11yViolations();
+  await expect(container).toHaveNoViolations();
 });
 
 it('should be keyboard focusable while disabled', async () => {
-  const onCheck = jest.fn();
+  const onCheck = vi.fn();
   const { user } = setupCheckbox({ ariaLabel: 'me', checked: false, isDisabled: true, onCheck });
 
   const checkboxElement = screen.getByRole('checkbox', { name: 'me' });
@@ -138,7 +138,7 @@ it('should accept label as JSX.Element', () => {
 it('should correctly support tooltips', async () => {
   const { user } = render(
     <Tooltip content="my tooltip">
-      <Checkbox checked label="me" onCheck={jest.fn()} />
+      <Checkbox checked label="me" onCheck={vi.fn()} />
     </Tooltip>,
   );
 
@@ -148,7 +148,7 @@ it('should correctly support tooltips', async () => {
 
 function setupCheckbox(props: OmitPropsWithLabelsAndHelpText<typeof Checkbox>) {
   const { rerender: rtlRerender, ...rest } = render(
-    <Checkbox checked onCheck={jest.fn()} {...props} />,
+    <Checkbox checked onCheck={vi.fn()} {...props} />,
     undefined,
 
     // We skip the pointer-events:none check from user-event to be able to test clicking on the disabled checkbox
@@ -157,7 +157,7 @@ function setupCheckbox(props: OmitPropsWithLabelsAndHelpText<typeof Checkbox>) {
   return {
     rerender(override: Partial<ComponentProps<typeof Checkbox>>) {
       const newProps = { ...props, ...override } as OmitPropsWithLabelsAndHelpText<typeof Checkbox>;
-      rtlRerender(<Checkbox checked onCheck={jest.fn()} {...newProps} />);
+      rtlRerender(<Checkbox checked onCheck={vi.fn()} {...newProps} />);
     },
     ...rest,
   };

@@ -31,7 +31,7 @@ describe('PromotedSection', () => {
     expect(screen.getByTestId('promoted-section')).toHaveStyle({ display: 'block' });
     expect(screen.queryByLabelText('Dismiss')).not.toBeInTheDocument();
 
-    await expect(container).toHaveNoA11yViolations();
+    await expect(container).toHaveNoViolations();
   });
 
   it('should render a badge', () => {
@@ -47,7 +47,7 @@ describe('PromotedSection', () => {
   });
 
   it('should render a dismiss button', async () => {
-    const onDismiss = jest.fn();
+    const onDismiss = vi.fn();
 
     const { user } = renderPromotedSection({ onDismiss });
 
@@ -57,7 +57,7 @@ describe('PromotedSection', () => {
   });
 
   it('should render an action', async () => {
-    const onActionClick = jest.fn();
+    const onActionClick = vi.fn();
 
     const { user } = renderPromotedSection({
       actions: <Button onClick={onActionClick}>Action</Button>,

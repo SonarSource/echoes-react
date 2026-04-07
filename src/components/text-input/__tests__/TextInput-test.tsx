@@ -31,7 +31,7 @@ it('should render with a label, an help text and a placeholder', () => {
 });
 
 it('should call onChange function when input value changes', async () => {
-  const onChange = jest.fn();
+  const onChange = vi.fn();
   const { user } = render(<TextInput isRequired label="Input Label" onChange={onChange} />);
   const input = screen.getByLabelText('Input Label*');
 
@@ -58,7 +58,7 @@ it('should render with prefix and suffix', () => {
 
 it("shouldn't have any a11y violations", async () => {
   const { container } = render(<TextInput helpText="Help text" isRequired label="Label" />);
-  await expect(container).toHaveNoA11yViolations();
+  await expect(container).toHaveNoViolations();
 });
 
 it('should work when controlled', async () => {

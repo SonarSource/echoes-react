@@ -17,12 +17,18 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-import { JestAxeConfigureOptions, axe, configureAxe, toHaveNoViolations } from 'jest-axe';
+import type { AxeResults, RunOptions } from 'axe-core';
+import { axe } from 'vitest-axe';
+
+// vitest-axe exports toHaveNoViolations as a value at runtime but only as a type in its .d.ts
+// eslint-disable-next-line @typescript-eslint/no-require-imports
+const { toHaveNoViolations } = require('vitest-axe/matchers') as {
+  toHaveNoViolations: (results: AxeResults) => { pass: boolean; message: () => string };
+};
 
 expect.extend({
-  async toHaveNoA11yViolations(received: HTMLElement, axeOptions?: JestAxeConfigureOptions) {
-    const axeVerifier = axeOptions ? configureAxe(axeOptions) : axe;
-    const result = await axeVerifier(received);
-    return toHaveNoViolations.toHaveNoViolations(result);
+  async toHaveNoViolations(received: Element, axeOptions?: RunOptions) {
+    const result = await axe(received, axeOptions);
+    return toHaveNoViolations(result);
   },
 });

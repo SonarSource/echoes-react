@@ -34,7 +34,7 @@ it('should render without items', async () => {
     <DropdownMenu items={undefined}>{trigger}</DropdownMenu>,
   );
 
-  await expect(container).toHaveNoA11yViolations();
+  await expect(container).toHaveNoViolations();
 
   expect(screen.getByText('Trigger')).toBeVisible();
 });
@@ -89,7 +89,7 @@ it('should render with items when clicked', async () => {
 });
 
 it('should handle onOpen', async () => {
-  const onOpen = jest.fn();
+  const onOpen = vi.fn();
 
   const { user } = renderWithMemoryRouter(
     <DropdownMenu align={DropdownMenuAlign.Start} items={items} onOpen={onOpen}>
@@ -107,7 +107,7 @@ it('should handle onOpen', async () => {
 });
 
 it('should handle onClose', async () => {
-  const onClose = jest.fn();
+  const onClose = vi.fn();
 
   const { user } = renderWithMemoryRouter(
     <DropdownMenu align={DropdownMenuAlign.Center} items={items} onClose={onClose}>
@@ -140,8 +140,8 @@ it('should not be able to click the trigger if isDisabled', () => {
 });
 
 it('should render many different items', async () => {
-  const buttonClickHandler = jest.fn();
-  const linkClickHandler = jest.fn();
+  const buttonClickHandler = vi.fn();
+  const linkClickHandler = vi.fn();
 
   const { user } = renderWithMemoryRouter(
     <DropdownMenu

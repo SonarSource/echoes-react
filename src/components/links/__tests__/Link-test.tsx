@@ -34,7 +34,7 @@ describe('Link', () => {
     await user.click(screen.getByRole('link'));
 
     expect(screen.getByRole('link')).not.toHaveFocus();
-    await expect(container).toHaveNoA11yViolations();
+    await expect(container).toHaveNoViolations();
   });
 
   it('should prevent default when preventDefault is true', async () => {
@@ -54,7 +54,7 @@ describe('Link', () => {
   });
 
   it('should stop propagation when stopPropagation is true', async () => {
-    const buttonOnClick = jest.fn();
+    const buttonOnClick = vi.fn();
 
     const { user } = renderWithMemoryRouter(
       <button onClick={buttonOnClick} type="button">
@@ -88,7 +88,7 @@ describe('Link', () => {
   });
 
   it('should call onClick when one is passed', async () => {
-    const onClick = jest.fn();
+    const onClick = vi.fn();
     const { user } = renderWithMemoryRouter(
       <Link enableStopPropagation onClick={onClick} to="/second">
         Test
@@ -118,7 +118,7 @@ describe('Link', () => {
     expect(screen.getByRole('link')).toBeVisible();
     expect(screen.getByRole('link')).toHaveAttribute('target', '_blank');
     expect(screen.getByRole('link')).toHaveTextContent('(opens in new tab)');
-    await expect(container).toHaveNoA11yViolations();
+    await expect(container).toHaveNoViolations();
   });
 
   it('should correctly support tooltips', async () => {
@@ -135,7 +135,7 @@ describe('Link', () => {
 
 describe('Link as button', () => {
   it('should render as a button when there is no "to" prop', async () => {
-    const onClick = jest.fn();
+    const onClick = vi.fn();
     const { user } = render(<Link onClick={onClick}>Button Link</Link>);
 
     expect(screen.getByRole('button')).toBeInTheDocument();
@@ -146,8 +146,8 @@ describe('Link as button', () => {
   });
 
   it("shouldn't have any a11y violation as a button", async () => {
-    const onClick = jest.fn();
+    const onClick = vi.fn();
     const { container } = render(<Link onClick={onClick}>Button Link</Link>);
-    await expect(container).toHaveNoA11yViolations();
+    await expect(container).toHaveNoViolations();
   });
 });

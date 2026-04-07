@@ -54,7 +54,7 @@ it('should display a full PageHeader properly', async () => {
   expect(screen.getByText('Page title')).toBeInTheDocument();
   expect(screen.getByText('More')).toBeInTheDocument();
 
-  await expect(container).toHaveNoA11yViolations();
+  await expect(container).toHaveNoViolations();
 });
 
 it('should display a minimal PageHeader properly', () => {

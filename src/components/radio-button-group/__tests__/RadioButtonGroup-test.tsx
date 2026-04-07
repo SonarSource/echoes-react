@@ -38,7 +38,7 @@ describe('RadioButtonGroup', () => {
     await user.click(screen.getByRole('radio', { name: 'b' }));
 
     expect(screen.getByRole('radio', { name: 'b' })).toBeChecked();
-    await expect(container).toHaveNoA11yViolations();
+    await expect(container).toHaveNoViolations();
   });
 
   it('should render a radio button for each option, horizontally', async () => {
@@ -49,7 +49,7 @@ describe('RadioButtonGroup', () => {
 
     expect(screen.getAllByRole('radio')).toHaveLength(DEFAULT_OPTIONS.length);
 
-    await expect(container).toHaveNoA11yViolations();
+    await expect(container).toHaveNoViolations();
   });
 
   it('should disable each radio button if the group is disabled', () => {

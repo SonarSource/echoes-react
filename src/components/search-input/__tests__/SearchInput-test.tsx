@@ -27,7 +27,7 @@ const MIN_LENGTH_MESSAGE = '(minimum 3 characters)';
 const SEARCH_PRODUCTS_LABEL = 'Search products';
 
 it('should trigger change correctly', async () => {
-  const onChange = jest.fn();
+  const onChange = vi.fn();
   const { user } = setupWithProps({ onChange, value: 'f' });
   await user.type(screen.getByRole('searchbox', { name: 'Search' }), 'oo');
   expect(onChange).toHaveBeenCalledWith('foo');
@@ -42,7 +42,7 @@ it('should show clear button only when there is a value', async () => {
 });
 
 it('should trigger reset correctly with clear button', async () => {
-  const onChange = jest.fn();
+  const onChange = vi.fn();
   const { user } = setupWithProps({ onChange });
   await user.click(screen.getByRole('button', { name: CLEAR_SEARCH_BUTTON_NAME }));
   expect(onChange).toHaveBeenCalledWith('');
@@ -50,15 +50,15 @@ it('should trigger reset correctly with clear button', async () => {
 });
 
 it('should attach ref', () => {
-  const ref = jest.fn();
+  const ref = vi.fn();
   setupWithProps({ ref });
   expect(ref).toHaveBeenCalled();
   expect(ref.mock.calls[0][0]).toBeInstanceOf(HTMLInputElement);
 });
 
 it('should clear input using escape', async () => {
-  const onChange = jest.fn();
-  const onKeyDown = jest.fn();
+  const onChange = vi.fn();
+  const onKeyDown = vi.fn();
   const { user } = setupWithProps({ onChange, onKeyDown, value: 'foo' });
   await user.type(screen.getByRole('searchbox'), '{Escape}');
   expect(onChange).toHaveBeenCalledWith('');
@@ -72,13 +72,13 @@ it('should autofocus', () => {
 });
 
 it('should not prevent scroll on focus by default', () => {
-  const focusSpy = jest.spyOn(HTMLInputElement.prototype, 'focus');
+  const focusSpy = vi.spyOn(HTMLInputElement.prototype, 'focus');
   setupWithProps({ hasAutoFocus: true });
   expect(focusSpy).toHaveBeenCalledWith({ preventScroll: false });
 });
 
 it('should prevent scroll on focus', () => {
-  const focusSpy = jest.spyOn(HTMLInputElement.prototype, 'focus');
+  const focusSpy = vi.spyOn(HTMLInputElement.prototype, 'focus');
   setupWithProps({ hasAutoFocus: true, hasPreventScroll: true });
   expect(focusSpy).toHaveBeenCalledWith({ preventScroll: true });
 });
@@ -148,7 +148,7 @@ it('should allow to customize labels', async () => {
 });
 
 it('should call onKeyDown for other keys', async () => {
-  const onKeyDown = jest.fn();
+  const onKeyDown = vi.fn();
   const { user } = setupWithProps({ onKeyDown });
 
   await user.type(screen.getByRole('searchbox'), '{Enter}');
@@ -158,7 +158,7 @@ it('should call onKeyDown for other keys', async () => {
 
 it('should not have a11y violations', async () => {
   const { container } = setupWithProps();
-  await expect(container).toHaveNoA11yViolations();
+  await expect(container).toHaveNoViolations();
 });
 
 function setupWithProps(props: Partial<ComponentPropsWithRef<typeof SearchInput>> = {}) {

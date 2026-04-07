@@ -30,7 +30,7 @@ describe('RatingBadgeLink', () => {
 
     expect(screen.getByRole('link')).toBeVisible();
     expect(screen.getByText(RatingBadgeRating.Null)).toBeInTheDocument();
-    await expect(container).toHaveNoA11yViolations();
+    await expect(container).toHaveNoViolations();
   });
 
   it('correctly supports tooltips', async () => {
