@@ -33,7 +33,7 @@ it('should display banner content', async () => {
   expect(banner).toHaveTextContent('Information banner: Banner Content');
   expect(banner).toMatchSnapshot();
 
-  await expect(banner).toHaveNoA11yViolations();
+  await expect(banner).toHaveNoViolations();
 });
 
 it.each([
@@ -55,10 +55,10 @@ it.each([
 );
 
 it('should be dismissable', async () => {
-  const onDismiss = jest.fn();
+  const onDismiss = vi.fn();
   const { container, user } = setupBanner({ onDismiss });
 
-  await expect(container).toHaveNoA11yViolations();
+  await expect(container).toHaveNoViolations();
 
   const dismissButton = screen.getByRole('button', { name: 'Dismiss' });
   expect(dismissButton).toBeInTheDocument();

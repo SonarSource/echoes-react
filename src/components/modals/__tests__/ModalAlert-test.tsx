@@ -25,7 +25,7 @@ import { DropdownMenu } from '../../dropdown-menu';
 import { ModalAlert, ModalAlertProps } from '../ModalAlert';
 
 it('should appear/disappear as expected', async () => {
-  const onClose = jest.fn();
+  const onClose = vi.fn();
   const { user } = renderModalAlert({ onClose });
 
   expect(screen.queryByRole('alertdialog')).not.toBeInTheDocument();
@@ -41,7 +41,7 @@ it('should appear/disappear as expected', async () => {
 });
 
 it('should allow to be controlled', async () => {
-  const onClose = jest.fn();
+  const onClose = vi.fn();
   const { user } = renderControlledModalAlert(onClose);
 
   expect(screen.queryByRole('alertdialog')).not.toBeInTheDocument();
@@ -101,7 +101,7 @@ it('should be triggered by DropdownMenu Items', async () => {
 
 it("shouldn't have any a11y violation", async () => {
   const { container } = renderModalAlert();
-  await expect(container).toHaveNoA11yViolations();
+  await expect(container).toHaveNoViolations();
 });
 
 function renderModalAlert(args: Partial<ModalAlertProps> = {}) {

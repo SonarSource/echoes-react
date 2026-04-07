@@ -24,14 +24,15 @@ import { renderWithMemoryRouter } from '~common/helpers/test-utils';
 import { IconBranch, IconClock } from '../../../icons';
 import { SidebarNavigationItem, SidebarNavigationItemProps } from '../SidebarNavigationItem';
 
-expect.extend(matchers);
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+expect.extend(matchers as any);
 
-jest.mock('../utils', () => ({
+vi.mock('../utils', () => ({
   TOOLTIP_DELAY_IN_MS: 0,
 }));
 
 it('should handle onClick events', async () => {
-  const handleClick = jest.fn();
+  const handleClick = vi.fn();
   const { user } = setupSidebarNavigationItem({ onClick: handleClick });
 
   await user.click(screen.getByRole('link'));
@@ -119,7 +120,7 @@ describe('CSS custom properties for accordion integration', () => {
 
 it("shouldn't have any a11y violation", async () => {
   const { container } = setupSidebarNavigationItem({ Icon: IconBranch });
-  await expect(container).toHaveNoA11yViolations();
+  await expect(container).toHaveNoViolations();
 });
 
 function setupSidebarNavigationItem(props: Partial<SidebarNavigationItemProps> = {}) {

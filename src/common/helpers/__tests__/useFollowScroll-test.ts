@@ -26,15 +26,15 @@ const SCROLL_LEFT_VALUE = 100;
 const SCROLL_TOP_VALUE = 200;
 const SCROLL_INCREMENT = 50;
 
-const mockScrollLeft = jest.spyOn(document.documentElement, 'scrollLeft', 'get');
-const mockScrollTop = jest.spyOn(document.documentElement, 'scrollTop', 'get');
+const mockScrollLeft = vi.spyOn(document.documentElement, 'scrollLeft', 'get');
+const mockScrollTop = vi.spyOn(document.documentElement, 'scrollTop', 'get');
 
 beforeEach(() => {
-  jest.useFakeTimers();
+  vi.useFakeTimers();
 
   // Mock addEventListener and removeEventListener
-  jest.spyOn(document, 'addEventListener');
-  jest.spyOn(document, 'removeEventListener');
+  vi.spyOn(document, 'addEventListener');
+  vi.spyOn(document, 'removeEventListener');
 
   // Mock document.documentElement scroll properties
   mockScrollLeft.mockReturnValue(0);
@@ -42,9 +42,9 @@ beforeEach(() => {
 });
 
 afterEach(() => {
-  jest.runOnlyPendingTimers();
-  jest.useRealTimers();
-  jest.clearAllMocks();
+  vi.runOnlyPendingTimers();
+  vi.useRealTimers();
+  vi.clearAllMocks();
 });
 
 it('should return initial scroll position of 0,0', () => {
@@ -85,7 +85,7 @@ it('should update scroll position when scroll event is triggered', () => {
     document.dispatchEvent(new Event('scroll'));
 
     // Advance timers to trigger throttled callback
-    jest.advanceTimersByTime(THROTTLE_SHORT_DELAY);
+    vi.advanceTimersByTime(THROTTLE_SHORT_DELAY);
   });
 
   expect(result.current.left).toBe(SCROLL_LEFT_VALUE);
@@ -121,7 +121,7 @@ it('should throttle scroll events', () => {
 
   act(() => {
     // Advance time past throttle delay
-    jest.advanceTimersByTime(THROTTLE_SHORT_DELAY);
+    vi.advanceTimersByTime(THROTTLE_SHORT_DELAY);
 
     // Trigger another scroll event
     document.dispatchEvent(new Event('scroll'));

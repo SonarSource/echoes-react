@@ -35,12 +35,12 @@ it('displays a form with header, sections and footer', async () => {
     'Section 1 description',
   );
   expect(screen.getByRole('group', { name: '' })).toHaveTextContent('Section 2 content');
-  await expect(screen.getByRole('form')).toHaveNoA11yViolations();
+  await expect(screen.getByRole('form')).toHaveNoViolations();
 });
 
 it('should submit and reset the form', async () => {
-  const onSubmit = jest.fn();
-  const onReset = jest.fn();
+  const onSubmit = vi.fn();
+  const onReset = vi.fn();
   const { user } = setupForm({ onSubmit, onReset });
 
   await user.click(screen.getByRole('button', { name: 'Submit' }));
@@ -53,7 +53,7 @@ it('should submit and reset the form', async () => {
 });
 
 it('should not prevent default on submit if action is defined', async () => {
-  const onSubmit = jest.fn((event) => {
+  const onSubmit = vi.fn((event) => {
     expect(event.defaultPrevented).toBe(false);
     event.preventDefault();
   });

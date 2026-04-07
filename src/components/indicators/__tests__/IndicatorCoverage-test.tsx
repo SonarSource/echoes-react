@@ -41,5 +41,5 @@ it.each([
   expect(indicator).toBeInTheDocument();
   expect(indicator).toHaveAttribute('aria-hidden', 'true');
   expect(indicator).toHaveAttribute('role', 'img');
-  await expect(container).toHaveNoA11yViolations();
+  await expect(container).toHaveNoViolations();
 });

@@ -32,7 +32,7 @@ describe('RatingBadgeButton', () => {
   });
 
   it('accepts custom onClick prop', async () => {
-    const clickHandler = jest.fn();
+    const clickHandler = vi.fn();
 
     const { user } = render(
       <RatingBadgeButton
@@ -50,7 +50,7 @@ describe('RatingBadgeButton', () => {
   });
 
   it('forwards ref to the root element', () => {
-    const ref = jest.fn();
+    const ref = vi.fn();
 
     render(<RatingBadgeButton ref={ref} />);
 

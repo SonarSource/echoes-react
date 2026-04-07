@@ -46,7 +46,7 @@ describe('toast utility - basic functionality', () => {
   });
 
   it('should create a toast with all optional parameters, render actions and dismiss button', async () => {
-    const actions = jest.fn(() => <Button onClick={jest.fn()}>Action Button</Button>);
+    const actions = vi.fn(() => <Button onClick={vi.fn()}>Action Button</Button>);
     const { container } = render(<div />);
 
     toast({
@@ -66,7 +66,7 @@ describe('toast utility - basic functionality', () => {
     expect(screen.getByText('Toast prefix')).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Dismiss toast' })).toBeInTheDocument();
 
-    await expect(container).toHaveNoA11yViolations();
+    await expect(container).toHaveNoViolations();
   });
 });
 
@@ -104,8 +104,8 @@ describe('toast utility - dismissal and interaction', () => {
   });
 
   it('should dismiss toast when dismiss button is clicked', async () => {
-    const onAutoClose = jest.fn();
-    const onDismiss = jest.fn();
+    const onAutoClose = vi.fn();
+    const onDismiss = vi.fn();
     const { user } = render(<div />);
 
     toast({
@@ -125,8 +125,8 @@ describe('toast utility - dismissal and interaction', () => {
   });
 
   it('should dismiss toast programmatically', async () => {
-    const onAutoClose = jest.fn();
-    const onDismiss = jest.fn();
+    const onAutoClose = vi.fn();
+    const onDismiss = vi.fn();
     render(<div />);
 
     const toastId = toast({
@@ -146,9 +146,9 @@ describe('toast utility - dismissal and interaction', () => {
 
   it('should handle action button clicks and dismissal', async () => {
     const actionToastMessage = 'Action toast';
-    const actionHandler = jest.fn();
-    const onAutoClose = jest.fn();
-    const onDismiss = jest.fn();
+    const actionHandler = vi.fn();
+    const onAutoClose = vi.fn();
+    const onDismiss = vi.fn();
 
     const { user } = render(<div />);
 
@@ -183,10 +183,10 @@ describe('toast utility - dismissal and interaction', () => {
   });
 
   it('should dismiss toast after auto-close duration', async () => {
-    jest.useFakeTimers();
+    vi.useFakeTimers({ shouldAdvanceTime: true });
 
-    const onAutoClose = jest.fn();
-    const onDismiss = jest.fn();
+    const onAutoClose = vi.fn();
+    const onDismiss = vi.fn();
     render(<div />);
 
     toast({
@@ -198,24 +198,24 @@ describe('toast utility - dismissal and interaction', () => {
     });
 
     act(() => {
-      jest.advanceTimersByTime(2000);
+      vi.advanceTimersByTime(2000);
     });
     expect(await screen.findByText(WARNING_DESCRIPTION)).toBeInTheDocument();
 
     act(() => {
-      jest.advanceTimersByTime(4000);
+      vi.advanceTimersByTime(4000);
     });
     expect(await screen.findByText(WARNING_DESCRIPTION)).toBeInTheDocument();
 
     // It should auto-close after 8 seconds, we are at 6 seconds now
     act(() => {
-      jest.advanceTimersByTime(4000);
+      vi.advanceTimersByTime(4000);
     });
     expect(screen.queryByText(WARNING_DESCRIPTION)).not.toBeInTheDocument();
     expect(onAutoClose).toHaveBeenCalled();
     expect(onDismiss).not.toHaveBeenCalled();
 
-    jest.runOnlyPendingTimers();
-    jest.useRealTimers();
+    vi.runOnlyPendingTimers();
+    vi.useRealTimers();
   });
 });

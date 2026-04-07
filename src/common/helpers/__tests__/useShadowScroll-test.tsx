@@ -24,8 +24,8 @@ import { useResizeObserver } from '../useResizeObserver';
 import { BottomShadowScroll, TopShadowScroll, useShadowScroll } from '../useShadowScroll';
 
 // Mock useResizeObserver since we want to control it in tests
-jest.mock('../useResizeObserver', () => ({
-  useResizeObserver: jest.fn(),
+vi.mock('../useResizeObserver', () => ({
+  useResizeObserver: vi.fn(),
 }));
 
 const SCROLL_HEIGHT = 1000;
@@ -45,16 +45,16 @@ const createMockElement = (
     scrollHeight,
     clientHeight,
     scrollTop,
-    addEventListener: jest.fn(),
-    removeEventListener: jest.fn(),
+    addEventListener: vi.fn(),
+    removeEventListener: vi.fn(),
   } as unknown as HTMLElement;
 };
 
 beforeEach(() => {
-  jest.clearAllMocks();
+  vi.clearAllMocks();
 
   // Reset the mock to return default dimensions
-  jest.mocked(useResizeObserver).mockReturnValue({
+  vi.mocked(useResizeObserver).mockReturnValue({
     width: CONTAINER_HEIGHT,
     height: CONTAINER_HEIGHT,
   });
@@ -122,7 +122,7 @@ describe('useShadowScroll showBottomShadow', () => {
 
     act(() => {
       // Get the scroll handler that was added and call it
-      const scrollHandler = jest.mocked(mockElement.addEventListener).mock
+      const scrollHandler = vi.mocked(mockElement.addEventListener).mock
         .calls[0][1] as EventListener;
       scrollHandler(new Event('scroll'));
     });
@@ -148,7 +148,7 @@ describe('useShadowScroll showBottomShadow', () => {
     expect(result.current.showBottomShadow).toBe(false);
 
     // Mock useResizeObserver to return different container height to trigger the recalculation
-    jest.mocked(useResizeObserver).mockReturnValue({
+    vi.mocked(useResizeObserver).mockReturnValue({
       width: CONTAINER_HEIGHT,
       height: CONTAINER_HEIGHT + 100,
     });
@@ -195,7 +195,7 @@ describe('useShadowScroll showTopShadow', () => {
     mockElement.scrollTop = SCROLL_TOP_NEAR_BOTTOM;
 
     act(() => {
-      const scrollHandler = jest.mocked(mockElement.addEventListener).mock
+      const scrollHandler = vi.mocked(mockElement.addEventListener).mock
         .calls[0][1] as EventListener;
       scrollHandler(new Event('scroll'));
     });
@@ -217,7 +217,7 @@ describe('useShadowScroll showTopShadow', () => {
     scrollableRef.current = createMockElement(SCROLL_HEIGHT, CLIENT_HEIGHT, SCROLL_TOP_NEAR_BOTTOM);
 
     // Mock useResizeObserver to return different container height to trigger the recalculation
-    jest.mocked(useResizeObserver).mockReturnValue({
+    vi.mocked(useResizeObserver).mockReturnValue({
       width: CONTAINER_HEIGHT,
       height: CONTAINER_HEIGHT + 100,
     });

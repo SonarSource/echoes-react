@@ -83,7 +83,7 @@ it('has no a11y violations', async () => {
       <input id="input" />
     </FormField>,
   );
-  await expect(container).toHaveNoA11yViolations();
+  await expect(container).toHaveNoViolations();
 });
 
 it('displays a description if one is provided', () => {

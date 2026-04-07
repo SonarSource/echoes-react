@@ -39,7 +39,7 @@ it('displays a label and description', () => {
 });
 
 it('calls onChange when the value changes', async () => {
-  const onChange = jest.fn();
+  const onChange = vi.fn();
 
   const { user } = render(
     <CheckboxGroup label="Label" onChange={onChange} options={[{ label: 'Option' }]} value={[]} />,
@@ -107,7 +107,7 @@ it('displays a success message when validation is valid', () => {
 });
 
 it('is disabled when isDisabled prop is passed', async () => {
-  const onChange = jest.fn();
+  const onChange = vi.fn();
 
   const { user } = render(
     <CheckboxGroup
@@ -130,7 +130,7 @@ it('is disabled when isDisabled prop is passed', async () => {
 });
 
 it('The disabled state may be forced to true for a single checkbox', async () => {
-  const onChange = jest.fn();
+  const onChange = vi.fn();
 
   const { user } = render(
     <CheckboxGroup
@@ -204,5 +204,5 @@ it('does not have any a11y violations', async () => {
     <CheckboxGroup label="Label" onChange={() => {}} options={[{ label: 'Option' }]} value={[]} />,
   );
 
-  await expect(container).toHaveNoA11yViolations();
+  await expect(container).toHaveNoViolations();
 });

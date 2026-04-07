@@ -26,9 +26,9 @@ import { TextInput } from '../../text-input';
 import { ModalForm, ModalFormProps } from '../ModalForm';
 
 it('should correctly handle opening, submitting and closing the form', async () => {
-  const onClose = jest.fn();
-  const onSubmit = jest.fn().mockImplementation((e) => e.preventDefault());
-  const onReset = jest.fn();
+  const onClose = vi.fn();
+  const onSubmit = vi.fn().mockImplementation((e) => e.preventDefault());
+  const onReset = vi.fn();
   const { user } = renderModalForm({ onClose, onReset, onSubmit });
 
   expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
@@ -54,8 +54,8 @@ it('should correctly handle opening, submitting and closing the form', async () 
 });
 
 it('should correctly handle submitting a promise', async () => {
-  const onClose = jest.fn();
-  const onSubmit = jest.fn().mockImplementation((e) => {
+  const onClose = vi.fn();
+  const onSubmit = vi.fn().mockImplementation((e) => {
     e.preventDefault();
     return new Promise((resolve) => {
       setTimeout(resolve, 50);
@@ -75,8 +75,8 @@ it('should correctly handle submitting a promise', async () => {
 });
 
 it('should correctly handle submitting a rejected promise', async () => {
-  const onClose = jest.fn();
-  const onSubmit = jest.fn().mockImplementation((e) => {
+  const onClose = vi.fn();
+  const onSubmit = vi.fn().mockImplementation((e) => {
     e.preventDefault();
     return new Promise((_resolve, reject) => {
       reject(new Error());
@@ -113,7 +113,7 @@ it('should correctly display a modal alert when isDestructive is true', async ()
 });
 
 it('should call the onClose callback when the modal is closed', async () => {
-  const onClose = jest.fn();
+  const onClose = vi.fn();
   const { container, user } = renderModalForm(
     { isDefaultOpen: true, onClose },
     { pointerEventsCheck: PointerEventsCheckLevel.Never },
@@ -136,7 +136,7 @@ it('should call the onClose callback when the modal is closed', async () => {
 it("shouldn't have any a11y violation", async () => {
   const { container } = renderModalForm({ isDefaultOpen: true });
 
-  await expect(container).toHaveNoA11yViolations();
+  await expect(container).toHaveNoViolations();
 });
 
 function renderModalForm(

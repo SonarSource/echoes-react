@@ -38,7 +38,7 @@ describe('SelectionCards', () => {
     await user.click(screen.getByRole('radio', { name: 'b' }));
 
     expect(screen.getByRole('radio', { name: 'b' })).toBeChecked();
-    await expect(container).toHaveNoA11yViolations();
+    await expect(container).toHaveNoViolations();
   });
 
   it('should render a card for each option, horizontally', async () => {
@@ -48,7 +48,7 @@ describe('SelectionCards', () => {
 
     expect(screen.getAllByRole('radio')).toHaveLength(DEFAULT_OPTIONS.length);
 
-    await expect(container).toHaveNoA11yViolations();
+    await expect(container).toHaveNoViolations();
   });
 
   it('should disable each card if the group is disabled', () => {
@@ -72,7 +72,7 @@ describe('SelectionCards', () => {
 function renderSelectionCards(overrides: Partial<SelectionCardsProps> = {}) {
   return render(
     <SelectionCards
-      onChange={jest.fn()}
+      onChange={vi.fn()}
       options={DEFAULT_OPTIONS}
       value="2"
       {...overrides}

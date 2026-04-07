@@ -24,8 +24,8 @@ import { useIsOverflow } from '../useIsOverflow';
 const emptyMockRef = { current: null };
 const mockRef = { current: document.createElement('div') };
 
-const getScrollWidth = jest.fn().mockReturnValue(100);
-const getOffsetWidth = jest.fn().mockReturnValue(100);
+const getScrollWidth = vi.fn().mockReturnValue(100);
+const getOffsetWidth = vi.fn().mockReturnValue(100);
 
 beforeAll(() => {
   // Mock the scrollWidth and offsetWidth properties
@@ -41,7 +41,7 @@ beforeAll(() => {
 });
 
 beforeEach(() => {
-  jest.clearAllMocks();
+  vi.clearAllMocks();
 });
 
 it('should return undefined initially when ref.current is null', () => {

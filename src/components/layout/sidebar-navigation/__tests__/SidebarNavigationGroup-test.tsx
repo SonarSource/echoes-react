@@ -36,5 +36,5 @@ it('should render correctly', async () => {
   );
 
   expect(screen.getByLabelText('group label')).toBeInTheDocument();
-  await expect(container).toHaveNoA11yViolations();
+  await expect(container).toHaveNoViolations();
 });

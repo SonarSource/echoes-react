@@ -63,12 +63,12 @@ function setupSelect(props: OmitPropsWithLabels<typeof Select>) {
     { value: '3', label: 'Three' },
   ];
   const { rerender: rtlRerender, ...rest } = render(
-    <Select data={data} onChange={jest.fn()} value={undefined} {...props} />,
+    <Select data={data} onChange={vi.fn()} value={undefined} {...props} />,
   );
   return {
     rerender(override: Partial<ComponentProps<typeof Select>>) {
       const newProps = { ...props, ...override } as OmitPropsWithLabels<typeof Select>;
-      rtlRerender(<Select data={data} onChange={jest.fn()} value={undefined} {...newProps} />);
+      rtlRerender(<Select data={data} onChange={vi.fn()} value={undefined} {...newProps} />);
     },
     ...rest,
   };

@@ -25,18 +25,18 @@ import { SidebarNavigation } from '../SidebarNavigation';
 it('should have no a11y issues', async () => {
   const { container } = renderWithMemoryRouter(<SidebarNavigation />);
 
-  await expect(container).toHaveNoA11yViolations();
+  await expect(container).toHaveNoViolations();
 });
 
 it('should set the layout context correctly', () => {
-  const setHasSidebar = jest.fn();
+  const setHasSidebar = vi.fn();
   const { unmount } = renderWithMemoryRouter(
     <LayoutContext.Provider
       value={{
         hasSidebar: true,
         isSidebarDocked: false,
         setHasSidebar,
-        setIsSidebarDocked: jest.fn(),
+        setIsSidebarDocked: vi.fn(),
       }}>
       <SidebarNavigation />
     </LayoutContext.Provider>,

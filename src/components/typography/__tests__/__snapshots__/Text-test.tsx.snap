@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`default & regular renders as default 1`] = `
+exports[`default & regular > renders as default 1`] = `
 .emotion-0 {
   max-width: var(--echoes-sizes-typography-max-width-default);
   font: var(--echoes-typography-text-default-regular);
@@ -53,7 +53,7 @@ exports[`default & regular renders as default 1`] = `
 </span>
 `;
 
-exports[`default & regular renders as div 1`] = `
+exports[`default & regular > renders as div 1`] = `
 .emotion-0 {
   max-width: var(--echoes-sizes-typography-max-width-default);
   font: var(--echoes-typography-text-default-regular);
@@ -106,7 +106,7 @@ exports[`default & regular renders as div 1`] = `
 </div>
 `;
 
-exports[`default & regular renders as paragraph 1`] = `
+exports[`default & regular > renders as paragraph 1`] = `
 .emotion-0 {
   max-width: var(--echoes-sizes-typography-max-width-default);
   font: var(--echoes-typography-text-default-regular);
@@ -159,7 +159,7 @@ exports[`default & regular renders as paragraph 1`] = `
 </p>
 `;
 
-exports[`default & regular renders as span 1`] = `
+exports[`default & regular > renders as span 1`] = `
 .emotion-0 {
   max-width: var(--echoes-sizes-typography-max-width-default);
   font: var(--echoes-typography-text-default-regular);
@@ -212,7 +212,7 @@ exports[`default & regular renders as span 1`] = `
 </span>
 `;
 
-exports[`default & regular renders with size default 1`] = `
+exports[`default & regular > renders with size default 1`] = `
 .emotion-0 {
   max-width: var(--echoes-sizes-typography-max-width-default);
   font: var(--echoes-typography-text-default-regular);
@@ -265,7 +265,7 @@ exports[`default & regular renders with size default 1`] = `
 </span>
 `;
 
-exports[`default & regular renders with size large 1`] = `
+exports[`default & regular > renders with size large 1`] = `
 .emotion-0 {
   max-width: var(--echoes-sizes-typography-max-width-default);
   font: var(--echoes-typography-text-large-regular);
@@ -318,7 +318,7 @@ exports[`default & regular renders with size large 1`] = `
 </span>
 `;
 
-exports[`default & regular renders with size small 1`] = `
+exports[`default & regular > renders with size small 1`] = `
 .emotion-0 {
   max-width: var(--echoes-sizes-typography-max-width-default);
   font: var(--echoes-typography-text-small-regular);
@@ -371,7 +371,7 @@ exports[`default & regular renders with size small 1`] = `
 </span>
 `;
 
-exports[`default & strong renders as default 1`] = `
+exports[`default & strong > renders as default 1`] = `
 .emotion-0 {
   max-width: var(--echoes-sizes-typography-max-width-default);
   font: var(--echoes-typography-text-default-semi-bold);
@@ -424,7 +424,7 @@ exports[`default & strong renders as default 1`] = `
 </span>
 `;
 
-exports[`default & strong renders as div 1`] = `
+exports[`default & strong > renders as div 1`] = `
 .emotion-0 {
   max-width: var(--echoes-sizes-typography-max-width-default);
   font: var(--echoes-typography-text-default-semi-bold);
@@ -477,7 +477,7 @@ exports[`default & strong renders as div 1`] = `
 </div>
 `;
 
-exports[`default & strong renders as paragraph 1`] = `
+exports[`default & strong > renders as paragraph 1`] = `
 .emotion-0 {
   max-width: var(--echoes-sizes-typography-max-width-default);
   font: var(--echoes-typography-text-default-semi-bold);
@@ -530,7 +530,7 @@ exports[`default & strong renders as paragraph 1`] = `
 </p>
 `;
 
-exports[`default & strong renders as span 1`] = `
+exports[`default & strong > renders as span 1`] = `
 .emotion-0 {
   max-width: var(--echoes-sizes-typography-max-width-default);
   font: var(--echoes-typography-text-default-semi-bold);
@@ -583,7 +583,7 @@ exports[`default & strong renders as span 1`] = `
 </span>
 `;
 
-exports[`default & strong renders with size default 1`] = `
+exports[`default & strong > renders with size default 1`] = `
 .emotion-0 {
   max-width: var(--echoes-sizes-typography-max-width-default);
   font: var(--echoes-typography-text-default-semi-bold);
@@ -636,7 +636,7 @@ exports[`default & strong renders with size default 1`] = `
 </span>
 `;
 
-exports[`default & strong renders with size large 1`] = `
+exports[`default & strong > renders with size large 1`] = `
 .emotion-0 {
   max-width: var(--echoes-sizes-typography-max-width-default);
   font: var(--echoes-typography-text-large-semi-bold);
@@ -689,7 +689,7 @@ exports[`default & strong renders with size large 1`] = `
 </span>
 `;
 
-exports[`default & strong renders with size small 1`] = `
+exports[`default & strong > renders with size small 1`] = `
 .emotion-0 {
   max-width: var(--echoes-sizes-typography-max-width-default);
   font: var(--echoes-typography-text-small-semi-bold);
@@ -742,7 +742,7 @@ exports[`default & strong renders with size small 1`] = `
 </span>
 `;
 
-exports[`subtle & regular renders as default 1`] = `
+exports[`subtle & regular > renders as default 1`] = `
 .emotion-0 {
   max-width: var(--echoes-sizes-typography-max-width-default);
   font: var(--echoes-typography-text-default-regular);
@@ -795,7 +795,7 @@ exports[`subtle & regular renders as default 1`] = `
 </span>
 `;
 
-exports[`subtle & regular renders as div 1`] = `
+exports[`subtle & regular > renders as div 1`] = `
 .emotion-0 {
   max-width: var(--echoes-sizes-typography-max-width-default);
   font: var(--echoes-typography-text-default-regular);
@@ -848,7 +848,7 @@ exports[`subtle & regular renders as div 1`] = `
 </div>
 `;
 
-exports[`subtle & regular renders as paragraph 1`] = `
+exports[`subtle & regular > renders as paragraph 1`] = `
 .emotion-0 {
   max-width: var(--echoes-sizes-typography-max-width-default);
   font: var(--echoes-typography-text-default-regular);
@@ -901,7 +901,7 @@ exports[`subtle & regular renders as paragraph 1`] = `
 </p>
 `;
 
-exports[`subtle & regular renders as span 1`] = `
+exports[`subtle & regular > renders as span 1`] = `
 .emotion-0 {
   max-width: var(--echoes-sizes-typography-max-width-default);
   font: var(--echoes-typography-text-default-regular);
@@ -954,7 +954,7 @@ exports[`subtle & regular renders as span 1`] = `
 </span>
 `;
 
-exports[`subtle & regular renders with size default 1`] = `
+exports[`subtle & regular > renders with size default 1`] = `
 .emotion-0 {
   max-width: var(--echoes-sizes-typography-max-width-default);
   font: var(--echoes-typography-text-default-regular);
@@ -1007,7 +1007,7 @@ exports[`subtle & regular renders with size default 1`] = `
 </span>
 `;
 
-exports[`subtle & regular renders with size large 1`] = `
+exports[`subtle & regular > renders with size large 1`] = `
 .emotion-0 {
   max-width: var(--echoes-sizes-typography-max-width-default);
   font: var(--echoes-typography-text-large-regular);
@@ -1060,7 +1060,7 @@ exports[`subtle & regular renders with size large 1`] = `
 </span>
 `;
 
-exports[`subtle & regular renders with size small 1`] = `
+exports[`subtle & regular > renders with size small 1`] = `
 .emotion-0 {
   max-width: var(--echoes-sizes-typography-max-width-default);
   font: var(--echoes-typography-text-small-regular);
@@ -1113,7 +1113,7 @@ exports[`subtle & regular renders with size small 1`] = `
 </span>
 `;
 
-exports[`subtle & strong renders as default 1`] = `
+exports[`subtle & strong > renders as default 1`] = `
 .emotion-0 {
   max-width: var(--echoes-sizes-typography-max-width-default);
   font: var(--echoes-typography-text-default-semi-bold);
@@ -1166,7 +1166,7 @@ exports[`subtle & strong renders as default 1`] = `
 </span>
 `;
 
-exports[`subtle & strong renders as div 1`] = `
+exports[`subtle & strong > renders as div 1`] = `
 .emotion-0 {
   max-width: var(--echoes-sizes-typography-max-width-default);
   font: var(--echoes-typography-text-default-semi-bold);
@@ -1219,7 +1219,7 @@ exports[`subtle & strong renders as div 1`] = `
 </div>
 `;
 
-exports[`subtle & strong renders as paragraph 1`] = `
+exports[`subtle & strong > renders as paragraph 1`] = `
 .emotion-0 {
   max-width: var(--echoes-sizes-typography-max-width-default);
   font: var(--echoes-typography-text-default-semi-bold);
@@ -1272,7 +1272,7 @@ exports[`subtle & strong renders as paragraph 1`] = `
 </p>
 `;
 
-exports[`subtle & strong renders as span 1`] = `
+exports[`subtle & strong > renders as span 1`] = `
 .emotion-0 {
   max-width: var(--echoes-sizes-typography-max-width-default);
   font: var(--echoes-typography-text-default-semi-bold);
@@ -1325,7 +1325,7 @@ exports[`subtle & strong renders as span 1`] = `
 </span>
 `;
 
-exports[`subtle & strong renders with size default 1`] = `
+exports[`subtle & strong > renders with size default 1`] = `
 .emotion-0 {
   max-width: var(--echoes-sizes-typography-max-width-default);
   font: var(--echoes-typography-text-default-semi-bold);
@@ -1378,7 +1378,7 @@ exports[`subtle & strong renders with size default 1`] = `
 </span>
 `;
 
-exports[`subtle & strong renders with size large 1`] = `
+exports[`subtle & strong > renders with size large 1`] = `
 .emotion-0 {
   max-width: var(--echoes-sizes-typography-max-width-default);
   font: var(--echoes-typography-text-large-semi-bold);
@@ -1431,7 +1431,7 @@ exports[`subtle & strong renders with size large 1`] = `
 </span>
 `;
 
-exports[`subtle & strong renders with size small 1`] = `
+exports[`subtle & strong > renders with size small 1`] = `
 .emotion-0 {
   max-width: var(--echoes-sizes-typography-max-width-default);
   font: var(--echoes-typography-text-small-semi-bold);

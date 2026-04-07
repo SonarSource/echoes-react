@@ -34,13 +34,13 @@ it('should render correctly', () => {
 });
 
 it('should display the sidebar dock button when the sidebar is dockable', async () => {
-  const setIsSidebarDocked = jest.fn();
+  const setIsSidebarDocked = vi.fn();
   const { user } = render(
     <LayoutContext.Provider
       value={{
         hasSidebar: true,
         isSidebarDocked: false,
-        setHasSidebar: jest.fn(),
+        setHasSidebar: vi.fn(),
         setIsSidebarDocked,
       }}>
       <div data-sidebar-exist="true" data-sidebar-is-dockable="true">

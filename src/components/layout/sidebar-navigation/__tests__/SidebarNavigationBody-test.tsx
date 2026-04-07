@@ -25,14 +25,14 @@ import { IconBranch } from '../../../icons';
 import { SidebarNavigationBody } from '../SidebarNavigationBody';
 import { SidebarNavigationItem } from '../SidebarNavigationItem';
 
-jest.mock('~common/helpers/useShadowScroll', () => ({
-  useShadowScroll: jest.fn(() => ({ showBottomShadow: false, showTopShadow: false })),
-  BottomShadowScroll: jest.fn(() => <div>bottom-shadow</div>),
-  TopShadowScroll: jest.fn(() => <div>top-shadow</div>),
+vi.mock('~common/helpers/useShadowScroll', () => ({
+  useShadowScroll: vi.fn(() => ({ showBottomShadow: false, showTopShadow: false })),
+  BottomShadowScroll: vi.fn(() => <div>bottom-shadow</div>),
+  TopShadowScroll: vi.fn(() => <div>top-shadow</div>),
 }));
 
 beforeEach(() => {
-  jest.clearAllMocks();
+  vi.clearAllMocks();
 });
 
 it('should render correctly', async () => {
@@ -48,11 +48,11 @@ it('should render correctly', async () => {
   expect(screen.getByRole('listitem')).toBeInTheDocument();
   expect(screen.getByRole('link')).toBeInTheDocument();
   expect(screen.queryByText('bottom-shadow')).not.toBeInTheDocument();
-  await expect(container).toHaveNoA11yViolations();
+  await expect(container).toHaveNoViolations();
 });
 
 it('should render with scroll shadows', () => {
-  jest.mocked(useShadowScroll).mockReturnValue({ showBottomShadow: true, showTopShadow: true });
+  vi.mocked(useShadowScroll).mockReturnValue({ showBottomShadow: true, showTopShadow: true });
 
   renderWithMemoryRouter(
     <SidebarNavigationBody>

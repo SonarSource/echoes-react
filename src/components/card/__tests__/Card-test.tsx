@@ -279,7 +279,7 @@ describe('Card components', () => {
     });
 
     it('calls onOpenChange when the header button is clicked', async () => {
-      const onOpenChange = jest.fn();
+      const onOpenChange = vi.fn();
 
       const { user } = render(
         <CardRoot isCollapsible onOpenChange={onOpenChange}>
