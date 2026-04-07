@@ -19,7 +19,7 @@
  */
 
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { ComponentProps, FormEvent, useCallback, useState } from 'react';
+import { ComponentProps, SubmitEvent, useCallback, useState } from 'react';
 import {
   Button,
   Form,
@@ -100,7 +100,7 @@ function ModalWithForm(props: ComponentProps<typeof ModalForm>) {
   const [formData, setFormData] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const onSubmit = useCallback((event: FormEvent<HTMLFormElement>) => {
+  const onSubmit = useCallback((event: SubmitEvent<HTMLFormElement>) => {
     event.preventDefault();
     setIsSubmitting(true);
     const data = Object.fromEntries(new FormData(event.currentTarget));

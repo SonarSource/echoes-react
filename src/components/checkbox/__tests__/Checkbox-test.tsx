@@ -25,7 +25,7 @@ import { OmitPropsWithLabelsAndHelpText, render } from '~common/helpers/test-uti
 import { Tooltip } from '../../tooltip';
 import { Checkbox } from '../Checkbox';
 
-const checkboxIdMatcher = expect.stringMatching(/:r\d:checkbox/);
+const checkboxIdMatcher = expect.stringMatching(/_r_\d_checkbox/);
 
 it("shouldn't have any a11y violations", async () => {
   const { container } = setupCheckbox({ label: 'Label' });

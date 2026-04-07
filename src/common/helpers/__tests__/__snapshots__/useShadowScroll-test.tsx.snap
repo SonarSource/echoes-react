@@ -3,9 +3,9 @@
 exports[`BottomShadowScroll component should render with correct styling 1`] = `
 .emotion-0 {
   position: absolute;
-  bottom: 0;
   left: 0;
   right: 0;
+  bottom: 0;
   min-height: var(--echoes-dimension-height-400);
   border-bottom: var(--echoes-border-width-default) solid var(--echoes-color-border-weak);
   background: radial-gradient(
@@ -18,5 +18,21 @@ exports[`BottomShadowScroll component should render with correct styling 1`] = `
 <div
   class="emotion-0 emotion-1"
   data-testid="bottom-shadow"
+/>
+`;
+
+exports[`TopShadowScroll component should render with correct styling 1`] = `
+.emotion-0 {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -2px;
+  height: 2px;
+  box-shadow: var(--echoes-box-shadow-small);
+}
+
+<div
+  class="emotion-0 emotion-1"
+  data-testid="top-shadow"
 />
 `;

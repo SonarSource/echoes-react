@@ -95,8 +95,6 @@ const HeaderWrapper = styled.div`
 `;
 HeaderWrapper.displayName = 'HeaderWrapper';
 
-
-
 const HeaderContainer = styled.button`
   all: unset;
 
@@ -104,7 +102,6 @@ const HeaderContainer = styled.button`
   align-items: center;
   justify-content: space-between;
   flex: 1 0 0;
-  border: 1px solid red;
 
   gap: ${cssVar('dimension-space-100')};
   padding: ${cssVar('dimension-space-100')};

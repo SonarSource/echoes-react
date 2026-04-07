@@ -18,34 +18,10 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import { RefObject, useCallback, useEffect, useState } from 'react';
-
-export function useResizeObserver(ref: RefObject<HTMLElement | null>) {
-  const [width, setWidth] = useState<number>();
-  const [height, setHeight] = useState<number>();
-
-  const handleResize = useCallback<ResizeObserverCallback>((entries) => {
-    if (!Array.isArray(entries)) {
-      return;
-    }
-
-    const entry = entries[0];
-    setWidth(entry.contentRect.width);
-    setHeight(entry.contentRect.height);
-  }, []);
-
-  useEffect(() => {
-    if (!ref.current) {
-      return undefined;
-    }
-
-    const RO = new ResizeObserver(handleResize);
-    RO.observe(ref.current);
-
-    return () => {
-      RO.disconnect();
-    };
-  }, [handleResize, ref]);
-
-  return { width, height };
-}
+export { IndicatorCoverage, type IndicatorCoverageProps } from './IndicatorCoverage';
+export { IndicatorDuplication, type IndicatorDuplicationProps } from './IndicatorDuplication';
+export {
+  IndicatorCoverageRating,
+  IndicatorDuplicationRating,
+  IndicatorSize,
+} from './indicatorUtils';

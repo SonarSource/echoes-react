@@ -30,57 +30,59 @@ import { useResizeObserver } from './useResizeObserver';
  * @param resizableContentRef - Ref to the resizable content element inside the scrollable container, its height is monitored to recompute the shadow
  * @returns {boolean} Whether the bottom shadow should be shown
  */
-export function useBottomShadowScroll(
-  scrollableContainerRef: RefObject<HTMLElement>,
-  resizableContentRef: RefObject<HTMLElement>,
+export function useShadowScroll(
+  scrollableContainerRef: RefObject<HTMLElement | null>,
+  resizableContentRef: RefObject<HTMLElement | null>,
 ) {
   const [showBottomShadow, setShowBottomShadow] = useState(false);
+  const [showTopShadow, setShowTopShadow] = useState(false);
 
   // Monitor the height of the scrollable container, and recompute the shadow if it changes
   const { height: scrollableContainerHeight } = useResizeObserver(scrollableContainerRef);
   // Monitor the height of the resizable content, and recompute the shadow if it changes, because it may move the scroll position
   const { height: resizableContentHeight } = useResizeObserver(resizableContentRef);
 
-  const updateBottomShadowScroll = useCallback(() => {
+  const updateShadowScroll = useCallback(() => {
     if (scrollableContainerRef.current) {
       const { scrollHeight, clientHeight, scrollTop } = scrollableContainerRef.current;
       setShowBottomShadow(scrollTop + clientHeight < scrollHeight - 8); // -8px for bottom padding
+      setShowTopShadow(scrollTop > 0);
     }
   }, [scrollableContainerRef]);
 
-  // Compute the bottom shadow visibility on first render and attach the scroll event listener
+  // Compute the shadow visibility on first render and attach the scroll event listener
   useEffect(() => {
     const scrollableContainerRefNode = scrollableContainerRef.current;
     if (!scrollableContainerRefNode) {
       return undefined;
     }
 
-    // Re-compute the bottom shadow visibility on scroll event
-    scrollableContainerRefNode.addEventListener('scroll', updateBottomShadowScroll);
+    // Re-compute the shadow visibility on scroll event
+    scrollableContainerRefNode.addEventListener('scroll', updateShadowScroll);
 
     // Initial computation
-    updateBottomShadowScroll();
+    updateShadowScroll();
 
     return () => {
-      scrollableContainerRefNode.removeEventListener('scroll', updateBottomShadowScroll);
+      scrollableContainerRefNode.removeEventListener('scroll', updateShadowScroll);
     };
-  }, [scrollableContainerRef, updateBottomShadowScroll]);
+  }, [scrollableContainerRef, updateShadowScroll]);
 
-  // Re-compute the bottom shadow visibility on container and content resize
-  useEffect(updateBottomShadowScroll, [
+  // Re-compute the shadow visibility on container and content resize
+  useEffect(updateShadowScroll, [
     resizableContentHeight,
     scrollableContainerHeight,
-    updateBottomShadowScroll,
+    updateShadowScroll,
   ]);
 
-  return [showBottomShadow] as const;
+  return { showBottomShadow, showTopShadow } as const;
 }
 
 export const BottomShadowScroll = styled.div`
   position: absolute;
-  bottom: 0;
   left: 0;
   right: 0;
+  bottom: 0;
 
   min-height: ${cssVar('dimension-height-400')};
 
@@ -93,3 +95,14 @@ export const BottomShadowScroll = styled.div`
     center bottom;
 `;
 BottomShadowScroll.displayName = 'BottomShadowScroll';
+
+export const TopShadowScroll = styled.div`
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -2px;
+  height: 2px;
+
+  box-shadow: ${cssVar('box-shadow-small')};
+`;
+TopShadowScroll.displayName = 'TopShadowScroll';

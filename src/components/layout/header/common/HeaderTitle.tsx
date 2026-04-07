@@ -59,7 +59,7 @@ ContentHeaderTitle.displayName = 'ContentHeaderTitle';
 const StyledPageHeaderTitle = styled.div`
   align-items: center;
   display: flex;
-  gap: ${cssVar('dimension-space-50')};
+  gap: ${cssVar('dimension-space-100')};
 `;
 
 StyledPageHeaderTitle.displayName = 'StyledPageHeaderTitle';

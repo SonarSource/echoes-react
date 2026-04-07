@@ -20,8 +20,8 @@
 
 import { act, renderHook, screen } from '@testing-library/react';
 import { render } from '../test-utils';
-import { BottomShadowScroll, useBottomShadowScroll } from '../useBottomShadowScroll';
 import { useResizeObserver } from '../useResizeObserver';
+import { BottomShadowScroll, TopShadowScroll, useShadowScroll } from '../useShadowScroll';
 
 // Mock useResizeObserver since we want to control it in tests
 jest.mock('../useResizeObserver', () => ({
@@ -60,16 +60,16 @@ beforeEach(() => {
   });
 });
 
-describe('useBottomShadowScroll', () => {
+describe('useShadowScroll showBottomShadow', () => {
   it('should return initial state of false when not scrollable', () => {
     const scrollableRef = {
       current: createMockElement(CLIENT_HEIGHT, CLIENT_HEIGHT, SCROLL_TOP_AT_TOP),
     };
     const contentRef = { current: createMockElement() };
 
-    const { result } = renderHook(() => useBottomShadowScroll(scrollableRef, contentRef));
+    const { result } = renderHook(() => useShadowScroll(scrollableRef, contentRef));
 
-    expect(result.current[0]).toBe(false);
+    expect(result.current.showBottomShadow).toBe(false);
   });
 
   it('should return true when content is scrollable and not at bottom', () => {
@@ -78,9 +78,9 @@ describe('useBottomShadowScroll', () => {
     };
     const contentRef = { current: createMockElement() };
 
-    const { result } = renderHook(() => useBottomShadowScroll(scrollableRef, contentRef));
+    const { result } = renderHook(() => useShadowScroll(scrollableRef, contentRef));
 
-    expect(result.current[0]).toBe(true);
+    expect(result.current.showBottomShadow).toBe(true);
   });
 
   it('should hide shadow when scrolled to bottom (within 8px threshold)', () => {
@@ -89,9 +89,9 @@ describe('useBottomShadowScroll', () => {
     };
     const contentRef = { current: createMockElement() };
 
-    const { result } = renderHook(() => useBottomShadowScroll(scrollableRef, contentRef));
+    const { result } = renderHook(() => useShadowScroll(scrollableRef, contentRef));
 
-    expect(result.current[0]).toBe(false);
+    expect(result.current.showBottomShadow).toBe(false);
   });
 
   it('should add scroll event listener to scrollable container', () => {
@@ -99,7 +99,7 @@ describe('useBottomShadowScroll', () => {
     const scrollableRef = { current: mockElement };
     const contentRef = { current: createMockElement() };
 
-    const { unmount } = renderHook(() => useBottomShadowScroll(scrollableRef, contentRef));
+    const { unmount } = renderHook(() => useShadowScroll(scrollableRef, contentRef));
 
     expect(mockElement.addEventListener).toHaveBeenCalledWith('scroll', expect.any(Function));
 
@@ -113,9 +113,9 @@ describe('useBottomShadowScroll', () => {
     const scrollableRef = { current: mockElement };
     const contentRef = { current: createMockElement() };
 
-    const { result } = renderHook(() => useBottomShadowScroll(scrollableRef, contentRef));
+    const { result } = renderHook(() => useShadowScroll(scrollableRef, contentRef));
 
-    expect(result.current[0]).toBe(true);
+    expect(result.current.showBottomShadow).toBe(true);
 
     // Simulate scrolling to bottom
     mockElement.scrollTop = SCROLL_TOP_AT_BOTTOM;
@@ -127,7 +127,7 @@ describe('useBottomShadowScroll', () => {
       scrollHandler(new Event('scroll'));
     });
 
-    expect(result.current[0]).toBe(false);
+    expect(result.current.showBottomShadow).toBe(false);
   });
 
   it('should update shadow when the containers height changes', () => {
@@ -136,16 +136,16 @@ describe('useBottomShadowScroll', () => {
     };
     const contentRef = { current: createMockElement() };
 
-    const { result, rerender } = renderHook(() => useBottomShadowScroll(scrollableRef, contentRef));
+    const { result, rerender } = renderHook(() => useShadowScroll(scrollableRef, contentRef));
 
-    expect(result.current[0]).toBe(false);
+    expect(result.current.showBottomShadow).toBe(false);
 
     // Update the scrollableRef to simulate a height change
     scrollableRef.current = createMockElement(SCROLL_HEIGHT, CLIENT_HEIGHT, SCROLL_TOP_AT_TOP);
 
     // Just a rerender now should trigger a recalculation
     rerender();
-    expect(result.current[0]).toBe(false);
+    expect(result.current.showBottomShadow).toBe(false);
 
     // Mock useResizeObserver to return different container height to trigger the recalculation
     jest.mocked(useResizeObserver).mockReturnValue({
@@ -155,7 +155,75 @@ describe('useBottomShadowScroll', () => {
     rerender();
 
     // Should trigger recalculation
-    expect(result.current[0]).toBe(true);
+    expect(result.current.showBottomShadow).toBe(true);
+  });
+});
+
+describe('useShadowScroll showTopShadow', () => {
+  it('should return initial state of false when scrolled to top', () => {
+    const scrollableRef = {
+      current: createMockElement(SCROLL_HEIGHT, CLIENT_HEIGHT, SCROLL_TOP_AT_TOP),
+    };
+    const contentRef = { current: createMockElement() };
+
+    const { result } = renderHook(() => useShadowScroll(scrollableRef, contentRef));
+
+    expect(result.current.showTopShadow).toBe(false);
+  });
+
+  it('should return true when scrolled down', () => {
+    const scrollableRef = {
+      current: createMockElement(SCROLL_HEIGHT, CLIENT_HEIGHT, SCROLL_TOP_NEAR_BOTTOM),
+    };
+    const contentRef = { current: createMockElement() };
+
+    const { result } = renderHook(() => useShadowScroll(scrollableRef, contentRef));
+
+    expect(result.current.showTopShadow).toBe(true);
+  });
+
+  it('should update showTopShadow when scroll event is triggered', () => {
+    const mockElement = createMockElement(SCROLL_HEIGHT, CLIENT_HEIGHT, SCROLL_TOP_AT_TOP);
+    const scrollableRef = { current: mockElement };
+    const contentRef = { current: createMockElement() };
+
+    const { result } = renderHook(() => useShadowScroll(scrollableRef, contentRef));
+
+    expect(result.current.showTopShadow).toBe(false);
+
+    // Simulate scrolling down
+    mockElement.scrollTop = SCROLL_TOP_NEAR_BOTTOM;
+
+    act(() => {
+      const scrollHandler = jest.mocked(mockElement.addEventListener).mock
+        .calls[0][1] as EventListener;
+      scrollHandler(new Event('scroll'));
+    });
+
+    expect(result.current.showTopShadow).toBe(true);
+  });
+
+  it('should update shadow when the containers height changes', () => {
+    const scrollableRef = {
+      current: createMockElement(SCROLL_HEIGHT, CLIENT_HEIGHT, SCROLL_TOP_AT_TOP),
+    };
+    const contentRef = { current: createMockElement() };
+
+    const { result, rerender } = renderHook(() => useShadowScroll(scrollableRef, contentRef));
+
+    expect(result.current.showTopShadow).toBe(false);
+
+    // Simulate a scrolled position via a new ref value
+    scrollableRef.current = createMockElement(SCROLL_HEIGHT, CLIENT_HEIGHT, SCROLL_TOP_NEAR_BOTTOM);
+
+    // Mock useResizeObserver to return different container height to trigger the recalculation
+    jest.mocked(useResizeObserver).mockReturnValue({
+      width: CONTAINER_HEIGHT,
+      height: CONTAINER_HEIGHT + 100,
+    });
+    rerender();
+
+    expect(result.current.showTopShadow).toBe(true);
   });
 });
 
@@ -164,5 +232,13 @@ describe('BottomShadowScroll component', () => {
     render(<BottomShadowScroll data-testid="bottom-shadow" />);
 
     expect(screen.getByTestId('bottom-shadow')).toMatchSnapshot();
+  });
+});
+
+describe('TopShadowScroll component', () => {
+  it('should render with correct styling', () => {
+    render(<TopShadowScroll data-testid="top-shadow" />);
+
+    expect(screen.getByTestId('top-shadow')).toMatchSnapshot();
   });
 });

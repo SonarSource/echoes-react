@@ -1,0 +1,54 @@
+diff --git a/dist/index.js b/dist/index.js
+index deae02992529c4daef1710bb7394a94edeea11f5..cb1ae63b7067854f3277ceb9a7cdb66735768e0e 100644
+--- a/dist/index.js
++++ b/dist/index.js
+@@ -78,10 +78,10 @@ var Radio = React.forwardRef(
+       form,
+       ...radioProps
+     } = props;
+-    const [button, setButton] = React.useState(null);
+-    const composedRefs = (0, import_react_compose_refs.useComposedRefs)(forwardedRef, (node) => setButton(node));
++    const button = React.useRef(null);
++    const composedRefs = (0, import_react_compose_refs.useComposedRefs)(forwardedRef, button);
+     const hasConsumerStoppedPropagationRef = React.useRef(false);
+-    const isFormControl = button ? form || !!button.closest("form") : true;
++    const isFormControl = button.current ? form || !!button.current.closest("form") : true;
+     return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(RadioProvider, { scope: __scopeRadio, checked, disabled, children: [
+       /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+         import_react_primitive.Primitive.button,
+@@ -107,7 +107,7 @@ var Radio = React.forwardRef(
+       isFormControl && /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+         RadioBubbleInput,
+         {
+-          control: button,
++          control: button.current,
+           bubbles: !hasConsumerStoppedPropagationRef.current,
+           name,
+           value,
+diff --git a/dist/index.mjs b/dist/index.mjs
+index 46bb67f279d7e0a06cb177ad6a8b3de12745d4a5..808c57a8f43de24c89df3cfa3cf6b0f582ddf8e6 100644
+--- a/dist/index.mjs
++++ b/dist/index.mjs
+@@ -37,10 +37,10 @@ var Radio = React.forwardRef(
+       form,
+       ...radioProps
+     } = props;
+-    const [button, setButton] = React.useState(null);
+-    const composedRefs = useComposedRefs(forwardedRef, (node) => setButton(node));
++    const button = React.useRef(null);
++    const composedRefs = useComposedRefs(forwardedRef, button);
+     const hasConsumerStoppedPropagationRef = React.useRef(false);
+-    const isFormControl = button ? form || !!button.closest("form") : true;
++    const isFormControl = button.current ? form || !!button.current.closest("form") : true;
+     return /* @__PURE__ */ jsxs(RadioProvider, { scope: __scopeRadio, checked, disabled, children: [
+       /* @__PURE__ */ jsx(
+         Primitive.button,
+@@ -66,7 +66,7 @@ var Radio = React.forwardRef(
+       isFormControl && /* @__PURE__ */ jsx(
+         RadioBubbleInput,
+         {
+-          control: button,
++          control: button.current,
+           bubbles: !hasConsumerStoppedPropagationRef.current,
+           name,
+           value,

@@ -24,7 +24,7 @@ import { useIntl } from 'react-intl';
 import { toast as sonnerToast } from 'sonner';
 import { TextNode, TextNodeOptional } from '~types/utils';
 import { cssVar } from '~utils/design-tokens';
-import { ButtonIcon, Text } from '../../components';
+import { ButtonIcon, Spinner, Text } from '../../components';
 import { IconCheckCircle, IconError, IconInfo, IconWarning, IconX } from '../../components/icons';
 import { ScreenReaderPrefix } from './ScreenReaderPrefix';
 
@@ -48,6 +48,10 @@ export enum ToastVariety {
    * Used for cautionary messages and potential issues.
    */
   Warning = 'warning',
+  /**
+   * Used for background tasks in progress.
+   */
+  BackgroundTask = 'background-task',
 }
 
 /**
@@ -224,9 +228,10 @@ const TOAST_VARIETY_ICONS = {
   [ToastVariety.Danger]: <IconError color="echoes-color-icon-danger" />,
   [ToastVariety.Warning]: <IconWarning color="echoes-color-icon-warning" />,
   [ToastVariety.Success]: <IconCheckCircle color="echoes-color-icon-success" />,
+  [ToastVariety.BackgroundTask]: <Spinner aria-hidden isLoading />,
 };
 
-function ToastPrefix({ variety }: Pick<ToastProps, 'variety'>) {
+export function ToastPrefix({ variety }: Pick<ToastProps, 'variety'>) {
   const intl = useIntl();
 
   const messages: { [variety in ToastVariety]: string } = useMemo(
@@ -246,6 +251,10 @@ function ToastPrefix({ variety }: Pick<ToastProps, 'variety'>) {
       [ToastVariety.Success]: intl.formatMessage({
         id: 'toast.prefix.success',
         defaultMessage: 'Success:',
+      }),
+      [ToastVariety.BackgroundTask]: intl.formatMessage({
+        id: 'toast.prefix.background-task',
+        defaultMessage: 'Background task:',
       }),
     }),
     [intl],
