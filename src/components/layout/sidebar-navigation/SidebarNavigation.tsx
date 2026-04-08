@@ -89,7 +89,6 @@ const SidebarNavigationWrapper = styled.nav`
   box-sizing: content-box;
   overflow: hidden;
 
-  padding-top: ${cssVar('dimension-space-100')};
   border-right: ${cssVar('border-width-default')} solid ${cssVar('color-border-weak')};
   background-color: ${cssVar('color-surface-default')};
 

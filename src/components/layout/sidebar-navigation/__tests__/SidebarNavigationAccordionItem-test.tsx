@@ -53,6 +53,13 @@ it('should expand hidden elements when clicked', async () => {
   expect(onClose).toHaveBeenCalled();
 });
 
+it('should render the accordion open when defaultOpen is true', () => {
+  setupSidebarNavigationAccordionItem({ isDefaultOpen: true });
+
+  checkAccordionPanelVisibility(true);
+  expect(screen.getAllByRole('link')).toHaveLength(2);
+});
+
 it("shouldn't have any a11y violation", async () => {
   const { container, user } = setupSidebarNavigationAccordionItem({ Icon: IconBranch });
   await expect(container).toHaveNoA11yViolations();

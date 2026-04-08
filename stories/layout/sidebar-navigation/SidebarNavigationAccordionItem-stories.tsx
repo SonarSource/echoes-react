@@ -20,12 +20,41 @@
 
 /* eslint-disable no-console */
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Badge, IconBranch, Layout } from '../../../src';
+import { Badge, cssVar, IconBranch, Layout } from '../../../src';
 import { basicWrapperDecorator } from '../../helpers/BasicWrapper';
 
-const meta: Meta = {
+const baseAccordionChildren = (
+  <>
+    <Layout.SidebarNavigation.Item Icon={IconBranch} to="/1">
+      Item 1
+    </Layout.SidebarNavigation.Item>
+
+    <Layout.SidebarNavigation.Item Icon={IconBranch} to="/2">
+      Item 2
+    </Layout.SidebarNavigation.Item>
+  </>
+);
+
+const dockedSidebarAccordionChildren = (
+  <>
+    <Layout.SidebarNavigation.Item Icon={IconBranch} disableIconWhenSidebarOpen to="/1">
+      Icon hidden while sidebar is open
+    </Layout.SidebarNavigation.Item>
+
+    <Layout.SidebarNavigation.Item Icon={IconBranch} to="/2">
+      Icon stays visible while sidebar is open
+    </Layout.SidebarNavigation.Item>
+  </>
+);
+
+const meta: Meta<typeof Layout.SidebarNavigation.AccordionItem> = {
   title: 'Echoes/Layout/SidebarNavigation/AccordionItem',
   component: Layout.SidebarNavigation.AccordionItem,
+  argTypes: {
+    isDefaultOpen: {
+      control: { type: 'boolean' },
+    },
+  },
   decorators: [
     (Story) => (
       <Layout.SidebarNavigation.Body>
@@ -34,6 +63,13 @@ const meta: Meta = {
     ),
     basicWrapperDecorator,
   ],
+  render: ({ isDefaultOpen = false, ...args }) => (
+    <Layout.SidebarNavigation.AccordionItem
+      isDefaultOpen={isDefaultOpen}
+      key={`accordion-default-open-${isDefaultOpen.toString()}`}
+      {...args}
+    />
+  ),
 };
 
 export default meta;
@@ -43,16 +79,8 @@ type Story = StoryObj<typeof Layout.SidebarNavigation.AccordionItem>;
 export const base: Story = {
   args: {
     Icon: IconBranch,
-    children: (
-      <>
-        <Layout.SidebarNavigation.Item Icon={IconBranch} disableIconWhenSidebarOpen to="/1">
-          Item 1
-        </Layout.SidebarNavigation.Item>
-        <Layout.SidebarNavigation.Item Icon={IconBranch} disableIconWhenSidebarOpen to="/2">
-          Item 2
-        </Layout.SidebarNavigation.Item>
-      </>
-    ),
+    children: baseAccordionChildren,
+    isDefaultOpen: false,
     label: 'Accordion',
   },
 };
@@ -60,16 +88,8 @@ export const base: Story = {
 export const suffixed: Story = {
   args: {
     Icon: IconBranch,
-    children: (
-      <>
-        <Layout.SidebarNavigation.Item Icon={IconBranch} disableIconWhenSidebarOpen to="/1">
-          Item 1
-        </Layout.SidebarNavigation.Item>
-        <Layout.SidebarNavigation.Item Icon={IconBranch} disableIconWhenSidebarOpen to="/2">
-          Item 2
-        </Layout.SidebarNavigation.Item>
-      </>
-    ),
+    children: baseAccordionChildren,
+    isDefaultOpen: false,
     label: 'Accordion',
     suffix: (
       <Badge isHighContrast variety="highlight">
@@ -77,6 +97,35 @@ export const suffixed: Story = {
       </Badge>
     ),
   },
+};
+
+export const withDefaultOpen: Story = {
+  args: {
+    Icon: IconBranch,
+    children: baseAccordionChildren,
+    isDefaultOpen: true,
+    label: 'Accordion',
+  },
+};
+
+export const withDisableIconWhenSidebarOpen: Story = {
+  args: {
+    Icon: IconBranch,
+    isDefaultOpen: true,
+    label: 'Accordion',
+  },
+  render: ({ isDefaultOpen = true, ...args }) => (
+    <div
+      data-sidebar-docked="true"
+      style={{ width: cssVar('layout-sidebar-navigation-sizes-width-open') }}>
+      <Layout.SidebarNavigation.AccordionItem
+        isDefaultOpen={isDefaultOpen}
+        key={`accordion-disable-icon-when-sidebar-open-${isDefaultOpen.toString()}`}
+        {...args}>
+        {dockedSidebarAccordionChildren}
+      </Layout.SidebarNavigation.AccordionItem>
+    </div>
+  ),
 };
 
 const fourNavItems = Array.from({ length: 4 }, (_, i) => (
