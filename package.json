@@ -115,7 +115,7 @@
     "react-router-dom": "6.30.1",
     "rollup": "4.59.0",
     "rollup-plugin-license": "3.7.0",
-    "sonarqube-scanner": "4.3.4",
+    "sonarqube-scanner": "4.3.5",
     "storybook": "10.2.13",
     "style-dictionary": "5.3.2",
     "subset-font": "2.4.0",
@@ -146,6 +146,7 @@
   "resolutions": {
     "@radix-ui/react-compose-refs": "patch:@radix-ui/react-compose-refs@npm%3A1.1.2#./.yarn/patches/@radix-ui-react-compose-refs-npm-1.1.2-f0371f8267.patch",
     "ast-types": "patch:ast-types@npm%3A0.16.1#./.yarn/patches/ast-types-npm-0.16.1-596f974e68.patch",
+    "axios": "1.15.0",
     "axe-core": "4.11.1"
   }
 }
