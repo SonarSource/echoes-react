@@ -28,8 +28,7 @@ import {
 } from '../SidebarNavigationAccordionItem';
 import { SidebarNavigationItem } from '../SidebarNavigationItem';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-expect.extend(matchers as any);
+expect.extend(matchers);
 
 vi.mock('../utils', () => ({
   TOOLTIP_DELAY_IN_MS: 0,

@@ -18,17 +18,17 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import type { RunOptions } from 'axe-core';
-import 'vitest';
-
-declare module 'vitest' {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  interface Assertion<T = any> {
-    toHaveNoViolations(axeOptions?: RunOptions): Promise<void>;
-    toHaveStyleRule(property: string, value: unknown, options?: object): T;
+// Minimal jest namespace stub to satisfy @emotion/jest's
+// `/// <reference types="jest" />` without installing @types/jest
+// (which would conflict with vitest/globals).
+declare namespace jest {
+  // Used by @emotion/jest's SnapshotSerializerPlugin extraction
+  interface SnapshotSerializerPlugin {
+    serialize: (...args: any[]) => any; // eslint-disable-line @typescript-eslint/no-explicit-any
+    [key: string]: any; // eslint-disable-line @typescript-eslint/no-explicit-any
   }
-  interface AsymmetricMatchersContaining {
-    toHaveNoViolations(axeOptions?: RunOptions): Promise<void>;
-    toHaveStyleRule(property: string, value: unknown, options?: object): void;
+  // Used by @emotion/jest's EmotionMatchers extends
+  interface ExpectExtendMap {
+    [key: string]: any; // eslint-disable-line @typescript-eslint/no-explicit-any
   }
 }
