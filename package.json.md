@@ -21,6 +21,7 @@
 - @testing-library/react : Used for component and interaction testing. It should stay aligned with our React major version.
 
 - @emotion/cache : Used by Emotion/Mantine styling internals.
+- @emotion/jest : Necessary for tests. There is no vitest equivalent yet so we stub jest types to make it work.
 - @emotion/serialize : Used by Emotion style serialization internals.
 - @emotion/utils : Used by Emotion runtime/style utilities.
 
