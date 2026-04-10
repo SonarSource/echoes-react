@@ -28,3 +28,4 @@
 
 - @radix-ui/react-compose-refs (patch): Prevents forwarding `null` to function refs. This avoids repeated ref teardown/setup feedback loops that can retrigger state updates.
 - ast-types: Transitive dependency of Storybook. It is apparently incompatible with typescript 5.4+, but we've never been impacted (why?). With the bump to storybook 9, it requires a patch not to fail ts-check. See [this issue](https://github.com/benjamn/ast-types/issues/948)
+- axios: Transitive dependency of sonarqube-scanner. The version required by sonarqube-scanner (1.13.2) is vulnerable, but the latest version of axios is compatible with sonarqube-scanner, so we can safely override it.
