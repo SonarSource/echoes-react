@@ -45,7 +45,7 @@
       "~types/*": ["src/types/*"]
     },
     // "rootDirs": [],                                   /* Allow multiple folders to be treated as one when resolving modules. */
-    // "typeRoots": [],                                  /* Specify multiple folders that act like `./node_modules/@types`. */
+    "typeRoots": ["src/types/@types", "node_modules/@types", "node_modules"], /* Local stubs first, then installed @types */
     "types": ["vitest/globals", "node"],                 /* Vitest global types (vi, describe, it, expect, etc.) */
     "allowImportingTsExtensions": true,                  /* Allows TypeScript files to import each other with a TypeScript-specific extension like .ts, .mts, or .tsx*/
     // "allowUmdGlobalAccess": true,                     /* Allow accessing UMD globals from modules. */
@@ -112,6 +112,6 @@
 
     /* Completeness */
     // "skipDefaultLibCheck": true,                      /* Skip type checking .d.ts files that are included with TypeScript. */
-    "skipLibCheck": true                               /* Skip type checking .d.ts files in node_modules (e.g. @emotion/jest references removed jest types) */
+    // "skipLibCheck": false                             /* Skip type checking .d.ts files that are included with TypeScript. */
   }
 }

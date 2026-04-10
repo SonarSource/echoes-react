@@ -18,17 +18,19 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import type { RunOptions } from 'axe-core';
-import 'vitest';
+// Vitest-compatible override of @emotion/jest types.
+// The package's own .d.ts has `/// <reference types="jest" />` which fails
+// when @types/jest is not installed. We only use createSerializer here.
+declare module '@emotion/jest' {
+  import type { SnapshotSerializer } from 'vitest';
 
-declare module 'vitest' {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  interface Assertion<T = any> {
-    toHaveNoViolations(axeOptions?: RunOptions): Promise<void>;
-    toHaveStyleRule(property: string, value: unknown, options?: object): T;
+  interface CreateSerializerOptions {
+    classNameReplacer?: (className: string, index: number) => string;
+    DOMElements?: boolean;
+    includeStyles?: boolean;
   }
-  interface AsymmetricMatchersContaining {
-    toHaveNoViolations(axeOptions?: RunOptions): Promise<void>;
-    toHaveStyleRule(property: string, value: unknown, options?: object): void;
-  }
+
+  export function createSerializer(options?: CreateSerializerOptions): SnapshotSerializer;
+
+  export const matchers: any;
 }
