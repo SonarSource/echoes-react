@@ -42,6 +42,7 @@ class MockResizeObserver {
     callback(MockResizeObserverEntries, this);
   }
 }
+
 vi.stubGlobal('ResizeObserver', MockResizeObserver);
 
 /*
@@ -60,6 +61,28 @@ Object.defineProperty(globalThis, 'matchMedia', {
     dispatchEvent: vi.fn(),
   })),
 });
+
+/*
+ * HTMLCanvasElement.getContext - not implemented in jsdom; axe-core calls it for color-contrast checks
+ */
+HTMLCanvasElement.prototype.getContext = vi.fn(
+  () => null,
+) as typeof HTMLCanvasElement.prototype.getContext;
+
+/*
+ * window.getComputedStyle - jsdom does not support pseudo-elements (2nd arg).
+ * axe-core calls getComputedStyle(el, '::before') for color-contrast checks, which
+ * produces noisy "Not implemented" errors. Fall back to the real implementation for
+ * ordinary calls and return an empty object for pseudo-element calls.
+ */
+globalThis.getComputedStyle = (
+  (originalGetComputedStyle) => (elt: Element, pseudoElt?: string | null) => {
+    if (pseudoElt) {
+      return {} as CSSStyleDeclaration;
+    }
+    return originalGetComputedStyle(elt);
+  }
+)(globalThis.getComputedStyle.bind(globalThis));
 
 /*
  * Pointer Capture API - required for Sonner toast library
