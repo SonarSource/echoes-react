@@ -26,7 +26,7 @@ import { DropdownMenuItemLink } from './DropdownMenuItemLink';
 
 export type DropdownMenuItemLinkDownloadProps = Omit<
   DropdownMenuItemBaseProps,
-  'isCheckable' | 'isChecked' | 'prefix' | 'suffix'
+  'isCheckable' | 'isChecked' | 'suffix'
 > &
   Pick<NavLinkBaseProps, 'to'> & { download: string };
 
@@ -34,14 +34,10 @@ export const DropdownMenuItemLinkDownload = forwardRef<
   HTMLDivElement,
   DropdownMenuItemLinkDownloadProps
 >((props, ref) => {
-  return (
-    <DropdownMenuItemLink
-      {...props}
-      hasExternalIcon={false}
-      prefix={<IconDownload color="echoes-color-icon-subtle" />}
-      ref={ref}
-    />
-  );
+  const defaultPrefix = <IconDownload color="echoes-color-icon-subtle" />;
+  const prefix = 'prefix' in props ? props.prefix : defaultPrefix;
+
+  return <DropdownMenuItemLink {...props} hasExternalIcon={false} prefix={prefix} ref={ref} />;
 });
 
 DropdownMenuItemLinkDownload.displayName = 'DropdownMenu.ItemLinkDownload';
