@@ -274,6 +274,41 @@ it('should render many different items', async () => {
   expect(screen.getByText('/second')).toBeVisible();
 });
 
+it('should allow overriding the ItemLinkDownload icon', () => {
+  const downloadIconCharacter = String.fromCodePoint(0xf090);
+
+  renderWithMemoryRouter(
+    <DropdownMenu
+      isOpen
+      items={
+        <>
+          <DropdownMenu.ItemLinkDownload download="default.txt" to="/default">
+            Download with default icon
+          </DropdownMenu.ItemLinkDownload>
+
+          <DropdownMenu.ItemLinkDownload
+            download="custom.txt"
+            prefix={<span data-testid="custom-download-icon" />}
+            to="/custom">
+            Download with custom icon
+          </DropdownMenu.ItemLinkDownload>
+
+          <DropdownMenu.ItemLinkDownload download="without.txt" prefix={undefined} to="/without">
+            Download without icon
+          </DropdownMenu.ItemLinkDownload>
+        </>
+      }>
+      {trigger}
+    </DropdownMenu>,
+  );
+
+  expect(screen.getByRole('menuitem', { name: 'Download with default icon' })).toBeVisible();
+  expect(screen.getByRole('menuitem', { name: 'Download with custom icon' })).toBeVisible();
+  expect(screen.getByRole('menuitem', { name: 'Download without icon' })).toBeVisible();
+  expect(screen.getByTestId('custom-download-icon')).toBeInTheDocument();
+  expect(screen.getAllByText(downloadIconCharacter)).toHaveLength(1);
+});
+
 it('should properly handle theme overrides', () => {
   renderWithMemoryRouter(
     <ThemeProvider theme={Theme.dark}>

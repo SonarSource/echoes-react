@@ -20,7 +20,7 @@
 
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { ComponentProps, PropsWithChildren } from 'react';
-import { DropdownMenu } from '../../src';
+import { DropdownMenu, IconBell } from '../../src';
 import { basicWrapperDecorator } from '../helpers/BasicWrapper';
 import { MenuButton } from '../helpers/MenuButton';
 
@@ -64,6 +64,24 @@ export const Disabled: Story = {
 export const WithHelpText: Story = {
   args: {
     ...defaultProps,
+  },
+  render,
+};
+
+export const CustomIcon: Story = {
+  args: {
+    ...defaultProps,
+    helpText: '',
+    prefix: <IconBell color="echoes-color-icon-warning" />,
+  },
+  render,
+};
+
+export const WithoutIcon: Story = {
+  args: {
+    ...defaultProps,
+    helpText: '',
+    prefix: undefined,
   },
   render,
 };
