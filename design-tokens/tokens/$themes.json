@@ -5,7 +5,8 @@
     "$figmaStyleReferences": {},
     "selectedTokenSets": {
       "brand/brandA/base": "enabled",
-      "brand/brandA/colors": "enabled"
+      "brand/brandA/colors": "enabled",
+      "brand/brandA/roles": "enabled"
     },
     "$figmaCollectionId": "VariableCollectionId:2:1075",
     "$figmaModeId": "2:12",
@@ -185,7 +186,8 @@
     "$figmaStyleReferences": {},
     "selectedTokenSets": {
       "brand/brandB/base": "enabled",
-      "brand/brandB/colors": "enabled"
+      "brand/brandB/colors": "enabled",
+      "brand/brandB/roles": "enabled"
     },
     "$figmaCollectionId": "VariableCollectionId:2:1075",
     "$figmaModeId": "2:13",
@@ -366,6 +368,7 @@
     "selectedTokenSets": {
       "brand/brandA/colors": "source",
       "brand/brandA/base": "source",
+      "brand/brandA/roles": "source",
       "mode/light": "enabled",
       "component/light": "enabled"
     },
@@ -574,6 +577,7 @@
     "selectedTokenSets": {
       "brand/brandA/colors": "source",
       "brand/brandA/base": "source",
+      "brand/brandA/roles": "source",
       "mode/dark": "enabled",
       "component/dark": "enabled"
     },
@@ -801,7 +805,8 @@
     "selectedTokenSets": {
       "component/base": "enabled",
       "brand/brandA/base": "enabled",
-      "brand/brandA/colors": "enabled"
+      "brand/brandA/colors": "enabled",
+      "brand/brandA/roles": "enabled"
     },
     "$figmaCollectionId": "VariableCollectionId:2:1074",
     "$figmaModeId": "2:11",
