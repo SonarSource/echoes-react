@@ -83,14 +83,6 @@
       },
       "palette": {
         "grey": {
-          "25": {
-            "$type": "color",
-            "$value": "#fcfcfd"
-          },
-          "40": {
-            "$type": "color",
-            "$value": "#f9f9fb"
-          },
           "50": {
             "$type": "color",
             "$value": "#f0f0f3"
@@ -133,10 +125,6 @@
           }
         },
         "indigo": {
-          "25": {
-            "$type": "color",
-            "$value": "#f4faff"
-          },
           "50": {
             "$type": "color",
             "$value": "#e6f4fe"
@@ -179,10 +167,6 @@
           }
         },
         "tangerine": {
-          "25": {
-            "$type": "color",
-            "$value": "#fbf7fe"
-          },
           "50": {
             "$type": "color",
             "$value": "#f7edfe"
@@ -313,10 +297,6 @@
             "$type": "color",
             "$value": "#fff0eb"
           },
-          "75": {
-            "$type": "color",
-            "$value": "#ffe8da"
-          },
           "100": {
             "$type": "color",
             "$value": "#fedbc7"
@@ -439,10 +419,6 @@
           }
         },
         "purple": {
-          "25": {
-            "$type": "color",
-            "$value": "#faf8ff"
-          },
           "50": {
             "$type": "color",
             "$value": "#f4f0fe"
