@@ -23,13 +23,12 @@ import { forwardRef, useMemo } from 'react';
 import { useIntl } from 'react-intl';
 import { isDefined } from '~common/helpers/types';
 import { TextNode } from '~types/utils';
-import { Badge, BadgeSize } from '../badges';
+import { Badge, BadgeSize, BadgeVariety } from '../badges';
 import { ButtonIcon, ButtonSize, ButtonVariety } from '../buttons';
 import { IconX } from '../icons';
 import { Heading, HeadingProps, HeadingSize, Text } from '../typography';
 
 import {
-  BADGE_VARIETIES,
   PROMOTED_SECTION_STYLES,
   PromotedSectionMainStyles,
   PromotedSectionTextAndActions,
@@ -87,6 +86,11 @@ export interface PromotedSectionProps {
    */
   variety?: `${PromotedSectionVariety}`;
 }
+
+const BADGE_VARIETIES = {
+  [PromotedSectionVariety.Highlight]: BadgeVariety.Highlight,
+  [PromotedSectionVariety.Neutral]: BadgeVariety.Neutral,
+} as const;
 
 export const PromotedSection = forwardRef<HTMLDivElement, Readonly<PromotedSectionProps>>(
   (

@@ -20,17 +20,11 @@
 
 import styled from '@emotion/styled';
 import { cssVar } from '~utils/design-tokens';
-import { BadgeVariety } from '../../components/badges/Badge';
 
 export enum PromotedSectionVariety {
   Highlight = 'highlight',
   Neutral = 'neutral',
 }
-
-export const BADGE_VARIETIES = {
-  [PromotedSectionVariety.Highlight]: BadgeVariety.Highlight,
-  [PromotedSectionVariety.Neutral]: BadgeVariety.Neutral,
-};
 
 export const PROMOTED_SECTION_STYLES = {
   [PromotedSectionVariety.Highlight]: {
