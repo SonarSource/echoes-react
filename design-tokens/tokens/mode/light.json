@@ -36,7 +36,7 @@
         "accent": {
           "default": {
             "$type": "color",
-            "$value": "#f11",
+            "$value": "{echoes.color.indigo.500}",
             "$description": "Used as the background color of components that reinforce our brand"
           },
           "hover": {
