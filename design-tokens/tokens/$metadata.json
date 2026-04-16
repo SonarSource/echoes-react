@@ -2,10 +2,8 @@
   "tokenSetOrder": [
     "brand/brandA/base",
     "brand/brandA/colors",
-    "brand/brandA/roles",
     "brand/brandB/base",
     "brand/brandB/colors",
-    "brand/brandB/roles",
     "mode/light",
     "mode/dark",
     "component/base",
