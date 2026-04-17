@@ -8,21 +8,6 @@
               "$type": "color",
               "$value": "{echoes.color.roles.neutral.lightest}",
               "$description": "Use it in components with neutral sentiment"
-            },
-            "focus": {
-              "$type": "color",
-              "$value": "{echoes.color.roles.neutral.lightest}",
-              "$description": "Use it in components with neutral sentiment"
-            },
-            "hover": {
-              "$type": "color",
-              "$value": "{echoes.color.roles.neutral.light}",
-              "$description": "Use it in components with neutral sentiment"
-            },
-            "active": {
-              "$type": "color",
-              "$value": "{echoes.color.roles.neutral.medium}",
-              "$description": "Use it in components with neutral sentiment"
             }
           },
           "bolder": {
@@ -39,40 +24,11 @@
             "$value": "{echoes.color.roles.primary.strong}",
             "$description": "Used as the background color of components that reinforce our brand"
           },
-          "hover": {
-            "$type": "color",
-            "$value": "{echoes.color.roles.primary.bold}",
-            "$description": "Hover state of components that reinforce our brand"
-          },
-          "focus": {
-            "$type": "color",
-            "$value": "{echoes.color.roles.primary.strong}"
-          },
-          "active": {
-            "$type": "color",
-            "$value": "{echoes.color.roles.primary.bold}",
-            "$description": "Active state of components that reinforce our brand"
-          },
           "weak": {
             "default": {
               "$type": "color",
               "$value": "{echoes.color.roles.primary.lightest}",
               "$description": "Used as the background color of components that reinforce our brand with less visual highlight"
-            },
-            "hover": {
-              "$type": "color",
-              "$value": "{echoes.color.roles.primary.lightest}",
-              "$description": "Hover state of components that reinforce our brand with less visual highlight"
-            },
-            "active": {
-              "$type": "color",
-              "$value": "{echoes.color.roles.primary.light}",
-              "$description": "Active state of components that reinforce our brand with less visual highlight"
-            },
-            "focus": {
-              "$type": "color",
-              "$value": "{echoes.color.roles.primary.lightest}",
-              "$description": "Focus state of components that reinforce our brand with less visual highlight"
             }
           }
         },
@@ -82,49 +38,10 @@
             "$value": "{echoes.color.roles.warning.strong}",
             "$description": "Use for backgrounds that communicate warning or caution"
           },
-          "hover": {
-            "$extensions": {
-              "studio.tokens": {
-                "modify": {
-                  "type": "darken",
-                  "value": "0.05",
-                  "space": "lch"
-                }
-              }
-            },
-            "$type": "color",
-            "$value": "{echoes.color.roles.warning.strong}",
-            "$description": "Use for backgrounds that communicate warning or caution"
-          },
-          "focus": {
-            "$type": "color",
-            "$value": "{echoes.color.roles.warning.strong}",
-            "$description": "Use for backgrounds that communicate warning or caution"
-          },
-          "active": {
-            "$type": "color",
-            "$value": "{echoes.color.roles.warning.bold}",
-            "$description": "Use for backgrounds that communicate warning or caution"
-          },
           "weak": {
             "default": {
               "$type": "color",
               "$value": "{echoes.color.roles.warning.lightest}",
-              "$description": "Use for backgrounds that communicate warning or caution, with less visual highlight"
-            },
-            "hover": {
-              "$type": "color",
-              "$value": "{echoes.color.roles.warning.light}",
-              "$description": "Use for backgrounds that communicate warning or caution, with less visual highlight"
-            },
-            "focus": {
-              "$type": "color",
-              "$value": "{echoes.color.roles.warning.lightest}",
-              "$description": "Use for backgrounds that communicate warning or caution, with less visual highlight"
-            },
-            "active": {
-              "$type": "color",
-              "$value": "{echoes.color.roles.warning.medium}",
               "$description": "Use for backgrounds that communicate warning or caution, with less visual highlight"
             }
           }
@@ -135,38 +52,8 @@
             "$value": "{echoes.color.roles.success.bold}",
             "$description": "Use for backgrounds that communicate positive or success messages"
           },
-          "hover": {
-            "$type": "color",
-            "$value": "{echoes.color.roles.success.dark}",
-            "$description": "Use for backgrounds that communicate positive or success messages"
-          },
-          "focus": {
-            "$type": "color",
-            "$value": "{echoes.color.roles.success.bold}",
-            "$description": "Use for backgrounds that communicate positive or success messages"
-          },
-          "active": {
-            "$type": "color",
-            "$value": "{echoes.color.roles.success.dark}",
-            "$description": "Use for backgrounds that communicate positive or success messages"
-          },
           "weak": {
             "default": {
-              "$type": "color",
-              "$value": "{echoes.color.roles.success.lightest}",
-              "$description": "Use for backgrounds that communicate positive or success messages, with less visual highlight"
-            },
-            "hover": {
-              "$type": "color",
-              "$value": "{echoes.color.roles.success.light}",
-              "$description": "Use for backgrounds that communicate positive or success messages, with less visual highlight"
-            },
-            "active": {
-              "$type": "color",
-              "$value": "{echoes.color.roles.success.medium}",
-              "$description": "Use for backgrounds that communicate positive or success messages, with less visual highlight"
-            },
-            "focus": {
               "$type": "color",
               "$value": "{echoes.color.roles.success.lightest}",
               "$description": "Use for backgrounds that communicate positive or success messages, with less visual highlight"
@@ -179,40 +66,11 @@
             "$value": "{echoes.color.roles.danger.bold}",
             "$description": "Use for backgrounds that communicate danger or destructive messages"
           },
-          "hover": {
-            "$type": "color",
-            "$value": "{echoes.color.roles.danger.bold}",
-            "$description": "Hover state for backgrounds that communicate danger or destructive messages"
-          },
-          "focus": {
-            "$type": "color",
-            "$value": "{echoes.color.roles.danger.bold}",
-            "$description": "Focused state for backgrounds that communicate danger or destructive messages"
-          },
-          "active": {
-            "$type": "color",
-            "$value": "{echoes.color.roles.danger.dark}",
-            "$description": "Active state for backgrounds that communicate danger or destructive messages"
-          },
           "weak": {
             "default": {
               "$type": "color",
               "$value": "{echoes.color.roles.danger.lightest}",
               "$description": "Use it for backgrounds that communicate danger or destructive messages, with less visual highlight"
-            },
-            "hover": {
-              "$type": "color",
-              "$value": "{echoes.color.roles.danger.light}",
-              "$description": "Hover state for backgrounds that communicate danger or destructive messages, with less visual highlight"
-            },
-            "active": {
-              "$type": "color",
-              "$value": "{echoes.color.roles.danger.medium}",
-              "$description": "Active state for backgrounds that communicate danger or destructive messages, with less visual highlight"
-            },
-            "focus": {
-              "$type": "color",
-              "$value": "{echoes.color.roles.danger.lightest}"
             }
           }
         },
@@ -222,49 +80,10 @@
             "$value": "{echoes.color.roles.info.dark}",
             "$description": "Use for backgrounds that communicate information to the user"
           },
-          "hover": {
-            "$type": "color",
-            "$value": "{echoes.color.roles.info.dark}",
-            "$description": "Use for backgrounds that communicate information to the user"
-          },
-          "focus": {
-            "$type": "color",
-            "$value": "{echoes.color.roles.info.dark}",
-            "$description": "Use for backgrounds that communicate information to the user"
-          },
-          "active": {
-            "$extensions": {
-              "studio.tokens": {
-                "modify": {
-                  "type": "darken",
-                  "value": "0.2",
-                  "space": "lch"
-                }
-              }
-            },
-            "$type": "color",
-            "$value": "{echoes.color.roles.info.dark}",
-            "$description": "Use for backgrounds that communicate information to the user"
-          },
           "weak": {
             "default": {
               "$type": "color",
               "$value": "{echoes.color.roles.info.lightest}",
-              "$description": "Use for backgrounds that communicate information to the user, with less visual highlight"
-            },
-            "hover": {
-              "$type": "color",
-              "$value": "{echoes.color.roles.info.light}",
-              "$description": "Use for backgrounds that communicate information to the user, with less visual highlight"
-            },
-            "focus": {
-              "$type": "color",
-              "$value": "{echoes.color.roles.info.lightest}",
-              "$description": "Use for backgrounds that communicate information to the user, with less visual highlight"
-            },
-            "active": {
-              "$type": "color",
-              "$value": "{echoes.color.roles.info.medium}",
               "$description": "Use for backgrounds that communicate information to the user, with less visual highlight"
             }
           }
@@ -283,11 +102,6 @@
               "$value": "{echoes.color.roles.primary.lightest}",
               "$description": "Use it in backgrounds of components that have a selected state that need less visual highlight, like dropdown or selects"
             },
-            "hover": {
-              "$type": "color",
-              "$value": "{echoes.color.roles.primary.lightest}",
-              "$description": "Hover state of components that have a selected state that need less visual highlight, like dropdown or selects"
-            },
             "pressed": {
               "$type": "color",
               "$value": "{echoes.color.roles.primary.light}",
@@ -299,11 +113,6 @@
               "$type": "color",
               "$value": "{echoes.color.roles.primary.strong}",
               "$description": "Use it in backgrounds of components that have a selected state, like checkboxes or radios"
-            },
-            "hover": {
-              "$type": "color",
-              "$value": "{echoes.color.roles.primary.bold}",
-              "$description": "Hover state of components that have a selected state, like checkboxes or radios"
             },
             "pressed": {
               "$type": "color",
@@ -317,52 +126,16 @@
             "default": {
               "$type": "color",
               "$value": "{echoes.color.background.utility.transparent}"
-            },
-            "hover": {
-              "$type": "color",
-              "$value": "{echoes.color.roles.primary.lightest}"
-            },
-            "active": {
-              "$type": "color",
-              "$value": "{echoes.color.roles.primary.light}"
-            },
-            "focus": {
-              "$type": "color",
-              "$value": "{echoes.color.background.utility.transparent}"
             }
           },
           "neutral": {
             "default": {
               "$type": "color",
               "$value": "{echoes.color.background.utility.transparent}"
-            },
-            "hover": {
-              "$type": "color",
-              "$value": "{echoes.color.roles.neutral.lightest}"
-            },
-            "active": {
-              "$type": "color",
-              "$value": "{echoes.color.roles.neutral.light}"
-            },
-            "focus": {
-              "$type": "color",
-              "$value": "{echoes.color.background.utility.transparent}"
             }
           },
           "danger": {
             "default": {
-              "$type": "color",
-              "$value": "{echoes.color.background.utility.transparent}"
-            },
-            "hover": {
-              "$type": "color",
-              "$value": "{echoes.color.roles.danger.lightest}"
-            },
-            "active": {
-              "$type": "color",
-              "$value": "{echoes.color.roles.danger.light}"
-            },
-            "focus": {
               "$type": "color",
               "$value": "{echoes.color.background.utility.transparent}"
             }
@@ -373,43 +146,15 @@
             "default": {
               "$type": "color",
               "$value": "{echoes.color.roles.highlight.light}"
-            },
-            "hover": {
-              "$type": "color",
-              "$value": "{echoes.color.roles.highlight.medium}"
-            },
-            "focus": {
-              "$type": "color",
-              "$value": "{echoes.color.roles.highlight.light}"
-            },
-            "active": {
-              "$type": "color",
-              "$value": "{echoes.color.roles.highlight.medium}"
             }
           },
           "default": {
             "$type": "color",
             "$value": "{echoes.color.roles.highlight.bold}"
-          },
-          "hover": {
-            "$type": "color",
-            "$value": "{echoes.color.roles.highlight.dark}"
-          },
-          "focus": {
-            "$type": "color",
-            "$value": "{echoes.color.roles.highlight.bold}"
-          },
-          "active": {
-            "$type": "color",
-            "$value": "{echoes.color.roles.highlight.dark}"
           }
         },
         "favourite": {
           "default": {
-            "$type": "color",
-            "$value": "{echoes.color.roles.warning.bold}"
-          },
-          "hover": {
             "$type": "color",
             "$value": "{echoes.color.roles.warning.bold}"
           }
@@ -420,16 +165,6 @@
           "$type": "color",
           "$value": "{echoes.color.roles.support.white}",
           "$description": "Go to color for surfaces.. eg: cards, modals, popovers, etc..."
-        },
-        "hover": {
-          "$type": "color",
-          "$value": "{echoes.color.roles.neutral.lightest}",
-          "$description": "Hover color for bg-default"
-        },
-        "active": {
-          "$type": "color",
-          "$value": "{echoes.color.roles.neutral.light}",
-          "$description": "Active color for bg-default"
         },
         "canvas": {
           "default": {
@@ -443,18 +178,6 @@
             "$type": "color",
             "$value": "{echoes.color.roles.neutral.bold}",
             "$description": "Inverse color for bgs, creates high contrast against bg-default and bg-page"
-          },
-          "hover": {
-            "$type": "color",
-            "$value": "{echoes.color.roles.neutral.bold}"
-          },
-          "focus": {
-            "$type": "color",
-            "$value": "{echoes.color.roles.neutral.bold}"
-          },
-          "active": {
-            "$type": "color",
-            "$value": "{echoes.color.roles.neutral.dark}"
           }
         },
         "disabled": {
@@ -538,12 +261,7 @@
           "$type": "color",
           "$value": "{echoes.color.roles.highlight.dark}"
         },
-        "link": {
-          "hover": {
-            "$type": "color",
-            "$value": "{echoes.color.roles.primary.bold}"
-          }
-        }
+        "link": {}
       },
       "icon": {
         "bold": {
@@ -671,12 +389,6 @@
             "$type": "color",
             "$value": "{echoes.color.roles.highlight.medium}"
           }
-        }
-      },
-      "focus": {
-        "default": {
-          "$type": "color",
-          "$value": "{echoes.color.roles.primary.bold}"
         }
       }
     },

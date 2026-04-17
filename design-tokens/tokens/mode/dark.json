@@ -7,36 +7,6 @@
             "default": {
               "$type": "color",
               "$value": "{echoes.color.roles.neutral.strong}"
-            },
-            "hover": {
-              "$extensions": {
-                "studio.tokens": {
-                  "modify": {
-                    "type": "alpha",
-                    "value": "0.8",
-                    "space": "lch"
-                  }
-                }
-              },
-              "$type": "color",
-              "$value": "{echoes.color.roles.neutral.strong}"
-            },
-            "focus": {
-              "$type": "color",
-              "$value": "{echoes.color.roles.neutral.strong}"
-            },
-            "active": {
-              "$extensions": {
-                "studio.tokens": {
-                  "modify": {
-                    "type": "alpha",
-                    "value": "0.7",
-                    "space": "lch"
-                  }
-                }
-              },
-              "$type": "color",
-              "$value": "{echoes.color.roles.neutral.strong}"
             }
           },
           "bolder": {
@@ -51,18 +21,6 @@
             "$type": "color",
             "$value": "{echoes.color.roles.primary.medium}"
           },
-          "hover": {
-            "$type": "color",
-            "$value": "{echoes.color.roles.primary.medium}"
-          },
-          "focus": {
-            "$type": "color",
-            "$value": "{echoes.color.roles.primary.medium}"
-          },
-          "active": {
-            "$type": "color",
-            "$value": "{echoes.color.roles.primary.light}"
-          },
           "weak": {
             "default": {
               "$extensions": {
@@ -70,45 +28,6 @@
                   "modify": {
                     "type": "alpha",
                     "value": "0.2",
-                    "space": "hsl"
-                  }
-                }
-              },
-              "$type": "color",
-              "$value": "{echoes.color.roles.primary.strong}"
-            },
-            "hover": {
-              "$extensions": {
-                "studio.tokens": {
-                  "modify": {
-                    "type": "alpha",
-                    "value": "0.3",
-                    "space": "hsl"
-                  }
-                }
-              },
-              "$type": "color",
-              "$value": "{echoes.color.roles.primary.strong}"
-            },
-            "focus": {
-              "$extensions": {
-                "studio.tokens": {
-                  "modify": {
-                    "type": "alpha",
-                    "value": "0.2",
-                    "space": "hsl"
-                  }
-                }
-              },
-              "$type": "color",
-              "$value": "{echoes.color.roles.primary.strong}"
-            },
-            "active": {
-              "$extensions": {
-                "studio.tokens": {
-                  "modify": {
-                    "type": "alpha",
-                    "value": "0.4",
                     "space": "hsl"
                   }
                 }
@@ -123,18 +42,6 @@
             "$type": "color",
             "$value": "{echoes.color.roles.warning.medium}"
           },
-          "hover": {
-            "$type": "color",
-            "$value": "{echoes.color.roles.warning.medium}"
-          },
-          "focus": {
-            "$type": "color",
-            "$value": "{echoes.color.roles.warning.medium}"
-          },
-          "active": {
-            "$type": "color",
-            "$value": "{echoes.color.roles.warning.light}"
-          },
           "weak": {
             "default": {
               "$extensions": {
@@ -142,45 +49,6 @@
                   "modify": {
                     "type": "alpha",
                     "value": "0.3",
-                    "space": "lch"
-                  }
-                }
-              },
-              "$type": "color",
-              "$value": "{echoes.color.roles.warning.medium}"
-            },
-            "hover": {
-              "$extensions": {
-                "studio.tokens": {
-                  "modify": {
-                    "type": "alpha",
-                    "value": "0.2",
-                    "space": "lch"
-                  }
-                }
-              },
-              "$type": "color",
-              "$value": "{echoes.color.roles.warning.medium}"
-            },
-            "focus": {
-              "$extensions": {
-                "studio.tokens": {
-                  "modify": {
-                    "type": "alpha",
-                    "value": "0.3",
-                    "space": "lch"
-                  }
-                }
-              },
-              "$type": "color",
-              "$value": "{echoes.color.roles.warning.medium}"
-            },
-            "active": {
-              "$extensions": {
-                "studio.tokens": {
-                  "modify": {
-                    "type": "alpha",
-                    "value": "0.1",
                     "space": "lch"
                   }
                 }
@@ -195,18 +63,6 @@
             "$type": "color",
             "$value": "{echoes.color.roles.success.medium}"
           },
-          "hover": {
-            "$type": "color",
-            "$value": "{echoes.color.roles.success.medium}"
-          },
-          "focus": {
-            "$type": "color",
-            "$value": "{echoes.color.roles.success.medium}"
-          },
-          "active": {
-            "$type": "color",
-            "$value": "{echoes.color.roles.success.light}"
-          },
           "weak": {
             "default": {
               "$extensions": {
@@ -214,45 +70,6 @@
                   "modify": {
                     "type": "alpha",
                     "value": "0.3",
-                    "space": "lch"
-                  }
-                }
-              },
-              "$type": "color",
-              "$value": "{echoes.color.roles.success.medium}"
-            },
-            "hover": {
-              "$extensions": {
-                "studio.tokens": {
-                  "modify": {
-                    "type": "alpha",
-                    "value": "0.2",
-                    "space": "lch"
-                  }
-                }
-              },
-              "$type": "color",
-              "$value": "{echoes.color.roles.success.medium}"
-            },
-            "focus": {
-              "$extensions": {
-                "studio.tokens": {
-                  "modify": {
-                    "type": "alpha",
-                    "value": "0.3",
-                    "space": "lch"
-                  }
-                }
-              },
-              "$type": "color",
-              "$value": "{echoes.color.roles.success.medium}"
-            },
-            "active": {
-              "$extensions": {
-                "studio.tokens": {
-                  "modify": {
-                    "type": "alpha",
-                    "value": "0.1",
                     "space": "lch"
                   }
                 }
@@ -267,18 +84,6 @@
             "$type": "color",
             "$value": "{echoes.color.roles.danger.medium}"
           },
-          "hover": {
-            "$type": "color",
-            "$value": "{echoes.color.roles.danger.medium}"
-          },
-          "focus": {
-            "$type": "color",
-            "$value": "{echoes.color.roles.danger.medium}"
-          },
-          "active": {
-            "$type": "color",
-            "$value": "{echoes.color.roles.danger.light}"
-          },
           "weak": {
             "default": {
               "$extensions": {
@@ -286,45 +91,6 @@
                   "modify": {
                     "type": "alpha",
                     "value": "0.3",
-                    "space": "lch"
-                  }
-                }
-              },
-              "$type": "color",
-              "$value": "{echoes.color.roles.danger.medium}"
-            },
-            "hover": {
-              "$extensions": {
-                "studio.tokens": {
-                  "modify": {
-                    "type": "alpha",
-                    "value": "0.2",
-                    "space": "lch"
-                  }
-                }
-              },
-              "$type": "color",
-              "$value": "{echoes.color.roles.danger.medium}"
-            },
-            "focus": {
-              "$extensions": {
-                "studio.tokens": {
-                  "modify": {
-                    "type": "alpha",
-                    "value": "0.3",
-                    "space": "lch"
-                  }
-                }
-              },
-              "$type": "color",
-              "$value": "{echoes.color.roles.danger.medium}"
-            },
-            "active": {
-              "$extensions": {
-                "studio.tokens": {
-                  "modify": {
-                    "type": "alpha",
-                    "value": "0.1",
                     "space": "lch"
                   }
                 }
@@ -339,18 +105,6 @@
             "$type": "color",
             "$value": "{echoes.color.roles.info.medium}"
           },
-          "hover": {
-            "$type": "color",
-            "$value": "{echoes.color.roles.info.medium}"
-          },
-          "focus": {
-            "$type": "color",
-            "$value": "{echoes.color.roles.info.medium}"
-          },
-          "active": {
-            "$type": "color",
-            "$value": "{echoes.color.roles.info.light}"
-          },
           "weak": {
             "default": {
               "$extensions": {
@@ -358,45 +112,6 @@
                   "modify": {
                     "type": "alpha",
                     "value": "0.3",
-                    "space": "lch"
-                  }
-                }
-              },
-              "$type": "color",
-              "$value": "{echoes.color.roles.info.medium}"
-            },
-            "hover": {
-              "$extensions": {
-                "studio.tokens": {
-                  "modify": {
-                    "type": "alpha",
-                    "value": "0.2",
-                    "space": "lch"
-                  }
-                }
-              },
-              "$type": "color",
-              "$value": "{echoes.color.roles.info.medium}"
-            },
-            "focus": {
-              "$extensions": {
-                "studio.tokens": {
-                  "modify": {
-                    "type": "alpha",
-                    "value": "0.3",
-                    "space": "lch"
-                  }
-                }
-              },
-              "$type": "color",
-              "$value": "{echoes.color.roles.info.medium}"
-            },
-            "active": {
-              "$extensions": {
-                "studio.tokens": {
-                  "modify": {
-                    "type": "alpha",
-                    "value": "0.1",
                     "space": "lch"
                   }
                 }
@@ -418,10 +133,6 @@
               "$type": "color",
               "$value": "#5d6cd033"
             },
-            "hover": {
-              "$type": "color",
-              "$value": "#5d6cd04d"
-            },
             "pressed": {
               "$type": "color",
               "$value": "#5d6cd04d"
@@ -431,10 +142,6 @@
             "default": {
               "$type": "color",
               "$value": "{echoes.color.roles.primary.medium}"
-            },
-            "hover": {
-              "$type": "color",
-              "$value": "{echoes.color.roles.primary.light}"
             },
             "pressed": {
               "$type": "color",
@@ -447,88 +154,16 @@
             "default": {
               "$type": "color",
               "$value": "{echoes.color.background.utility.transparent}"
-            },
-            "hover": {
-              "$extensions": {
-                "studio.tokens": {
-                  "modify": {
-                    "type": "alpha",
-                    "value": "0.2",
-                    "space": "hsl"
-                  }
-                }
-              },
-              "$type": "color",
-              "$value": "{echoes.color.roles.primary.strong}"
-            },
-            "active": {
-              "$extensions": {
-                "studio.tokens": {
-                  "modify": {
-                    "type": "alpha",
-                    "value": "0.3",
-                    "space": "hsl"
-                  }
-                }
-              },
-              "$type": "color",
-              "$value": "{echoes.color.roles.primary.strong}"
-            },
-            "focus": {
-              "$type": "color",
-              "$value": "{echoes.color.background.utility.transparent}"
             }
           },
           "neutral": {
             "default": {
               "$type": "color",
               "$value": "{echoes.color.background.utility.transparent}"
-            },
-            "hover": {
-              "$type": "color",
-              "$value": "{echoes.color.roles.neutral.bold}"
-            },
-            "active": {
-              "$type": "color",
-              "$value": "{echoes.color.roles.neutral.dark}"
-            },
-            "focus": {
-              "$type": "color",
-              "$value": "{echoes.color.background.utility.transparent}"
             }
           },
           "danger": {
             "default": {
-              "$type": "color",
-              "$value": "{echoes.color.background.utility.transparent}"
-            },
-            "hover": {
-              "$extensions": {
-                "studio.tokens": {
-                  "modify": {
-                    "type": "alpha",
-                    "value": "0.2",
-                    "space": "hsl"
-                  }
-                }
-              },
-              "$type": "color",
-              "$value": "{echoes.color.roles.danger.dark}"
-            },
-            "active": {
-              "$extensions": {
-                "studio.tokens": {
-                  "modify": {
-                    "type": "alpha",
-                    "value": "0.3",
-                    "space": "hsl"
-                  }
-                }
-              },
-              "$type": "color",
-              "$value": "{echoes.color.roles.danger.dark}"
-            },
-            "focus": {
               "$type": "color",
               "$value": "{echoes.color.background.utility.transparent}"
             }
@@ -548,70 +183,15 @@
               },
               "$type": "color",
               "$value": "{echoes.color.roles.highlight.bold}"
-            },
-            "hover": {
-              "$extensions": {
-                "studio.tokens": {
-                  "modify": {
-                    "type": "alpha",
-                    "value": "0.2",
-                    "space": "lch"
-                  }
-                }
-              },
-              "$type": "color",
-              "$value": "{echoes.color.roles.highlight.bold}"
-            },
-            "focus": {
-              "$extensions": {
-                "studio.tokens": {
-                  "modify": {
-                    "type": "alpha",
-                    "value": "0.3",
-                    "space": "lch"
-                  }
-                }
-              },
-              "$type": "color",
-              "$value": "{echoes.color.roles.highlight.bold}"
-            },
-            "active": {
-              "$extensions": {
-                "studio.tokens": {
-                  "modify": {
-                    "type": "alpha",
-                    "value": "0.1",
-                    "space": "lch"
-                  }
-                }
-              },
-              "$type": "color",
-              "$value": "{echoes.color.roles.highlight.bold}"
             }
           },
           "default": {
             "$type": "color",
             "$value": "{echoes.color.roles.highlight.strong}"
-          },
-          "hover": {
-            "$type": "color",
-            "$value": "{echoes.color.roles.highlight.medium}"
-          },
-          "focus": {
-            "$type": "color",
-            "$value": "{echoes.color.roles.highlight.strong}"
-          },
-          "active": {
-            "$type": "color",
-            "$value": "{echoes.color.roles.highlight.medium}"
           }
         },
         "favourite": {
           "default": {
-            "$type": "color",
-            "$value": "{echoes.color.roles.warning.medium}"
-          },
-          "hover": {
             "$type": "color",
             "$value": "{echoes.color.roles.warning.medium}"
           }
@@ -621,14 +201,6 @@
         "default": {
           "$type": "color",
           "$value": "{echoes.color.roles.neutral.bold}"
-        },
-        "hover": {
-          "$type": "color",
-          "$value": "{echoes.color.roles.neutral.bold}"
-        },
-        "active": {
-          "$type": "color",
-          "$value": "{echoes.color.roles.neutral.dark}"
         },
         "canvas": {
           "default": {
@@ -640,18 +212,6 @@
           "default": {
             "$type": "color",
             "$value": "{echoes.color.roles.neutral.light}"
-          },
-          "hover": {
-            "$type": "color",
-            "$value": "{echoes.color.roles.neutral.lightest}"
-          },
-          "focus": {
-            "$type": "color",
-            "$value": "{echoes.color.roles.neutral.light}"
-          },
-          "active": {
-            "$type": "color",
-            "$value": "{echoes.color.roles.neutral.lightest}"
           }
         },
         "disabled": {
@@ -733,12 +293,7 @@
           "$type": "color",
           "$value": "{echoes.color.roles.highlight.medium}"
         },
-        "link": {
-          "hover": {
-            "$type": "color",
-            "$value": "{echoes.color.roles.primary.medium}"
-          }
-        }
+        "link": {}
       },
       "icon": {
         "bold": {
@@ -911,12 +466,6 @@
             "$type": "color",
             "$value": "{echoes.color.roles.highlight.bold}"
           }
-        }
-      },
-      "focus": {
-        "default": {
-          "$type": "color",
-          "$value": "{echoes.color.roles.primary.medium}"
         }
       }
     },
