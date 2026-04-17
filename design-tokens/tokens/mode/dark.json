@@ -7,24 +7,22 @@
             "$type": "color",
             "$value": "{echoes.color.roles.primary.medium}"
           },
-          "weak": {
-            "default": {
-              "$extensions": {
-                "studio.tokens": {
-                  "modify": {
-                    "type": "alpha",
-                    "value": "0.2",
-                    "space": "hsl"
-                  }
+          "interactionWeak": {
+            "$extensions": {
+              "studio.tokens": {
+                "modify": {
+                  "type": "alpha",
+                  "value": "0.2",
+                  "space": "hsl"
                 }
-              },
-              "$type": "color",
-              "$value": "{echoes.color.roles.primary.strong}"
-            }
+              }
+            },
+            "$type": "color",
+            "$value": "{echoes.color.roles.primary.strong}"
           }
         },
         "warning": {
-          "default": {
+          "interaction": {
             "$type": "color",
             "$value": "{echoes.color.roles.warning.medium}"
           },
@@ -182,13 +180,15 @@
             "$value": "{echoes.color.roles.warning.medium}"
           }
         },
-        "subtle": {
-          "$type": "color",
-          "$value": "{echoes.color.roles.neutral.strong}"
-        },
-        "bolder": {
-          "$type": "color",
-          "$value": "{echoes.color.roles.neutral.strong}"
+        "neutral": {
+          "subtle": {
+            "$type": "color",
+            "$value": "{echoes.color.roles.neutral.strong}"
+          },
+          "bolder": {
+            "$type": "color",
+            "$value": "{echoes.color.roles.neutral.strong}"
+          }
         }
       },
       "surface": {
@@ -286,8 +286,7 @@
         "emphasis": {
           "$type": "color",
           "$value": "{echoes.color.roles.highlight.medium}"
-        },
-        "link": {}
+        }
       },
       "icon": {
         "bold": {

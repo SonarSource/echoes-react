@@ -3,31 +3,27 @@
     "color": {
       "background": {
         "primary": {
-          "default": {
+          "interaction": {
             "$type": "color",
             "$value": "{echoes.color.roles.primary.strong}",
             "$description": "Used as the background color of components that reinforce our brand"
           },
-          "weak": {
-            "default": {
-              "$type": "color",
-              "$value": "{echoes.color.roles.primary.lightest}",
-              "$description": "Used as the background color of components that reinforce our brand with less visual highlight"
-            }
+          "interactionWeak": {
+            "$type": "color",
+            "$value": "{echoes.color.roles.primary.lightest}",
+            "$description": "Used as the background color of components that reinforce our brand with less visual highlight"
           }
         },
-        "warning": {
-          "default": {
+        "intent": {
+          "warning": {
             "$type": "color",
             "$value": "{echoes.color.roles.warning.strong}",
             "$description": "Use for backgrounds that communicate warning or caution"
           },
-          "weak": {
-            "default": {
-              "$type": "color",
-              "$value": "{echoes.color.roles.warning.lightest}",
-              "$description": "Use for backgrounds that communicate warning or caution, with less visual highlight"
-            }
+          "warningWeak": {
+            "$type": "color",
+            "$value": "{echoes.color.roles.warning.lightest}",
+            "$description": "Use for backgrounds that communicate warning or caution, with less visual highlight"
           }
         },
         "success": {
@@ -143,15 +139,17 @@
             "$value": "{echoes.color.roles.warning.bold}"
           }
         },
-        "subtle": {
-          "$type": "color",
-          "$value": "{echoes.color.roles.neutral.lightest}",
-          "$description": "Use it in components with neutral sentiment"
-        },
-        "bolder": {
-          "$type": "color",
-          "$value": "{echoes.color.roles.neutral.light}",
-          "$description": "Use it in components with neutral sentiment that need a bolder highlight"
+        "neutral": {
+          "subtle": {
+            "$type": "color",
+            "$value": "{echoes.color.roles.neutral.lightest}",
+            "$description": "Use it in components with neutral sentiment"
+          },
+          "bolder": {
+            "$type": "color",
+            "$value": "{echoes.color.roles.neutral.light}",
+            "$description": "Use it in components with neutral sentiment that need a bolder highlight"
+          }
         }
       },
       "surface": {
@@ -254,8 +252,7 @@
         "emphasis": {
           "$type": "color",
           "$value": "{echoes.color.roles.highlight.dark}"
-        },
-        "link": {}
+        }
       },
       "icon": {
         "bold": {
