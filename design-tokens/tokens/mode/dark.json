@@ -21,6 +21,76 @@
             "$value": "{echoes.color.roles.primary.strong}"
           }
         },
+        "intent": {
+          "warning": {
+            "$type": "color",
+            "$value": "{echoes.color.roles.warning.medium}"
+          },
+          "warningWeak": {
+            "$extensions": {
+              "studio.tokens": {
+                "modify": {
+                  "type": "alpha",
+                  "value": "0.3",
+                  "space": "lch"
+                }
+              }
+            },
+            "$type": "color",
+            "$value": "{echoes.color.roles.warning.medium}"
+          },
+          "success": {
+            "$type": "color",
+            "$value": "{echoes.color.roles.success.medium}"
+          },
+          "successWeak": {
+            "$extensions": {
+              "studio.tokens": {
+                "modify": {
+                  "type": "alpha",
+                  "value": "0.3",
+                  "space": "lch"
+                }
+              }
+            },
+            "$type": "color",
+            "$value": "{echoes.color.roles.success.medium}"
+          },
+          "danger": {
+            "$type": "color",
+            "$value": "{echoes.color.roles.danger.medium}"
+          },
+          "dangerWeak": {
+            "$extensions": {
+              "studio.tokens": {
+                "modify": {
+                  "type": "alpha",
+                  "value": "0.3",
+                  "space": "lch"
+                }
+              }
+            },
+            "$type": "color",
+            "$value": "{echoes.color.roles.danger.medium}"
+          },
+          "info": {
+            "$type": "color",
+            "$value": "{echoes.color.roles.info.medium}"
+          },
+          "infoWeak": {
+            "$extensions": {
+              "studio.tokens": {
+                "modify": {
+                  "type": "alpha",
+                  "value": "0.3",
+                  "space": "lch"
+                }
+              }
+            },
+            "$type": "color",
+            "$value": "{echoes.color.roles.info.medium}"
+          }
+        },
         "utility": {
           "transparent": {
             "$type": "color",
@@ -104,76 +174,6 @@
           "bolder": {
             "$type": "color",
             "$value": "{echoes.color.roles.neutral.strong}"
-          }
-        },
-        "intent": {
-          "warning": {
-            "$type": "color",
-            "$value": "{echoes.color.roles.warning.medium}"
-          },
-          "warningWeak": {
-            "$extensions": {
-              "studio.tokens": {
-                "modify": {
-                  "type": "alpha",
-                  "value": "0.3",
-                  "space": "lch"
-                }
-              }
-            },
-            "$type": "color",
-            "$value": "{echoes.color.roles.warning.medium}"
-          },
-          "success": {
-            "$type": "color",
-            "$value": "{echoes.color.roles.success.medium}"
-          },
-          "successWeak": {
-            "$extensions": {
-              "studio.tokens": {
-                "modify": {
-                  "type": "alpha",
-                  "value": "0.3",
-                  "space": "lch"
-                }
-              }
-            },
-            "$type": "color",
-            "$value": "{echoes.color.roles.success.medium}"
-          },
-          "danger": {
-            "$type": "color",
-            "$value": "{echoes.color.roles.danger.medium}"
-          },
-          "dangerWeak": {
-            "$extensions": {
-              "studio.tokens": {
-                "modify": {
-                  "type": "alpha",
-                  "value": "0.3",
-                  "space": "lch"
-                }
-              }
-            },
-            "$type": "color",
-            "$value": "{echoes.color.roles.danger.medium}"
-          },
-          "info": {
-            "$type": "color",
-            "$value": "{echoes.color.roles.info.medium}"
-          },
-          "infoWeak": {
-            "$extensions": {
-              "studio.tokens": {
-                "modify": {
-                  "type": "alpha",
-                  "value": "0.3",
-                  "space": "lch"
-                }
-              }
-            },
-            "$type": "color",
-            "$value": "{echoes.color.roles.info.medium}"
           }
         }
       },
