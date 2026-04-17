@@ -24,48 +24,36 @@
             "$type": "color",
             "$value": "{echoes.color.roles.warning.lightest}",
             "$description": "Use for backgrounds that communicate warning or caution, with less visual highlight"
-          }
-        },
-        "success": {
-          "default": {
+          },
+          "success": {
             "$type": "color",
             "$value": "{echoes.color.roles.success.bold}",
             "$description": "Use for backgrounds that communicate positive or success messages"
           },
-          "weak": {
-            "default": {
-              "$type": "color",
-              "$value": "{echoes.color.roles.success.lightest}",
-              "$description": "Use for backgrounds that communicate positive or success messages, with less visual highlight"
-            }
-          }
-        },
-        "danger": {
-          "default": {
+          "successWeak": {
+            "$type": "color",
+            "$value": "{echoes.color.roles.success.lightest}",
+            "$description": "Use for backgrounds that communicate positive or success messages, with less visual highlight"
+          },
+          "danger": {
             "$type": "color",
             "$value": "{echoes.color.roles.danger.bold}",
             "$description": "Use for backgrounds that communicate danger or destructive messages"
           },
-          "weak": {
-            "default": {
-              "$type": "color",
-              "$value": "{echoes.color.roles.danger.lightest}",
-              "$description": "Use it for backgrounds that communicate danger or destructive messages, with less visual highlight"
-            }
-          }
-        },
-        "info": {
-          "default": {
+          "dangerWeak": {
+            "$type": "color",
+            "$value": "{echoes.color.roles.danger.lightest}",
+            "$description": "Use it for backgrounds that communicate danger or destructive messages, with less visual highlight"
+          },
+          "info": {
             "$type": "color",
             "$value": "{echoes.color.roles.info.dark}",
             "$description": "Use for backgrounds that communicate information to the user"
           },
-          "weak": {
-            "default": {
-              "$type": "color",
-              "$value": "{echoes.color.roles.info.lightest}",
-              "$description": "Use for backgrounds that communicate information to the user, with less visual highlight"
-            }
+          "infoWeak": {
+            "$type": "color",
+            "$value": "{echoes.color.roles.info.lightest}",
+            "$description": "Use for backgrounds that communicate information to the user, with less visual highlight"
           }
         },
         "utility": {
