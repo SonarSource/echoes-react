@@ -2,6 +2,38 @@
   "echoes": {
     "color": {
       "background": {
+        "neutral": {
+          "subtle": {
+            "$type": "color",
+            "$value": "{echoes.color.roles.neutral.lightest}",
+            "$description": "Use it in components with neutral sentiment"
+          },
+          "bolder": {
+            "$type": "color",
+            "$value": "{echoes.color.roles.neutral.light}",
+            "$description": "Use it in components with neutral sentiment that need a bolder highlight"
+          },
+          "default": {
+            "$type": "color",
+            "$value": "{echoes.color.roles.support.white}",
+            "$description": "Go to color for surfaces.. eg: cards, modals, popovers, etc..."
+          },
+          "canvas": {
+            "$type": "color",
+            "$value": "{echoes.color.roles.neutral.lightest}",
+            "$description": "Use it as page background"
+          },
+          "inverse": {
+            "$type": "color",
+            "$value": "{echoes.color.roles.neutral.bold}",
+            "$description": "Inverse color for bgs, creates high contrast against bg-default and bg-page"
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{echoes.color.roles.neutral.lightest}",
+            "$description": "Use it as background for disabled components"
+          }
+        },
         "primary": {
           "interaction": {
             "$type": "color",
@@ -64,6 +96,7 @@
             "$value": "{echoes.color.roles.highlight.light}"
           }
         },
+        "states": {},
         "utility": {
           "transparent": {
             "$type": "color",
@@ -121,38 +154,6 @@
           "default": {
             "$type": "color",
             "$value": "{echoes.color.roles.warning.bold}"
-          }
-        },
-        "neutral": {
-          "subtle": {
-            "$type": "color",
-            "$value": "{echoes.color.roles.neutral.lightest}",
-            "$description": "Use it in components with neutral sentiment"
-          },
-          "bolder": {
-            "$type": "color",
-            "$value": "{echoes.color.roles.neutral.light}",
-            "$description": "Use it in components with neutral sentiment that need a bolder highlight"
-          },
-          "default": {
-            "$type": "color",
-            "$value": "{echoes.color.roles.support.white}",
-            "$description": "Go to color for surfaces.. eg: cards, modals, popovers, etc..."
-          },
-          "canvas": {
-            "$type": "color",
-            "$value": "{echoes.color.roles.neutral.lightest}",
-            "$description": "Use it as page background"
-          },
-          "inverse": {
-            "$type": "color",
-            "$value": "{echoes.color.roles.neutral.bold}",
-            "$description": "Inverse color for bgs, creates high contrast against bg-default and bg-page"
-          },
-          "disabled": {
-            "$type": "color",
-            "$value": "{echoes.color.roles.neutral.lightest}",
-            "$description": "Use it as background for disabled components"
           }
         }
       },

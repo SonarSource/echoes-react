@@ -2,6 +2,32 @@
   "echoes": {
     "color": {
       "background": {
+        "neutral": {
+          "subtle": {
+            "$type": "color",
+            "$value": "{echoes.color.roles.neutral.strong}"
+          },
+          "bolder": {
+            "$type": "color",
+            "$value": "{echoes.color.roles.neutral.strong}"
+          },
+          "default": {
+            "$type": "color",
+            "$value": "{echoes.color.roles.neutral.bold}"
+          },
+          "canvas": {
+            "$type": "color",
+            "$value": "{echoes.color.roles.neutral.bold}"
+          },
+          "inverse": {
+            "$type": "color",
+            "$value": "{echoes.color.roles.neutral.light}"
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{echoes.color.roles.neutral.strong}"
+          }
+        },
         "primary": {
           "default": {
             "$type": "color",
@@ -108,6 +134,7 @@
             "$value": "{echoes.color.roles.highlight.bold}"
           }
         },
+        "states": {},
         "utility": {
           "transparent": {
             "$type": "color",
@@ -160,32 +187,6 @@
           "default": {
             "$type": "color",
             "$value": "{echoes.color.roles.warning.medium}"
-          }
-        },
-        "neutral": {
-          "subtle": {
-            "$type": "color",
-            "$value": "{echoes.color.roles.neutral.strong}"
-          },
-          "bolder": {
-            "$type": "color",
-            "$value": "{echoes.color.roles.neutral.strong}"
-          },
-          "default": {
-            "$type": "color",
-            "$value": "{echoes.color.roles.neutral.bold}"
-          },
-          "canvas": {
-            "$type": "color",
-            "$value": "{echoes.color.roles.neutral.bold}"
-          },
-          "inverse": {
-            "$type": "color",
-            "$value": "{echoes.color.roles.neutral.light}"
-          },
-          "disabled": {
-            "$type": "color",
-            "$value": "{echoes.color.roles.neutral.strong}"
           }
         }
       },
