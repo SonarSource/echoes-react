@@ -89,6 +89,23 @@
             },
             "$type": "color",
             "$value": "{echoes.color.roles.info.medium}"
+          },
+          "emphasis": {
+            "$type": "color",
+            "$value": "{echoes.color.roles.highlight.strong}"
+          },
+          "emphasisWeak": {
+            "$extensions": {
+              "studio.tokens": {
+                "modify": {
+                  "type": "alpha",
+                  "value": "0.3",
+                  "space": "lch"
+                }
+              }
+            },
+            "$type": "color",
+            "$value": "{echoes.color.roles.highlight.bold}"
           }
         },
         "utility": {
@@ -139,27 +156,6 @@
             }
           }
         },
-        "emphasis": {
-          "weak": {
-            "default": {
-              "$extensions": {
-                "studio.tokens": {
-                  "modify": {
-                    "type": "alpha",
-                    "value": "0.3",
-                    "space": "lch"
-                  }
-                }
-              },
-              "$type": "color",
-              "$value": "{echoes.color.roles.highlight.bold}"
-            }
-          },
-          "default": {
-            "$type": "color",
-            "$value": "{echoes.color.roles.highlight.strong}"
-          }
-        },
         "favourite": {
           "default": {
             "$type": "color",
@@ -175,24 +171,18 @@
             "$type": "color",
             "$value": "{echoes.color.roles.neutral.strong}"
           }
-        }
-      },
-      "surface": {
+        },
         "default": {
           "$type": "color",
           "$value": "{echoes.color.roles.neutral.bold}"
         },
         "canvas": {
-          "default": {
-            "$type": "color",
-            "$value": "{echoes.color.roles.neutral.bold}"
-          }
+          "$type": "color",
+          "$value": "{echoes.color.roles.neutral.bold}"
         },
         "inverse": {
-          "default": {
-            "$type": "color",
-            "$value": "{echoes.color.roles.neutral.light}"
-          }
+          "$type": "color",
+          "$value": "{echoes.color.roles.neutral.light}"
         },
         "disabled": {
           "$type": "color",
