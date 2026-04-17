@@ -2,21 +2,7 @@
   "echoes": {
     "color": {
       "background": {
-        "neutral": {
-          "subtle": {
-            "default": {
-              "$type": "color",
-              "$value": "{echoes.color.roles.neutral.strong}"
-            }
-          },
-          "bolder": {
-            "default": {
-              "$type": "color",
-              "$value": "{echoes.color.roles.neutral.strong}"
-            }
-          }
-        },
-        "accent": {
+        "primary": {
           "default": {
             "$type": "color",
             "$value": "{echoes.color.roles.primary.medium}"
@@ -195,6 +181,14 @@
             "$type": "color",
             "$value": "{echoes.color.roles.warning.medium}"
           }
+        },
+        "subtle": {
+          "$type": "color",
+          "$value": "{echoes.color.roles.neutral.strong}"
+        },
+        "bolder": {
+          "$type": "color",
+          "$value": "{echoes.color.roles.neutral.strong}"
         }
       },
       "surface": {

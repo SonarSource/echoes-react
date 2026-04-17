@@ -2,23 +2,7 @@
   "echoes": {
     "color": {
       "background": {
-        "neutral": {
-          "subtle": {
-            "default": {
-              "$type": "color",
-              "$value": "{echoes.color.roles.neutral.lightest}",
-              "$description": "Use it in components with neutral sentiment"
-            }
-          },
-          "bolder": {
-            "default": {
-              "$type": "color",
-              "$value": "{echoes.color.roles.neutral.light}",
-              "$description": "Use it in components with neutral sentiment that need a bolder highlight"
-            }
-          }
-        },
-        "accent": {
+        "primary": {
           "default": {
             "$type": "color",
             "$value": "{echoes.color.roles.primary.strong}",
@@ -158,6 +142,16 @@
             "$type": "color",
             "$value": "{echoes.color.roles.warning.bold}"
           }
+        },
+        "subtle": {
+          "$type": "color",
+          "$value": "{echoes.color.roles.neutral.lightest}",
+          "$description": "Use it in components with neutral sentiment"
+        },
+        "bolder": {
+          "$type": "color",
+          "$value": "{echoes.color.roles.neutral.light}",
+          "$description": "Use it in components with neutral sentiment that need a bolder highlight"
         }
       },
       "surface": {
