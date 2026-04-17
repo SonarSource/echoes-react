@@ -103,7 +103,7 @@
           },
           "onDisable": {
             "$type": "color",
-            "$value": ""
+            "$value": "{echoes.color.roles.neutral.medium}"
           },
           "hover": {
             "$type": "color",
@@ -115,7 +115,8 @@
           },
           "select": {
             "$type": "color",
-            "$value": ""
+            "$value": "{echoes.color.roles.primary.lightest}",
+            "$description": "Use it in backgrounds of components that have a selected state that need less visual highlight, like dropdown or selects"
           },
           "onSelect": {
             "$type": "color",
@@ -135,32 +136,6 @@
             "$type": "color",
             "$value": "{echoes.color.roles.support.transparent}",
             "$description": "Use it when you need transparency in the background"
-          }
-        },
-        "selected": {
-          "weak": {
-            "default": {
-              "$type": "color",
-              "$value": "{echoes.color.roles.primary.lightest}",
-              "$description": "Use it in backgrounds of components that have a selected state that need less visual highlight, like dropdown or selects"
-            },
-            "pressed": {
-              "$type": "color",
-              "$value": "{echoes.color.roles.primary.light}",
-              "$description": "Pressed state of components that have a selected state that need less visual highlight, like dropdown or selects"
-            }
-          },
-          "bold": {
-            "default": {
-              "$type": "color",
-              "$value": "{echoes.color.roles.primary.strong}",
-              "$description": "Use it in backgrounds of components that have a selected state, like checkboxes or radios"
-            },
-            "pressed": {
-              "$type": "color",
-              "$value": "{echoes.color.roles.primary.bold}",
-              "$description": "Pressed state of components that have a selected state, like checkboxes or radios"
-            }
           }
         },
         "ghost": {
@@ -220,10 +195,6 @@
         "default": {
           "$type": "color",
           "$value": "{echoes.color.roles.neutral.strong}"
-        },
-        "disabled": {
-          "$type": "color",
-          "$value": "{echoes.color.roles.neutral.medium}"
         },
         "placeholder": {
           "$type": "color",
