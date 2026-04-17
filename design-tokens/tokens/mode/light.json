@@ -96,7 +96,40 @@
             "$value": "{echoes.color.roles.highlight.light}"
           }
         },
-        "states": {},
+        "states": {
+          "disable": {
+            "$type": "color",
+            "$value": ""
+          },
+          "onDisable": {
+            "$type": "color",
+            "$value": ""
+          },
+          "hover": {
+            "$type": "color",
+            "$value": ""
+          },
+          "press": {
+            "$type": "color",
+            "$value": ""
+          },
+          "select": {
+            "$type": "color",
+            "$value": ""
+          },
+          "onSelect": {
+            "$type": "color",
+            "$value": ""
+          },
+          "selectInverted": {
+            "$type": "color",
+            "$value": ""
+          },
+          "onSelectInverted": {
+            "$type": "color",
+            "$value": ""
+          }
+        },
         "utility": {
           "transparent": {
             "$type": "color",
