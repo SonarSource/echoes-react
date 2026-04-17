@@ -417,7 +417,6 @@
       "echoes.color.background.info.weak.hover": "2751e00e58ba5f46253b9e981785d5c1def3faf4",
       "echoes.color.background.info.weak.focus": "311f525b9700f617c1068fb9492e1c8ceb5e2dfa",
       "echoes.color.background.info.weak.active": "f2c087faec815783fda608556e2585c9b17e177a",
-      "echoes.color.background.utility.transparent": "9dab5acff2709b58b50b066159d9675eb3c2677e",
       "echoes.color.background.selected.weak.default": "b36c5f7f165049a0ceee1bc5a6f0cfffa5af995e",
       "echoes.color.background.selected.weak.hover": "c39e2a75d2c0142df04c25c843d04e7c7460bbff",
       "echoes.color.background.selected.weak.pressed": "95fb03b683a07e6bce7e9749c782de24e8520e41",
@@ -461,11 +460,9 @@
       "echoes.color.text.default": "02a4e2b8ea4f8891f23042231dead1001b45cb35",
       "echoes.color.text.subtle": "4bf558403e4b1a2ac14a2570900ad26554abffe1",
       "echoes.color.text.disabled": "6f12ba53e440ed719c00cb22bb1a3b9d52956a1d",
-      "echoes.color.text.onColor": "0db613423f0e21fb17afc3e864ae7922ec650129",
       "echoes.color.text.onColor-Inverse": "dd121aed759cecd1dd044af450f5814f8f4553df",
       "echoes.color.text.danger": "55eda2f5401e13353f5ba0d42f0d9ec306051e1e",
       "echoes.color.text.placeholder": "d83d998c2cb6ae22518edf81df9426e4e8d73072",
-      "echoes.color.text.accent": "da904856f2cc7e1cb78cfc92dd42d62f6232c5ea",
       "echoes.color.text.info": "5720c93cd62d0c106fc1e46be57c24e322b0c2af",
       "echoes.color.text.success": "6a377514b7187548a9ac1151b5b0f261a9c47e1f",
       "echoes.color.text.warning": "b9e612412628009c83ee6e4992f90d2e24af5a4b",
@@ -563,7 +560,10 @@
       "echoes.sidebar-navigation-item.colors.background.default": "afde2b77f3ce92e777e5e0aa7343099e7fc4cbd5",
       "echoes.sidebar-navigation-item.colors.background.hover": "44f88ec67128390c3a73cef37f9d1e5de4d4a6a1",
       "echoes.sidebar-navigation-item.colors.background.active": "deb51d830d9fe1cab789fd758f0afaf5a2bb3728",
-      "echoes.table.colors.background.header.default": "45a90245aad271b5a3e0ac918c2a784232888321"
+      "echoes.table.colors.background.header.default": "45a90245aad271b5a3e0ac918c2a784232888321",
+      "echoes.color.background.onInteraction": "0db613423f0e21fb17afc3e864ae7922ec650129",
+      "echoes.color.primary.onInteractionWeak": "da904856f2cc7e1cb78cfc92dd42d62f6232c5ea",
+      "echoes.color.utility.transparent": "9dab5acff2709b58b50b066159d9675eb3c2677e"
     },
     "group": "Modes"
   },
@@ -625,7 +625,6 @@
       "echoes.color.background.info.weak.hover": "2751e00e58ba5f46253b9e981785d5c1def3faf4",
       "echoes.color.background.info.weak.focus": "311f525b9700f617c1068fb9492e1c8ceb5e2dfa",
       "echoes.color.background.info.weak.active": "f2c087faec815783fda608556e2585c9b17e177a",
-      "echoes.color.background.utility.transparent": "9dab5acff2709b58b50b066159d9675eb3c2677e",
       "echoes.color.background.selected.weak.default": "b36c5f7f165049a0ceee1bc5a6f0cfffa5af995e",
       "echoes.color.background.selected.weak.hover": "c39e2a75d2c0142df04c25c843d04e7c7460bbff",
       "echoes.color.background.selected.weak.pressed": "95fb03b683a07e6bce7e9749c782de24e8520e41",
@@ -670,9 +669,7 @@
       "echoes.color.text.disabled": "6f12ba53e440ed719c00cb22bb1a3b9d52956a1d",
       "echoes.color.text.placeholder": "d83d998c2cb6ae22518edf81df9426e4e8d73072",
       "echoes.color.text.subtle": "4bf558403e4b1a2ac14a2570900ad26554abffe1",
-      "echoes.color.text.onColor": "0db613423f0e21fb17afc3e864ae7922ec650129",
       "echoes.color.text.onColor-Inverse": "dd121aed759cecd1dd044af450f5814f8f4553df",
-      "echoes.color.text.accent": "da904856f2cc7e1cb78cfc92dd42d62f6232c5ea",
       "echoes.color.text.danger": "55eda2f5401e13353f5ba0d42f0d9ec306051e1e",
       "echoes.color.text.warning": "b9e612412628009c83ee6e4992f90d2e24af5a4b",
       "echoes.color.text.success": "6a377514b7187548a9ac1151b5b0f261a9c47e1f",
@@ -771,7 +768,10 @@
       "echoes.sidebar-navigation-item.colors.background.default": "afde2b77f3ce92e777e5e0aa7343099e7fc4cbd5",
       "echoes.sidebar-navigation-item.colors.background.hover": "44f88ec67128390c3a73cef37f9d1e5de4d4a6a1",
       "echoes.sidebar-navigation-item.colors.background.active": "deb51d830d9fe1cab789fd758f0afaf5a2bb3728",
-      "echoes.table.colors.background.header.default": "45a90245aad271b5a3e0ac918c2a784232888321"
+      "echoes.table.colors.background.header.default": "45a90245aad271b5a3e0ac918c2a784232888321",
+      "echoes.color.background.onInteraction": "0db613423f0e21fb17afc3e864ae7922ec650129",
+      "echoes.color.primary.onInteractionWeak": "da904856f2cc7e1cb78cfc92dd42d62f6232c5ea",
+      "echoes.color.utility.transparent": "9dab5acff2709b58b50b066159d9675eb3c2677e"
     },
     "group": "Modes"
   },
