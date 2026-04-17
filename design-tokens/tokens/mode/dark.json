@@ -170,23 +170,23 @@
           "bolder": {
             "$type": "color",
             "$value": "{echoes.color.roles.neutral.strong}"
+          },
+          "default": {
+            "$type": "color",
+            "$value": "{echoes.color.roles.neutral.bold}"
+          },
+          "canvas": {
+            "$type": "color",
+            "$value": "{echoes.color.roles.neutral.bold}"
+          },
+          "inverse": {
+            "$type": "color",
+            "$value": "{echoes.color.roles.neutral.light}"
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{echoes.color.roles.neutral.strong}"
           }
-        },
-        "default": {
-          "$type": "color",
-          "$value": "{echoes.color.roles.neutral.bold}"
-        },
-        "canvas": {
-          "$type": "color",
-          "$value": "{echoes.color.roles.neutral.bold}"
-        },
-        "inverse": {
-          "$type": "color",
-          "$value": "{echoes.color.roles.neutral.light}"
-        },
-        "disabled": {
-          "$type": "color",
-          "$value": "{echoes.color.roles.neutral.strong}"
         }
       },
       "overlays": {
