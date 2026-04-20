@@ -16,25 +16,16 @@ For more details, refer to the [internal versioning strategy](https://docs.googl
   - Tag version: `x.y.z-build_number`
     - find it in the `repox-main` Github check, where it says `Latest promoted build of '0.13.0-2686' from branch 'main'`
   - Release title: `@sonarsource/echoes-react - x.y.z`
-  - Find the relevant Jira release from the [releases page](https://sonarsource.atlassian.net/projects/ECHOES?selectedItem=com.atlassian.jira.jira-projects-plugin%3Arelease-page) and after ensuring the correct tickets are in there, release it, generating release not in Jira at the same time.
+  - Find the relevant Jira release from the [releases page](https://sonarsource.atlassian.net/projects/ECHOES?selectedItem=com.atlassian.jira.jira-projects-plugin%3Arelease-page) and after ensuring the correct tickets are in there, release it, generating release notes in Jira at the same time.
   - Populate the Github release notes section (copied as markdown from Jira).
     - Example: <https://github.com/SonarSource/echoes-react/releases/tag/v0.5.0>
   - click _Publish Release_
-
-- [Create a Jira release ticket in the REL project](https://jira.sonarsource.com/projects/REL) like [this one](https://sonarsource.atlassian.net/jira/software/c/projects/REL/issues/REL-3062)
-  - Summary: @sonarsource/echoes-react x.y
-  - Documentation status: N/A
-  - Short description: pull from [version description](https://sonarsource.atlassian.net/projects/ECHOES/versions/15439/tab/release-report-all-issues)
-  - SQ compatibility: current version
-  - Link to Jira RELEASE NOTES: copy from a previous release ticket, updating the release ID, e.g.: <https://sonarsource.atlassian.net/projects/ECHOES/versions/15590/tab/release-report-all-issues?isReleaseNoteModalOpen=true>
-
-- Close the REL ticket you've created
 
 - On the `main` branch, bump the [package version](https://github.com/SonarSource/echoes-react/blob/main/package.json#L3) for the next development iteration with `yarn version major|minor` and commit with message `Prepare for version x.y`.
 
 ## Release Process for Patch Versions
 
-- Check out the version branch `branch-x.y`
+- Check out the version branch `branch-x.y` (create it if it doesn't exist yet)
 
 - Bump the [package version](https://github.com/SonarSource/echoes-react/blob/main/package.json#L3) with `yarn version patch` and commit with message `Prepare for version x.y.z`.
 
@@ -46,4 +37,4 @@ For more details, refer to the [internal versioning strategy](https://docs.googl
 
 - Tag the relevant tickets with this new version
 
-- Once the PR is merged, follow the same procedure as for Major/Minor versions, starting with the creation of a Jira REL ticket, and skipping the version bump at the end
+- Once the PR is merged, follow the same procedure as for Major/Minor versions, skipping the version bump at the end
