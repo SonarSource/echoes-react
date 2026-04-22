@@ -1,12 +1,13 @@
 {
   "tokenSetOrder": [
-    "layer1/base",
-    "layer1/colors",
-    "layer2/base",
-    "layer2/light",
-    "layer2/dark",
-    "layer3/base",
-    "layer3/light",
-    "layer3/dark"
+    "brand/brand-A/base",
+    "brand/brand-A/colors",
+    "brand/brand-B/base",
+    "brand/brand-B/colors",
+    "modes/light",
+    "modes/dark",
+    "component/base",
+    "component/light",
+    "component/dark"
   ]
 }
