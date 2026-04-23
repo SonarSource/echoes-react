@@ -164,6 +164,10 @@
   --echoes-logos-colors-brand: #126ed3;
   --echoes-logos-colors-sonar-whale: #d3121d;
   --echoes-bottom-scroll-colors-shadow-gradient: #00000033;
+  --echoes-margin-indicator-colors-background-duplication: #c5cddf;
+  --echoes-margin-indicator-colors-background-covered: #75a92c;
+  --echoes-margin-indicator-colors-background-partially-covered: #ae7a29;
+  --echoes-margin-indicator-colors-background-uncovered: #d92d20;
   --echoes-overlays-inner-shadow-default: inset 0 -6px 10px 0 #0000000d;
   --echoes-ratings-colors-background-rating-a-default: #d1fadf;
   --echoes-ratings-colors-background-rating-b-default: #d4f2b7;
