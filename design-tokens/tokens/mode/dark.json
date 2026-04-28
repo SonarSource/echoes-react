@@ -1,0 +1,539 @@
+{
+  "echoes": {
+    "color": {
+      "background": {
+        "neutral": {
+          "subtle": {
+            "$type": "color",
+            "$value": "{echoes.color.roles.neutral.strong}"
+          },
+          "bolder": {
+            "$type": "color",
+            "$value": "{echoes.color.roles.neutral.strong}"
+          },
+          "default": {
+            "$type": "color",
+            "$value": "{echoes.color.roles.neutral.bold}"
+          },
+          "canvas": {
+            "$type": "color",
+            "$value": "{echoes.color.roles.neutral.bold}"
+          },
+          "inverse": {
+            "$type": "color",
+            "$value": "{echoes.color.roles.neutral.light}"
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{echoes.color.roles.neutral.strong}"
+          }
+        },
+        "utility": {
+          "transparent": {
+            "$type": "color",
+            "$value": "{echoes.color.roles.support.transparent}"
+          }
+        },
+        "ghost": {
+          "accent": {
+            "default": {
+              "$type": "color",
+              "$value": "{echoes.color.utility.transparent}"
+            }
+          },
+          "neutral": {
+            "default": {
+              "$type": "color",
+              "$value": "{echoes.color.utility.transparent}"
+            }
+          },
+          "danger": {
+            "default": {
+              "$type": "color",
+              "$value": "{echoes.color.utility.transparent}"
+            }
+          }
+        },
+        "favourite": {
+          "default": {
+            "$type": "color",
+            "$value": "{echoes.color.roles.warning.medium}"
+          }
+        }
+      },
+      "primary": {
+        "default": {
+          "$type": "color",
+          "$value": "{echoes.color.roles.primary.medium}"
+        },
+        "interactionWeak": {
+          "$extensions": {
+            "studio.tokens": {
+              "modify": {
+                "type": "alpha",
+                "value": "0.2",
+                "space": "hsl"
+              }
+            }
+          },
+          "$type": "color",
+          "$value": "{echoes.color.roles.primary.strong}"
+        }
+      },
+      "intent": {
+        "warning": {
+          "$type": "color",
+          "$value": "{echoes.color.roles.warning.medium}"
+        },
+        "warningWeak": {
+          "$extensions": {
+            "studio.tokens": {
+              "modify": {
+                "type": "alpha",
+                "value": "0.3",
+                "space": "lch"
+              }
+            }
+          },
+          "$type": "color",
+          "$value": "{echoes.color.roles.warning.medium}"
+        },
+        "success": {
+          "$type": "color",
+          "$value": "{echoes.color.roles.success.medium}"
+        },
+        "successWeak": {
+          "$extensions": {
+            "studio.tokens": {
+              "modify": {
+                "type": "alpha",
+                "value": "0.3",
+                "space": "lch"
+              }
+            }
+          },
+          "$type": "color",
+          "$value": "{echoes.color.roles.success.medium}"
+        },
+        "danger": {
+          "$type": "color",
+          "$value": "{echoes.color.roles.danger.medium}"
+        },
+        "dangerWeak": {
+          "$extensions": {
+            "studio.tokens": {
+              "modify": {
+                "type": "alpha",
+                "value": "0.3",
+                "space": "lch"
+              }
+            }
+          },
+          "$type": "color",
+          "$value": "{echoes.color.roles.danger.medium}"
+        },
+        "info": {
+          "$type": "color",
+          "$value": "{echoes.color.roles.info.medium}"
+        },
+        "infoWeak": {
+          "$extensions": {
+            "studio.tokens": {
+              "modify": {
+                "type": "alpha",
+                "value": "0.3",
+                "space": "lch"
+              }
+            }
+          },
+          "$type": "color",
+          "$value": "{echoes.color.roles.info.medium}"
+        },
+        "emphasis": {
+          "$type": "color",
+          "$value": "{echoes.color.roles.highlight.strong}"
+        },
+        "emphasisWeak": {
+          "$extensions": {
+            "studio.tokens": {
+              "modify": {
+                "type": "alpha",
+                "value": "0.3",
+                "space": "lch"
+              }
+            }
+          },
+          "$type": "color",
+          "$value": "{echoes.color.roles.highlight.bold}"
+        }
+      },
+      "states": {
+        "disable": {
+          "$type": "color",
+          "$value": ""
+        },
+        "onDisable": {
+          "$type": "color",
+          "$value": "{echoes.color.roles.neutral.strong}"
+        },
+        "hover": {
+          "$type": "color",
+          "$value": ""
+        },
+        "press": {
+          "$type": "color",
+          "$value": ""
+        },
+        "select": {
+          "$type": "color",
+          "$value": "#5d6cd033"
+        },
+        "onSelect": {
+          "$type": "color",
+          "$value": "{echoes.color.roles.primary.bold}"
+        }
+      },
+      "overlays": {
+        "backDrop": {
+          "default": {
+            "$extensions": {
+              "studio.tokens": {
+                "modify": {
+                  "type": "alpha",
+                  "value": "0.6",
+                  "space": "hsl"
+                }
+              }
+            },
+            "$type": "color",
+            "$value": "{echoes.color.roles.neutral.dark}"
+          }
+        },
+        "disabled": {
+          "$type": "color",
+          "$value": "{echoes.color.roles.neutral.strong}"
+        }
+      },
+      "text": {
+        "strong": {
+          "$type": "color",
+          "$value": "{echoes.color.roles.neutral.lightest}"
+        },
+        "default": {
+          "$type": "color",
+          "$value": "{echoes.color.roles.neutral.light}"
+        },
+        "subtle": {
+          "$type": "color",
+          "$value": "{echoes.color.roles.neutral.medium}"
+        },
+        "onColor": {
+          "$type": "color",
+          "$value": "{echoes.color.roles.neutral.bold}"
+        },
+        "onColor-Inverse": {
+          "$type": "color",
+          "$value": "{echoes.color.roles.neutral.bold}"
+        },
+        "danger": {
+          "$type": "color",
+          "$value": "{echoes.color.roles.danger.medium}"
+        },
+        "placeholder": {
+          "$type": "color",
+          "$value": "{echoes.color.roles.neutral.medium}"
+        },
+        "accent": {
+          "$type": "color",
+          "$value": "{echoes.color.roles.primary.medium}"
+        },
+        "info": {
+          "$type": "color",
+          "$value": "{echoes.color.roles.info.medium}"
+        },
+        "success": {
+          "$type": "color",
+          "$value": "{echoes.color.roles.success.medium}"
+        },
+        "warning": {
+          "$type": "color",
+          "$value": "{echoes.color.roles.warning.light}"
+        },
+        "emphasis": {
+          "$type": "color",
+          "$value": "{echoes.color.roles.highlight.medium}"
+        }
+      },
+      "icon": {
+        "bold": {
+          "$type": "color",
+          "$value": "{echoes.color.roles.neutral.lightest}"
+        },
+        "default": {
+          "$type": "color",
+          "$value": "{echoes.color.roles.neutral.light}"
+        },
+        "subtle": {
+          "$type": "color",
+          "$value": "{echoes.color.roles.neutral.medium}"
+        },
+        "disabled": {
+          "$type": "color",
+          "$value": "{echoes.color.roles.neutral.strong}"
+        },
+        "placeholder": {
+          "$type": "color",
+          "$value": "{echoes.color.roles.neutral.medium}"
+        },
+        "accent": {
+          "$type": "color",
+          "$value": "{echoes.color.roles.primary.medium}"
+        },
+        "danger": {
+          "$type": "color",
+          "$value": "{echoes.color.roles.danger.medium}"
+        },
+        "warning": {
+          "$type": "color",
+          "$value": "{echoes.color.roles.warning.medium}"
+        },
+        "success": {
+          "$type": "color",
+          "$value": "{echoes.color.roles.success.medium}"
+        },
+        "info": {
+          "$type": "color",
+          "$value": "{echoes.color.roles.info.medium}"
+        },
+        "onColor": {
+          "$type": "color",
+          "$value": "{echoes.color.roles.neutral.bold}"
+        },
+        "onColor-Inverse": {
+          "$type": "color",
+          "$value": "{echoes.color.roles.neutral.bold}"
+        },
+        "selected": {
+          "$type": "color",
+          "$value": "{echoes.color.roles.primary.medium}"
+        },
+        "emphasis": {
+          "$type": "color",
+          "$value": "{echoes.color.roles.highlight.medium}"
+        }
+      },
+      "border": {
+        "bolder": {
+          "$type": "color",
+          "$value": "{echoes.color.roles.neutral.medium}"
+        },
+        "bold": {
+          "$type": "color",
+          "$value": "{echoes.color.roles.neutral.medium}"
+        },
+        "weak": {
+          "$type": "color",
+          "$value": "{echoes.color.roles.neutral.strong}"
+        },
+        "weaker": {
+          "$type": "color",
+          "$value": "{echoes.color.roles.neutral.strong}"
+        },
+        "disabled": {
+          "$type": "color",
+          "$value": "{echoes.color.roles.neutral.strong}"
+        },
+        "accent": {
+          "default": {
+            "$type": "color",
+            "$value": "{echoes.color.roles.primary.medium}"
+          }
+        },
+        "danger": {
+          "weak": {
+            "$extensions": {
+              "studio.tokens": {
+                "modify": {
+                  "type": "alpha",
+                  "value": "0.4",
+                  "space": "lch"
+                }
+              }
+            },
+            "$type": "color",
+            "$value": "{echoes.color.roles.danger.medium}"
+          },
+          "default": {
+            "$type": "color",
+            "$value": "{echoes.color.roles.danger.medium}"
+          }
+        },
+        "none": {
+          "$type": "color",
+          "$value": "{echoes.color.roles.support.transparent}"
+        },
+        "success": {
+          "weak": {
+            "$extensions": {
+              "studio.tokens": {
+                "modify": {
+                  "type": "alpha",
+                  "value": "0.4",
+                  "space": "lch"
+                }
+              }
+            },
+            "$type": "color",
+            "$value": "{echoes.color.roles.success.medium}"
+          },
+          "default": {
+            "$type": "color",
+            "$value": "{echoes.color.roles.success.strong}"
+          }
+        },
+        "warning": {
+          "weak": {
+            "$extensions": {
+              "studio.tokens": {
+                "modify": {
+                  "type": "alpha",
+                  "value": "0.4",
+                  "space": "lch"
+                }
+              }
+            },
+            "$type": "color",
+            "$value": "{echoes.color.roles.warning.medium}"
+          }
+        },
+        "info": {
+          "weak": {
+            "$extensions": {
+              "studio.tokens": {
+                "modify": {
+                  "type": "alpha",
+                  "value": "0.4",
+                  "space": "lch"
+                }
+              }
+            },
+            "$type": "color",
+            "$value": "{echoes.color.roles.info.medium}"
+          }
+        },
+        "emphasis": {
+          "weak": {
+            "$extensions": {
+              "studio.tokens": {
+                "modify": {
+                  "type": "alpha",
+                  "value": "0.4",
+                  "space": "lch"
+                }
+              }
+            },
+            "$type": "color",
+            "$value": "{echoes.color.roles.highlight.bold}"
+          }
+        }
+      }
+    },
+    "boxShadow": {
+      "xsmall": {
+        "$type": "boxShadow",
+        "$value": {
+          "x": "0",
+          "y": "1",
+          "blur": "4",
+          "spread": "0",
+          "color": "#08090c66",
+          "type": "dropShadow"
+        }
+      },
+      "small": {
+        "$type": "boxShadow",
+        "$value": [
+          {
+            "x": "0",
+            "y": "1",
+            "blur": "10",
+            "spread": "0",
+            "color": "#08090c66",
+            "type": "dropShadow"
+          },
+          {
+            "x": "0",
+            "y": "1",
+            "blur": "3",
+            "spread": "0",
+            "color": "#08090c66",
+            "type": "dropShadow"
+          }
+        ]
+      },
+      "medium": {
+        "$type": "boxShadow",
+        "$value": [
+          {
+            "x": "0",
+            "y": "2",
+            "blur": "15",
+            "spread": "-2",
+            "color": "#08090c0f",
+            "type": "innerShadow"
+          },
+          {
+            "x": "0",
+            "y": "4",
+            "blur": "15",
+            "spread": "-2",
+            "color": "#08090c80",
+            "type": "dropShadow"
+          }
+        ]
+      },
+      "large": {
+        "$type": "boxShadow",
+        "$value": [
+          {
+            "x": "0",
+            "y": "4",
+            "blur": "6",
+            "spread": "-2",
+            "color": "#08090c0d",
+            "type": "dropShadow"
+          },
+          {
+            "x": "0",
+            "y": "12",
+            "blur": "20",
+            "spread": "-4",
+            "color": "#08090c80",
+            "type": "dropShadow"
+          }
+        ]
+      },
+      "xLarge": {
+        "$type": "boxShadow",
+        "$value": [
+          {
+            "x": "0",
+            "y": "8",
+            "blur": "8",
+            "spread": "-4",
+            "color": "#08090c0a",
+            "type": "dropShadow"
+          },
+          {
+            "x": "0",
+            "y": "20",
+            "blur": "30",
+            "spread": "-4",
+            "color": "#08090c80",
+            "type": "dropShadow"
+          }
+        ]
+      }
+    }
+  }
+}

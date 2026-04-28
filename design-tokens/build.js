@@ -49,7 +49,7 @@ const baseDesignTokenGroup = designTokenGroups.find(
   ({ group, name }) => group === 'Sonar' && name === 'base',
 );
 
-const themedDesignTokenGroups = designTokenGroups.filter(({ group }) => group === 'Themes');
+const themedDesignTokenGroups = designTokenGroups.filter(({ group }) => group === 'Modes');
 
 const sd = initStyleDictionary(licenseHeader);
 await buildBaseTokens(baseDesignTokenGroup, sd);
