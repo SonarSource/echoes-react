@@ -19,7 +19,6 @@
  */
 
 import styled from '@emotion/styled';
-import { forwardRef } from 'react';
 import { cssVar } from '~utils/design-tokens';
 import { ButtonStyled } from '../buttons/ButtonStyles';
 import { ButtonCommonProps } from '../buttons/ButtonTypes';
@@ -39,15 +38,16 @@ interface MarginIndicatorBaseProps {
   indicatorType: `${MarginIndicatorType}`;
 }
 
-type MarginIndicatorStaticProps = MarginIndicatorBaseProps & { isInteractive?: false };
+type MarginIndicatorStaticProps = MarginIndicatorBaseProps & {
+  isInteractive?: false;
+  ref?: React.Ref<SVGSVGElement>;
+};
 
-type InheritedButtonProps = Pick<
-  ButtonCommonProps,
-  'onClick' | 'enablePreventDefault' | 'enableStopPropagation'
->;
+type InheritedButtonProps = Pick<ButtonCommonProps, 'onClick'>;
 
 type MarginIndicatorInteractiveProps = MarginIndicatorBaseProps & {
   isInteractive: true;
+  ref?: React.Ref<HTMLButtonElement>;
 } & InheritedButtonProps;
 
 export type MarginIndicatorProps = MarginIndicatorStaticProps | MarginIndicatorInteractiveProps;
@@ -78,22 +78,24 @@ const PATTERN = {
   ),
 };
 
+interface MarginIndicatorSvgProps {
+  ariaLabel?: string;
+  indicatorType: `${MarginIndicatorType}`;
+  ref?: React.Ref<SVGSVGElement>;
+}
+
 function MarginIndicatorSvg({
   ariaLabel,
   indicatorType,
-  svgRef,
+  ref,
   ...radixProps
-}: Readonly<{
-  ariaLabel?: string;
-  indicatorType: `${MarginIndicatorType}`;
-  svgRef?: React.Ref<SVGSVGElement>;
-}>) {
+}: Readonly<MarginIndicatorSvgProps>) {
   return (
     <svg
       {...radixProps}
       fill="none"
       height={MARGIN_INDICATOR_HEIGHT}
-      ref={svgRef}
+      ref={ref}
       viewBox={`0 0 ${MARGIN_INDICATOR_WIDTH} ${MARGIN_INDICATOR_HEIGHT}`}
       width={MARGIN_INDICATOR_WIDTH}
       xmlns="http://www.w3.org/2000/svg">
@@ -103,31 +105,32 @@ function MarginIndicatorSvg({
   );
 }
 
-export const MarginIndicator = forwardRef<SVGSVGElement | HTMLButtonElement, MarginIndicatorProps>(
-  (props, ref) => {
-    const { ariaLabel, indicatorType, isInteractive, ...radixProps } = props;
-    if (isInteractive) {
-      return (
-        <IndicatorButton
-          aria-label={ariaLabel}
-          ref={ref as React.Ref<HTMLButtonElement>}
-          type="button"
-          {...radixProps}>
-          <MarginIndicatorSvg indicatorType={indicatorType} />
-        </IndicatorButton>
-      );
-    }
+MarginIndicatorSvg.displayName = 'MarginIndicatorSvg';
 
+export function MarginIndicator(props: MarginIndicatorProps) {
+  const { ariaLabel, indicatorType, isInteractive, ref, ...radixProps } = props;
+
+  if (isInteractive) {
     return (
-      <MarginIndicatorSvg
-        ariaLabel={ariaLabel}
-        indicatorType={indicatorType}
-        svgRef={ref as React.Ref<SVGSVGElement>}
-        {...radixProps}
-      />
+      <IndicatorButton
+        aria-label={ariaLabel}
+        ref={ref as React.Ref<HTMLButtonElement>}
+        type="button"
+        {...radixProps}>
+        <MarginIndicatorSvg indicatorType={indicatorType} />
+      </IndicatorButton>
     );
-  },
-);
+  }
+
+  return (
+    <MarginIndicatorSvg
+      ariaLabel={ariaLabel}
+      indicatorType={indicatorType}
+      ref={ref as React.Ref<SVGSVGElement>}
+      {...radixProps}
+    />
+  );
+}
 MarginIndicator.displayName = 'MarginIndicator';
 
 const IndicatorButton = styled(ButtonStyled)`
@@ -145,3 +148,4 @@ const IndicatorButton = styled(ButtonStyled)`
     z-index: 1;
   }
 `;
+IndicatorButton.displayName = 'IndicatorButton';

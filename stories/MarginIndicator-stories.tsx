@@ -30,6 +30,9 @@ const meta: Meta<typeof MarginIndicator> = {
   argTypes: {
     indicatorType: { control: { type: 'select' }, options: Object.values(MarginIndicatorType) },
   },
+  parameters: {
+    controls: { exclude: ['ref'] },
+  },
   decorators: [basicWrapperDecorator],
 };
 
@@ -48,6 +51,7 @@ export const Interactive: Story = {
   args: {
     ariaLabel: 'Indicator!',
     indicatorType: MarginIndicatorType.Covered,
+    isInteractive: true,
   },
   argTypes: {
     onClick: {
@@ -57,8 +61,11 @@ export const Interactive: Story = {
       mapping: { alert: () => alert('clicked!'), log: () => console.log('clicked!') },
     },
   },
+  parameters: {
+    controls: { exclude: ['isInteractive', 'ref'] },
+  },
   render(args) {
-    return <MarginIndicator isInteractive {...args} />;
+    return <MarginIndicator {...args} />;
   },
 };
 
