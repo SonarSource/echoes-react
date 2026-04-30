@@ -4,6 +4,8 @@
     "name": "light",
     "$figmaStyleReferences": {},
     "selectedTokenSets": {
+      "brand/brand-A/base": "source",
+      "brand/brand-A/colors": "source",
       "modes/light": "enabled",
       "component/light": "enabled"
     },
@@ -360,6 +362,8 @@
     "name": "dark",
     "$figmaStyleReferences": {},
     "selectedTokenSets": {
+      "brand/brand-A/base": "source",
+      "brand/brand-A/colors": "source",
       "modes/dark": "enabled",
       "component/dark": "enabled"
     },
