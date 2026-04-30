@@ -22,10 +22,10 @@ import { forwardRef } from 'react';
 import { IconMaterialWrapper, IconProps } from './IconWrapper';
 
 export const IconSecurityFinding = forwardRef<HTMLSpanElement, IconProps>((props, ref) => {
-  // This is Material Symbols' "shield" icon
+  // This is Material Symbols' "security" icon
   return (
     <IconMaterialWrapper isFilled {...props} ref={ref}>
-      &#xE9E0;
+      &#xE32A;
     </IconMaterialWrapper>
   );
 });
