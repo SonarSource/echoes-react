@@ -35,6 +35,7 @@ export { DirectImportGlobalNavigation as GlobalNavigation } from './layout/globa
 export * from './legacy-banner';
 export * from './links';
 export * from './logos';
+export * from './margin-indicator';
 export * from './messages';
 export * from './modals';
 export * from './pagination';

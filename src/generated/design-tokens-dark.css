@@ -164,6 +164,10 @@ html[data-echoes-theme='dark'], [data-echoes-theme='dark'] {
   --echoes-logos-colors-brand: #ffffff;
   --echoes-logos-colors-sonar-whale: #d3121d;
   --echoes-bottom-scroll-colors-shadow-gradient: #ffffff33;
+  --echoes-margin-indicator-colors-background-duplication: #a6adc2;
+  --echoes-margin-indicator-colors-background-covered: #d4f2b7;
+  --echoes-margin-indicator-colors-background-partially-covered: #fadc79;
+  --echoes-margin-indicator-colors-background-uncovered: #fda29b;
   --echoes-overlays-inner-shadow-default: inset 0 -6px 10px 0 #ffffff1a;
   --echoes-ratings-colors-background-rating-a-default: #027a48;
   --echoes-ratings-colors-background-rating-b-default: #75a92c;

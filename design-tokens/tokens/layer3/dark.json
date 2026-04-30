@@ -56,6 +56,28 @@
         }
       }
     },
+    "margin-indicator": {
+      "colors": {
+        "background": {
+          "duplication": {
+            "$type": "color",
+            "$value": "{echoes.color.grey.300}"
+          },
+          "covered": {
+            "$type": "color",
+            "$value": "{echoes.color.green.200}"
+          },
+          "partially-covered": {
+            "$type": "color",
+            "$value": "{echoes.color.yellow.300}"
+          },
+          "uncovered": {
+            "$type": "color",
+            "$value": "{echoes.color.red.300}"
+          }
+        }
+      }
+    },
     "overlays": {
       "innerShadow": {
         "default": {
