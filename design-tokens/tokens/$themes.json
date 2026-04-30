@@ -4,10 +4,8 @@
     "name": "light",
     "$figmaStyleReferences": {},
     "selectedTokenSets": {
-      "brand/brand-A/colors": "enabled",
       "modes/light": "enabled",
-      "component/light": "enabled",
-      "brand/brand-B/colors": "enabled"
+      "component/light": "enabled"
     },
     "$figmaCollectionId": "VariableCollectionId:5095:2205",
     "$figmaModeId": "5095:2",
@@ -362,10 +360,8 @@
     "name": "dark",
     "$figmaStyleReferences": {},
     "selectedTokenSets": {
-      "brand/brand-A/colors": "enabled",
       "modes/dark": "enabled",
-      "component/dark": "enabled",
-      "brand/brand-B/colors": "enabled"
+      "component/dark": "enabled"
     },
     "$figmaCollectionId": "VariableCollectionId:5095:2205",
     "$figmaModeId": "5095:3",
@@ -720,10 +716,8 @@
     "name": "Brand A",
     "$figmaStyleReferences": {},
     "selectedTokenSets": {
-      "brand/brand-A/base": "source",
-      "brand/brand-A/colors": "source",
-      "modes/light": "enabled",
-      "component/light": "enabled"
+      "brand/brand-A/base": "enabled",
+      "brand/brand-A/colors": "enabled"
     },
     "$figmaCollectionId": "VariableCollectionId:5095:2206",
     "$figmaModeId": "5095:4",
@@ -928,10 +922,8 @@
     "name": "Brand B",
     "$figmaStyleReferences": {},
     "selectedTokenSets": {
-      "brand/brand-A/base": "source",
-      "brand/brand-A/colors": "source",
-      "modes/dark": "enabled",
-      "component/dark": "enabled"
+      "brand/brand-B/base": "enabled",
+      "brand/brand-B/colors": "enabled"
     },
     "$figmaCollectionId": "VariableCollectionId:5095:2206",
     "$figmaModeId": "5095:5",
