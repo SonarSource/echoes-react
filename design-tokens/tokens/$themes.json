@@ -4,8 +4,6 @@
     "name": "light",
     "$figmaStyleReferences": {},
     "selectedTokenSets": {
-      "brand/brand-A/base": "source",
-      "brand/brand-A/colors": "source",
       "modes/light": "enabled",
       "component/light": "enabled"
     },
@@ -197,8 +195,6 @@
     "name": "dark",
     "$figmaStyleReferences": {},
     "selectedTokenSets": {
-      "brand/brand-A/base": "source",
-      "brand/brand-A/colors": "source",
       "modes/dark": "enabled",
       "component/dark": "enabled"
     },
@@ -400,7 +396,8 @@
     "name": "Brand B",
     "$figmaStyleReferences": {},
     "selectedTokenSets": {
-      "brand/brand-B/base": "enabled"
+      "brand/brand-B/base": "enabled",
+      "brand/brand-B/colors": "enabled"
     },
     "group": "Brand"
   }
