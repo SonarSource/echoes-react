@@ -11,7 +11,7 @@ on:
 
 jobs:
   release:
-    uses: SonarSource/gh-action_release/.github/workflows/main.yaml@v6
+    uses: SonarSource/gh-action_release/.github/workflows/main.yaml@d9c158044abff69356475ff82b1f99b78dbd9d93 # 7.0.0
     with:
       publishToNpmJS: true
       skipJavascriptReleasabilityChecks: false
