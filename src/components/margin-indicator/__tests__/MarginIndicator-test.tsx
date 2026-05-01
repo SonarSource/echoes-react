@@ -29,7 +29,7 @@ describe('MarginIndicator', () => {
     const { container } = render(<MarginIndicator ariaLabel="indicator" indicatorType="covered" />);
 
     expect(screen.getByText('indicator')).toBeInTheDocument();
-    await expect(container).toHaveNoA11yViolations();
+    await expect(container).toHaveNoViolations();
   });
 
   it('can be interactive', async () => {
@@ -43,7 +43,7 @@ describe('MarginIndicator', () => {
       </Popover>,
     );
 
-    await expect(container).toHaveNoA11yViolations();
+    await expect(container).toHaveNoViolations();
 
     const indicator = screen.getByLabelText('interactive indicator');
 
