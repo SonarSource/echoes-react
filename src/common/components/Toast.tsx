@@ -212,6 +212,7 @@ const ToastContent = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
+  align-self: stretch;
   gap: ${cssVar('dimension-space-75')};
 `;
 ToastContent.displayName = 'ToastContent';
