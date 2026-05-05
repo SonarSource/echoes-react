@@ -90,7 +90,7 @@ export const BottomShadowScroll = styled.div`
   background: radial-gradient(
       farthest-side at 50% 100%,
       ${cssVar('bottom-scroll-colors-shadow-gradient')},
-      ${cssVar('color-support-transparent')}
+      ${cssVar('color-roles-support-transparent')}
     )
     center bottom;
 `;

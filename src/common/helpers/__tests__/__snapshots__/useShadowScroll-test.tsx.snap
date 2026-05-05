@@ -11,7 +11,7 @@ exports[`BottomShadowScroll component should render with correct styling 1`] = `
   background: radial-gradient(
         farthest-side at 50% 100%,
         var(--echoes-bottom-scroll-colors-shadow-gradient),
-        var(--echoes-color-support-transparent)
+        var(--echoes-color-roles-support-transparent)
       ) center bottom;
 }
 

@@ -31,7 +31,7 @@ const TABLE_VARIETY_STYLES = {
     'border-collapse': 'separate',
   },
   [TableVariety.Ghost]: {
-    '--table-header-background-color': cssVar('color-support-transparent'),
+    '--table-header-background-color': cssVar('color-roles-support-transparent'),
     border: 'none',
     'border-collapse': 'collapse',
   },

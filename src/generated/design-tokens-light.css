@@ -149,17 +149,16 @@
   --echoes-color-border-info-weak: #e9f4fb;
   --echoes-color-border-emphasis-weak: #ede2ff;
   --echoes-color-focus-default: #4b56bb;
-  --echoes-form-control-colors-background-default: #ffffff;
-  --echoes-form-control-colors-background-hover: #f6f7fb;
-  --echoes-form-control-colors-border-default: #637192;
-  --echoes-form-control-colors-border-focus: #e1e6f3;
-  --echoes-form-control-colors-icon-default: #637192;
-  --echoes-table-colors-background-header-default: #eff2f9;
   --echoes-box-shadow-xsmall: 0 1px 02px 0 #0000000d;
   --echoes-box-shadow-small: 0 1px 25px 0 #1d212f0d, 0 1px 3px 0 #1d212f0d;
   --echoes-box-shadow-medium: 0 2px 15px -2px #1d212f0f, 0 4px 8px -2px #1d212f1a;
   --echoes-box-shadow-large: 0 4px 6px -2px #1d212f0d, 0 12px 16px -4px #1d212f1a;
   --echoes-box-shadow-x-large: 0 8px 8px -4px #1d212f0a, 15px 20px 24px -4px #1d212f1a;
+  --echoes-form-control-colors-background-default: #ffffff;
+  --echoes-form-control-colors-background-hover: #f6f7fb;
+  --echoes-form-control-colors-border-default: #637192;
+  --echoes-form-control-colors-border-focus: #e1e6f3;
+  --echoes-form-control-colors-icon-default: #637192;
   --echoes-logos-colors-text: #290042;
   --echoes-logos-colors-brand: #126ed3;
   --echoes-logos-colors-sonar-whale: #d3121d;
@@ -223,4 +222,5 @@
   --echoes-sidebar-navigation-item-colors-background-default: #fcfcfd;
   --echoes-sidebar-navigation-item-colors-background-hover: #f6f7fb;
   --echoes-sidebar-navigation-item-colors-background-active: #eff2f9;
+  --echoes-table-colors-background-header-default: #eff2f9;
 }

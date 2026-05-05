@@ -31,6 +31,8 @@ jobs:
           deploy-pull-request: true
           sonar-platform: next
           cache-yarn: true
+        env:
+          DESIGN_TOKEN_BRAND: brand-a
 
   promote:
     name: Promote

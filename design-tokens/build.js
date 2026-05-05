@@ -27,7 +27,6 @@ const DEFAULT_THEME = 'light';
 const DESIGN_TOKENS_PATH = 'design-tokens/tokens';
 const BUILD_PATH = 'src/generated/';
 const NAME_PREFIX = 'design-tokens-';
-const BASE_TOKENS_NAME = `${NAME_PREFIX}base`;
 const CUSTOM_TRANSFORM_GROUP = 'sonar-design-tokens';
 const CUSTOM_FILTER_NO_COLOR = 'sonar-no-color';
 const CUSTOM_FILTER_THEMED_TOKENS = 'sonar-themed-tokens';
@@ -35,6 +34,15 @@ const CUSTOM_FILTER_TAILWIND = 'sonar-echoes-tailwind-preset';
 const THEME_DATA_ATTRIBUTE = 'data-echoes-theme';
 const TAILWIND_CONFIG_FILENAME = 'tailwindConfig.js';
 const LICENSE_HEADER_FILE_OPTION = 'licence-header';
+
+const brandArg = process.argv.find((arg) => arg.startsWith('--brand='))?.split('=')[1];
+const BRAND = brandArg ?? process.env.DESIGN_TOKEN_BRAND;
+if (!BRAND) {
+  console.error(
+    'Error: brand is required. Use --brand=<name> or set DESIGN_TOKEN_BRAND env variable (e.g. --brand=brand-a)',
+  );
+  process.exit(1);
+}
 
 const licenseHeader = fs.readFileSync(`config/license/LICENSE-HEADER.txt`, 'utf-8');
 const tailwindTypographyUtilities = JSON.parse(
@@ -45,15 +53,34 @@ const designTokenGroups = JSON.parse(
   fs.readFileSync(`${DESIGN_TOKENS_PATH}/$themes.json`, 'utf-8'),
 );
 
-const baseDesignTokenGroup = designTokenGroups.find(
-  ({ group, name }) => group === 'Sonar' && name === 'base',
+const brandDesignTokenGroup = designTokenGroups.find(
+  ({ group, name }) => group === 'Brand' && name.toLowerCase().replace(' ', '-') === BRAND,
 );
 
-const themedDesignTokenGroups = designTokenGroups.filter(({ group }) => group === 'Themes');
+if (!brandDesignTokenGroup) {
+  const available = designTokenGroups
+    .filter(({ group }) => group === 'Brand')
+    .map(({ name }) => name.toLowerCase().replace(' ', '-'))
+    .join(', ');
+  console.error(`Error: brand "${BRAND}" not found. Available brands: ${available}`);
+  process.exit(1);
+}
+
+const themedDesignTokenGroups = designTokenGroups
+  .filter(({ group }) => group === 'Themes')
+  .map((theme) => ({
+    ...theme,
+    selectedTokenSets: Object.fromEntries(
+      Object.entries(theme.selectedTokenSets).map(([key, val]) => [
+        key.startsWith('brand/') ? `brand/${BRAND}/${key.split('/').pop()}` : key,
+        val,
+      ]),
+    ),
+  }));
 
 const sd = initStyleDictionary(licenseHeader);
-await buildBaseTokens(baseDesignTokenGroup, sd);
-await buildThemedTokens(themedDesignTokenGroups, baseDesignTokenGroup, sd);
+await buildBaseTokens(brandDesignTokenGroup, sd);
+await buildThemedTokens(themedDesignTokenGroups, brandDesignTokenGroup, sd);
 buildCSSRootFile(designTokenGroups, licenseHeader);
 buildThemesEnumType(themedDesignTokenGroups, licenseHeader);
 buildTailwindConfig();
@@ -78,12 +105,12 @@ function initStyleDictionary(licenseHeader) {
       filters: {
         [CUSTOM_FILTER_NO_COLOR]: ({ attributes }) =>
           attributes.type !== 'color' || // Exclude colors
-          attributes.item === 'support', // but keep the support colors (black, white, transparent)
+          (attributes.item === 'roles' && attributes.subitem === 'support'), // but keep the support colors (black, white, transparent)
         [CUSTOM_FILTER_TAILWIND]: ({ attributes: { type, item } }) => {
           return type === 'dimension' && ['space', 'width', 'height'].includes(item);
         },
         [CUSTOM_FILTER_THEMED_TOKENS]: ({ attributes, filePath }) =>
-          !filePath.includes(`layer1`) &&
+          !filePath.includes(`brand/`) &&
           !(filePath.endsWith('base.json') && attributes.type !== 'color'),
       },
       fileHeaders: {
@@ -104,22 +131,25 @@ function initStyleDictionary(licenseHeader) {
   return sd;
 }
 
-// Build base tokens: layer1 base + layer2 base without colors
+// Build base tokens: brand base + mode base without colors
 async function buildBaseTokens(tokenGroup, sd) {
   console.log('\nBuilding base tokens, no colors allowed...');
   console.log(`\nBuilding "${tokenGroup.name}" group...`);
 
   const extendedSd = await sd.extend({
-    source: Object.entries(tokenGroup.selectedTokenSets)
-      .filter(([, val]) => val !== 'disabled')
-      .map(([tokenset]) => `${DESIGN_TOKENS_PATH}/${tokenset}.json`),
+    source: [
+      ...Object.entries(tokenGroup.selectedTokenSets)
+        .filter(([, val]) => val !== 'disabled')
+        .map(([tokenset]) => `${DESIGN_TOKENS_PATH}/${tokenset}.json`),
+      `${DESIGN_TOKENS_PATH}/component/base.json`,
+    ],
     platforms: {
       tokens: {
         transformGroup: CUSTOM_TRANSFORM_GROUP,
         buildPath: BUILD_PATH,
         files: [
           {
-            destination: `${NAME_PREFIX}${tokenGroup.name}.css`,
+            destination: `${NAME_PREFIX}base.css`,
             format: 'css/variables',
             filter: CUSTOM_FILTER_NO_COLOR,
             options: {
@@ -128,7 +158,7 @@ async function buildBaseTokens(tokenGroup, sd) {
             },
           },
           {
-            destination: `${NAME_PREFIX}${tokenGroup.name}.json`,
+            destination: `${NAME_PREFIX}base.json`,
             format: 'json/flat',
             filter: CUSTOM_FILTER_NO_COLOR,
             options: {
@@ -153,9 +183,9 @@ async function buildBaseTokens(tokenGroup, sd) {
   console.log(`\nBase tokens builds done.`);
 }
 
-// Build themed tokens: 1 for each theme, without layer1 and layer2 base non-color tokens
+// Build themed tokens: 1 for each theme, without brand and mode base non-color tokens
 async function buildThemedTokens(themedTokenGroups, baseDesignTokenGroup, sd) {
-  console.log('\nBuilding themed tokens, no layer1 or layer2 base non-colors...');
+  console.log('\nBuilding themed tokens, no brand or mode base non-colors...');
 
   await Promise.all(
     themedTokenGroups.map(async (theme) => {
@@ -214,12 +244,13 @@ async function buildThemedTokens(themedTokenGroups, baseDesignTokenGroup, sd) {
 // Build design tokens css root file
 function buildCSSRootFile(tokenGroups, license) {
   console.log('\nBuilding design tokens css root file...');
-  const sortedTokenGroups = [...tokenGroups];
-  sortedTokenGroups.sort((a, b) => a.name.localeCompare(b.name));
+  const themedTokenGroups = tokenGroups.filter(({ group }) => group === 'Themes');
+  themedTokenGroups.sort((a, b) => a.name.localeCompare(b.name));
 
   const cssRootFileContent = [
     license,
-    ...sortedTokenGroups.map((theme) => `@import './${NAME_PREFIX}${theme.name}.css';`),
+    `@import './${NAME_PREFIX}base.css';`,
+    ...themedTokenGroups.map((theme) => `@import './${NAME_PREFIX}${theme.name}.css';`),
   ].join('\n');
 
   fs.writeFileSync(`${BUILD_PATH}design-tokens.css`, cssRootFileContent);
