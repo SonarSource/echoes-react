@@ -18,6 +18,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+import babel from '@rolldown/plugin-babel';
 import react from '@vitejs/plugin-react';
 import path from 'node:path';
 import license from 'rollup-plugin-license';
@@ -63,22 +64,18 @@ export default defineConfig({
       },
     },
   },
-  optimizeDeps: {
-    esbuildOptions: {
-      target: 'es2022',
-    },
-  },
   plugins: [
     viteStaticCopy({
       targets: [
         {
           src: 'src/generated/tailwindConfig.js',
           dest: '.',
-          rename: 'tailwind.js',
+          rename: { name: 'tailwind.js', stripBase: true },
         },
       ],
     }),
-    react({ jsxImportSource: '@emotion/react', babel: { plugins: ['@emotion/babel-plugin'] } }),
+    react({ jsxImportSource: '@emotion/react' }),
+    babel({ include: [/src\/.*\.[jt]sx?$/], plugins: ['@emotion/babel-plugin'] }),
     dts({
       entryRoot: 'src',
       exclude: ['**/config/**', '**/stories/**', '**/__tests__/**', '**/*-stories.*'],
