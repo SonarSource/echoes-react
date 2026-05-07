@@ -54,7 +54,7 @@ const designTokenGroups = JSON.parse(
 );
 
 const brandDesignTokenGroup = designTokenGroups.find(
-  ({ group, name }) => group === 'Brand' && toBrandId(name) === BRAND,
+  ({ group, name }) => group === 'Brand' && toBrandId(name).toLowerCase() === BRAND.toLowerCase(),
 );
 
 if (!brandDesignTokenGroup) {
@@ -66,13 +66,17 @@ if (!brandDesignTokenGroup) {
   process.exit(1);
 }
 
+const brandDir = Object.keys(brandDesignTokenGroup.selectedTokenSets)
+  .find((key) => key.startsWith('brand/'))
+  ?.split('/')[1];
+
 const themedDesignTokenGroups = designTokenGroups
   .filter(({ group }) => group === 'Themes')
   .map((theme) => ({
     ...theme,
     selectedTokenSets: Object.fromEntries(
       Object.entries(theme.selectedTokenSets).map(([key, val]) => [
-        key.startsWith('brand/') ? `brand/${BRAND}/${key.split('/').pop()}` : key,
+        key.startsWith('brand/') ? `brand/${brandDir}/${key.split('/').pop()}` : key,
         val,
       ]),
     ),
