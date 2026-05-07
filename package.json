@@ -31,6 +31,7 @@
     "test-ci": "jest --collectCoverage --coverageDirectory=build-reports/coverage --workerIdleMemoryLimit=1G --maxWorkers=4",
     "build": "vite build",
     "build-fonts": "node ./config/scripts/build-fonts.js",
+    "create-icon": "node ./config/scripts/create-icon.js",
     "build-intl-keys": "formatjs extract 'src/components/**/*.ts*' 'src/common/components/**/*.ts*' --out-file i18n/keys.json",
     "build-tokens": "node design-tokens/build.js",
     "build-storybook": "vite build & storybook build",
