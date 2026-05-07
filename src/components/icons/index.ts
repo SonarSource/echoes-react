@@ -119,6 +119,7 @@ export { IconSeverityBlocker } from './IconSeverityBlocker';
 export { IconSeverityHigh } from './IconSeverityHigh';
 export { IconSeverityLow } from './IconSeverityLow';
 export { IconSeverityMedium } from './IconSeverityMedium';
+export { IconShield } from './IconShield';
 export { IconSlash } from './IconSlash';
 export { IconSlideshow } from './IconSlideshow';
 export { IconSparkle } from './IconSparkle';
