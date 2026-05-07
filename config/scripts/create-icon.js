@@ -68,7 +68,7 @@ const args = process.argv.slice(2);
 const [name, key] = args;
 const isFilled = args.includes('--filled');
 const isFillable = args.includes('--fillable');
-const explicitCodepoint = args.find((a) => /^[0-9a-f]+$/i.test(a));
+const explicitCodepoint = args.slice(2).find((a) => !a.startsWith('--') && /^[0-9a-f]+$/i.test(a));
 
 if (!name || !key) {
   console.error(
