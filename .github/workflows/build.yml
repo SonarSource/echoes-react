@@ -32,7 +32,7 @@ jobs:
           sonar-platform: next
           cache-yarn: true
         env:
-          DESIGN_TOKEN_BRAND: brand-a
+          DESIGN_TOKEN_BRAND: Brand-A
 
   promote:
     name: Promote

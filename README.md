@@ -170,7 +170,7 @@ There can be multiple _brands_ representing the first layer of tokens. Only one 
 If new design tokens are added to the raw Figma file, we must run the following command to generate the new design tokens css variables for a given brand:
 
 ```bash
-yarn build-tokens --brand=brand-a
+yarn build-tokens --brand=Brand-A
 ```
 
 > **important**

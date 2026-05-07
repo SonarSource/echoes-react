@@ -39,7 +39,7 @@ const brandArg = process.argv.find((arg) => arg.startsWith('--brand='))?.split('
 const BRAND = brandArg ?? process.env.DESIGN_TOKEN_BRAND;
 if (!BRAND) {
   console.error(
-    'Error: brand is required. Use --brand=<name> or set DESIGN_TOKEN_BRAND env variable (e.g. --brand=brand-a)',
+    'Error: brand is required. Use --brand=<name> or set DESIGN_TOKEN_BRAND env variable (e.g. --brand=Brand-A)',
   );
   process.exit(1);
 }
@@ -54,13 +54,13 @@ const designTokenGroups = JSON.parse(
 );
 
 const brandDesignTokenGroup = designTokenGroups.find(
-  ({ group, name }) => group === 'Brand' && name.toLowerCase().replace(' ', '-') === BRAND,
+  ({ group, name }) => group === 'Brand' && toBrandId(name) === BRAND,
 );
 
 if (!brandDesignTokenGroup) {
   const available = designTokenGroups
     .filter(({ group }) => group === 'Brand')
-    .map(({ name }) => name.toLowerCase().replace(' ', '-'))
+    .map(({ name }) => toBrandId(name))
     .join(', ');
   console.error(`Error: brand "${BRAND}" not found. Available brands: ${available}`);
   process.exit(1);
@@ -309,6 +309,10 @@ export const echoesTypographyUtilities = config.echoesTypographyUtilities;
   fs.writeFileSync(`${BUILD_PATH}${TAILWIND_CONFIG_FILENAME}`, fileContents);
 
   console.log(`Tailwind config build done.`);
+}
+
+function toBrandId(name) {
+  return name.replaceAll(' ', '-');
 }
 
 function mapTokens(tokens, filter) {
