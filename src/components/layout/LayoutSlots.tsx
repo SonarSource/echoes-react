@@ -140,6 +140,7 @@ export const PageContent = styled.main`
   grid-area: ${PageGridArea.main};
 
   padding: ${cssVar('dimension-space-300')};
+  isolation: isolate; // Prevent content z-index values from escaping and overlapping a sticky PageHeader
 `;
 PageContent.displayName = 'PageContent';
 

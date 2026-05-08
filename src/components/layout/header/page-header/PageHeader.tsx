@@ -79,6 +79,7 @@ const StyledPageHeader = styled(StyledHeaderBase)`
 
   &[data-scroll-behavior='${PageHeaderScrollBehavior.collapse}'] {
     position: sticky;
+    z-index: 1; // Ensure the page header is showing over the content when sticky
     // The top position is the target height from which we remove the total height and the top margin
     top: calc(
       ${cssVar('layout-page-header-sizes-height-collapsed')} - var(--page-header-total-height) -
@@ -88,6 +89,7 @@ const StyledPageHeader = styled(StyledHeaderBase)`
 
   &[data-scroll-behavior='${PageHeaderScrollBehavior.sticky}'] {
     position: sticky;
+    z-index: 1; // Ensure the page header is showing over the content when sticky
     top: 0;
   }
 `;
