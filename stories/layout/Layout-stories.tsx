@@ -21,6 +21,7 @@
 import styled from '@emotion/styled';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import {
+  BadgeSeverity,
   Button,
   cssVar,
   DropdownMenu,
@@ -37,6 +38,7 @@ import {
   LinkStandalone,
   LogoSonarQubeServer,
   Text,
+  TextInput,
 } from '../../src';
 import { AsideSize } from '../../src/components/layout/LayoutTypes';
 import { PageHeaderScrollBehavior } from '../../src/components/layout/header/common/HeaderTypes';
@@ -167,6 +169,20 @@ export const Default: Story = {
               Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
               mollit anim id est laborum.
             </p>
+            <StackingTestArea>
+              <TextInput label="Input (no z-index)" />
+              <HighZIndexBox />
+              <IsolatedBox />
+              <TransformBox />
+              <BadgeSeverity
+                ariaLabel="Badge (no z-index)"
+                quality="Badge (no z-index)"
+                severity="critical"
+              />
+              <DropdownMenu items={<DropdownMenu.ItemButton>An action</DropdownMenu.ItemButton>}>
+                <Button>Dropdown (portaled)</Button>
+              </DropdownMenu>
+            </StackingTestArea>
             <div
               style={{
                 display: 'flex',
@@ -352,6 +368,61 @@ const List = styled.ul`
     width: 100%;
   }
 `;
+
+const StackingTestArea = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: flex-start;
+  margin-top: 32px;
+  margin-bottom: 32px;
+`;
+
+function HighZIndexBox() {
+  return (
+    <div
+      style={{
+        position: 'relative',
+        zIndex: 9999,
+        padding: '12px 16px',
+        background: 'salmon',
+        borderRadius: '8px',
+        fontWeight: 'bold',
+      }}>
+      z-index: 9999
+    </div>
+  );
+}
+
+function IsolatedBox() {
+  return (
+    <div
+      style={{
+        isolation: 'isolate',
+        padding: '12px 16px',
+        background: 'lightblue',
+        borderRadius: '8px',
+      }}>
+      <div style={{ position: 'relative', zIndex: 9999 }}>
+        isolation: isolate (child z-index: 9999)
+      </div>
+    </div>
+  );
+}
+
+function TransformBox() {
+  return (
+    <div
+      style={{
+        transform: 'translateY(0)',
+        padding: '12px 16px',
+        background: 'lightgreen',
+        borderRadius: '8px',
+      }}>
+      <div style={{ position: 'relative', zIndex: 9999 }}>transform (child z-index: 9999)</div>
+    </div>
+  );
+}
 
 function getRandomColor() {
   return `hsl(${Math.random() * 360}, 100%, 75%)`;
