@@ -147,10 +147,15 @@ export const PageFooter = styled.footer`
   grid-area: ${PageGridArea.footer};
 
   display: flex;
+  gap: ${cssVar('dimension-space-200')} ${cssVar('dimension-space-300')};
   justify-content: space-between;
   align-items: center;
 
   padding: ${cssVar('dimension-space-300')};
   padding-top: ${cssVar('dimension-space-200')};
+
+  & > * {
+    min-width: 0;
+  }
 `;
 PageFooter.displayName = 'PageFooter';
