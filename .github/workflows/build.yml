@@ -10,7 +10,7 @@ on:
 jobs:
   build:
     name: Build
-    runs-on: sonar-s-public
+    runs-on: sonar-s
     concurrency:
       group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
       cancel-in-progress: true

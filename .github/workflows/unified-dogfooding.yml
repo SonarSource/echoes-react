@@ -7,7 +7,7 @@ on:
 
 jobs:
   shadow-scans:
-    runs-on: sonar-s-public
+    runs-on: sonar-s
     name: Build and run shadow scans
     permissions:
       id-token: write
@@ -20,6 +20,8 @@ jobs:
       - uses: SonarSource/ci-github-actions/build-yarn@v1
         with:
           run-shadow-scans: true
+        env:
+          DESIGN_TOKEN_BRAND: Brand-A
 
       - name: Run IRIS
         uses: SonarSource/unified-dogfooding-actions/run-iris@v1
