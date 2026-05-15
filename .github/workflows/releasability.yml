@@ -25,7 +25,7 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
 
   slack-notifications:
-    runs-on: github-ubuntu-latest-s # Public GH runner is required, runners starting with sonar-* do not support this action
+    runs-on: warp-custom-ubuntu-24-04 # Public GH runner is required, runners starting with sonar-* do not support this action
     if: failure()
     needs: [ releasability-status ]
     permissions:
