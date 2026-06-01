@@ -20,7 +20,7 @@
 import styled from '@emotion/styled';
 import { forwardRef, PropsWithChildren, ReactNode, useMemo } from 'react';
 import { useIntl } from 'react-intl';
-import { DismissButton } from '~common/components/DismissButton';
+import { DismissButton } from '../dismiss-button/DismissButton';
 import { isDefined } from '~common/helpers/types';
 import { MessageScreenReaderPrefix } from './MessageScreenReaderPrefix';
 import {

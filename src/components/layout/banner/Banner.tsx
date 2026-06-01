@@ -20,7 +20,7 @@
 
 import { forwardRef, useMemo } from 'react';
 import { useIntl } from 'react-intl';
-import { DismissButton } from '~common/components/DismissButton';
+import { DismissButton } from '../../dismiss-button/DismissButton';
 import { BannerScreenReaderPrefix } from './BannerScreenReaderPrefix';
 import {
   BANNER_TYPE_ICONS,
