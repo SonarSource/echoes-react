@@ -33,5 +33,5 @@ export {
   type EchoesCSSVarStringWithFallback,
   type EchoesDesignTokens,
 } from './design-tokens';
-export { ThemeProvider, setTheme, type ThemeProviderProps } from './theme';
-export { ToastDuration, ToastVariety, toast, type ToastParams } from './toasts';
+export { setTheme, ThemeContext, ThemeProvider, type ThemeProviderProps } from './theme';
+export { toast, ToastDuration, ToastVariety, type ToastParams } from './toasts';
