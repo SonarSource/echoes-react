@@ -50,9 +50,10 @@ export enum ToastDuration {
 
 export interface ToastParams extends Omit<ToastProps, 'id'> {
   /**
-   * Optional unique identifier for the toast. If not provided, one will be generated automatically.
-   * This ID is used to manage the toast's lifecycle, such as dismissing it manually or modifying it.
-   * Using the same ID for multiple toast call will update the existing toast instead of creating a new one.
+   * Optional stable identifier for the toast. If not provided, one will be generated automatically.
+   * This ID is used to manage the toast's lifecycle, such as dismissing it manually or updating it.
+   * Reusing the same `id` is the supported way to intentionally replace or update the existing
+   * toast instead of creating a second one.
    */
   id?: ToastId;
   /**
@@ -158,10 +159,11 @@ type ToastFn = {
  * @param ref - Optional React ref for the toast element
  * @returns The unique identifier of the created toast
  *
- * **Updating a toast**
+ * **Updating a toast with a stable id**
  *
- * It's possible to update an existing toast with new texts, new variety, etc, by just calling the
- * `toast` function again with the same ID.
+ * Reuse a stable `id` when a later toast call should replace or update an existing visible toast.
+ * Calling `toast` or one of the variety shortcuts again with that `id` updates the existing toast
+ * instead of creating a second one.
  *
  * **Important Rules**
  *
@@ -182,6 +184,19 @@ type ToastFn = {
  * toast.error({ description: "Failed to save file" });
  * toast.info({ description: "New update available" });
  * toast.warning({ description: "Storage space is low" });
+ *
+ * // Update an existing toast by reusing a stable ID
+ * const syncToastId = "repository-sync";
+ *
+ * toast.info({
+ *   id: syncToastId,
+ *   description: "Synchronizing repository settings..."
+ * });
+ *
+ * toast.success({
+ *   id: syncToastId,
+ *   description: "Repository settings synchronized."
+ * });
  *
  * // With actions
  * toast.success({

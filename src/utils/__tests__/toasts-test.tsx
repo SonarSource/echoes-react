@@ -219,3 +219,30 @@ describe('toast utility - dismissal and interaction', () => {
     jest.useRealTimers();
   });
 });
+
+describe('toast utility - stable id updates', () => {
+  afterEach(() => {
+    sonnerToast.dismiss();
+  });
+
+  it('should replace an existing toast when the same stable id is reused', async () => {
+    render(<div />);
+
+    toast.info({
+      description: 'Synchronizing repository settings...',
+      id: 'repository-sync',
+    });
+
+    expect(await screen.findByText('Synchronizing repository settings...')).toBeInTheDocument();
+
+    toast.success({
+      description: 'Repository settings synchronized.',
+      id: 'repository-sync',
+      title: 'Sync complete',
+    });
+
+    expect(await screen.findByText('Repository settings synchronized.')).toBeInTheDocument();
+    expect(screen.getByText('Sync complete')).toBeInTheDocument();
+    expect(screen.queryByText('Synchronizing repository settings...')).not.toBeInTheDocument();
+  });
+});

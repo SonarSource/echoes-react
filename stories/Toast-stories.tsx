@@ -30,7 +30,11 @@ const meta: Meta<ToastParams> = {
   title: 'Echoes/Toast',
   argTypes: {
     ...toDisabledControlArgType('actions'),
-    ...toTextControlArgTypes('id', 'title', 'description'),
+    ...toTextControlArgTypes('title', 'description'),
+    id: {
+      control: { type: 'text' },
+      description: 'Reuse a stable id to replace or update an existing toast intentionally.',
+    },
     variety: {
       control: { type: 'select' },
       table: {
@@ -112,6 +116,7 @@ export const Shortcuts: Story = {
   args: {},
   render: (args) => {
     const { description = 'This is a success toast message', ...restArgs } = args;
+
     return (
       <>
         <span>The toast function provide shortcuts for each variety:</span>
@@ -133,6 +138,49 @@ toast.error({ description: 'Error toast message' });`}
           {'Show many'}
         </Button>
       </>
+    );
+  },
+};
+
+export const StableIdUpdates: Story = {
+  args: {},
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Reuse a stable `id` when a later toast call should replace an existing visible toast. The second toast call updates the first one instead of creating another toast.',
+      },
+    },
+  },
+  render: (args) => {
+    const {
+      description = 'Repository settings synchronized.',
+      id = 'repository-sync',
+      title = 'Sync complete',
+      ...restArgs
+    } = args;
+
+    return (
+      <Button
+        onClick={() => {
+          toast.info({
+            description: 'Synchronizing repository settings...',
+            id,
+            title: 'Sync in progress',
+            ...restArgs,
+          });
+
+          globalThis.setTimeout(() => {
+            toast.success({
+              description,
+              id,
+              title,
+              ...restArgs,
+            });
+          }, 1000);
+        }}>
+        Show stable-id update
+      </Button>
     );
   },
 };
