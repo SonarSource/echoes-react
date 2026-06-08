@@ -17,6 +17,7 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
+
 import { css, Global } from '@emotion/react';
 import styled from '@emotion/styled';
 import { forwardRef, ReactNode, useCallback, useMemo } from 'react';
@@ -24,7 +25,7 @@ import { useIntl } from 'react-intl';
 import { toast as sonnerToast } from 'sonner';
 import { TextNode, TextNodeOptional } from '~types/utils';
 import { cssVar } from '~utils/design-tokens';
-import { ButtonIcon, Spinner, Text } from '../../components';
+import { BadgeCounter, ButtonIcon, Spinner, Text } from '../../components';
 import { IconCheckCircle, IconError, IconInfo, IconWarning, IconX } from '../../components/icons';
 import { ScreenReaderPrefix } from './ScreenReaderPrefix';
 
@@ -68,7 +69,8 @@ interface ToastActionsParams {
    */
   id: ToastId;
   /**
-   * Function to programmatically dismiss the toast, after clicking an action we should normally also dismiss the toast.
+   * Function to programmatically dismiss the toast. After clicking an action,
+   * we should normally also dismiss the toast.
    */
   dismiss: VoidFunction;
 }
@@ -77,7 +79,8 @@ export interface ToastProps {
   /**
    * Custom actions to display in the toast (optional). Receives the toast ID
    * and dismiss function as parameters. It should be either one or more Buttons or Links.
-   * If provided, the toast should also have the `isDismissable` prop set to true and it's duration set to infinite.
+   * If provided, the toast should also have the `isDismissable` prop set to true
+   * and its duration set to infinite.
    */
   actions?: ({ id, dismiss }: ToastActionsParams) => ReactNode;
   /**
@@ -95,6 +98,11 @@ export interface ToastProps {
    * The default is false.
    */
   isDismissable?: boolean;
+  /**
+   * Number of times the same toast has been repeated. When greater than 1, a counter badge is
+   * displayed next to the toast.
+   */
+  repetitionCount?: number;
   /**
    * Optional prefix text for screen readers, providing additional context.
    * If not provided, a default message based on the toast variety will be used.
@@ -142,12 +150,39 @@ export const Toast = forwardRef<HTMLDivElement, Readonly<ToastProps>>((props, re
     description,
     id,
     isDismissable = false,
+    repetitionCount: repetitionCountProp,
     screenReaderPrefix,
     title,
     variety,
     ...htmlProps
   } = props;
+
   const intl = useIntl();
+  const repetitionCount = repetitionCountProp ?? 0;
+  const hasTitleLine = hasToastTitleLine(title);
+
+  // Keep the visible badge compact while screen readers still hear the full count.
+  const repetitionBadgeValue = repetitionCount > 99 ? '99+' : repetitionCount;
+
+  const repetitionCounter =
+    repetitionCount > 1 ? (
+      <>
+        <ScreenReaderPrefix>
+          {intl.formatMessage(
+            {
+              id: 'toast.repetition-count',
+              defaultMessage: 'Shown {count} times',
+              description: 'Screen reader label for a toast shown multiple times',
+            },
+            { count: repetitionCount },
+          )}
+        </ScreenReaderPrefix>
+
+        <ToastRepetitionCounter aria-hidden>
+          <BadgeCounter value={repetitionBadgeValue} />
+        </ToastRepetitionCounter>
+      </>
+    ) : undefined;
 
   const handleDismiss = useCallback(() => {
     sonnerToast.dismiss(id);
@@ -156,27 +191,49 @@ export const Toast = forwardRef<HTMLDivElement, Readonly<ToastProps>>((props, re
   return (
     <ToastWrapper id={`echoes-toast-${id}`} ref={ref} {...htmlProps}>
       <Text>{TOAST_VARIETY_ICONS[variety]}</Text>
+
       <ToastBody>
         <ToastContent>
           <ScreenReaderPrefix>
             {screenReaderPrefix ?? <ToastPrefix variety={variety} />}
           </ScreenReaderPrefix>
-          {title && <Text isHighlighted>{title}</Text>}
-          <Text as="p">{description}</Text>
+
+          {hasTitleLine && (
+            <ToastTextLine>
+              <Text isHighlighted>{title}</Text>
+
+              {repetitionCounter}
+            </ToastTextLine>
+          )}
+
+          {hasTitleLine ? (
+            <Text as="p">{description}</Text>
+          ) : (
+            <ToastTextLine>
+              <Text as="p">{description}</Text>
+
+              {repetitionCounter}
+            </ToastTextLine>
+          )}
         </ToastContent>
+
         {actions?.({ id, dismiss: handleDismiss })}
       </ToastBody>
+
       {isDismissable && (
-        <ToastDismissButton
-          Icon={IconX}
-          ariaLabel={intl.formatMessage({
-            id: 'toast.dismiss',
-            defaultMessage: 'Dismiss toast',
-            description: 'ARIA-label for the dismiss button in the top-right corner of the Toast.',
-          })}
-          onClick={handleDismiss}
-          variety="default-ghost"
-        />
+        <ToastTrailingContent>
+          <ToastDismissButton
+            Icon={IconX}
+            ariaLabel={intl.formatMessage({
+              id: 'toast.dismiss',
+              defaultMessage: 'Dismiss toast',
+              description:
+                'ARIA-label for the dismiss button in the top-right corner of the Toast.',
+            })}
+            onClick={handleDismiss}
+            variety="default-ghost"
+          />
+        </ToastTrailingContent>
       )}
     </ToastWrapper>
   );
@@ -217,12 +274,52 @@ const ToastContent = styled.div`
 `;
 ToastContent.displayName = 'ToastContent';
 
+const ToastTextLine = styled.div`
+  display: inline-flex;
+  align-items: center;
+  gap: ${cssVar('dimension-space-100')};
+  max-width: 100%;
+
+  & > *:first-child {
+    min-width: 0;
+  }
+`;
+ToastTextLine.displayName = 'ToastTextLine';
+
+const ToastTrailingContent = styled.div`
+  display: flex;
+  align-items: center;
+  gap: ${cssVar('dimension-space-100')};
+  flex-shrink: 0;
+  min-height: ${cssVar('dimension-height-600')};
+`;
+ToastTrailingContent.displayName = 'ToastTrailingContent';
+
 const ToastDismissButton = styled(ButtonIcon)`
   --button-padding: ${cssVar('dimension-space-0')};
   --button-height: ${cssVar('dimension-height-600')};
   --button-width: ${cssVar('dimension-width-300')};
 `;
 ToastDismissButton.displayName = 'ToastDismissButton';
+
+const ToastRepetitionCounter = styled.span`
+  flex-shrink: 0;
+`;
+ToastRepetitionCounter.displayName = 'ToastRepetitionCounter';
+
+// Rendering is broader than repeated-toast aggregation: non-empty renderable titles still show a
+// title line, but only visible plain-text titles participate in aggregation matching.
+function hasToastTitleLine(title: TextNodeOptional | undefined): boolean {
+  if (typeof title === 'string') {
+    return title.trim().length > 0;
+  }
+
+  if (Array.isArray(title)) {
+    return title.some((child) => hasToastTitleLine(child));
+  }
+
+  return Boolean(title);
+}
 
 const TOAST_VARIETY_ICONS = {
   [ToastVariety.Info]: <IconInfo color="echoes-color-icon-info" />,

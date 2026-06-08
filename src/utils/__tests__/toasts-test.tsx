@@ -18,47 +18,53 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import { act, screen, waitForElementToBeRemoved } from '@testing-library/react';
-import { toast as sonnerToast } from 'sonner';
+import { act, screen, waitFor, waitForElementToBeRemoved } from '@testing-library/react';
 import { ToastVariety } from '~common/components/Toast';
-import { render } from '~common/helpers/test-utils';
+import { createToastTestState, render } from '~common/helpers/test-utils';
 import { toast, ToastDuration } from '..';
+import { clearRepeatedToastTracking } from '../toast-internals/repeated-toast-tracking';
 import { Button } from '../../components';
 
 const TEST_MESSAGE = 'Test message';
 const SUCCESS_MESSAGE = 'Success message';
 const WARNING_DESCRIPTION = 'Warning description';
 
+const { resetToastTestState, trackToastId } = createToastTestState({
+  cleanupTrackedToast: clearRepeatedToastTracking,
+});
+
 describe('toast utility - basic functionality', () => {
-  afterEach(() => {
-    sonnerToast.dismiss();
-  });
+  afterEach(resetToastTestState);
 
   it('should create and render a toast with required parameters', async () => {
     render(<div />);
 
-    toast({
-      variety: ToastVariety.Info,
-      description: TEST_MESSAGE,
-    });
+    trackToastId(
+      toast({
+        variety: ToastVariety.Info,
+        description: TEST_MESSAGE,
+      }),
+    );
 
     expect(await screen.findByText(TEST_MESSAGE)).toBeInTheDocument();
   });
 
-  it('should create a toast with all optional parameters, render actions and dismiss button', async () => {
+  it('should render optional fields, actions, and a dismiss button', async () => {
     const actions = jest.fn(() => <Button onClick={jest.fn()}>Action Button</Button>);
     const { container } = render(<div />);
 
-    toast({
-      variety: ToastVariety.Success,
-      title: 'Success title',
-      description: SUCCESS_MESSAGE,
-      id: 'custom-id',
-      duration: ToastDuration.Infinite,
-      isDismissable: true,
-      screenReaderPrefix: 'Toast prefix',
-      actions,
-    });
+    trackToastId(
+      toast({
+        variety: ToastVariety.Success,
+        title: 'Success title',
+        description: SUCCESS_MESSAGE,
+        id: 'custom-id',
+        duration: ToastDuration.Infinite,
+        isDismissable: true,
+        screenReaderPrefix: 'Toast prefix',
+        actions,
+      }),
+    );
 
     expect(await screen.findByText('Success title')).toBeInTheDocument();
     expect(screen.getByText(SUCCESS_MESSAGE)).toBeInTheDocument();
@@ -71,9 +77,7 @@ describe('toast utility - basic functionality', () => {
 });
 
 describe('toast utility - variety shortcuts', () => {
-  afterEach(() => {
-    sonnerToast.dismiss();
-  });
+  afterEach(resetToastTestState);
 
   const shortcutTests = [
     { method: 'success', description: SUCCESS_MESSAGE, a11yPrefix: 'Success:' },
@@ -86,10 +90,12 @@ describe('toast utility - variety shortcuts', () => {
     it(`should create ${method} toast with correct variety and content`, async () => {
       render(<div />);
 
-      toast[method]({
-        description,
-        title: `${method} title`,
-      });
+      trackToastId(
+        toast[method]({
+          description,
+          title: `${method} title`,
+        }),
+      );
 
       expect(await screen.findByText(description)).toBeInTheDocument();
       expect(screen.getByText(`${method} title`)).toBeInTheDocument();
@@ -99,22 +105,22 @@ describe('toast utility - variety shortcuts', () => {
 });
 
 describe('toast utility - dismissal and interaction', () => {
-  afterEach(() => {
-    sonnerToast.dismiss();
-  });
+  afterEach(resetToastTestState);
 
   it('should dismiss toast when dismiss button is clicked', async () => {
     const onAutoClose = jest.fn();
     const onDismiss = jest.fn();
     const { user } = render(<div />);
 
-    toast({
-      variety: ToastVariety.Info,
-      description: TEST_MESSAGE,
-      isDismissable: true,
-      onAutoClose,
-      onDismiss,
-    });
+    trackToastId(
+      toast({
+        variety: ToastVariety.Info,
+        description: TEST_MESSAGE,
+        isDismissable: true,
+        onAutoClose,
+        onDismiss,
+      }),
+    );
 
     expect(await screen.findByText(TEST_MESSAGE)).toBeInTheDocument();
 
@@ -129,12 +135,14 @@ describe('toast utility - dismissal and interaction', () => {
     const onDismiss = jest.fn();
     render(<div />);
 
-    const toastId = toast({
-      variety: ToastVariety.Info,
-      description: TEST_MESSAGE,
-      onAutoClose,
-      onDismiss,
-    });
+    const toastId = trackToastId(
+      toast({
+        variety: ToastVariety.Info,
+        description: TEST_MESSAGE,
+        onAutoClose,
+        onDismiss,
+      }),
+    );
 
     expect(await screen.findByText(TEST_MESSAGE)).toBeInTheDocument();
 
@@ -152,24 +160,26 @@ describe('toast utility - dismissal and interaction', () => {
 
     const { user } = render(<div />);
 
-    toast({
-      variety: ToastVariety.Success,
-      description: actionToastMessage,
-      duration: ToastDuration.Infinite,
-      isDismissable: true,
-      actions: ({ dismiss }) => (
-        <Button
-          onClick={() => {
-            actionHandler();
-            dismiss();
-          }}>
-          Undo Action
-        </Button>
-      ),
+    trackToastId(
+      toast({
+        variety: ToastVariety.Success,
+        description: actionToastMessage,
+        duration: ToastDuration.Infinite,
+        isDismissable: true,
+        actions: ({ dismiss }) => (
+          <Button
+            onClick={() => {
+              actionHandler();
+              dismiss();
+            }}>
+            Undo Action
+          </Button>
+        ),
 
-      onAutoClose,
-      onDismiss,
-    });
+        onAutoClose,
+        onDismiss,
+      }),
+    );
 
     expect(await screen.findByText(actionToastMessage)).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Undo Action' })).toBeInTheDocument();
@@ -189,13 +199,15 @@ describe('toast utility - dismissal and interaction', () => {
     const onDismiss = jest.fn();
     render(<div />);
 
-    toast({
-      variety: ToastVariety.Warning,
-      description: WARNING_DESCRIPTION,
-      duration: ToastDuration.Short,
-      onAutoClose,
-      onDismiss,
-    });
+    trackToastId(
+      toast({
+        variety: ToastVariety.Warning,
+        description: WARNING_DESCRIPTION,
+        duration: ToastDuration.Short,
+        onAutoClose,
+        onDismiss,
+      }),
+    );
 
     act(() => {
       jest.advanceTimersByTime(2000);
@@ -210,39 +222,212 @@ describe('toast utility - dismissal and interaction', () => {
     // It should auto-close after 8 seconds, we are at 6 seconds now
     act(() => {
       jest.advanceTimersByTime(4000);
+      jest.runOnlyPendingTimers();
     });
-    expect(screen.queryByText(WARNING_DESCRIPTION)).not.toBeInTheDocument();
+
+    await waitFor(() => {
+      expect(screen.queryByText(WARNING_DESCRIPTION)).not.toBeInTheDocument();
+    });
+
     expect(onAutoClose).toHaveBeenCalled();
     expect(onDismiss).not.toHaveBeenCalled();
-
-    jest.runOnlyPendingTimers();
-    jest.useRealTimers();
   });
 });
 
 describe('toast utility - stable id updates', () => {
-  afterEach(() => {
-    sonnerToast.dismiss();
-  });
+  afterEach(resetToastTestState);
 
   it('should replace an existing toast when the same stable id is reused', async () => {
     render(<div />);
 
-    toast.info({
-      description: 'Synchronizing repository settings...',
-      id: 'repository-sync',
-    });
+    trackToastId(
+      toast.info({
+        description: 'Synchronizing repository settings...',
+        id: 'repository-sync',
+      }),
+    );
 
     expect(await screen.findByText('Synchronizing repository settings...')).toBeInTheDocument();
 
-    toast.success({
-      description: 'Repository settings synchronized.',
-      id: 'repository-sync',
-      title: 'Sync complete',
-    });
+    trackToastId(
+      toast.success({
+        description: 'Repository settings synchronized.',
+        id: 'repository-sync',
+        title: 'Sync complete',
+      }),
+    );
 
     expect(await screen.findByText('Repository settings synchronized.')).toBeInTheDocument();
     expect(screen.getByText('Sync complete')).toBeInTheDocument();
     expect(screen.queryByText('Synchronizing repository settings...')).not.toBeInTheDocument();
+  });
+
+  it('should stop automatic aggregation immediately when a returned aggregated id is later reused explicitly', async () => {
+    render(<div />);
+
+    const repeatedToastId = trackToastId(
+      toast.success({
+        description: SUCCESS_MESSAGE,
+      }),
+    );
+
+    expect(await screen.findByText(SUCCESS_MESSAGE)).toBeInTheDocument();
+
+    trackToastId(
+      toast.success({
+        description: SUCCESS_MESSAGE,
+      }),
+    );
+
+    expect(await screen.findByText('Shown 2 times')).toBeInTheDocument();
+
+    trackToastId(
+      toast.info({
+        description: 'Upload still in progress',
+        id: repeatedToastId,
+      }),
+    );
+
+    expect(await screen.findByText('Upload still in progress')).toBeInTheDocument();
+    expect(screen.queryByText(SUCCESS_MESSAGE)).not.toBeInTheDocument();
+
+    const separateToastId = trackToastId(
+      toast.success({
+        description: SUCCESS_MESSAGE,
+      }),
+    );
+
+    expect(separateToastId).not.toBe(repeatedToastId);
+    expect(await screen.findAllByText(SUCCESS_MESSAGE)).toHaveLength(1);
+    expect(screen.getByText('Upload still in progress')).toBeInTheDocument();
+    expect(screen.queryByText(/^Shown \d+ times$/)).not.toBeInTheDocument();
+
+    toast.dismiss(repeatedToastId);
+    await waitForElementToBeRemoved(() => screen.queryByText('Upload still in progress'));
+    expect(screen.getByText(SUCCESS_MESSAGE)).toBeInTheDocument();
+    expect(screen.queryByText(/^Shown \d+ times$/)).not.toBeInTheDocument();
+  });
+
+  it('should not reuse an auto-generated repeated-toast id after the previous toast is dismissed', async () => {
+    render(<div />);
+
+    const firstToastId = trackToastId(
+      toast.success({
+        description: SUCCESS_MESSAGE,
+      }),
+    );
+
+    expect(await screen.findByText(SUCCESS_MESSAGE)).toBeInTheDocument();
+
+    toast.dismiss(firstToastId);
+    await waitForElementToBeRemoved(() => screen.queryByText(SUCCESS_MESSAGE));
+
+    const secondToastId = trackToastId(
+      toast.success({
+        description: SUCCESS_MESSAGE,
+      }),
+    );
+
+    expect(secondToastId).not.toBe(firstToastId);
+    expect(await screen.findByText(SUCCESS_MESSAGE)).toBeInTheDocument();
+
+    toast.dismiss(firstToastId);
+    expect(screen.getByText(SUCCESS_MESSAGE)).toBeInTheDocument();
+  });
+});
+
+describe('toast utility - automatic aggregation opt-outs', () => {
+  afterEach(resetToastTestState);
+
+  it('should keep repeated toasts separate when onDismiss is provided', async () => {
+    const firstOnDismiss = jest.fn();
+    const secondOnDismiss = jest.fn();
+    render(<div />);
+
+    const firstToastId = trackToastId(
+      toast.success({
+        description: SUCCESS_MESSAGE,
+        onDismiss: firstOnDismiss,
+      }),
+    );
+
+    const secondToastId = trackToastId(
+      toast.success({
+        description: SUCCESS_MESSAGE,
+        onDismiss: secondOnDismiss,
+      }),
+    );
+
+    expect(firstToastId).not.toBe(secondToastId);
+
+    await waitFor(() => {
+      expect(screen.getAllByText(SUCCESS_MESSAGE)).toHaveLength(2);
+    });
+
+    toast.dismiss(firstToastId);
+
+    await waitFor(() => {
+      expect(firstOnDismiss).toHaveBeenCalledTimes(1);
+    });
+
+    expect(secondOnDismiss).not.toHaveBeenCalled();
+
+    toast.dismiss(secondToastId);
+
+    await waitFor(() => {
+      expect(secondOnDismiss).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  it('should keep repeated toasts separate when onAutoClose is provided', async () => {
+    jest.useFakeTimers();
+
+    const firstOnAutoClose = jest.fn();
+    const secondOnAutoClose = jest.fn();
+    render(<div />);
+
+    const firstToastId = trackToastId(
+      toast.success({
+        description: SUCCESS_MESSAGE,
+        duration: ToastDuration.Short,
+        onAutoClose: firstOnAutoClose,
+      }),
+    );
+
+    const secondToastId = trackToastId(
+      toast.success({
+        description: SUCCESS_MESSAGE,
+        duration: ToastDuration.Short,
+        onAutoClose: secondOnAutoClose,
+      }),
+    );
+
+    expect(firstToastId).not.toBe(secondToastId);
+
+    await waitFor(() => {
+      expect(screen.getAllByText(SUCCESS_MESSAGE)).toHaveLength(2);
+    });
+
+    act(() => {
+      jest.advanceTimersByTime(8000);
+      jest.runOnlyPendingTimers();
+    });
+
+    act(() => {
+      // Sonner finalizes auto-dismiss on the next animation frame.
+      jest.advanceTimersToNextFrame();
+    });
+
+    await waitFor(() => {
+      expect(firstOnAutoClose).toHaveBeenCalledTimes(1);
+    });
+
+    await waitFor(() => {
+      expect(secondOnAutoClose).toHaveBeenCalledTimes(1);
+    });
+
+    await waitFor(() => {
+      expect(screen.queryAllByText(SUCCESS_MESSAGE)).toHaveLength(0);
+    });
   });
 });

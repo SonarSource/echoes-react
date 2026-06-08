@@ -17,11 +17,11 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-/* eslint-disable no-console */
 
+/* eslint-disable no-console */
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Button, toast, type ToastParams } from '../src';
-import { Toast, ToastVariety } from '../src/common/components/Toast';
+import { ToastVariety } from '../src/common/components/Toast';
 import { basicWrapperDecorator } from './helpers/BasicWrapper';
 import { toDisabledControlArgType, toTextControlArgTypes } from './helpers/arg-types';
 
@@ -44,10 +44,16 @@ const meta: Meta<ToastParams> = {
     duration: {
       control: { type: 'select' },
       table: {
-        defaultValue: { summary: 'short' },
+        defaultValue: { summary: 'medium' },
       },
 
       options: ['short', 'medium', 'long', 'infinite'],
+    },
+    isDismissable: {
+      control: { type: 'boolean' },
+      table: {
+        defaultValue: { summary: 'false' },
+      },
     },
   },
   decorators: [basicWrapperDecorator],
@@ -55,7 +61,61 @@ const meta: Meta<ToastParams> = {
 
 export default meta;
 
-type Story = StoryObj<typeof Toast>;
+type Story = StoryObj<typeof meta>;
+type ToastStoryArgs = NonNullable<Story['args']>;
+
+const AGGREGATED_REPEATED_TOAST_CONTROLS_EXCLUDE = ['actions', 'id', 'onAutoClose', 'onDismiss'];
+
+function renderAggregatedRepeatedToasts(args: Story['args'], defaultTitle: ToastParams['title']) {
+  const resolvedArgs: ToastStoryArgs = args ?? {};
+
+  const {
+    actions: _ignoredActions,
+    description = 'File uploaded',
+    id: _ignoredId,
+    isDismissable = true,
+    onAutoClose: _ignoredOnAutoClose,
+    onDismiss: _ignoredOnDismiss,
+    title = defaultTitle,
+    variety = ToastVariety.Success,
+    ...restArgs
+  } = resolvedArgs;
+
+  return (
+    <Button
+      onClick={() => {
+        toast({
+          description,
+          isDismissable,
+          title,
+          variety,
+          ...restArgs,
+        });
+
+        globalThis.setTimeout(() => {
+          toast({
+            description,
+            isDismissable,
+            title,
+            variety,
+            ...restArgs,
+          });
+        }, 300);
+
+        globalThis.setTimeout(() => {
+          toast({
+            description,
+            isDismissable,
+            title,
+            variety,
+            ...restArgs,
+          });
+        }, 600);
+      }}>
+      Show aggregated repeated toast
+    </Button>
+  );
+}
 
 export const Simple: Story = {
   args: {
@@ -119,7 +179,8 @@ export const Shortcuts: Story = {
 
     return (
       <>
-        <span>The toast function provide shortcuts for each variety:</span>
+        <span>The toast function provides shortcuts for each variety:</span>
+
         <code>
           <pre>
             {`toast.success({ description: 'Success toast message' });
@@ -128,6 +189,7 @@ toast.warning({ description: 'Warning toast message' });
 toast.error({ description: 'Error toast message' });`}
           </pre>
         </code>
+
         <Button
           onClick={() => {
             toast.info({ description, ...restArgs });
@@ -148,7 +210,8 @@ export const StableIdUpdates: Story = {
     docs: {
       description: {
         story:
-          'Reuse a stable `id` when a later toast call should replace an existing visible toast. The second toast call updates the first one instead of creating another toast.',
+          'Reuse a stable `id` when a later toast call should replace an existing visible toast. ' +
+          'The second toast call updates the first one instead of creating another toast.',
       },
     },
   },
@@ -182,5 +245,50 @@ export const StableIdUpdates: Story = {
         Show stable-id update
       </Button>
     );
+  },
+};
+
+export const AggregatedRepeatedToasts: Story = {
+  args: {
+    isDismissable: true,
+  },
+  parameters: {
+    controls: {
+      exclude: AGGREGATED_REPEATED_TOAST_CONTROLS_EXCLUDE,
+    },
+    docs: {
+      description: {
+        story:
+          'Repeated calls with the same plain-text description and variety reuse the existing ' +
+          'toast. If a plain-text title is shown, it must match too. The toast keeps the ' +
+          'original text and shows a counter badge next to the title, or next to the ' +
+          'description when there is no title. Toasts with actions or lifecycle callbacks are ' +
+          'not automatically aggregated.',
+      },
+    },
+  },
+  render: (args) => {
+    return renderAggregatedRepeatedToasts(args, 'Upload complete');
+  },
+};
+
+export const AggregatedRepeatedToastsWithoutTitle: Story = {
+  args: {
+    isDismissable: true,
+  },
+  parameters: {
+    controls: {
+      exclude: [...AGGREGATED_REPEATED_TOAST_CONTROLS_EXCLUDE, 'title'],
+    },
+    docs: {
+      description: {
+        story:
+          'Without a title, the repeated toast counter badge is shown immediately to the right ' +
+          'of the description.',
+      },
+    },
+  },
+  render: (args) => {
+    return renderAggregatedRepeatedToasts(args, undefined);
   },
 };
