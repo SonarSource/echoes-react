@@ -22,6 +22,11 @@ import { Ref } from 'react';
 import { toast as sonnerToast } from 'sonner';
 import { Toast, ToastId, ToastProps } from '~common/components/Toast';
 import { isDefined } from '~common/helpers/types';
+import {
+  clearRepeatedToastTracking,
+  isRepeatedToastId,
+  trackRepeatedToast,
+} from './toast-internals/repeated-toast-tracking';
 
 export { ToastVariety } from '~common/components/Toast';
 
@@ -48,12 +53,13 @@ export enum ToastDuration {
   Infinite = 'infinite',
 }
 
-export interface ToastParams extends Omit<ToastProps, 'id'> {
+export interface ToastParams extends Omit<ToastProps, 'id' | 'repetitionCount'> {
   /**
    * Optional stable identifier for the toast. If not provided, one will be generated automatically.
    * This ID is used to manage the toast's lifecycle, such as dismissing it manually or updating it.
    * Reusing the same `id` is the supported way to intentionally replace or update the existing
-   * toast instead of creating a second one.
+   * toast instead of creating a second one. Providing an explicit `id` also bypasses automatic
+   * same-text toast aggregation, so the provided `id` is used as-is.
    */
   id?: ToastId;
   /**
@@ -62,11 +68,15 @@ export interface ToastParams extends Omit<ToastProps, 'id'> {
    */
   duration?: `${ToastDuration}`;
   /**
-   * Callback function executed when the toast auto-closes due reaching the end of its duration (optional).
+   * Callback function executed when the toast auto-closes due to reaching the
+   * end of its duration (optional). Providing this callback opts the toast out
+   * of automatic same-text aggregation.
    */
   onAutoClose?: VoidFunction;
   /**
-   * Callback function executed when the toast is manually dismissed (optional).
+   * Callback function executed when the toast is manually dismissed
+   * (optional). Providing this callback opts the toast out of automatic
+   * same-text aggregation.
    */
   onDismiss?: VoidFunction;
 }
@@ -84,21 +94,68 @@ function toastFn(params: ToastParams, ref?: Ref<HTMLDivElement>): ToastId {
     ...toastProps
   } = params;
 
+  if (isDefined(id) && isRepeatedToastId(id)) {
+    clearRepeatedToastTracking(id);
+  }
+
+  // Repeated plain-text toasts of the same variety reuse a synthetic id so they stay as one
+  // visible toast with an incrementing counter instead of stacking duplicates.
+  const repeatedToastState = trackRepeatedToast(params);
+  const repeatedToastId = repeatedToastState?.id;
+  const repeatedToastCount = repeatedToastState?.count;
+
   const durationValue = isDefined(toastProps.actions)
     ? TOAST_DURATION_MAP[ToastDuration.Infinite]
     : TOAST_DURATION_MAP[duration];
 
   const isDismissableValue = durationValue === Infinity || isDismissable;
+  const visibleToastId = repeatedToastId ?? id;
+  const trackedRepeatedToastId = isRepeatedToastId(visibleToastId) ? visibleToastId : undefined;
+
+  const clearRepeatedToastTrackingIfNeeded = () => {
+    if (!isDefined(trackedRepeatedToastId)) {
+      return;
+    }
+
+    clearRepeatedToastTracking(trackedRepeatedToastId);
+  };
+
+  // Repeated toasts share the same id and count, but Sonner still owns their lifetime.
+  const handleToastAutoClose =
+    isDefined(trackedRepeatedToastId) || isDefined(onAutoClose)
+      ? () => {
+          clearRepeatedToastTrackingIfNeeded();
+
+          onAutoClose?.();
+        }
+      : undefined;
+
+  const handleToastDismiss =
+    isDefined(trackedRepeatedToastId) || isDefined(onDismiss)
+      ? () => {
+          clearRepeatedToastTrackingIfNeeded();
+
+          onDismiss?.();
+        }
+      : undefined;
 
   return sonnerToast.custom(
-    (id) => <Toast id={id} isDismissable={isDismissableValue} ref={ref} {...toastProps} />,
+    (id) => (
+      <Toast
+        id={id}
+        isDismissable={isDismissableValue}
+        ref={ref}
+        repetitionCount={repeatedToastCount}
+        {...toastProps}
+      />
+    ),
     {
       className,
       duration: durationValue,
-      onAutoClose,
-      onDismiss,
+      onAutoClose: handleToastAutoClose,
+      onDismiss: handleToastDismiss,
       // Passing id={undefined} breaks the dismiss functionality in Sonner
-      ...(isDefined(id) ? { id } : {}),
+      ...(isDefined(visibleToastId) ? { id: visibleToastId } : {}),
     },
   );
 }
@@ -164,6 +221,19 @@ type ToastFn = {
  * Reuse a stable `id` when a later toast call should replace or update an existing visible toast.
  * Calling `toast` or one of the variety shortcuts again with that `id` updates the existing toast
  * instead of creating a second one.
+ *
+ * **Aggregating repeated toasts**
+ *
+ * When no explicit `id` is provided, repeated calls with the same plain-text `description` and
+ * the same `variety` reuse the existing toast instead of creating duplicates. If the toast also
+ * has a plain-text `title`, that title must match too. The toast keeps its original text and
+ * shows a counter badge next to the title, or next to the description when there is no title.
+ *
+ * Toasts with actions, lifecycle callbacks, non-text descriptions, or non-text titles are not
+ * automatically aggregated. Blank plain-text titles are treated the same as no title.
+ * When automatic aggregation happens, non-key props from the latest matching call, such as
+ * `duration`, `isDismissable`, `className`, and `screenReaderPrefix`, are applied to the shared
+ * toast.
  *
  * **Important Rules**
  *

@@ -17,15 +17,44 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-import { RenderOptions, RenderResult, render as rtlRender } from '@testing-library/react';
+
+import { act, RenderOptions, RenderResult, render as rtlRender } from '@testing-library/react';
 import userEvent, { UserEvent, Options as UserEventsOptions } from '@testing-library/user-event';
 import React, { ComponentProps, PropsWithChildren } from 'react';
 import { IntlProvider } from 'react-intl';
 import { MemoryRouter, Route, Routes, useLocation } from 'react-router-dom';
+import { type ToastId } from '~common/components/Toast';
 import { PropsWithLabels, PropsWithLabelsAndHelpText } from '~types/utils';
 import { EchoesProvider } from '../../components/echoes-provider';
+import { toast } from '../../utils';
 
 type RenderResultWithUser = RenderResult & { user: UserEvent };
+
+interface ToastTestStateOptions {
+  cleanupTrackedToast?: (toastId: ToastId) => void;
+}
+
+function dismissTrackedToasts(
+  trackedToastIds: ReadonlySet<ToastId>,
+  cleanupTrackedToast?: (toastId: ToastId) => void,
+) {
+  act(() => {
+    for (const toastId of trackedToastIds) {
+      cleanupTrackedToast?.(toastId);
+      toast.dismiss(toastId);
+    }
+  });
+}
+
+function waitForNextAnimationFrame() {
+  return new Promise<void>((resolve) => {
+    globalThis.requestAnimationFrame(() => resolve());
+  });
+}
+
+async function waitForToastDismissAnimationFrame() {
+  await act(waitForNextAnimationFrame);
+}
 
 export function render(
   ui: React.ReactElement,
@@ -79,6 +108,39 @@ export type OmitPropsWithLabels<T extends React.JSXElementConstructor<any>> = Pa
   Omit<ComponentProps<T>, keyof PropsWithLabels<{}>>
 > &
   PropsWithLabels<{}>;
+
+export function createToastTestState(options: Readonly<ToastTestStateOptions> = {}) {
+  const trackedToastIds = new Set<ToastId>();
+
+  function trackToastId(toastId: ToastId) {
+    // Remember every created toast so afterEach can dismiss leftovers and keep tests isolated.
+    trackedToastIds.add(toastId);
+
+    return toastId;
+  }
+
+  async function resetToastTestState() {
+    const hasTrackedToasts = trackedToastIds.size > 0;
+
+    dismissTrackedToasts(trackedToastIds, options.cleanupTrackedToast);
+
+    trackedToastIds.clear();
+    jest.useRealTimers();
+
+    if (!hasTrackedToasts) {
+      return;
+    }
+
+    // Sonner applies part of toast dismissal on the next animation frame, so wait for that
+    // deferred update inside `act(...)` before the next test starts.
+    await waitForToastDismissAnimationFrame();
+  }
+
+  return {
+    resetToastTestState,
+    trackToastId,
+  };
+}
 
 function ShowPath() {
   const { pathname } = useLocation();

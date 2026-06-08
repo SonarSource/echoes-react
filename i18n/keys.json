@@ -223,6 +223,10 @@
   "toast.prefix.warning": {
     "defaultMessage": "Warning:"
   },
+  "toast.repetition-count": {
+    "defaultMessage": "Shown {count} times",
+    "description": "Screen reader label for a toast shown multiple times"
+  },
   "toasts.keyboard_shortcut_aria_label": {
     "defaultMessage": "Focus toasts messages with",
     "description": "ARIA-label for the toasts container keyboard shortcut"
