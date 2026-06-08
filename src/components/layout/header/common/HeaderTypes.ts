@@ -106,7 +106,7 @@ export interface HeaderProps {
   description?: ReactNode;
   /**
    * Whether to show a divider line at the bottom of the header
-   * @default false
+   * @defaultValue false
    */
   hasDivider?: boolean;
   /**

@@ -42,7 +42,7 @@ export enum TooltipSide {
 export interface TooltipProps {
   /**
    * The preferred alignment against the trigger. May change when collisions occur.
-   * @default 'center'
+   * @defaultValue 'center'
    */
   align?: `${TooltipAlign}`;
   /**
@@ -61,7 +61,7 @@ export interface TooltipProps {
   content: ReactNode;
   /**
    * The duration in milliseconds to wait before showing the tooltip.
-   * @default 700
+   * @defaultValue 700
    */
   delayDuration?: number;
   /**
@@ -70,7 +70,7 @@ export interface TooltipProps {
   isOpen?: boolean;
   /**
    * The preferred side of the trigger to render against when open. Will be reversed when collisions occur.
-   * @default 'top'
+   * @defaultValue 'top'
    */
   side?: `${TooltipSide}`;
 }
