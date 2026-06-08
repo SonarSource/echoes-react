@@ -57,7 +57,7 @@ const defaultSizeByTag: Record<HeadingTag, HeadingSize> = {
   h5: HeadingSize.ExtraSmall,
 };
 
-const StyledHeading = styled.div<Required<Pick<HeadingProps, 'hasMarginBottom' | 'size'>>>`
+export const StyledHeading = styled.div<Required<Pick<HeadingProps, 'hasMarginBottom' | 'size'>>>`
   font: ${getHeadingFont};
   letter-spacing: ${cssVar('letter-spacing-decreased')};
   color: ${cssVar('color-text-strong')};
