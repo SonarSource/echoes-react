@@ -18,7 +18,8 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import { ReactNode } from 'react';
+import { ReactNode, useContext } from 'react';
+import { LoadingContext } from '~common/components/LoadingContext';
 import {
   StyledLoadingSkeletonText,
   StyledLoadingSkeletonTextLastParagraphLine,
@@ -31,14 +32,14 @@ import { LoadingSkeletonVariety } from './LoadingSkeletonTypes';
 export interface LoadingSkeletonProps {
   className?: string;
   /**
-   * Wrapped components will be hidden when isLoading is true (which is the default value).
+   * Wrapped components will be hidden when isLoading is true.
    * If variety is not Text or Paragraph, the LoadingSkeleton will match the size of its child.
    */
   children?: ReactNode;
   /**
    * Displays the skeleton if `true`.
    * Displays its children if `false`.
-   * @default true
+   * @defaultValue reads from LoadingContext
    */
   isLoading?: boolean;
   /**
@@ -90,7 +91,12 @@ export interface LoadingSkeletonProps {
  * Check out LoadingContainer's tsdoc for more information.
  */
 export function LoadingSkeleton(props: Readonly<LoadingSkeletonProps>) {
-  const { children, isLoading = true, variety, ...radixProps } = props;
+  const { children, isLoading: isLoadingProp, variety, ...radixProps } = props;
+
+  const loadingContext = useContext(LoadingContext);
+
+  // Use the `isLoading` prop if defined, otherwise fall back to context!
+  const isLoading = isLoadingProp ?? loadingContext.isLoading;
 
   if (!isLoading) {
     return children;

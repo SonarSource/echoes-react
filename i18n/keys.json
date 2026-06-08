@@ -41,6 +41,14 @@
     "defaultMessage": "Loading...",
     "description": "aria-label text, to indicate that there is a spinner rotating in this place"
   },
+  "loading_container.default_loaded_message": {
+    "defaultMessage": "Content loaded",
+    "description": "Default message to be announced by screen readers when the LoadingContainer has finished loading"
+  },
+  "loading_container.default_loading_message": {
+    "defaultMessage": "Loading content",
+    "description": "Default message to be announced by screen readers when the LoadingContainer is loading"
+  },
   "logo.sonar": {
     "defaultMessage": "Sonar",
     "description": "Alternative text for the Sonar company logo"

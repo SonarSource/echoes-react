@@ -31,7 +31,7 @@ export interface DividerProps {
 
   /**
    * Whether the divider is vertical
-   * @default false
+   * @defaultValue false
    */
   isVertical?: boolean;
 

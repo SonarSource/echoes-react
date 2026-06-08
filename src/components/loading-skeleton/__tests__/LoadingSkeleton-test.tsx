@@ -17,10 +17,12 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
+
 import { matchers } from '@emotion/jest';
 import { screen } from '@testing-library/react';
 import { render } from '~common/helpers/test-utils';
 import { LoadingSkeleton, LoadingSkeletonVariety } from '..';
+import { LoadingContainer } from '../../loading-container';
 
 expect.extend(matchers);
 
@@ -46,6 +48,16 @@ it('should show text content when not loading', () => {
     <LoadingSkeleton isLoading={false} variety="paragraph">
       content
     </LoadingSkeleton>,
+  );
+
+  expect(screen.getByText('content')).toBeInTheDocument();
+});
+
+it('should fall back to LoadingContext when isLoading is undefined', () => {
+  render(
+    <LoadingContainer isLoading={false}>
+      <LoadingSkeleton /* isLoading is not defined */ variety="text">content</LoadingSkeleton>
+    </LoadingContainer>,
   );
 
   expect(screen.getByText('content')).toBeInTheDocument();

@@ -34,6 +34,7 @@ export * from './layout';
 export { DirectImportGlobalNavigation as GlobalNavigation } from './layout/global-navigation';
 export * from './legacy-banner';
 export * from './links';
+export * from './loading-container';
 export * from './loading-skeleton';
 export * from './logos';
 export * from './margin-indicator';
