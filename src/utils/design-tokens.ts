@@ -18,7 +18,6 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import { isStringDefined } from '~common/helpers/types';
 import designTokensBase from '~generated/design-tokens-base.json';
 import { DesignTokens, DesignTokensBase, WithoutEchoesPrefix } from '~types/design-tokens';
 
@@ -61,7 +60,7 @@ export function cssVar(
   fallback?: string,
 ): EchoesCSSVarString | EchoesCSSVarStringWithFallback {
   const variableName = `--echoes-${token}` as const;
-  return isStringDefined(fallback) ? `var(${variableName}, ${fallback})` : `var(${variableName})`;
+  return fallback !== undefined && fallback !== '' ? `var(${variableName}, ${fallback})` : `var(${variableName})`;
 }
 
 export type EchoesBaseDesignTokens = WithoutEchoesPrefix<DesignTokensBase>;

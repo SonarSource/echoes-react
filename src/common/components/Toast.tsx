@@ -24,8 +24,14 @@ import { useIntl } from 'react-intl';
 import { toast as sonnerToast } from 'sonner';
 import { TextNode, TextNodeOptional } from '~types/utils';
 import { cssVar } from '~utils/design-tokens';
-import { ButtonIcon, Spinner, Text } from '../../components';
-import { IconCheckCircle, IconError, IconInfo, IconWarning, IconX } from '../../components/icons';
+import { ButtonIcon } from '../../components/buttons/ButtonIcon';
+import { IconCheckCircle } from '../../components/icons/IconCheckCircle';
+import { IconError } from '../../components/icons/IconError';
+import { IconInfo } from '../../components/icons/IconInfo';
+import { IconWarning } from '../../components/icons/IconWarning';
+import { IconX } from '../../components/icons/IconX';
+import { Spinner } from '../../components/spinner/Spinner';
+import { Text } from '../../components/typography/Text';
 import { ScreenReaderPrefix } from './ScreenReaderPrefix';
 
 /**
