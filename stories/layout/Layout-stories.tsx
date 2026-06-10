@@ -36,6 +36,7 @@ import {
   IconSecurityFinding,
   Layout,
   LinkStandalone,
+  LoadingSkeleton,
   LogoSonarQubeServer,
   Text,
   TextInput,
@@ -144,6 +145,8 @@ export const Default: Story = {
     aside: AsideSize.medium,
     banner: 'none',
     contentHeader: false,
+    pageLoading: true,
+    pageContentLoading: true,
     pageHeader: true,
     pageHeaderScrollBehavior: PageHeaderScrollBehavior.scroll,
     pageWidth: 'default',
@@ -158,16 +161,18 @@ export const Default: Story = {
         {args.contentHeader}
         {args.aside}
 
-        <Layout.PageGrid width={args.pageWidth}>
+        <Layout.PageGrid isLoading={args.pageLoading} width={args.pageWidth}>
           {args.pageHeader(args.pageHeaderScrollBehavior)}
-          <Layout.PageContent>
+          <Layout.PageContent isLoading={args.pageContentLoading}>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-              incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-              exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-              dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-              Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-              mollit anim id est laborum.
+              <LoadingSkeleton variety="paragraph">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+                irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+                pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+                deserunt mollit anim id est laborum.
+              </LoadingSkeleton>
             </p>
             <StackingTestArea>
               <TextInput label="Input (no z-index)" />
