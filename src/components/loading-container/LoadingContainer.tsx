@@ -25,6 +25,7 @@ import { LoadingContext } from '~common/components/LoadingContext';
 import { screenReaderOnly } from '~common/helpers/styles';
 
 export interface LoadingContainerProps {
+  className?: string;
   isLoading: boolean;
   /**
    * Specify what the screen reader announces once isLoading switches to `false`
@@ -52,14 +53,16 @@ export interface LoadingContainerProps {
  * Both status messages can be specified.
  */
 export function LoadingContainer(props: PropsWithChildren<LoadingContainerProps>) {
-  const { children, isLoading, loadedMessage, loadingMessage } = props;
+  const { className, children, isLoading, loadedMessage, loadingMessage } = props;
 
   const loadingContextValue = useMemo(() => ({ isLoading }), [isLoading]);
 
   return (
     <>
       <LoadingContext.Provider value={loadingContextValue}>
-        <div aria-busy={isLoading}>{children}</div>
+        <div aria-busy={isLoading} className={className}>
+          {children}
+        </div>
       </LoadingContext.Provider>
 
       <ScreenReaderOnlyLive aria-live="polite">
@@ -83,7 +86,7 @@ export function LoadingContainer(props: PropsWithChildren<LoadingContainerProps>
   );
 }
 
-export const ScreenReaderOnlyLive = styled.span`
+const ScreenReaderOnlyLive = styled.span`
   ${screenReaderOnly};
 `;
 ScreenReaderOnlyLive.displayName = 'ScreenReaderOnlyLive';
