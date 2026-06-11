@@ -21,13 +21,34 @@
 /* eslint-disable no-console */
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { useCallback, useState } from 'react';
-import { Button, ButtonVariety, MessageCallout, MessageVariety } from '../../src';
+import {
+  Button,
+  ButtonVariety,
+  MessageCallout,
+  MessageVariety,
+  LiveRegionAnnouncementMode,
+} from '../../src';
 import { basicWrapperDecorator } from '../helpers/BasicWrapper';
 
 const meta: Meta<typeof MessageCallout> = {
   component: MessageCallout,
   title: 'Echoes/Messages/MessageCallout',
   argTypes: {
+    announcementMode: {
+      control: { type: 'select' },
+      description:
+        'Adds status/alert live-region semantics. Defaults to none. Announcements are most ' +
+        'reliable when an already-mounted message updates its content.',
+      mapping: {
+        alert: LiveRegionAnnouncementMode.Alert,
+        none: undefined,
+        status: LiveRegionAnnouncementMode.Status,
+      },
+      options: ['none', ...Object.values(LiveRegionAnnouncementMode)],
+      table: {
+        defaultValue: { summary: 'none' },
+      },
+    },
     variety: { control: { type: 'select' }, options: Object.values(MessageVariety) },
   },
   parameters: {
@@ -74,6 +95,15 @@ export const DismissableWithAction: Story = {
   },
   render: (args) => {
     return <DismissingContainer {...args} />;
+  },
+};
+
+export const StatusAnnouncement: Story = {
+  args: {
+    announcementMode: LiveRegionAnnouncementMode.Status,
+    children: 'Your background synchronization finished successfully.',
+    title: 'Sync complete',
+    variety: MessageVariety.Success,
   },
 };
 

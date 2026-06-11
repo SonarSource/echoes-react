@@ -17,11 +17,13 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
+
 import styled from '@emotion/styled';
 import { forwardRef, PropsWithChildren, ReactNode, useMemo } from 'react';
 import { useIntl } from 'react-intl';
 import { DismissButton } from '~common/components/DismissButton';
 import { isDefined } from '~common/helpers/types';
+import { LiveRegionAnnouncementMode } from '~types/LiveRegionAnnouncementMode';
 import { MessageScreenReaderPrefix } from './MessageScreenReaderPrefix';
 import {
   MESSAGE_CALLOUT_VARIETY_STYLE,
@@ -39,6 +41,14 @@ import { cssVar } from '~utils/design-tokens';
 
 export interface MessageCalloutProps extends PropsWithChildren {
   action?: ReactNode;
+  /**
+   * Adds `status` or `alert` live-region semantics to the rendered message.
+   * Defaults to no explicit live-region semantics.
+   * Set `status` for contextual status updates or `alert` for urgent messages.
+   * Screen reader announcements are most reliable when an already-mounted
+   * message updates its content.
+   */
+  announcementMode?: `${LiveRegionAnnouncementMode}`;
   className?: string;
   onDismiss?: VoidFunction;
   screenReaderPrefix?: string;
@@ -46,9 +56,16 @@ export interface MessageCalloutProps extends PropsWithChildren {
   variety: `${MessageVariety}`;
 }
 
+/**
+ * A contextual message block that stands apart from surrounding content.
+ * Use it for section-level feedback that may need a title, an action, or a
+ * dismiss button. Set `announcementMode` only when the message should also be
+ * announced by assistive technology.
+ */
 export const MessageCallout = forwardRef<HTMLDivElement, MessageCalloutProps>((props, ref) => {
   const {
     action,
+    announcementMode,
     children,
     className,
     onDismiss,
@@ -72,7 +89,7 @@ export const MessageCallout = forwardRef<HTMLDivElement, MessageCalloutProps>((p
           {MESSAGE_VARIETY_ICON[variety]}
         </MessageCalloutIconWrapper>
 
-        <MessageCalloutTextWrapper>
+        <MessageCalloutTextWrapper role={announcementMode}>
           <MessageScreenReaderPrefix screenReaderPrefix={screenReaderPrefix} variety={variety} />
 
           {isDefined(title) && <MessageCalloutTitleWrapper>{title}</MessageCalloutTitleWrapper>}
@@ -85,7 +102,7 @@ export const MessageCallout = forwardRef<HTMLDivElement, MessageCalloutProps>((p
             ariaLabel={intl.formatMessage({
               id: 'message_callout.dismiss',
               defaultMessage: 'Dismiss',
-              description: 'ARIA-label for the dismiss button at the top of the Modal.',
+              description: 'ARIA-label for the dismiss button at the top of the MessageCallout.',
             })}
             onClick={onDismiss}
           />
