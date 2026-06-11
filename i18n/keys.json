@@ -86,7 +86,7 @@
   },
   "message_callout.dismiss": {
     "defaultMessage": "Dismiss",
-    "description": "ARIA-label for the dismiss button at the top of the Modal."
+    "description": "ARIA-label for the dismiss button at the top of the MessageCallout."
   },
   "modal.close": {
     "defaultMessage": "Close",

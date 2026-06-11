@@ -21,16 +21,31 @@
 import { screen } from '@testing-library/react';
 import { ComponentProps } from 'react';
 import { render } from '~common/helpers/test-utils';
+import { LiveRegionAnnouncementMode } from '~types/LiveRegionAnnouncementMode';
 import { Tooltip } from '../../tooltip';
 import { MessageInline } from '../MessageInline';
 import { MessageVariety } from '../MessageTypes';
 
-it('should show a message', async () => {
+it('should show a message without live-region semantics by default', async () => {
   const { container } = setupMessageInline({ children: 'Fancy Content' });
 
+  expect(screen.queryByRole('alert')).not.toBeInTheDocument();
+  expect(screen.queryByRole('status')).not.toBeInTheDocument();
   expect(screen.getByText('Fancy Content')).toBeInTheDocument();
   await expect(container).toHaveNoA11yViolations();
 });
+
+it.each([LiveRegionAnnouncementMode.Alert, LiveRegionAnnouncementMode.Status])(
+  'should support %s announcement mode',
+  (announcementMode) => {
+    setupMessageInline({
+      announcementMode,
+      children: 'Fancy Content',
+    });
+
+    expect(screen.getByRole(announcementMode)).toHaveTextContent(/Information:\s*Fancy Content/);
+  },
+);
 
 it.each([
   [MessageVariety.Danger, 'Error:'],
