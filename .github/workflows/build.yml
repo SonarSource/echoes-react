@@ -51,7 +51,7 @@ jobs:
           promote-pull-request: true
 
   slack-notifications:
-    runs-on: github-ubuntu-latest-s # Public GH runner is required, runners starting with sonar-* do not support this action
+    runs-on: warp-custom-ubuntu-24-04 # Public GH runner is required, runners starting with sonar-* do not support this action
     if: failure() && (contains(fromJSON('["main", "master"]'), github.ref_name) || startsWith(github.ref_name, 'branch-'))
     needs: [ build, promote ]
     permissions:
