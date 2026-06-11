@@ -21,6 +21,7 @@
 import { forwardRef, useMemo } from 'react';
 import { useIntl } from 'react-intl';
 import { DismissButton } from '~common/components/DismissButton';
+import { LiveRegionAnnouncementMode } from '~types/LiveRegionAnnouncementMode';
 import { BannerScreenReaderPrefix } from './BannerScreenReaderPrefix';
 import {
   BANNER_TYPE_ICONS,
@@ -32,7 +33,14 @@ import {
 import { BannerProps } from './BannerTypes';
 
 export const Banner = forwardRef<HTMLDivElement, BannerProps>((props, ref) => {
-  const { children, onDismiss, screenReaderPrefix, variety, ...htmlProps } = props;
+  const {
+    announcementMode = LiveRegionAnnouncementMode.Alert,
+    children,
+    onDismiss,
+    screenReaderPrefix,
+    variety,
+    ...htmlProps
+  } = props;
 
   const intl = useIntl();
 
@@ -43,7 +51,7 @@ export const Banner = forwardRef<HTMLDivElement, BannerProps>((props, ref) => {
       css={useMemo(() => BANNER_TYPE_STYLES[variety], [variety])}
       {...htmlProps}
       ref={ref}
-      role="alert">
+      role={announcementMode}>
       <BannerContent>
         <BannerIcon color={iconColor} />
         <BannerScreenReaderPrefix screenReaderPrefix={screenReaderPrefix} variety={variety} />

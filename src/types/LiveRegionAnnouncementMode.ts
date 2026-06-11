@@ -18,13 +18,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import './generated/design-tokens-base.json';
-import './generated/design-tokens-themed.json';
-import './generated/design-tokens.css';
-
-export * from './components';
-export * from './utils';
-
-export { Theme } from './generated/themes';
-export { GroupAlignment } from './types/GroupAlignment';
-export { LiveRegionAnnouncementMode } from './types/LiveRegionAnnouncementMode';
+export enum LiveRegionAnnouncementMode {
+  Alert = 'alert',
+  Status = 'status',
+}

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
-exports[`should display banner content 1`] = `
+exports[`should display banner content as an alert by default 1`] = `
 .emotion-0 {
   display: -webkit-box;
   display: -webkit-flex;
