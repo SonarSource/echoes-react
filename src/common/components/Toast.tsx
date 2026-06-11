@@ -79,8 +79,7 @@ export interface ToastProps {
   /**
    * Custom actions to display in the toast (optional). Receives the toast ID
    * and dismiss function as parameters. It should be either one or more Buttons or Links.
-   * If provided, the toast should also have the `isDismissable` prop set to true
-   * and its duration set to infinite.
+   * If provided, the toast should also have the `isDismissable` prop set to true.
    */
   actions?: ({ id, dismiss }: ToastActionsParams) => ReactNode;
   /**
@@ -94,7 +93,8 @@ export interface ToastProps {
   id: ToastId;
   /**
    * When true, displays a dismiss button allowing users to manually close the toast (optional).
-   * It must be set to true if the duration of the toast is set to infinite though.
+   * It must be set to true if the duration of the toast is set to infinite or if actions are
+   * provided.
    * The default is false.
    */
   isDismissable?: boolean;

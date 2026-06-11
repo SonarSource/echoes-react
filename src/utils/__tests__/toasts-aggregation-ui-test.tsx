@@ -40,7 +40,7 @@ const { resetToastTestState, trackToastId } = createToastTestState({
 describe('toast utility - automatic aggregation UI', () => {
   afterEach(resetToastTestState);
 
-  it('should aggregate repeated toasts without a title when the description and variety match', async () => {
+  it('should aggregate title-less toasts when description and variety match', async () => {
     render(<div />);
 
     trackToastId(toast.success(descriptionOnlyUploadCompleteToast));
@@ -55,7 +55,7 @@ describe('toast utility - automatic aggregation UI', () => {
     expect(screen.getByText(/^2$/)).toBeInTheDocument();
   });
 
-  it('should treat blank plain-text titles as absent when aggregating repeated toasts', async () => {
+  it('should treat blank plain-text titles as absent during aggregation', async () => {
     render(<div />);
 
     trackToastId(
@@ -75,7 +75,7 @@ describe('toast utility - automatic aggregation UI', () => {
     expect(screen.getByText(/^2$/)).toBeInTheDocument();
   });
 
-  it('should aggregate repeated toasts with the same plain-text title, description, and variety', async () => {
+  it('should aggregate repeated toasts when title, description, and variety match', async () => {
     render(<div />);
 
     trackToastId(toast.success(uploadCompleteToast));
@@ -150,7 +150,7 @@ describe('toast utility - automatic aggregation UI', () => {
     expect(await screen.findByText('File uploaded')).toBeInTheDocument();
 
     act(() => {
-      jest.advanceTimersByTime(8000);
+      jest.advanceTimersByTime(3000);
       jest.runOnlyPendingTimers();
     });
 
@@ -174,7 +174,7 @@ describe('toast utility - automatic aggregation UI', () => {
     expect(screen.queryByText('Shown 2 times')).not.toBeInTheDocument();
   });
 
-  it('should keep the aggregation story aggregating when Storybook injects lifecycle action args', async () => {
+  it('should keep the aggregation story working when Storybook adds lifecycle args', async () => {
     jest.useFakeTimers();
 
     const storyElement = AggregatedRepeatedToasts.render!(
