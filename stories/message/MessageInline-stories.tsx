@@ -20,13 +20,33 @@
 
 /* eslint-disable no-console */
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { MessageInline, MessageInlineSize, MessageVariety } from '../../src';
+import {
+  MessageInline,
+  MessageInlineSize,
+  MessageVariety,
+  LiveRegionAnnouncementMode,
+} from '../../src';
 import { basicWrapperDecorator } from '../helpers/BasicWrapper';
 
 const meta: Meta<typeof MessageInline> = {
   component: MessageInline,
   title: 'Echoes/Messages/MessageInline',
   argTypes: {
+    announcementMode: {
+      control: { type: 'select' },
+      description:
+        'Adds status/alert live-region semantics. Defaults to none. Announcements are most ' +
+        'reliable when an already-mounted message updates its content.',
+      mapping: {
+        alert: LiveRegionAnnouncementMode.Alert,
+        none: undefined,
+        status: LiveRegionAnnouncementMode.Status,
+      },
+      options: ['none', ...Object.values(LiveRegionAnnouncementMode)],
+      table: {
+        defaultValue: { summary: 'none' },
+      },
+    },
     size: { control: { type: 'select' }, options: Object.values(MessageInlineSize) },
     variety: { control: { type: 'select' }, options: Object.values(MessageVariety) },
   },
@@ -56,5 +76,13 @@ export const InAParagraph: Story = {
         <MessageInline {...args} /> should flow flawlessly!
       </p>
     );
+  },
+};
+
+export const AlertAnnouncement: Story = {
+  args: {
+    announcementMode: LiveRegionAnnouncementMode.Alert,
+    children: 'This field is required.',
+    variety: MessageVariety.Danger,
   },
 };

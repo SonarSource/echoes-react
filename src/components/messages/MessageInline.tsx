@@ -17,8 +17,10 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
+
 import styled from '@emotion/styled';
 import { forwardRef, PropsWithChildren, useMemo } from 'react';
+import { LiveRegionAnnouncementMode } from '~types/LiveRegionAnnouncementMode';
 import { MessageScreenReaderPrefix } from './MessageScreenReaderPrefix';
 import { MESSAGE_VARIETY_ICON } from './MessageStyles';
 import { MessageInlineSize, MessageVariety } from './MessageTypes';
@@ -26,6 +28,14 @@ import { MessageInlineSize, MessageVariety } from './MessageTypes';
 import { cssVar } from '~utils/design-tokens';
 
 export interface MessageInlineProps {
+  /**
+   * Adds `status` or `alert` live-region semantics to the rendered message.
+   * Defaults to no explicit live-region semantics.
+   * Set `status` for contextual status updates or `alert` for urgent messages.
+   * Screen reader announcements are most reliable when an already-mounted
+   * message updates its content.
+   */
+  announcementMode?: `${LiveRegionAnnouncementMode}`;
   as?: 'div' | 'span';
   className?: string;
   id?: string;
@@ -34,9 +44,24 @@ export interface MessageInlineProps {
   variety: `${MessageVariety}`;
 }
 
-export const MessageInline = forwardRef<HTMLDivElement, PropsWithChildren<MessageInlineProps>>(
+/**
+ * A compact message that flows inline with surrounding text or controls.
+ * Use it for short contextual feedback tied to nearby content. Set
+ * `announcementMode` only when the message should also be announced by
+ * assistive technology.
+ */
+export const MessageInline = forwardRef<HTMLElement, PropsWithChildren<MessageInlineProps>>(
   (props, ref) => {
-    const { children, className, screenReaderPrefix, size, variety, ...radixProps } = props;
+    const {
+      announcementMode,
+      children,
+      className,
+      screenReaderPrefix,
+      size,
+      variety,
+      ...radixProps
+    } = props;
+
     return (
       <MessageInlineContainer
         className={className}
@@ -45,8 +70,10 @@ export const MessageInline = forwardRef<HTMLDivElement, PropsWithChildren<Messag
         size={size}
         {...radixProps}>
         <span>{MESSAGE_VARIETY_ICON[variety]}</span>
-        <MessageInlineTextWrapper>
+
+        <MessageInlineTextWrapper role={announcementMode}>
           <MessageScreenReaderPrefix screenReaderPrefix={screenReaderPrefix} variety={variety} />
+
           {children}
         </MessageInlineTextWrapper>
       </MessageInlineContainer>

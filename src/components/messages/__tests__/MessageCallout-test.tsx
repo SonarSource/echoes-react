@@ -18,19 +18,49 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import { screen } from '@testing-library/react';
+import { screen, within } from '@testing-library/react';
 import { ComponentProps } from 'react';
 import { render } from '~common/helpers/test-utils';
+import { LiveRegionAnnouncementMode } from '~types/LiveRegionAnnouncementMode';
 import { Button } from '../../buttons';
 import { Tooltip } from '../../tooltip';
 import { MessageCallout } from '../MessageCallout';
 import { MessageVariety } from '../MessageTypes';
 
-it('should display a message', async () => {
+it('should display a message without live-region semantics by default', async () => {
   const { container } = setupMessageCallout({ children: 'Fancy Content' });
 
+  expect(screen.queryByRole('alert')).not.toBeInTheDocument();
+  expect(screen.queryByRole('status')).not.toBeInTheDocument();
   expect(screen.getByText('Fancy Content')).toBeInTheDocument();
   await expect(container).toHaveNoA11yViolations();
+});
+
+it.each([LiveRegionAnnouncementMode.Alert, LiveRegionAnnouncementMode.Status])(
+  'should support %s announcement mode',
+  (announcementMode) => {
+    setupMessageCallout({
+      announcementMode,
+      children: 'Fancy Content',
+    });
+
+    expect(screen.getByRole(announcementMode)).toHaveTextContent(/Information:\s*Fancy Content/);
+  },
+);
+
+it('should keep dismiss and action controls outside the live region', () => {
+  setupMessageCallout({
+    action: <Button>Nice button</Button>,
+    announcementMode: LiveRegionAnnouncementMode.Status,
+    children: 'Fancy Content',
+    onDismiss: jest.fn(),
+    title: 'Fancy Title',
+  });
+
+  const liveRegion = screen.getByRole(LiveRegionAnnouncementMode.Status);
+  expect(liveRegion).toHaveTextContent(/Information:\s*Fancy Title\s*Fancy Content/);
+  expect(within(liveRegion).queryByRole('button', { name: 'Dismiss' })).not.toBeInTheDocument();
+  expect(within(liveRegion).queryByRole('button', { name: 'Nice button' })).not.toBeInTheDocument();
 });
 
 it.each([
