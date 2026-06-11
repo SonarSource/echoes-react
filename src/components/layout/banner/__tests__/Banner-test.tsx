@@ -21,11 +21,12 @@
 import { screen } from '@testing-library/react';
 import { screenReaderOnly } from '~common/helpers/styles';
 import { renderWithMemoryRouter } from '~common/helpers/test-utils';
+import { LiveRegionAnnouncementMode } from '~types/LiveRegionAnnouncementMode';
 import { Link } from '../../../links';
 import { Banner } from '../Banner';
 import { BannerProps, BannerVariety } from '../BannerTypes';
 
-it('should display banner content', async () => {
+it('should display banner content as an alert by default', async () => {
   setupBanner({ children: 'Banner Content' });
 
   const banner = screen.getByRole('alert');
@@ -34,6 +35,18 @@ it('should display banner content', async () => {
   expect(banner).toMatchSnapshot();
 
   await expect(banner).toHaveNoA11yViolations();
+});
+
+it('should support page-level status announcements', () => {
+  setupBanner({
+    announcementMode: LiveRegionAnnouncementMode.Status,
+    children: 'Banner Content',
+  });
+
+  const banner = screen.getByRole('status');
+  expect(banner).toBeInTheDocument();
+  expect(banner).toHaveTextContent('Information banner: Banner Content');
+  expect(screen.queryByRole('alert')).not.toBeInTheDocument();
 });
 
 it.each([

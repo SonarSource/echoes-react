@@ -20,7 +20,14 @@
 
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { useState } from 'react';
-import { BannerProps, BannerVariety, Button, Layout, Link } from '../../src';
+import {
+  BannerProps,
+  BannerVariety,
+  Button,
+  Layout,
+  Link,
+  LiveRegionAnnouncementMode,
+} from '../../src';
 import { toDisabledControlArgType, toTextControlArgTypes } from '../helpers/arg-types';
 import { BasicWrapper } from '../helpers/BasicWrapper';
 import { minWidthBodyDecorator } from '../helpers/decorators';
@@ -30,6 +37,16 @@ const meta: Meta<typeof Layout.Banner> = {
   title: 'Echoes/Layout/Banner',
 
   argTypes: {
+    announcementMode: {
+      control: { type: 'select' },
+      description:
+        'Defaults to alert to preserve the current behavior. Switch to status for page-level ' +
+        'status banners that should be announced politely.',
+      options: Object.values(LiveRegionAnnouncementMode),
+      table: {
+        defaultValue: { summary: LiveRegionAnnouncementMode.Alert },
+      },
+    },
     variety: { control: { type: 'select' }, options: Object.values(BannerVariety) },
     ...toTextControlArgTypes('children', 'className', 'screenReaderPrefix'),
     ...toDisabledControlArgType('onDismiss'),
@@ -64,6 +81,15 @@ export const WithDismiss: Story = {
     variety: 'info',
   },
   render: (args) => <BannerWithDismiss {...args} />,
+};
+
+export const PageLevelStatus: Story = {
+  args: {
+    announcementMode: LiveRegionAnnouncementMode.Status,
+    children: 'Background synchronization completed successfully.',
+    onDismiss: undefined,
+    variety: BannerVariety.Success,
+  },
 };
 
 function BannerWithDismiss(args: Readonly<BannerProps>) {

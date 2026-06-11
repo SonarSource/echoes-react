@@ -19,6 +19,7 @@
  */
 
 import { MouseEvent } from 'react';
+import { LiveRegionAnnouncementMode } from '~types/LiveRegionAnnouncementMode';
 import { TextNodeOptional } from '~types/utils';
 
 export enum BannerVariety {
@@ -30,16 +31,28 @@ export enum BannerVariety {
 
 export interface BannerProps {
   /**
-   * The content to be displayed in the banner, keep it short and concise. It can't break into multiple lines and will be ellipsized if too long.
+   * Controls how assistive technology announces the banner.
+   * Defaults to `alert` to preserve the current urgent-announcement behavior.
+   * Switch to `status` for page-level status banners that should be announced
+   * politely instead of interrupting the current screen reader announcement.
+   *
+   * @defaultValue "alert"
+   */
+  announcementMode?: `${LiveRegionAnnouncementMode}`;
+  /**
+   * The content to be displayed in the banner. Keep it short and concise. It
+   * cannot break into multiple lines and will be ellipsized if too long.
    */
   children: TextNodeOptional;
   className?: string;
   /**
-   * Function that will be called when the dismiss button is clicked. The dismiss button is only shown if this function is defined.
+   * Function that will be called when the dismiss button is clicked. The
+   * dismiss button is only shown if this function is defined.
    */
   onDismiss?: VoidFunction | ((event: MouseEvent<HTMLElement>) => Promise<void>);
   /**
-   * Prefix text for screen readers to announce before the banner content. Optional since a default value is provided.
+   * Prefix text for screen readers to announce before the banner content.
+   * Optional since a default value is provided.
    */
   screenReaderPrefix?: TextNodeOptional;
   /**
