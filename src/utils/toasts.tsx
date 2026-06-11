@@ -35,20 +35,22 @@ export { ToastVariety } from '~common/components/Toast';
  */
 export enum ToastDuration {
   /**
-   * Short duration for toasts with only 1 line of text (8 seconds).
+   * Short duration (3 seconds) for brief transient toasts when a shorter-than-default lifetime is
+   * intentional.
    */
   Short = 'short',
   /**
-   * Medium duration for toasts with 2 lines of text (16 seconds) - default duration.
+   * Medium duration (5 seconds). This is the default for regular toasts.
    */
   Medium = 'medium',
   /**
-   * Long duration for toasts with 3 lines of text (24 seconds).
+   * Long duration (8 seconds). This is the default for toasts with actions, or for regular toasts
+   * that intentionally need a bit more time.
    */
   Long = 'long',
   /**
-   * Infinite duration toast that remains visible until manually dismissed.
-   * Mandatory when the toast has actions.
+   * Infinite duration for toasts that must remain visible until the user dismisses them, such as
+   * critical or complex errors.
    */
   Infinite = 'infinite',
 }
@@ -63,8 +65,12 @@ export interface ToastParams extends Omit<ToastProps, 'id' | 'repetitionCount'> 
    */
   id?: ToastId;
   /**
-   * How long the toast should remain visible (optional). The default is `medium`.
-   * Note: Toasts with actions must use infinite duration.
+   * How long the toast should remain visible (optional). The default is `medium` for regular
+   * toasts and `long` for toasts with actions.
+   * Set `short` or `long` explicitly only when the toast should be shorter- or longer-lived than
+   * those defaults.
+   * Use `infinite` explicitly for critical or complex errors that should stay visible until
+   * dismissal.
    */
   duration?: `${ToastDuration}`;
   /**
@@ -84,15 +90,7 @@ export interface ToastParams extends Omit<ToastProps, 'id' | 'repetitionCount'> 
 type ToastShortcutParams = Omit<ToastParams, 'variety'>;
 
 function toastFn(params: ToastParams, ref?: Ref<HTMLDivElement>): ToastId {
-  const {
-    duration = ToastDuration.Medium,
-    className,
-    id,
-    isDismissable,
-    onAutoClose,
-    onDismiss,
-    ...toastProps
-  } = params;
+  const { duration, className, id, isDismissable, onAutoClose, onDismiss, ...toastProps } = params;
 
   if (isDefined(id) && isRepeatedToastId(id)) {
     clearRepeatedToastTracking(id);
@@ -103,12 +101,12 @@ function toastFn(params: ToastParams, ref?: Ref<HTMLDivElement>): ToastId {
   const repeatedToastState = trackRepeatedToast(params);
   const repeatedToastId = repeatedToastState?.id;
   const repeatedToastCount = repeatedToastState?.count;
+  const hasActions = isDefined(toastProps.actions);
 
-  const durationValue = isDefined(toastProps.actions)
-    ? TOAST_DURATION_MAP[ToastDuration.Infinite]
-    : TOAST_DURATION_MAP[duration];
+  const resolvedDuration = duration ?? (hasActions ? ToastDuration.Long : ToastDuration.Medium);
 
-  const isDismissableValue = durationValue === Infinity || isDismissable;
+  const durationValue = TOAST_DURATION_MAP[resolvedDuration];
+  const isDismissableValue = durationValue === Infinity || hasActions || isDismissable;
   const visibleToastId = repeatedToastId ?? id;
   const trackedRepeatedToastId = isRepeatedToastId(visibleToastId) ? visibleToastId : undefined;
 
@@ -237,8 +235,10 @@ type ToastFn = {
  *
  * **Important Rules**
  *
- * - Toasts with actions must be dismissible and have infinite duration
+ * - Toasts with actions must be dismissible
  * - Infinite duration toasts must be dismissible
+ * - Use `ToastDuration.Infinite` explicitly for critical or complex errors that should stay
+ *   visible until dismissal
  *
  * **Basic Usage**
  *
@@ -273,12 +273,19 @@ type ToastFn = {
  *   title: "File uploaded",
  *   description: "Your file has been uploaded successfully.",
  *   isDismissable: true,
- *   duration: ToastDuration.Infinite,
  *   actions: ({ dismiss }) => (
  *     <Button onClick={dismiss}>
  *       View File
  *     </Button>
  *   )
+ * });
+ *
+ * // Critical or complex errors that must stay visible
+ * toast.error({
+ *   title: "Repository synchronization failed",
+ *   description: "Resolve the underlying issue before retrying.",
+ *   duration: ToastDuration.Infinite,
+ *   isDismissable: true
  * });
  *
  * // Manual dismiss of a toast using its ID
@@ -305,20 +312,15 @@ export const toast: ToastFn = Object.assign(toastFn, {
 });
 
 const TOAST_DURATION_MAP = {
-  [ToastDuration.Short]: 8000,
-  [ToastDuration.Medium]: 16000,
-  [ToastDuration.Long]: 24000,
+  [ToastDuration.Short]: 3000,
+  [ToastDuration.Medium]: 5000,
+  [ToastDuration.Long]: 8000,
   [ToastDuration.Infinite]: Infinity,
 } as const;
 
 type InvalidToastActionNoDismissable = {
   actions: Required<ToastParams['actions']>;
   isDismissable?: false;
-};
-
-type InvalidToastActionNoInfinite = {
-  actions: Required<ToastParams['actions']>;
-  duration?: `${Exclude<ToastDuration, ToastDuration.Infinite>}`;
 };
 
 type InvalidToastInfiniteNoDismissable = {
@@ -332,9 +334,7 @@ type InvalidToastInfiniteNoDismissable = {
  */
 type TypeGuardValidToastParams<T extends ToastShortcutParams> =
   T extends InvalidToastActionNoDismissable
-    ? '🚨 A toast with the `actions` param must also have the `isDismissable` param set to `true`'
-    : T extends InvalidToastActionNoInfinite
-      ? '🚨 A toast with the `actions` param must also have the `duration` param set to `infinite`'
-      : T extends InvalidToastInfiniteNoDismissable
-        ? '🚨 A toast with the `duration` param set to `infinite` must also have the `isDismissable` param set to `true`'
-        : T;
+    ? '🚨 A toast with `actions` must also set `isDismissable: true`'
+    : T extends InvalidToastInfiniteNoDismissable
+      ? '🚨 A toast with `duration: infinite` must also set `isDismissable: true`'
+      : T;

@@ -43,8 +43,11 @@ const meta: Meta<ToastParams> = {
     },
     duration: {
       control: { type: 'select' },
+      description:
+        'Regular toasts default to medium (5 seconds). Toasts with actions default to long ' +
+        '(8 seconds).',
       table: {
-        defaultValue: { summary: 'medium' },
+        defaultValue: { summary: 'medium (regular) / long (with actions)' },
       },
 
       options: ['short', 'medium', 'long', 'infinite'],
@@ -138,8 +141,18 @@ export const WithActions: Story = {
   args: {
     className: 'custom-toast',
     description: 'This is a toast message',
+    isDismissable: true,
     title: 'Default Toast',
     variety: 'info',
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Toasts with actions stay dismissable, and when no duration is provided they use the ' +
+          'long duration by default (8 seconds).',
+      },
+    },
   },
   render: (args) => {
     return (
@@ -153,8 +166,6 @@ export const WithActions: Story = {
             onDismiss: () => {
               console.log('Toast dismissed');
             },
-            isDismissable: true,
-            duration: 'infinite',
             actions: ({ id, dismiss }) => (
               <Button
                 onClick={() => {
@@ -166,7 +177,7 @@ export const WithActions: Story = {
             ),
           });
         }}>
-        Show dismissable toast
+        Show action toast
       </Button>
     );
   },

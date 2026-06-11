@@ -59,7 +59,6 @@ describe('toast utility - basic functionality', () => {
         title: 'Success title',
         description: SUCCESS_MESSAGE,
         id: 'custom-id',
-        duration: ToastDuration.Infinite,
         isDismissable: true,
         screenReaderPrefix: 'Toast prefix',
         actions,
@@ -164,7 +163,6 @@ describe('toast utility - dismissal and interaction', () => {
       toast({
         variety: ToastVariety.Success,
         description: actionToastMessage,
-        duration: ToastDuration.Infinite,
         isDismissable: true,
         actions: ({ dismiss }) => (
           <Button
@@ -192,6 +190,94 @@ describe('toast utility - dismissal and interaction', () => {
     expect(onAutoClose).not.toHaveBeenCalled();
   });
 
+  it('should dismiss a regular toast after the default medium duration', async () => {
+    jest.useFakeTimers();
+
+    const onAutoClose = jest.fn();
+    const onDismiss = jest.fn();
+    render(<div />);
+
+    trackToastId(
+      toast({
+        variety: ToastVariety.Info,
+        description: TEST_MESSAGE,
+        onAutoClose,
+        onDismiss,
+      }),
+    );
+
+    expect(await screen.findByText(TEST_MESSAGE)).toBeInTheDocument();
+
+    act(() => {
+      jest.advanceTimersByTime(4000);
+    });
+
+    expect(screen.getByText(TEST_MESSAGE)).toBeInTheDocument();
+
+    act(() => {
+      jest.advanceTimersByTime(1000);
+      jest.runOnlyPendingTimers();
+    });
+
+    act(() => {
+      // Sonner finalizes auto-dismiss on the next animation frame.
+      jest.advanceTimersToNextFrame();
+    });
+
+    await waitFor(() => {
+      expect(screen.queryByText(TEST_MESSAGE)).not.toBeInTheDocument();
+    });
+
+    expect(onAutoClose).toHaveBeenCalled();
+    expect(onDismiss).not.toHaveBeenCalled();
+  });
+
+  it('should dismiss an action toast after the default long duration', async () => {
+    jest.useFakeTimers();
+
+    const onAutoClose = jest.fn();
+    const onDismiss = jest.fn();
+    render(<div />);
+
+    trackToastId(
+      toast({
+        variety: ToastVariety.Success,
+        description: SUCCESS_MESSAGE,
+        isDismissable: true,
+        actions: () => <Button>Open report</Button>,
+        onAutoClose,
+        onDismiss,
+      }),
+    );
+
+    expect(await screen.findByText(SUCCESS_MESSAGE)).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Open report' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Dismiss toast' })).toBeInTheDocument();
+
+    act(() => {
+      jest.advanceTimersByTime(7000);
+    });
+
+    expect(screen.getByText(SUCCESS_MESSAGE)).toBeInTheDocument();
+
+    act(() => {
+      jest.advanceTimersByTime(1000);
+      jest.runOnlyPendingTimers();
+    });
+
+    act(() => {
+      // Sonner finalizes auto-dismiss on the next animation frame.
+      jest.advanceTimersToNextFrame();
+    });
+
+    await waitFor(() => {
+      expect(screen.queryByText(SUCCESS_MESSAGE)).not.toBeInTheDocument();
+    });
+
+    expect(onAutoClose).toHaveBeenCalled();
+    expect(onDismiss).not.toHaveBeenCalled();
+  });
+
   it('should dismiss toast after auto-close duration', async () => {
     jest.useFakeTimers();
 
@@ -215,14 +301,19 @@ describe('toast utility - dismissal and interaction', () => {
     expect(await screen.findByText(WARNING_DESCRIPTION)).toBeInTheDocument();
 
     act(() => {
-      jest.advanceTimersByTime(4000);
+      jest.advanceTimersByTime(500);
     });
     expect(await screen.findByText(WARNING_DESCRIPTION)).toBeInTheDocument();
 
-    // It should auto-close after 8 seconds, we are at 6 seconds now
+    // It should auto-close after 3 seconds, we are at 2.5 seconds now.
     act(() => {
-      jest.advanceTimersByTime(4000);
+      jest.advanceTimersByTime(500);
       jest.runOnlyPendingTimers();
+    });
+
+    act(() => {
+      // Sonner finalizes auto-dismiss on the next animation frame.
+      jest.advanceTimersToNextFrame();
     });
 
     await waitFor(() => {
@@ -262,7 +353,7 @@ describe('toast utility - stable id updates', () => {
     expect(screen.queryByText('Synchronizing repository settings...')).not.toBeInTheDocument();
   });
 
-  it('should stop automatic aggregation immediately when a returned aggregated id is later reused explicitly', async () => {
+  it('should stop automatic aggregation after explicit reuse of an aggregated id', async () => {
     render(<div />);
 
     const repeatedToastId = trackToastId(
@@ -308,7 +399,7 @@ describe('toast utility - stable id updates', () => {
     expect(screen.queryByText(/^Shown \d+ times$/)).not.toBeInTheDocument();
   });
 
-  it('should not reuse an auto-generated repeated-toast id after the previous toast is dismissed', async () => {
+  it('should create a new generated id after the repeated toast is dismissed', async () => {
     render(<div />);
 
     const firstToastId = trackToastId(
@@ -409,7 +500,7 @@ describe('toast utility - automatic aggregation opt-outs', () => {
     });
 
     act(() => {
-      jest.advanceTimersByTime(8000);
+      jest.advanceTimersByTime(3000);
       jest.runOnlyPendingTimers();
     });
 

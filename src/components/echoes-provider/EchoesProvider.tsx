@@ -35,7 +35,7 @@ export interface EchoesProviderProps {
   /**
    * Maximum number of toast notifications visible simultaneously (optional).
    * When this limit is reached, older toasts will be automatically dismissed
-   * to make room for new ones. The default is 5.
+   * to make room for new ones. The default is 3.
    */
   toastsVisibleNb?: number;
   /**
@@ -88,7 +88,7 @@ export interface EchoesProviderProps {
  * ```
  */
 export function EchoesProvider(props: PropsWithChildren<EchoesProviderProps>) {
-  const { children, tooltipsDelayDuration, toastsClassName, toastsVisibleNb = 5 } = props;
+  const { children, tooltipsDelayDuration, toastsClassName, toastsVisibleNb = 3 } = props;
   const intl = useIntl();
   const [portalRef, setPortalRef] = useState<HTMLDivElement | null>(null);
 
@@ -136,7 +136,7 @@ EchoesProvider.displayName = 'EchoesProvider';
  * It doesn't prevent tests using Modals to work fine.
  */
 export function EchoesProviderForTests(props: PropsWithChildren<EchoesProviderProps>) {
-  const { children, tooltipsDelayDuration, toastsClassName, toastsVisibleNb = 5 } = props;
+  const { children, tooltipsDelayDuration, toastsClassName, toastsVisibleNb = 3 } = props;
   const intl = useIntl();
 
   return (
