@@ -20,7 +20,7 @@
 
 import { screen } from '@testing-library/react';
 import { render } from '~common/helpers/test-utils';
-import { AsideLeft, PageGrid } from '../LayoutSlots';
+import { AsideLeft, PageContent, PageGrid } from '../LayoutSlots';
 import { AsideSize, PageWidth } from '../LayoutTypes';
 
 describe('PageGrid', () => {
@@ -39,6 +39,57 @@ describe('PageGrid', () => {
     expect(screen.getByText('content')).not.toHaveStyle({
       maxWidth: 'var(--echoes-layout-sizes-max-width-default)',
     });
+  });
+
+  it.each([
+    ['loading', { isLoading: true }, 'true', 'Loading page'],
+    ['not loading', { isLoading: false }, 'false', 'Page loaded'],
+    [
+      'loading (custom message)',
+      { isLoading: true, loadingMessage: 'Fetching data' },
+      'true',
+      'Fetching data',
+    ],
+    [
+      'not loading (custom message)',
+      { isLoading: false, loadedMessage: 'All done' },
+      'false',
+      'All done',
+    ],
+  ])('should render correctly when %s', async (_, args, ariaBusy, expectedText) => {
+    const { container } = render(<PageGrid {...args}>content</PageGrid>);
+
+    await expect(container).toHaveNoA11yViolations();
+
+    // eslint-disable-next-line testing-library/no-node-access
+    expect(container.firstChild).toHaveAttribute('aria-busy', ariaBusy);
+    expect(screen.getByText(expectedText)).toBeInTheDocument();
+  });
+});
+
+describe('PageContent', () => {
+  it.each([
+    ['loading', { isLoading: true }, 'true', 'Loading page content'],
+    ['not loading', { isLoading: false }, 'false', 'Page content loaded'],
+    [
+      'loading (custom message)',
+      { isLoading: true, loadingMessage: 'Fetching data' },
+      'true',
+      'Fetching data',
+    ],
+    [
+      'not loading (custom message)',
+      { isLoading: false, loadedMessage: 'All done' },
+      'false',
+      'All done',
+    ],
+  ])('should render correctly when %s', async (_, args, ariaBusy, expectedText) => {
+    const { container } = render(<PageContent {...args}>content</PageContent>);
+
+    await expect(container).toHaveNoA11yViolations();
+
+    expect(screen.getByRole('main')).toHaveAttribute('aria-busy', ariaBusy);
+    expect(screen.getByText(expectedText)).toBeInTheDocument();
   });
 });
 
