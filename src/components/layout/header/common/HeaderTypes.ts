@@ -19,6 +19,7 @@
  */
 
 import { ReactNode } from 'react';
+import { TextNode } from '~types/utils';
 
 export enum PageHeaderArea {
   breadcrumbs = 'breadcrumbs',
@@ -109,6 +110,23 @@ export interface HeaderProps {
    * @defaultValue false
    */
   hasDivider?: boolean;
+  /**
+   * Setting this prop will make this component behave like a LoadingContainer.
+   * It will provide a LoadingContext that LoadingSkeletons can consume (automatically),
+   * and deal with screen readers.
+   * Customize the accessible status messages by specifying `loadedMessage` and `loadingMessage`.
+   */
+  isLoading?: boolean;
+  /**
+   * Allows you to customize the screen reader-only status message when `isLoading` is defined.
+   * @defaultValue Page header loaded
+   */
+  loadedMessage?: TextNode;
+  /**
+   * Allows you to customize the screen reader-only status message when `isLoading` is defined.
+   * @defaultValue Loading page header
+   */
+  loadingMessage?: TextNode;
   /**
    * Metadata elements to display below the title. Use <PageHeader.Metadata> to wrap them.
    */

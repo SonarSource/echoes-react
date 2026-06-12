@@ -124,6 +124,14 @@
     "defaultMessage": "Loading page",
     "description": "Default message to be announced by screen readers when the page is loading"
   },
+  "page_header.default_loaded_message": {
+    "defaultMessage": "Page header loaded",
+    "description": "Default message to be announced by screen readers when the page header is loaded"
+  },
+  "page_header.default_loading_message": {
+    "defaultMessage": "Loading page header",
+    "description": "Default message to be announced by screen readers when the page header is loading"
+  },
   "pagination.next": {
     "defaultMessage": "Next",
     "description": "Label for the pagination button that takes you to the next page"
