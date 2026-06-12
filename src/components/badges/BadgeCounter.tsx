@@ -19,27 +19,37 @@
  */
 
 import styled from '@emotion/styled';
-import { forwardRef } from 'react';
+import { Ref } from 'react';
 import { cssVar } from '~utils/design-tokens';
+
+export enum BadgeCounterVariety {
+  Accent = 'accent',
+  Default = 'default',
+}
 
 export interface BadgeCounterProps {
   className?: string;
+  ref?: Ref<HTMLSpanElement>;
   /**
    * Specifies the content of the BadgeCounter.
    * Type string is possible, to allow for use cases like `23+`
    */
   value: number | string;
+  /**
+   * Specifies the visual style of the BadgeCounter. Must match `BadgeCounterVariety`.
+   * @defaultValue `BadgeCounterVariety.Default`.
+   */
+  variety?: `${BadgeCounterVariety}`;
 }
 
-export const BadgeCounter = forwardRef<HTMLSpanElement, BadgeCounterProps>(
-  ({ value, ...otherProps }, ref) => {
-    return (
-      <BadgeCounterStyled {...otherProps} ref={ref}>
-        {value}
-      </BadgeCounterStyled>
-    );
-  },
-);
+export function BadgeCounter(props: Readonly<BadgeCounterProps>) {
+  const { value, variety = BadgeCounterVariety.Default, ...restProps } = props;
+  return (
+    <BadgeCounterStyled {...restProps} css={BADGE_COUNTER_VARIETY_STYLES[variety]}>
+      {value}
+    </BadgeCounterStyled>
+  );
+}
 
 BadgeCounter.displayName = 'BadgeCounter';
 
@@ -53,9 +63,20 @@ const BadgeCounterStyled = styled.span`
   padding: ${cssVar('dimension-space-0')} ${cssVar('dimension-space-50')};
 
   font: ${cssVar('typography-text-small-semi-bold')};
-  color: ${cssVar('color-text-default')};
+  color: var(--badge-counter-color);
   text-align: center;
 
-  background-color: ${cssVar('color-background-neutral-bolder-default')};
+  background-color: var(--badge-counter-background-color);
 `;
 BadgeCounterStyled.displayName = 'BadgeCounterStyled';
+
+const BADGE_COUNTER_VARIETY_STYLES = {
+  [BadgeCounterVariety.Default]: {
+    '--badge-counter-color': cssVar('color-text-default'),
+    '--badge-counter-background-color': cssVar('color-background-neutral-bolder-default'),
+  },
+  [BadgeCounterVariety.Accent]: {
+    '--badge-counter-color': cssVar('color-text-on-color'),
+    '--badge-counter-background-color': cssVar('color-background-accent-default'),
+  },
+};
