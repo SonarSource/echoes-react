@@ -1,0 +1,4 @@
+# Radix UI
+
+- **Namespace imports**: Radix primitives must always be imported as a namespace (`import * as RadixDialog from '@radix-ui/react-dialog'`), never as named imports. This makes Radix usage visually distinct from internal components throughout the file. Flag any `import { Root, Trigger } from '@radix-ui/react-*'` style imports.
+- **`style*` factory pattern for Radix composition**: When a Radix primitive needs styling, define a `styleXxx()` factory function that returns a styled component, then call it with the Radix component as the argument (e.g., `const ModalOverlay = styleModalOverlay(RadixDialog.Overlay)`). Do not wrap Radix components directly with `styled()` inline — this avoids double-wrapping and keeps style definitions composable. Flag direct `styled(RadixDialog.SomeComponent)` calls that bypass the factory pattern.
