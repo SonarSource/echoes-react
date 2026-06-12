@@ -57,6 +57,12 @@ build-reports/
 dist/
 .env/
 
-# SonarQube LLM code context files
+# ---- LLM code context files
 .sonar-code-context/
 .serena/
+.claude/hooks/
+.mcp.json
+CLAUDE-personal.md
+CLAUDE.local.md
+AGENT-personal.md
+AGENT.local.md
