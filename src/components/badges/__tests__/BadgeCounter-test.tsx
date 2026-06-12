@@ -18,13 +18,25 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import { render, screen } from '@testing-library/react';
-import { BadgeCounter } from '../BadgeCounter';
+import { screen } from '@testing-library/react';
+import { render } from '~common/helpers/test-utils';
+import { BadgeCounter, BadgeCounterProps, BadgeCounterVariety } from '../BadgeCounter';
 
-describe('RatingBadge', () => {
-  it('renders as expected', () => {
-    render(<BadgeCounter value={7} />);
+describe('BadgeCounter', () => {
+  it.each(Object.values(BadgeCounterVariety))('renders with the %s variety', async (variety) => {
+    const { container } = renderBadgeCounter({ value: 3, variety });
 
-    expect(screen.getByText('7')).toBeInTheDocument();
+    expect(screen.getByText('3')).toBeInTheDocument();
+    await expect(container).toHaveNoA11yViolations();
+  });
+
+  it('accepts a string value', () => {
+    renderBadgeCounter({ value: '23+' });
+
+    expect(screen.getByText('23+')).toBeInTheDocument();
   });
 });
+
+function renderBadgeCounter(props: BadgeCounterProps) {
+  return render(<BadgeCounter {...props} />);
+}

@@ -19,12 +19,19 @@
  */
 
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { BadgeCounter } from '../../src';
+import { BadgeCounter, BadgeCounterVariety } from '../../src';
 import { basicWrapperDecorator } from '../helpers/BasicWrapper';
 
 const meta: Meta<typeof BadgeCounter> = {
   component: BadgeCounter,
   decorators: [basicWrapperDecorator],
+
+  argTypes: {
+    variety: {
+      control: { type: 'select' },
+      options: Object.values(BadgeCounterVariety),
+    },
+  },
 
   parameters: {
     controls: { exclude: ['className'] },
@@ -40,6 +47,18 @@ type Story = StoryObj<typeof BadgeCounter>;
 export const Default: Story = {
   args: {
     value: 42,
+  },
+  render: (args) => (
+    <span>
+      <BadgeCounter {...args} />
+    </span>
+  ),
+};
+
+export const Accent: Story = {
+  args: {
+    value: 42,
+    variety: BadgeCounterVariety.Accent,
   },
   render: (args) => (
     <span>
