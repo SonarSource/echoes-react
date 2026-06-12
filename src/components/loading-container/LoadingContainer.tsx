@@ -18,13 +18,12 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import styled from '@emotion/styled';
 import { PropsWithChildren, useMemo } from 'react';
-import { FormattedMessage } from 'react-intl';
 import { LoadingContext } from '~common/components/LoadingContext';
-import { screenReaderOnly } from '~common/helpers/styles';
+import { ScreenReaderOnlyLoadingStatus } from '~common/components/ScreenReaderOnlyLoadingStatus';
 
 export interface LoadingContainerProps {
+  className?: string;
   isLoading: boolean;
   /**
    * Specify what the screen reader announces once isLoading switches to `false`
@@ -52,38 +51,21 @@ export interface LoadingContainerProps {
  * Both status messages can be specified.
  */
 export function LoadingContainer(props: PropsWithChildren<LoadingContainerProps>) {
-  const { children, isLoading, loadedMessage, loadingMessage } = props;
+  const { className, children, isLoading, loadedMessage, loadingMessage } = props;
 
   const loadingContextValue = useMemo(() => ({ isLoading }), [isLoading]);
 
   return (
     <>
-      <LoadingContext.Provider value={loadingContextValue}>
-        <div aria-busy={isLoading}>{children}</div>
-      </LoadingContext.Provider>
+      <div aria-busy={isLoading} className={className}>
+        <LoadingContext.Provider value={loadingContextValue}>{children}</LoadingContext.Provider>
+      </div>
 
-      <ScreenReaderOnlyLive aria-live="polite">
-        {isLoading
-          ? (loadingMessage ?? (
-              <FormattedMessage
-                defaultMessage="Loading content"
-                description="Default message to be announced by screen readers when the LoadingContainer is loading"
-                id="loading_container.default_loading_message"
-              />
-            ))
-          : (loadedMessage ?? (
-              <FormattedMessage
-                defaultMessage="Content loaded"
-                description="Default message to be announced by screen readers when the LoadingContainer has finished loading"
-                id="loading_container.default_loaded_message"
-              />
-            ))}
-      </ScreenReaderOnlyLive>
+      <ScreenReaderOnlyLoadingStatus
+        isLoading={isLoading}
+        loadedMessage={loadedMessage}
+        loadingMessage={loadingMessage}
+      />
     </>
   );
 }
-
-export const ScreenReaderOnlyLive = styled.span`
-  ${screenReaderOnly};
-`;
-ScreenReaderOnlyLive.displayName = 'ScreenReaderOnlyLive';

@@ -63,6 +63,32 @@ it('should display a minimal PageHeader properly', () => {
   expect(screen.getByText('Page title')).toBeInTheDocument();
 });
 
+describe('isLoading', () => {
+  it.each([
+    ['loading', { isLoading: true }, 'true', 'Loading page header'],
+    ['not loading', { isLoading: false }, 'false', 'Page header loaded'],
+    [
+      'loading (custom message)',
+      { isLoading: true, loadingMessage: 'Fetching data' },
+      'true',
+      'Fetching data',
+    ],
+    [
+      'not loading (custom message)',
+      { isLoading: false, loadedMessage: 'All done' },
+      'false',
+      'All done',
+    ],
+  ])('should render correctly when %s', async (_, args, ariaBusy, expectedText) => {
+    const { container } = setup(args);
+
+    await expect(container).toHaveNoA11yViolations();
+
+    expect(screen.getByRole('banner')).toHaveAttribute('aria-busy', ariaBusy);
+    expect(screen.getByText(expectedText)).toBeInTheDocument();
+  });
+});
+
 describe('scroll behavior', () => {
   it.each([
     [PageHeaderScrollBehavior.collapse, false, 'sticky'],
