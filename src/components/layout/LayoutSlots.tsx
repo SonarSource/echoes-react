@@ -19,7 +19,13 @@
  */
 
 import styled from '@emotion/styled';
-import { CSSProperties, forwardRef, PropsWithChildren } from 'react';
+import {
+  CSSProperties,
+  DetailedHTMLProps,
+  forwardRef,
+  HTMLAttributes,
+  PropsWithChildren,
+} from 'react';
 import { FormattedMessage } from 'react-intl';
 import { LoadingStateProvider } from '~common/components/LoadingStateProvider';
 import { ScreenReaderOnlyLoadingStatus } from '~common/components/ScreenReaderOnlyLoadingStatus';
@@ -213,43 +219,44 @@ export interface PageContentProps {
   loadingMessage?: TextNode;
 }
 
-export const PageContent = forwardRef<HTMLElement, PropsWithChildren<PageContentProps>>(
-  (props, ref) => {
-    const { children, isLoading, loadedMessage, loadingMessage, ...restProps } = props;
+export const PageContent = forwardRef<
+  HTMLElement,
+  PropsWithChildren<PageContentProps & DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>>
+>((props, ref) => {
+  const { children, isLoading, loadedMessage, loadingMessage, ...restProps } = props;
 
-    return (
-      <>
-        <StyledPageContent {...restProps} aria-busy={isLoading} ref={ref}>
-          <LoadingStateProvider isLoading={isLoading}>{children}</LoadingStateProvider>
-        </StyledPageContent>
+  return (
+    <>
+      <StyledPageContent {...restProps} aria-busy={isLoading} ref={ref}>
+        <LoadingStateProvider isLoading={isLoading}>{children}</LoadingStateProvider>
+      </StyledPageContent>
 
-        {isDefined(isLoading) && (
-          <ScreenReaderOnlyLoadingStatus
-            isLoading={isLoading}
-            loadedMessage={
-              loadedMessage ?? (
-                <FormattedMessage
-                  defaultMessage="Page content loaded"
-                  description="Default message to be announced by screen readers when the page content is loaded"
-                  id="page_content.default_loaded_message"
-                />
-              )
-            }
-            loadingMessage={
-              loadingMessage ?? (
-                <FormattedMessage
-                  defaultMessage="Loading page content"
-                  description="Default message to be announced by screen readers when the page content is loading"
-                  id="page_content.default_loading_message"
-                />
-              )
-            }
-          />
-        )}
-      </>
-    );
-  },
-);
+      {isDefined(isLoading) && (
+        <ScreenReaderOnlyLoadingStatus
+          isLoading={isLoading}
+          loadedMessage={
+            loadedMessage ?? (
+              <FormattedMessage
+                defaultMessage="Page content loaded"
+                description="Default message to be announced by screen readers when the page content is loaded"
+                id="page_content.default_loaded_message"
+              />
+            )
+          }
+          loadingMessage={
+            loadingMessage ?? (
+              <FormattedMessage
+                defaultMessage="Loading page content"
+                description="Default message to be announced by screen readers when the page content is loading"
+                id="page_content.default_loading_message"
+              />
+            )
+          }
+        />
+      )}
+    </>
+  );
+});
 PageContent.displayName = 'PageContent';
 
 const StyledPageContent = styled.main`
