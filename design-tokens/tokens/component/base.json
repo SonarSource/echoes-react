@@ -263,6 +263,14 @@
             "$value": "300px"
           }
         }
+      },
+      "filter-tag": {
+        "maxWidth": {
+          "default": {
+            "$type": "sizing",
+            "$value": "200px"
+          }
+        }
       }
     },
     "offset": {

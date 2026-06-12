@@ -140,6 +140,7 @@
   "echoes-sizes-logo-height-medium": "2.25rem",
   "echoes-sizes-logo-height-large": "2.5rem",
   "echoes-sizes-breadcrumbs-max-width-default": "300px",
+  "echoes-sizes-filter-tag-max-width-default": "200px",
   "echoes-offset-dropdown-submenu-panel-vertical": "0px",
   "echoes-offset-dropdown-submenu-panel-horizontal": "8px",
   "echoes-table-sizes-row-min-width-default": "53px",

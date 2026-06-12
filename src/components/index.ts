@@ -27,6 +27,7 @@ export * from './checkbox-group';
 export * from './divider';
 export * from './dropdown-menu';
 export * from './echoes-provider';
+export * from './filter-tags';
 export * from './form';
 export * from './icons';
 export * from './indicators';
