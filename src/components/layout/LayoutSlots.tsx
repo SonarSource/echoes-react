@@ -111,12 +111,12 @@ export interface PageGridProps {
    */
   isLoading?: boolean;
   /**
-   * Allows you to customize the screen reader-only status message when `isLoading` is defined.
+   * Allows you to customize the screen reader-only status message announced when `isLoading` is false.
    * @defaultValue Page loaded
    */
   loadedMessage?: TextNode;
   /**
-   * Allows you to customize the screen reader-only status message when `isLoading` is defined.
+   * Allows you to customize the screen reader-only status message announced when `isLoading` is true.
    * @defaultValue Loading page
    */
   loadingMessage?: TextNode;
@@ -135,10 +135,12 @@ export const PageGrid = forwardRef<HTMLDivElement, PropsWithChildren<PageGridPro
     } = props;
 
     return (
-      <PageGridContainer {...restProps} aria-busy={isLoading} ref={ref}>
-        <PageGridInner style={PAGE_WIDTH_STYLES[width]}>
-          <LoadingStateProvider isLoading={isLoading}>{children}</LoadingStateProvider>
-        </PageGridInner>
+      <>
+        <PageGridContainer {...restProps} aria-busy={isLoading} ref={ref}>
+          <PageGridInner style={PAGE_WIDTH_STYLES[width]}>
+            <LoadingStateProvider isLoading={isLoading}>{children}</LoadingStateProvider>
+          </PageGridInner>
+        </PageGridContainer>
 
         {isDefined(isLoading) && (
           <ScreenReaderOnlyLoadingStatus
@@ -163,7 +165,7 @@ export const PageGrid = forwardRef<HTMLDivElement, PropsWithChildren<PageGridPro
             }
           />
         )}
-      </PageGridContainer>
+      </>
     );
   },
 );
@@ -208,12 +210,12 @@ export interface PageContentProps {
    */
   isLoading?: boolean;
   /**
-   * Allows you to customize the screen reader-only status message when `isLoading` is defined.
+   * Allows you to customize the screen reader-only status message announced when `isLoading` is false.
    * @defaultValue Page content loaded
    */
   loadedMessage?: TextNode;
   /**
-   * Allows you to customize the screen reader-only status message when `isLoading` is defined.
+   * Allows you to customize the screen reader-only status message announced when `isLoading` is true.
    * @defaultValue Loading page content
    */
   loadingMessage?: TextNode;

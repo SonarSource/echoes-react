@@ -118,12 +118,12 @@ export interface HeaderProps {
    */
   isLoading?: boolean;
   /**
-   * Allows you to customize the screen reader-only status message when `isLoading` is defined.
+   * Allows you to customize the screen reader-only status message announced when `isLoading` is false.
    * @defaultValue Page header loaded
    */
   loadedMessage?: TextNode;
   /**
-   * Allows you to customize the screen reader-only status message when `isLoading` is defined.
+   * Allows you to customize the screen reader-only status message announced when `isLoading` is true.
    * @defaultValue Loading page header
    */
   loadingMessage?: TextNode;
