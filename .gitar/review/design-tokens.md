@@ -1,0 +1,8 @@
+# Design tokens & styling
+
+- **`cssVar` only**: All CSS values — colors, spacing, typography, border radii, shadows — must come from design tokens via the `cssVar` helper. Flag any raw hex codes, pixel values, or hardcoded font sizes.
+- **No Tailwind / utility classes**: Echoes components must not use Tailwind or arbitrary CSS utility classes. Styling must go through Emotion styled components with design tokens.
+- **Semantic token selection**: Tokens must carry semantic meaning (e.g., `color-text-danger`, not `color-red-500`). Flag usage of primitive/non-semantic tokens where a semantic equivalent exists.
+- **New tokens**: Any new design token introduced in the diff should be flagged as requiring review by both a designer and a developer — it's not a blocker, but a checkpoint.
+- **No arbitrary colors or typography values**: Flag any hardcoded color value (hex, `rgb()`, `hsl()`), font family string, font size, font weight, or line height that is not routed through `cssVar()`. This applies inside `styled` components, inline `style` props, and CSS-in-JS objects alike.
+- **Layer 3 token opportunity**: When a component uses the same layer 1/2 token (e.g. `color-background-accent-default`) in multiple places to express a single component-level concept, flag it as a candidate for a new layer 3 component token (e.g. `--echoes-mycomponent-background`). Layer 3 tokens are the right tool when: (a) the same value is repeated many times within one component, (b) the value may need to be overridden independently from the global token it maps to, or (c) the concept has a clear semantic name at the component level. Note this as a suggestion requiring designer + developer alignment, not a hard blocker.
