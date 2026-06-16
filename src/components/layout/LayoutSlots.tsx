@@ -19,7 +19,18 @@
  */
 
 import styled from '@emotion/styled';
-import { CSSProperties, forwardRef, PropsWithChildren } from 'react';
+import {
+  CSSProperties,
+  DetailedHTMLProps,
+  forwardRef,
+  HTMLAttributes,
+  PropsWithChildren,
+} from 'react';
+import { FormattedMessage } from 'react-intl';
+import { LoadingStateProvider } from '~common/components/LoadingStateProvider';
+import { ScreenReaderOnlyLoadingStatus } from '~common/components/ScreenReaderOnlyLoadingStatus';
+import { isDefined } from '~common/helpers/types';
+import { TextNode } from '~types/utils';
 import { cssVar } from '~utils/design-tokens';
 import { AsideSize, ContentGridArea, GlobalGridArea, PageGridArea, PageWidth } from './LayoutTypes';
 
@@ -92,16 +103,69 @@ StyledAsideLeft.displayName = 'StyledAside';
 
 export interface PageGridProps {
   className?: string;
+  /**
+   * Setting this prop will make this component behave like a LoadingContainer.
+   * It will provide a LoadingContext that LoadingSkeletons can consume (automatically),
+   * and deal with screen readers.
+   * Customize the accessible status messages by specifying `loadedMessage` and `loadingMessage`.
+   */
+  isLoading?: boolean;
+  /**
+   * Allows you to customize the screen reader-only status message announced when `isLoading` is false.
+   * @defaultValue Page loaded
+   */
+  loadedMessage?: TextNode;
+  /**
+   * Allows you to customize the screen reader-only status message announced when `isLoading` is true.
+   * @defaultValue Loading page
+   */
+  loadingMessage?: TextNode;
   width?: `${PageWidth}`;
 }
 
 export const PageGrid = forwardRef<HTMLDivElement, PropsWithChildren<PageGridProps>>(
   (props, ref) => {
-    const { children, width = 'default', ...restProps } = props;
+    const {
+      children,
+      isLoading,
+      loadedMessage,
+      loadingMessage,
+      width = 'default',
+      ...restProps
+    } = props;
+
     return (
-      <PageGridContainer {...restProps} ref={ref}>
-        <PageGridInner style={PAGE_WIDTH_STYLES[width]}>{children}</PageGridInner>
-      </PageGridContainer>
+      <>
+        <PageGridContainer {...restProps} aria-busy={isLoading} ref={ref}>
+          <PageGridInner style={PAGE_WIDTH_STYLES[width]}>
+            <LoadingStateProvider isLoading={isLoading}>{children}</LoadingStateProvider>
+          </PageGridInner>
+        </PageGridContainer>
+
+        {isDefined(isLoading) && (
+          <ScreenReaderOnlyLoadingStatus
+            isLoading={isLoading}
+            loadedMessage={
+              loadedMessage ?? (
+                <FormattedMessage
+                  defaultMessage="Page loaded"
+                  description="Default message to be announced by screen readers when the page is loaded"
+                  id="page_grid.default_loaded_message"
+                />
+              )
+            }
+            loadingMessage={
+              loadingMessage ?? (
+                <FormattedMessage
+                  defaultMessage="Loading page"
+                  description="Default message to be announced by screen readers when the page is loading"
+                  id="page_grid.default_loading_message"
+                />
+              )
+            }
+          />
+        )}
+      </>
     );
   },
 );
@@ -136,13 +200,74 @@ const PAGE_WIDTH_STYLES: Record<PageWidth, CSSProperties> = {
   [PageWidth.fluid]: {},
 };
 
-export const PageContent = styled.main`
+export interface PageContentProps {
+  className?: string;
+  /**
+   * Setting this prop will make this component behave like a LoadingContainer.
+   * It will provide a LoadingContext that LoadingSkeletons can consume (automatically),
+   * and deal with screen readers.
+   * Customize the accessible status messages by specifying `loadedMessage` and `loadingMessage`.
+   */
+  isLoading?: boolean;
+  /**
+   * Allows you to customize the screen reader-only status message announced when `isLoading` is false.
+   * @defaultValue Page content loaded
+   */
+  loadedMessage?: TextNode;
+  /**
+   * Allows you to customize the screen reader-only status message announced when `isLoading` is true.
+   * @defaultValue Loading page content
+   */
+  loadingMessage?: TextNode;
+}
+
+export const PageContent = forwardRef<
+  HTMLElement,
+  PropsWithChildren<PageContentProps & DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>>
+>((props, ref) => {
+  const { children, isLoading, loadedMessage, loadingMessage, ...restProps } = props;
+
+  return (
+    <>
+      <StyledPageContent {...restProps} aria-busy={isLoading} ref={ref}>
+        <LoadingStateProvider isLoading={isLoading}>{children}</LoadingStateProvider>
+      </StyledPageContent>
+
+      {isDefined(isLoading) && (
+        <ScreenReaderOnlyLoadingStatus
+          isLoading={isLoading}
+          loadedMessage={
+            loadedMessage ?? (
+              <FormattedMessage
+                defaultMessage="Page content loaded"
+                description="Default message to be announced by screen readers when the page content is loaded"
+                id="page_content.default_loaded_message"
+              />
+            )
+          }
+          loadingMessage={
+            loadingMessage ?? (
+              <FormattedMessage
+                defaultMessage="Loading page content"
+                description="Default message to be announced by screen readers when the page content is loading"
+                id="page_content.default_loading_message"
+              />
+            )
+          }
+        />
+      )}
+    </>
+  );
+});
+PageContent.displayName = 'PageContent';
+
+const StyledPageContent = styled.main`
   grid-area: ${PageGridArea.main};
 
   padding: ${cssVar('dimension-space-300')};
   isolation: isolate; // Prevent content z-index values from escaping and overlapping a sticky PageHeader
 `;
-PageContent.displayName = 'PageContent';
+StyledPageContent.displayName = 'StyledPageContent';
 
 export const PageFooter = styled.footer`
   grid-area: ${PageGridArea.footer};

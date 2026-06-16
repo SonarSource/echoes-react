@@ -108,6 +108,30 @@
     "defaultMessage": "(opens in new tab)",
     "description": "Screen reader-only text to indicate that the link will open in a new tab"
   },
+  "page_content.default_loaded_message": {
+    "defaultMessage": "Page content loaded",
+    "description": "Default message to be announced by screen readers when the page content is loaded"
+  },
+  "page_content.default_loading_message": {
+    "defaultMessage": "Loading page content",
+    "description": "Default message to be announced by screen readers when the page content is loading"
+  },
+  "page_grid.default_loaded_message": {
+    "defaultMessage": "Page loaded",
+    "description": "Default message to be announced by screen readers when the page is loaded"
+  },
+  "page_grid.default_loading_message": {
+    "defaultMessage": "Loading page",
+    "description": "Default message to be announced by screen readers when the page is loading"
+  },
+  "page_header.default_loaded_message": {
+    "defaultMessage": "Page header loaded",
+    "description": "Default message to be announced by screen readers when the page header is loaded"
+  },
+  "page_header.default_loading_message": {
+    "defaultMessage": "Loading page header",
+    "description": "Default message to be announced by screen readers when the page header is loading"
+  },
   "pagination.next": {
     "defaultMessage": "Next",
     "description": "Label for the pagination button that takes you to the next page"

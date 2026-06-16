@@ -34,7 +34,7 @@ const shimmer = keyframes`
 `;
 
 const LoadingSkeletonBaseStyle = styled.div`
-  background-color: ${cssVar('color-surface-hover')};
+  background-color: ${cssVar('color-background-neutral-subtle-default')};
 
   border-radius: ${cssVar('border-radius-200')};
 

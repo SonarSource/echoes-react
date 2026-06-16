@@ -18,6 +18,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+import { screen } from '@testing-library/react';
 import { renderWithMemoryRouter } from '~common/helpers/test-utils';
 import { ContentHeader } from '../..';
 
@@ -27,4 +28,35 @@ it('should display a ContentHeader properly', async () => {
   );
 
   await expect(container).toHaveNoA11yViolations();
+});
+
+describe('isLoading', () => {
+  it.each([
+    ['loading', { isLoading: true }, 'true', 'Loading page header'],
+    ['not loading', { isLoading: false }, 'false', 'Page header loaded'],
+    [
+      'loading (custom message)',
+      { isLoading: true, loadingMessage: 'Fetching data' },
+      'true',
+      'Fetching data',
+    ],
+    [
+      'not loading (custom message)',
+      { isLoading: false, loadedMessage: 'All done' },
+      'false',
+      'All done',
+    ],
+  ])('should render correctly when %s', async (_, args, ariaBusy, expectedText) => {
+    const { container } = renderWithMemoryRouter(
+      <ContentHeader
+        title={<ContentHeader.Title>Awesome content header</ContentHeader.Title>}
+        {...args}
+      />,
+    );
+
+    await expect(container).toHaveNoA11yViolations();
+
+    expect(screen.getByRole('banner')).toHaveAttribute('aria-busy', ariaBusy);
+    expect(screen.getByText(expectedText)).toBeInTheDocument();
+  });
 });

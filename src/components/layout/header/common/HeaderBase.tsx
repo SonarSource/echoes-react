@@ -20,6 +20,10 @@
 
 import styled from '@emotion/styled';
 import { CSSProperties, forwardRef } from 'react';
+import { FormattedMessage } from 'react-intl';
+import { LoadingStateProvider } from '~common/components/LoadingStateProvider';
+import { ScreenReaderOnlyLoadingStatus } from '~common/components/ScreenReaderOnlyLoadingStatus';
+import { isDefined } from '~common/helpers/types';
 import { cssVar } from '~utils/design-tokens';
 import {
   StyledDivider,
@@ -46,6 +50,9 @@ const HeaderBase = forwardRef<HTMLDivElement, HeaderProps & InternalProps>((prop
     description,
     hasDivider,
     hasFullWidthNav,
+    isLoading,
+    loadedMessage,
+    loadingMessage,
     metadata,
     navigation,
     title,
@@ -53,33 +60,61 @@ const HeaderBase = forwardRef<HTMLDivElement, HeaderProps & InternalProps>((prop
   } = props;
 
   return (
-    <header ref={ref} {...rest}>
-      {callout && <StyledPageHeaderCallout>{callout}</StyledPageHeaderCallout>}
+    <>
+      <header aria-busy={isLoading} ref={ref} {...rest}>
+        <LoadingStateProvider isLoading={isLoading}>
+          {callout && <StyledPageHeaderCallout>{callout}</StyledPageHeaderCallout>}
 
-      {breadcrumbs && <StyledPageHeaderBreadcrumbs>{breadcrumbs}</StyledPageHeaderBreadcrumbs>}
+          {breadcrumbs && <StyledPageHeaderBreadcrumbs>{breadcrumbs}</StyledPageHeaderBreadcrumbs>}
 
-      <StyledPageHeaderMain>
-        {title}
+          <StyledPageHeaderMain>
+            {title}
 
-        {metadata}
+            {metadata}
 
-        {description}
-      </StyledPageHeaderMain>
+            {description}
+          </StyledPageHeaderMain>
 
-      {actions && (
-        <StyledPageHeaderActions style={actionsStyles}>{actions}</StyledPageHeaderActions>
+          {actions && (
+            <StyledPageHeaderActions style={actionsStyles}>{actions}</StyledPageHeaderActions>
+          )}
+
+          {navigation && (
+            <>
+              <StyledPageHeaderBottom>{navigation}</StyledPageHeaderBottom>
+
+              {hasDivider && <StyledDividerWithOverlap />}
+            </>
+          )}
+
+          {hasDivider && !navigation && <StyledDivider />}
+        </LoadingStateProvider>
+      </header>
+
+      {isDefined(isLoading) && (
+        <ScreenReaderOnlyLoadingStatus
+          isLoading={isLoading}
+          loadedMessage={
+            loadedMessage ?? (
+              <FormattedMessage
+                defaultMessage="Page header loaded"
+                description="Default message to be announced by screen readers when the page header is loaded"
+                id="page_header.default_loaded_message"
+              />
+            )
+          }
+          loadingMessage={
+            loadingMessage ?? (
+              <FormattedMessage
+                defaultMessage="Loading page header"
+                description="Default message to be announced by screen readers when the page header is loading"
+                id="page_header.default_loading_message"
+              />
+            )
+          }
+        />
       )}
-
-      {navigation && (
-        <>
-          <StyledPageHeaderBottom>{navigation}</StyledPageHeaderBottom>
-
-          {hasDivider && <StyledDividerWithOverlap />}
-        </>
-      )}
-
-      {hasDivider && !navigation && <StyledDivider />}
-    </header>
+    </>
   );
 });
 HeaderBase.displayName = 'HeaderBase';
