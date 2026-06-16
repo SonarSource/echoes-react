@@ -19,6 +19,10 @@
     "defaultMessage": "Warning banner:",
     "description": "Screen reader only text that expresses the type of the Warning banner"
   },
+  "filter.tag.dismiss": {
+    "defaultMessage": "Remove {filter} filter",
+    "description": "Accessible label for the dismiss button of a filter tag, where {filter} is the name of the filter to be removed"
+  },
   "global_navigation.account": {
     "defaultMessage": "Account",
     "description": "aria-label text for the account button (in the GlobalNavigation)"

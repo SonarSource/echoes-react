@@ -61,6 +61,7 @@ dist/
 .sonar-code-context/
 .serena/
 .claude/hooks/
+jira/
 .mcp.json
 CLAUDE-personal.md
 CLAUDE.local.md
