@@ -1,4 +1,5 @@
 ---
+name: echoes-review
 description: Echoes review — analyse your current branch or an existing PR for naming violations, a11y gaps, design-token misuse, missing exports, and architectural issues in the Echoes React component library.
 ---
 
