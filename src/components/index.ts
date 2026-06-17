@@ -55,5 +55,6 @@ export * from './text-area';
 export * from './text-input';
 export * from './toggle-button-group';
 export * from './toggle-tip';
+export * from './toolbar';
 export * from './tooltip';
 export * from './typography';
