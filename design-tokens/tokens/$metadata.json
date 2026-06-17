@@ -1,9 +1,9 @@
 {
   "tokenSetOrder": [
-    "brand/brand-A/base",
-    "brand/brand-A/colors",
-    "brand/brand-B/base",
-    "brand/brand-B/colors",
+    "brand/sonar/base",
+    "brand/sonar/colors",
+    "brand/gitar/base",
+    "brand/gitar/colors",
     "modes/light",
     "modes/dark",
     "component/base",
