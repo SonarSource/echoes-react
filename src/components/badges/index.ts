@@ -19,7 +19,7 @@
  */
 
 export { Badge, BadgeSize, BadgeVariety } from './Badge';
-export { BadgeCounter } from './BadgeCounter';
+export { BadgeCounter, BadgeCounterVariety } from './BadgeCounter';
 export { BadgeSeverity, BadgeSeverityLevel, BadgeSeverityVariety } from './BadgeSeverity';
 export { RatingBadge, RatingBadgeRating, RatingBadgeSize } from './RatingBadge';
 export { RatingBadgeButton } from './RatingBadgeButton';
