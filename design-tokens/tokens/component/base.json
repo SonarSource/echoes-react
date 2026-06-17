@@ -22,6 +22,18 @@
         }
       }
     },
+    "filter": {
+      "tag": {
+        "sizes": {
+          "maxWidth": {
+            "default": {
+              "$type": "sizing",
+              "$value": "200px"
+            }
+          }
+        }
+      }
+    },
     "form-control": {
       "borderRadius": {
         "default": {
