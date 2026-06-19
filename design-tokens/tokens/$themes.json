@@ -6,7 +6,8 @@
     "selectedTokenSets": {
       "modes/sonar/light": "enabled",
       "component/sonar/light": "enabled",
-      "brand/sonar/base": "source",
+      "component/base": "enabled",
+      "brand/sonar/base": "enabled",
       "brand/sonar/colors": "source"
     },
     "$figmaStyleReferences": {}
@@ -18,7 +19,8 @@
     "selectedTokenSets": {
       "modes/sonar/dark": "enabled",
       "component/sonar/dark": "enabled",
-      "brand/sonar/base": "source",
+      "component/base": "enabled",
+      "brand/sonar/base": "enabled",
       "brand/sonar/colors": "source"
     },
     "$figmaStyleReferences": {}
@@ -30,7 +32,8 @@
     "selectedTokenSets": {
       "modes/gitar/light": "enabled",
       "component/gitar/light": "enabled",
-      "brand/gitar/base": "source",
+      "component/base": "enabled",
+      "brand/gitar/base": "enabled",
       "brand/gitar/colors": "source"
     },
     "$figmaStyleReferences": {}
@@ -42,7 +45,8 @@
     "selectedTokenSets": {
       "modes/gitar/dark": "enabled",
       "component/gitar/dark": "enabled",
-      "brand/gitar/base": "source",
+      "component/base": "enabled",
+      "brand/gitar/base": "enabled",
       "brand/gitar/colors": "source"
     },
     "$figmaStyleReferences": {}
