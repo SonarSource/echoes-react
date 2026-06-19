@@ -53,44 +53,42 @@ const designTokenGroups = JSON.parse(
   fs.readFileSync(`${DESIGN_TOKENS_PATH}/$themes.json`, 'utf-8'),
 );
 
-const brandDesignTokenGroup = designTokenGroups.find(
-  ({ group, name }) => group === 'Brand' && toBrandId(name).toLowerCase() === BRAND.toLowerCase(),
-);
+// Themes are brand-specific and named "<Brand> <Mode>" (e.g. "Sonar Light"); they
+// live in a single group so Tokens Studio renders one collection with a mode per theme.
+// The brand dir is read from each theme's `brand/<dir>/...` source set.
+const brandDirOf = (theme) =>
+  Object.keys(theme.selectedTokenSets)
+    .find((key) => key.startsWith('brand/'))
+    ?.split('/')[1];
 
-if (!brandDesignTokenGroup) {
-  const available = designTokenGroups
-    .filter(({ group }) => group === 'Brand')
-    .map(({ name }) => toBrandId(name))
-    .join(', ');
+// Legacy CI/env values (Brand-A/Brand-B) map to brand dirs; the dir name itself also works.
+const LEGACY_BRAND_ALIAS = { 'brand-a': 'sonar', 'brand-b': 'gitar' };
+const brandDir = LEGACY_BRAND_ALIAS[BRAND.toLowerCase()] ?? BRAND.toLowerCase();
+
+// The active brand's themes, renamed to just the mode (light/dark) for output + the Theme enum.
+const themedDesignTokenGroups = designTokenGroups
+  .filter((theme) => brandDirOf(theme) === brandDir)
+  .map((theme) => ({ ...theme, name: theme.name.trim().split(/\s+/).pop().toLowerCase() }));
+
+if (themedDesignTokenGroups.length === 0) {
+  const available = [...new Set(designTokenGroups.map(brandDirOf).filter(Boolean))].join(', ');
   console.error(`Error: brand "${BRAND}" not found. Available brands: ${available}`);
   process.exit(1);
 }
 
-const brandDir = Object.keys(brandDesignTokenGroup.selectedTokenSets)
-  .find((key) => key.startsWith('brand/'))
-  ?.split('/')[1];
-
-// Token-set prefixes whose dir segment is swapped to the active brand. `brand/`
-// holds the palette/roles source; `modes/` and `component/` hold the brand-specific
-// theme colours (the brand-agnostic `component/base` is loaded separately, not here).
-const BRAND_REMAP_PREFIXES = ['brand/', 'modes/', 'component/'];
-
-const themedDesignTokenGroups = designTokenGroups
-  .filter(({ group }) => group === 'Themes')
-  .map((theme) => ({
-    ...theme,
-    selectedTokenSets: Object.fromEntries(
-      Object.entries(theme.selectedTokenSets).map(([key, val]) => {
-        const prefix = BRAND_REMAP_PREFIXES.find((p) => key.startsWith(p));
-        return [prefix ? `${prefix}${brandDir}/${key.split('/').pop()}` : key, val];
-      }),
-    ),
-  }));
+// Base build needs the brand's palette/roles + the shared, brand-agnostic component/base.
+const brandDesignTokenGroup = {
+  name: brandDir,
+  selectedTokenSets: {
+    [`brand/${brandDir}/base`]: 'enabled',
+    [`brand/${brandDir}/colors`]: 'enabled',
+  },
+};
 
 const sd = initStyleDictionary(licenseHeader);
 await buildBaseTokens(brandDesignTokenGroup, sd);
 await buildThemedTokens(themedDesignTokenGroups, brandDesignTokenGroup, sd);
-buildCSSRootFile(designTokenGroups, licenseHeader);
+buildCSSRootFile(themedDesignTokenGroups, licenseHeader);
 buildThemesEnumType(themedDesignTokenGroups, licenseHeader);
 buildTailwindConfig();
 
@@ -251,15 +249,14 @@ async function buildThemedTokens(themedTokenGroups, baseDesignTokenGroup, sd) {
 }
 
 // Build design tokens css root file
-function buildCSSRootFile(tokenGroups, license) {
+function buildCSSRootFile(themedTokenGroups, license) {
   console.log('\nBuilding design tokens css root file...');
-  const themedTokenGroups = tokenGroups.filter(({ group }) => group === 'Themes');
-  themedTokenGroups.sort((a, b) => a.name.localeCompare(b.name));
+  const sortedThemes = [...themedTokenGroups].sort((a, b) => a.name.localeCompare(b.name));
 
   const cssRootFileContent = [
     license,
     `@import './${NAME_PREFIX}base.css';`,
-    ...themedTokenGroups.map((theme) => `@import './${NAME_PREFIX}${theme.name}.css';`),
+    ...sortedThemes.map((theme) => `@import './${NAME_PREFIX}${theme.name}.css';`),
   ].join('\n');
 
   fs.writeFileSync(`${BUILD_PATH}design-tokens.css`, cssRootFileContent);
