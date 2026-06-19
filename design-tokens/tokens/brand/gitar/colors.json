@@ -17,6 +17,30 @@
           }
         },
         "neutral": {
+          "25": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.sand.50}"
+          },
+          "40": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.sand.50}"
+          },
+          "200": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.sand.200}"
+          },
+          "400": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.sand.400}"
+          },
+          "600": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.sand.600}"
+          },
+          "800": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.sand.800}"
+          },
           "lightest": {
             "$type": "color",
             "$value": "{echoes.color.palette.sand.50}"
@@ -43,6 +67,18 @@
           }
         },
         "primary": {
+          "25": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.purple.50}"
+          },
+          "200": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.purple.200}"
+          },
+          "600": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.purple.600}"
+          },
           "lightest": {
             "$type": "color",
             "$value": "{echoes.color.palette.purple.100}"
@@ -69,6 +105,18 @@
           }
         },
         "danger": {
+          "200": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.red.200}"
+          },
+          "600": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.red.600}"
+          },
+          "800": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.red.800}"
+          },
           "lightest": {
             "$type": "color",
             "$value": "{echoes.color.palette.red.200}"
@@ -95,6 +143,18 @@
           }
         },
         "warning": {
+          "200": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.amber.200}"
+          },
+          "600": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.amber.600}"
+          },
+          "800": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.amber.800}"
+          },
           "lightest": {
             "$type": "color",
             "$value": "{echoes.color.palette.amber.100}"
@@ -121,6 +181,22 @@
           }
         },
         "success": {
+          "200": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.green.200}"
+          },
+          "400": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.green.400}"
+          },
+          "600": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.green.600}"
+          },
+          "800": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.green.800}"
+          },
           "lightest": {
             "$type": "color",
             "$value": "{echoes.color.palette.green.100}"
@@ -147,6 +223,18 @@
           }
         },
         "info": {
+          "200": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.blue.200}"
+          },
+          "600": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.blue.600}"
+          },
+          "800": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.blue.800}"
+          },
           "lightest": {
             "$type": "color",
             "$value": "{echoes.color.palette.blue.100}"
@@ -173,6 +261,22 @@
           }
         },
         "highlight": {
+          "200": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.ultramarine.200}"
+          },
+          "400": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.ultramarine.400}"
+          },
+          "600": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.ultramarine.600}"
+          },
+          "800": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.ultramarine.800}"
+          },
           "lightest": {
             "$type": "color",
             "$value": "{echoes.color.palette.ultramarine.100}"

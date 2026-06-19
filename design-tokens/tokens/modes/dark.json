@@ -42,7 +42,7 @@
           "bolder": {
             "default": {
               "$type": "color",
-              "$value": "{echoes.color.palette.grey.400}"
+              "$value": "{echoes.color.roles.neutral.400}"
             }
           }
         },
@@ -53,7 +53,7 @@
           },
           "hover": {
             "$type": "color",
-            "$value": "{echoes.color.palette.indigo.200}"
+            "$value": "{echoes.color.roles.primary.200}"
           },
           "focus": {
             "$type": "color",
@@ -125,7 +125,7 @@
           },
           "hover": {
             "$type": "color",
-            "$value": "{echoes.color.palette.yellow.200}"
+            "$value": "{echoes.color.roles.warning.200}"
           },
           "focus": {
             "$type": "color",
@@ -197,7 +197,7 @@
           },
           "hover": {
             "$type": "color",
-            "$value": "{echoes.color.palette.green.200}"
+            "$value": "{echoes.color.roles.success.200}"
           },
           "focus": {
             "$type": "color",
@@ -269,7 +269,7 @@
           },
           "hover": {
             "$type": "color",
-            "$value": "{echoes.color.palette.red.200}"
+            "$value": "{echoes.color.roles.danger.200}"
           },
           "focus": {
             "$type": "color",
@@ -341,7 +341,7 @@
           },
           "hover": {
             "$type": "color",
-            "$value": "{echoes.color.palette.blue.200}"
+            "$value": "{echoes.color.roles.info.200}"
           },
           "focus": {
             "$type": "color",
@@ -430,7 +430,7 @@
           "bold": {
             "default": {
               "$type": "color",
-              "$value": "{echoes.color.palette.indigo.200}"
+              "$value": "{echoes.color.roles.primary.200}"
             },
             "hover": {
               "$type": "color",
@@ -490,7 +490,7 @@
             },
             "active": {
               "$type": "color",
-              "$value": "{echoes.color.palette.grey.800}"
+              "$value": "{echoes.color.roles.neutral.800}"
             },
             "focus": {
               "$type": "color",
@@ -547,7 +547,7 @@
                 }
               },
               "$type": "color",
-              "$value": "{echoes.color.palette.purple.600}"
+              "$value": "{echoes.color.roles.highlight.600}"
             },
             "hover": {
               "$extensions": {
@@ -560,7 +560,7 @@
                 }
               },
               "$type": "color",
-              "$value": "{echoes.color.palette.purple.600}"
+              "$value": "{echoes.color.roles.highlight.600}"
             },
             "focus": {
               "$extensions": {
@@ -573,7 +573,7 @@
                 }
               },
               "$type": "color",
-              "$value": "{echoes.color.palette.purple.600}"
+              "$value": "{echoes.color.roles.highlight.600}"
             },
             "active": {
               "$extensions": {
@@ -586,12 +586,12 @@
                 }
               },
               "$type": "color",
-              "$value": "{echoes.color.palette.purple.600}"
+              "$value": "{echoes.color.roles.highlight.600}"
             }
           },
           "default": {
             "$type": "color",
-            "$value": "{echoes.color.palette.purple.400}"
+            "$value": "{echoes.color.roles.highlight.400}"
           },
           "hover": {
             "$type": "color",
@@ -599,11 +599,11 @@
           },
           "focus": {
             "$type": "color",
-            "$value": "{echoes.color.palette.purple.400}"
+            "$value": "{echoes.color.roles.highlight.400}"
           },
           "active": {
             "$type": "color",
-            "$value": "{echoes.color.palette.purple.200}"
+            "$value": "{echoes.color.roles.highlight.200}"
           }
         },
         "favourite": {
@@ -613,14 +613,14 @@
           },
           "hover": {
             "$type": "color",
-            "$value": "{echoes.color.palette.yellow.200}"
+            "$value": "{echoes.color.roles.warning.200}"
           }
         }
       },
       "surface": {
         "default": {
           "$type": "color",
-          "$value": "{echoes.color.palette.grey.600}"
+          "$value": "{echoes.color.roles.neutral.600}"
         },
         "hover": {
           "$type": "color",
@@ -628,7 +628,7 @@
         },
         "active": {
           "$type": "color",
-          "$value": "{echoes.color.palette.grey.800}"
+          "$value": "{echoes.color.roles.neutral.800}"
         },
         "canvas": {
           "default": {
@@ -651,7 +651,7 @@
           },
           "active": {
             "$type": "color",
-            "$value": "{echoes.color.palette.grey.40}"
+            "$value": "{echoes.color.roles.neutral.40}"
           }
         },
         "disabled": {
@@ -683,7 +683,7 @@
       "text": {
         "strong": {
           "$type": "color",
-          "$value": "{echoes.color.palette.grey.25}"
+          "$value": "{echoes.color.roles.neutral.25}"
         },
         "default": {
           "$type": "color",
@@ -691,19 +691,19 @@
         },
         "subtle": {
           "$type": "color",
-          "$value": "{echoes.color.palette.grey.200}"
+          "$value": "{echoes.color.roles.neutral.200}"
         },
         "disabled": {
           "$type": "color",
-          "$value": "{echoes.color.palette.grey.400}"
+          "$value": "{echoes.color.roles.neutral.400}"
         },
         "onColor": {
           "$type": "color",
-          "$value": "{echoes.color.palette.grey.600}"
+          "$value": "{echoes.color.roles.neutral.600}"
         },
         "onColor-Inverse": {
           "$type": "color",
-          "$value": "{echoes.color.palette.grey.600}"
+          "$value": "{echoes.color.roles.neutral.600}"
         },
         "danger": {
           "$type": "color",
@@ -711,7 +711,7 @@
         },
         "placeholder": {
           "$type": "color",
-          "$value": "{echoes.color.palette.grey.200}"
+          "$value": "{echoes.color.roles.neutral.200}"
         },
         "accent": {
           "$type": "color",
@@ -731,19 +731,19 @@
         },
         "emphasis": {
           "$type": "color",
-          "$value": "{echoes.color.palette.purple.200}"
+          "$value": "{echoes.color.roles.highlight.200}"
         },
         "link": {
           "hover": {
             "$type": "color",
-            "$value": "{echoes.color.palette.indigo.200}"
+            "$value": "{echoes.color.roles.primary.200}"
           }
         }
       },
       "icon": {
         "bold": {
           "$type": "color",
-          "$value": "{echoes.color.palette.grey.25}"
+          "$value": "{echoes.color.roles.neutral.25}"
         },
         "default": {
           "$type": "color",
@@ -751,19 +751,19 @@
         },
         "subtle": {
           "$type": "color",
-          "$value": "{echoes.color.palette.grey.200}"
+          "$value": "{echoes.color.roles.neutral.200}"
         },
         "disabled": {
           "$type": "color",
-          "$value": "{echoes.color.palette.grey.400}"
+          "$value": "{echoes.color.roles.neutral.400}"
         },
         "placeholder": {
           "$type": "color",
-          "$value": "{echoes.color.palette.grey.200}"
+          "$value": "{echoes.color.roles.neutral.200}"
         },
         "accent": {
           "$type": "color",
-          "$value": "{echoes.color.palette.indigo.200}"
+          "$value": "{echoes.color.roles.primary.200}"
         },
         "danger": {
           "$type": "color",
@@ -771,37 +771,37 @@
         },
         "warning": {
           "$type": "color",
-          "$value": "{echoes.color.palette.yellow.200}"
+          "$value": "{echoes.color.roles.warning.200}"
         },
         "success": {
           "$type": "color",
-          "$value": "{echoes.color.palette.green.200}"
+          "$value": "{echoes.color.roles.success.200}"
         },
         "info": {
           "$type": "color",
-          "$value": "{echoes.color.palette.blue.200}"
+          "$value": "{echoes.color.roles.info.200}"
         },
         "onColor": {
           "$type": "color",
-          "$value": "{echoes.color.palette.grey.600}"
+          "$value": "{echoes.color.roles.neutral.600}"
         },
         "onColor-Inverse": {
           "$type": "color",
-          "$value": "{echoes.color.palette.grey.600}"
+          "$value": "{echoes.color.roles.neutral.600}"
         },
         "selected": {
           "$type": "color",
-          "$value": "{echoes.color.palette.indigo.200}"
+          "$value": "{echoes.color.roles.primary.200}"
         },
         "emphasis": {
           "$type": "color",
-          "$value": "{echoes.color.palette.purple.200}"
+          "$value": "{echoes.color.roles.highlight.200}"
         }
       },
       "border": {
         "bolder": {
           "$type": "color",
-          "$value": "{echoes.color.palette.grey.200}"
+          "$value": "{echoes.color.roles.neutral.200}"
         },
         "bold": {
           "$type": "color",
@@ -809,7 +809,7 @@
         },
         "weak": {
           "$type": "color",
-          "$value": "{echoes.color.palette.grey.400}"
+          "$value": "{echoes.color.roles.neutral.400}"
         },
         "weaker": {
           "$type": "color",
@@ -817,12 +817,12 @@
         },
         "disabled": {
           "$type": "color",
-          "$value": "{echoes.color.palette.grey.400}"
+          "$value": "{echoes.color.roles.neutral.400}"
         },
         "accent": {
           "default": {
             "$type": "color",
-            "$value": "{echoes.color.palette.indigo.200}"
+            "$value": "{echoes.color.roles.primary.200}"
           }
         },
         "danger": {
@@ -864,7 +864,7 @@
           },
           "default": {
             "$type": "color",
-            "$value": "{echoes.color.palette.green.400}"
+            "$value": "{echoes.color.roles.success.400}"
           }
         },
         "warning": {
@@ -909,14 +909,14 @@
               }
             },
             "$type": "color",
-            "$value": "{echoes.color.palette.purple.600}"
+            "$value": "{echoes.color.roles.highlight.600}"
           }
         }
       },
       "focus": {
         "default": {
           "$type": "color",
-          "$value": "{echoes.color.palette.indigo.200}"
+          "$value": "{echoes.color.roles.primary.200}"
         }
       }
     },
