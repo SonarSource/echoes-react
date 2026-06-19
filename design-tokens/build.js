@@ -70,15 +70,20 @@ const brandDir = Object.keys(brandDesignTokenGroup.selectedTokenSets)
   .find((key) => key.startsWith('brand/'))
   ?.split('/')[1];
 
+// Token-set prefixes whose dir segment is swapped to the active brand. `brand/`
+// holds the palette/roles source; `modes/` and `component/` hold the brand-specific
+// theme colours (the brand-agnostic `component/base` is loaded separately, not here).
+const BRAND_REMAP_PREFIXES = ['brand/', 'modes/', 'component/'];
+
 const themedDesignTokenGroups = designTokenGroups
   .filter(({ group }) => group === 'Themes')
   .map((theme) => ({
     ...theme,
     selectedTokenSets: Object.fromEntries(
-      Object.entries(theme.selectedTokenSets).map(([key, val]) => [
-        key.startsWith('brand/') ? `brand/${brandDir}/${key.split('/').pop()}` : key,
-        val,
-      ]),
+      Object.entries(theme.selectedTokenSets).map(([key, val]) => {
+        const prefix = BRAND_REMAP_PREFIXES.find((p) => key.startsWith(p));
+        return [prefix ? `${prefix}${brandDir}/${key.split('/').pop()}` : key, val];
+      }),
     ),
   }));
 

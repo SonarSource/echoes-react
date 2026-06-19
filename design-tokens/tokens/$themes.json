@@ -4,8 +4,8 @@
     "name": "light",
     "$figmaStyleReferences": {},
     "selectedTokenSets": {
-      "modes/light": "enabled",
-      "component/light": "enabled",
+      "modes/sonar/light": "enabled",
+      "component/sonar/light": "enabled",
       "brand/sonar/base": "source",
       "brand/sonar/colors": "source"
     },
@@ -362,8 +362,8 @@
     "name": "dark",
     "$figmaStyleReferences": {},
     "selectedTokenSets": {
-      "modes/dark": "enabled",
-      "component/dark": "enabled",
+      "modes/sonar/dark": "enabled",
+      "component/sonar/dark": "enabled",
       "brand/sonar/base": "source",
       "brand/sonar/colors": "source"
     },

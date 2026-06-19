@@ -1,0 +1,1055 @@
+{
+  "echoes": {
+    "color": {
+      "background": {
+        "neutral": {
+          "subtle": {
+            "default": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.sand.200}",
+              "$description": "Use it in components with neutral sentiment"
+            },
+            "focus": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.sand.200}",
+              "$description": "Use it in components with neutral sentiment"
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{echoes.color.roles.neutral.300}",
+              "$description": "Use it in components with neutral sentiment"
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.sand.400}",
+              "$description": "Use it in components with neutral sentiment"
+            }
+          },
+          "bolder": {
+            "default": {
+              "$type": "color",
+              "$value": "{echoes.color.roles.neutral.300}",
+              "$description": "Use it in components with neutral sentiment that need a bolder highlight"
+            }
+          }
+        },
+        "accent": {
+          "default": {
+            "$type": "color",
+            "$value": "{echoes.color.roles.primary.500}",
+            "$description": "Used as the background color of components that reinforce our brand"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{echoes.color.roles.primary.700}",
+            "$description": "Hover state of components that reinforce our brand"
+          },
+          "focus": {
+            "$type": "color",
+            "$value": "{echoes.color.roles.primary.500}"
+          },
+          "active": {
+            "$type": "color",
+            "$value": "{echoes.color.roles.primary.900}",
+            "$description": "Active state of components that reinforce our brand"
+          },
+          "weak": {
+            "default": {
+              "$type": "color",
+              "$value": "{echoes.color.roles.primary.50}",
+              "$description": "Used as the background color of components that reinforce our brand with less visual highlight"
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{echoes.color.roles.primary.100}",
+              "$description": "Hover state of components that reinforce our brand with less visual highlight"
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{echoes.color.roles.primary.300}",
+              "$description": "Active state of components that reinforce our brand with less visual highlight"
+            },
+            "focus": {
+              "$type": "color",
+              "$value": "{echoes.color.roles.primary.50}",
+              "$description": "Focus state of components that reinforce our brand with less visual highlight"
+            }
+          }
+        },
+        "warning": {
+          "default": {
+            "$type": "color",
+            "$value": "{echoes.color.roles.warning.500}",
+            "$description": "Use for backgrounds that communicate warning or caution"
+          },
+          "hover": {
+            "$extensions": {
+              "studio.tokens": {
+                "modify": {
+                  "type": "darken",
+                  "value": "0.05",
+                  "space": "lch"
+                }
+              }
+            },
+            "$type": "color",
+            "$value": "{echoes.color.roles.warning.500}",
+            "$description": "Use for backgrounds that communicate warning or caution"
+          },
+          "focus": {
+            "$type": "color",
+            "$value": "{echoes.color.roles.warning.500}",
+            "$description": "Use for backgrounds that communicate warning or caution"
+          },
+          "active": {
+            "$type": "color",
+            "$value": "{echoes.color.roles.warning.700}",
+            "$description": "Use for backgrounds that communicate warning or caution"
+          },
+          "weak": {
+            "default": {
+              "$type": "color",
+              "$value": "{echoes.color.roles.warning.50}",
+              "$description": "Use for backgrounds that communicate warning or caution, with less visual highlight"
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{echoes.color.roles.warning.100}",
+              "$description": "Use for backgrounds that communicate warning or caution, with less visual highlight"
+            },
+            "focus": {
+              "$type": "color",
+              "$value": "{echoes.color.roles.warning.50}",
+              "$description": "Use for backgrounds that communicate warning or caution, with less visual highlight"
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{echoes.color.roles.warning.300}",
+              "$description": "Use for backgrounds that communicate warning or caution, with less visual highlight"
+            }
+          }
+        },
+        "success": {
+          "default": {
+            "$type": "color",
+            "$value": "{echoes.color.roles.success.500}",
+            "$description": "Use for backgrounds that communicate positive or success messages"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{echoes.color.roles.success.700}",
+            "$description": "Use for backgrounds that communicate positive or success messages"
+          },
+          "focus": {
+            "$type": "color",
+            "$value": "{echoes.color.roles.success.500}",
+            "$description": "Use for backgrounds that communicate positive or success messages"
+          },
+          "active": {
+            "$type": "color",
+            "$value": "{echoes.color.roles.success.900}",
+            "$description": "Use for backgrounds that communicate positive or success messages"
+          },
+          "weak": {
+            "default": {
+              "$type": "color",
+              "$value": "{echoes.color.roles.success.50}",
+              "$description": "Use for backgrounds that communicate positive or success messages, with less visual highlight"
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{echoes.color.roles.success.100}",
+              "$description": "Use for backgrounds that communicate positive or success messages, with less visual highlight"
+            },
+            "active": {
+              "$type": "color",
+              "$value": "#8aef9bcc",
+              "$description": "Use for backgrounds that communicate positive or success messages, with less visual highlight"
+            },
+            "focus": {
+              "$type": "color",
+              "$value": "{echoes.color.roles.success.50}",
+              "$description": "Use for backgrounds that communicate positive or success messages, with less visual highlight"
+            }
+          }
+        },
+        "danger": {
+          "default": {
+            "$type": "color",
+            "$value": "{echoes.color.roles.danger.500}",
+            "$description": "Use for backgrounds that communicate danger or destructive messages"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{echoes.color.roles.danger.700}",
+            "$description": "Hover state for backgrounds that communicate danger or destructive messages"
+          },
+          "focus": {
+            "$type": "color",
+            "$value": "{echoes.color.roles.danger.500}",
+            "$description": "Focused state for backgrounds that communicate danger or destructive messages"
+          },
+          "active": {
+            "$type": "color",
+            "$value": "{echoes.color.roles.danger.900}",
+            "$description": "Active state for backgrounds that communicate danger or destructive messages"
+          },
+          "weak": {
+            "default": {
+              "$type": "color",
+              "$value": "{echoes.color.roles.danger.50}",
+              "$description": "Use it for backgrounds that communicate danger or destructive messages, with less visual highlight"
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{echoes.color.roles.danger.100}",
+              "$description": "Hover state for backgrounds that communicate danger or destructive messages, with less visual highlight"
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{echoes.color.roles.danger.300}",
+              "$description": "Active state for backgrounds that communicate danger or destructive messages, with less visual highlight"
+            },
+            "focus": {
+              "$type": "color",
+              "$value": "{echoes.color.roles.danger.50}"
+            }
+          }
+        },
+        "info": {
+          "default": {
+            "$type": "color",
+            "$value": "{echoes.color.roles.info.500}",
+            "$description": "Use for backgrounds that communicate information to the user"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.blue.600}",
+            "$description": "Use for backgrounds that communicate information to the user"
+          },
+          "focus": {
+            "$type": "color",
+            "$value": "{echoes.color.roles.info.500}",
+            "$description": "Use for backgrounds that communicate information to the user"
+          },
+          "active": {
+            "$extensions": {
+              "studio.tokens": {
+                "modify": {
+                  "type": "darken",
+                  "value": "0.2",
+                  "space": "lch"
+                }
+              }
+            },
+            "$type": "color",
+            "$value": "{echoes.color.roles.info.900}",
+            "$description": "Use for backgrounds that communicate information to the user"
+          },
+          "weak": {
+            "default": {
+              "$type": "color",
+              "$value": "{echoes.color.roles.info.50}",
+              "$description": "Use for backgrounds that communicate information to the user, with less visual highlight"
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{echoes.color.roles.info.100}",
+              "$description": "Use for backgrounds that communicate information to the user, with less visual highlight"
+            },
+            "focus": {
+              "$type": "color",
+              "$value": "{echoes.color.roles.info.50}",
+              "$description": "Use for backgrounds that communicate information to the user, with less visual highlight"
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{echoes.color.roles.info.300}",
+              "$description": "Use for backgrounds that communicate information to the user, with less visual highlight"
+            }
+          }
+        },
+        "utility": {
+          "transparent": {
+            "$type": "color",
+            "$value": "transparent00",
+            "$description": "Use it when you need transparency in the background"
+          }
+        },
+        "selected": {
+          "weak": {
+            "default": {
+              "$type": "color",
+              "$value": "{echoes.color.roles.primary.50}",
+              "$description": "Use it in backgrounds of components that have a selected state that need less visual highlight, like dropdown or selects"
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{echoes.color.roles.primary.100}",
+              "$description": "Hover state of components that have a selected state that need less visual highlight, like dropdown or selects"
+            },
+            "pressed": {
+              "$type": "color",
+              "$value": "{echoes.color.roles.primary.300}",
+              "$description": "Pressed state of components that have a selected state that need less visual highlight, like dropdown or selects"
+            }
+          },
+          "bold": {
+            "default": {
+              "$type": "color",
+              "$value": "{echoes.color.roles.primary.500}",
+              "$description": "Use it in backgrounds of components that have a selected state, like checkboxes or radios"
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{echoes.color.roles.primary.700}",
+              "$description": "Hover state of components that have a selected state, like checkboxes or radios"
+            },
+            "pressed": {
+              "$type": "color",
+              "$value": "{echoes.color.roles.primary.900}",
+              "$description": "Pressed state of components that have a selected state, like checkboxes or radios"
+            }
+          }
+        },
+        "ghost": {
+          "accent": {
+            "default": {
+              "$type": "color",
+              "$value": "{echoes.color.background.utility.transparent}"
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{echoes.color.roles.primary.100}"
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{echoes.color.roles.primary.300}"
+            },
+            "focus": {
+              "$type": "color",
+              "$value": "{echoes.color.background.utility.transparent}"
+            }
+          },
+          "neutral": {
+            "default": {
+              "$type": "color",
+              "$value": "{echoes.color.background.utility.transparent}"
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.sand.200}"
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{echoes.color.roles.neutral.300}"
+            },
+            "focus": {
+              "$type": "color",
+              "$value": "{echoes.color.background.utility.transparent}"
+            }
+          },
+          "danger": {
+            "default": {
+              "$type": "color",
+              "$value": "{echoes.color.background.utility.transparent}"
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{echoes.color.roles.danger.50}"
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{echoes.color.roles.danger.100}"
+            },
+            "focus": {
+              "$type": "color",
+              "$value": "{echoes.color.background.utility.transparent}"
+            }
+          }
+        },
+        "emphasis": {
+          "weak": {
+            "default": {
+              "$type": "color",
+              "$value": "{echoes.color.roles.highlight.50}"
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{echoes.color.roles.highlight.100}"
+            },
+            "focus": {
+              "$type": "color",
+              "$value": "{echoes.color.roles.highlight.50}"
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{echoes.color.roles.highlight.300}"
+            }
+          },
+          "default": {
+            "$type": "color",
+            "$value": "{echoes.color.roles.highlight.500}"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{echoes.color.roles.highlight.700}"
+          },
+          "focus": {
+            "$type": "color",
+            "$value": "{echoes.color.roles.highlight.500}"
+          },
+          "active": {
+            "$type": "color",
+            "$value": "{echoes.color.roles.highlight.900}"
+          }
+        },
+        "favourite": {
+          "default": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.amber.400}"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.amber.500}"
+          }
+        }
+      },
+      "surface": {
+        "default": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.support.white}",
+          "$description": "Go to color for surfaces.. eg: cards, modals, popovers, etc..."
+        },
+        "hover": {
+          "$type": "color",
+          "$value": "{echoes.color.roles.neutral.50}",
+          "$description": "Hover color for bg-default"
+        },
+        "active": {
+          "$type": "color",
+          "$value": "{echoes.color.roles.neutral.100}",
+          "$description": "Active color for bg-default"
+        },
+        "canvas": {
+          "default": {
+            "$type": "color",
+            "$value": "{echoes.color.roles.neutral.50}",
+            "$description": "Use it as page background"
+          }
+        },
+        "inverse": {
+          "default": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.sand.600}",
+            "$description": "Inverse color for bgs, creates high contrast against bg-default and bg-page"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.sand.700}"
+          },
+          "focus": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.sand.600}"
+          },
+          "active": {
+            "$type": "color",
+            "$value": "{echoes.color.roles.neutral.700}"
+          }
+        },
+        "disabled": {
+          "$type": "color",
+          "$value": "{echoes.color.roles.neutral.50}",
+          "$description": "Use it as background for disabled components"
+        }
+      },
+      "overlays": {
+        "backDrop": {
+          "default": {
+            "$extensions": {
+              "studio.tokens": {
+                "modify": {
+                  "type": "alpha",
+                  "value": "0.45",
+                  "space": "hsl"
+                }
+              }
+            },
+            "$type": "color",
+            "$value": "{echoes.color.roles.neutral.900}"
+          }
+        },
+        "disabled": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.sand.50}",
+          "$description": "Use it as background for disabled components"
+        }
+      },
+      "text": {
+        "strong": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.sand.950}"
+        },
+        "default": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.sand.800}"
+        },
+        "disabled": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.sand.400}"
+        },
+        "placeholder": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.sand.600}"
+        },
+        "subtle": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.sand.600}"
+        },
+        "onColor": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.support.white}"
+        },
+        "onColor-Inverse": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.sand.950}"
+        },
+        "accent": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.purple.500}"
+        },
+        "danger": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.red.700}"
+        },
+        "warning": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.amber.600}"
+        },
+        "success": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.green.600}"
+        },
+        "info": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.blue.600}"
+        },
+        "emphasis": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.ultramarine.800}"
+        },
+        "link": {
+          "hover": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.purple.400}"
+          }
+        }
+      },
+      "icon": {
+        "bold": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.sand.950}"
+        },
+        "default": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.sand.850}"
+        },
+        "subtle": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.sand.800}"
+        },
+        "disabled": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.sand.400}"
+        },
+        "placeholder": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.sand.400}"
+        },
+        "accent": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.purple.500}"
+        },
+        "danger": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.red.600}"
+        },
+        "warning": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.amber.600}"
+        },
+        "success": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.green.600}"
+        },
+        "info": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.blue.600}"
+        },
+        "onColor": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.support.white}"
+        },
+        "onColor-Inverse": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.sand.950}"
+        },
+        "selected": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.purple.500}"
+        },
+        "emphasis": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.ultramarine.800}"
+        }
+      },
+      "border": {
+        "bolder": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.sand.500}"
+        },
+        "bold": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.sand.400}"
+        },
+        "weak": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.sand.300}"
+        },
+        "weaker": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.sand.200}"
+        },
+        "disabled": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.sand.400}"
+        },
+        "accent": {
+          "default": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.purple.500}"
+          }
+        },
+        "danger": {
+          "weak": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.red.400}"
+          },
+          "default": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.red.600}"
+          }
+        },
+        "none": {
+          "$type": "color",
+          "$value": "transparent00"
+        },
+        "success": {
+          "weak": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.green.300}"
+          },
+          "default": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.green.500}"
+          }
+        },
+        "warning": {
+          "weak": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.amber.300}"
+          }
+        },
+        "info": {
+          "weak": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.blue.300}"
+          }
+        },
+        "emphasis": {
+          "weak": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.ultramarine.400}"
+          }
+        }
+      },
+      "focus": {
+        "default": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.purple.600}"
+        }
+      },
+      "dataviz": {
+        "raspberry": {
+          "bg": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.dataviz.raspberry.300}"
+          },
+          "text": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.dataviz.raspberry.800}"
+          },
+          "border": {
+            "border": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.dataviz.raspberry.500}"
+            }
+          },
+          "fill": {
+            "default": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.dataviz.raspberry.500}"
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.dataviz.raspberry.600}"
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.dataviz.raspberry.700}"
+            },
+            "focus": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.dataviz.raspberry.500}"
+            }
+          }
+        },
+        "violet": {
+          "bg": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.dataviz.violet.300}"
+          },
+          "text": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.dataviz.violet.900}"
+          },
+          "border": {
+            "border": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.dataviz.violet.500}"
+            }
+          },
+          "fill": {
+            "default": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.dataviz.violet.500}"
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.dataviz.violet.600}"
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.dataviz.violet.700}"
+            },
+            "focus": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.dataviz.violet.500}"
+            }
+          }
+        },
+        "indigo": {
+          "bg": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.dataviz.indigo.300}"
+          },
+          "text": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.dataviz.indigo.800}"
+          },
+          "border": {
+            "border": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.dataviz.indigo.500}"
+            }
+          },
+          "fill": {
+            "default": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.dataviz.indigo.500}"
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.dataviz.indigo.600}"
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.dataviz.indigo.700}"
+            },
+            "focus": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.dataviz.indigo.500}"
+            }
+          }
+        },
+        "mint": {
+          "bg": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.dataviz.mint.200}"
+          },
+          "text": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.dataviz.mint.850}"
+          },
+          "border": {
+            "border": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.dataviz.mint.500}"
+            }
+          },
+          "fill": {
+            "default": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.dataviz.mint.500}"
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.dataviz.mint.700}"
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.dataviz.mint.800}"
+            },
+            "focus": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.dataviz.mint.500}"
+            }
+          }
+        },
+        "lime": {
+          "bg": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.dataviz.lime.200}"
+          },
+          "text": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.dataviz.lime.800}"
+          },
+          "border": {
+            "border": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.dataviz.lime.500}"
+            }
+          },
+          "fill": {
+            "default": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.dataviz.lime.500}"
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.dataviz.lime.600}"
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.dataviz.lime.700}"
+            },
+            "focus": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.dataviz.lime.500}"
+            }
+          }
+        },
+        "yellow": {
+          "bg": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.dataviz.yellow.200}"
+          },
+          "text": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.dataviz.yellow.850}"
+          },
+          "border": {
+            "border": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.dataviz.yellow.700}"
+            }
+          },
+          "fill": {
+            "default": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.dataviz.yellow.700}"
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.dataviz.yellow.800}"
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.dataviz.yellow.850}"
+            },
+            "focus": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.dataviz.yellow.700}"
+            }
+          }
+        },
+        "pumpkin": {
+          "bg": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.dataviz.pumpkin.200}"
+          },
+          "text": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.dataviz.pumpkin.850}"
+          },
+          "border": {
+            "border": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.dataviz.pumpkin.500}"
+            }
+          },
+          "fill": {
+            "default": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.dataviz.pumpkin.500}"
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.dataviz.pumpkin.600}"
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.dataviz.pumpkin.700}"
+            },
+            "focus": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.dataviz.pumpkin.500}"
+            }
+          }
+        },
+        "coral": {
+          "bg": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.dataviz.coral.200}"
+          },
+          "text": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.dataviz.coral.850}"
+          },
+          "border": {
+            "border": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.dataviz.coral.500}"
+            }
+          },
+          "fill": {
+            "default": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.dataviz.coral.500}"
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.dataviz.coral.600}"
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.dataviz.coral.700}"
+            },
+            "focus": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.dataviz.coral.500}"
+            }
+          }
+        }
+      }
+    },
+    "boxShadow": {
+      "xsmall": {
+        "$type": "boxShadow",
+        "$value": {
+          "x": "0",
+          "y": "1",
+          "blur": "02",
+          "spread": "0",
+          "color": "#0000000d",
+          "type": "dropShadow"
+        }
+      },
+      "small": {
+        "$type": "boxShadow",
+        "$value": [
+          {
+            "x": "0",
+            "y": "1",
+            "blur": "25",
+            "spread": "0",
+            "color": "#1d212f0d",
+            "type": "dropShadow"
+          },
+          {
+            "x": "0",
+            "y": "1",
+            "blur": "3",
+            "spread": "0",
+            "color": "#1d212f0d",
+            "type": "dropShadow"
+          }
+        ]
+      },
+      "medium": {
+        "$type": "boxShadow",
+        "$value": [
+          {
+            "x": "0",
+            "y": "2",
+            "blur": "15",
+            "spread": "-2",
+            "color": "#1d212f0f",
+            "type": "dropShadow"
+          },
+          {
+            "x": "0",
+            "y": "4",
+            "blur": "8",
+            "spread": "-2",
+            "color": "#1d212f1a",
+            "type": "dropShadow"
+          }
+        ]
+      },
+      "large": {
+        "$type": "boxShadow",
+        "$value": [
+          {
+            "x": "0",
+            "y": "4",
+            "blur": "6",
+            "spread": "-2",
+            "color": "#1d212f0d",
+            "type": "dropShadow"
+          },
+          {
+            "x": "0",
+            "y": "12",
+            "blur": "16",
+            "spread": "-4",
+            "color": "#1d212f1a",
+            "type": "dropShadow"
+          }
+        ]
+      },
+      "xLarge": {
+        "$type": "boxShadow",
+        "$value": [
+          {
+            "x": "0",
+            "y": "8",
+            "blur": "8",
+            "spread": "-4",
+            "color": "#1d212f0a",
+            "type": "dropShadow"
+          },
+          {
+            "x": "15",
+            "y": "20",
+            "blur": "24",
+            "spread": "-4",
+            "color": "#1d212f1a",
+            "type": "dropShadow"
+          }
+        ]
+      }
+    }
+  }
+}
