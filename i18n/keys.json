@@ -262,5 +262,13 @@
   "toggletip.help": {
     "defaultMessage": "More information",
     "description": "aria-label text and tooltip for the ToggleTip"
+  },
+  "toolbar.clear-all": {
+    "defaultMessage": "Clear filters",
+    "description": "Label for the button that clears all active filters in the toolbar"
+  },
+  "toolbar.filter-tags-count": {
+    "defaultMessage": "Applied filters ({count})",
+    "description": "Label shown before active filter tags, indicating how many are applied"
   }
 }
