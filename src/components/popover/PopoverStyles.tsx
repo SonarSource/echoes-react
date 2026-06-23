@@ -20,7 +20,7 @@
 
 import styled from '@emotion/styled';
 import * as RadixPopover from '@radix-ui/react-popover';
-import { cssVar } from '../../utils/design-tokens';
+import { cssVar } from '~utils/design-tokens';
 
 /** Distance between the arrow tip and the trigger element. */
 export const OVERLAY_SIDE_OFFSET = 4;

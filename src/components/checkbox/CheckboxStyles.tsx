@@ -36,8 +36,6 @@ CheckboxContainer.displayName = 'CheckboxContainer';
 
 export const CheckboxInnerContainer = styled.span`
   display: flex;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 0.833rem;
 `;
 CheckboxInnerContainer.displayName = 'CheckboxInnerContainer';
 

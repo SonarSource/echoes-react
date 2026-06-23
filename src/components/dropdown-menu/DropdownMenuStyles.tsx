@@ -49,10 +49,6 @@ export const styleDropdownItemBase = styled.div`
     background-color: ${cssVar('color-surface-active')};
   }
 
-  &[data-state='checked'] {
-    background-color: ${cssVar('color-background-selected-weak-default')};
-  }
-
   &[data-disabled],
   &:disabled {
     background-color: ${cssVar('color-surface-default')};
