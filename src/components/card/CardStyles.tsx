@@ -48,7 +48,6 @@ CardHeaderStyled.displayName = 'CardHeaderStyled';
 
 export const CardBodyStyled = styled.div<{ size: `${CardSize}`; insetContent: boolean }>`
   box-sizing: border-box;
-  min-height: var(--card-body-min-height);
   padding: ${(props) => (props.insetContent ? '0' : 'var(--card-padding)')};
   width: 100%;
 
@@ -76,14 +75,11 @@ export const CARD_HEADER_SIZE_STYLES = {
 export const CARD_SIZE_STYLES = {
   [CardSize.Small]: {
     '--card-padding': cssVar('dimension-space-150'),
-    '--card-body-min-height': '84px',
   },
   [CardSize.Medium]: {
     '--card-padding': cssVar('dimension-space-200'),
-    '--card-body-min-height': '92px',
   },
   [CardSize.Large]: {
     '--card-padding': cssVar('dimension-space-300'),
-    '--card-body-min-height': '108px',
   },
 };

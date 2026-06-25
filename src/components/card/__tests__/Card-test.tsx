@@ -139,6 +139,16 @@ describe('Card components', () => {
       expect(ref.current).not.toBeNull();
     });
 
+    it('does not apply a minimum height', () => {
+      render(
+        <CardRoot>
+          <CardBody>Content</CardBody>
+        </CardRoot>,
+      );
+
+      expect(window.getComputedStyle(screen.getByText('Content')).minHeight).toBe('');
+    });
+
     it('applies insetContent prop correctly', () => {
       const { rerender } = render(
         <CardRoot>
