@@ -92,16 +92,16 @@ describe('Card components', () => {
     });
 
     it('does not apply a minimum height', () => {
+      const ref = React.createRef<HTMLDivElement>();
+
       render(
         <CardRoot>
-          <CardHeader title="Card Title" />
+          <CardHeader ref={ref} title="Card Title" />
         </CardRoot>,
       );
 
-      const header = screen.getByText('Card Title').closest('header');
-
-      expect(header).not.toBeNull();
-      expect(window.getComputedStyle(header as HTMLElement).minHeight).toBe('');
+      expect(ref.current).not.toBeNull();
+      expect(window.getComputedStyle(ref.current as HTMLElement).minHeight).toBe('');
     });
 
     it('defines header size through padding only', () => {
