@@ -96,7 +96,6 @@ CardHeaderTitleButtonStyled.displayName = 'CardHeaderTitleButtonStyled';
 
 export const CardBodyStyled = styled.div<{ size: `${CardSize}`; insetContent: boolean }>`
   box-sizing: border-box;
-  min-height: var(--card-body-min-height);
   padding: ${(props) => (props.insetContent ? '0' : 'var(--card-padding)')};
   width: 100%;
 
@@ -126,15 +125,12 @@ export const CARD_HEADER_SIZE_STYLES = {
 
 export const CARD_SIZE_STYLES = {
   [CardSize.Large]: {
-    '--card-body-min-height': '108px',
     '--card-padding': cssVar('dimension-space-300'),
   },
   [CardSize.Medium]: {
-    '--card-body-min-height': '92px',
     '--card-padding': cssVar('dimension-space-200'),
   },
   [CardSize.Small]: {
-    '--card-body-min-height': '84px',
     '--card-padding': cssVar('dimension-space-150'),
   },
 };
