@@ -27,6 +27,7 @@ import { CardBody } from '../CardBody';
 import { CardHeader } from '../CardHeader';
 import { CardRoot } from '../CardRoot';
 import { CardSize } from '../CardSize';
+import { CARD_HEADER_SIZE_STYLES } from '../CardStyles';
 
 describe('Card components', () => {
   describe('CardRoot', () => {
@@ -101,6 +102,23 @@ describe('Card components', () => {
 
       expect(header).not.toBeNull();
       expect(window.getComputedStyle(header as HTMLElement).minHeight).toBe('');
+    });
+
+    it('defines header size through padding only', () => {
+      expect(CARD_HEADER_SIZE_STYLES).toEqual({
+        [CardSize.Large]: {
+          '--card-header-padding':
+            'var(--echoes-dimension-space-250) var(--echoes-dimension-space-300)',
+        },
+        [CardSize.Medium]: {
+          '--card-header-padding':
+            'var(--echoes-dimension-space-150) var(--echoes-dimension-space-200)',
+        },
+        [CardSize.Small]: {
+          '--card-header-padding':
+            'var(--echoes-dimension-space-100) var(--echoes-dimension-space-150)',
+        },
+      });
     });
 
     it('uses correct heading level based on card size', () => {

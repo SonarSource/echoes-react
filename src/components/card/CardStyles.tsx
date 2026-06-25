@@ -65,7 +65,6 @@ export const RightContentStyled = styled.div`
   align-items: center;
   display: flex;
   gap: ${cssVar('dimension-space-100')};
-  max-height: var(--card-header-heading-height);
 `;
 RightContentStyled.displayName = 'RightContentStyled';
 
@@ -107,15 +106,12 @@ CardBodyStyled.displayName = 'CardBodyStyled';
 
 export const CARD_HEADER_SIZE_STYLES = {
   [CardSize.Large]: {
-    '--card-header-heading-height': '1.875rem',
-    '--card-header-padding': `${cssVar('dimension-space-200')} ${cssVar('dimension-space-300')}`,
+    '--card-header-padding': `${cssVar('dimension-space-250')} ${cssVar('dimension-space-300')}`,
   },
   [CardSize.Medium]: {
-    '--card-header-heading-height': '1.5rem',
     '--card-header-padding': `${cssVar('dimension-space-150')} ${cssVar('dimension-space-200')}`,
   },
   [CardSize.Small]: {
-    '--card-header-heading-height': '1.25rem',
     '--card-header-padding': `${cssVar('dimension-space-100')} ${cssVar('dimension-space-150')}`,
   },
 };
