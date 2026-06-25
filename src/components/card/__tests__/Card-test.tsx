@@ -298,9 +298,9 @@ describe('Card components', () => {
         </CardRoot>,
       );
 
-      expect(window.getComputedStyle(screen.getByRole('button', { name: 'Collapse' })).minHeight).toBe(
-        'auto',
-      );
+      expect(
+        window.getComputedStyle(screen.getByRole('button', { name: 'Collapse' })).minHeight,
+      ).toBe('auto');
     });
 
     it('does not render a toggle button when isCollapsible is false', () => {
