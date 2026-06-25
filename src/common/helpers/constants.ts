@@ -18,3 +18,5 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 export const EMPTY_ARRAY: readonly never[] = Object.freeze([]);
+
+export const KEYBOARD_THROTTLE_MS = 100;

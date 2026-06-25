@@ -25,6 +25,7 @@ import {
 } from './FilterDropdownItem';
 import { StyledItemsList, StyledItemsListRadioGroup } from './FilterDropdownStyles';
 import { FilterDropdownOption } from './FilterDropdownTypes';
+import { useFilterDropdownKeyboardThrottle } from './useFilterDropdownKeyboardThrottle';
 import { useFilterDropdownRovingFocus } from './useFilterDropdownRovingFocus';
 
 /** @internal */
@@ -73,6 +74,7 @@ export function FilterDropdownMultiSelectList(props: Readonly<FilterDropdownMult
   }
 
   const { register: itemRegister, focus: itemFocus } = useFilterDropdownRovingFocus();
+  const allowItemKeyNav = useFilterDropdownKeyboardThrottle();
 
   useImperativeHandle(ref, () => ({
     focusFirstItem: () => itemFocus(0),
@@ -83,19 +85,23 @@ export function FilterDropdownMultiSelectList(props: Readonly<FilterDropdownMult
       if (e.key === 'ArrowLeft') {
         e.preventDefault();
         onCategoryFocusBack();
-      } else if (e.key === 'ArrowDown') {
+      } else if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
         e.preventDefault();
-        const nextIndex = findEnabledIndex(activeItemIndex, items, 1);
-        setActiveItemIndex(nextIndex);
-        itemFocus(nextIndex);
-      } else if (e.key === 'ArrowUp') {
-        e.preventDefault();
-        const previousIndex = findEnabledIndex(activeItemIndex, items, -1);
-        setActiveItemIndex(previousIndex);
-        itemFocus(previousIndex);
+        if (e.repeat && !allowItemKeyNav()) {
+          return;
+        }
+        if (e.key === 'ArrowDown') {
+          const nextIndex = findEnabledIndex(activeItemIndex, items, 1);
+          setActiveItemIndex(nextIndex);
+          itemFocus(nextIndex);
+        } else {
+          const previousIndex = findEnabledIndex(activeItemIndex, items, -1);
+          setActiveItemIndex(previousIndex);
+          itemFocus(previousIndex);
+        }
       }
     },
-    [activeItemIndex, items, itemFocus, onCategoryFocusBack],
+    [activeItemIndex, allowItemKeyNav, items, itemFocus, onCategoryFocusBack],
   );
 
   return (

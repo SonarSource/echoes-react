@@ -21,14 +21,10 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { useCallback, useMemo, useState } from 'react';
 import {
-  BadgeCounter,
-  BadgeCounterVariety,
-  Button,
-  ButtonProps,
   FilterDropdown,
   FilterDropdownCategory,
   FilterDropdownProps,
-  IconChevronDown,
+  FilterDropdownTrigger,
 } from '../../src';
 import { basicWrapperDecorator } from '../helpers/BasicWrapper';
 
@@ -153,27 +149,6 @@ function useFilterDropdownCategories() {
   return { categories, onCategorySelect: handleCategorySelect };
 }
 
-function FilterDropdownTrigger({
-  label = 'Filters',
-  selectedCount,
-  ...restProps
-}: { label?: string; selectedCount: number } & ButtonProps) {
-  return (
-    <Button
-      {...restProps}
-      suffix={
-        <>
-          {selectedCount > 0 && (
-            <BadgeCounter value={selectedCount} variety={BadgeCounterVariety.Accent} />
-          )}
-          <IconChevronDown />
-        </>
-      }>
-      {label}
-    </Button>
-  );
-}
-
 function FilterDropdownStory(props: Readonly<FilterDropdownProps>) {
   const [selectedValues, setSelectedValues] = useState<string[]>([]);
   const { categories, onCategorySelect } = useFilterDropdownCategories();
@@ -186,7 +161,7 @@ function FilterDropdownStory(props: Readonly<FilterDropdownProps>) {
       onCategorySelect={onCategorySelect}
       onClear={() => setSelectedValues([])}
       selectedValues={selectedValues}>
-      <FilterDropdownTrigger selectedCount={selectedValues.length} />
+      <FilterDropdownTrigger selectedCount={selectedValues.length}>Filters</FilterDropdownTrigger>
     </FilterDropdown>
   );
 }
@@ -208,7 +183,7 @@ function ImmediateSelectStory(props: Readonly<FilterDropdownProps>) {
       onClear={() => setSelectedValues([])}
       onItemSelect={setSelectedValues}
       selectedValues={selectedValues}>
-      <FilterDropdownTrigger selectedCount={selectedValues.length} />
+      <FilterDropdownTrigger selectedCount={selectedValues.length}>Filters</FilterDropdownTrigger>
     </FilterDropdown>
   );
 }

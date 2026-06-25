@@ -40,6 +40,7 @@ import {
   StyledLeftPanel,
 } from './FilterDropdownStyles';
 import { FilterDropdownCategory, FilterDropdownProps } from './FilterDropdownTypes';
+import { useFilterDropdownKeyboardThrottle } from './useFilterDropdownKeyboardThrottle';
 import { useFilterDropdownRovingFocus } from './useFilterDropdownRovingFocus';
 
 export function FilterDropdown(props: Readonly<FilterDropdownProps>) {
@@ -71,6 +72,7 @@ export function FilterDropdown(props: Readonly<FilterDropdownProps>) {
   // Right-panel item focus is managed inside FilterDropdownRightPanel.
   const { register: categoryRegister, focus: categoryFocus } = useFilterDropdownRovingFocus();
   const rightPanelRef = useRef<FilterDropdownRightPanelHandle>(null);
+  const allowCategoryKeyNav = useFilterDropdownKeyboardThrottle();
 
   const portalContext = useContext(PortalContext);
   const theme = useContext(ThemeContext);
@@ -145,22 +147,32 @@ export function FilterDropdown(props: Readonly<FilterDropdownProps>) {
 
   const handleCategoryKeyDown = useCallback(
     (e: KeyboardEvent<HTMLElement>) => {
-      if (e.key === 'ArrowDown') {
-        e.preventDefault();
-        const nextIndex = Math.min(activeCategoryIndex + 1, categories.length - 1);
-        handleCategoryClick(nextIndex);
-        categoryFocus(nextIndex);
-      } else if (e.key === 'ArrowUp') {
-        e.preventDefault();
-        const previousIndex = Math.max(activeCategoryIndex - 1, 0);
-        handleCategoryClick(previousIndex);
-        categoryFocus(previousIndex);
-      } else if (e.key === 'ArrowRight' || e.key === 'Enter') {
+      if (e.key === 'ArrowRight' || e.key === 'Enter') {
         e.preventDefault();
         rightPanelRef.current?.focusFirstItem();
+      } else if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+        e.preventDefault();
+        if (e.repeat && !allowCategoryKeyNav()) {
+          return;
+        }
+        if (e.key === 'ArrowDown') {
+          const nextIndex = Math.min(activeCategoryIndex + 1, categories.length - 1);
+          handleCategoryClick(nextIndex);
+          categoryFocus(nextIndex);
+        } else {
+          const previousIndex = Math.max(activeCategoryIndex - 1, 0);
+          handleCategoryClick(previousIndex);
+          categoryFocus(previousIndex);
+        }
       }
     },
-    [activeCategoryIndex, categories.length, categoryFocus, handleCategoryClick],
+    [
+      activeCategoryIndex,
+      allowCategoryKeyNav,
+      categories.length,
+      categoryFocus,
+      handleCategoryClick,
+    ],
   );
 
   const handleCategoryFocusBack = useCallback(() => {

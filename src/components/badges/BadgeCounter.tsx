@@ -54,7 +54,9 @@ export function BadgeCounter(props: Readonly<BadgeCounterProps>) {
 BadgeCounter.displayName = 'BadgeCounter';
 
 const BadgeCounterStyled = styled.span`
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   box-sizing: border-box;
   height: ${cssVar('line-height-10')};
   min-width: ${cssVar('dimension-width-200')};
@@ -64,7 +66,6 @@ const BadgeCounterStyled = styled.span`
 
   font: ${cssVar('typography-text-small-semi-bold')};
   color: var(--badge-counter-color);
-  text-align: center;
 
   background-color: var(--badge-counter-background-color);
 `;
