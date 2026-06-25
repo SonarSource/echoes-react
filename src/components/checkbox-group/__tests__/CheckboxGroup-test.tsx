@@ -45,7 +45,7 @@ it('adds 12px spacing between the group label and the checkboxes', () => {
   );
 
   const group = screen.getByRole('group', { name: 'Label' });
-  expect(group).toHaveStyle({ paddingTop: cssVar('dimension-space-75') });
+  expect(group).toHaveStyle({ paddingTop: cssVar('dimension-space-150') });
 });
 
 it('calls onChange when the value changes', async () => {

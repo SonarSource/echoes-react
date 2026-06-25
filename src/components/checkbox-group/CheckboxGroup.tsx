@@ -272,7 +272,7 @@ const CheckboxGroupRoot = styled.div`
   row-gap: ${cssVar('dimension-space-100')};
 
   &[data-has-label] {
-    padding-top: ${cssVar('dimension-space-75')};
+    padding-top: ${cssVar('dimension-space-150')};
   }
 
   &[data-alignment='horizontal'] {
