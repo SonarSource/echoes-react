@@ -101,6 +101,8 @@
   "echoes-banner-sizes-height": "2.75rem",
   "echoes-badge-sizes-height-small": "1.25rem",
   "echoes-badge-sizes-height-medium": "1.75rem",
+  "echoes-filter-dropdown-sizes-left-panel-width-default": "277px",
+  "echoes-filter-dropdown-sizes-min-height-default": "350px",
   "echoes-filter-tag-sizes-max-width-default": "200px",
   "echoes-form-control-border-radius-default": "8px",
   "echoes-form-control-sizes-height-default": "2.25rem",

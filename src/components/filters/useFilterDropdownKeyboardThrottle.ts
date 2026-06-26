@@ -18,18 +18,23 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-export { FilterDropdown } from './FilterDropdown';
+import { useCallback, useRef } from 'react';
+import { KEYBOARD_THROTTLE_MS } from '~common/helpers/constants';
 
-export type {
-  FilterDropdownCategory,
-  FilterDropdownOption,
-  FilterDropdownProps,
-} from './FilterDropdownTypes';
-
-export { FilterDropdownTrigger } from './FilterDropdownTrigger';
-
-export type { FilterDropdownTriggerProps } from './FilterDropdownTrigger';
-
-export { FilterTag } from './FilterTag';
-
-export type { FilterTagProps } from './FilterTag';
+/**
+ * @internal
+ * Returns a stable gate function. Call it before processing a key-repeat navigation event:
+ * returns `true` (and records the timestamp) when enough time has elapsed since the last
+ * allowed event, `false` when the event should be dropped.
+ */
+export function useFilterDropdownKeyboardThrottle() {
+  const lastFiredRef = useRef(0);
+  return useCallback(() => {
+    const now = Date.now();
+    if (now - lastFiredRef.current < KEYBOARD_THROTTLE_MS) {
+      return false;
+    }
+    lastFiredRef.current = now;
+    return true;
+  }, []);
+}

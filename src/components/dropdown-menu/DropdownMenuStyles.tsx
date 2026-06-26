@@ -19,8 +19,43 @@
  */
 
 import styled from '@emotion/styled';
-
 import { cssVar } from '~utils/design-tokens';
+
+export const styleDropdownItemBase = styled.div`
+  background-color: ${cssVar('color-surface-default')};
+  color: ${cssVar('color-text-default')};
+  font: ${cssVar('typography-text-default-regular')};
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  column-gap: ${cssVar('dimension-space-100')};
+  padding: ${cssVar('dimension-space-100')} ${cssVar('dimension-space-150')};
+
+  cursor: pointer;
+
+  &:focus-visible {
+    border-radius: ${cssVar('border-radius-400')};
+    outline: ${cssVar('color-focus-default')} solid ${cssVar('focus-border-width-default')};
+    outline-offset: -2px;
+  }
+
+  &:hover {
+    background-color: ${cssVar('color-surface-hover')};
+  }
+
+  /* when the item is clicked */
+  &:active {
+    background-color: ${cssVar('color-surface-active')};
+  }
+
+  &[data-disabled],
+  &:disabled {
+    background-color: ${cssVar('color-surface-default')};
+    color: ${cssVar('color-text-disabled')};
+    cursor: default;
+  }
+`.withComponent;
 
 export const styleDropdownMenuOverlay = styled.div`
   background-color: ${cssVar('color-surface-default')};

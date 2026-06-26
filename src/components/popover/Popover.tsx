@@ -18,15 +18,20 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import styled from '@emotion/styled';
 import * as RadixPopover from '@radix-ui/react-popover';
 import { ReactElement, ReactNode, forwardRef, useContext } from 'react';
 import { isDefined } from '~common/helpers/types';
 import { TextNodeOptional } from '~types/utils';
 import { THEME_DATA_ATTRIBUTE, ThemeContext } from '~utils/theme';
 import { Heading, HeadingSize, Text } from '../typography';
-
-import { cssVar } from '~utils/design-tokens';
+import {
+  OVERLAY_ARROW_PADDING,
+  OVERLAY_SIDE_OFFSET,
+  PopoverArrow,
+  PopoverContent,
+  PopoverExtraContent,
+  PopoverFooter,
+} from './PopoverStyles';
 
 export enum PopoverAlign {
   Start = 'start',
@@ -52,12 +57,6 @@ export interface PopoverProps {
   side?: `${PopoverSide}`;
   title?: TextNodeOptional;
 }
-
-/* This is the distance between the point of the arrow and the trigger */
-const POPOVER_OFFSET = 4;
-
-/* This is the padding between the edge of the tooltip and the arrow. */
-const ARROW_PADDING = 16;
 
 /**
  * **Popovers must be attached to a button to be accessible.**
@@ -100,10 +99,10 @@ export const Popover = forwardRef<HTMLButtonElement, PopoverProps>((props, ref) 
         <PopoverContent
           {...themeOverrideProp}
           align={align}
-          arrowPadding={ARROW_PADDING}
+          arrowPadding={OVERLAY_ARROW_PADDING}
           className={className}
           side={side}
-          sideOffset={POPOVER_OFFSET}>
+          sideOffset={OVERLAY_SIDE_OFFSET}>
           {title && (
             <Heading as="h1" hasMarginBottom={Boolean(description)} size={HeadingSize.Medium}>
               {title}
@@ -123,43 +122,3 @@ export const Popover = forwardRef<HTMLButtonElement, PopoverProps>((props, ref) 
 });
 
 Popover.displayName = 'Popover';
-
-const PopoverExtraContent = styled.div`
-  margin-top: ${cssVar('dimension-space-200')};
-`;
-
-const PopoverFooter = styled.div`
-  margin-top: ${cssVar('dimension-space-200')};
-`;
-
-const PopoverContent = styled(RadixPopover.Content)`
-  border: ${cssVar('border-width-default')} solid ${cssVar('color-border-weak')};
-  border-radius: ${cssVar('border-radius-400')};
-  padding: ${cssVar('dimension-space-300')} ${cssVar('dimension-space-250')};
-  background-color: ${cssVar('color-surface-default')};
-  box-shadow: ${cssVar('box-shadow-large')};
-
-  box-sizing: border-box;
-  max-width: ${cssVar('dimension-width-5000')};
-  max-height: ${cssVar('sizes-overlays-max-height-default')};
-  overflow-y: auto;
-
-  // We are in a modal context, so we don't want to display the focus ring
-  &:focus,
-  &:focus-visible {
-    outline: none;
-  }
-`;
-
-const PopoverArrow = styled(RadixPopover.Arrow)`
-  stroke: ${cssVar('color-border-weak')};
-  fill: ${cssVar('color-surface-default')};
-  height: 9px;
-  width: 15px;
-
-  /* overlap the border by moving the arrow down over the box border and
-   * clipping it so its own borders don't overlap the box content
-   */
-  clip-path: inset(0.9px 0 0 0);
-  margin-top: -2px;
-`;

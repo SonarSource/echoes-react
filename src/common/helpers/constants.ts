@@ -17,19 +17,6 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
+export const EMPTY_ARRAY: readonly never[] = Object.freeze([]);
 
-export { FilterDropdown } from './FilterDropdown';
-
-export type {
-  FilterDropdownCategory,
-  FilterDropdownOption,
-  FilterDropdownProps,
-} from './FilterDropdownTypes';
-
-export { FilterDropdownTrigger } from './FilterDropdownTrigger';
-
-export type { FilterDropdownTriggerProps } from './FilterDropdownTrigger';
-
-export { FilterTag } from './FilterTag';
-
-export type { FilterTagProps } from './FilterTag';
+export const KEYBOARD_THROTTLE_MS = 100;

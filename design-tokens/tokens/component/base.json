@@ -23,6 +23,22 @@
       }
     },
     "filter": {
+      "dropdown": {
+        "sizes": {
+          "leftPanelWidth": {
+            "default": {
+              "$type": "sizing",
+              "$value": "277px"
+            }
+          },
+          "minHeight": {
+            "default": {
+              "$type": "sizing",
+              "$value": "350px"
+            }
+          }
+        }
+      },
       "tag": {
         "sizes": {
           "maxWidth": {
