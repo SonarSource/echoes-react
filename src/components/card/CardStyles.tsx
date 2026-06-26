@@ -84,6 +84,7 @@ export const CardHeaderTitleButtonStyled = styled(ButtonStyled)`
   display: flex;
   flex-direction: row;
   flex: 1;
+  /* ButtonStyled sets fixed dimensions; this header button sizes from padding instead. */
   height: auto;
   min-height: auto;
   padding: var(--card-header-padding);
