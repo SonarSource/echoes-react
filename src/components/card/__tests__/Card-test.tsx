@@ -91,19 +91,6 @@ describe('Card components', () => {
       expect(screen.getByRole('button', { name: 'Action' })).toBeInTheDocument();
     });
 
-    it('does not apply a minimum height', () => {
-      const ref = React.createRef<HTMLDivElement>();
-
-      render(
-        <CardRoot>
-          <CardHeader ref={ref} title="Card Title" />
-        </CardRoot>,
-      );
-
-      expect(ref.current).not.toBeNull();
-      expect(window.getComputedStyle(ref.current as HTMLElement).minHeight).toBe('');
-    });
-
     it('defines header size through padding only', () => {
       expect(CARD_HEADER_SIZE_STYLES).toEqual({
         [CardSize.Large]: {
@@ -182,16 +169,6 @@ describe('Card components', () => {
       expect(ref.current).not.toBeNull();
     });
 
-    it('does not apply a minimum height', () => {
-      render(
-        <CardRoot>
-          <CardBody>Content</CardBody>
-        </CardRoot>,
-      );
-
-      expect(window.getComputedStyle(screen.getByText('Content')).minHeight).toBe('');
-    });
-
     it('applies insetContent prop correctly', () => {
       const { rerender } = render(
         <CardRoot>
@@ -249,6 +226,23 @@ describe('Card components', () => {
       expect(screen.getByText('Card Title')).toBeInTheDocument();
       expect(screen.getByText('Card Description')).toBeInTheDocument();
       expect(screen.getByText('Actions')).toBeInTheDocument();
+    });
+
+    it('does not apply a minimum height to the header or body', () => {
+      const headerRef = React.createRef<HTMLDivElement>();
+      const bodyRef = React.createRef<HTMLDivElement>();
+
+      render(
+        <CardRoot>
+          <CardHeader ref={headerRef} title="Card Title" />
+          <CardBody ref={bodyRef}>Content</CardBody>
+        </CardRoot>,
+      );
+
+      expect(headerRef.current).not.toBeNull();
+      expect(window.getComputedStyle(headerRef.current as HTMLElement).minHeight).toBe('');
+      expect(bodyRef.current).not.toBeNull();
+      expect(window.getComputedStyle(bodyRef.current as HTMLElement).minHeight).toBe('');
     });
   });
 
