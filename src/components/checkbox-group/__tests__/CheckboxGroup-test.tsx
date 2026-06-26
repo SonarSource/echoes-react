@@ -44,8 +44,9 @@ it('adds 12px spacing between the group label and the checkboxes', () => {
     <CheckboxGroup label="Label" onChange={() => {}} options={[{ label: 'Option' }]} value={[]} />,
   );
 
-  const group = screen.getByRole('group', { name: 'Label' });
-  expect(group).toHaveStyle({ paddingTop: cssVar('dimension-space-150') });
+  const label = screen.getByText('Label');
+  // eslint-disable-next-line testing-library/no-node-access
+  expect(label.parentElement).toHaveStyle({ marginBottom: cssVar('dimension-space-150') });
 });
 
 it('calls onChange when the value changes', async () => {

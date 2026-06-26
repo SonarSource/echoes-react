@@ -26,6 +26,7 @@ import { type CheckboxProps, Checkbox } from '../checkbox/Checkbox';
 import {
   type ValidationProps,
   FormField,
+  FormFieldLabelSpacing,
   FormFieldProps,
   FormFieldValidation,
 } from '../form/FormField';
@@ -123,6 +124,7 @@ export const CheckboxGroup: CheckboxGroup = forwardRef<HTMLDivElement, CheckboxG
         isRequired={isRequired}
         label={label}
         labelId={labelId}
+        labelSpacing={FormFieldLabelSpacing.Large}
         messageInvalid={messageInvalid}
         messageValid={messageValid}
         validation={validation}
@@ -133,7 +135,6 @@ export const CheckboxGroup: CheckboxGroup = forwardRef<HTMLDivElement, CheckboxG
           aria-label={ariaLabel}
           aria-labelledby={ariaLabelledBy ?? labelId}
           data-alignment={alignment}
-          data-has-label={Boolean(label) || undefined}
           data-invalid={validation === FormFieldValidation.Invalid}
           id={controlId}
           ref={ref}
@@ -270,10 +271,6 @@ const CheckboxGroupRoot = styled.div`
   display: flex;
   flex-direction: column;
   row-gap: ${cssVar('dimension-space-100')};
-
-  &[data-has-label] {
-    padding-top: ${cssVar('dimension-space-150')};
-  }
 
   &[data-alignment='horizontal'] {
     flex-direction: row;

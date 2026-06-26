@@ -23,7 +23,7 @@ import * as RadioGroup from '@radix-ui/react-radio-group';
 import { forwardRef, useId } from 'react';
 import { GroupAlignment } from '~types/GroupAlignment';
 import { PropsWithLabels } from '~types/utils';
-import { FormField, FormFieldValidation } from '../form/FormField';
+import { FormField, FormFieldLabelSpacing, FormFieldValidation } from '../form/FormField';
 import { useFormFieldA11y } from '../form/useFormFieldA11y';
 import { RadioButton } from './RadioButton';
 import { RadioButtonGroupProps } from './RadioButtonTypes';
@@ -70,6 +70,7 @@ export const RadioButtonGroup = forwardRef<HTMLDivElement, PropsWithLabels<Radio
         isRequired={required}
         label={label}
         labelId={labelId}
+        labelSpacing={FormFieldLabelSpacing.Large}
         messageInvalid={messageInvalid}
         messageValid={messageValid}
         validation={validation}

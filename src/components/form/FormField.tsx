@@ -62,6 +62,7 @@ export const FormField = forwardRef<HTMLDivElement, FormFieldProps>((props, ref)
     isRequired = false,
     label,
     labelId,
+    labelSpacing = FormFieldLabelSpacing.Default,
     messageInvalid,
     messageValid,
     validation,
@@ -89,7 +90,8 @@ export const FormField = forwardRef<HTMLDivElement, FormFieldProps>((props, ref)
         htmlFor={controlId}
         id={labelId}
         isDisabled={isDisabled}
-        isRequired={isRequired}>
+        isRequired={isRequired}
+        spacing={labelSpacing}>
         {label}
       </FormFieldLabel>
       {children}
@@ -134,6 +136,11 @@ export enum FormFieldWidth {
   Medium = 'medium',
   Large = 'large',
   Full = 'full',
+}
+
+export enum FormFieldLabelSpacing {
+  Default = 'default',
+  Large = 'large',
 }
 
 type WhiteListedProps = Pick<ComponentProps<'div'>, 'className'>;
@@ -192,6 +199,12 @@ export interface FormFieldProps extends ValidationProps, WhiteListedProps {
    * The ID of the label for the form field (optional).
    */
   labelId?: FormFieldLabelProps['id'];
+  /**
+   * Controls the spacing between the label and the form control.
+   *
+   * @internal
+   */
+  labelSpacing?: `${FormFieldLabelSpacing}`;
   /**
    * The props for a help toggletip showing next to the form field label to provide additional information about the field (optional).
    */
