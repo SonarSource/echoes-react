@@ -22,9 +22,11 @@ import { type ComponentProps, type JSX, forwardRef } from 'react';
 import { TextNodeOptional } from '~types/utils';
 import { MessageInline, MessageInlineSize, MessageVariety } from '../messages';
 import { HelperText } from '../typography';
-import { FormFieldLabel, FormFieldLabelProps } from './FormFieldLabel';
+import { FormFieldLabel, FormFieldLabelProps, FormFieldLabelSpacing } from './FormFieldLabel';
 
 import { cssVar } from '~utils/design-tokens';
+
+export { FormFieldLabelSpacing };
 
 /**
  * Form fields wrap form controls and help create standardization between them.
@@ -136,11 +138,6 @@ export enum FormFieldWidth {
   Medium = 'medium',
   Large = 'large',
   Full = 'full',
-}
-
-export enum FormFieldLabelSpacing {
-  Default = 'default',
-  Large = 'large',
 }
 
 type WhiteListedProps = Pick<ComponentProps<'div'>, 'className'>;

@@ -26,6 +26,11 @@ import { Label } from '../typography';
 
 import { cssVar } from '~utils/design-tokens';
 
+export enum FormFieldLabelSpacing {
+  Default = 'default',
+  Large = 'large',
+}
+
 export interface FormFieldLabelProps {
   children?: TextNodeOptional;
   /**
@@ -47,7 +52,7 @@ export interface FormFieldLabelProps {
   /**
    * Controls the spacing below the label.
    */
-  spacing?: 'default' | 'large';
+  spacing?: `${FormFieldLabelSpacing}`;
   /**
    * The props for a help toggletip showing next to the form field label to provide additional information about the field (optional).
    */
@@ -73,7 +78,7 @@ export const FormFieldLabel = forwardRef<HTMLLabelElement, FormFieldLabelProps>(
     isDisabled = false,
     isRequired = false,
     helpToggletipProps,
-    spacing = 'default',
+    spacing = FormFieldLabelSpacing.Default,
     ...rest
   } = props;
 
