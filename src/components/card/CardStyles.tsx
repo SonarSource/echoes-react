@@ -38,10 +38,10 @@ export const CardStyled = styled.div`
 `;
 CardStyled.displayName = 'CardStyled';
 
-export const CardHeaderStyled = styled.header<{ noPadding: boolean }>`
+export const CardHeaderStyled = styled.header<{ disablePadding: boolean }>`
   align-items: center;
   display: flex;
-  ${({ noPadding }) => (noPadding ? '' : 'padding: var(--card-header-padding);')}
+  ${({ disablePadding }) => (disablePadding ? '' : 'padding: var(--card-header-padding);')}
 `;
 CardHeaderStyled.displayName = 'CardHeaderStyled';
 
@@ -94,7 +94,7 @@ export const CardHeaderTitleButtonStyled = styled(ButtonStyled)`
 `;
 CardHeaderTitleButtonStyled.displayName = 'CardHeaderTitleButtonStyled';
 
-export const CardBodyStyled = styled.div<{ size: `${CardSize}`; insetContent: boolean }>`
+export const CardBodyStyled = styled.div<{ insetContent: boolean }>`
   box-sizing: border-box;
   padding: ${(props) => (props.insetContent ? '0' : 'var(--card-padding)')};
   width: 100%;

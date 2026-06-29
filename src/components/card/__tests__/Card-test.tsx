@@ -179,6 +179,7 @@ describe('Card components', () => {
       );
 
       expect(ref.current).not.toBeNull();
+      expect(ref.current).not.toHaveAttribute('size');
     });
 
     it('applies insetContent prop correctly', () => {
