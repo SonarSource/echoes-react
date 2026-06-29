@@ -27,7 +27,7 @@ import { CardBody } from '../CardBody';
 import { CardHeader } from '../CardHeader';
 import { CardRoot } from '../CardRoot';
 import { CardSize } from '../CardSize';
-import { CARD_HEADER_SIZE_STYLES } from '../CardStyles';
+import { CARD_HEADER_SIZE_STYLES, CARD_SIZE_STYLES } from '../CardStyles';
 
 describe('Card components', () => {
   describe('CardRoot', () => {
@@ -91,7 +91,7 @@ describe('Card components', () => {
       expect(screen.getByRole('button', { name: 'Action' })).toBeInTheDocument();
     });
 
-    it('defines header size through padding only', () => {
+    it('defines header and body size through padding only', () => {
       expect(CARD_HEADER_SIZE_STYLES).toEqual({
         [CardSize.Large]: {
           '--card-header-padding':
@@ -104,6 +104,18 @@ describe('Card components', () => {
         [CardSize.Small]: {
           '--card-header-padding':
             'var(--echoes-dimension-space-100) var(--echoes-dimension-space-150)',
+        },
+      });
+
+      expect(CARD_SIZE_STYLES).toEqual({
+        [CardSize.Large]: {
+          '--card-padding': 'var(--echoes-dimension-space-300)',
+        },
+        [CardSize.Medium]: {
+          '--card-padding': 'var(--echoes-dimension-space-200)',
+        },
+        [CardSize.Small]: {
+          '--card-padding': 'var(--echoes-dimension-space-150)',
         },
       });
     });
@@ -226,23 +238,6 @@ describe('Card components', () => {
       expect(screen.getByText('Card Title')).toBeInTheDocument();
       expect(screen.getByText('Card Description')).toBeInTheDocument();
       expect(screen.getByText('Actions')).toBeInTheDocument();
-    });
-
-    it('does not apply a minimum height to the header or body', () => {
-      const headerRef = React.createRef<HTMLDivElement>();
-      const bodyRef = React.createRef<HTMLDivElement>();
-
-      render(
-        <CardRoot>
-          <CardHeader ref={headerRef} title="Card Title" />
-          <CardBody ref={bodyRef}>Content</CardBody>
-        </CardRoot>,
-      );
-
-      expect(headerRef.current).not.toBeNull();
-      expect(window.getComputedStyle(headerRef.current as HTMLElement).minHeight).toBe('');
-      expect(bodyRef.current).not.toBeNull();
-      expect(window.getComputedStyle(bodyRef.current as HTMLElement).minHeight).toBe('');
     });
   });
 
