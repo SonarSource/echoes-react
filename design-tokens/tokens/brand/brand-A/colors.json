@@ -641,6 +641,12 @@
             "$type": "color",
             "$value": "#3f186b"
           }
+        },
+        "cyan": {
+          "50": {
+            "$type": "color",
+            "$value": "#d5f9f7"
+          }
         }
       }
     }

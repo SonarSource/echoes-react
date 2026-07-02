@@ -918,6 +918,15 @@
           "$type": "color",
           "$value": "{echoes.color.palette.indigo.200}"
         }
+      },
+      "charts": {
+        "background": {
+          "role1": {
+            "$type": "color",
+            "$value": "#",
+            "$description": "use opposite color in palette"
+          }
+        }
       }
     },
     "boxShadow": {
