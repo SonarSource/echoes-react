@@ -104,14 +104,9 @@ SidebarNavigationBaseItem.displayName = 'SidebarNavigationBaseItem';
 const SidebarNavigationBaseItemLink = styled(NavLinkBase)`
   ${sidebarNavigationBaseItemStyles}
 
-  // When the item is inside an accordion, the display and visibility values change based on the
-  // accordion state. Outside of accordions, they fall back to flex and visible.
+  // When the item is inside an accordion, the display value changes based on the accordion state.
+  // Outside of accordions, it falls back to flex.
   display: var(--sidebar-navigation-accordion-children-display, flex);
-  visibility: var(--sidebar-navigation-accordion-children-visibility, visible);
-
-  // The accordion provides an outline in closed sidebar mode for the active child item. Keeping it
-  // outside the active selector avoids overriding the focus outline from the base item styles.
-  outline: var(--sidebar-navigation-accordion-children-outline);
 
   &:active,
   &.active {
@@ -141,8 +136,7 @@ const sidebarNavigationBaseItemIconStyles = css`
 `;
 
 const sidebarNavigationBaseItemHideWhenSidebarOpenStyles = css`
-  [data-sidebar-docked='true'] &,
-  [data-sidebar-docked='false'] nav:is(:hover, :focus-within) & {
+  [data-sidebar-open='true'] & {
     display: none;
   }
 `;

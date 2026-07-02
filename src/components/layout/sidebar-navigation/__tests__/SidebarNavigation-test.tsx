@@ -19,28 +19,26 @@
  */
 
 import { renderWithMemoryRouter } from '~common/helpers/test-utils';
-import { LayoutContext } from '../../LayoutContext';
+import { LayoutContext, type LayoutContextShape } from '../../LayoutContext';
 import { SidebarNavigation } from '../SidebarNavigation';
 
 it('should have no a11y issues', async () => {
-  const { container } = renderWithMemoryRouter(<SidebarNavigation />);
+  const { container } = setupSidebarNavigation({
+    hasSidebar: true,
+    isSidebarDocked: true,
+    isSidebarOpen: true,
+  });
 
   await expect(container).toHaveNoA11yViolations();
 });
 
 it('should set the layout context correctly', () => {
   const setHasSidebar = jest.fn();
-  const { unmount } = renderWithMemoryRouter(
-    <LayoutContext.Provider
-      value={{
-        hasSidebar: true,
-        isSidebarDocked: false,
-        setHasSidebar,
-        setIsSidebarDocked: jest.fn(),
-      }}>
-      <SidebarNavigation />
-    </LayoutContext.Provider>,
-  );
+
+  const { unmount } = setupSidebarNavigation({
+    hasSidebar: true,
+    setHasSidebar,
+  });
 
   expect(setHasSidebar).toHaveBeenCalledWith(true);
 
@@ -48,3 +46,28 @@ it('should set the layout context correctly', () => {
 
   expect(setHasSidebar).toHaveBeenCalledWith(false);
 });
+
+function setupSidebarNavigation(contextOverrides: Partial<LayoutContextShape> = {}) {
+  const defaultLayoutContext: LayoutContextShape = {
+    closeSidebar: jest.fn(),
+    enterSidebarInteractionBoundary: jest.fn(),
+    handleSidebarInteractionBoundaryBlur: jest.fn(),
+    handleSidebarInteractionBoundaryExit: jest.fn(),
+    hasSidebar: false,
+    isSidebarDockable: true,
+    isSidebarDocked: false,
+    isSidebarOpen: false,
+    isSidebarPointerInside: false,
+    leaveSidebarInteractionBoundary: jest.fn(),
+    openSidebar: jest.fn(),
+    setHasSidebar: jest.fn(),
+    setIsSidebarDocked: jest.fn(),
+    setSidebarInteractionSafeAreaElement: jest.fn(),
+  };
+
+  return renderWithMemoryRouter(
+    <LayoutContext.Provider value={{ ...defaultLayoutContext, ...contextOverrides }}>
+      <SidebarNavigation />
+    </LayoutContext.Provider>,
+  );
+}

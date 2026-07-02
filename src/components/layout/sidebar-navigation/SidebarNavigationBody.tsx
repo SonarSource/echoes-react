@@ -17,18 +17,25 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
+
 import styled from '@emotion/styled';
 import { PropsWithChildren, useRef } from 'react';
+
 import {
   BottomShadowScroll,
   TopShadowScroll,
   useShadowScroll,
 } from '~common/helpers/useShadowScroll';
+
 import { cssVar } from '~utils/design-tokens';
+
+const SIDEBAR_NAVIGATION_BODY_SPACE_50 = cssVar('dimension-space-50');
+const SIDEBAR_NAVIGATION_BODY_SPACE_100 = cssVar('dimension-space-100');
 
 export function SidebarNavigationBody({ children }: PropsWithChildren<{}>) {
   const scrollableContainerRef = useRef<HTMLDivElement>(null);
   const resizableContentRef = useRef<HTMLUListElement>(null);
+
   const { showBottomShadow, showTopShadow } = useShadowScroll(
     scrollableContainerRef,
     resizableContentRef,
@@ -36,16 +43,19 @@ export function SidebarNavigationBody({ children }: PropsWithChildren<{}>) {
 
   return (
     <SidebarNavigationBodyScrollWrapper>
-      {showTopShadow && <SidebarNavigationTopShadowScroll />}
+      {showTopShadow && <TopShadowScroll />}
+
       <SidebarNavigationBodyScrollContainer ref={scrollableContainerRef}>
         <SidebarNavigationBodyInner ref={resizableContentRef}>
           {children}
         </SidebarNavigationBodyInner>
       </SidebarNavigationBodyScrollContainer>
-      {showBottomShadow && <SidebarNavigationBottomShadowScroll />}
+
+      {showBottomShadow && <BottomShadowScroll />}
     </SidebarNavigationBodyScrollWrapper>
   );
 }
+
 SidebarNavigationBody.displayName = 'SidebarNavigationBody';
 
 // This first layer wrapper allows to hold the bottom scroll shadow in place.
@@ -56,8 +66,9 @@ const SidebarNavigationBodyScrollWrapper = styled.div`
   display: flex;
   overflow-y: hidden;
 
-  padding: ${cssVar('dimension-space-50')} 0;
+  padding: ${SIDEBAR_NAVIGATION_BODY_SPACE_50} 0;
 `;
+
 SidebarNavigationBodyScrollWrapper.displayName = 'SidebarNavigationBodyScrollWrapper';
 
 // This second layer wrapper holds the scrollbar, it's monitored by the useBottomShadowScroll hook to
@@ -67,11 +78,8 @@ const SidebarNavigationBodyScrollContainer = styled.div`
 
   overflow-x: hidden;
   overflow-y: auto;
-
-  [data-sidebar-docked='false'] nav:not(:hover, :focus-within) & {
-    overflow-y: hidden;
-  }
 `;
+
 SidebarNavigationBodyScrollContainer.displayName = 'SidebarNavigationBodyScrollContainer';
 
 // This third layer wrapper contains the list of navigation items, its height can change when there
@@ -82,22 +90,9 @@ const SidebarNavigationBodyInner = styled.ul`
 
   display: flex;
   flex-direction: column;
-  gap: ${cssVar('dimension-space-50')};
+  gap: ${SIDEBAR_NAVIGATION_BODY_SPACE_50};
 
-  padding: ${cssVar('dimension-space-50')} ${cssVar('dimension-space-100')};
+  padding: ${SIDEBAR_NAVIGATION_BODY_SPACE_50} ${SIDEBAR_NAVIGATION_BODY_SPACE_100};
 `;
+
 SidebarNavigationBodyInner.displayName = 'SidebarNavigationBodyInner';
-
-const SidebarNavigationBottomShadowScroll = styled(BottomShadowScroll)`
-  [data-sidebar-docked='false'] nav:not(:hover, :focus-within) & {
-    opacity: 0.5;
-  }
-`;
-SidebarNavigationBottomShadowScroll.displayName = 'SidebarNavigationBottomShadowScroll';
-
-const SidebarNavigationTopShadowScroll = styled(TopShadowScroll)`
-  [data-sidebar-docked='false'] nav:not(:hover, :focus-within) & {
-    opacity: 0.5;
-  }
-`;
-SidebarNavigationTopShadowScroll.displayName = 'SidebarNavigationTopShadowScroll';

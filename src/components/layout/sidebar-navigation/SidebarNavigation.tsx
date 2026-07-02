@@ -19,10 +19,13 @@
  */
 
 import styled from '@emotion/styled';
-import { forwardRef, PropsWithChildren, useContext, useEffect } from 'react';
+import { type PropsWithChildren, type Ref, useCallback, useContext, useEffect } from 'react';
+
 import { useIntl } from 'react-intl';
+import { isDefined } from '~common/helpers/types';
 import { cssVar } from '~utils/design-tokens';
 import { LayoutContext } from '../LayoutContext';
+import { SIDEBAR_INTERACTION_BOUNDARY_ATTRIBUTE } from '../LayoutSidebarInteraction';
 import { GlobalGridArea } from '../LayoutTypes';
 
 export interface SidebarNavigationProps {
@@ -30,18 +33,29 @@ export interface SidebarNavigationProps {
    * Sidebar navigation Aria-label, defaults to "Secondary navigation"
    */
   ariaLabel?: string;
+  /** Optional CSS class name applied to the root container. */
+  className?: string;
+  /** React ref forwarded to the root navigation element. */
+  ref?: Ref<HTMLElement>;
 }
 
-export const SidebarNavigation = forwardRef<
-  HTMLDivElement,
-  PropsWithChildren<SidebarNavigationProps>
->((props, ref) => {
-  const { ariaLabel, children } = props;
+export function SidebarNavigation(props: Readonly<PropsWithChildren<SidebarNavigationProps>>) {
+  const { ariaLabel, children, className, ref, ...htmlProps } = props;
   const intl = useIntl();
-  const { setHasSidebar } = useContext(LayoutContext);
+
+  const {
+    enterSidebarInteractionBoundary,
+    handleSidebarInteractionBoundaryBlur,
+    handleSidebarInteractionBoundaryExit,
+    isSidebarOpen,
+    openSidebar,
+    setHasSidebar,
+    setSidebarInteractionSafeAreaElement,
+  } = useContext(LayoutContext);
 
   useEffect(() => {
     setHasSidebar(true);
+
     return () => {
       setHasSidebar(false);
     };
@@ -53,14 +67,39 @@ export const SidebarNavigation = forwardRef<
     description: 'ARIA-label for the sidebar navigation',
   });
 
+  const handleSidebarNavigationRef = useCallback(
+    (element: HTMLElement | null) => {
+      setSidebarInteractionSafeAreaElement(element);
+
+      if (typeof ref === 'function') {
+        ref(element);
+      } else if (isDefined(ref)) {
+        ref.current = element;
+      }
+    },
+    [ref, setSidebarInteractionSafeAreaElement],
+  );
+
   return (
-    <SidebarNavigationContainer>
-      <SidebarNavigationWrapper aria-label={ariaLabel ?? defaultAriaLabel} ref={ref}>
+    <SidebarNavigationContainer className={className} {...htmlProps}>
+      <SidebarNavigationWrapper
+        {...{ [SIDEBAR_INTERACTION_BOUNDARY_ATTRIBUTE]: 'true' }}
+        aria-hidden={!isSidebarOpen}
+        aria-label={ariaLabel ?? defaultAriaLabel}
+        onBlur={(event) => {
+          handleSidebarInteractionBoundaryBlur(event.relatedTarget);
+        }}
+        onFocus={openSidebar}
+        onMouseEnter={enterSidebarInteractionBoundary}
+        onMouseLeave={(event) => {
+          handleSidebarInteractionBoundaryExit(event.clientX, event.relatedTarget);
+        }}
+        ref={handleSidebarNavigationRef}>
         {children}
       </SidebarNavigationWrapper>
     </SidebarNavigationContainer>
   );
-});
+}
 
 SidebarNavigation.displayName = 'SidebarNavigation';
 
@@ -68,43 +107,57 @@ const SidebarNavigationContainer = styled.div`
   grid-area: ${GlobalGridArea.sidebar};
   position: relative;
 
-  width: calc(var(--sidebar-navigation-container-width) + ${cssVar('border-width-default')});
+  width: var(--sidebar-navigation-container-width);
 
   z-index: 1; // Ensure the sidebar is showing over the content
 
-  --sidebar-navigation-container-width: ${cssVar('layout-sidebar-navigation-sizes-width-closed')};
+  --sidebar-navigation-container-width: ${cssVar('dimension-width-0')};
 
   [data-sidebar-docked='true'] & {
-    --sidebar-navigation-container-width: ${cssVar('layout-sidebar-navigation-sizes-width-open')};
+    --sidebar-navigation-container-width: calc(
+      ${cssVar('layout-sidebar-navigation-sizes-width-open')} + ${cssVar('border-width-default')}
+    );
   }
+
+  transition: width 0.1s;
 `;
+
 SidebarNavigationContainer.displayName = 'SidebarNavigationContainer';
 
 const SidebarNavigationWrapper = styled.nav`
   position: absolute;
   top: 0;
+  left: 0;
   bottom: 0;
   display: flex;
   flex-direction: column;
   box-sizing: content-box;
   overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-100%);
+  visibility: hidden;
 
   border-right: ${cssVar('border-width-default')} solid ${cssVar('color-border-weak')};
   background-color: ${cssVar('color-surface-default')};
+  width: ${cssVar('layout-sidebar-navigation-sizes-width-open')};
 
-  transition: width 0.1s;
+  transition:
+    opacity 0.1s,
+    transform 0.1s,
+    visibility 0s linear 0.1s;
 
-  width: var(--sidebar-navigation-width);
-
-  --sidebar-navigation-width: ${cssVar('layout-sidebar-navigation-sizes-width-open')};
-
-  // hover and focus-within pilots the open state of the sidebar
-  [data-sidebar-docked='false'] &:not(:hover, :focus-within) {
-    --sidebar-navigation-width: ${cssVar('layout-sidebar-navigation-sizes-width-closed')};
+  [data-sidebar-open='true'] & {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(0);
+    transition-delay: 0s;
+    visibility: visible;
   }
 
-  [data-sidebar-docked='false'] &:is(:hover, :focus-within) {
+  [data-sidebar-docked='false'][data-sidebar-open='true'] & {
     box-shadow: ${cssVar('box-shadow-x-large')};
   }
 `;
+
 SidebarNavigationWrapper.displayName = 'SidebarNavigationWrapper';

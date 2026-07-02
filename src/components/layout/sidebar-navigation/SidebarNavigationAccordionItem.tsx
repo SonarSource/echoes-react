@@ -207,22 +207,13 @@ const AccordionItemPanel = styled.section`
   padding-right: ${cssVar('dimension-space-100')};
   border-left: ${cssVar('border-width-default')} solid ${cssVar('color-border-weak')};
 
-  // The children SidebarNavigationItems rely on this css property to set their display value, falling
-  // back to flex if not inside an accordion
+  // The children SidebarNavigationItems rely on this css property to set their display value,
+  // falling back to flex if not inside an accordion.
   --sidebar-navigation-accordion-children-display: flex;
-  --sidebar-navigation-accordion-children-visibility: visible;
 
-  // The rule hide the child SidebarNavigationItems when the accordion is closed
+  // Hide the child SidebarNavigationItems when the accordion is closed.
   &[data-accordion-open='false'] {
     --sidebar-navigation-accordion-children-display: none;
-  }
-
-  // This rule hides the SidebarNavigationItems when the accordion is open but the sidebar is collapsed
-  // using visibility to make sure it still takes space to avoid layout shift when hovering the sidebar
-  [data-sidebar-docked='false'] nav:not(:hover, :focus-within) & {
-    --sidebar-navigation-accordion-children-visibility: hidden;
-    --sidebar-navigation-accordion-children-outline: ${cssVar('color-surface-default')} solid
-      ${cssVar('focus-border-width-default')};
   }
 `;
 
@@ -238,11 +229,6 @@ const AccordionItemsList = styled.ul`
   [data-accordion-open='false'] & {
     // Override the gap to avoid extra space that shows the left border when the accordion is closed
     gap: ${cssVar('dimension-space-0')};
-  }
-
-  [data-sidebar-docked='false'] nav:not(:hover, :focus-within) & {
-    margin-left: calc(-1 * ${cssVar('dimension-space-300')});
-    width: ${cssVar('dimension-width-400')};
   }
 `;
 

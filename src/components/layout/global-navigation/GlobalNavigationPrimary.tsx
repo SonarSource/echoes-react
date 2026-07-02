@@ -19,48 +19,120 @@
  */
 
 import styled from '@emotion/styled';
-import { forwardRef, useContext } from 'react';
+import { type MouseEvent, type PropsWithChildren, type Ref, useCallback, useContext } from 'react';
 import { useIntl } from 'react-intl';
 import { cssVar } from '~utils/design-tokens';
 import { ButtonIcon } from '../../buttons';
 import { IconDockToRight } from '../../icons';
 import { LayoutContext } from '../LayoutContext';
+import { SIDEBAR_INTERACTION_BOUNDARY_ATTRIBUTE } from '../LayoutSidebarInteraction';
 
-export interface GlobalNavigationPrimaryProps extends React.PropsWithChildren {
+export interface GlobalNavigationPrimaryProps extends PropsWithChildren {
+  /** Optional CSS class name applied to the root element. */
   className?: string;
+  /** React ref forwarded to the root element. */
+  ref?: Ref<HTMLDivElement>;
 }
 
-export const GlobalNavigationPrimary = forwardRef<HTMLDivElement, GlobalNavigationPrimaryProps>(
-  (props, ref) => {
-    const { children, ...htmlProps } = props;
-    const { isSidebarDocked, setIsSidebarDocked } = useContext(LayoutContext);
-    const intl = useIntl();
+export function GlobalNavigationPrimary(props: Readonly<GlobalNavigationPrimaryProps>) {
+  const { children, className, ref, ...htmlProps } = props;
 
-    return (
-      <GlobalNavigationPrimaryContainer ref={ref} {...htmlProps}>
-        <GlobalNavigationSidebarDockButton
-          Icon={IconDockToRight}
-          ariaLabel={
-            isSidebarDocked
-              ? intl.formatMessage({
-                  id: 'global_navigation.sidebar.undock',
-                  defaultMessage: 'Undock sidebar',
-                })
-              : intl.formatMessage({
-                  id: 'global_navigation.sidebar.dock',
-                  defaultMessage: 'Dock sidebar',
-                })
+  const {
+    closeSidebar,
+    enterSidebarInteractionBoundary,
+    handleSidebarInteractionBoundaryBlur,
+    handleSidebarInteractionBoundaryExit,
+    hasSidebar,
+    isSidebarDockable,
+    isSidebarDocked,
+    openSidebar,
+    setIsSidebarDocked,
+  } = useContext(LayoutContext);
+
+  const intl = useIntl();
+
+  const handleSidebarInteractionBoundaryFocus = useCallback(() => {
+    if (!isSidebarDocked || !isSidebarDockable) {
+      openSidebar();
+    }
+  }, [isSidebarDockable, isSidebarDocked, openSidebar]);
+
+  const handleSidebarInteractionBoundaryPointerEnter = useCallback(() => {
+    if (!isSidebarDocked || !isSidebarDockable) {
+      enterSidebarInteractionBoundary();
+    }
+  }, [enterSidebarInteractionBoundary, isSidebarDockable, isSidebarDocked]);
+
+  const handleSidebarButtonClick = useCallback(
+    (event: MouseEvent<HTMLElement>) => {
+      if (isSidebarDockable) {
+        if (isSidebarDocked) {
+          if (event.detail === 0) {
+            openSidebar();
+          } else {
+            closeSidebar();
+            event.currentTarget.blur();
           }
-          onClick={() => {
-            setIsSidebarDocked((isSidebarDocked) => !isSidebarDocked);
+        }
+
+        setIsSidebarDocked((isSidebarDocked) => !isSidebarDocked);
+
+        return;
+      }
+
+      openSidebar();
+    },
+    [closeSidebar, isSidebarDockable, isSidebarDocked, openSidebar, setIsSidebarDocked],
+  );
+
+  let sidebarButtonAriaLabel;
+
+  if (isSidebarDockable) {
+    if (isSidebarDocked) {
+      sidebarButtonAriaLabel = intl.formatMessage({
+        id: 'global_navigation.sidebar.undock',
+        defaultMessage: 'Undock sidebar',
+      });
+    } else {
+      sidebarButtonAriaLabel = intl.formatMessage({
+        id: 'global_navigation.sidebar.dock',
+        defaultMessage: 'Dock sidebar',
+      });
+    }
+  } else {
+    sidebarButtonAriaLabel = intl.formatMessage({
+      id: 'global_navigation.sidebar.open',
+      defaultMessage: 'Open sidebar',
+    });
+  }
+
+  return (
+    <GlobalNavigationPrimaryContainer className={className} ref={ref} {...htmlProps}>
+      {hasSidebar && (
+        <GlobalNavigationSidebarTriggerArea
+          {...{ [SIDEBAR_INTERACTION_BOUNDARY_ATTRIBUTE]: 'true' }}
+          onBlur={(event) => {
+            handleSidebarInteractionBoundaryBlur(event.relatedTarget);
           }}
-          variety="default-ghost"
-        />
-        {children}
-      </GlobalNavigationPrimaryContainer>
-    );
-  },
-);
+          onFocus={handleSidebarInteractionBoundaryFocus}
+          onMouseEnter={handleSidebarInteractionBoundaryPointerEnter}
+          onMouseLeave={(event) => {
+            handleSidebarInteractionBoundaryExit(event.clientX, event.relatedTarget);
+          }}>
+          <GlobalNavigationSidebarDockButton
+            Icon={IconDockToRight}
+            ariaLabel={sidebarButtonAriaLabel}
+            onClick={handleSidebarButtonClick}
+            variety="default-ghost"
+          />
+        </GlobalNavigationSidebarTriggerArea>
+      )}
+
+      {children}
+    </GlobalNavigationPrimaryContainer>
+  );
+}
+
 GlobalNavigationPrimary.displayName = 'GlobalNavigationPrimary';
 
 const GlobalNavigationPrimaryContainer = styled.div`
@@ -70,14 +142,19 @@ const GlobalNavigationPrimaryContainer = styled.div`
 
   gap: ${cssVar('dimension-space-150')};
 `;
+
 GlobalNavigationPrimaryContainer.displayName = 'GlobalNavigationPrimaryContainer';
 
-const GlobalNavigationSidebarDockButton = styled(ButtonIcon)`
-  display: none;
-  color: ${cssVar('color-icon-subtle')};
-
-  [data-sidebar-is-dockable='true'][data-sidebar-exist='true'] & {
-    display: inline-flex;
-  }
+const GlobalNavigationSidebarTriggerArea = styled.div`
+  display: flex;
+  align-items: center;
+  height: 100%;
 `;
+
+GlobalNavigationSidebarTriggerArea.displayName = 'GlobalNavigationSidebarTriggerArea';
+
+const GlobalNavigationSidebarDockButton = styled(ButtonIcon)`
+  color: ${cssVar('color-icon-subtle')};
+`;
+
 GlobalNavigationSidebarDockButton.displayName = 'GlobalNavigationSidebarDockButton';

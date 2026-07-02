@@ -20,36 +20,33 @@
 
 import { screen } from '@testing-library/react';
 import { render } from '~common/helpers/test-utils';
-import { LayoutContext } from '../../LayoutContext';
+import { LayoutContext, type LayoutContextShape } from '../../LayoutContext';
 import { GlobalNavigationPrimary } from '../GlobalNavigationPrimary';
 
 it('should render correctly', () => {
-  render(
-    <GlobalNavigationPrimary>
-      <div>Test</div>
-    </GlobalNavigationPrimary>,
-  );
+  setupGlobalNavigationPrimary();
 
   expect(screen.getByText('Test')).toBeInTheDocument();
 });
 
 it('should display the sidebar dock button when the sidebar is dockable', async () => {
+  const closeSidebar = jest.fn();
+  const enterSidebarInteractionBoundary = jest.fn();
+  const leaveSidebarInteractionBoundary = jest.fn();
+  const openSidebar = jest.fn();
   const setIsSidebarDocked = jest.fn();
-  const { user } = render(
-    <LayoutContext.Provider
-      value={{
-        hasSidebar: true,
-        isSidebarDocked: false,
-        setHasSidebar: jest.fn(),
-        setIsSidebarDocked,
-      }}>
-      <div data-sidebar-exist="true" data-sidebar-is-dockable="true">
-        <GlobalNavigationPrimary>
-          <div>Test</div>
-        </GlobalNavigationPrimary>
-      </div>
-    </LayoutContext.Provider>,
-  );
+
+  const { user } = setupGlobalNavigationPrimary({
+    closeSidebar,
+    enterSidebarInteractionBoundary,
+    hasSidebar: true,
+    isSidebarDockable: true,
+    isSidebarDocked: false,
+    isSidebarOpen: false,
+    leaveSidebarInteractionBoundary,
+    openSidebar,
+    setIsSidebarDocked,
+  });
 
   expect(screen.getByRole('button', { name: 'Dock sidebar' })).toBeVisible();
 
@@ -58,24 +55,51 @@ it('should display the sidebar dock button when the sidebar is dockable', async 
   expect(setIsSidebarDocked).toHaveBeenCalled();
 });
 
-it('should not have the sidebar dock button when the sidebar does not exist', () => {
-  render(
-    <GlobalNavigationPrimary>
-      <div>Test</div>
-    </GlobalNavigationPrimary>,
-  );
+it('should display the sidebar open button when the sidebar is not dockable', async () => {
+  const openSidebar = jest.fn();
+
+  const { user } = setupGlobalNavigationPrimary({
+    hasSidebar: true,
+    isSidebarDockable: false,
+    isSidebarDocked: false,
+    isSidebarOpen: false,
+    openSidebar,
+  });
+
+  await user.click(screen.getByRole('button', { name: 'Open sidebar' }));
+
+  expect(openSidebar).toHaveBeenCalled();
+});
+
+it('should not render the sidebar trigger button when the sidebar does not exist', () => {
+  setupGlobalNavigationPrimary();
 
   expect(screen.queryByRole('button')).not.toBeInTheDocument();
 });
 
-it('should not have the sidebar dock button when the sidebar exist but is not dockable', () => {
-  render(
-    <div data-sidebar-exist="true" data-sidebar-is-dockable="false">
+function setupGlobalNavigationPrimary(contextOverrides: Partial<LayoutContextShape> = {}) {
+  const defaultLayoutContext: LayoutContextShape = {
+    closeSidebar: jest.fn(),
+    enterSidebarInteractionBoundary: jest.fn(),
+    handleSidebarInteractionBoundaryBlur: jest.fn(),
+    handleSidebarInteractionBoundaryExit: jest.fn(),
+    hasSidebar: false,
+    isSidebarDockable: true,
+    isSidebarDocked: false,
+    isSidebarOpen: false,
+    isSidebarPointerInside: false,
+    leaveSidebarInteractionBoundary: jest.fn(),
+    openSidebar: jest.fn(),
+    setHasSidebar: jest.fn(),
+    setIsSidebarDocked: jest.fn(),
+    setSidebarInteractionSafeAreaElement: jest.fn(),
+  };
+
+  return render(
+    <LayoutContext.Provider value={{ ...defaultLayoutContext, ...contextOverrides }}>
       <GlobalNavigationPrimary>
         <div>Test</div>
       </GlobalNavigationPrimary>
-    </div>,
+    </LayoutContext.Provider>,
   );
-
-  expect(screen.queryByRole('button')).not.toBeInTheDocument();
-});
+}
