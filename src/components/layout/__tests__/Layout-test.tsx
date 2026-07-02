@@ -18,7 +18,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import { act, screen } from '@testing-library/react';
+import { act, fireEvent, screen } from '@testing-library/react';
 import { useContext, useEffect } from 'react';
 import { Layout } from '..';
 import { render } from '../../../common/helpers/test-utils';
@@ -30,14 +30,15 @@ const mediaQueryListMock = {
   removeEventListener: jest.fn(),
 };
 
-// Mock window.matchMedia globally
-Object.defineProperty(window, 'matchMedia', {
+// Mock matchMedia globally
+Object.defineProperty(globalThis, 'matchMedia', {
   writable: true,
   value: jest.fn().mockReturnValue(mediaQueryListMock),
 });
 
 beforeEach(() => {
   jest.clearAllMocks();
+  mediaQueryListMock.matches = true;
 });
 
 it('should render correctly', () => {
@@ -71,14 +72,16 @@ describe('Layout Sidebar docking behavior', () => {
   it('should handle media query changes and update dockable state', () => {
     render(
       <Layout data-testid="layout">
-        <TestContextConsumer />
+        <TestContextConsumer hasSidebarDefault />
       </Layout>,
     );
 
     // Initially should be docked (wide screen initializes isSidebarDocked to true)
     expect(screen.getByTestId('layout')).toHaveAttribute('data-sidebar-docked', 'true');
+    expect(screen.getByTestId('layout')).toHaveAttribute('data-sidebar-open', 'true');
     expect(screen.getByTestId('layout')).toHaveAttribute('data-sidebar-is-dockable', 'true');
     expect(screen.getByText('isSidebarDocked:true')).toBeInTheDocument();
+    expect(screen.getByText('isSidebarOpen:true')).toBeInTheDocument();
 
     // Simulate media query change to narrow screen
     act(() => {
@@ -88,16 +91,19 @@ describe('Layout Sidebar docking behavior', () => {
 
     // Context should be re-rendered, so we need to check current state
     expect(screen.getByTestId('layout')).toHaveAttribute('data-sidebar-docked', 'false');
+    expect(screen.getByTestId('layout')).toHaveAttribute('data-sidebar-open', 'false');
     expect(screen.getByTestId('layout')).toHaveAttribute('data-sidebar-is-dockable', 'false');
 
     // Context should remember last user choice
     expect(screen.getByText('isSidebarDocked:true')).toBeInTheDocument();
+    expect(screen.getByText('isSidebarOpen:false')).toBeInTheDocument();
   });
 });
 
 describe('LayoutContext', () => {
   it('should update LayoutContext state when it changes', async () => {
     const onSidebarDockedChange = jest.fn();
+
     const { user } = render(
       <Layout onSidebarDockedChange={onSidebarDockedChange}>
         <TestContextConsumer />
@@ -109,10 +115,12 @@ describe('LayoutContext', () => {
     await user.click(screen.getByRole('button', { name: 'Set Sidebar' }));
     expect(screen.getByText('hasSidebar:true')).toBeInTheDocument();
     expect(screen.getByText('isSidebarDocked:true')).toBeInTheDocument();
+    expect(screen.getByText('isSidebarOpen:true')).toBeInTheDocument();
     expect(onSidebarDockedChange).toHaveBeenLastCalledWith(true);
 
     await user.click(screen.getByRole('button', { name: 'Unset Docked' }));
     expect(screen.getByText('isSidebarDocked:false')).toBeInTheDocument();
+    expect(screen.getByText('isSidebarOpen:false')).toBeInTheDocument();
     expect(onSidebarDockedChange).toHaveBeenLastCalledWith(false);
   });
 
@@ -125,6 +133,141 @@ describe('LayoutContext', () => {
 
     expect(screen.getByText('hasSidebar:true')).toBeInTheDocument();
     expect(screen.getByText('isSidebarDocked:false')).toBeInTheDocument();
+    expect(screen.getByText('isSidebarOpen:false')).toBeInTheDocument();
+  });
+
+  it('should open the non-dockable sidebar from the trigger button', async () => {
+    mediaQueryListMock.matches = false;
+
+    const { user } = setupLayoutWithSidebar();
+
+    expect(screen.getByTestId('layout')).toHaveAttribute('data-sidebar-open', 'false');
+
+    await user.click(screen.getByRole('button', { name: 'Open sidebar' }));
+
+    expect(screen.getByTestId('layout')).toHaveAttribute('data-sidebar-open', 'true');
+  });
+
+  it('should open and close the non-dockable sidebar on trigger hover', async () => {
+    mediaQueryListMock.matches = false;
+
+    const { user } = setupLayoutWithSidebar();
+    const trigger = screen.getByRole('button', { name: 'Open sidebar' });
+
+    await user.hover(trigger);
+
+    expect(screen.getByTestId('layout')).toHaveAttribute('data-sidebar-open', 'true');
+
+    await user.unhover(trigger);
+
+    expect(screen.getByTestId('layout')).toHaveAttribute('data-sidebar-open', 'false');
+  });
+
+  it('should keep the undocked sidebar open while focus remains inside', async () => {
+    const { user } = setupLayoutWithSidebar({ isSidebarInitiallyDocked: false });
+
+    expect(screen.getByTestId('layout')).toHaveAttribute('data-sidebar-open', 'false');
+
+    await user.tab();
+    expect(screen.getByRole('button', { name: 'Dock sidebar' })).toHaveFocus();
+    expect(screen.getByTestId('layout')).toHaveAttribute('data-sidebar-open', 'true');
+
+    await user.tab();
+    expect(screen.getByRole('button', { name: 'Sidebar header' })).toHaveFocus();
+    expect(screen.getByTestId('layout')).toHaveAttribute('data-sidebar-open', 'true');
+
+    await user.tab();
+    expect(screen.getByRole('button', { name: 'Page content action' })).toHaveFocus();
+    expect(screen.getByTestId('layout')).toHaveAttribute('data-sidebar-open', 'false');
+  });
+
+  it('should hide the sidebar when undocking it on dockable screens', async () => {
+    const { user } = setupLayoutWithSidebar();
+
+    expect(screen.getByTestId('layout')).toHaveAttribute('data-sidebar-docked', 'true');
+    expect(screen.getByTestId('layout')).toHaveAttribute('data-sidebar-open', 'true');
+
+    await user.click(screen.getByRole('button', { name: 'Undock sidebar' }));
+
+    expect(screen.getByTestId('layout')).toHaveAttribute('data-sidebar-docked', 'false');
+    expect(screen.getByTestId('layout')).toHaveAttribute('data-sidebar-open', 'false');
+  });
+
+  it('should close the undocked sidebar on pointer exit after pointer undocking', async () => {
+    const { user } = setupLayoutWithSidebar();
+    const trigger = screen.getByRole('button', { name: 'Undock sidebar' });
+
+    await user.click(trigger);
+
+    expect(trigger).not.toHaveFocus();
+
+    await user.unhover(trigger);
+
+    await user.hover(trigger);
+    expect(screen.getByTestId('layout')).toHaveAttribute('data-sidebar-open', 'true');
+
+    await user.unhover(trigger);
+    expect(screen.getByTestId('layout')).toHaveAttribute('data-sidebar-open', 'false');
+  });
+
+  it('should keep the undocked sidebar open while the pointer stays within the projected sidebar column', async () => {
+    const { user } = setupLayoutWithSidebar();
+    const trigger = screen.getByRole('button', { name: 'Undock sidebar' });
+
+    mockSidebarInteractionSafeArea();
+
+    await user.click(trigger);
+
+    fireEvent.mouseOver(trigger);
+    expect(screen.getByTestId('layout')).toHaveAttribute('data-sidebar-open', 'true');
+
+    fireEvent.mouseOut(trigger, { clientX: 120, relatedTarget: null });
+    expect(screen.getByTestId('layout')).toHaveAttribute('data-sidebar-open', 'true');
+
+    fireEvent.mouseMove(globalThis.document, { clientX: 120 });
+    expect(screen.getByTestId('layout')).toHaveAttribute('data-sidebar-open', 'true');
+
+    fireEvent.mouseMove(globalThis.document, { clientX: 260 });
+    expect(screen.getByTestId('layout')).toHaveAttribute('data-sidebar-open', 'false');
+  });
+
+  it('should close the undocked sidebar once the pointer leaves beyond the projected sidebar column', async () => {
+    const { user } = setupLayoutWithSidebar();
+    const trigger = screen.getByRole('button', { name: 'Undock sidebar' });
+
+    mockSidebarInteractionSafeArea();
+
+    await user.click(trigger);
+
+    fireEvent.mouseOver(trigger);
+    expect(screen.getByTestId('layout')).toHaveAttribute('data-sidebar-open', 'true');
+
+    fireEvent.mouseOut(trigger, { clientX: 260, relatedTarget: null });
+    expect(screen.getByTestId('layout')).toHaveAttribute('data-sidebar-open', 'false');
+  });
+
+  it('should keep the undocked sidebar open when undocking it with the keyboard', async () => {
+    const { user } = setupLayoutWithSidebar();
+
+    await user.tab();
+
+    const trigger = screen.getByRole('button', { name: 'Undock sidebar' });
+    expect(trigger).toHaveFocus();
+
+    await user.keyboard('{Enter}');
+
+    expect(screen.getByRole('button', { name: 'Dock sidebar' })).toHaveFocus();
+    expect(screen.getByTestId('layout')).toHaveAttribute('data-sidebar-docked', 'false');
+    expect(screen.getByTestId('layout')).toHaveAttribute('data-sidebar-open', 'true');
+  });
+
+  it('should dock the sidebar when the trigger button is clicked on dockable screens', async () => {
+    const { user } = setupLayoutWithSidebar({ isSidebarInitiallyDocked: false });
+
+    await user.click(screen.getByRole('button', { name: 'Dock sidebar' }));
+
+    expect(screen.getByTestId('layout')).toHaveAttribute('data-sidebar-docked', 'true');
+    expect(screen.getByTestId('layout')).toHaveAttribute('data-sidebar-open', 'true');
   });
 });
 
@@ -140,19 +283,80 @@ function TestContextConsumer({ hasSidebarDefault }: { hasSidebarDefault?: boolea
   return (
     <div>
       <div>{`hasSidebar:${context.hasSidebar.toString()}`}</div>
+
       <div>{`isSidebarDocked:${context.isSidebarDocked.toString()}`}</div>
+
+      <div>{`isSidebarOpen:${context.isSidebarOpen.toString()}`}</div>
+
       <button onClick={() => context.setHasSidebar(true)} type="button">
         Set Sidebar
       </button>
+
       <button onClick={() => context.setIsSidebarDocked(true)} type="button">
         Set Docked
       </button>
+
       <button onClick={() => context.setHasSidebar(false)} type="button">
         Unset Sidebar
       </button>
+
       <button onClick={() => context.setIsSidebarDocked(false)} type="button">
         Unset Docked
       </button>
     </div>
   );
+}
+
+function setupLayoutWithSidebar({
+  isSidebarInitiallyDocked,
+}: {
+  isSidebarInitiallyDocked?: boolean;
+} = {}) {
+  return render(
+    <Layout data-testid="layout" isSidebarInitiallyDocked={isSidebarInitiallyDocked}>
+      <Layout.GlobalNavigation>
+        <Layout.GlobalNavigation.Primary>
+          <div>Brand</div>
+        </Layout.GlobalNavigation.Primary>
+      </Layout.GlobalNavigation>
+
+      <Layout.SidebarNavigation>
+        <Layout.SidebarNavigation.Header isInteractive name="Sidebar header" />
+      </Layout.SidebarNavigation>
+
+      <Layout.ContentGrid>
+        <button type="button">Page content action</button>
+      </Layout.ContentGrid>
+    </Layout>,
+  );
+}
+
+function mockSidebarInteractionSafeArea({
+  left = 0,
+  width = 240,
+}: {
+  left?: number;
+  width?: number;
+} = {}) {
+  const sidebarNavigation = screen.getByRole('navigation', {
+    hidden: true,
+    name: 'Secondary navigation',
+  });
+
+  Object.defineProperty(sidebarNavigation, 'offsetWidth', {
+    configurable: true,
+    get: () => width,
+  });
+
+  jest.spyOn(sidebarNavigation, 'getBoundingClientRect').mockReturnValue({
+    bottom: 0,
+    height: 0,
+    left,
+    right: left + width,
+    toJSON: () => '',
+    top: 0,
+    width,
+    x: left,
+    y: 0,
+  });
 }

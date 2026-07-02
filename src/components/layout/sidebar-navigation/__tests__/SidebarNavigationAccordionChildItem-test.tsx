@@ -133,7 +133,7 @@ describe('active state behavior', () => {
 });
 
 describe('CSS custom properties for accordion integration', () => {
-  it('should use CSS custom properties for display, visibility and outline', () => {
+  it('should use a CSS custom property for accordion child display', () => {
     setupSidebarNavigationAccordionChildItem({ Icon: IconClock });
 
     const link = screen.getByRole('link');
@@ -142,13 +142,6 @@ describe('CSS custom properties for accordion integration', () => {
       'display',
       'var(--sidebar-navigation-accordion-children-display, flex)',
     );
-
-    expect(link).toHaveStyleRule(
-      'visibility',
-      'var(--sidebar-navigation-accordion-children-visibility, visible)',
-    );
-
-    expect(link).toHaveStyleRule('outline', 'var(--sidebar-navigation-accordion-children-outline)');
   });
 });
 
