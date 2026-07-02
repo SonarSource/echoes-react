@@ -18,10 +18,9 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import { screen } from '@testing-library/react';
+import { fireEvent, screen } from '@testing-library/react';
 import { render } from '~common/helpers/test-utils';
 import { LayoutSidebarContext, type LayoutSidebarContextShape } from '../../LayoutSidebarContext';
-import { SIDEBAR_HANDOFF_ATTRIBUTE } from '../../LayoutSidebarInteraction';
 import { GlobalNavigationPrimary } from '../GlobalNavigationPrimary';
 
 it('should render correctly', () => {
@@ -36,13 +35,13 @@ it('should display the sidebar dock button when the sidebar is dockable', async 
   const setIsSidebarDocked = jest.fn();
 
   const { user } = setupGlobalNavigationPrimary({
-    closeSidebar,
-    hasSidebar: true,
-    isSidebarDockable: true,
-    isSidebarDocked: false,
-    isSidebarOpen: false,
-    openSidebar,
-    setIsSidebarDocked,
+    close: closeSidebar,
+    isDockable: true,
+    isDocked: false,
+    isOpen: false,
+    isInLayout: true,
+    open: openSidebar,
+    setIsDocked: setIsSidebarDocked,
   });
 
   expect(screen.getByRole('button', { name: 'Dock sidebar' })).toBeVisible();
@@ -56,11 +55,11 @@ it('should display the sidebar open button when the sidebar is not dockable', as
   const openSidebar = jest.fn();
 
   const { user } = setupGlobalNavigationPrimary({
-    hasSidebar: true,
-    isSidebarDockable: false,
-    isSidebarDocked: false,
-    isSidebarOpen: false,
-    openSidebar,
+    isDockable: false,
+    isDocked: false,
+    isOpen: false,
+    isInLayout: true,
+    open: openSidebar,
   });
 
   await user.click(screen.getByRole('button', { name: 'Open sidebar' }));
@@ -68,15 +67,28 @@ it('should display the sidebar open button when the sidebar is not dockable', as
   expect(openSidebar).toHaveBeenCalled();
 });
 
+it('should not display a tooltip for the sidebar open button when the sidebar is not dockable', async () => {
+  const { user } = setupGlobalNavigationPrimary({
+    isDockable: false,
+    isDocked: false,
+    isOpen: false,
+    isInLayout: true,
+  });
+
+  await user.hover(screen.getByRole('button', { name: 'Open sidebar' }));
+
+  expect(screen.queryByRole('tooltip', { name: 'Open sidebar' })).not.toBeInTheDocument();
+});
+
 it('should open the undocked sidebar on trigger hover', async () => {
   const openSidebar = jest.fn();
 
   const { user } = setupGlobalNavigationPrimary({
-    hasSidebar: true,
-    isSidebarDockable: true,
-    isSidebarDocked: false,
-    isSidebarOpen: false,
-    openSidebar,
+    isDockable: true,
+    isDocked: false,
+    isOpen: false,
+    isInLayout: true,
+    open: openSidebar,
   });
 
   await user.hover(screen.getByRole('button', { name: 'Dock sidebar' }));
@@ -84,17 +96,20 @@ it('should open the undocked sidebar on trigger hover', async () => {
   expect(openSidebar).toHaveBeenCalled();
 });
 
-it('should attach the sidebar handoff surfaces to the trigger boundary', () => {
+it('should not open the undocked sidebar when hovering the trigger area outside the button', () => {
+  const openSidebar = jest.fn();
+
   setupGlobalNavigationPrimary({
-    hasSidebar: true,
-    isSidebarDockable: true,
-    isSidebarDocked: false,
+    isDockable: true,
+    isDocked: false,
+    isOpen: false,
+    isInLayout: true,
+    open: openSidebar,
   });
 
-  const triggerArea = screen.getByRole('button', { name: 'Dock sidebar' }).parentElement;
-  const handoffs = triggerArea?.querySelectorAll(`[${SIDEBAR_HANDOFF_ATTRIBUTE}='true']`);
+  fireEvent.mouseEnter(screen.getByTestId('global-navigation-sidebar-trigger-area'));
 
-  expect(handoffs).toHaveLength(2);
+  expect(openSidebar).not.toHaveBeenCalled();
 });
 
 it('should not render the sidebar trigger button when the sidebar does not exist', () => {
@@ -105,16 +120,17 @@ it('should not render the sidebar trigger button when the sidebar does not exist
 
 function setupGlobalNavigationPrimary(contextOverrides: Partial<LayoutSidebarContextShape> = {}) {
   const defaultLayoutSidebarContext: LayoutSidebarContextShape = {
-    closeSidebar: jest.fn(),
-    handleSidebarInteractionBoundaryBlur: jest.fn(),
-    handleSidebarInteractionBoundaryMouseLeave: jest.fn(),
-    hasSidebar: false,
-    isSidebarDockable: true,
-    isSidebarDocked: false,
-    isSidebarOpen: false,
-    openSidebar: jest.fn(),
-    setHasSidebar: jest.fn(),
-    setIsSidebarDocked: jest.fn(),
+    close: jest.fn(),
+    handleInteractionZoneBlur: jest.fn(),
+    handleInteractionZoneMouseLeave: jest.fn(),
+    isDockable: true,
+    isDocked: false,
+    isOpen: false,
+    isInLayout: false,
+    open: jest.fn(),
+    setIsDocked: jest.fn(),
+    setIsInLayout: jest.fn(),
+    ignoreNextInteractionZoneBlur: jest.fn(),
   };
 
   return render(

@@ -20,6 +20,7 @@
 
 import { renderWithMemoryRouter } from '~common/helpers/test-utils';
 import { matchers } from '@emotion/jest';
+import { fireEvent, screen } from '@testing-library/react';
 import { LayoutSidebarContext, type LayoutSidebarContextShape } from '../../LayoutSidebarContext';
 import { cssVar } from '~utils/design-tokens';
 import { SidebarNavigation } from '../SidebarNavigation';
@@ -28,58 +29,76 @@ expect.extend(matchers);
 
 it('should have no a11y issues', async () => {
   const { container } = setupSidebarNavigation({
-    hasSidebar: true,
-    isSidebarDocked: true,
-    isSidebarOpen: true,
+    isDocked: true,
+    isOpen: true,
+    isInLayout: true,
   });
 
   await expect(container).toHaveNoA11yViolations();
 });
 
 it('should set the layout context correctly', () => {
-  const setHasSidebar = jest.fn();
+  const setIsInLayout = jest.fn();
 
   const { unmount } = setupSidebarNavigation({
-    hasSidebar: true,
-    setHasSidebar,
+    isInLayout: true,
+    setIsInLayout,
   });
 
-  expect(setHasSidebar).toHaveBeenCalledWith(true);
+  expect(setIsInLayout).toHaveBeenCalledWith(true);
 
   unmount();
 
-  expect(setHasSidebar).toHaveBeenCalledWith(false);
+  expect(setIsInLayout).toHaveBeenCalledWith(false);
 });
 
 it('should snap the undocked sidebar width open without a transition', () => {
-  const { container } = setupSidebarNavigation();
-  const sidebarNavigationContainer = container.querySelector("[data-sidebar-navigation='true']");
+  setupSidebarNavigation();
+  const sidebarNavigationContainer = screen.getByTestId('sidebar-navigation-container');
 
-  expect(sidebarNavigationContainer).not.toBeNull();
   expect(sidebarNavigationContainer).toHaveStyleRule('transition', 'none', {
     target: "[data-sidebar-docked='false']",
   });
 });
 
 it('should widen the layout column when the sidebar is docked or opened in non-dockable mode', () => {
-  const { container } = setupSidebarNavigation();
-  const sidebarNavigationContainer = container.querySelector("[data-sidebar-navigation='true']");
+  setupSidebarNavigation();
+  const sidebarNavigationContainer = screen.getByTestId('sidebar-navigation-container');
+
   const dockedSidebarWidth = new RegExp(
     `calc\\(\\s*${escapeRegExp(cssVar('layout-sidebar-navigation-sizes-width-open'))}\\s*\\+\\s*${escapeRegExp(
       cssVar('border-width-default'),
     )}\\s*\\)`,
   );
 
-  expect(sidebarNavigationContainer).not.toBeNull();
   expect(sidebarNavigationContainer).toHaveStyleRule('width', dockedSidebarWidth, {
     target: "[data-sidebar-docked='true']",
   });
+
   expect(sidebarNavigationContainer).toHaveStyleRule('width', dockedSidebarWidth, {
     target: "[data-sidebar-is-dockable='false'][data-sidebar-open='true']",
   });
+
   expect(sidebarNavigationContainer).not.toHaveStyleRule('width', dockedSidebarWidth, {
     target: "[data-sidebar-is-dockable='true'][data-sidebar-open='true']",
   });
+});
+
+it('should not request opening the sidebar again when it is already docked and open', () => {
+  const openSidebar = jest.fn();
+
+  setupSidebarNavigation({
+    isDockable: true,
+    isDocked: true,
+    isOpen: true,
+    isInLayout: true,
+    open: openSidebar,
+  });
+
+  fireEvent.mouseEnter(screen.getByTestId('sidebar-navigation-container'));
+  fireEvent.focus(screen.getByTestId('sidebar-navigation-wrapper'));
+
+  expect(openSidebar).not.toHaveBeenCalled();
 });
 
 function escapeRegExp(value: string) {
@@ -88,16 +107,17 @@ function escapeRegExp(value: string) {
 
 function setupSidebarNavigation(contextOverrides: Partial<LayoutSidebarContextShape> = {}) {
   const defaultLayoutSidebarContext: LayoutSidebarContextShape = {
-    closeSidebar: jest.fn(),
-    handleSidebarInteractionBoundaryBlur: jest.fn(),
-    handleSidebarInteractionBoundaryMouseLeave: jest.fn(),
-    hasSidebar: false,
-    isSidebarDockable: true,
-    isSidebarDocked: false,
-    isSidebarOpen: false,
-    openSidebar: jest.fn(),
-    setHasSidebar: jest.fn(),
-    setIsSidebarDocked: jest.fn(),
+    close: jest.fn(),
+    handleInteractionZoneBlur: jest.fn(),
+    handleInteractionZoneMouseLeave: jest.fn(),
+    isDockable: true,
+    isDocked: false,
+    isInLayout: false,
+    isOpen: false,
+    open: jest.fn(),
+    setIsDocked: jest.fn(),
+    setIsInLayout: jest.fn(),
+    ignoreNextInteractionZoneBlur: jest.fn(),
   };
 
   return renderWithMemoryRouter(
