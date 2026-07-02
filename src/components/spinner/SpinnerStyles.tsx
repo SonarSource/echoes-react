@@ -68,20 +68,15 @@ const spinAnimation = keyframes`
   }
 `;
 
+export const SPINNER_DEFAULT_COLOR = cssVar('color-surface-inverse-default');
+
+const spinnerBorderWidth = '2px';
+const spinnerColor = `var(--spinner-color, ${SPINNER_DEFAULT_COLOR})`;
+
 export const SpinnerStyled = styled.span<{ inline: boolean }>`
-  border: 2px solid transparent;
-  background: var(
-    --spinner-background,
-    linear-gradient(0deg, ${cssVar('color-background-accent-default')} 50%, transparent 50% 100%)
-      border-box,
-    linear-gradient(90deg, ${cssVar('color-background-accent-default')} 25%, transparent 75% 100%)
-      border-box
-  );
-  mask:
-    linear-gradient(#fff 0 0) padding-box,
-    linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
+  position: relative;
+  border: ${spinnerBorderWidth} solid ${cssVar('color-border-weak')};
+  border-top-color: ${spinnerColor};
   animation: ${spinAnimation} 1s infinite linear;
 
   display: ${displaySwitcher};
