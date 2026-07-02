@@ -21,7 +21,9 @@
 import { screen } from '@testing-library/react';
 import { render } from '~common/helpers/test-utils';
 import { IconBug } from '../../../components/icons';
-import { BadgeSeverity } from '../BadgeSeverity';
+import { BADGE_SEVERITY_STYLES, BadgeSeverity, BadgeSeverityLevel } from '../BadgeSeverity';
+
+import { cssVar } from '~utils/design-tokens';
 
 describe('BadgeSeverity', () => {
   it('renders as expected', () => {
@@ -57,5 +59,18 @@ describe('BadgeSeverity', () => {
 
     expect(screen.getByText('Loading...')).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'click me' })).toBeEnabled();
+  });
+
+  it.each([
+    [BadgeSeverityLevel.Blocker, cssVar('severity-badge-colors-foreground-blocker-icon-default')],
+    [BadgeSeverityLevel.High, cssVar('severity-badge-colors-foreground-high-icon-default')],
+    [BadgeSeverityLevel.Medium, cssVar('severity-badge-colors-foreground-medium-icon-default')],
+    [BadgeSeverityLevel.Low, cssVar('severity-badge-colors-foreground-low-icon-default')],
+    [BadgeSeverityLevel.Info, cssVar('severity-badge-colors-foreground-info-icon-default')],
+  ])('defines %s severity tokens for the loading spinner', (severity, spinnerColor) => {
+    expect(BADGE_SEVERITY_STYLES[severity]).toMatchObject({
+      '--spinner-color-override': spinnerColor,
+      '--spinner-track-color-override': cssVar('color-border-bold'),
+    });
   });
 });

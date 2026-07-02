@@ -21,6 +21,10 @@ import { screen } from '@testing-library/react';
 import { PointerEventsCheckLevel } from '@testing-library/user-event';
 import { render, renderWithMemoryRouter } from '~common/helpers/test-utils';
 import { Button } from '../Button';
+import { BUTTON_VARIETY_STYLES } from '../ButtonStyles';
+import { ButtonVariety } from '../ButtonTypes';
+
+import { cssVar } from '~utils/design-tokens';
 
 describe('Button', () => {
   it('should call onClick function when clicked', async () => {
@@ -58,6 +62,28 @@ describe('Button', () => {
 
     expect(screen.getByText('Loading...')).toBeVisible();
     expect(screen.getByRole('button', { name: 'Loading... Click me' })).toBeEnabled();
+  });
+
+  it.each([
+    [ButtonVariety.Default, cssVar('color-icon-default'), cssVar('color-border-bold')],
+    [ButtonVariety.DefaultGhost, cssVar('color-icon-default'), cssVar('color-border-bold')],
+    [ButtonVariety.Primary, cssVar('color-icon-on-color'), cssVar('color-border-bold')],
+    [ButtonVariety.PrimaryGhost, cssVar('color-border-accent-default'), undefined],
+    [ButtonVariety.Danger, cssVar('color-icon-on-color'), cssVar('color-background-danger-active')],
+    [ButtonVariety.DangerGhost, cssVar('color-icon-danger'), undefined],
+    [ButtonVariety.DangerOutline, cssVar('color-icon-danger'), undefined],
+  ])('defines %s sentiment tokens for the loading spinner', (variety, spinnerColor, trackColor) => {
+    expect(BUTTON_VARIETY_STYLES[variety]).toMatchObject({
+      '--spinner-color-override': spinnerColor,
+    });
+
+    if (trackColor) {
+      expect(BUTTON_VARIETY_STYLES[variety]).toMatchObject({
+        '--spinner-track-color-override': trackColor,
+      });
+    } else {
+      expect(BUTTON_VARIETY_STYLES[variety]).not.toHaveProperty('--spinner-track-color-override');
+    }
   });
 
   it('should render with prefix and suffix', () => {

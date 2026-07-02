@@ -91,27 +91,46 @@ it('should correctly support tooltips', async () => {
   expect(screen.getByRole('tooltip', { name: 'my tooltip' })).toBeInTheDocument();
 });
 
-it('uses the inverse color as the default solid arc with a fixed weak track', () => {
+it('uses the inverse color as the default solid arc with a weak track', () => {
   const { container } = setupSpinner({ isLoading: true });
   const spinnerIcon = getSpinnerIcon(container);
 
-  expect(spinnerIcon).toHaveStyleRule('border', `2px solid ${cssVar('color-border-weak')}`);
+  expect(spinnerIcon).toHaveStyleRule(
+    'border',
+    `2px solid var(--spinner-track-color, ${cssVar('color-border-weak')})`,
+    {
+      target: '::before',
+    },
+  );
+  expect(spinnerIcon).toHaveStyleRule('border', '2px solid transparent', { target: '::after' });
   expect(spinnerIcon).toHaveStyleRule(
     'border-top-color',
     `var(--spinner-color, ${cssVar('color-surface-inverse-default')})`,
+    { target: '::after' },
   );
 });
 
-it('allows overriding the arc color without overriding the weak track', () => {
+it('allows overriding the arc and track colors', () => {
   const { container } = render(<CustomColorSpinner isLoading />);
   const spinnerIcon = getSpinnerIcon(container);
 
   expect(screen.getByRole('status')).toHaveStyleRule('--spinner-color-override', 'hotpink');
+  expect(screen.getByRole('status')).toHaveStyleRule('--spinner-track-color-override', 'cyan');
   expect(screen.getByRole('status')).toHaveStyleRule(
     '--spinner-color',
     `var(--spinner-color-override, ${cssVar('color-surface-inverse-default')})`,
   );
-  expect(spinnerIcon).toHaveStyleRule('border', `2px solid ${cssVar('color-border-weak')}`);
+  expect(screen.getByRole('status')).toHaveStyleRule(
+    '--spinner-track-color',
+    `var(--spinner-track-color-override, ${cssVar('color-border-weak')})`,
+  );
+  expect(spinnerIcon).toHaveStyleRule(
+    'border',
+    `2px solid var(--spinner-track-color, ${cssVar('color-border-weak')})`,
+    {
+      target: '::before',
+    },
+  );
 });
 
 function setupSpinner(props: Partial<ComponentProps<typeof Spinner>> = {}) {
@@ -126,6 +145,7 @@ function setupSpinner(props: Partial<ComponentProps<typeof Spinner>> = {}) {
 
 const CustomColorSpinner = styled(SpinnerOverrideColor)`
   --spinner-color-override: hotpink;
+  --spinner-track-color-override: cyan;
 `;
 
 function getSpinnerIcon(container: HTMLElement) {

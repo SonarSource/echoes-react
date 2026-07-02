@@ -64,20 +64,38 @@ const spinAnimation = keyframes`
   }
 
   to {
-    transform: rotate(-360deg);
+    transform: rotate(360deg);
   }
 `;
 
 export const SPINNER_DEFAULT_COLOR = cssVar('color-surface-inverse-default');
+export const SPINNER_DEFAULT_TRACK_COLOR = cssVar('color-border-weak');
 
 const spinnerBorderWidth = '2px';
 const spinnerColor = `var(--spinner-color, ${SPINNER_DEFAULT_COLOR})`;
+const spinnerTrackColor = `var(--spinner-track-color, ${SPINNER_DEFAULT_TRACK_COLOR})`;
 
 export const SpinnerStyled = styled.span<{ inline: boolean }>`
   position: relative;
-  border: ${spinnerBorderWidth} solid ${cssVar('color-border-weak')};
-  border-top-color: ${spinnerColor};
   animation: ${spinAnimation} 1s infinite linear;
+
+  &::before,
+  &::after {
+    position: absolute;
+    inset: 0;
+    box-sizing: border-box;
+    border-radius: inherit;
+    content: '';
+  }
+
+  &::before {
+    border: ${spinnerBorderWidth} solid ${spinnerTrackColor};
+  }
+
+  &::after {
+    border: ${spinnerBorderWidth} solid transparent;
+    border-top-color: ${spinnerColor};
+  }
 
   display: ${displaySwitcher};
   box-sizing: border-box;

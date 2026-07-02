@@ -19,9 +19,10 @@
  */
 import styled from '@emotion/styled';
 import { Spinner } from './Spinner';
-import { SPINNER_DEFAULT_COLOR } from './SpinnerStyles';
+import { SPINNER_DEFAULT_COLOR, SPINNER_DEFAULT_TRACK_COLOR } from './SpinnerStyles';
 
 export const SpinnerOverrideColor = styled(Spinner)`
   --spinner-color: var(--spinner-color-override, ${SPINNER_DEFAULT_COLOR});
+  --spinner-track-color: var(--spinner-track-color-override, ${SPINNER_DEFAULT_TRACK_COLOR});
 `;
 SpinnerOverrideColor.displayName = 'SpinnerOverrideColor';
