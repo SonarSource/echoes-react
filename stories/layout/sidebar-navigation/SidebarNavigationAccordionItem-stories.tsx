@@ -21,7 +21,7 @@
 /* eslint-disable no-console */
 
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Badge, cssVar, IconBranch, Layout } from '../../../src';
+import { Badge, IconBranch, Layout } from '../../../src';
 import { basicWrapperDecorator } from '../../helpers/BasicWrapper';
 
 const baseAccordionChildren = (
@@ -32,21 +32,6 @@ const baseAccordionChildren = (
 
     <Layout.SidebarNavigation.AccordionItem.Item to="/2">
       Item 2
-    </Layout.SidebarNavigation.AccordionItem.Item>
-  </>
-);
-
-const dockedSidebarAccordionChildren = (
-  <>
-    <Layout.SidebarNavigation.AccordionItem.Item
-      Icon={IconBranch}
-      disableIconWhenSidebarOpen
-      to="/1">
-      Icon hidden while sidebar is open
-    </Layout.SidebarNavigation.AccordionItem.Item>
-
-    <Layout.SidebarNavigation.AccordionItem.Item Icon={IconBranch} to="/2">
-      Icon stays visible while sidebar is open
     </Layout.SidebarNavigation.AccordionItem.Item>
   </>
 );
@@ -131,26 +116,6 @@ export const withIcon: Story = {
     isDefaultOpen: true,
     label: 'Accordion',
   },
-};
-
-export const withDisableIconWhenSidebarOpen: Story = {
-  args: {
-    Icon: IconBranch,
-    isDefaultOpen: true,
-    label: 'Accordion',
-  },
-  render: ({ isDefaultOpen = true, ...args }) => (
-    <div
-      data-sidebar-docked="true"
-      style={{ width: cssVar('layout-sidebar-navigation-sizes-width-open') }}>
-      <Layout.SidebarNavigation.AccordionItem
-        isDefaultOpen={isDefaultOpen}
-        key={`accordion-disable-icon-when-sidebar-open-${isDefaultOpen.toString()}`}
-        {...args}>
-        {dockedSidebarAccordionChildren}
-      </Layout.SidebarNavigation.AccordionItem>
-    </div>
-  ),
 };
 
 const fourNavItems = Array.from({ length: 4 }, (_, i) => (
