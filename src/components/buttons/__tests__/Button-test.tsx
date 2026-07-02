@@ -68,22 +68,26 @@ describe('Button', () => {
     [ButtonVariety.Default, cssVar('color-icon-default'), cssVar('color-border-bold')],
     [ButtonVariety.DefaultGhost, cssVar('color-icon-default'), cssVar('color-border-bold')],
     [ButtonVariety.Primary, cssVar('color-icon-on-color'), cssVar('color-border-bold')],
-    [ButtonVariety.PrimaryGhost, cssVar('color-border-accent-default'), undefined],
     [ButtonVariety.Danger, cssVar('color-icon-on-color'), cssVar('color-background-danger-active')],
-    [ButtonVariety.DangerGhost, cssVar('color-icon-danger'), undefined],
-    [ButtonVariety.DangerOutline, cssVar('color-icon-danger'), undefined],
-  ])('defines %s sentiment tokens for the loading spinner', (variety, spinnerColor, trackColor) => {
+  ])(
+    'defines %s spinner arc and track sentiment tokens',
+    (variety, spinnerColor, trackColor) => {
+      expect(BUTTON_VARIETY_STYLES[variety]).toMatchObject({
+        '--spinner-color-override': spinnerColor,
+        '--spinner-track-color-override': trackColor,
+      });
+    },
+  );
+
+  it.each([
+    [ButtonVariety.PrimaryGhost, cssVar('color-border-accent-default')],
+    [ButtonVariety.DangerGhost, cssVar('color-icon-danger')],
+    [ButtonVariety.DangerOutline, cssVar('color-icon-danger')],
+  ])('defines %s spinner arc sentiment token', (variety, spinnerColor) => {
     expect(BUTTON_VARIETY_STYLES[variety]).toMatchObject({
       '--spinner-color-override': spinnerColor,
     });
-
-    if (trackColor) {
-      expect(BUTTON_VARIETY_STYLES[variety]).toMatchObject({
-        '--spinner-track-color-override': trackColor,
-      });
-    } else {
-      expect(BUTTON_VARIETY_STYLES[variety]).not.toHaveProperty('--spinner-track-color-override');
-    }
+    expect(BUTTON_VARIETY_STYLES[variety]).not.toHaveProperty('--spinner-track-color-override');
   });
 
   it('should render with prefix and suffix', () => {
