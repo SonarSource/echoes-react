@@ -20,6 +20,7 @@
 
 import styled from '@emotion/styled';
 import type { Meta, StoryObj } from '@storybook/react-vite';
+
 import {
   BadgeSeverity,
   Button,
@@ -41,6 +42,7 @@ import {
   Text,
   TextInput,
 } from '../../src';
+
 import { AsideSize } from '../../src/components/layout/LayoutTypes';
 import { PageHeaderScrollBehavior } from '../../src/components/layout/header/common/HeaderTypes';
 
@@ -60,6 +62,7 @@ const meta: Meta = {
             <Layout.Banner onDismiss={() => {}} variety="danger">
               Oups something is wrong!
             </Layout.Banner>
+
             <Layout.Banner variety="warning">This is a general notification!</Layout.Banner>
           </>
         ),
@@ -155,14 +158,19 @@ export const Default: Story = {
   render: (args) => (
     <Layout>
       <Layout.BannerContainer>{args.banner}</Layout.BannerContainer>
+
       <GlobalNav />
+
       {args.sidebar}
+
       <Layout.ContentGrid>
         {args.contentHeader}
+
         {args.aside}
 
         <Layout.PageGrid isLoading={args.pageLoading} width={args.pageWidth}>
           {args.pageHeader(args.pageHeaderScrollBehavior)}
+
           <Layout.PageContent isLoading={args.pageContentLoading}>
             <p>
               <LoadingSkeleton variety="paragraph">
@@ -174,20 +182,27 @@ export const Default: Story = {
                 deserunt mollit anim id est laborum.
               </LoadingSkeleton>
             </p>
+
             <StackingTestArea>
               <TextInput label="Input (no z-index)" />
+
               <HighZIndexBox />
+
               <IsolatedBox />
+
               <TransformBox />
+
               <BadgeSeverity
                 ariaLabel="Badge (no z-index)"
                 quality="Badge (no z-index)"
                 severity="critical"
               />
+
               <DropdownMenu items={<DropdownMenu.ItemButton>An action</DropdownMenu.ItemButton>}>
                 <Button>Dropdown (portaled)</Button>
               </DropdownMenu>
             </StackingTestArea>
+
             <div
               style={{
                 display: 'flex',
@@ -202,21 +217,27 @@ export const Default: Story = {
               ))}
             </div>
           </Layout.PageContent>
+
           <Layout.PageFooter>
             <Text isSubtle>2018-2025 SonarSource Sàrl. All rights reserved</Text>
+
             <Links>
               <LinkStandalone highlight="subtle" to="/1">
                 Terms
               </LinkStandalone>
+
               <LinkStandalone highlight="subtle" to="/2">
                 Pricing
               </LinkStandalone>
+
               <LinkStandalone highlight="subtle" to="/3">
                 Privacy
               </LinkStandalone>
+
               <LinkStandalone highlight="subtle" to="/4">
                 Cookies
               </LinkStandalone>
+
               <LinkStandalone highlight="subtle" to="/5">
                 Terms
               </LinkStandalone>
@@ -238,13 +259,18 @@ function GlobalNav() {
 
         <Layout.GlobalNavigation.ItemsContainer>
           <Layout.GlobalNavigation.Item to="/">Home</Layout.GlobalNavigation.Item>
+
           <Layout.GlobalNavigation.Item to="/qp">Quality Profiles</Layout.GlobalNavigation.Item>
+
           <Layout.GlobalNavigation.Item to="/rules">Rules</Layout.GlobalNavigation.Item>
         </Layout.GlobalNavigation.ItemsContainer>
       </Layout.GlobalNavigation.Primary>
+
       <Layout.GlobalNavigation.Secondary>
         <Layout.GlobalNavigation.Action Icon={IconSearch} ariaLabel="?" />
+
         <Layout.GlobalNavigation.Action Icon={IconQuestionMark} ariaLabel="Help" isIconFilled />
+
         <Layout.GlobalNavigation.Account
           avatar={<Avatar />}
           items={<DropdownMenu.ItemLink to="/account">Settings</DropdownMenu.ItemLink>}
@@ -276,39 +302,46 @@ function SidebarNav() {
         isInteractive
         name="My Project name"
       />
+
       <Layout.SidebarNavigation.Body>
         <Layout.SidebarNavigation.Item Icon={IconProject} to="/overview">
           Overview
         </Layout.SidebarNavigation.Item>
+
         <Layout.SidebarNavigation.AccordionItem Icon={IconGitBranch} label="Branches and PRs">
-          <Layout.SidebarNavigation.Item
+          <Layout.SidebarNavigation.AccordionItem.Item
             Icon={IconBranch}
             disableIconWhenSidebarOpen
             to="/main-branch">
             Main branch
-          </Layout.SidebarNavigation.Item>
-          <Layout.SidebarNavigation.Item
+          </Layout.SidebarNavigation.AccordionItem.Item>
+
+          <Layout.SidebarNavigation.AccordionItem.Item
             Icon={IconPullrequest}
             disableIconWhenSidebarOpen
             to="/pr-1">
             Amazing Pull Request that updates a lot of things
-          </Layout.SidebarNavigation.Item>
-          <Layout.SidebarNavigation.Item
+          </Layout.SidebarNavigation.AccordionItem.Item>
+
+          <Layout.SidebarNavigation.AccordionItem.Item
             Icon={IconPullrequest}
             disableIconWhenSidebarOpen
             to="/pr-2">
             Small PR
-          </Layout.SidebarNavigation.Item>
+          </Layout.SidebarNavigation.AccordionItem.Item>
         </Layout.SidebarNavigation.AccordionItem>
+
         <Layout.SidebarNavigation.Group label="Reporting">
           <Layout.SidebarNavigation.Item Icon={IconSecurityFinding} to="/security-reports">
             Reports
           </Layout.SidebarNavigation.Item>
+
           <Layout.SidebarNavigation.Item Icon={IconComment} to="/measures">
             Measures
           </Layout.SidebarNavigation.Item>
         </Layout.SidebarNavigation.Group>
       </Layout.SidebarNavigation.Body>
+
       <Layout.SidebarNavigation.Footer>
         <Layout.SidebarNavigation.Item Icon={IconGear} to="/settings">
           Settings
@@ -340,6 +373,7 @@ function getHeaderProps() {
     navigation: (
       <Layout.PageHeader.Navigation>
         <Layout.PageHeader.NavigationItem to="/1">Nav Item 1</Layout.PageHeader.NavigationItem>
+
         <Layout.PageHeader.NavigationItem to="/2">Nav Item 2</Layout.PageHeader.NavigationItem>
       </Layout.PageHeader.Navigation>
     ),
@@ -439,6 +473,7 @@ function getRandomSize() {
 
 function ColorBox() {
   const color = getRandomColor();
+
   return (
     <div
       style={{
