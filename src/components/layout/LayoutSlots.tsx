@@ -103,6 +103,7 @@ StyledAsideLeft.displayName = 'StyledAside';
 
 export interface PageGridProps {
   className?: string;
+  id?: string;
   /**
    * Setting this prop will make this component behave like a LoadingContainer.
    * It will provide a LoadingContext that LoadingSkeletons can consume (automatically),
@@ -202,6 +203,7 @@ const PAGE_WIDTH_STYLES: Record<PageWidth, CSSProperties> = {
 
 export interface PageContentProps {
   className?: string;
+  id?: string;
   /**
    * Setting this prop will make this component behave like a LoadingContainer.
    * It will provide a LoadingContext that LoadingSkeletons can consume (automatically),
