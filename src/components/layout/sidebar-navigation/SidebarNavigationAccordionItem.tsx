@@ -26,6 +26,7 @@ import { TextNode } from '~types/utils';
 import { cssVar } from '~utils/design-tokens';
 import { IconChevronDown, IconChevronRight } from '../../icons';
 import { Tooltip } from '../../tooltip';
+
 import {
   sidebarNavigationBaseItemStyles,
   sidebarNavigationItemIconStyles,
@@ -36,6 +37,10 @@ import { SidebarNavigationIconComponent } from './SidebarNavigationTypes';
 import { TOOLTIP_DELAY_IN_MS } from './utils';
 
 export interface SidebarNavigationAccordionItemProps {
+  /**
+   * ARIA label for the SidebarNavigationAccordionItem button.
+   */
+  ariaLabel?: string;
   /**
    * List of navigation child items displayed when the accordion is expanded.
    * Prefer `SidebarNavigation.AccordionItem.Item` and keep the list to five items or fewer.
@@ -93,6 +98,7 @@ export function SidebarNavigationAccordionItem(
   props: Readonly<SidebarNavigationAccordionItemProps>,
 ) {
   const {
+    ariaLabel,
     children,
     disableTooltip = false,
     Icon,
@@ -143,6 +149,7 @@ export function SidebarNavigationAccordionItem(
           {...htmlProps}
           aria-controls={accordionPanelId}
           aria-expanded={open}
+          aria-label={ariaLabel}
           id={accordionId}
           onClick={handleClick}
           ref={ref}
