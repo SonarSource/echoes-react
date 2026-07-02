@@ -19,13 +19,16 @@
  */
 
 import styled from '@emotion/styled';
-import { forwardRef, ReactNode, useEffect, useMemo, useState } from 'react';
-import { cssVar, designToken } from '~utils/design-tokens';
+import { type ReactNode, type Ref } from 'react';
+import { cssVar } from '~utils/design-tokens';
 import { LayoutContext } from './LayoutContext';
 import { GlobalGridArea } from './LayoutTypes';
+import { useLayoutSidebarState } from './useLayoutSidebarState';
 
 export interface LayoutProps {
+  /** Optional CSS class name applied to the layout root element. */
   className?: string;
+  /** Main layout content. */
   children: ReactNode;
   /**
    * Whether the sidebar should be initially docked 🦆 or not, useful to init with user preferences.
@@ -35,63 +38,43 @@ export interface LayoutProps {
    * Callback function called when the sidebar docked state changes, useful to save user preferences.
    */
   onSidebarDockedChange?: (isDocked: boolean) => void;
+  /** React ref forwarded to the layout root element. */
+  ref?: Ref<HTMLDivElement>;
 }
 
-export const Layout = forwardRef<HTMLDivElement, LayoutProps>((props, ref) => {
-  const { children, isSidebarInitiallyDocked, onSidebarDockedChange, ...htmlProps } = props;
-  const mediaQueryList = useMemo(
-    () =>
-      globalThis.matchMedia(
-        `(min-width: ${designToken('layout-sidebar-navigation-sizes-breakpoint-dockable')})`,
-      ),
-    [],
-  );
+export function Layout(props: Readonly<LayoutProps>) {
+  const {
+    children,
+    className,
+    isSidebarInitiallyDocked,
+    onSidebarDockedChange,
+    ref,
+    ...htmlProps
+  } = props;
 
-  const [hasSidebar, setHasSidebar] = useState(false);
-  const [isSidebarDocked, setIsSidebarDocked] = useState(
-    () => isSidebarInitiallyDocked ?? mediaQueryList.matches,
-  );
-  const [isSidebarDockable, setIsSidebarDockable] = useState(() => mediaQueryList.matches);
+  const layoutContextValue = useLayoutSidebarState({
+    isSidebarInitiallyDocked,
+    onSidebarDockedChange,
+  });
 
-  const layoutContextValue = useMemo(
-    () => ({
-      hasSidebar,
-      isSidebarDocked,
-      setHasSidebar,
-      setIsSidebarDocked,
-    }),
-    [hasSidebar, isSidebarDocked],
-  );
-
-  useEffect(() => {
-    const handleMediaQueryChange = ({ matches: canDockSidebar }: MediaQueryListEvent) => {
-      setIsSidebarDockable(canDockSidebar);
-    };
-
-    mediaQueryList.addEventListener('change', handleMediaQueryChange);
-
-    return () => {
-      mediaQueryList.removeEventListener('change', handleMediaQueryChange);
-    };
-  }, [mediaQueryList]);
-
-  useEffect(() => {
-    onSidebarDockedChange?.(isSidebarDocked);
-  }, [isSidebarDocked, onSidebarDockedChange]);
+  const { hasSidebar, isSidebarDockable, isSidebarDocked, isSidebarOpen } = layoutContextValue;
 
   return (
     <Viewport>
       <MainGrid
+        className={className}
         data-sidebar-docked={isSidebarDocked && isSidebarDockable}
         data-sidebar-exist={hasSidebar}
         data-sidebar-is-dockable={isSidebarDockable}
+        data-sidebar-open={isSidebarOpen}
         {...htmlProps}
         ref={ref}>
         <LayoutContext.Provider value={layoutContextValue}>{children}</LayoutContext.Provider>
       </MainGrid>
     </Viewport>
   );
-});
+}
+
 Layout.displayName = 'Layout';
 
 const Viewport = styled.div`
@@ -102,6 +85,7 @@ const Viewport = styled.div`
   height: 100vh;
   width: 100vw;
 `;
+
 Viewport.displayName = 'Viewport';
 
 const MainGrid = styled.div`
@@ -118,4 +102,5 @@ const MainGrid = styled.div`
     '${GlobalGridArea.globalNav} ${GlobalGridArea.globalNav}'
     '${GlobalGridArea.sidebar} ${GlobalGridArea.content}';
 `;
+
 MainGrid.displayName = 'MainGrid';

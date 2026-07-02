@@ -21,15 +21,38 @@
 import { createContext, Dispatch, SetStateAction } from 'react';
 
 export interface LayoutContextShape {
+  closeSidebar: VoidFunction;
+  enterSidebarInteractionBoundary: VoidFunction;
+  handleSidebarInteractionBoundaryBlur: (relatedTarget: EventTarget | null) => void;
+  handleSidebarInteractionBoundaryExit: (
+    clientX: number,
+    relatedTarget: EventTarget | null,
+  ) => void;
   hasSidebar: boolean;
+  isSidebarDockable: boolean;
   isSidebarDocked: boolean;
+  isSidebarOpen: boolean;
+  isSidebarPointerInside: boolean;
+  leaveSidebarInteractionBoundary: VoidFunction;
+  openSidebar: VoidFunction;
   setHasSidebar: Dispatch<SetStateAction<boolean>>;
   setIsSidebarDocked: Dispatch<SetStateAction<boolean>>;
+  setSidebarInteractionSafeAreaElement: (element: HTMLElement | null) => void;
 }
 
 export const LayoutContext = createContext<LayoutContextShape>({
+  closeSidebar: () => {},
+  enterSidebarInteractionBoundary: () => {},
+  handleSidebarInteractionBoundaryBlur: () => {},
+  handleSidebarInteractionBoundaryExit: () => {},
   hasSidebar: false,
+  isSidebarDockable: false,
   isSidebarDocked: false,
+  isSidebarOpen: false,
+  isSidebarPointerInside: false,
+  leaveSidebarInteractionBoundary: () => {},
+  openSidebar: () => {},
   setHasSidebar: () => {},
   setIsSidebarDocked: () => {},
+  setSidebarInteractionSafeAreaElement: () => {},
 });

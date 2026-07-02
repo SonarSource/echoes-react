@@ -58,6 +58,9 @@
   "global_navigation.sidebar.dock": {
     "defaultMessage": "Dock sidebar"
   },
+  "global_navigation.sidebar.open": {
+    "defaultMessage": "Open sidebar"
+  },
   "global_navigation.sidebar.undock": {
     "defaultMessage": "Undock sidebar"
   },
