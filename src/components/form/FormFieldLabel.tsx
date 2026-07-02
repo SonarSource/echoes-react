@@ -26,6 +26,11 @@ import { Label } from '../typography';
 
 import { cssVar } from '~utils/design-tokens';
 
+export enum FormFieldLabelSpacing {
+  Default = 'default',
+  Large = 'large',
+}
+
 export interface FormFieldLabelProps {
   children?: TextNodeOptional;
   /**
@@ -44,6 +49,10 @@ export interface FormFieldLabelProps {
    * When true, will display an asterisk to indicate that the field is required.
    */
   isRequired?: boolean;
+  /**
+   * Controls the spacing below the label.
+   */
+  spacing?: `${FormFieldLabelSpacing}`;
   /**
    * The props for a help toggletip showing next to the form field label to provide additional information about the field (optional).
    */
@@ -64,14 +73,21 @@ export interface FormFieldLabelProps {
  * @internal
  */
 export const FormFieldLabel = forwardRef<HTMLLabelElement, FormFieldLabelProps>((props, ref) => {
-  const { children, isDisabled = false, isRequired = false, helpToggletipProps, ...rest } = props;
+  const {
+    children,
+    isDisabled = false,
+    isRequired = false,
+    helpToggletipProps,
+    spacing = FormFieldLabelSpacing.Default,
+    ...rest
+  } = props;
 
   if (!children) {
     return null;
   }
 
   return (
-    <LabelWrapper>
+    <LabelWrapper data-spacing={spacing}>
       <LabelStyled data-disabled={isDisabled || undefined} ref={ref} {...rest}>
         {children}
         {isRequired && <RequiredIndicator aria-hidden="true">*</RequiredIndicator>}
@@ -89,6 +105,10 @@ const LabelWrapper = styled.div`
   gap: ${cssVar('dimension-space-75')};
 
   margin-bottom: ${cssVar('dimension-space-75')};
+
+  &[data-spacing='large'] {
+    margin-bottom: ${cssVar('dimension-space-150')};
+  }
 `;
 LabelWrapper.displayName = 'LabelWrapper';
 

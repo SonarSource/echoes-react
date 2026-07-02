@@ -19,7 +19,13 @@
  */
 import { screen } from '@testing-library/react';
 import { render } from '~common/helpers/test-utils';
-import { FormField, FormFieldValidation, FormFieldWidth } from '../FormField';
+import { cssVar } from '~utils/design-tokens';
+import {
+  FormField,
+  FormFieldLabelSpacing,
+  FormFieldValidation,
+  FormFieldWidth,
+} from '../FormField';
 
 it('displays a label', () => {
   render(
@@ -30,6 +36,30 @@ it('displays a label', () => {
   const label = screen.getByText('Label 1');
   expect(label).toBeVisible();
   expect(label.tagName).toBe('LABEL');
+});
+
+it('uses default spacing between the label and control', () => {
+  render(
+    <FormField label="Label 1">
+      <input />
+    </FormField>,
+  );
+
+  const label = screen.getByText('Label 1');
+  // eslint-disable-next-line testing-library/no-node-access
+  expect(label.parentElement).toHaveStyle({ marginBottom: cssVar('dimension-space-75') });
+});
+
+it('supports large spacing between the label and control', () => {
+  render(
+    <FormField label="Label 1" labelSpacing={FormFieldLabelSpacing.Large}>
+      <input />
+    </FormField>,
+  );
+
+  const label = screen.getByText('Label 1');
+  // eslint-disable-next-line testing-library/no-node-access
+  expect(label.parentElement).toHaveStyle({ marginBottom: cssVar('dimension-space-150') });
 });
 
 it('displays an asterisk next to the label if the form field is required', () => {
