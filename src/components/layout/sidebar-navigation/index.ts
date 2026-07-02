@@ -19,6 +19,7 @@
  */
 
 import { SidebarNavigation as SidebarNavigationRoot } from './SidebarNavigation';
+import { SidebarNavigationAccordionChildItem } from './SidebarNavigationAccordionChildItem';
 import { SidebarNavigationAccordionItem } from './SidebarNavigationAccordionItem';
 import { SidebarNavigationBody } from './SidebarNavigationBody';
 import { SidebarNavigationFooterPromotionCard } from './SidebarNavigationFooterPromotionCard';
@@ -28,10 +29,29 @@ import { SidebarNavigationItem } from './SidebarNavigationItem';
 import { SidebarNavigationFooter } from './SidebarNavigationItemStyles';
 
 export { type SidebarNavigationProps } from './SidebarNavigation';
+export { type SidebarNavigationAccordionChildItemProps } from './SidebarNavigationAccordionChildItem';
 export { type SidebarNavigationAccordionItemProps } from './SidebarNavigationAccordionItem';
 export { type SidebarNavigationGroupProps } from './SidebarNavigationGroup';
 export { type SidebarNavigationHeaderProps } from './SidebarNavigationHeader';
+export { type SidebarNavigationItemBaseProps } from './SidebarNavigationTypes';
 export { type SidebarNavigationItemProps } from './SidebarNavigationItem';
+
+const SidebarNavigationAccordionItemNamespace = Object.assign(SidebarNavigationAccordionItem, {
+  /**
+   * {@link SidebarNavigationAccordionChildItem | Item} represents navigation rows inside an
+   * accordion section. Icons are optional so accordion child rows can be rendered with or without
+   * them.
+   *
+   * ```tsx
+   * <SidebarNavigation.AccordionItem Icon={SecurityIcon} label="Security">
+   *   <SidebarNavigation.AccordionItem.Item to="/security/general-settings">
+   *     General settings
+   *   </SidebarNavigation.AccordionItem.Item>
+   * </SidebarNavigation.AccordionItem>
+   * ```
+   */
+  Item: SidebarNavigationAccordionChildItem,
+});
 
 export const SidebarNavigation = Object.assign(SidebarNavigationRoot, {
   /**
@@ -40,13 +60,13 @@ export const SidebarNavigation = Object.assign(SidebarNavigationRoot, {
    *
    * ```tsx
    * <SidebarNavigation.AccordionItem Icon={SecurityIcon} label="Security">
-   *   <SidebarNavigation.Item to="/security/hotspots">
+   *   <SidebarNavigation.AccordionItem.Item to="/security/hotspots">
    *     Security Hotspots
-   *   </SidebarNavigation.Item>
+   *   </SidebarNavigation.AccordionItem.Item>
    * </SidebarNavigation.AccordionItem>
    * ```
    */
-  AccordionItem: SidebarNavigationAccordionItem,
+  AccordionItem: SidebarNavigationAccordionItemNamespace,
 
   /**
    * {@link SidebarNavigationBody | Body} provides the main scrollable content area for navigation items.
@@ -54,7 +74,9 @@ export const SidebarNavigation = Object.assign(SidebarNavigationRoot, {
    *
    * ```tsx
    * <SidebarNavigation.Body>
-   *   <SidebarNavigation.Item to="/dashboard">Dashboard</SidebarNavigation.Item>
+   *   <SidebarNavigation.Item Icon={DashboardIcon} to="/dashboard">
+   *     Dashboard
+   *   </SidebarNavigation.Item>
    * </SidebarNavigation.Body>
    * ```
    */
@@ -129,7 +151,9 @@ export const SidebarNavigation = Object.assign(SidebarNavigationRoot, {
 
   /**
    * {@link SidebarNavigationItem | Item} represents individual navigation items with support for
-   * icons, active states, and router integration. Do not wrap children in Text components.
+   * required icons, active states, and router integration. Use
+   * {@link SidebarNavigationAccordionChildItem | AccordionItem.Item} for accordion child rows.
+   * Do not wrap children in Text components.
    *
    * ```tsx
    * <SidebarNavigation.Item Icon={HomeIcon} to="/dashboard">

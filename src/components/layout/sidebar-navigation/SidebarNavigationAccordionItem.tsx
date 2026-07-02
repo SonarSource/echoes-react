@@ -19,40 +19,48 @@
  */
 
 import styled from '@emotion/styled';
-import {
-  forwardRef,
-  ForwardRefExoticComponent,
-  ReactNode,
-  useCallback,
-  useEffect,
-  useId,
-  useRef,
-  useState,
-} from 'react';
+
+import { ReactNode, Ref, useCallback, useEffect, useId, useRef, useState } from 'react';
+
 import { TextNode } from '~types/utils';
 import { cssVar } from '~utils/design-tokens';
-import { IconChevronDown, IconChevronRight, IconFilledProps } from '../../icons';
+import { IconChevronDown, IconChevronRight } from '../../icons';
 import { Tooltip } from '../../tooltip';
 import {
   sidebarNavigationBaseItemStyles,
   sidebarNavigationItemIconStyles,
   SidebarNavigationItemLabel,
 } from './SidebarNavigationItemStyles';
+
+import { SidebarNavigationIconComponent } from './SidebarNavigationTypes';
 import { TOOLTIP_DELAY_IN_MS } from './utils';
 
 export interface SidebarNavigationAccordionItemProps {
-  ariaLabel?: string;
   /**
-   * List of SidebarNavigationItem that are displayed when the accordion is expanded.
-   * Should ideally be maximum 5 items.
+   * List of navigation child items displayed when the accordion is expanded.
+   * Prefer `SidebarNavigation.AccordionItem.Item` and keep the list to five items or fewer.
    */
   children: ReactNode;
+  /**
+   * Optional CSS class name applied to the accordion button element.
+   */
   className?: string;
   /**
    * Whether to disable the tooltip on the accordion item or not.
    * By default the tooltip is enabled, it should only be disabled if you don't expect the content to be ellipsed.
+   * @defaultValue false
    */
   disableTooltip?: boolean;
+  /**
+   * The icon component to display at the start of the SidebarNavigationAccordionItem.
+   * Must be an Echoes Icon component.
+   */
+  Icon: SidebarNavigationIconComponent;
+  /**
+   * Whether the accordion is open by default.
+   * @defaultValue false
+   */
+  isDefaultOpen?: boolean;
   /**
    * The label for the SidebarNavigationAccordionItem.
    */
@@ -66,37 +74,33 @@ export interface SidebarNavigationAccordionItemProps {
    */
   onOpen?: VoidFunction;
   /**
-   * Whether the accordion is open by default. Defaults to false.
+   * React ref forwarded to the root button element.
    */
-  isDefaultOpen?: boolean;
+  ref?: Ref<HTMLButtonElement>;
   /**
    * When true, scrolls the last child item into view when the accordion opens.
    * Useful when the accordion is near the bottom of a scrollable container.
+   * @defaultValue false
    */
   scrollLastChildIntoViewOnOpen?: boolean;
   /**
    * Optional content to display on the right, before the chevron. Typically badges, item count and similar metadata.
    */
   suffix?: ReactNode;
-  /**
-   * The icon component to display at the start of the SidebarNavigationAccordionItem.
-   * Must be an Echoes Icon component.
-   */
-  Icon: ForwardRefExoticComponent<IconFilledProps & React.RefAttributes<HTMLSpanElement>>;
 }
 
-export const SidebarNavigationAccordionItem = forwardRef<
-  HTMLButtonElement,
-  SidebarNavigationAccordionItemProps
->((props, ref) => {
+export function SidebarNavigationAccordionItem(
+  props: Readonly<SidebarNavigationAccordionItemProps>,
+) {
   const {
     children,
-    isDefaultOpen = false,
     disableTooltip = false,
     Icon,
+    isDefaultOpen = false,
     label,
     onClose,
     onOpen,
+    ref,
     scrollLastChildIntoViewOnOpen,
     suffix,
     ...htmlProps
@@ -141,7 +145,8 @@ export const SidebarNavigationAccordionItem = forwardRef<
           aria-expanded={open}
           id={accordionId}
           onClick={handleClick}
-          ref={ref}>
+          ref={ref}
+          type="button">
           <Icon css={sidebarNavigationItemIconStyles} isFilled={false} />
 
           <SidebarNavigationItemLabel>{label}</SidebarNavigationItemLabel>
@@ -165,7 +170,7 @@ export const SidebarNavigationAccordionItem = forwardRef<
       </AccordionItemPanel>
     </AccordionWrapper>
   );
-});
+}
 
 SidebarNavigationAccordionItem.displayName = 'SidebarNavigationAccordionItem';
 
