@@ -19,31 +19,47 @@
  */
 
 /* eslint-disable no-console */
+
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Badge, cssVar, IconBranch, Layout } from '../../../src';
 import { basicWrapperDecorator } from '../../helpers/BasicWrapper';
 
 const baseAccordionChildren = (
   <>
-    <Layout.SidebarNavigation.Item Icon={IconBranch} to="/1">
+    <Layout.SidebarNavigation.AccordionItem.Item to="/1">
       Item 1
-    </Layout.SidebarNavigation.Item>
+    </Layout.SidebarNavigation.AccordionItem.Item>
 
-    <Layout.SidebarNavigation.Item Icon={IconBranch} to="/2">
+    <Layout.SidebarNavigation.AccordionItem.Item to="/2">
       Item 2
-    </Layout.SidebarNavigation.Item>
+    </Layout.SidebarNavigation.AccordionItem.Item>
   </>
 );
 
 const dockedSidebarAccordionChildren = (
   <>
-    <Layout.SidebarNavigation.Item Icon={IconBranch} disableIconWhenSidebarOpen to="/1">
+    <Layout.SidebarNavigation.AccordionItem.Item
+      Icon={IconBranch}
+      disableIconWhenSidebarOpen
+      to="/1">
       Icon hidden while sidebar is open
-    </Layout.SidebarNavigation.Item>
+    </Layout.SidebarNavigation.AccordionItem.Item>
 
-    <Layout.SidebarNavigation.Item Icon={IconBranch} to="/2">
+    <Layout.SidebarNavigation.AccordionItem.Item Icon={IconBranch} to="/2">
       Icon stays visible while sidebar is open
-    </Layout.SidebarNavigation.Item>
+    </Layout.SidebarNavigation.AccordionItem.Item>
+  </>
+);
+
+const accordionChildrenWithIcon = (
+  <>
+    <Layout.SidebarNavigation.AccordionItem.Item to="/1">
+      Item 1
+    </Layout.SidebarNavigation.AccordionItem.Item>
+
+    <Layout.SidebarNavigation.AccordionItem.Item Icon={IconBranch} to="/2">
+      Item 2
+    </Layout.SidebarNavigation.AccordionItem.Item>
   </>
 );
 
@@ -108,6 +124,15 @@ export const withDefaultOpen: Story = {
   },
 };
 
+export const withIcon: Story = {
+  args: {
+    Icon: IconBranch,
+    children: accordionChildrenWithIcon,
+    isDefaultOpen: true,
+    label: 'Accordion',
+  },
+};
+
 export const withDisableIconWhenSidebarOpen: Story = {
   args: {
     Icon: IconBranch,
@@ -134,6 +159,15 @@ const fourNavItems = Array.from({ length: 4 }, (_, i) => (
   </Layout.SidebarNavigation.Item>
 ));
 
+const fourAccordionChildItems = Array.from({ length: 4 }, (_, i) => (
+  <Layout.SidebarNavigation.AccordionItem.Item
+    Icon={i === 3 ? IconBranch : undefined}
+    key={i}
+    to={`/item-${i}`}>
+    Item {`${i + 1}`}
+  </Layout.SidebarNavigation.AccordionItem.Item>
+));
+
 export const scrollLastChildIntoView: Story = {
   decorators: [basicWrapperDecorator],
   args: {
@@ -148,7 +182,7 @@ export const scrollLastChildIntoView: Story = {
           Icon={IconBranch}
           label="Accordion"
           scrollLastChildIntoViewOnOpen={scrollLastChildIntoViewOnOpen}>
-          {fourNavItems}
+          {fourAccordionChildItems}
         </Layout.SidebarNavigation.AccordionItem>
       </Layout.SidebarNavigation.Body>
     </div>
