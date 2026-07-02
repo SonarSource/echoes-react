@@ -19,14 +19,14 @@
  */
 
 import styled from '@emotion/styled';
-import { forwardRef, PropsWithChildren, useId } from 'react';
+import { type PropsWithChildren, type Ref, useId } from 'react';
 import { TextNode } from '~types/utils';
 import { cssVar } from '~utils/design-tokens';
-import { Divider } from '../../divider';
 import { Text } from '../../typography';
 import { UnstyledListItem } from './SidebarNavigationItemStyles';
 
 export interface SidebarNavigationGroupProps {
+  /** Optional CSS class name applied to the root container */
   className?: string;
   /**
    * The label of the SidebarNavigationGroup.
@@ -34,13 +34,14 @@ export interface SidebarNavigationGroupProps {
    * The styling (font, color, weight, ...) is handled by this component.
    */
   label: TextNode;
+  /** React ref forwarded to the root group element */
+  ref?: Ref<HTMLDivElement>;
 }
 
-export const SidebarNavigationGroup = forwardRef<
-  HTMLDivElement,
-  PropsWithChildren<SidebarNavigationGroupProps>
->((props, ref) => {
-  const { children, className, label, ...radixProps } = props;
+export function SidebarNavigationGroup(
+  props: Readonly<PropsWithChildren<SidebarNavigationGroupProps>>,
+) {
+  const { children, className, label, ref, ...radixProps } = props;
 
   const id = `${useId()}-sidebar-nav-group`;
 
@@ -53,17 +54,16 @@ export const SidebarNavigationGroup = forwardRef<
         role="group"
         {...radixProps}>
         <SidebarNavigationGroupLabel id={id}>
-          <SidebarNavigationGroupLabelText isSubtle size="small">
+          <Text isSubtle size="small">
             {label}
-          </SidebarNavigationGroupLabelText>
-
-          <SidebarNavigationGroupLabelDivider />
+          </Text>
         </SidebarNavigationGroupLabel>
+
         <SidebarNavigationGroupList>{children}</SidebarNavigationGroupList>
       </SidebarNavigationGroupContainer>
     </SidebarNavigationGroupListItem>
   );
-});
+}
 
 SidebarNavigationGroup.displayName = 'SidebarNavigationGroup';
 
@@ -76,6 +76,7 @@ const SidebarNavigationGroupListItem = styled(UnstyledListItem)`
     margin-top: calc(-1 * ${cssVar('dimension-space-50')});
   }
 `;
+
 SidebarNavigationGroupListItem.displayName = 'SidebarNavigationGroupListItem';
 
 const SidebarNavigationGroupContainer = styled.div`
@@ -83,37 +84,25 @@ const SidebarNavigationGroupContainer = styled.div`
   flex-direction: column;
   gap: ${cssVar('dimension-space-50')};
 `;
+
 SidebarNavigationGroupContainer.displayName = 'SidebarNavigationGroupContainer';
 
-const SidebarNavigationGroupLabel = styled.label`
+const SidebarNavigationGroupLabel = styled.div`
   display: flex;
   align-items: center;
   height: ${cssVar('dimension-height-800')};
   padding: 0 ${cssVar('dimension-space-100')};
   white-space: nowrap;
 `;
+
 SidebarNavigationGroupLabel.displayName = 'SidebarNavigationGroupLabel';
 
-const SidebarNavigationGroupLabelText = styled(Text)`
-  [data-sidebar-docked='false'] nav:not(:hover, :focus-within) & {
-    display: none;
-  }
-`;
-SidebarNavigationGroupLabelText.displayName = 'SidebarNavigationGroupLabelText';
-
-const SidebarNavigationGroupLabelDivider = styled(Divider)`
-  [data-sidebar-docked='true'] &,
-  [data-sidebar-docked='false'] nav:is(:hover, :focus-within) & {
-    display: none;
-  }
-`;
-SidebarNavigationGroupLabelDivider.displayName = 'SidebarNavigationGroupLabelDivider';
-
-export const SidebarNavigationGroupList = styled.ul`
+const SidebarNavigationGroupList = styled.ul`
   all: unset;
 
   display: flex;
   flex-direction: column;
   gap: ${cssVar('dimension-space-50')};
 `;
+
 SidebarNavigationGroupList.displayName = 'SidebarNavigationGroupList';

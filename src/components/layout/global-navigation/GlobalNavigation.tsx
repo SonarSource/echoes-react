@@ -74,6 +74,7 @@ const GlobalNavigationContainer = styled.nav`
 
   z-index: 1; // Ensure the global navigation is showing over the content
 `;
+
 GlobalNavigationContainer.displayName = 'GlobalNavigationContainer';
 
 export const GlobalNavigationSecondary = styled.div`
@@ -84,4 +85,5 @@ export const GlobalNavigationSecondary = styled.div`
   gap: ${cssVar('dimension-space-100')};
   pointer-events: auto;
 `;
+
 GlobalNavigationSecondary.displayName = 'GlobalNavigationSecondary';

@@ -23,7 +23,6 @@ import { isDefined } from '~common/helpers/types';
 // Elements marked with this attribute belong to the undocked sidebar interaction zone.
 // Moving pointer or focus between them must not close the sidebar.
 export const SIDEBAR_INTERACTION_ZONE_ATTRIBUTE = 'data-sidebar-interaction-zone';
-export const SIDEBAR_OVERFLOW_HANDOFF_WIDTH_TOKEN = 'dimension-width-0';
 
 export function isWithinSidebarInteractionZone(target: EventTarget | null) {
   return (

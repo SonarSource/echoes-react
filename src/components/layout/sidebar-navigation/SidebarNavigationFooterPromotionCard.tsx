@@ -19,7 +19,8 @@
  */
 
 import styled from '@emotion/styled';
-import { forwardRef, useMemo } from 'react';
+import { type Ref, useMemo } from 'react';
+
 import {
   PROMOTED_SECTION_STYLES,
   PromotedSectionMainStyles,
@@ -27,6 +28,7 @@ import {
   PromotedSectionTextContainer,
   PromotedSectionVariety,
 } from '~common/components/PromotedSectionStyles';
+
 import { TextNode } from '~types/utils';
 import { cssVar } from '~utils/design-tokens';
 import { Heading, HeadingSize, Text } from '../../typography';
@@ -34,7 +36,6 @@ import { Heading, HeadingSize, Text } from '../../typography';
 export interface SidebarNavigationFooterPromotionCard {
   /**
    * The actions at the bottom should be instances of Button or StandaloneLink in a fragment.
-   * They are wrapped in a ButtonGroup by this component.
    */
   actions: React.ReactNode;
 
@@ -53,16 +54,20 @@ export interface SidebarNavigationFooterPromotionCard {
    */
   headerText: TextNode;
 
+  /** React ref forwarded to the root element */
+  ref?: Ref<HTMLDivElement>;
+
   /**
    * The main text for the section
    */
   text: TextNode;
 }
 
-export const SidebarNavigationFooterPromotionCard = forwardRef<
-  HTMLDivElement,
-  Readonly<SidebarNavigationFooterPromotionCard>
->(({ actions, badge, className, headerText, text, ...otherProps }, ref) => {
+export function SidebarNavigationFooterPromotionCard(
+  props: Readonly<SidebarNavigationFooterPromotionCard>,
+) {
+  const { actions, badge, className, headerText, ref, text, ...otherProps } = props;
+
   return (
     <StyledPromotedSectionMainStyles
       className={className}
@@ -84,7 +89,7 @@ export const SidebarNavigationFooterPromotionCard = forwardRef<
       </PromotedSectionTextAndActions>
     </StyledPromotedSectionMainStyles>
   );
-});
+}
 
 SidebarNavigationFooterPromotionCard.displayName = 'SidebarNavigationFooterPromotionCard';
 
@@ -93,16 +98,6 @@ const StyledPromotedSectionMainStyles = styled(PromotedSectionMainStyles)`
   flex-direction: column;
   gap: ${cssVar('dimension-space-100')};
   align-items: start;
-  opacity: 1;
-  /* step-end makes it appear at the very end, when the sidebar has reached its full size.
-   * This prevents showing it resizing
-   */
-  transition: opacity 0.1s step-end;
-
-  [data-sidebar-docked='false'] nav:not(:hover, :focus-within) & {
-    opacity: 0;
-    /* When closing, we want the opposite: it disappears immediately */
-    transition: opacity 0s;
-  }
 `;
+
 StyledPromotedSectionMainStyles.displayName = 'StyledPromotedSectionMainStyles';
