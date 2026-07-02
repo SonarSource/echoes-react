@@ -19,28 +19,30 @@
  */
 
 import { renderWithMemoryRouter } from '~common/helpers/test-utils';
-import { LayoutContext } from '../../LayoutContext';
+import { matchers } from '@emotion/jest';
+import { LayoutSidebarContext, type LayoutSidebarContextShape } from '../../LayoutSidebarContext';
+import { cssVar } from '~utils/design-tokens';
 import { SidebarNavigation } from '../SidebarNavigation';
 
+expect.extend(matchers);
+
 it('should have no a11y issues', async () => {
-  const { container } = renderWithMemoryRouter(<SidebarNavigation />);
+  const { container } = setupSidebarNavigation({
+    hasSidebar: true,
+    isSidebarDocked: true,
+    isSidebarOpen: true,
+  });
 
   await expect(container).toHaveNoA11yViolations();
 });
 
 it('should set the layout context correctly', () => {
   const setHasSidebar = jest.fn();
-  const { unmount } = renderWithMemoryRouter(
-    <LayoutContext.Provider
-      value={{
-        hasSidebar: true,
-        isSidebarDocked: false,
-        setHasSidebar,
-        setIsSidebarDocked: jest.fn(),
-      }}>
-      <SidebarNavigation />
-    </LayoutContext.Provider>,
-  );
+
+  const { unmount } = setupSidebarNavigation({
+    hasSidebar: true,
+    setHasSidebar,
+  });
 
   expect(setHasSidebar).toHaveBeenCalledWith(true);
 
@@ -48,3 +50,59 @@ it('should set the layout context correctly', () => {
 
   expect(setHasSidebar).toHaveBeenCalledWith(false);
 });
+
+it('should snap the undocked sidebar width open without a transition', () => {
+  const { container } = setupSidebarNavigation();
+  const sidebarNavigationContainer = container.querySelector("[data-sidebar-navigation='true']");
+
+  expect(sidebarNavigationContainer).not.toBeNull();
+  expect(sidebarNavigationContainer).toHaveStyleRule('transition', 'none', {
+    target: "[data-sidebar-docked='false']",
+  });
+});
+
+it('should widen the layout column when the sidebar is docked or opened in non-dockable mode', () => {
+  const { container } = setupSidebarNavigation();
+  const sidebarNavigationContainer = container.querySelector("[data-sidebar-navigation='true']");
+  const dockedSidebarWidth = new RegExp(
+    `calc\\(\\s*${escapeRegExp(cssVar('layout-sidebar-navigation-sizes-width-open'))}\\s*\\+\\s*${escapeRegExp(
+      cssVar('border-width-default'),
+    )}\\s*\\)`,
+  );
+
+  expect(sidebarNavigationContainer).not.toBeNull();
+  expect(sidebarNavigationContainer).toHaveStyleRule('width', dockedSidebarWidth, {
+    target: "[data-sidebar-docked='true']",
+  });
+  expect(sidebarNavigationContainer).toHaveStyleRule('width', dockedSidebarWidth, {
+    target: "[data-sidebar-is-dockable='false'][data-sidebar-open='true']",
+  });
+  expect(sidebarNavigationContainer).not.toHaveStyleRule('width', dockedSidebarWidth, {
+    target: "[data-sidebar-is-dockable='true'][data-sidebar-open='true']",
+  });
+});
+
+function escapeRegExp(value: string) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+function setupSidebarNavigation(contextOverrides: Partial<LayoutSidebarContextShape> = {}) {
+  const defaultLayoutSidebarContext: LayoutSidebarContextShape = {
+    closeSidebar: jest.fn(),
+    handleSidebarInteractionBoundaryBlur: jest.fn(),
+    handleSidebarInteractionBoundaryMouseLeave: jest.fn(),
+    hasSidebar: false,
+    isSidebarDockable: true,
+    isSidebarDocked: false,
+    isSidebarOpen: false,
+    openSidebar: jest.fn(),
+    setHasSidebar: jest.fn(),
+    setIsSidebarDocked: jest.fn(),
+  };
+
+  return renderWithMemoryRouter(
+    <LayoutSidebarContext.Provider value={{ ...defaultLayoutSidebarContext, ...contextOverrides }}>
+      <SidebarNavigation />
+    </LayoutSidebarContext.Provider>,
+  );
+}
