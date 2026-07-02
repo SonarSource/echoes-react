@@ -22,6 +22,7 @@ import { Banner } from './banner';
 import { GlobalNavigation } from './global-navigation';
 import { ContentHeader, PageHeader } from './header';
 import { Layout as LayoutRoot } from './Layout';
+
 import {
   AsideLeft,
   BannerContainer,
@@ -30,9 +31,11 @@ import {
   PageFooter,
   PageGrid,
 } from './LayoutSlots';
+
 import { SidebarNavigation } from './sidebar-navigation';
 
 export { BannerVariety, type BannerProps } from './banner';
+
 export type {
   GlobalNavigationAccountProps,
   GlobalNavigationActionProps,
@@ -43,6 +46,7 @@ export type {
   GlobalNavigationPrimaryProps,
   GlobalNavigationProps,
 } from './global-navigation';
+
 export type {
   ContentHeaderProps,
   ContentHeaderTitleProps,
@@ -50,13 +54,17 @@ export type {
   PageHeaderProps,
   PageHeaderTitleProps,
 } from './header';
+
 export type { LayoutProps } from './Layout';
 export type { AsideProps, PageGridProps } from './LayoutSlots';
 export { AsideSize, PageWidth } from './LayoutTypes';
+
 export type {
+  SidebarNavigationAccordionChildItemProps,
   SidebarNavigationAccordionItemProps,
   SidebarNavigationGroupProps,
   SidebarNavigationHeaderProps,
+  SidebarNavigationItemBaseProps,
   SidebarNavigationItemProps,
   SidebarNavigationProps,
 } from './sidebar-navigation';
@@ -354,6 +362,7 @@ export const Layout = Object.assign(LayoutRoot, {
    * - {@link SidebarNavigation.Group} - Grouped navigation sections
    * - {@link SidebarNavigation.Item} - Individual navigation items
    * - {@link SidebarNavigation.AccordionItem} - Expandable sections
+   * - {@link SidebarNavigation.AccordionItem.Item} - Navigation rows within accordion sections
    * - {@link SidebarNavigation.Footer} - Fixed footer section
    *
    * ```tsx
