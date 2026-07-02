@@ -22,11 +22,12 @@ import { matchers } from '@emotion/jest';
 import { screen } from '@testing-library/react';
 import { renderWithMemoryRouter } from '~common/helpers/test-utils';
 import { IconBranch, IconExpand, IconGitBranch } from '../../../icons';
+import { SidebarNavigationAccordionChildItem } from '../SidebarNavigationAccordionChildItem';
+
 import {
   SidebarNavigationAccordionItem,
   SidebarNavigationAccordionItemProps,
 } from '../SidebarNavigationAccordionItem';
-import { SidebarNavigationItem } from '../SidebarNavigationItem';
 
 expect.extend(matchers);
 
@@ -68,6 +69,18 @@ it("shouldn't have any a11y violation", async () => {
   await expect(container).toHaveNoA11yViolations();
 });
 
+it('should use ariaLabel as the accessible name', () => {
+  setupSidebarNavigationAccordionItem({ ariaLabel: 'Accordion button label' });
+
+  expect(screen.getByRole('button', { name: 'Accordion button label' })).toBeInTheDocument();
+});
+
+it('should render a button trigger that does not submit surrounding forms', () => {
+  setupSidebarNavigationAccordionItem();
+
+  expect(screen.getByRole('button', { name: 'Accordion Item' })).toHaveAttribute('type', 'button');
+});
+
 describe('ellipsis behavior', () => {
   it('should show tooltip by default', async () => {
     const { user } = setupSidebarNavigationAccordionItem();
@@ -100,17 +113,18 @@ it('should scroll the last child into view when opened with scrollLastChildIntoV
   globalThis.HTMLElement.prototype.scrollIntoView = () => {};
 });
 
-describe('integration with SidebarNavigationItem', () => {
+describe('integration with SidebarNavigationAccordionChildItem', () => {
   it('should set CSS custom properties and active class on children', () => {
     setupSidebarNavigationAccordionItem({
       children: (
         <>
-          <SidebarNavigationItem Icon={IconGitBranch} to="/initial">
+          <SidebarNavigationAccordionChildItem Icon={IconGitBranch} to="/initial">
             Sub Item 1
-          </SidebarNavigationItem>
-          <SidebarNavigationItem Icon={IconGitBranch} to="/sub-item-2">
+          </SidebarNavigationAccordionChildItem>
+
+          <SidebarNavigationAccordionChildItem Icon={IconGitBranch} to="/sub-item-2">
             Sub Item 2
-          </SidebarNavigationItem>
+          </SidebarNavigationAccordionChildItem>
         </>
       ),
     });
@@ -127,6 +141,7 @@ describe('integration with SidebarNavigationItem', () => {
       'display',
       'var(--sidebar-navigation-accordion-children-display, flex)',
     );
+
     expect(subItem2).toHaveStyleRule(
       'display',
       'var(--sidebar-navigation-accordion-children-display, flex)',
@@ -137,6 +152,7 @@ describe('integration with SidebarNavigationItem', () => {
       'visibility',
       'var(--sidebar-navigation-accordion-children-visibility, visible)',
     );
+
     expect(subItem2).toHaveStyleRule(
       'visibility',
       'var(--sidebar-navigation-accordion-children-visibility, visible)',
@@ -147,10 +163,30 @@ describe('integration with SidebarNavigationItem', () => {
       'outline',
       'var(--sidebar-navigation-accordion-children-outline)',
     );
+
     expect(subItem2).toHaveStyleRule(
       'outline',
       'var(--sidebar-navigation-accordion-children-outline)',
     );
+  });
+
+  it('should render child items with and without icons', () => {
+    setupSidebarNavigationAccordionItem({
+      children: (
+        <>
+          <SidebarNavigationAccordionChildItem isActive to="/initial">
+            Sub Item 1
+          </SidebarNavigationAccordionChildItem>
+
+          <SidebarNavigationAccordionChildItem Icon={IconGitBranch} to="/sub-item-2">
+            Sub Item 2
+          </SidebarNavigationAccordionChildItem>
+        </>
+      ),
+    });
+
+    expect(screen.getByRole('link', { name: 'Sub Item 1' })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'Sub Item 2' })).toBeInTheDocument();
   });
 });
 
@@ -167,12 +203,13 @@ function setupSidebarNavigationAccordionItem(
       <SidebarNavigationAccordionItem Icon={IconExpand} label="Accordion Item" {...props}>
         {props.children ?? (
           <>
-            <SidebarNavigationItem Icon={IconBranch} isActive to="/sub-item-1">
+            <SidebarNavigationAccordionChildItem Icon={IconBranch} isActive to="/sub-item-1">
               Sub Item 1
-            </SidebarNavigationItem>
-            <SidebarNavigationItem Icon={IconBranch} to="/sub-item-2">
+            </SidebarNavigationAccordionChildItem>
+
+            <SidebarNavigationAccordionChildItem Icon={IconBranch} to="/sub-item-2">
               Sub Item 2
-            </SidebarNavigationItem>
+            </SidebarNavigationAccordionChildItem>
           </>
         )}
       </SidebarNavigationAccordionItem>

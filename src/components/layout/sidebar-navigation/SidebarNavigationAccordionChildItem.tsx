@@ -25,16 +25,18 @@ import {
   SidebarNavigationItemBaseProps,
 } from './SidebarNavigationTypes';
 
-export interface SidebarNavigationItemProps extends SidebarNavigationItemBaseProps {
+export interface SidebarNavigationAccordionChildItemProps extends SidebarNavigationItemBaseProps {
   /**
-   * The icon component to display at the start of the SidebarNavigationItem.
-   * Must be an Echoes Icon component.
+   * The icon component to display at the start of the SidebarNavigationAccordionChildItem.
+   * Must be an Echoes Icon component. Omit it for icon-less accordion child rows.
    */
-  Icon: SidebarNavigationIconComponent;
+  Icon?: SidebarNavigationIconComponent;
 }
 
-export function SidebarNavigationItem(props: Readonly<SidebarNavigationItemProps>) {
+export function SidebarNavigationAccordionChildItem(
+  props: Readonly<SidebarNavigationAccordionChildItemProps>,
+) {
   return <SidebarNavigationBaseItem {...props} />;
 }
 
-SidebarNavigationItem.displayName = 'SidebarNavigationItem';
+SidebarNavigationAccordionChildItem.displayName = 'SidebarNavigationAccordionChildItem';
