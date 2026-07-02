@@ -38,11 +38,10 @@ export const CardStyled = styled.div`
 `;
 CardStyled.displayName = 'CardStyled';
 
-export const CardHeaderStyled = styled.header<{ noPadding: boolean }>`
+export const CardHeaderStyled = styled.header<{ disablePadding: boolean }>`
   align-items: center;
   display: flex;
-  min-height: var(--card-header-min-height);
-  ${({ noPadding }) => (noPadding ? '' : 'padding: var(--card-header-padding);')}
+  ${({ disablePadding }) => (disablePadding ? '' : 'padding: var(--card-header-padding);')}
 `;
 CardHeaderStyled.displayName = 'CardHeaderStyled';
 
@@ -66,7 +65,6 @@ export const RightContentStyled = styled.div`
   align-items: center;
   display: flex;
   gap: ${cssVar('dimension-space-100')};
-  max-height: var(--card-header-heading-height);
 `;
 RightContentStyled.displayName = 'RightContentStyled';
 
@@ -86,7 +84,9 @@ export const CardHeaderTitleButtonStyled = styled(ButtonStyled)`
   display: flex;
   flex-direction: row;
   flex: 1;
-  min-height: var(--card-header-min-height);
+  /* ButtonStyled sets fixed dimensions; this header button sizes from padding instead. */
+  height: auto;
+  min-height: auto;
   padding: var(--card-header-padding);
 
   border-bottom-right-radius: 0;
@@ -94,9 +94,8 @@ export const CardHeaderTitleButtonStyled = styled(ButtonStyled)`
 `;
 CardHeaderTitleButtonStyled.displayName = 'CardHeaderTitleButtonStyled';
 
-export const CardBodyStyled = styled.div<{ size: `${CardSize}`; insetContent: boolean }>`
+export const CardBodyStyled = styled.div<{ insetContent: boolean }>`
   box-sizing: border-box;
-  min-height: var(--card-body-min-height);
   padding: ${(props) => (props.insetContent ? '0' : 'var(--card-padding)')};
   width: 100%;
 
@@ -108,33 +107,24 @@ CardBodyStyled.displayName = 'CardBodyStyled';
 
 export const CARD_HEADER_SIZE_STYLES = {
   [CardSize.Large]: {
-    '--card-header-heading-height': '1.875rem',
-    '--card-header-min-height': '58px',
-    '--card-header-padding': `${cssVar('dimension-space-200')} ${cssVar('dimension-space-300')}`,
+    '--card-header-padding': `${cssVar('dimension-space-250')} ${cssVar('dimension-space-300')}`,
   },
   [CardSize.Medium]: {
-    '--card-header-heading-height': '1.5rem',
-    '--card-header-min-height': '45px',
     '--card-header-padding': `${cssVar('dimension-space-150')} ${cssVar('dimension-space-200')}`,
   },
   [CardSize.Small]: {
-    '--card-header-heading-height': '1.25rem',
-    '--card-header-min-height': '36px',
     '--card-header-padding': `${cssVar('dimension-space-100')} ${cssVar('dimension-space-150')}`,
   },
 };
 
 export const CARD_SIZE_STYLES = {
   [CardSize.Large]: {
-    '--card-body-min-height': '108px',
     '--card-padding': cssVar('dimension-space-300'),
   },
   [CardSize.Medium]: {
-    '--card-body-min-height': '92px',
     '--card-padding': cssVar('dimension-space-200'),
   },
   [CardSize.Small]: {
-    '--card-body-min-height': '84px',
     '--card-padding': cssVar('dimension-space-150'),
   },
 };

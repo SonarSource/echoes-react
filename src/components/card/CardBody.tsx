@@ -38,12 +38,7 @@ export const CardBody = React.forwardRef<HTMLDivElement, Readonly<CardBodyProps>
     }
 
     return (
-      <CardBodyStyled
-        className={className}
-        css={sizeStyles}
-        insetContent={insetContent}
-        ref={ref}
-        size={size}>
+      <CardBodyStyled className={className} css={sizeStyles} insetContent={insetContent} ref={ref}>
         {children}
       </CardBodyStyled>
     );
