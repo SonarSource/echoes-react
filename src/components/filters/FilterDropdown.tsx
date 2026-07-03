@@ -39,7 +39,11 @@ import {
   StyledFooter,
   StyledLeftPanel,
 } from './FilterDropdownStyles';
-import { FilterDropdownCategory, FilterDropdownProps } from './FilterDropdownTypes';
+import {
+  FilterDropdownCategory,
+  FilterDropdownProps,
+  isCategoryWithContent,
+} from './FilterDropdownTypes';
 import { useFilterDropdownKeyboardThrottle } from './useFilterDropdownKeyboardThrottle';
 import { useFilterDropdownRovingFocus } from './useFilterDropdownRovingFocus';
 
@@ -181,6 +185,9 @@ export function FilterDropdown(props: Readonly<FilterDropdownProps>) {
 
   const getCategorySelectionCount = useCallback(
     (category: FilterDropdownCategory) => {
+      if (isCategoryWithContent(category)) {
+        return category.selectionCount ?? 0;
+      }
       if (!isDefined(category.items)) {
         return 0;
       }

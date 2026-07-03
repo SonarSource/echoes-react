@@ -89,6 +89,12 @@ StyledItemsList.displayName = 'StyledItemsList';
 export const StyledItemsListRadioGroup = StyledItemsList.withComponent(RadixRadioGroup.Root);
 StyledItemsListRadioGroup.displayName = 'StyledItemsListRadioGroup';
 
+export const StyledCustomContent = styled.div`
+  flex: 1 1 auto;
+  overflow: auto;
+`;
+StyledCustomContent.displayName = 'StyledCustomContent';
+
 export const StyledSpinnerWrapper = styled.div`
   display: flex;
   align-items: center;

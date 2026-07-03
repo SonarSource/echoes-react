@@ -19,7 +19,7 @@
  */
 
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useMemo, useRef, useState } from 'react';
 import {
   FilterDropdown,
   FilterDropdownCategory,
@@ -95,14 +95,35 @@ function withRandomCounts<T extends { label: string; value: string }>(
   }));
 }
 
+function DateRangeContent({ ref }: Readonly<{ ref?: React.Ref<HTMLInputElement> }>) {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', padding: '16px' }}>
+      <p style={{ margin: 0 }}>
+        This is a custom component rendered inside the right panel. Arrow keys navigate between
+        panels; interaction within is managed by the consumer.
+      </p>
+      <label style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+        {'From'}
+        <input ref={ref} type="date" />
+      </label>
+      <label style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+        {'To'}
+        <input type="date" />
+      </label>
+    </div>
+  );
+}
+
 /**
  * Builds the shared category set used by all stories:
  * - Severity: multi-select, sync items
  * - Type: single-select, sync items
  * - Status: multi-select, client-side search, sync items
  * - Assignee: multi-select, async items, server-side search
+ * - Date Range: custom content
  */
 function useFilterDropdownCategories() {
+  const dateInputRef = useRef<HTMLInputElement>(null);
   const [assigneeItems, setAssigneeItems] = useState<FilterDropdownCategory['items']>(undefined);
 
   const handleCategorySelect = useCallback(
@@ -141,6 +162,13 @@ function useFilterDropdownCategories() {
         label: 'Assignee',
         labelSearchPlaceholder: 'Search assignees…',
         onSearch: handleAssigneeSearch,
+      },
+      {
+        content: <DateRangeContent ref={dateInputRef} />,
+        onFocusContent: () => {
+          dateInputRef.current?.focus();
+        },
+        label: 'Date Range',
       },
     ],
     [assigneeItems, handleAssigneeSearch],
