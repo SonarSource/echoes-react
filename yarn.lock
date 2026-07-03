@@ -2571,14 +2571,76 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@formatjs/cli@npm:6.13.0":
-  version: 6.13.0
-  resolution: "@formatjs/cli@npm:6.13.0"
+"@formatjs/cli-native-darwin-arm64@npm:1.1.5":
+  version: 1.1.5
+  resolution: "@formatjs/cli-native-darwin-arm64@npm:1.1.5"
+  conditions: os=darwin & cpu=arm64
+  languageName: node
+  linkType: hard
+
+"@formatjs/cli-native-linux-arm64-musl@npm:1.0.3":
+  version: 1.0.3
+  resolution: "@formatjs/cli-native-linux-arm64-musl@npm:1.0.3"
+  conditions: os=linux & cpu=arm64 & libc=musl
+  languageName: node
+  linkType: hard
+
+"@formatjs/cli-native-linux-arm64@npm:1.2.5":
+  version: 1.2.5
+  resolution: "@formatjs/cli-native-linux-arm64@npm:1.2.5"
+  conditions: os=linux & cpu=arm64 & libc=glibc
+  languageName: node
+  linkType: hard
+
+"@formatjs/cli-native-linux-x64-musl@npm:1.0.3":
+  version: 1.0.3
+  resolution: "@formatjs/cli-native-linux-x64-musl@npm:1.0.3"
+  conditions: os=linux & cpu=x64 & libc=musl
+  languageName: node
+  linkType: hard
+
+"@formatjs/cli-native-linux-x64@npm:1.1.5":
+  version: 1.1.5
+  resolution: "@formatjs/cli-native-linux-x64@npm:1.1.5"
+  conditions: os=linux & cpu=x64 & libc=glibc
+  languageName: node
+  linkType: hard
+
+"@formatjs/cli-native-win32-x64@npm:1.1.6":
+  version: 1.1.6
+  resolution: "@formatjs/cli-native-win32-x64@npm:1.1.6"
+  conditions: os=win32 & cpu=x64
+  languageName: node
+  linkType: hard
+
+"@formatjs/cli@npm:6.16.11":
+  version: 6.16.11
+  resolution: "@formatjs/cli@npm:6.16.11"
+  dependencies:
+    "@formatjs/cli-native-darwin-arm64": "npm:1.1.5"
+    "@formatjs/cli-native-linux-arm64": "npm:1.2.5"
+    "@formatjs/cli-native-linux-arm64-musl": "npm:1.0.3"
+    "@formatjs/cli-native-linux-x64": "npm:1.1.5"
+    "@formatjs/cli-native-linux-x64-musl": "npm:1.0.3"
+    "@formatjs/cli-native-win32-x64": "npm:1.1.6"
   peerDependencies:
     "@glimmer/syntax": ^0.84.3 || ^0.95.0
-    "@vue/compiler-core": 3.5.27
+    "@vue/compiler-core": ^3.5.0
     content-tag: ^4.1.0
-    vue: 3.5.27
+    vue: ^3.5.0
+  dependenciesMeta:
+    "@formatjs/cli-native-darwin-arm64":
+      optional: true
+    "@formatjs/cli-native-linux-arm64":
+      optional: true
+    "@formatjs/cli-native-linux-arm64-musl":
+      optional: true
+    "@formatjs/cli-native-linux-x64":
+      optional: true
+    "@formatjs/cli-native-linux-x64-musl":
+      optional: true
+    "@formatjs/cli-native-win32-x64":
+      optional: true
   peerDependenciesMeta:
     "@glimmer/env":
       optional: true
@@ -2596,7 +2658,7 @@ __metadata:
       optional: true
   bin:
     formatjs: bin/formatjs
-  checksum: 10/2d6e38bbf26c45f680b867838b844a1db8d4599ca233abec6b148452912e571ee9f1578da01e67411f82d373a3e152a309455edc8e8c26bc036d56fa34abcb39
+  checksum: 10/5ec655309b7f61818b7a5b5ef241e2d131d37f84567e5d5b35a4d0491288465dab1cb2c1d3f85812b19dae02f6013fca111fce2e2dec17f173a6985014f78437
   languageName: node
   linkType: hard
 
@@ -3474,18 +3536,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@radix-ui/react-checkbox@npm:1.3.3":
-  version: 1.3.3
-  resolution: "@radix-ui/react-checkbox@npm:1.3.3"
+"@radix-ui/react-checkbox@npm:1.3.5":
+  version: 1.3.5
+  resolution: "@radix-ui/react-checkbox@npm:1.3.5"
   dependencies:
-    "@radix-ui/primitive": "npm:1.1.3"
-    "@radix-ui/react-compose-refs": "npm:1.1.2"
-    "@radix-ui/react-context": "npm:1.1.2"
-    "@radix-ui/react-presence": "npm:1.1.5"
-    "@radix-ui/react-primitive": "npm:2.1.3"
-    "@radix-ui/react-use-controllable-state": "npm:1.2.2"
-    "@radix-ui/react-use-previous": "npm:1.1.1"
-    "@radix-ui/react-use-size": "npm:1.1.1"
+    "@radix-ui/primitive": "npm:1.1.4"
+    "@radix-ui/react-compose-refs": "npm:1.1.3"
+    "@radix-ui/react-context": "npm:1.1.4"
+    "@radix-ui/react-presence": "npm:1.1.6"
+    "@radix-ui/react-primitive": "npm:2.1.6"
+    "@radix-ui/react-use-controllable-state": "npm:1.2.3"
+    "@radix-ui/react-use-previous": "npm:1.1.2"
+    "@radix-ui/react-use-size": "npm:1.1.2"
   peerDependencies:
     "@types/react": "*"
     "@types/react-dom": "*"
@@ -3496,7 +3558,7 @@ __metadata:
       optional: true
     "@types/react-dom":
       optional: true
-  checksum: 10/1c3262f4b76c1bcef04f2aa78f99b489135a7ee6e5d3b38c565c0a20d33137113a7ca45f95c495bd21f9943aeae7a11f7599c72a67f01a1921c06667d8ccea01
+  checksum: 10/034894529890157ea7f1cbfbfa1ce862a61b5e0aa80fe0ea8b4fa5f9eba8947933ae07f46dfdf59527d9d7b7470c6ed8ab766a76592edc6d33fa06e126f21145
   languageName: node
   linkType: hard
 
@@ -4117,21 +4179,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@radix-ui/react-slot@npm:1.2.5":
-  version: 1.2.5
-  resolution: "@radix-ui/react-slot@npm:1.2.5"
-  dependencies:
-    "@radix-ui/react-compose-refs": "npm:1.1.3"
-  peerDependencies:
-    "@types/react": "*"
-    react: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
-  peerDependenciesMeta:
-    "@types/react":
-      optional: true
-  checksum: 10/dbc0785979547111ba584e978ae25695f4b6c7dbc2f369a1078910841ece38785ce55a1e1bd5f92c940ed4e48a09ee110714d5e7cf354284b2d92677bb31959d
-  languageName: node
-  linkType: hard
-
 "@radix-ui/react-slot@npm:1.3.0":
   version: 1.3.0
   resolution: "@radix-ui/react-slot@npm:1.3.0"
@@ -4673,18 +4720,18 @@ __metadata:
     "@emotion/styled": "npm:11.14.1"
     "@emotion/utils": "npm:1.4.2"
     "@figma/code-connect": "npm:1.4.8"
-    "@formatjs/cli": "npm:6.13.0"
+    "@formatjs/cli": "npm:6.16.11"
     "@mantine/core": "patch:@mantine/core@7.12.2#./.yarn/patches/@mantine-core-npm-7.12.2-7aad505c0f.patch"
     "@mantine/hooks": "npm:7.12.2"
     "@material-symbols/font-400": "npm:0.40.2"
     "@radix-ui/react-alert-dialog": "npm:1.1.17"
-    "@radix-ui/react-checkbox": "npm:1.3.3"
+    "@radix-ui/react-checkbox": "npm:1.3.5"
     "@radix-ui/react-dialog": "npm:1.1.17"
     "@radix-ui/react-dropdown-menu": "npm:2.1.18"
     "@radix-ui/react-navigation-menu": "npm:1.2.16"
     "@radix-ui/react-popover": "npm:1.1.17"
     "@radix-ui/react-radio-group": "patch:@radix-ui/react-radio-group@npm%3A1.3.8#./.yarn/patches/@radix-ui-react-radio-group-npm-1.3.8-6cdda6336a.patch"
-    "@radix-ui/react-slot": "npm:1.2.5"
+    "@radix-ui/react-slot": "npm:1.3.0"
     "@radix-ui/react-toggle-group": "npm:1.1.13"
     "@radix-ui/react-tooltip": "npm:1.2.10"
     "@radix-ui/react-visually-hidden": "npm:1.2.6"
@@ -6233,10 +6280,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axe-core@npm:4.11.1":
-  version: 4.11.1
-  resolution: "axe-core@npm:4.11.1"
-  checksum: 10/bbc8e8959258a229b92fbaa73437050825579815051cac7b0fdbb6752946fea226e403bfeeef3d60d712477bdd4c01afdc8455f27c3d85e4251df88b032b6250
+"axe-core@npm:4.12.1":
+  version: 4.12.1
+  resolution: "axe-core@npm:4.12.1"
+  checksum: 10/08c2ff348524b57dfb68f4e866b1a6363147203b721c734ed00090c16eb911cd015cf71fd96a8bafe42609715f649d21b2e188fae622ac8ef6144b144582f6c4
   languageName: node
   linkType: hard
 
