@@ -69,15 +69,12 @@ describe('Button', () => {
     [ButtonVariety.DefaultGhost, cssVar('color-icon-default'), cssVar('color-border-bold')],
     [ButtonVariety.Primary, cssVar('color-icon-on-color'), cssVar('color-border-bold')],
     [ButtonVariety.Danger, cssVar('color-icon-on-color'), cssVar('color-background-danger-active')],
-  ])(
-    'defines %s spinner arc and track sentiment tokens',
-    (variety, spinnerColor, trackColor) => {
-      expect(BUTTON_VARIETY_STYLES[variety]).toMatchObject({
-        '--spinner-color-override': spinnerColor,
-        '--spinner-track-color-override': trackColor,
-      });
-    },
-  );
+  ])('defines %s spinner arc and track sentiment tokens', (variety, spinnerColor, trackColor) => {
+    expect(BUTTON_VARIETY_STYLES[variety]).toMatchObject({
+      '--spinner-color-override': spinnerColor,
+      '--spinner-track-color-override': trackColor,
+    });
+  });
 
   it.each([
     [ButtonVariety.PrimaryGhost, cssVar('color-border-accent-default')],
