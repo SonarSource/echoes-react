@@ -19,22 +19,10 @@
  */
 import styled from '@emotion/styled';
 import { Spinner } from './Spinner';
-
-import { cssVar } from '~utils/design-tokens';
+import { SPINNER_DEFAULT_COLOR, SPINNER_DEFAULT_TRACK_COLOR } from './SpinnerStyles';
 
 export const SpinnerOverrideColor = styled(Spinner)`
-  --spinner-background:
-    linear-gradient(
-        0deg,
-        var(--spinner-color-override, ${cssVar('color-background-accent-default')}) 50%,
-        transparent 50% 100%
-      )
-      border-box,
-    linear-gradient(
-        90deg,
-        var(--spinner-color-override, ${cssVar('color-background-accent-default')}) 25%,
-        transparent 75% 100%
-      )
-      border-box;
+  --spinner-color: var(--spinner-color-override, ${SPINNER_DEFAULT_COLOR});
+  --spinner-track-color: var(--spinner-track-color-override, ${SPINNER_DEFAULT_TRACK_COLOR});
 `;
 SpinnerOverrideColor.displayName = 'SpinnerOverrideColor';

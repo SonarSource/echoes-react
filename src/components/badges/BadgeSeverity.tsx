@@ -348,6 +348,8 @@ const BADGE_SEVERITY_ICON = {
 const BADGE_SEVERITY_BLOCKER_STYLE = {
   '--badge-severity-color': cssVar('severity-badge-colors-foreground-blocker-text-default'),
   '--badge-severity-border-color': cssVar('severity-badge-colors-borders-blocker-default'),
+  '--spinner-color-override': cssVar('severity-badge-colors-foreground-blocker-icon-default'),
+  '--spinner-track-color-override': cssVar('color-border-bold'),
   '--badge-severity-background-color': cssVar(
     'severity-badge-colors-background-severity-blocker-prefix-default',
   ),
@@ -362,6 +364,8 @@ const BADGE_SEVERITY_BLOCKER_STYLE = {
 const BADGE_SEVERITY_HIGH_STYLE = {
   '--badge-severity-color': cssVar('severity-badge-colors-foreground-high-text-default'),
   '--badge-severity-border-color': cssVar('severity-badge-colors-borders-high-default'),
+  '--spinner-color-override': cssVar('severity-badge-colors-foreground-high-icon-default'),
+  '--spinner-track-color-override': cssVar('color-border-bold'),
   '--badge-severity-background-color': cssVar(
     'severity-badge-colors-background-severity-high-prefix-default',
   ),
@@ -376,6 +380,8 @@ const BADGE_SEVERITY_HIGH_STYLE = {
 const BADGE_SEVERITY_LOW_STYLE = {
   '--badge-severity-color': cssVar('severity-badge-colors-foreground-low-text-default'),
   '--badge-severity-border-color': cssVar('severity-badge-colors-borders-low-default'),
+  '--spinner-color-override': cssVar('severity-badge-colors-foreground-low-icon-default'),
+  '--spinner-track-color-override': cssVar('color-border-bold'),
   '--badge-severity-background-color': cssVar(
     'severity-badge-colors-background-severity-low-prefix-default',
   ),
@@ -390,6 +396,8 @@ const BADGE_SEVERITY_LOW_STYLE = {
 const BADGE_SEVERITY_MEDIUM_STYLE = {
   '--badge-severity-color': cssVar('severity-badge-colors-foreground-medium-text-default'),
   '--badge-severity-border-color': cssVar('severity-badge-colors-borders-medium-default'),
+  '--spinner-color-override': cssVar('severity-badge-colors-foreground-medium-icon-default'),
+  '--spinner-track-color-override': cssVar('color-border-bold'),
   '--badge-severity-background-color': cssVar(
     'severity-badge-colors-background-severity-medium-prefix-default',
   ),
@@ -404,6 +412,8 @@ const BADGE_SEVERITY_MEDIUM_STYLE = {
 const BADGE_SEVERITY_INFO_STYLE = {
   '--badge-severity-color': cssVar('severity-badge-colors-foreground-info-text-default'),
   '--badge-severity-border-color': cssVar('severity-badge-colors-borders-info-default'),
+  '--spinner-color-override': cssVar('severity-badge-colors-foreground-info-icon-default'),
+  '--spinner-track-color-override': cssVar('color-border-bold'),
   '--badge-severity-background-color': cssVar(
     'severity-badge-colors-background-severity-info-prefix-default',
   ),
@@ -414,7 +424,7 @@ const BADGE_SEVERITY_INFO_STYLE = {
     'severity-badge-colors-background-severity-info-suffix-hover',
   ),
 };
-const BADGE_SEVERITY_STYLES = {
+export const BADGE_SEVERITY_STYLES = {
   [BadgeSeverityLevel.Blocker]: BADGE_SEVERITY_BLOCKER_STYLE,
   [BadgeSeverityLevel.High]: BADGE_SEVERITY_HIGH_STYLE,
   [BadgeSeverityLevel.Info]: BADGE_SEVERITY_INFO_STYLE,
