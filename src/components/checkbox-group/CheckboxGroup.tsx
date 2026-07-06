@@ -26,6 +26,7 @@ import { type CheckboxProps, Checkbox } from '../checkbox/Checkbox';
 import {
   type ValidationProps,
   FormField,
+  FormFieldLabelSpacing,
   FormFieldProps,
   FormFieldValidation,
 } from '../form/FormField';
@@ -123,6 +124,7 @@ export const CheckboxGroup: CheckboxGroup = forwardRef<HTMLDivElement, CheckboxG
         isRequired={isRequired}
         label={label}
         labelId={labelId}
+        labelSpacing={FormFieldLabelSpacing.Large}
         messageInvalid={messageInvalid}
         messageValid={messageValid}
         validation={validation}

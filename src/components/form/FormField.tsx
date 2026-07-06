@@ -22,9 +22,11 @@ import { type ComponentProps, type JSX, forwardRef } from 'react';
 import { TextNodeOptional } from '~types/utils';
 import { MessageInline, MessageInlineSize, MessageVariety } from '../messages';
 import { HelperText } from '../typography';
-import { FormFieldLabel, FormFieldLabelProps } from './FormFieldLabel';
+import { FormFieldLabel, FormFieldLabelProps, FormFieldLabelSpacing } from './FormFieldLabel';
 
 import { cssVar } from '~utils/design-tokens';
+
+export { FormFieldLabelSpacing };
 
 /**
  * Form fields wrap form controls and help create standardization between them.
@@ -62,6 +64,7 @@ export const FormField = forwardRef<HTMLDivElement, FormFieldProps>((props, ref)
     isRequired = false,
     label,
     labelId,
+    labelSpacing = FormFieldLabelSpacing.Default,
     messageInvalid,
     messageValid,
     validation,
@@ -89,7 +92,8 @@ export const FormField = forwardRef<HTMLDivElement, FormFieldProps>((props, ref)
         htmlFor={controlId}
         id={labelId}
         isDisabled={isDisabled}
-        isRequired={isRequired}>
+        isRequired={isRequired}
+        spacing={labelSpacing}>
         {label}
       </FormFieldLabel>
       {children}
@@ -192,6 +196,12 @@ export interface FormFieldProps extends ValidationProps, WhiteListedProps {
    * The ID of the label for the form field (optional).
    */
   labelId?: FormFieldLabelProps['id'];
+  /**
+   * Controls the spacing between the label and the form control.
+   *
+   * @internal
+   */
+  labelSpacing?: `${FormFieldLabelSpacing}`;
   /**
    * The props for a help toggletip showing next to the form field label to provide additional information about the field (optional).
    */
