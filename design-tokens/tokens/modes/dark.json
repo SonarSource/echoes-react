@@ -918,6 +918,70 @@
           "$type": "color",
           "$value": "{echoes.color.palette.indigo.200}"
         }
+      },
+      "charts": {
+        "categorical": {
+          "1": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.chart.categorical.cobalt}"
+          },
+          "2": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.chart.categorical.pink}"
+          },
+          "3": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.chart.categorical.teal}"
+          },
+          "4": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.chart.categorical.violet}"
+          },
+          "5": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.chart.categorical.sienna}"
+          },
+          "6": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.chart.categorical.navy.2}"
+          },
+          "7": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.chart.categorical.magenta.2}"
+          },
+          "8": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.chart.categorical.jade.2}"
+          }
+        },
+        "severity": {
+          "blocker": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.chart.severity.crimson.2}"
+          },
+          "high": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.chart.severity.crimson.3}"
+          },
+          "medium": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.chart.severity.amber.2}"
+          },
+          "low": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.chart.severity.ochre.2}"
+          },
+          "info": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.chart.severity.steel-blue.2}"
+          }
+        },
+        "placeholder": {
+          "default": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.chart.placeholder.stone.1}"
+          }
+        }
       }
     },
     "boxShadow": {

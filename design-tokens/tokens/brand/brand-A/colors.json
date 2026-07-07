@@ -641,6 +641,114 @@
             "$type": "color",
             "$value": "#3f186b"
           }
+        },
+        "chart": {
+          "categorical": {
+            "cobalt": {
+              "$type": "color",
+              "$value": "#3b82d4"
+            },
+            "pink": {
+              "$type": "color",
+              "$value": "#d74a78"
+            },
+            "teal": {
+              "$type": "color",
+              "$value": "#0f9383"
+            },
+            "violet": {
+              "$type": "color",
+              "$value": "#8a4fe9"
+            },
+            "sienna": {
+              "$type": "color",
+              "$value": "#d4713b"
+            },
+            "navy": {
+              "1": {
+                "$type": "color",
+                "$value": "#1b5da8"
+              },
+              "2": {
+                "$type": "color",
+                "$value": "#66adff"
+              }
+            },
+            "magenta": {
+              "1": {
+                "$type": "color",
+                "$value": "#ad2955"
+              },
+              "2": {
+                "$type": "color",
+                "$value": "#ff6699"
+              }
+            },
+            "jade": {
+              "1": {
+                "$type": "color",
+                "$value": "#00675b"
+              },
+              "2": {
+                "$type": "color",
+                "$value": "#66ffed"
+              }
+            }
+          },
+          "severity": {
+            "crimson": {
+              "1": {
+                "$type": "color",
+                "$value": "#670700"
+              },
+              "2": {
+                "$type": "color",
+                "$value": "#be342a"
+              },
+              "3": {
+                "$type": "color",
+                "$value": "#ff7066"
+              }
+            },
+            "amber": {
+              "1": {
+                "$type": "color",
+                "$value": "#ce7536"
+              },
+              "2": {
+                "$type": "color",
+                "$value": "#e98f4f"
+              }
+            },
+            "ochre": {
+              "1": {
+                "$type": "color",
+                "$value": "#ba8927"
+              },
+              "2": {
+                "$type": "color",
+                "$value": "#e1ae48"
+              }
+            },
+            "steel-blue": {
+              "1": {
+                "$type": "color",
+                "$value": "#2a83be"
+              },
+              "2": {
+                "$type": "color",
+                "$value": "#3b97d4"
+              }
+            }
+          },
+          "placeholder": {
+            "stone": {
+              "1": {
+                "$type": "color",
+                "$value": "#637192"
+              }
+            }
+          }
         }
       }
     }
