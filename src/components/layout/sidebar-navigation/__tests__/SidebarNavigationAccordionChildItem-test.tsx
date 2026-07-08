@@ -23,7 +23,11 @@ import { screen } from '@testing-library/react';
 import { createRef, type Ref } from 'react';
 import { renderWithMemoryRouter } from '~common/helpers/test-utils';
 import { IconBranch, IconClock } from '../../../icons';
-import { SidebarNavigationItem, SidebarNavigationItemProps } from '../SidebarNavigationItem';
+
+import {
+  SidebarNavigationAccordionChildItem,
+  SidebarNavigationAccordionChildItemProps,
+} from '../SidebarNavigationAccordionChildItem';
 
 expect.extend(matchers);
 
@@ -33,28 +37,34 @@ jest.mock('../utils', () => ({
 
 it('should handle onClick events', async () => {
   const handleClick = jest.fn();
-  const { user } = setupSidebarNavigationItem({ onClick: handleClick });
+  const { user } = setupSidebarNavigationAccordionChildItem({ onClick: handleClick });
 
   await user.click(screen.getByRole('link'));
   expect(handleClick).toHaveBeenCalledTimes(1);
 });
 
-it('should use ariaLabel as the accessible name', () => {
-  setupSidebarNavigationItem({ ariaLabel: 'Sidebar item label' });
+it('should render without an icon', () => {
+  setupSidebarNavigationAccordionChildItem();
 
-  expect(screen.getByRole('link', { name: 'Sidebar item label' })).toBeInTheDocument();
+  expect(screen.getByRole('link', { name: 'Test Item' })).toBeInTheDocument();
+});
+
+it('should use ariaLabel as the accessible name', () => {
+  setupSidebarNavigationAccordionChildItem({ ariaLabel: 'Accordion child item label' });
+
+  expect(screen.getByRole('link', { name: 'Accordion child item label' })).toBeInTheDocument();
 });
 
 it('should forward refs to the underlying link', () => {
   const ref = createRef<HTMLAnchorElement>();
-  setupSidebarNavigationItem({}, ref);
+  setupSidebarNavigationAccordionChildItem({}, ref);
 
   expect(ref.current).toBe(screen.getByRole('link', { name: 'Test Item' }));
 });
 
 describe('ellipsis behavior', () => {
   it('should show tooltip by default', async () => {
-    const { user } = setupSidebarNavigationItem();
+    const { user } = setupSidebarNavigationAccordionChildItem();
 
     await user.hover(screen.getByRole('link'));
     const tooltip = await screen.findByRole('tooltip');
@@ -63,7 +73,7 @@ describe('ellipsis behavior', () => {
   });
 
   it('should not show tooltip when disableTooltip prop is true', async () => {
-    const { user } = setupSidebarNavigationItem({ disableTooltip: true });
+    const { user } = setupSidebarNavigationAccordionChildItem({ disableTooltip: true });
 
     await user.hover(screen.getByRole('link'));
     expect(screen.queryByRole('tooltip')).not.toBeInTheDocument();
@@ -72,7 +82,7 @@ describe('ellipsis behavior', () => {
 
 describe('navigation behavior', () => {
   it('should navigate to the correct path', async () => {
-    const { user } = setupSidebarNavigationItem();
+    const { user } = setupSidebarNavigationAccordionChildItem();
 
     expect(screen.getByRole('link', { name: 'Test Item' })).toBeInTheDocument();
 
@@ -82,7 +92,7 @@ describe('navigation behavior', () => {
   });
 
   it('should navigate to the correct path with the keyboard', async () => {
-    const { user } = setupSidebarNavigationItem();
+    const { user } = setupSidebarNavigationAccordionChildItem();
 
     await user.tab();
     expect(screen.getByRole('link', { name: 'Test Item' })).toHaveFocus();
@@ -95,25 +105,28 @@ describe('navigation behavior', () => {
 
 describe('active state behavior', () => {
   it('should apply active class when isActive is true', () => {
-    setupSidebarNavigationItem({ isActive: true, disableIconWhenSidebarOpen: true });
+    setupSidebarNavigationAccordionChildItem({
+      isActive: true,
+      disableIconWhenSidebarOpen: true,
+    });
 
     expect(screen.getByRole('link')).toHaveClass('active');
   });
 
   it('should automatically apply active class for active link', () => {
-    setupSidebarNavigationItem({ to: '/initial' });
+    setupSidebarNavigationAccordionChildItem({ to: '/initial' });
 
     expect(screen.getByRole('link')).toHaveClass('active');
   });
 
   it('should not have active class when isActive is false', () => {
-    setupSidebarNavigationItem({ isActive: false, to: '/initial' });
+    setupSidebarNavigationAccordionChildItem({ isActive: false, to: '/initial' });
 
     expect(screen.getByRole('link')).not.toHaveClass('active');
   });
 
   it('should not have active class for non active link', () => {
-    setupSidebarNavigationItem({ to: '/second' });
+    setupSidebarNavigationAccordionChildItem({ to: '/second' });
 
     expect(screen.getByRole('link')).not.toHaveClass('active');
   });
@@ -121,41 +134,43 @@ describe('active state behavior', () => {
 
 describe('CSS custom properties for accordion integration', () => {
   it('should use CSS custom properties for display, visibility and outline', () => {
-    setupSidebarNavigationItem();
+    setupSidebarNavigationAccordionChildItem({ Icon: IconClock });
 
     const link = screen.getByRole('link');
 
-    // Check that display CSS custom property is used with fallback
     expect(link).toHaveStyleRule(
       'display',
       'var(--sidebar-navigation-accordion-children-display, flex)',
     );
 
-    // Check that visibility CSS custom property is used with fallback
     expect(link).toHaveStyleRule(
       'visibility',
       'var(--sidebar-navigation-accordion-children-visibility, visible)',
     );
 
-    // Check that outline CSS custom property is used (no fallback needed)
     expect(link).toHaveStyleRule('outline', 'var(--sidebar-navigation-accordion-children-outline)');
   });
 });
 
 it("shouldn't have any a11y violation", async () => {
-  const { container } = setupSidebarNavigationItem({ Icon: IconBranch });
+  const { container } = setupSidebarNavigationAccordionChildItem({ Icon: IconBranch });
   await expect(container).toHaveNoA11yViolations();
 });
 
-function setupSidebarNavigationItem(
-  props: Partial<SidebarNavigationItemProps> = {},
+it("shouldn't have any a11y violation without an icon", async () => {
+  const { container } = setupSidebarNavigationAccordionChildItem();
+  await expect(container).toHaveNoA11yViolations();
+});
+
+function setupSidebarNavigationAccordionChildItem(
+  props: Partial<SidebarNavigationAccordionChildItemProps> = {},
   ref?: Ref<HTMLAnchorElement>,
 ) {
   return renderWithMemoryRouter(
     <ul>
-      <SidebarNavigationItem Icon={IconClock} ref={ref} to="/second" {...props}>
+      <SidebarNavigationAccordionChildItem ref={ref} to="/second" {...props}>
         Test Item
-      </SidebarNavigationItem>
+      </SidebarNavigationAccordionChildItem>
     </ul>,
   );
 }
