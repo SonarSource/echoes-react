@@ -18,151 +18,119 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+import styled from '@emotion/styled';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { useState } from 'react';
-import {
-  Button,
-  Checkbox,
-  DropdownMenu,
-  FilterTag,
-  IconChevronDown,
-  IconFilter,
-  SearchInput,
-  Text,
-  Toolbar,
-  ToolbarProps,
-} from '../../src';
+import { cssVar, Toolbar } from '../../src';
 import { basicWrapperDecorator } from '../helpers/BasicWrapper';
 
-const meta: Meta<typeof Toolbar> = {
+interface SlotArgs {
+  ariaLabel: string;
+  datasetControls: number;
+  filterControls: number;
+  filterTags: number;
+  onClearAll: boolean;
+  searchInput: boolean;
+  selectAllControl: boolean;
+  sortControls: number;
+}
+
+const meta: Meta<SlotArgs> = {
   argTypes: {
-    datasetControls: { control: 'boolean' },
-    filterControls: { control: 'boolean' },
-    filterTags: { control: false },
+    ariaLabel: { control: 'text' },
+    datasetControls: { control: { type: 'number', min: 0, max: 5 } },
+    filterControls: { control: { type: 'number', min: 0, max: 5 } },
+    filterTags: { control: { type: 'number', min: 0, max: 5 } },
     onClearAll: { control: 'boolean' },
-    ref: { control: false },
     searchInput: { control: 'boolean' },
     selectAllControl: { control: 'boolean' },
-    sortControls: { control: 'boolean' },
+    sortControls: { control: { type: 'number', min: 0, max: 5 } },
   },
+  // @ts-expect-error -- SlotArgs intentionally replaces ToolbarProps for story controls
   component: Toolbar,
   decorators: [basicWrapperDecorator],
-  title: 'Echoes/Toolbar',
+  title: 'Echoes Components/Toolbar',
 };
 
 export default meta;
 
-type Story = StoryObj<typeof Toolbar>;
+type Story = StoryObj<SlotArgs>;
 
-const SEVERITIES = ['High', 'Medium', 'Low'];
-const SORT_OPTIONS = ['Last updated', 'Name', 'Severity'];
-
-function DefaultStory(props: Readonly<ToolbarProps>) {
-  const {
+export const Default: Story = {
+  args: {
+    ariaLabel: 'Toolbar slots overview',
+    datasetControls: 1,
+    filterControls: 2,
+    filterTags: 2,
+    onClearAll: true,
+    searchInput: true,
+    selectAllControl: true,
+    sortControls: 1,
+  },
+  render: ({
+    ariaLabel,
     datasetControls,
     filterControls,
+    filterTags,
     onClearAll,
     searchInput,
     selectAllControl,
     sortControls,
-    ...toolbarProps
-  } = props;
-
-  const [search, setSearch] = useState('');
-  const [selectAll, setSelectAll] = useState<boolean | 'indeterminate'>('indeterminate');
-  const [selectedSeverities, setSelectedSeverities] = useState<Set<string>>(new Set(['High']));
-  const [currentSort, setCurrentSort] = useState('Last updated');
-
-  function toggleSeverity(severity: string) {
-    setSelectedSeverities((prev) => {
-      const next = new Set(prev);
-      if (next.has(severity)) {
-        next.delete(severity);
-      } else {
-        next.add(severity);
-      }
-      return next;
-    });
-  }
-
-  return (
+    ...props
+  }) => (
     <Toolbar
-      {...toolbarProps}
+      ariaLabel={ariaLabel}
       datasetControls={
-        datasetControls ? (
-          <>
-            <Text>4 projects</Text>
-            <Button>Bulk action</Button>
-          </>
+        datasetControls > 0 ? (
+          <>{makeSlots(datasetControls, '#b39ddb', 'datasetControls')}</>
         ) : undefined
       }
       filterControls={
-        filterControls ? (
-          <DropdownMenu
-            items={SEVERITIES.map((severity) => (
-              <DropdownMenu.ItemButtonCheckable
-                isChecked={selectedSeverities.has(severity)}
-                key={severity}
-                onClick={() => toggleSeverity(severity)}>
-                {severity}
-              </DropdownMenu.ItemButtonCheckable>
-            ))}>
-            <Button prefix={<IconFilter />}>Filters</Button>
-          </DropdownMenu>
+        filterControls > 0 ? (
+          <>{makeSlots(filterControls, '#ffcc80', 'filterControls')}</>
         ) : undefined
       }
-      filterTags={[...selectedSeverities].map((severity) => (
-        <FilterTag key={severity} onDismiss={() => toggleSeverity(severity)}>
-          {`Severity: ${severity}`}
-        </FilterTag>
-      ))}
-      onClearAll={onClearAll ? () => setSelectedSeverities(new Set()) : undefined}
+      filterTags={makeSlots(filterTags, '#90caf9', 'filterTags')}
+      onClearAll={onClearAll && filterTags > 0 ? () => {} : undefined}
       searchInput={
         searchInput ? (
-          <SearchInput
-            onChange={setSearch}
-            placeholderLabel="Search issues"
-            value={search}
-            width="large"
-          />
+          <SlotBlock color="#a5d6a7" style={{ width: '160px' }}>
+            searchInput
+          </SlotBlock>
         ) : undefined
       }
       selectAllControl={
-        selectAllControl ? (
-          <Checkbox
-            ariaLabel="Select all"
-            checked={selectAll}
-            onCheck={(checked) => setSelectAll(checked)}
-          />
-        ) : undefined
+        selectAllControl ? <SlotBlock color="#ef9a9a">selectAllControl</SlotBlock> : undefined
       }
       sortControls={
-        sortControls ? (
-          <DropdownMenu
-            items={SORT_OPTIONS.map((option) => (
-              <DropdownMenu.ItemButton key={option} onClick={() => setCurrentSort(option)}>
-                {option}
-              </DropdownMenu.ItemButton>
-            ))}>
-            <Button suffix={<IconChevronDown />}>Sort: {currentSort}</Button>
-          </DropdownMenu>
-        ) : undefined
+        sortControls > 0 ? <>{makeSlots(sortControls, '#ffe082', 'sortControls')}</> : undefined
       }
+      {...props}
     />
-  );
-}
-
-export const Default: Story = {
-  args: {
-    ariaLabel: 'Issue filters and actions',
-    datasetControls: true,
-    filterControls: true,
-    labelClearAll: 'Clear filters',
-    labelEmptyFilterTags: 'No filters applied',
-    onClearAll: true as unknown as () => void,
-    searchInput: true,
-    selectAllControl: true,
-    sortControls: true,
-  },
-  render: (args) => <DefaultStory {...args} />,
+  ),
 };
+
+const SlotBlock = styled.div<{ color: string }>`
+  align-items: center;
+  background-color: ${({ color }) => color}33;
+  border: 2px solid ${({ color }) => color};
+  border-radius: ${cssVar('border-radius-200')};
+
+  font: ${cssVar('typography-code-default')};
+  color: ${cssVar('color-text-default')};
+
+  display: flex;
+  height: ${cssVar('dimension-height-800')};
+  justify-content: center;
+  padding: 0 ${cssVar('dimension-space-100')};
+  white-space: nowrap;
+`;
+
+SlotBlock.displayName = 'SlotBlock';
+
+function makeSlots(count: number, color: string, label: string) {
+  return Array.from({ length: count }, (_, i) => (
+    <SlotBlock color={color} key={i}>
+      {label} {i + 1}
+    </SlotBlock>
+  ));
+}
