@@ -39,7 +39,7 @@ type Story = StoryObj<typeof FilterTag>;
 
 export const Default: Story = {
   args: {
-    children: 'Severity',
+    children: 'Duplications: < 3%',
     onDismiss: () => {},
   },
 };

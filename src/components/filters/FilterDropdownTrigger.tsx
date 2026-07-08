@@ -21,6 +21,7 @@
 import { BadgeCounter, BadgeCounterVariety } from '../badges/BadgeCounter';
 import { Button } from '../buttons';
 import { ButtonAsButtonProps } from '../buttons/Button';
+import { IconFilter } from '../icons';
 import { IconChevronDown } from '../icons/IconChevronDown';
 
 export interface FilterDropdownTriggerProps extends Omit<ButtonAsButtonProps, 'suffix'> {
@@ -32,6 +33,7 @@ export function FilterDropdownTrigger(props: Readonly<FilterDropdownTriggerProps
   const { children, selectedCount, ...restProps } = props;
   return (
     <Button
+      prefix={<IconFilter />}
       {...restProps}
       suffix={
         <>
