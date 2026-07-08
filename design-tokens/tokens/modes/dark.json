@@ -923,63 +923,63 @@
         "categorical": {
           "1": {
             "$type": "color",
-            "$value": "{echoes.color.palette.chart.categorical.cobalt}"
+            "$value": "{echoes.color.palette.data.categorical.cobalt}"
           },
           "2": {
             "$type": "color",
-            "$value": "{echoes.color.palette.chart.categorical.pink}"
+            "$value": "{echoes.color.palette.data.categorical.pink}"
           },
           "3": {
             "$type": "color",
-            "$value": "{echoes.color.palette.chart.categorical.teal}"
+            "$value": "{echoes.color.palette.data.categorical.teal}"
           },
           "4": {
             "$type": "color",
-            "$value": "{echoes.color.palette.chart.categorical.violet}"
+            "$value": "{echoes.color.palette.data.categorical.violet}"
           },
           "5": {
             "$type": "color",
-            "$value": "{echoes.color.palette.chart.categorical.sienna}"
+            "$value": "{echoes.color.palette.data.categorical.sienna}"
           },
           "6": {
             "$type": "color",
-            "$value": "{echoes.color.palette.chart.categorical.navy.2}"
+            "$value": "{echoes.color.palette.data.categorical.navy.1}"
           },
           "7": {
             "$type": "color",
-            "$value": "{echoes.color.palette.chart.categorical.magenta.2}"
+            "$value": "{echoes.color.palette.data.categorical.magenta.1}"
           },
           "8": {
             "$type": "color",
-            "$value": "{echoes.color.palette.chart.categorical.jade.2}"
+            "$value": "{echoes.color.palette.data.categorical.jade.1}"
           }
         },
         "severity": {
           "blocker": {
             "$type": "color",
-            "$value": "{echoes.color.palette.chart.severity.crimson.2}"
+            "$value": "{echoes.color.palette.data.severity.crimson.2}"
           },
           "high": {
             "$type": "color",
-            "$value": "{echoes.color.palette.chart.severity.crimson.3}"
+            "$value": "{echoes.color.palette.data.severity.crimson.1}"
           },
           "medium": {
             "$type": "color",
-            "$value": "{echoes.color.palette.chart.severity.amber.2}"
+            "$value": "{echoes.color.palette.data.severity.amber.1}"
           },
           "low": {
             "$type": "color",
-            "$value": "{echoes.color.palette.chart.severity.ochre.2}"
+            "$value": "{echoes.color.palette.data.severity.ochre.1}"
           },
           "info": {
             "$type": "color",
-            "$value": "{echoes.color.palette.chart.severity.steel-blue.2}"
+            "$value": "{echoes.color.palette.data.severity.steel-blue.1}"
           }
         },
         "placeholder": {
           "default": {
             "$type": "color",
-            "$value": "{echoes.color.palette.chart.placeholder.stone.1}"
+            "$value": "{echoes.color.palette.data.placeholder.stone}"
           }
         }
       }
