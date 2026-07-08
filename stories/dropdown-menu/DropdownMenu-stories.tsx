@@ -38,7 +38,7 @@ import { cssVar } from '~utils/design-tokens';
 
 const meta: Meta<typeof DropdownMenu> = {
   component: DropdownMenu,
-  title: 'Echoes/DropdownMenu',
+  title: 'Echoes Components/DropdownMenu',
   parameters: {
     controls: { exclude: ['children', 'id'] },
   },

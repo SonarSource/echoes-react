@@ -30,7 +30,7 @@ import { basicWrapperDecorator } from '../helpers/BasicWrapper';
 
 const meta: Meta<typeof Select> = {
   component: Select,
-  title: 'Echoes/Select/Select',
+  title: 'Echoes Components/Select/Select',
   args: {
     width: 'large',
   },

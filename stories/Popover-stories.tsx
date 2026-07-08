@@ -24,7 +24,7 @@ import { basicWrapperDecorator } from './helpers/BasicWrapper';
 
 const meta: Meta<typeof Popover> = {
   component: Popover,
-  title: 'Echoes/Popover',
+  title: 'Echoes Components/Popover',
   parameters: {
     controls: { exclude: ['children'] },
   },

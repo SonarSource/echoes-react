@@ -24,7 +24,7 @@ import { Badge, IconBranch, Layout } from '../../../src';
 import { basicWrapperDecorator } from '../../helpers/BasicWrapper';
 
 const meta: Meta = {
-  title: 'Echoes/Layout/SidebarNavigation/Item',
+  title: 'Echoes Patterns/Layout/SidebarNavigation/Item',
   component: Layout.SidebarNavigation.Item,
   decorators: [
     (Story) => (

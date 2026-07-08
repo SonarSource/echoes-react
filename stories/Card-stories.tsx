@@ -42,7 +42,7 @@ import {
 import { basicWrapperDecorator } from './helpers/BasicWrapper';
 
 const meta: Meta<typeof Card> = {
-  title: 'Echoes/Card',
+  title: 'Echoes Components/Card',
   component: Card,
   argTypes: {
     size: {

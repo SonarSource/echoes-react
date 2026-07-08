@@ -39,7 +39,7 @@ function Background({ children, style }: ComponentProps<'div'>) {
 
 const meta: Meta<typeof ThemeProvider> = {
   component: ThemeProvider,
-  title: 'Echoes/ThemeProvider',
+  title: 'Echoes Components/ThemeProvider',
   argTypes: {
     asChild: { control: { type: 'boolean' } },
     theme: { control: { type: 'select' }, options: Object.values(Theme) },

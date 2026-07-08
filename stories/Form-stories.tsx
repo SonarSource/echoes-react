@@ -33,7 +33,7 @@ import { basicWrapperDecorator } from './helpers/BasicWrapper';
 
 const meta: Meta<typeof Form> = {
   component: Form,
-  title: 'Echoes/Forms',
+  title: 'Echoes Patterns/Forms',
   argTypes: {},
   decorators: [basicWrapperDecorator],
 };

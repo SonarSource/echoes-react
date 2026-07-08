@@ -28,7 +28,7 @@ import { MenuButton } from '../helpers/MenuButton';
 const meta: Meta<typeof DropdownMenu.ItemLink> = {
   component: DropdownMenu.ItemLink,
   decorators: [basicWrapperDecorator],
-  title: 'Echoes/DropdownMenuItems/ItemLink',
+  title: 'Echoes Components/DropdownMenu/ItemLink',
   parameters: {
     controls: { exclude: ['onClick'] },
   },

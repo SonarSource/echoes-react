@@ -25,7 +25,7 @@ import { toDisabledControlArgType } from './helpers/arg-types';
 
 const meta: Meta<typeof SearchInput> = {
   component: SearchInput,
-  title: 'Echoes/SearchInput',
+  title: 'Echoes Components/SearchInput',
   argTypes: {
     width: {
       control: { type: 'select' },

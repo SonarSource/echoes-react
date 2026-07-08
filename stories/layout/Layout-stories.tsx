@@ -51,7 +51,7 @@ import { PageHeaderScrollBehavior } from '../../src/components/layout/header/com
 
 const meta: Meta = {
   component: Layout,
-  title: 'Echoes/Layout',
+  title: 'Echoes Patterns/Layout',
   parameters: {
     layout: 'fullscreen',
   },

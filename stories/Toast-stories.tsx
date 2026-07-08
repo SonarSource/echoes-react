@@ -27,7 +27,7 @@ import { toDisabledControlArgType, toTextControlArgTypes } from './helpers/arg-t
 
 const meta: Meta<ToastParams> = {
   component: toast,
-  title: 'Echoes/Toast',
+  title: 'Echoes Components/Toast',
   argTypes: {
     ...toDisabledControlArgType('actions'),
     ...toTextControlArgTypes('title', 'description'),

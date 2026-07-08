@@ -47,7 +47,7 @@ import {
 
 const meta: Meta<typeof Layout.SidebarNavigation> = {
   component: Layout.SidebarNavigation,
-  title: 'Echoes/Layout/SidebarNavigation',
+  title: 'Echoes Patterns/Layout/SidebarNavigation',
   parameters: {
     layout: 'fullscreen',
   },

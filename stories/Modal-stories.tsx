@@ -37,7 +37,7 @@ import { basicWrapperDecorator } from './helpers/BasicWrapper';
 
 const meta: Meta<typeof Modal> = {
   component: Modal,
-  title: 'Echoes/Modal/Modal',
+  title: 'Echoes Components/Modal/Modal',
   parameters: {
     controls: { exclude: ['children'] },
   },

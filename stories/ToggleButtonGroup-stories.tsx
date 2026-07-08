@@ -25,7 +25,7 @@ import { basicWrapperDecorator } from './helpers/BasicWrapper';
 
 const meta: Meta<typeof ToggleButtonGroup> = {
   component: ToggleButtonGroup,
-  title: 'Echoes/ToggleButtonGroup',
+  title: 'Echoes Components/ToggleButtonGroup',
 
   parameters: {
     controls: { exclude: ['selected', 'options'] },

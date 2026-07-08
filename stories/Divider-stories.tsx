@@ -25,7 +25,7 @@ import { basicWrapperDecorator } from './helpers/BasicWrapper';
 
 const meta: Meta<typeof Divider> = {
   component: Divider,
-  title: 'Echoes/Divider',
+  title: 'Echoes Components/Divider',
   argTypes: {
     isVertical: {
       control: 'boolean',

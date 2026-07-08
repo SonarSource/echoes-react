@@ -32,7 +32,7 @@ import { formFieldsArgTypes, iconsElementsArgType } from './helpers/arg-types';
 
 const meta: Meta<typeof TextInput> = {
   component: TextInput,
-  title: 'Echoes/TextInput',
+  title: 'Echoes Components/TextInput',
   argTypes: {
     ...formFieldsArgTypes,
     prefix: iconsElementsArgType,

@@ -30,7 +30,7 @@ const meta: Meta<typeof FilterTag> = {
     controls: { exclude: ['className', 'onDismiss'] },
   },
 
-  title: 'Echoes/Filters/FilterTag',
+  title: 'Echoes Patterns/Filters/FilterTag',
 };
 
 export default meta;

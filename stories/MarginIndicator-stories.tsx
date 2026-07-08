@@ -26,7 +26,7 @@ import { basicWrapperDecorator } from './helpers/BasicWrapper';
 
 const meta: Meta<typeof MarginIndicator> = {
   component: MarginIndicator,
-  title: 'Echoes/MarginIndicator',
+  title: 'Echoes Components/MarginIndicator',
   argTypes: {
     indicatorType: { control: { type: 'select' }, options: Object.values(MarginIndicatorType) },
   },

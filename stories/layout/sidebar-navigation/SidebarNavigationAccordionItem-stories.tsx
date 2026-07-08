@@ -49,7 +49,7 @@ const accordionChildrenWithIcon = (
 );
 
 const meta: Meta<typeof Layout.SidebarNavigation.AccordionItem> = {
-  title: 'Echoes/Layout/SidebarNavigation/AccordionItem',
+  title: 'Echoes Patterns/Layout/SidebarNavigation/AccordionItem',
   component: Layout.SidebarNavigation.AccordionItem,
   argTypes: {
     isDefaultOpen: {

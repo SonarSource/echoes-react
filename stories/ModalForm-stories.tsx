@@ -35,7 +35,7 @@ import { basicWrapperDecorator } from './helpers/BasicWrapper';
 
 const meta: Meta<typeof ModalForm> = {
   component: ModalForm,
-  title: 'Echoes/Modal/ModalForm',
+  title: 'Echoes Components/Modal/ModalForm',
   parameters: {
     controls: { exclude: ['children', 'onReset', 'onSubmit', 'content', 'isDestructive'] },
   },

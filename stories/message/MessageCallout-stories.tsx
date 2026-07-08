@@ -24,15 +24,15 @@ import { useCallback, useState } from 'react';
 import {
   Button,
   ButtonVariety,
+  LiveRegionAnnouncementMode,
   MessageCallout,
   MessageVariety,
-  LiveRegionAnnouncementMode,
 } from '../../src';
 import { basicWrapperDecorator } from '../helpers/BasicWrapper';
 
 const meta: Meta<typeof MessageCallout> = {
   component: MessageCallout,
-  title: 'Echoes/Messages/MessageCallout',
+  title: 'Echoes Components/Messages/MessageCallout',
   argTypes: {
     announcementMode: {
       control: { type: 'select' },

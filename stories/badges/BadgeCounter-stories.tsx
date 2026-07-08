@@ -37,7 +37,7 @@ const meta: Meta<typeof BadgeCounter> = {
     controls: { exclude: ['className'] },
   },
 
-  title: 'Echoes/Badges/BadgeCounter',
+  title: 'Echoes Components/Badges/BadgeCounter',
 };
 
 export default meta;

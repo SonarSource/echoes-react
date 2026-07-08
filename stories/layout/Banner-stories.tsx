@@ -34,7 +34,7 @@ import { minWidthBodyDecorator } from '../helpers/decorators';
 
 const meta: Meta<typeof Layout.Banner> = {
   component: Layout.Banner,
-  title: 'Echoes/Layout/Banner',
+  title: 'Echoes Patterns/Layout/Banner',
 
   argTypes: {
     announcementMode: {
