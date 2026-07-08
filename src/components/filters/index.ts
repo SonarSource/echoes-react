@@ -22,6 +22,8 @@ export { FilterDropdown } from './FilterDropdown';
 
 export type {
   FilterDropdownCategory,
+  FilterDropdownCategoryWithContent,
+  FilterDropdownCategoryWithItems,
   FilterDropdownOption,
   FilterDropdownProps,
 } from './FilterDropdownTypes';

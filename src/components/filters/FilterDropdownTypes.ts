@@ -19,6 +19,7 @@
  */
 
 import { ReactNode, Ref } from 'react';
+import { isDefined } from '~common/helpers/types';
 import { TextNodeOptional } from '~types/utils';
 
 /**
@@ -49,10 +50,15 @@ export interface FilterDropdownOption {
 }
 
 /**
- * A category shown in the left panel of a FilterDropdown.
- * Each category has its own list of items, multi-select mode, and optional search.
+ * A standard category that renders a list of selectable items in the right panel.
+ * Use {@link FilterDropdownCategoryWithContent} to render arbitrary content instead.
  */
-export interface FilterDropdownCategory {
+export interface FilterDropdownCategoryWithItems {
+  /**
+   * Must not be set on an items-based category.
+   * Use {@link FilterDropdownCategoryWithContent} to render custom content.
+   */
+  content?: never;
   /**
    * Whether items in this category support multi-selection (checkboxes).
    * When false, only one item can be selected at a time (radio buttons).
@@ -87,6 +93,73 @@ export interface FilterDropdownCategory {
    */
   onSearch?: (query: string) => void;
 }
+
+/**
+ * A category that renders arbitrary custom content in the right panel instead of an items list.
+ * The FilterDropdown handles left↔right keyboard navigation (ArrowRight/ArrowLeft between panels),
+ * but navigation within the custom content is the consumer's responsibility.
+ * Use {@link FilterDropdownCategoryWithItems} to render a standard items list instead.
+ */
+export interface FilterDropdownCategoryWithContent {
+  /**
+   * Custom content to render in the right panel for this category.
+   * When set, `items`, `isMultiSelect`, `isSearchable`, `labelSearchPlaceholder`,
+   * and `onSearch` must not be provided.
+   */
+  content: ReactNode;
+  /**
+   * Not applicable when using custom content.
+   * @see FilterDropdownCategoryWithItems
+   */
+  isMultiSelect?: never;
+  /**
+   * Not applicable when using custom content.
+   * @see FilterDropdownCategoryWithItems
+   */
+  isSearchable?: never;
+  /**
+   * Not applicable when using custom content.
+   * @see FilterDropdownCategoryWithItems
+   */
+  items?: never;
+  /**
+   * Display label for this category.
+   */
+  label: string;
+  /**
+   * Not applicable when using custom content.
+   * @see FilterDropdownCategoryWithItems
+   */
+  labelSearchPlaceholder?: never;
+  /**
+   * Called when keyboard navigation moves focus into the custom content panel
+   * (e.g. when the user presses ArrowRight from the left panel).
+   * Use this to programmatically focus a specific element within your content
+   * (e.g. an input field or the first interactive control).
+   */
+  onFocusContent: () => void;
+  /**
+   * Not applicable when using custom content.
+   * @see FilterDropdownCategoryWithItems
+   */
+  onSearch?: never;
+  /**
+   * Number of active selections to display as a badge on the left-panel category button.
+   * Unlike items-based categories (where the count is derived automatically from `selectedValues`),
+   * custom-content categories cannot compute a count internally — the consumer must provide it.
+   * @defaultValue 0
+   */
+  selectionCount?: number;
+}
+
+/**
+ * A category shown in the left panel of a FilterDropdown.
+ * Each category either renders a list of selectable items ({@link FilterDropdownCategoryWithItems})
+ * or arbitrary custom content ({@link FilterDropdownCategoryWithContent}) in the right panel.
+ */
+export type FilterDropdownCategory =
+  | FilterDropdownCategoryWithItems
+  | FilterDropdownCategoryWithContent;
 
 /**
  * Props for the FilterDropdown component.
@@ -174,4 +247,11 @@ export interface FilterDropdownProps {
    * Used to initialize the pending selection state each time the popover opens.
    */
   selectedValues?: string[];
+}
+
+/** @internal */
+export function isCategoryWithContent(
+  category?: FilterDropdownCategory,
+): category is FilterDropdownCategoryWithContent {
+  return isDefined(category?.content);
 }

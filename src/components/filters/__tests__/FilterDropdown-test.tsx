@@ -263,6 +263,53 @@ describe('FilterDropdown', () => {
     },
   );
 
+  it('renders custom content in the right panel for a content category', async () => {
+    const { user } = renderFilterDropdown({
+      categories: [
+        { label: 'Severity', items: [{ label: 'High', value: 'high' }] },
+        {
+          label: 'Date Range',
+          content: <button type="button">Pick date</button>,
+          onFocusContent: jest.fn(),
+        },
+      ],
+    });
+
+    await user.click(screen.getByRole('button', { name: 'Filters' }));
+    await user.click(screen.getByRole('option', { name: /date range/i }));
+
+    expect(screen.getByRole('button', { name: 'Pick date' })).toBeInTheDocument();
+    expect(screen.queryByRole('checkbox')).not.toBeInTheDocument();
+  });
+
+  it('moves focus into custom content on ArrowRight and back to the category on ArrowLeft', async () => {
+    const buttonRef = { current: null as HTMLButtonElement | null };
+    const { user } = renderFilterDropdown({
+      categories: [
+        { label: 'Severity', items: [{ label: 'High', value: 'high' }] },
+        {
+          label: 'Date Range',
+          content: (
+            <button ref={buttonRef} type="button">
+              Pick date
+            </button>
+          ),
+          onFocusContent: () => buttonRef.current?.focus(),
+        },
+      ],
+    });
+
+    await user.click(screen.getByRole('button', { name: 'Filters' }));
+    await user.keyboard('{ArrowDown}');
+    expect(screen.getByRole('option', { name: /date range/i })).toHaveFocus();
+
+    await user.keyboard('{ArrowRight}');
+    expect(screen.getByRole('button', { name: 'Pick date' })).toHaveFocus();
+
+    await user.keyboard('{ArrowLeft}');
+    expect(screen.getByRole('option', { name: /date range/i })).toHaveFocus();
+  });
+
   it('filters items when searching', async () => {
     const { user } = renderFilterDropdown({
       categories: [
