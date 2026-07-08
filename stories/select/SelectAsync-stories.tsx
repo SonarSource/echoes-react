@@ -29,7 +29,7 @@ import {
 
 const meta: Meta<typeof SelectAsync> = {
   component: SelectAsync,
-  title: 'Echoes/Select/SelectAsync',
+  title: 'Echoes Components/Select/SelectAsync',
   argTypes: {
     ...formFieldsArgTypes,
     valueIcon: iconsElementsArgType,

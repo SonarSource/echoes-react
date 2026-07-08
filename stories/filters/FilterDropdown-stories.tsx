@@ -43,7 +43,7 @@ const meta: Meta<typeof FilterDropdown> = {
     ref: { control: false },
     selectedValues: { control: false },
   },
-  title: 'Echoes/Filters/FilterDropdown',
+  title: 'Echoes Patterns/Filters/FilterDropdown',
 };
 
 export default meta;

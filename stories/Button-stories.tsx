@@ -36,7 +36,7 @@ import { basicWrapperDecorator } from './helpers/BasicWrapper';
 
 const meta: Meta<typeof Button> = {
   component: Button,
-  title: 'Echoes/Button',
+  title: 'Echoes Components/Button',
   argTypes: {
     size: { control: { type: 'select' }, options: Object.values(ButtonSize) },
     variety: { control: { type: 'select' }, options: Object.values(ButtonVariety) },

@@ -40,7 +40,7 @@ const meta: Meta<typeof Badge> = {
     },
   },
 
-  title: 'Echoes/Badges/Badge',
+  title: 'Echoes Components/Badges/Badge',
 };
 
 export default meta;

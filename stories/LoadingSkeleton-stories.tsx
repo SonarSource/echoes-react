@@ -28,7 +28,7 @@ import { basicWrapperDecorator } from './helpers/BasicWrapper';
 
 const meta: Meta<typeof LoadingSkeleton> = {
   component: LoadingSkeleton,
-  title: 'Echoes/LoadingSkeleton',
+  title: 'Echoes Components/LoadingSkeleton',
   argTypes: {},
   decorators: [basicWrapperDecorator],
   parameters: {

@@ -25,7 +25,7 @@ import { formFieldsArgTypes } from './helpers/arg-types';
 
 const meta: Meta<typeof TextArea> = {
   component: TextArea,
-  title: 'Echoes/TextArea',
+  title: 'Echoes Components/TextArea',
   argTypes: formFieldsArgTypes,
   decorators: [basicWrapperDecorator],
 };

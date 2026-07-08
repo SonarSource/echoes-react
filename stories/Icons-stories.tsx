@@ -27,7 +27,7 @@ import * as icons from '../src/components/icons';
 import { basicWrapperDecorator } from './helpers/BasicWrapper';
 
 const meta: Meta = {
-  title: 'Echoes/Icons',
+  title: 'Echoes Components/Icons',
 };
 
 export default meta;

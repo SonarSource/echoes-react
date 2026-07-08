@@ -24,7 +24,7 @@ import { formFieldsArgTypes } from './helpers/arg-types';
 
 const meta: Meta<typeof RadioButtonGroup> = {
   component: RadioButtonGroup,
-  title: 'Echoes/RadioButtonGroup',
+  title: 'Echoes Components/RadioButtonGroup',
   args: {
     isRequired: false,
   },

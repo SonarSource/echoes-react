@@ -35,7 +35,7 @@ import { basicWrapperDecorator } from './helpers/BasicWrapper';
 
 const meta: Meta<typeof Table> = {
   component: Table,
-  title: 'Echoes/Table',
+  title: 'Echoes Components/Table',
   parameters: {
     controls: { exclude: ['children'] },
   },

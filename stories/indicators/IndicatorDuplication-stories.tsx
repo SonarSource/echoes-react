@@ -26,7 +26,7 @@ import { basicWrapperDecorator } from '../helpers/BasicWrapper';
 
 const meta: Meta<typeof IndicatorDuplication> = {
   component: IndicatorDuplication,
-  title: 'Echoes/indicators/Duplication',
+  title: 'Echoes Components/Indicators/Duplication',
   decorators: [basicWrapperDecorator],
   argTypes: {
     rating: {

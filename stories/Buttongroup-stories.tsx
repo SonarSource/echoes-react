@@ -24,7 +24,7 @@ import { basicWrapperDecorator } from './helpers/BasicWrapper';
 
 const meta: Meta<typeof ButtonGroup> = {
   component: ButtonGroup,
-  title: 'Echoes/ButtonGroup',
+  title: 'Echoes Components/ButtonGroup',
   parameters: {
     controls: { exclude: ['children'] },
   },
