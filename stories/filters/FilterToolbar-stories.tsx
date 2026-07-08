@@ -22,17 +22,23 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { useState } from 'react';
 import {
   Button,
+  ButtonIcon,
   Checkbox,
   DropdownMenu,
+  FilterDropdown,
+  FilterDropdownTrigger,
   FilterTag,
   IconChevronDown,
   IconFilter,
+  IconHome,
   SearchInput,
   Text,
+  ToggleButtonGroup,
   Toolbar,
   ToolbarProps,
 } from '../../src';
 import { basicWrapperDecorator } from '../helpers/BasicWrapper';
+import { FILTER_TAG_LABELS, useFilterDropdownCategories } from './filter-dropdown-helpers';
 
 const meta: Meta<typeof Toolbar> = {
   argTypes: {
@@ -54,8 +60,8 @@ export default meta;
 
 type Story = StoryObj<typeof Toolbar>;
 
-const SEVERITIES = ['High', 'Medium', 'Low'];
-const SORT_OPTIONS = ['Last updated', 'Name', 'Severity'];
+const EVENTS = ['Quality gate', 'Definition Change', 'Other'];
+const SORT_OPTIONS = ['Last updated', 'Name', 'Events'];
 
 function DefaultStory(props: Readonly<ToolbarProps>) {
   const {
@@ -70,20 +76,28 @@ function DefaultStory(props: Readonly<ToolbarProps>) {
 
   const [search, setSearch] = useState('');
   const [selectAll, setSelectAll] = useState<boolean | 'indeterminate'>('indeterminate');
-  const [selectedSeverities, setSelectedSeverities] = useState<Set<string>>(new Set(['High']));
+  const [selectedEvents, setSelectedEvents] = useState<Set<string>>(new Set(['Quality gate']));
+  const [selectedValues, setSelectedValues] = useState<string[]>([]);
   const [currentSort, setCurrentSort] = useState('Last updated');
+  const [scope, setScope] = useState('overall');
 
-  function toggleSeverity(severity: string) {
-    setSelectedSeverities((prev) => {
+  function toggleEvent(event: string) {
+    setSelectedEvents((prev) => {
       const next = new Set(prev);
-      if (next.has(severity)) {
-        next.delete(severity);
+      if (next.has(event)) {
+        next.delete(event);
       } else {
-        next.add(severity);
+        next.add(event);
       }
       return next;
     });
   }
+
+  function dismissValue(value: string) {
+    setSelectedValues((prev) => prev.filter((v) => v !== value));
+  }
+
+  const { categories, onCategorySelect } = useFilterDropdownCategories();
 
   return (
     <Toolbar
@@ -91,32 +105,62 @@ function DefaultStory(props: Readonly<ToolbarProps>) {
       datasetControls={
         datasetControls ? (
           <>
-            <Text>4 projects</Text>
-            <Button>Bulk action</Button>
+            <Text>
+              <b>4</b> projects
+            </Text>
+            <ButtonIcon Icon={IconHome} ariaLabel="Set homepage" />
           </>
         ) : undefined
       }
       filterControls={
         filterControls ? (
-          <DropdownMenu
-            items={SEVERITIES.map((severity) => (
-              <DropdownMenu.ItemButtonCheckable
-                isChecked={selectedSeverities.has(severity)}
-                key={severity}
-                onClick={() => toggleSeverity(severity)}>
-                {severity}
-              </DropdownMenu.ItemButtonCheckable>
-            ))}>
-            <Button prefix={<IconFilter />}>Filters</Button>
-          </DropdownMenu>
+          <>
+            <FilterDropdown
+              categories={categories}
+              onApply={setSelectedValues}
+              onCategorySelect={onCategorySelect}
+              onClear={() => setSelectedValues([])}
+              selectedValues={selectedValues}>
+              <FilterDropdownTrigger selectedCount={selectedValues.length}>
+                Facets Filters
+              </FilterDropdownTrigger>
+            </FilterDropdown>
+            <DropdownMenu
+              items={EVENTS.map((event) => (
+                <DropdownMenu.ItemButtonCheckable
+                  isChecked={selectedEvents.has(event)}
+                  key={event}
+                  onClick={() => toggleEvent(event)}>
+                  {event}
+                </DropdownMenu.ItemButtonCheckable>
+              ))}>
+              <Button prefix={<IconFilter />} suffix={<IconChevronDown />}>
+                Events
+              </Button>
+            </DropdownMenu>
+          </>
         ) : undefined
       }
-      filterTags={[...selectedSeverities].map((severity) => (
-        <FilterTag key={severity} onDismiss={() => toggleSeverity(severity)}>
-          {`Severity: ${severity}`}
-        </FilterTag>
-      ))}
-      onClearAll={onClearAll ? () => setSelectedSeverities(new Set()) : undefined}
+      filterTags={[
+        ...selectedValues.map((value) => (
+          <FilterTag key={value} onDismiss={() => dismissValue(value)}>
+            {FILTER_TAG_LABELS[value] ?? value}
+          </FilterTag>
+        )),
+        ...[...selectedEvents].map((event) => (
+          <FilterTag key={event} onDismiss={() => toggleEvent(event)}>
+            {`Events: ${event}`}
+          </FilterTag>
+        )),
+      ]}
+      onClearAll={
+        onClearAll
+          ? () => {
+              setSelectedValues([]);
+              setSelectedEvents(new Set());
+            }
+          : undefined
+      }
       searchInput={
         searchInput ? (
           <SearchInput
@@ -138,14 +182,24 @@ function DefaultStory(props: Readonly<ToolbarProps>) {
       }
       sortControls={
         sortControls ? (
-          <DropdownMenu
-            items={SORT_OPTIONS.map((option) => (
-              <DropdownMenu.ItemButton key={option} onClick={() => setCurrentSort(option)}>
-                {option}
-              </DropdownMenu.ItemButton>
-            ))}>
-            <Button suffix={<IconChevronDown />}>Sort: {currentSort}</Button>
-          </DropdownMenu>
+          <>
+            <DropdownMenu
+              items={SORT_OPTIONS.map((option) => (
+                <DropdownMenu.ItemButton key={option} onClick={() => setCurrentSort(option)}>
+                  {option}
+                </DropdownMenu.ItemButton>
+              ))}>
+              <Button suffix={<IconChevronDown />}>Sort by: {currentSort}</Button>
+            </DropdownMenu>
+            <ToggleButtonGroup
+              onChange={setScope}
+              options={[
+                { label: 'Overall code', value: 'overall' },
+                { label: 'New code', value: 'new' },
+              ]}
+              selected={scope}
+            />
+          </>
         ) : undefined
       }
     />

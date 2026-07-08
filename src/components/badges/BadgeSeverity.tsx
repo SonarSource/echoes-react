@@ -424,7 +424,7 @@ const BADGE_SEVERITY_INFO_STYLE = {
     'severity-badge-colors-background-severity-info-suffix-hover',
   ),
 };
-export const BADGE_SEVERITY_STYLES = {
+export const BADGE_SEVERITY_STYLES: Record<BadgeSeverityLevel, Record<string, string>> = {
   [BadgeSeverityLevel.Blocker]: BADGE_SEVERITY_BLOCKER_STYLE,
   [BadgeSeverityLevel.High]: BADGE_SEVERITY_HIGH_STYLE,
   [BadgeSeverityLevel.Info]: BADGE_SEVERITY_INFO_STYLE,
