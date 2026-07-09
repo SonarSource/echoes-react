@@ -105,10 +105,7 @@ describe('navigation behavior', () => {
 
 describe('active state behavior', () => {
   it('should apply active class when isActive is true', () => {
-    setupSidebarNavigationAccordionChildItem({
-      isActive: true,
-      disableIconWhenSidebarOpen: true,
-    });
+    setupSidebarNavigationAccordionChildItem({ isActive: true });
 
     expect(screen.getByRole('link')).toHaveClass('active');
   });

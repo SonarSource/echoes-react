@@ -35,7 +35,8 @@ import { Heading, HeadingSize, Text } from '../../typography';
 
 export interface SidebarNavigationFooterPromotionCard {
   /**
-   * The actions at the bottom should be instances of Button or StandaloneLink in a fragment.
+   * The actions rendered at the bottom.
+   * Pass them in a ButtonGroup with Button or StandaloneLink elements.
    */
   actions: React.ReactNode;
 

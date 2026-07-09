@@ -84,7 +84,6 @@ export function SidebarNavigation(props: Readonly<PropsWithChildren<SidebarNavig
         sidebar.handleInteractionZoneMouseLeave(event.relatedTarget);
       }}>
       <SidebarNavigationWrapper
-        {...{ [SIDEBAR_INTERACTION_ZONE_ATTRIBUTE]: 'true' }}
         aria-hidden={!sidebar.isOpen}
         aria-label={ariaLabel ?? defaultAriaLabel}
         data-testid="sidebar-navigation-wrapper"
@@ -109,8 +108,7 @@ const SidebarNavigationContainer = styled.div`
 
   z-index: 1; // Ensure the sidebar is showing over the content
 
-  [data-sidebar-docked='true'] &,
-  [data-sidebar-is-dockable='false'][data-sidebar-open='true'] & {
+  [data-sidebar-docked='true'] & {
     width: calc(
       ${cssVar('layout-sidebar-navigation-sizes-width-open')} + ${cssVar('border-width-default')}
     );

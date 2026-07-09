@@ -61,7 +61,7 @@ it('should snap the undocked sidebar width open without a transition', () => {
   });
 });
 
-it('should widen the layout column when the sidebar is docked or opened in non-dockable mode', () => {
+it('should widen the layout column only when the sidebar is docked', () => {
   setupSidebarNavigation();
   const sidebarNavigationContainer = screen.getByTestId('sidebar-navigation-container');
 
@@ -75,7 +75,7 @@ it('should widen the layout column when the sidebar is docked or opened in non-d
     target: "[data-sidebar-docked='true']",
   });
 
-  expect(sidebarNavigationContainer).toHaveStyleRule('width', dockedSidebarWidth, {
+  expect(sidebarNavigationContainer).not.toHaveStyleRule('width', dockedSidebarWidth, {
     target: "[data-sidebar-is-dockable='false'][data-sidebar-open='true']",
   });
 

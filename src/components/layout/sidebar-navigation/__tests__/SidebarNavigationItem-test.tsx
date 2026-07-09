@@ -95,7 +95,7 @@ describe('navigation behavior', () => {
 
 describe('active state behavior', () => {
   it('should apply active class when isActive is true', () => {
-    setupSidebarNavigationItem({ isActive: true, disableIconWhenSidebarOpen: true });
+    setupSidebarNavigationItem({ isActive: true });
 
     expect(screen.getByRole('link')).toHaveClass('active');
   });

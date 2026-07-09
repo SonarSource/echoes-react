@@ -50,7 +50,6 @@ export function SidebarNavigationBaseItem(props: Readonly<SidebarNavigationBaseI
   const {
     ariaLabel,
     children,
-    disableIconWhenSidebarOpen = false,
     disableTooltip = false,
     Icon,
     onClick,
@@ -78,17 +77,7 @@ export function SidebarNavigationBaseItem(props: Readonly<SidebarNavigationBaseI
           aria-label={ariaLabel}
           onClick={handleClick}
           ref={ref}>
-          {isDefined(Icon) && (
-            <Icon
-              css={[
-                sidebarNavigationBaseItemIconStyles,
-                disableIconWhenSidebarOpen
-                  ? sidebarNavigationBaseItemHideWhenSidebarOpenStyles
-                  : undefined,
-              ]}
-              isFilled={false}
-            />
-          )}
+          {isDefined(Icon) && <Icon css={sidebarNavigationBaseItemIconStyles} isFilled={false} />}
 
           <SidebarNavigationItemLabel>{children}</SidebarNavigationItemLabel>
 
@@ -132,11 +121,5 @@ const sidebarNavigationBaseItemIconStyles = css`
   ${SidebarNavigationBaseItemLink}.active > &,
   ${SidebarNavigationBaseItemLink}:active > & {
     color: ${cssVar('color-icon-accent')};
-  }
-`;
-
-const sidebarNavigationBaseItemHideWhenSidebarOpenStyles = css`
-  [data-sidebar-open='true'] & {
-    display: none;
   }
 `;
