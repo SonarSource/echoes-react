@@ -35,6 +35,7 @@ export const filterDropdownRowStyles = css`
 export const StyledFilterContent = styled(stylePopoverContentBase(RadixPopover.Content))`
   display: flex;
   flex-direction: column;
+  max-height: ${cssVar('filter-dropdown-sizes-max-height-default')};
   min-height: ${cssVar('filter-dropdown-sizes-min-height-default')};
   overflow: visible;
   width: ${cssVar('sizes-overlays-width-default')};

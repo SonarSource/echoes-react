@@ -36,6 +36,12 @@
               "$type": "sizing",
               "$value": "350px"
             }
+          },
+          "maxHeight": {
+            "default": {
+              "$type": "sizing",
+              "$value": "600px"
+            }
           }
         }
       },
