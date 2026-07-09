@@ -19,32 +19,110 @@
  */
 
 import { renderWithMemoryRouter } from '~common/helpers/test-utils';
-import { LayoutContext } from '../../LayoutContext';
+import { matchers } from '@emotion/jest';
+import { fireEvent, screen } from '@testing-library/react';
+import { LayoutSidebarContext, type LayoutSidebarContextShape } from '../../LayoutSidebarContext';
+import { cssVar } from '~utils/design-tokens';
 import { SidebarNavigation } from '../SidebarNavigation';
 
+expect.extend(matchers);
+
 it('should have no a11y issues', async () => {
-  const { container } = renderWithMemoryRouter(<SidebarNavigation />);
+  const { container } = setupSidebarNavigation({
+    isDocked: true,
+    isOpen: true,
+    isInLayout: true,
+  });
 
   await expect(container).toHaveNoA11yViolations();
 });
 
 it('should set the layout context correctly', () => {
-  const setHasSidebar = jest.fn();
-  const { unmount } = renderWithMemoryRouter(
-    <LayoutContext.Provider
-      value={{
-        hasSidebar: true,
-        isSidebarDocked: false,
-        setHasSidebar,
-        setIsSidebarDocked: jest.fn(),
-      }}>
-      <SidebarNavigation />
-    </LayoutContext.Provider>,
-  );
+  const setIsInLayout = jest.fn();
 
-  expect(setHasSidebar).toHaveBeenCalledWith(true);
+  const { unmount } = setupSidebarNavigation({
+    isInLayout: true,
+    setIsInLayout,
+  });
+
+  expect(setIsInLayout).toHaveBeenCalledWith(true);
 
   unmount();
 
-  expect(setHasSidebar).toHaveBeenCalledWith(false);
+  expect(setIsInLayout).toHaveBeenCalledWith(false);
 });
+
+it('should snap the undocked sidebar width open without a transition', () => {
+  setupSidebarNavigation();
+  const sidebarNavigationContainer = screen.getByTestId('sidebar-navigation-container');
+
+  expect(sidebarNavigationContainer).toHaveStyleRule('transition', 'none', {
+    target: "[data-sidebar-docked='false']",
+  });
+});
+
+it('should widen the layout column only when the sidebar is docked', () => {
+  setupSidebarNavigation();
+  const sidebarNavigationContainer = screen.getByTestId('sidebar-navigation-container');
+
+  const dockedSidebarWidth = new RegExp(
+    `calc\\(\\s*${escapeRegExp(cssVar('layout-sidebar-navigation-sizes-width-open'))}\\s*\\+\\s*${escapeRegExp(
+      cssVar('border-width-default'),
+    )}\\s*\\)`,
+  );
+
+  expect(sidebarNavigationContainer).toHaveStyleRule('width', dockedSidebarWidth, {
+    target: "[data-sidebar-docked='true']",
+  });
+
+  expect(sidebarNavigationContainer).not.toHaveStyleRule('width', dockedSidebarWidth, {
+    target: "[data-sidebar-is-dockable='false'][data-sidebar-open='true']",
+  });
+
+  expect(sidebarNavigationContainer).not.toHaveStyleRule('width', dockedSidebarWidth, {
+    target: "[data-sidebar-is-dockable='true'][data-sidebar-open='true']",
+  });
+});
+
+it('should not request opening the sidebar again when it is already docked and open', () => {
+  const openSidebar = jest.fn();
+
+  setupSidebarNavigation({
+    isDockable: true,
+    isDocked: true,
+    isOpen: true,
+    isInLayout: true,
+    open: openSidebar,
+  });
+
+  fireEvent.mouseEnter(screen.getByTestId('sidebar-navigation-container'));
+  fireEvent.focus(screen.getByTestId('sidebar-navigation-wrapper'));
+
+  expect(openSidebar).not.toHaveBeenCalled();
+});
+
+function escapeRegExp(value: string) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+function setupSidebarNavigation(contextOverrides: Partial<LayoutSidebarContextShape> = {}) {
+  const defaultLayoutSidebarContext: LayoutSidebarContextShape = {
+    close: jest.fn(),
+    handleInteractionZoneBlur: jest.fn(),
+    handleInteractionZoneMouseLeave: jest.fn(),
+    isDockable: true,
+    isDocked: false,
+    isInLayout: false,
+    isOpen: false,
+    open: jest.fn(),
+    setIsDocked: jest.fn(),
+    setIsInLayout: jest.fn(),
+    ignoreNextInteractionZoneBlur: jest.fn(),
+  };
+
+  return renderWithMemoryRouter(
+    <LayoutSidebarContext.Provider value={{ ...defaultLayoutSidebarContext, ...contextOverrides }}>
+      <SidebarNavigation />
+    </LayoutSidebarContext.Provider>,
+  );
+}

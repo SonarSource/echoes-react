@@ -19,46 +19,52 @@
  */
 
 import styled from '@emotion/styled';
-import { forwardRef } from 'react';
+import { type ReactNode, type Ref } from 'react';
 import { useIntl } from 'react-intl';
-import { LinkProps } from 'react-router-dom';
+import type { LinkProps } from 'react-router-dom';
 import { LinkStandalone } from '../../links';
 
 import { cssVar } from '~utils/design-tokens';
 
 export interface GlobalNavigationHomeProps {
-  children: React.ReactNode;
-  className?: string;
+  /** Optional ARIA label applied to the home link */
   ariaLabel?: string;
-  reloadDocument?: LinkProps['reloadDocument'];
+  /** Content rendered inside the home link */
+  children: ReactNode;
+  /** Optional CSS class name applied to the root container */
+  className?: string;
+  /** React ref forwarded to the root container */
+  ref?: Ref<HTMLDivElement>;
+  /** Whether the home link should force a full page reload */
+  reloadDocument?: NonNullable<LinkProps['reloadDocument']>;
+  /**
+   * Target location for the home link.
+   * @defaultValue '/'
+   */
   to?: LinkProps['to'];
 }
 
-export const GlobalNavigationHome = forwardRef<HTMLDivElement, GlobalNavigationHomeProps>(
-  (
-    { children, ariaLabel, reloadDocument, to = '/', ...rest }: Readonly<GlobalNavigationHomeProps>,
-    ref,
-  ) => {
-    const intl = useIntl();
+export function GlobalNavigationHome(props: Readonly<GlobalNavigationHomeProps>) {
+  const { children, ariaLabel, ref, reloadDocument, to = '/', ...rest } = props;
+  const intl = useIntl();
 
-    const defaultAriaLabel = intl.formatMessage({
-      id: 'global_navigation.home_logo',
-      defaultMessage: 'Link to home page',
-      description: 'ARIA-label for the brand link to home page',
-    });
+  const defaultAriaLabel = intl.formatMessage({
+    id: 'global_navigation.home_logo',
+    defaultMessage: 'Link to home page',
+    description: 'ARIA-label for the brand link to home page',
+  });
 
-    return (
-      <HomeContainer ref={ref} {...rest}>
-        <StyledLinkStandalone
-          aria-label={ariaLabel ?? defaultAriaLabel}
-          reloadDocument={reloadDocument}
-          to={to}>
-          <LogoContainer>{children}</LogoContainer>
-        </StyledLinkStandalone>
-      </HomeContainer>
-    );
-  },
-);
+  return (
+    <HomeContainer ref={ref} {...rest}>
+      <StyledLinkStandalone
+        aria-label={ariaLabel ?? defaultAriaLabel}
+        reloadDocument={reloadDocument}
+        to={to}>
+        <LogoContainer>{children}</LogoContainer>
+      </StyledLinkStandalone>
+    </HomeContainer>
+  );
+}
 
 GlobalNavigationHome.displayName = 'GlobalNavigationHome';
 
@@ -66,6 +72,7 @@ const HomeContainer = styled.div`
   padding-left: ${cssVar('dimension-space-150')};
   padding-right: ${cssVar('dimension-space-300')};
 `;
+
 HomeContainer.displayName = 'HomeContainer';
 
 const StyledLinkStandalone = styled(LinkStandalone)`
@@ -84,6 +91,7 @@ const StyledLinkStandalone = styled(LinkStandalone)`
     background-color: ${cssVar('color-surface-active')};
   }
 `;
+
 StyledLinkStandalone.displayName = 'StyledLinkStandalone';
 
 const LogoContainer = styled.div`
@@ -97,4 +105,5 @@ const LogoContainer = styled.div`
     object-fit: contain;
   }
 `;
+
 LogoContainer.displayName = 'LogoContainer';

@@ -36,6 +36,12 @@ it('should render correctly', async () => {
   await expect(container).toHaveNoA11yViolations();
 });
 
+it('should render interactive headers as non-submitting buttons', () => {
+  render(<SidebarNavigationHeader isInteractive name="main text" />);
+
+  expect(screen.getByRole('button')).toHaveAttribute('type', 'button');
+});
+
 it('should render with an avatar and subtext', async () => {
   const { container } = render(
     <SidebarNavigationHeader avatar={<img alt="avatar" />} name="main text" qualifier="subtext" />,

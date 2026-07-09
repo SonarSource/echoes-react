@@ -47,12 +47,6 @@ export interface SidebarNavigationItemBaseProps extends Pick<
    */
   className?: string;
   /**
-   * Whether to hide the icon while the sidebar is open.
-   * Useful for rows that should only show their icon while the sidebar is collapsed.
-   * @defaultValue false
-   */
-  disableIconWhenSidebarOpen?: boolean;
-  /**
    * Whether to disable the tooltip on the item or not.
    * By default the tooltip is enabled, it should only be disabled if you don't expect the content
    * to be ellipsed.

@@ -95,7 +95,7 @@ describe('navigation behavior', () => {
 
 describe('active state behavior', () => {
   it('should apply active class when isActive is true', () => {
-    setupSidebarNavigationItem({ isActive: true, disableIconWhenSidebarOpen: true });
+    setupSidebarNavigationItem({ isActive: true });
 
     expect(screen.getByRole('link')).toHaveClass('active');
   });
@@ -120,25 +120,15 @@ describe('active state behavior', () => {
 });
 
 describe('CSS custom properties for accordion integration', () => {
-  it('should use CSS custom properties for display, visibility and outline', () => {
+  it('should use a CSS custom property for accordion child display', () => {
     setupSidebarNavigationItem();
 
     const link = screen.getByRole('link');
 
-    // Check that display CSS custom property is used with fallback
     expect(link).toHaveStyleRule(
       'display',
       'var(--sidebar-navigation-accordion-children-display, flex)',
     );
-
-    // Check that visibility CSS custom property is used with fallback
-    expect(link).toHaveStyleRule(
-      'visibility',
-      'var(--sidebar-navigation-accordion-children-visibility, visible)',
-    );
-
-    // Check that outline CSS custom property is used (no fallback needed)
-    expect(link).toHaveStyleRule('outline', 'var(--sidebar-navigation-accordion-children-outline)');
   });
 });
 

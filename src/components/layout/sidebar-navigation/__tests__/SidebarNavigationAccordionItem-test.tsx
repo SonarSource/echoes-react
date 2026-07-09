@@ -114,7 +114,7 @@ it('should scroll the last child into view when opened with scrollLastChildIntoV
 });
 
 describe('integration with SidebarNavigationAccordionChildItem', () => {
-  it('should set CSS custom properties and active class on children', () => {
+  it('should set accordion child display CSS custom property and active class on children', () => {
     setupSidebarNavigationAccordionItem({
       children: (
         <>
@@ -145,28 +145,6 @@ describe('integration with SidebarNavigationAccordionChildItem', () => {
     expect(subItem2).toHaveStyleRule(
       'display',
       'var(--sidebar-navigation-accordion-children-display, flex)',
-    );
-
-    // Check that visibility CSS custom property is set
-    expect(subItem1).toHaveStyleRule(
-      'visibility',
-      'var(--sidebar-navigation-accordion-children-visibility, visible)',
-    );
-
-    expect(subItem2).toHaveStyleRule(
-      'visibility',
-      'var(--sidebar-navigation-accordion-children-visibility, visible)',
-    );
-
-    // Check that outline CSS custom property is set
-    expect(subItem1).toHaveStyleRule(
-      'outline',
-      'var(--sidebar-navigation-accordion-children-outline)',
-    );
-
-    expect(subItem2).toHaveStyleRule(
-      'outline',
-      'var(--sidebar-navigation-accordion-children-outline)',
     );
   });
 
