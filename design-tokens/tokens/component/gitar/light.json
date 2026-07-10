@@ -40,9 +40,9 @@
           "$type": "color",
           "$value": "#126ed3"
         },
-        "sonar-whale": {
+        "logomark": {
           "$type": "color",
-          "$value": "#d3121d"
+          "$value": "{echoes.color.palette.purple.800}"
         }
       }
     },
@@ -266,26 +266,26 @@
               "prefix": {
                 "default": {
                   "$type": "color",
-                  "$value": "{echoes.color.palette.red.100}"
+                  "$value": "{echoes.color.palette.red.200}"
                 }
               },
               "suffix": {
                 "default": {
                   "$type": "color",
-                  "$value": "{echoes.color.palette.red.200}"
+                  "$value": "{echoes.color.palette.red.400}"
                 },
                 "hover": {
                   "$extensions": {
                     "studio.tokens": {
                       "modify": {
-                        "type": "darken",
-                        "value": "0.02",
+                        "type": "alpha",
+                        "value": "0.45",
                         "space": "lch"
                       }
                     }
                   },
                   "$type": "color",
-                  "$value": "{echoes.color.palette.red.200}"
+                  "$value": "{echoes.color.palette.red.500}"
                 }
               }
             },
@@ -299,20 +299,11 @@
               "suffix": {
                 "default": {
                   "$type": "color",
-                  "$value": "{echoes.color.palette.red.100}"
+                  "$value": "{echoes.color.palette.red.300}"
                 },
                 "hover": {
-                  "$extensions": {
-                    "studio.tokens": {
-                      "modify": {
-                        "type": "darken",
-                        "value": "0.02",
-                        "space": "lch"
-                      }
-                    }
-                  },
                   "$type": "color",
-                  "$value": "{echoes.color.palette.red.100}"
+                  "$value": "{echoes.color.palette.red.400}"
                 }
               }
             },
@@ -320,26 +311,17 @@
               "prefix": {
                 "default": {
                   "$type": "color",
-                  "$value": "{echoes.color.palette.orange.50}"
+                  "$value": "{echoes.color.palette.orange.100}"
                 }
               },
               "suffix": {
                 "default": {
                   "$type": "color",
-                  "$value": "{echoes.color.palette.orange.100}"
+                  "$value": "{echoes.color.palette.orange.300}"
                 },
                 "hover": {
-                  "$extensions": {
-                    "studio.tokens": {
-                      "modify": {
-                        "type": "darken",
-                        "value": "0.02",
-                        "space": "lch"
-                      }
-                    }
-                  },
                   "$type": "color",
-                  "$value": "{echoes.color.palette.orange.100}"
+                  "$value": "{echoes.color.palette.orange.400}"
                 }
               }
             },
@@ -347,26 +329,26 @@
               "prefix": {
                 "default": {
                   "$type": "color",
-                  "$value": "{echoes.color.palette.amber.50}"
+                  "$value": "{echoes.color.palette.amber.100}"
                 }
               },
               "suffix": {
                 "default": {
                   "$type": "color",
-                  "$value": "{echoes.color.palette.amber.100}"
+                  "$value": "{echoes.color.palette.amber.300}"
                 },
                 "hover": {
                   "$extensions": {
                     "studio.tokens": {
                       "modify": {
-                        "type": "darken",
-                        "value": "0.02",
+                        "type": "alpha",
+                        "value": "0.5",
                         "space": "lch"
                       }
                     }
                   },
                   "$type": "color",
-                  "$value": "{echoes.color.palette.amber.100}"
+                  "$value": "{echoes.color.palette.amber.400}"
                 }
               }
             },
@@ -374,26 +356,17 @@
               "prefix": {
                 "default": {
                   "$type": "color",
-                  "$value": "{echoes.color.palette.blue.50}"
+                  "$value": "{echoes.color.palette.blue.100}"
                 }
               },
               "suffix": {
                 "default": {
                   "$type": "color",
-                  "$value": "{echoes.color.palette.blue.100}"
+                  "$value": "{echoes.color.palette.blue.300}"
                 },
                 "hover": {
-                  "$extensions": {
-                    "studio.tokens": {
-                      "modify": {
-                        "type": "darken",
-                        "value": "0.02",
-                        "space": "lch"
-                      }
-                    }
-                  },
                   "$type": "color",
-                  "$value": "{echoes.color.palette.blue.100}"
+                  "$value": "{echoes.color.palette.blue.400}"
                 }
               }
             }
@@ -404,13 +377,13 @@
             "icon": {
               "default": {
                 "$type": "color",
-                "$value": "{echoes.color.palette.red.700}"
+                "$value": "{echoes.color.palette.red.850}"
               }
             },
             "text": {
               "default": {
                 "$type": "color",
-                "$value": "{echoes.color.palette.red.800}"
+                "$value": "{echoes.color.palette.red.850}"
               }
             }
           },
@@ -432,13 +405,13 @@
             "text": {
               "default": {
                 "$type": "color",
-                "$value": "{echoes.color.palette.orange.800}"
+                "$value": "{echoes.color.palette.orange.700}"
               }
             },
             "icon": {
               "default": {
                 "$type": "color",
-                "$value": "{echoes.color.palette.orange.600}"
+                "$value": "{echoes.color.palette.orange.700}"
               }
             }
           },
@@ -452,7 +425,7 @@
             "icon": {
               "default": {
                 "$type": "color",
-                "$value": "{echoes.color.palette.amber.700}"
+                "$value": "{echoes.color.palette.amber.800}"
               }
             }
           },
@@ -466,7 +439,7 @@
             "icon": {
               "default": {
                 "$type": "color",
-                "$value": "{echoes.color.palette.blue.700}"
+                "$value": "{echoes.color.palette.blue.800}"
               }
             }
           }
@@ -475,31 +448,31 @@
           "blocker": {
             "default": {
               "$type": "color",
-              "$value": "{echoes.color.palette.red.200}"
+              "$value": "{echoes.color.palette.red.300}"
             }
           },
           "high": {
             "default": {
               "$type": "color",
-              "$value": "{echoes.color.palette.red.100}"
+              "$value": "{echoes.color.palette.red.300}"
             }
           },
           "medium": {
             "default": {
               "$type": "color",
-              "$value": "{echoes.color.palette.orange.100}"
+              "$value": "{echoes.color.palette.orange.300}"
             }
           },
           "low": {
             "default": {
               "$type": "color",
-              "$value": "{echoes.color.palette.amber.100}"
+              "$value": "{echoes.color.palette.amber.300}"
             }
           },
           "info": {
             "default": {
               "$type": "color",
-              "$value": "{echoes.color.palette.blue.100}"
+              "$value": "{echoes.color.palette.blue.300}"
             }
           }
         }

@@ -40,7 +40,7 @@
           "$type": "color",
           "$value": "#ffffff"
         },
-        "sonar-whale": {
+        "logomark": {
           "$type": "color",
           "$value": "#d3121d"
         }
