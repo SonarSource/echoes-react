@@ -34,10 +34,24 @@ import { TextNode } from '~types/utils';
 import { cssVar } from '~utils/design-tokens';
 import { AsideSize, ContentGridArea, GlobalGridArea, PageGridArea, PageWidth } from './LayoutTypes';
 
-const AsideSizeStyles: Record<AsideSize, CSSProperties> = {
-  [AsideSize.small]: { width: cssVar('layout-aside-width-small') },
-  [AsideSize.medium]: { width: cssVar('layout-aside-width-medium') },
-  [AsideSize.large]: { width: cssVar('layout-aside-width-large') },
+type AsideSizeStyle = CSSProperties & {
+  '--aside-left-padding': string;
+  '--aside-left-width': string;
+};
+
+const AsideSizeStyles: Record<AsideSize, AsideSizeStyle> = {
+  [AsideSize.small]: {
+    '--aside-left-padding': cssVar('dimension-space-150'),
+    '--aside-left-width': cssVar('layout-aside-width-small'),
+  },
+  [AsideSize.medium]: {
+    '--aside-left-padding': cssVar('dimension-space-200'),
+    '--aside-left-width': cssVar('layout-aside-width-medium'),
+  },
+  [AsideSize.large]: {
+    '--aside-left-padding': cssVar('dimension-space-250'),
+    '--aside-left-width': cssVar('layout-aside-width-large'),
+  },
 };
 
 /*
@@ -97,7 +111,8 @@ const StyledAsideLeft = styled.div`
   border-right: ${cssVar('border-width-default')} solid ${cssVar('color-border-weak')};
 
   box-sizing: border-box;
-  padding: ${cssVar('dimension-space-250')};
+  padding: var(--aside-left-padding);
+  width: var(--aside-left-width);
 `;
 StyledAsideLeft.displayName = 'StyledAside';
 
