@@ -415,16 +415,43 @@
         "selected": {
           "weak": {
             "default": {
+              "$extensions": {
+                "studio.tokens": {
+                  "modify": {
+                    "type": "alpha",
+                    "value": "0.2",
+                    "space": "lch"
+                  }
+                }
+              },
               "$type": "color",
-              "$value": "#5d6cd033"
+              "$value": "{echoes.color.roles.primary.strong}"
             },
             "hover": {
+              "$extensions": {
+                "studio.tokens": {
+                  "modify": {
+                    "type": "alpha",
+                    "value": "0.3",
+                    "space": "lch"
+                  }
+                }
+              },
               "$type": "color",
-              "$value": "#5d6cd04d"
+              "$value": "{echoes.color.roles.primary.strong}"
             },
             "pressed": {
+              "$extensions": {
+                "studio.tokens": {
+                  "modify": {
+                    "type": "alpha",
+                    "value": "0.4",
+                    "space": "lch"
+                  }
+                }
+              },
               "$type": "color",
-              "$value": "#5d6cd04d"
+              "$value": "{echoes.color.roles.primary.strong}"
             }
           },
           "bold": {
@@ -917,6 +944,70 @@
         "default": {
           "$type": "color",
           "$value": "{echoes.color.palette.indigo.200}"
+        }
+      },
+      "charts": {
+        "categorical": {
+          "1": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.data.categorical.cobalt}"
+          },
+          "2": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.data.categorical.pink}"
+          },
+          "3": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.data.categorical.teal}"
+          },
+          "4": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.data.categorical.violet}"
+          },
+          "5": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.data.categorical.sienna}"
+          },
+          "6": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.data.categorical.navy.1}"
+          },
+          "7": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.data.categorical.magenta.1}"
+          },
+          "8": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.data.categorical.jade.1}"
+          }
+        },
+        "severity": {
+          "blocker": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.data.severity.crimson.2}"
+          },
+          "high": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.data.severity.crimson.1}"
+          },
+          "medium": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.data.severity.amber.1}"
+          },
+          "low": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.data.severity.ochre.1}"
+          },
+          "info": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.data.severity.steel-blue.1}"
+          }
+        },
+        "placeholder": {
+          "default": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.data.placeholder.stone}"
+          }
         }
       }
     },

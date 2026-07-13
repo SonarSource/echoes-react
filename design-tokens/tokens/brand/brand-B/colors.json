@@ -317,7 +317,7 @@
           },
           "500": {
             "$type": "color",
-            "$value": "#d15e72"
+            "$value": "#5d6cd0"
           },
           "600": {
             "$type": "color",
@@ -640,6 +640,140 @@
           "900": {
             "$type": "color",
             "$value": "#3f186b"
+          }
+        },
+        "data": {
+          "categorical": {
+            "cobalt": {
+              "$type": "color",
+              "$value": "#3b82d4"
+            },
+            "pink": {
+              "$type": "color",
+              "$value": "#d74a78"
+            },
+            "teal": {
+              "$type": "color",
+              "$value": "#0f9383"
+            },
+            "violet": {
+              "$type": "color",
+              "$value": "#8a4fe9"
+            },
+            "sienna": {
+              "$type": "color",
+              "$value": "#d4713b"
+            },
+            "navy": {
+              "1": {
+                "$type": "color",
+                "$value": "#66adff"
+              },
+              "2": {
+                "$type": "color",
+                "$value": "#1b5da8"
+              }
+            },
+            "magenta": {
+              "1": {
+                "$type": "color",
+                "$value": "#ff6699"
+              },
+              "2": {
+                "$type": "color",
+                "$value": "#ad2955"
+              }
+            },
+            "jade": {
+              "1": {
+                "$type": "color",
+                "$value": "#66ffed"
+              },
+              "2": {
+                "$type": "color",
+                "$value": "#00675b"
+              }
+            }
+          },
+          "severity": {
+            "crimson": {
+              "1": {
+                "$type": "color",
+                "$value": "#ff7066"
+              },
+              "2": {
+                "$type": "color",
+                "$value": "#be342a"
+              },
+              "3": {
+                "$type": "color",
+                "$value": "#670700"
+              }
+            },
+            "amber": {
+              "1": {
+                "$type": "color",
+                "$value": "#e98f4f"
+              },
+              "2": {
+                "$type": "color",
+                "$value": "#ce7536"
+              }
+            },
+            "ochre": {
+              "1": {
+                "$type": "color",
+                "$value": "#e1ae48"
+              },
+              "2": {
+                "$type": "color",
+                "$value": "#ba8927"
+              }
+            },
+            "steel-blue": {
+              "1": {
+                "$type": "color",
+                "$value": "#3b97d4"
+              },
+              "2": {
+                "$type": "color",
+                "$value": "#2a83be"
+              }
+            }
+          },
+          "placeholder": {
+            "stone": {
+              "$type": "color",
+              "$value": "#637192"
+            }
+          },
+          "ratings": {
+            "emerald": {
+              "1": {
+                "$type": "color",
+                "$value": "#f6fef9"
+              },
+              "2": {
+                "$type": "color",
+                "$value": "#d1fadf"
+              },
+              "3": {
+                "$type": "color",
+                "$value": "#32d583"
+              },
+              "4": {
+                "$type": "color",
+                "$value": "#12b76a"
+              },
+              "5": {
+                "$type": "color",
+                "$value": "#027a48"
+              },
+              "6": {
+                "$type": "color",
+                "$value": "#054f31"
+              }
+            }
           }
         }
       }

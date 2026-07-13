@@ -99,7 +99,7 @@
           "ratingA": {
             "default": {
               "$type": "color",
-              "$value": "#027a48"
+              "$value": "{echoes.color.palette.data.ratings.emerald.5}"
             }
           },
           "ratingB": {
@@ -131,7 +131,7 @@
           "ratingA": {
             "default": {
               "$type": "color",
-              "$value": "#f6fef9"
+              "$value": "{echoes.color.palette.data.ratings.emerald.1}"
             }
           },
           "ratingB": {
@@ -163,7 +163,7 @@
           "ratingA": {
             "default": {
               "$type": "color",
-              "$value": "#32d583"
+              "$value": "{echoes.color.palette.data.ratings.emerald.3}"
             },
             "hover": {
               "$extensions": {
@@ -176,7 +176,7 @@
                 }
               },
               "$type": "color",
-              "$value": "#32d583"
+              "$value": "{echoes.color.palette.data.ratings.emerald.3}"
             }
           },
           "ratingB": {
