@@ -34,11 +34,11 @@
       "colors": {
         "text": {
           "$type": "color",
-          "$value": "#290042"
+          "$value": "{echoes.color.palette.purple.800}"
         },
         "brand": {
           "$type": "color",
-          "$value": "#126ed3"
+          "$value": "{echoes.color.palette.purple.800}"
         },
         "logomark": {
           "$type": "color",
