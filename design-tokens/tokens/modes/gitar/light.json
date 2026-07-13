@@ -272,7 +272,7 @@
         "utility": {
           "transparent": {
             "$type": "color",
-            "$value": "transparent00",
+            "$value": "{echoes.color.palette.support.transparent}",
             "$description": "Use it when you need transparency in the background"
           }
         },

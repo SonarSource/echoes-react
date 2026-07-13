@@ -409,7 +409,7 @@
         "utility": {
           "transparent": {
             "$type": "color",
-            "$value": "transparent00"
+            "$value": "{echoes.color.palette.support.transparent}"
           }
         },
         "selected": {
