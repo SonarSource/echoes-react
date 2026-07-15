@@ -940,6 +940,62 @@
           }
         }
       },
+      "code": {
+        "background": {
+          "default": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.grey.500}"
+          },
+          "highlight": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.grey.600}"
+          }
+        },
+        "border": {
+          "default": {
+            "$type": "color",
+            "$value": "{echoes.color.roles.support.transparent}"
+          }
+        },
+        "text": {
+          "default": {
+            "$type": "color",
+            "$value": "#E2E7F1"
+          },
+          "highlight": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.red.300}"
+          },
+          "annotation": {
+            "$type": "color",
+            "$value": "#61AEEE"
+          },
+          "constant": {
+            "$type": "color",
+            "$value": "#D19A66"
+          },
+          "comment": {
+            "$type": "color",
+            "$value": "#A7ACB4"
+          },
+          "keyword": {
+            "$type": "color",
+            "$value": "#DF91F6"
+          },
+          "string": {
+            "$type": "color",
+            "$value": "#98C379"
+          },
+          "keyword-subtle": {
+            "$type": "color",
+            "$value": "#ABABFF"
+          },
+          "preprocessing-directive": {
+            "$type": "color",
+            "$value": "#78D779"
+          }
+        }
+      },
       "focus": {
         "default": {
           "$type": "color",
