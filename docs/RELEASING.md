@@ -21,6 +21,12 @@ For more details, refer to the [internal versioning strategy](https://docs.googl
     - Example: <https://github.com/SonarSource/echoes-react/releases/tag/v0.5.0>
   - click _Publish Release_
 
+- Trigger the release workflow
+  - Go to the [Release action tab](https://github.com/SonarSource/echoes-react/actions/workflows/release.yml)
+  - open the `run workflow` dropdown
+  - fill the version field (including build number)
+  - Click `run workflow`!
+
 - On the `main` branch, bump the [package version](https://github.com/SonarSource/echoes-react/blob/main/package.json#L3) for the next development iteration with `yarn version major|minor` and commit with message `Prepare for version x.y`.
 
 ## Release Process for Patch Versions
