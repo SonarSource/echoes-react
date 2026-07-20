@@ -91,18 +91,19 @@ describe('EmptyState', () => {
     const root = screen.getByTestId('empty-state');
     const graphicContent = screen.getByTestId('empty-state-graphic-content');
     const graphicWrapper = screen.getByTestId('empty-state-graphic-wrapper');
+    const textGroup = screen.getByTestId('empty-state-text-group');
 
     expect(root).toHaveStyle({
       alignItems: 'center',
       display: 'flex',
       flexDirection: 'column',
-      gap: cssVar('dimension-space-300'),
+      gap: cssVar('dimension-space-200'),
       textAlign: 'center',
     });
 
     expect(graphicWrapper).toHaveStyle({
       'background-color': cssVar('color-background-neutral-subtle-default'),
-      'border-radius': cssVar('border-radius-400'),
+      'border-radius': cssVar('border-radius-200'),
       height: cssVar('dimension-height-800'),
       padding: cssVar('dimension-space-0'),
       width: cssVar('dimension-width-400'),
@@ -110,10 +111,15 @@ describe('EmptyState', () => {
 
     expect(graphicContent).toHaveStyle({
       alignItems: 'center',
+      color: cssVar('color-icon-default'),
       display: 'flex',
       height: cssVar('dimension-height-600'),
       justifyContent: 'center',
       width: cssVar('dimension-width-300'),
+    });
+
+    expect(textGroup).toHaveStyle({
+      gap: cssVar('dimension-space-75'),
     });
   });
 

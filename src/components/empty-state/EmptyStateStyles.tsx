@@ -26,7 +26,7 @@ export const EmptyStateRoot = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: ${cssVar('dimension-space-300')};
+  gap: ${cssVar('dimension-space-200')};
 
   text-align: center;
 `;
@@ -39,7 +39,7 @@ export const EmptyStateGraphicWrapper = styled.div`
   width: ${cssVar('dimension-width-400')};
   height: ${cssVar('dimension-height-800')};
 
-  border-radius: ${cssVar('border-radius-400')};
+  border-radius: ${cssVar('border-radius-200')};
   background-color: ${cssVar('color-background-neutral-subtle-default')};
   padding: ${cssVar('dimension-space-0')};
 `;
@@ -51,6 +51,7 @@ export const EmptyStateGraphicContent = styled.div`
   justify-content: center;
   width: ${cssVar('dimension-width-300')};
   height: ${cssVar('dimension-height-600')};
+  color: ${cssVar('color-icon-default')};
 
   & > * {
     max-width: 100%;
@@ -70,7 +71,7 @@ export const EmptyStateTextGroup = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: ${cssVar('dimension-space-100')};
+  gap: ${cssVar('dimension-space-75')};
 `;
 EmptyStateTextGroup.displayName = 'EmptyStateTextGroup';
 

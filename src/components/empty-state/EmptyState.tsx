@@ -20,7 +20,7 @@
 
 import { type ReactNode, type Ref } from 'react';
 import { isDefined } from '~common/helpers/types';
-import { Heading, HeadingSize } from '../typography';
+import { Heading } from '../typography';
 import {
   EmptyStateActionSlot,
   EmptyStateActionsGroup,
@@ -74,8 +74,8 @@ export function EmptyState(props: Readonly<EmptyStateProps>) {
         </EmptyStateGraphicContent>
       </EmptyStateGraphicWrapper>
 
-      <EmptyStateTextGroup>
-        <Heading as="h2" hasMarginBottom={false} size={HeadingSize.Medium}>
+      <EmptyStateTextGroup data-testid="empty-state-text-group">
+        <Heading as="h2" hasMarginBottom={false}>
           {heading}
         </Heading>
 

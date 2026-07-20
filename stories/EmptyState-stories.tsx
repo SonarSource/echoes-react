@@ -21,6 +21,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import {
   Button,
+  ButtonVariety,
   EmptyState,
   EmptyStateProps,
   IconActivity,
@@ -32,7 +33,7 @@ import { basicWrapperDecorator } from './helpers/BasicWrapper';
 
 const meta: Meta<typeof EmptyState> = {
   args: {
-    graphic: <IconActivity color="echoes-color-icon-subtle" />,
+    graphic: <IconActivity />,
     heading: 'No versions have been released yet',
     text: 'Versions will appear here once the first release is available for this project.',
   },
@@ -67,30 +68,34 @@ export const Default: Story = {
 
 export const WithAction: Story = {
   args: {
-    action: <Button>Read documentation</Button>,
+    action: <Button variety={ButtonVariety.Primary}>Read documentation</Button>,
   },
   render,
 };
 
 export const WithActionAndLink: Story = {
   args: {
-    action: <Button>Read documentation</Button>,
-    link: <LinkStandalone to="/releases">Learn more about releases</LinkStandalone>,
+    action: <Button variety={ButtonVariety.Primary}>Read documentation</Button>,
+    link: (
+      <LinkStandalone enableOpenInNewTab to="https://www.sonarsource.com">
+        Learn more about releases
+      </LinkStandalone>
+    ),
   },
   render,
 };
 
 export const WithDifferentGraphics: Story = {
   args: {
-    graphic: <IconWarning color="echoes-color-icon-warning" />,
+    graphic: <IconWarning />,
   },
   render,
 };
 
 export const LongTextWrapping: Story = {
   args: {
-    action: <Button>Configure releases</Button>,
-    graphic: <IconInfo color="echoes-color-icon-subtle" />,
+    action: <Button variety={ButtonVariety.Primary}>Configure releases</Button>,
+    graphic: <IconInfo />,
     text: 'Release history will appear here once your team starts publishing versions. Until then, you can configure your release workflow and review how version-based quality gate history will be presented to project members.',
   },
   render,
