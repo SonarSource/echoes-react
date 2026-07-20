@@ -43,6 +43,7 @@ export interface EmptyStateProps {
   className?: string;
   /**
    * Graphic displayed inside the neutral wrapper.
+   * Echoes icons passed here will inherit the default icon color from the component.
    */
   graphic: ReactNode;
   /**
@@ -74,7 +75,7 @@ export function EmptyState(props: Readonly<EmptyStateProps>) {
         </EmptyStateGraphicContent>
       </EmptyStateGraphicWrapper>
 
-      <EmptyStateTextGroup data-testid="empty-state-text-group">
+      <EmptyStateTextGroup>
         <Heading as="h2" hasMarginBottom={false}>
           {heading}
         </Heading>

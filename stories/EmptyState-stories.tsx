@@ -19,6 +19,7 @@
  */
 
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import styled from '@emotion/styled';
 import {
   Button,
   ButtonVariety,
@@ -29,6 +30,7 @@ import {
   IconWarning,
   LinkStandalone,
 } from '../src';
+import { cssVar } from '../src/utils/design-tokens';
 import { basicWrapperDecorator } from './helpers/BasicWrapper';
 
 const meta: Meta<typeof EmptyState> = {
@@ -52,13 +54,9 @@ type Story = StoryObj<typeof EmptyState>;
 
 function render(props: Readonly<EmptyStateProps>) {
   return (
-    <div
-      style={{
-        padding: '40px',
-        width: '420px',
-      }}>
+    <StoryWrapper>
       <EmptyState {...props} />
-    </div>
+    </StoryWrapper>
   );
 }
 
@@ -100,3 +98,10 @@ export const LongTextWrapping: Story = {
   },
   render,
 };
+
+const StoryWrapper = styled.div`
+  width: ${cssVar('dimension-width-5000')};
+  padding: ${cssVar('dimension-space-400')};
+`;
+
+StoryWrapper.displayName = 'StoryWrapper';

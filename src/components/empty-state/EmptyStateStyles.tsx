@@ -20,6 +20,7 @@
 
 import styled from '@emotion/styled';
 import { cssVar } from '~utils/design-tokens';
+import { IconCustomWrapper, IconMaterialWrapper } from '../icons/IconWrapper';
 import { Text } from '../typography';
 
 export const EmptyStateRoot = styled.div`
@@ -56,6 +57,10 @@ export const EmptyStateGraphicContent = styled.div`
   & > * {
     max-width: 100%;
     max-height: 100%;
+  }
+
+  & > ${IconMaterialWrapper}, & > ${IconCustomWrapper} {
+    color: inherit;
   }
 
   & > svg,

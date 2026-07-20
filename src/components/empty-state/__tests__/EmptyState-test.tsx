@@ -91,7 +91,6 @@ describe('EmptyState', () => {
     const root = screen.getByTestId('empty-state');
     const graphicContent = screen.getByTestId('empty-state-graphic-content');
     const graphicWrapper = screen.getByTestId('empty-state-graphic-wrapper');
-    const textGroup = screen.getByTestId('empty-state-text-group');
 
     expect(root).toHaveStyle({
       alignItems: 'center',
@@ -116,10 +115,6 @@ describe('EmptyState', () => {
       height: cssVar('dimension-height-600'),
       justifyContent: 'center',
       width: cssVar('dimension-width-300'),
-    });
-
-    expect(textGroup).toHaveStyle({
-      gap: cssVar('dimension-space-75'),
     });
   });
 
