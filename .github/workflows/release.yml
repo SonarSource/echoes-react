@@ -1,13 +1,11 @@
 name: Release
 
 on:
-  release:
-    types: [published]
   workflow_dispatch:
     inputs:
-      release_version:
-        description: 'Version'
-        required: false
+      version:
+        description: 'Full version including build number, e.g. 1.2.3.456'
+        required: true
 
 jobs:
   release:
@@ -17,6 +15,7 @@ jobs:
       skipJavascriptReleasabilityChecks: false
       useNpmTrustedPublisher: true
       githubEnvironment: release
+      version: ${{ inputs.version }}
     permissions:
       id-token: write
       contents: write
