@@ -19,13 +19,13 @@ For more details, refer to the [internal versioning strategy](https://docs.googl
   - Find the relevant Jira release from the [releases page](https://sonarsource.atlassian.net/projects/ECHOES?selectedItem=com.atlassian.jira.jira-projects-plugin%3Arelease-page) and after ensuring the correct tickets are in there, release it, generating release notes in Jira at the same time.
   - Populate the Github release notes section (copied as markdown from Jira).
     - Example: <https://github.com/SonarSource/echoes-react/releases/tag/v0.5.0>
-  - click _Publish Release_
+  - /!\ DO NOT _Publish Release_ /!\
 
 - Trigger the release workflow
   - Go to the [Release action tab](https://github.com/SonarSource/echoes-react/actions/workflows/release.yml)
   - open the `run workflow` dropdown
   - fill the version field (including build number)
-  - Click `run workflow`!
+  - Click _Run workflow_
 
 - On the `main` branch, bump the [package version](https://github.com/SonarSource/echoes-react/blob/main/package.json#L3) for the next development iteration with `yarn version major|minor` and commit with message `Prepare for version x.y`.
 
