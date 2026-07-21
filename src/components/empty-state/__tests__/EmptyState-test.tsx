@@ -73,15 +73,10 @@ describe('EmptyState', () => {
     expect(screen.getByRole('link', { name: 'Learn more' })).toBeVisible();
   });
 
-  it('renders the configured heading level', () => {
-    renderEmptyState({
-      headingAs: 'h3',
-    });
+  it('always renders the title as an h2 heading', () => {
+    renderEmptyState();
 
-    expect(screen.getByRole('heading', { level: 3, name: 'No releases yet' })).toBeVisible();
-    expect(
-      screen.queryByRole('heading', { level: 2, name: 'No releases yet' }),
-    ).not.toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 2, name: 'No releases yet' })).toBeVisible();
   });
 
   it('preserves passed custom react nodes', () => {
@@ -143,8 +138,8 @@ function renderEmptyState(overrides: Partial<EmptyStateProps> = {}) {
     <EmptyState
       data-testid="empty-state"
       graphic={<svg data-testid="empty-state-graphic" />}
-      heading="No releases yet"
       text="Versions will appear here once the first release is available."
+      title="No releases yet"
       {...overrides}
     />,
   );

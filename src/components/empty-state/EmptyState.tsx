@@ -20,7 +20,7 @@
 
 import { type ReactNode, type Ref } from 'react';
 import { isDefined } from '~common/helpers/types';
-import { Heading, Text, type HeadingProps } from '../typography';
+import { Heading, Text } from '../typography';
 import {
   EmptyStateActionSlot,
   EmptyStateActionsGroup,
@@ -46,15 +46,6 @@ export interface EmptyStateProps {
    */
   graphic: ReactNode;
   /**
-   * Main heading text.
-   */
-  heading: string;
-  /**
-   * HTML heading element used for the title.
-   * @defaultValue 'h2'
-   */
-  headingAs?: `${HeadingProps['as']}`;
-  /**
    * Optional link displayed below the action.
    */
   link?: ReactNode;
@@ -66,20 +57,14 @@ export interface EmptyStateProps {
    * Supporting body text.
    */
   text: string;
+  /**
+   * Main title text.
+   */
+  title: string;
 }
 
 export function EmptyState(props: Readonly<EmptyStateProps>) {
-  const {
-    action,
-    className,
-    graphic,
-    heading,
-    headingAs = 'h2',
-    link,
-    ref,
-    text,
-    ...restProps
-  } = props;
+  const { action, className, graphic, link, ref, text, title, ...restProps } = props;
 
   return (
     <EmptyStateRoot className={className} ref={ref} {...restProps}>
@@ -90,8 +75,8 @@ export function EmptyState(props: Readonly<EmptyStateProps>) {
       </EmptyStateGraphicWrapper>
 
       <EmptyStateTextGroup>
-        <Heading as={headingAs} hasMarginBottom={false}>
-          {heading}
+        <Heading as="h2" hasMarginBottom={false}>
+          {title}
         </Heading>
 
         <Text as="p" isSubtle>

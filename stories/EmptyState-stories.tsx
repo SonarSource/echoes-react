@@ -28,30 +28,30 @@ import {
   EmptyStateProps,
   IconActivity,
   IconInfo,
-  IconWarning,
   LinkStandalone,
 } from '../src';
 import { cssVar } from '../src/utils/design-tokens';
+import { iconsElementsArgType, toTextControlArgTypes } from './helpers/arg-types';
 import { basicWrapperDecorator } from './helpers/BasicWrapper';
 
 const meta: Meta<typeof EmptyState> = {
   args: {
-    graphic: <IconActivity />,
-    heading: 'No versions have been released yet',
-    headingAs: 'h2',
+    title: 'No versions have been released yet',
     text: 'Versions will appear here once the first release is available for this project.',
+    graphic: <IconActivity />,
   },
   argTypes: {
-    headingAs: {
+    ...toTextControlArgTypes<EmptyStateProps>('title', 'text'),
+    graphic: {
+      ...iconsElementsArgType,
       control: { type: 'select' },
-      options: ['h1', 'h2', 'h3', 'h4', 'h5'],
     },
   },
   component: EmptyState,
   decorators: [basicWrapperDecorator],
   parameters: {
     controls: {
-      exclude: ['graphic', 'action', 'link'],
+      exclude: ['action', 'link'],
     },
   },
   title: 'Echoes Components/EmptyState',
@@ -79,9 +79,8 @@ export const WithAction: Story = {
   render,
 };
 
-export const WithActionAndLink: Story = {
+export const WithLink: Story = {
   args: {
-    action: <Button variety={ButtonVariety.Primary}>Read documentation</Button>,
     link: (
       <LinkStandalone enableOpenInNewTab to="https://www.sonarsource.com">
         Learn more about releases
@@ -91,9 +90,14 @@ export const WithActionAndLink: Story = {
   render,
 };
 
-export const WithDifferentGraphics: Story = {
+export const WithActionAndLink: Story = {
   args: {
-    graphic: <IconWarning />,
+    action: <Button variety={ButtonVariety.Primary}>Read documentation</Button>,
+    link: (
+      <LinkStandalone enableOpenInNewTab to="https://www.sonarsource.com">
+        Learn more about releases
+      </LinkStandalone>
+    ),
   },
   render,
 };
