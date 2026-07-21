@@ -73,6 +73,17 @@ describe('EmptyState', () => {
     expect(screen.getByRole('link', { name: 'Learn more' })).toBeVisible();
   });
 
+  it('renders the configured heading level', () => {
+    renderEmptyState({
+      headingAs: 'h3',
+    });
+
+    expect(screen.getByRole('heading', { level: 3, name: 'No releases yet' })).toBeVisible();
+    expect(
+      screen.queryByRole('heading', { level: 2, name: 'No releases yet' }),
+    ).not.toBeInTheDocument();
+  });
+
   it('preserves passed custom react nodes', () => {
     renderEmptyState({
       action: <button type="button">Retry</button>,

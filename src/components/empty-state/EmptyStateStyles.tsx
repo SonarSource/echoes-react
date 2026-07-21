@@ -21,13 +21,13 @@
 import styled from '@emotion/styled';
 import { cssVar } from '~utils/design-tokens';
 import { IconCustomWrapper, IconMaterialWrapper } from '../icons/IconWrapper';
-import { Text } from '../typography';
 
 export const EmptyStateRoot = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: ${cssVar('dimension-space-200')};
+  max-width: ${cssVar('dimension-width-5000')};
 
   text-align: center;
 `;
@@ -77,13 +77,12 @@ export const EmptyStateTextGroup = styled.div`
   flex-direction: column;
   align-items: center;
   gap: ${cssVar('dimension-space-75')};
+
+  & > p {
+    margin: 0;
+  }
 `;
 EmptyStateTextGroup.displayName = 'EmptyStateTextGroup';
-
-export const EmptyStateText = styled(Text)`
-  margin: 0;
-`;
-EmptyStateText.displayName = 'EmptyStateText';
 
 export const EmptyStateActionsGroup = styled.div`
   display: flex;

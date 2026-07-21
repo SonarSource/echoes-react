@@ -20,7 +20,7 @@
 
 import { type ReactNode, type Ref } from 'react';
 import { isDefined } from '~common/helpers/types';
-import { Heading } from '../typography';
+import { Heading, Text, type HeadingProps } from '../typography';
 import {
   EmptyStateActionSlot,
   EmptyStateActionsGroup,
@@ -28,7 +28,6 @@ import {
   EmptyStateGraphicWrapper,
   EmptyStateLinkSlot,
   EmptyStateRoot,
-  EmptyStateText,
   EmptyStateTextGroup,
 } from './EmptyStateStyles';
 
@@ -51,6 +50,11 @@ export interface EmptyStateProps {
    */
   heading: string;
   /**
+   * HTML heading element used for the title.
+   * @defaultValue 'h2'
+   */
+  headingAs?: `${HeadingProps['as']}`;
+  /**
    * Optional link displayed below the action.
    */
   link?: ReactNode;
@@ -65,7 +69,17 @@ export interface EmptyStateProps {
 }
 
 export function EmptyState(props: Readonly<EmptyStateProps>) {
-  const { action, className, graphic, heading, link, ref, text, ...restProps } = props;
+  const {
+    action,
+    className,
+    graphic,
+    heading,
+    headingAs = 'h2',
+    link,
+    ref,
+    text,
+    ...restProps
+  } = props;
 
   return (
     <EmptyStateRoot className={className} ref={ref} {...restProps}>
@@ -76,13 +90,13 @@ export function EmptyState(props: Readonly<EmptyStateProps>) {
       </EmptyStateGraphicWrapper>
 
       <EmptyStateTextGroup>
-        <Heading as="h2" hasMarginBottom={false}>
+        <Heading as={headingAs} hasMarginBottom={false}>
           {heading}
         </Heading>
 
-        <EmptyStateText as="p" isSubtle>
+        <Text as="p" isSubtle>
           {text}
-        </EmptyStateText>
+        </Text>
       </EmptyStateTextGroup>
 
       {(isDefined(action) || isDefined(link)) && (

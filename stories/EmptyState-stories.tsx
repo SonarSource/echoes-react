@@ -23,6 +23,7 @@ import styled from '@emotion/styled';
 import {
   Button,
   ButtonVariety,
+  Card,
   EmptyState,
   EmptyStateProps,
   IconActivity,
@@ -37,7 +38,14 @@ const meta: Meta<typeof EmptyState> = {
   args: {
     graphic: <IconActivity />,
     heading: 'No versions have been released yet',
+    headingAs: 'h2',
     text: 'Versions will appear here once the first release is available for this project.',
+  },
+  argTypes: {
+    headingAs: {
+      control: { type: 'select' },
+      options: ['h1', 'h2', 'h3', 'h4', 'h5'],
+    },
   },
   component: EmptyState,
   decorators: [basicWrapperDecorator],
@@ -99,9 +107,27 @@ export const LongTextWrapping: Story = {
   render,
 };
 
+export const InCard: Story = {
+  render: (props) => (
+    <StoryWrapper>
+      <Card>
+        <CardBodyWrapper>
+          <EmptyState {...props} />
+        </CardBodyWrapper>
+      </Card>
+    </StoryWrapper>
+  ),
+};
+
 const StoryWrapper = styled.div`
-  width: ${cssVar('dimension-width-5000')};
   padding: ${cssVar('dimension-space-400')};
 `;
 
 StoryWrapper.displayName = 'StoryWrapper';
+
+const CardBodyWrapper = styled(Card.Body)`
+  display: flex;
+  justify-content: center;
+`;
+
+CardBodyWrapper.displayName = 'CardBodyWrapper';
