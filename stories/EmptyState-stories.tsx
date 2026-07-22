@@ -26,6 +26,7 @@ import {
   Card,
   EmptyState,
   EmptyStateProps,
+  HeadingSize,
   IconActivity,
   IconInfo,
   LinkStandalone,
@@ -39,12 +40,22 @@ const meta: Meta<typeof EmptyState> = {
     title: 'No versions have been released yet',
     text: 'Versions will appear here once the first release is available for this project.',
     graphic: <IconActivity />,
+    titleAs: 'h2',
+    titleSize: HeadingSize.Large,
   },
   argTypes: {
     ...toTextControlArgTypes<EmptyStateProps>('title', 'text'),
     graphic: {
       ...iconsElementsArgType,
       control: { type: 'select' },
+    },
+    titleAs: {
+      control: { type: 'select' },
+      options: ['h1', 'h2', 'h3', 'h4', 'h5'],
+    },
+    titleSize: {
+      control: { type: 'select' },
+      options: Object.values(HeadingSize),
     },
   },
   component: EmptyState,

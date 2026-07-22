@@ -20,7 +20,7 @@
 
 import { type ReactNode, type Ref } from 'react';
 import { isDefined } from '~common/helpers/types';
-import { Heading, Text } from '../typography';
+import { Heading, type HeadingProps, type HeadingSize, Text } from '../typography';
 import {
   EmptyStateActionSlot,
   EmptyStateActionsGroup,
@@ -33,38 +33,59 @@ import {
 
 export interface EmptyStateProps {
   /**
-   * Optional primary action displayed below the text block.
+   * Main title text.
    */
-  action?: ReactNode;
+  title: string;
   /**
-   * Optional CSS class name applied to the root element.
+   * Supporting body text.
    */
-  className?: string;
+  text: string;
   /**
    * Graphic displayed inside the neutral wrapper.
    * Echoes icons passed here will inherit the default icon color from the component.
    */
   graphic: ReactNode;
   /**
+   * Semantic heading element used for the title.
+   * @defaultValue 'h2'
+   */
+  titleAs?: `${HeadingProps['as']}`;
+  /**
+   * Visual heading size used for the title.
+   * @defaultValue 'large'
+   */
+  titleSize?: `${HeadingSize}`;
+  /**
+   * Optional primary action displayed below the text block.
+   */
+  action?: ReactNode;
+  /**
    * Optional link displayed below the action.
    */
   link?: ReactNode;
   /**
+   * Optional CSS class name applied to the root element.
+   */
+  className?: string;
+  /**
    * React ref forwarded to the root element.
    */
   ref?: Ref<HTMLDivElement>;
-  /**
-   * Supporting body text.
-   */
-  text: string;
-  /**
-   * Main title text.
-   */
-  title: string;
 }
 
 export function EmptyState(props: Readonly<EmptyStateProps>) {
-  const { action, className, graphic, link, ref, text, title, ...restProps } = props;
+  const {
+    title,
+    text,
+    graphic,
+    titleAs = 'h2',
+    titleSize = 'large',
+    action,
+    link,
+    className,
+    ref,
+    ...restProps
+  } = props;
 
   return (
     <EmptyStateRoot className={className} ref={ref} {...restProps}>
@@ -75,7 +96,7 @@ export function EmptyState(props: Readonly<EmptyStateProps>) {
       </EmptyStateGraphicWrapper>
 
       <EmptyStateTextGroup>
-        <Heading as="h2" hasMarginBottom={false}>
+        <Heading as={titleAs} hasMarginBottom={false} size={titleSize}>
           {title}
         </Heading>
 

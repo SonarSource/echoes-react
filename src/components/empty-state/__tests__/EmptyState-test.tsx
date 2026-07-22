@@ -23,6 +23,7 @@ import { screen } from '@testing-library/react';
 import { render } from '~common/helpers/test-utils';
 import { cssVar } from '~utils/design-tokens';
 import { Button } from '../../buttons';
+import { HeadingSize } from '../../typography';
 import { EmptyState, EmptyStateProps } from '../EmptyState';
 
 describe('EmptyState', () => {
@@ -73,10 +74,26 @@ describe('EmptyState', () => {
     expect(screen.getByRole('link', { name: 'Learn more' })).toBeVisible();
   });
 
-  it('always renders the title as an h2 heading', () => {
+  it('renders the default title as an h2 heading', () => {
     renderEmptyState();
 
     expect(screen.getByRole('heading', { level: 2, name: 'No releases yet' })).toBeVisible();
+  });
+
+  it('renders the configured title heading semantic', () => {
+    renderEmptyState({
+      titleAs: 'h3',
+    });
+
+    expect(screen.getByRole('heading', { level: 3, name: 'No releases yet' })).toBeVisible();
+  });
+
+  it('applies the configured title heading size', () => {
+    const { asFragment } = renderEmptyState({
+      titleSize: HeadingSize.Medium,
+    });
+
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it('preserves passed custom react nodes', () => {
