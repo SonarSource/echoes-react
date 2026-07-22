@@ -704,7 +704,7 @@
         "failed": {
           "icon": {
             "$type": "color",
-            "$value": "{echoes.color.roles.danger.light}"
+            "$value": "{echoes.color.palette.red.100}"
           },
           "background": {
             "$extensions": {
