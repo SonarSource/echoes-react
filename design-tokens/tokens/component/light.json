@@ -1,5 +1,15 @@
 {
   "echoes": {
+    "bottom-scroll": {
+      "colors": {
+        "shadow": {
+          "gradient": {
+            "$type": "color",
+            "$value": "#00000033"
+          }
+        }
+      }
+    },
     "form-control": {
       "colors": {
         "background": {
@@ -46,16 +56,6 @@
         }
       }
     },
-    "bottom-scroll": {
-      "colors": {
-        "shadow": {
-          "gradient": {
-            "$type": "color",
-            "$value": "#00000033"
-          }
-        }
-      }
-    },
     "margin-indicator": {
       "colors": {
         "background": {
@@ -89,6 +89,30 @@
             "spread": "0",
             "color": "#0000000d",
             "type": "innerShadow"
+          }
+        }
+      }
+    },
+    "quality-gate-indicator": {
+      "colors": {
+        "passed": {
+          "icon": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.green.900}"
+          },
+          "background": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.green.200}"
+          }
+        },
+        "failed": {
+          "icon": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.red.800}"
+          },
+          "background": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.red.200}"
           }
         }
       }

@@ -180,6 +180,7 @@
   --echoes-box-shadow-medium: 0 2px 15px -2px #1d212f0f, 0 4px 8px -2px #1d212f1a;
   --echoes-box-shadow-large: 0 4px 6px -2px #1d212f0d, 0 12px 16px -4px #1d212f1a;
   --echoes-box-shadow-x-large: 0 8px 8px -4px #1d212f0a, 15px 20px 24px -4px #1d212f1a;
+  --echoes-bottom-scroll-colors-shadow-gradient: #00000033;
   --echoes-form-control-colors-background-default: #ffffff;
   --echoes-form-control-colors-background-hover: #f6f7fb;
   --echoes-form-control-colors-border-default: #637192;
@@ -188,12 +189,15 @@
   --echoes-logos-colors-text: #290042;
   --echoes-logos-colors-brand: #126ed3;
   --echoes-logos-colors-sonar-whale: #d3121d;
-  --echoes-bottom-scroll-colors-shadow-gradient: #00000033;
   --echoes-margin-indicator-colors-background-duplication: #c5cddf;
   --echoes-margin-indicator-colors-background-covered: #75a92c;
   --echoes-margin-indicator-colors-background-partially-covered: #ae7a29;
   --echoes-margin-indicator-colors-background-uncovered: #d92d20;
   --echoes-overlays-inner-shadow-default: inset 0 -6px 10px 0 #0000000d;
+  --echoes-quality-gate-indicator-colors-passed-icon: #054f16;
+  --echoes-quality-gate-indicator-colors-passed-background: #d4f2b7;
+  --echoes-quality-gate-indicator-colors-failed-icon: #801b14;
+  --echoes-quality-gate-indicator-colors-failed-background: #fecdca;
   --echoes-ratings-colors-background-rating-a-default: #d1fadf;
   --echoes-ratings-colors-background-rating-b-default: #d4f2b7;
   --echoes-ratings-colors-background-rating-c-default: #fce9a3;

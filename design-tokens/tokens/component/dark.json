@@ -1,5 +1,15 @@
 {
   "echoes": {
+    "bottom-scroll": {
+      "colors": {
+        "shadow": {
+          "gradient": {
+            "$type": "color",
+            "$value": "#ffffff33"
+          }
+        }
+      }
+    },
     "form-control": {
       "colors": {
         "background": {
@@ -46,16 +56,6 @@
         }
       }
     },
-    "bottom-scroll": {
-      "colors": {
-        "shadow": {
-          "gradient": {
-            "$type": "color",
-            "$value": "#ffffff33"
-          }
-        }
-      }
-    },
     "margin-indicator": {
       "colors": {
         "background": {
@@ -89,6 +89,48 @@
             "spread": "0",
             "color": "#ffffff1a",
             "type": "innerShadow"
+          }
+        }
+      }
+    },
+    "quality-gate-indicator": {
+      "colors": {
+        "passed": {
+          "icon": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.green.100}"
+          },
+          "background": {
+            "$extensions": {
+              "studio.tokens": {
+                "modify": {
+                  "type": "alpha",
+                  "value": "0.3",
+                  "space": "lch"
+                }
+              }
+            },
+            "$type": "color",
+            "$value": "{echoes.color.palette.green.300}"
+          }
+        },
+        "failed": {
+          "icon": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.red.100}"
+          },
+          "background": {
+            "$extensions": {
+              "studio.tokens": {
+                "modify": {
+                  "type": "alpha",
+                  "value": "0.3",
+                  "space": "lch"
+                }
+              }
+            },
+            "$type": "color",
+            "$value": "{echoes.color.palette.red.300}"
           }
         }
       }
