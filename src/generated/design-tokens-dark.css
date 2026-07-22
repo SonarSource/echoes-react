@@ -249,8 +249,8 @@ html[data-echoes-theme='dark'], [data-echoes-theme='dark'] {
   --echoes-sidebar-navigation-item-colors-background-hover: #12141d;
   --echoes-sidebar-navigation-item-colors-background-active: #08090c;
   --echoes-table-colors-background-header-default: #3e4357;
-  --echoes-quality-gate-indicator-colors-failed-background: #fda29b4d;
-  --echoes-quality-gate-indicator-colors-failed-icon: #fee4e2;
-  --echoes-quality-gate-indicator-colors-passed-background: #c4ea9e4d;
   --echoes-quality-gate-indicator-colors-passed-icon: #e4f7d1;
+  --echoes-quality-gate-indicator-colors-passed-background: #c4ea9e4d;
+  --echoes-quality-gate-indicator-colors-failed-icon: #fee4e2;
+  --echoes-quality-gate-indicator-colors-failed-background: #fda29b4d;
 }

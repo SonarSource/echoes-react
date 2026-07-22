@@ -547,24 +547,24 @@
     },
     "quality-gate-indicator": {
       "colors": {
-        "failed": {
-          "background": {
-            "$type": "color",
-            "$value": "{echoes.color.palette.red.200}"
-          },
-          "icon": {
-            "$type": "color",
-            "$value": "{echoes.color.palette.red.800}"
-          }
-        },
         "passed": {
-          "background": {
-            "$type": "color",
-            "$value": "{echoes.color.palette.green.200}"
-          },
           "icon": {
             "$type": "color",
             "$value": "{echoes.color.palette.green.900}"
+          },
+          "background": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.green.200}"
+          }
+        },
+        "failed": {
+          "icon": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.red.800}"
+          },
+          "background": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.red.200}"
           }
         }
       }

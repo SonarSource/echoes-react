@@ -682,26 +682,11 @@
     },
     "quality-gate-indicator": {
       "colors": {
-        "failed": {
-          "background": {
-            "$extensions": {
-              "studio.tokens": {
-                "modify": {
-                  "type": "alpha",
-                  "value": "0.3",
-                  "space": "lch"
-                }
-              }
-            },
-            "$type": "color",
-            "$value": "{echoes.color.palette.red.300}"
-          },
+        "passed": {
           "icon": {
             "$type": "color",
-            "$value": "{echoes.color.palette.red.100}"
-          }
-        },
-        "passed": {
+            "$value": "{echoes.color.palette.green.100}"
+          },
           "background": {
             "$extensions": {
               "studio.tokens": {
@@ -714,10 +699,25 @@
             },
             "$type": "color",
             "$value": "{echoes.color.palette.green.300}"
-          },
+          }
+        },
+        "failed": {
           "icon": {
             "$type": "color",
-            "$value": "{echoes.color.palette.green.100}"
+            "$value": "{echoes.color.palette.red.100}"
+          },
+          "background": {
+            "$extensions": {
+              "studio.tokens": {
+                "modify": {
+                  "type": "alpha",
+                  "value": "0.3",
+                  "space": "lch"
+                }
+              }
+            },
+            "$type": "color",
+            "$value": "{echoes.color.palette.red.300}"
           }
         }
       }

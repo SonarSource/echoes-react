@@ -249,8 +249,8 @@
   --echoes-sidebar-navigation-item-colors-background-hover: #f6f7fb;
   --echoes-sidebar-navigation-item-colors-background-active: #eff2f9;
   --echoes-table-colors-background-header-default: #eff2f9;
-  --echoes-quality-gate-indicator-colors-failed-background: #fecdca;
-  --echoes-quality-gate-indicator-colors-failed-icon: #801b14;
-  --echoes-quality-gate-indicator-colors-passed-background: #d4f2b7;
   --echoes-quality-gate-indicator-colors-passed-icon: #054f16;
+  --echoes-quality-gate-indicator-colors-passed-background: #d4f2b7;
+  --echoes-quality-gate-indicator-colors-failed-icon: #801b14;
+  --echoes-quality-gate-indicator-colors-failed-background: #fecdca;
 }
