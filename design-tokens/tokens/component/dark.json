@@ -682,30 +682,7 @@
     },
     "quality-gate-indicator": {
       "colors": {
-        "passed": {
-          "icon": {
-            "$type": "color",
-            "$value": "{echoes.color.roles.success.light}"
-          },
-          "background": {
-            "$extensions": {
-              "studio.tokens": {
-                "modify": {
-                  "type": "alpha",
-                  "value": "0.3",
-                  "space": "lch"
-                }
-              }
-            },
-            "$type": "color",
-            "$value": "{echoes.color.roles.success.medium}"
-          }
-        },
         "failed": {
-          "icon": {
-            "$type": "color",
-            "$value": "{echoes.color.roles.danger.light}"
-          },
           "background": {
             "$extensions": {
               "studio.tokens": {
@@ -718,6 +695,29 @@
             },
             "$type": "color",
             "$value": "{echoes.color.roles.danger.medium}"
+          },
+          "icon": {
+            "$type": "color",
+            "$value": "{echoes.color.roles.danger.light}"
+          }
+        },
+        "passed": {
+          "background": {
+            "$extensions": {
+              "studio.tokens": {
+                "modify": {
+                  "type": "alpha",
+                  "value": "0.3",
+                  "space": "lch"
+                }
+              }
+            },
+            "$type": "color",
+            "$value": "{echoes.color.roles.success.medium}"
+          },
+          "icon": {
+            "$type": "color",
+            "$value": "{echoes.color.roles.success.light}"
           }
         }
       }
