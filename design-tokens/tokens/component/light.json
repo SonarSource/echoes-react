@@ -564,7 +564,7 @@
           },
           "icon": {
             "$type": "color",
-            "$value": "{echoes.color.roles.success.dark}"
+            "$value": "{echoes.color.palette.green.900}"
           }
         }
       }

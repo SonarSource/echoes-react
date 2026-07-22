@@ -694,11 +694,11 @@
               }
             },
             "$type": "color",
-            "$value": "{echoes.color.roles.danger.medium}"
+            "$value": "{echoes.color.palette.red.300}"
           },
           "icon": {
             "$type": "color",
-            "$value": "{echoes.color.roles.danger.light}"
+            "$value": "{echoes.color.palette.red.100}"
           }
         },
         "passed": {
@@ -713,11 +713,11 @@
               }
             },
             "$type": "color",
-            "$value": "{echoes.color.roles.success.medium}"
+            "$value": "{echoes.color.palette.green.300}"
           },
           "icon": {
             "$type": "color",
-            "$value": "{echoes.color.roles.success.light}"
+            "$value": "{echoes.color.palette.green.100}"
           }
         }
       }
