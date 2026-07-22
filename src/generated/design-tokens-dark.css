@@ -180,6 +180,7 @@ html[data-echoes-theme='dark'], [data-echoes-theme='dark'] {
   --echoes-box-shadow-medium: inset 0 2px 15px -2px #08090c0f, 0 4px 15px -2px #08090c80;
   --echoes-box-shadow-large: 0 4px 6px -2px #08090c0d, 0 12px 20px -4px #08090c80;
   --echoes-box-shadow-x-large: 0 8px 8px -4px #08090c0a, 0 20px 30px -4px #08090c80;
+  --echoes-bottom-scroll-colors-shadow-gradient: #ffffff33;
   --echoes-form-control-colors-background-default: #2a2f40;
   --echoes-form-control-colors-background-hover: #1d212f;
   --echoes-form-control-colors-border-default: #c5cddf;
@@ -188,12 +189,15 @@ html[data-echoes-theme='dark'], [data-echoes-theme='dark'] {
   --echoes-logos-colors-text: #ffffff;
   --echoes-logos-colors-brand: #ffffff;
   --echoes-logos-colors-sonar-whale: #d3121d;
-  --echoes-bottom-scroll-colors-shadow-gradient: #ffffff33;
   --echoes-margin-indicator-colors-background-duplication: #a6adc2;
   --echoes-margin-indicator-colors-background-covered: #d4f2b7;
   --echoes-margin-indicator-colors-background-partially-covered: #fadc79;
   --echoes-margin-indicator-colors-background-uncovered: #fda29b;
   --echoes-overlays-inner-shadow-default: inset 0 -6px 10px 0 #ffffff1a;
+  --echoes-quality-gate-indicator-colors-passed-icon: #e4f7d1;
+  --echoes-quality-gate-indicator-colors-passed-background: #c4ea9e4d;
+  --echoes-quality-gate-indicator-colors-failed-icon: #fee4e2;
+  --echoes-quality-gate-indicator-colors-failed-background: #fda29b4d;
   --echoes-ratings-colors-background-rating-a-default: #027a48;
   --echoes-ratings-colors-background-rating-b-default: #75a92c;
   --echoes-ratings-colors-background-rating-c-default: #ae7a29;
@@ -249,8 +253,4 @@ html[data-echoes-theme='dark'], [data-echoes-theme='dark'] {
   --echoes-sidebar-navigation-item-colors-background-hover: #12141d;
   --echoes-sidebar-navigation-item-colors-background-active: #08090c;
   --echoes-table-colors-background-header-default: #3e4357;
-  --echoes-quality-gate-indicator-colors-passed-icon: #e4f7d1;
-  --echoes-quality-gate-indicator-colors-passed-background: #c4ea9e4d;
-  --echoes-quality-gate-indicator-colors-failed-icon: #fee4e2;
-  --echoes-quality-gate-indicator-colors-failed-background: #fda29b4d;
 }
