@@ -550,7 +550,7 @@
         "passed": {
           "icon": {
             "$type": "color",
-            "$value": "{echoes.color.roles.success.dark}"
+            "$value": "{echoes.color.palette.green.900}"
           },
           "background": {
             "$type": "color",
