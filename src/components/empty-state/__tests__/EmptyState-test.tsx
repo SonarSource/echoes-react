@@ -89,11 +89,13 @@ describe('EmptyState', () => {
   });
 
   it('applies the configured title heading size', () => {
-    const { asFragment } = renderEmptyState({
+    renderEmptyState({
       titleSize: HeadingSize.Medium,
     });
 
-    expect(asFragment()).toMatchSnapshot();
+    expect(screen.getByRole('heading', { level: 2, name: 'No releases yet' })).toHaveStyle({
+      font: cssVar('typography-heading-medium'),
+    });
   });
 
   it('preserves passed custom react nodes', () => {

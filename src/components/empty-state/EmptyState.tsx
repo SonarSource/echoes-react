@@ -31,18 +31,34 @@ import {
 
 export interface EmptyStateProps {
   /**
-   * Main title text.
+   * Optional primary action displayed below the text block.
    */
-  title: string;
+  action?: ReactNode;
   /**
-   * Supporting body text.
+   * Optional CSS class name applied to the root element.
    */
-  text: string;
+  className?: string;
   /**
    * Graphic displayed inside the neutral wrapper.
    * Echoes icons passed here will inherit the default icon color from the component.
    */
   graphic: ReactNode;
+  /**
+   * Optional link displayed below the action.
+   */
+  link?: ReactNode;
+  /**
+   * React ref forwarded to the root element.
+   */
+  ref?: Ref<HTMLDivElement>;
+  /**
+   * Supporting body text.
+   */
+  text: string;
+  /**
+   * Main title text.
+   */
+  title: string;
   /**
    * Semantic heading element used for the title.
    * @defaultValue 'h2'
@@ -53,22 +69,6 @@ export interface EmptyStateProps {
    * @defaultValue 'large'
    */
   titleSize?: `${HeadingSize}`;
-  /**
-   * Optional primary action displayed below the text block.
-   */
-  action?: ReactNode;
-  /**
-   * Optional link displayed below the action.
-   */
-  link?: ReactNode;
-  /**
-   * Optional CSS class name applied to the root element.
-   */
-  className?: string;
-  /**
-   * React ref forwarded to the root element.
-   */
-  ref?: Ref<HTMLDivElement>;
 }
 
 export function EmptyState(props: Readonly<EmptyStateProps>) {
