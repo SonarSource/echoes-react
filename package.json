@@ -57,7 +57,7 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-intl": "^10.0.0",
-    "react-router-dom": "^6.0.0"
+    "react-router-dom": "^7.0.0"
   },
   "devDependencies": {
     "@babel/core": "7.29.7",
@@ -118,7 +118,7 @@
     "react": "19.2.7",
     "react-dom": "19.2.7",
     "react-intl": "6.7.1",
-    "react-router-dom": "6.30.4",
+    "react-router-dom": "7.0.0",
     "rollup-plugin-license": "3.7.1",
     "sonarqube-scanner": "4.3.8",
     "storybook": "10.2.13",
