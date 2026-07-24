@@ -22,11 +22,9 @@ import { type ReactNode, type Ref } from 'react';
 import { isDefined } from '~common/helpers/types';
 import { Heading, type HeadingProps, type HeadingSize, Text } from '../typography';
 import {
-  EmptyStateActionSlot,
   EmptyStateActionsGroup,
   EmptyStateGraphicContent,
   EmptyStateGraphicWrapper,
-  EmptyStateLinkSlot,
   EmptyStateRoot,
   EmptyStateTextGroup,
 } from './EmptyStateStyles';
@@ -107,8 +105,8 @@ export function EmptyState(props: Readonly<EmptyStateProps>) {
 
       {(isDefined(action) || isDefined(link)) && (
         <EmptyStateActionsGroup>
-          {isDefined(action) && <EmptyStateActionSlot>{action}</EmptyStateActionSlot>}
-          {isDefined(link) && <EmptyStateLinkSlot>{link}</EmptyStateLinkSlot>}
+          {isDefined(action) && action}
+          {isDefined(link) && link}
         </EmptyStateActionsGroup>
       )}
     </EmptyStateRoot>

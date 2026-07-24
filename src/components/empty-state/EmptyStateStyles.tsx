@@ -91,15 +91,3 @@ export const EmptyStateActionsGroup = styled.div`
   gap: ${cssVar('dimension-space-200')};
 `;
 EmptyStateActionsGroup.displayName = 'EmptyStateActionsGroup';
-
-export const EmptyStateActionSlot = styled.div`
-  display: flex;
-  justify-content: center;
-`;
-EmptyStateActionSlot.displayName = 'EmptyStateActionSlot';
-
-export const EmptyStateLinkSlot = styled.div`
-  display: flex;
-  justify-content: center;
-`;
-EmptyStateLinkSlot.displayName = 'EmptyStateLinkSlot';
