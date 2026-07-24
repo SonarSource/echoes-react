@@ -71,6 +71,9 @@ const meta: Meta<typeof EmptyState> = {
 export default meta;
 type Story = StoryObj<typeof EmptyState>;
 
+const imageGraphicSrc =
+  'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22%3E%3Crect x=%223%22 y=%225%22 width=%2218%22 height=%2214%22 rx=%222%22 fill=%22%23F3F4F6%22/%3E%3Cpath d=%22M7 15l3-3 2.5 2.5 2-2L18 16H7z%22 fill=%22%236B7280%22/%3E%3Ccircle cx=%229%22 cy=%229%22 r=%221.5%22 fill=%22%236B7280%22/%3E%3C/svg%3E';
+
 function render(props: Readonly<EmptyStateProps>) {
   return (
     <StoryWrapper>
@@ -97,6 +100,13 @@ export const WithLink: Story = {
         Learn more about releases
       </LinkStandalone>
     ),
+  },
+  render,
+};
+
+export const WithImageGraphic: Story = {
+  args: {
+    graphic: <img alt="" src={imageGraphicSrc} />,
   },
   render,
 };

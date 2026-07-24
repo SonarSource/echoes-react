@@ -103,11 +103,23 @@ describe('EmptyState', () => {
       action: <button type="button">Retry</button>,
       graphic: <span data-testid="custom-graphic">icon</span>,
       link: <a href="/contact">Contact support</a>,
+      text: (
+        <>
+          Versions will appear once a <strong>release</strong> exists.
+        </>
+      ),
+      title: (
+        <>
+          No <strong>releases</strong> yet
+        </>
+      ),
     });
 
     expect(screen.getByTestId('custom-graphic')).toBeVisible();
     expect(screen.getByRole('button', { name: 'Retry' })).toBeVisible();
     expect(screen.getByRole('link', { name: 'Contact support' })).toBeVisible();
+    expect(screen.getByRole('heading', { level: 2, name: 'No releases yet' })).toBeVisible();
+    expect(screen.getByText('release')).toBeVisible();
   });
 
   it('applies the validated layout and sizing tokens', () => {

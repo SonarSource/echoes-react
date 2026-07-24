@@ -20,6 +20,7 @@
 
 import { type ReactNode, type Ref } from 'react';
 import { isDefined } from '~common/helpers/types';
+import type { TextNode } from '~types/utils';
 import { Heading, type HeadingProps, type HeadingSize, Text } from '../typography';
 import {
   EmptyStateActionsGroup,
@@ -54,11 +55,11 @@ export interface EmptyStateProps {
   /**
    * Supporting body text.
    */
-  text: string;
+  text: TextNode;
   /**
    * Main title text.
    */
-  title: string;
+  title: TextNode;
   /**
    * Semantic heading element used for the title.
    * @defaultValue 'h2'

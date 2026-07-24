@@ -20,7 +20,6 @@
 
 import styled from '@emotion/styled';
 import { cssVar } from '~utils/design-tokens';
-import { IconCustomWrapper, IconMaterialWrapper } from '../icons/IconWrapper';
 
 export const EmptyStateRoot = styled.div`
   display: flex;
@@ -59,10 +58,6 @@ export const EmptyStateGraphicContent = styled.div`
     max-height: 100%;
   }
 
-  & > ${IconMaterialWrapper}, & > ${IconCustomWrapper} {
-    color: inherit;
-  }
-
   & > svg,
   & > img {
     width: 100%;
@@ -77,10 +72,6 @@ export const EmptyStateTextGroup = styled.div`
   flex-direction: column;
   align-items: center;
   gap: ${cssVar('dimension-space-75')};
-
-  & > p {
-    margin: 0;
-  }
 `;
 EmptyStateTextGroup.displayName = 'EmptyStateTextGroup';
 
