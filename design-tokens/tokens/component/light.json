@@ -56,7 +56,7 @@
         }
       }
     },
-    "location-marker": {
+    "issue-location-marker": {
       "colors": {
         "background": {
           "default": {

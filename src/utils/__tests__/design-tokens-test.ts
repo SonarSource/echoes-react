@@ -38,8 +38,8 @@ describe('cssVar utility', () => {
     );
     expect(cssVar(FONT_TOKEN)).toBe('var(--echoes-font-family-sans)');
     expect(cssVar('border-radius-100')).toBe('var(--echoes-border-radius-100)');
-    expect(cssVar('location-marker-colors-background-default')).toBe(
-      'var(--echoes-location-marker-colors-background-default)',
+    expect(cssVar('issue-location-marker-colors-background-default')).toBe(
+      'var(--echoes-issue-location-marker-colors-background-default)',
     );
   });
 
