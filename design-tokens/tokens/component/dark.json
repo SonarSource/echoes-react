@@ -56,6 +56,52 @@
         }
       }
     },
+    "location-marker": {
+      "colors": {
+        "background": {
+          "default": {
+            "$extensions": {
+              "studio.tokens": {
+                "modify": {
+                  "type": "alpha",
+                  "value": "0.35",
+                  "space": "lch"
+                }
+              }
+            },
+            "$type": "color",
+            "$value": "{echoes.color.palette.red.400}"
+          },
+          "hover": {
+            "$extensions": {
+              "studio.tokens": {
+                "modify": {
+                  "type": "alpha",
+                  "value": "0.65",
+                  "space": "lch"
+                }
+              }
+            },
+            "$type": "color",
+            "$value": "{echoes.color.palette.red.400}"
+          },
+          "selected": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.red.200}"
+          }
+        },
+        "foreground": {
+          "default": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.red.200}"
+          },
+          "selected": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.red.700}"
+          }
+        }
+      }
+    },
     "margin-indicator": {
       "colors": {
         "background": {

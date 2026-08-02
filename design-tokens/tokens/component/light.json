@@ -56,6 +56,34 @@
         }
       }
     },
+    "location-marker": {
+      "colors": {
+        "background": {
+          "default": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.red.200}"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.red.300}"
+          },
+          "selected": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.red.600}"
+          }
+        },
+        "foreground": {
+          "default": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.red.700}"
+          },
+          "selected": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.red.100}"
+          }
+        }
+      }
+    },
     "margin-indicator": {
       "colors": {
         "background": {

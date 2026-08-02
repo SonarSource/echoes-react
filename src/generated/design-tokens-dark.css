@@ -189,6 +189,11 @@ html[data-echoes-theme='dark'], [data-echoes-theme='dark'] {
   --echoes-logos-colors-text: #ffffff;
   --echoes-logos-colors-brand: #ffffff;
   --echoes-logos-colors-sonar-whale: #d3121d;
+  --echoes-location-marker-colors-background-default: #f9706659;
+  --echoes-location-marker-colors-background-hover: #f97066a6;
+  --echoes-location-marker-colors-background-selected: #fecdca;
+  --echoes-location-marker-colors-foreground-default: #fecdca;
+  --echoes-location-marker-colors-foreground-selected: #b42318;
   --echoes-margin-indicator-colors-background-duplication: #a6adc2;
   --echoes-margin-indicator-colors-background-covered: #d4f2b7;
   --echoes-margin-indicator-colors-background-partially-covered: #fadc79;
