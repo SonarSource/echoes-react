@@ -21,7 +21,8 @@
 /* eslint-disable no-console */
 
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Badge, IconBranch, Layout } from '../../../src';
+import { useArgs } from 'storybook/preview-api';
+import { Badge, IconBranch, Layout, type SidebarNavigationAccordionItemProps } from '../../../src';
 import { basicWrapperDecorator } from '../../helpers/BasicWrapper';
 
 const baseAccordionChildren = (
@@ -48,11 +49,36 @@ const accordionChildrenWithIcon = (
   </>
 );
 
+function ControlledAccordionStory({
+  isDefaultOpen: _isDefaultOpen,
+  isOpen = false,
+  onOpenChange,
+  ...props
+}: Readonly<SidebarNavigationAccordionItemProps>) {
+  const [, updateArgs] = useArgs();
+
+  function handleOpenChange(nextIsOpen: boolean) {
+    updateArgs({ isOpen: nextIsOpen });
+    onOpenChange?.(nextIsOpen);
+  }
+
+  return (
+    <Layout.SidebarNavigation.AccordionItem
+      {...props}
+      isOpen={isOpen}
+      onOpenChange={handleOpenChange}
+    />
+  );
+}
+
 const meta: Meta<typeof Layout.SidebarNavigation.AccordionItem> = {
   title: 'Echoes Patterns/Layout/SidebarNavigation/AccordionItem',
   component: Layout.SidebarNavigation.AccordionItem,
   argTypes: {
     isDefaultOpen: {
+      control: { type: 'boolean' },
+    },
+    isOpen: {
       control: { type: 'boolean' },
     },
   },
@@ -64,13 +90,6 @@ const meta: Meta<typeof Layout.SidebarNavigation.AccordionItem> = {
     ),
     basicWrapperDecorator,
   ],
-  render: ({ isDefaultOpen = false, ...args }) => (
-    <Layout.SidebarNavigation.AccordionItem
-      isDefaultOpen={isDefaultOpen}
-      key={`accordion-default-open-${isDefaultOpen.toString()}`}
-      {...args}
-    />
-  ),
 };
 
 export default meta;
@@ -116,6 +135,16 @@ export const withIcon: Story = {
     isDefaultOpen: true,
     label: 'Accordion',
   },
+};
+
+export const controlled: Story = {
+  args: {
+    Icon: IconBranch,
+    children: baseAccordionChildren,
+    isOpen: false,
+    label: 'Controlled accordion',
+  },
+  render: (args) => <ControlledAccordionStory {...args} />,
 };
 
 const fourNavItems = Array.from({ length: 4 }, (_, i) => (
