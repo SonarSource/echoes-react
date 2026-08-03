@@ -163,7 +163,7 @@ export const controlled: Story = {
     isOpen: false,
     label: 'Controlled accordion',
   },
-  render: (args) => <ControlledAccordionStory {...args} />,
+  render: ControlledAccordionStory,
 };
 
 const fourNavItems = Array.from({ length: 4 }, (_, i) => (
