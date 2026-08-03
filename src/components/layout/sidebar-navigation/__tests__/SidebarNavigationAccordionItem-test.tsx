@@ -58,6 +58,10 @@ it('should expand hidden elements when clicked', async () => {
 it('should render uncontrolled and closed by default', () => {
   setupSidebarNavigationAccordionItem();
 
+  expect(screen.getByRole('button', { name: 'Accordion Item' })).toHaveAttribute(
+    'aria-expanded',
+    'false',
+  );
   checkAccordionAccessibility(false);
 });
 
@@ -72,15 +76,27 @@ it('should render the accordion open when defaultOpen is true', () => {
 it.each([true, false])('should respect the controlled open state %s', (isOpen) => {
   setupSidebarNavigationAccordionItem({ isOpen });
 
+  expect(screen.getByRole('button', { name: 'Accordion Item' })).toHaveAttribute(
+    'aria-expanded',
+    isOpen.toString(),
+  );
   checkAccordionAccessibility(isOpen);
 });
 
 it('should reflect controlled prop updates after mount', async () => {
   const { user } = setupControlledSidebarNavigationAccordionItem();
 
+  expect(screen.getByRole('button', { name: 'Accordion Item' })).toHaveAttribute(
+    'aria-expanded',
+    'false',
+  );
   checkAccordionAccessibility(false);
 
   await user.click(screen.getByRole('button', { name: 'Open accordion externally' }));
+  expect(screen.getByRole('button', { name: 'Accordion Item' })).toHaveAttribute(
+    'aria-expanded',
+    'true',
+  );
   checkAccordionAccessibility(true);
 
   await user.click(screen.getByRole('button', { name: 'Close accordion externally' }));
