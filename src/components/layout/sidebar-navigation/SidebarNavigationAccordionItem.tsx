@@ -23,6 +23,7 @@ import styled from '@emotion/styled';
 import { ReactNode, Ref, useCallback, useEffect, useId, useRef, useState } from 'react';
 
 import { TextNode } from '~types/utils';
+import { isDefined } from '~common/helpers/types';
 import { cssVar } from '~utils/design-tokens';
 import { IconChevronDown, IconChevronRight } from '../../icons';
 import { Tooltip } from '../../tooltip';
@@ -36,7 +37,7 @@ import {
 import { SidebarNavigationIconComponent } from './SidebarNavigationTypes';
 import { TOOLTIP_DELAY_IN_MS } from './utils';
 
-export interface SidebarNavigationAccordionItemProps {
+interface SidebarNavigationAccordionItemCommonProps {
   /**
    * ARIA label for the SidebarNavigationAccordionItem button.
    */
@@ -62,11 +63,6 @@ export interface SidebarNavigationAccordionItemProps {
    */
   Icon: SidebarNavigationIconComponent;
   /**
-   * Whether the accordion is open by default.
-   * @defaultValue false
-   */
-  isDefaultOpen?: boolean;
-  /**
    * The label for the SidebarNavigationAccordionItem.
    */
   label: TextNode;
@@ -78,6 +74,10 @@ export interface SidebarNavigationAccordionItemProps {
    * The onOpen callback is called when the accordion is opened.
    */
   onOpen?: VoidFunction;
+  /**
+   * Called with the next open state when the user toggles the accordion.
+   */
+  onOpenChange?: (isOpen: boolean) => void;
   /**
    * React ref forwarded to the root button element.
    */
@@ -94,6 +94,33 @@ export interface SidebarNavigationAccordionItemProps {
   suffix?: ReactNode;
 }
 
+interface SidebarNavigationAccordionItemControlledProps extends SidebarNavigationAccordionItemCommonProps {
+  /**
+   * The default open state is only available for uncontrolled usage.
+   */
+  isDefaultOpen?: never;
+  /**
+   * Whether the accordion is open. When provided, the accordion is controlled.
+   */
+  isOpen: boolean;
+}
+
+interface SidebarNavigationAccordionItemUncontrolledProps extends SidebarNavigationAccordionItemCommonProps {
+  /**
+   * Whether the accordion is open by default.
+   * @defaultValue false
+   */
+  isDefaultOpen?: boolean;
+  /**
+   * The current open state is only available for controlled usage.
+   */
+  isOpen?: never;
+}
+
+export type SidebarNavigationAccordionItemProps =
+  | SidebarNavigationAccordionItemControlledProps
+  | SidebarNavigationAccordionItemUncontrolledProps;
+
 export function SidebarNavigationAccordionItem(
   props: Readonly<SidebarNavigationAccordionItemProps>,
 ) {
@@ -103,16 +130,19 @@ export function SidebarNavigationAccordionItem(
     disableTooltip = false,
     Icon,
     isDefaultOpen = false,
+    isOpen,
     label,
     onClose,
     onOpen,
+    onOpenChange,
     ref,
     scrollLastChildIntoViewOnOpen,
     suffix,
     ...htmlProps
   } = props;
 
-  const [open, setOpen] = useState(isDefaultOpen);
+  const [internalOpen, setInternalOpen] = useState(isDefaultOpen);
+  const open = isDefined(isOpen) ? isOpen : internalOpen;
   const panelRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -126,18 +156,20 @@ export function SidebarNavigationAccordionItem(
   const accordionPanelId = `${accordionId}-panel`;
 
   const handleClick = useCallback(() => {
-    setOpen((open) => {
-      if (!open) {
-        onOpen?.();
+    const nextOpen = !open;
 
-        return true;
-      }
+    if (!isDefined(isOpen)) {
+      setInternalOpen(nextOpen);
+    }
 
+    onOpenChange?.(nextOpen);
+
+    if (nextOpen) {
+      onOpen?.();
+    } else {
       onClose?.();
-
-      return false;
-    });
-  }, [onOpen, onClose]);
+    }
+  }, [isOpen, onClose, onOpen, onOpenChange, open]);
 
   return (
     <AccordionWrapper>

@@ -65,6 +65,18 @@ export const SidebarNavigation = Object.assign(SidebarNavigationRoot, {
    *   </SidebarNavigation.AccordionItem.Item>
    * </SidebarNavigation.AccordionItem>
    * ```
+   *
+   * Control the expanded state when it needs to follow application state:
+   * ```tsx
+   * <SidebarNavigation.AccordionItem
+   *   Icon={SecurityIcon}
+   *   isOpen={isSecurityOpen}
+   *   label="Security"
+   *   onOpenChange={setIsSecurityOpen}
+   * >
+   *   {items}
+   * </SidebarNavigation.AccordionItem>
+   * ```
    */
   AccordionItem: SidebarNavigationAccordionItemNamespace,
 

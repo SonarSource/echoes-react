@@ -20,6 +20,7 @@
 
 import { matchers } from '@emotion/jest';
 import { screen } from '@testing-library/react';
+import { useState } from 'react';
 import { renderWithMemoryRouter } from '~common/helpers/test-utils';
 import { IconBranch, IconExpand, IconGitBranch } from '../../../icons';
 import { SidebarNavigationAccordionChildItem } from '../SidebarNavigationAccordionChildItem';
@@ -54,11 +55,62 @@ it('should expand hidden elements when clicked', async () => {
   expect(onClose).toHaveBeenCalled();
 });
 
+it('should render uncontrolled and closed by default', () => {
+  setupSidebarNavigationAccordionItem();
+
+  expect(screen.getByRole('button', { name: 'Accordion Item' })).toHaveAttribute(
+    'aria-expanded',
+    'false',
+  );
+  checkAccordionAccessibility(false);
+});
+
 it('should render the accordion open when defaultOpen is true', () => {
   setupSidebarNavigationAccordionItem({ isDefaultOpen: true });
 
   checkAccordionPanelVisibility(true);
   expect(screen.getAllByRole('link')).toHaveLength(2);
+  checkAccordionAccessibility(true);
+});
+
+it.each([true, false])('should respect the controlled open state %s', (isOpen) => {
+  setupSidebarNavigationAccordionItem({ isOpen });
+
+  expect(screen.getByRole('button', { name: 'Accordion Item' })).toHaveAttribute(
+    'aria-expanded',
+    isOpen.toString(),
+  );
+  checkAccordionAccessibility(isOpen);
+});
+
+it('should reflect controlled prop updates after mount', async () => {
+  const { user } = setupControlledSidebarNavigationAccordionItem();
+
+  expect(screen.getByRole('button', { name: 'Accordion Item' })).toHaveAttribute(
+    'aria-expanded',
+    'false',
+  );
+  checkAccordionAccessibility(false);
+
+  await user.click(screen.getByRole('button', { name: 'Open accordion externally' }));
+  expect(screen.getByRole('button', { name: 'Accordion Item' })).toHaveAttribute(
+    'aria-expanded',
+    'true',
+  );
+  checkAccordionAccessibility(true);
+
+  await user.click(screen.getByRole('button', { name: 'Close accordion externally' }));
+  checkAccordionAccessibility(false);
+});
+
+it('should call onOpenChange without changing a controlled state', async () => {
+  const onOpenChange = jest.fn();
+  const { user } = setupSidebarNavigationAccordionItem({ isOpen: false, onOpenChange });
+
+  await user.click(screen.getByRole('button', { name: 'Accordion Item' }));
+
+  expect(onOpenChange).toHaveBeenCalledWith(true);
+  checkAccordionAccessibility(false);
 });
 
 it("shouldn't have any a11y violation", async () => {
@@ -171,6 +223,42 @@ describe('integration with SidebarNavigationAccordionChildItem', () => {
 function checkAccordionPanelVisibility(isOpen: boolean) {
   const region = screen.getByRole('region', { name: 'Accordion Item' });
   expect(region).toHaveAttribute('data-accordion-open', isOpen.toString());
+}
+
+function checkAccordionAccessibility(isOpen: boolean) {
+  const button = screen.getByRole('button', { name: 'Accordion Item' });
+  const region = screen.getByRole('region', { name: 'Accordion Item' });
+
+  expect(button).toHaveAttribute('aria-expanded', isOpen.toString());
+  expect(button).toHaveAttribute('aria-controls', region.id);
+  expect(region).toHaveAttribute('aria-labelledby', button.id);
+  checkAccordionPanelVisibility(isOpen);
+}
+
+function setupControlledSidebarNavigationAccordionItem() {
+  function ControlledExample() {
+    const [isOpen, setIsOpen] = useState(false);
+
+    return (
+      <>
+        <button onClick={() => setIsOpen(true)} type="button">
+          Open accordion externally
+        </button>
+        <button onClick={() => setIsOpen(false)} type="button">
+          Close accordion externally
+        </button>
+        <ul>
+          <SidebarNavigationAccordionItem Icon={IconExpand} isOpen={isOpen} label="Accordion Item">
+            <SidebarNavigationAccordionChildItem to="/sub-item-1">
+              Sub Item 1
+            </SidebarNavigationAccordionChildItem>
+          </SidebarNavigationAccordionItem>
+        </ul>
+      </>
+    );
+  }
+
+  return renderWithMemoryRouter(<ControlledExample />);
 }
 
 function setupSidebarNavigationAccordionItem(
