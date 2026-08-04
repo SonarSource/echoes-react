@@ -49,24 +49,6 @@ const accordionChildrenWithIcon = (
   </>
 );
 
-function AccordionStory({
-  isDefaultOpen = false,
-  isOpen,
-  ...props
-}: Readonly<SidebarNavigationAccordionItemProps>) {
-  if (typeof isOpen === 'boolean') {
-    return <Layout.SidebarNavigation.AccordionItem {...props} isOpen={isOpen} />;
-  }
-
-  return (
-    <Layout.SidebarNavigation.AccordionItem
-      {...props}
-      isDefaultOpen={isDefaultOpen}
-      key={`accordion-default-open-${isDefaultOpen.toString()}`}
-    />
-  );
-}
-
 function ControlledAccordionStory({
   isDefaultOpen: _isDefaultOpen,
   isOpen = false,
@@ -108,7 +90,6 @@ const meta: Meta<typeof Layout.SidebarNavigation.AccordionItem> = {
     ),
     basicWrapperDecorator,
   ],
-  render: (args) => <AccordionStory {...args} />,
 };
 
 export default meta;
