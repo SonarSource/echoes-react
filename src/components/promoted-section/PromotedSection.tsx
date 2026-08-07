@@ -103,12 +103,12 @@ export const PromotedSection = forwardRef<HTMLDivElement, Readonly<PromotedSecti
       text,
       titleAs = 'h2',
       variety = PromotedSectionVariety.Neutral,
+      illustration: _illustration,
       ...restProps
     },
     ref,
   ) => {
     const intl = useIntl();
-    delete restProps.illustration; // NOSONAR -- deprecated prop is intentionally discarded for compatibility
 
     return (
       <PromotedSectionMainStyles
