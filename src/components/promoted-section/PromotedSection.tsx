@@ -108,7 +108,7 @@ export const PromotedSection = forwardRef<HTMLDivElement, Readonly<PromotedSecti
     ref,
   ) => {
     const intl = useIntl();
-    delete restProps.illustration;
+    delete restProps.illustration; // NOSONAR -- deprecated prop is intentionally discarded for compatibility
 
     return (
       <PromotedSectionMainStyles
