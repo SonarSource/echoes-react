@@ -92,8 +92,6 @@ const BADGE_VARIETIES = {
   [PromotedSectionVariety.Neutral]: BadgeVariety.Neutral,
 } as const;
 
-const DEPRECATED_ILLUSTRATION_PROP = 'illustration';
-
 export const PromotedSection = forwardRef<HTMLDivElement, Readonly<PromotedSectionProps>>(
   (
     {
@@ -101,6 +99,7 @@ export const PromotedSection = forwardRef<HTMLDivElement, Readonly<PromotedSecti
       badgeText,
       className,
       headerText,
+      illustration, // NOSONAR -- accepted for compatibility, but no longer displayed
       onDismiss,
       text,
       titleAs = 'h2',
@@ -110,7 +109,6 @@ export const PromotedSection = forwardRef<HTMLDivElement, Readonly<PromotedSecti
     ref,
   ) => {
     const intl = useIntl();
-    delete (restProps as Record<string, unknown>)[DEPRECATED_ILLUSTRATION_PROP];
 
     return (
       <PromotedSectionMainStyles
