@@ -47,19 +47,51 @@ export enum PopoverSide {
 }
 
 export interface PopoverProps {
+  /**
+   * Controls the alignment of the popover with its trigger
+   */
   align?: `${PopoverAlign}`;
   children: ReactElement;
   className?: string;
+  /**
+   * Optional text content of a subtle paragraph, for the body of the Popover
+   */
   description?: TextNodeOptional;
+  /**
+   * Slot for additional content. Displayed under the description and/or title (if any)
+   */
   extraContent?: ReactNode;
-  footer?: ReactNode; // Enforce Button, ButtonGroup or Link ?
+  /**
+   * Slot for the footer of the Popover. Meant for actions (e.g. Button, ButtonGroup, Link )
+   */
+  footer?: ReactNode;
+  /**
+   * Control its `open` state, rather than relying on the trigger
+   */
   isOpen?: boolean;
+  /**
+   * Choose on what side the popover should appear.
+   * If there is no space for it, it will automatically flip to the opposing side of the same dimension
+   */
   side?: `${PopoverSide}`;
+  /**
+   * Text content of the Heading of the Popover
+   */
   title?: TextNodeOptional;
 }
 
 /**
  * **Popovers must be attached to a button to be accessible.**
+ *
+ * ### Example usage
+ *
+ * ```tsx
+ * <Popover
+ *   description='paragraph with interesting content'
+ *   title='Amazing popover'>
+ *    <Button>Click to show more information</Button>
+ * </Popover>
+ * ```
  *
  * ### Stacking Context
  *
