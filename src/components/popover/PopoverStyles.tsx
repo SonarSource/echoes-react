@@ -28,6 +28,8 @@ export const OVERLAY_SIDE_OFFSET = 4;
 /** Minimum distance between the arrow and the rounded corner of the content box. */
 export const OVERLAY_ARROW_PADDING = 16;
 
+const ILLUSTRATION_HEIGHT = '142px';
+
 /**
  * Base styles shared by light-surface overlay content boxes (Popover, FilterDropdown).
  * Apply inside a styled component template alongside component-specific overrides.
@@ -73,7 +75,7 @@ export const PopoverArrow = styled(RadixPopover.Arrow)`
   [data-has-illustration='true'][data-side='bottom'] &,
   [data-has-illustration='true'][data-side='left'][data-align='start'] &,
   [data-has-illustration='true'][data-side='right'][data-align='start'] & {
-    fill: ${cssVar('color-surface-disabled')};
+    fill: ${cssVar('color-background-neutral-subtle-default')};
   }
 `;
 PopoverArrow.displayName = 'PopoverArrow';
@@ -89,6 +91,10 @@ export const PopoverFooter = styled.div`
 PopoverFooter.displayName = 'PopoverFooter';
 
 export const PopoverIllustrationContainer = styled.div`
-  background-color: ${cssVar('color-surface-disabled')};
+  background-color: ${cssVar('color-background-neutral-subtle-default')};
+  height: ${ILLUSTRATION_HEIGHT};
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 PopoverIllustrationContainer.displayName = 'PopoverIllustrationContainer';

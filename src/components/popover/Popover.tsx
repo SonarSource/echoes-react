@@ -74,15 +74,15 @@ export interface PopoverProps {
    */
   footer?: ReactNode;
   /**
-   * Add an illustration to the Popover, above the title
+   * Optional illustration displayed above the title of the Popover
    */
   illustration?: ReactNode;
   /**
-   * Control its `open` state, rather than relying on the trigger
+   * Controls the Popover's `open` state, rather than relying on the trigger
    */
   isOpen?: boolean;
   /**
-   * Choose on what side the popover should appear.
+   * Defines on what side the popover should appear.
    * If there is no space for it, it will automatically flip to the opposing side of the same dimension
    */
   side?: `${PopoverSide}`;
