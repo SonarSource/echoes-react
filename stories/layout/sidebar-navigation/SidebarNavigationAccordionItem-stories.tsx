@@ -21,8 +21,10 @@
 /* eslint-disable no-console */
 
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import type { ComponentProps } from 'react';
+import { useLocation } from 'react-router-dom';
 import { useArgs } from 'storybook/preview-api';
-import { Badge, IconBranch, Layout, type SidebarNavigationAccordionItemProps } from '../../../src';
+import { Badge, IconBranch, Layout, Link } from '../../../src';
 import { basicWrapperDecorator } from '../../helpers/BasicWrapper';
 
 const baseAccordionChildren = (
@@ -54,7 +56,7 @@ function ControlledAccordionStory({
   isOpen = false,
   onOpenChange,
   ...props
-}: Readonly<SidebarNavigationAccordionItemProps>) {
+}: Readonly<ComponentProps<typeof Layout.SidebarNavigation.AccordionItem>>) {
   const [, updateArgs] = useArgs();
 
   function handleOpenChange(nextIsOpen: boolean) {
@@ -68,6 +70,30 @@ function ControlledAccordionStory({
       isOpen={isOpen}
       onOpenChange={handleOpenChange}
     />
+  );
+}
+
+function AccordionStoryWithExternalNavigation(
+  props: Readonly<ComponentProps<typeof Layout.SidebarNavigation.AccordionItem>>,
+) {
+  const { pathname } = useLocation();
+
+  return (
+    <div style={{ display: 'grid', gap: '1rem' }}>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
+        <Link to="/">Go outside the accordion</Link>
+
+        <Link to="/1">Go to Item 1</Link>
+
+        <Link to="/2">Go to Item 2</Link>
+      </div>
+
+      <div>
+        Current route: <code>{pathname}</code>
+      </div>
+
+      <Layout.SidebarNavigation.AccordionItem {...props} />
+    </div>
   );
 }
 
@@ -126,6 +152,16 @@ export const withDefaultOpen: Story = {
     isDefaultOpen: true,
     label: 'Accordion',
   },
+};
+
+export const autoOpensFromExternalNavigation: Story = {
+  args: {
+    Icon: IconBranch,
+    children: baseAccordionChildren,
+    isDefaultOpen: false,
+    label: 'Accordion',
+  },
+  render: AccordionStoryWithExternalNavigation,
 };
 
 export const withIcon: Story = {

@@ -18,7 +18,16 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+import { useContext, useLayoutEffect, useRef } from 'react';
+import { useMatch, useResolvedPath } from 'react-router-dom';
+import { isDefined } from '~common/helpers/types';
+
 import { SidebarNavigationBaseItem } from './SidebarNavigationBaseItem';
+
+import {
+  SidebarNavigationAccordionContext,
+  type SidebarNavigationAccordionChildActiveHandler,
+} from './SidebarNavigationAccordionContext';
 
 import {
   SidebarNavigationIconComponent,
@@ -36,7 +45,54 @@ export interface SidebarNavigationAccordionChildItemProps extends SidebarNavigat
 export function SidebarNavigationAccordionChildItem(
   props: Readonly<SidebarNavigationAccordionChildItemProps>,
 ) {
-  return <SidebarNavigationBaseItem {...props} />;
+  const handleChildActive = useContext(SidebarNavigationAccordionContext);
+
+  if (!isDefined(handleChildActive)) {
+    return <SidebarNavigationBaseItem {...props} />;
+  }
+
+  return (
+    <SidebarNavigationAccordionChildItemWithAutoOpen
+      handleChildActive={handleChildActive}
+      {...props}
+    />
+  );
 }
 
 SidebarNavigationAccordionChildItem.displayName = 'SidebarNavigationAccordionChildItem';
+
+type SidebarNavigationAccordionChildItemWithAutoOpenProps =
+  SidebarNavigationAccordionChildItemProps & {
+    handleChildActive: SidebarNavigationAccordionChildActiveHandler;
+  };
+
+function SidebarNavigationAccordionChildItemWithAutoOpen(
+  props: Readonly<SidebarNavigationAccordionChildItemWithAutoOpenProps>,
+) {
+  const { handleChildActive, isActive, isMatchingFullPath = false, to, ...restProps } = props;
+
+  const resolvedPath = useResolvedPath(to);
+  const routeMatch = useMatch({ end: isMatchingFullPath, path: resolvedPath.pathname });
+  const resolvedIsActive = isDefined(isActive) ? isActive : isDefined(routeMatch);
+  const wasActiveRef = useRef(false);
+
+  useLayoutEffect(() => {
+    if (resolvedIsActive && !wasActiveRef.current) {
+      handleChildActive();
+    }
+
+    wasActiveRef.current = resolvedIsActive;
+  }, [handleChildActive, resolvedIsActive]);
+
+  return (
+    <SidebarNavigationBaseItem
+      {...restProps}
+      isActive={isActive}
+      isMatchingFullPath={isMatchingFullPath}
+      to={to}
+    />
+  );
+}
+
+SidebarNavigationAccordionChildItemWithAutoOpen.displayName =
+  'SidebarNavigationAccordionChildItemWithAutoOpen';
