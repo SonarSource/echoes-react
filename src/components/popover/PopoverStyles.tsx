@@ -48,12 +48,15 @@ export const stylePopoverContentBase = styled.div`
 `.withComponent;
 
 export const PopoverContent = styled(stylePopoverContentBase(RadixPopover.Content))`
-  padding: ${cssVar('dimension-space-300')} ${cssVar('dimension-space-250')};
   max-width: ${cssVar('dimension-width-5000')};
   overflow-y: auto;
 `;
-
 PopoverContent.displayName = 'PopoverContent';
+
+export const PopoverInnerContent = styled.div`
+  padding: ${cssVar('dimension-space-300')} ${cssVar('dimension-space-250')};
+`;
+PopoverInnerContent.displayName = 'PopoverInnerContent';
 
 export const PopoverArrow = styled(RadixPopover.Arrow)`
   clip-path: inset(0.9px 0 0 0);
@@ -62,6 +65,16 @@ export const PopoverArrow = styled(RadixPopover.Arrow)`
   margin-top: -2px;
   stroke: ${cssVar('color-border-weak')};
   width: 15px;
+
+  /*
+ * Color the arrow to match the illustration background only when
+ * it's positioned next to it!
+ */
+  [data-has-illustration='true'][data-side='bottom'] &,
+  [data-has-illustration='true'][data-side='left'][data-align='start'] &,
+  [data-has-illustration='true'][data-side='right'][data-align='start'] & {
+    fill: ${cssVar('color-surface-disabled')};
+  }
 `;
 PopoverArrow.displayName = 'PopoverArrow';
 
@@ -74,3 +87,8 @@ export const PopoverFooter = styled.div`
   margin-top: ${cssVar('dimension-space-200')};
 `;
 PopoverFooter.displayName = 'PopoverFooter';
+
+export const PopoverIllustrationContainer = styled.div`
+  background-color: ${cssVar('color-surface-disabled')};
+`;
+PopoverIllustrationContainer.displayName = 'PopoverIllustrationContainer';

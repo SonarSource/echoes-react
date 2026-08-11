@@ -31,6 +31,8 @@ import {
   PopoverContent,
   PopoverExtraContent,
   PopoverFooter,
+  PopoverIllustrationContainer,
+  PopoverInnerContent,
 } from './PopoverStyles';
 
 export enum PopoverAlign {
@@ -51,7 +53,13 @@ export interface PopoverProps {
    * Controls the alignment of the popover with its trigger
    */
   align?: `${PopoverAlign}`;
+  /**
+   * The trigger for the popover. Must be an interactive element, typically a button.
+   */
   children: ReactElement;
+  /**
+   * CSS class name(s) to apply to the Popover container
+   */
   className?: string;
   /**
    * Optional text content of a subtle paragraph, for the body of the Popover
@@ -65,6 +73,10 @@ export interface PopoverProps {
    * Slot for the footer of the Popover. Meant for actions (e.g. Button, ButtonGroup, Link )
    */
   footer?: ReactNode;
+  /**
+   * Add an illustration to the Popover, above the title
+   */
+  illustration?: ReactNode;
   /**
    * Control its `open` state, rather than relying on the trigger
    */
@@ -114,6 +126,7 @@ export const Popover = forwardRef<HTMLButtonElement, PopoverProps>((props, ref) 
     description,
     extraContent,
     footer,
+    illustration,
     isOpen,
     side,
     title,
@@ -133,19 +146,25 @@ export const Popover = forwardRef<HTMLButtonElement, PopoverProps>((props, ref) 
           align={align}
           arrowPadding={OVERLAY_ARROW_PADDING}
           className={className}
+          data-has-illustration={isDefined(illustration)}
           side={side}
           sideOffset={OVERLAY_SIDE_OFFSET}>
-          {title && (
-            <Heading as="h1" hasMarginBottom={Boolean(description)} size={HeadingSize.Medium}>
-              {title}
-            </Heading>
+          {illustration && (
+            <PopoverIllustrationContainer>{illustration}</PopoverIllustrationContainer>
           )}
+          <PopoverInnerContent>
+            {title && (
+              <Heading as="h1" hasMarginBottom={Boolean(description)} size={HeadingSize.Medium}>
+                {title}
+              </Heading>
+            )}
 
-          {description && <Text isSubtle>{description}</Text>}
+            {description && <Text isSubtle>{description}</Text>}
 
-          {extraContent && <PopoverExtraContent>{extraContent}</PopoverExtraContent>}
+            {extraContent && <PopoverExtraContent>{extraContent}</PopoverExtraContent>}
 
-          {footer && <PopoverFooter>{footer}</PopoverFooter>}
+            {footer && <PopoverFooter>{footer}</PopoverFooter>}
+          </PopoverInnerContent>
           <PopoverArrow />
         </PopoverContent>
       </RadixPopover.Portal>

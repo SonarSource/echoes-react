@@ -21,6 +21,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Button, LinkStandalone, Popover, Text } from '../src';
 import { basicWrapperDecorator } from './helpers/BasicWrapper';
+import { FishtankIllustration } from './helpers/FishtankIllustration';
 
 const meta: Meta<typeof Popover> = {
   component: Popover,
@@ -28,7 +29,15 @@ const meta: Meta<typeof Popover> = {
   parameters: {
     controls: { exclude: ['children'] },
   },
-  decorators: [basicWrapperDecorator],
+  decorators: [
+    basicWrapperDecorator,
+    (Story) => (
+      // Add some padding to allow the popover to be on top
+      <div style={{ paddingTop: '200px' }}>
+        <Story />
+      </div>
+    ),
+  ],
 };
 
 export default meta;
@@ -52,6 +61,16 @@ export const ExtraContent: Story = {
   args: {
     title: 'Details',
     description: 'Follow these instructions:',
+  },
+  argTypes: {
+    illustration: {
+      mapping: {
+        fishtank: <FishtankIllustration />,
+        none: undefined,
+      },
+      options: ['fishtank', 'none'],
+      control: { type: 'select' },
+    },
   },
   render: (args) => (
     <Popover

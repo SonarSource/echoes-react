@@ -41,6 +41,7 @@ it('displays all additional parts', async () => {
     description: 'description',
     extraContent: 'extra content',
     footer: 'footer',
+    illustration: <img alt="illustration" />,
   });
 
   await user.click(screen.getByText('Trigger'));
@@ -48,6 +49,7 @@ it('displays all additional parts', async () => {
   expect(screen.getByText('description')).toBeInTheDocument();
   expect(screen.getByText('extra content')).toBeInTheDocument();
   expect(screen.getByText('footer')).toBeInTheDocument();
+  expect(screen.getByAltText('illustration')).toBeInTheDocument();
 });
 
 function setupPopover(props: Partial<ComponentProps<typeof Popover>> = {}) {
