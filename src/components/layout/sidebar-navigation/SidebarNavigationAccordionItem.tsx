@@ -20,9 +20,7 @@
 
 import styled from '@emotion/styled';
 
-import { ReactNode, Ref, useCallback, useEffect, useId, useRef, useState } from 'react';
-
-import { isDefined } from '~common/helpers/types';
+import { ReactNode, Ref, useEffect, useId, useRef } from 'react';
 import { TextNode } from '~types/utils';
 import { cssVar } from '~utils/design-tokens';
 import { IconChevronDown, IconChevronRight } from '../../icons';
@@ -34,8 +32,10 @@ import {
   SidebarNavigationItemLabel,
 } from './SidebarNavigationItemStyles';
 
+import { SidebarNavigationAccordionContext } from './SidebarNavigationAccordionContext';
 import { SidebarNavigationIconComponent } from './SidebarNavigationTypes';
 import { TOOLTIP_DELAY_IN_MS } from './utils';
+import { useSidebarNavigationAccordionState } from './useSidebarNavigationAccordionState';
 
 interface SidebarNavigationAccordionItemCommonProps {
   /**
@@ -53,7 +53,8 @@ interface SidebarNavigationAccordionItemCommonProps {
   className?: string;
   /**
    * Whether to disable the tooltip on the accordion item or not.
-   * By default the tooltip is enabled, it should only be disabled if you don't expect the content to be ellipsed.
+   * By default the tooltip is enabled, it should only be disabled if you don't expect the content
+   * to be ellipsed.
    * @defaultValue false
    */
   disableTooltip?: boolean;
@@ -67,15 +68,20 @@ interface SidebarNavigationAccordionItemCommonProps {
    */
   label: TextNode;
   /**
-   * The onClose callback is called when the accordion is closed.
+   * Called when the accordion closes in uncontrolled mode. In controlled mode, called when the
+   * user requests closing it.
    */
   onClose?: VoidFunction;
   /**
-   * The onOpen callback is called when the accordion is opened.
+   * Called when the accordion opens in uncontrolled mode, including automatic opening when a child
+   * becomes active on the first render or later. In controlled mode, called when the user
+   * requests opening it.
    */
   onOpen?: VoidFunction;
   /**
-   * Called with the next open state when the user toggles the accordion.
+   * Called with the next open state when the accordion changes in uncontrolled mode, including
+   * automatic opening when a child becomes active on the first render or later. In controlled
+   * mode, called when the user requests a state change.
    */
   onOpenChange?: (isOpen: boolean) => void;
   /**
@@ -89,7 +95,8 @@ interface SidebarNavigationAccordionItemCommonProps {
    */
   scrollLastChildIntoViewOnOpen?: boolean;
   /**
-   * Optional content to display on the right, before the chevron. Typically badges, item count and similar metadata.
+   * Optional content to display on the right, before the chevron. Typically badges, item count,
+   * and similar metadata.
    */
   suffix?: ReactNode;
 }
@@ -140,9 +147,16 @@ export function SidebarNavigationAccordionItem(
     ...htmlProps
   } = props;
 
-  const [internalOpen, setInternalOpen] = useState(isDefaultOpen);
-  const open = isDefined(isOpen) ? isOpen : internalOpen;
   const panelRef = useRef<HTMLElement>(null);
+
+  const { handleChildActive, handleToggle, open, shouldAutoOpenOnActiveChild } =
+    useSidebarNavigationAccordionState({
+      isDefaultOpen,
+      isOpen,
+      onClose,
+      onOpen,
+      onOpenChange,
+    });
 
   useEffect(() => {
     if (open && scrollLastChildIntoViewOnOpen) {
@@ -154,23 +168,7 @@ export function SidebarNavigationAccordionItem(
   const accordionId = `${useId()}sidebar-accordion`;
   const accordionPanelId = `${accordionId}-panel`;
 
-  const handleClick = useCallback(() => {
-    const nextOpen = !open;
-
-    if (!isDefined(isOpen)) {
-      setInternalOpen(nextOpen);
-    }
-
-    onOpenChange?.(nextOpen);
-
-    if (nextOpen) {
-      onOpen?.();
-    } else {
-      onClose?.();
-    }
-  }, [isOpen, onClose, onOpen, onOpenChange, open]);
-
-  return (
+  const content = (
     <AccordionWrapper>
       <Tooltip
         content={disableTooltip ? undefined : label}
@@ -182,7 +180,7 @@ export function SidebarNavigationAccordionItem(
           aria-expanded={open}
           aria-label={ariaLabel}
           id={accordionId}
-          onClick={handleClick}
+          onClick={handleToggle}
           ref={ref}
           type="button">
           <Icon css={sidebarNavigationItemIconStyles} isFilled={false} />
@@ -207,6 +205,16 @@ export function SidebarNavigationAccordionItem(
         <AccordionItemsList>{children}</AccordionItemsList>
       </AccordionItemPanel>
     </AccordionWrapper>
+  );
+
+  if (!shouldAutoOpenOnActiveChild) {
+    return content;
+  }
+
+  return (
+    <SidebarNavigationAccordionContext.Provider value={handleChildActive}>
+      {content}
+    </SidebarNavigationAccordionContext.Provider>
   );
 }
 

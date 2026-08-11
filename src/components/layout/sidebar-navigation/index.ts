@@ -29,12 +29,12 @@ import { SidebarNavigationItem } from './SidebarNavigationItem';
 import { SidebarNavigationFooter } from './SidebarNavigationItemStyles';
 
 export { type SidebarNavigationProps } from './SidebarNavigation';
-export { type SidebarNavigationAccordionChildItemProps } from './SidebarNavigationAccordionChildItem';
 export { type SidebarNavigationAccordionItemProps } from './SidebarNavigationAccordionItem';
 export { type SidebarNavigationGroupProps } from './SidebarNavigationGroup';
 export { type SidebarNavigationHeaderProps } from './SidebarNavigationHeader';
 export { type SidebarNavigationItemBaseProps } from './SidebarNavigationTypes';
 export { type SidebarNavigationItemProps } from './SidebarNavigationItem';
+export type { SidebarNavigationAccordionChildItemProps } from './SidebarNavigationAccordionChildItem';
 
 const SidebarNavigationAccordionItemNamespace = Object.assign(SidebarNavigationAccordionItem, {
   /**
@@ -57,6 +57,9 @@ export const SidebarNavigation = Object.assign(SidebarNavigationRoot, {
   /**
    * {@link SidebarNavigationAccordionItem | AccordionItem} provides expandable navigation sections
    * with collapsible sub-items. Ideal for organizing related navigation items.
+   *
+   * In uncontrolled mode, the accordion opens automatically when one of its child items becomes
+   * active, including on the first render. Controlled accordions do not auto-open.
    *
    * ```tsx
    * <SidebarNavigation.AccordionItem Icon={SecurityIcon} label="Security">
