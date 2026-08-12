@@ -158,8 +158,7 @@ export interface FilterDropdownCategoryWithContent {
  * or arbitrary custom content ({@link FilterDropdownCategoryWithContent}) in the right panel.
  */
 export type FilterDropdownCategory =
-  | FilterDropdownCategoryWithItems
-  | FilterDropdownCategoryWithContent;
+  FilterDropdownCategoryWithItems | FilterDropdownCategoryWithContent;
 
 /**
  * Props for the FilterDropdown component.
