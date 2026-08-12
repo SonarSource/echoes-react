@@ -17,15 +17,18 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-export const EMPTY_ARRAY: readonly never[] = Object.freeze([]);
 
-export const KEYBOARD_THROTTLE_MS = 100;
+import { PopoverCloseButton } from '../popover/Popover';
+import { TeachingBubbleRoot } from './TeachingBubble';
 
-/**
- * data attribute added to components used for feature communication.
- */
-export const FEATURE_COMMUNICATION_DATA_ATTRIBUTE = 'data-feature-communication';
+export { type TeachingBubbleProps } from './TeachingBubble';
 
-export enum FeatureCommunicationComponent {
-  TeachingBubble = 'teaching-bubble',
-}
+export const TeachingBubble = Object.assign(TeachingBubbleRoot, {
+  /**
+   * {@link PopoverCloseButton | TeachingBubble.CloseButton}
+   *
+   * Use this button in the Teaching Bubble to have it close.
+   * You can define your own click event handler and it will do both.
+   */
+  CloseButton: PopoverCloseButton,
+});
