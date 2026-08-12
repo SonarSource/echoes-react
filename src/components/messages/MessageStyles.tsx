@@ -18,7 +18,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 import styled from '@emotion/styled';
-import { IconCheckCircle, IconError, IconInfo, IconQuestionMark, IconWarning } from '../icons';
+import { IconCheckCircle, IconError, IconInfo, IconRocket, IconWarning } from '../icons';
 import { MessageVariety } from './MessageTypes';
 
 import { cssVar } from '~utils/design-tokens';
@@ -28,29 +28,29 @@ export const MESSAGE_VARIETY_ICON = {
   [MessageVariety.Danger]: <IconError color="echoes-color-icon-danger" />,
   [MessageVariety.Warning]: <IconWarning color="echoes-color-icon-warning" />,
   [MessageVariety.Success]: <IconCheckCircle color="echoes-color-icon-success" />,
-  [MessageVariety.Discover]: <IconQuestionMark color="echoes-color-icon-accent" />,
+  [MessageVariety.Discover]: <IconRocket color="echoes-color-icon-emphasis" />,
 };
 
 export const MESSAGE_CALLOUT_VARIETY_STYLE = {
   [MessageVariety.Info]: {
     '--message-background': cssVar('color-background-info-weak-default'),
-    '--message-title-color': cssVar('color-text-info'),
+    '--message-text-color': cssVar('color-text-info'),
   },
   [MessageVariety.Danger]: {
     '--message-background': cssVar('color-background-danger-weak-default'),
-    '--message-title-color': cssVar('color-text-danger'),
+    '--message-text-color': cssVar('color-text-danger'),
   },
   [MessageVariety.Warning]: {
     '--message-background': cssVar('color-background-warning-weak-default'),
-    '--message-title-color': cssVar('color-text-warning'),
+    '--message-text-color': cssVar('color-text-warning'),
   },
   [MessageVariety.Success]: {
     '--message-background': cssVar('color-background-success-weak-default'),
-    '--message-title-color': cssVar('color-text-success'),
+    '--message-text-color': cssVar('color-text-success'),
   },
   [MessageVariety.Discover]: {
-    '--message-background': cssVar('color-background-accent-weak-default'),
-    '--message-title-color': cssVar('color-text-accent'),
+    '--message-background': cssVar('color-background-emphasis-weak-default'),
+    '--message-text-color': cssVar('color-text-emphasis'),
   },
 };
 
@@ -87,7 +87,7 @@ export const MessageCalloutTitleWrapper = styled.div`
   flex: 1 0 auto;
   font: ${cssVar('typography-heading-medium')};
   letter-spacing: ${cssVar('letter-spacing-decreased')};
-  color: var(--message-title-color);
+  color: var(--message-text-color);
 `;
 MessageCalloutTitleWrapper.displayName = 'MessageCalloutTitleWrapper';
 
@@ -99,6 +99,7 @@ export const MessageCalloutTextWrapper = styled.div`
   gap: ${cssVar('dimension-space-100')};
 
   font: ${cssVar('typography-text-default-regular')};
+  color: var(--message-text-color);
 `;
 MessageCalloutTextWrapper.displayName = 'MessageCalloutTextWrapper';
 
