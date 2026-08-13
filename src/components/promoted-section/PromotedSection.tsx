@@ -37,6 +37,9 @@ import {
 } from '~common/components/PromotedSectionStyles';
 import { cssVar } from '~utils/design-tokens';
 
+/**
+ * @deprecated Use the `discover`-variety MessageCallout, or the TeachingBubble instead.
+ */
 export interface PromotedSectionProps {
   /**
    * The actions at the bottom: either a Button, a ButtonGroup, or a LinkStandalone (optional)
@@ -92,6 +95,9 @@ const BADGE_VARIETIES = {
   [PromotedSectionVariety.Neutral]: BadgeVariety.Neutral,
 } as const;
 
+/**
+ * @deprecated Use the `discover`-variety MessageCallout, or the TeachingBubble instead.
+ */
 export const PromotedSection = forwardRef<HTMLDivElement, Readonly<PromotedSectionProps>>(
   (
     {

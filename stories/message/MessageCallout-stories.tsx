@@ -52,7 +52,7 @@ const meta: Meta<typeof MessageCallout> = {
     variety: { control: { type: 'select' }, options: Object.values(MessageVariety) },
   },
   parameters: {
-    controls: { exclude: ['onDismiss'] },
+    controls: { exclude: ['onDismiss', 'ref'] },
   },
   decorators: [basicWrapperDecorator],
 };
