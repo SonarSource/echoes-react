@@ -44,5 +44,4 @@ export interface SelectOptionGroup<T = SelectOption> {
 }
 
 export type SelectData =
-  | Array<SelectOption | SelectOptionGroup>
-  | ReadonlyArray<SelectOption | SelectOptionGroup>;
+  Array<SelectOption | SelectOptionGroup> | ReadonlyArray<SelectOption | SelectOptionGroup>;

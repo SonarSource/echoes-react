@@ -22,8 +22,8 @@ import styled from '@emotion/styled';
 
 import { ReactNode, Ref, useCallback, useEffect, useId, useRef, useState } from 'react';
 
-import { TextNode } from '~types/utils';
 import { isDefined } from '~common/helpers/types';
+import { TextNode } from '~types/utils';
 import { cssVar } from '~utils/design-tokens';
 import { IconChevronDown, IconChevronRight } from '../../icons';
 import { Tooltip } from '../../tooltip';
@@ -118,8 +118,7 @@ interface SidebarNavigationAccordionItemUncontrolledProps extends SidebarNavigat
 }
 
 export type SidebarNavigationAccordionItemProps =
-  | SidebarNavigationAccordionItemControlledProps
-  | SidebarNavigationAccordionItemUncontrolledProps;
+  SidebarNavigationAccordionItemControlledProps | SidebarNavigationAccordionItemUncontrolledProps;
 
 export function SidebarNavigationAccordionItem(
   props: Readonly<SidebarNavigationAccordionItemProps>,
