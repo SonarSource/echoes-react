@@ -40,6 +40,24 @@ it('should have no accessibility violations', async () => {
   });
 });
 
+it('does not call `onClose` when clicking outside the bubble', async () => {
+  const onClose = jest.fn();
+  const { user } = setupTeachingBubble({ isOpen: true, onClose });
+
+  await user.click(document.body);
+
+  expect(onClose).not.toHaveBeenCalled();
+});
+
+it('does not call `onClose` when the trigger is clicked while the bubble is closed', async () => {
+  const onClose = jest.fn();
+  const { user } = setupTeachingBubble({ isOpen: false, onClose });
+
+  await user.click(screen.getByText('New feature'));
+
+  expect(onClose).not.toHaveBeenCalled();
+});
+
 it('calls `onClose` when CloseButton is clicked', async () => {
   const onClose = jest.fn();
   const otherCallback = jest.fn();

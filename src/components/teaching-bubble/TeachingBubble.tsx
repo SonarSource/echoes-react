@@ -26,7 +26,7 @@ import {
 } from '~common/helpers/constants';
 import { Popover, PopoverProps } from '../popover';
 
-type SelectedPopoverProps = Omit<PopoverProps, 'isOpen' | 'onOpenChange'>;
+type SelectedPopoverProps = Omit<PopoverProps, 'isOpen' | 'onOpenChange' | 'disableOutsideClick'>;
 type RequiredPopoverProps = Required<Pick<PopoverProps, 'isOpen'>>;
 
 export interface TeachingBubbleProps extends SelectedPopoverProps, RequiredPopoverProps {
@@ -38,16 +38,24 @@ export interface TeachingBubbleProps extends SelectedPopoverProps, RequiredPopov
 }
 
 export function TeachingBubbleRoot(props: Readonly<TeachingBubbleProps>) {
-  const { onClose, ...popoverProps } = props;
+  const { isOpen, onClose, ...popoverProps } = props;
 
-  // Discard the value, we only ever want to close the Teaching Bubble!
-  const handleClose = useCallback((_: boolean) => onClose(), [onClose]);
+  // Discard open requests — the Teaching Bubble is always externally controlled.
+  const handleClose = useCallback(
+    (_: boolean) => {
+      if (isOpen) {
+        onClose();
+      }
+    },
+    [isOpen, onClose],
+  );
 
   return (
     <StyledPopover
       {...{ [FEATURE_COMMUNICATION_DATA_ATTRIBUTE]: FeatureCommunicationComponent.TeachingBubble }}
       {...popoverProps}
       disableOutsideClick
+      isOpen={isOpen}
       onOpenChange={handleClose}
     />
   );

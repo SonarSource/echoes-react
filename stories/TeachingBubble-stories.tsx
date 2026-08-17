@@ -30,7 +30,7 @@ const meta: Meta<typeof TeachingBubble> = {
   component: TeachingBubble,
   title: 'Echoes Components/Teaching Bubble',
   parameters: {
-    controls: { exclude: ['children'] },
+    controls: { exclude: ['children', 'isOpen', 'onClose', 'footer'] },
   },
   argTypes: {
     align: { options: Object.values(PopoverAlign), control: { type: 'select' } },
