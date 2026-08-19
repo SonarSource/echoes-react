@@ -96,3 +96,21 @@ export const ExtraContent: Story = {
     </Popover>
   ),
 };
+
+export const CloseButton: Story = {
+  args: {
+    children: <Button>Click this button to display the Popover</Button>,
+    footer: (
+      <Popover.CloseButton
+        onClick={() => {
+          // eslint-disable-next-line no-console
+          console.log('ack');
+        }}>
+        ackwnowledge and close
+      </Popover.CloseButton>
+    ),
+    title: 'Popover.CloseButton',
+    description:
+      'Use this button as a regular Button. It will close the popoup in addition to any specified `onClick`',
+  },
+};

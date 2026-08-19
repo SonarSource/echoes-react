@@ -52,6 +52,7 @@ export * from './selection-cards';
 export * from './spinner';
 export * from './spotlight';
 export * from './table';
+export * from './teaching-bubble';
 export * from './text-area';
 export * from './text-input';
 export * from './toggle-button-group';
