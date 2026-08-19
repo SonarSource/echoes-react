@@ -27,5 +27,6 @@ export const KEYBOARD_THROTTLE_MS = 100;
 export const FEATURE_COMMUNICATION_DATA_ATTRIBUTE = 'data-feature-communication';
 
 export enum FeatureCommunicationComponent {
+  MessageCalloutDiscover = 'message-callout-discover',
   TeachingBubble = 'teaching-bubble',
 }
