@@ -63,6 +63,11 @@ export interface PopoverProps {
    */
   className?: string;
   /**
+   * Extra attributes forwarded directly to the popover content panel.
+   * Use this to pass `data-*` attributes without polluting the component's own props.
+   */
+  contentProps?: Record<string, string>;
+  /**
    * Optional text content of a subtle paragraph, for the body of the Popover
    */
   description?: TextNodeOptional;
@@ -106,6 +111,7 @@ export const PopoverRoot = forwardRef<HTMLButtonElement, PopoverProps>((props, r
     align,
     children,
     className,
+    contentProps,
     description,
     disableOutsideClick,
     extraContent,
@@ -129,6 +135,7 @@ export const PopoverRoot = forwardRef<HTMLButtonElement, PopoverProps>((props, r
       <RadixPopover.Portal>
         <PopoverContent
           {...themeOverrideProp}
+          {...contentProps}
           align={align}
           arrowPadding={OVERLAY_ARROW_PADDING}
           className={className}
