@@ -30,8 +30,8 @@ import {
   setupControlledSidebarNavigationAccordionItem,
   setupSidebarNavigationAccordionItem,
   setupSidebarNavigationAccordionItemWithExplicitActiveChild,
-  setupSidebarNavigationAccordionItemWithTransientInitialActiveChild,
   setupSidebarNavigationAccordionItemWithRouter,
+  setupSidebarNavigationAccordionItemWithTransientInitialActiveChild,
 } from '../test-utils/SidebarNavigationAccordionItemTestUtils';
 
 expect.extend(matchers);
@@ -332,6 +332,12 @@ it('should render a button trigger that does not submit surrounding forms', () =
   setupSidebarNavigationAccordionItem();
 
   expect(screen.getByRole('button', { name: 'Accordion Item' })).toHaveAttribute('type', 'button');
+});
+
+it('should render without a leading icon', () => {
+  setupSidebarNavigationAccordionItem({ Icon: undefined });
+
+  expect(screen.queryByTestId('sidebar-navigation-leading-icon')).not.toBeInTheDocument();
 });
 
 describe('ellipsis behavior', () => {

@@ -65,10 +65,26 @@ describe('Button', () => {
   });
 
   it.each([
-    [ButtonVariety.Default, cssVar('color-icon-default'), cssVar('color-border-bold')],
-    [ButtonVariety.DefaultGhost, cssVar('color-icon-default'), cssVar('color-border-bold')],
-    [ButtonVariety.Primary, cssVar('color-icon-on-color'), cssVar('color-border-bold')],
-    [ButtonVariety.Danger, cssVar('color-icon-on-color'), cssVar('color-background-danger-active')],
+    [
+      ButtonVariety.Default,
+      cssVar('button-colors-foreground-secondary'),
+      cssVar('button-colors-border-secondary'),
+    ],
+    [
+      ButtonVariety.DefaultGhost,
+      cssVar('button-colors-foreground-ghost'),
+      cssVar('button-colors-border-secondary'),
+    ],
+    [
+      ButtonVariety.Primary,
+      cssVar('button-colors-foreground-primary'),
+      cssVar('button-colors-border-secondary'),
+    ],
+    [
+      ButtonVariety.Danger,
+      cssVar('button-colors-foreground-danger'),
+      cssVar('button-colors-background-danger-pressed'),
+    ],
   ])('defines %s spinner arc and track sentiment tokens', (variety, spinnerColor, trackColor) => {
     expect(BUTTON_VARIETY_STYLES[variety]).toMatchObject({
       '--spinner-color-override': spinnerColor,
@@ -77,14 +93,32 @@ describe('Button', () => {
   });
 
   it.each([
-    [ButtonVariety.PrimaryGhost, cssVar('color-border-accent-default')],
-    [ButtonVariety.DangerGhost, cssVar('color-icon-danger')],
-    [ButtonVariety.DangerOutline, cssVar('color-icon-danger')],
+    [ButtonVariety.PrimaryGhost, cssVar('button-colors-foreground-ghost')],
+    [ButtonVariety.DangerGhost, cssVar('button-colors-foreground-danger-ghost')],
+    [ButtonVariety.DangerOutline, cssVar('button-colors-foreground-danger-ghost')],
   ])('defines %s spinner arc sentiment token', (variety, spinnerColor) => {
     expect(BUTTON_VARIETY_STYLES[variety]).toMatchObject({
       '--spinner-color-override': spinnerColor,
     });
     expect(BUTTON_VARIETY_STYLES[variety]).not.toHaveProperty('--spinner-track-color-override');
+  });
+
+  it.each([ButtonVariety.Default, ButtonVariety.Primary, ButtonVariety.DangerOutline])(
+    'uses resting elevation for the %s variety',
+    (variety) => {
+      expect(BUTTON_VARIETY_STYLES[variety]).toMatchObject({
+        '--button-shadow': cssVar('shadow-resting'),
+      });
+    },
+  );
+
+  it.each([
+    ButtonVariety.DefaultGhost,
+    ButtonVariety.PrimaryGhost,
+    ButtonVariety.Danger,
+    ButtonVariety.DangerGhost,
+  ])('keeps the borderless %s variety flat', (variety) => {
+    expect(BUTTON_VARIETY_STYLES[variety]).not.toHaveProperty('--button-shadow');
   });
 
   it('should render with prefix and suffix', () => {

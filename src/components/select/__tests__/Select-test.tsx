@@ -56,6 +56,19 @@ it('should display options with radio style', async () => {
   expect(screen.getAllByRole('option')).toHaveLength(3);
 });
 
+it('should expose whether the listbox is expanded', async () => {
+  const { user } = setupSelect({ ariaLabel: 'my-select' });
+  const combobox = screen.getByRole('combobox', { name: 'my-select' });
+
+  expect(combobox).toHaveAttribute('aria-expanded', 'false');
+
+  await user.click(combobox);
+  expect(combobox).toHaveAttribute('aria-expanded', 'true');
+
+  await user.click(screen.getByRole('option', { name: 'One' }));
+  expect(combobox).toHaveAttribute('aria-expanded', 'false');
+});
+
 function setupSelect(props: OmitPropsWithLabels<typeof Select>) {
   const data = [
     { value: '1', label: 'One' },
