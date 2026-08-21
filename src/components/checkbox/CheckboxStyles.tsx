@@ -54,25 +54,29 @@ export const CheckboxLabelWrapper = styled.span`
 CheckboxLabelWrapper.displayName = 'CheckboxLabelWrapper';
 
 export const CheckboxLabel = styled(FormFieldLabel)`
-  color: ${cssVar('color-text-default')};
+  color: ${cssVar('checkbox-colors-foreground-default')};
   font: ${cssVar('typography-others-label-medium')};
 `;
 CheckboxLabel.displayName = 'CheckboxLabel';
 
 export const CheckboxIndicator = styled(RadixCheckbox.Indicator)`
+  align-items: center;
+  display: flex;
   height: ${cssVar('dimension-height-400')};
+  justify-content: center;
+  line-height: 0;
   width: ${cssVar('dimension-width-200')};
 `;
 CheckboxIndicator.displayName = 'CheckboxIndicator';
 
 export const styleCheckboxRootBase = styled.div`
-  color: ${cssVar('color-text-on-color')};
-  background-color: ${cssVar('color-surface-default')};
-  border: ${cssVar('border-width-default')} solid ${cssVar('color-border-bolder')};
+  color: ${cssVar('checkbox-colors-foreground-selected')};
+  background-color: ${cssVar('checkbox-colors-background-default')};
+  border: ${cssVar('border-width-default')} solid ${cssVar('checkbox-colors-border-default')};
 
   height: ${cssVar('dimension-height-400')};
   width: ${cssVar('dimension-width-200')};
-  border-radius: ${cssVar('border-radius-100')};
+  border-radius: ${cssVar('border-radius-200')};
   margin: ${cssVar('dimension-space-25')} 0;
   box-sizing: border-box;
   display: inline-flex;
@@ -84,40 +88,41 @@ export const styleCheckboxRootBase = styled.div`
 export const CheckboxRoot = styled(styleCheckboxRootBase(RadixCheckbox.Root))`
   &:focus,
   &:focus-visible {
-    outline: ${cssVar('color-focus-default')} solid ${cssVar('focus-border-width-default')};
+    outline: ${cssVar('checkbox-colors-focus-ring')} solid ${cssVar('focus-border-width-default')};
     outline-offset: ${cssVar('focus-border-offset-default')};
   }
 
   &[aria-disabled='true'] {
-    color: ${cssVar('color-icon-disabled')};
-    background-color: ${cssVar('color-surface-disabled')};
-    border-color: ${cssVar('color-border-disabled')};
+    color: ${cssVar('checkbox-colors-foreground-disabled')};
+    background-color: ${cssVar('checkbox-colors-background-disabled')};
+    border-color: ${cssVar('checkbox-colors-border-disabled')};
 
     &[aria-checked='true'],
     &[aria-checked='mixed'] {
-      background-color: ${cssVar('color-surface-disabled')};
-      border-color: ${cssVar('color-border-disabled')};
+      background-color: ${cssVar('checkbox-colors-background-disabled')};
+      border-color: ${cssVar('checkbox-colors-border-disabled')};
     }
   }
 
   &:not([aria-disabled='true']) {
     &:hover {
-      background-color: ${cssVar('color-surface-hover')};
+      background-color: ${cssVar('checkbox-colors-background-hover')};
+      border-color: ${cssVar('checkbox-colors-border-hover')};
     }
 
     &[aria-checked='true'],
     &[aria-checked='mixed'] {
-      background-color: ${cssVar('color-background-selected-bold-default')};
-      border-color: ${cssVar('color-background-selected-bold-default')};
+      background-color: ${cssVar('checkbox-colors-background-selected')};
+      border-color: ${cssVar('checkbox-colors-background-selected')};
 
       &:hover {
-        background-color: ${cssVar('color-background-selected-bold-hover')};
-        border: ${cssVar('color-background-selected-bold-hover')};
+        background-color: ${cssVar('checkbox-colors-background-selected-hover')};
+        border-color: ${cssVar('checkbox-colors-background-selected-hover')};
       }
     }
 
     &[data-error] {
-      border-color: ${cssVar('color-border-danger-default')};
+      border-color: ${cssVar('checkbox-colors-border-error')};
     }
   }
 `;
