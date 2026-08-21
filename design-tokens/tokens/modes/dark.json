@@ -6,43 +6,25 @@
           "subtle": {
             "default": {
               "$type": "color",
-              "$value": "{echoes.color.roles.neutral.strong}"
+              "$value": "{echoes.color.palette.gray.3}"
             },
             "hover": {
-              "$extensions": {
-                "studio.tokens": {
-                  "modify": {
-                    "type": "alpha",
-                    "value": "0.8",
-                    "space": "lch"
-                  }
-                }
-              },
               "$type": "color",
-              "$value": "{echoes.color.roles.neutral.strong}"
+              "$value": "{echoes.color.palette.gray.4}"
             },
             "focus": {
               "$type": "color",
-              "$value": "{echoes.color.roles.neutral.strong}"
+              "$value": "{echoes.color.palette.gray.3}"
             },
             "active": {
-              "$extensions": {
-                "studio.tokens": {
-                  "modify": {
-                    "type": "alpha",
-                    "value": "0.7",
-                    "space": "lch"
-                  }
-                }
-              },
               "$type": "color",
-              "$value": "{echoes.color.roles.neutral.strong}"
+              "$value": "{echoes.color.palette.gray.5}"
             }
           },
           "bolder": {
             "default": {
               "$type": "color",
-              "$value": "{echoes.color.palette.grey.400}"
+              "$value": "{echoes.color.palette.gray.4}"
             }
           }
         },
@@ -513,11 +495,11 @@
             },
             "hover": {
               "$type": "color",
-              "$value": "{echoes.color.roles.neutral.bold}"
+              "$value": "{echoes.color.palette.grayAlpha.3}"
             },
             "active": {
               "$type": "color",
-              "$value": "{echoes.color.palette.grey.800}"
+              "$value": "{echoes.color.palette.grayAlpha.5}"
             },
             "focus": {
               "$type": "color",
@@ -647,43 +629,53 @@
       "surface": {
         "default": {
           "$type": "color",
-          "$value": "{echoes.color.palette.grey.600}"
+          "$value": "{echoes.color.palette.gray.1}",
+          "$description": "Default contained surface such as a card, table, menu, or dialog."
         },
         "hover": {
           "$type": "color",
-          "$value": "{echoes.color.roles.neutral.bold}"
+          "$value": "{echoes.color.palette.grayAlpha.3}",
+          "$description": "Legacy surface hover, mapped to the neutral interaction overlay."
         },
         "active": {
           "$type": "color",
-          "$value": "{echoes.color.palette.grey.800}"
+          "$value": "{echoes.color.palette.grayAlpha.5}",
+          "$description": "Legacy surface active state, mapped to the neutral pressed overlay."
         },
         "canvas": {
           "default": {
             "$type": "color",
-            "$value": "{echoes.color.roles.neutral.bold}"
+            "$value": "{echoes.color.palette.gray.2}",
+            "$description": "Page-level canvas behind content surfaces."
           }
         },
         "inverse": {
           "default": {
             "$type": "color",
-            "$value": "{echoes.color.roles.neutral.light}"
+            "$value": "{echoes.color.palette.gray.11}"
           },
           "hover": {
             "$type": "color",
-            "$value": "{echoes.color.roles.neutral.lightest}"
+            "$value": "{echoes.color.palette.gray.12}"
           },
           "focus": {
             "$type": "color",
-            "$value": "{echoes.color.roles.neutral.light}"
+            "$value": "{echoes.color.palette.gray.11}"
           },
           "active": {
             "$type": "color",
-            "$value": "{echoes.color.palette.grey.40}"
+            "$value": "{echoes.color.palette.gray.12}"
           }
         },
         "disabled": {
           "$type": "color",
-          "$value": "{echoes.color.roles.neutral.strong}"
+          "$value": "{echoes.color.palette.gray.3}",
+          "$description": "Background for unavailable controls and regions."
+        },
+        "subtle": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.gray.3}",
+          "$description": "Subtle surface used to establish low-emphasis hierarchy."
         }
       },
       "overlays": {
@@ -699,38 +691,42 @@
               }
             },
             "$type": "color",
-            "$value": "{echoes.color.roles.neutral.dark}"
+            "$value": "{echoes.color.palette.gray.1}"
           }
         },
         "disabled": {
           "$type": "color",
-          "$value": "{echoes.color.roles.neutral.strong}"
+          "$value": "{echoes.color.palette.gray.3}"
         }
       },
       "text": {
         "strong": {
           "$type": "color",
-          "$value": "{echoes.color.palette.grey.25}"
+          "$value": "{echoes.color.palette.gray.12}",
+          "$description": "Highest-contrast text."
         },
         "default": {
           "$type": "color",
-          "$value": "{echoes.color.roles.neutral.light}"
+          "$value": "{echoes.color.palette.gray.11}",
+          "$description": "Default readable text."
         },
         "subtle": {
           "$type": "color",
-          "$value": "{echoes.color.palette.grey.200}"
+          "$value": "{echoes.color.palette.gray.10}",
+          "$description": "Supporting low-contrast text."
         },
         "disabled": {
           "$type": "color",
-          "$value": "{echoes.color.palette.grey.400}"
+          "$value": "{echoes.color.palette.gray.9}",
+          "$description": "Text for unavailable controls."
         },
         "onColor": {
           "$type": "color",
-          "$value": "{echoes.color.palette.grey.600}"
+          "$value": "{echoes.color.palette.gray.2}"
         },
         "onColor-Inverse": {
           "$type": "color",
-          "$value": "{echoes.color.palette.grey.600}"
+          "$value": "{echoes.color.palette.gray.2}"
         },
         "danger": {
           "$type": "color",
@@ -738,7 +734,8 @@
         },
         "placeholder": {
           "$type": "color",
-          "$value": "{echoes.color.palette.grey.200}"
+          "$value": "{echoes.color.palette.gray.10}",
+          "$description": "Placeholder text."
         },
         "accent": {
           "$type": "color",
@@ -770,23 +767,28 @@
       "icon": {
         "bold": {
           "$type": "color",
-          "$value": "{echoes.color.palette.grey.25}"
+          "$value": "{echoes.color.palette.gray.12}",
+          "$description": "Highest-contrast icon."
         },
         "default": {
           "$type": "color",
-          "$value": "{echoes.color.roles.neutral.light}"
+          "$value": "{echoes.color.palette.gray.11}",
+          "$description": "Default icon."
         },
         "subtle": {
           "$type": "color",
-          "$value": "{echoes.color.palette.grey.200}"
+          "$value": "{echoes.color.palette.gray.10}",
+          "$description": "Supporting low-contrast icon."
         },
         "disabled": {
           "$type": "color",
-          "$value": "{echoes.color.palette.grey.400}"
+          "$value": "{echoes.color.palette.gray.9}",
+          "$description": "Icon for unavailable controls."
         },
         "placeholder": {
           "$type": "color",
-          "$value": "{echoes.color.palette.grey.200}"
+          "$value": "{echoes.color.palette.gray.10}",
+          "$description": "Placeholder icon."
         },
         "accent": {
           "$type": "color",
@@ -810,11 +812,11 @@
         },
         "onColor": {
           "$type": "color",
-          "$value": "{echoes.color.palette.grey.600}"
+          "$value": "{echoes.color.palette.gray.2}"
         },
         "onColor-Inverse": {
           "$type": "color",
-          "$value": "{echoes.color.palette.grey.600}"
+          "$value": "{echoes.color.palette.gray.2}"
         },
         "selected": {
           "$type": "color",
@@ -828,23 +830,28 @@
       "border": {
         "bolder": {
           "$type": "color",
-          "$value": "{echoes.color.palette.grey.200}"
+          "$value": "{echoes.color.palette.gray.9}",
+          "$description": "Strong control boundary."
         },
         "bold": {
           "$type": "color",
-          "$value": "{echoes.color.roles.neutral.medium}"
+          "$value": "{echoes.color.palette.gray.7}",
+          "$description": "Default structural border."
         },
         "weak": {
           "$type": "color",
-          "$value": "{echoes.color.palette.grey.400}"
+          "$value": "{echoes.color.palette.gray.6}",
+          "$description": "Subtle structural border."
         },
         "weaker": {
           "$type": "color",
-          "$value": "{echoes.color.roles.neutral.strong}"
+          "$value": "{echoes.color.palette.gray.5}",
+          "$description": "Legacy weakest structural border."
         },
         "disabled": {
           "$type": "color",
-          "$value": "{echoes.color.palette.grey.400}"
+          "$value": "{echoes.color.palette.gray.6}",
+          "$description": "Boundary for unavailable controls."
         },
         "accent": {
           "default": {
@@ -938,17 +945,32 @@
             "$type": "color",
             "$value": "{echoes.color.palette.purple.600}"
           }
+        },
+        "subtle": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.gray.6}",
+          "$description": "Subtle structural border."
+        },
+        "default": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.gray.7}",
+          "$description": "Default structural border."
+        },
+        "strong": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.gray.9}",
+          "$description": "Strong boundary required to identify a control."
         }
       },
       "code": {
         "background": {
           "default": {
             "$type": "color",
-            "$value": "{echoes.color.palette.grey.500}"
+            "$value": "{echoes.color.palette.gray.3}"
           },
           "highlight": {
             "$type": "color",
-            "$value": "{echoes.color.palette.grey.600}"
+            "$value": "{echoes.color.palette.gray.5}"
           }
         },
         "border": {
@@ -1000,6 +1022,11 @@
         "default": {
           "$type": "color",
           "$value": "{echoes.color.palette.indigo.200}"
+        },
+        "ring": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.gray.12}",
+          "$description": "Theme-neutral keyboard focus indicator."
         }
       },
       "charts": {
@@ -1063,6 +1090,540 @@
           "default": {
             "$type": "color",
             "$value": "{echoes.color.palette.data.placeholder.stone}"
+          }
+        }
+      },
+      "interaction": {
+        "background": {
+          "hover": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.grayAlpha.3}",
+            "$description": "Contextual neutral hover overlay."
+          },
+          "pressed": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.grayAlpha.5}",
+            "$description": "Contextual neutral pressed overlay."
+          },
+          "default": {
+            "$type": "color",
+            "$value": "{echoes.color.support.transparent}",
+            "$description": "No resting interaction overlay."
+          }
+        },
+        "overlay": {
+          "strong": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.grayAlpha.8}",
+            "$description": "Strong contextual overlay; not a modal scrim."
+          }
+        }
+      },
+      "selection": {
+        "weak": {
+          "default": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.grayAlpha.3}",
+            "$description": "Persistent low-emphasis selection."
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.grayAlpha.4}",
+            "$description": "Hovered low-emphasis selection."
+          },
+          "pressed": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.grayAlpha.5}",
+            "$description": "Pressed low-emphasis selection."
+          }
+        },
+        "strong": {
+          "default": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.gray.12}",
+            "$description": "High-emphasis selected control."
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.gray.11}",
+            "$description": "Hovered high-emphasis selected control."
+          },
+          "pressed": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.gray.10}",
+            "$description": "Pressed high-emphasis selected control."
+          },
+          "foreground": {
+            "$type": "color",
+            "$value": "{echoes.color.support.black}",
+            "$description": "Foreground on strong neutral selection."
+          }
+        }
+      },
+      "feature": {
+        "surface": {
+          "default": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.blue.3}",
+            "$description": "Weak AI, upgrade, upsell, pricing, or feature surface."
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.blue.4}",
+            "$description": "Hovered weak feature surface."
+          },
+          "pressed": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.blue.5}",
+            "$description": "Pressed weak feature surface."
+          }
+        },
+        "border": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.blue.7}",
+          "$description": "Boundary for an explicit feature treatment."
+        },
+        "solid": {
+          "default": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.blue.9}",
+            "$description": "Solid explicit feature treatment."
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.blue.10}",
+            "$description": "Hovered solid feature treatment."
+          },
+          "pressed": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.blue.11}",
+            "$description": "Pressed solid feature treatment."
+          }
+        },
+        "foreground": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.blue.11}",
+          "$description": "Readable feature text and icon."
+        },
+        "onSolid": {
+          "$type": "color",
+          "$value": "{echoes.color.support.black}",
+          "$description": "Foreground on solid feature treatments."
+        }
+      },
+      "status": {
+        "success": {
+          "surface": {
+            "default": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.green.3}",
+              "$description": "Weak success surface."
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.green.4}",
+              "$description": "Hovered weak success surface."
+            },
+            "pressed": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.green.5}",
+              "$description": "Pressed weak success surface."
+            }
+          },
+          "border": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.green.7}",
+            "$description": "success boundary."
+          },
+          "solid": {
+            "default": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.green.9}",
+              "$description": "Solid success treatment."
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.green.10}",
+              "$description": "Hovered solid success treatment."
+            },
+            "pressed": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.green.11}",
+              "$description": "Pressed solid success treatment."
+            }
+          },
+          "foreground": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.green.11}",
+            "$description": "Readable success text and icon."
+          },
+          "onSolid": {
+            "$type": "color",
+            "$value": "{echoes.color.support.black}",
+            "$description": "Foreground on solid success treatments."
+          }
+        },
+        "warning": {
+          "surface": {
+            "default": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.yellow.3}",
+              "$description": "Weak warning surface."
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.yellow.4}",
+              "$description": "Hovered weak warning surface."
+            },
+            "pressed": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.yellow.5}",
+              "$description": "Pressed weak warning surface."
+            }
+          },
+          "border": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.yellow.7}",
+            "$description": "warning boundary."
+          },
+          "solid": {
+            "default": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.yellow.9}",
+              "$description": "Solid warning treatment."
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.yellow.10}",
+              "$description": "Hovered solid warning treatment."
+            },
+            "pressed": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.yellow.11}",
+              "$description": "Pressed solid warning treatment."
+            }
+          },
+          "foreground": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.yellow.11}",
+            "$description": "Readable warning text and icon."
+          },
+          "onSolid": {
+            "$type": "color",
+            "$value": "{echoes.color.support.black}",
+            "$description": "Foreground on solid warning treatments."
+          }
+        },
+        "danger": {
+          "surface": {
+            "default": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.red.3}",
+              "$description": "Weak danger surface."
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.red.4}",
+              "$description": "Hovered weak danger surface."
+            },
+            "pressed": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.red.5}",
+              "$description": "Pressed weak danger surface."
+            }
+          },
+          "border": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.red.7}",
+            "$description": "danger boundary."
+          },
+          "solid": {
+            "default": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.red.9}",
+              "$description": "Solid danger treatment."
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.red.10}",
+              "$description": "Hovered solid danger treatment."
+            },
+            "pressed": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.red.11}",
+              "$description": "Pressed solid danger treatment."
+            }
+          },
+          "foreground": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.red.11}",
+            "$description": "Readable danger text and icon."
+          },
+          "onSolid": {
+            "$type": "color",
+            "$value": "{echoes.color.support.black}",
+            "$description": "Foreground on solid danger treatments."
+          }
+        },
+        "information": {
+          "surface": {
+            "default": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.gray.3}",
+              "$description": "Weak generic-information surface."
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.gray.4}",
+              "$description": "Hovered generic-information surface."
+            },
+            "pressed": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.gray.5}",
+              "$description": "Pressed generic-information surface."
+            }
+          },
+          "border": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.gray.7}",
+            "$description": "Generic-information boundary."
+          },
+          "solid": {
+            "default": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.gray.12}",
+              "$description": "Solid generic-information treatment."
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.gray.11}",
+              "$description": "Hovered solid generic-information treatment."
+            },
+            "pressed": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.gray.10}",
+              "$description": "Pressed solid generic-information treatment."
+            }
+          },
+          "foreground": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.gray.11}",
+            "$description": "Readable generic-information text and icon."
+          },
+          "onSolid": {
+            "$type": "color",
+            "$value": "{echoes.color.support.black}",
+            "$description": "Foreground on solid information treatments."
+          }
+        }
+      },
+      "action": {
+        "primary": {
+          "default": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.gray.12}",
+            "$description": "Preferred neutral primary action."
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.gray.11}",
+            "$description": "Hovered preferred neutral primary action."
+          },
+          "pressed": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.gray.10}",
+            "$description": "Pressed preferred neutral primary action."
+          },
+          "foreground": {
+            "$type": "color",
+            "$value": "{echoes.color.support.black}",
+            "$description": "Foreground on the primary action."
+          }
+        },
+        "link": {
+          "default": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.gray.12}",
+            "$description": "Neutral action link; components must underline it."
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.gray.11}",
+            "$description": "Hovered neutral action link; components must underline it."
+          }
+        },
+        "secondary": {
+          "background": {
+            "default": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.gray.1}",
+              "$description": "Resting secondary action surface."
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.grayAlpha.3}",
+              "$description": "Hovered secondary action overlay."
+            },
+            "pressed": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.grayAlpha.5}",
+              "$description": "Pressed secondary action overlay."
+            }
+          },
+          "border": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.gray.8}",
+            "$description": "Secondary action control boundary."
+          },
+          "foreground": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.gray.12}",
+            "$description": "Secondary action text and icon."
+          }
+        },
+        "ghost": {
+          "background": {
+            "default": {
+              "$type": "color",
+              "$value": "{echoes.color.support.transparent}",
+              "$description": "Resting ghost action background."
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.grayAlpha.3}",
+              "$description": "Hovered ghost action overlay."
+            },
+            "pressed": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.grayAlpha.5}",
+              "$description": "Pressed ghost action overlay."
+            }
+          },
+          "foreground": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.gray.12}",
+            "$description": "Ghost action text and icon."
+          }
+        },
+        "disabled": {
+          "background": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.gray.3}",
+            "$description": "Unavailable action background."
+          },
+          "border": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.gray.6}",
+            "$description": "Unavailable action boundary."
+          },
+          "foreground": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.gray.9}",
+            "$description": "Unavailable action text and icon."
+          }
+        }
+      },
+      "decorative": {
+        "avatar": {
+          "purple": {
+            "background": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.purple.9}",
+              "$description": "Solid purple decorative avatar background."
+            },
+            "foreground": {
+              "$type": "color",
+              "$value": "{echoes.color.support.black}",
+              "$description": "Readable foreground on a solid purple decorative avatar."
+            }
+          },
+          "teal": {
+            "background": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.teal.9}",
+              "$description": "Solid teal decorative avatar background."
+            },
+            "foreground": {
+              "$type": "color",
+              "$value": "{echoes.color.support.black}",
+              "$description": "Readable foreground on a solid teal decorative avatar."
+            }
+          }
+        }
+      },
+      "dataViz": {
+        "categorical": {
+          "1": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.dataViz.categorical.1}",
+            "$description": "Categorical data-visualization series 1."
+          },
+          "2": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.dataViz.categorical.2}",
+            "$description": "Categorical data-visualization series 2."
+          },
+          "3": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.dataViz.categorical.3}",
+            "$description": "Categorical data-visualization series 3."
+          },
+          "4": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.dataViz.categorical.4}",
+            "$description": "Categorical data-visualization series 4."
+          },
+          "5": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.dataViz.categorical.5}",
+            "$description": "Categorical data-visualization series 5."
+          },
+          "6": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.dataViz.categorical.6}",
+            "$description": "Categorical data-visualization series 6."
+          },
+          "7": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.dataViz.categorical.7}",
+            "$description": "Categorical data-visualization series 7."
+          },
+          "8": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.dataViz.categorical.8}",
+            "$description": "Categorical data-visualization series 8."
+          }
+        },
+        "severity": {
+          "blocker": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.dataViz.severity.1}",
+            "$description": "Data-visualization severity: blocker."
+          },
+          "high": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.dataViz.severity.2}",
+            "$description": "Data-visualization severity: high."
+          },
+          "medium": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.dataViz.severity.3}",
+            "$description": "Data-visualization severity: medium."
+          },
+          "low": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.dataViz.severity.4}",
+            "$description": "Data-visualization severity: low."
+          },
+          "info": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.dataViz.severity.5}",
+            "$description": "Data-visualization severity: info."
+          },
+          "placeholder": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.dataViz.severity.6}",
+            "$description": "Data-visualization severity: placeholder."
           }
         }
       }
@@ -1162,6 +1723,38 @@
             "type": "dropShadow"
           }
         ]
+      }
+    },
+    "shadow": {
+      "suppressed": {
+        "$type": "other",
+        "$value": "none",
+        "$description": "A parent already provides containment. Deliberately flat."
+      },
+      "resting": {
+        "$type": "boxShadow",
+        "$value": "{echoes.boxShadow.xsmall}",
+        "$description": "Interactive or contained surface at rest, flush with the page."
+      },
+      "attached": {
+        "$type": "boxShadow",
+        "$value": "{echoes.boxShadow.small}",
+        "$description": "Structural chrome lifted off the page plane without overlaying content."
+      },
+      "anchored": {
+        "$type": "boxShadow",
+        "$value": "{echoes.boxShadow.medium}",
+        "$description": "Dismissible transient surface anchored to a trigger."
+      },
+      "overlay": {
+        "$type": "boxShadow",
+        "$value": "{echoes.boxShadow.large}",
+        "$description": "Independent layer that covers content."
+      },
+      "overData": {
+        "$type": "boxShadow",
+        "$value": "{echoes.boxShadow.xLarge}",
+        "$description": "Surface that must remain legible above dense data, charts, tables, or imagery."
       }
     }
   }

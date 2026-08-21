@@ -73,11 +73,11 @@ BadgeCounterStyled.displayName = 'BadgeCounterStyled';
 
 const BADGE_COUNTER_VARIETY_STYLES = {
   [BadgeCounterVariety.Default]: {
-    '--badge-counter-color': cssVar('color-text-default'),
-    '--badge-counter-background-color': cssVar('color-background-neutral-bolder-default'),
+    '--badge-counter-color': cssVar('badge-counter-colors-default-foreground'),
+    '--badge-counter-background-color': cssVar('badge-counter-colors-default-background'),
   },
   [BadgeCounterVariety.Accent]: {
-    '--badge-counter-color': cssVar('color-text-on-color'),
-    '--badge-counter-background-color': cssVar('color-background-accent-default'),
+    '--badge-counter-color': cssVar('badge-counter-colors-accent-foreground'),
+    '--badge-counter-background-color': cssVar('badge-counter-colors-accent-background'),
   },
 };
