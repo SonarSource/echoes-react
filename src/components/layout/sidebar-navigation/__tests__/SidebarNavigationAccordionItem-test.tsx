@@ -20,9 +20,9 @@
 
 import { matchers } from '@emotion/jest';
 import { screen } from '@testing-library/react';
-import { useState } from 'react';
+import { forwardRef, useState } from 'react';
 import { renderWithMemoryRouter } from '~common/helpers/test-utils';
-import { IconBranch, IconExpand, IconGitBranch } from '../../../icons';
+import { IconBranch, IconExpand, type IconFilledProps, IconGitBranch } from '../../../icons';
 import { SidebarNavigationAccordionChildItem } from '../SidebarNavigationAccordionChildItem';
 
 import {
@@ -131,6 +131,12 @@ it('should render a button trigger that does not submit surrounding forms', () =
   setupSidebarNavigationAccordionItem();
 
   expect(screen.getByRole('button', { name: 'Accordion Item' })).toHaveAttribute('type', 'button');
+});
+
+it('should render without a leading icon', () => {
+  setupSidebarNavigationAccordionItem({ Icon: undefined });
+
+  expect(screen.queryByTestId('sidebar-navigation-leading-icon')).not.toBeInTheDocument();
 });
 
 describe('ellipsis behavior', () => {
@@ -266,7 +272,7 @@ function setupSidebarNavigationAccordionItem(
 ) {
   return renderWithMemoryRouter(
     <ul>
-      <SidebarNavigationAccordionItem Icon={IconExpand} label="Accordion Item" {...props}>
+      <SidebarNavigationAccordionItem Icon={TestLeadingIcon} label="Accordion Item" {...props}>
         {props.children ?? (
           <>
             <SidebarNavigationAccordionChildItem Icon={IconBranch} isActive to="/sub-item-1">
@@ -282,3 +288,9 @@ function setupSidebarNavigationAccordionItem(
     </ul>,
   );
 }
+
+const TestLeadingIcon = forwardRef<HTMLSpanElement, IconFilledProps>(({ className }, ref) => (
+  <span className={className} data-testid="sidebar-navigation-leading-icon" ref={ref} />
+));
+
+TestLeadingIcon.displayName = 'TestLeadingIcon';

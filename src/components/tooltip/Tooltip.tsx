@@ -142,7 +142,7 @@ const StyledTooltipContent = styled(TextTypographyStyle)`
   max-width: ${cssVar('sizes-overlays-max-width-default')};
   padding: ${cssVar('dimension-space-50')} ${cssVar('dimension-space-150')};
   border-radius: ${cssVar('border-radius-200')};
-  box-shadow: ${cssVar('box-shadow-medium')};
+  box-shadow: ${cssVar('shadow-anchored')};
 
   background-color: ${cssVar('color-surface-inverse-default')};
   font: ${cssVar('typography-text-small-medium')};

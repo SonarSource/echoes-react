@@ -30,13 +30,13 @@ export const StyledNavMenuItem = styled(radixNavigationMenu.Item)<{ 'data-select
   border-bottom: ${cssVar('focus-border-width-default')} solid transparent;
 
   &[data-selected='true'] {
-    border-bottom-color: ${cssVar('color-border-accent-default')};
+    border-bottom-color: ${cssVar('navigation-item-colors-foreground-selected')};
   }
 `;
 StyledNavMenuItem.displayName = 'StyledNavMenuItem';
 
 export const globalNavigationItemStyle = css`
-  --hover: ${cssVar('color-text-default')};
+  --hover: ${cssVar('navigation-item-colors-foreground-default')};
 
   display: block;
 
@@ -52,10 +52,10 @@ export const globalNavigationItemStyle = css`
   box-sizing: content-box;
 
   &:hover {
-    background-color: ${cssVar('color-surface-hover')};
+    background-color: ${cssVar('navigation-item-colors-background-hover')};
   }
 
   &:active {
-    background-color: ${cssVar('color-surface-active')};
+    background-color: ${cssVar('navigation-item-colors-background-pressed')};
   }
 `;

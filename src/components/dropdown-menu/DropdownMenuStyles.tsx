@@ -61,7 +61,7 @@ export const styleDropdownMenuOverlay = styled.div`
   background-color: ${cssVar('color-surface-default')};
   border: ${cssVar('border-width-default')} solid ${cssVar('color-border-weak')};
   border-radius: ${cssVar('dimension-space-100')};
-  box-shadow: ${cssVar('box-shadow-medium')};
+  box-shadow: ${cssVar('shadow-anchored')};
   box-sizing: border-box;
   margin: ${cssVar('dimension-space-50')} 0;
   max-height: var(--radix-dropdown-menu-content-available-height);

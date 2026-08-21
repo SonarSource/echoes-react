@@ -28,7 +28,7 @@ exports[`TopShadowScroll component should render with correct styling 1`] = `
   right: 0;
   top: -2px;
   height: 2px;
-  box-shadow: var(--echoes-box-shadow-small);
+  box-shadow: var(--echoes-shadow-attached);
 }
 
 <div

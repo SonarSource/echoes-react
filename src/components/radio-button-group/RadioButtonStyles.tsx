@@ -32,11 +32,11 @@ RadioButtonOptionWrapper.displayName = 'RadioButtonOptionWrapper';
 export const styleRadioButtonInputBase = styled.div`
   appearance: none;
   cursor: pointer;
-  background-color: ${cssVar('color-background-utility-transparent')};
+  background-color: ${cssVar('radio-button-colors-background-default')};
 
   box-sizing: border-box;
   padding: 0;
-  border: ${cssVar('border-width-default')} solid ${cssVar('color-border-bolder')};
+  border: ${cssVar('border-width-default')} solid ${cssVar('radio-button-colors-border-default')};
   border-radius: ${cssVar('border-radius-full')};
 
   height: ${cssVar('dimension-height-400')};
@@ -46,33 +46,35 @@ export const styleRadioButtonInputBase = styled.div`
 
 export const RadioButtonInput = styled(styleRadioButtonInputBase(RadioGroup.Item))`
   &:hover {
-    background-color: ${cssVar('color-surface-hover')};
+    background-color: ${cssVar('radio-button-colors-background-hover')};
+    border-color: ${cssVar('radio-button-colors-border-hover')};
   }
 
   &[data-error='true'] {
-    border: ${cssVar('border-width-default')} solid ${cssVar('color-border-danger-default')};
+    border: ${cssVar('border-width-default')} solid ${cssVar('radio-button-colors-border-error')};
   }
 
   &[data-state='checked'] {
-    background-color: ${cssVar('color-background-selected-bold-default')};
-    border-color: ${cssVar('color-background-selected-bold-default')};
+    background-color: ${cssVar('radio-button-colors-background-selected')};
+    border-color: ${cssVar('radio-button-colors-background-selected')};
 
     &:not(:disabled):hover {
-      background-color: ${cssVar('color-background-selected-bold-hover')};
-      border-color: ${cssVar('color-background-selected-bold-hover')};
+      background-color: ${cssVar('radio-button-colors-background-selected-hover')};
+      border-color: ${cssVar('radio-button-colors-background-selected-hover')};
     }
   }
 
   &:focus,
   &:focus-visible {
-    outline: ${cssVar('color-focus-default')} solid ${cssVar('focus-border-width-default')};
+    outline: ${cssVar('radio-button-colors-focus-ring')} solid
+      ${cssVar('focus-border-width-default')};
     outline-offset: ${cssVar('focus-border-offset-default')};
   }
 
   &:disabled {
     cursor: default;
-    background-color: ${cssVar('color-surface-disabled')};
-    border-color: ${cssVar('color-border-disabled')};
+    background-color: ${cssVar('radio-button-colors-background-disabled')};
+    border-color: ${cssVar('radio-button-colors-border-disabled')};
   }
 `;
 RadioButtonInput.displayName = 'RadioButtonInput';
@@ -94,11 +96,11 @@ export const RadioButtonSelectionIndicator = styled(RadioGroup.Indicator)`
     width: ${cssVar('dimension-width-75')};
     border-radius: ${cssVar('border-radius-full')};
 
-    background-color: ${cssVar('color-icon-on-color')};
+    background-color: ${cssVar('radio-button-colors-foreground-selected')};
   }
 
   &[data-disabled]::after {
-    background-color: ${cssVar('color-icon-disabled')};
+    background-color: ${cssVar('radio-button-colors-foreground-disabled')};
   }
 `;
 RadioButtonSelectionIndicator.displayName = 'RadioButtonSelectionIndicator';
@@ -119,7 +121,7 @@ export const RadioButtonOptionLabel = styled(Label)`
   cursor: pointer;
 
   [data-disabled] > & {
-    color: ${cssVar('color-text-disabled')};
+    color: ${cssVar('radio-button-colors-foreground-disabled')};
     cursor: default;
   }
 `;
@@ -129,7 +131,7 @@ export const RadioButtonOptionHelpText = styled(HelperText)`
   margin-left: calc(${cssVar('dimension-space-200')} + ${cssVar('dimension-space-100')});
 
   &[data-disabled] {
-    color: ${cssVar('color-text-disabled')};
+    color: ${cssVar('radio-button-colors-foreground-disabled')};
   }
 `;
 RadioButtonOptionHelpText.displayName = 'RadioButtonOptionHelpText';

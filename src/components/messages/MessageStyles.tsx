@@ -24,33 +24,33 @@ import { MessageVariety } from './MessageTypes';
 import { cssVar } from '~utils/design-tokens';
 
 export const MESSAGE_VARIETY_ICON = {
-  [MessageVariety.Info]: <IconInfo color="echoes-color-icon-info" />,
-  [MessageVariety.Danger]: <IconError color="echoes-color-icon-danger" />,
-  [MessageVariety.Warning]: <IconWarning color="echoes-color-icon-warning" />,
-  [MessageVariety.Success]: <IconCheckCircle color="echoes-color-icon-success" />,
-  [MessageVariety.Discover]: <IconRocket color="echoes-color-icon-emphasis" />,
+  [MessageVariety.Info]: <IconInfo />,
+  [MessageVariety.Danger]: <IconError />,
+  [MessageVariety.Warning]: <IconWarning />,
+  [MessageVariety.Success]: <IconCheckCircle />,
+  [MessageVariety.Discover]: <IconRocket />,
 };
 
 export const MESSAGE_CALLOUT_VARIETY_STYLE = {
   [MessageVariety.Info]: {
-    '--message-background': cssVar('color-background-info-weak-default'),
-    '--message-text-color': cssVar('color-text-info'),
+    '--message-background': cssVar('message-colors-information-background'),
+    '--message-text-color': cssVar('message-colors-information-foreground'),
   },
   [MessageVariety.Danger]: {
-    '--message-background': cssVar('color-background-danger-weak-default'),
-    '--message-text-color': cssVar('color-text-danger'),
+    '--message-background': cssVar('message-colors-danger-background'),
+    '--message-text-color': cssVar('message-colors-danger-foreground'),
   },
   [MessageVariety.Warning]: {
-    '--message-background': cssVar('color-background-warning-weak-default'),
-    '--message-text-color': cssVar('color-text-warning'),
+    '--message-background': cssVar('message-colors-warning-background'),
+    '--message-text-color': cssVar('message-colors-warning-foreground'),
   },
   [MessageVariety.Success]: {
-    '--message-background': cssVar('color-background-success-weak-default'),
-    '--message-text-color': cssVar('color-text-success'),
+    '--message-background': cssVar('message-colors-success-background'),
+    '--message-text-color': cssVar('message-colors-success-foreground'),
   },
   [MessageVariety.Discover]: {
-    '--message-background': cssVar('color-background-emphasis-weak-default'),
-    '--message-text-color': cssVar('color-text-emphasis'),
+    '--message-background': cssVar('promoted-feature-colors-background'),
+    '--message-text-color': cssVar('promoted-feature-colors-foreground'),
   },
 };
 
@@ -60,7 +60,7 @@ export const MessageCalloutContainer = styled.div`
   gap: ${cssVar('dimension-space-100')};
   border-radius: ${cssVar('border-radius-400')};
 
-  color: ${cssVar('color-text-default')};
+  color: var(--message-text-color);
 
   background-color: var(--message-background);
   padding: ${cssVar('dimension-space-200')};
@@ -79,6 +79,7 @@ export const MessageCalloutIconWrapper = styled.div<{ addMargin: boolean }>`
   flex: 0 0 auto;
 
   font: ${cssVar('typography-text-default-regular')};
+  color: var(--message-text-color);
   ${({ addMargin: offset }) => (offset ? `margin-top: ${cssVar('dimension-space-25')};` : '')}
 `;
 MessageCalloutIconWrapper.displayName = 'MessageCalloutIconWrapper';

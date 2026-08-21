@@ -184,7 +184,7 @@ const StyledItem = styled(RadixToggleGroup.Item)`
     border-color: ${cssVar('color-border-bold')};
     border-radius: ${cssVar('border-radius-200')};
     font-weight: ${cssVar('font-weight-semi-bold')};
-    box-shadow: ${cssVar('box-shadow-xsmall')};
+    box-shadow: ${cssVar('shadow-resting')};
     cursor: default;
   }
 

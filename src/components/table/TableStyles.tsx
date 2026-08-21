@@ -27,13 +27,13 @@ import { cssVar } from '~utils/design-tokens';
 const TABLE_VARIETY_STYLES = {
   [TableVariety.Surface]: {
     '--table-header-background-color': cssVar('table-colors-background-header-default'),
-    border: `${cssVar('border-width-default')} solid ${cssVar('color-border-bold')}`,
-    'border-collapse': 'separate',
+    border: `${cssVar('border-width-default')} solid ${cssVar('issue-row-colors-border')}`,
+    borderCollapse: 'separate' as const,
   },
   [TableVariety.Ghost]: {
-    '--table-header-background-color': cssVar('color-roles-support-transparent'),
+    '--table-header-background-color': cssVar('navigation-item-colors-background-default'),
     border: 'none',
-    'border-collapse': 'collapse',
+    borderCollapse: 'collapse' as const,
   },
 };
 
@@ -87,7 +87,7 @@ export const cellBaseStyle = css`
   font: ${cssVar('typography-text-default-regular')};
 
   tbody & {
-    border-top: ${cssVar('border-width-default')} solid ${cssVar('color-border-weak')};
+    border-top: ${cssVar('border-width-default')} solid ${cssVar('issue-row-colors-border')};
   }
 
   .table-variety-surface thead tr:first-child &:first-child {
@@ -113,15 +113,15 @@ export const StyledTableCell = styled.td`
   justify-content: center;
 
   ${StyledTableRow}:hover:not(.selected) & {
-    background-color: ${cssVar('color-surface-hover')};
+    background-color: ${cssVar('issue-row-colors-background-hover')};
   }
 
   ${StyledTableRow}.selected & {
-    background-color: ${cssVar('color-background-selected-weak-default')};
+    background-color: ${cssVar('issue-row-colors-background-selected')};
   }
 
   ${StyledTableRow}:hover.selected & {
-    background-color: ${cssVar('color-background-selected-weak-hover')};
+    background-color: ${cssVar('issue-row-colors-background-selected-hover')};
   }
 `;
 StyledTableCell.displayName = 'StyledTableCell';

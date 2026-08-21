@@ -38,7 +38,7 @@ export const stylePopoverContentBase = styled.div`
   border: ${cssVar('border-width-default')} solid ${cssVar('color-border-weak')};
   border-radius: ${cssVar('border-radius-400')};
   background-color: ${cssVar('color-surface-default')};
-  box-shadow: ${cssVar('box-shadow-large')};
+  box-shadow: ${cssVar('shadow-anchored')};
 
   box-sizing: border-box;
   max-height: ${cssVar('sizes-overlays-max-height-default')};

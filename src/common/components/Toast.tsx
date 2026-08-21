@@ -249,7 +249,7 @@ const ToastWrapper = styled.div`
   width: ${cssVar('toast-sizes-width')};
 
   background: ${cssVar('color-surface-default')};
-  box-shadow: ${cssVar('box-shadow-large')};
+  box-shadow: ${cssVar('shadow-overlay')};
   border: ${cssVar('border-width-default')} solid ${cssVar('color-border-weak')};
 `;
 ToastWrapper.displayName = 'ToastWrapper';
@@ -382,7 +382,7 @@ const toastGlobalStyles = css`
     &:focus-visible {
       outline: ${cssVar('color-focus-default')} solid ${cssVar('focus-border-width-default')};
       outline-offset: ${cssVar('focus-border-offset-default')};
-      box-shadow: none;
+      box-shadow: ${cssVar('shadow-suppressed')};
     }
   }
 `;

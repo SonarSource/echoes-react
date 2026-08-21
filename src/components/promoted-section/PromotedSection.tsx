@@ -81,13 +81,15 @@ export interface PromotedSectionProps {
   titleAs?: `${HeadingProps['as']}`;
 
   /**
-   * The variety: either PromotedSectionVariety.Highlight/'highlight' or PromotedSectionVariety.Neutral/'neutral'.
+   * The visual treatment for the promoted section. Use Feature only for verified AI, upgrade,
+   * upsell, pricing, or explicit feature promotion.
    * Defaults to PromotedSectionVariety.Neutral/'neutral' (optional)
    */
   variety?: `${PromotedSectionVariety}`;
 }
 
 const BADGE_VARIETIES = {
+  [PromotedSectionVariety.Feature]: BadgeVariety.Neutral,
   [PromotedSectionVariety.Highlight]: BadgeVariety.Highlight,
   [PromotedSectionVariety.Neutral]: BadgeVariety.Neutral,
 } as const;

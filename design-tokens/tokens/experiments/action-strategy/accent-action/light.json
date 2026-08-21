@@ -1,0 +1,42 @@
+{
+  "echoes": {
+    "color": {
+      "action": {
+        "primary": {
+          "default": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.blue.9}",
+            "$description": "accent-action primary action."
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.blue.10}",
+            "$description": "accent-action primary hover."
+          },
+          "pressed": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.blue.11}",
+            "$description": "accent-action primary pressed."
+          },
+          "foreground": {
+            "$type": "color",
+            "$value": "{echoes.color.support.white}",
+            "$description": "accent-action primary foreground."
+          }
+        },
+        "link": {
+          "default": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.blue.11}",
+            "$description": "accent-action action link."
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.blue.12}",
+            "$description": "accent-action action link hover."
+          }
+        }
+      }
+    }
+  }
+}

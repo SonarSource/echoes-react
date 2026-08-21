@@ -61,7 +61,7 @@
         "background": {
           "duplication": {
             "$type": "color",
-            "$value": "{echoes.color.palette.grey.300}"
+            "$value": "{echoes.color.palette.gray.9}"
           },
           "covered": {
             "$type": "color",
@@ -141,31 +141,31 @@
           "ratingA": {
             "default": {
               "$type": "color",
-              "$value": "{echoes.color.palette.data.ratings.emerald.5}"
+              "$value": "{echoes.color.palette.green.5}"
             }
           },
           "ratingB": {
             "default": {
               "$type": "color",
-              "$value": "{echoes.color.palette.green.700}"
+              "$value": "{echoes.color.palette.green.3}"
             }
           },
           "ratingC": {
             "default": {
               "$type": "color",
-              "$value": "{echoes.color.palette.yellow.700}"
+              "$value": "{echoes.color.palette.yellow.3}"
             }
           },
           "ratingD": {
             "default": {
               "$type": "color",
-              "$value": "{echoes.color.palette.orange.700}"
+              "$value": "{echoes.color.palette.orange.3}"
             }
           },
           "ratingE": {
             "default": {
               "$type": "color",
-              "$value": "{echoes.color.palette.red.700}"
+              "$value": "{echoes.color.palette.red.3}"
             }
           }
         },
@@ -173,31 +173,31 @@
           "ratingA": {
             "default": {
               "$type": "color",
-              "$value": "{echoes.color.palette.data.ratings.emerald.1}"
+              "$value": "{echoes.color.palette.green.12}"
             }
           },
           "ratingB": {
             "default": {
               "$type": "color",
-              "$value": "{echoes.color.palette.green.50}"
+              "$value": "{echoes.color.palette.green.11}"
             }
           },
           "ratingC": {
             "default": {
               "$type": "color",
-              "$value": "{echoes.color.palette.yellow.50}"
+              "$value": "{echoes.color.palette.yellow.11}"
             }
           },
           "ratingD": {
             "default": {
               "$type": "color",
-              "$value": "{echoes.color.palette.orange.50}"
+              "$value": "{echoes.color.palette.orange.11}"
             }
           },
           "ratingE": {
             "default": {
               "$type": "color",
-              "$value": "{echoes.color.palette.red.50}"
+              "$value": "{echoes.color.palette.red.11}"
             }
           }
         },
@@ -205,96 +205,51 @@
           "ratingA": {
             "default": {
               "$type": "color",
-              "$value": "{echoes.color.palette.data.ratings.emerald.3}"
+              "$value": "{echoes.color.palette.green.8}"
             },
             "hover": {
-              "$extensions": {
-                "studio.tokens": {
-                  "modify": {
-                    "type": "lighten",
-                    "value": "0.05",
-                    "space": "lch"
-                  }
-                }
-              },
               "$type": "color",
-              "$value": "{echoes.color.palette.data.ratings.emerald.3}"
+              "$value": "{echoes.color.palette.green.9}"
             }
           },
           "ratingB": {
             "default": {
               "$type": "color",
-              "$value": "{echoes.color.palette.green.400}"
+              "$value": "{echoes.color.palette.green.7}"
             },
             "hover": {
-              "$extensions": {
-                "studio.tokens": {
-                  "modify": {
-                    "type": "lighten",
-                    "value": "0.05",
-                    "space": "lch"
-                  }
-                }
-              },
               "$type": "color",
-              "$value": "{echoes.color.palette.green.400}"
+              "$value": "{echoes.color.palette.green.8}"
             }
           },
           "ratingC": {
             "default": {
               "$type": "color",
-              "$value": "{echoes.color.palette.yellow.300}"
+              "$value": "{echoes.color.palette.yellow.7}"
             },
             "hover": {
-              "$extensions": {
-                "studio.tokens": {
-                  "modify": {
-                    "type": "lighten",
-                    "value": "0.05",
-                    "space": "lch"
-                  }
-                }
-              },
               "$type": "color",
-              "$value": "{echoes.color.palette.yellow.300}"
+              "$value": "{echoes.color.palette.yellow.8}"
             }
           },
           "ratingD": {
             "default": {
               "$type": "color",
-              "$value": "{echoes.color.palette.orange.500}"
+              "$value": "{echoes.color.palette.orange.7}"
             },
             "hover": {
-              "$extensions": {
-                "studio.tokens": {
-                  "modify": {
-                    "type": "lighten",
-                    "value": "0.05",
-                    "space": "lch"
-                  }
-                }
-              },
               "$type": "color",
-              "$value": "{echoes.color.palette.orange.500}"
+              "$value": "{echoes.color.palette.orange.8}"
             }
           },
           "ratingE": {
             "default": {
               "$type": "color",
-              "$value": "{echoes.color.palette.red.300}"
+              "$value": "{echoes.color.palette.red.7}"
             },
             "hover": {
-              "$extensions": {
-                "studio.tokens": {
-                  "modify": {
-                    "type": "lighten",
-                    "value": "0.05",
-                    "space": "lch"
-                  }
-                }
-              },
               "$type": "color",
-              "$value": "{echoes.color.palette.red.300}"
+              "$value": "{echoes.color.palette.red.8}"
             }
           }
         }
@@ -687,7 +642,7 @@
         "background": {
           "default": {
             "$type": "color",
-            "$value": "{echoes.color.palette.grey.700}"
+            "$value": "{echoes.color.surface.canvas.default}"
           }
         }
       }
@@ -697,15 +652,15 @@
         "background": {
           "default": {
             "$type": "color",
-            "$value": "{echoes.color.palette.grey.700}"
+            "$value": "{echoes.color.surface.canvas.default}"
           },
           "hover": {
             "$type": "color",
-            "$value": "{echoes.color.palette.grey.800}"
+            "$value": "{echoes.color.background.neutral.subtle.hover}"
           },
           "active": {
             "$type": "color",
-            "$value": "{echoes.color.palette.grey.900}"
+            "$value": "{echoes.color.background.neutral.subtle.active}"
           }
         }
       }
@@ -716,8 +671,996 @@
           "header": {
             "default": {
               "$type": "color",
-              "$value": "{echoes.color.palette.grey.500}"
+              "$value": "{echoes.color.surface.subtle}",
+              "$description": "Component contract mapped through surface.subtle."
             }
+          }
+        }
+      }
+    },
+    "button": {
+      "colors": {
+        "background": {
+          "primary": {
+            "default": {
+              "$type": "color",
+              "$value": "{echoes.color.action.primary.default}",
+              "$description": "Component contract mapped through action.primary.default."
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{echoes.color.action.primary.hover}",
+              "$description": "Component contract mapped through action.primary.hover."
+            },
+            "pressed": {
+              "$type": "color",
+              "$value": "{echoes.color.action.primary.pressed}",
+              "$description": "Component contract mapped through action.primary.pressed."
+            },
+            "focus": {
+              "$type": "color",
+              "$value": "{echoes.color.action.primary.default}",
+              "$description": "Component contract mapped through action.primary.default."
+            }
+          },
+          "secondary": {
+            "default": {
+              "$type": "color",
+              "$value": "{echoes.color.action.secondary.background.default}",
+              "$description": "Component contract mapped through action.secondary.background.default."
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{echoes.color.action.secondary.background.hover}",
+              "$description": "Component contract mapped through action.secondary.background.hover."
+            },
+            "pressed": {
+              "$type": "color",
+              "$value": "{echoes.color.action.secondary.background.pressed}",
+              "$description": "Component contract mapped through action.secondary.background.pressed."
+            }
+          },
+          "ghost": {
+            "default": {
+              "$type": "color",
+              "$value": "{echoes.color.action.ghost.background.default}",
+              "$description": "Component contract mapped through action.ghost.background.default."
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{echoes.color.action.ghost.background.hover}",
+              "$description": "Component contract mapped through action.ghost.background.hover."
+            },
+            "pressed": {
+              "$type": "color",
+              "$value": "{echoes.color.action.ghost.background.pressed}",
+              "$description": "Component contract mapped through action.ghost.background.pressed."
+            }
+          },
+          "danger": {
+            "default": {
+              "$type": "color",
+              "$value": "{echoes.color.status.danger.solid.default}",
+              "$description": "Component contract mapped through status.danger.solid.default."
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{echoes.color.status.danger.solid.hover}",
+              "$description": "Component contract mapped through status.danger.solid.hover."
+            },
+            "pressed": {
+              "$type": "color",
+              "$value": "{echoes.color.status.danger.solid.pressed}",
+              "$description": "Component contract mapped through status.danger.solid.pressed."
+            }
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{echoes.color.action.disabled.background}",
+            "$description": "Component contract mapped through action.disabled.background."
+          }
+        },
+        "foreground": {
+          "primary": {
+            "$type": "color",
+            "$value": "{echoes.color.action.primary.foreground}",
+            "$description": "Component contract mapped through action.primary.foreground."
+          },
+          "secondary": {
+            "$type": "color",
+            "$value": "{echoes.color.action.secondary.foreground}",
+            "$description": "Component contract mapped through action.secondary.foreground."
+          },
+          "ghost": {
+            "$type": "color",
+            "$value": "{echoes.color.action.ghost.foreground}",
+            "$description": "Component contract mapped through action.ghost.foreground."
+          },
+          "danger": {
+            "$type": "color",
+            "$value": "{echoes.color.status.danger.onSolid}",
+            "$description": "Component contract mapped through status.danger.onSolid."
+          },
+          "dangerGhost": {
+            "$type": "color",
+            "$value": "{echoes.color.status.danger.foreground}",
+            "$description": "Component contract mapped through status.danger.foreground."
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{echoes.color.action.disabled.foreground}",
+            "$description": "Component contract mapped through action.disabled.foreground."
+          }
+        },
+        "border": {
+          "secondary": {
+            "$type": "color",
+            "$value": "{echoes.color.border.default}",
+            "$description": "Quiet resting border for secondary and outlined buttons."
+          },
+          "secondaryHover": {
+            "$type": "color",
+            "$value": "{echoes.color.border.default}",
+            "$description": "Stable quiet border for hovered secondary and outlined buttons."
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{echoes.color.action.disabled.border}",
+            "$description": "Component contract mapped through action.disabled.border."
+          }
+        },
+        "focus": {
+          "ring": {
+            "$type": "color",
+            "$value": "{echoes.color.focus.ring}",
+            "$description": "Component contract mapped through focus.ring."
+          }
+        }
+      }
+    },
+    "link": {
+      "colors": {
+        "action": {
+          "default": {
+            "$type": "color",
+            "$value": "{echoes.color.action.link.default}",
+            "$description": "Component contract mapped through action.link.default."
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{echoes.color.action.link.hover}",
+            "$description": "Component contract mapped through action.link.hover."
+          }
+        },
+        "default": {
+          "default": {
+            "$type": "color",
+            "$value": "{echoes.color.text.default}",
+            "$description": "Component contract mapped through text.default."
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{echoes.color.text.strong}",
+            "$description": "Component contract mapped through text.strong."
+          }
+        },
+        "subtle": {
+          "default": {
+            "$type": "color",
+            "$value": "{echoes.color.text.subtle}",
+            "$description": "Component contract mapped through text.subtle."
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{echoes.color.text.default}",
+            "$description": "Component contract mapped through text.default."
+          }
+        },
+        "feature": {
+          "default": {
+            "$type": "color",
+            "$value": "{echoes.color.feature.foreground}",
+            "$description": "Component contract mapped through feature.foreground."
+          }
+        },
+        "focus": {
+          "ring": {
+            "$type": "color",
+            "$value": "{echoes.color.focus.ring}",
+            "$description": "Component contract mapped through focus.ring."
+          }
+        }
+      }
+    },
+    "input": {
+      "colors": {
+        "background": {
+          "default": {
+            "$type": "color",
+            "$value": "{echoes.color.surface.default}",
+            "$description": "Component contract mapped through surface.default."
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{echoes.color.surface.default}",
+            "$description": "Component contract mapped through surface.default."
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{echoes.color.surface.disabled}",
+            "$description": "Component contract mapped through surface.disabled."
+          }
+        },
+        "border": {
+          "default": {
+            "$type": "color",
+            "$value": "{echoes.color.border.default}",
+            "$description": "Quiet resting border for form controls."
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{echoes.color.border.default}",
+            "$description": "Stable quiet form-control border shown on hover."
+          },
+          "focus": {
+            "$type": "color",
+            "$value": "{echoes.color.focus.ring}",
+            "$description": "Component contract mapped through focus.ring."
+          },
+          "error": {
+            "$type": "color",
+            "$value": "{echoes.color.status.danger.border}",
+            "$description": "Component contract mapped through status.danger.border."
+          },
+          "success": {
+            "$type": "color",
+            "$value": "{echoes.color.status.success.border}",
+            "$description": "Component contract mapped through status.success.border."
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{echoes.color.border.disabled}",
+            "$description": "Component contract mapped through border.disabled."
+          }
+        },
+        "foreground": {
+          "default": {
+            "$type": "color",
+            "$value": "{echoes.color.text.default}",
+            "$description": "Component contract mapped through text.default."
+          },
+          "placeholder": {
+            "$type": "color",
+            "$value": "{echoes.color.text.placeholder}",
+            "$description": "Component contract mapped through text.placeholder."
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{echoes.color.text.disabled}",
+            "$description": "Component contract mapped through text.disabled."
+          }
+        },
+        "icon": {
+          "default": {
+            "$type": "color",
+            "$value": "{echoes.color.icon.subtle}",
+            "$description": "Component contract mapped through icon.subtle."
+          }
+        }
+      }
+    },
+    "checkbox": {
+      "colors": {
+        "background": {
+          "default": {
+            "$type": "color",
+            "$value": "{echoes.color.surface.default}",
+            "$description": "Component contract mapped through surface.default."
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{echoes.color.interaction.background.hover}",
+            "$description": "Component contract mapped through interaction.background.hover."
+          },
+          "selected": {
+            "$type": "color",
+            "$value": "{echoes.color.selection.strong.default}",
+            "$description": "Component contract mapped through selection.strong.default."
+          },
+          "selectedHover": {
+            "$type": "color",
+            "$value": "{echoes.color.selection.strong.hover}",
+            "$description": "Component contract mapped through selection.strong.hover."
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{echoes.color.surface.disabled}",
+            "$description": "Component contract mapped through surface.disabled."
+          }
+        },
+        "border": {
+          "default": {
+            "$type": "color",
+            "$value": "{echoes.color.border.default}",
+            "$description": "Quiet resting border for unchecked checkboxes."
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{echoes.color.border.default}",
+            "$description": "Stable quiet unchecked checkbox border shown on hover."
+          },
+          "error": {
+            "$type": "color",
+            "$value": "{echoes.color.status.danger.border}",
+            "$description": "Component contract mapped through status.danger.border."
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{echoes.color.border.disabled}",
+            "$description": "Component contract mapped through border.disabled."
+          }
+        },
+        "foreground": {
+          "selected": {
+            "$type": "color",
+            "$value": "{echoes.color.selection.strong.foreground}",
+            "$description": "Component contract mapped through selection.strong.foreground."
+          },
+          "default": {
+            "$type": "color",
+            "$value": "{echoes.color.text.default}",
+            "$description": "Checkbox label and icon foreground."
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{echoes.color.text.disabled}",
+            "$description": "Disabled checkbox foreground."
+          }
+        },
+        "focus": {
+          "ring": {
+            "$type": "color",
+            "$value": "{echoes.color.focus.ring}",
+            "$description": "Component contract mapped through focus.ring."
+          }
+        }
+      }
+    },
+    "radio-button": {
+      "colors": {
+        "background": {
+          "default": {
+            "$type": "color",
+            "$value": "{echoes.color.interaction.background.default}",
+            "$description": "Component contract mapped through interaction.background.default."
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{echoes.color.interaction.background.hover}",
+            "$description": "Component contract mapped through interaction.background.hover."
+          },
+          "selected": {
+            "$type": "color",
+            "$value": "{echoes.color.selection.strong.default}",
+            "$description": "Component contract mapped through selection.strong.default."
+          },
+          "selectedHover": {
+            "$type": "color",
+            "$value": "{echoes.color.selection.strong.hover}",
+            "$description": "Component contract mapped through selection.strong.hover."
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{echoes.color.surface.disabled}",
+            "$description": "Component contract mapped through surface.disabled."
+          }
+        },
+        "border": {
+          "default": {
+            "$type": "color",
+            "$value": "{echoes.color.border.default}",
+            "$description": "Quiet resting border for unselected radio buttons."
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{echoes.color.border.default}",
+            "$description": "Stable quiet unselected radio-button border shown on hover."
+          },
+          "error": {
+            "$type": "color",
+            "$value": "{echoes.color.status.danger.border}",
+            "$description": "Component contract mapped through status.danger.border."
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{echoes.color.border.disabled}",
+            "$description": "Component contract mapped through border.disabled."
+          }
+        },
+        "foreground": {
+          "selected": {
+            "$type": "color",
+            "$value": "{echoes.color.selection.strong.foreground}",
+            "$description": "Component contract mapped through selection.strong.foreground."
+          },
+          "default": {
+            "$type": "color",
+            "$value": "{echoes.color.text.default}",
+            "$description": "Radio label foreground."
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{echoes.color.text.disabled}",
+            "$description": "Disabled radio foreground."
+          }
+        },
+        "focus": {
+          "ring": {
+            "$type": "color",
+            "$value": "{echoes.color.focus.ring}",
+            "$description": "Component contract mapped through focus.ring."
+          }
+        }
+      }
+    },
+    "navigation-item": {
+      "colors": {
+        "background": {
+          "default": {
+            "$type": "color",
+            "$value": "{echoes.color.interaction.background.default}",
+            "$description": "Component contract mapped through interaction.background.default."
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{echoes.color.interaction.background.hover}",
+            "$description": "Component contract mapped through interaction.background.hover."
+          },
+          "pressed": {
+            "$type": "color",
+            "$value": "{echoes.color.interaction.background.pressed}",
+            "$description": "Component contract mapped through interaction.background.pressed."
+          },
+          "selected": {
+            "$type": "color",
+            "$value": "{echoes.color.selection.weak.default}",
+            "$description": "Component contract mapped through selection.weak.default."
+          },
+          "selectedHover": {
+            "$type": "color",
+            "$value": "{echoes.color.selection.weak.hover}",
+            "$description": "Component contract mapped through selection.weak.hover."
+          }
+        },
+        "foreground": {
+          "default": {
+            "$type": "color",
+            "$value": "{echoes.color.text.default}",
+            "$description": "Component contract mapped through text.default."
+          },
+          "selected": {
+            "$type": "color",
+            "$value": "{echoes.color.text.strong}",
+            "$description": "Component contract mapped through text.strong."
+          },
+          "subtle": {
+            "$type": "color",
+            "$value": "{echoes.color.text.subtle}",
+            "$description": "Supporting navigation item foreground."
+          },
+          "disabled": {
+            "$type": "color",
+            "$value": "{echoes.color.text.disabled}",
+            "$description": "Disabled navigation item foreground."
+          }
+        },
+        "focus": {
+          "ring": {
+            "$type": "color",
+            "$value": "{echoes.color.focus.ring}",
+            "$description": "Component contract mapped through focus.ring."
+          }
+        }
+      }
+    },
+    "issue-row": {
+      "colors": {
+        "background": {
+          "default": {
+            "$type": "color",
+            "$value": "{echoes.color.surface.default}",
+            "$description": "Component contract mapped through surface.default."
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{echoes.color.interaction.background.hover}",
+            "$description": "Component contract mapped through interaction.background.hover."
+          },
+          "selected": {
+            "$type": "color",
+            "$value": "{echoes.color.selection.weak.default}",
+            "$description": "Component contract mapped through selection.weak.default."
+          },
+          "selectedHover": {
+            "$type": "color",
+            "$value": "{echoes.color.selection.weak.hover}",
+            "$description": "Component contract mapped through selection.weak.hover."
+          }
+        },
+        "border": {
+          "$type": "color",
+          "$value": "{echoes.color.border.subtle}",
+          "$description": "Component contract mapped through border.subtle."
+        },
+        "focus": {
+          "ring": {
+            "$type": "color",
+            "$value": "{echoes.color.focus.ring}",
+            "$description": "Component contract mapped through focus.ring."
+          }
+        }
+      }
+    },
+    "message": {
+      "colors": {
+        "information": {
+          "background": {
+            "$type": "color",
+            "$value": "{echoes.color.status.information.surface.default}",
+            "$description": "Component contract mapped through status.information.surface.default."
+          },
+          "border": {
+            "$type": "color",
+            "$value": "{echoes.color.status.information.border}",
+            "$description": "Component contract mapped through status.information.border."
+          },
+          "foreground": {
+            "$type": "color",
+            "$value": "{echoes.color.status.information.foreground}",
+            "$description": "Component contract mapped through status.information.foreground."
+          }
+        },
+        "success": {
+          "background": {
+            "$type": "color",
+            "$value": "{echoes.color.status.success.surface.default}",
+            "$description": "Component contract mapped through status.success.surface.default."
+          },
+          "border": {
+            "$type": "color",
+            "$value": "{echoes.color.status.success.border}",
+            "$description": "Component contract mapped through status.success.border."
+          },
+          "foreground": {
+            "$type": "color",
+            "$value": "{echoes.color.status.success.foreground}",
+            "$description": "Component contract mapped through status.success.foreground."
+          }
+        },
+        "warning": {
+          "background": {
+            "$type": "color",
+            "$value": "{echoes.color.status.warning.surface.default}",
+            "$description": "Component contract mapped through status.warning.surface.default."
+          },
+          "border": {
+            "$type": "color",
+            "$value": "{echoes.color.status.warning.border}",
+            "$description": "Component contract mapped through status.warning.border."
+          },
+          "foreground": {
+            "$type": "color",
+            "$value": "{echoes.color.status.warning.foreground}",
+            "$description": "Component contract mapped through status.warning.foreground."
+          }
+        },
+        "danger": {
+          "background": {
+            "$type": "color",
+            "$value": "{echoes.color.status.danger.surface.default}",
+            "$description": "Component contract mapped through status.danger.surface.default."
+          },
+          "border": {
+            "$type": "color",
+            "$value": "{echoes.color.status.danger.border}",
+            "$description": "Component contract mapped through status.danger.border."
+          },
+          "foreground": {
+            "$type": "color",
+            "$value": "{echoes.color.status.danger.foreground}",
+            "$description": "Component contract mapped through status.danger.foreground."
+          }
+        }
+      }
+    },
+    "promoted-feature": {
+      "colors": {
+        "background": {
+          "$type": "color",
+          "$value": "{echoes.color.feature.surface.default}",
+          "$description": "Component contract mapped through feature.surface.default."
+        },
+        "border": {
+          "$type": "color",
+          "$value": "{echoes.color.feature.border}",
+          "$description": "Component contract mapped through feature.border."
+        },
+        "foreground": {
+          "$type": "color",
+          "$value": "{echoes.color.feature.foreground}",
+          "$description": "Component contract mapped through feature.foreground."
+        }
+      }
+    },
+    "badge": {
+      "colors": {
+        "danger": {
+          "weak": {
+            "foreground": {
+              "$type": "color",
+              "$value": "{echoes.color.status.danger.foreground}",
+              "$description": "Weak danger badge foreground."
+            },
+            "border": {
+              "$type": "color",
+              "$value": "{echoes.color.status.danger.border}",
+              "$description": "Weak danger badge border."
+            },
+            "default": {
+              "$type": "color",
+              "$value": "{echoes.color.status.danger.surface.default}",
+              "$description": "Weak danger badge background."
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{echoes.color.status.danger.surface.hover}",
+              "$description": "Weak danger badge hover."
+            },
+            "pressed": {
+              "$type": "color",
+              "$value": "{echoes.color.status.danger.surface.pressed}",
+              "$description": "Weak danger badge pressed."
+            }
+          },
+          "solid": {
+            "foreground": {
+              "$type": "color",
+              "$value": "{echoes.color.status.danger.onSolid}",
+              "$description": "Solid danger badge foreground."
+            },
+            "default": {
+              "$type": "color",
+              "$value": "{echoes.color.status.danger.solid.default}",
+              "$description": "Solid danger badge background."
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{echoes.color.status.danger.solid.hover}",
+              "$description": "Solid danger badge hover."
+            },
+            "pressed": {
+              "$type": "color",
+              "$value": "{echoes.color.status.danger.solid.pressed}",
+              "$description": "Solid danger badge pressed."
+            }
+          }
+        },
+        "information": {
+          "weak": {
+            "foreground": {
+              "$type": "color",
+              "$value": "{echoes.color.status.information.foreground}",
+              "$description": "Weak information badge foreground."
+            },
+            "border": {
+              "$type": "color",
+              "$value": "{echoes.color.status.information.border}",
+              "$description": "Weak information badge border."
+            },
+            "default": {
+              "$type": "color",
+              "$value": "{echoes.color.status.information.surface.default}",
+              "$description": "Weak information badge background."
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{echoes.color.status.information.surface.hover}",
+              "$description": "Weak information badge hover."
+            },
+            "pressed": {
+              "$type": "color",
+              "$value": "{echoes.color.status.information.surface.pressed}",
+              "$description": "Weak information badge pressed."
+            }
+          },
+          "solid": {
+            "foreground": {
+              "$type": "color",
+              "$value": "{echoes.color.status.information.onSolid}",
+              "$description": "Solid information badge foreground."
+            },
+            "default": {
+              "$type": "color",
+              "$value": "{echoes.color.status.information.solid.default}",
+              "$description": "Solid information badge background."
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{echoes.color.status.information.solid.hover}",
+              "$description": "Solid information badge hover."
+            },
+            "pressed": {
+              "$type": "color",
+              "$value": "{echoes.color.status.information.solid.pressed}",
+              "$description": "Solid information badge pressed."
+            }
+          }
+        },
+        "success": {
+          "weak": {
+            "foreground": {
+              "$type": "color",
+              "$value": "{echoes.color.status.success.foreground}",
+              "$description": "Weak success badge foreground."
+            },
+            "border": {
+              "$type": "color",
+              "$value": "{echoes.color.status.success.border}",
+              "$description": "Weak success badge border."
+            },
+            "default": {
+              "$type": "color",
+              "$value": "{echoes.color.status.success.surface.default}",
+              "$description": "Weak success badge background."
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{echoes.color.status.success.surface.hover}",
+              "$description": "Weak success badge hover."
+            },
+            "pressed": {
+              "$type": "color",
+              "$value": "{echoes.color.status.success.surface.pressed}",
+              "$description": "Weak success badge pressed."
+            }
+          },
+          "solid": {
+            "foreground": {
+              "$type": "color",
+              "$value": "{echoes.color.status.success.onSolid}",
+              "$description": "Solid success badge foreground."
+            },
+            "default": {
+              "$type": "color",
+              "$value": "{echoes.color.status.success.solid.default}",
+              "$description": "Solid success badge background."
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{echoes.color.status.success.solid.hover}",
+              "$description": "Solid success badge hover."
+            },
+            "pressed": {
+              "$type": "color",
+              "$value": "{echoes.color.status.success.solid.pressed}",
+              "$description": "Solid success badge pressed."
+            }
+          }
+        },
+        "warning": {
+          "weak": {
+            "foreground": {
+              "$type": "color",
+              "$value": "{echoes.color.status.warning.foreground}",
+              "$description": "Weak warning badge foreground."
+            },
+            "border": {
+              "$type": "color",
+              "$value": "{echoes.color.status.warning.border}",
+              "$description": "Weak warning badge border."
+            },
+            "default": {
+              "$type": "color",
+              "$value": "{echoes.color.status.warning.surface.default}",
+              "$description": "Weak warning badge background."
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{echoes.color.status.warning.surface.hover}",
+              "$description": "Weak warning badge hover."
+            },
+            "pressed": {
+              "$type": "color",
+              "$value": "{echoes.color.status.warning.surface.pressed}",
+              "$description": "Weak warning badge pressed."
+            }
+          },
+          "solid": {
+            "foreground": {
+              "$type": "color",
+              "$value": "{echoes.color.status.warning.onSolid}",
+              "$description": "Solid warning badge foreground."
+            },
+            "default": {
+              "$type": "color",
+              "$value": "{echoes.color.status.warning.solid.default}",
+              "$description": "Solid warning badge background."
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{echoes.color.status.warning.solid.hover}",
+              "$description": "Solid warning badge hover."
+            },
+            "pressed": {
+              "$type": "color",
+              "$value": "{echoes.color.status.warning.solid.pressed}",
+              "$description": "Solid warning badge pressed."
+            }
+          }
+        },
+        "neutral": {
+          "weak": {
+            "foreground": {
+              "$type": "color",
+              "$value": "{echoes.color.text.default}",
+              "$description": "Weak neutral badge foreground."
+            },
+            "border": {
+              "$type": "color",
+              "$value": "{echoes.color.border.default}",
+              "$description": "Weak neutral badge border."
+            },
+            "default": {
+              "$type": "color",
+              "$value": "{echoes.color.surface.subtle}",
+              "$description": "Weak neutral badge background."
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{echoes.color.interaction.background.hover}",
+              "$description": "Weak neutral badge hover."
+            },
+            "pressed": {
+              "$type": "color",
+              "$value": "{echoes.color.interaction.background.pressed}",
+              "$description": "Weak neutral badge pressed."
+            }
+          },
+          "solid": {
+            "foreground": {
+              "$type": "color",
+              "$value": "{echoes.color.selection.strong.foreground}",
+              "$description": "Solid neutral badge foreground."
+            },
+            "default": {
+              "$type": "color",
+              "$value": "{echoes.color.selection.strong.default}",
+              "$description": "Solid neutral badge background."
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{echoes.color.selection.strong.hover}",
+              "$description": "Solid neutral badge hover."
+            },
+            "pressed": {
+              "$type": "color",
+              "$value": "{echoes.color.selection.strong.pressed}",
+              "$description": "Solid neutral badge pressed."
+            }
+          }
+        },
+        "highlight": {
+          "weak": {
+            "foreground": {
+              "$type": "color",
+              "$value": "{echoes.color.text.emphasis}",
+              "$description": "Frozen legacy highlight badge foreground pending audit."
+            },
+            "border": {
+              "$type": "color",
+              "$value": "{echoes.color.border.emphasis.weak}",
+              "$description": "Frozen legacy highlight badge border pending audit."
+            },
+            "default": {
+              "$type": "color",
+              "$value": "{echoes.color.background.emphasis.weak.default}",
+              "$description": "Frozen legacy highlight badge background pending audit."
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{echoes.color.background.emphasis.weak.hover}",
+              "$description": "Frozen legacy highlight badge hover pending audit."
+            },
+            "pressed": {
+              "$type": "color",
+              "$value": "{echoes.color.background.emphasis.weak.active}",
+              "$description": "Frozen legacy highlight badge pressed pending audit."
+            }
+          },
+          "solid": {
+            "foreground": {
+              "$type": "color",
+              "$value": "{echoes.color.text.onColor}",
+              "$description": "Frozen legacy solid highlight badge foreground pending audit."
+            },
+            "default": {
+              "$type": "color",
+              "$value": "{echoes.color.background.emphasis.default}",
+              "$description": "Frozen legacy solid highlight badge background pending audit."
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{echoes.color.background.emphasis.hover}",
+              "$description": "Frozen legacy solid highlight badge hover pending audit."
+            },
+            "pressed": {
+              "$type": "color",
+              "$value": "{echoes.color.background.emphasis.active}",
+              "$description": "Frozen legacy solid highlight badge pressed pending audit."
+            }
+          }
+        },
+        "focus": {
+          "ring": {
+            "$type": "color",
+            "$value": "{echoes.color.focus.ring}",
+            "$description": "Badge keyboard focus indicator."
+          }
+        }
+      }
+    },
+    "promoted-section": {
+      "colors": {
+        "neutral": {
+          "background": {
+            "$type": "color",
+            "$value": "{echoes.color.surface.default}",
+            "$description": "Neutral promoted-section surface."
+          },
+          "border": {
+            "$type": "color",
+            "$value": "{echoes.color.border.subtle}",
+            "$description": "Neutral promoted-section border."
+          }
+        },
+        "highlight": {
+          "background": {
+            "$type": "color",
+            "$value": "{echoes.color.background.emphasis.weak.default}",
+            "$description": "Frozen legacy highlight surface pending consumer audit."
+          },
+          "border": {
+            "$type": "color",
+            "$value": "{echoes.color.border.emphasis.weak}",
+            "$description": "Frozen legacy highlight border pending consumer audit."
+          }
+        }
+      }
+    },
+    "badge-counter": {
+      "colors": {
+        "default": {
+          "foreground": {
+            "$type": "color",
+            "$value": "{echoes.color.text.default}",
+            "$description": "Default badge-counter foreground."
+          },
+          "background": {
+            "$type": "color",
+            "$value": "{echoes.color.surface.subtle}",
+            "$description": "Default badge-counter background."
+          }
+        },
+        "accent": {
+          "foreground": {
+            "$type": "color",
+            "$value": "{echoes.color.text.onColor}",
+            "$description": "Frozen legacy accent badge-counter foreground pending audit."
+          },
+          "background": {
+            "$type": "color",
+            "$value": "{echoes.color.background.accent.default}",
+            "$description": "Frozen legacy accent badge-counter background pending audit."
           }
         }
       }

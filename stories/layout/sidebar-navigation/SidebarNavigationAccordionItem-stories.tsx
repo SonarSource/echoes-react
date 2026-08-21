@@ -105,6 +105,14 @@ export const base: Story = {
   },
 };
 
+export const withoutIcon: Story = {
+  args: {
+    children: baseAccordionChildren,
+    isDefaultOpen: false,
+    label: 'Accordion',
+  },
+};
+
 export const suffixed: Story = {
   args: {
     Icon: IconBranch,

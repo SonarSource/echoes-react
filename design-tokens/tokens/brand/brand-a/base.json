@@ -185,6 +185,10 @@
         "$type": "borderRadius",
         "$value": "4px"
       },
+      "300": {
+        "$type": "borderRadius",
+        "$value": "6px"
+      },
       "400": {
         "$type": "borderRadius",
         "$value": "8px"
@@ -273,7 +277,7 @@
     "fontSize": {
       "10": {
         "$type": "fontSizes",
-        "$value": "0.75rem"
+        "$value": "0.8125rem"
       },
       "20": {
         "$type": "fontSizes",
