@@ -26,7 +26,10 @@ import {
 } from '~common/helpers/constants';
 import { Popover, PopoverProps } from '../popover';
 
-type SelectedPopoverProps = Omit<PopoverProps, 'isOpen' | 'onOpenChange' | 'disableOutsideClick'>;
+type SelectedPopoverProps = Omit<
+  PopoverProps,
+  'isOpen' | 'onOpenChange' | 'disableOutsideClick' | 'contentProps'
+>;
 type RequiredPopoverProps = Required<Pick<PopoverProps, 'isOpen'>>;
 
 export interface TeachingBubbleProps extends SelectedPopoverProps, RequiredPopoverProps {
@@ -52,8 +55,10 @@ export function TeachingBubbleRoot(props: Readonly<TeachingBubbleProps>) {
 
   return (
     <StyledPopover
-      {...{ [FEATURE_COMMUNICATION_DATA_ATTRIBUTE]: FeatureCommunicationComponent.TeachingBubble }}
       {...popoverProps}
+      contentProps={{
+        [FEATURE_COMMUNICATION_DATA_ATTRIBUTE]: FeatureCommunicationComponent.TeachingBubble,
+      }}
       disableOutsideClick
       isOpen={isOpen}
       onOpenChange={handleClose}
