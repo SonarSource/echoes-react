@@ -24,6 +24,7 @@ import { FilterDropdown, FilterDropdownCategory, FilterDropdownProps } from '..'
 
 const CATEGORIES: FilterDropdownCategory[] = [
   {
+    id: 'severity',
     isMultiSelect: true,
     label: 'Severity',
     items: [
@@ -33,6 +34,7 @@ const CATEGORIES: FilterDropdownCategory[] = [
     ],
   },
   {
+    id: 'type',
     isMultiSelect: true,
     label: 'Type',
     items: [
@@ -73,10 +75,10 @@ describe('FilterDropdown', () => {
     const { user } = renderFilterDropdown({ onCategorySelect });
 
     await user.click(screen.getByRole('button', { name: 'Filters' }));
-    expect(onCategorySelect).toHaveBeenCalledWith('Severity');
+    expect(onCategorySelect).toHaveBeenCalledWith('severity');
 
     await user.click(screen.getByRole('option', { name: /type/i }));
-    expect(onCategorySelect).toHaveBeenCalledWith('Type');
+    expect(onCategorySelect).toHaveBeenCalledWith('type');
 
     await user.click(screen.getByRole('option', { name: /type/i }));
     expect(onCategorySelect).toHaveBeenCalledTimes(2);
@@ -143,7 +145,7 @@ describe('FilterDropdown', () => {
 
   it('shows a loading spinner when category items have never been loaded', async () => {
     const { user } = renderFilterDropdown({
-      categories: [{ label: 'Severity', items: undefined }],
+      categories: [{ id: 'severity', label: 'Severity', items: undefined }],
     });
 
     await user.click(screen.getByRole('button', { name: 'Filters' }));
@@ -164,6 +166,7 @@ describe('FilterDropdown', () => {
     const { user } = renderFilterDropdown({
       categories: [
         {
+          id: 'severity',
           isMultiSelect: false,
           label: 'Severity',
           items: [
@@ -199,12 +202,12 @@ describe('FilterDropdown', () => {
 
     onCategorySelect.mockClear();
     await user.keyboard('{ArrowDown}');
-    expect(onCategorySelect).toHaveBeenCalledWith('Type');
+    expect(onCategorySelect).toHaveBeenCalledWith('type');
     expect(screen.getByRole('option', { name: /type/i })).toHaveFocus();
 
     onCategorySelect.mockClear();
     await user.keyboard('{ArrowUp}');
-    expect(onCategorySelect).toHaveBeenCalledWith('Severity');
+    expect(onCategorySelect).toHaveBeenCalledWith('severity');
     expect(screen.getByRole('option', { name: /severity/i })).toHaveFocus();
   });
 
@@ -244,6 +247,7 @@ describe('FilterDropdown', () => {
       const { user } = renderFilterDropdown({
         categories: [
           {
+            id: 'severity',
             isMultiSelect,
             label: 'Severity',
             items: [
@@ -266,8 +270,9 @@ describe('FilterDropdown', () => {
   it('renders custom content in the right panel for a content category', async () => {
     const { user } = renderFilterDropdown({
       categories: [
-        { label: 'Severity', items: [{ label: 'High', value: 'high' }] },
+        { id: 'severity', label: 'Severity', items: [{ label: 'High', value: 'high' }] },
         {
+          id: 'date-range',
           label: 'Date Range',
           content: <button type="button">Pick date</button>,
           onFocusContent: jest.fn(),
@@ -286,8 +291,9 @@ describe('FilterDropdown', () => {
     const buttonRef = { current: null as HTMLButtonElement | null };
     const { user } = renderFilterDropdown({
       categories: [
-        { label: 'Severity', items: [{ label: 'High', value: 'high' }] },
+        { id: 'severity', label: 'Severity', items: [{ label: 'High', value: 'high' }] },
         {
+          id: 'date-range',
           label: 'Date Range',
           content: (
             <button ref={buttonRef} type="button">
@@ -314,6 +320,7 @@ describe('FilterDropdown', () => {
     const { user } = renderFilterDropdown({
       categories: [
         {
+          id: 'severity',
           isMultiSelect: true,
           isSearchable: true,
           label: 'Severity',

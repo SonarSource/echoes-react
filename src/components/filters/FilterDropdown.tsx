@@ -95,7 +95,7 @@ export function FilterDropdown(props: Readonly<FilterDropdownProps>) {
         setActiveCategoryIndex(0);
         onOpen?.();
         if (categories.length > 0) {
-          onCategorySelect?.(categories[0].label);
+          onCategorySelect?.(categories[0].id);
         }
       } else {
         onClose?.();
@@ -108,7 +108,7 @@ export function FilterDropdown(props: Readonly<FilterDropdownProps>) {
     (index: number) => {
       if (index !== activeCategoryIndex) {
         setActiveCategoryIndex(index);
-        onCategorySelect?.(categories[index].label);
+        onCategorySelect?.(categories[index].id);
       }
     },
     [activeCategoryIndex, categories, onCategorySelect],
@@ -237,7 +237,7 @@ export function FilterDropdown(props: Readonly<FilterDropdownProps>) {
               {categories.map((category, index) => (
                 <FilterDropdownCategoryItem
                   isActive={index === activeCategoryIndex}
-                  key={category.label}
+                  key={category.id}
                   label={category.label}
                   onClick={() => handleCategoryClick(index)}
                   ref={categoryRegister(index)}
