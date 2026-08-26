@@ -22,7 +22,7 @@ import * as RadixPopover from '@radix-ui/react-popover';
 import { KeyboardEvent, useCallback, useContext, useId, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 import { PortalContext } from '~common/components/PortalContext';
-import { EMPTY_ARRAY } from '~common/helpers/constants';
+import { EMPTY_OBJECT } from '~common/helpers/constants';
 import { isDefined } from '~common/helpers/types';
 import { THEME_DATA_ATTRIBUTE, ThemeContext } from '~utils/theme';
 import { Button, ButtonGroup, ButtonVariety } from '../buttons';
@@ -42,10 +42,15 @@ import {
 import {
   FilterDropdownCategory,
   FilterDropdownProps,
+  FilterDropdownSelectedValues,
   isCategoryWithContent,
 } from './FilterDropdownTypes';
 import { useFilterDropdownKeyboardThrottle } from './useFilterDropdownKeyboardThrottle';
 import { useFilterDropdownRovingFocus } from './useFilterDropdownRovingFocus';
+
+function getValuesFor(values: FilterDropdownSelectedValues, id: string) {
+  return Object.prototype.hasOwnProperty.call(values, id) ? values[id] : [];
+}
 
 export function FilterDropdown(props: Readonly<FilterDropdownProps>) {
   const {
@@ -64,12 +69,12 @@ export function FilterDropdown(props: Readonly<FilterDropdownProps>) {
     onItemSelect,
     onOpen,
     ref,
-    selectedValues = EMPTY_ARRAY,
+    selectedValues = EMPTY_OBJECT,
     ...restProps
   } = props;
   const { formatMessage } = useIntl();
   const [localIsOpen, setLocalIsOpen] = useState(false);
-  const [pendingValues, setPendingValues] = useState<string[]>([]);
+  const [pendingValues, setPendingValues] = useState<FilterDropdownSelectedValues>({});
   const [activeCategoryIndex, setActiveCategoryIndex] = useState(0);
 
   // Roving-focus helper for the left-panel category list.
@@ -86,12 +91,15 @@ export function FilterDropdown(props: Readonly<FilterDropdownProps>) {
   const open = isOpen ?? localIsOpen;
 
   const activeCategory = categories[activeCategoryIndex];
+  const activeCategoryValues = isDefined(activeCategory)
+    ? getValuesFor(pendingValues, activeCategory.id)
+    : [];
 
   const handleOpenChange = useCallback(
     (nextOpen: boolean) => {
       setLocalIsOpen(nextOpen);
       if (nextOpen) {
-        setPendingValues([...selectedValues]);
+        setPendingValues({ ...selectedValues });
         setActiveCategoryIndex(0);
         onOpen?.();
         if (categories.length > 0) {
@@ -120,16 +128,23 @@ export function FilterDropdown(props: Readonly<FilterDropdownProps>) {
         return;
       }
 
-      let newValues: string[];
+      const categoryValues = getValuesFor(pendingValues, activeCategory.id);
+      const isSelected = categoryValues.includes(value);
+
+      let newCategoryValues: string[];
       if (activeCategory.isMultiSelect) {
-        newValues = pendingValues.includes(value)
-          ? pendingValues.filter((v) => v !== value)
-          : [...pendingValues, value];
+        newCategoryValues = isSelected
+          ? categoryValues.filter((v) => v !== value)
+          : [...categoryValues, value];
       } else {
-        const items = activeCategory.items ?? [];
-        const categoryValues = new Set(items.map((i) => i.value));
-        const withoutCategory = pendingValues.filter((v) => !categoryValues.has(v));
-        newValues = pendingValues.includes(value) ? withoutCategory : [...withoutCategory, value];
+        newCategoryValues = isSelected ? [] : [value];
+      }
+
+      const newValues = { ...pendingValues };
+      if (newCategoryValues.length > 0) {
+        newValues[activeCategory.id] = newCategoryValues;
+      } else {
+        delete newValues[activeCategory.id];
       }
 
       setPendingValues(newValues);
@@ -145,7 +160,7 @@ export function FilterDropdown(props: Readonly<FilterDropdownProps>) {
 
   const handleClear = useCallback(() => {
     onClear();
-    setPendingValues([]);
+    setPendingValues({});
     handleOpenChange(false);
   }, [handleOpenChange, onClear]);
 
@@ -188,10 +203,7 @@ export function FilterDropdown(props: Readonly<FilterDropdownProps>) {
       if (isCategoryWithContent(category)) {
         return category.selectionCount ?? 0;
       }
-      if (!isDefined(category.items)) {
-        return 0;
-      }
-      return category.items.filter((item) => pendingValues.includes(item.value)).length;
+      return getValuesFor(pendingValues, category.id).length;
     },
     [pendingValues],
   );
@@ -253,7 +265,7 @@ export function FilterDropdown(props: Readonly<FilterDropdownProps>) {
               key={activeCategoryIndex}
               onCategoryFocusBack={handleCategoryFocusBack}
               onItemToggle={handleItemToggle}
-              pendingValues={pendingValues}
+              pendingValues={activeCategoryValues}
               ref={rightPanelRef}
             />
           </StyledFilterLayout>

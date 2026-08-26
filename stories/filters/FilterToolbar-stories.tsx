@@ -26,6 +26,7 @@ import {
   Checkbox,
   DropdownMenu,
   FilterDropdown,
+  FilterDropdownSelectedValues,
   FilterDropdownTrigger,
   FilterTag,
   IconChevronDown,
@@ -77,9 +78,13 @@ function DefaultStory(props: Readonly<ToolbarProps>) {
   const [search, setSearch] = useState('');
   const [selectAll, setSelectAll] = useState<boolean | 'indeterminate'>('indeterminate');
   const [selectedEvents, setSelectedEvents] = useState<Set<string>>(new Set(['Quality gate']));
-  const [selectedValues, setSelectedValues] = useState<string[]>([]);
+  const [selectedValues, setSelectedValues] = useState<FilterDropdownSelectedValues>({});
   const [currentSort, setCurrentSort] = useState('Last updated');
   const [scope, setScope] = useState('overall');
+
+  const selectedValueEntries = Object.entries(selectedValues).flatMap(([categoryId, values]) =>
+    values.map((value) => ({ categoryId, value })),
+  );
 
   function toggleEvent(event: string) {
     setSelectedEvents((prev) => {
@@ -93,8 +98,17 @@ function DefaultStory(props: Readonly<ToolbarProps>) {
     });
   }
 
-  function dismissValue(value: string) {
-    setSelectedValues((prev) => prev.filter((v) => v !== value));
+  function dismissValue(categoryId: string, value: string) {
+    setSelectedValues((prev) => {
+      const remainingValues = (prev[categoryId] ?? []).filter((v) => v !== value);
+      const next = { ...prev };
+      if (remainingValues.length > 0) {
+        next[categoryId] = remainingValues;
+      } else {
+        delete next[categoryId];
+      }
+      return next;
+    });
   }
 
   const { categories, onCategorySelect } = useFilterDropdownCategories();
@@ -119,9 +133,9 @@ function DefaultStory(props: Readonly<ToolbarProps>) {
               categories={categories}
               onApply={setSelectedValues}
               onCategorySelect={onCategorySelect}
-              onClear={() => setSelectedValues([])}
+              onClear={() => setSelectedValues({})}
               selectedValues={selectedValues}>
-              <FilterDropdownTrigger selectedCount={selectedValues.length}>
+              <FilterDropdownTrigger selectedCount={selectedValueEntries.length}>
                 Facets Filters
               </FilterDropdownTrigger>
             </FilterDropdown>
@@ -142,8 +156,10 @@ function DefaultStory(props: Readonly<ToolbarProps>) {
         ) : undefined
       }
       filterTags={[
-        ...selectedValues.map((value) => (
-          <FilterTag key={value} onDismiss={() => dismissValue(value)}>
+        ...selectedValueEntries.map(({ categoryId, value }) => (
+          <FilterTag
+            key={`${categoryId}:${value}`}
+            onDismiss={() => dismissValue(categoryId, value)}>
             {FILTER_TAG_LABELS[value] ?? value}
           </FilterTag>
         )),
@@ -156,7 +172,7 @@ function DefaultStory(props: Readonly<ToolbarProps>) {
       onClearAll={
         onClearAll
           ? () => {
-              setSelectedValues([]);
+              setSelectedValues({});
               setSelectedEvents(new Set());
             }
           : undefined

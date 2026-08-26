@@ -26,6 +26,7 @@ export type {
   FilterDropdownCategoryWithItems,
   FilterDropdownOption,
   FilterDropdownProps,
+  FilterDropdownSelectedValues,
 } from './FilterDropdownTypes';
 
 export { FilterDropdownTrigger } from './FilterDropdownTrigger';
