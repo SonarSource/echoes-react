@@ -49,7 +49,7 @@ import { useFilterDropdownKeyboardThrottle } from './useFilterDropdownKeyboardTh
 import { useFilterDropdownRovingFocus } from './useFilterDropdownRovingFocus';
 
 function getValuesFor(values: FilterDropdownSelectedValues, id: string) {
-  return Object.prototype.hasOwnProperty.call(values, id) ? values[id] : [];
+  return Object.prototype.hasOwnProperty.call(values, id) ? (values[id] ?? []) : [];
 }
 
 export function FilterDropdown(props: Readonly<FilterDropdownProps>) {
