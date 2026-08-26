@@ -106,13 +106,80 @@ describe('FilterDropdown', () => {
     await user.click(screen.getByRole('checkbox', { name: 'Medium' }));
     await user.click(screen.getByRole('button', { name: 'Apply filters' }));
 
-    expect(onApply).toHaveBeenCalledWith(['high', 'medium']);
+    expect(onApply).toHaveBeenCalledWith({ severity: ['high', 'medium'] });
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+  });
+
+  it('groups pending values independently per category', async () => {
+    const onApply = jest.fn();
+    const { user } = renderFilterDropdown({ onApply });
+
+    await user.click(screen.getByRole('button', { name: 'Filters' }));
+    await user.click(screen.getByRole('checkbox', { name: 'High' }));
+
+    await user.click(screen.getByRole('option', { name: /type/i }));
+    await user.click(screen.getByRole('checkbox', { name: 'Bug' }));
+
+    await user.click(screen.getByRole('button', { name: 'Apply filters' }));
+
+    expect(onApply).toHaveBeenCalledWith({ severity: ['high'], type: ['bug'] });
+  });
+
+  it('keeps identical values in different categories independent', async () => {
+    const onApply = jest.fn();
+    const categories = [
+      {
+        id: 'severity',
+        isMultiSelect: true,
+        label: 'Severity',
+        items: [{ label: 'High', value: 'high' }],
+      },
+      {
+        id: 'type',
+        isMultiSelect: true,
+        label: 'Type',
+        items: [{ label: 'High type', value: 'high' }],
+      },
+    ];
+    const { user } = renderFilterDropdown({ categories, onApply });
+
+    await user.click(screen.getByRole('button', { name: 'Filters' }));
+    await user.click(screen.getByRole('checkbox', { name: 'High' }));
+    await user.click(screen.getByRole('option', { name: /type/i }));
+    expect(screen.getByRole('checkbox', { name: 'High type' })).not.toBeChecked();
+
+    await user.click(screen.getByRole('button', { name: 'Apply filters' }));
+    expect(onApply).toHaveBeenCalledWith({ severity: ['high'] });
+  });
+
+  it('handles category ids that collide with Object.prototype properties', async () => {
+    const onApply = jest.fn();
+    const { user } = renderFilterDropdown({
+      categories: [
+        {
+          id: 'constructor',
+          isMultiSelect: true,
+          label: 'Constructor',
+          items: [{ label: 'High', value: 'high' }],
+        },
+      ],
+      onApply,
+    });
+
+    await user.click(screen.getByRole('button', { name: 'Filters' }));
+    expect(screen.queryByText('1')).not.toBeInTheDocument();
+
+    await user.click(screen.getByRole('checkbox', { name: 'High' }));
+    expect(screen.getByRole('checkbox', { name: 'High' })).toBeChecked();
+    expect(screen.getByText('1')).toBeInTheDocument();
+
+    await user.click(screen.getByRole('button', { name: 'Apply filters' }));
+    expect(onApply).toHaveBeenCalledWith({ constructor: ['high'] });
   });
 
   it('calls onClear and closes on Clear click', async () => {
     const onClear = jest.fn();
-    const { user } = renderFilterDropdown({ onClear, selectedValues: ['high'] });
+    const { user } = renderFilterDropdown({ onClear, selectedValues: { severity: ['high'] } });
 
     await user.click(screen.getByRole('button', { name: 'Filters' }));
     await user.click(screen.getByRole('button', { name: 'Clear filters' }));
@@ -135,7 +202,7 @@ describe('FilterDropdown', () => {
   });
 
   it('initializes checked items from selectedValues on open', async () => {
-    const { user } = renderFilterDropdown({ selectedValues: ['medium'] });
+    const { user } = renderFilterDropdown({ selectedValues: { severity: ['medium'] } });
 
     await user.click(screen.getByRole('button', { name: 'Filters' }));
 
@@ -154,7 +221,7 @@ describe('FilterDropdown', () => {
   });
 
   it('shows a selection count badge on a category with pending selections', async () => {
-    const { user } = renderFilterDropdown({ selectedValues: ['high', 'medium'] });
+    const { user } = renderFilterDropdown({ selectedValues: { severity: ['high', 'medium'] } });
 
     await user.click(screen.getByRole('button', { name: 'Filters' }));
 
@@ -183,7 +250,7 @@ describe('FilterDropdown', () => {
     await user.click(screen.getByRole('radio', { name: 'Low' }));
     await user.click(screen.getByRole('button', { name: 'Apply filters' }));
 
-    expect(onApply).toHaveBeenCalledWith(['low']);
+    expect(onApply).toHaveBeenCalledWith({ severity: ['low'] });
   });
 
   it('focuses the first category button when the popover opens', async () => {
@@ -356,11 +423,11 @@ describe('FilterDropdown', () => {
     await user.click(screen.getByRole('button', { name: 'Filters' }));
     await user.click(screen.getByRole('checkbox', { name: 'High' }));
 
-    expect(onItemSelect).toHaveBeenCalledWith(['high']);
+    expect(onItemSelect).toHaveBeenCalledWith({ severity: ['high'] });
 
     await user.click(screen.getByRole('checkbox', { name: 'Medium' }));
 
-    expect(onItemSelect).toHaveBeenCalledWith(['high', 'medium']);
+    expect(onItemSelect).toHaveBeenCalledWith({ severity: ['high', 'medium'] });
   });
 
   it('passes the accessibility check', async () => {

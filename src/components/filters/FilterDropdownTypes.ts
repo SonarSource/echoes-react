@@ -171,6 +171,12 @@ export type FilterDropdownCategory =
   FilterDropdownCategoryWithItems | FilterDropdownCategoryWithContent;
 
 /**
+ * Selected values grouped by category id — e.g. `{ severity: ['high', 'medium'], type: ['bug'] }`.
+ * Only categories with at least one selected value are present as keys.
+ */
+export type FilterDropdownSelectedValues = Record<string, string[]>;
+
+/**
  * Props for the FilterDropdown component.
  */
 export interface FilterDropdownProps {
@@ -219,11 +225,12 @@ export interface FilterDropdownProps {
   labelFilters?: string;
   /**
    * Called when the user clicks Apply.
-   * Receives the full set of pending selected values at the time of confirmation.
+   * Receives the full set of pending selected values, grouped by category id, at the
+   * time of confirmation.
    * When omitted, the Apply button is not rendered and the consumer should use
    * `onItemSelect` to react to selection changes immediately.
    */
-  onApply?: (values: string[]) => void;
+  onApply?: (values: FilterDropdownSelectedValues) => void;
   /**
    * Called every time the active category changes, including on initial open.
    * Use this to load or refresh items for the newly active category.
@@ -238,11 +245,12 @@ export interface FilterDropdownProps {
    */
   onClose?: () => void;
   /**
-   * Called immediately after every item toggle with the full current pending selection.
+   * Called immediately after every item toggle with the full current pending selection,
+   * grouped by category id.
    * Useful when `onApply` is omitted and the consumer wants to react to changes without
    * waiting for an explicit Apply action.
    */
-  onItemSelect?: (values: string[]) => void;
+  onItemSelect?: (values: FilterDropdownSelectedValues) => void;
   /**
    * Called when the popover opens.
    */
@@ -252,10 +260,11 @@ export interface FilterDropdownProps {
    */
   ref?: Ref<HTMLDivElement>;
   /**
-   * The currently committed selected values.
+   * The currently committed selected values, grouped by category id.
    * Used to initialize the pending selection state each time the popover opens.
+   * @defaultValue {}
    */
-  selectedValues?: string[];
+  selectedValues?: FilterDropdownSelectedValues;
 }
 
 /** @internal */

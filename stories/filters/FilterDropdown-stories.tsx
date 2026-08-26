@@ -20,7 +20,12 @@
 
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { useState } from 'react';
-import { FilterDropdown, FilterDropdownProps, FilterDropdownTrigger } from '../../src';
+import {
+  FilterDropdown,
+  FilterDropdownProps,
+  FilterDropdownSelectedValues,
+  FilterDropdownTrigger,
+} from '../../src';
 import { basicWrapperDecorator } from '../helpers/BasicWrapper';
 import { useFilterDropdownCategories } from './filter-dropdown-helpers';
 
@@ -47,8 +52,9 @@ export default meta;
 type Story = StoryObj<typeof FilterDropdown>;
 
 function FilterDropdownStory(props: Readonly<FilterDropdownProps>) {
-  const [selectedValues, setSelectedValues] = useState<string[]>([]);
+  const [selectedValues, setSelectedValues] = useState<FilterDropdownSelectedValues>({});
   const { categories, onCategorySelect } = useFilterDropdownCategories();
+  const selectedCount = Object.values(selectedValues).flat().length;
 
   return (
     <FilterDropdown
@@ -56,9 +62,9 @@ function FilterDropdownStory(props: Readonly<FilterDropdownProps>) {
       categories={categories}
       onApply={setSelectedValues}
       onCategorySelect={onCategorySelect}
-      onClear={() => setSelectedValues([])}
+      onClear={() => setSelectedValues({})}
       selectedValues={selectedValues}>
-      <FilterDropdownTrigger selectedCount={selectedValues.length}>Filters</FilterDropdownTrigger>
+      <FilterDropdownTrigger selectedCount={selectedCount}>Filters</FilterDropdownTrigger>
     </FilterDropdown>
   );
 }
@@ -68,8 +74,9 @@ export const Default: Story = {
 };
 
 function ImmediateSelectStory(props: Readonly<FilterDropdownProps>) {
-  const [selectedValues, setSelectedValues] = useState<string[]>([]);
+  const [selectedValues, setSelectedValues] = useState<FilterDropdownSelectedValues>({});
   const { categories, onCategorySelect } = useFilterDropdownCategories();
+  const selectedCount = Object.values(selectedValues).flat().length;
 
   return (
     <FilterDropdown
@@ -77,10 +84,10 @@ function ImmediateSelectStory(props: Readonly<FilterDropdownProps>) {
       categories={categories}
       onApply={undefined}
       onCategorySelect={onCategorySelect}
-      onClear={() => setSelectedValues([])}
+      onClear={() => setSelectedValues({})}
       onItemSelect={setSelectedValues}
       selectedValues={selectedValues}>
-      <FilterDropdownTrigger selectedCount={selectedValues.length}>Filters</FilterDropdownTrigger>
+      <FilterDropdownTrigger selectedCount={selectedCount}>Filters</FilterDropdownTrigger>
     </FilterDropdown>
   );
 }
