@@ -197,8 +197,8 @@ export function useFilterDropdownCategories() {
   const [assigneeItems, setAssigneeItems] = useState<FilterDropdownCategory['items']>(undefined);
 
   const handleCategorySelect = useCallback(
-    (label: string) => {
-      if (label === 'Assignee' && assigneeItems === undefined) {
+    (id: string) => {
+      if (id === 'assignee' && assigneeItems === undefined) {
         setTimeout(
           () => setAssigneeItems(withRandomCounts(ALL_ASSIGNEE_ITEMS)),
           randomDelay(1000, 3000),
@@ -219,10 +219,11 @@ export function useFilterDropdownCategories() {
 
   const categories = useMemo<FilterDropdownCategory[]>(
     () => [
-      { isMultiSelect: true, label: 'Security', items: SECURITY_ITEMS },
-      { isMultiSelect: true, label: 'Duplications', items: DUPLICATION_ITEMS },
-      { isMultiSelect: false, label: 'Type', items: TYPE_ITEMS },
+      { id: 'security', isMultiSelect: true, label: 'Security', items: SECURITY_ITEMS },
+      { id: 'duplications', isMultiSelect: true, label: 'Duplications', items: DUPLICATION_ITEMS },
+      { id: 'type', isMultiSelect: false, label: 'Type', items: TYPE_ITEMS },
       {
+        id: 'assignee',
         isMultiSelect: true,
         isSearchable: true,
         items: assigneeItems,
@@ -231,6 +232,7 @@ export function useFilterDropdownCategories() {
         onSearch: handleAssigneeSearch,
       },
       {
+        id: 'date-range',
         content: <DateRangeContent ref={dateInputRef} />,
         onFocusContent: () => {
           dateInputRef.current?.focus();

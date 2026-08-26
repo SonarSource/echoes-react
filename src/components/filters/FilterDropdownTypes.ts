@@ -60,6 +60,11 @@ export interface FilterDropdownCategoryWithItems {
    */
   content?: never;
   /**
+   * Unique identifier for this category.
+   * Used as the React key for the category list and passed to `onCategorySelect`.
+   */
+  id: string;
+  /**
    * Whether items in this category support multi-selection (checkboxes).
    * When false, only one item can be selected at a time (radio buttons).
    * @defaultValue false
@@ -107,6 +112,11 @@ export interface FilterDropdownCategoryWithContent {
    * and `onSearch` must not be provided.
    */
   content: ReactNode;
+  /**
+   * Unique identifier for this category.
+   * Used as the React key for the category list and passed to `onCategorySelect`.
+   */
+  id: string;
   /**
    * Not applicable when using custom content.
    * @see FilterDropdownCategoryWithItems
@@ -218,7 +228,7 @@ export interface FilterDropdownProps {
    * Called every time the active category changes, including on initial open.
    * Use this to load or refresh items for the newly active category.
    */
-  onCategorySelect?: (categoryLabel: string) => void;
+  onCategorySelect?: (categoryId: string) => void;
   /**
    * Called when the user clicks Clear.
    */
