@@ -69,6 +69,7 @@ export interface ProductShellProps {
 export interface ProjectShellProps {
   activeItem?: 'issues' | 'overview' | 'summary';
   children: ReactNode;
+  globalNavigationPrimary?: ReactNode;
 }
 
 export interface HomeShellProps {
@@ -105,9 +106,15 @@ export function ProductShell({
 
 ProductShell.displayName = 'ProductShell';
 
-export function ProjectShell({ activeItem = 'overview', children }: Readonly<ProjectShellProps>) {
+export function ProjectShell({
+  activeItem = 'overview',
+  children,
+  globalNavigationPrimary,
+}: Readonly<ProjectShellProps>) {
   return (
-    <PlaygroundShell sidebar={<ProjectSidebar activeItem={activeItem} />}>
+    <PlaygroundShell
+      globalNavigationPrimary={globalNavigationPrimary}
+      sidebar={<ProjectSidebar activeItem={activeItem} />}>
       {children}
     </PlaygroundShell>
   );
