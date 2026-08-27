@@ -23,6 +23,7 @@ import { useIntl } from 'react-intl';
 import { isDefined } from '~common/helpers/types';
 import { SearchInput } from '../search-input';
 import { Spinner } from '../spinner';
+import { Text } from '../typography';
 import {
   FilterDropdownItemsListHandle,
   FilterDropdownMultiSelectList,
@@ -30,6 +31,7 @@ import {
 } from './FilterDropdownItemsList';
 import {
   StyledCustomContent,
+  StyledEmptyContentWrapper,
   StyledRightPanel,
   StyledSearchHeader,
   StyledSpinnerWrapper,
@@ -70,6 +72,7 @@ export function FilterDropdownRightPanel(props: Readonly<FilterDropdownRightPane
 
   const hasCustomContent = isCategoryWithContent(activeCategory);
   const isLoadingItems = !hasCustomContent && !isDefined(items);
+  const isEmptyItems = !hasCustomContent && isDefined(items) && items.length === 0;
 
   // When onSearch is provided, the consumer handles filtering and updates items directly.
   // Client-side filtering is only applied when isSearchable is true but onSearch is absent.
@@ -161,7 +164,20 @@ export function FilterDropdownRightPanel(props: Readonly<FilterDropdownRightPane
           <Spinner isLoading />
         </StyledSpinnerWrapper>
       )}
+      {!isLoadingItems && isEmptyItems && (
+        <StyledEmptyContentWrapper>
+          <Text isSubtle>
+            {activeCategory?.emptyContent ??
+              formatMessage({
+                id: 'filter.dropdown.emptyContent',
+                defaultMessage: 'No filter option available',
+                description: 'Default content shown when a filter category has no items',
+              })}
+          </Text>
+        </StyledEmptyContentWrapper>
+      )}
       {!isLoadingItems &&
+        !isEmptyItems &&
         (activeCategory?.isMultiSelect ? (
           <FilterDropdownMultiSelectList
             categoryLabel={activeCategory.label}

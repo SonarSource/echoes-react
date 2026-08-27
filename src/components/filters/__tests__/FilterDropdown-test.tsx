@@ -220,6 +220,68 @@ describe('FilterDropdown', () => {
     expect(screen.getByRole('status')).toBeInTheDocument();
   });
 
+  it('shows the default No filter option available when category items is an empty array', async () => {
+    const { user } = renderFilterDropdown({
+      categories: [{ id: 'severity', label: 'Severity', items: [] }],
+    });
+
+    await user.click(screen.getByRole('button', { name: 'Filters' }));
+
+    expect(screen.getByText('No filter option available')).toBeInTheDocument();
+  });
+
+  it('shows a custom emptyContent node instead of the default when provided', async () => {
+    const { user } = renderFilterDropdown({
+      categories: [
+        {
+          id: 'severity',
+          label: 'Severity',
+          items: [],
+          emptyContent: <span>No severities configured</span>,
+        },
+      ],
+    });
+
+    await user.click(screen.getByRole('button', { name: 'Filters' }));
+
+    expect(screen.getByText('No severities configured')).toBeInTheDocument();
+    expect(screen.queryByText('No filter option available')).not.toBeInTheDocument();
+  });
+
+  it('prioritizes the loading spinner over emptyContent while items is undefined', async () => {
+    const { user } = renderFilterDropdown({
+      categories: [
+        { id: 'severity', label: 'Severity', items: undefined, emptyContent: 'No severities' },
+      ],
+    });
+
+    await user.click(screen.getByRole('button', { name: 'Filters' }));
+
+    expect(screen.getByRole('status')).toBeInTheDocument();
+    expect(screen.queryByText('No severities')).not.toBeInTheDocument();
+  });
+
+  it('does not show emptyContent when a search filters all items out', async () => {
+    const { user } = renderFilterDropdown({
+      categories: [
+        {
+          id: 'severity',
+          isMultiSelect: true,
+          isSearchable: true,
+          label: 'Severity',
+          items: [{ label: 'High', value: 'high' }],
+          emptyContent: 'No severities',
+        },
+      ],
+    });
+
+    await user.click(screen.getByRole('button', { name: 'Filters' }));
+    await user.type(screen.getByRole('searchbox'), 'zzz');
+
+    expect(screen.queryByRole('checkbox', { name: 'High' })).not.toBeInTheDocument();
+    expect(screen.queryByText('No severities')).not.toBeInTheDocument();
+  });
+
   it('shows a selection count badge on a category with pending selections', async () => {
     const { user } = renderFilterDropdown({ selectedValues: { severity: ['high', 'medium'] } });
 

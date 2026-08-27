@@ -191,6 +191,7 @@ function DateRangeContent({ ref }: Readonly<{ ref?: Ref<HTMLInputElement> }>) {
  * - Status: multi-select, client-side search, sync items
  * - Assignee: multi-select, async items, server-side search
  * - Date Range: custom content
+ * - Milestone: multi-select, empty items, custom emptyContent
  */
 export function useFilterDropdownCategories() {
   const dateInputRef = useRef<HTMLInputElement>(null);
@@ -238,6 +239,13 @@ export function useFilterDropdownCategories() {
           dateInputRef.current?.focus();
         },
         label: 'Date Range',
+      },
+      {
+        id: 'milestone',
+        isMultiSelect: true,
+        label: 'Milestone',
+        items: [],
+        emptyContent: <span>No milestones have been created yet</span>,
       },
     ],
     [assigneeItems, handleAssigneeSearch],

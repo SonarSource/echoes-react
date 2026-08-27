@@ -31,6 +31,10 @@
     "defaultMessage": "Clear filters",
     "description": "Label for the button that clears all active filters"
   },
+  "filter.dropdown.emptyContent": {
+    "defaultMessage": "No filter option available",
+    "description": "Default content shown when a filter category has no items"
+  },
   "filter.dropdown.label": {
     "defaultMessage": "Filters",
     "description": "Accessible label for the filter popover dialog"

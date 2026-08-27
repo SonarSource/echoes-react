@@ -20,7 +20,7 @@
 
 import { ReactNode, Ref } from 'react';
 import { isDefined } from '~common/helpers/types';
-import { TextNodeOptional } from '~types/utils';
+import { TextNode, TextNodeOptional } from '~types/utils';
 
 /**
  * A single selectable option within a FilterDropdown category.
@@ -59,6 +59,12 @@ export interface FilterDropdownCategoryWithItems {
    * Use {@link FilterDropdownCategoryWithContent} to render custom content.
    */
   content?: never;
+  /**
+   * Content shown in the right panel when `items` is defined but empty.
+   * Not shown while `items` is `undefined` — the loading state takes precedence.
+   * @defaultValue "No filter option available"
+   */
+  emptyContent?: TextNode;
   /**
    * Unique identifier for this category.
    * Used as the React key for the category list and passed to `onCategorySelect`.
@@ -112,6 +118,11 @@ export interface FilterDropdownCategoryWithContent {
    * and `onSearch` must not be provided.
    */
   content: ReactNode;
+  /**
+   * Not applicable when using custom content.
+   * @see FilterDropdownCategoryWithItems
+   */
+  emptyContent?: never;
   /**
    * Unique identifier for this category.
    * Used as the React key for the category list and passed to `onCategorySelect`.
