@@ -44,15 +44,13 @@ import {
   IconStar,
   IconX,
   Layout,
+  LinkStandalone,
   RatingBadge,
   RatingBadgeRating,
   SearchInput,
   SearchInputWidth,
   Select,
-  Table,
-  TableVariety,
   Text,
-  Tooltip,
   Toolbar,
   ToggleButtonGroup,
 } from '../../src';
@@ -62,6 +60,11 @@ import {
   ProductPageDescription,
   ProductShell,
 } from './ProductShell';
+import {
+  getCoverageTone,
+  getDuplicationsTone,
+  ProjectPercentageMetric,
+} from './ProjectPercentageMetric';
 
 const meta: Meta = {
   title: 'Playground/Projects',
@@ -99,25 +102,16 @@ type Project = {
 
 type ProjectHighlight = 'New' | 'Public';
 
-type MetricTone = 'danger' | 'neutral' | 'success' | 'warning';
+const PROJECT_CARD_METRIC_LABELS = [
+  'Security',
+  'Reliability',
+  'Maintainability',
+  'Dependency risks',
+  'Coverage',
+  'Duplications',
+];
 
 type ProjectPerspective = 'new' | 'overall';
-
-type ProjectSortColumn =
-  | 'analysis'
-  | 'coverage'
-  | 'dependencyRisks'
-  | 'duplications'
-  | 'gate'
-  | 'maintainability'
-  | 'name'
-  | 'reliability'
-  | 'security';
-
-type ProjectSorting = {
-  column: ProjectSortColumn;
-  direction: 'asc' | 'desc';
-};
 
 const FEATURED_PROJECTS: Project[] = [
   {
@@ -480,72 +474,8 @@ function matchesAnalysisFilter(selectedRanges: string[], analysis: string) {
   );
 }
 
-function compareProjects(first: Project, second: Project, sorting: ProjectSorting) {
-  const firstValue = getProjectSortValue(first, sorting.column);
-  const secondValue = getProjectSortValue(second, sorting.column);
-
-  if (firstValue === null || secondValue === null) {
-    if (firstValue === secondValue) {
-      return first.name.localeCompare(second.name);
-    }
-
-    return firstValue === null ? 1 : -1;
-  }
-
-  const comparison =
-    typeof firstValue === 'number' && typeof secondValue === 'number'
-      ? firstValue - secondValue
-      : String(firstValue).localeCompare(String(secondValue));
-  const directedComparison = sorting.direction === 'asc' ? comparison : -comparison;
-
-  return directedComparison || first.name.localeCompare(second.name);
-}
-
-function getProjectSortValue(project: Project, column: ProjectSortColumn): number | string | null {
-  switch (column) {
-    case 'analysis':
-      return Date.parse(project.analysis);
-    case 'coverage':
-      return project.coverage === '—' ? null : Number.parseFloat(project.coverage);
-    case 'dependencyRisks':
-      return project.dependencyRisks;
-    case 'duplications':
-      return Number.parseFloat(project.duplications);
-    case 'gate':
-      return project.gate;
-    case 'maintainability':
-      return `${project.maintainability}:${String(project.maintainabilityIssues).padStart(6, '0')}`;
-    case 'name':
-      return project.name;
-    case 'reliability':
-      return `${project.reliability}:${String(project.reliabilityIssues).padStart(6, '0')}`;
-    case 'security':
-      return `${project.security}:${String(project.securityIssues).padStart(6, '0')}`;
-  }
-}
-
 function parsePercentage(value: string) {
   return value === '—' ? null : Number.parseFloat(value);
-}
-
-function getCoverageTone(value: number | null): MetricTone {
-  if (value === null) {
-    return 'neutral';
-  }
-
-  if (value >= 80) {
-    return 'success';
-  }
-
-  return value >= 60 ? 'warning' : 'danger';
-}
-
-function getDuplicationsTone(value: number): MetricTone {
-  if (value <= 5) {
-    return 'success';
-  }
-
-  return value <= 15 ? 'warning' : 'danger';
 }
 
 function getDependencyRiskRating(value: number): `${RatingBadgeRating}` {
@@ -648,48 +578,161 @@ function getNewCodeProject(project: Project): Project {
   };
 }
 
-function ProjectPercentageMetric({
-  label,
-  tone,
-  value,
-}: Readonly<{ label: string; tone: MetricTone; value: number | null }>) {
-  const displayValue = value === null ? '—' : `${value.toFixed(1)}%`;
-
-  return (
-    <PercentageMetric aria-label={`${label} ${displayValue}`}>
-      <PercentageRing $tone={tone} $value={value ?? 0} aria-hidden />
-      <span aria-hidden>{displayValue}</span>
-    </PercentageMetric>
-  );
-}
-
 function ProjectNameLink({ project }: Readonly<{ project: Project }>) {
   return (
-    <ProjectLink href={`/projects/${project.name}`}>
-      <ProjectName>
+    <ProjectName>
+      <ProjectLink to={`/projects/${project.name}`}>
         <ProjectNameText>{project.name}</ProjectNameText>
-        {project.highlights?.map((highlight) => (
-          <ProjectHighlightBadge key={highlight} variety={BadgeVariety.Neutral}>
-            {highlight}
-          </ProjectHighlightBadge>
-        ))}
-      </ProjectName>
-    </ProjectLink>
+      </ProjectLink>
+      {project.highlights?.map((highlight) => (
+        <ProjectHighlightBadge key={highlight} variety={BadgeVariety.Neutral}>
+          {highlight}
+        </ProjectHighlightBadge>
+      ))}
+    </ProjectName>
   );
 }
+
+function ProjectCardView({
+  isFavorite,
+  onDelete,
+  onToggleFavorite,
+  project,
+}: Readonly<{
+  isFavorite: boolean;
+  onDelete: VoidFunction;
+  onToggleFavorite: VoidFunction;
+  project: Project;
+}>) {
+  const coverage = parsePercentage(project.coverage);
+  const duplications = parsePercentage(project.duplications) ?? 0;
+  const ratings = [
+    {
+      label: 'Security',
+      rating: project.security,
+      issueCount: project.securityIssues,
+    },
+    {
+      label: 'Reliability',
+      rating: project.reliability,
+      issueCount: project.reliabilityIssues,
+    },
+    {
+      label: 'Maintainability',
+      rating: project.maintainability,
+      issueCount: project.maintainabilityIssues,
+    },
+    {
+      label: 'Dependency risks',
+      rating: getDependencyRiskRating(project.dependencyRisks),
+      issueCount: project.dependencyRisks,
+    },
+  ];
+
+  return (
+    <ProjectListItem>
+      <ProjectCardLayout>
+        <ProjectCardIdentity>
+          <ButtonIcon
+            Icon={GitHubLogo}
+            ariaLabel={`Open ${project.name} on GitHub`}
+            enableOpenInNewTab
+            size={ButtonSize.Medium}
+            to={project.githubUrl}
+            tooltipContent={`Open ${project.name} on GitHub`}
+            variety={ButtonVariety.DefaultGhost}
+          />
+          <ProjectNameLink project={project} />
+          <ProjectCardMetadata>
+            <span>{project.language}</span>
+            <span aria-hidden="true">•</span>
+            <span>{project.lines} lines</span>
+            <span aria-hidden="true">•</span>
+            <span>Last analysis {project.analysis}</span>
+            <span aria-hidden="true">•</span>
+            <QualityGateBadge
+              $gate={project.gate}
+              $isSubtle
+              IconLeft={project.gate === 'passed' ? IconCheck : IconX}
+              ariaLabel={`Quality gate ${project.gate}`}
+              variety={BadgeVariety.Neutral}>
+              {project.gate === 'passed' ? 'Passed' : 'Failed'}
+            </QualityGateBadge>
+          </ProjectCardMetadata>
+        </ProjectCardIdentity>
+
+        <ProjectCardMetrics>
+          {ratings.map(({ issueCount, label, rating }) => (
+            <ProjectCardMetric key={label}>
+              <GroupedRatingBadge
+                ariaLabel={`${label} rating ${rating}, ${issueCount} issues`}
+                rating={rating}
+                size="sm"
+              />
+            </ProjectCardMetric>
+          ))}
+
+          <ProjectCardMetric>
+            <ProjectPercentageMetric
+              label="Coverage"
+              tone={getCoverageTone(coverage)}
+              value={coverage}
+            />
+          </ProjectCardMetric>
+
+          <ProjectCardMetric>
+            <ProjectPercentageMetric
+              label="Duplications"
+              tone={getDuplicationsTone(duplications)}
+              value={duplications}
+            />
+          </ProjectCardMetric>
+        </ProjectCardMetrics>
+
+        <ProjectCardActions>
+          <FavoriteButtonIcon
+            $isFavorite={isFavorite}
+            Icon={IconStar}
+            ariaLabel={
+              isFavorite
+                ? `Remove ${project.name} from favorites`
+                : `Add ${project.name} to favorites`
+            }
+            isIconFilled={isFavorite}
+            onClick={onToggleFavorite}
+            size={ButtonSize.Medium}
+            variety={ButtonVariety.DefaultGhost}
+          />
+          <DropdownMenu
+            align={DropdownMenuAlign.End}
+            items={
+              <DropdownMenu.ItemButtonDestructive onClick={onDelete}>
+                Delete project
+              </DropdownMenu.ItemButtonDestructive>
+            }>
+            <ButtonIcon
+              Icon={IconMoreVertical}
+              ariaLabel={`Actions for ${project.name}`}
+              size={ButtonSize.Medium}
+              tooltipContent={false}
+              variety={ButtonVariety.DefaultGhost}
+            />
+          </DropdownMenu>
+        </ProjectCardActions>
+      </ProjectCardLayout>
+    </ProjectListItem>
+  );
+}
+
+ProjectCardView.displayName = 'ProjectCardView';
 
 function ProjectsPage() {
   const [deletedProjects, setDeletedProjects] = useState(() => new Set<string>());
   const [favorites, setFavorites] = useState(() => new Set<string>(['issues-list']));
   const [gate, setGate] = useState<string | null>('all');
-  const [isTableScrolled, setIsTableScrolled] = useState(false);
   const [moreFilters, setMoreFilters] = useState<string[]>([]);
   const [perspective, setPerspective] = useState<ProjectPerspective>('overall');
   const [query, setQuery] = useState('');
-  const [sorting, setSorting] = useState<ProjectSorting>({
-    column: 'analysis',
-    direction: 'desc',
-  });
 
   const projects = useMemo(() => {
     const normalizedQuery = query.trim().toLocaleLowerCase();
@@ -724,19 +767,12 @@ function ProjectsPage() {
       );
     });
 
-    return [...filtered].sort((first, second) => compareProjects(first, second, sorting));
-  }, [deletedProjects, gate, moreFilters, perspective, query, sorting]);
-
-  function toggleSorting(column: ProjectSortColumn) {
-    setSorting((current) => ({
-      column,
-      direction: current.column === column && current.direction === 'asc' ? 'desc' : 'asc',
-    }));
-  }
-
-  function getSortDirection(column: ProjectSortColumn) {
-    return sorting.column === column ? sorting.direction : undefined;
-  }
+    return [...filtered].sort(
+      (first, second) =>
+        Date.parse(second.analysis) - Date.parse(first.analysis) ||
+        first.name.localeCompare(second.name),
+    );
+  }, [deletedProjects, gate, moreFilters, perspective, query]);
 
   function toggleFavorite(projectName: string) {
     setFavorites((current) => {
@@ -856,198 +892,30 @@ function ProjectsPage() {
           />
 
           {projects.length > 0 ? (
-            <ProjectsTableCard size={CardSize.Small}>
+            <ProjectsCardListCard size={CardSize.Small}>
+              <ProjectsCardListHeader>
+                <ProjectCardProjectHeading>Project</ProjectCardProjectHeading>
+                <ProjectCardMetricHeadings>
+                  {PROJECT_CARD_METRIC_LABELS.map((label) => (
+                    <span key={label}>{label}</span>
+                  ))}
+                </ProjectCardMetricHeadings>
+                <span aria-hidden="true" />
+              </ProjectsCardListHeader>
               <Card.Body insetContent>
-                <TableScroller
-                  data-is-scrolled={isTableScrolled}
-                  onScroll={(event) => setIsTableScrolled(event.currentTarget.scrollLeft > 0)}>
-                  <CompactProjectsTable
-                    ariaLabel="Organization projects"
-                    gridTemplate="var(--favorite-column-width) var(--github-column-width) var(--project-column-width) repeat(7, var(--metric-column-width)) var(--analysis-column-width) min-content"
-                    variety={TableVariety.Ghost}>
-                    <Table.Header>
-                      <Table.Row>
-                        <Table.ColumnHeaderCell
-                          aria-label="Favorite project"
-                          className="favorite-column"
-                        />
-                        <Table.ColumnHeaderCell
-                          aria-label="GitHub repository"
-                          className="github-column"
-                        />
-                        <Table.ColumnHeaderCell
-                          className="project-column"
-                          label="Project"
-                          onSort={() => toggleSorting('name')}
-                          sortDirection={getSortDirection('name')}
-                        />
-                        <Table.ColumnHeaderCell
-                          className="gate-column metric-column"
-                          label="Quality gate"
-                          onSort={() => toggleSorting('gate')}
-                          sortDirection={getSortDirection('gate')}
-                        />
-                        <Table.ColumnHeaderCell
-                          className="metric-column"
-                          label="Security"
-                          onSort={() => toggleSorting('security')}
-                          sortDirection={getSortDirection('security')}
-                        />
-                        <Table.ColumnHeaderCell
-                          className="metric-column reliability-column"
-                          label="Reliability"
-                          onSort={() => toggleSorting('reliability')}
-                          sortDirection={getSortDirection('reliability')}
-                        />
-                        <Table.ColumnHeaderCell
-                          className="maintainability-column metric-column"
-                          label="Maintainability"
-                          onSort={() => toggleSorting('maintainability')}
-                          sortDirection={getSortDirection('maintainability')}
-                        />
-                        <Table.ColumnHeaderCell
-                          className="dependency-column metric-column"
-                          label="Dependency risks"
-                          onSort={() => toggleSorting('dependencyRisks')}
-                          sortDirection={getSortDirection('dependencyRisks')}
-                        />
-                        <Table.ColumnHeaderCell
-                          className="coverage-column metric-column"
-                          label="Coverage"
-                          onSort={() => toggleSorting('coverage')}
-                          sortDirection={getSortDirection('coverage')}
-                        />
-                        <Table.ColumnHeaderCell
-                          className="duplications-column metric-column"
-                          label="Duplications"
-                          onSort={() => toggleSorting('duplications')}
-                          sortDirection={getSortDirection('duplications')}
-                        />
-                        <Table.ColumnHeaderCell
-                          className="analysis-column"
-                          label="Last analysis"
-                          onSort={() => toggleSorting('analysis')}
-                          sortDirection={getSortDirection('analysis')}
-                        />
-                        <Table.ColumnHeaderCell aria-label="Actions" className="actions-column" />
-                      </Table.Row>
-                    </Table.Header>
-
-                    <Table.Body>
-                      {projects.map((project) => {
-                        const coverage = parsePercentage(project.coverage);
-                        const duplications = parsePercentage(project.duplications) ?? 0;
-                        const isFavorite = favorites.has(project.name);
-
-                        return (
-                          <Table.Row key={project.name}>
-                            <Table.Cell className="favorite-column">
-                              <FavoriteButtonIcon
-                                $isFavorite={isFavorite}
-                                Icon={IconStar}
-                                ariaLabel={
-                                  isFavorite
-                                    ? `Remove ${project.name} from favorites`
-                                    : `Add ${project.name} to favorites`
-                                }
-                                isIconFilled={isFavorite}
-                                onClick={() => toggleFavorite(project.name)}
-                                size={ButtonSize.Medium}
-                                variety={ButtonVariety.DefaultGhost}
-                              />
-                            </Table.Cell>
-                            <Table.Cell className="github-column">
-                              <Tooltip content={`Open ${project.name} on GitHub`}>
-                                <GitHubProjectLink
-                                  aria-label={`Open ${project.name} on GitHub`}
-                                  href={project.githubUrl}
-                                  rel="noreferrer"
-                                  target="_blank">
-                                  <GitHubLogo />
-                                </GitHubProjectLink>
-                              </Tooltip>
-                            </Table.Cell>
-                            <Table.Cell className="project-column">
-                              <ProjectNameLink project={project} />
-                            </Table.Cell>
-                            <Table.Cell className="gate-column metric-column">
-                              <QualityGateBadge
-                                $gate={project.gate}
-                                IconLeft={project.gate === 'passed' ? IconCheck : IconX}
-                                ariaLabel={`Quality gate ${project.gate}`}
-                                variety={BadgeVariety.Neutral}>
-                                {project.gate === 'passed' ? 'Passed' : 'Failed'}
-                              </QualityGateBadge>
-                            </Table.Cell>
-                            <Table.CellText
-                              className="metric-column rating-column"
-                              content={String(project.securityIssues)}
-                              icon={<RatingBadge rating={project.security} size="sm" />}
-                            />
-                            <Table.CellText
-                              className="metric-column rating-column reliability-column"
-                              content={String(project.reliabilityIssues)}
-                              icon={<RatingBadge rating={project.reliability} size="sm" />}
-                            />
-                            <Table.CellText
-                              className="maintainability-column metric-column rating-column"
-                              content={String(project.maintainabilityIssues)}
-                              icon={<RatingBadge rating={project.maintainability} size="sm" />}
-                            />
-                            <Table.CellText
-                              className="dependency-column metric-column rating-column"
-                              content={String(project.dependencyRisks)}
-                              icon={
-                                <RatingBadge
-                                  rating={getDependencyRiskRating(project.dependencyRisks)}
-                                  size="sm"
-                                />
-                              }
-                            />
-                            <Table.Cell className="coverage-column metric-column">
-                              <ProjectPercentageMetric
-                                label="Coverage"
-                                tone={getCoverageTone(coverage)}
-                                value={coverage}
-                              />
-                            </Table.Cell>
-                            <Table.Cell className="duplications-column metric-column">
-                              <ProjectPercentageMetric
-                                label="Duplications"
-                                tone={getDuplicationsTone(duplications)}
-                                value={duplications}
-                              />
-                            </Table.Cell>
-                            <Table.CellText
-                              className="analysis-column"
-                              content={project.analysis}
-                            />
-                            <Table.Cell className="actions-column">
-                              <DropdownMenu
-                                align={DropdownMenuAlign.End}
-                                items={
-                                  <DropdownMenu.ItemButtonDestructive
-                                    onClick={() => deleteProject(project.name)}>
-                                    Delete project
-                                  </DropdownMenu.ItemButtonDestructive>
-                                }>
-                                <ButtonIcon
-                                  Icon={IconMoreVertical}
-                                  ariaLabel={`Actions for ${project.name}`}
-                                  size={ButtonSize.Medium}
-                                  tooltipContent={false}
-                                  variety={ButtonVariety.DefaultGhost}
-                                />
-                              </DropdownMenu>
-                            </Table.Cell>
-                          </Table.Row>
-                        );
-                      })}
-                    </Table.Body>
-                  </CompactProjectsTable>
-                </TableScroller>
+                <ProjectsCardList aria-label="Organization projects">
+                  {projects.map((project) => (
+                    <ProjectCardView
+                      isFavorite={favorites.has(project.name)}
+                      key={project.name}
+                      onDelete={() => deleteProject(project.name)}
+                      onToggleFavorite={() => toggleFavorite(project.name)}
+                      project={project}
+                    />
+                  ))}
+                </ProjectsCardList>
               </Card.Body>
-            </ProjectsTableCard>
+            </ProjectsCardListCard>
           ) : (
             <ProjectEmptyState
               graphic={<IconSearch />}
@@ -1074,9 +942,163 @@ const ProjectCount = styled(Text)`
 
 ProjectCount.displayName = 'ProjectCount';
 
-const QualityGateBadge = styled(Badge)<{ $gate: Project['gate'] }>`
+const ProjectsCardListCard = styled(Card)`
+  --project-card-actions-width: calc(
+    ${cssVar('sizes-buttons-medium')} + ${cssVar('sizes-buttons-medium')} +
+      ${cssVar('dimension-space-25')}
+  );
+
+  height: auto;
+  min-width: 0;
+  overflow: hidden;
+
+  html[data-echoes-theme='light'] & {
+    background-color: ${cssVar('color-roles-support-white')};
+  }
+`;
+
+ProjectsCardListCard.displayName = 'ProjectsCardListCard';
+
+const PROJECT_CARD_LAYOUT_COLUMNS =
+  'minmax(0, 0.75fr) minmax(34rem, 1.25fr) var(--project-card-actions-width)';
+
+const PROJECT_CARD_METRIC_COLUMNS =
+  'repeat(4, minmax(5rem, 1fr)) repeat(2, minmax(5rem, max-content))';
+
+const ProjectsCardListHeader = styled.header`
+  display: grid;
+  grid-template-columns: ${PROJECT_CARD_LAYOUT_COLUMNS};
+  align-items: center;
+  gap: ${cssVar('dimension-space-150')};
+  padding: ${cssVar('dimension-space-100')} ${cssVar('dimension-space-200')};
+  color: ${cssVar('color-text-subtle')};
+  background-color: ${cssVar('color-surface-subtle')};
+  border-bottom: ${cssVar('border-width-default')} solid ${cssVar('color-border-weak')};
+  font: ${cssVar('typography-text-small-medium')};
+`;
+
+ProjectsCardListHeader.displayName = 'ProjectsCardListHeader';
+
+const ProjectCardProjectHeading = styled.span`
+  padding-inline-start: calc(${cssVar('sizes-buttons-medium')} + ${cssVar('dimension-space-75')});
+`;
+
+ProjectCardProjectHeading.displayName = 'ProjectCardProjectHeading';
+
+const ProjectCardMetricHeadings = styled.div`
+  display: grid;
+  grid-template-columns: ${PROJECT_CARD_METRIC_COLUMNS};
+  align-items: center;
+  gap: ${cssVar('dimension-space-150')};
+  min-width: 0;
+  text-align: center;
+
+  > span {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+`;
+
+ProjectCardMetricHeadings.displayName = 'ProjectCardMetricHeadings';
+
+const ProjectsCardList = styled.ul`
+  margin: 0;
+  padding: 0;
+  list-style: none;
+`;
+
+ProjectsCardList.displayName = 'ProjectsCardList';
+
+const ProjectListItem = styled.li`
+  padding: ${cssVar('dimension-space-150')};
+
+  & + & {
+    border-top: ${cssVar('border-width-default')} solid ${cssVar('color-border-weak')};
+  }
+`;
+
+ProjectListItem.displayName = 'ProjectListItem';
+
+const ProjectCardLayout = styled.article`
+  display: grid;
+  grid-template-columns: ${PROJECT_CARD_LAYOUT_COLUMNS};
+  align-items: center;
+  gap: ${cssVar('dimension-space-150')};
+  min-width: 0;
+  height: 100%;
+`;
+
+ProjectCardLayout.displayName = 'ProjectCardLayout';
+
+const ProjectCardIdentity = styled.div`
+  display: grid;
+  grid-template-columns: ${cssVar('sizes-buttons-medium')} minmax(0, 1fr);
+  align-items: center;
+  column-gap: ${cssVar('dimension-space-75')};
+  row-gap: ${cssVar('dimension-space-50')};
+  min-width: 0;
+`;
+
+ProjectCardIdentity.displayName = 'ProjectCardIdentity';
+
+const ProjectCardMetadata = styled.span`
+  display: flex;
+  grid-column: 2;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: ${cssVar('dimension-space-50')};
+  min-width: 0;
+  color: ${cssVar('color-text-subtle')};
+  font: ${cssVar('typography-text-small-regular')};
+  font-variant-numeric: tabular-nums;
+`;
+
+ProjectCardMetadata.displayName = 'ProjectCardMetadata';
+
+const ProjectCardActions = styled.div`
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: ${cssVar('dimension-space-25')};
+`;
+
+ProjectCardActions.displayName = 'ProjectCardActions';
+
+const ProjectCardMetrics = styled.footer`
+  display: grid;
+  grid-template-columns: ${PROJECT_CARD_METRIC_COLUMNS};
+  align-items: center;
+  gap: ${cssVar('dimension-space-150')};
+  min-width: 0;
+`;
+
+ProjectCardMetrics.displayName = 'ProjectCardMetrics';
+
+const ProjectCardMetric = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+`;
+
+ProjectCardMetric.displayName = 'ProjectCardMetric';
+
+const GroupedRatingBadge = styled(RatingBadge)`
+  position: relative;
+  flex: 0 0 auto;
+  width: ${cssVar('dimension-width-300')};
+  height: ${cssVar('dimension-width-300')};
+  border-radius: ${cssVar('border-radius-200')};
+`;
+
+GroupedRatingBadge.displayName = 'GroupedRatingBadge';
+
+const QualityGateBadge = styled(Badge)<{ $gate: Project['gate']; $isSubtle?: boolean }>`
   && {
-    --badge-color: ${cssVar('color-text-default')};
+    --badge-color: ${({ $isSubtle }) =>
+      cssVar($isSubtle ? 'color-text-subtle' : 'color-text-default')};
     --badge-background-color: transparent;
     --badge-border-color: transparent;
     --badge-padding: 0;
@@ -1112,33 +1134,6 @@ const QualityGateBadge = styled(Badge)<{ $gate: Project['gate'] }>`
 `;
 
 QualityGateBadge.displayName = 'QualityGateBadge';
-
-const GitHubProjectLink = styled.a`
-  display: inline-flex;
-  flex: 0 0 auto;
-  align-items: center;
-  justify-content: center;
-  box-sizing: border-box;
-  width: ${cssVar('sizes-buttons-medium')};
-  height: ${cssVar('sizes-buttons-medium')};
-  color: ${cssVar('button-colors-foreground-secondary')};
-  background-color: ${cssVar('button-colors-background-secondary-default')};
-  border: ${cssVar('button-colors-border-secondary')} solid ${cssVar('border-width-default')};
-  border-radius: ${cssVar('border-radius-200')};
-  box-shadow: ${cssVar('shadow-resting')};
-
-  &:hover {
-    background-color: ${cssVar('button-colors-background-secondary-hover')};
-    border-color: ${cssVar('button-colors-border-secondary-hover')};
-  }
-
-  &:focus-visible {
-    outline: ${cssVar('button-colors-focus-ring')} solid ${cssVar('focus-border-width-default')};
-    outline-offset: ${cssVar('focus-border-offset-default')};
-  }
-`;
-
-GitHubProjectLink.displayName = 'GitHubProjectLink';
 
 const FavoriteButtonIcon = styled(ButtonIcon)<{ $isFavorite: boolean }>`
   && {
@@ -1184,80 +1179,16 @@ const ProjectHighlightBadge = styled(Badge)`
 
 ProjectHighlightBadge.displayName = 'ProjectHighlightBadge';
 
-const ProjectLink = styled.a`
+const ProjectLink = styled(LinkStandalone)`
   display: inline-flex;
   min-width: 0;
   max-width: 100%;
   overflow: hidden;
-  color: ${cssVar('link-colors-default-default')};
-  text-decoration-line: ${cssVar('text-decoration-none')};
-
-  &:hover,
-  &:active,
-  &:visited {
-    color: ${cssVar('link-colors-default-default')};
-    text-decoration-line: ${cssVar('text-decoration-none')};
-  }
-
-  &:focus-visible {
-    outline: ${cssVar('link-colors-focus-ring')} solid ${cssVar('focus-border-width-default')};
-    outline-offset: ${cssVar('focus-border-offset-default')};
-  }
+  font: ${cssVar('typography-text-large-regular')};
+  font-weight: ${cssVar('font-weight-medium')};
 `;
 
 ProjectLink.displayName = 'ProjectLink';
-
-const METRIC_TONE_COLORS: Record<MetricTone, string> = {
-  danger: cssVar('color-status-danger-foreground'),
-  neutral: cssVar('color-icon-subtle'),
-  success: cssVar('color-status-success-foreground'),
-  warning: cssVar('color-status-warning-foreground'),
-};
-
-const PercentageMetric = styled.span`
-  display: inline-flex;
-  align-items: center;
-  gap: ${cssVar('dimension-space-100')};
-  font-variant-numeric: tabular-nums;
-  white-space: nowrap;
-`;
-
-PercentageMetric.displayName = 'PercentageMetric';
-
-const PercentageRing = styled.span<{ $tone: MetricTone; $value: number }>`
-  position: relative;
-  flex: 0 0 auto;
-  width: ${cssVar('dimension-width-300')};
-  height: ${cssVar('dimension-width-300')};
-  background: conic-gradient(
-    ${cssVar('color-border-default')} ${({ $value }) => Math.min(Math.max($value, 0), 100)}%,
-    ${cssVar('color-background-neutral-subtle-default')} 0
-  );
-  border-radius: ${cssVar('border-radius-full')};
-
-  &::before,
-  &::after {
-    position: absolute;
-    content: '';
-    border-radius: ${cssVar('border-radius-full')};
-  }
-
-  &::before {
-    inset: ${cssVar('dimension-space-50')};
-    background-color: ${cssVar('color-surface-default')};
-  }
-
-  &::after {
-    top: 50%;
-    left: 50%;
-    width: ${cssVar('dimension-width-75')};
-    height: ${cssVar('dimension-width-75')};
-    background-color: ${({ $tone }) => METRIC_TONE_COLORS[$tone]};
-    transform: translate(-50%, -50%);
-  }
-`;
-
-PercentageRing.displayName = 'PercentageRing';
 
 const ProjectsPageContent = styled(Layout.PageContent)`
   min-width: 0;
@@ -1265,188 +1196,6 @@ const ProjectsPageContent = styled(Layout.PageContent)`
 `;
 
 ProjectsPageContent.displayName = 'ProjectsPageContent';
-
-const ProjectsTableCard = styled(Card)`
-  height: auto;
-  min-width: 0;
-  width: 100%;
-  overflow: hidden;
-`;
-
-ProjectsTableCard.displayName = 'ProjectsTableCard';
-
-const TableScroller = styled.div`
-  display: block;
-  min-width: 0;
-  max-width: 100%;
-  width: 100%;
-  overflow-x: auto;
-  overscroll-behavior-x: contain;
-
-  &[data-is-scrolled='true'] .project-column {
-    box-shadow: 10px 0 14px -12px ${cssVar('bottom-scroll-colors-shadow-gradient')};
-  }
-`;
-
-TableScroller.displayName = 'TableScroller';
-
-const CompactProjectsTable = styled(Table)`
-  --favorite-column-width: 3rem;
-  --github-column-width: 3.5rem;
-  --project-column-width: 18rem;
-  --metric-column-width: 9rem;
-  --analysis-column-width: 11rem;
-
-  min-width: 72rem;
-  width: 100%;
-  border-radius: 0;
-
-  thead th {
-    background-color: ${cssVar('color-surface-subtle')};
-  }
-
-  thead th > button [aria-hidden='true'] {
-    font-size: ${cssVar('font-size-10')};
-  }
-
-  th,
-  td {
-    height: calc(
-      ${cssVar('table-sizes-row-min-width-default')} - ${cssVar('border-width-default')}
-    );
-    min-height: calc(
-      ${cssVar('table-sizes-row-min-width-default')} - ${cssVar('border-width-default')}
-    );
-    padding: ${cssVar('dimension-space-75')} ${cssVar('dimension-space-150')};
-  }
-
-  .project-column {
-    position: sticky;
-    left: calc(var(--favorite-column-width) + var(--github-column-width));
-    z-index: 2;
-
-    min-width: 0;
-    overflow: hidden;
-    justify-content: flex-start;
-    padding-left: ${cssVar('dimension-space-50')};
-  }
-
-  .project-column > div,
-  .project-column > div > a,
-  .project-column > div > span {
-    min-width: 0;
-    max-width: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-
-  .github-column {
-    position: sticky;
-    left: var(--favorite-column-width);
-    z-index: 2;
-
-    justify-content: flex-start;
-    padding-right: ${cssVar('dimension-space-50')};
-  }
-
-  .favorite-column {
-    position: sticky;
-    left: 0;
-    z-index: 2;
-
-    justify-content: center;
-    padding-inline: ${cssVar('dimension-space-50')};
-  }
-
-  tbody .favorite-column,
-  tbody .github-column,
-  tbody .project-column {
-    background-color: ${cssVar('color-surface-default')};
-  }
-
-  tbody tr:hover:not(.selected) .favorite-column,
-  tbody tr:hover:not(.selected) .github-column,
-  tbody tr:hover:not(.selected) .project-column {
-    background-color: ${cssVar('issue-row-colors-background-hover')};
-  }
-
-  tbody tr.selected .favorite-column,
-  tbody tr.selected .github-column,
-  tbody tr.selected .project-column {
-    background-color: ${cssVar('issue-row-colors-background-selected')};
-  }
-
-  tbody tr:hover.selected .favorite-column,
-  tbody tr:hover.selected .github-column,
-  tbody tr:hover.selected .project-column {
-    background-color: ${cssVar('issue-row-colors-background-selected-hover')};
-  }
-
-  thead .favorite-column,
-  thead .github-column,
-  thead .project-column {
-    z-index: 3;
-  }
-
-  .gate-column {
-    justify-content: flex-start;
-  }
-
-  .metric-column {
-    min-width: 0;
-  }
-
-  .analysis-column {
-    white-space: nowrap;
-  }
-
-  .rating-column {
-    justify-content: flex-start;
-    color: ${cssVar('color-text-default')};
-  }
-
-  .actions-column {
-    justify-content: flex-end;
-  }
-
-  td:not(.project-column) {
-    font-variant-numeric: tabular-nums;
-  }
-
-  @media (max-width: 78rem) {
-    min-width: 52rem;
-
-    && {
-      grid-template-columns:
-        var(--favorite-column-width) var(--github-column-width) var(--project-column-width)
-        repeat(5, var(--metric-column-width)) min-content;
-    }
-
-    .analysis-column,
-    .dependency-column,
-    .maintainability-column {
-      display: none;
-    }
-  }
-
-  @media (max-width: 55rem) {
-    min-width: 40rem;
-
-    && {
-      grid-template-columns:
-        var(--favorite-column-width) var(--github-column-width) var(--project-column-width)
-        repeat(3, var(--metric-column-width)) min-content;
-    }
-
-    .duplications-column,
-    .reliability-column {
-      display: none;
-    }
-  }
-`;
-
-CompactProjectsTable.displayName = 'CompactProjectsTable';
 
 const ProjectEmptyState = styled(EmptyState)`
   align-self: center;
