@@ -40,7 +40,7 @@
           "maxHeight": {
             "default": {
               "$type": "sizing",
-              "$value": "600px"
+              "$value": "400px"
             }
           }
         }
