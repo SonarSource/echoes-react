@@ -56,6 +56,7 @@ export { IconDash } from './IconDash';
 export { IconDashboard } from './IconDashboard';
 export { IconDatabase } from './IconDatabase';
 export { IconDataTable } from './IconDataTable';
+export { IconDataUsage } from './IconDataUsage';
 export { IconDelete } from './IconDelete';
 export { IconDependency } from './IconDependency';
 export { IconDependencyRisk } from './IconDependencyRisk';
