@@ -29,7 +29,6 @@ import {
   PromotedSectionVariety,
 } from '../../src';
 import { basicWrapperDecorator } from '../helpers/BasicWrapper';
-import { FishtankIllustration } from '../helpers/FishtankIllustration';
 
 const meta: Meta<typeof PromotedSection> = {
   args: {
@@ -106,14 +105,6 @@ export const Dismissable: Story = {
   render,
 };
 
-export const WithIllustration: Story = {
-  args: {
-    illustration: <FishtankIllustration />,
-  },
-
-  render,
-};
-
 export const WithButtonAction: Story = {
   args: {
     actions: <Button>Try feature</Button>,
@@ -152,7 +143,6 @@ export const Everything: Story = {
     ),
     badgeText: 'Awesome badge text!',
     onDismiss: () => undefined,
-    illustration: <FishtankIllustration />,
     variety: PromotedSectionVariety.Highlight,
   },
 
