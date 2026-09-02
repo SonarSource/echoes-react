@@ -60,12 +60,24 @@ export const Fancy: Story = {
   args: {
     selected: 'b',
     options: [
-      { label: 'Bugs', value: 'a', iconLeft: <IconBug /> },
-      { label: 'With suffix', value: 'b', suffix: <IconBell color="echoes-color-icon-danger" /> },
-      { label: '<= both =>', value: 'c', iconLeft: <IconCheck />, suffix: <IconCalendar /> },
+      { label: 'Bugs', value: 'a', iconLeft: <IconBug />, tooltip: 'This is a bug' },
+      {
+        label: 'With suffix',
+        value: 'b',
+        suffix: <IconBell color="echoes-color-icon-danger" />,
+        tooltip: 'This has a suffix',
+      },
+      {
+        label: '<= both =>',
+        value: 'c',
+        iconLeft: <IconCheck />,
+        suffix: <IconCalendar />,
+        tooltip: 'This is has two icons!',
+      },
       {
         label: '4 4 4',
         value: 'd',
+        tooltip: 'This is just a label',
       },
     ],
   },

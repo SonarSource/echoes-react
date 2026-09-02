@@ -58,6 +58,18 @@ describe('RadioButtonGroup', () => {
 
     expect(onChange).not.toHaveBeenCalled();
   });
+
+  it('should show a tooltip when hovering an option that has one', async () => {
+    const { user } = renderToggleButtonGroup({
+      options: [...DEFAULT_OPTIONS, { label: 'd', tooltip: 'd tooltip', value: '4' }],
+    });
+
+    expect(screen.queryByRole('tooltip', { name: 'd tooltip' })).not.toBeInTheDocument();
+
+    await user.hover(screen.getByText('d'));
+
+    expect(await screen.findByRole('tooltip', { name: 'd tooltip' })).toBeInTheDocument();
+  });
 });
 
 function renderToggleButtonGroup(overrides: Partial<ToggleButtonGroupProps> = {}) {
