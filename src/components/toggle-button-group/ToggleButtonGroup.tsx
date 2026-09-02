@@ -23,6 +23,7 @@ import * as RadixToggleGroup from '@radix-ui/react-toggle-group';
 import { forwardRef, ReactNode, useCallback } from 'react';
 
 import { cssVar } from '~utils/design-tokens';
+import { Tooltip } from '../tooltip';
 
 interface ToggleOption {
   label: string;
@@ -30,6 +31,7 @@ interface ToggleOption {
 
   iconLeft?: ReactNode;
   suffix?: ReactNode;
+  tooltip?: string;
 }
 
 export interface ToggleButtonGroupProps {
@@ -90,15 +92,17 @@ ToggleButtonGroup.displayName = 'ToggleButtonGroup';
 interface ToggleButtonItemProps extends ToggleOption {}
 
 function ToggleButtonItem(props: ToggleButtonItemProps) {
-  const { value, label, iconLeft, suffix } = props;
+  const { value, label, iconLeft, suffix, tooltip } = props;
 
   return (
     <StyledItem value={value}>
-      <StyledItemInner>
-        {iconLeft}
-        <StyledItemLabel data-text={label}>{label}</StyledItemLabel>
-        {suffix}
-      </StyledItemInner>
+      <Tooltip content={tooltip}>
+        <StyledItemInner>
+          {iconLeft}
+          <StyledItemLabel data-text={label}>{label}</StyledItemLabel>
+          {suffix}
+        </StyledItemInner>
+      </Tooltip>
     </StyledItem>
   );
 }
