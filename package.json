@@ -112,7 +112,7 @@
     "eslint-plugin-react-hooks": "4.6.2",
     "eslint-plugin-testing-library": "6.5.0",
     "jest": "30.4.2",
-    "jest-axe": "10.0.0",
+    "jest-axe": "11.0.0",
     "jest-environment-jsdom": "30.4.1",
     "prettier": "3.9.6",
     "react": "19.2.7",
