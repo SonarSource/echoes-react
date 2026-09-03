@@ -20,7 +20,7 @@
 
 import styled from '@emotion/styled';
 import * as RadixToggleGroup from '@radix-ui/react-toggle-group';
-import { forwardRef, ReactNode, useCallback } from 'react';
+import { ReactNode, Ref, useCallback } from 'react';
 
 import { cssVar } from '~utils/design-tokens';
 import { Tooltip } from '../tooltip';
@@ -56,36 +56,36 @@ export interface ToggleButtonGroupProps {
    * The currently selected value in the toggle button group.
    */
   selected: string;
+
+  ref?: Ref<HTMLDivElement>;
 }
 
-export const ToggleButtonGroup = forwardRef<HTMLDivElement, ToggleButtonGroupProps>(
-  (props, ref) => {
-    const { isDisabled = false, onChange, options, selected, ...additionalProps } = props;
+export function ToggleButtonGroup(props: Readonly<ToggleButtonGroupProps>) {
+  const { isDisabled = false, onChange, options, ref, selected, ...additionalProps } = props;
 
-    const handleChange = useCallback(
-      (value: string) => {
-        if (value) {
-          onChange(value);
-        }
-      },
-      [onChange],
-    );
+  const handleChange = useCallback(
+    (value: string) => {
+      if (value) {
+        onChange(value);
+      }
+    },
+    [onChange],
+  );
 
-    return (
-      <StyledRoot
-        {...additionalProps}
-        disabled={isDisabled}
-        onValueChange={handleChange}
-        ref={ref}
-        type="single"
-        value={selected}>
-        {options.map((option) => (
-          <ToggleButtonItem key={option.value} {...option} />
-        ))}
-      </StyledRoot>
-    );
-  },
-);
+  return (
+    <StyledRoot
+      {...additionalProps}
+      disabled={isDisabled}
+      onValueChange={handleChange}
+      ref={ref}
+      type="single"
+      value={selected}>
+      {options.map((option) => (
+        <ToggleButtonItem key={option.value} {...option} />
+      ))}
+    </StyledRoot>
+  );
+}
 
 ToggleButtonGroup.displayName = 'ToggleButtonGroup';
 
