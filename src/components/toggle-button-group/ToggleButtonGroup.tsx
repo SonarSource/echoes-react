@@ -22,6 +22,7 @@ import styled from '@emotion/styled';
 import * as RadixToggleGroup from '@radix-ui/react-toggle-group';
 import { ReactNode, Ref, useCallback } from 'react';
 
+import { TextNode } from '~types/utils';
 import { cssVar } from '~utils/design-tokens';
 import { Tooltip } from '../tooltip';
 
@@ -31,7 +32,7 @@ interface ToggleOption {
 
   iconLeft?: ReactNode;
   suffix?: ReactNode;
-  tooltip?: string;
+  tooltip?: TextNode;
 }
 
 export interface ToggleButtonGroupProps {
