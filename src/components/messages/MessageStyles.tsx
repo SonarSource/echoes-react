@@ -28,7 +28,7 @@ export const MESSAGE_VARIETY_ICON = {
   [MessageVariety.Danger]: <IconError color="echoes-color-icon-danger" />,
   [MessageVariety.Warning]: <IconWarning color="echoes-color-icon-warning" />,
   [MessageVariety.Success]: <IconCheckCircle color="echoes-color-icon-success" />,
-  [MessageVariety.Discover]: <IconRocket color="echoes-color-icon-emphasis" />,
+  [MessageVariety.Discover]: <IconRocket color="echoes-color-icon-emphasis" isFilled />,
 };
 
 export const MESSAGE_CALLOUT_VARIETY_STYLE = {

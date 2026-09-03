@@ -42,7 +42,7 @@ function renderIcons(regexp?: RegExp) {
           <IconName>{(Icon as React.FC).displayName}</IconName>
         </IconTile>
 
-        {['IconDot', 'IconHome', 'IconRecommended', 'IconStar'].includes(
+        {['IconDot', 'IconHome', 'IconRecommended', 'IconRocket', 'IconStar'].includes(
           (Icon as React.FC).displayName ?? '',
         ) && (
           <IconTile key={`${(Icon as React.FC).displayName}} isFilled`}>
