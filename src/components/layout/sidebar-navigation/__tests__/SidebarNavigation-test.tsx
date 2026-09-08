@@ -52,6 +52,18 @@ it('should set the layout context correctly', () => {
   expect(setIsInLayout).toHaveBeenCalledWith(false);
 });
 
+it('should make the navigation inert while it is closed', () => {
+  setupSidebarNavigation({ isOpen: false });
+
+  expect(screen.getByTestId('sidebar-navigation-wrapper')).toHaveAttribute('inert');
+});
+
+it('should keep the navigation interactive while it is open', () => {
+  setupSidebarNavigation({ isOpen: true });
+
+  expect(screen.getByTestId('sidebar-navigation-wrapper')).not.toHaveAttribute('inert');
+});
+
 it('should snap the undocked sidebar width open without a transition', () => {
   setupSidebarNavigation();
   const sidebarNavigationContainer = screen.getByTestId('sidebar-navigation-container');

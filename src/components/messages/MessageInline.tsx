@@ -84,19 +84,19 @@ MessageInline.displayName = 'MessageInline';
 
 const MESSAGE_INLINE_VARIETY_STYLE = {
   [MessageVariety.Info]: {
-    '--message-text-color': cssVar('color-text-info'),
+    '--message-text-color': cssVar('message-colors-information-foreground'),
   },
   [MessageVariety.Danger]: {
-    '--message-text-color': cssVar('color-text-danger'),
+    '--message-text-color': cssVar('message-colors-danger-foreground'),
   },
   [MessageVariety.Warning]: {
-    '--message-text-color': cssVar('color-text-warning'),
+    '--message-text-color': cssVar('message-colors-warning-foreground'),
   },
   [MessageVariety.Success]: {
-    '--message-text-color': cssVar('color-text-success'),
+    '--message-text-color': cssVar('message-colors-success-foreground'),
   },
   [MessageVariety.Discover]: {
-    '--message-text-color': cssVar('color-text-accent'),
+    '--message-text-color': cssVar('promoted-feature-colors-foreground'),
   },
 };
 
@@ -109,6 +109,7 @@ const MessageInlineContainer = styled.span<Pick<MessageInlineProps, 'size'>>`
   display: inline-flex;
   align-items: start;
   gap: ${cssVar('dimension-space-50')};
+  color: var(--message-text-color);
 
   ${({ size }) => (size ? `font: ${MESSAGE_INLINE_FONT[size]};` : '')}
 `;

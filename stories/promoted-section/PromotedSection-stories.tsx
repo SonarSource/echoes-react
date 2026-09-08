@@ -89,6 +89,17 @@ export const Highlight: Story = {
   render,
 };
 
+export const Feature: Story = {
+  args: {
+    badgeText: 'AI',
+    headerText: 'AI CodeFix is available',
+    text: 'Generate a suggested fix for supported issues.',
+    variety: PromotedSectionVariety.Feature,
+  },
+
+  render,
+};
+
 export const HighlightWithBadge: Story = {
   args: {
     badgeText: 'Beta',

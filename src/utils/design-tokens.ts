@@ -23,8 +23,10 @@ import designTokensBase from '~generated/design-tokens-base.json';
 import { DesignTokens, DesignTokensBase, WithoutEchoesPrefix } from '~types/design-tokens';
 
 export type EchoesDesignTokens = WithoutEchoesPrefix<DesignTokens>;
-export type EchoesCSSVarString = `var(--echoes-${EchoesDesignTokens})`;
-export type EchoesCSSVarStringWithFallback = `var(--echoes-${EchoesDesignTokens}, ${string})`;
+// Keep token-name validation on the cssVar input. Expanding every token into the return
+// template becomes too complex for TypeScript as the public token contract grows.
+export type EchoesCSSVarString = `var(--echoes-${string})`;
+export type EchoesCSSVarStringWithFallback = `var(--echoes-${string}, ${string})`;
 
 /**
  * Type-safe helper function to create CSS variable references for echoes design tokens.
