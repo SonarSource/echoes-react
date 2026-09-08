@@ -72,6 +72,7 @@ DropdownMenuSubMenu.displayName = 'DropdownMenuSubMenu';
 const RADIX_SUBMENU_PANEL_VERTICAL_OFFSET = '4px';
 
 const StyledDropdownMenuSubContent = styled(styleDropdownMenuOverlay(radixDropdownMenu.SubContent))`
+  box-shadow: ${cssVar('shadow-overlay')};
   margin-left: ${cssVar('offset-dropdown-submenu-panel-horizontal')};
   margin-top: calc(
     ${cssVar('offset-dropdown-submenu-panel-vertical')} - ${RADIX_SUBMENU_PANEL_VERTICAL_OFFSET}

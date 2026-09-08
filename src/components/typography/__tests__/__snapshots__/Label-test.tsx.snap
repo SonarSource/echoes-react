@@ -2,7 +2,7 @@
 
 exports[`renders correctly 1`] = `
 .emotion-0 {
-  font: var(--echoes-typography-others-label);
+  font: var(--echoes-typography-others-label-medium);
   color: var(--echoes-color-text-default);
 }
 
@@ -27,7 +27,7 @@ exports[`renders correctly 1`] = `
 
 exports[`renders correctly with isSubtle 1`] = `
 .emotion-0 {
-  font: var(--echoes-typography-others-label);
+  font: var(--echoes-typography-others-label-medium);
   color: var(--echoes-color-text-subtle);
 }
 
