@@ -87,6 +87,7 @@ export function SidebarNavigation(props: Readonly<PropsWithChildren<SidebarNavig
         aria-hidden={!sidebar.isOpen}
         aria-label={ariaLabel ?? defaultAriaLabel}
         data-testid="sidebar-navigation-wrapper"
+        inert={!sidebar.isOpen}
         onBlur={(event) => {
           sidebar.handleInteractionZoneBlur(event.relatedTarget);
         }}
@@ -154,7 +155,7 @@ const SidebarNavigationWrapper = styled.nav`
   }
 
   [data-sidebar-docked='false'][data-sidebar-open='true'] & {
-    box-shadow: ${cssVar('box-shadow-x-large')};
+    box-shadow: ${cssVar('shadow-over-data')};
   }
 `;
 

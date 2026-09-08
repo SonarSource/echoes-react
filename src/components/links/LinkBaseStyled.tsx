@@ -26,20 +26,20 @@ import { cssVar } from '~utils/design-tokens';
 
 const LinkBaseStyledHighlight = {
   [LinkHighlight.Accent]: `
-    --color: ${cssVar('color-text-accent')};
-    --hover: ${cssVar('color-text-link-hover')};
+    --color: ${cssVar('link-colors-action-default')};
+    --hover: ${cssVar('link-colors-action-hover')};
   `,
   [LinkHighlight.Default]: `
-    --color: ${cssVar('color-text-default')};
-    --hover: ${cssVar('color-text-link-hover')};
+    --color: ${cssVar('link-colors-default-default')};
+    --hover: ${cssVar('link-colors-default-hover')};
   `,
   [LinkHighlight.Subtle]: `
-    --color: ${cssVar('color-text-subtle')};
-    --hover: ${cssVar('color-text-link-hover')};
+    --color: ${cssVar('link-colors-subtle-default')};
+    --hover: ${cssVar('link-colors-subtle-hover')};
   `,
   [LinkHighlight.CurrentColor]: `
     --color: 'currentColor';
-    --hover: ${cssVar('color-text-link-hover')};
+    --hover: ${cssVar('link-colors-default-hover')};
   `,
 };
 
@@ -73,7 +73,7 @@ export const LinkBaseStyled = styled(LinkBase)`
   }
 
   &:focus-visible {
-    outline: ${cssVar('color-focus-default')} solid ${cssVar('focus-border-width-default')};
+    outline: ${cssVar('link-colors-focus-ring')} solid ${cssVar('focus-border-width-default')};
     outline-offset: ${cssVar('focus-border-offset-default')};
     border-radius: ${cssVar('border-radius-200')};
   }

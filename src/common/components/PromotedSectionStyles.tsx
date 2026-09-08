@@ -22,19 +22,28 @@ import styled from '@emotion/styled';
 import { cssVar } from '~utils/design-tokens';
 
 export enum PromotedSectionVariety {
+  /** Explicit AI, upgrade, upsell, pricing, or feature promotion. */
+  Feature = 'feature',
+  /** Frozen legacy highlighted treatment pending consumer audit. */
   Highlight = 'highlight',
+  /** Neutral promotion without feature-color emphasis. */
   Neutral = 'neutral',
 }
 
 export const PROMOTED_SECTION_STYLES = {
+  [PromotedSectionVariety.Feature]: {
+    '--promoted-section-background-color': cssVar('promoted-feature-colors-background'),
+    '--promoted-section-border': `${cssVar('border-width-default')} solid ${cssVar('promoted-feature-colors-border')}`,
+  },
+
   [PromotedSectionVariety.Highlight]: {
-    '--promoted-section-background-color': cssVar('color-background-emphasis-weak-default'),
-    '--promoted-section-border': `1px solid ${cssVar('color-border-emphasis-weak')}`,
+    '--promoted-section-background-color': cssVar('promoted-section-colors-highlight-background'),
+    '--promoted-section-border': `${cssVar('border-width-default')} solid ${cssVar('promoted-section-colors-highlight-border')}`,
   },
 
   [PromotedSectionVariety.Neutral]: {
-    '--promoted-section-background-color': cssVar('color-surface-default'),
-    '--promoted-section-border': `1px solid ${cssVar('color-border-weak')}`,
+    '--promoted-section-background-color': cssVar('promoted-section-colors-neutral-background'),
+    '--promoted-section-border': `${cssVar('border-width-default')} solid ${cssVar('promoted-section-colors-neutral-border')}`,
   },
 };
 
@@ -42,7 +51,7 @@ export const PromotedSectionMainStyles = styled.div`
   background-color: var(--promoted-section-background-color);
   border: var(--promoted-section-border);
   border-radius: ${cssVar('border-radius-400')};
-  box-shadow: ${cssVar('box-shadow-xsmall')};
+  box-shadow: ${cssVar('shadow-resting')};
   padding: ${cssVar('dimension-space-200')};
 `;
 PromotedSectionMainStyles.displayName = 'PromotedSectionMainStyles';
