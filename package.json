@@ -72,7 +72,7 @@
     "@emotion/sheet": "1.4.0",
     "@emotion/styled": "11.14.1",
     "@emotion/utils": "1.4.2",
-    "@figma/code-connect": "1.4.8",
+    "@figma/code-connect": "2.0.0",
     "@formatjs/cli": "6.16.11",
     "@rolldown/plugin-babel": "0.2.3",
     "@storybook/addon-a11y": "10.2.13",
