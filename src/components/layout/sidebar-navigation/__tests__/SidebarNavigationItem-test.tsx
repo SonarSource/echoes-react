@@ -20,9 +20,9 @@
 
 import { matchers } from '@emotion/jest';
 import { screen } from '@testing-library/react';
-import { createRef, type Ref } from 'react';
+import { createRef, forwardRef, type Ref } from 'react';
 import { renderWithMemoryRouter } from '~common/helpers/test-utils';
-import { IconBranch, IconClock } from '../../../icons';
+import { IconBranch, type IconFilledProps } from '../../../icons';
 import { SidebarNavigationItem, SidebarNavigationItemProps } from '../SidebarNavigationItem';
 
 expect.extend(matchers);
@@ -50,6 +50,12 @@ it('should forward refs to the underlying link', () => {
   setupSidebarNavigationItem({}, ref);
 
   expect(ref.current).toBe(screen.getByRole('link', { name: 'Test Item' }));
+});
+
+it('should render without an icon', () => {
+  setupSidebarNavigationItem({ Icon: undefined });
+
+  expect(screen.queryByTestId('sidebar-navigation-leading-icon')).not.toBeInTheDocument();
 });
 
 describe('ellipsis behavior', () => {
@@ -143,9 +149,15 @@ function setupSidebarNavigationItem(
 ) {
   return renderWithMemoryRouter(
     <ul>
-      <SidebarNavigationItem Icon={IconClock} ref={ref} to="/second" {...props}>
+      <SidebarNavigationItem Icon={TestLeadingIcon} ref={ref} to="/second" {...props}>
         Test Item
       </SidebarNavigationItem>
     </ul>,
   );
 }
+
+const TestLeadingIcon = forwardRef<HTMLSpanElement, IconFilledProps>(({ className }, ref) => (
+  <span className={className} data-testid="sidebar-navigation-leading-icon" ref={ref} />
+));
+
+TestLeadingIcon.displayName = 'TestLeadingIcon';
