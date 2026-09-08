@@ -4770,7 +4770,7 @@ __metadata:
     react-joyride: "npm:2.9.3"
     react-router-dom: "npm:6.30.4"
     rollup-plugin-license: "npm:3.7.1"
-    sonarqube-scanner: "npm:4.3.8"
+    sonarqube-scanner: "npm:5.0.0"
     sonner: "npm:2.0.7"
     storybook: "npm:10.2.13"
     style-dictionary: "npm:5.5.0"
@@ -5962,10 +5962,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"adm-zip@npm:0.5.17":
-  version: 0.5.17
-  resolution: "adm-zip@npm:0.5.17"
-  checksum: 10/035ea96d04376c290bed3401b67d1a2a2654996450ec9056dccc0fb194cb6a956bf7ad388d2648b0e1775338a377805601deca4bcd689658dc1d39247a1e9bdd
+"adm-zip@npm:0.6.0":
+  version: 0.6.0
+  resolution: "adm-zip@npm:0.6.0"
+  checksum: 10/6a49ab39055d8f716958d3a2055491ab86fe3359c4afeed9b14bbce78fb847bcd3cbaa0ff4921aaa19824aaa29d06691def1f53263db5224d06c068f922c5ba2
   languageName: node
   linkType: hard
 
@@ -7007,10 +7007,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"commander@npm:14.0.3":
-  version: 14.0.3
-  resolution: "commander@npm:14.0.3"
-  checksum: 10/dfa9ebe2a433d277de5cb0252d23b10a543d245d892db858d23b516336a835c50fd4f52bee4cd13c705cc8acb6f03dc632c73dd806f7d06d3353eb09953dd17a
+"commander@npm:15.0.0":
+  version: 15.0.0
+  resolution: "commander@npm:15.0.0"
+  checksum: 10/a5dab1f5c3f1bf2ea19e8089f650f7fb65c3ed88e13ddde62e490d34b20057bcb2cd3de5b6ddc8aae93286083f8256ca0b812df842f574cbebe0e40f5b2f98f7
   languageName: node
   linkType: hard
 
@@ -12451,12 +12451,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"semver@npm:7.8.4":
-  version: 7.8.4
-  resolution: "semver@npm:7.8.4"
+"semver@npm:7.8.5":
+  version: 7.8.5
+  resolution: "semver@npm:7.8.5"
   bin:
     semver: bin/semver.js
-  checksum: 10/a9c139031d4143932adfacfd2165d6489848c3b84c26d5fc2beef88c6d54c01191ef553e3f71049ccc47df85f0df30748907f84005f46f326095003171c5b673
+  checksum: 10/9b01d2ff11e6e4a4539b7ca3c5f280c8704cb397a28504469f2ed4f00ad2194748d756647362a9712fff30984d15772ab7f083108c2fb508e2096ae9e708f22c
   languageName: node
   linkType: hard
 
@@ -12651,24 +12651,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sonarqube-scanner@npm:4.3.8":
-  version: 4.3.8
-  resolution: "sonarqube-scanner@npm:4.3.8"
+"sonarqube-scanner@npm:5.0.0":
+  version: 5.0.0
+  resolution: "sonarqube-scanner@npm:5.0.0"
   dependencies:
-    adm-zip: "npm:0.5.17"
-    axios: "npm:1.17.0"
-    commander: "npm:14.0.3"
+    adm-zip: "npm:0.6.0"
+    axios: "npm:1.18.1"
+    commander: "npm:15.0.0"
     hpagent: "npm:1.2.0"
     node-forge: "npm:1.4.0"
     properties-file: "npm:5.0.5"
     proxy-from-env: "npm:2.1.0"
-    semver: "npm:7.8.4"
+    semver: "npm:7.8.5"
     slugify: "npm:1.6.9"
     tar-stream: "npm:3.2.0"
   bin:
-    sonar: bin/sonar-scanner.js
-    sonar-scanner: bin/sonar-scanner.js
-  checksum: 10/96081ba1af968dc9a9a4dc1ab301040dff7cd3cce0b71acd8fd2bcac3f3304e17f763e0c93fb0578e179230d5f26e09b5957b65ddf255d165a837231df645912
+    sonar-scanner-npm: bin/sonar-scanner.js
+  checksum: 10/9d40ff771cef8f038576f4200bf1b46bacc18a1f65336dd545256150ff0c1ea54bd9c22a264cd56f26ed80e6a1cb7e2fc8fe7272a3d153ecebbec91a7ffec415
   languageName: node
   linkType: hard
 
