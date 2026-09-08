@@ -60,7 +60,7 @@
       "borderRadius": {
         "default": {
           "$type": "borderRadius",
-          "$value": "{echoes.borderRadius.400}"
+          "$value": "{echoes.borderRadius.300}"
         }
       },
       "sizes": {
