@@ -20,7 +20,6 @@
 
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Badge, GroupAlignment, IconCheck, SelectionCards } from '../src';
-import { FishtankIllustration } from './helpers/FishtankIllustration';
 
 const meta: Meta<typeof SelectionCards> = {
   component: SelectionCards,
@@ -52,17 +51,6 @@ export const Complete: Story = {
       { label: 'Third option is disabled', value: 'c', isDisabled: true },
       {
         ariaLabel: 'Blabla',
-        illustration: (
-          <div
-            style={{
-              backgroundColor: '#aee1ff',
-              height: 80,
-              width: '100%',
-              textAlign: 'center',
-            }}>
-            <FishtankIllustration />
-          </div>
-        ),
         label: (
           <div
             style={{
@@ -72,7 +60,7 @@ export const Complete: Story = {
               gap: 8,
             }}>
             <IconCheck />
-            <span>This is a complicated Selection Card that has an illustration</span>
+            <span>This is a complicated Selection Card</span>
             <Badge variety="highlight">Fancy</Badge>
           </div>
         ),
