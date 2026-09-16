@@ -58,6 +58,12 @@ it.each([
   expect(container).toMatchSnapshot();
 });
 
+it('applies balanced text wrapping', () => {
+  setupHeading();
+
+  expect(screen.getByRole('heading')).toHaveStyle({ textWrap: 'balance' });
+});
+
 function setupHeading(
   { as, children, ...otherProps }: Partial<ComponentProps<typeof Heading>> = {
     as: 'h1',

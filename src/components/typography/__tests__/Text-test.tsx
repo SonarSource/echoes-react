@@ -61,6 +61,13 @@ it('allows to override the color', () => {
   expect(screen.getByText(text)).toHaveStyle(`color: ${cssVar('color-text-danger')}`);
 });
 
+it('applies pretty text wrapping', () => {
+  const text = 'hi there';
+  setupText({ children: text });
+
+  expect(screen.getByText(text)).toHaveStyle({ textWrap: 'pretty' });
+});
+
 function setupText(
   { children, ...otherProps }: Partial<ComponentProps<typeof Text>> = {
     children: 'Text goes here',
