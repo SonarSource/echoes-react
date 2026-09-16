@@ -141,18 +141,16 @@ describe('EmptyState', () => {
       display: 'flex',
       flexDirection: 'column',
       gap: cssVar('dimension-space-200'),
-      maxWidth: cssVar('sizes-typography-max-width-default'),
+      maxWidth: '40rem',
       textAlign: 'center',
     });
 
     expect(title).toHaveStyle({
-      maxWidth: cssVar('dimension-width-5000'),
-      textWrap: 'balance',
+      maxWidth: '25rem',
     });
 
     expect(description).toHaveStyle({
-      maxWidth: cssVar('sizes-breadcrumbs-max-width-default'),
-      textWrap: 'pretty',
+      maxWidth: '300px',
     });
 
     expect(graphicWrapper).toHaveStyle({
