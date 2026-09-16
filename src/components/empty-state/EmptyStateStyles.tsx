@@ -19,6 +19,7 @@
  */
 
 import styled from '@emotion/styled';
+import { Heading, Text } from '../typography';
 import { cssVar } from '~utils/design-tokens';
 
 export const EmptyStateRoot = styled.div`
@@ -26,7 +27,7 @@ export const EmptyStateRoot = styled.div`
   flex-direction: column;
   align-items: center;
   gap: ${cssVar('dimension-space-200')};
-  max-width: ${cssVar('dimension-width-5000')};
+  max-width: ${cssVar('sizes-typography-max-width-default')};
 
   text-align: center;
 `;
@@ -74,6 +75,18 @@ export const EmptyStateTextGroup = styled.div`
   gap: ${cssVar('dimension-space-75')};
 `;
 EmptyStateTextGroup.displayName = 'EmptyStateTextGroup';
+
+export const EmptyStateTitle = styled(Heading)`
+  max-width: ${cssVar('dimension-width-5000')};
+  text-wrap: balance;
+`;
+EmptyStateTitle.displayName = 'EmptyStateTitle';
+
+export const EmptyStateDescription = styled(Text)`
+  max-width: ${cssVar('sizes-breadcrumbs-max-width-default')};
+  text-wrap: pretty;
+`;
+EmptyStateDescription.displayName = 'EmptyStateDescription';
 
 export const EmptyStateActionsGroup = styled.div`
   display: flex;
