@@ -128,13 +128,31 @@ describe('EmptyState', () => {
     const root = screen.getByTestId('empty-state');
     const graphicContent = screen.getByTestId('empty-state-graphic-content');
     const graphicWrapper = screen.getByTestId('empty-state-graphic-wrapper');
+    const title = screen.getByRole('heading', { level: 2, name: 'No releases yet' });
+    const description = screen.getByText(
+      'Versions will appear here once the first release is available.',
+      {
+        selector: 'p',
+      },
+    );
 
     expect(root).toHaveStyle({
       alignItems: 'center',
       display: 'flex',
       flexDirection: 'column',
       gap: cssVar('dimension-space-200'),
+      maxWidth: cssVar('sizes-typography-max-width-default'),
       textAlign: 'center',
+    });
+
+    expect(title).toHaveStyle({
+      maxWidth: cssVar('dimension-width-5000'),
+      textWrap: 'balance',
+    });
+
+    expect(description).toHaveStyle({
+      maxWidth: cssVar('sizes-breadcrumbs-max-width-default'),
+      textWrap: 'pretty',
     });
 
     expect(graphicWrapper).toHaveStyle({
