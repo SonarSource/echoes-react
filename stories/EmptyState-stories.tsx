@@ -127,8 +127,6 @@ export const LongTextWrapping: Story = {
   args: {
     action: <Button variety={ButtonVariety.Primary}>Configure releases</Button>,
     graphic: <IconInfo />,
-    title:
-      'No versions have been released for this project yet, so there is no quality history, adoption trend, or release-by-release signal to review at the moment',
     text: 'Release history will appear here once your team starts publishing versions. Until then, you can configure your release workflow and review how version-based quality gate history will be presented to project members.',
   },
   render,
