@@ -27,7 +27,6 @@ export const EmptyStateRoot = styled.div`
   flex-direction: column;
   align-items: center;
   gap: ${cssVar('dimension-space-200')};
-  max-width: 40rem;
 
   text-align: center;
 `;
@@ -77,12 +76,12 @@ export const EmptyStateTextGroup = styled.div`
 EmptyStateTextGroup.displayName = 'EmptyStateTextGroup';
 
 export const EmptyStateTitle = styled(Heading)`
-  max-width: 25rem;
+  max-width: ${cssVar('dimension-width-5000')};
 `;
 EmptyStateTitle.displayName = 'EmptyStateTitle';
 
 export const EmptyStateDescription = styled(Text)`
-  max-width: 300px;
+  max-width: ${cssVar('dimension-width-5000')};
 `;
 EmptyStateDescription.displayName = 'EmptyStateDescription';
 
