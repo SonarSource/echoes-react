@@ -63,6 +63,7 @@ export const StyledHeading = styled.div<Required<Pick<HeadingProps, 'hasMarginBo
   color: ${cssVar('color-text-strong')};
   margin: 0;
   max-width: ${cssVar('sizes-typography-max-width-default')};
+  text-wrap: balance;
 
   ${({ hasMarginBottom, size }) =>
     hasMarginBottom ? `margin-bottom: ${bottomMarginByHeadingSize({ size })}` : ''}
