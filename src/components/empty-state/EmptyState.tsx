@@ -21,15 +21,13 @@
 import { type ReactNode, type Ref } from 'react';
 import { isDefined } from '~common/helpers/types';
 import type { TextNode } from '~types/utils';
-import { type HeadingProps, type HeadingSize } from '../typography';
+import { Heading, type HeadingProps, type HeadingSize, Text } from '../typography';
 import {
   EmptyStateActionsGroup,
-  EmptyStateDescription,
   EmptyStateGraphicContent,
   EmptyStateGraphicWrapper,
   EmptyStateRoot,
   EmptyStateTextGroup,
-  EmptyStateTitle,
 } from './EmptyStateStyles';
 
 export interface EmptyStateProps {
@@ -97,13 +95,13 @@ export function EmptyState(props: Readonly<EmptyStateProps>) {
       </EmptyStateGraphicWrapper>
 
       <EmptyStateTextGroup>
-        <EmptyStateTitle as={titleAs} hasMarginBottom={false} size={titleSize}>
+        <Heading as={titleAs} hasMarginBottom={false} size={titleSize}>
           {title}
-        </EmptyStateTitle>
+        </Heading>
 
-        <EmptyStateDescription as="p" isSubtle>
+        <Text as="p" isSubtle>
           {text}
-        </EmptyStateDescription>
+        </Text>
       </EmptyStateTextGroup>
 
       {(isDefined(action) || isDefined(link)) && (

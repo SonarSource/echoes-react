@@ -19,7 +19,6 @@
  */
 
 import styled from '@emotion/styled';
-import { Heading, Text } from '../typography';
 import { cssVar } from '~utils/design-tokens';
 
 export const EmptyStateRoot = styled.div`
@@ -75,12 +74,6 @@ export const EmptyStateTextGroup = styled.div`
   gap: ${cssVar('dimension-space-75')};
 `;
 EmptyStateTextGroup.displayName = 'EmptyStateTextGroup';
-
-export const EmptyStateTitle = styled(Heading)``;
-EmptyStateTitle.displayName = 'EmptyStateTitle';
-
-export const EmptyStateDescription = styled(Text)``;
-EmptyStateDescription.displayName = 'EmptyStateDescription';
 
 export const EmptyStateActionsGroup = styled.div`
   display: flex;
