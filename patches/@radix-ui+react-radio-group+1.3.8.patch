@@ -1,7 +1,7 @@
-diff --git a/dist/index.js b/dist/index.js
+diff --git a/node_modules/@radix-ui/react-radio-group/dist/index.js b/node_modules/@radix-ui/react-radio-group/dist/index.js
 index deae02992529c4daef1710bb7394a94edeea11f5..cb1ae63b7067854f3277ceb9a7cdb66735768e0e 100644
---- a/dist/index.js
-+++ b/dist/index.js
+--- a/node_modules/@radix-ui/react-radio-group/dist/index.js
++++ b/node_modules/@radix-ui/react-radio-group/dist/index.js
 @@ -78,10 +78,10 @@ var Radio = React.forwardRef(
        form,
        ...radioProps
@@ -25,10 +25,10 @@ index deae02992529c4daef1710bb7394a94edeea11f5..cb1ae63b7067854f3277ceb9a7cdb667
            bubbles: !hasConsumerStoppedPropagationRef.current,
            name,
            value,
-diff --git a/dist/index.mjs b/dist/index.mjs
+diff --git a/node_modules/@radix-ui/react-radio-group/dist/index.mjs b/node_modules/@radix-ui/react-radio-group/dist/index.mjs
 index 46bb67f279d7e0a06cb177ad6a8b3de12745d4a5..808c57a8f43de24c89df3cfa3cf6b0f582ddf8e6 100644
---- a/dist/index.mjs
-+++ b/dist/index.mjs
+--- a/node_modules/@radix-ui/react-radio-group/dist/index.mjs
++++ b/node_modules/@radix-ui/react-radio-group/dist/index.mjs
 @@ -37,10 +37,10 @@ var Radio = React.forwardRef(
        form,
        ...radioProps

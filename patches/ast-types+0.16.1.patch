@@ -1,7 +1,7 @@
-diff --git a/lib/main.d.ts b/lib/main.d.ts
+diff --git a/node_modules/ast-types/lib/main.d.ts b/node_modules/ast-types/lib/main.d.ts
 index 9b54fef0086ea0c99368d8a95f2476e5dcd6d9c1..56621cef43ad5f2b0bd3c05e8c1b4c756f52b69a 100644
---- a/lib/main.d.ts
-+++ b/lib/main.d.ts
+--- a/node_modules/ast-types/lib/main.d.ts
++++ b/node_modules/ast-types/lib/main.d.ts
 @@ -1,8 +1,8 @@
 -import { ASTNode, Type, AnyType, Field } from "./types";
 -import { NodePath } from "./node-path";
