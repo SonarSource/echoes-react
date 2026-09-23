@@ -21,7 +21,7 @@
 import { forwardRef } from 'react';
 import { IconMaterialWrapper, IconProps } from './IconWrapper';
 
-export const IconContainerScan = forwardRef<HTMLSpanElement, IconProps>((props, ref) => {
+export const IconContainer = forwardRef<HTMLSpanElement, IconProps>((props, ref) => {
   // This is Material Symbols' "package_2" icon
   return (
     <IconMaterialWrapper {...props} ref={ref}>
@@ -29,4 +29,4 @@ export const IconContainerScan = forwardRef<HTMLSpanElement, IconProps>((props, 
     </IconMaterialWrapper>
   );
 });
-IconContainerScan.displayName = 'IconContainerScan';
+IconContainer.displayName = 'IconContainer';
