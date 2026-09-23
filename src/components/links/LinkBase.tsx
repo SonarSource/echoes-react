@@ -19,8 +19,8 @@
  */
 
 import { ForwardedRef, forwardRef, MouseEvent, useCallback } from 'react';
-import { Link as RouterLink } from 'react-router-dom';
 import { isDefined } from '~common/helpers/types';
+import { useEchoesRouter } from '../echoes-router/EchoesRouterContext';
 import { isSonarLink } from '~common/helpers/url';
 import { LinkOpenInNewTabSuffix } from './LinkOpenInNewTabSuffix';
 import { isLinkAsButton, LinkProps } from './LinkTypes';
@@ -37,6 +37,8 @@ export const LinkBase = forwardRef<HTMLAnchorElement | HTMLButtonElement, LinkPr
       type = 'button',
       ...restProps
     } = props;
+
+    const { Link } = useEchoesRouter();
 
     const handleClick = useCallback(
       (event: MouseEvent<HTMLButtonElement | HTMLAnchorElement>) => {
@@ -76,7 +78,7 @@ export const LinkBase = forwardRef<HTMLAnchorElement | HTMLButtonElement, LinkPr
     const { download, to } = props;
 
     return (
-      <RouterLink
+      <Link
         {...(isDefined(download) ? { download, reloadDocument: true } : {})}
         // Everything above this line can be overridden by the `restProps` object
         {...restProps}
@@ -86,7 +88,7 @@ export const LinkBase = forwardRef<HTMLAnchorElement | HTMLButtonElement, LinkPr
         to={to}>
         {children}
         <LinkOpenInNewTabSuffix enableOpenInNewTab={enableOpenInNewTab} hasUnbreakableSpace />
-      </RouterLink>
+      </Link>
     );
   },
 );

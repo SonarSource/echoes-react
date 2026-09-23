@@ -21,7 +21,7 @@
 import styled from '@emotion/styled';
 import { type ReactNode, type Ref } from 'react';
 import { useIntl } from 'react-intl';
-import type { LinkProps } from 'react-router-dom';
+import { type EchoesTo } from '../../echoes-router/EchoesRouterTypes';
 import { LinkStandalone } from '../../links';
 
 import { cssVar } from '~utils/design-tokens';
@@ -36,12 +36,12 @@ export interface GlobalNavigationHomeProps {
   /** React ref forwarded to the root container */
   ref?: Ref<HTMLDivElement>;
   /** Whether the home link should force a full page reload */
-  reloadDocument?: NonNullable<LinkProps['reloadDocument']>;
+  reloadDocument?: boolean;
   /**
    * Target location for the home link.
    * @defaultValue '/'
    */
-  to?: LinkProps['to'];
+  to?: EchoesTo;
 }
 
 export function GlobalNavigationHome(props: Readonly<GlobalNavigationHomeProps>) {
