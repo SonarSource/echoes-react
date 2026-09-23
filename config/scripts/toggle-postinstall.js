@@ -45,8 +45,7 @@
  *     which removes the `postinstall` line from `package.json`.
  *   - `postpack` runs it with `--enable` right after, which puts the line back.
  * The published package has no install script at all, while `yarn install` in this repository
- * keeps applying the patches. The script is deleted rather than renamed (e.g. `_postinstall`)
- * so that npm 10.4+ does not run it when a consumer installs the package.
+ * keeps applying the patches.
  *
  * Both `yarn pack` and `npm pack` run these lifecycle scripts. The CI publishes with
  * `jf npm publish`, which relies on `npm pack`, so the published package is covered.
@@ -60,6 +59,27 @@
  *       tar -xzOf /tmp/echoes.tgz package/package.json | grep postinstall
  *   - If a pack fails between `prepack` and `postpack`, `package.json` stays modified locally.
  *     Restore it with `git checkout package.json`.
+ *
+ * Replacing this script with pinst
+ * --------------------------------
+ * pinst (https://github.com/typicode/pinst, by the author of Husky) does the same job and
+ * could replace this script entirely:
+ *   "postinstall": "patch-package",
+ *   "prepack": "pinst --disable",
+ *   "postpack": "pinst --enable"
+ * It exists because Yarn 2+ does not support the `prepare` hook, which is how npm and pnpm
+ * projects usually run dev-only setup. It is about 50 lines, has no dependencies, and is
+ * MIT-licensed.
+ *
+ * Differences with this script:
+ *   - pinst parses `package.json` as JSON and keeps its indentation, so it does not depend on
+ *     the exact text of the `postinstall` line or on the order of the scripts.
+ *   - pinst renames `postinstall` to `_postinstall` instead of deleting it, so the published
+ *     `package.json` still contains `"_postinstall": "patch-package"`. This is harmless: npm,
+ *     Yarn and pnpm do not run scripts with that name (verified with npm 11), and scanners
+ *     only look at `preinstall`, `install` and `postinstall`.
+ * To switch, add pinst as a devDependency (with its entry in `package.json.md`), update the
+ * `prepack` and `postpack` scripts above, and delete this file.
  */
 import fs from 'node:fs';
 import path from 'node:path';
