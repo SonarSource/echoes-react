@@ -10,11 +10,13 @@ A React implementation of Echoes, Sonar's Design System.
 
 ### Requirements
 
-This library requires to be installed with **Yarn** to work properly due to a patch applied to one of our dependencies. Using npm or other package managers is not currently supported.
+This library can be installed with **npm** or **Yarn**.
 
 ### Install the library
 
 ```bash
+npm install @sonarsource/echoes-react
+# or
 yarn add @sonarsource/echoes-react
 ```
 
@@ -23,6 +25,8 @@ yarn add @sonarsource/echoes-react
 Echoes React has several peer dependencies that must be installed in your project:
 
 ```bash
+npm install @emotion/react @emotion/styled react-intl react-router-dom
+# or
 yarn add @emotion/react @emotion/styled react-intl react-router-dom
 ```
 
