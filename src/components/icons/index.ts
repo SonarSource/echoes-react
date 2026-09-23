@@ -48,6 +48,7 @@ export { IconCodeSmell } from './IconCodeSmell';
 export { IconCollapse } from './IconCollapse';
 export { IconComment } from './IconComment';
 export { IconComputer } from './IconComputer';
+export { IconContainer } from './IconContainer';
 export { IconContentCut } from './IconContentCut';
 export { IconContract } from './IconContract';
 export { IconCopy } from './IconCopy';
