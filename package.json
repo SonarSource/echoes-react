@@ -49,7 +49,9 @@
     "ts-check-declarations": "tsc --noEmit false --emitDeclarationOnly --isolatedModules false --outFile ./build-reports/ts-declarations/all-declarations",
     "validate": "yarn ts-check && yarn format-check && yarn lint",
     "validate-ci": "yarn dep-check && yarn intl-keys-check && yarn tokens-check && yarn icons-check && yarn fonts-check && yarn ts-check && yarn format-check && yarn lint-report",
-    "postinstall": "node -e \"if(!process.cwd().includes('node_modules')){require('child_process').execSync('patch-package',{stdio:'inherit'})}\""
+    "postinstall": "patch-package",
+    "prepack": "node ./config/scripts/toggle-postinstall.js --disable",
+    "postpack": "node ./config/scripts/toggle-postinstall.js --enable"
   },
   "peerDependencies": {
     "@emotion/react": "^11.0.0",
