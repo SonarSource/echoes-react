@@ -18,7 +18,7 @@
 
 ## DevDependencies
 
-- patch-package : Applies local dependency patches after install in this repository only (postinstall no-ops when the package is installed as a dependency). This lets the published `package.json` declare plain semver versions so consumers can install with npm, while we still patch `@mantine/core`, Radix, and other deps before building the bundled `dist/`.
+- patch-package : Applies local dependency patches after install in this repository. `prepack` removes `postinstall` from the packed `package.json` and `postpack` restores it, so the published package has no install hook. Consumers can install with npm while we still patch `@mantine/core`, Radix, and other deps before building the bundled `dist/`.
 - @testing-library/react : Used for component and interaction testing. It should stay aligned with our React major version.
 
 - @emotion/cache : Used by Emotion/Mantine styling internals.
