@@ -134,6 +134,7 @@ describe('EmptyState', () => {
       display: 'flex',
       flexDirection: 'column',
       gap: cssVar('dimension-space-200'),
+      maxWidth: cssVar('dimension-width-5000'),
       textAlign: 'center',
     });
 
