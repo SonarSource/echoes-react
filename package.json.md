@@ -11,13 +11,14 @@
 
 ## Dependencies
 
-- @mantine/core : Used as a base for some components (Select, MultiSelect). We maintain a patch to add `withExpandedAttribute` on `Combobox.Target` in Select so the trigger exposes the expected `aria-expanded` state for accessibility and tests.
+- @mantine/core : Used as a base for some components (Select, MultiSelect). We maintain a local patch (via patch-package) to add `withExpandedAttribute` on `Combobox.Target` in Select so the trigger exposes the expected `aria-expanded` state for accessibility and tests.
 - @mantine/hooks : Used with `@mantine/core` as a base for some components (Select, MultiSelect).
 - Sonner : Used as the base component for Toast notifications
-- @radix-ui/react-radio-group (patch): Replaces an internal callback-ref + `useState` pattern with `useRef` to avoid ref-driven render loops (notably with React 19) that can cause maximum update depth errors.
+- @radix-ui/react-radio-group : Replaces an internal callback-ref + `useState` pattern with `useRef` to avoid ref-driven render loops (notably with React 19) that can cause maximum update depth errors. Patched locally via patch-package before build.
 
 ## DevDependencies
 
+- patch-package : Applies local dependency patches after install in this repository only (postinstall no-ops when the package is installed as a dependency). This lets the published `package.json` declare plain semver versions so consumers can install with npm, while we still patch `@mantine/core`, Radix, and other deps before building the bundled `dist/`.
 - @testing-library/react : Used for component and interaction testing. It should stay aligned with our React major version.
 
 - @emotion/cache : Used by Emotion/Mantine styling internals.
@@ -26,6 +27,6 @@
 
 ## Resolutions
 
-- @radix-ui/react-compose-refs (patch): Prevents forwarding `null` to function refs. This avoids repeated ref teardown/setup feedback loops that can retrigger state updates.
-- ast-types: Transitive dependency of Storybook. It is apparently incompatible with typescript 5.4+, but we've never been impacted (why?). With the bump to storybook 9, it requires a patch not to fail ts-check. See [this issue](https://github.com/benjamn/ast-types/issues/948)
+- @radix-ui/react-compose-refs : Prevents forwarding `null` to function refs. This avoids repeated ref teardown/setup feedback loops that can retrigger state updates. Patched locally via patch-package.
+- ast-types: Transitive dependency of Storybook. It is apparently incompatible with typescript 5.4+, but we've never been impacted (why?). With the bump to storybook 9, it requires a patch not to fail ts-check. See [this issue](https://github.com/benjamn/ast-types/issues/948). Patched locally via patch-package.
 - axios: Transitive dependency of sonarqube-scanner. The version required by sonarqube-scanner (1.13.2) is vulnerable, but the latest version of axios is compatible with sonarqube-scanner, so we can safely override it.

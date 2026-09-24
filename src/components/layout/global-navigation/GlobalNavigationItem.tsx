@@ -20,8 +20,8 @@
 
 import * as radixNavigationMenu from '@radix-ui/react-navigation-menu';
 import { forwardRef, ReactNode } from 'react';
-import { LinkProps as RouterLinkProps, useMatch, useResolvedPath } from 'react-router-dom';
-import { isDefined } from '~common/helpers/types';
+import { useIsActive } from '../../echoes-router/EchoesRouterContext';
+import { type EchoesTo } from '../../echoes-router/EchoesRouterTypes';
 import { LinkBaseStyled } from '../../links/LinkBaseStyled';
 import { globalNavigationItemStyle, StyledNavMenuItem } from './GlobalNavigationItemStyles';
 
@@ -37,11 +37,11 @@ export interface GlobalNavigationItemProps {
    * Control whether the GlobalNavigationItem is active or not.
    * If true, the item will have a different style to indicate it is active.
    *
-   * By default this behavior uses react-router-dom's URL matching utility.
+   * By default this behavior uses the active router adapter.
    * Overriding this is only needed for complex scenarios.
    */
   isActive?: boolean;
-  to: RouterLinkProps['to'];
+  to: EchoesTo;
 }
 
 export const GlobalNavigationItem = forwardRef<HTMLAnchorElement, GlobalNavigationItemProps>(
@@ -49,9 +49,8 @@ export const GlobalNavigationItem = forwardRef<HTMLAnchorElement, GlobalNavigati
     { children, className, isActive, to, ...otherProps }: Readonly<GlobalNavigationItemProps>,
     ref,
   ) => {
-    const resolved = useResolvedPath(to);
-    const match = useMatch(`${resolved.pathname}/*`);
-    const active = isActive ?? isDefined(match);
+    const routeActive = useIsActive(to, { end: false });
+    const active = isActive ?? routeActive;
 
     return (
       <StyledNavMenuItem data-selected={active}>

@@ -1,7 +1,7 @@
-diff --git a/cjs/components/Select/Select.cjs b/cjs/components/Select/Select.cjs
+diff --git a/node_modules/@mantine/core/cjs/components/Select/Select.cjs b/node_modules/@mantine/core/cjs/components/Select/Select.cjs
 index a12159b72324cb3604e49bc2e260fb3eb15032c3..789f11a6ff44969781c2955f781a1e976a167b6d 100644
---- a/cjs/components/Select/Select.cjs
-+++ b/cjs/components/Select/Select.cjs
+--- a/node_modules/@mantine/core/cjs/components/Select/Select.cjs
++++ b/node_modules/@mantine/core/cjs/components/Select/Select.cjs
 @@ -174,7 +174,7 @@ const Select = factory.factory((_props, ref) => {
          size,
          ...comboboxProps,
@@ -11,10 +11,10 @@ index a12159b72324cb3604e49bc2e260fb3eb15032c3..789f11a6ff44969781c2955f781a1e97
              InputBase.InputBase,
              {
                id: _id,
-diff --git a/esm/components/Select/Select.mjs b/esm/components/Select/Select.mjs
+diff --git a/node_modules/@mantine/core/esm/components/Select/Select.mjs b/node_modules/@mantine/core/esm/components/Select/Select.mjs
 index 43237ede36d1bc4cef6fb6d202b52a355b967daa..cdcffa198f983bb9bab150df67e04a32aa66475c 100644
---- a/esm/components/Select/Select.mjs
-+++ b/esm/components/Select/Select.mjs
+--- a/node_modules/@mantine/core/esm/components/Select/Select.mjs
++++ b/node_modules/@mantine/core/esm/components/Select/Select.mjs
 @@ -172,7 +172,7 @@ const Select = factory((_props, ref) => {
          size,
          ...comboboxProps,

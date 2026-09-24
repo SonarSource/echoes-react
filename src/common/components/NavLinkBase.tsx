@@ -19,24 +19,22 @@
  */
 import * as VisuallyHidden from '@radix-ui/react-visually-hidden';
 import classNames from 'classnames';
-import { forwardRef } from 'react';
+import { forwardRef, MouseEvent } from 'react';
 import { useIntl } from 'react-intl';
-import {
-  Link as RouterLink,
-  NavLink as RouterNavLink,
-  NavLinkProps as RouterNavLinkProps,
-} from 'react-router-dom';
 import { isDefined } from '~common/helpers/types';
 import { isSonarLink } from '~common/helpers/url';
+import { useEchoesRouter, useIsActive } from '../../components/echoes-router/EchoesRouterContext';
+import { type EchoesTo } from '../../components/echoes-router/EchoesRouterTypes';
 
-type RouterNavLinkPropsAllowed = 'download' | 'to' | 'onClick';
-
-export interface NavLinkBaseProps extends Pick<RouterNavLinkProps, RouterNavLinkPropsAllowed> {
-  className?: string;
+export interface NavLinkBaseProps {
   children: React.ReactNode;
+  className?: string;
+  download?: string | boolean;
+  enableOpenInNewTab?: boolean;
   isActive?: boolean;
   isMatchingFullPath?: boolean;
-  enableOpenInNewTab?: boolean;
+  onClick?: (event: MouseEvent<HTMLAnchorElement>) => void;
+  to: EchoesTo;
 }
 
 export const NavLinkBase = forwardRef<HTMLAnchorElement, NavLinkBaseProps>((props, ref) => {
@@ -52,6 +50,9 @@ export const NavLinkBase = forwardRef<HTMLAnchorElement, NavLinkBaseProps>((prop
   } = props;
 
   const intl = useIntl();
+  const { Link } = useEchoesRouter();
+  const routeActive = useIsActive(to, { end: isMatchingFullPath });
+  const active = isActive ?? routeActive;
 
   const enableOpenInNewTabProps =
     !download && enableOpenInNewTab
@@ -62,13 +63,10 @@ export const NavLinkBase = forwardRef<HTMLAnchorElement, NavLinkBaseProps>((prop
         }
       : {};
 
-  const LinkComponent = isDefined(isActive) ? RouterLink : RouterNavLink;
-
   return (
-    <LinkComponent
-      className={classNames({ active: isActive }, className)}
-      {...(isActive ? { 'aria-current': 'page' } : {})}
-      {...(isMatchingFullPath ? { end: true } : {})}
+    <Link
+      className={classNames({ active }, className)}
+      {...(active ? { 'aria-current': 'page' as const } : {})}
       {...enableOpenInNewTabProps}
       {...(isDefined(download) ? { download, reloadDocument: true } : {})}
       {...restAndRadixProps}
@@ -85,7 +83,7 @@ export const NavLinkBase = forwardRef<HTMLAnchorElement, NavLinkBaseProps>((prop
           })}
         </VisuallyHidden.Root>
       )}
-    </LinkComponent>
+    </Link>
   );
 });
 

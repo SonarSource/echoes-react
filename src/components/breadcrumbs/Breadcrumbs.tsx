@@ -20,24 +20,21 @@
 
 import styled from '@emotion/styled';
 import React, { forwardRef } from 'react';
-import { createPath, resolvePath } from 'react-router-dom';
 import { cssVar } from '~utils/design-tokens';
+import { useEchoesRouter } from '../echoes-router/EchoesRouterContext';
 import { IconSlash } from '../icons';
 import { BreadcrumbItem } from './BreadcrumbItem';
 import { BreadcrumbLink } from './BreadcrumbLink';
-import {
-  BreadcrumbItemWithOptionalTo,
-  BreadcrumbLinkProps,
-  BreadcrumbsProps,
-} from './BreadcrumbTypes';
+import { BreadcrumbLinkProps, BreadcrumbsProps } from './BreadcrumbTypes';
 
 const BreadcrumbsBase = forwardRef<HTMLDivElement, BreadcrumbsProps>((props, ref) => {
   const { items, ...rest } = props;
+  const { toHref } = useEchoesRouter();
 
   return (
     <div ref={ref} {...rest}>
       {items.map((item, index) => (
-        <React.Fragment key={`${index}-${stringifyTo(item)}`}>
+        <React.Fragment key={`${index}-${item.to ? toHref(item.to) : ''}`}>
           {index > 0 && <IconSlash color="echoes-color-icon-subtle" />}
 
           {index === items.length - 1 ? (
@@ -62,8 +59,3 @@ export const Breadcrumbs = styled(BreadcrumbsBase)`
 `;
 
 Breadcrumbs.displayName = 'Breadcrumbs';
-
-function stringifyTo(item: BreadcrumbLinkProps | BreadcrumbItemWithOptionalTo) {
-  // Resolve + create stringifies `to` regardless of its original type.
-  return item.to ? createPath(resolvePath(item.to)) : '';
-}

@@ -10,11 +10,13 @@ A React implementation of Echoes, Sonar's Design System.
 
 ### Requirements
 
-This library requires to be installed with **Yarn** to work properly due to a patch applied to one of our dependencies. Using npm or other package managers is not currently supported.
+This library can be installed with **npm** or **Yarn**.
 
 ### Install the library
 
 ```bash
+npm install @sonarsource/echoes-react
+# or
 yarn add @sonarsource/echoes-react
 ```
 
@@ -23,6 +25,8 @@ yarn add @sonarsource/echoes-react
 Echoes React has several peer dependencies that must be installed in your project:
 
 ```bash
+npm install @emotion/react @emotion/styled react-intl react-router-dom
+# or
 yarn add @emotion/react @emotion/styled react-intl react-router-dom
 ```
 
@@ -50,8 +54,9 @@ Make sure to have the `IntlProvider` wrapping the `EchoesProvider`.
 
 #### Router Provider
 
-The `BrowserRouter` (or other router) from `react-router-dom` is required for components that use routing functionality (such as Links, Breadcrumbs, etc.).
-Make sure to have the Router wrapping the `EchoesProvider`.
+`EchoesProvider` accepts a `router` component. The default is a react-router-dom adapter, so Sonar apps keep their current setup: wrap `EchoesProvider` with `BrowserRouter` (or another router from `react-router-dom`).
+
+Apps that do not use react-router pass their own adapter. It must render `EchoesRouterContext.Provider`. The context supplies the link anchor, the current pathname, active-route matching, and `toHref`. Link, `Button` with `to`, breadcrumbs, and navigation then navigate with that router.
 
 #### Stacking Context
 
@@ -210,7 +215,7 @@ If tooltips or other overlay components don't appear correctly, ensure you have 
 
 #### Router context errors
 
-If you encounter errors about missing router context when using Link components or other routing-related components, make sure you have wrapped your app with a Router provider from `react-router-dom` (e.g., `BrowserRouter`, `HashRouter`, or `MemoryRouter`).
+If you encounter errors about missing router context when using Link components or other routing-related components, make sure you have wrapped your app with a Router provider from `react-router-dom` (e.g., `BrowserRouter`, `HashRouter`, or `MemoryRouter`). That is only required for the default adapter. A custom `router` prop replaces it.
 
 ## License
 

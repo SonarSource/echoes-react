@@ -18,17 +18,25 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-export {
-  EchoesRouterContext,
-  ReactRouterAdapter,
-  useEchoesRouter,
-  useIsActive,
-} from '../echoes-router';
-export type {
-  EchoesActiveOptions,
-  EchoesLinkComponent,
-  EchoesLinkProps,
-  EchoesRouterContextValue,
-  EchoesTo,
-} from '../echoes-router';
-export { EchoesProvider, EchoesProviderForTests, type EchoesProviderProps } from './EchoesProvider';
+import { createContext, useContext } from 'react';
+import { EchoesActiveOptions, EchoesRouterContextValue, EchoesTo } from './EchoesRouterTypes';
+
+export const EchoesRouterContext = createContext<EchoesRouterContextValue | undefined>(undefined);
+
+EchoesRouterContext.displayName = 'EchoesRouterContext';
+
+export function useEchoesRouter() {
+  const router = useContext(EchoesRouterContext);
+
+  if (!router) {
+    throw new Error('Echoes router is missing. Wrap the tree in EchoesProvider.');
+  }
+
+  return router;
+}
+
+export function useIsActive(to: EchoesTo, options?: EchoesActiveOptions) {
+  const { useIsActive: useIsActiveFromRouter } = useEchoesRouter();
+
+  return useIsActiveFromRouter(to, options);
+}
