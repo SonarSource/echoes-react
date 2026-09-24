@@ -1,0 +1,766 @@
+{
+  "echoes": {
+    "color": {
+      "palette": {
+        "gray": {
+          "1": {
+            "$type": "color",
+            "$value": "#151515",
+            "$description": "Gray 1, dark mode. Option 2 — Website-aligned."
+          },
+          "2": {
+            "$type": "color",
+            "$value": "#1A1A1A",
+            "$description": "Gray 2, dark mode. Option 2 — Website-aligned."
+          },
+          "3": {
+            "$type": "color",
+            "$value": "#1F1F1F",
+            "$description": "Gray 3, dark mode. Option 2 — Website-aligned."
+          },
+          "4": {
+            "$type": "color",
+            "$value": "#252525",
+            "$description": "Gray 4, dark mode. Option 2 — Website-aligned."
+          },
+          "5": {
+            "$type": "color",
+            "$value": "#2A2A2A",
+            "$description": "Gray 5, dark mode. Option 2 — Website-aligned."
+          },
+          "6": {
+            "$type": "color",
+            "$value": "#363636",
+            "$description": "Gray 6, dark mode. Option 2 — Website-aligned."
+          },
+          "7": {
+            "$type": "color",
+            "$value": "#464646",
+            "$description": "Gray 7, dark mode. Option 2 — Website-aligned."
+          },
+          "8": {
+            "$type": "color",
+            "$value": "#5A5A5A",
+            "$description": "Gray 8, dark mode. Option 2 — Website-aligned."
+          },
+          "9": {
+            "$type": "color",
+            "$value": "#737373",
+            "$description": "Gray 9, dark mode. Option 2 — Website-aligned."
+          },
+          "10": {
+            "$type": "color",
+            "$value": "#828282",
+            "$description": "Gray 10, dark mode. Option 2 — Website-aligned."
+          },
+          "11": {
+            "$type": "color",
+            "$value": "#B8B8B8",
+            "$description": "Gray 11, dark mode. Option 2 — Website-aligned."
+          },
+          "12": {
+            "$type": "color",
+            "$value": "#EEEEEE",
+            "$description": "Gray 12, dark mode. Option 2 — Website-aligned."
+          }
+        },
+        "grayAlpha": {
+          "1": {
+            "$type": "color",
+            "$value": "#FFFFFF05",
+            "$description": "Gray alpha 1, dark mode. Option 2 — Website-aligned."
+          },
+          "2": {
+            "$type": "color",
+            "$value": "#FFFFFF08",
+            "$description": "Gray alpha 2, dark mode. Option 2 — Website-aligned."
+          },
+          "3": {
+            "$type": "color",
+            "$value": "#FFFFFF0D",
+            "$description": "Gray alpha 3, dark mode. Option 2 — Website-aligned."
+          },
+          "4": {
+            "$type": "color",
+            "$value": "#FFFFFF14",
+            "$description": "Gray alpha 4, dark mode. Option 2 — Website-aligned."
+          },
+          "5": {
+            "$type": "color",
+            "$value": "#FFFFFF1F",
+            "$description": "Gray alpha 5, dark mode. Option 2 — Website-aligned."
+          },
+          "6": {
+            "$type": "color",
+            "$value": "#FFFFFF2E",
+            "$description": "Gray alpha 6, dark mode. Option 2 — Website-aligned."
+          },
+          "7": {
+            "$type": "color",
+            "$value": "#FFFFFF3D",
+            "$description": "Gray alpha 7, dark mode. Option 2 — Website-aligned."
+          },
+          "8": {
+            "$type": "color",
+            "$value": "#FFFFFF52",
+            "$description": "Gray alpha 8, dark mode. Option 2 — Website-aligned."
+          },
+          "9": {
+            "$type": "color",
+            "$value": "#FFFFFF70",
+            "$description": "Gray alpha 9, dark mode. Option 2 — Website-aligned."
+          },
+          "10": {
+            "$type": "color",
+            "$value": "#FFFFFF85",
+            "$description": "Gray alpha 10, dark mode. Option 2 — Website-aligned."
+          },
+          "11": {
+            "$type": "color",
+            "$value": "#FFFFFFB8",
+            "$description": "Gray alpha 11, dark mode. Option 2 — Website-aligned."
+          },
+          "12": {
+            "$type": "color",
+            "$value": "#FFFFFFEB",
+            "$description": "Gray alpha 12, dark mode. Option 2 — Website-aligned."
+          }
+        },
+        "blue": {
+          "1": {
+            "$type": "color",
+            "$value": "#0B121A",
+            "$description": "Blue 1, dark mode. Option 2 — Website-aligned."
+          },
+          "2": {
+            "$type": "color",
+            "$value": "#0D1C2C",
+            "$description": "Blue 2, dark mode. Option 2 — Website-aligned."
+          },
+          "3": {
+            "$type": "color",
+            "$value": "#0D2740",
+            "$description": "Blue 3, dark mode. Option 2 — Website-aligned."
+          },
+          "4": {
+            "$type": "color",
+            "$value": "#103455",
+            "$description": "Blue 4, dark mode. Option 2 — Website-aligned."
+          },
+          "5": {
+            "$type": "color",
+            "$value": "#13416B",
+            "$description": "Blue 5, dark mode. Option 2 — Website-aligned."
+          },
+          "6": {
+            "$type": "color",
+            "$value": "#164F82",
+            "$description": "Blue 6, dark mode. Option 2 — Website-aligned."
+          },
+          "7": {
+            "$type": "color",
+            "$value": "#3470AA",
+            "$description": "Blue 7, dark mode. Option 2 — Website-aligned."
+          },
+          "8": {
+            "$type": "color",
+            "$value": "#5293D4",
+            "$description": "Blue 8, dark mode. Option 2 — Website-aligned."
+          },
+          "9": {
+            "$type": "color",
+            "$value": "#70B7FF",
+            "$description": "Blue 9, dark mode. Option 2 — Website-aligned."
+          },
+          "10": {
+            "$type": "color",
+            "$value": "#8CC6FF",
+            "$description": "Blue 10, dark mode. Option 2 — Website-aligned."
+          },
+          "11": {
+            "$type": "color",
+            "$value": "#A8D4FF",
+            "$description": "Blue 11, dark mode. Option 2 — Website-aligned."
+          },
+          "12": {
+            "$type": "color",
+            "$value": "#EAF6FF",
+            "$description": "Blue 12, dark mode. Option 2 — Website-aligned."
+          }
+        },
+        "green": {
+          "1": {
+            "$type": "color",
+            "$value": "#0A140E",
+            "$description": "Green 1, dark mode. Option 2 — Website-aligned."
+          },
+          "2": {
+            "$type": "color",
+            "$value": "#0B1F13",
+            "$description": "Green 2, dark mode. Option 2 — Website-aligned."
+          },
+          "3": {
+            "$type": "color",
+            "$value": "#0B2B18",
+            "$description": "Green 3, dark mode. Option 2 — Website-aligned."
+          },
+          "4": {
+            "$type": "color",
+            "$value": "#0F3C22",
+            "$description": "Green 4, dark mode. Option 2 — Website-aligned."
+          },
+          "5": {
+            "$type": "color",
+            "$value": "#124E2C",
+            "$description": "Green 5, dark mode. Option 2 — Website-aligned."
+          },
+          "6": {
+            "$type": "color",
+            "$value": "#146137",
+            "$description": "Green 6, dark mode. Option 2 — Website-aligned."
+          },
+          "7": {
+            "$type": "color",
+            "$value": "#22824C",
+            "$description": "Green 7, dark mode. Option 2 — Website-aligned."
+          },
+          "8": {
+            "$type": "color",
+            "$value": "#30A462",
+            "$description": "Green 8, dark mode. Option 2 — Website-aligned."
+          },
+          "9": {
+            "$type": "color",
+            "$value": "#40C878",
+            "$description": "Green 9, dark mode. Option 2 — Website-aligned."
+          },
+          "10": {
+            "$type": "color",
+            "$value": "#72D897",
+            "$description": "Green 10, dark mode. Option 2 — Website-aligned."
+          },
+          "11": {
+            "$type": "color",
+            "$value": "#9BE8B5",
+            "$description": "Green 11, dark mode. Option 2 — Website-aligned."
+          },
+          "12": {
+            "$type": "color",
+            "$value": "#EAFBF0",
+            "$description": "Green 12, dark mode. Option 2 — Website-aligned."
+          }
+        },
+        "yellow": {
+          "1": {
+            "$type": "color",
+            "$value": "#171207",
+            "$description": "Yellow 1, dark mode. Option 2 — Website-aligned."
+          },
+          "2": {
+            "$type": "color",
+            "$value": "#241B07",
+            "$description": "Yellow 2, dark mode. Option 2 — Website-aligned."
+          },
+          "3": {
+            "$type": "color",
+            "$value": "#332405",
+            "$description": "Yellow 3, dark mode. Option 2 — Website-aligned."
+          },
+          "4": {
+            "$type": "color",
+            "$value": "#463004",
+            "$description": "Yellow 4, dark mode. Option 2 — Website-aligned."
+          },
+          "5": {
+            "$type": "color",
+            "$value": "#5A3D03",
+            "$description": "Yellow 5, dark mode. Option 2 — Website-aligned."
+          },
+          "6": {
+            "$type": "color",
+            "$value": "#6F4A00",
+            "$description": "Yellow 6, dark mode. Option 2 — Website-aligned."
+          },
+          "7": {
+            "$type": "color",
+            "$value": "#9A6C17",
+            "$description": "Yellow 7, dark mode. Option 2 — Website-aligned."
+          },
+          "8": {
+            "$type": "color",
+            "$value": "#C7902D",
+            "$description": "Yellow 8, dark mode. Option 2 — Website-aligned."
+          },
+          "9": {
+            "$type": "color",
+            "$value": "#F5B642",
+            "$description": "Yellow 9, dark mode. Option 2 — Website-aligned."
+          },
+          "10": {
+            "$type": "color",
+            "$value": "#FAC969",
+            "$description": "Yellow 10, dark mode. Option 2 — Website-aligned."
+          },
+          "11": {
+            "$type": "color",
+            "$value": "#FFDB8A",
+            "$description": "Yellow 11, dark mode. Option 2 — Website-aligned."
+          },
+          "12": {
+            "$type": "color",
+            "$value": "#FFF7E1",
+            "$description": "Yellow 12, dark mode. Option 2 — Website-aligned."
+          }
+        },
+        "red": {
+          "1": {
+            "$type": "color",
+            "$value": "#1A0A0D",
+            "$description": "Red 1, dark mode. Option 2 — Website-aligned."
+          },
+          "2": {
+            "$type": "color",
+            "$value": "#2A0D13",
+            "$description": "Red 2, dark mode. Option 2 — Website-aligned."
+          },
+          "3": {
+            "$type": "color",
+            "$value": "#3B101A",
+            "$description": "Red 3, dark mode. Option 2 — Website-aligned."
+          },
+          "4": {
+            "$type": "color",
+            "$value": "#501422",
+            "$description": "Red 4, dark mode. Option 2 — Website-aligned."
+          },
+          "5": {
+            "$type": "color",
+            "$value": "#661829",
+            "$description": "Red 5, dark mode. Option 2 — Website-aligned."
+          },
+          "6": {
+            "$type": "color",
+            "$value": "#7D1B2F",
+            "$description": "Red 6, dark mode. Option 2 — Website-aligned."
+          },
+          "7": {
+            "$type": "color",
+            "$value": "#A74351",
+            "$description": "Red 7, dark mode. Option 2 — Website-aligned."
+          },
+          "8": {
+            "$type": "color",
+            "$value": "#D36A76",
+            "$description": "Red 8, dark mode. Option 2 — Website-aligned."
+          },
+          "9": {
+            "$type": "color",
+            "$value": "#FF919C",
+            "$description": "Red 9, dark mode. Option 2 — Website-aligned."
+          },
+          "10": {
+            "$type": "color",
+            "$value": "#FFA1AB",
+            "$description": "Red 10, dark mode. Option 2 — Website-aligned."
+          },
+          "11": {
+            "$type": "color",
+            "$value": "#FFB0BA",
+            "$description": "Red 11, dark mode. Option 2 — Website-aligned."
+          },
+          "12": {
+            "$type": "color",
+            "$value": "#FFF0F2",
+            "$description": "Red 12, dark mode. Option 2 — Website-aligned."
+          }
+        },
+        "teal": {
+          "1": {
+            "$type": "color",
+            "$value": "#111717",
+            "$description": "Teal 1, dark mode. Option 2 — Website-aligned."
+          },
+          "2": {
+            "$type": "color",
+            "$value": "#161F1E",
+            "$description": "Teal 2, dark mode. Option 2 — Website-aligned."
+          },
+          "3": {
+            "$type": "color",
+            "$value": "#1B2726",
+            "$description": "Teal 3, dark mode. Option 2 — Website-aligned."
+          },
+          "4": {
+            "$type": "color",
+            "$value": "#223130",
+            "$description": "Teal 4, dark mode. Option 2 — Website-aligned."
+          },
+          "5": {
+            "$type": "color",
+            "$value": "#273B3A",
+            "$description": "Teal 5, dark mode. Option 2 — Website-aligned."
+          },
+          "6": {
+            "$type": "color",
+            "$value": "#314E4C",
+            "$description": "Teal 6, dark mode. Option 2 — Website-aligned."
+          },
+          "7": {
+            "$type": "color",
+            "$value": "#3B6562",
+            "$description": "Teal 7, dark mode. Option 2 — Website-aligned."
+          },
+          "8": {
+            "$type": "color",
+            "$value": "#458783",
+            "$description": "Teal 8, dark mode. Option 2 — Website-aligned."
+          },
+          "9": {
+            "$type": "color",
+            "$value": "#4FB8B2",
+            "$description": "Teal 9, dark mode. Option 2 — Website-aligned."
+          },
+          "10": {
+            "$type": "color",
+            "$value": "#69C7C1",
+            "$description": "Teal 10, dark mode. Option 2 — Website-aligned."
+          },
+          "11": {
+            "$type": "color",
+            "$value": "#95DAD4",
+            "$description": "Teal 11, dark mode. Option 2 — Website-aligned."
+          },
+          "12": {
+            "$type": "color",
+            "$value": "#E4F4F2",
+            "$description": "Teal 12, dark mode. Option 2 — Website-aligned."
+          }
+        },
+        "cyan": {
+          "1": {
+            "$type": "color",
+            "$value": "#111719",
+            "$description": "Cyan 1, dark mode. Option 2 — Website-aligned."
+          },
+          "2": {
+            "$type": "color",
+            "$value": "#161E21",
+            "$description": "Cyan 2, dark mode. Option 2 — Website-aligned."
+          },
+          "3": {
+            "$type": "color",
+            "$value": "#1B262A",
+            "$description": "Cyan 3, dark mode. Option 2 — Website-aligned."
+          },
+          "4": {
+            "$type": "color",
+            "$value": "#223135",
+            "$description": "Cyan 4, dark mode. Option 2 — Website-aligned."
+          },
+          "5": {
+            "$type": "color",
+            "$value": "#263A41",
+            "$description": "Cyan 5, dark mode. Option 2 — Website-aligned."
+          },
+          "6": {
+            "$type": "color",
+            "$value": "#314C55",
+            "$description": "Cyan 6, dark mode. Option 2 — Website-aligned."
+          },
+          "7": {
+            "$type": "color",
+            "$value": "#3A6370",
+            "$description": "Cyan 7, dark mode. Option 2 — Website-aligned."
+          },
+          "8": {
+            "$type": "color",
+            "$value": "#448498",
+            "$description": "Cyan 8, dark mode. Option 2 — Website-aligned."
+          },
+          "9": {
+            "$type": "color",
+            "$value": "#4EB3D1",
+            "$description": "Cyan 9, dark mode. Option 2 — Website-aligned."
+          },
+          "10": {
+            "$type": "color",
+            "$value": "#68C3DE",
+            "$description": "Cyan 10, dark mode. Option 2 — Website-aligned."
+          },
+          "11": {
+            "$type": "color",
+            "$value": "#A2D4E4",
+            "$description": "Cyan 11, dark mode. Option 2 — Website-aligned."
+          },
+          "12": {
+            "$type": "color",
+            "$value": "#EBF1F4",
+            "$description": "Cyan 12, dark mode. Option 2 — Website-aligned."
+          }
+        },
+        "purple": {
+          "1": {
+            "$type": "color",
+            "$value": "#181322",
+            "$description": "Purple 1, dark mode. Option 2 — Website-aligned."
+          },
+          "2": {
+            "$type": "color",
+            "$value": "#20182D",
+            "$description": "Purple 2, dark mode. Option 2 — Website-aligned."
+          },
+          "3": {
+            "$type": "color",
+            "$value": "#281E39",
+            "$description": "Purple 3, dark mode. Option 2 — Website-aligned."
+          },
+          "4": {
+            "$type": "color",
+            "$value": "#332649",
+            "$description": "Purple 4, dark mode. Option 2 — Website-aligned."
+          },
+          "5": {
+            "$type": "color",
+            "$value": "#3D2C5A",
+            "$description": "Purple 5, dark mode. Option 2 — Website-aligned."
+          },
+          "6": {
+            "$type": "color",
+            "$value": "#513878",
+            "$description": "Purple 6, dark mode. Option 2 — Website-aligned."
+          },
+          "7": {
+            "$type": "color",
+            "$value": "#6A43A1",
+            "$description": "Purple 7, dark mode. Option 2 — Website-aligned."
+          },
+          "8": {
+            "$type": "color",
+            "$value": "#8D58D6",
+            "$description": "Purple 8, dark mode. Option 2 — Website-aligned."
+          },
+          "9": {
+            "$type": "color",
+            "$value": "#B290EC",
+            "$description": "Purple 9, dark mode. Option 2 — Website-aligned."
+          },
+          "10": {
+            "$type": "color",
+            "$value": "#BDA7E8",
+            "$description": "Purple 10, dark mode. Option 2 — Website-aligned."
+          },
+          "11": {
+            "$type": "color",
+            "$value": "#CFC4E4",
+            "$description": "Purple 11, dark mode. Option 2 — Website-aligned."
+          },
+          "12": {
+            "$type": "color",
+            "$value": "#F1EFF4",
+            "$description": "Purple 12, dark mode. Option 2 — Website-aligned."
+          }
+        },
+        "magenta": {
+          "1": {
+            "$type": "color",
+            "$value": "#1E1219",
+            "$description": "Magenta 1, dark mode. Option 2 — Website-aligned."
+          },
+          "2": {
+            "$type": "color",
+            "$value": "#271722",
+            "$description": "Magenta 2, dark mode. Option 2 — Website-aligned."
+          },
+          "3": {
+            "$type": "color",
+            "$value": "#311C2A",
+            "$description": "Magenta 3, dark mode. Option 2 — Website-aligned."
+          },
+          "4": {
+            "$type": "color",
+            "$value": "#3F2336",
+            "$description": "Magenta 4, dark mode. Option 2 — Website-aligned."
+          },
+          "5": {
+            "$type": "color",
+            "$value": "#4D2841",
+            "$description": "Magenta 5, dark mode. Option 2 — Website-aligned."
+          },
+          "6": {
+            "$type": "color",
+            "$value": "#663356",
+            "$description": "Magenta 6, dark mode. Option 2 — Website-aligned."
+          },
+          "7": {
+            "$type": "color",
+            "$value": "#873D71",
+            "$description": "Magenta 7, dark mode. Option 2 — Website-aligned."
+          },
+          "8": {
+            "$type": "color",
+            "$value": "#B9499A",
+            "$description": "Magenta 8, dark mode. Option 2 — Website-aligned."
+          },
+          "9": {
+            "$type": "color",
+            "$value": "#EE6FC9",
+            "$description": "Magenta 9, dark mode. Option 2 — Website-aligned."
+          },
+          "10": {
+            "$type": "color",
+            "$value": "#EA93CD",
+            "$description": "Magenta 10, dark mode. Option 2 — Website-aligned."
+          },
+          "11": {
+            "$type": "color",
+            "$value": "#E5BDD6",
+            "$description": "Magenta 11, dark mode. Option 2 — Website-aligned."
+          },
+          "12": {
+            "$type": "color",
+            "$value": "#F4EEF2",
+            "$description": "Magenta 12, dark mode. Option 2 — Website-aligned."
+          }
+        },
+        "orange": {
+          "1": {
+            "$type": "color",
+            "$value": "#1B1410",
+            "$description": "Orange 1, dark mode. Option 2 — Website-aligned."
+          },
+          "2": {
+            "$type": "color",
+            "$value": "#241B15",
+            "$description": "Orange 2, dark mode. Option 2 — Website-aligned."
+          },
+          "3": {
+            "$type": "color",
+            "$value": "#2D2119",
+            "$description": "Orange 3, dark mode. Option 2 — Website-aligned."
+          },
+          "4": {
+            "$type": "color",
+            "$value": "#3A2A1F",
+            "$description": "Orange 4, dark mode. Option 2 — Website-aligned."
+          },
+          "5": {
+            "$type": "color",
+            "$value": "#463224",
+            "$description": "Orange 5, dark mode. Option 2 — Website-aligned."
+          },
+          "6": {
+            "$type": "color",
+            "$value": "#5D412D",
+            "$description": "Orange 6, dark mode. Option 2 — Website-aligned."
+          },
+          "7": {
+            "$type": "color",
+            "$value": "#7A5236",
+            "$description": "Orange 7, dark mode. Option 2 — Website-aligned."
+          },
+          "8": {
+            "$type": "color",
+            "$value": "#A76A3E",
+            "$description": "Orange 8, dark mode. Option 2 — Website-aligned."
+          },
+          "9": {
+            "$type": "color",
+            "$value": "#E68B46",
+            "$description": "Orange 9, dark mode. Option 2 — Website-aligned."
+          },
+          "10": {
+            "$type": "color",
+            "$value": "#E9A271",
+            "$description": "Orange 10, dark mode. Option 2 — Website-aligned."
+          },
+          "11": {
+            "$type": "color",
+            "$value": "#E5C3AD",
+            "$description": "Orange 11, dark mode. Option 2 — Website-aligned."
+          },
+          "12": {
+            "$type": "color",
+            "$value": "#F4EFEC",
+            "$description": "Orange 12, dark mode. Option 2 — Website-aligned."
+          }
+        },
+        "dataViz": {
+          "categorical": {
+            "1": {
+              "$type": "color",
+              "$value": "#78A7E5",
+              "$description": "Categorical 1, dark mode. Option 2 — Website-aligned."
+            },
+            "2": {
+              "$type": "color",
+              "$value": "#E986B7",
+              "$description": "Categorical 2, dark mode. Option 2 — Website-aligned."
+            },
+            "3": {
+              "$type": "color",
+              "$value": "#5CB8A7",
+              "$description": "Categorical 3, dark mode. Option 2 — Website-aligned."
+            },
+            "4": {
+              "$type": "color",
+              "$value": "#9F6BEB",
+              "$description": "Categorical 4, dark mode. Option 2 — Website-aligned."
+            },
+            "5": {
+              "$type": "color",
+              "$value": "#E89361",
+              "$description": "Categorical 5, dark mode. Option 2 — Website-aligned."
+            },
+            "6": {
+              "$type": "color",
+              "$value": "#8AD8F1",
+              "$description": "Categorical 6, dark mode. Option 2 — Website-aligned."
+            },
+            "7": {
+              "$type": "color",
+              "$value": "#F0A8E9",
+              "$description": "Categorical 7, dark mode. Option 2 — Website-aligned."
+            },
+            "8": {
+              "$type": "color",
+              "$value": "#91DC63",
+              "$description": "Categorical 8, dark mode. Option 2 — Website-aligned."
+            }
+          },
+          "severity": {
+            "1": {
+              "$type": "color",
+              "$value": "#D53A2C",
+              "$description": "Severity 1, dark mode. Option 2 — Website-aligned."
+            },
+            "2": {
+              "$type": "color",
+              "$value": "#E98475",
+              "$description": "Severity 2, dark mode. Option 2 — Website-aligned."
+            },
+            "3": {
+              "$type": "color",
+              "$value": "#E39757",
+              "$description": "Severity 3, dark mode. Option 2 — Website-aligned."
+            },
+            "4": {
+              "$type": "color",
+              "$value": "#CDB761",
+              "$description": "Severity 4, dark mode. Option 2 — Website-aligned."
+            },
+            "5": {
+              "$type": "color",
+              "$value": "#78A7E5",
+              "$description": "Severity 5, dark mode. Option 2 — Website-aligned."
+            },
+            "6": {
+              "$type": "color",
+              "$value": "#828282",
+              "$description": "Severity 6, dark mode. Option 2 — Website-aligned."
+            }
+          }
+        }
+      }
+    }
+  }
+}

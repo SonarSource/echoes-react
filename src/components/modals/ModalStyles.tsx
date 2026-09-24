@@ -47,7 +47,7 @@ export const styleModalWrapper = styled.div<{ size: `${ModalSize}` }>`
 
   border-radius: ${cssVar('border-radius-400')};
   background: ${cssVar('color-surface-default')};
-  box-shadow: ${cssVar('box-shadow-large')};
+  box-shadow: ${cssVar('shadow-overlay')};
 `.withComponent;
 
 export const styleModalTitle = styled.h2`

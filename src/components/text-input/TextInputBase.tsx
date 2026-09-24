@@ -50,9 +50,9 @@ export interface InputProps extends ValidationProps, FormFieldPropsSubset {
 }
 
 export const InputStyled = styled.input`
-  color: ${cssVar('color-text-default')};
-  background-color: ${cssVar('form-control-colors-background-default')};
-  border: ${cssVar('border-width-default')} solid ${cssVar('form-control-colors-border-default')};
+  color: ${cssVar('input-colors-foreground-default')};
+  background-color: ${cssVar('input-colors-background-default')};
+  border: ${cssVar('border-width-default')} solid ${cssVar('input-colors-border-default')};
   border-radius: ${cssVar('form-control-border-radius-default')};
 
   font: ${cssVar('typography-text-default-regular')};
@@ -64,16 +64,17 @@ export const InputStyled = styled.input`
   padding: ${cssVar('dimension-space-100')} ${cssVar('dimension-space-150')};
 
   &::placeholder {
-    color: ${cssVar('color-text-placeholder')};
+    color: ${cssVar('input-colors-foreground-placeholder')};
   }
   &:hover {
-    background-color: ${cssVar('form-control-colors-background-hover')};
+    background-color: ${cssVar('input-colors-background-hover')};
+    border-color: ${cssVar('input-colors-border-hover')};
   }
   &[data-valid] {
-    border-color: ${cssVar('color-border-success-default')};
+    border-color: ${cssVar('input-colors-border-success')};
   }
   &[data-error] {
-    border-color: ${cssVar('color-border-danger-default')};
+    border-color: ${cssVar('input-colors-border-error')};
   }
   &[data-prefix] {
     padding-left: calc(
@@ -92,20 +93,20 @@ export const InputStyled = styled.input`
   &:focus,
   &:focus-within,
   &:focus-visible {
-    border-color: ${cssVar('form-control-colors-border-focus')};
-    outline: ${cssVar('color-focus-default')} solid ${cssVar('focus-border-width-default')};
+    border-color: ${cssVar('input-colors-border-focus')};
+    outline: ${cssVar('input-colors-border-focus')} solid ${cssVar('focus-border-width-default')};
   }
 
   &:disabled,
   &:disabled:hover {
-    color: ${cssVar('color-text-disabled')};
-    background-color: ${cssVar('color-surface-disabled')};
-    border-color: ${cssVar('color-border-disabled')};
+    color: ${cssVar('input-colors-foreground-disabled')};
+    background-color: ${cssVar('input-colors-background-disabled')};
+    border-color: ${cssVar('input-colors-border-disabled')};
     outline: none;
     cursor: not-allowed;
 
     &::placeholder {
-      color: ${cssVar('color-text-disabled')};
+      color: ${cssVar('input-colors-foreground-disabled')};
     }
   }
 `;
@@ -124,10 +125,10 @@ const InputIconWrapper = styled.span`
   position: absolute;
 
   font-size: ${cssVar('font-size-30')};
-  color: ${cssVar('form-control-colors-icon-default')};
+  color: ${cssVar('input-colors-icon-default')};
 
   &[data-disabled] {
-    color: ${cssVar('color-icon-disabled')};
+    color: ${cssVar('input-colors-foreground-disabled')};
     cursor: not-allowed;
   }
 `;

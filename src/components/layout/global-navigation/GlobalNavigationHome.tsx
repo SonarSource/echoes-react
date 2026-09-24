@@ -83,12 +83,12 @@ const StyledLinkStandalone = styled(LinkStandalone)`
   border-radius: ${cssVar('border-radius-200')};
 
   &:hover {
-    background-color: ${cssVar('color-surface-hover')};
+    background-color: ${cssVar('navigation-item-colors-background-hover')};
     text-decoration-line: ${cssVar('text-decoration-none')};
   }
 
   &:active {
-    background-color: ${cssVar('color-surface-active')};
+    background-color: ${cssVar('navigation-item-colors-background-pressed')};
   }
 `;
 

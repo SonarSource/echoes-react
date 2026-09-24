@@ -44,7 +44,8 @@ export const ButtonStyled = styled.button`
   background-color: var(--button-background);
 
   border: var(--button-border);
-  border-radius: ${cssVar('border-radius-400')};
+  border-radius: ${cssVar('border-radius-300')};
+  box-shadow: var(--button-shadow, ${cssVar('shadow-suppressed')});
   outline: none;
 
   cursor: pointer;
@@ -55,12 +56,13 @@ export const ButtonStyled = styled.button`
   }
 
   &:focus-visible {
-    outline: ${cssVar('color-focus-default')} solid ${cssVar('focus-border-width-default')};
+    outline: ${cssVar('button-colors-focus-ring')} solid ${cssVar('focus-border-width-default')};
     outline-offset: ${cssVar('focus-border-offset-default')};
   }
 
   &:hover {
     background-color: var(--button-background-hover);
+    border-color: var(--button-border-color-hover);
   }
 
   &:active {
@@ -69,10 +71,11 @@ export const ButtonStyled = styled.button`
 
   &:disabled,
   &:disabled:has(:hover, :active, :focus, :focus-visible) {
-    color: ${cssVar('color-text-disabled')};
+    color: ${cssVar('button-colors-foreground-disabled')};
     background-color: var(--button-background-disabled);
 
     border: none;
+    box-shadow: ${cssVar('shadow-suppressed')};
 
     cursor: not-allowed;
     pointer-events: none;
@@ -112,78 +115,83 @@ export const SpinnerButton = styled(SpinnerOverrideColor)`
 
 export const BUTTON_VARIETY_STYLES = {
   [ButtonVariety.Default]: {
-    '--button-color': cssVar('color-text-default'),
-    '--button-border': `${cssVar('color-border-bold')} solid ${cssVar('border-width-default')}`,
-    '--button-background': cssVar('color-surface-default'),
-    '--button-background-hover': cssVar('color-surface-hover'),
-    '--button-background-active': cssVar('color-surface-active'),
-    '--button-background-focus': cssVar('color-surface-default'),
-    '--button-background-disabled': cssVar('color-surface-disabled'),
-    '--spinner-color-override': cssVar('color-icon-default'),
-    '--spinner-track-color-override': cssVar('color-border-bold'),
+    '--button-color': cssVar('button-colors-foreground-secondary'),
+    '--button-border': `${cssVar('button-colors-border-secondary')} solid ${cssVar('border-width-default')}`,
+    '--button-border-color-hover': cssVar('button-colors-border-secondary-hover'),
+    '--button-background': cssVar('button-colors-background-secondary-default'),
+    '--button-background-hover': cssVar('button-colors-background-secondary-hover'),
+    '--button-background-active': cssVar('button-colors-background-secondary-pressed'),
+    '--button-background-focus': cssVar('button-colors-background-secondary-default'),
+    '--button-background-disabled': cssVar('button-colors-background-disabled'),
+    '--button-shadow': cssVar('shadow-resting'),
+    '--spinner-color-override': cssVar('button-colors-foreground-secondary'),
+    '--spinner-track-color-override': cssVar('button-colors-border-secondary'),
   },
   [ButtonVariety.DefaultGhost]: {
-    '--button-color': cssVar('color-text-default'),
+    '--button-color': cssVar('button-colors-foreground-ghost'),
     '--button-border': 'none',
-    '--button-background': cssVar('color-background-ghost-neutral-default'),
-    '--button-background-hover': cssVar('color-background-ghost-neutral-hover'),
-    '--button-background-active': cssVar('color-background-ghost-neutral-active'),
-    '--button-background-focus': cssVar('color-background-ghost-neutral-focus'),
-    '--button-background-disabled': cssVar('color-background-ghost-neutral-default'),
-    '--spinner-color-override': cssVar('color-icon-default'),
-    '--spinner-track-color-override': cssVar('color-border-bold'),
+    '--button-background': cssVar('button-colors-background-ghost-default'),
+    '--button-background-hover': cssVar('button-colors-background-ghost-hover'),
+    '--button-background-active': cssVar('button-colors-background-ghost-pressed'),
+    '--button-background-focus': cssVar('button-colors-background-ghost-default'),
+    '--button-background-disabled': cssVar('button-colors-background-ghost-default'),
+    '--spinner-color-override': cssVar('button-colors-foreground-ghost'),
+    '--spinner-track-color-override': cssVar('button-colors-border-secondary'),
   },
   [ButtonVariety.Primary]: {
-    '--button-color': cssVar('color-text-on-color'),
+    '--button-color': cssVar('button-colors-foreground-primary'),
     '--button-border': 'none',
-    '--button-background': cssVar('color-background-accent-default'),
-    '--button-background-hover': cssVar('color-background-accent-hover'),
-    '--button-background-active': cssVar('color-background-accent-active'),
-    '--button-background-focus': cssVar('color-background-accent-focus'),
-    '--button-background-disabled': cssVar('color-surface-disabled'),
-    '--spinner-color-override': cssVar('color-icon-on-color'),
-    '--spinner-track-color-override': cssVar('color-border-bold'),
+    '--button-background': cssVar('button-colors-background-primary-default'),
+    '--button-background-hover': cssVar('button-colors-background-primary-hover'),
+    '--button-background-active': cssVar('button-colors-background-primary-pressed'),
+    '--button-background-focus': cssVar('button-colors-background-primary-focus'),
+    '--button-background-disabled': cssVar('button-colors-background-disabled'),
+    '--button-shadow': cssVar('shadow-resting'),
+    '--spinner-color-override': cssVar('button-colors-foreground-primary'),
+    '--spinner-track-color-override': cssVar('button-colors-border-secondary'),
   },
   [ButtonVariety.PrimaryGhost]: {
-    '--button-color': cssVar('color-text-accent'),
+    '--button-color': cssVar('button-colors-foreground-ghost'),
     '--button-border': 'none',
-    '--button-background': cssVar('color-background-ghost-accent-default'),
-    '--button-background-hover': cssVar('color-background-ghost-accent-hover'),
-    '--button-background-active': cssVar('color-background-ghost-accent-active'),
-    '--button-background-focus': cssVar('color-background-ghost-accent-focus'),
-    '--button-background-disabled': cssVar('color-background-ghost-accent-default'),
-    '--spinner-color-override': cssVar('color-border-accent-default'),
+    '--button-background': cssVar('button-colors-background-ghost-default'),
+    '--button-background-hover': cssVar('button-colors-background-ghost-hover'),
+    '--button-background-active': cssVar('button-colors-background-ghost-pressed'),
+    '--button-background-focus': cssVar('button-colors-background-ghost-default'),
+    '--button-background-disabled': cssVar('button-colors-background-ghost-default'),
+    '--spinner-color-override': cssVar('button-colors-foreground-ghost'),
   },
   [ButtonVariety.Danger]: {
-    '--button-color': cssVar('color-text-on-color'),
+    '--button-color': cssVar('button-colors-foreground-danger'),
     '--button-border': 'none',
-    '--button-background': cssVar('color-background-danger-default'),
-    '--button-background-hover': cssVar('color-background-danger-hover'),
-    '--button-background-active': cssVar('color-background-danger-active'),
-    '--button-background-focus': cssVar('color-background-danger-focus'),
-    '--button-background-disabled': cssVar('color-surface-disabled'),
-    '--spinner-color-override': cssVar('color-icon-on-color'),
-    '--spinner-track-color-override': cssVar('color-background-danger-active'),
+    '--button-background': cssVar('button-colors-background-danger-default'),
+    '--button-background-hover': cssVar('button-colors-background-danger-hover'),
+    '--button-background-active': cssVar('button-colors-background-danger-pressed'),
+    '--button-background-focus': cssVar('button-colors-background-danger-default'),
+    '--button-background-disabled': cssVar('button-colors-background-disabled'),
+    '--spinner-color-override': cssVar('button-colors-foreground-danger'),
+    '--spinner-track-color-override': cssVar('button-colors-background-danger-pressed'),
   },
   [ButtonVariety.DangerGhost]: {
-    '--button-color': cssVar('color-text-danger'),
+    '--button-color': cssVar('button-colors-foreground-danger-ghost'),
     '--button-border': 'none',
-    '--button-background': cssVar('color-background-ghost-danger-default'),
-    '--button-background-hover': cssVar('color-background-ghost-danger-hover'),
-    '--button-background-active': cssVar('color-background-ghost-danger-active'),
-    '--button-background-focus': cssVar('color-background-ghost-danger-focus'),
-    '--button-background-disabled': cssVar('color-background-ghost-danger-default'),
-    '--spinner-color-override': cssVar('color-icon-danger'),
+    '--button-background': cssVar('button-colors-background-ghost-default'),
+    '--button-background-hover': cssVar('button-colors-background-ghost-hover'),
+    '--button-background-active': cssVar('button-colors-background-ghost-pressed'),
+    '--button-background-focus': cssVar('button-colors-background-ghost-default'),
+    '--button-background-disabled': cssVar('button-colors-background-ghost-default'),
+    '--spinner-color-override': cssVar('button-colors-foreground-danger-ghost'),
   },
   [ButtonVariety.DangerOutline]: {
-    '--button-color': cssVar('color-text-danger'),
-    '--button-border': `${cssVar('color-border-bold')} solid ${cssVar('border-width-default')}`,
-    '--button-background': cssVar('color-surface-default'),
-    '--button-background-hover': cssVar('color-surface-hover'),
-    '--button-background-active': cssVar('color-surface-active'),
-    '--button-background-focus': cssVar('color-surface-default'),
-    '--button-background-disabled': cssVar('color-surface-disabled'),
-    '--spinner-color-override': cssVar('color-icon-danger'),
+    '--button-color': cssVar('button-colors-foreground-danger-ghost'),
+    '--button-border': `${cssVar('button-colors-border-secondary')} solid ${cssVar('border-width-default')}`,
+    '--button-border-color-hover': cssVar('button-colors-border-secondary-hover'),
+    '--button-background': cssVar('button-colors-background-secondary-default'),
+    '--button-background-hover': cssVar('button-colors-background-secondary-hover'),
+    '--button-background-active': cssVar('button-colors-background-secondary-pressed'),
+    '--button-background-focus': cssVar('button-colors-background-secondary-default'),
+    '--button-background-disabled': cssVar('button-colors-background-disabled'),
+    '--button-shadow': cssVar('shadow-resting'),
+    '--spinner-color-override': cssVar('button-colors-foreground-danger-ghost'),
   },
 };
 

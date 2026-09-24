@@ -122,20 +122,21 @@ const HeaderContainer = styled.button`
 
     &:focus,
     &:focus-visible {
-      background-color: ${cssVar('sidebar-navigation-item-colors-background-hover')};
+      background-color: ${cssVar('navigation-item-colors-background-hover')};
     }
 
     &:focus-visible {
-      outline: ${cssVar('color-focus-default')} solid ${cssVar('focus-border-width-default')};
+      outline: ${cssVar('navigation-item-colors-focus-ring')} solid
+        ${cssVar('focus-border-width-default')};
       outline-offset: ${cssVar('focus-border-offset-default')};
     }
 
     &:hover {
-      background-color: ${cssVar('sidebar-navigation-item-colors-background-hover')};
+      background-color: ${cssVar('navigation-item-colors-background-hover')};
     }
 
     &:active {
-      background-color: ${cssVar('sidebar-navigation-item-colors-background-active')};
+      background-color: ${cssVar('navigation-item-colors-background-pressed')};
     }
   }
 `;

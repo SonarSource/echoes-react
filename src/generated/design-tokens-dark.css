@@ -21,11 +21,11 @@
  */
 
 html[data-echoes-theme='dark'], [data-echoes-theme='dark'] {
-  --echoes-color-background-neutral-subtle-default: #3e4357;
-  --echoes-color-background-neutral-subtle-hover: #3e4357cc;
-  --echoes-color-background-neutral-subtle-focus: #3e4357;
-  --echoes-color-background-neutral-subtle-active: #3e4357b3;
-  --echoes-color-background-neutral-bolder-default: #637192;
+  --echoes-color-background-neutral-subtle-default: #1f1f1f;
+  --echoes-color-background-neutral-subtle-hover: #252525;
+  --echoes-color-background-neutral-subtle-focus: #1f1f1f;
+  --echoes-color-background-neutral-subtle-active: #2a2a2a;
+  --echoes-color-background-neutral-bolder-default: #252525;
   --echoes-color-background-accent-default: #9fa9ed;
   --echoes-color-background-accent-hover: #bdc6ff;
   --echoes-color-background-accent-focus: #9fa9ed;
@@ -78,8 +78,8 @@ html[data-echoes-theme='dark'], [data-echoes-theme='dark'] {
   --echoes-color-background-ghost-accent-active: #5d6cd04d;
   --echoes-color-background-ghost-accent-focus: #00000000;
   --echoes-color-background-ghost-neutral-default: #00000000;
-  --echoes-color-background-ghost-neutral-hover: #1d212f;
-  --echoes-color-background-ghost-neutral-active: #12141d;
+  --echoes-color-background-ghost-neutral-hover: #ffffff0d;
+  --echoes-color-background-ghost-neutral-active: #ffffff1f;
   --echoes-color-background-ghost-neutral-focus: #00000000;
   --echoes-color-background-ghost-danger-default: #00000000;
   --echoes-color-background-ghost-danger-hover: #5d1d1333;
@@ -95,50 +95,51 @@ html[data-echoes-theme='dark'], [data-echoes-theme='dark'] {
   --echoes-color-background-emphasis-active: #ede2ff;
   --echoes-color-background-favourite-default: #fadc79;
   --echoes-color-background-favourite-hover: #fce9a3;
-  --echoes-color-surface-default: #2a2f40;
-  --echoes-color-surface-hover: #1d212f;
-  --echoes-color-surface-active: #12141d;
-  --echoes-color-surface-canvas-default: #1d212f;
-  --echoes-color-surface-inverse-default: #e1e6f3;
-  --echoes-color-surface-inverse-hover: #eff2f9;
-  --echoes-color-surface-inverse-focus: #e1e6f3;
-  --echoes-color-surface-inverse-active: #f6f7fb;
-  --echoes-color-surface-disabled: #3e4357;
-  --echoes-color-overlays-back-drop-default: #08090c99;
-  --echoes-color-overlays-disabled: #3e4357;
-  --echoes-color-text-strong: #fcfcfd;
-  --echoes-color-text-default: #e1e6f3;
-  --echoes-color-text-subtle: #c5cddf;
-  --echoes-color-text-disabled: #637192;
-  --echoes-color-text-on-color: #2a2f40;
-  --echoes-color-text-on-color-inverse: #2a2f40;
+  --echoes-color-surface-default: #151515; /** Default contained surface such as a card, table, menu, or dialog. */
+  --echoes-color-surface-hover: #ffffff0d; /** Legacy surface hover, mapped to the neutral interaction overlay. */
+  --echoes-color-surface-active: #ffffff1f; /** Legacy surface active state, mapped to the neutral pressed overlay. */
+  --echoes-color-surface-canvas-default: #1a1a1a; /** Page-level canvas behind content surfaces. */
+  --echoes-color-surface-inverse-default: #b8b8b8;
+  --echoes-color-surface-inverse-hover: #eeeeee;
+  --echoes-color-surface-inverse-focus: #b8b8b8;
+  --echoes-color-surface-inverse-active: #eeeeee;
+  --echoes-color-surface-disabled: #1f1f1f; /** Background for unavailable controls and regions. */
+  --echoes-color-surface-subtle: #1f1f1f; /** Subtle surface used to establish low-emphasis hierarchy. */
+  --echoes-color-overlays-back-drop-default: #15151599;
+  --echoes-color-overlays-disabled: #1f1f1f;
+  --echoes-color-text-strong: #eeeeee; /** Highest-contrast text. */
+  --echoes-color-text-default: #b8b8b8; /** Default readable text. */
+  --echoes-color-text-subtle: #828282; /** Supporting low-contrast text. */
+  --echoes-color-text-disabled: #737373; /** Text for unavailable controls. */
+  --echoes-color-text-on-color: #1a1a1a;
+  --echoes-color-text-on-color-inverse: #1a1a1a;
   --echoes-color-text-danger: #fda29b;
-  --echoes-color-text-placeholder: #c5cddf;
+  --echoes-color-text-placeholder: #828282; /** Placeholder text. */
   --echoes-color-text-accent: #9fa9ed;
   --echoes-color-text-info: #8fcaea;
   --echoes-color-text-success: #c4ea9e;
   --echoes-color-text-warning: #fef5d0;
   --echoes-color-text-emphasis: #ede2ff;
   --echoes-color-text-link-hover: #bdc6ff;
-  --echoes-color-icon-bold: #fcfcfd;
-  --echoes-color-icon-default: #e1e6f3;
-  --echoes-color-icon-subtle: #c5cddf;
-  --echoes-color-icon-disabled: #637192;
-  --echoes-color-icon-placeholder: #c5cddf;
+  --echoes-color-icon-bold: #eeeeee; /** Highest-contrast icon. */
+  --echoes-color-icon-default: #b8b8b8; /** Default icon. */
+  --echoes-color-icon-subtle: #828282; /** Supporting low-contrast icon. */
+  --echoes-color-icon-disabled: #737373; /** Icon for unavailable controls. */
+  --echoes-color-icon-placeholder: #828282; /** Placeholder icon. */
   --echoes-color-icon-accent: #bdc6ff;
   --echoes-color-icon-danger: #fda29b;
   --echoes-color-icon-warning: #fce9a3;
   --echoes-color-icon-success: #d4f2b7;
   --echoes-color-icon-info: #b8def1;
-  --echoes-color-icon-on-color: #2a2f40;
-  --echoes-color-icon-on-color-inverse: #2a2f40;
+  --echoes-color-icon-on-color: #1a1a1a;
+  --echoes-color-icon-on-color-inverse: #1a1a1a;
   --echoes-color-icon-selected: #bdc6ff;
   --echoes-color-icon-emphasis: #ede2ff;
-  --echoes-color-border-bolder: #c5cddf;
-  --echoes-color-border-bold: #a6adc2;
-  --echoes-color-border-weak: #637192;
-  --echoes-color-border-weaker: #3e4357;
-  --echoes-color-border-disabled: #637192;
+  --echoes-color-border-bolder: #737373; /** Strong control boundary. */
+  --echoes-color-border-bold: #464646; /** Default structural border. */
+  --echoes-color-border-weak: #363636; /** Subtle structural border. */
+  --echoes-color-border-weaker: #2a2a2a; /** Legacy weakest structural border. */
+  --echoes-color-border-disabled: #363636; /** Boundary for unavailable controls. */
   --echoes-color-border-accent-default: #bdc6ff;
   --echoes-color-border-danger-weak: #fda29b66;
   --echoes-color-border-danger-default: #fda29b;
@@ -148,8 +149,11 @@ html[data-echoes-theme='dark'], [data-echoes-theme='dark'] {
   --echoes-color-border-warning-weak: #fadc7966;
   --echoes-color-border-info-weak: #8fcaea66;
   --echoes-color-border-emphasis-weak: #b790f766;
-  --echoes-color-code-background-default: #3e4357;
-  --echoes-color-code-background-highlight: #2a2f40;
+  --echoes-color-border-subtle: #363636; /** Subtle structural border. */
+  --echoes-color-border-default: #464646; /** Default structural border. */
+  --echoes-color-border-strong: #737373; /** Strong boundary required to identify a control. */
+  --echoes-color-code-background-default: #1f1f1f;
+  --echoes-color-code-background-highlight: #2a2a2a;
   --echoes-color-code-border-default: #00000000;
   --echoes-color-code-text-default: #e2e7f1;
   --echoes-color-code-text-highlight: #fda29b;
@@ -161,6 +165,7 @@ html[data-echoes-theme='dark'], [data-echoes-theme='dark'] {
   --echoes-color-code-text-keyword-subtle: #ababff;
   --echoes-color-code-text-preprocessing-directive: #78d779;
   --echoes-color-focus-default: #bdc6ff;
+  --echoes-color-focus-ring: #eeeeee; /** Theme-neutral keyboard focus indicator. */
   --echoes-color-charts-categorical-1: #3b82d4;
   --echoes-color-charts-categorical-2: #d74a78;
   --echoes-color-charts-categorical-3: #0f9383;
@@ -175,21 +180,119 @@ html[data-echoes-theme='dark'], [data-echoes-theme='dark'] {
   --echoes-color-charts-severity-low: #e1ae48;
   --echoes-color-charts-severity-info: #3b97d4;
   --echoes-color-charts-placeholder-default: #637192;
+  --echoes-color-interaction-background-hover: #ffffff0d; /** Contextual neutral hover overlay. */
+  --echoes-color-interaction-background-pressed: #ffffff1f; /** Contextual neutral pressed overlay. */
+  --echoes-color-interaction-background-default: #00000000; /** No resting interaction overlay. */
+  --echoes-color-interaction-overlay-strong: #ffffff52; /** Strong contextual overlay; not a modal scrim. */
+  --echoes-color-selection-weak-default: #ffffff0d; /** Persistent low-emphasis selection. */
+  --echoes-color-selection-weak-hover: #ffffff14; /** Hovered low-emphasis selection. */
+  --echoes-color-selection-weak-pressed: #ffffff1f; /** Pressed low-emphasis selection. */
+  --echoes-color-selection-strong-default: #eeeeee; /** High-emphasis selected control. */
+  --echoes-color-selection-strong-hover: #b8b8b8; /** Hovered high-emphasis selected control. */
+  --echoes-color-selection-strong-pressed: #828282; /** Pressed high-emphasis selected control. */
+  --echoes-color-selection-strong-foreground: #000000; /** Foreground on strong neutral selection. */
+  --echoes-color-feature-surface-default: #0d2740; /** Weak AI, upgrade, upsell, pricing, or feature surface. */
+  --echoes-color-feature-surface-hover: #103455; /** Hovered weak feature surface. */
+  --echoes-color-feature-surface-pressed: #13416b; /** Pressed weak feature surface. */
+  --echoes-color-feature-border: #3470aa; /** Boundary for an explicit feature treatment. */
+  --echoes-color-feature-solid-default: #70b7ff; /** Solid explicit feature treatment. */
+  --echoes-color-feature-solid-hover: #8cc6ff; /** Hovered solid feature treatment. */
+  --echoes-color-feature-solid-pressed: #a8d4ff; /** Pressed solid feature treatment. */
+  --echoes-color-feature-foreground: #a8d4ff; /** Readable feature text and icon. */
+  --echoes-color-feature-on-solid: #000000; /** Foreground on solid feature treatments. */
+  --echoes-color-status-success-surface-default: #0b2b18; /** Weak success surface. */
+  --echoes-color-status-success-surface-hover: #0f3c22; /** Hovered weak success surface. */
+  --echoes-color-status-success-surface-pressed: #124e2c; /** Pressed weak success surface. */
+  --echoes-color-status-success-border: #22824c; /** success boundary. */
+  --echoes-color-status-success-solid-default: #40c878; /** Solid success treatment. */
+  --echoes-color-status-success-solid-hover: #72d897; /** Hovered solid success treatment. */
+  --echoes-color-status-success-solid-pressed: #9be8b5; /** Pressed solid success treatment. */
+  --echoes-color-status-success-foreground: #9be8b5; /** Readable success text and icon. */
+  --echoes-color-status-success-on-solid: #000000; /** Foreground on solid success treatments. */
+  --echoes-color-status-warning-surface-default: #332405; /** Weak warning surface. */
+  --echoes-color-status-warning-surface-hover: #463004; /** Hovered weak warning surface. */
+  --echoes-color-status-warning-surface-pressed: #5a3d03; /** Pressed weak warning surface. */
+  --echoes-color-status-warning-border: #9a6c17; /** warning boundary. */
+  --echoes-color-status-warning-solid-default: #f5b642; /** Solid warning treatment. */
+  --echoes-color-status-warning-solid-hover: #fac969; /** Hovered solid warning treatment. */
+  --echoes-color-status-warning-solid-pressed: #ffdb8a; /** Pressed solid warning treatment. */
+  --echoes-color-status-warning-foreground: #ffdb8a; /** Readable warning text and icon. */
+  --echoes-color-status-warning-on-solid: #000000; /** Foreground on solid warning treatments. */
+  --echoes-color-status-danger-surface-default: #3b101a; /** Weak danger surface. */
+  --echoes-color-status-danger-surface-hover: #501422; /** Hovered weak danger surface. */
+  --echoes-color-status-danger-surface-pressed: #661829; /** Pressed weak danger surface. */
+  --echoes-color-status-danger-border: #a74351; /** danger boundary. */
+  --echoes-color-status-danger-solid-default: #ff919c; /** Solid danger treatment. */
+  --echoes-color-status-danger-solid-hover: #ffa1ab; /** Hovered solid danger treatment. */
+  --echoes-color-status-danger-solid-pressed: #ffb0ba; /** Pressed solid danger treatment. */
+  --echoes-color-status-danger-foreground: #ffb0ba; /** Readable danger text and icon. */
+  --echoes-color-status-danger-on-solid: #000000; /** Foreground on solid danger treatments. */
+  --echoes-color-status-information-surface-default: #1f1f1f; /** Weak generic-information surface. */
+  --echoes-color-status-information-surface-hover: #252525; /** Hovered generic-information surface. */
+  --echoes-color-status-information-surface-pressed: #2a2a2a; /** Pressed generic-information surface. */
+  --echoes-color-status-information-border: #464646; /** Generic-information boundary. */
+  --echoes-color-status-information-solid-default: #eeeeee; /** Solid generic-information treatment. */
+  --echoes-color-status-information-solid-hover: #b8b8b8; /** Hovered solid generic-information treatment. */
+  --echoes-color-status-information-solid-pressed: #828282; /** Pressed solid generic-information treatment. */
+  --echoes-color-status-information-foreground: #b8b8b8; /** Readable generic-information text and icon. */
+  --echoes-color-status-information-on-solid: #000000; /** Foreground on solid information treatments. */
+  --echoes-color-action-primary-default: #eeeeee; /** Preferred neutral primary action. */
+  --echoes-color-action-primary-hover: #b8b8b8; /** Hovered preferred neutral primary action. */
+  --echoes-color-action-primary-pressed: #828282; /** Pressed preferred neutral primary action. */
+  --echoes-color-action-primary-foreground: #000000; /** Foreground on the primary action. */
+  --echoes-color-action-link-default: #eeeeee; /** Neutral action link; components must underline it. */
+  --echoes-color-action-link-hover: #b8b8b8; /** Hovered neutral action link; components must underline it. */
+  --echoes-color-action-secondary-background-default: #151515; /** Resting secondary action surface. */
+  --echoes-color-action-secondary-background-hover: #ffffff0d; /** Hovered secondary action overlay. */
+  --echoes-color-action-secondary-background-pressed: #ffffff1f; /** Pressed secondary action overlay. */
+  --echoes-color-action-secondary-border: #5a5a5a; /** Secondary action control boundary. */
+  --echoes-color-action-secondary-foreground: #eeeeee; /** Secondary action text and icon. */
+  --echoes-color-action-ghost-background-default: #00000000; /** Resting ghost action background. */
+  --echoes-color-action-ghost-background-hover: #ffffff0d; /** Hovered ghost action overlay. */
+  --echoes-color-action-ghost-background-pressed: #ffffff1f; /** Pressed ghost action overlay. */
+  --echoes-color-action-ghost-foreground: #eeeeee; /** Ghost action text and icon. */
+  --echoes-color-action-disabled-background: #1f1f1f; /** Unavailable action background. */
+  --echoes-color-action-disabled-border: #363636; /** Unavailable action boundary. */
+  --echoes-color-action-disabled-foreground: #737373; /** Unavailable action text and icon. */
+  --echoes-color-decorative-avatar-purple-background: #b290ec; /** Solid purple decorative avatar background. */
+  --echoes-color-decorative-avatar-purple-foreground: #000000; /** Readable foreground on a solid purple decorative avatar. */
+  --echoes-color-decorative-avatar-teal-background: #4fb8b2; /** Solid teal decorative avatar background. */
+  --echoes-color-decorative-avatar-teal-foreground: #000000; /** Readable foreground on a solid teal decorative avatar. */
+  --echoes-color-data-viz-categorical-1: #78a7e5; /** Categorical data-visualization series 1. */
+  --echoes-color-data-viz-categorical-2: #e986b7; /** Categorical data-visualization series 2. */
+  --echoes-color-data-viz-categorical-3: #5cb8a7; /** Categorical data-visualization series 3. */
+  --echoes-color-data-viz-categorical-4: #9f6beb; /** Categorical data-visualization series 4. */
+  --echoes-color-data-viz-categorical-5: #e89361; /** Categorical data-visualization series 5. */
+  --echoes-color-data-viz-categorical-6: #8ad8f1; /** Categorical data-visualization series 6. */
+  --echoes-color-data-viz-categorical-7: #f0a8e9; /** Categorical data-visualization series 7. */
+  --echoes-color-data-viz-categorical-8: #91dc63; /** Categorical data-visualization series 8. */
+  --echoes-color-data-viz-severity-blocker: #d53a2c; /** Data-visualization severity: blocker. */
+  --echoes-color-data-viz-severity-high: #e98475; /** Data-visualization severity: high. */
+  --echoes-color-data-viz-severity-medium: #e39757; /** Data-visualization severity: medium. */
+  --echoes-color-data-viz-severity-low: #cdb761; /** Data-visualization severity: low. */
+  --echoes-color-data-viz-severity-info: #78a7e5; /** Data-visualization severity: info. */
+  --echoes-color-data-viz-severity-placeholder: #828282; /** Data-visualization severity: placeholder. */
   --echoes-box-shadow-xsmall: 0 1px 4px 0 #08090c66;
   --echoes-box-shadow-small: 0 1px 10px 0 #08090c66, 0 1px 3px 0 #08090c66;
   --echoes-box-shadow-medium: inset 0 2px 15px -2px #08090c0f, 0 4px 15px -2px #08090c80;
   --echoes-box-shadow-large: 0 4px 6px -2px #08090c0d, 0 12px 20px -4px #08090c80;
   --echoes-box-shadow-x-large: 0 8px 8px -4px #08090c0a, 0 20px 30px -4px #08090c80;
+  --echoes-shadow-suppressed: none; /** A parent already provides containment. Deliberately flat. */
+  --echoes-shadow-resting: 0 1px 4px 0 #08090c66; /** Interactive or contained surface at rest, flush with the page. */
+  --echoes-shadow-attached: 0 1px 10px 0 #08090c66, 0 1px 3px 0 #08090c66; /** Structural chrome lifted off the page plane without overlaying content. */
+  --echoes-shadow-anchored: inset 0 2px 15px -2px #08090c0f, 0 4px 15px -2px #08090c80; /** Dismissible transient surface anchored to a trigger. */
+  --echoes-shadow-overlay: 0 4px 6px -2px #08090c0d, 0 12px 20px -4px #08090c80; /** Independent layer that covers content. */
+  --echoes-shadow-over-data: 0 8px 8px -4px #08090c0a, 0 20px 30px -4px #08090c80; /** Surface that must remain legible above dense data, charts, tables, or imagery. */
   --echoes-bottom-scroll-colors-shadow-gradient: #ffffff33;
-  --echoes-form-control-colors-background-default: #2a2f40;
-  --echoes-form-control-colors-background-hover: #1d212f;
-  --echoes-form-control-colors-border-default: #c5cddf;
-  --echoes-form-control-colors-border-focus: #637192;
-  --echoes-form-control-colors-icon-default: #c5cddf;
+  --echoes-form-control-colors-background-default: #151515;
+  --echoes-form-control-colors-background-hover: #ffffff0d;
+  --echoes-form-control-colors-border-default: #737373;
+  --echoes-form-control-colors-border-focus: #363636;
+  --echoes-form-control-colors-icon-default: #828282;
   --echoes-logos-colors-text: #ffffff;
   --echoes-logos-colors-brand: #ffffff;
   --echoes-logos-colors-sonar-whale: #d3121d;
-  --echoes-margin-indicator-colors-background-duplication: #a6adc2;
+  --echoes-margin-indicator-colors-background-duplication: #737373;
   --echoes-margin-indicator-colors-background-covered: #d4f2b7;
   --echoes-margin-indicator-colors-background-partially-covered: #fadc79;
   --echoes-margin-indicator-colors-background-uncovered: #fda29b;
@@ -198,26 +301,26 @@ html[data-echoes-theme='dark'], [data-echoes-theme='dark'] {
   --echoes-quality-gate-indicator-colors-passed-background: #c4ea9e4d;
   --echoes-quality-gate-indicator-colors-failed-icon: #fee4e2;
   --echoes-quality-gate-indicator-colors-failed-background: #fda29b4d;
-  --echoes-ratings-colors-background-rating-a-default: #027a48;
-  --echoes-ratings-colors-background-rating-b-default: #75a92c;
-  --echoes-ratings-colors-background-rating-c-default: #ae7a29;
-  --echoes-ratings-colors-background-rating-d-default: #b54708;
-  --echoes-ratings-colors-background-rating-e-default: #b42318;
-  --echoes-ratings-colors-text-rating-a-default: #f6fef9;
-  --echoes-ratings-colors-text-rating-b-default: #f3f8ef;
-  --echoes-ratings-colors-text-rating-c-default: #fcf5e4;
-  --echoes-ratings-colors-text-rating-d-default: #fff0eb;
-  --echoes-ratings-colors-text-rating-e-default: #fef3f2;
-  --echoes-ratings-colors-border-rating-a-default: #32d583;
-  --echoes-ratings-colors-border-rating-a-hover: #45d789;
-  --echoes-ratings-colors-border-rating-b-default: #b3dd86;
-  --echoes-ratings-colors-border-rating-b-hover: #b7df8c;
-  --echoes-ratings-colors-border-rating-c-default: #fadc79;
-  --echoes-ratings-colors-border-rating-c-hover: #fbde80;
-  --echoes-ratings-colors-border-rating-d-default: #f75f09;
-  --echoes-ratings-colors-border-rating-d-hover: #f9681d;
-  --echoes-ratings-colors-border-rating-e-default: #fda29b;
-  --echoes-ratings-colors-border-rating-e-hover: #fea7a0;
+  --echoes-ratings-colors-background-rating-a-default: #124e2c;
+  --echoes-ratings-colors-background-rating-b-default: #0b2b18;
+  --echoes-ratings-colors-background-rating-c-default: #332405;
+  --echoes-ratings-colors-background-rating-d-default: #2d2119;
+  --echoes-ratings-colors-background-rating-e-default: #3b101a;
+  --echoes-ratings-colors-text-rating-a-default: #eafbf0;
+  --echoes-ratings-colors-text-rating-b-default: #9be8b5;
+  --echoes-ratings-colors-text-rating-c-default: #ffdb8a;
+  --echoes-ratings-colors-text-rating-d-default: #e5c3ad;
+  --echoes-ratings-colors-text-rating-e-default: #ffb0ba;
+  --echoes-ratings-colors-border-rating-a-default: #30a462;
+  --echoes-ratings-colors-border-rating-a-hover: #40c878;
+  --echoes-ratings-colors-border-rating-b-default: #22824c;
+  --echoes-ratings-colors-border-rating-b-hover: #30a462;
+  --echoes-ratings-colors-border-rating-c-default: #9a6c17;
+  --echoes-ratings-colors-border-rating-c-hover: #c7902d;
+  --echoes-ratings-colors-border-rating-d-default: #7a5236;
+  --echoes-ratings-colors-border-rating-d-hover: #a76a3e;
+  --echoes-ratings-colors-border-rating-e-default: #a74351;
+  --echoes-ratings-colors-border-rating-e-hover: #d36a76;
   --echoes-severity-badge-colors-background-severity-blocker-prefix-default: #d92d201a;
   --echoes-severity-badge-colors-background-severity-blocker-suffix-default: #d92d2066;
   --echoes-severity-badge-colors-background-severity-blocker-suffix-hover: #d92d2099;
@@ -248,9 +351,174 @@ html[data-echoes-theme='dark'], [data-echoes-theme='dark'] {
   --echoes-severity-badge-colors-borders-medium-default: #fd712266;
   --echoes-severity-badge-colors-borders-low-default: #fadc7966;
   --echoes-severity-badge-colors-borders-info-default: #8fcaea66;
-  --echoes-sidebar-navigation-colors-background-default: #1d212f;
-  --echoes-sidebar-navigation-item-colors-background-default: #1d212f;
-  --echoes-sidebar-navigation-item-colors-background-hover: #12141d;
-  --echoes-sidebar-navigation-item-colors-background-active: #08090c;
-  --echoes-table-colors-background-header-default: #3e4357;
+  --echoes-sidebar-navigation-colors-background-default: #1a1a1a;
+  --echoes-sidebar-navigation-item-colors-background-default: #1a1a1a;
+  --echoes-sidebar-navigation-item-colors-background-hover: #252525;
+  --echoes-sidebar-navigation-item-colors-background-active: #2a2a2a;
+  --echoes-table-colors-background-header-default: #1f1f1f; /** Component contract mapped through surface.subtle. */
+  --echoes-button-colors-background-primary-default: #eeeeee; /** Component contract mapped through action.primary.default. */
+  --echoes-button-colors-background-primary-hover: #b8b8b8; /** Component contract mapped through action.primary.hover. */
+  --echoes-button-colors-background-primary-pressed: #828282; /** Component contract mapped through action.primary.pressed. */
+  --echoes-button-colors-background-primary-focus: #eeeeee; /** Component contract mapped through action.primary.default. */
+  --echoes-button-colors-background-secondary-default: #151515; /** Component contract mapped through action.secondary.background.default. */
+  --echoes-button-colors-background-secondary-hover: #ffffff0d; /** Component contract mapped through action.secondary.background.hover. */
+  --echoes-button-colors-background-secondary-pressed: #ffffff1f; /** Component contract mapped through action.secondary.background.pressed. */
+  --echoes-button-colors-background-ghost-default: #00000000; /** Component contract mapped through action.ghost.background.default. */
+  --echoes-button-colors-background-ghost-hover: #ffffff0d; /** Component contract mapped through action.ghost.background.hover. */
+  --echoes-button-colors-background-ghost-pressed: #ffffff1f; /** Component contract mapped through action.ghost.background.pressed. */
+  --echoes-button-colors-background-danger-default: #ff919c; /** Component contract mapped through status.danger.solid.default. */
+  --echoes-button-colors-background-danger-hover: #ffa1ab; /** Component contract mapped through status.danger.solid.hover. */
+  --echoes-button-colors-background-danger-pressed: #ffb0ba; /** Component contract mapped through status.danger.solid.pressed. */
+  --echoes-button-colors-background-disabled: #1f1f1f; /** Component contract mapped through action.disabled.background. */
+  --echoes-button-colors-foreground-primary: #000000; /** Component contract mapped through action.primary.foreground. */
+  --echoes-button-colors-foreground-secondary: #eeeeee; /** Component contract mapped through action.secondary.foreground. */
+  --echoes-button-colors-foreground-ghost: #eeeeee; /** Component contract mapped through action.ghost.foreground. */
+  --echoes-button-colors-foreground-danger: #000000; /** Component contract mapped through status.danger.onSolid. */
+  --echoes-button-colors-foreground-danger-ghost: #ffb0ba; /** Component contract mapped through status.danger.foreground. */
+  --echoes-button-colors-foreground-disabled: #737373; /** Component contract mapped through action.disabled.foreground. */
+  --echoes-button-colors-border-secondary: #464646; /** Quiet resting border for secondary and outlined buttons. */
+  --echoes-button-colors-border-secondary-hover: #464646; /** Stable quiet border for hovered secondary and outlined buttons. */
+  --echoes-button-colors-border-disabled: #363636; /** Component contract mapped through action.disabled.border. */
+  --echoes-button-colors-focus-ring: #eeeeee; /** Component contract mapped through focus.ring. */
+  --echoes-link-colors-action-default: #eeeeee; /** Component contract mapped through action.link.default. */
+  --echoes-link-colors-action-hover: #b8b8b8; /** Component contract mapped through action.link.hover. */
+  --echoes-link-colors-default-default: #b8b8b8; /** Component contract mapped through text.default. */
+  --echoes-link-colors-default-hover: #eeeeee; /** Component contract mapped through text.strong. */
+  --echoes-link-colors-subtle-default: #828282; /** Component contract mapped through text.subtle. */
+  --echoes-link-colors-subtle-hover: #b8b8b8; /** Component contract mapped through text.default. */
+  --echoes-link-colors-feature-default: #a8d4ff; /** Component contract mapped through feature.foreground. */
+  --echoes-link-colors-focus-ring: #eeeeee; /** Component contract mapped through focus.ring. */
+  --echoes-input-colors-background-default: #151515; /** Component contract mapped through surface.default. */
+  --echoes-input-colors-background-hover: #151515; /** Component contract mapped through surface.default. */
+  --echoes-input-colors-background-disabled: #1f1f1f; /** Component contract mapped through surface.disabled. */
+  --echoes-input-colors-border-default: #464646; /** Quiet resting border for form controls. */
+  --echoes-input-colors-border-hover: #464646; /** Stable quiet form-control border shown on hover. */
+  --echoes-input-colors-border-focus: #eeeeee; /** Component contract mapped through focus.ring. */
+  --echoes-input-colors-border-error: #a74351; /** Component contract mapped through status.danger.border. */
+  --echoes-input-colors-border-success: #22824c; /** Component contract mapped through status.success.border. */
+  --echoes-input-colors-border-disabled: #363636; /** Component contract mapped through border.disabled. */
+  --echoes-input-colors-foreground-default: #b8b8b8; /** Component contract mapped through text.default. */
+  --echoes-input-colors-foreground-placeholder: #828282; /** Component contract mapped through text.placeholder. */
+  --echoes-input-colors-foreground-disabled: #737373; /** Component contract mapped through text.disabled. */
+  --echoes-input-colors-icon-default: #828282; /** Component contract mapped through icon.subtle. */
+  --echoes-checkbox-colors-background-default: #151515; /** Component contract mapped through surface.default. */
+  --echoes-checkbox-colors-background-hover: #ffffff0d; /** Component contract mapped through interaction.background.hover. */
+  --echoes-checkbox-colors-background-selected: #eeeeee; /** Component contract mapped through selection.strong.default. */
+  --echoes-checkbox-colors-background-selected-hover: #b8b8b8; /** Component contract mapped through selection.strong.hover. */
+  --echoes-checkbox-colors-background-disabled: #1f1f1f; /** Component contract mapped through surface.disabled. */
+  --echoes-checkbox-colors-border-default: #464646; /** Quiet resting border for unchecked checkboxes. */
+  --echoes-checkbox-colors-border-hover: #464646; /** Stable quiet unchecked checkbox border shown on hover. */
+  --echoes-checkbox-colors-border-error: #a74351; /** Component contract mapped through status.danger.border. */
+  --echoes-checkbox-colors-border-disabled: #363636; /** Component contract mapped through border.disabled. */
+  --echoes-checkbox-colors-foreground-selected: #000000; /** Component contract mapped through selection.strong.foreground. */
+  --echoes-checkbox-colors-foreground-default: #b8b8b8; /** Checkbox label and icon foreground. */
+  --echoes-checkbox-colors-foreground-disabled: #737373; /** Disabled checkbox foreground. */
+  --echoes-checkbox-colors-focus-ring: #eeeeee; /** Component contract mapped through focus.ring. */
+  --echoes-radio-button-colors-background-default: #00000000; /** Component contract mapped through interaction.background.default. */
+  --echoes-radio-button-colors-background-hover: #ffffff0d; /** Component contract mapped through interaction.background.hover. */
+  --echoes-radio-button-colors-background-selected: #eeeeee; /** Component contract mapped through selection.strong.default. */
+  --echoes-radio-button-colors-background-selected-hover: #b8b8b8; /** Component contract mapped through selection.strong.hover. */
+  --echoes-radio-button-colors-background-disabled: #1f1f1f; /** Component contract mapped through surface.disabled. */
+  --echoes-radio-button-colors-border-default: #464646; /** Quiet resting border for unselected radio buttons. */
+  --echoes-radio-button-colors-border-hover: #464646; /** Stable quiet unselected radio-button border shown on hover. */
+  --echoes-radio-button-colors-border-error: #a74351; /** Component contract mapped through status.danger.border. */
+  --echoes-radio-button-colors-border-disabled: #363636; /** Component contract mapped through border.disabled. */
+  --echoes-radio-button-colors-foreground-selected: #000000; /** Component contract mapped through selection.strong.foreground. */
+  --echoes-radio-button-colors-foreground-default: #b8b8b8; /** Radio label foreground. */
+  --echoes-radio-button-colors-foreground-disabled: #737373; /** Disabled radio foreground. */
+  --echoes-radio-button-colors-focus-ring: #eeeeee; /** Component contract mapped through focus.ring. */
+  --echoes-navigation-item-colors-background-default: #00000000; /** Component contract mapped through interaction.background.default. */
+  --echoes-navigation-item-colors-background-hover: #ffffff0d; /** Component contract mapped through interaction.background.hover. */
+  --echoes-navigation-item-colors-background-pressed: #ffffff1f; /** Component contract mapped through interaction.background.pressed. */
+  --echoes-navigation-item-colors-background-selected: #ffffff0d; /** Component contract mapped through selection.weak.default. */
+  --echoes-navigation-item-colors-background-selected-hover: #ffffff14; /** Component contract mapped through selection.weak.hover. */
+  --echoes-navigation-item-colors-foreground-default: #b8b8b8; /** Component contract mapped through text.default. */
+  --echoes-navigation-item-colors-foreground-selected: #eeeeee; /** Component contract mapped through text.strong. */
+  --echoes-navigation-item-colors-foreground-subtle: #828282; /** Supporting navigation item foreground. */
+  --echoes-navigation-item-colors-foreground-disabled: #737373; /** Disabled navigation item foreground. */
+  --echoes-navigation-item-colors-focus-ring: #eeeeee; /** Component contract mapped through focus.ring. */
+  --echoes-issue-row-colors-background-default: #151515; /** Component contract mapped through surface.default. */
+  --echoes-issue-row-colors-background-hover: #ffffff0d; /** Component contract mapped through interaction.background.hover. */
+  --echoes-issue-row-colors-background-selected: #ffffff0d; /** Component contract mapped through selection.weak.default. */
+  --echoes-issue-row-colors-background-selected-hover: #ffffff14; /** Component contract mapped through selection.weak.hover. */
+  --echoes-issue-row-colors-border: #363636; /** Component contract mapped through border.subtle. */
+  --echoes-issue-row-colors-focus-ring: #eeeeee; /** Component contract mapped through focus.ring. */
+  --echoes-message-colors-information-background: #1f1f1f; /** Component contract mapped through status.information.surface.default. */
+  --echoes-message-colors-information-border: #464646; /** Component contract mapped through status.information.border. */
+  --echoes-message-colors-information-foreground: #b8b8b8; /** Component contract mapped through status.information.foreground. */
+  --echoes-message-colors-success-background: #0b2b18; /** Component contract mapped through status.success.surface.default. */
+  --echoes-message-colors-success-border: #22824c; /** Component contract mapped through status.success.border. */
+  --echoes-message-colors-success-foreground: #9be8b5; /** Component contract mapped through status.success.foreground. */
+  --echoes-message-colors-warning-background: #332405; /** Component contract mapped through status.warning.surface.default. */
+  --echoes-message-colors-warning-border: #9a6c17; /** Component contract mapped through status.warning.border. */
+  --echoes-message-colors-warning-foreground: #ffdb8a; /** Component contract mapped through status.warning.foreground. */
+  --echoes-message-colors-danger-background: #3b101a; /** Component contract mapped through status.danger.surface.default. */
+  --echoes-message-colors-danger-border: #a74351; /** Component contract mapped through status.danger.border. */
+  --echoes-message-colors-danger-foreground: #ffb0ba; /** Component contract mapped through status.danger.foreground. */
+  --echoes-promoted-feature-colors-background: #0d2740; /** Component contract mapped through feature.surface.default. */
+  --echoes-promoted-feature-colors-border: #3470aa; /** Component contract mapped through feature.border. */
+  --echoes-promoted-feature-colors-foreground: #a8d4ff; /** Component contract mapped through feature.foreground. */
+  --echoes-badge-colors-danger-weak-foreground: #ffb0ba; /** Weak danger badge foreground. */
+  --echoes-badge-colors-danger-weak-border: #a74351; /** Weak danger badge border. */
+  --echoes-badge-colors-danger-weak-default: #3b101a; /** Weak danger badge background. */
+  --echoes-badge-colors-danger-weak-hover: #501422; /** Weak danger badge hover. */
+  --echoes-badge-colors-danger-weak-pressed: #661829; /** Weak danger badge pressed. */
+  --echoes-badge-colors-danger-solid-foreground: #000000; /** Solid danger badge foreground. */
+  --echoes-badge-colors-danger-solid-default: #ff919c; /** Solid danger badge background. */
+  --echoes-badge-colors-danger-solid-hover: #ffa1ab; /** Solid danger badge hover. */
+  --echoes-badge-colors-danger-solid-pressed: #ffb0ba; /** Solid danger badge pressed. */
+  --echoes-badge-colors-information-weak-foreground: #b8b8b8; /** Weak information badge foreground. */
+  --echoes-badge-colors-information-weak-border: #464646; /** Weak information badge border. */
+  --echoes-badge-colors-information-weak-default: #1f1f1f; /** Weak information badge background. */
+  --echoes-badge-colors-information-weak-hover: #252525; /** Weak information badge hover. */
+  --echoes-badge-colors-information-weak-pressed: #2a2a2a; /** Weak information badge pressed. */
+  --echoes-badge-colors-information-solid-foreground: #000000; /** Solid information badge foreground. */
+  --echoes-badge-colors-information-solid-default: #eeeeee; /** Solid information badge background. */
+  --echoes-badge-colors-information-solid-hover: #b8b8b8; /** Solid information badge hover. */
+  --echoes-badge-colors-information-solid-pressed: #828282; /** Solid information badge pressed. */
+  --echoes-badge-colors-success-weak-foreground: #9be8b5; /** Weak success badge foreground. */
+  --echoes-badge-colors-success-weak-border: #22824c; /** Weak success badge border. */
+  --echoes-badge-colors-success-weak-default: #0b2b18; /** Weak success badge background. */
+  --echoes-badge-colors-success-weak-hover: #0f3c22; /** Weak success badge hover. */
+  --echoes-badge-colors-success-weak-pressed: #124e2c; /** Weak success badge pressed. */
+  --echoes-badge-colors-success-solid-foreground: #000000; /** Solid success badge foreground. */
+  --echoes-badge-colors-success-solid-default: #40c878; /** Solid success badge background. */
+  --echoes-badge-colors-success-solid-hover: #72d897; /** Solid success badge hover. */
+  --echoes-badge-colors-success-solid-pressed: #9be8b5; /** Solid success badge pressed. */
+  --echoes-badge-colors-warning-weak-foreground: #ffdb8a; /** Weak warning badge foreground. */
+  --echoes-badge-colors-warning-weak-border: #9a6c17; /** Weak warning badge border. */
+  --echoes-badge-colors-warning-weak-default: #332405; /** Weak warning badge background. */
+  --echoes-badge-colors-warning-weak-hover: #463004; /** Weak warning badge hover. */
+  --echoes-badge-colors-warning-weak-pressed: #5a3d03; /** Weak warning badge pressed. */
+  --echoes-badge-colors-warning-solid-foreground: #000000; /** Solid warning badge foreground. */
+  --echoes-badge-colors-warning-solid-default: #f5b642; /** Solid warning badge background. */
+  --echoes-badge-colors-warning-solid-hover: #fac969; /** Solid warning badge hover. */
+  --echoes-badge-colors-warning-solid-pressed: #ffdb8a; /** Solid warning badge pressed. */
+  --echoes-badge-colors-neutral-weak-foreground: #b8b8b8; /** Weak neutral badge foreground. */
+  --echoes-badge-colors-neutral-weak-border: #464646; /** Weak neutral badge border. */
+  --echoes-badge-colors-neutral-weak-default: #1f1f1f; /** Weak neutral badge background. */
+  --echoes-badge-colors-neutral-weak-hover: #ffffff0d; /** Weak neutral badge hover. */
+  --echoes-badge-colors-neutral-weak-pressed: #ffffff1f; /** Weak neutral badge pressed. */
+  --echoes-badge-colors-neutral-solid-foreground: #000000; /** Solid neutral badge foreground. */
+  --echoes-badge-colors-neutral-solid-default: #eeeeee; /** Solid neutral badge background. */
+  --echoes-badge-colors-neutral-solid-hover: #b8b8b8; /** Solid neutral badge hover. */
+  --echoes-badge-colors-neutral-solid-pressed: #828282; /** Solid neutral badge pressed. */
+  --echoes-badge-colors-highlight-weak-foreground: #ede2ff; /** Frozen legacy highlight badge foreground pending audit. */
+  --echoes-badge-colors-highlight-weak-border: #b790f766; /** Frozen legacy highlight badge border pending audit. */
+  --echoes-badge-colors-highlight-weak-default: #b790f74d; /** Frozen legacy highlight badge background pending audit. */
+  --echoes-badge-colors-highlight-weak-hover: #b790f733; /** Frozen legacy highlight badge hover pending audit. */
+  --echoes-badge-colors-highlight-weak-pressed: #b790f71a; /** Frozen legacy highlight badge pressed pending audit. */
+  --echoes-badge-colors-highlight-solid-foreground: #1a1a1a; /** Frozen legacy solid highlight badge foreground pending audit. */
+  --echoes-badge-colors-highlight-solid-default: #d9c5ff; /** Frozen legacy solid highlight badge background pending audit. */
+  --echoes-badge-colors-highlight-solid-hover: #e5d5ff; /** Frozen legacy solid highlight badge hover pending audit. */
+  --echoes-badge-colors-highlight-solid-pressed: #ede2ff; /** Frozen legacy solid highlight badge pressed pending audit. */
+  --echoes-badge-colors-focus-ring: #eeeeee; /** Badge keyboard focus indicator. */
+  --echoes-promoted-section-colors-neutral-background: #151515; /** Neutral promoted-section surface. */
+  --echoes-promoted-section-colors-neutral-border: #363636; /** Neutral promoted-section border. */
+  --echoes-promoted-section-colors-highlight-background: #b790f74d; /** Frozen legacy highlight surface pending consumer audit. */
+  --echoes-promoted-section-colors-highlight-border: #b790f766; /** Frozen legacy highlight border pending consumer audit. */
+  --echoes-badge-counter-colors-default-foreground: #b8b8b8; /** Default badge-counter foreground. */
+  --echoes-badge-counter-colors-default-background: #1f1f1f; /** Default badge-counter background. */
+  --echoes-badge-counter-colors-accent-foreground: #1a1a1a; /** Frozen legacy accent badge-counter foreground pending audit. */
+  --echoes-badge-counter-colors-accent-background: #9fa9ed; /** Frozen legacy accent badge-counter background pending audit. */
 }

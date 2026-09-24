@@ -97,19 +97,22 @@ const SidebarNavigationBaseItemLink = styled(NavLinkBase)`
   // Outside of accordions, it falls back to flex
   display: var(--sidebar-navigation-accordion-children-display, flex);
 
-  &:active,
   &.active {
     // Active items stay visible even when the parent accordion is closed
     display: flex;
     visibility: visible;
 
-    background-color: ${cssVar('sidebar-navigation-item-colors-background-active')};
-    color: ${cssVar('color-text-accent')};
+    background-color: ${cssVar('navigation-item-colors-background-selected')};
+    color: ${cssVar('navigation-item-colors-foreground-selected')};
     font: ${cssVar('typography-text-default-semi-bold')};
 
     &:hover {
-      background-color: ${cssVar('sidebar-navigation-item-colors-background-hover')};
+      background-color: ${cssVar('navigation-item-colors-background-selected-hover')};
     }
+  }
+
+  &:active {
+    background-color: ${cssVar('navigation-item-colors-background-pressed')};
   }
 `;
 
@@ -118,8 +121,7 @@ SidebarNavigationBaseItemLink.displayName = 'SidebarNavigationBaseItemLink';
 const sidebarNavigationBaseItemIconStyles = css`
   ${sidebarNavigationItemIconStyles}
 
-  ${SidebarNavigationBaseItemLink}.active > &,
-  ${SidebarNavigationBaseItemLink}:active > & {
-    color: ${cssVar('color-icon-accent')};
+  ${SidebarNavigationBaseItemLink}.active > & {
+    color: ${cssVar('navigation-item-colors-foreground-selected')};
   }
 `;

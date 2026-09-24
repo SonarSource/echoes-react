@@ -18,9 +18,13 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+import { matchers } from '@emotion/jest';
 import { screen } from '@testing-library/react';
 import { render } from '~common/helpers/test-utils';
+import { cssVar } from '~utils/design-tokens';
 import { FilterTag, FilterTagProps } from '../FilterTag';
+
+expect.extend(matchers);
 
 describe('FilterTag', () => {
   it('renders the label and dismiss button', async () => {
@@ -66,6 +70,20 @@ describe('FilterTag', () => {
     renderFilterTag({ className: 'my-tag', 'data-testid': 'root' } as Partial<FilterTagProps>);
 
     expect(screen.getByTestId('root')).toHaveClass('my-tag');
+  });
+
+  it('uses the neutral palette for its surface and border', () => {
+    renderFilterTag({ 'data-testid': 'filter-tag' } as Partial<FilterTagProps>);
+    const tag = screen.getByTestId('filter-tag');
+
+    expect(tag).toHaveStyleRule(
+      'background-color',
+      cssVar('color-background-neutral-subtle-default'),
+    );
+    expect(tag).toHaveStyleRule(
+      'border',
+      `${cssVar('border-width-default')} solid ${cssVar('color-border-weak')}`,
+    );
   });
 });
 
