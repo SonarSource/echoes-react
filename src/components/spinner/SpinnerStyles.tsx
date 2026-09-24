@@ -64,25 +64,38 @@ const spinAnimation = keyframes`
   }
 
   to {
-    transform: rotate(-360deg);
+    transform: rotate(360deg);
   }
 `;
 
+export const SPINNER_DEFAULT_COLOR = cssVar('color-surface-inverse-default');
+export const SPINNER_DEFAULT_TRACK_COLOR = cssVar('color-border-weak');
+
+const spinnerBorderWidth = '2px';
+const spinnerColor = `var(--spinner-color, ${SPINNER_DEFAULT_COLOR})`;
+const spinnerTrackColor = `var(--spinner-track-color, ${SPINNER_DEFAULT_TRACK_COLOR})`;
+
 export const SpinnerStyled = styled.span<{ inline: boolean }>`
-  border: 2px solid transparent;
-  background: var(
-    --spinner-background,
-    linear-gradient(0deg, ${cssVar('color-background-accent-default')} 50%, transparent 50% 100%)
-      border-box,
-    linear-gradient(90deg, ${cssVar('color-background-accent-default')} 25%, transparent 75% 100%)
-      border-box
-  );
-  mask:
-    linear-gradient(#fff 0 0) padding-box,
-    linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
+  position: relative;
   animation: ${spinAnimation} 1s infinite linear;
+
+  &::before,
+  &::after {
+    position: absolute;
+    inset: 0;
+    box-sizing: border-box;
+    border-radius: inherit;
+    content: '';
+  }
+
+  &::before {
+    border: ${spinnerBorderWidth} solid ${spinnerTrackColor};
+  }
+
+  &::after {
+    border: ${spinnerBorderWidth} solid transparent;
+    border-top-color: ${spinnerColor};
+  }
 
   display: ${displaySwitcher};
   box-sizing: border-box;

@@ -30,7 +30,7 @@ import { toDisabledControlArgType } from '../helpers/arg-types';
 
 const meta: Meta<typeof LinkStandaloneComp> = {
   component: LinkStandaloneComp,
-  title: 'Echoes/Link/LinkStandalone',
+  title: 'Echoes Components/Link/LinkStandalone',
   argTypes: {
     isDiscreet: {
       control: {

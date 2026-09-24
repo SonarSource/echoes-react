@@ -29,7 +29,7 @@ import { iconsComponentsArgType } from './helpers/arg-types';
 
 const meta: Meta<typeof ButtonIcon> = {
   component: ButtonIcon,
-  title: 'Echoes/ButtonIcon',
+  title: 'Echoes Components/ButtonIcon',
   argTypes: {
     Icon: iconsComponentsArgType,
     size: { options: Object.values(ButtonSize) },

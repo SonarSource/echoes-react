@@ -32,7 +32,7 @@ import {
 import { basicWrapperDecorator } from './helpers/BasicWrapper';
 
 const meta: Meta = {
-  title: 'Echoes/Logos',
+  title: 'Echoes Components/Logos',
   decorators: [basicWrapperDecorator],
   argTypes: {
     hasText: {

@@ -29,7 +29,7 @@ type CheckboxGroup = typeof CheckboxGroup;
 
 const meta: Meta<CheckboxGroup> = {
   component: CheckboxGroup,
-  title: 'Echoes/CheckboxGroup',
+  title: 'Echoes Components/CheckboxGroup',
   argTypes: {
     ...toTextControlArgTypes('label', 'messageInvalid', 'messageValid'),
   },

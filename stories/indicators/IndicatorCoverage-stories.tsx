@@ -27,7 +27,7 @@ import { basicWrapperDecorator } from '../helpers/BasicWrapper';
 
 const meta: Meta<typeof IndicatorCoverage> = {
   component: IndicatorCoverage,
-  title: 'Echoes/indicators/Coverage',
+  title: 'Echoes Components/Indicators/Coverage',
   decorators: [basicWrapperDecorator],
   argTypes: {
     rating: {

@@ -19,6 +19,7 @@
  */
 
 import { screen } from '@testing-library/react';
+import { useState } from 'react';
 import { render } from '~common/helpers/test-utils';
 import { ToggleButtonGroup, ToggleButtonGroupProps } from '../ToggleButtonGroup';
 
@@ -58,6 +59,45 @@ describe('RadioButtonGroup', () => {
 
     expect(onChange).not.toHaveBeenCalled();
   });
+
+  it('should still visually select an option that has a tooltip when clicked', async () => {
+    const { user } = render(
+      <ControlledToggleButtonGroup
+        options={[...DEFAULT_OPTIONS, { label: 'd', tooltip: 'd tooltip', value: '4' }]}
+      />,
+    );
+
+    await user.click(screen.getByRole('radio', { name: 'd' }));
+
+    expect(screen.getByRole('radio', { name: 'd' })).toBeChecked();
+  });
+
+  it('should show a tooltip when hovering an option that has one', async () => {
+    const { container, user } = renderToggleButtonGroup({
+      options: [...DEFAULT_OPTIONS, { label: 'd', tooltip: 'd tooltip', value: '4' }],
+    });
+
+    expect(screen.queryByRole('tooltip', { name: 'd tooltip' })).not.toBeInTheDocument();
+
+    await user.hover(screen.getByText('d'));
+
+    expect(await screen.findByRole('tooltip', { name: 'd tooltip' })).toBeInTheDocument();
+    await expect(container).toHaveNoA11yViolations();
+  });
+
+  it('should show a tooltip when focusing an option that has one via keyboard', async () => {
+    const { user } = renderToggleButtonGroup({
+      options: [...DEFAULT_OPTIONS, { label: 'd', tooltip: 'd tooltip', value: '4' }],
+    });
+
+    expect(screen.queryByRole('tooltip', { name: 'd tooltip' })).not.toBeInTheDocument();
+
+    await user.tab(); // focuses the selected radio ('a')
+    await user.keyboard('{ArrowRight}{ArrowRight}{ArrowRight}'); // roving-focus to 'd'
+
+    expect(screen.getByRole('radio', { name: 'd' })).toHaveFocus();
+    expect(await screen.findByRole('tooltip', { name: 'd tooltip' })).toBeInTheDocument();
+  });
 });
 
 function renderToggleButtonGroup(overrides: Partial<ToggleButtonGroupProps> = {}) {
@@ -69,4 +109,10 @@ function renderToggleButtonGroup(overrides: Partial<ToggleButtonGroupProps> = {}
       {...overrides}
     />,
   );
+}
+
+function ControlledToggleButtonGroup({ options }: Pick<ToggleButtonGroupProps, 'options'>) {
+  const [selected, setSelected] = useState('1');
+
+  return <ToggleButtonGroup onChange={setSelected} options={options} selected={selected} />;
 }

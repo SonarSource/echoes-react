@@ -25,7 +25,7 @@ import { Label, LoadingContainer, LoadingSkeleton, MessageCallout, RatingBadge }
 import { basicWrapperDecorator } from './helpers/BasicWrapper';
 
 const meta: Meta<typeof LoadingContainer> = {
-  title: 'Echoes/LoadingContainer',
+  title: 'Echoes Components/LoadingContainer',
   component: LoadingContainer,
   decorators: [basicWrapperDecorator],
 };

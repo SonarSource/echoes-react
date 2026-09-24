@@ -26,7 +26,7 @@ import { LogoSonarQubeCloud } from '../../../logos';
 
 describe('GlobalNavigation', () => {
   it('should render children inside the GlobalNavigation', () => {
-    render(
+    setupGlobalNavigation(
       <GlobalNavigation>
         <div>Test</div>
       </GlobalNavigation>,
@@ -36,11 +36,12 @@ describe('GlobalNavigation', () => {
   });
 
   it('should render GlobalNavigation.Primary content and GlobalNavigation.Secondary content', () => {
-    render(
+    setupGlobalNavigation(
       <GlobalNavigation>
         <GlobalNavigation.Primary>
           <div>Left Content</div>
         </GlobalNavigation.Primary>
+
         <GlobalNavigation.Secondary>
           <div>Right Content</div>
         </GlobalNavigation.Secondary>
@@ -49,6 +50,22 @@ describe('GlobalNavigation', () => {
 
     expect(screen.getByText('Left Content')).toBeInTheDocument();
     expect(screen.getByText('Right Content')).toBeInTheDocument();
+  });
+
+  it('should keep direct custom children clickable', async () => {
+    const onClick = jest.fn();
+
+    const { user } = setupGlobalNavigation(
+      <GlobalNavigation>
+        <button onClick={onClick} type="button">
+          Custom action
+        </button>
+      </GlobalNavigation>,
+    );
+
+    await user.click(screen.getByRole('button', { name: 'Custom action' }));
+
+    expect(onClick).toHaveBeenCalledTimes(1);
   });
 });
 
@@ -71,6 +88,7 @@ describe('GlobalNavigation.Home', () => {
     const { user } = setupWithMemoryRouter(
       <Routes>
         <Route element={<div>Home Page</div>} path="/" />
+
         <Route
           element={
             <GlobalNavigation>
@@ -109,6 +127,7 @@ describe('GlobalNavigation.Home', () => {
     const { user } = setupWithMemoryRouter(
       <Routes>
         <Route element={<div>Dashboard Page</div>} path="/dashboard" />
+
         <Route
           element={
             <GlobalNavigation>
@@ -137,4 +156,8 @@ const setupWithMemoryRouter = (children: React.ReactNode) => {
       {children}
     </MemoryRouter>,
   );
+};
+
+const setupGlobalNavigation = (children: React.ReactElement) => {
+  return render(children);
 };

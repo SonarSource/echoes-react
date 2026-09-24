@@ -21,6 +21,7 @@
 import { screen } from '@testing-library/react';
 import { OmitPropsWithLabels, render } from '~common/helpers/test-utils';
 import { GroupAlignment } from '~types/GroupAlignment';
+import { cssVar } from '~utils/design-tokens';
 import { RadioButtonGroup } from '../RadioButtonGroup';
 
 const DEFAULT_OPTIONS = [
@@ -98,6 +99,14 @@ describe('RadioButtonGroup', () => {
     renderRadioButtonGroup({ isRequired: true, label: <span>Group label</span> });
 
     expect(screen.getByText('Group label')).toBeVisible();
+  });
+
+  it('adds 12px spacing between the group label and the radio buttons', () => {
+    renderRadioButtonGroup({ label: 'Radio group label' });
+
+    const label = screen.getByText('Radio group label');
+    // eslint-disable-next-line testing-library/no-node-access
+    expect(label.parentElement).toHaveStyle({ marginBottom: cssVar('dimension-space-150') });
   });
 });
 

@@ -98,7 +98,7 @@ export interface SpotlightProps {
   backLabel?: string;
 
   /**
-   * A function called when the Spotlight state changes (optional) - see https://docs.react-joyride.com/props
+   * A function called when the Spotlight state changes (optional) - see https://docs-v2.react-joyride.com/props
    */
   callback?: JoyrideCallback;
 

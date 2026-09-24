@@ -19,7 +19,7 @@
  */
 
 import styled from '@emotion/styled';
-import { forwardRef, PropsWithChildren, ReactNode, useMemo } from 'react';
+import { PropsWithChildren, ReactNode, useMemo } from 'react';
 import { useIntl } from 'react-intl';
 import { DismissButton } from '~common/components/DismissButton';
 import { isDefined } from '~common/helpers/types';
@@ -37,6 +37,10 @@ import {
 } from './MessageStyles';
 import { MessageVariety } from './MessageTypes';
 
+import {
+  FEATURE_COMMUNICATION_DATA_ATTRIBUTE,
+  FeatureCommunicationComponent,
+} from '~common/helpers/constants';
 import { cssVar } from '~utils/design-tokens';
 
 export interface MessageCalloutProps extends PropsWithChildren {
@@ -49,10 +53,30 @@ export interface MessageCalloutProps extends PropsWithChildren {
    * message updates its content.
    */
   announcementMode?: `${LiveRegionAnnouncementMode}`;
+  /**
+   * Optional CSS class name applied to the root element.
+   */
   className?: string;
+  /**
+   * Callback fired when the user clicks the dismiss button. When provided, a dismiss button is rendered.
+   */
   onDismiss?: VoidFunction;
+  /**
+   * Ref forwarded to the root `<div>` element.
+   */
+  ref?: React.RefObject<HTMLDivElement>;
+  /**
+   * Text prepended to the message content for screen readers only, providing additional context
+   * before the visible content is read. When omitted, a default prefix derived from `variety` is used.
+   */
   screenReaderPrefix?: string;
+  /**
+   * Optional title displayed above the message body.
+   */
   title?: string;
+  /**
+   * Visual style of the callout — conveys intent (info, danger, warning, success, or discover).
+   */
   variety: `${MessageVariety}`;
 }
 
@@ -62,13 +86,14 @@ export interface MessageCalloutProps extends PropsWithChildren {
  * dismiss button. Set `announcementMode` only when the message should also be
  * announced by assistive technology.
  */
-export const MessageCallout = forwardRef<HTMLDivElement, MessageCalloutProps>((props, ref) => {
+export function MessageCallout(props: Readonly<MessageCalloutProps>) {
   const {
     action,
     announcementMode,
     children,
     className,
     onDismiss,
+    ref,
     screenReaderPrefix,
     title,
     variety,
@@ -78,10 +103,19 @@ export const MessageCallout = forwardRef<HTMLDivElement, MessageCalloutProps>((p
 
   const intl = useIntl();
 
+  const dataAttributes =
+    variety === MessageVariety.Discover
+      ? {
+          [FEATURE_COMMUNICATION_DATA_ATTRIBUTE]:
+            FeatureCommunicationComponent.MessageCalloutDiscover,
+        }
+      : {};
+
   return (
     <MessageCalloutContainer
       className={className}
       css={useMemo(() => MESSAGE_CALLOUT_VARIETY_STYLE[variety], [variety])}
+      {...dataAttributes}
       ref={ref}
       {...radixProps}>
       <MessageCalloutMainContent>
@@ -112,7 +146,7 @@ export const MessageCallout = forwardRef<HTMLDivElement, MessageCalloutProps>((p
       {isDefined(action) && <MessageCalloutFooter>{action}</MessageCalloutFooter>}
     </MessageCalloutContainer>
   );
-});
+}
 
 MessageCallout.displayName = 'MessageCallout';
 

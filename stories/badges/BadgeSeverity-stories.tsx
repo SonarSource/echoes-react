@@ -42,7 +42,7 @@ const meta: Meta<typeof BadgeSeverity> = {
     severity: { options: Object.values(BadgeSeverityLevel) },
   },
 
-  title: 'Echoes/Badges/BadgeSeverity',
+  title: 'Echoes Components/Badges/BadgeSeverity',
 };
 
 export default meta;

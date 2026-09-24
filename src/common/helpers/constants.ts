@@ -17,22 +17,16 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
+export const EMPTY_OBJECT: Readonly<Record<string, never>> = Object.freeze({});
 
-import styled from '@emotion/styled';
+export const KEYBOARD_THROTTLE_MS = 100;
 
-import { cssVar } from '~utils/design-tokens';
+/**
+ * data attribute added to components used for feature communication.
+ */
+export const FEATURE_COMMUNICATION_DATA_ATTRIBUTE = 'data-feature-communication';
 
-export const styleDropdownMenuOverlay = styled.div`
-  background-color: ${cssVar('color-surface-default')};
-  border: ${cssVar('border-width-default')} solid ${cssVar('color-border-weak')};
-  border-radius: ${cssVar('dimension-space-100')};
-  box-shadow: ${cssVar('box-shadow-medium')};
-  box-sizing: border-box;
-  margin: ${cssVar('dimension-space-50')} 0;
-  max-height: var(--radix-dropdown-menu-content-available-height);
-  max-width: ${cssVar('sizes-overlays-max-width-default')};
-  min-width: ${cssVar('sizes-overlays-min-width-default')};
-  overflow-x: hidden;
-  overflow-y: auto;
-  padding: ${cssVar('dimension-space-50')} ${cssVar('dimension-space-0')};
-`.withComponent;
+export enum FeatureCommunicationComponent {
+  MessageCalloutDiscover = 'message-callout-discover',
+  TeachingBubble = 'teaching-bubble',
+}

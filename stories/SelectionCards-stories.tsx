@@ -24,7 +24,7 @@ import { FishtankIllustration } from './helpers/FishtankIllustration';
 
 const meta: Meta<typeof SelectionCards> = {
   component: SelectionCards,
-  title: 'Echoes/SelectionCards',
+  title: 'Echoes Components/SelectionCards',
   args: {},
 };
 

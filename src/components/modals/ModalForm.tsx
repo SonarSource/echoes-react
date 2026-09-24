@@ -27,11 +27,7 @@ import { Modal, ModalProps } from './Modal';
 import { ModalAlert, ModalAlertProps } from './ModalAlert';
 
 type ExcludedModalProps =
-  | 'content'
-  | 'isOpen'
-  | 'onOpenChange'
-  | 'primaryButton'
-  | 'secondaryButton';
+  'content' | 'isOpen' | 'onOpenChange' | 'primaryButton' | 'secondaryButton';
 
 type FormRootPropsSubset = Omit<FormRootProps, 'children' | 'onSubmit'>;
 

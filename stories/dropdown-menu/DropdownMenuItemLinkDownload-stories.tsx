@@ -27,7 +27,7 @@ import { MenuButton } from '../helpers/MenuButton';
 const meta: Meta<typeof DropdownMenu.ItemLinkDownload> = {
   component: DropdownMenu.ItemLinkDownload,
   decorators: [basicWrapperDecorator],
-  title: 'Echoes/DropdownMenuItems/ItemLinkDownload',
+  title: 'Echoes Components/DropdownMenu/ItemLinkDownload',
   parameters: {
     controls: { exclude: ['onClick'] },
   },

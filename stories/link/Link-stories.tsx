@@ -25,7 +25,7 @@ import { toDisabledControlArgType } from '../helpers/arg-types';
 
 const meta: Meta<typeof LinkComp> = {
   component: LinkComp,
-  title: 'Echoes/Link/Link',
+  title: 'Echoes Components/Link/Link',
   argTypes: {
     highlight: {
       control: {

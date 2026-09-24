@@ -27,7 +27,7 @@ import * as icons from '../src/components/icons';
 import { basicWrapperDecorator } from './helpers/BasicWrapper';
 
 const meta: Meta = {
-  title: 'Echoes/Icons',
+  title: 'Echoes Components/Icons',
 };
 
 export default meta;
@@ -42,7 +42,7 @@ function renderIcons(regexp?: RegExp) {
           <IconName>{(Icon as React.FC).displayName}</IconName>
         </IconTile>
 
-        {['IconDot', 'IconHome', 'IconRecommended', 'IconStar'].includes(
+        {['IconDot', 'IconHome', 'IconRecommended', 'IconRocket', 'IconStar'].includes(
           (Icon as React.FC).displayName ?? '',
         ) && (
           <IconTile key={`${(Icon as React.FC).displayName}} isFilled`}>

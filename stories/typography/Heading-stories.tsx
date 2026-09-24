@@ -26,7 +26,7 @@ import { basicWrapperDecorator } from '../helpers/BasicWrapper';
 
 const meta: Meta<typeof Heading> = {
   component: Heading,
-  title: 'Echoes/Typography/Heading',
+  title: 'Echoes Components/Typography/Heading',
   argTypes: {
     size: { control: { type: 'select' }, options: [...Object.values(HeadingSize), undefined] },
   },

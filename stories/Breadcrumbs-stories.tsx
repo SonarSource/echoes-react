@@ -26,7 +26,7 @@ import { basicWrapperDecorator } from './helpers/BasicWrapper';
 
 const meta: Meta<typeof Breadcrumbs> = {
   component: Breadcrumbs,
-  title: 'Echoes/Breadcrumbs',
+  title: 'Echoes Components/Breadcrumbs',
   decorators: [basicWrapperDecorator],
 };
 

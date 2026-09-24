@@ -1,0 +1,138 @@
+/*
+ * Echoes React
+ * Copyright (C) 2023-2025 SonarSource Sàrl
+ * mailto:info AT sonarsource DOT com
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 3 of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program; if not, write to the Free Software Foundation,
+ * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ */
+
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import styled from '@emotion/styled';
+import {
+  Button,
+  ButtonVariety,
+  Card,
+  EmptyState,
+  EmptyStateProps,
+  HeadingSize,
+  IconActivity,
+  LinkStandalone,
+} from '../src';
+import { cssVar } from '../src/utils/design-tokens';
+import { iconsElementsArgType, toTextControlArgTypes } from './helpers/arg-types';
+import { basicWrapperDecorator } from './helpers/BasicWrapper';
+
+const meta: Meta<typeof EmptyState> = {
+  args: {
+    title: 'No versions have been released yet',
+    text: 'Versions will appear here once the first release is available for this project.',
+    graphic: <IconActivity />,
+    titleAs: 'h2',
+    titleSize: HeadingSize.Large,
+  },
+  argTypes: {
+    ...toTextControlArgTypes<EmptyStateProps>('title', 'text'),
+    graphic: {
+      ...iconsElementsArgType,
+      control: { type: 'select' },
+    },
+    titleAs: {
+      control: { type: 'select' },
+      options: ['h1', 'h2', 'h3', 'h4', 'h5'],
+    },
+    titleSize: {
+      control: { type: 'select' },
+      options: Object.values(HeadingSize),
+    },
+  },
+  component: EmptyState,
+  decorators: [basicWrapperDecorator],
+  parameters: {
+    controls: {
+      exclude: ['action', 'link'],
+    },
+  },
+  title: 'Echoes Components/EmptyState',
+};
+
+export default meta;
+type Story = StoryObj<typeof EmptyState>;
+
+function render(props: Readonly<EmptyStateProps>) {
+  return (
+    <StoryWrapper>
+      <EmptyState {...props} />
+    </StoryWrapper>
+  );
+}
+
+export const Default: Story = {
+  render,
+};
+
+export const WithAction: Story = {
+  args: {
+    action: <Button variety={ButtonVariety.Primary}>Read documentation</Button>,
+  },
+  render,
+};
+
+export const WithLink: Story = {
+  args: {
+    link: (
+      <LinkStandalone enableOpenInNewTab to="https://www.sonarsource.com">
+        Learn more about releases
+      </LinkStandalone>
+    ),
+  },
+  render,
+};
+
+export const WithActionAndLink: Story = {
+  args: {
+    action: <Button variety={ButtonVariety.Primary}>Read documentation</Button>,
+    link: (
+      <LinkStandalone enableOpenInNewTab to="https://www.sonarsource.com">
+        Learn more about releases
+      </LinkStandalone>
+    ),
+  },
+  render,
+};
+
+export const InCard: Story = {
+  render: (props) => (
+    <StoryWrapper>
+      <Card>
+        <CardBodyWrapper>
+          <EmptyState {...props} />
+        </CardBodyWrapper>
+      </Card>
+    </StoryWrapper>
+  ),
+};
+
+const StoryWrapper = styled.div`
+  padding: ${cssVar('dimension-space-400')};
+`;
+
+StoryWrapper.displayName = 'StoryWrapper';
+
+const CardBodyWrapper = styled(Card.Body)`
+  display: flex;
+  justify-content: center;
+`;
+
+CardBodyWrapper.displayName = 'CardBodyWrapper';

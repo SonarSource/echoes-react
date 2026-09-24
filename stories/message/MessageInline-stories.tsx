@@ -21,16 +21,16 @@
 /* eslint-disable no-console */
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import {
+  LiveRegionAnnouncementMode,
   MessageInline,
   MessageInlineSize,
   MessageVariety,
-  LiveRegionAnnouncementMode,
 } from '../../src';
 import { basicWrapperDecorator } from '../helpers/BasicWrapper';
 
 const meta: Meta<typeof MessageInline> = {
   component: MessageInline,
-  title: 'Echoes/Messages/MessageInline',
+  title: 'Echoes Components/Messages/MessageInline',
   argTypes: {
     announcementMode: {
       control: { type: 'select' },

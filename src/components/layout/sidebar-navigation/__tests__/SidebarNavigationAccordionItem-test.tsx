@@ -19,14 +19,20 @@
  */
 
 import { matchers } from '@emotion/jest';
-import { screen } from '@testing-library/react';
-import { renderWithMemoryRouter } from '~common/helpers/test-utils';
-import { IconBranch, IconExpand, IconGitBranch } from '../../../icons';
+import { screen, waitFor } from '@testing-library/react';
+import { IconBranch, IconGitBranch } from '../../../icons';
+import { SidebarNavigationAccordionChildItem } from '../SidebarNavigationAccordionChildItem';
+
 import {
-  SidebarNavigationAccordionItem,
-  SidebarNavigationAccordionItemProps,
-} from '../SidebarNavigationAccordionItem';
-import { SidebarNavigationItem } from '../SidebarNavigationItem';
+  checkAccordionAccessibility,
+  checkAccordionPanelVisibility,
+  getExplicitlyActiveSidebarNavigationAccordionChildren,
+  setupControlledSidebarNavigationAccordionItem,
+  setupSidebarNavigationAccordionItem,
+  setupSidebarNavigationAccordionItemWithExplicitActiveChild,
+  setupSidebarNavigationAccordionItemWithTransientInitialActiveChild,
+  setupSidebarNavigationAccordionItemWithRouter,
+} from '../test-utils/SidebarNavigationAccordionItemTestUtils';
 
 expect.extend(matchers);
 
@@ -37,20 +43,43 @@ jest.mock('../utils', () => ({
 it('should expand hidden elements when clicked', async () => {
   const onOpen = jest.fn();
   const onClose = jest.fn();
-  const { user } = setupSidebarNavigationAccordionItem({ onOpen, onClose });
+  const onOpenChange = jest.fn();
+
+  const { user } = setupSidebarNavigationAccordionItem({ onClose, onOpen, onOpenChange });
 
   const accordionButton = screen.getByRole('button', { name: 'Accordion Item' });
   expect(accordionButton).toBeInTheDocument();
   checkAccordionPanelVisibility(false);
 
   await user.click(accordionButton);
-  expect(onOpen).toHaveBeenCalled();
+
+  expect(onOpen).toHaveBeenCalledTimes(1);
+  expect(onClose).not.toHaveBeenCalled();
+  expect(onOpenChange).toHaveBeenCalledTimes(1);
+  expect(onOpenChange).toHaveBeenNthCalledWith(1, true);
+
   checkAccordionPanelVisibility(true);
   expect(screen.getAllByRole('link')).toHaveLength(2);
 
   await user.click(accordionButton);
+
   checkAccordionPanelVisibility(false);
-  expect(onClose).toHaveBeenCalled();
+
+  expect(onOpen).toHaveBeenCalledTimes(1);
+  expect(onClose).toHaveBeenCalledTimes(1);
+  expect(onOpenChange).toHaveBeenCalledTimes(2);
+  expect(onOpenChange).toHaveBeenNthCalledWith(2, false);
+});
+
+it('should render uncontrolled and closed by default', () => {
+  setupSidebarNavigationAccordionItem();
+
+  expect(screen.getByRole('button', { name: 'Accordion Item' })).toHaveAttribute(
+    'aria-expanded',
+    'false',
+  );
+
+  checkAccordionAccessibility(false);
 });
 
 it('should render the accordion open when defaultOpen is true', () => {
@@ -58,6 +87,231 @@ it('should render the accordion open when defaultOpen is true', () => {
 
   checkAccordionPanelVisibility(true);
   expect(screen.getAllByRole('link')).toHaveLength(2);
+  checkAccordionAccessibility(true);
+});
+
+it('should render the accordion open when a child route is active', () => {
+  setupSidebarNavigationAccordionItemWithRouter({}, ['/sub-item-1']);
+
+  expect(screen.getAllByRole('link')).toHaveLength(2);
+  checkAccordionAccessibility(true);
+});
+
+it('should call open callbacks on initial auto-open from an active child route', async () => {
+  const onOpen = jest.fn();
+  const onClose = jest.fn();
+  const onOpenChange = jest.fn();
+
+  setupSidebarNavigationAccordionItemWithRouter({ onClose, onOpen, onOpenChange }, ['/sub-item-1']);
+
+  await waitFor(() => expect(onOpen).toHaveBeenCalledTimes(1));
+
+  expect(onClose).not.toHaveBeenCalled();
+  expect(onOpenChange).toHaveBeenCalledTimes(1);
+  expect(onOpenChange).toHaveBeenCalledWith(true);
+  checkAccordionAccessibility(true);
+});
+
+it('should stay open when an initially active child becomes inactive', async () => {
+  const onOpen = jest.fn();
+  const onClose = jest.fn();
+  const onOpenChange = jest.fn();
+
+  setupSidebarNavigationAccordionItemWithTransientInitialActiveChild({
+    onClose,
+    onOpen,
+    onOpenChange,
+  });
+
+  await waitFor(() => {
+    checkAccordionAccessibility(true);
+  });
+
+  expect(onOpen).toHaveBeenCalledTimes(1);
+  expect(onClose).not.toHaveBeenCalled();
+  expect(onOpenChange).toHaveBeenCalledTimes(1);
+  expect(onOpenChange).toHaveBeenCalledWith(true);
+});
+
+it('should render the accordion open when a child is explicitly active', () => {
+  setupSidebarNavigationAccordionItem({
+    children: getExplicitlyActiveSidebarNavigationAccordionChildren(),
+  });
+
+  expect(screen.getAllByRole('link')).toHaveLength(2);
+  checkAccordionAccessibility(true);
+});
+
+it.each([true, false])('should respect the controlled open state %s', (isOpen) => {
+  setupSidebarNavigationAccordionItem({ isOpen });
+
+  expect(screen.getByRole('button', { name: 'Accordion Item' })).toHaveAttribute(
+    'aria-expanded',
+    isOpen.toString(),
+  );
+
+  checkAccordionAccessibility(isOpen);
+});
+
+it('should not auto-open a controlled closed accordion when a child route is active', () => {
+  setupSidebarNavigationAccordionItemWithRouter({ isOpen: false }, ['/sub-item-1']);
+
+  expect(screen.getByRole('link', { name: 'Sub Item 1' })).toHaveClass('active');
+  checkAccordionAccessibility(false);
+});
+
+it('should reflect controlled prop updates after mount', async () => {
+  const { user } = setupControlledSidebarNavigationAccordionItem();
+
+  expect(screen.getByRole('button', { name: 'Accordion Item' })).toHaveAttribute(
+    'aria-expanded',
+    'false',
+  );
+
+  checkAccordionAccessibility(false);
+
+  await user.click(screen.getByRole('button', { name: 'Open accordion externally' }));
+
+  expect(screen.getByRole('button', { name: 'Accordion Item' })).toHaveAttribute(
+    'aria-expanded',
+    'true',
+  );
+
+  checkAccordionAccessibility(true);
+
+  await user.click(screen.getByRole('button', { name: 'Close accordion externally' }));
+  checkAccordionAccessibility(false);
+});
+
+it('should call onOpenChange without changing a controlled state', async () => {
+  const onOpenChange = jest.fn();
+  const { user } = setupSidebarNavigationAccordionItem({ isOpen: false, onOpenChange });
+
+  await user.click(screen.getByRole('button', { name: 'Accordion Item' }));
+
+  expect(onOpenChange).toHaveBeenCalledWith(true);
+  checkAccordionAccessibility(false);
+});
+
+it('should call callbacks when a child route becomes active after navigation', async () => {
+  const onOpen = jest.fn();
+  const onClose = jest.fn();
+  const onOpenChange = jest.fn();
+
+  const { user } = setupSidebarNavigationAccordionItemWithRouter({ onClose, onOpen, onOpenChange });
+
+  checkAccordionAccessibility(false);
+
+  await user.click(screen.getByRole('button', { name: 'Navigate to first child route' }));
+
+  expect(onOpen).toHaveBeenCalledTimes(1);
+  expect(onClose).not.toHaveBeenCalled();
+  expect(onOpenChange).toHaveBeenCalledTimes(1);
+  expect(onOpenChange).toHaveBeenCalledWith(true);
+  checkAccordionAccessibility(true);
+});
+
+it('should stay open when an auto-opened child route becomes inactive', async () => {
+  const onOpen = jest.fn();
+  const onClose = jest.fn();
+  const onOpenChange = jest.fn();
+
+  const { user } = setupSidebarNavigationAccordionItemWithRouter({ onClose, onOpen, onOpenChange });
+
+  await user.click(screen.getByRole('button', { name: 'Navigate to first child route' }));
+
+  await user.click(screen.getByRole('button', { name: 'Navigate elsewhere' }));
+
+  expect(onOpen).toHaveBeenCalledTimes(1);
+  expect(onClose).not.toHaveBeenCalled();
+  expect(onOpenChange).toHaveBeenCalledTimes(1);
+  expect(onOpenChange).toHaveBeenCalledWith(true);
+  checkAccordionAccessibility(true);
+});
+
+it('should keep a manually opened accordion open after navigating elsewhere', async () => {
+  const { user } = setupSidebarNavigationAccordionItemWithRouter();
+
+  await user.click(screen.getByRole('button', { name: 'Accordion Item' }));
+  checkAccordionAccessibility(true);
+
+  await user.click(screen.getByRole('button', { name: 'Navigate elsewhere' }));
+
+  expect(screen.getAllByRole('link')).toHaveLength(2);
+  checkAccordionAccessibility(true);
+});
+
+it('should stay manually closed when an explicitly active child remains active during navigation', async () => {
+  const { user } = setupSidebarNavigationAccordionItemWithRouter({
+    children: getExplicitlyActiveSidebarNavigationAccordionChildren(),
+  });
+
+  checkAccordionAccessibility(true);
+
+  await user.click(screen.getByRole('button', { name: 'Accordion Item' }));
+  checkAccordionAccessibility(false);
+
+  await user.click(screen.getByRole('button', { name: 'Navigate elsewhere' }));
+
+  expect(screen.getByRole('link', { name: 'Sub Item 1' })).toHaveClass('active');
+  checkAccordionAccessibility(false);
+});
+
+it('should stay manually closed while the same route stays active', async () => {
+  const { user } = setupSidebarNavigationAccordionItemWithRouter({}, ['/sub-item-1']);
+
+  checkAccordionAccessibility(true);
+
+  await user.click(screen.getByRole('button', { name: 'Accordion Item' }));
+
+  checkAccordionAccessibility(false);
+
+  expect(screen.getByRole('button', { name: 'Accordion Item' })).toHaveAttribute(
+    'aria-expanded',
+    'false',
+  );
+});
+
+it('should reopen when the same child route becomes active again after being manually closed', async () => {
+  const { user } = setupSidebarNavigationAccordionItemWithRouter({}, ['/sub-item-1']);
+
+  checkAccordionAccessibility(true);
+
+  await user.click(screen.getByRole('button', { name: 'Accordion Item' }));
+  checkAccordionAccessibility(false);
+
+  await user.click(screen.getByRole('button', { name: 'Navigate elsewhere' }));
+  checkAccordionAccessibility(false);
+
+  await user.click(screen.getByRole('button', { name: 'Navigate to first child route' }));
+
+  checkAccordionAccessibility(true);
+
+  expect(screen.getByRole('button', { name: 'Accordion Item' })).toHaveAttribute(
+    'aria-expanded',
+    'true',
+  );
+});
+
+it('should reopen when an explicitly active child becomes active again without navigation', async () => {
+  const { user } = setupSidebarNavigationAccordionItemWithExplicitActiveChild();
+
+  checkAccordionAccessibility(true);
+
+  await user.click(screen.getByRole('button', { name: 'Accordion Item' }));
+  checkAccordionAccessibility(false);
+
+  await user.click(screen.getByRole('button', { name: 'Toggle first child active state' }));
+  checkAccordionAccessibility(false);
+
+  await user.click(screen.getByRole('button', { name: 'Toggle first child active state' }));
+
+  checkAccordionAccessibility(true);
+
+  expect(screen.getByRole('button', { name: 'Accordion Item' })).toHaveAttribute(
+    'aria-expanded',
+    'true',
+  );
 });
 
 it("shouldn't have any a11y violation", async () => {
@@ -66,6 +320,18 @@ it("shouldn't have any a11y violation", async () => {
 
   await user.click(screen.getByRole('button'));
   await expect(container).toHaveNoA11yViolations();
+});
+
+it('should use ariaLabel as the accessible name', () => {
+  setupSidebarNavigationAccordionItem({ ariaLabel: 'Accordion button label' });
+
+  expect(screen.getByRole('button', { name: 'Accordion button label' })).toBeInTheDocument();
+});
+
+it('should render a button trigger that does not submit surrounding forms', () => {
+  setupSidebarNavigationAccordionItem();
+
+  expect(screen.getByRole('button', { name: 'Accordion Item' })).toHaveAttribute('type', 'button');
 });
 
 describe('ellipsis behavior', () => {
@@ -100,17 +366,18 @@ it('should scroll the last child into view when opened with scrollLastChildIntoV
   globalThis.HTMLElement.prototype.scrollIntoView = () => {};
 });
 
-describe('integration with SidebarNavigationItem', () => {
-  it('should set CSS custom properties and active class on children', () => {
+describe('integration with SidebarNavigationAccordionChildItem', () => {
+  it('should set accordion child display CSS custom property and active class on children', () => {
     setupSidebarNavigationAccordionItem({
       children: (
         <>
-          <SidebarNavigationItem Icon={IconGitBranch} to="/initial">
+          <SidebarNavigationAccordionChildItem Icon={IconGitBranch} to="/initial">
             Sub Item 1
-          </SidebarNavigationItem>
-          <SidebarNavigationItem Icon={IconGitBranch} to="/sub-item-2">
+          </SidebarNavigationAccordionChildItem>
+
+          <SidebarNavigationAccordionChildItem Icon={IconGitBranch} to="/sub-item-2">
             Sub Item 2
-          </SidebarNavigationItem>
+          </SidebarNavigationAccordionChildItem>
         </>
       ),
     });
@@ -127,55 +394,29 @@ describe('integration with SidebarNavigationItem', () => {
       'display',
       'var(--sidebar-navigation-accordion-children-display, flex)',
     );
+
     expect(subItem2).toHaveStyleRule(
       'display',
       'var(--sidebar-navigation-accordion-children-display, flex)',
     );
+  });
 
-    // Check that visibility CSS custom property is set
-    expect(subItem1).toHaveStyleRule(
-      'visibility',
-      'var(--sidebar-navigation-accordion-children-visibility, visible)',
-    );
-    expect(subItem2).toHaveStyleRule(
-      'visibility',
-      'var(--sidebar-navigation-accordion-children-visibility, visible)',
-    );
+  it('should render child items with and without icons', () => {
+    setupSidebarNavigationAccordionItem({
+      children: (
+        <>
+          <SidebarNavigationAccordionChildItem isActive to="/initial">
+            Sub Item 1
+          </SidebarNavigationAccordionChildItem>
 
-    // Check that outline CSS custom property is set
-    expect(subItem1).toHaveStyleRule(
-      'outline',
-      'var(--sidebar-navigation-accordion-children-outline)',
-    );
-    expect(subItem2).toHaveStyleRule(
-      'outline',
-      'var(--sidebar-navigation-accordion-children-outline)',
-    );
+          <SidebarNavigationAccordionChildItem Icon={IconGitBranch} to="/sub-item-2">
+            Sub Item 2
+          </SidebarNavigationAccordionChildItem>
+        </>
+      ),
+    });
+
+    expect(screen.getByRole('link', { name: 'Sub Item 1' })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'Sub Item 2' })).toBeInTheDocument();
   });
 });
-
-function checkAccordionPanelVisibility(isOpen: boolean) {
-  const region = screen.getByRole('region', { name: 'Accordion Item' });
-  expect(region).toHaveAttribute('data-accordion-open', isOpen.toString());
-}
-
-function setupSidebarNavigationAccordionItem(
-  props: Partial<SidebarNavigationAccordionItemProps> = {},
-) {
-  return renderWithMemoryRouter(
-    <ul>
-      <SidebarNavigationAccordionItem Icon={IconExpand} label="Accordion Item" {...props}>
-        {props.children ?? (
-          <>
-            <SidebarNavigationItem Icon={IconBranch} isActive to="/sub-item-1">
-              Sub Item 1
-            </SidebarNavigationItem>
-            <SidebarNavigationItem Icon={IconBranch} to="/sub-item-2">
-              Sub Item 2
-            </SidebarNavigationItem>
-          </>
-        )}
-      </SidebarNavigationAccordionItem>
-    </ul>,
-  );
-}

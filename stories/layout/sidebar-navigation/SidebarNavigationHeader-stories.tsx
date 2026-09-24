@@ -24,7 +24,7 @@ import { cssVar, DropdownMenu, Layout } from '../../../src';
 import { basicWrapperDecorator } from '../../helpers/BasicWrapper';
 
 const meta: Meta = {
-  title: 'Echoes/Layout/SidebarNavigation/Header',
+  title: 'Echoes Patterns/Layout/SidebarNavigation/Header',
   component: Layout.SidebarNavigation.Header,
   decorators: [
     (Story) => (

@@ -35,39 +35,27 @@ The two modes use **different data sources**. Do not mix them.
 
 ### Mode A: `--pr`
 
-```bash
-git fetch origin pull/{pr}/head:pr-{pr}
+Run all three commands in a **single** Bash call so they require only one permission grant:
 
-gh pr diff {pr} --name-only
-gh pr diff {pr}
+```bash
+git fetch origin pull/{pr}/head:pr-{pr} && gh pr diff {pr} --name-only && echo "==FULL_DIFF==" && gh pr diff {pr}
 ```
 
-For each changed file that looks architecturally significant (component files, index exports, stories, tests, figma-connect files, design token files), read its full content from the fetched PR ref:
+For each changed file that looks architecturally significant (component files, index exports, stories, tests, figma-connect files, design token files), read its full content in a **single** Bash call:
 
 ```bash
-git show pr-{pr}:<file_path>
+for f in file1 file2 file3; do echo "=== $f ==="; git show pr-{pr}:$f; done
 ```
 
 ### Mode B: Current branch (no `--pr`)
 
-```bash
-git rev-parse --abbrev-ref HEAD
-```
-
-Determine the merge-base. If `--base` was provided, use it directly; otherwise auto-detect:
+Run branch detection, merge-base resolution, file list, and full diff in a **single** Bash call so they require only one permission grant:
 
 ```bash
-MERGE_BASE=$(git merge-base HEAD origin/main 2>/dev/null || git merge-base HEAD origin/master)
+git rev-parse --abbrev-ref HEAD && MERGE_BASE=$(git merge-base HEAD origin/main 2>/dev/null || git merge-base HEAD origin/master) && echo "Merge base: $MERGE_BASE" && git diff $MERGE_BASE --name-only && echo "==FULL_DIFF==" && git diff $MERGE_BASE
 ```
 
-Get the diff from the merge-base to the **working tree** (includes committed, staged, and unstaged changes):
-
-```bash
-git diff $MERGE_BASE --name-only
-git diff $MERGE_BASE
-```
-
-For each architecturally significant changed file, read the full file from disk for context beyond the diff.
+For each architecturally significant changed file that is untracked (not in the diff), read its full content from disk using the Read tool — not a separate Bash call.
 
 ---
 

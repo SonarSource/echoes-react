@@ -53,7 +53,7 @@ const meta: Meta<typeof PromotedSection> = {
     },
   },
 
-  title: 'Echoes/PromotedSection',
+  title: 'Echoes Components/PromotedSection',
 };
 
 export default meta;

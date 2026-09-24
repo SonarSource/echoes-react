@@ -27,6 +27,7 @@ import { CardBody } from '../CardBody';
 import { CardHeader } from '../CardHeader';
 import { CardRoot } from '../CardRoot';
 import { CardSize } from '../CardSize';
+import { CARD_HEADER_SIZE_STYLES, CARD_SIZE_STYLES } from '../CardStyles';
 
 describe('Card components', () => {
   describe('CardRoot', () => {
@@ -90,6 +91,35 @@ describe('Card components', () => {
       expect(screen.getByRole('button', { name: 'Action' })).toBeInTheDocument();
     });
 
+    it('defines header and body size through padding only', () => {
+      expect(CARD_HEADER_SIZE_STYLES).toEqual({
+        [CardSize.Large]: {
+          '--card-header-padding':
+            'var(--echoes-dimension-space-250) var(--echoes-dimension-space-300)',
+        },
+        [CardSize.Medium]: {
+          '--card-header-padding':
+            'var(--echoes-dimension-space-150) var(--echoes-dimension-space-200)',
+        },
+        [CardSize.Small]: {
+          '--card-header-padding':
+            'var(--echoes-dimension-space-100) var(--echoes-dimension-space-150)',
+        },
+      });
+
+      expect(CARD_SIZE_STYLES).toEqual({
+        [CardSize.Large]: {
+          '--card-padding': 'var(--echoes-dimension-space-300)',
+        },
+        [CardSize.Medium]: {
+          '--card-padding': 'var(--echoes-dimension-space-200)',
+        },
+        [CardSize.Small]: {
+          '--card-padding': 'var(--echoes-dimension-space-150)',
+        },
+      });
+    });
+
     it('uses correct heading level based on card size', () => {
       const { rerender } = render(
         <CardRoot size={CardSize.Small}>
@@ -149,6 +179,7 @@ describe('Card components', () => {
       );
 
       expect(ref.current).not.toBeNull();
+      expect(ref.current).not.toHaveAttribute('size');
     });
 
     it('applies insetContent prop correctly', () => {
@@ -246,6 +277,20 @@ describe('Card components', () => {
       );
 
       expect(screen.getByRole('button', { name: 'Collapse' })).toBeInTheDocument();
+    });
+
+    it('does not apply a minimum height to the collapsible header button', () => {
+      render(
+        <CardRoot isCollapsible>
+          <CardHeader title="Collapsible Card" />
+
+          <CardBody>Card Content</CardBody>
+        </CardRoot>,
+      );
+
+      expect(
+        window.getComputedStyle(screen.getByRole('button', { name: 'Collapse' })).minHeight,
+      ).toBe('auto');
     });
 
     it('does not render a toggle button when isCollapsible is false', () => {

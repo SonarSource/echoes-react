@@ -17,8 +17,9 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
+
 import styled from '@emotion/styled';
-import { forwardRef, ReactNode, useRef } from 'react';
+import { type ReactNode, type Ref, useRef } from 'react';
 import { truncate } from '~common/helpers/styles';
 import { useIsOverflow } from '~common/helpers/useIsOverflow';
 import { TextNode, TextNodeOptional } from '~types/utils';
@@ -32,65 +33,71 @@ export interface SidebarNavigationHeaderProps {
    * Image to display to the left of the header.
    */
   avatar?: ReactNode;
+  /** Optional CSS class name applied to the header wrapper */
+  className?: string;
   /**
    * Display a Icon on the right, indicating it triggers a dropdown.
    * To be set to `true` when used as a dropdown trigger.
    */
   isInteractive?: boolean;
   /**
+   * The main text to show in the header
+   */
+  name: TextNode;
+  /**
    * Text to display under the main text of the header.
    * Typically defines the type of entity being shown (organization, enterprise, project, ...)
    */
   qualifier?: TextNodeOptional;
-  /**
-   * The main text to show in the header
-   */
-  name: TextNode;
+  /** React ref forwarded to the root header element */
+  ref?: Ref<HTMLButtonElement | HTMLDivElement>;
 }
 
-export const SidebarNavigationHeader = forwardRef<HTMLButtonElement, SidebarNavigationHeaderProps>(
-  (props, ref) => {
-    const { avatar = null, isInteractive = false, qualifier, name, ...radixProps } = props;
+export function SidebarNavigationHeader(props: Readonly<SidebarNavigationHeaderProps>) {
+  const { avatar, className, isInteractive = false, name, qualifier, ref, ...radixProps } = props;
 
-    const labelRef = useRef<HTMLSpanElement>(null);
-    const [isOverflow] = useIsOverflow(labelRef, [name]);
+  const labelRef = useRef<HTMLSpanElement>(null);
+  const [isOverflow] = useIsOverflow(labelRef, [name]);
 
-    return (
-      <HeaderWrapper>
-        <Tooltip content={isOverflow && isInteractive ? name : undefined} side={TooltipSide.Right}>
-          <HeaderContainer as={isInteractive ? 'button' : 'div'} ref={ref} {...radixProps}>
-            <MainContent>
-              {avatar && <AvatarWrapper>{avatar}</AvatarWrapper>}
-              <TextContent>
-                <Text isHighlighted ref={labelRef}>
-                  {name}
+  return (
+    <HeaderWrapper className={className}>
+      <Tooltip content={isOverflow && isInteractive ? name : undefined} side={TooltipSide.Right}>
+        <HeaderContainer
+          as={isInteractive ? 'button' : 'div'}
+          ref={ref as Ref<HTMLButtonElement>}
+          {...radixProps}
+          type={isInteractive ? 'button' : undefined}>
+          <MainContent>
+            {avatar && <AvatarWrapper>{avatar}</AvatarWrapper>}
+
+            <TextContent>
+              <Text isHighlighted ref={labelRef}>
+                {name}
+              </Text>
+
+              {qualifier && (
+                <Text isSubtle size="small">
+                  {qualifier}
                 </Text>
-                {qualifier && (
-                  <Text isSubtle size="small">
-                    {qualifier}
-                  </Text>
-                )}
-              </TextContent>
-            </MainContent>
-            {isInteractive && <IconExpandAll />}
-          </HeaderContainer>
-        </Tooltip>
-      </HeaderWrapper>
-    );
-  },
-);
+              )}
+            </TextContent>
+          </MainContent>
+
+          {isInteractive && <IconExpandAll />}
+        </HeaderContainer>
+      </Tooltip>
+    </HeaderWrapper>
+  );
+}
+
 SidebarNavigationHeader.displayName = 'SidebarNavigationHeader';
 
 const HeaderWrapper = styled.div`
   padding: ${cssVar('dimension-space-100')};
   display: flex;
   border-bottom: ${cssVar('border-width-default')} solid ${cssVar('color-border-weak')};
-
-  [data-sidebar-docked='false'] nav:not(:hover, :focus-within) & {
-    padding-left: ${cssVar('dimension-space-50')};
-    padding-right: ${cssVar('dimension-space-50')};
-  }
 `;
+
 HeaderWrapper.displayName = 'HeaderWrapper';
 
 const HeaderContainer = styled.button`
@@ -132,6 +139,7 @@ const HeaderContainer = styled.button`
     }
   }
 `;
+
 HeaderContainer.displayName = 'HeaderContainer';
 
 const MainContent = styled.div`
@@ -140,6 +148,7 @@ const MainContent = styled.div`
   gap: ${cssVar('dimension-space-100')};
   min-width: ${cssVar('dimension-width-400')};
 `;
+
 MainContent.displayName = 'MainContent';
 
 const AvatarWrapper = styled.div`
@@ -147,6 +156,7 @@ const AvatarWrapper = styled.div`
   width: ${cssVar('dimension-width-300')};
   height: ${cssVar('dimension-width-300')};
 `;
+
 AvatarWrapper.displayName = 'AvatarWrapper';
 
 const TextContent = styled.div`
@@ -159,4 +169,5 @@ const TextContent = styled.div`
     ${truncate}
   }
 `;
+
 TextContent.displayName = 'TextContent';

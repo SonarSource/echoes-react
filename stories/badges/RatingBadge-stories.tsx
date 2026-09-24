@@ -30,7 +30,7 @@ const meta: Meta<typeof RatingBadge> = {
     controls: { exclude: ['className'] },
   },
 
-  title: 'Echoes/Badges/RatingBadge',
+  title: 'Echoes Components/Badges/RatingBadge',
 };
 
 export default meta;

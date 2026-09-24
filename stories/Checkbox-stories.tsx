@@ -25,7 +25,7 @@ import { basicWrapperDecorator } from './helpers/BasicWrapper';
 
 const meta: Meta<typeof Checkbox> = {
   component: Checkbox,
-  title: 'Echoes/Checkbox',
+  title: 'Echoes Components/Checkbox',
   parameters: {
     a11y: {
       config: {

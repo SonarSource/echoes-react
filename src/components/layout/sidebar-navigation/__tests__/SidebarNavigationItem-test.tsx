@@ -20,6 +20,7 @@
 
 import { matchers } from '@emotion/jest';
 import { screen } from '@testing-library/react';
+import { createRef, type Ref } from 'react';
 import { renderWithMemoryRouter } from '~common/helpers/test-utils';
 import { IconBranch, IconClock } from '../../../icons';
 import { SidebarNavigationItem, SidebarNavigationItemProps } from '../SidebarNavigationItem';
@@ -36,6 +37,19 @@ it('should handle onClick events', async () => {
 
   await user.click(screen.getByRole('link'));
   expect(handleClick).toHaveBeenCalledTimes(1);
+});
+
+it('should use ariaLabel as the accessible name', () => {
+  setupSidebarNavigationItem({ ariaLabel: 'Sidebar item label' });
+
+  expect(screen.getByRole('link', { name: 'Sidebar item label' })).toBeInTheDocument();
+});
+
+it('should forward refs to the underlying link', () => {
+  const ref = createRef<HTMLAnchorElement>();
+  setupSidebarNavigationItem({}, ref);
+
+  expect(ref.current).toBe(screen.getByRole('link', { name: 'Test Item' }));
 });
 
 describe('ellipsis behavior', () => {
@@ -66,11 +80,22 @@ describe('navigation behavior', () => {
     expect(screen.getByText('/second')).toBeInTheDocument();
     expect(screen.queryByRole('link', { name: 'Test Item' })).not.toBeInTheDocument();
   });
+
+  it('should navigate to the correct path with the keyboard', async () => {
+    const { user } = setupSidebarNavigationItem();
+
+    await user.tab();
+    expect(screen.getByRole('link', { name: 'Test Item' })).toHaveFocus();
+
+    await user.keyboard('{Enter}');
+    expect(screen.getByText('/second')).toBeInTheDocument();
+    expect(screen.queryByRole('link', { name: 'Test Item' })).not.toBeInTheDocument();
+  });
 });
 
 describe('active state behavior', () => {
   it('should apply active class when isActive is true', () => {
-    setupSidebarNavigationItem({ isActive: true, disableIconWhenSidebarOpen: true });
+    setupSidebarNavigationItem({ isActive: true });
 
     expect(screen.getByRole('link')).toHaveClass('active');
   });
@@ -95,25 +120,15 @@ describe('active state behavior', () => {
 });
 
 describe('CSS custom properties for accordion integration', () => {
-  it('should use CSS custom properties for display, visibility and outline', () => {
+  it('should use a CSS custom property for accordion child display', () => {
     setupSidebarNavigationItem();
 
     const link = screen.getByRole('link');
 
-    // Check that display CSS custom property is used with fallback
     expect(link).toHaveStyleRule(
       'display',
       'var(--sidebar-navigation-accordion-children-display, flex)',
     );
-
-    // Check that visibility CSS custom property is used with fallback
-    expect(link).toHaveStyleRule(
-      'visibility',
-      'var(--sidebar-navigation-accordion-children-visibility, visible)',
-    );
-
-    // Check that outline CSS custom property is used (no fallback needed)
-    expect(link).toHaveStyleRule('outline', 'var(--sidebar-navigation-accordion-children-outline)');
   });
 });
 
@@ -122,10 +137,13 @@ it("shouldn't have any a11y violation", async () => {
   await expect(container).toHaveNoA11yViolations();
 });
 
-function setupSidebarNavigationItem(props: Partial<SidebarNavigationItemProps> = {}) {
+function setupSidebarNavigationItem(
+  props: Partial<SidebarNavigationItemProps> = {},
+  ref?: Ref<HTMLAnchorElement>,
+) {
   return renderWithMemoryRouter(
     <ul>
-      <SidebarNavigationItem Icon={IconClock} to="/second" {...props}>
+      <SidebarNavigationItem Icon={IconClock} ref={ref} to="/second" {...props}>
         Test Item
       </SidebarNavigationItem>
     </ul>,

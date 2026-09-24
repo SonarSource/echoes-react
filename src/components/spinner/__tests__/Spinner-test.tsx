@@ -18,11 +18,18 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+import { matchers } from '@emotion/jest';
+import styled from '@emotion/styled';
 import { screen } from '@testing-library/react';
 import { ComponentProps } from 'react';
 import { render } from '~common/helpers/test-utils';
 import { Tooltip } from '../../tooltip';
 import { Spinner } from '../Spinner';
+import { SpinnerOverrideColor } from '../SpinnerOverrideColor';
+
+import { cssVar } from '~utils/design-tokens';
+
+expect.extend(matchers);
 
 it('can be controlled by the isLoading prop', async () => {
   const { container, rerender } = setupSpinner({ isLoading: true });
@@ -84,6 +91,48 @@ it('should correctly support tooltips', async () => {
   expect(screen.getByRole('tooltip', { name: 'my tooltip' })).toBeInTheDocument();
 });
 
+it('uses the inverse color as the default solid arc with a weak track', () => {
+  const { container } = setupSpinner({ isLoading: true });
+  const spinnerIcon = getSpinnerIcon(container);
+
+  expect(spinnerIcon).toHaveStyleRule(
+    'border',
+    `2px solid var(--spinner-track-color, ${cssVar('color-border-weak')})`,
+    {
+      target: '::before',
+    },
+  );
+  expect(spinnerIcon).toHaveStyleRule('border', '2px solid transparent', { target: '::after' });
+  expect(spinnerIcon).toHaveStyleRule(
+    'border-top-color',
+    `var(--spinner-color, ${cssVar('color-surface-inverse-default')})`,
+    { target: '::after' },
+  );
+});
+
+it('allows overriding the arc and track colors', () => {
+  const { container } = render(<CustomColorSpinner isLoading />);
+  const spinnerIcon = getSpinnerIcon(container);
+
+  expect(screen.getByRole('status')).toHaveStyleRule('--spinner-color-override', 'hotpink');
+  expect(screen.getByRole('status')).toHaveStyleRule('--spinner-track-color-override', 'cyan');
+  expect(screen.getByRole('status')).toHaveStyleRule(
+    '--spinner-color',
+    `var(--spinner-color-override, ${cssVar('color-surface-inverse-default')})`,
+  );
+  expect(screen.getByRole('status')).toHaveStyleRule(
+    '--spinner-track-color',
+    `var(--spinner-track-color-override, ${cssVar('color-border-weak')})`,
+  );
+  expect(spinnerIcon).toHaveStyleRule(
+    'border',
+    `2px solid var(--spinner-track-color, ${cssVar('color-border-weak')})`,
+    {
+      target: '::before',
+    },
+  );
+});
+
 function setupSpinner(props: Partial<ComponentProps<typeof Spinner>> = {}) {
   const { rerender: rtlRerender, ...rest } = render(<Spinner {...props} />);
   return {
@@ -92,4 +141,16 @@ function setupSpinner(props: Partial<ComponentProps<typeof Spinner>> = {}) {
     },
     ...rest,
   };
+}
+
+const CustomColorSpinner = styled(SpinnerOverrideColor)`
+  --spinner-color-override: hotpink;
+  --spinner-track-color-override: cyan;
+`;
+
+function getSpinnerIcon(container: HTMLElement) {
+  // eslint-disable-next-line testing-library/no-container, testing-library/no-node-access -- this is a purely visual element that isn't accessible
+  const spinnerIcon = container.querySelector('output > span');
+  expect(spinnerIcon).toBeInTheDocument();
+  return spinnerIcon as HTMLElement;
 }

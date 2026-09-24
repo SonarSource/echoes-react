@@ -25,7 +25,7 @@ import { basicWrapperDecorator } from '../helpers/BasicWrapper';
 
 const meta: Meta<typeof Label> = {
   component: Label,
-  title: 'Echoes/Typography/Label',
+  title: 'Echoes Components/Typography/Label',
   decorators: [basicWrapperDecorator],
 };
 

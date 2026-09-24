@@ -21,6 +21,7 @@ import { screen } from '@testing-library/react';
 import { PointerEventsCheckLevel } from '@testing-library/user-event';
 import { useState } from 'react';
 import { render } from '~common/helpers/test-utils';
+import { cssVar } from '~utils/design-tokens';
 import { CheckboxGroup } from '../CheckboxGroup';
 
 it('displays a label and description', () => {
@@ -36,6 +37,16 @@ it('displays a label and description', () => {
 
   const group = screen.getByRole('group', { description: 'Help text', name: 'Label' });
   expect(group).toBeVisible();
+});
+
+it('adds 12px spacing between the group label and the checkboxes', () => {
+  render(
+    <CheckboxGroup label="Label" onChange={() => {}} options={[{ label: 'Option' }]} value={[]} />,
+  );
+
+  const label = screen.getByText('Label');
+  // eslint-disable-next-line testing-library/no-node-access
+  expect(label.parentElement).toHaveStyle({ marginBottom: cssVar('dimension-space-150') });
 });
 
 it('calls onChange when the value changes', async () => {

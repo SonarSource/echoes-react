@@ -18,15 +18,23 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import styled from '@emotion/styled';
 import * as RadixPopover from '@radix-ui/react-popover';
 import { ReactElement, ReactNode, forwardRef, useContext } from 'react';
 import { isDefined } from '~common/helpers/types';
 import { TextNodeOptional } from '~types/utils';
 import { THEME_DATA_ATTRIBUTE, ThemeContext } from '~utils/theme';
+import { Button, ButtonProps } from '../buttons';
 import { Heading, HeadingSize, Text } from '../typography';
-
-import { cssVar } from '~utils/design-tokens';
+import {
+  OVERLAY_ARROW_PADDING,
+  OVERLAY_SIDE_OFFSET,
+  PopoverArrow,
+  PopoverContent,
+  PopoverExtraContent,
+  PopoverFooter,
+  PopoverIllustrationContainer,
+  PopoverInnerContent,
+} from './PopoverStyles';
 
 export enum PopoverAlign {
   Start = 'start',
@@ -42,79 +50,121 @@ export enum PopoverSide {
 }
 
 export interface PopoverProps {
+  /**
+   * Controls the alignment of the popover with its trigger
+   */
   align?: `${PopoverAlign}`;
+  /**
+   * The trigger for the popover. Must be an interactive element, typically a button.
+   */
   children: ReactElement;
+  /**
+   * CSS class name(s) to apply to the Popover container
+   */
   className?: string;
+  /**
+   * Extra attributes forwarded directly to the popover content panel.
+   * Use this to pass `data-*` attributes without polluting the component's own props.
+   */
+  contentProps?: Record<string, string>;
+  /**
+   * Optional text content of a subtle paragraph, for the body of the Popover
+   */
   description?: TextNodeOptional;
+  /**
+   * Set to `true` to prevent the popover from closing when clicking outside
+   */
+  disableOutsideClick?: boolean;
+  /**
+   * Slot for additional content. Displayed under the description and/or title (if any)
+   */
   extraContent?: ReactNode;
-  footer?: ReactNode; // Enforce Button, ButtonGroup or Link ?
+  /**
+   * Slot for the footer of the Popover. Meant for actions (e.g. Button, ButtonGroup, Link )
+   */
+  footer?: ReactNode;
+  /**
+   * Optional illustration displayed above the title of the Popover
+   */
+  illustration?: ReactNode;
+  /**
+   * Controls the Popover's `open` state, rather than relying on the trigger
+   */
   isOpen?: boolean;
+  /**
+   * Called when `isOpen` changes
+   */
+  onOpenChange?: (open: boolean) => void;
+  /**
+   * Defines on what side the popover should appear.
+   * If there is no space for it, it will automatically flip to the opposing side of the same dimension
+   */
   side?: `${PopoverSide}`;
+  /**
+   * Text content of the Heading of the Popover
+   */
   title?: TextNodeOptional;
 }
 
-/* This is the distance between the point of the arrow and the trigger */
-const POPOVER_OFFSET = 4;
-
-/* This is the padding between the edge of the tooltip and the arrow. */
-const ARROW_PADDING = 16;
-
-/**
- * **Popovers must be attached to a button to be accessible.**
- *
- * ### Stacking Context
- *
- * In order to have popovers appear above the rest of the UI, it is probably necessary to have a [Stacking Context](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_positioned_layout/Understanding_z-index/Stacking_context) for your app. This means the root should define a new one, or be wrapped in a component that does it.
- *
- * The easiest way to start a new Stacking Context is to provide it with the following CSS properties:
- *
- * ```CSS
- *   position: relative;
- *   z-index: 0;
- * ```
- *
- * Since the popovers are appended to the body, they are in the root Stacking Context. If other elements are also there, the z-index will determine which appears on top. By creating a new Stacking Context for your app, it ensures that z-indexed elements will stay within that context, while popovers will be painted on top, in the parent Stacking Context.
- */
-export const Popover = forwardRef<HTMLButtonElement, PopoverProps>((props, ref) => {
+export const PopoverRoot = forwardRef<HTMLButtonElement, PopoverProps>((props, ref) => {
   const {
     align,
     children,
     className,
+    contentProps,
     description,
+    disableOutsideClick,
     extraContent,
     footer,
+    illustration,
     isOpen,
+    onOpenChange,
     side,
     title,
     ...radixProps
   } = props;
+
   const theme = useContext(ThemeContext);
   const themeOverrideProp = isDefined(theme) ? { [THEME_DATA_ATTRIBUTE]: theme } : {};
 
   return (
-    <RadixPopover.Root open={isOpen}>
+    <RadixPopover.Root onOpenChange={onOpenChange} open={isOpen}>
       <RadixPopover.Trigger asChild ref={ref} {...radixProps}>
         {children}
       </RadixPopover.Trigger>
       <RadixPopover.Portal>
         <PopoverContent
           {...themeOverrideProp}
+          {...contentProps}
           align={align}
-          arrowPadding={ARROW_PADDING}
+          arrowPadding={OVERLAY_ARROW_PADDING}
           className={className}
+          data-has-illustration={isDefined(illustration)}
+          onInteractOutside={
+            disableOutsideClick
+              ? (e) => {
+                  e.preventDefault();
+                }
+              : undefined
+          }
           side={side}
-          sideOffset={POPOVER_OFFSET}>
-          {title && (
-            <Heading as="h1" hasMarginBottom={Boolean(description)} size={HeadingSize.Medium}>
-              {title}
-            </Heading>
+          sideOffset={OVERLAY_SIDE_OFFSET}>
+          {illustration && (
+            <PopoverIllustrationContainer>{illustration}</PopoverIllustrationContainer>
           )}
+          <PopoverInnerContent>
+            {title && (
+              <Heading as="h1" hasMarginBottom={Boolean(description)} size={HeadingSize.Medium}>
+                {title}
+              </Heading>
+            )}
 
-          {description && <Text isSubtle>{description}</Text>}
+            {description && <Text isSubtle>{description}</Text>}
 
-          {extraContent && <PopoverExtraContent>{extraContent}</PopoverExtraContent>}
+            {extraContent && <PopoverExtraContent>{extraContent}</PopoverExtraContent>}
 
-          {footer && <PopoverFooter>{footer}</PopoverFooter>}
+            {footer && <PopoverFooter>{footer}</PopoverFooter>}
+          </PopoverInnerContent>
           <PopoverArrow />
         </PopoverContent>
       </RadixPopover.Portal>
@@ -122,44 +172,13 @@ export const Popover = forwardRef<HTMLButtonElement, PopoverProps>((props, ref) 
   );
 });
 
-Popover.displayName = 'Popover';
+PopoverRoot.displayName = 'Popover';
 
-const PopoverExtraContent = styled.div`
-  margin-top: ${cssVar('dimension-space-200')};
-`;
-
-const PopoverFooter = styled.div`
-  margin-top: ${cssVar('dimension-space-200')};
-`;
-
-const PopoverContent = styled(RadixPopover.Content)`
-  border: ${cssVar('border-width-default')} solid ${cssVar('color-border-weak')};
-  border-radius: ${cssVar('border-radius-400')};
-  padding: ${cssVar('dimension-space-300')} ${cssVar('dimension-space-250')};
-  background-color: ${cssVar('color-surface-default')};
-  box-shadow: ${cssVar('box-shadow-large')};
-
-  box-sizing: border-box;
-  max-width: ${cssVar('dimension-width-5000')};
-  max-height: ${cssVar('sizes-overlays-max-height-default')};
-  overflow-y: auto;
-
-  // We are in a modal context, so we don't want to display the focus ring
-  &:focus,
-  &:focus-visible {
-    outline: none;
-  }
-`;
-
-const PopoverArrow = styled(RadixPopover.Arrow)`
-  stroke: ${cssVar('color-border-weak')};
-  fill: ${cssVar('color-surface-default')};
-  height: 9px;
-  width: 15px;
-
-  /* overlap the border by moving the arrow down over the box border and
-   * clipping it so its own borders don't overlap the box content
-   */
-  clip-path: inset(0.9px 0 0 0);
-  margin-top: -2px;
-`;
+export function PopoverCloseButton(props: ButtonProps) {
+  return (
+    <RadixPopover.Close asChild>
+      <Button {...props} />
+    </RadixPopover.Close>
+  );
+}
+PopoverCloseButton.displayName = 'PopoverCloseButton';

@@ -21,14 +21,23 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Button, LinkStandalone, Popover, Text } from '../src';
 import { basicWrapperDecorator } from './helpers/BasicWrapper';
+import { FishtankIllustration } from './helpers/FishtankIllustration';
 
 const meta: Meta<typeof Popover> = {
   component: Popover,
-  title: 'Echoes/Popover',
+  title: 'Echoes Components/Popover',
   parameters: {
     controls: { exclude: ['children'] },
   },
-  decorators: [basicWrapperDecorator],
+  decorators: [
+    basicWrapperDecorator,
+    (Story) => (
+      // Add some padding to allow the popover to be on top
+      <div style={{ paddingTop: '200px' }}>
+        <Story />
+      </div>
+    ),
+  ],
 };
 
 export default meta;
@@ -53,6 +62,16 @@ export const ExtraContent: Story = {
     title: 'Details',
     description: 'Follow these instructions:',
   },
+  argTypes: {
+    illustration: {
+      mapping: {
+        fishtank: <FishtankIllustration />,
+        none: undefined,
+      },
+      options: ['fishtank', 'none'],
+      control: { type: 'select' },
+    },
+  },
   render: (args) => (
     <Popover
       {...args}
@@ -76,4 +95,22 @@ export const ExtraContent: Story = {
       <Button>Click this button to display the Popover</Button>
     </Popover>
   ),
+};
+
+export const CloseButton: Story = {
+  args: {
+    children: <Button>Click this button to display the Popover</Button>,
+    footer: (
+      <Popover.CloseButton
+        onClick={() => {
+          // eslint-disable-next-line no-console
+          console.log('ack');
+        }}>
+        ackwnowledge and close
+      </Popover.CloseButton>
+    ),
+    title: 'Popover.CloseButton',
+    description:
+      'Use this button as a regular Button. It will close the popoup in addition to any specified `onClick`',
+  },
 };

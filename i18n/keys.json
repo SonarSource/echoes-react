@@ -19,6 +19,30 @@
     "defaultMessage": "Warning banner:",
     "description": "Screen reader only text that expresses the type of the Warning banner"
   },
+  "filter.dropdown.apply": {
+    "defaultMessage": "Apply filters",
+    "description": "Label for the button that applies the pending filter selection"
+  },
+  "filter.dropdown.categories.label": {
+    "defaultMessage": "Categories",
+    "description": "Accessible label for the filter categories listbox"
+  },
+  "filter.dropdown.clear": {
+    "defaultMessage": "Clear filters",
+    "description": "Label for the button that clears all active filters"
+  },
+  "filter.dropdown.label": {
+    "defaultMessage": "Filters",
+    "description": "Accessible label for the filter popover dialog"
+  },
+  "filter.dropdown.search": {
+    "defaultMessage": "Search",
+    "description": "Placeholder text for the filter search input"
+  },
+  "filter.tag.dismiss": {
+    "defaultMessage": "Remove {filter} filter",
+    "description": "Accessible label for the dismiss button of a filter tag, where {filter} is the name of the filter to be removed"
+  },
   "global_navigation.account": {
     "defaultMessage": "Account",
     "description": "aria-label text for the account button (in the GlobalNavigation)"
@@ -33,6 +57,9 @@
   },
   "global_navigation.sidebar.dock": {
     "defaultMessage": "Dock sidebar"
+  },
+  "global_navigation.sidebar.open": {
+    "defaultMessage": "Open sidebar"
   },
   "global_navigation.sidebar.undock": {
     "defaultMessage": "Undock sidebar"
@@ -258,5 +285,13 @@
   "toggletip.help": {
     "defaultMessage": "More information",
     "description": "aria-label text and tooltip for the ToggleTip"
+  },
+  "toolbar.clear-all": {
+    "defaultMessage": "Clear filters",
+    "description": "Label for the button that clears all active filters in the toolbar"
+  },
+  "toolbar.filter-tags-count": {
+    "defaultMessage": "Applied filters ({count})",
+    "description": "Label shown before active filter tags, indicating how many are applied"
   }
 }

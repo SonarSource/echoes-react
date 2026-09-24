@@ -19,13 +19,17 @@
  */
 
 import styled from '@emotion/styled';
-import { forwardRef, ReactNode, useEffect, useMemo, useState } from 'react';
-import { cssVar, designToken } from '~utils/design-tokens';
-import { LayoutContext } from './LayoutContext';
+import { type ReactNode, type Ref } from 'react';
+import { cssVar } from '~utils/design-tokens';
+import { LayoutSidebarContext } from './LayoutSidebarContext';
+import { SIDEBAR_INTERACTION_ZONE_ATTRIBUTE } from './LayoutSidebarInteraction';
 import { GlobalGridArea } from './LayoutTypes';
+import { useLayoutSidebarState } from './useLayoutSidebarState';
 
 export interface LayoutProps {
+  /** Optional CSS class name applied to the layout root element */
   className?: string;
+  /** Main layout content */
   children: ReactNode;
   /**
    * Whether the sidebar should be initially docked 🦆 or not, useful to init with user preferences.
@@ -35,63 +39,52 @@ export interface LayoutProps {
    * Callback function called when the sidebar docked state changes, useful to save user preferences.
    */
   onSidebarDockedChange?: (isDocked: boolean) => void;
+  /** React ref forwarded to the layout root element */
+  ref?: Ref<HTMLDivElement>;
 }
 
-export const Layout = forwardRef<HTMLDivElement, LayoutProps>((props, ref) => {
-  const { children, isSidebarInitiallyDocked, onSidebarDockedChange, ...htmlProps } = props;
-  const mediaQueryList = useMemo(
-    () =>
-      globalThis.matchMedia(
-        `(min-width: ${designToken('layout-sidebar-navigation-sizes-breakpoint-dockable')})`,
-      ),
-    [],
-  );
+export function Layout(props: Readonly<LayoutProps>) {
+  const {
+    children,
+    className,
+    isSidebarInitiallyDocked,
+    onSidebarDockedChange,
+    ref,
+    ...htmlProps
+  } = props;
 
-  const [hasSidebar, setHasSidebar] = useState(false);
-  const [isSidebarDocked, setIsSidebarDocked] = useState(
-    () => isSidebarInitiallyDocked ?? mediaQueryList.matches,
-  );
-  const [isSidebarDockable, setIsSidebarDockable] = useState(() => mediaQueryList.matches);
-
-  const layoutContextValue = useMemo(
-    () => ({
-      hasSidebar,
-      isSidebarDocked,
-      setHasSidebar,
-      setIsSidebarDocked,
-    }),
-    [hasSidebar, isSidebarDocked],
-  );
-
-  useEffect(() => {
-    const handleMediaQueryChange = ({ matches: canDockSidebar }: MediaQueryListEvent) => {
-      setIsSidebarDockable(canDockSidebar);
-    };
-
-    mediaQueryList.addEventListener('change', handleMediaQueryChange);
-
-    return () => {
-      mediaQueryList.removeEventListener('change', handleMediaQueryChange);
-    };
-  }, [mediaQueryList]);
-
-  useEffect(() => {
-    onSidebarDockedChange?.(isSidebarDocked);
-  }, [isSidebarDocked, onSidebarDockedChange]);
+  const sidebar = useLayoutSidebarState({
+    isSidebarInitiallyDocked,
+    onSidebarDockedChange,
+  });
 
   return (
     <Viewport>
       <MainGrid
-        data-sidebar-docked={isSidebarDocked && isSidebarDockable}
-        data-sidebar-exist={hasSidebar}
-        data-sidebar-is-dockable={isSidebarDockable}
+        className={className}
+        data-sidebar-docked={sidebar.isDocked && sidebar.isDockable}
+        data-sidebar-in-layout={sidebar.isInLayout}
+        data-sidebar-is-dockable={sidebar.isDockable}
+        data-sidebar-open={sidebar.isOpen}
         {...htmlProps}
         ref={ref}>
-        <LayoutContext.Provider value={layoutContextValue}>{children}</LayoutContext.Provider>
+        <LayoutSidebarContext.Provider value={sidebar}>
+          {children}
+
+          <LayoutSidebarTopInteractionZone
+            {...{ [SIDEBAR_INTERACTION_ZONE_ATTRIBUTE]: 'true' }}
+            aria-hidden
+            data-testid="sidebar-top-interaction-zone"
+            onMouseLeave={(event) => {
+              sidebar.handleInteractionZoneMouseLeave(event.relatedTarget);
+            }}
+          />
+        </LayoutSidebarContext.Provider>
       </MainGrid>
     </Viewport>
   );
-});
+}
+
 Layout.displayName = 'Layout';
 
 const Viewport = styled.div`
@@ -102,6 +95,7 @@ const Viewport = styled.div`
   height: 100vh;
   width: 100vw;
 `;
+
 Viewport.displayName = 'Viewport';
 
 const MainGrid = styled.div`
@@ -118,4 +112,26 @@ const MainGrid = styled.div`
     '${GlobalGridArea.globalNav} ${GlobalGridArea.globalNav}'
     '${GlobalGridArea.sidebar} ${GlobalGridArea.content}';
 `;
+
 MainGrid.displayName = 'MainGrid';
+
+// Pointer-only zone that covers the full sidebar width above the floating sidebar
+const LayoutSidebarTopInteractionZone = styled.div`
+  grid-column: 1;
+  grid-row: 1 / 3;
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+
+  width: calc(
+    ${cssVar('layout-sidebar-navigation-sizes-width-open')} + ${cssVar('border-width-default')}
+  );
+
+  z-index: 0;
+
+  [data-sidebar-docked='false'][data-sidebar-open='true'] & {
+    pointer-events: auto;
+  }
+`;
+
+LayoutSidebarTopInteractionZone.displayName = 'LayoutSidebarTopInteractionZone';

@@ -24,7 +24,7 @@ import { basicWrapperDecorator } from './helpers/BasicWrapper';
 
 const meta: Meta<typeof Pagination> = {
   component: Pagination,
-  title: 'Echoes/Pagination',
+  title: 'Echoes Components/Pagination',
   argTypes: {},
   decorators: [basicWrapperDecorator],
 };

@@ -27,7 +27,7 @@ import { cssVar } from '~utils/design-tokens';
 
 const meta: Meta<typeof Tooltip> = {
   component: Tooltip,
-  title: 'Echoes/Tooltip',
+  title: 'Echoes Components/Tooltip',
   parameters: {
     controls: { exclude: ['children'] },
   },

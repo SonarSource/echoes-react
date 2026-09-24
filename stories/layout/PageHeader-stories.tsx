@@ -34,7 +34,7 @@ import {
 } from '../../src';
 
 const meta: Meta<typeof Layout.PageHeader | typeof Layout.PageHeader.Title> = {
-  title: 'Echoes/Layout/PageHeader',
+  title: 'Echoes Patterns/Layout/PageHeader',
   argTypes: {
     actions: {
       control: { type: 'boolean' },

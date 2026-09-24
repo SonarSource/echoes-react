@@ -19,18 +19,22 @@
  */
 
 import styled from '@emotion/styled';
-import { forwardRef } from 'react';
+import { type Ref } from 'react';
 import { useIntl } from 'react-intl';
 import { cssVar } from '~utils/design-tokens';
 import { GlobalGridArea } from '../LayoutTypes';
 
 export interface GlobalNavigationProps extends React.PropsWithChildren {
-  className?: string;
+  /** Optional ARIA label applied to the root navigation element */
   ariaLabel?: string;
+  /** Optional CSS class name applied to the root navigation element */
+  className?: string;
+  /** React ref forwarded to the root navigation element */
+  ref?: Ref<HTMLElement>;
 }
 
-export const GlobalNavigationRoot = forwardRef<HTMLElement, GlobalNavigationProps>((props, ref) => {
-  const { children, ariaLabel, ...rest } = props;
+export function GlobalNavigationRoot(props: Readonly<GlobalNavigationProps>) {
+  const { ariaLabel, children, ref, ...rest } = props;
   const intl = useIntl();
 
   const defaultAriaLabel = intl.formatMessage({
@@ -44,7 +48,7 @@ export const GlobalNavigationRoot = forwardRef<HTMLElement, GlobalNavigationProp
       {children}
     </GlobalNavigationContainer>
   );
-});
+}
 
 GlobalNavigationRoot.displayName = 'GlobalNavigation';
 
@@ -62,8 +66,15 @@ const GlobalNavigationContainer = styled.nav`
   background-color: ${cssVar('color-surface-default')};
   border-bottom: ${cssVar('border-width-default')} solid ${cssVar('color-border-weak')};
 
+  pointer-events: none;
+
+  & > * {
+    pointer-events: auto;
+  }
+
   z-index: 1; // Ensure the global navigation is showing over the content
 `;
+
 GlobalNavigationContainer.displayName = 'GlobalNavigationContainer';
 
 export const GlobalNavigationSecondary = styled.div`
@@ -72,5 +83,7 @@ export const GlobalNavigationSecondary = styled.div`
   height: 100%;
 
   gap: ${cssVar('dimension-space-100')};
+  pointer-events: auto;
 `;
+
 GlobalNavigationSecondary.displayName = 'GlobalNavigationSecondary';

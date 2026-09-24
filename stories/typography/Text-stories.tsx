@@ -25,7 +25,7 @@ import { basicWrapperDecorator } from '../helpers/BasicWrapper';
 
 const meta: Meta<typeof Text> = {
   component: Text,
-  title: 'Echoes/Typography/Text',
+  title: 'Echoes Components/Typography/Text',
   decorators: [basicWrapperDecorator],
 };
 

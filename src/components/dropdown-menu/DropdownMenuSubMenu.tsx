@@ -22,8 +22,8 @@ import styled from '@emotion/styled';
 import * as radixDropdownMenu from '@radix-ui/react-dropdown-menu';
 import { forwardRef, ReactNode } from 'react';
 import { IconChevronRight } from '../icons';
-import { styleDropdownMenuOverlay } from './DropdownMenuCommons';
 import { DropdownMenuItemBase } from './DropdownMenuItemBase';
+import { styleDropdownMenuOverlay } from './DropdownMenuStyles';
 
 import { cssVar } from '~utils/design-tokens';
 

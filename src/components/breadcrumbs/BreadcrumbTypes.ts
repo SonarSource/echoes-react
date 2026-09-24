@@ -32,8 +32,7 @@ export type BreadcrumbItemWithOptionalTo = Omit<BreadcrumbLinkProps, 'to'> & {
 };
 
 export type BreadcrumbsItems =
-  | [...BreadcrumbLinkProps[], BreadcrumbItemWithOptionalTo]
-  | BreadcrumbLinkProps[];
+  [...BreadcrumbLinkProps[], BreadcrumbItemWithOptionalTo] | BreadcrumbLinkProps[];
 
 export interface BreadcrumbsProps {
   className?: string;

@@ -24,7 +24,7 @@ import { basicWrapperDecorator } from './helpers/BasicWrapper';
 
 const meta: Meta<typeof ToggleTip> = {
   component: ToggleTip,
-  title: 'Echoes/ToggleTip',
+  title: 'Echoes Components/ToggleTip',
   parameters: {
     controls: { exclude: ['footer', 'extraContent'] },
   },

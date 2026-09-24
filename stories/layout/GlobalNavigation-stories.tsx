@@ -31,7 +31,7 @@ import {
 } from '../../src';
 
 const meta: Meta<typeof Layout.GlobalNavigation> = {
-  title: 'Echoes/Layout/GlobalNavigation',
+  title: 'Echoes Patterns/Layout/GlobalNavigation',
   component: Layout.GlobalNavigation,
   argTypes: {
     children: {

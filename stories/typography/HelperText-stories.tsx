@@ -25,7 +25,7 @@ import { basicWrapperDecorator } from '../helpers/BasicWrapper';
 
 const meta: Meta<typeof HelperText> = {
   component: HelperText,
-  title: 'Echoes/Typography/HelperText',
+  title: 'Echoes Components/Typography/HelperText',
   decorators: [basicWrapperDecorator],
 };
 

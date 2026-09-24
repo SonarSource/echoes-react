@@ -20,20 +20,24 @@
 
 import styled from '@emotion/styled';
 import type { Meta, StoryObj } from '@storybook/react-vite';
+
 import {
+  Badge,
   BadgeSeverity,
   Button,
   cssVar,
   DropdownMenu,
-  IconBranch,
-  IconComment,
+  IconComputer,
   IconGear,
-  IconGitBranch,
+  IconKey,
+  IconPackageAlt,
+  IconPeople,
   IconProject,
-  IconPullrequest,
   IconQuestionMark,
+  IconReports,
   IconSearch,
-  IconSecurityFinding,
+  IconShield,
+  IconWebhook,
   Layout,
   LinkStandalone,
   LoadingSkeleton,
@@ -41,12 +45,13 @@ import {
   Text,
   TextInput,
 } from '../../src';
+
 import { AsideSize } from '../../src/components/layout/LayoutTypes';
 import { PageHeaderScrollBehavior } from '../../src/components/layout/header/common/HeaderTypes';
 
 const meta: Meta = {
   component: Layout,
-  title: 'Echoes/Layout',
+  title: 'Echoes Patterns/Layout',
   parameters: {
     layout: 'fullscreen',
   },
@@ -60,6 +65,7 @@ const meta: Meta = {
             <Layout.Banner onDismiss={() => {}} variety="danger">
               Oups something is wrong!
             </Layout.Banner>
+
             <Layout.Banner variety="warning">This is a general notification!</Layout.Banner>
           </>
         ),
@@ -155,14 +161,19 @@ export const Default: Story = {
   render: (args) => (
     <Layout>
       <Layout.BannerContainer>{args.banner}</Layout.BannerContainer>
+
       <GlobalNav />
+
       {args.sidebar}
+
       <Layout.ContentGrid>
         {args.contentHeader}
+
         {args.aside}
 
         <Layout.PageGrid isLoading={args.pageLoading} width={args.pageWidth}>
           {args.pageHeader(args.pageHeaderScrollBehavior)}
+
           <Layout.PageContent isLoading={args.pageContentLoading}>
             <p>
               <LoadingSkeleton variety="paragraph">
@@ -174,20 +185,27 @@ export const Default: Story = {
                 deserunt mollit anim id est laborum.
               </LoadingSkeleton>
             </p>
+
             <StackingTestArea>
               <TextInput label="Input (no z-index)" />
+
               <HighZIndexBox />
+
               <IsolatedBox />
+
               <TransformBox />
+
               <BadgeSeverity
                 ariaLabel="Badge (no z-index)"
                 quality="Badge (no z-index)"
                 severity="critical"
               />
+
               <DropdownMenu items={<DropdownMenu.ItemButton>An action</DropdownMenu.ItemButton>}>
                 <Button>Dropdown (portaled)</Button>
               </DropdownMenu>
             </StackingTestArea>
+
             <div
               style={{
                 display: 'flex',
@@ -197,26 +215,32 @@ export const Default: Story = {
                 justifyContent: 'space-around',
                 marginTop: '32px',
               }}>
-              {Array.from({ length: 20 }).map((_, i) => (
-                <ColorBox key={i} />
+              {colorBoxIds.map((id, index) => (
+                <ColorBox colorIndex={index} key={id} />
               ))}
             </div>
           </Layout.PageContent>
+
           <Layout.PageFooter>
             <Text isSubtle>2018-2025 SonarSource Sàrl. All rights reserved</Text>
+
             <Links>
               <LinkStandalone highlight="subtle" to="/1">
                 Terms
               </LinkStandalone>
+
               <LinkStandalone highlight="subtle" to="/2">
                 Pricing
               </LinkStandalone>
+
               <LinkStandalone highlight="subtle" to="/3">
                 Privacy
               </LinkStandalone>
+
               <LinkStandalone highlight="subtle" to="/4">
                 Cookies
               </LinkStandalone>
+
               <LinkStandalone highlight="subtle" to="/5">
                 Terms
               </LinkStandalone>
@@ -238,13 +262,18 @@ function GlobalNav() {
 
         <Layout.GlobalNavigation.ItemsContainer>
           <Layout.GlobalNavigation.Item to="/">Home</Layout.GlobalNavigation.Item>
+
           <Layout.GlobalNavigation.Item to="/qp">Quality Profiles</Layout.GlobalNavigation.Item>
+
           <Layout.GlobalNavigation.Item to="/rules">Rules</Layout.GlobalNavigation.Item>
         </Layout.GlobalNavigation.ItemsContainer>
       </Layout.GlobalNavigation.Primary>
+
       <Layout.GlobalNavigation.Secondary>
         <Layout.GlobalNavigation.Action Icon={IconSearch} ariaLabel="?" />
+
         <Layout.GlobalNavigation.Action Icon={IconQuestionMark} ariaLabel="Help" isIconFilled />
+
         <Layout.GlobalNavigation.Account
           avatar={<Avatar />}
           items={<DropdownMenu.ItemLink to="/account">Settings</DropdownMenu.ItemLink>}
@@ -270,48 +299,83 @@ function SidebarNav() {
               justifyContent: 'center',
               borderRadius: cssVar('border-radius-400'),
             }}>
-            S
+            <IconGear />
           </div>
         }
         isInteractive
-        name="My Project name"
+        name="Administration for a large enterprise instance"
       />
+
       <Layout.SidebarNavigation.Body>
-        <Layout.SidebarNavigation.Item Icon={IconProject} to="/overview">
-          Overview
-        </Layout.SidebarNavigation.Item>
-        <Layout.SidebarNavigation.AccordionItem Icon={IconGitBranch} label="Branches and PRs">
-          <Layout.SidebarNavigation.Item
-            Icon={IconBranch}
-            disableIconWhenSidebarOpen
-            to="/main-branch">
-            Main branch
-          </Layout.SidebarNavigation.Item>
-          <Layout.SidebarNavigation.Item
-            Icon={IconPullrequest}
-            disableIconWhenSidebarOpen
-            to="/pr-1">
-            Amazing Pull Request that updates a lot of things
-          </Layout.SidebarNavigation.Item>
-          <Layout.SidebarNavigation.Item
-            Icon={IconPullrequest}
-            disableIconWhenSidebarOpen
-            to="/pr-2">
-            Small PR
-          </Layout.SidebarNavigation.Item>
+        <Layout.SidebarNavigation.AccordionItem Icon={IconGear} isDefaultOpen label="Configuration">
+          <Layout.SidebarNavigation.AccordionItem.Item to="/">
+            General settings
+          </Layout.SidebarNavigation.AccordionItem.Item>
+
+          <Layout.SidebarNavigation.AccordionItem.Item suffix={<NewBadge />} to="/alm-integrations">
+            DevOps platform integrations
+          </Layout.SidebarNavigation.AccordionItem.Item>
+
+          <Layout.SidebarNavigation.AccordionItem.Item Icon={IconWebhook} to="/webhooks">
+            Webhooks
+          </Layout.SidebarNavigation.AccordionItem.Item>
+
+          <Layout.SidebarNavigation.AccordionItem.Item to="/background-tasks">
+            Background tasks
+          </Layout.SidebarNavigation.AccordionItem.Item>
         </Layout.SidebarNavigation.AccordionItem>
-        <Layout.SidebarNavigation.Group label="Reporting">
-          <Layout.SidebarNavigation.Item Icon={IconSecurityFinding} to="/security-reports">
-            Reports
-          </Layout.SidebarNavigation.Item>
-          <Layout.SidebarNavigation.Item Icon={IconComment} to="/measures">
-            Measures
-          </Layout.SidebarNavigation.Item>
-        </Layout.SidebarNavigation.Group>
+
+        <Layout.SidebarNavigation.AccordionItem Icon={IconShield} label="Security">
+          <Layout.SidebarNavigation.AccordionItem.Item Icon={IconPeople} to="/users">
+            Users
+          </Layout.SidebarNavigation.AccordionItem.Item>
+
+          <Layout.SidebarNavigation.AccordionItem.Item to="/groups">
+            Groups
+          </Layout.SidebarNavigation.AccordionItem.Item>
+
+          <Layout.SidebarNavigation.AccordionItem.Item Icon={IconKey} to="/authentication">
+            Authentication
+          </Layout.SidebarNavigation.AccordionItem.Item>
+
+          <Layout.SidebarNavigation.AccordionItem.Item to="/global-permissions">
+            Global permissions
+          </Layout.SidebarNavigation.AccordionItem.Item>
+        </Layout.SidebarNavigation.AccordionItem>
+
+        <Layout.SidebarNavigation.AccordionItem
+          Icon={IconProject}
+          label="Projects"
+          suffix={<NewBadge />}>
+          <Layout.SidebarNavigation.AccordionItem.Item to="/management">
+            Management
+          </Layout.SidebarNavigation.AccordionItem.Item>
+
+          <Layout.SidebarNavigation.AccordionItem.Item to="/applications">
+            Applications
+          </Layout.SidebarNavigation.AccordionItem.Item>
+
+          <Layout.SidebarNavigation.AccordionItem.Item to="/portfolio-projects">
+            Portfolio projects
+          </Layout.SidebarNavigation.AccordionItem.Item>
+        </Layout.SidebarNavigation.AccordionItem>
+
+        <Layout.SidebarNavigation.Item Icon={IconComputer} to="/system">
+          System
+        </Layout.SidebarNavigation.Item>
+
+        <Layout.SidebarNavigation.Item Icon={IconPackageAlt} to="/marketplace">
+          Marketplace
+        </Layout.SidebarNavigation.Item>
+
+        <Layout.SidebarNavigation.Item Icon={IconReports} to="/audit-logs">
+          Audit logs
+        </Layout.SidebarNavigation.Item>
       </Layout.SidebarNavigation.Body>
+
       <Layout.SidebarNavigation.Footer>
-        <Layout.SidebarNavigation.Item Icon={IconGear} to="/settings">
-          Settings
+        <Layout.SidebarNavigation.Item Icon={IconQuestionMark} to="/support">
+          Support
         </Layout.SidebarNavigation.Item>
       </Layout.SidebarNavigation.Footer>
     </Layout.SidebarNavigation>
@@ -340,10 +404,19 @@ function getHeaderProps() {
     navigation: (
       <Layout.PageHeader.Navigation>
         <Layout.PageHeader.NavigationItem to="/1">Nav Item 1</Layout.PageHeader.NavigationItem>
+
         <Layout.PageHeader.NavigationItem to="/2">Nav Item 2</Layout.PageHeader.NavigationItem>
       </Layout.PageHeader.Navigation>
     ),
   };
+}
+
+function NewBadge() {
+  return (
+    <Badge isHighContrast variety="highlight">
+      New
+    </Badge>
+  );
 }
 
 const Avatar = styled.div`
@@ -358,6 +431,13 @@ const Links = styled.div`
 `;
 
 const items = Array.from({ length: 100 }).map((_, i) => i);
+const colorBoxIds = Array.from({ length: 20 }, (_, index) => `color-box-${index.toString()}`);
+
+const COLOR_BOX_HUE_MULTIPLIER = 37;
+const COLOR_BOX_HUE_RANGE = 360;
+const COLOR_BOX_MIN_SIZE = 150;
+const COLOR_BOX_SIZE_VARIATION = 300;
+const COLOR_BOX_SIZE_MULTIPLIER = 47;
 
 const List = styled.ul`
   all: unset;
@@ -429,21 +509,23 @@ function TransformBox() {
   );
 }
 
-function getRandomColor() {
-  return `hsl(${Math.random() * 360}, 100%, 75%)`;
+function getColorBoxColor(colorIndex: number) {
+  return `hsl(${(colorIndex * COLOR_BOX_HUE_MULTIPLIER) % COLOR_BOX_HUE_RANGE}, 100%, 75%)`;
 }
 
-function getRandomSize() {
-  return `${150 + Math.random() * 300}px`;
+function getColorBoxSize(colorIndex: number) {
+  return `${COLOR_BOX_MIN_SIZE + ((colorIndex * COLOR_BOX_SIZE_MULTIPLIER) % COLOR_BOX_SIZE_VARIATION)}px`;
 }
 
-function ColorBox() {
-  const color = getRandomColor();
+function ColorBox({ colorIndex }: Readonly<{ colorIndex: number }>) {
+  const color = getColorBoxColor(colorIndex);
+  const size = getColorBoxSize(colorIndex);
+
   return (
     <div
       style={{
-        height: getRandomSize(),
-        width: getRandomSize(),
+        height: size,
+        width: size,
         backgroundColor: color,
         borderRadius: '10px',
         boxShadow: `0 0 6px rgba(0, 0, 0, 0.2)`,

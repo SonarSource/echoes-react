@@ -120,7 +120,7 @@ export const CardHeader = React.forwardRef<HTMLDivElement, Readonly<CardHeaderPr
             }),
             [sizeConfig.styles],
           )}
-          noPadding={isFullyCollapsible}
+          disablePadding={isFullyCollapsible}
           ref={ref}>
           {isFullyCollapsible ? (
             <CardHeaderTitleButtonStyled

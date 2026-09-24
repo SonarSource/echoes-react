@@ -24,7 +24,7 @@ import { Badge, Button, ButtonGroup, Layout } from '../../../src';
 import { basicWrapperDecorator } from '../../helpers/BasicWrapper';
 
 const meta: Meta = {
-  title: 'Echoes/Layout/SidebarNavigation/Footer/PromotionCard',
+  title: 'Echoes Patterns/Layout/SidebarNavigation/Footer/PromotionCard',
   component: Layout.SidebarNavigation.Footer.PromotionCard,
   decorators: [basicWrapperDecorator],
 };

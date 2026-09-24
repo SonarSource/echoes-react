@@ -25,7 +25,7 @@ import { basicWrapperDecorator } from '../helpers/BasicWrapper';
 
 const meta: Meta<typeof Display> = {
   component: Display,
-  title: 'Echoes/Typography/Display',
+  title: 'Echoes Components/Typography/Display',
   argTypes: {
     as: { control: { type: 'select' }, options: ['span', 'p', 'div'] },
   },

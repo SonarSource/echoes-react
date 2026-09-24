@@ -20,9 +20,11 @@
 
 import styled from '@emotion/styled';
 import * as RadixToggleGroup from '@radix-ui/react-toggle-group';
-import { forwardRef, ReactNode, useCallback } from 'react';
+import { ReactNode, Ref, useCallback } from 'react';
 
+import { TextNode } from '~types/utils';
 import { cssVar } from '~utils/design-tokens';
+import { Tooltip } from '../tooltip';
 
 interface ToggleOption {
   label: string;
@@ -30,6 +32,7 @@ interface ToggleOption {
 
   iconLeft?: ReactNode;
   suffix?: ReactNode;
+  tooltip?: TextNode;
 }
 
 export interface ToggleButtonGroupProps {
@@ -54,52 +57,54 @@ export interface ToggleButtonGroupProps {
    * The currently selected value in the toggle button group.
    */
   selected: string;
+
+  ref?: Ref<HTMLDivElement>;
 }
 
-export const ToggleButtonGroup = forwardRef<HTMLDivElement, ToggleButtonGroupProps>(
-  (props, ref) => {
-    const { isDisabled = false, onChange, options, selected, ...additionalProps } = props;
+export function ToggleButtonGroup(props: Readonly<ToggleButtonGroupProps>) {
+  const { isDisabled = false, onChange, options, ref, selected, ...additionalProps } = props;
 
-    const handleChange = useCallback(
-      (value: string) => {
-        if (value) {
-          onChange(value);
-        }
-      },
-      [onChange],
-    );
+  const handleChange = useCallback(
+    (value: string) => {
+      if (value) {
+        onChange(value);
+      }
+    },
+    [onChange],
+  );
 
-    return (
-      <StyledRoot
-        {...additionalProps}
-        disabled={isDisabled}
-        onValueChange={handleChange}
-        ref={ref}
-        type="single"
-        value={selected}>
-        {options.map((option) => (
-          <ToggleButtonItem key={option.value} {...option} />
-        ))}
-      </StyledRoot>
-    );
-  },
-);
+  return (
+    <StyledRoot
+      {...additionalProps}
+      disabled={isDisabled}
+      onValueChange={handleChange}
+      ref={ref}
+      type="single"
+      value={selected}>
+      {options.map((option) => (
+        <ToggleButtonItem key={option.value} {...option} />
+      ))}
+    </StyledRoot>
+  );
+}
 
 ToggleButtonGroup.displayName = 'ToggleButtonGroup';
 
 interface ToggleButtonItemProps extends ToggleOption {}
 
 function ToggleButtonItem(props: ToggleButtonItemProps) {
-  const { value, label, iconLeft, suffix } = props;
+  const { value, label, iconLeft, suffix, tooltip } = props;
 
   return (
-    <StyledItem value={value}>
-      <StyledItemInner>
-        {iconLeft}
-        <StyledItemLabel data-text={label}>{label}</StyledItemLabel>
-        {suffix}
-      </StyledItemInner>
-    </StyledItem>
+    <Tooltip content={tooltip}>
+      <StyledItem value={value}>
+        <StyledItemInner>
+          {iconLeft}
+          <StyledItemLabel data-text={label}>{label}</StyledItemLabel>
+          {suffix}
+        </StyledItemInner>
+      </StyledItem>
+    </Tooltip>
   );
 }
 
@@ -162,7 +167,7 @@ const StyledItem = styled(RadixToggleGroup.Item)`
 
   cursor: pointer;
 
-  &:hover:not([data-state='on'], :disabled) ${StyledItemInner} {
+  &:hover:not([aria-checked='true'], :disabled) ${StyledItemInner} {
     background-color: ${cssVar('color-background-neutral-bolder-default')};
   }
 
@@ -179,7 +184,7 @@ const StyledItem = styled(RadixToggleGroup.Item)`
     cursor: default;
   }
 
-  &[data-state='on'] {
+  &[aria-checked='true'] {
     background-color: ${cssVar('color-surface-default')};
     border-color: ${cssVar('color-border-bold')};
     border-radius: ${cssVar('border-radius-200')};
@@ -197,7 +202,7 @@ const StyledItem = styled(RadixToggleGroup.Item)`
     margin-left: -6px;
   }
 
-  &:not([data-state='on']) + &:not([data-state='on'])::before {
+  &:not([aria-checked='true']) + &:not([aria-checked='true'])::before {
     background-color: ${cssVar('color-border-weak')};
   }
 `;

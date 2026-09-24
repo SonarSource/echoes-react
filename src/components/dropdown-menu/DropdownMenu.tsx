@@ -28,8 +28,8 @@ import { cssVar } from '~utils/design-tokens';
 import { THEME_DATA_ATTRIBUTE, ThemeContext } from '~utils/theme';
 import { PortalContext } from '../../common/components/PortalContext';
 import { HelperText, Label } from '../typography';
-import { styleDropdownMenuOverlay } from './DropdownMenuCommons';
 import { DropdownMenuSeparator } from './DropdownMenuSeparator';
+import { styleDropdownMenuOverlay } from './DropdownMenuStyles';
 
 export enum DropdownMenuAlign {
   Center = 'center',

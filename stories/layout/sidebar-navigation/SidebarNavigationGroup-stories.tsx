@@ -24,7 +24,7 @@ import { IconDirectory, Layout } from '../../../src';
 import { basicWrapperDecorator } from '../../helpers/BasicWrapper';
 
 const meta: Meta = {
-  title: 'Echoes/Layout/SidebarNavigation/Group',
+  title: 'Echoes Patterns/Layout/SidebarNavigation/Group',
   component: Layout.SidebarNavigation.Group,
   decorators: [
     (Story) => (

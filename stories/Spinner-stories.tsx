@@ -25,7 +25,7 @@ import { basicWrapperDecorator } from './helpers/BasicWrapper';
 
 const meta: Meta<typeof Spinner> = {
   component: Spinner,
-  title: 'Echoes/Spinner',
+  title: 'Echoes Components/Spinner',
   parameters: {
     controls: { exclude: ['checked', 'onCheck'] },
   },

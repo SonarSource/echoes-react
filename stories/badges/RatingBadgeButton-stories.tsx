@@ -35,7 +35,7 @@ const meta: Meta<typeof RatingBadgeButton> = {
     },
   },
 
-  title: 'Echoes/Badges/RatingBadgeButton',
+  title: 'Echoes Components/Badges/RatingBadgeButton',
 };
 
 export default meta;

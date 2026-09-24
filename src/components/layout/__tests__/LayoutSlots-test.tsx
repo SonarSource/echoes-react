@@ -20,21 +20,21 @@
 
 import { screen } from '@testing-library/react';
 import { render } from '~common/helpers/test-utils';
-import { AsideLeft, PageContent, PageGrid } from '../LayoutSlots';
+import { AsideLeft, PageContent, PageContentProps, PageGrid, PageGridProps } from '../LayoutSlots';
 import { AsideSize, PageWidth } from '../LayoutTypes';
 
 describe('PageGrid', () => {
   it.each([[PageWidth.default, 'var(--echoes-layout-sizes-max-width-default)']])(
     'should render correctly when %s',
     (width, expected) => {
-      render(<PageGrid width={width}>content</PageGrid>);
+      renderPageGrid({ width });
 
       expect(screen.getByText('content')).toHaveStyle({ maxWidth: expected });
     },
   );
 
   it('should render correctly when fluid', () => {
-    render(<PageGrid width={PageWidth.fluid}>content</PageGrid>);
+    renderPageGrid({ width: PageWidth.fluid });
 
     expect(screen.getByText('content')).not.toHaveStyle({
       maxWidth: 'var(--echoes-layout-sizes-max-width-default)',
@@ -57,7 +57,7 @@ describe('PageGrid', () => {
       'All done',
     ],
   ])('should render correctly when %s', async (_, args, ariaBusy, expectedText) => {
-    const { container } = render(<PageGrid {...args}>content</PageGrid>);
+    const { container } = renderPageGrid(args);
 
     await expect(container).toHaveNoA11yViolations();
 
@@ -84,7 +84,7 @@ describe('PageContent', () => {
       'All done',
     ],
   ])('should render correctly when %s', async (_, args, ariaBusy, expectedText) => {
-    const { container } = render(<PageContent {...args}>content</PageContent>);
+    const { container } = renderPageContent(args);
 
     await expect(container).toHaveNoA11yViolations();
 
@@ -95,12 +95,41 @@ describe('PageContent', () => {
 
 describe('AsideLeft', () => {
   it.each([
-    [AsideSize.small, 'var(--echoes-layout-aside-width-small)'],
-    [AsideSize.medium, 'var(--echoes-layout-aside-width-medium)'],
-    [AsideSize.large, 'var(--echoes-layout-aside-width-large)'],
-  ])('should render correctly when %s', (size, expected) => {
-    render(<AsideLeft size={size}>content</AsideLeft>);
+    [
+      AsideSize.small,
+      'var(--echoes-layout-aside-width-small)',
+      'var(--echoes-dimension-space-150)',
+    ],
+    [
+      AsideSize.medium,
+      'var(--echoes-layout-aside-width-medium)',
+      'var(--echoes-dimension-space-200)',
+    ],
+    [
+      AsideSize.large,
+      'var(--echoes-layout-aside-width-large)',
+      'var(--echoes-dimension-space-250)',
+    ],
+  ])('should render correctly when %s', (size, expectedWidth, expectedPadding) => {
+    renderAsideLeft(size);
 
-    expect(screen.getByText('content')).toHaveStyle({ width: expected });
+    expect(screen.getByText('content')).toHaveStyle({
+      '--aside-left-padding': expectedPadding,
+      '--aside-left-width': expectedWidth,
+      padding: 'var(--aside-left-padding)',
+      width: 'var(--aside-left-width)',
+    });
   });
 });
+
+function renderPageGrid(props: PageGridProps = {}) {
+  return render(<PageGrid {...props}>content</PageGrid>);
+}
+
+function renderPageContent(props: PageContentProps = {}) {
+  return render(<PageContent {...props}>content</PageContent>);
+}
+
+function renderAsideLeft(size: `${AsideSize}`) {
+  return render(<AsideLeft size={size}>content</AsideLeft>);
+}

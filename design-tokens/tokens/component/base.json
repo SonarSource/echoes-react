@@ -22,6 +22,40 @@
         }
       }
     },
+    "filter": {
+      "dropdown": {
+        "sizes": {
+          "leftPanelWidth": {
+            "default": {
+              "$type": "sizing",
+              "$value": "277px"
+            }
+          },
+          "minHeight": {
+            "default": {
+              "$type": "sizing",
+              "$value": "350px"
+            }
+          },
+          "maxHeight": {
+            "default": {
+              "$type": "sizing",
+              "$value": "400px"
+            }
+          }
+        }
+      },
+      "tag": {
+        "sizes": {
+          "maxWidth": {
+            "default": {
+              "$type": "sizing",
+              "$value": "200px"
+            }
+          }
+        }
+      }
+    },
     "form-control": {
       "borderRadius": {
         "default": {

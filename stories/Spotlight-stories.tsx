@@ -31,7 +31,7 @@ const meta: Meta<typeof Spotlight> = {
   },
   component: Spotlight,
   decorators: [basicWrapperDecorator],
-  title: 'Echoes/Spotlight',
+  title: 'Echoes Components/Spotlight',
 };
 
 export default meta;

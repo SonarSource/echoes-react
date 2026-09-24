@@ -22,9 +22,9 @@ import styled from '@emotion/styled';
 import * as radixDropdownMenu from '@radix-ui/react-dropdown-menu';
 import { forwardRef, MouseEventHandler, ReactNode, useCallback } from 'react';
 import { TextNode } from '~types/utils';
-import { IconCheck } from '../icons/IconCheck';
-
 import { cssVar } from '~utils/design-tokens';
+import { IconCheck } from '../icons/IconCheck';
+import { styleDropdownItemBase } from './DropdownMenuStyles';
 
 type CheckProps =
   | {
@@ -199,40 +199,10 @@ const StyledSuffix = styled.span`
 `;
 StyledSuffix.displayName = 'StyledSuffix';
 
-const StyledRadixDropdownMenuItem = styled(radixDropdownMenu.Item)`
-  background-color: ${cssVar('color-surface-default')};
-  color: ${cssVar('color-text-default')};
-  font: ${cssVar('typography-text-default-regular')};
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  column-gap: ${cssVar('dimension-space-100')};
-  padding: ${cssVar('dimension-space-100')} ${cssVar('dimension-space-150')};
-
-  cursor: pointer;
-
-  &:focus-visible {
-    border-radius: ${cssVar('border-radius-400')};
-    outline: ${cssVar('color-focus-default')} solid ${cssVar('focus-border-width-default')};
-    outline-offset: -2px;
-  }
-
+const StyledRadixDropdownMenuItem = styled(styleDropdownItemBase(radixDropdownMenu.Item))`
   &:hover {
-    background-color: ${cssVar('color-surface-hover')};
     border-radius: 0;
     outline: none;
-  }
-
-  /* when the item is clicked */
-  &:active {
-    background-color: ${cssVar('color-surface-active')};
-  }
-
-  &[data-disabled] {
-    background-color: ${cssVar('color-surface-default')};
-    color: ${cssVar('color-text-disabled')};
-    cursor: default;
   }
 `;
 StyledRadixDropdownMenuItem.displayName = 'StyledRadixDropdownMenuItem';
