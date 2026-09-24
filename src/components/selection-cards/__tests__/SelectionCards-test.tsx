@@ -67,6 +67,20 @@ describe('SelectionCards', () => {
     const radioGroup = screen.getByLabelText('cool aria-label');
     expect(radioGroup).toBeInTheDocument();
   });
+
+  it('should not render a deprecated illustration', () => {
+    renderSelectionCards({
+      options: [
+        {
+          illustration: <div data-testid="illustration" />,
+          label: 'option',
+          value: 'option',
+        },
+      ],
+    });
+
+    expect(screen.queryByTestId('illustration')).not.toBeInTheDocument();
+  });
 });
 
 function renderSelectionCards(overrides: Partial<SelectionCardsProps> = {}) {
