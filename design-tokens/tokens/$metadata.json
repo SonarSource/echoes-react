@@ -1,13 +1,17 @@
 {
   "tokenSetOrder": [
-    "brand/brand-A/base",
-    "brand/brand-A/colors",
-    "brand/brand-B/base",
-    "brand/brand-B/colors",
-    "modes/light",
-    "modes/dark",
+    "brand/sonar/base",
+    "brand/sonar/colors",
+    "brand/gitar/base",
+    "brand/gitar/colors",
+    "modes/sonar/light",
+    "modes/sonar/dark",
+    "modes/gitar/light",
+    "modes/gitar/dark",
     "component/base",
-    "component/light",
-    "component/dark"
+    "component/sonar/light",
+    "component/sonar/dark",
+    "component/gitar/light",
+    "component/gitar/dark"
   ]
 }
