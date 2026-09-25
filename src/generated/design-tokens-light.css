@@ -21,236 +21,262 @@
  */
 
 :root, [data-echoes-theme='light'] {
-  --echoes-color-background-neutral-subtle-default: #eff2f9; /** Use it in components with neutral sentiment */
-  --echoes-color-background-neutral-subtle-focus: #eff2f9; /** Use it in components with neutral sentiment */
-  --echoes-color-background-neutral-subtle-hover: #e1e6f3; /** Use it in components with neutral sentiment */
-  --echoes-color-background-neutral-subtle-active: #c5cddf; /** Use it in components with neutral sentiment */
-  --echoes-color-background-neutral-bolder-default: #e1e6f3; /** Use it in components with neutral sentiment that need a bolder highlight */
-  --echoes-color-background-accent-default: #5d6cd0; /** Used as the background color of components that reinforce our brand */
-  --echoes-color-background-accent-hover: #4b56bb; /** Hover state of components that reinforce our brand */
-  --echoes-color-background-accent-focus: #5d6cd0;
-  --echoes-color-background-accent-active: #47518f; /** Active state of components that reinforce our brand */
-  --echoes-color-background-accent-weak-default: #f4f6ff; /** Used as the background color of components that reinforce our brand with less visual highlight */
-  --echoes-color-background-accent-weak-hover: #e8ebff; /** Hover state of components that reinforce our brand with less visual highlight */
-  --echoes-color-background-accent-weak-active: #d1d7fe; /** Active state of components that reinforce our brand with less visual highlight */
-  --echoes-color-background-accent-weak-focus: #e8ebff; /** Focus state of components that reinforce our brand with less visual highlight */
-  --echoes-color-background-warning-default: #f5b840; /** Use for backgrounds that communicate warning or caution */
-  --echoes-color-background-warning-hover: #e7ae3d; /** Use for backgrounds that communicate warning or caution */
-  --echoes-color-background-warning-focus: #f5b840; /** Use for backgrounds that communicate warning or caution */
-  --echoes-color-background-warning-active: #ae7a29; /** Use for backgrounds that communicate warning or caution */
-  --echoes-color-background-warning-weak-default: #fcf5e4; /** Use for backgrounds that communicate warning or caution, with less visual highlight */
-  --echoes-color-background-warning-weak-hover: #fef5d0; /** Use for backgrounds that communicate warning or caution, with less visual highlight */
-  --echoes-color-background-warning-weak-focus: #fcf5e4; /** Use for backgrounds that communicate warning or caution, with less visual highlight */
-  --echoes-color-background-warning-weak-active: #fce9a3; /** Use for backgrounds that communicate warning or caution, with less visual highlight */
-  --echoes-color-background-success-default: #75a92c; /** Use for backgrounds that communicate positive or success messages */
-  --echoes-color-background-success-hover: #537c17; /** Use for backgrounds that communicate positive or success messages */
-  --echoes-color-background-success-focus: #75a92c; /** Use for backgrounds that communicate positive or success messages */
-  --echoes-color-background-success-active: #054f16; /** Use for backgrounds that communicate positive or success messages */
-  --echoes-color-background-success-weak-default: #f3f8ef; /** Use for backgrounds that communicate positive or success messages, with less visual highlight */
-  --echoes-color-background-success-weak-hover: #e4f7d1; /** Use for backgrounds that communicate positive or success messages, with less visual highlight */
-  --echoes-color-background-success-weak-active: #d4f2b7; /** Use for backgrounds that communicate positive or success messages, with less visual highlight */
-  --echoes-color-background-success-weak-focus: #f3f8ef; /** Use for backgrounds that communicate positive or success messages, with less visual highlight */
-  --echoes-color-background-danger-default: #d92d20; /** Use for backgrounds that communicate danger or destructive messages */
-  --echoes-color-background-danger-hover: #b42318; /** Hover state for backgrounds that communicate danger or destructive messages */
-  --echoes-color-background-danger-focus: #d92d20; /** Focused state for backgrounds that communicate danger or destructive messages */
-  --echoes-color-background-danger-active: #801b14; /** Active state for backgrounds that communicate danger or destructive messages */
-  --echoes-color-background-danger-weak-default: #fef3f2; /** Use it for backgrounds that communicate danger or destructive messages, with less visual highlight */
-  --echoes-color-background-danger-weak-hover: #fee4e2; /** Hover state for backgrounds that communicate danger or destructive messages, with less visual highlight */
-  --echoes-color-background-danger-weak-active: #fecdca; /** Active state for backgrounds that communicate danger or destructive messages, with less visual highlight */
-  --echoes-color-background-danger-weak-focus: #fef3f2;
-  --echoes-color-background-info-default: #316c92; /** Use for backgrounds that communicate information to the user */
-  --echoes-color-background-info-hover: #174361; /** Use for backgrounds that communicate information to the user */
-  --echoes-color-background-info-focus: #316c92; /** Use for backgrounds that communicate information to the user */
-  --echoes-color-background-info-active: #17364d; /** Use for backgrounds that communicate information to the user */
-  --echoes-color-background-info-weak-default: #f5fbff; /** Use for backgrounds that communicate information to the user, with less visual highlight */
-  --echoes-color-background-info-weak-hover: #e9f4fb; /** Use for backgrounds that communicate information to the user, with less visual highlight */
-  --echoes-color-background-info-weak-focus: #f5fbff; /** Use for backgrounds that communicate information to the user, with less visual highlight */
-  --echoes-color-background-info-weak-active: #b8def1; /** Use for backgrounds that communicate information to the user, with less visual highlight */
+  --echoes-color-background-neutral-subtle-default: #f1efec; /** Use it in components with neutral sentiment */
+  --echoes-color-background-neutral-subtle-focus: #f1efec; /** Use it in components with neutral sentiment */
+  --echoes-color-background-neutral-subtle-hover: #e4e1dd; /** Use it in components with neutral sentiment */
+  --echoes-color-background-neutral-subtle-active: #cac7c2; /** Use it in components with neutral sentiment */
+  --echoes-color-background-neutral-bolder-default: #e4e1dd; /** Use it in components with neutral sentiment that need a bolder highlight */
+  --echoes-color-background-accent-default: #90349e; /** Used as the background color of components that reinforce our brand */
+  --echoes-color-background-accent-hover: #6d2a78; /** Hover state of components that reinforce our brand */
+  --echoes-color-background-accent-focus: #90349e;
+  --echoes-color-background-accent-active: #4f1159; /** Active state of components that reinforce our brand */
+  --echoes-color-background-accent-weak-default: #f9f4fa; /** Used as the background color of components that reinforce our brand with less visual highlight */
+  --echoes-color-background-accent-weak-hover: #f6ebf8; /** Hover state of components that reinforce our brand with less visual highlight */
+  --echoes-color-background-accent-weak-active: #f0d8f3; /** Active state of components that reinforce our brand with less visual highlight */
+  --echoes-color-background-accent-weak-focus: #f9f4fa; /** Focus state of components that reinforce our brand with less visual highlight */
+  --echoes-color-background-warning-default: #895709; /** Use for backgrounds that communicate warning or caution */
+  --echoes-color-background-warning-hover: #82530a; /** Use for backgrounds that communicate warning or caution */
+  --echoes-color-background-warning-focus: #895709; /** Use for backgrounds that communicate warning or caution */
+  --echoes-color-background-warning-active: #563504; /** Use for backgrounds that communicate warning or caution */
+  --echoes-color-background-warning-weak-default: #fef4e9; /** Use for backgrounds that communicate warning or caution, with less visual highlight */
+  --echoes-color-background-warning-weak-hover: #fdedda; /** Use for backgrounds that communicate warning or caution, with less visual highlight */
+  --echoes-color-background-warning-weak-focus: #fef4e9; /** Use for backgrounds that communicate warning or caution, with less visual highlight */
+  --echoes-color-background-warning-weak-active: #fedbb3; /** Use for backgrounds that communicate warning or caution, with less visual highlight */
+  --echoes-color-background-success-default: #075a22; /** Use for backgrounds that communicate positive or success messages */
+  --echoes-color-background-success-hover: #044418; /** Use for backgrounds that communicate positive or success messages */
+  --echoes-color-background-success-focus: #075a22; /** Use for backgrounds that communicate positive or success messages */
+  --echoes-color-background-success-active: #02260a; /** Use for backgrounds that communicate positive or success messages */
+  --echoes-color-background-success-weak-default: #e8f9e7; /** Use for backgrounds that communicate positive or success messages, with less visual highlight */
+  --echoes-color-background-success-weak-hover: #d4f5d2; /** Use for backgrounds that communicate positive or success messages, with less visual highlight */
+  --echoes-color-background-success-weak-active: #8aef9bcc; /** Use for backgrounds that communicate positive or success messages, with less visual highlight */
+  --echoes-color-background-success-weak-focus: #e8f9e7; /** Use for backgrounds that communicate positive or success messages, with less visual highlight */
+  --echoes-color-background-danger-default: #b32322; /** Use for backgrounds that communicate danger or destructive messages */
+  --echoes-color-background-danger-hover: #961114; /** Hover state for backgrounds that communicate danger or destructive messages */
+  --echoes-color-background-danger-focus: #b32322; /** Focused state for backgrounds that communicate danger or destructive messages */
+  --echoes-color-background-danger-active: #6e0409; /** Active state for backgrounds that communicate danger or destructive messages */
+  --echoes-color-background-danger-weak-default: #fdebe8; /** Use it for backgrounds that communicate danger or destructive messages, with less visual highlight */
+  --echoes-color-background-danger-weak-hover: #fed7d1; /** Hover state for backgrounds that communicate danger or destructive messages, with less visual highlight */
+  --echoes-color-background-danger-weak-active: #fdb1a8; /** Active state for backgrounds that communicate danger or destructive messages, with less visual highlight */
+  --echoes-color-background-danger-weak-focus: #fdebe8;
+  --echoes-color-background-info-default: #0f6f95; /** Use for backgrounds that communicate information to the user */
+  --echoes-color-background-info-hover: #075776; /** Use for backgrounds that communicate information to the user */
+  --echoes-color-background-info-focus: #0f6f95; /** Use for backgrounds that communicate information to the user */
+  --echoes-color-background-info-active: #01151f; /** Use for backgrounds that communicate information to the user */
+  --echoes-color-background-info-weak-default: #edf8fe; /** Use for backgrounds that communicate information to the user, with less visual highlight */
+  --echoes-color-background-info-weak-hover: #dff3ff; /** Use for backgrounds that communicate information to the user, with less visual highlight */
+  --echoes-color-background-info-weak-focus: #edf8fe; /** Use for backgrounds that communicate information to the user, with less visual highlight */
+  --echoes-color-background-info-weak-active: #bce4ff; /** Use for backgrounds that communicate information to the user, with less visual highlight */
   --echoes-color-background-utility-transparent: #00000000; /** Use it when you need transparency in the background */
-  --echoes-color-background-selected-weak-default: #f4f6ff; /** Use it in backgrounds of components that have a selected state that need less visual highlight, like dropdown or selects */
-  --echoes-color-background-selected-weak-hover: #e8ebff; /** Hover state of components that have a selected state that need less visual highlight, like dropdown or selects */
-  --echoes-color-background-selected-weak-pressed: #d1d7fe; /** Pressed state of components that have a selected state that need less visual highlight, like dropdown or selects */
-  --echoes-color-background-selected-bold-default: #5d6cd0; /** Use it in backgrounds of components that have a selected state, like checkboxes or radios */
-  --echoes-color-background-selected-bold-hover: #4b56bb; /** Hover state of components that have a selected state, like checkboxes or radios */
-  --echoes-color-background-selected-bold-pressed: #47518f; /** Pressed state of components that have a selected state, like checkboxes or radios */
+  --echoes-color-background-selected-weak-default: #f9f4fa; /** Use it in backgrounds of components that have a selected state that need less visual highlight, like dropdown or selects */
+  --echoes-color-background-selected-weak-hover: #f6ebf8; /** Hover state of components that have a selected state that need less visual highlight, like dropdown or selects */
+  --echoes-color-background-selected-weak-pressed: #f0d8f3; /** Pressed state of components that have a selected state that need less visual highlight, like dropdown or selects */
+  --echoes-color-background-selected-bold-default: #90349e; /** Use it in backgrounds of components that have a selected state, like checkboxes or radios */
+  --echoes-color-background-selected-bold-hover: #6d2a78; /** Hover state of components that have a selected state, like checkboxes or radios */
+  --echoes-color-background-selected-bold-pressed: #4f1159; /** Pressed state of components that have a selected state, like checkboxes or radios */
   --echoes-color-background-ghost-accent-default: #00000000;
-  --echoes-color-background-ghost-accent-hover: #e8ebff;
-  --echoes-color-background-ghost-accent-active: #d1d7fe;
+  --echoes-color-background-ghost-accent-hover: #f6ebf8;
+  --echoes-color-background-ghost-accent-active: #f0d8f3;
   --echoes-color-background-ghost-accent-focus: #00000000;
   --echoes-color-background-ghost-neutral-default: #00000000;
-  --echoes-color-background-ghost-neutral-hover: #eff2f9;
-  --echoes-color-background-ghost-neutral-active: #e1e6f3;
+  --echoes-color-background-ghost-neutral-hover: #f1efec;
+  --echoes-color-background-ghost-neutral-active: #e4e1dd;
   --echoes-color-background-ghost-neutral-focus: #00000000;
   --echoes-color-background-ghost-danger-default: #00000000;
-  --echoes-color-background-ghost-danger-hover: #fef3f2;
-  --echoes-color-background-ghost-danger-active: #fee4e2;
+  --echoes-color-background-ghost-danger-hover: #fdebe8;
+  --echoes-color-background-ghost-danger-active: #fed7d1;
   --echoes-color-background-ghost-danger-focus: #00000000;
-  --echoes-color-background-emphasis-weak-default: #f4eeff;
-  --echoes-color-background-emphasis-weak-hover: #ede2ff;
-  --echoes-color-background-emphasis-weak-focus: #f4eeff;
-  --echoes-color-background-emphasis-weak-active: #e5d5ff;
-  --echoes-color-background-emphasis-default: #883fdd;
-  --echoes-color-background-emphasis-hover: #7934c7;
-  --echoes-color-background-emphasis-focus: #883fdd;
-  --echoes-color-background-emphasis-active: #3f186b;
-  --echoes-color-background-favourite-default: #d19834;
-  --echoes-color-background-favourite-hover: #ae7a29;
+  --echoes-color-background-emphasis-weak-default: #f5f2ff;
+  --echoes-color-background-emphasis-weak-hover: #eee9fd;
+  --echoes-color-background-emphasis-weak-focus: #f5f2ff;
+  --echoes-color-background-emphasis-weak-active: #dfd3ff;
+  --echoes-color-background-emphasis-default: #5526d7;
+  --echoes-color-background-emphasis-hover: #3b12ad;
+  --echoes-color-background-emphasis-focus: #5526d7;
+  --echoes-color-background-emphasis-active: #26008f;
+  --echoes-color-background-favourite-default: #f59e0b;
+  --echoes-color-background-favourite-hover: #895709;
   --echoes-color-surface-default: #ffffff; /** Go to color for surfaces.. eg: cards, modals, popovers, etc... */
-  --echoes-color-surface-hover: #f6f7fb; /** Hover color for bg-default */
-  --echoes-color-surface-active: #e1e6f3; /** Active color for bg-default */
-  --echoes-color-surface-canvas-default: #fcfcfd; /** Use it as page background */
-  --echoes-color-surface-inverse-default: #2a2f40; /** Inverse color for bgs, creates high contrast against bg-default and bg-page */
-  --echoes-color-surface-inverse-hover: #1d212f;
-  --echoes-color-surface-inverse-focus: #2a2f40;
-  --echoes-color-surface-inverse-active: #12141d;
-  --echoes-color-surface-disabled: #eff2f9; /** Use it as background for disabled components */
-  --echoes-color-overlays-back-drop-default: #08090c73;
-  --echoes-color-overlays-disabled: #eff2f9; /** Use it as background for disabled components */
-  --echoes-color-text-strong: #1d212f;
-  --echoes-color-text-default: #3e4357;
-  --echoes-color-text-disabled: #a6adc2;
-  --echoes-color-text-placeholder: #637192;
-  --echoes-color-text-subtle: #637192;
+  --echoes-color-surface-hover: #fcfaf9; /** Hover color for bg-default */
+  --echoes-color-surface-active: #f8f6f3; /** Active color for bg-default */
+  --echoes-color-surface-canvas-default: #fcfaf9; /** Use it as page background */
+  --echoes-color-surface-inverse-default: #534f4a; /** Inverse color for bgs, creates high contrast against bg-default and bg-page */
+  --echoes-color-surface-inverse-hover: #403d38;
+  --echoes-color-surface-inverse-focus: #534f4a;
+  --echoes-color-surface-inverse-active: #2f2c28;
+  --echoes-color-surface-disabled: #fcfaf9; /** Use it as background for disabled components */
+  --echoes-color-overlays-back-drop-default: #18161373;
+  --echoes-color-overlays-disabled: #fcfaf9; /** Use it as background for disabled components */
+  --echoes-color-text-strong: #0e0c09;
+  --echoes-color-text-default: #2f2c28;
+  --echoes-color-text-disabled: #cac7c2;
+  --echoes-color-text-placeholder: #534f4a;
+  --echoes-color-text-subtle: #534f4a;
   --echoes-color-text-on-color: #ffffff;
-  --echoes-color-text-on-color-inverse: #3e4357;
-  --echoes-color-text-accent: #5d6cd0;
-  --echoes-color-text-danger: #b42318;
-  --echoes-color-text-warning: #8c5e1e;
-  --echoes-color-text-success: #537c17;
-  --echoes-color-text-info: #316c92;
-  --echoes-color-text-emphasis: #7934c7;
-  --echoes-color-text-link-hover: #4b56bb;
-  --echoes-color-icon-bold: #1d212f;
-  --echoes-color-icon-default: #3e4357;
-  --echoes-color-icon-subtle: #637192;
-  --echoes-color-icon-disabled: #a6adc2;
-  --echoes-color-icon-placeholder: #637192;
-  --echoes-color-icon-accent: #5d6cd0;
-  --echoes-color-icon-danger: #d92d20;
-  --echoes-color-icon-warning: #ae7a29;
-  --echoes-color-icon-success: #82b73c;
-  --echoes-color-icon-info: #4595cb;
+  --echoes-color-text-on-color-inverse: #0e0c09;
+  --echoes-color-text-accent: #90349e;
+  --echoes-color-text-danger: #961114;
+  --echoes-color-text-warning: #6f4606;
+  --echoes-color-text-success: #075a22;
+  --echoes-color-text-info: #075776;
+  --echoes-color-text-emphasis: #1d0267;
+  --echoes-color-text-link-hover: #f19ffe;
+  --echoes-color-icon-bold: #0e0c09;
+  --echoes-color-icon-default: #23201c;
+  --echoes-color-icon-subtle: #2f2c28;
+  --echoes-color-icon-disabled: #cac7c2;
+  --echoes-color-icon-placeholder: #cac7c2;
+  --echoes-color-icon-accent: #90349e;
+  --echoes-color-icon-danger: #b32322;
+  --echoes-color-icon-warning: #6f4606;
+  --echoes-color-icon-success: #075a22;
+  --echoes-color-icon-info: #075776;
   --echoes-color-icon-on-color: #ffffff;
-  --echoes-color-icon-on-color-inverse: #3e4357;
-  --echoes-color-icon-selected: #5d6cd0;
-  --echoes-color-icon-emphasis: #7934c7;
-  --echoes-color-border-bolder: #637192;
-  --echoes-color-border-bold: #c5cddf;
-  --echoes-color-border-weak: #e1e6f3;
-  --echoes-color-border-weaker: #eff2f9;
-  --echoes-color-border-disabled: #c5cddf;
-  --echoes-color-border-accent-default: #5d6cd0;
-  --echoes-color-border-danger-weak: #fee4e2;
-  --echoes-color-border-danger-default: #d92d20;
-  --echoes-color-border-none: #00000000;
-  --echoes-color-border-success-weak: #e4f7d1;
-  --echoes-color-border-success-default: #75a92c;
-  --echoes-color-border-warning-weak: #fef5d0;
-  --echoes-color-border-info-weak: #e9f4fb;
-  --echoes-color-border-emphasis-weak: #ede2ff;
-  --echoes-color-code-background-default: #fcfcfd;
-  --echoes-color-code-background-highlight: #c5cddf;
-  --echoes-color-code-border-default: #e1e6f3;
-  --echoes-color-code-text-default: #383a42;
-  --echoes-color-code-text-highlight: #d92d20;
-  --echoes-color-code-text-annotation: #235bd5;
-  --echoes-color-code-text-constant: #875702;
-  --echoes-color-code-text-comment: #5f6066;
-  --echoes-color-code-text-keyword: #a222a0;
-  --echoes-color-code-text-string: #247523;
-  --echoes-color-code-text-keyword-subtle: #1e1ead;
-  --echoes-color-code-text-preprocessing-directive: #347235;
-  --echoes-color-focus-default: #4b56bb;
-  --echoes-color-charts-categorical-1: #3b82d4;
-  --echoes-color-charts-categorical-2: #d74a78;
-  --echoes-color-charts-categorical-3: #0f9383;
-  --echoes-color-charts-categorical-4: #8a4fe9;
-  --echoes-color-charts-categorical-5: #d4713b;
-  --echoes-color-charts-categorical-6: #1b5da8;
-  --echoes-color-charts-categorical-7: #ad2955;
-  --echoes-color-charts-categorical-8: #00675b;
-  --echoes-color-charts-severity-blocker: #670700;
-  --echoes-color-charts-severity-high: #be342a;
-  --echoes-color-charts-severity-medium: #ce7536;
-  --echoes-color-charts-severity-low: #ba8927;
-  --echoes-color-charts-severity-info: #2a83be;
-  --echoes-color-charts-placeholder-default: #637192;
+  --echoes-color-icon-on-color-inverse: #0e0c09;
+  --echoes-color-icon-selected: #90349e;
+  --echoes-color-icon-emphasis: #1d0267;
+  --echoes-color-border-bolder: #696561;
+  --echoes-color-border-bold: #cac7c2;
+  --echoes-color-border-weak: #e4e1dd;
+  --echoes-color-border-weaker: #f1efec;
+  --echoes-color-border-disabled: #cac7c2;
+  --echoes-color-border-accent-default: #90349e;
+  --echoes-color-border-danger-weak: #fdb1a8;
+  --echoes-color-border-danger-default: #b32322;
+  --echoes-color-border-none: transparent00;
+  --echoes-color-border-success-weak: #8aef9b;
+  --echoes-color-border-success-default: #0c7830;
+  --echoes-color-border-warning-weak: #fedbb3;
+  --echoes-color-border-info-weak: #bce4ff;
+  --echoes-color-border-emphasis-weak: #c0aafd;
+  --echoes-color-focus-default: #7a2787;
+  --echoes-color-dataviz-raspberry-bg: #f7b3d9;
+  --echoes-color-dataviz-raspberry-text: #450130;
+  --echoes-color-dataviz-raspberry-border-border: #8a1265;
+  --echoes-color-dataviz-raspberry-fill-default: #8a1265;
+  --echoes-color-dataviz-raspberry-fill-hover: #720452;
+  --echoes-color-dataviz-raspberry-fill-active: #5e0043;
+  --echoes-color-dataviz-raspberry-fill-focus: #8a1265;
+  --echoes-color-dataviz-violet-bg: #e2dcfd;
+  --echoes-color-dataviz-violet-text: #210749;
+  --echoes-color-dataviz-violet-border-border: #6e37d2;
+  --echoes-color-dataviz-violet-fill-default: #6e37d2;
+  --echoes-color-dataviz-violet-fill-hover: #5a26b0;
+  --echoes-color-dataviz-violet-fill-active: #4f239b;
+  --echoes-color-dataviz-violet-fill-focus: #6e37d2;
+  --echoes-color-dataviz-indigo-bg: #d2e2fd;
+  --echoes-color-dataviz-indigo-text: #022c6f;
+  --echoes-color-dataviz-indigo-border-border: #0559d2;
+  --echoes-color-dataviz-indigo-fill-default: #0559d2;
+  --echoes-color-dataviz-indigo-fill-hover: #0047ad;
+  --echoes-color-dataviz-indigo-fill-active: #013e9a;
+  --echoes-color-dataviz-indigo-fill-focus: #0559d2;
+  --echoes-color-dataviz-mint-bg: #cdfce6;
+  --echoes-color-dataviz-mint-text: #0c2d21;
+  --echoes-color-dataviz-mint-border-border: #2b7257;
+  --echoes-color-dataviz-mint-fill-default: #2b7257;
+  --echoes-color-dataviz-mint-fill-hover: #1c523d;
+  --echoes-color-dataviz-mint-fill-active: #123a2b;
+  --echoes-color-dataviz-mint-fill-focus: #2b7257;
+  --echoes-color-dataviz-lime-bg: #f0f1de;
+  --echoes-color-dataviz-lime-text: #343404;
+  --echoes-color-dataviz-lime-border-border: #67680b;
+  --echoes-color-dataviz-lime-fill-default: #67680b;
+  --echoes-color-dataviz-lime-fill-hover: #535408;
+  --echoes-color-dataviz-lime-fill-active: #494a02;
+  --echoes-color-dataviz-lime-fill-focus: #67680b;
+  --echoes-color-dataviz-yellow-bg: #fdf8b0;
+  --echoes-color-dataviz-yellow-text: #624f0a;
+  --echoes-color-dataviz-yellow-border-border: #a88d1a;
+  --echoes-color-dataviz-yellow-fill-default: #a88d1a;
+  --echoes-color-dataviz-yellow-fill-hover: #7a650f;
+  --echoes-color-dataviz-yellow-fill-active: #624f0a;
+  --echoes-color-dataviz-yellow-fill-focus: #a88d1a;
+  --echoes-color-dataviz-pumpkin-bg: #fdd5b8;
+  --echoes-color-dataviz-pumpkin-text: #5d2803;
+  --echoes-color-dataviz-pumpkin-border-border: #e86f10;
+  --echoes-color-dataviz-pumpkin-fill-default: #e86f10;
+  --echoes-color-dataviz-pumpkin-fill-hover: #c45a08;
+  --echoes-color-dataviz-pumpkin-fill-active: #9e4706;
+  --echoes-color-dataviz-pumpkin-fill-focus: #e86f10;
+  --echoes-color-dataviz-coral-bg: #fceaed;
+  --echoes-color-dataviz-coral-text: #4c021c;
+  --echoes-color-dataviz-coral-border-border: #b7014d;
+  --echoes-color-dataviz-coral-fill-default: #b7014d;
+  --echoes-color-dataviz-coral-fill-hover: #95043e;
+  --echoes-color-dataviz-coral-fill-active: #840536;
+  --echoes-color-dataviz-coral-fill-focus: #b7014d;
   --echoes-box-shadow-xsmall: 0 1px 02px 0 #0000000d;
   --echoes-box-shadow-small: 0 1px 25px 0 #1d212f0d, 0 1px 3px 0 #1d212f0d;
   --echoes-box-shadow-medium: 0 2px 15px -2px #1d212f0f, 0 4px 8px -2px #1d212f1a;
   --echoes-box-shadow-large: 0 4px 6px -2px #1d212f0d, 0 12px 16px -4px #1d212f1a;
   --echoes-box-shadow-x-large: 0 8px 8px -4px #1d212f0a, 15px 20px 24px -4px #1d212f1a;
-  --echoes-bottom-scroll-colors-shadow-gradient: #00000033;
   --echoes-form-control-colors-background-default: #ffffff;
-  --echoes-form-control-colors-background-hover: #f6f7fb;
-  --echoes-form-control-colors-border-default: #637192;
-  --echoes-form-control-colors-border-focus: #e1e6f3;
-  --echoes-form-control-colors-icon-default: #637192;
-  --echoes-logos-colors-text: #290042;
-  --echoes-logos-colors-brand: #126ed3;
-  --echoes-logos-colors-logomark: #d3121d;
-  --echoes-margin-indicator-colors-background-duplication: #c5cddf;
-  --echoes-margin-indicator-colors-background-covered: #75a92c;
-  --echoes-margin-indicator-colors-background-partially-covered: #ae7a29;
-  --echoes-margin-indicator-colors-background-uncovered: #d92d20;
+  --echoes-form-control-colors-background-hover: #fcfaf9;
+  --echoes-form-control-colors-border-default: #696561;
+  --echoes-form-control-colors-border-focus: #e4e1dd;
+  --echoes-form-control-colors-icon-default: #2f2c28;
+  --echoes-logos-colors-text: #4f1159;
+  --echoes-logos-colors-brand: #4f1159;
+  --echoes-logos-colors-logomark: #4f1159;
+  --echoes-bottom-scroll-colors-shadow-gradient: #00000033;
+  --echoes-margin-indicator-colors-background-duplication: #f1efec;
+  --echoes-margin-indicator-colors-background-covered: #044418;
+  --echoes-margin-indicator-colors-background-partially-covered: #563504;
+  --echoes-margin-indicator-colors-background-uncovered: #b32322;
   --echoes-overlays-inner-shadow-default: inset 0 -6px 10px 0 #0000000d;
-  --echoes-quality-gate-indicator-colors-passed-icon: #054f16;
-  --echoes-quality-gate-indicator-colors-passed-background: #d4f2b7;
-  --echoes-quality-gate-indicator-colors-failed-icon: #801b14;
-  --echoes-quality-gate-indicator-colors-failed-background: #fecdca;
   --echoes-ratings-colors-background-rating-a-default: #d1fadf;
-  --echoes-ratings-colors-background-rating-b-default: #d4f2b7;
-  --echoes-ratings-colors-background-rating-c-default: #fce9a3;
-  --echoes-ratings-colors-background-rating-d-default: #ffd6af;
-  --echoes-ratings-colors-background-rating-e-default: #fecdca;
+  --echoes-ratings-colors-background-rating-b-default: #d4f5d2;
+  --echoes-ratings-colors-background-rating-c-default: #fdedda;
+  --echoes-ratings-colors-background-rating-d-default: #fcebe5;
+  --echoes-ratings-colors-background-rating-e-default: #fdebe8;
   --echoes-ratings-colors-text-rating-a-default: #054f31;
-  --echoes-ratings-colors-text-rating-b-default: #054f16;
-  --echoes-ratings-colors-text-rating-c-default: #66400f;
-  --echoes-ratings-colors-text-rating-d-default: #7a2e0e;
-  --echoes-ratings-colors-text-rating-e-default: #5d1d13;
+  --echoes-ratings-colors-text-rating-b-default: #021a06;
+  --echoes-ratings-colors-text-rating-c-default: #211201;
+  --echoes-ratings-colors-text-rating-d-default: #2b0a00;
+  --echoes-ratings-colors-text-rating-e-default: #400002;
   --echoes-ratings-colors-border-rating-a-default: #12b76a;
   --echoes-ratings-colors-border-rating-a-hover: #16ad65;
-  --echoes-ratings-colors-border-rating-b-default: #9dcb6b;
-  --echoes-ratings-colors-border-rating-b-hover: #95c066;
-  --echoes-ratings-colors-border-rating-c-default: #f5b840;
-  --echoes-ratings-colors-border-rating-c-hover: #e7ae3d;
-  --echoes-ratings-colors-border-rating-d-default: #fd7122;
-  --echoes-ratings-colors-border-rating-d-hover: #ef6b21;
-  --echoes-ratings-colors-border-rating-e-default: #f04438;
-  --echoes-ratings-colors-border-rating-e-hover: #e34135;
-  --echoes-severity-badge-colors-background-severity-blocker-prefix-default: #fee4e2;
-  --echoes-severity-badge-colors-background-severity-blocker-suffix-default: #fecdca;
-  --echoes-severity-badge-colors-background-severity-blocker-suffix-hover: #f8c8c5;
-  --echoes-severity-badge-colors-background-severity-high-prefix-default: #fef3f2;
-  --echoes-severity-badge-colors-background-severity-high-suffix-default: #fee4e2;
-  --echoes-severity-badge-colors-background-severity-high-suffix-hover: #f8dfdd;
-  --echoes-severity-badge-colors-background-severity-medium-prefix-default: #fff0eb;
-  --echoes-severity-badge-colors-background-severity-medium-suffix-default: #ffe8da;
-  --echoes-severity-badge-colors-background-severity-medium-suffix-hover: #f8d6c3;
-  --echoes-severity-badge-colors-background-severity-low-prefix-default: #fcf5e4;
-  --echoes-severity-badge-colors-background-severity-low-suffix-default: #fef5d0;
-  --echoes-severity-badge-colors-background-severity-low-suffix-hover: #f8efcb;
-  --echoes-severity-badge-colors-background-severity-info-prefix-default: #f5fbff;
-  --echoes-severity-badge-colors-background-severity-info-suffix-default: #e9f4fb;
-  --echoes-severity-badge-colors-background-severity-info-suffix-hover: #e4eef5;
-  --echoes-severity-badge-colors-foreground-blocker-icon-default: #b42318;
-  --echoes-severity-badge-colors-foreground-blocker-text-default: #801b14;
-  --echoes-severity-badge-colors-foreground-high-text-default: #b42318;
-  --echoes-severity-badge-colors-foreground-high-icon-default: #d92d20;
-  --echoes-severity-badge-colors-foreground-medium-text-default: #93370d;
-  --echoes-severity-badge-colors-foreground-medium-icon-default: #dc5e03;
-  --echoes-severity-badge-colors-foreground-low-text-default: #8c5e1e;
-  --echoes-severity-badge-colors-foreground-low-icon-default: #ae7a29;
-  --echoes-severity-badge-colors-foreground-info-text-default: #316c92;
-  --echoes-severity-badge-colors-foreground-info-icon-default: #3a7fad;
-  --echoes-severity-badge-colors-borders-blocker-default: #fecdca;
-  --echoes-severity-badge-colors-borders-high-default: #fee4e2;
-  --echoes-severity-badge-colors-borders-medium-default: #ffe8da;
-  --echoes-severity-badge-colors-borders-low-default: #fef5d0;
-  --echoes-severity-badge-colors-borders-info-default: #e9f4fb;
-  --echoes-sidebar-navigation-colors-background-default: #fcfcfd;
-  --echoes-sidebar-navigation-item-colors-background-default: #fcfcfd;
-  --echoes-sidebar-navigation-item-colors-background-hover: #f6f7fb;
-  --echoes-sidebar-navigation-item-colors-background-active: #eff2f9;
-  --echoes-table-colors-background-header-default: #eff2f9;
+  --echoes-ratings-colors-border-rating-b-default: #0c7830;
+  --echoes-ratings-colors-border-rating-b-hover: #0f722e;
+  --echoes-ratings-colors-border-rating-c-default: #895709;
+  --echoes-ratings-colors-border-rating-c-hover: #82530a;
+  --echoes-ratings-colors-border-rating-d-default: #ea580c;
+  --echoes-ratings-colors-border-rating-d-hover: #dd540e;
+  --echoes-ratings-colors-border-rating-e-default: #dc2626;
+  --echoes-ratings-colors-border-rating-e-hover: #d02625;
+  --echoes-severity-badge-colors-background-severity-blocker-prefix-default: #fdebe8;
+  --echoes-severity-badge-colors-background-severity-blocker-suffix-default: #fdb1a8;
+  --echoes-severity-badge-colors-background-severity-blocker-suffix-hover: #dc262673;
+  --echoes-severity-badge-colors-background-severity-high-prefix-default: #fefaf9;
+  --echoes-severity-badge-colors-background-severity-high-suffix-default: #fed7d1;
+  --echoes-severity-badge-colors-background-severity-high-suffix-hover: #fdb1a8;
+  --echoes-severity-badge-colors-background-severity-medium-prefix-default: #fdf4f1;
+  --echoes-severity-badge-colors-background-severity-medium-suffix-default: #fdd8cb;
+  --echoes-severity-badge-colors-background-severity-medium-suffix-hover: #ea580c;
+  --echoes-severity-badge-colors-background-severity-low-prefix-default: #fef4e9;
+  --echoes-severity-badge-colors-background-severity-low-suffix-default: #fedbb3;
+  --echoes-severity-badge-colors-background-severity-low-suffix-hover: #f59e0b80;
+  --echoes-severity-badge-colors-background-severity-info-prefix-default: #edf8fe;
+  --echoes-severity-badge-colors-background-severity-info-suffix-default: #bce4ff;
+  --echoes-severity-badge-colors-background-severity-info-suffix-hover: #9ad7ff;
+  --echoes-severity-badge-colors-foreground-blocker-icon-default: #560104;
+  --echoes-severity-badge-colors-foreground-blocker-text-default: #560104;
+  --echoes-severity-badge-colors-foreground-high-text-default: #961114;
+  --echoes-severity-badge-colors-foreground-high-icon-default: #b32322;
+  --echoes-severity-badge-colors-foreground-medium-text-default: #6a2201;
+  --echoes-severity-badge-colors-foreground-medium-icon-default: #6a2201;
+  --echoes-severity-badge-colors-foreground-low-text-default: #3e2503;
+  --echoes-severity-badge-colors-foreground-low-icon-default: #3e2503;
+  --echoes-severity-badge-colors-foreground-info-text-default: #003145;
+  --echoes-severity-badge-colors-foreground-info-icon-default: #003145;
+  --echoes-severity-badge-colors-borders-blocker-default: #fed7d1;
+  --echoes-severity-badge-colors-borders-high-default: #fed7d1;
+  --echoes-severity-badge-colors-borders-medium-default: #fdd8cb;
+  --echoes-severity-badge-colors-borders-low-default: #fedbb3;
+  --echoes-severity-badge-colors-borders-info-default: #bce4ff;
+  --echoes-sidebar-navigation-colors-background-default: #fcfaf9;
+  --echoes-sidebar-navigation-item-colors-background-default: #fcfaf9;
+  --echoes-sidebar-navigation-item-colors-background-hover: #fcfaf9;
+  --echoes-sidebar-navigation-item-colors-background-active: #fcfaf9;
+  --echoes-table-colors-background-header-default: #fcfaf9;
 }
