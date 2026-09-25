@@ -19,8 +19,9 @@
  */
 
 import { Children, forwardRef, isValidElement, ReactNode, useMemo } from 'react';
-import { matchPath, useLocation } from 'react-router-dom';
 import { isDefined } from '~common/helpers/types';
+import { useEchoesRouter } from '../../echoes-router/EchoesRouterContext';
+import { type EchoesTo } from '../../echoes-router/EchoesRouterTypes';
 import { Button } from '../../buttons';
 import { DropdownMenu } from '../../dropdown-menu';
 import { DropdownMenuProps } from '../../dropdown-menu/DropdownMenu';
@@ -45,11 +46,12 @@ export const GlobalNavigationDropdownItem = forwardRef<
     }: Readonly<GlobalNavigationDropdownItemProps>,
     ref,
   ) => {
-    const { pathname } = useLocation();
+    const { matchPattern, usePathname } = useEchoesRouter();
+    const pathname = usePathname();
 
     const active = useMemo(() => {
-      return !disableActiveHighlight && isActive(pathname, dropdownMenuProps.items);
-    }, [disableActiveHighlight, pathname, dropdownMenuProps.items]);
+      return !disableActiveHighlight && isActive(pathname, dropdownMenuProps.items, matchPattern);
+    }, [disableActiveHighlight, matchPattern, pathname, dropdownMenuProps.items]);
 
     return (
       <StyledNavMenuItem data-selected={active}>
@@ -70,23 +72,43 @@ export const GlobalNavigationDropdownItem = forwardRef<
 GlobalNavigationDropdownItem.displayName = 'GlobalNavigationDropdownItem';
 
 // exported for tests
-export function isActive(pathname: string, item: ReactNode) {
-  if (isValidElement<{ children?: ReactNode; to?: string }>(item)) {
-    if (isDefined(item.props?.to) && matchPath(item.props.to, pathname) !== null) {
+export function isActive(
+  pathname: string,
+  item: ReactNode,
+  matchPattern: (to: string, pathname: string) => boolean,
+) {
+  if (isValidElement<{ children?: ReactNode; to?: EchoesTo }>(item)) {
+    const itemPattern = patternFromTo(item.props?.to);
+
+    if (isDefined(itemPattern) && matchPattern(itemPattern, pathname)) {
       return true;
     }
 
     const targets: Array<string | undefined> =
       Children.map(item.props.children, (child) => {
-        return isValidElement<{ to?: string }>(child) ? child?.props?.to : undefined;
+        return isValidElement<{ to?: EchoesTo }>(child)
+          ? patternFromTo(child.props?.to)
+          : undefined;
       }) ?? [];
 
     for (const target of targets) {
-      if (isDefined(target) && matchPath(target, pathname) !== null) {
+      if (isDefined(target) && matchPattern(target, pathname)) {
         return true;
       }
     }
   }
 
   return false;
+}
+
+function patternFromTo(to: EchoesTo | undefined) {
+  if (!isDefined(to)) {
+    return undefined;
+  }
+
+  if (typeof to === 'string') {
+    return to;
+  }
+
+  return to.pathname;
 }

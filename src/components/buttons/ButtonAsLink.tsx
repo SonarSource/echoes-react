@@ -19,7 +19,9 @@
  */
 
 import styled from '@emotion/styled';
-import { Link as RouterLink } from 'react-router-dom';
+import { forwardRef } from 'react';
+import { useEchoesRouter } from '../echoes-router/EchoesRouterContext';
+import { type EchoesLinkProps } from '../echoes-router/EchoesRouterTypes';
 import { LinkBaseProps } from '../links/LinkTypes';
 import { ButtonStyled, buttonIconStyles } from './ButtonStyles';
 import { ButtonCommonProps, HTMLButtonAttributesSubset } from './ButtonTypes';
@@ -69,7 +71,15 @@ export interface ButtonAsLinkBaseProps
   variety?: `${ButtonAsLinkVariety}`;
 }
 
-export const ButtonAsLink = ButtonStyled.withComponent(RouterLink);
+const ButtonLink = forwardRef<HTMLAnchorElement, EchoesLinkProps>((props, ref) => {
+  const { Link } = useEchoesRouter();
+
+  return <Link ref={ref} {...props} />;
+});
+
+ButtonLink.displayName = 'ButtonLink';
+
+export const ButtonAsLink = ButtonStyled.withComponent(ButtonLink);
 ButtonAsLink.displayName = 'ButtonAsLink';
 
 // We can't use `withComponent` here because it breaks the TS types adding some references

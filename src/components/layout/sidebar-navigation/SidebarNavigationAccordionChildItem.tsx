@@ -19,8 +19,8 @@
  */
 
 import { useContext, useLayoutEffect, useRef } from 'react';
-import { useMatch, useResolvedPath } from 'react-router-dom';
 import { isDefined } from '~common/helpers/types';
+import { useIsActive } from '../../echoes-router/EchoesRouterContext';
 
 import { SidebarNavigationBaseItem } from './SidebarNavigationBaseItem';
 
@@ -71,9 +71,8 @@ function SidebarNavigationAccordionChildItemWithAutoOpen(
 ) {
   const { handleChildActive, isActive, isMatchingFullPath = false, to, ...restProps } = props;
 
-  const resolvedPath = useResolvedPath(to);
-  const routeMatch = useMatch({ end: isMatchingFullPath, path: resolvedPath.pathname });
-  const resolvedIsActive = isDefined(isActive) ? isActive : isDefined(routeMatch);
+  const routeActive = useIsActive(to, { end: isMatchingFullPath });
+  const resolvedIsActive = isDefined(isActive) ? isActive : routeActive;
   const wasActiveRef = useRef(false);
 
   useLayoutEffect(() => {
