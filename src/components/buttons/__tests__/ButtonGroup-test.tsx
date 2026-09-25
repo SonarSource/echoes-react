@@ -18,10 +18,15 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+import { matchers } from '@emotion/jest';
 import { render } from '~common/helpers/test-utils';
-import { Button, ButtonGroup } from '..';
+import { IconMoreVertical } from '../../icons';
+import { Button, ButtonGroup, ButtonIcon, ButtonVariety } from '..';
+import { ButtonIconStyled, ButtonStyled } from '../ButtonStyles';
 
 import { cssVar } from '~utils/design-tokens';
+
+expect.extend(matchers);
 
 const buttons = (
   <>
@@ -52,4 +57,39 @@ it('should combine the buttons', () => {
   const buttonGroup = container.getElementsByClassName('__test__')[0];
 
   expect(buttonGroup).toHaveStyle('gap: 0');
+});
+
+it('should keep the default focus ring offset and elevate focused combined buttons', () => {
+  const { container } = render(
+    <ButtonGroup className="__test__" isCombined>
+      <Button variety={ButtonVariety.Primary}>Primary action</Button>
+
+      <ButtonIcon
+        Icon={IconMoreVertical}
+        ariaLabel="More actions"
+        variety={ButtonVariety.Primary}
+      />
+    </ButtonGroup>,
+  );
+
+  // eslint-disable-next-line testing-library/no-container
+  const buttonGroup = container.getElementsByClassName('__test__')[0];
+
+  expect(buttonGroup).toHaveStyleRule('isolation', 'isolate');
+
+  expect(buttonGroup).toHaveStyleRule('z-index', '1', {
+    target: `${ButtonStyled}:focus-visible`,
+  });
+
+  expect(buttonGroup).not.toHaveStyleRule('outline-offset', '-2px', {
+    target: `${ButtonStyled}:focus-visible`,
+  });
+
+  expect(buttonGroup).toHaveStyleRule('z-index', '1', {
+    target: `${ButtonIconStyled}:focus-visible`,
+  });
+
+  expect(buttonGroup).not.toHaveStyleRule('outline-offset', '-2px', {
+    target: `${ButtonIconStyled}:focus-visible`,
+  });
 });
