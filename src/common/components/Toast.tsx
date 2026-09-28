@@ -303,6 +303,8 @@ const ToastDismissButton = styled(ButtonIcon)`
 ToastDismissButton.displayName = 'ToastDismissButton';
 
 const ToastRepetitionCounter = styled.span`
+  display: flex;
+  align-items: center;
   flex-shrink: 0;
 `;
 ToastRepetitionCounter.displayName = 'ToastRepetitionCounter';
