@@ -86,7 +86,7 @@ export const DropdownMenuItemLink = forwardRef<HTMLDivElement, DropdownMenuItemL
 DropdownMenuItemLink.displayName = 'DropdownMenu.ItemLink';
 
 const StyledDropdownMenuItemBase = styled(DropdownMenuItemBase)`
-  /* when the current URL matches 'to', react-router adds an 'active' class to the 'a' tag */
+  /* when the current URL matches 'to', the link gets an 'active' class */
   &.active {
     background-color: ${cssVar('color-surface-active')};
   }

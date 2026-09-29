@@ -19,13 +19,15 @@
  */
 
 import { CSSProperties, MouseEvent, ReactNode } from 'react';
-import { LinkProps as RouterLinkProps } from 'react-router-dom';
 import { ButtonBaseProps } from '../buttons/ButtonTypes';
+import { type EchoesTo } from '../echoes-router/EchoesRouterTypes';
 
-type RouterNavLinkPropsSubset = Pick<
-  RouterLinkProps,
-  'download' | 'reloadDocument' | 'state' | 'to'
->;
+interface EchoesLinkNavigationProps {
+  download?: string | boolean;
+  reloadDocument?: boolean;
+  state?: unknown;
+  to: EchoesTo;
+}
 
 export enum LinkHighlight {
   Accent = 'accent',
@@ -46,7 +48,7 @@ interface LinkCommonProps {
   title?: string;
 }
 
-export interface LinkBaseProps extends LinkCommonProps, RouterNavLinkPropsSubset {
+export interface LinkBaseProps extends LinkCommonProps, EchoesLinkNavigationProps {
   enableOpenInNewTab?: boolean;
 }
 
@@ -55,7 +57,7 @@ interface LinkAsLinkProps extends LinkBaseProps {
 }
 
 type LinkPropsForbiddenForButton = {
-  [K in keyof RouterNavLinkPropsSubset]?: never;
+  [K in keyof EchoesLinkNavigationProps]?: never;
 } & { enableOpenInNewTab?: never };
 
 interface LinkAsButtonProps extends LinkCommonProps, LinkPropsForbiddenForButton {
