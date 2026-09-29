@@ -72,12 +72,12 @@ const StyledButtonGroup = styled.span`
 StyledButtonGroup.displayName = 'StyledButtonGroup';
 
 const StyledCombinedButtonGroup = styled(StyledButtonGroup)`
+  isolation: isolate;
   gap: 0;
 
   & ${ButtonStyled}, ${ButtonIconStyled} {
-    :focus,
     :focus-visible {
-      outline-offset: -2px;
+      z-index: 1;
     }
 
     :first-of-type {
