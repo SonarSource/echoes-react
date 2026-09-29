@@ -18,17 +18,12 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-export {
-  EchoesRouterContext,
-  ReactRouterAdapter,
-  useEchoesRouter,
-  useIsActive,
-} from '../echoes-router';
+export { EchoesRouterContext, useEchoesRouter, useIsActive } from './EchoesRouterContext';
+export { ReactRouterAdapter } from './ReactRouterAdapter';
 export type {
   EchoesActiveOptions,
   EchoesLinkComponent,
   EchoesLinkProps,
   EchoesRouterContextValue,
   EchoesTo,
-} from '../echoes-router';
-export { EchoesProvider, EchoesProviderForTests, type EchoesProviderProps } from './EchoesProvider';
+} from './EchoesRouterTypes';
