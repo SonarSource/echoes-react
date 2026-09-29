@@ -32,7 +32,9 @@ jobs:
           sonar-platform: next
           cache-yarn: true
         env:
-          DESIGN_TOKEN_BRAND: Brand-A
+          # Temporary Gitar branch. Matches the committed src/generated CSS.
+          # Sonar CI on main stays Brand-A.
+          DESIGN_TOKEN_BRAND: gitar
 
   promote:
     name: Promote
