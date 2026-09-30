@@ -4705,6 +4705,7 @@ __metadata:
     jest-axe: "npm:10.0.0"
     jest-environment-jsdom: "npm:30.4.1"
     patch-package: "npm:8.0.1"
+    pinst: "npm:3.0.0"
     prettier: "npm:3.9.6"
     react: "npm:19.2.7"
     react-dom: "npm:19.2.7"
@@ -11431,6 +11432,15 @@ __metadata:
   version: 4.0.4
   resolution: "picomatch@npm:4.0.4"
   checksum: 10/f6ef80a3590827ce20378ae110ac78209cc4f74d39236370f1780f957b7ee41c12acde0e4651b90f39983506fd2f5e449994716f516db2e9752924aff8de93ce
+  languageName: node
+  linkType: hard
+
+"pinst@npm:3.0.0":
+  version: 3.0.0
+  resolution: "pinst@npm:3.0.0"
+  bin:
+    pinst: bin.js
+  checksum: 10/a75e4f7b5eeb9c76e7fd1b2d9854fcd38c304a3b1f9b563946a0f4357772c742222094e851f4c23d0bbdc4151af2d7875bb919c9ef8a9c4af77a02a73e8f72f0
   languageName: node
   linkType: hard
 
