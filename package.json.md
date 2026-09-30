@@ -18,7 +18,8 @@
 
 ## DevDependencies
 
-- patch-package : Applies local dependency patches after install in this repository. `prepack` removes `postinstall` from the packed `package.json` and `postpack` restores it, so the published package has no install hook. Consumers can install with npm while we still patch `@mantine/core`, Radix, and other deps before building the bundled `dist/`.
+- patch-package : Applies local dependency patches after install in this repository via the `postinstall` hook.
+- pinst : Strips the `postinstall` hook from `package.json` during `prepack` and restores it during `postpack`, so the published package has no install script. This prevents warnings from pnpm 10, Yarn Berry, and security scanners that flag packages with install hooks.
 - @testing-library/react : Used for component and interaction testing. It should stay aligned with our React major version.
 
 - @emotion/cache : Used by Emotion/Mantine styling internals.
