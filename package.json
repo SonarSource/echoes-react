@@ -20,7 +20,7 @@
     "access": "public"
   },
   "engines": {
-    "node": "20.19.0 || >=22.12.0"
+    "node": ">=24.21.0 <25"
   },
   "packageManager": "yarn@4.17.0",
   "scripts": {
@@ -91,7 +91,7 @@
     "@types/eslint": "8.56.12",
     "@types/jest": "30.0.0",
     "@types/jest-axe": "3.5.9",
-    "@types/node": "20.19.43",
+    "@types/node": "24.19.0",
     "@types/react": "19.2.17",
     "@types/react-dom": "19.2.3",
     "@typescript-eslint/eslint-plugin": "8.66.0",
