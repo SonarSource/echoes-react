@@ -19,9 +19,9 @@
  */
 
 import { ForwardedRef, forwardRef, MouseEvent, useCallback } from 'react';
-import { Link as RouterLink } from 'react-router-dom';
 import { isDefined } from '~common/helpers/types';
 import { isSonarLink } from '~common/helpers/url';
+import { RouterLink } from '../router/RouterContext';
 import { LinkOpenInNewTabSuffix } from './LinkOpenInNewTabSuffix';
 import { isLinkAsButton, LinkProps } from './LinkTypes';
 
