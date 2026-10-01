@@ -50,8 +50,8 @@
     "validate": "yarn ts-check && yarn format-check && yarn lint",
     "validate-ci": "yarn dep-check && yarn intl-keys-check && yarn tokens-check && yarn icons-check && yarn fonts-check && yarn ts-check && yarn format-check && yarn lint-report",
     "postinstall": "patch-package",
-    "prepack": "pinst --disable",
-    "postpack": "pinst --enable"
+    "prepack": "node ./config/scripts/toggle-postinstall.js --disable",
+    "postpack": "node ./config/scripts/toggle-postinstall.js --enable"
   },
   "peerDependencies": {
     "@emotion/react": "^11.0.0",
@@ -117,7 +117,6 @@
     "jest-axe": "10.0.0",
     "jest-environment-jsdom": "30.4.1",
     "patch-package": "8.0.1",
-    "pinst": "3.0.0",
     "prettier": "3.9.6",
     "react": "19.2.7",
     "react-dom": "19.2.7",
