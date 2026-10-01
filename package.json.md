@@ -19,7 +19,7 @@
 ## DevDependencies
 
 - patch-package : Applies local dependency patches after install in this repository via the `postinstall` hook.
-- pinst : Renames the `postinstall` hook to `_postinstall` in `package.json` during `prepack` and restores it during `postpack`, so the published package has no install script (package managers never run `_postinstall`). This prevents warnings from pnpm 10, Yarn Berry, and security scanners that flag packages with install hooks.
+- pinst : Renames the `postinstall` hook to `_postinstall` in `package.json` so the published package has no install script (package managers never run `_postinstall`). This prevents warnings from pnpm 10, Yarn Berry, and security scanners that flag packages with install hooks. It runs automatically at the end of `yarn build` when `CI=true`; local builds are unaffected.
 
 - @testing-library/react : Used for component and interaction testing. It should stay aligned with our React major version.
 
