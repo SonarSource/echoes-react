@@ -19,15 +19,23 @@
  */
 
 import { HeadlessMantineProvider } from '@mantine/core';
-import { PropsWithChildren, useMemo, useState } from 'react';
+import { ComponentType, PropsWithChildren, useMemo, useState } from 'react';
 import { useIntl } from 'react-intl';
 import { Toaster as ToastContainer } from 'sonner';
 import { PortalContext } from '~common/components/PortalContext';
 import { ToastGlobalStyles } from '~common/components/Toast';
 import { TooltipProvider, TooltipProviderProps, TypographyGlobalStyles } from '..';
+import { ReactRouterAdapter } from '../echoes-router';
 import { SelectGlobalStyles } from '../select/SelectCommons';
 
 export interface EchoesProviderProps {
+  /**
+   * Router adapter for links, breadcrumbs, and navigation active state.
+   * Defaults to react-router-dom. The default adapter still needs a router from
+   * that library above this provider. Pass another adapter to use a different router.
+   * The adapter must provide `EchoesRouterContext`.
+   */
+  router?: ComponentType<PropsWithChildren>;
   /**
    * Custom class name for all the toasts (optional).
    */
@@ -55,7 +63,8 @@ export interface EchoesProviderProps {
  *
  * It must be placed at the root of your application (or at least wrap all
  * components that use the Echoes design system). To ensure all Echoes components work properly,
- * the EchoesProvider should be placed inside the react-intl provider and react-router provider.
+ * the EchoesProvider should be placed inside the react-intl provider. The default router
+ * adapter also expects a react-router provider above it. Pass the `router` prop to replace that.
  * Ideally, you should also wrap your application with a div that reset the [Stacking Context](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_positioned_layout/Understanding_z-index/Stacking_context)
  * for your app to ensure that tooltips and toasts from Echoes appear above the rest of the UI.
  *
@@ -88,7 +97,13 @@ export interface EchoesProviderProps {
  * ```
  */
 export function EchoesProvider(props: PropsWithChildren<EchoesProviderProps>) {
-  const { children, tooltipsDelayDuration, toastsClassName, toastsVisibleNb = 5 } = props;
+  const {
+    children,
+    router: Router = ReactRouterAdapter,
+    tooltipsDelayDuration,
+    toastsClassName,
+    toastsVisibleNb = 5,
+  } = props;
   const intl = useIntl();
   const [portalRef, setPortalRef] = useState<HTMLDivElement | null>(null);
 
@@ -98,7 +113,7 @@ export function EchoesProvider(props: PropsWithChildren<EchoesProviderProps>) {
   );
 
   return (
-    <>
+    <Router>
       <TypographyGlobalStyles />
       <SelectGlobalStyles />
       <ToastGlobalStyles />
@@ -120,7 +135,7 @@ export function EchoesProvider(props: PropsWithChildren<EchoesProviderProps>) {
           visibleToasts={toastsVisibleNb}
         />
       </TooltipProvider>
-    </>
+    </Router>
   );
 }
 
@@ -136,11 +151,17 @@ EchoesProvider.displayName = 'EchoesProvider';
  * It doesn't prevent tests using Modals to work fine.
  */
 export function EchoesProviderForTests(props: PropsWithChildren<EchoesProviderProps>) {
-  const { children, tooltipsDelayDuration, toastsClassName, toastsVisibleNb = 5 } = props;
+  const {
+    children,
+    router: Router = ReactRouterAdapter,
+    tooltipsDelayDuration,
+    toastsClassName,
+    toastsVisibleNb = 5,
+  } = props;
   const intl = useIntl();
 
   return (
-    <>
+    <Router>
       <TypographyGlobalStyles />
       <SelectGlobalStyles />
       <ToastGlobalStyles />
@@ -158,7 +179,7 @@ export function EchoesProviderForTests(props: PropsWithChildren<EchoesProviderPr
           visibleToasts={toastsVisibleNb}
         />
       </TooltipProvider>
-    </>
+    </Router>
   );
 }
 

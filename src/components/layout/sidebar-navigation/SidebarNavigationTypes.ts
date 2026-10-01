@@ -58,8 +58,8 @@ export interface SidebarNavigationItemBaseProps extends Pick<
    * If true, the item will have a different style to indicate it is active.
    * If false it will override any default behavior and not indicate it is active.
    *
-   * By default this behavior is handled by the underlying react-router's NavLink component,
-   * overriding this is only needed for complex scenarios.
+   * By default the active router adapter decides this from the current location.
+   * Overriding this is only needed for complex scenarios.
    */
   isActive?: boolean;
   /**
