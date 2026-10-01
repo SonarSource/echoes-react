@@ -28,7 +28,7 @@
     "jest": "jest",
     "test": "yarn test-ci && yarn validate-ci",
     "test-ci": "jest --collectCoverage --coverageDirectory=build-reports/coverage --workerIdleMemoryLimit=1G --maxWorkers=4",
-    "build": "vite build",
+    "build": "vite build && { [ \"${CI:-}\" != true ] || pinst --disable; }",
     "build-fonts": "node ./config/scripts/build-fonts.js",
     "create-icon": "node ./config/scripts/create-icon.js",
     "build-intl-keys": "formatjs extract 'src/components/**/*.ts*' 'src/common/components/**/*.ts*' --out-file i18n/keys.json",
@@ -49,9 +49,7 @@
     "ts-check-declarations": "tsc --noEmit false --emitDeclarationOnly --isolatedModules false --outFile ./build-reports/ts-declarations/all-declarations",
     "validate": "yarn ts-check && yarn format-check && yarn lint",
     "validate-ci": "yarn dep-check && yarn intl-keys-check && yarn tokens-check && yarn icons-check && yarn fonts-check && yarn ts-check && yarn format-check && yarn lint-report",
-    "postinstall": "patch-package",
-    "prepack": "pinst --disable",
-    "postpack": "pinst --enable"
+    "postinstall": "patch-package"
   },
   "peerDependencies": {
     "@emotion/react": "^11.0.0",
