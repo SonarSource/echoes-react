@@ -1,0 +1,687 @@
+/**
+ * Echoes React
+ * Copyright (C) 2023-2025 SonarSource Sàrl
+ * mailto:info AT sonarsource DOT com
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 3 of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program; if not, write to the Free Software Foundation,
+ * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ * 
+ * GENERATED FILE: do not edit directly.
+ */
+
+:root {
+  --echoes-dimension-space-0: 0px;
+  --echoes-dimension-space-25: 0.125rem;
+  --echoes-dimension-space-50: 0.25rem;
+  --echoes-dimension-space-75: 0.375rem;
+  --echoes-dimension-space-100: 0.5rem;
+  --echoes-dimension-space-150: 0.75rem;
+  --echoes-dimension-space-200: 1rem;
+  --echoes-dimension-space-250: 1.25rem;
+  --echoes-dimension-space-300: 1.5rem;
+  --echoes-dimension-space-400: 2rem;
+  --echoes-dimension-space-500: 2.5rem;
+  --echoes-dimension-space-600: 3rem;
+  --echoes-dimension-space-800: 4rem;
+  --echoes-dimension-width-0: 0px;
+  --echoes-dimension-width-25: 0.125rem;
+  --echoes-dimension-width-50: 0.25rem;
+  --echoes-dimension-width-75: 0.375rem;
+  --echoes-dimension-width-100: 0.5rem;
+  --echoes-dimension-width-150: 0.75rem;
+  --echoes-dimension-width-200: 1rem;
+  --echoes-dimension-width-250: 1.25rem;
+  --echoes-dimension-width-300: 1.5rem;
+  --echoes-dimension-width-400: 2rem;
+  --echoes-dimension-width-450: 2.25rem;
+  --echoes-dimension-width-500: 2.5rem;
+  --echoes-dimension-width-600: 3rem;
+  --echoes-dimension-width-700: 3.5rem;
+  --echoes-dimension-width-800: 4rem;
+  --echoes-dimension-width-5000: 25rem;
+  --echoes-dimension-height-100: 0.25rem;
+  --echoes-dimension-height-150: 0.375rem;
+  --echoes-dimension-height-200: 0.5rem;
+  --echoes-dimension-height-400: 1rem;
+  --echoes-dimension-height-500: 1.25rem;
+  --echoes-dimension-height-600: 1.5rem;
+  --echoes-dimension-height-800: 2rem;
+  --echoes-dimension-height-900: 2.25rem;
+  --echoes-dimension-height-1000: 2.5rem;
+  --echoes-dimension-negative-spacing-100: -1px;
+  --echoes-dimension-negative-spacing-600: -6px;
+  --echoes-dimension-negative-spacing-800: -8px;
+  --echoes-border-radius-100: 2px;
+  --echoes-border-radius-200: 4px;
+  --echoes-border-radius-400: 8px;
+  --echoes-border-radius-none: 0px;
+  --echoes-border-radius-full: 700px;
+  --echoes-font-family-mono: Ubuntu Mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+  --echoes-font-family-sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  --echoes-line-height-10: 1rem;
+  --echoes-line-height-20: 1.25rem;
+  --echoes-line-height-30: 1.5rem;
+  --echoes-line-height-40: 1.875rem;
+  --echoes-line-height-50: 2.25rem;
+  --echoes-line-height-60: 3.125rem;
+  --echoes-letter-spacing-default: 0;
+  --echoes-letter-spacing-increased: 0.02em;
+  --echoes-letter-spacing-decreased: -0.02em;
+  --echoes-font-weight-bold: 700;
+  --echoes-font-weight-semi-bold: 600;
+  --echoes-font-weight-regular: 400;
+  --echoes-font-weight-italic-weight: 400;
+  --echoes-font-weight-italic-style: italic;
+  --echoes-font-weight-medium: 500;
+  --echoes-font-size-10: 0.75rem;
+  --echoes-font-size-20: 0.875rem;
+  --echoes-font-size-30: 1rem;
+  --echoes-font-size-40: 1.25rem;
+  --echoes-font-size-50: 1.5rem;
+  --echoes-font-size-60: 2.125rem;
+  --echoes-border-width-default: 1px;
+  --echoes-text-case-uppercase: uppercase;
+  --echoes-text-case-none: none;
+  --echoes-text-decoration-none: none;
+  --echoes-text-decoration-underline: underline;
+  --echoes-typography-text-default-regular: 400 0.875rem/1.25rem Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  --echoes-typography-text-default-semi-bold: 600 0.875rem/1.25rem Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  --echoes-typography-text-default-bold: 700 0.875rem/1.25rem Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  --echoes-typography-text-small-regular: 400 0.75rem/1rem Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  --echoes-typography-text-small-medium: 500 0.75rem/1rem Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  --echoes-typography-text-small-semi-bold: 600 0.75rem/1rem Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  --echoes-typography-text-large-regular: 400 1rem/1.5rem Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  --echoes-typography-text-large-semi-bold: 600 1rem/1.5rem Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  --echoes-typography-heading-xsmall: 700 0.75rem/1rem Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  --echoes-typography-heading-small: 700 0.875rem/1.25rem Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  --echoes-typography-heading-medium: 600 1rem/1.5rem Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  --echoes-typography-heading-large: 600 1.25rem/1.875rem Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  --echoes-typography-heading-xlarge: 600 1.5rem/2.25rem Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  --echoes-typography-code-default: 400 0.875rem/1.25rem Ubuntu Mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+  --echoes-typography-code-highlight: 700 0.875rem/1.25rem Ubuntu Mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+  --echoes-typography-code-comment: italic 400 0.875rem/1.25rem Ubuntu Mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+  --echoes-typography-others-label: 600 0.875rem/1.25rem Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  --echoes-typography-others-label-medium: 500 0.875rem/1.25rem Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  --echoes-typography-others-helper-text: 400 0.75rem/1rem Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  --echoes-typography-display-default: 600 2.125rem/3.125rem Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  --echoes-focus-border-width-default: 2px;
+  --echoes-focus-border-offset-default: 1px;
+  --echoes-color-roles-support-black: #000000;
+  --echoes-color-roles-support-white: #ffffff;
+  --echoes-color-roles-support-transparent: #00000000;
+  --echoes-banner-sizes-height: 2.75rem;
+  --echoes-badge-sizes-height-small: 1.25rem;
+  --echoes-badge-sizes-height-medium: 1.75rem;
+  --echoes-filter-dropdown-sizes-left-panel-width-default: 277px;
+  --echoes-filter-dropdown-sizes-min-height-default: 350px;
+  --echoes-filter-dropdown-sizes-max-height-default: 400px;
+  --echoes-filter-tag-sizes-max-width-default: 200px;
+  --echoes-form-control-border-radius-default: 8px;
+  --echoes-form-control-sizes-height-default: 2.25rem;
+  --echoes-indicator-sizes-width-xsmall: 1rem;
+  --echoes-indicator-sizes-width-small: 1.5rem;
+  --echoes-indicator-sizes-width-medium: 2.5rem;
+  --echoes-indicator-sizes-height-xsmall: 0.9375rem;
+  --echoes-indicator-sizes-height-small: 1.4375rem;
+  --echoes-indicator-sizes-height-medium: 2.375rem;
+  --echoes-layout-aside-width-small: 200px;
+  --echoes-layout-aside-width-medium: 300px;
+  --echoes-layout-aside-width-large: 400px;
+  --echoes-layout-global-navigation-sizes-height-default: 56px;
+  --echoes-layout-page-header-sizes-height-collapsed: 56px;
+  --echoes-layout-page-header-actions-offset-collapsed: 10px;
+  --echoes-layout-sidebar-navigation-sizes-breakpoint-dockable: 1320px;
+  --echoes-layout-sidebar-navigation-sizes-width-closed: 3rem;
+  --echoes-layout-sidebar-navigation-sizes-width-open: 15rem;
+  --echoes-layout-sizes-max-width-default: 1160px;
+  --echoes-layout-sizes-max-width-full: 100%;
+  --echoes-layout-sizes-min-width-default: 1280px;
+  --echoes-sizes-overlays-max-width-default: 25rem;
+  --echoes-sizes-overlays-min-width-default: 150px;
+  --echoes-sizes-overlays-width-small: 25rem;
+  --echoes-sizes-overlays-width-default: 37.5rem;
+  --echoes-sizes-overlays-width-wide: 62.5rem;
+  --echoes-sizes-overlays-max-height-default: 80vh;
+  --echoes-sizes-form-field-small: 150px;
+  --echoes-sizes-form-field-medium: 250px;
+  --echoes-sizes-form-field-large: 350px;
+  --echoes-sizes-form-field-full: 100%;
+  --echoes-sizes-buttons-medium: 2rem;
+  --echoes-sizes-buttons-large: 2.25rem;
+  --echoes-sizes-toggletips-height: 1rem;
+  --echoes-sizes-toggletips-width: 1rem;
+  --echoes-sizes-typography-max-width-default: 650px; /** Use as max width in typography components */
+  --echoes-sizes-logo-height-small: 2rem;
+  --echoes-sizes-logo-height-medium: 2.25rem;
+  --echoes-sizes-logo-height-large: 2.5rem;
+  --echoes-sizes-breadcrumbs-max-width-default: 300px;
+  --echoes-offset-dropdown-submenu-panel-vertical: 0px;
+  --echoes-offset-dropdown-submenu-panel-horizontal: 8px;
+  --echoes-table-sizes-row-min-width-default: 53px; /** This is the minimum size we want for the row, regardless of the padding. It includes the 1px border, and as such must be used with box-sizing: border-box. */
+  --echoes-toast-sizes-width: 25rem;
+}
+
+/**
+ * Echoes React
+ * Copyright (C) 2023-2025 SonarSource Sàrl
+ * mailto:info AT sonarsource DOT com
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 3 of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program; if not, write to the Free Software Foundation,
+ * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ * 
+ * GENERATED FILE: do not edit directly.
+ */
+
+html[data-echoes-theme='dark'], [data-echoes-theme='dark'] {
+  --echoes-color-background-neutral-subtle-default: #3e4357;
+  --echoes-color-background-neutral-subtle-hover: #3e4357cc;
+  --echoes-color-background-neutral-subtle-focus: #3e4357;
+  --echoes-color-background-neutral-subtle-active: #3e4357b3;
+  --echoes-color-background-neutral-bolder-default: #637192;
+  --echoes-color-background-accent-default: #9fa9ed;
+  --echoes-color-background-accent-hover: #bdc6ff;
+  --echoes-color-background-accent-focus: #9fa9ed;
+  --echoes-color-background-accent-active: #d1d7fe;
+  --echoes-color-background-accent-weak-default: #5d6cd033;
+  --echoes-color-background-accent-weak-hover: #5d6cd04d;
+  --echoes-color-background-accent-weak-focus: #5d6cd033;
+  --echoes-color-background-accent-weak-active: #5d6cd066;
+  --echoes-color-background-warning-default: #fadc79;
+  --echoes-color-background-warning-hover: #fce9a3;
+  --echoes-color-background-warning-focus: #fadc79;
+  --echoes-color-background-warning-active: #fef5d0;
+  --echoes-color-background-warning-weak-default: #fadc794d;
+  --echoes-color-background-warning-weak-hover: #fadc7933;
+  --echoes-color-background-warning-weak-focus: #fadc794d;
+  --echoes-color-background-warning-weak-active: #fadc791a;
+  --echoes-color-background-success-default: #c4ea9e;
+  --echoes-color-background-success-hover: #d4f2b7;
+  --echoes-color-background-success-focus: #c4ea9e;
+  --echoes-color-background-success-active: #e4f7d1;
+  --echoes-color-background-success-weak-default: #c4ea9e4d;
+  --echoes-color-background-success-weak-hover: #c4ea9e33;
+  --echoes-color-background-success-weak-focus: #c4ea9e4d;
+  --echoes-color-background-success-weak-active: #c4ea9e1a;
+  --echoes-color-background-danger-default: #fda29b;
+  --echoes-color-background-danger-hover: #fecdca;
+  --echoes-color-background-danger-focus: #fda29b;
+  --echoes-color-background-danger-active: #fee4e2;
+  --echoes-color-background-danger-weak-default: #fda29b4d;
+  --echoes-color-background-danger-weak-hover: #fda29b33;
+  --echoes-color-background-danger-weak-focus: #fda29b4d;
+  --echoes-color-background-danger-weak-active: #fda29b1a;
+  --echoes-color-background-info-default: #8fcaea;
+  --echoes-color-background-info-hover: #b8def1;
+  --echoes-color-background-info-focus: #8fcaea;
+  --echoes-color-background-info-active: #e9f4fb;
+  --echoes-color-background-info-weak-default: #8fcaea4d;
+  --echoes-color-background-info-weak-hover: #8fcaea33;
+  --echoes-color-background-info-weak-focus: #8fcaea4d;
+  --echoes-color-background-info-weak-active: #8fcaea1a;
+  --echoes-color-background-utility-transparent: #00000000;
+  --echoes-color-background-selected-weak-default: #5d6cd033;
+  --echoes-color-background-selected-weak-hover: #5d6cd04d;
+  --echoes-color-background-selected-weak-pressed: #5d6cd066;
+  --echoes-color-background-selected-bold-default: #bdc6ff;
+  --echoes-color-background-selected-bold-hover: #d1d7fe;
+  --echoes-color-background-selected-bold-pressed: #e8ebff;
+  --echoes-color-background-ghost-accent-default: #00000000;
+  --echoes-color-background-ghost-accent-hover: #5d6cd033;
+  --echoes-color-background-ghost-accent-active: #5d6cd04d;
+  --echoes-color-background-ghost-accent-focus: #00000000;
+  --echoes-color-background-ghost-neutral-default: #00000000;
+  --echoes-color-background-ghost-neutral-hover: #1d212f;
+  --echoes-color-background-ghost-neutral-active: #12141d;
+  --echoes-color-background-ghost-neutral-focus: #00000000;
+  --echoes-color-background-ghost-danger-default: #00000000;
+  --echoes-color-background-ghost-danger-hover: #5d1d1333;
+  --echoes-color-background-ghost-danger-active: #5d1d134d;
+  --echoes-color-background-ghost-danger-focus: #00000000;
+  --echoes-color-background-emphasis-weak-default: #b790f74d;
+  --echoes-color-background-emphasis-weak-hover: #b790f733;
+  --echoes-color-background-emphasis-weak-focus: #b790f74d;
+  --echoes-color-background-emphasis-weak-active: #b790f71a;
+  --echoes-color-background-emphasis-default: #d9c5ff;
+  --echoes-color-background-emphasis-hover: #e5d5ff;
+  --echoes-color-background-emphasis-focus: #d9c5ff;
+  --echoes-color-background-emphasis-active: #ede2ff;
+  --echoes-color-background-favourite-default: #fadc79;
+  --echoes-color-background-favourite-hover: #fce9a3;
+  --echoes-color-surface-default: #2a2f40;
+  --echoes-color-surface-hover: #1d212f;
+  --echoes-color-surface-active: #12141d;
+  --echoes-color-surface-canvas-default: #1d212f;
+  --echoes-color-surface-inverse-default: #e1e6f3;
+  --echoes-color-surface-inverse-hover: #eff2f9;
+  --echoes-color-surface-inverse-focus: #e1e6f3;
+  --echoes-color-surface-inverse-active: #f6f7fb;
+  --echoes-color-surface-disabled: #3e4357;
+  --echoes-color-overlays-back-drop-default: #08090c99;
+  --echoes-color-overlays-disabled: #3e4357;
+  --echoes-color-text-strong: #fcfcfd;
+  --echoes-color-text-default: #e1e6f3;
+  --echoes-color-text-subtle: #c5cddf;
+  --echoes-color-text-disabled: #637192;
+  --echoes-color-text-on-color: #2a2f40;
+  --echoes-color-text-on-color-inverse: #2a2f40;
+  --echoes-color-text-danger: #fda29b;
+  --echoes-color-text-placeholder: #c5cddf;
+  --echoes-color-text-accent: #9fa9ed;
+  --echoes-color-text-info: #8fcaea;
+  --echoes-color-text-success: #c4ea9e;
+  --echoes-color-text-warning: #fef5d0;
+  --echoes-color-text-emphasis: #ede2ff;
+  --echoes-color-text-link-hover: #bdc6ff;
+  --echoes-color-icon-bold: #fcfcfd;
+  --echoes-color-icon-default: #e1e6f3;
+  --echoes-color-icon-subtle: #c5cddf;
+  --echoes-color-icon-disabled: #637192;
+  --echoes-color-icon-placeholder: #c5cddf;
+  --echoes-color-icon-accent: #bdc6ff;
+  --echoes-color-icon-danger: #fda29b;
+  --echoes-color-icon-warning: #fce9a3;
+  --echoes-color-icon-success: #d4f2b7;
+  --echoes-color-icon-info: #b8def1;
+  --echoes-color-icon-on-color: #2a2f40;
+  --echoes-color-icon-on-color-inverse: #2a2f40;
+  --echoes-color-icon-selected: #bdc6ff;
+  --echoes-color-icon-emphasis: #ede2ff;
+  --echoes-color-border-bolder: #c5cddf;
+  --echoes-color-border-bold: #a6adc2;
+  --echoes-color-border-weak: #637192;
+  --echoes-color-border-weaker: #3e4357;
+  --echoes-color-border-disabled: #637192;
+  --echoes-color-border-accent-default: #bdc6ff;
+  --echoes-color-border-danger-weak: #fda29b66;
+  --echoes-color-border-danger-default: #fda29b;
+  --echoes-color-border-none: #00000000;
+  --echoes-color-border-success-weak: #c4ea9e66;
+  --echoes-color-border-success-default: #b3dd86;
+  --echoes-color-border-warning-weak: #fadc7966;
+  --echoes-color-border-info-weak: #8fcaea66;
+  --echoes-color-border-emphasis-weak: #b790f766;
+  --echoes-color-code-background-default: #3e4357;
+  --echoes-color-code-background-highlight: #2a2f40;
+  --echoes-color-code-border-default: #00000000;
+  --echoes-color-code-text-default: #e2e7f1;
+  --echoes-color-code-text-highlight: #fda29b;
+  --echoes-color-code-text-annotation: #61aeee;
+  --echoes-color-code-text-constant: #d19a66;
+  --echoes-color-code-text-comment: #a7acb4;
+  --echoes-color-code-text-keyword: #df91f6;
+  --echoes-color-code-text-string: #98c379;
+  --echoes-color-code-text-keyword-subtle: #ababff;
+  --echoes-color-code-text-preprocessing-directive: #78d779;
+  --echoes-color-focus-default: #bdc6ff;
+  --echoes-color-charts-categorical-1: #3b82d4;
+  --echoes-color-charts-categorical-2: #d74a78;
+  --echoes-color-charts-categorical-3: #0f9383;
+  --echoes-color-charts-categorical-4: #8a4fe9;
+  --echoes-color-charts-categorical-5: #d4713b;
+  --echoes-color-charts-categorical-6: #66adff;
+  --echoes-color-charts-categorical-7: #ff6699;
+  --echoes-color-charts-categorical-8: #66ffed;
+  --echoes-color-charts-severity-blocker: #be342a;
+  --echoes-color-charts-severity-high: #ff7066;
+  --echoes-color-charts-severity-medium: #e98f4f;
+  --echoes-color-charts-severity-low: #e1ae48;
+  --echoes-color-charts-severity-info: #3b97d4;
+  --echoes-color-charts-placeholder-default: #637192;
+  --echoes-box-shadow-xsmall: 0 1px 4px 0 #08090c66;
+  --echoes-box-shadow-small: 0 1px 10px 0 #08090c66, 0 1px 3px 0 #08090c66;
+  --echoes-box-shadow-medium: inset 0 2px 15px -2px #08090c0f, 0 4px 15px -2px #08090c80;
+  --echoes-box-shadow-large: 0 4px 6px -2px #08090c0d, 0 12px 20px -4px #08090c80;
+  --echoes-box-shadow-x-large: 0 8px 8px -4px #08090c0a, 0 20px 30px -4px #08090c80;
+  --echoes-bottom-scroll-colors-shadow-gradient: #ffffff33;
+  --echoes-form-control-colors-background-default: #2a2f40;
+  --echoes-form-control-colors-background-hover: #1d212f;
+  --echoes-form-control-colors-border-default: #c5cddf;
+  --echoes-form-control-colors-border-focus: #637192;
+  --echoes-form-control-colors-icon-default: #c5cddf;
+  --echoes-logos-colors-text: #ffffff;
+  --echoes-logos-colors-brand: #ffffff;
+  --echoes-logos-colors-sonar-whale: #d3121d;
+  --echoes-margin-indicator-colors-background-duplication: #a6adc2;
+  --echoes-margin-indicator-colors-background-covered: #d4f2b7;
+  --echoes-margin-indicator-colors-background-partially-covered: #fadc79;
+  --echoes-margin-indicator-colors-background-uncovered: #fda29b;
+  --echoes-overlays-inner-shadow-default: inset 0 -6px 10px 0 #ffffff1a;
+  --echoes-quality-gate-indicator-colors-passed-icon: #e4f7d1;
+  --echoes-quality-gate-indicator-colors-passed-background: #c4ea9e4d;
+  --echoes-quality-gate-indicator-colors-failed-icon: #fee4e2;
+  --echoes-quality-gate-indicator-colors-failed-background: #fda29b4d;
+  --echoes-ratings-colors-background-rating-a-default: #027a48;
+  --echoes-ratings-colors-background-rating-b-default: #75a92c;
+  --echoes-ratings-colors-background-rating-c-default: #ae7a29;
+  --echoes-ratings-colors-background-rating-d-default: #b54708;
+  --echoes-ratings-colors-background-rating-e-default: #b42318;
+  --echoes-ratings-colors-text-rating-a-default: #f6fef9;
+  --echoes-ratings-colors-text-rating-b-default: #f3f8ef;
+  --echoes-ratings-colors-text-rating-c-default: #fcf5e4;
+  --echoes-ratings-colors-text-rating-d-default: #fff0eb;
+  --echoes-ratings-colors-text-rating-e-default: #fef3f2;
+  --echoes-ratings-colors-border-rating-a-default: #32d583;
+  --echoes-ratings-colors-border-rating-a-hover: #45d789;
+  --echoes-ratings-colors-border-rating-b-default: #b3dd86;
+  --echoes-ratings-colors-border-rating-b-hover: #b7df8c;
+  --echoes-ratings-colors-border-rating-c-default: #fadc79;
+  --echoes-ratings-colors-border-rating-c-hover: #fbde80;
+  --echoes-ratings-colors-border-rating-d-default: #f75f09;
+  --echoes-ratings-colors-border-rating-d-hover: #f9681d;
+  --echoes-ratings-colors-border-rating-e-default: #fda29b;
+  --echoes-ratings-colors-border-rating-e-hover: #fea7a0;
+  --echoes-severity-badge-colors-background-severity-blocker-prefix-default: #d92d201a;
+  --echoes-severity-badge-colors-background-severity-blocker-suffix-default: #d92d2066;
+  --echoes-severity-badge-colors-background-severity-blocker-suffix-hover: #d92d2099;
+  --echoes-severity-badge-colors-background-severity-high-prefix-default: #f970661a;
+  --echoes-severity-badge-colors-background-severity-high-suffix-default: #f9706666;
+  --echoes-severity-badge-colors-background-severity-high-suffix-hover: #f9706699;
+  --echoes-severity-badge-colors-background-severity-medium-prefix-default: #fd71221a;
+  --echoes-severity-badge-colors-background-severity-medium-suffix-default: #fd712266;
+  --echoes-severity-badge-colors-background-severity-medium-suffix-hover: #fd712299;
+  --echoes-severity-badge-colors-background-severity-low-prefix-default: #fadc791a;
+  --echoes-severity-badge-colors-background-severity-low-suffix-default: #fadc7966;
+  --echoes-severity-badge-colors-background-severity-low-suffix-hover: #fadc7999;
+  --echoes-severity-badge-colors-background-severity-info-prefix-default: #8fcaea1a;
+  --echoes-severity-badge-colors-background-severity-info-suffix-default: #8fcaea66;
+  --echoes-severity-badge-colors-background-severity-info-suffix-hover: #8fcaea99;
+  --echoes-severity-badge-colors-foreground-blocker-icon-default: #fee4e2;
+  --echoes-severity-badge-colors-foreground-blocker-text-default: #fecdca;
+  --echoes-severity-badge-colors-foreground-high-text-default: #fee4e2;
+  --echoes-severity-badge-colors-foreground-high-icon-default: #fecdca;
+  --echoes-severity-badge-colors-foreground-medium-text-default: #ffe8da;
+  --echoes-severity-badge-colors-foreground-medium-icon-default: #fedbc7;
+  --echoes-severity-badge-colors-foreground-low-text-default: #fef5d0;
+  --echoes-severity-badge-colors-foreground-low-icon-default: #fce9a3;
+  --echoes-severity-badge-colors-foreground-info-text-default: #6eb9e4;
+  --echoes-severity-badge-colors-foreground-info-icon-default: #8fcaea;
+  --echoes-severity-badge-colors-borders-blocker-default: #d92d2099;
+  --echoes-severity-badge-colors-borders-high-default: #f9706666;
+  --echoes-severity-badge-colors-borders-medium-default: #fd712266;
+  --echoes-severity-badge-colors-borders-low-default: #fadc7966;
+  --echoes-severity-badge-colors-borders-info-default: #8fcaea66;
+  --echoes-sidebar-navigation-colors-background-default: #1d212f;
+  --echoes-sidebar-navigation-item-colors-background-default: #1d212f;
+  --echoes-sidebar-navigation-item-colors-background-hover: #12141d;
+  --echoes-sidebar-navigation-item-colors-background-active: #08090c;
+  --echoes-table-colors-background-header-default: #3e4357;
+}
+
+/**
+ * Echoes React
+ * Copyright (C) 2023-2025 SonarSource Sàrl
+ * mailto:info AT sonarsource DOT com
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 3 of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program; if not, write to the Free Software Foundation,
+ * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ * 
+ * GENERATED FILE: do not edit directly.
+ */
+
+:root, [data-echoes-theme='light'] {
+  --echoes-color-background-neutral-subtle-default: #eff2f9; /** Use it in components with neutral sentiment */
+  --echoes-color-background-neutral-subtle-focus: #eff2f9; /** Use it in components with neutral sentiment */
+  --echoes-color-background-neutral-subtle-hover: #e1e6f3; /** Use it in components with neutral sentiment */
+  --echoes-color-background-neutral-subtle-active: #c5cddf; /** Use it in components with neutral sentiment */
+  --echoes-color-background-neutral-bolder-default: #e1e6f3; /** Use it in components with neutral sentiment that need a bolder highlight */
+  --echoes-color-background-accent-default: #5d6cd0; /** Used as the background color of components that reinforce our brand */
+  --echoes-color-background-accent-hover: #4b56bb; /** Hover state of components that reinforce our brand */
+  --echoes-color-background-accent-focus: #5d6cd0;
+  --echoes-color-background-accent-active: #47518f; /** Active state of components that reinforce our brand */
+  --echoes-color-background-accent-weak-default: #f4f6ff; /** Used as the background color of components that reinforce our brand with less visual highlight */
+  --echoes-color-background-accent-weak-hover: #e8ebff; /** Hover state of components that reinforce our brand with less visual highlight */
+  --echoes-color-background-accent-weak-active: #d1d7fe; /** Active state of components that reinforce our brand with less visual highlight */
+  --echoes-color-background-accent-weak-focus: #e8ebff; /** Focus state of components that reinforce our brand with less visual highlight */
+  --echoes-color-background-warning-default: #f5b840; /** Use for backgrounds that communicate warning or caution */
+  --echoes-color-background-warning-hover: #e7ae3d; /** Use for backgrounds that communicate warning or caution */
+  --echoes-color-background-warning-focus: #f5b840; /** Use for backgrounds that communicate warning or caution */
+  --echoes-color-background-warning-active: #ae7a29; /** Use for backgrounds that communicate warning or caution */
+  --echoes-color-background-warning-weak-default: #fcf5e4; /** Use for backgrounds that communicate warning or caution, with less visual highlight */
+  --echoes-color-background-warning-weak-hover: #fef5d0; /** Use for backgrounds that communicate warning or caution, with less visual highlight */
+  --echoes-color-background-warning-weak-focus: #fcf5e4; /** Use for backgrounds that communicate warning or caution, with less visual highlight */
+  --echoes-color-background-warning-weak-active: #fce9a3; /** Use for backgrounds that communicate warning or caution, with less visual highlight */
+  --echoes-color-background-success-default: #75a92c; /** Use for backgrounds that communicate positive or success messages */
+  --echoes-color-background-success-hover: #537c17; /** Use for backgrounds that communicate positive or success messages */
+  --echoes-color-background-success-focus: #75a92c; /** Use for backgrounds that communicate positive or success messages */
+  --echoes-color-background-success-active: #054f16; /** Use for backgrounds that communicate positive or success messages */
+  --echoes-color-background-success-weak-default: #f3f8ef; /** Use for backgrounds that communicate positive or success messages, with less visual highlight */
+  --echoes-color-background-success-weak-hover: #e4f7d1; /** Use for backgrounds that communicate positive or success messages, with less visual highlight */
+  --echoes-color-background-success-weak-active: #d4f2b7; /** Use for backgrounds that communicate positive or success messages, with less visual highlight */
+  --echoes-color-background-success-weak-focus: #f3f8ef; /** Use for backgrounds that communicate positive or success messages, with less visual highlight */
+  --echoes-color-background-danger-default: #d92d20; /** Use for backgrounds that communicate danger or destructive messages */
+  --echoes-color-background-danger-hover: #b42318; /** Hover state for backgrounds that communicate danger or destructive messages */
+  --echoes-color-background-danger-focus: #d92d20; /** Focused state for backgrounds that communicate danger or destructive messages */
+  --echoes-color-background-danger-active: #801b14; /** Active state for backgrounds that communicate danger or destructive messages */
+  --echoes-color-background-danger-weak-default: #fef3f2; /** Use it for backgrounds that communicate danger or destructive messages, with less visual highlight */
+  --echoes-color-background-danger-weak-hover: #fee4e2; /** Hover state for backgrounds that communicate danger or destructive messages, with less visual highlight */
+  --echoes-color-background-danger-weak-active: #fecdca; /** Active state for backgrounds that communicate danger or destructive messages, with less visual highlight */
+  --echoes-color-background-danger-weak-focus: #fef3f2;
+  --echoes-color-background-info-default: #316c92; /** Use for backgrounds that communicate information to the user */
+  --echoes-color-background-info-hover: #174361; /** Use for backgrounds that communicate information to the user */
+  --echoes-color-background-info-focus: #316c92; /** Use for backgrounds that communicate information to the user */
+  --echoes-color-background-info-active: #17364d; /** Use for backgrounds that communicate information to the user */
+  --echoes-color-background-info-weak-default: #f5fbff; /** Use for backgrounds that communicate information to the user, with less visual highlight */
+  --echoes-color-background-info-weak-hover: #e9f4fb; /** Use for backgrounds that communicate information to the user, with less visual highlight */
+  --echoes-color-background-info-weak-focus: #f5fbff; /** Use for backgrounds that communicate information to the user, with less visual highlight */
+  --echoes-color-background-info-weak-active: #b8def1; /** Use for backgrounds that communicate information to the user, with less visual highlight */
+  --echoes-color-background-utility-transparent: #00000000; /** Use it when you need transparency in the background */
+  --echoes-color-background-selected-weak-default: #f4f6ff; /** Use it in backgrounds of components that have a selected state that need less visual highlight, like dropdown or selects */
+  --echoes-color-background-selected-weak-hover: #e8ebff; /** Hover state of components that have a selected state that need less visual highlight, like dropdown or selects */
+  --echoes-color-background-selected-weak-pressed: #d1d7fe; /** Pressed state of components that have a selected state that need less visual highlight, like dropdown or selects */
+  --echoes-color-background-selected-bold-default: #5d6cd0; /** Use it in backgrounds of components that have a selected state, like checkboxes or radios */
+  --echoes-color-background-selected-bold-hover: #4b56bb; /** Hover state of components that have a selected state, like checkboxes or radios */
+  --echoes-color-background-selected-bold-pressed: #47518f; /** Pressed state of components that have a selected state, like checkboxes or radios */
+  --echoes-color-background-ghost-accent-default: #00000000;
+  --echoes-color-background-ghost-accent-hover: #e8ebff;
+  --echoes-color-background-ghost-accent-active: #d1d7fe;
+  --echoes-color-background-ghost-accent-focus: #00000000;
+  --echoes-color-background-ghost-neutral-default: #00000000;
+  --echoes-color-background-ghost-neutral-hover: #eff2f9;
+  --echoes-color-background-ghost-neutral-active: #e1e6f3;
+  --echoes-color-background-ghost-neutral-focus: #00000000;
+  --echoes-color-background-ghost-danger-default: #00000000;
+  --echoes-color-background-ghost-danger-hover: #fef3f2;
+  --echoes-color-background-ghost-danger-active: #fee4e2;
+  --echoes-color-background-ghost-danger-focus: #00000000;
+  --echoes-color-background-emphasis-weak-default: #f4eeff;
+  --echoes-color-background-emphasis-weak-hover: #ede2ff;
+  --echoes-color-background-emphasis-weak-focus: #f4eeff;
+  --echoes-color-background-emphasis-weak-active: #e5d5ff;
+  --echoes-color-background-emphasis-default: #883fdd;
+  --echoes-color-background-emphasis-hover: #7934c7;
+  --echoes-color-background-emphasis-focus: #883fdd;
+  --echoes-color-background-emphasis-active: #3f186b;
+  --echoes-color-background-favourite-default: #d19834;
+  --echoes-color-background-favourite-hover: #ae7a29;
+  --echoes-color-surface-default: #ffffff; /** Go to color for surfaces.. eg: cards, modals, popovers, etc... */
+  --echoes-color-surface-hover: #f6f7fb; /** Hover color for bg-default */
+  --echoes-color-surface-active: #e1e6f3; /** Active color for bg-default */
+  --echoes-color-surface-canvas-default: #fcfcfd; /** Use it as page background */
+  --echoes-color-surface-inverse-default: #2a2f40; /** Inverse color for bgs, creates high contrast against bg-default and bg-page */
+  --echoes-color-surface-inverse-hover: #1d212f;
+  --echoes-color-surface-inverse-focus: #2a2f40;
+  --echoes-color-surface-inverse-active: #12141d;
+  --echoes-color-surface-disabled: #eff2f9; /** Use it as background for disabled components */
+  --echoes-color-overlays-back-drop-default: #08090c73;
+  --echoes-color-overlays-disabled: #eff2f9; /** Use it as background for disabled components */
+  --echoes-color-text-strong: #1d212f;
+  --echoes-color-text-default: #3e4357;
+  --echoes-color-text-disabled: #a6adc2;
+  --echoes-color-text-placeholder: #637192;
+  --echoes-color-text-subtle: #637192;
+  --echoes-color-text-on-color: #ffffff;
+  --echoes-color-text-on-color-inverse: #3e4357;
+  --echoes-color-text-accent: #5d6cd0;
+  --echoes-color-text-danger: #b42318;
+  --echoes-color-text-warning: #8c5e1e;
+  --echoes-color-text-success: #537c17;
+  --echoes-color-text-info: #316c92;
+  --echoes-color-text-emphasis: #7934c7;
+  --echoes-color-text-link-hover: #4b56bb;
+  --echoes-color-icon-bold: #1d212f;
+  --echoes-color-icon-default: #3e4357;
+  --echoes-color-icon-subtle: #637192;
+  --echoes-color-icon-disabled: #a6adc2;
+  --echoes-color-icon-placeholder: #637192;
+  --echoes-color-icon-accent: #5d6cd0;
+  --echoes-color-icon-danger: #d92d20;
+  --echoes-color-icon-warning: #ae7a29;
+  --echoes-color-icon-success: #82b73c;
+  --echoes-color-icon-info: #4595cb;
+  --echoes-color-icon-on-color: #ffffff;
+  --echoes-color-icon-on-color-inverse: #3e4357;
+  --echoes-color-icon-selected: #5d6cd0;
+  --echoes-color-icon-emphasis: #7934c7;
+  --echoes-color-border-bolder: #637192;
+  --echoes-color-border-bold: #c5cddf;
+  --echoes-color-border-weak: #e1e6f3;
+  --echoes-color-border-weaker: #eff2f9;
+  --echoes-color-border-disabled: #c5cddf;
+  --echoes-color-border-accent-default: #5d6cd0;
+  --echoes-color-border-danger-weak: #fee4e2;
+  --echoes-color-border-danger-default: #d92d20;
+  --echoes-color-border-none: #00000000;
+  --echoes-color-border-success-weak: #e4f7d1;
+  --echoes-color-border-success-default: #75a92c;
+  --echoes-color-border-warning-weak: #fef5d0;
+  --echoes-color-border-info-weak: #e9f4fb;
+  --echoes-color-border-emphasis-weak: #ede2ff;
+  --echoes-color-code-background-default: #fcfcfd;
+  --echoes-color-code-background-highlight: #c5cddf;
+  --echoes-color-code-border-default: #e1e6f3;
+  --echoes-color-code-text-default: #383a42;
+  --echoes-color-code-text-highlight: #d92d20;
+  --echoes-color-code-text-annotation: #235bd5;
+  --echoes-color-code-text-constant: #875702;
+  --echoes-color-code-text-comment: #5f6066;
+  --echoes-color-code-text-keyword: #a222a0;
+  --echoes-color-code-text-string: #247523;
+  --echoes-color-code-text-keyword-subtle: #1e1ead;
+  --echoes-color-code-text-preprocessing-directive: #347235;
+  --echoes-color-focus-default: #4b56bb;
+  --echoes-color-charts-categorical-1: #3b82d4;
+  --echoes-color-charts-categorical-2: #d74a78;
+  --echoes-color-charts-categorical-3: #0f9383;
+  --echoes-color-charts-categorical-4: #8a4fe9;
+  --echoes-color-charts-categorical-5: #d4713b;
+  --echoes-color-charts-categorical-6: #1b5da8;
+  --echoes-color-charts-categorical-7: #ad2955;
+  --echoes-color-charts-categorical-8: #00675b;
+  --echoes-color-charts-severity-blocker: #670700;
+  --echoes-color-charts-severity-high: #be342a;
+  --echoes-color-charts-severity-medium: #ce7536;
+  --echoes-color-charts-severity-low: #ba8927;
+  --echoes-color-charts-severity-info: #2a83be;
+  --echoes-color-charts-placeholder-default: #637192;
+  --echoes-box-shadow-xsmall: 0 1px 02px 0 #0000000d;
+  --echoes-box-shadow-small: 0 1px 25px 0 #1d212f0d, 0 1px 3px 0 #1d212f0d;
+  --echoes-box-shadow-medium: 0 2px 15px -2px #1d212f0f, 0 4px 8px -2px #1d212f1a;
+  --echoes-box-shadow-large: 0 4px 6px -2px #1d212f0d, 0 12px 16px -4px #1d212f1a;
+  --echoes-box-shadow-x-large: 0 8px 8px -4px #1d212f0a, 15px 20px 24px -4px #1d212f1a;
+  --echoes-bottom-scroll-colors-shadow-gradient: #00000033;
+  --echoes-form-control-colors-background-default: #ffffff;
+  --echoes-form-control-colors-background-hover: #f6f7fb;
+  --echoes-form-control-colors-border-default: #637192;
+  --echoes-form-control-colors-border-focus: #e1e6f3;
+  --echoes-form-control-colors-icon-default: #637192;
+  --echoes-logos-colors-text: #290042;
+  --echoes-logos-colors-brand: #126ed3;
+  --echoes-logos-colors-sonar-whale: #d3121d;
+  --echoes-margin-indicator-colors-background-duplication: #c5cddf;
+  --echoes-margin-indicator-colors-background-covered: #75a92c;
+  --echoes-margin-indicator-colors-background-partially-covered: #ae7a29;
+  --echoes-margin-indicator-colors-background-uncovered: #d92d20;
+  --echoes-overlays-inner-shadow-default: inset 0 -6px 10px 0 #0000000d;
+  --echoes-quality-gate-indicator-colors-passed-icon: #054f16;
+  --echoes-quality-gate-indicator-colors-passed-background: #d4f2b7;
+  --echoes-quality-gate-indicator-colors-failed-icon: #801b14;
+  --echoes-quality-gate-indicator-colors-failed-background: #fecdca;
+  --echoes-ratings-colors-background-rating-a-default: #d1fadf;
+  --echoes-ratings-colors-background-rating-b-default: #d4f2b7;
+  --echoes-ratings-colors-background-rating-c-default: #fce9a3;
+  --echoes-ratings-colors-background-rating-d-default: #ffd6af;
+  --echoes-ratings-colors-background-rating-e-default: #fecdca;
+  --echoes-ratings-colors-text-rating-a-default: #054f31;
+  --echoes-ratings-colors-text-rating-b-default: #054f16;
+  --echoes-ratings-colors-text-rating-c-default: #66400f;
+  --echoes-ratings-colors-text-rating-d-default: #7a2e0e;
+  --echoes-ratings-colors-text-rating-e-default: #5d1d13;
+  --echoes-ratings-colors-border-rating-a-default: #12b76a;
+  --echoes-ratings-colors-border-rating-a-hover: #16ad65;
+  --echoes-ratings-colors-border-rating-b-default: #9dcb6b;
+  --echoes-ratings-colors-border-rating-b-hover: #95c066;
+  --echoes-ratings-colors-border-rating-c-default: #f5b840;
+  --echoes-ratings-colors-border-rating-c-hover: #e7ae3d;
+  --echoes-ratings-colors-border-rating-d-default: #fd7122;
+  --echoes-ratings-colors-border-rating-d-hover: #ef6b21;
+  --echoes-ratings-colors-border-rating-e-default: #f04438;
+  --echoes-ratings-colors-border-rating-e-hover: #e34135;
+  --echoes-severity-badge-colors-background-severity-blocker-prefix-default: #fee4e2;
+  --echoes-severity-badge-colors-background-severity-blocker-suffix-default: #fecdca;
+  --echoes-severity-badge-colors-background-severity-blocker-suffix-hover: #f8c8c5;
+  --echoes-severity-badge-colors-background-severity-high-prefix-default: #fef3f2;
+  --echoes-severity-badge-colors-background-severity-high-suffix-default: #fee4e2;
+  --echoes-severity-badge-colors-background-severity-high-suffix-hover: #f8dfdd;
+  --echoes-severity-badge-colors-background-severity-medium-prefix-default: #fff0eb;
+  --echoes-severity-badge-colors-background-severity-medium-suffix-default: #ffe8da;
+  --echoes-severity-badge-colors-background-severity-medium-suffix-hover: #f8d6c3;
+  --echoes-severity-badge-colors-background-severity-low-prefix-default: #fcf5e4;
+  --echoes-severity-badge-colors-background-severity-low-suffix-default: #fef5d0;
+  --echoes-severity-badge-colors-background-severity-low-suffix-hover: #f8efcb;
+  --echoes-severity-badge-colors-background-severity-info-prefix-default: #f5fbff;
+  --echoes-severity-badge-colors-background-severity-info-suffix-default: #e9f4fb;
+  --echoes-severity-badge-colors-background-severity-info-suffix-hover: #e4eef5;
+  --echoes-severity-badge-colors-foreground-blocker-icon-default: #b42318;
+  --echoes-severity-badge-colors-foreground-blocker-text-default: #801b14;
+  --echoes-severity-badge-colors-foreground-high-text-default: #b42318;
+  --echoes-severity-badge-colors-foreground-high-icon-default: #d92d20;
+  --echoes-severity-badge-colors-foreground-medium-text-default: #93370d;
+  --echoes-severity-badge-colors-foreground-medium-icon-default: #dc5e03;
+  --echoes-severity-badge-colors-foreground-low-text-default: #8c5e1e;
+  --echoes-severity-badge-colors-foreground-low-icon-default: #ae7a29;
+  --echoes-severity-badge-colors-foreground-info-text-default: #316c92;
+  --echoes-severity-badge-colors-foreground-info-icon-default: #3a7fad;
+  --echoes-severity-badge-colors-borders-blocker-default: #fecdca;
+  --echoes-severity-badge-colors-borders-high-default: #fee4e2;
+  --echoes-severity-badge-colors-borders-medium-default: #ffe8da;
+  --echoes-severity-badge-colors-borders-low-default: #fef5d0;
+  --echoes-severity-badge-colors-borders-info-default: #e9f4fb;
+  --echoes-sidebar-navigation-colors-background-default: #fcfcfd;
+  --echoes-sidebar-navigation-item-colors-background-default: #fcfcfd;
+  --echoes-sidebar-navigation-item-colors-background-hover: #f6f7fb;
+  --echoes-sidebar-navigation-item-colors-background-active: #eff2f9;
+  --echoes-table-colors-background-header-default: #eff2f9;
+}
