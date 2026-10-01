@@ -4728,7 +4728,6 @@ __metadata:
     react: ^19.0.0
     react-dom: ^19.0.0
     react-intl: ^10.0.0
-    react-router-dom: ^6.30.6
   languageName: unknown
   linkType: soft
 
