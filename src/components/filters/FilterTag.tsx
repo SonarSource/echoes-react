@@ -97,10 +97,23 @@ const FilterTagWrapper = styled.div`
   padding: ${cssVar('dimension-space-50')} ${cssVar('dimension-space-100')}
     ${cssVar('dimension-space-50')} ${cssVar('dimension-space-150')};
 
-  border: ${cssVar('border-width-default')} solid ${cssVar('color-border-bold')};
+  border: ${cssVar('border-width-default')} solid ${cssVar('color-border-weak')};
   border-radius: ${cssVar('border-radius-full')};
 
-  background-color: ${cssVar('color-surface-default')};
+  background-color: ${cssVar('color-background-neutral-subtle-default')};
+
+  & button[data-visible-state='true'] {
+    background-color: ${cssVar('color-background-utility-transparent')};
+
+    &:hover {
+      background-color: ${cssVar('color-background-neutral-subtle-hover')};
+    }
+
+    &:focus,
+    &:focus-visible {
+      background-color: ${cssVar('color-background-neutral-subtle-active')};
+    }
+  }
 `;
 
 FilterTagWrapper.displayName = 'FilterTagWrapper';

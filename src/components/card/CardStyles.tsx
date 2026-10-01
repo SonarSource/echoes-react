@@ -26,8 +26,8 @@ import { CardSize } from './CardSize';
 export const CardStyled = styled.div`
   background-color: ${cssVar('color-surface-default')};
   border: ${cssVar('border-width-default')} solid ${cssVar('color-border-weak')};
-  border-radius: ${cssVar('border-radius-400')};
-  box-shadow: ${cssVar('box-shadow-xsmall')};
+  border-radius: ${cssVar('border-radius-300')};
+  box-shadow: ${cssVar('shadow-resting')};
 
   box-sizing: border-box;
   display: flex;

@@ -1,0 +1,42 @@
+{
+  "echoes": {
+    "color": {
+      "action": {
+        "primary": {
+          "default": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.gray.12}",
+            "$description": "neutral-action primary action."
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.gray.11}",
+            "$description": "neutral-action primary hover."
+          },
+          "pressed": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.gray.10}",
+            "$description": "neutral-action primary pressed."
+          },
+          "foreground": {
+            "$type": "color",
+            "$value": "{echoes.color.support.black}",
+            "$description": "neutral-action primary foreground."
+          }
+        },
+        "link": {
+          "default": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.gray.12}",
+            "$description": "neutral-action action link."
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.gray.11}",
+            "$description": "neutral-action action link hover."
+          }
+        }
+      }
+    }
+  }
+}

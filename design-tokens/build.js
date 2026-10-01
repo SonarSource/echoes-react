@@ -34,12 +34,24 @@ const CUSTOM_FILTER_TAILWIND = 'sonar-echoes-tailwind-preset';
 const THEME_DATA_ATTRIBUTE = 'data-echoes-theme';
 const TAILWIND_CONFIG_FILENAME = 'tailwindConfig.js';
 const LICENSE_HEADER_FILE_OPTION = 'licence-header';
+const ACTION_STRATEGIES = ['neutral-action', 'accent-action'];
 
 const brandArg = process.argv.find((arg) => arg.startsWith('--brand='))?.split('=')[1];
 const BRAND = brandArg ?? process.env.DESIGN_TOKEN_BRAND;
 if (!BRAND) {
   console.error(
     'Error: brand is required. Use --brand=<name> or set DESIGN_TOKEN_BRAND env variable (e.g. --brand=Brand-A)',
+  );
+  process.exit(1);
+}
+
+const actionStrategyArg = process.argv
+  .find((arg) => arg.startsWith('--action-strategy='))
+  ?.split('=')[1];
+
+if (actionStrategyArg && !ACTION_STRATEGIES.includes(actionStrategyArg)) {
+  console.error(
+    `Error: action strategy "${actionStrategyArg}" is not supported. Available strategies: ${ACTION_STRATEGIES.join(', ')}`,
   );
   process.exit(1);
 }
@@ -76,7 +88,7 @@ const themedDesignTokenGroups = designTokenGroups
     ...theme,
     selectedTokenSets: Object.fromEntries(
       Object.entries(theme.selectedTokenSets).map(([key, val]) => [
-        key.startsWith('brand/') ? `brand/${brandDir}/${key.split('/').pop()}` : key,
+        key.startsWith('brand/') ? ['brand', brandDir, ...key.split('/').slice(2)].join('/') : key,
         val,
       ]),
     ),
@@ -84,7 +96,7 @@ const themedDesignTokenGroups = designTokenGroups
 
 const sd = initStyleDictionary(licenseHeader);
 await buildBaseTokens(brandDesignTokenGroup, sd);
-await buildThemedTokens(themedDesignTokenGroups, brandDesignTokenGroup, sd);
+await buildThemedTokens(themedDesignTokenGroups, brandDesignTokenGroup, actionStrategyArg, sd);
 buildCSSRootFile(designTokenGroups, licenseHeader);
 buildThemesEnumType(themedDesignTokenGroups, licenseHeader);
 buildTailwindConfig();
@@ -188,7 +200,7 @@ async function buildBaseTokens(tokenGroup, sd) {
 }
 
 // Build themed tokens: 1 for each theme, without brand and mode base non-color tokens
-async function buildThemedTokens(themedTokenGroups, baseDesignTokenGroup, sd) {
+async function buildThemedTokens(themedTokenGroups, baseDesignTokenGroup, actionStrategy, sd) {
   console.log('\nBuilding themed tokens, no brand or mode base non-colors...');
 
   await Promise.all(
@@ -199,6 +211,9 @@ async function buildThemedTokens(themedTokenGroups, baseDesignTokenGroup, sd) {
         source: [
           ...Object.entries(baseDesignTokenGroup.selectedTokenSets),
           ...Object.entries(theme.selectedTokenSets),
+          ...(actionStrategy
+            ? [[`experiments/action-strategy/${actionStrategy}/${theme.name}`, 'enabled']]
+            : []),
         ]
           .filter(([, val]) => val !== 'disabled')
           .map(([tokenset]) => `${DESIGN_TOKENS_PATH}/${tokenset}.json`),
