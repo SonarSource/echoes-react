@@ -19,12 +19,14 @@
  */
 
 import { Children, forwardRef, isValidElement, ReactNode, useMemo } from 'react';
-import { matchPath, useLocation } from 'react-router-dom';
 import { isDefined } from '~common/helpers/types';
 import { Button } from '../../buttons';
 import { DropdownMenu } from '../../dropdown-menu';
 import { DropdownMenuProps } from '../../dropdown-menu/DropdownMenu';
 import { IconChevronDown } from '../../icons';
+import { usePathname } from '../../router/RouterContext';
+import { LinkTo } from '../../router/RouterTypes';
+import { isPathActive } from '../../router/RouterUtils';
 import { globalNavigationItemStyle, StyledNavMenuItem } from './GlobalNavigationItemStyles';
 
 export interface GlobalNavigationDropdownItemProps extends DropdownMenuProps {
@@ -45,7 +47,7 @@ export const GlobalNavigationDropdownItem = forwardRef<
     }: Readonly<GlobalNavigationDropdownItemProps>,
     ref,
   ) => {
-    const { pathname } = useLocation();
+    const pathname = usePathname();
 
     const active = useMemo(() => {
       return !disableActiveHighlight && isActive(pathname, dropdownMenuProps.items);
@@ -71,18 +73,18 @@ GlobalNavigationDropdownItem.displayName = 'GlobalNavigationDropdownItem';
 
 // exported for tests
 export function isActive(pathname: string, item: ReactNode) {
-  if (isValidElement<{ children?: ReactNode; to?: string }>(item)) {
-    if (isDefined(item.props?.to) && matchPath(item.props.to, pathname) !== null) {
+  if (isValidElement<{ children?: ReactNode; to?: LinkTo }>(item)) {
+    if (isDefined(item.props?.to) && isPathActive(pathname, item.props.to, { end: true })) {
       return true;
     }
 
-    const targets: Array<string | undefined> =
+    const targets: Array<LinkTo | undefined> =
       Children.map(item.props.children, (child) => {
-        return isValidElement<{ to?: string }>(child) ? child?.props?.to : undefined;
+        return isValidElement<{ to?: LinkTo }>(child) ? child?.props?.to : undefined;
       }) ?? [];
 
     for (const target of targets) {
-      if (isDefined(target) && matchPath(target, pathname) !== null) {
+      if (isDefined(target) && isPathActive(pathname, target, { end: true })) {
         return true;
       }
     }

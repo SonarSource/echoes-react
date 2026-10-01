@@ -27,6 +27,7 @@ import { type ToastId } from '~common/components/Toast';
 import { PropsWithLabels, PropsWithLabelsAndHelpText } from '~types/utils';
 import { EchoesProvider } from '../../components/echoes-provider';
 import { toast } from '../../utils';
+import { reactRouterAdapter } from './react-router-adapter';
 
 type RenderResultWithUser = RenderResult & { user: UserEvent };
 
@@ -150,7 +151,9 @@ function ShowPath() {
 function ContextWrapper({ children }: PropsWithChildren<{}>) {
   return (
     <IntlProvider defaultLocale="en-us" locale="en-us">
-      <EchoesProvider tooltipsDelayDuration={0}>{children}</EchoesProvider>
+      <EchoesProvider router={reactRouterAdapter} tooltipsDelayDuration={0}>
+        {children}
+      </EchoesProvider>
     </IntlProvider>
   );
 }
