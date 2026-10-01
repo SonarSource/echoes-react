@@ -1,5 +1,5 @@
 {
-  "cssvar.files": ["src/generated/design-tokens-light.css", "src/generated/design-tokens-base.css"],
+  "cssvar.files": ["src/generated/styles/brand-a.css"],
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
   "jest.jestCommandLine": "yarn run -T jest -c jest.config.cjs",
