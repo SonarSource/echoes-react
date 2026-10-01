@@ -31,7 +31,7 @@ import { HelperText, Label } from '../typography';
 export type SelectionCardOption = RadioOption & {
   className?: string;
   /**
-   * Illustration to display at the top (optional)
+   * @deprecated Illustrations are no longer displayed in selection cards.
    */
   illustration?: React.ReactNode;
 };
@@ -123,7 +123,7 @@ export const SelectionCards = forwardRef<HTMLDivElement, SelectionCardsProps>((p
 SelectionCards.displayName = 'SelectionCards';
 
 function SelectionCard(props: Readonly<SelectionCardOption>) {
-  const { ariaLabel, className, helpText, illustration, isDisabled, label, value } = props;
+  const { ariaLabel, className, helpText, isDisabled, label, value } = props;
 
   /*
    * Although the HTML spec defines buttons as valid targets for labels,
@@ -139,8 +139,7 @@ function SelectionCard(props: Readonly<SelectionCardOption>) {
       className={className}
       disabled={isDisabled}
       value={value}>
-      {illustration && <IllustrationContainer>{illustration}</IllustrationContainer>}
-      <SelectionCardContentWrapper hasIllustration={isDefined(illustration)}>
+      <SelectionCardContentWrapper>
         <Label>{label}</Label>
         {isDefined(helpText) && (typeof helpText !== 'string' || isStringDefined(helpText)) && (
           <StyledHelperText data-disabled={isDisabled || undefined}>{helpText}</StyledHelperText>
@@ -170,7 +169,7 @@ const StyledHelperText = styled(HelperText)`
 `;
 StyledHelperText.displayName = 'StyledHelperText';
 
-const SelectionCardContentWrapper = styled.div<{ hasIllustration: boolean }>`
+const SelectionCardContentWrapper = styled.div`
   display: inline-flex;
   flex-direction: column;
   align-items: start;
@@ -184,8 +183,6 @@ const SelectionCardContentWrapper = styled.div<{ hasIllustration: boolean }>`
       ${cssVar('dimension-space-200')} -
         (${cssVar('focus-border-width-default')} - ${cssVar('border-width-default')})
     );
-
-    ${(props) => props.hasIllustration && `padding-top: ${cssVar('dimension-space-200')};`}
   }
 `;
 SelectionCardContentWrapper.displayName = 'SelectionCardContentWrapper';
@@ -243,37 +240,3 @@ const StyledSelectionCard = styled(RadioGroup.Item)`
 `;
 
 StyledSelectionCard.displayName = 'StyledSelectionCard';
-
-const IllustrationContainer = styled.div`
-  align-items: center;
-  align-self: stretch;
-  display: flex;
-  justify-content: center;
-  width: 100%;
-
-  border-radius: calc(${cssVar('border-radius-400')} - ${cssVar('border-width-default')})
-    calc(${cssVar('border-radius-400')} - ${cssVar('border-width-default')}) 0 0;
-
-  [data-state='checked'] & {
-    border-radius: calc(${cssVar('border-radius-400')} - ${cssVar('focus-border-width-default')})
-      calc(${cssVar('border-radius-400')} - ${cssVar('focus-border-width-default')}) 0 0;
-  }
-
-  overflow: hidden;
-  box-sizing: content;
-
-  & img,
-  & svg {
-    height: 100%;
-    object-fit: contain;
-    width: 100%;
-  }
-
-  /* Compensate the wider border when selected */
-  [data-state='checked'] & > *,
-  [data-state='checked'] & > * {
-    margin-top: -1px;
-  }
-`;
-
-IllustrationContainer.displayName = 'IllustrationContainer';
