@@ -20,12 +20,15 @@
 
 import { getTransforms, register } from '@tokens-studio/sd-transforms';
 import * as fs from 'node:fs';
+import * as path from 'node:path';
 import StyleDictionary from 'style-dictionary';
 import { transforms } from 'style-dictionary/enums';
 
 const DEFAULT_THEME = 'light';
 const DESIGN_TOKENS_PATH = 'design-tokens/tokens';
-const BUILD_PATH = 'src/generated/';
+const GENERATED_PATH = 'src/generated/';
+const DIST_STYLES_PATH = 'dist/styles/';
+const DIST_TOKENS_PATH = 'dist/tokens/';
 const NAME_PREFIX = 'design-tokens-';
 const CUSTOM_TRANSFORM_GROUP = 'sonar-design-tokens';
 const CUSTOM_FILTER_NO_COLOR = 'sonar-no-color';
@@ -34,15 +37,6 @@ const CUSTOM_FILTER_TAILWIND = 'sonar-echoes-tailwind-preset';
 const THEME_DATA_ATTRIBUTE = 'data-echoes-theme';
 const TAILWIND_CONFIG_FILENAME = 'tailwindConfig.js';
 const LICENSE_HEADER_FILE_OPTION = 'licence-header';
-
-const brandArg = process.argv.find((arg) => arg.startsWith('--brand='))?.split('=')[1];
-const BRAND = brandArg ?? process.env.DESIGN_TOKEN_BRAND;
-if (!BRAND) {
-  console.error(
-    'Error: brand is required. Use --brand=<name> or set DESIGN_TOKEN_BRAND env variable (e.g. --brand=Brand-A)',
-  );
-  process.exit(1);
-}
 
 const licenseHeader = fs.readFileSync(`config/license/LICENSE-HEADER.txt`, 'utf-8');
 const tailwindTypographyUtilities = JSON.parse(
@@ -53,26 +47,34 @@ const designTokenGroups = JSON.parse(
   fs.readFileSync(`${DESIGN_TOKENS_PATH}/$themes.json`, 'utf-8'),
 );
 
-const brandDesignTokenGroup = designTokenGroups.find(
-  ({ group, name }) => group === 'Brand' && toBrandId(name).toLowerCase() === BRAND.toLowerCase(),
-);
+const allBrands = designTokenGroups.filter(({ group }) => group === 'Brand');
 
-if (!brandDesignTokenGroup) {
-  const available = designTokenGroups
-    .filter(({ group }) => group === 'Brand')
-    .map(({ name }) => toBrandId(name))
-    .join(', ');
-  console.error(`Error: brand "${BRAND}" not found. Available brands: ${available}`);
+if (allBrands.length === 0) {
+  console.error('Error: no brands found in $themes.json');
   process.exit(1);
 }
 
-const brandDir = Object.keys(brandDesignTokenGroup.selectedTokenSets)
-  .find((key) => key.startsWith('brand/'))
-  ?.split('/')[1];
+const themedGroups = designTokenGroups.filter(({ group }) => group === 'Themes');
 
-const themedDesignTokenGroups = designTokenGroups
-  .filter(({ group }) => group === 'Themes')
-  .map((theme) => ({
+console.log(`Found ${allBrands.length} brand(s): ${allBrands.map(({ name }) => name).join(', ')}`);
+
+const sd = initStyleDictionary(licenseHeader);
+
+// Build each brand
+for (const brandGroup of allBrands) {
+  const brandId = toBrandId(brandGroup.name);
+  const brandSlug = brandId.toLowerCase();
+  const tmpPath = `dist/.tmp-${brandSlug}/`;
+
+  console.log(`\n=== Building brand: ${brandGroup.name} ===`);
+
+  fs.mkdirSync(tmpPath, { recursive: true });
+
+  const brandDir = Object.keys(brandGroup.selectedTokenSets)
+    .find((key) => key.startsWith('brand/'))
+    ?.split('/')[1];
+
+  const brandThemedGroups = themedGroups.map((theme) => ({
     ...theme,
     selectedTokenSets: Object.fromEntries(
       Object.entries(theme.selectedTokenSets).map(([key, val]) => [
@@ -82,12 +84,67 @@ const themedDesignTokenGroups = designTokenGroups
     ),
   }));
 
-const sd = initStyleDictionary(licenseHeader);
-await buildBaseTokens(brandDesignTokenGroup, sd);
-await buildThemedTokens(themedDesignTokenGroups, brandDesignTokenGroup, sd);
-buildCSSRootFile(designTokenGroups, licenseHeader);
-buildThemesEnumType(themedDesignTokenGroups, licenseHeader);
+  await buildBaseTokens(brandGroup, sd, tmpPath);
+  await buildThemedTokens(brandThemedGroups, brandGroup, sd, tmpPath);
+
+  // Assemble per-brand CSS: concatenate base + all theme CSS files
+  const baseCss = fs.readFileSync(path.join(tmpPath, `${NAME_PREFIX}base.css`), 'utf-8');
+
+  const sortedThemes = [...brandThemedGroups].sort((a, b) => a.name.localeCompare(b.name));
+  const themeCss = sortedThemes
+    .map((theme) => fs.readFileSync(path.join(tmpPath, `${NAME_PREFIX}${theme.name}.css`), 'utf-8'))
+    .join('\n');
+
+  const fullCss = [baseCss, themeCss].join('\n');
+
+  // Write per-brand CSS
+  fs.mkdirSync(DIST_STYLES_PATH, { recursive: true });
+  fs.writeFileSync(path.join(DIST_STYLES_PATH, `${brandSlug}.css`), fullCss);
+  console.log(`  -> ${path.join(DIST_STYLES_PATH, `${brandSlug}.css`)}`);
+
+  // Write per-brand JSON
+  const brandTokensDir = path.join(DIST_TOKENS_PATH, brandSlug);
+  fs.mkdirSync(brandTokensDir, { recursive: true });
+
+  fs.copyFileSync(
+    path.join(tmpPath, `${NAME_PREFIX}base.json`),
+    path.join(brandTokensDir, 'base.json'),
+  );
+  fs.copyFileSync(
+    path.join(tmpPath, `${NAME_PREFIX}themed.json`),
+    path.join(brandTokensDir, 'themed.json'),
+  );
+  console.log(`  -> ${brandTokensDir}/base.json`);
+  console.log(`  -> ${brandTokensDir}/themed.json`);
+
+  // Clean up temp dir
+  fs.rmSync(tmpPath, { recursive: true, force: true });
+}
+
+// Build shared outputs once (using first brand — token names are identical across brands)
+console.log(`\n=== Building shared outputs ===`);
+
+const firstBrand = allBrands[0];
+const firstBrandDir = Object.keys(firstBrand.selectedTokenSets)
+  .find((key) => key.startsWith('brand/'))
+  ?.split('/')[1];
+
+const firstBrandThemedGroups = themedGroups.map((theme) => ({
+  ...theme,
+  selectedTokenSets: Object.fromEntries(
+    Object.entries(theme.selectedTokenSets).map(([key, val]) => [
+      key.startsWith('brand/') ? `brand/${firstBrandDir}/${key.split('/').pop()}` : key,
+      val,
+    ]),
+  ),
+}));
+
+await buildBaseTokens(firstBrand, sd, GENERATED_PATH);
+await buildThemedTokens(firstBrandThemedGroups, firstBrand, sd, GENERATED_PATH);
+buildThemesEnumType(firstBrandThemedGroups, licenseHeader);
 buildTailwindConfig();
+
+console.log(`\nAll brands built successfully.`);
 
 function initStyleDictionary(licenseHeader) {
   const sd = new StyleDictionary({
@@ -136,7 +193,7 @@ function initStyleDictionary(licenseHeader) {
 }
 
 // Build base tokens: brand base + mode base without colors
-async function buildBaseTokens(tokenGroup, sd) {
+async function buildBaseTokens(tokenGroup, sd, buildPath) {
   console.log('\nBuilding base tokens, no colors allowed...');
   console.log(`\nBuilding "${tokenGroup.name}" group...`);
 
@@ -150,7 +207,7 @@ async function buildBaseTokens(tokenGroup, sd) {
     platforms: {
       tokens: {
         transformGroup: CUSTOM_TRANSFORM_GROUP,
-        buildPath: BUILD_PATH,
+        buildPath,
         files: [
           {
             destination: `${NAME_PREFIX}base.css`,
@@ -188,7 +245,7 @@ async function buildBaseTokens(tokenGroup, sd) {
 }
 
 // Build themed tokens: 1 for each theme, without brand and mode base non-color tokens
-async function buildThemedTokens(themedTokenGroups, baseDesignTokenGroup, sd) {
+async function buildThemedTokens(themedTokenGroups, baseDesignTokenGroup, sd, buildPath) {
   console.log('\nBuilding themed tokens, no brand or mode base non-colors...');
 
   await Promise.all(
@@ -205,7 +262,7 @@ async function buildThemedTokens(themedTokenGroups, baseDesignTokenGroup, sd) {
         platforms: {
           tokens: {
             transformGroup: CUSTOM_TRANSFORM_GROUP,
-            buildPath: BUILD_PATH,
+            buildPath,
             files: [
               {
                 destination: `${NAME_PREFIX}${theme.name}.css`,
@@ -245,29 +302,12 @@ async function buildThemedTokens(themedTokenGroups, baseDesignTokenGroup, sd) {
   console.log(`\nThemed tokens builds done.`);
 }
 
-// Build design tokens css root file
-function buildCSSRootFile(tokenGroups, license) {
-  console.log('\nBuilding design tokens css root file...');
-  const themedTokenGroups = tokenGroups.filter(({ group }) => group === 'Themes');
-  themedTokenGroups.sort((a, b) => a.name.localeCompare(b.name));
-
-  const cssRootFileContent = [
-    license,
-    `@import './${NAME_PREFIX}base.css';`,
-    ...themedTokenGroups.map((theme) => `@import './${NAME_PREFIX}${theme.name}.css';`),
-  ].join('\n');
-
-  fs.writeFileSync(`${BUILD_PATH}design-tokens.css`, cssRootFileContent);
-
-  console.log(`Design tokens css root file build done.`);
-}
-
 // Build themes enum TS type
 function buildThemesEnumType(themedTokenGroups, license) {
   console.log('\nBuilding themes enum TS type...');
   const themesEnum = themedTokenGroups.map((theme) => `  ${theme.name} = '${theme.name}',`);
   const themesEnumFileContent = [license, `export enum Theme {`, ...themesEnum, `}`].join('\n');
-  fs.writeFileSync(`${BUILD_PATH}themes.ts`, themesEnumFileContent);
+  fs.writeFileSync(`${GENERATED_PATH}themes.ts`, themesEnumFileContent);
 
   console.log(`Themes enum TS type build done.`);
 }
@@ -276,7 +316,7 @@ function buildThemesEnumType(themedTokenGroups, license) {
 function buildTailwindConfig() {
   console.log('\nBuilding tailwind config...');
 
-  const content = fs.readFileSync(`${BUILD_PATH}${TAILWIND_CONFIG_FILENAME}`, 'utf-8');
+  const content = fs.readFileSync(`${GENERATED_PATH}${TAILWIND_CONFIG_FILENAME}`, 'utf-8');
 
   // Preserve the license and the json but get rid of the `module.exports`
   const [license, json] = content.split('module.exports = ');
@@ -310,7 +350,7 @@ export const echoesPreset = config.echoesPreset;
 export const echoesTypographyUtilities = config.echoesTypographyUtilities;
 `;
 
-  fs.writeFileSync(`${BUILD_PATH}${TAILWIND_CONFIG_FILENAME}`, fileContents);
+  fs.writeFileSync(`${GENERATED_PATH}${TAILWIND_CONFIG_FILENAME}`, fileContents);
 
   console.log(`Tailwind config build done.`);
 }
