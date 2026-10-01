@@ -18,9 +18,4 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-export {
-  EchoesProvider,
-  EchoesProviderForTests,
-  type EchoesProviderForTestsProps,
-  type EchoesProviderProps,
-} from './EchoesProvider';
+export type { EchoesRouter, EchoesRouterLinkProps, LinkTo } from './RouterTypes';
