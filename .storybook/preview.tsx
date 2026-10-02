@@ -26,6 +26,7 @@ import type { Preview } from '@storybook/react-vite';
 import { IntlProvider } from 'react-intl';
 import { MemoryRouter } from 'react-router-dom';
 import { EchoesProvider, Theme, cssVar } from '../src';
+import '../src/generated/styles/sonar.css';
 
 /**
  * This prevents emotion from complaining about SSR
