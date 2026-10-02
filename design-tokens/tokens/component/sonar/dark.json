@@ -44,15 +44,46 @@
       "colors": {
         "text": {
           "$type": "color",
-          "$value": "#ffffff"
+          "$value": "{echoes.logos.sonar.colors.text}",
+          "$description": "Deprecated, use echoes.logos.sonar.colors.text"
         },
         "brand": {
           "$type": "color",
-          "$value": "#ffffff"
+          "$value": "{echoes.logos.sonar.colors.brand}",
+          "$description": "Deprecated, use echoes.logos.sonar.colors.brand"
         },
-        "logomark": {
+        "sonar-whale": {
           "$type": "color",
-          "$value": "#d3121d"
+          "$value": "{echoes.logos.sonar.colors.logomark}",
+          "$description": "Deprecated, use echoes.logos.sonar.colors.logomark"
+        }
+      },
+      "sonar": {
+        "colors": {
+          "text": {
+            "$type": "color",
+            "$value": "#ffffff"
+          },
+          "brand": {
+            "$type": "color",
+            "$value": "#ffffff"
+          },
+          "logomark": {
+            "$type": "color",
+            "$value": "#d3121d"
+          }
+        }
+      },
+      "gitar": {
+        "colors": {
+          "text": {
+            "$type": "color",
+            "$value": "#f6ebf8"
+          },
+          "logomark": {
+            "$type": "color",
+            "$value": "#f6ebf8"
+          }
         }
       }
     },
