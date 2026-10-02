@@ -186,9 +186,14 @@
   --echoes-form-control-colors-border-default: #637192;
   --echoes-form-control-colors-border-focus: #e1e6f3;
   --echoes-form-control-colors-icon-default: #637192;
-  --echoes-logos-colors-text: #290042;
-  --echoes-logos-colors-brand: #126ed3;
-  --echoes-logos-colors-sonar-whale: #d3121d;
+  --echoes-logos-colors-text: #290042; /** Deprecated, use echoes.logos.sonar.colors.text */
+  --echoes-logos-colors-brand: #126ed3; /** Deprecated, use echoes.logos.sonar.colors.brand */
+  --echoes-logos-colors-sonar-whale: #d3121d; /** Deprecated, use echoes.logos.sonar.colors.logomark */
+  --echoes-logos-sonar-colors-text: #290042;
+  --echoes-logos-sonar-colors-brand: #126ed3;
+  --echoes-logos-sonar-colors-logomark: #d3121d;
+  --echoes-logos-gitar-colors-text: #4f1159;
+  --echoes-logos-gitar-colors-logomark: #4f1159;
   --echoes-margin-indicator-colors-background-duplication: #c5cddf;
   --echoes-margin-indicator-colors-background-covered: #75a92c;
   --echoes-margin-indicator-colors-background-partially-covered: #ae7a29;
