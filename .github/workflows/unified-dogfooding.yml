@@ -20,8 +20,6 @@ jobs:
       - uses: SonarSource/ci-github-actions/build-yarn@d41706a4180f70b6c0d0479795309a6c99726022 # 2.0.0
         with:
           run-shadow-scans: true
-        env:
-          DESIGN_TOKEN_BRAND: Brand-A
 
       - name: Run IRIS
         uses: SonarSource/unified-dogfooding-actions/run-iris@v1

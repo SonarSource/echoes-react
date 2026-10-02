@@ -7,7 +7,13 @@
   },
   "type": "module",
   "exports": {
-    ".": "./dist/index.js",
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./styles/*": "./dist/styles/*",
+    "./tokens/*/base.json": "./dist/tokens/*/base.json",
+    "./tokens/*/themed.json": "./dist/tokens/*/themed.json",
     "./tailwind": "./dist/tailwind.js"
   },
   "files": [
@@ -28,7 +34,7 @@
     "jest": "jest",
     "test": "yarn test-ci && yarn validate-ci",
     "test-ci": "jest --collectCoverage --coverageDirectory=build-reports/coverage --workerIdleMemoryLimit=1G --maxWorkers=4",
-    "build": "vite build && { [ \"${CI:-}\" != true ] || pinst --disable; }",
+    "build": "node design-tokens/build.js && vite build && { [ \"${CI:-}\" != true ] || pinst --disable; }",
     "build-fonts": "node ./config/scripts/build-fonts.js",
     "create-icon": "node ./config/scripts/create-icon.js",
     "build-intl-keys": "formatjs extract 'src/components/**/*.ts*' 'src/common/components/**/*.ts*' --out-file i18n/keys.json",
