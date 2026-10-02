@@ -33,6 +33,12 @@ export enum LogoSize {
   Large = 'large',
 }
 
+export const SONAR_LOGO_COLORS = {
+  brand: cssVar('logos-sonar-colors-brand'),
+  logomark: cssVar('logos-sonar-colors-logomark'),
+  text: cssVar('logos-sonar-colors-text'),
+};
+
 export const LogoSvgWrapper = styled.svg<Pick<LogoProps, 'size'>>`
   height: ${({ size }) => LOGO_HEIGHT_STYLES[size ?? LogoSize.Medium]};
   width: auto;
