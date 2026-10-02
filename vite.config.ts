@@ -72,6 +72,16 @@ export default defineConfig({
           dest: '.',
           rename: { name: 'tailwind.js', stripBase: true },
         },
+        {
+          src: 'src/generated/styles/*.css',
+          dest: 'styles',
+          rename: { stripBase: true },
+        },
+        {
+          src: 'src/generated/tokens/**/*.json',
+          dest: 'tokens',
+          rename: { stripBase: 3 },
+        },
       ],
     }),
     react({ jsxImportSource: '@emotion/react' }),
