@@ -32,7 +32,7 @@ export type DesignTokensColors = {
 
 export type DesignTokensColorsIcons = {
   [K in DesignTokensThemed]: K extends
-    | `echoes-color-icon-${string}`
+    | `echoes-color-icon-${string}` // NOSONAR
     | `echoes-severity-badge-colors-foreground-${string}-icon-${string}`
     | `echoes-logos-sonar-colors-brand`
     | `echoes-logos-colors-brand`
