@@ -1,6 +1,6 @@
 {
   "name": "@sonarsource/echoes-react",
-  "version": "5.3.0",
+  "version": "6.0.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/SonarSource/echoes-react"
@@ -20,7 +20,7 @@
     "access": "public"
   },
   "engines": {
-    "node": "20.19.0 || >=22.12.0"
+    "node": ">=24.21.0 <25"
   },
   "packageManager": "yarn@4.17.0",
   "scripts": {
@@ -28,7 +28,7 @@
     "jest": "jest",
     "test": "yarn test-ci && yarn validate-ci",
     "test-ci": "jest --collectCoverage --coverageDirectory=build-reports/coverage --workerIdleMemoryLimit=1G --maxWorkers=4",
-    "build": "vite build",
+    "build": "vite build && { [ \"${CI:-}\" != true ] || pinst --disable; }",
     "build-fonts": "node ./config/scripts/build-fonts.js",
     "create-icon": "node ./config/scripts/create-icon.js",
     "build-intl-keys": "formatjs extract 'src/components/**/*.ts*' 'src/common/components/**/*.ts*' --out-file i18n/keys.json",
@@ -49,9 +49,7 @@
     "ts-check-declarations": "tsc --noEmit false --emitDeclarationOnly --isolatedModules false --outFile ./build-reports/ts-declarations/all-declarations",
     "validate": "yarn ts-check && yarn format-check && yarn lint",
     "validate-ci": "yarn dep-check && yarn intl-keys-check && yarn tokens-check && yarn icons-check && yarn fonts-check && yarn ts-check && yarn format-check && yarn lint-report",
-    "postinstall": "patch-package",
-    "prepack": "node ./config/scripts/toggle-postinstall.js --disable",
-    "postpack": "node ./config/scripts/toggle-postinstall.js --enable"
+    "postinstall": "patch-package"
   },
   "peerDependencies": {
     "@emotion/react": "^11.0.0",
@@ -59,7 +57,7 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-intl": "^10.0.0",
-    "react-router-dom": "^6.0.0"
+    "react-router-dom": "^6.30.6"
   },
   "devDependencies": {
     "@babel/core": "7.29.7",
@@ -91,7 +89,7 @@
     "@types/eslint": "8.56.12",
     "@types/jest": "30.0.0",
     "@types/jest-axe": "3.5.9",
-    "@types/node": "20.19.43",
+    "@types/node": "24.19.0",
     "@types/react": "19.2.17",
     "@types/react-dom": "19.2.3",
     "@typescript-eslint/eslint-plugin": "8.66.0",
@@ -117,11 +115,12 @@
     "jest-axe": "10.0.0",
     "jest-environment-jsdom": "30.4.1",
     "patch-package": "8.0.1",
+    "pinst": "3.0.0",
     "prettier": "3.9.6",
     "react": "19.2.7",
     "react-dom": "19.2.7",
     "react-intl": "6.7.1",
-    "react-router-dom": "6.30.4",
+    "react-router-dom": "6.30.6",
     "rollup-plugin-license": "3.7.1",
     "sonarqube-scanner": "4.3.8",
     "storybook": "10.2.13",
@@ -154,7 +153,7 @@
   "resolutions": {
     "@radix-ui/react-compose-refs": "1.1.2",
     "ast-types": "0.16.1",
-    "axios": "1.18.0",
+    "axios": "1.20.0",
     "axe-core": "4.12.1"
   }
 }

@@ -17,6 +17,6 @@
   command = "yarn build-storybook"
 
   [build.environment]
-    NODE_VERSION = "22.21"
+    NODE_VERSION = "24.21.0"
     # renovate: datasource=github-release depName=yarn packageName=yarnpkg/berry
     YARN_VERSION = "4.17.0"
