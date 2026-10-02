@@ -94,7 +94,7 @@ export const IconLogo: StoryObj<IconLogoStoryArgs> = {
     },
     color: {
       control: { type: 'select' },
-      options: [undefined, 'echoes-logos-colors-brand'],
+      options: [undefined, 'echoes-logos-sonar-colors-brand'],
     },
     size: {
       control: { type: 'select' },
