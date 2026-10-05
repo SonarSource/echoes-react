@@ -20,8 +20,13 @@
 
 import { screen } from '@testing-library/react';
 import { renderWithMemoryRouter } from '~common/helpers/test-utils';
+import { useIsOverflow } from '~common/helpers/useIsOverflow';
 import { Table } from '..';
 import { IconEdit } from '../../icons';
+
+jest.mock('~common/helpers/useIsOverflow', () => ({
+  useIsOverflow: jest.fn().mockReturnValue([false]),
+}));
 
 it('should be accessible', () => {
   setupTable();
@@ -62,6 +67,47 @@ it('should handle sorting', async () => {
 
   expect(onSort).toHaveBeenCalledWith('1');
 });
+
+it('should not show a tooltip when truncated content is not actually overflowing', () => {
+  jest.mocked(useIsOverflow).mockReturnValueOnce([false]);
+
+  setupTruncatedCellText();
+
+  expect(screen.getByText('a very long value')).not.toHaveAttribute('tabindex');
+  expect(screen.queryByRole('tooltip')).not.toBeInTheDocument();
+});
+
+it('should reveal the full content in a tooltip when truncated content is overflowing', async () => {
+  jest.mocked(useIsOverflow).mockReturnValueOnce([true]);
+
+  const { user } = setupTruncatedCellText();
+
+  const truncatedContent = screen.getByText('a very long value');
+
+  expect(truncatedContent).toHaveAttribute('tabindex', '0');
+
+  await user.hover(truncatedContent);
+
+  expect(await screen.findByRole('tooltip')).toHaveTextContent('a very long value');
+});
+
+function setupTruncatedCellText() {
+  return renderWithMemoryRouter(
+    <Table ariaLabel="truncated table" gridTemplate="1fr">
+      <Table.Header>
+        <Table.Row>
+          <Table.ColumnHeaderCell label="col 1" />
+        </Table.Row>
+      </Table.Header>
+
+      <Table.Body>
+        <Table.Row>
+          <Table.CellText content="a very long value" isTruncated />
+        </Table.Row>
+      </Table.Body>
+    </Table>,
+  );
+}
 
 type RowType = [boolean, string, string, string];
 
