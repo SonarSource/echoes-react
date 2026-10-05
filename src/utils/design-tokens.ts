@@ -19,7 +19,6 @@
  */
 
 import { isStringDefined } from '~common/helpers/types';
-import designTokensBase from '~generated/design-tokens-base.json';
 import { DesignTokens, DesignTokensBase, WithoutEchoesPrefix } from '~types/design-tokens';
 
 export type EchoesDesignTokens = WithoutEchoesPrefix<DesignTokens>;
@@ -67,11 +66,14 @@ export function cssVar(
 export type EchoesBaseDesignTokens = WithoutEchoesPrefix<DesignTokensBase>;
 
 /**
- * Get the string value of a base Echoes design token.
+ * Get the computed value of a base Echoes design token from the loaded brand CSS.
  *
  * @param token - The design token to retrieve the value for.
  * @returns The value of the design token as a string.
  */
 export function designToken(token: EchoesBaseDesignTokens): string {
-  return designTokensBase[`echoes-${token}`].toString();
+  return globalThis
+    .getComputedStyle(document.documentElement)
+    .getPropertyValue(`--echoes-${token}`)
+    .trim();
 }

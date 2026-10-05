@@ -38,7 +38,7 @@ export function useLayoutSidebarState(
   const mediaQueryList = useMemo(
     () =>
       globalThis.matchMedia(
-        `(min-width: ${designToken('layout-sidebar-navigation-sizes-breakpoint-dockable')})`,
+        `(min-width: ${designToken('layout-sidebar-navigation-sizes-breakpoint-dockable') || '1320px'})`,
       ),
     [],
   );
