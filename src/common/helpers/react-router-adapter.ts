@@ -18,9 +18,12 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-export {
-  EchoesProvider,
-  EchoesProviderForTests,
-  type EchoesProviderForTestsProps,
-  type EchoesProviderProps,
-} from './EchoesProvider';
+// Dev-only: used by tests and Storybook. It must stay identical to the README recipe and must
+// never be imported by library code, react-router-dom is not a dependency of Echoes.
+import { Link, useLocation } from 'react-router-dom';
+import { type EchoesRouter } from '../../components/router/RouterTypes';
+
+export const reactRouterAdapter: EchoesRouter = {
+  Link,
+  usePathname: () => useLocation().pathname,
+};

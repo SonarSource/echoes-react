@@ -20,8 +20,7 @@
 
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { PropsWithChildren } from 'react';
-import { To } from 'react-router-dom';
-import { DropdownMenu } from '../../src';
+import { DropdownMenu, type LinkTo } from '../../src';
 import { basicWrapperDecorator } from '../helpers/BasicWrapper';
 import { MenuButton } from '../helpers/MenuButton';
 
@@ -166,7 +165,7 @@ export const Full: Story = {
   render,
 };
 
-function render({ children, ...args }: PropsWithChildren<{ to: To }>) {
+function render({ children, ...args }: PropsWithChildren<{ to: LinkTo }>) {
   return (
     <DropdownMenu
       isOpen

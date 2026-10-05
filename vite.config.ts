@@ -78,7 +78,14 @@ export default defineConfig({
     babel({ include: [/src\/.*\.[jt]sx?$/], plugins: ['@emotion/babel-plugin'] }),
     dts({
       entryRoot: 'src',
-      exclude: ['**/config/**', '**/stories/**', '**/__tests__/**', '**/*-stories.*'],
+      exclude: [
+        '**/config/**',
+        '**/stories/**',
+        '**/__tests__/**',
+        '**/*-stories.*',
+        '**/test-utils.*',
+        '**/react-router-adapter.*',
+      ],
     }),
   ],
   resolve: {
