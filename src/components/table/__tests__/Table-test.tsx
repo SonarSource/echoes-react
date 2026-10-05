@@ -18,11 +18,14 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+import { matchers } from '@emotion/jest';
 import { screen } from '@testing-library/react';
 import { renderWithMemoryRouter } from '~common/helpers/test-utils';
 import { useIsOverflow } from '~common/helpers/useIsOverflow';
 import { Table } from '..';
 import { IconEdit } from '../../icons';
+
+expect.extend(matchers);
 
 jest.mock('~common/helpers/useIsOverflow', () => ({
   useIsOverflow: jest.fn().mockReturnValue([false]),
@@ -66,6 +69,30 @@ it('should handle sorting', async () => {
   await user.click(screen.getByRole('button', { name: 'col 1' }));
 
   expect(onSort).toHaveBeenCalledWith('1');
+});
+
+it('should let cells and header cells wrap instead of overflowing the table by default', () => {
+  renderWithMemoryRouter(
+    <Table ariaLabel="wrapping table" gridTemplate="1fr">
+      <Table.Header>
+        <Table.Row>
+          <Table.ColumnHeaderCell label="col 1" />
+        </Table.Row>
+      </Table.Header>
+
+      <Table.Body>
+        <Table.Row>
+          <Table.Cell>a very long unbreakable value</Table.Cell>
+        </Table.Row>
+      </Table.Body>
+    </Table>,
+  );
+
+  expect(screen.getByRole('cell')).toHaveStyleRule('min-width', '0');
+  expect(screen.getByRole('cell')).toHaveStyleRule('overflow-wrap', 'anywhere');
+
+  expect(screen.getByRole('columnheader')).toHaveStyleRule('min-width', '0');
+  expect(screen.getByRole('columnheader')).toHaveStyleRule('overflow-wrap', 'anywhere');
 });
 
 it('should not show a tooltip when truncated content is not actually overflowing', () => {
