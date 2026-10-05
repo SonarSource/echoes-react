@@ -25,9 +25,21 @@ import { Toaster as ToastContainer } from 'sonner';
 import { PortalContext } from '~common/components/PortalContext';
 import { ToastGlobalStyles } from '~common/components/Toast';
 import { TooltipProvider, TooltipProviderProps, TypographyGlobalStyles } from '..';
+import { RouterContext } from '../router/RouterContext';
+import { EchoesRouter } from '../router/RouterTypes';
 import { SelectGlobalStyles } from '../select/SelectCommons';
 
 export interface EchoesProviderProps {
+  /**
+   * Router adapter used by links, buttons, breadcrumbs and navigation components to navigate and to
+   * detect the active route. Define it once at module scope so its reference stays stable.
+   * The value must not change during the provider's lifetime: switching between adapters, or
+   * between an adapter and `null`, changes the hooks called by Echoes components and makes React throw.
+   *
+   * Pass `null` when the app has no client-side router: links then render plain anchors, every
+   * navigation is a full page load, and the active route is read from `window.location`.
+   */
+  router: EchoesRouter | null;
   /**
    * Custom class name for all the toasts (optional).
    */
@@ -55,14 +67,21 @@ export interface EchoesProviderProps {
  *
  * It must be placed at the root of your application (or at least wrap all
  * components that use the Echoes design system). To ensure all Echoes components work properly,
- * the EchoesProvider should be placed inside the react-intl provider and react-router provider.
+ * the EchoesProvider should be placed inside the react-intl provider, and inside your router when
+ * the `router` adapter relies on its hooks.
  * Ideally, you should also wrap your application with a div that reset the [Stacking Context](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_positioned_layout/Understanding_z-index/Stacking_context)
  * for your app to ensure that tooltips and toasts from Echoes appear above the rest of the UI.
  *
  * **Usage**
  *
  * ```tsx
- * import { EchoesProvider } from '@sonarsource/echoes-react';
+ * import { EchoesProvider, type EchoesRouter } from '@sonarsource/echoes-react';
+ * import { Link, useLocation } from 'react-router-dom';
+ *
+ * const reactRouterAdapter: EchoesRouter = {
+ *   Link,
+ *   usePathname: () => useLocation().pathname,
+ * };
  *
  * function App() {
  *   return (
@@ -71,7 +90,7 @@ export interface EchoesProviderProps {
  *         createRoutesFromElements(
  *           <Route
  *             element={
- *               <EchoesProvider>
+ *               <EchoesProvider router={reactRouterAdapter}>
  *                 <ResetLayerStack>
  *                   <Outlet />
  *                 </ResetLayerStack>
@@ -88,7 +107,7 @@ export interface EchoesProviderProps {
  * ```
  */
 export function EchoesProvider(props: PropsWithChildren<EchoesProviderProps>) {
-  const { children, tooltipsDelayDuration, toastsClassName, toastsVisibleNb = 5 } = props;
+  const { children, router, tooltipsDelayDuration, toastsClassName, toastsVisibleNb = 5 } = props;
   const intl = useIntl();
   const [portalRef, setPortalRef] = useState<HTMLDivElement | null>(null);
 
@@ -98,7 +117,7 @@ export function EchoesProvider(props: PropsWithChildren<EchoesProviderProps>) {
   );
 
   return (
-    <>
+    <RouterContext.Provider value={router}>
       <TypographyGlobalStyles />
       <SelectGlobalStyles />
       <ToastGlobalStyles />
@@ -120,7 +139,7 @@ export function EchoesProvider(props: PropsWithChildren<EchoesProviderProps>) {
           visibleToasts={toastsVisibleNb}
         />
       </TooltipProvider>
-    </>
+    </RouterContext.Provider>
   );
 }
 
@@ -136,11 +155,11 @@ EchoesProvider.displayName = 'EchoesProvider';
  * It doesn't prevent tests using Modals to work fine.
  */
 export function EchoesProviderForTests(props: PropsWithChildren<EchoesProviderProps>) {
-  const { children, tooltipsDelayDuration, toastsClassName, toastsVisibleNb = 5 } = props;
+  const { children, router, tooltipsDelayDuration, toastsClassName, toastsVisibleNb = 5 } = props;
   const intl = useIntl();
 
   return (
-    <>
+    <RouterContext.Provider value={router}>
       <TypographyGlobalStyles />
       <SelectGlobalStyles />
       <ToastGlobalStyles />
@@ -158,7 +177,7 @@ export function EchoesProviderForTests(props: PropsWithChildren<EchoesProviderPr
           visibleToasts={toastsVisibleNb}
         />
       </TooltipProvider>
-    </>
+    </RouterContext.Provider>
   );
 }
 

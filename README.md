@@ -25,16 +25,15 @@ yarn add @sonarsource/echoes-react
 Echoes React has several peer dependencies that must be installed in your project:
 
 ```bash
-npm install @emotion/react @emotion/styled react-intl react-router-dom
+npm install @emotion/react @emotion/styled react-intl
 # or
-yarn add @emotion/react @emotion/styled react-intl react-router-dom
+yarn add @emotion/react @emotion/styled react-intl
 ```
 
 These dependencies are required for:
 
 - **@emotion/react & @emotion/styled**: CSS-in-JS styling
 - **react-intl**: Internationalization support
-- **react-router-dom**: Routing functionality for certain components (Links, Breadcrumbs, etc.)
 
 ## Usage
 
@@ -52,10 +51,50 @@ The `IntlProvider` from `react-intl` is necessary for translations. See [this pa
 The [i18n keys file](i18n/keys.json) contains the list of keys that should be translated and provided by your `IntlProvider`.
 Make sure to have the `IntlProvider` wrapping the `EchoesProvider`.
 
-#### Router Provider
+#### Router adapter
 
-The `BrowserRouter` (or other router) from `react-router-dom` is required for components that use routing functionality (such as Links, Breadcrumbs, etc.).
-Make sure to have the Router wrapping the `EchoesProvider`.
+Echoes does not depend on any router. Links, buttons with a `to`, breadcrumbs, dropdown menu links and navigation components use the router adapter you pass to the required `router` prop of `EchoesProvider`.
+
+An adapter is an object with two members:
+
+- `Link`: a component that renders an anchor and performs client-side navigation. It receives `to`, `state`, `reloadDocument`, `ref` and the regular anchor attributes.
+- `usePathname`: a hook returning the current pathname, without basename, search or hash. Echoes uses it to highlight the active navigation items.
+
+Define the adapter once at module scope so its reference stays stable. If the adapter relies on router hooks, `EchoesProvider` must be rendered inside your router.
+
+With **react-router-dom**:
+
+```tsx
+import { Link, useLocation } from 'react-router-dom';
+import type { EchoesRouter } from '@sonarsource/echoes-react';
+
+export const reactRouterAdapter: EchoesRouter = {
+  Link,
+  usePathname: () => useLocation().pathname,
+};
+```
+
+With **Next.js** (app router):
+
+```tsx
+import NextLink from 'next/link';
+import { usePathname } from 'next/navigation';
+import { toHref } from '@sonarsource/echoes-react';
+import type { EchoesRouter, EchoesRouterLinkProps } from '@sonarsource/echoes-react';
+
+function Link({ reloadDocument, state, to, ...props }: EchoesRouterLinkProps) {
+  // `toHref` serializes `to` and normalizes the `?` / `#` prefixes of `search` and `hash`.
+  const href = toHref(to);
+
+  return reloadDocument ? <a href={href} {...props} /> : <NextLink href={href} {...props} />;
+}
+
+export const nextRouterAdapter: EchoesRouter = { Link, usePathname };
+```
+
+Pass `router={null}` if your app has no client-side router: links render plain anchors, every navigation is a full page load, and the active route is read from `window.location`.
+
+Active navigation items are detected automatically only for absolute destinations (`/path` or `{ pathname: '/path' }`). For relative or search-only destinations, pass `isActive` explicitly.
 
 #### Stacking Context
 
@@ -74,12 +113,13 @@ position: relative;
 import { BrowserRouter } from 'react-router-dom';
 import { IntlProvider } from 'react-intl';
 import { EchoesProvider } from '@sonarsource/echoes-react';
+import { reactRouterAdapter } from './reactRouterAdapter';
 
 function App() {
   return (
     <IntlProvider locale="en" messages={messages}>
       <BrowserRouter>
-        <EchoesProvider>
+        <EchoesProvider router={reactRouterAdapter}>
           <div className="app-root" style={{ isolation: 'isolate', position: 'relative' }}>
             <YourAppRoot />
           </div>
@@ -214,7 +254,7 @@ If tooltips or other overlay components don't appear correctly, ensure you have 
 
 #### Router context errors
 
-If you encounter errors about missing router context when using Link components or other routing-related components, make sure you have wrapped your app with a Router provider from `react-router-dom` (e.g., `BrowserRouter`, `HashRouter`, or `MemoryRouter`).
+If your router adapter relies on router hooks (like `useLocation` from `react-router-dom`), `EchoesProvider` and every Echoes link must be rendered inside your router. In tests, wrap them in a test router (e.g. `MemoryRouter`), or pass `router={null}` to `EchoesProviderForTests` to get plain anchors.
 
 ## License
 
