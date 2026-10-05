@@ -26,6 +26,7 @@ import type { Preview } from '@storybook/react-vite';
 import { IntlProvider } from 'react-intl';
 import { MemoryRouter } from 'react-router-dom';
 import { EchoesProvider, Theme, cssVar } from '../src';
+import { reactRouterAdapter } from '../src/common/helpers/react-router-adapter';
 
 /**
  * This prevents emotion from complaining about SSR
@@ -277,7 +278,7 @@ const preview: Preview = {
         <CacheProvider value={emotionCache}>
           <IntlProvider defaultLocale="en-us" locale="en-us">
             <MemoryRouter future={{ v7_relativeSplatPath: true, v7_startTransition: true }}>
-              <EchoesProvider>
+              <EchoesProvider router={reactRouterAdapter}>
                 <Global styles={globalStyles} />
                 <ResetLayerStack>
                   <Story />

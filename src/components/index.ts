@@ -46,6 +46,7 @@ export * from './pagination';
 export * from './popover';
 export * from './promoted-section';
 export * from './radio-button-group';
+export * from './router';
 export * from './search-input';
 export * from './select';
 export * from './selection-cards';
