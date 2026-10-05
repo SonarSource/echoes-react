@@ -62,7 +62,6 @@ export const TableCellText = forwardRef<HTMLTableCellElement, TableCellTextProps
 
 TableCellText.displayName = 'TableCellText';
 
-/** @internal */
 function TableCellTruncatedText({ content }: Readonly<{ content: TextNode }>) {
   const contentRef = useRef<HTMLSpanElement>(null);
   const [isOverflow] = useIsOverflow(contentRef, [content]);
