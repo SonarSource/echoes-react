@@ -33,17 +33,11 @@ export interface TableCellTextProps {
   content: TextNode;
   description?: TextNode;
   icon?: ReactNode;
-  /**
-   * When true, the content is truncated to a single line with an ellipsis instead of wrapping
-   * onto several lines, and the full value is revealed in a tooltip when it's actually truncated.
-   * Use this when the row's height must stay stable; otherwise long content wraps by default.
-   * @defaultValue false
-   */
   isTruncated?: boolean;
 }
 
 export const TableCellText = forwardRef<HTMLTableCellElement, TableCellTextProps>((props, ref) => {
-  const { className, content, description, icon, isTruncated = false, ...radixProps } = props;
+  const { className, content, description, icon, isTruncated, ...radixProps } = props;
 
   return (
     <StyledTableCell
