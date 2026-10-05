@@ -18,8 +18,10 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import designTokensBase from '~generated/design-tokens-base.json';
-import designTokensThemed from '~generated/design-tokens-themed.json';
+// Token keys must be identical across brands (enforced by build-tokens validation).
+// Any brand works for type derivation.
+import designTokensBase from '~generated/tokens/sonar/base.json';
+import designTokensThemed from '~generated/tokens/sonar/themed.json';
 
 export type DesignTokensThemed = keyof typeof designTokensThemed;
 export type DesignTokensBase = keyof typeof designTokensBase;
