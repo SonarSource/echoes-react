@@ -18,8 +18,9 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import designTokensBase from '~generated/design-tokens-base.json';
-import designTokensThemed from '~generated/design-tokens-themed.json';
+// Token keys are identical across brands — any brand works for type derivation
+import designTokensBase from '~generated/tokens/sonar/base.json';
+import designTokensThemed from '~generated/tokens/sonar/themed.json';
 
 export type DesignTokensThemed = keyof typeof designTokensThemed;
 export type DesignTokensBase = keyof typeof designTokensBase;
@@ -32,8 +33,9 @@ export type DesignTokensColors = {
 
 export type DesignTokensColorsIcons = {
   [K in DesignTokensThemed]: K extends
-    | `echoes-color-icon-${string}`
+    | `echoes-color-icon-${string}` // NOSONAR
     | `echoes-severity-badge-colors-foreground-${string}-icon-${string}`
+    | `echoes-logos-sonar-colors-brand`
     | `echoes-logos-colors-brand`
     ? K
     : never;
