@@ -31,6 +31,29 @@
   },
   "overrides": [
     {
+      // react-router-dom is a dev dependency only: library code must go through the router adapter
+      "files": ["src/**"],
+      "excludedFiles": [
+        "src/common/helpers/react-router-adapter.ts",
+        "**/test-utils.tsx",
+        "**/test-utils/**",
+        "**/__tests__/**"
+      ],
+      "rules": {
+        "no-restricted-imports": [
+          "error",
+          {
+            "paths": [
+              {
+                "name": "react-router-dom",
+                "message": "Echoes must not depend on react-router-dom, use RouterLink and usePathname from src/components/router/RouterContext instead."
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
       "files": ["*-stories.tsx", "vite.config.ts"],
       "rules": {
         "import/no-default-export": "off"

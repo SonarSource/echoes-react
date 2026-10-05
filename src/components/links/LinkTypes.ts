@@ -19,11 +19,11 @@
  */
 
 import { CSSProperties, MouseEvent, ReactNode } from 'react';
-import { LinkProps as RouterLinkProps } from 'react-router-dom';
 import { ButtonBaseProps } from '../buttons/ButtonTypes';
+import { EchoesRouterLinkProps } from '../router/RouterTypes';
 
-type RouterNavLinkPropsSubset = Pick<
-  RouterLinkProps,
+type RouterLinkPropsSubset = Pick<
+  EchoesRouterLinkProps,
   'download' | 'reloadDocument' | 'state' | 'to'
 >;
 
@@ -46,7 +46,7 @@ interface LinkCommonProps {
   title?: string;
 }
 
-export interface LinkBaseProps extends LinkCommonProps, RouterNavLinkPropsSubset {
+export interface LinkBaseProps extends LinkCommonProps, RouterLinkPropsSubset {
   enableOpenInNewTab?: boolean;
 }
 
@@ -55,7 +55,7 @@ interface LinkAsLinkProps extends LinkBaseProps {
 }
 
 type LinkPropsForbiddenForButton = {
-  [K in keyof RouterNavLinkPropsSubset]?: never;
+  [K in keyof RouterLinkPropsSubset]?: never;
 } & { enableOpenInNewTab?: never };
 
 interface LinkAsButtonProps extends LinkCommonProps, LinkPropsForbiddenForButton {
