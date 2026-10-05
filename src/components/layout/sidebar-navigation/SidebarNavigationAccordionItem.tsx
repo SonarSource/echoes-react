@@ -21,21 +21,20 @@
 import styled from '@emotion/styled';
 
 import { ReactNode, Ref, useEffect, useId, useRef } from 'react';
+import { isDefined } from '~common/helpers/types';
 import { TextNode } from '~types/utils';
 import { cssVar } from '~utils/design-tokens';
 import { IconChevronDown, IconChevronRight } from '../../icons';
 import { Tooltip } from '../../tooltip';
-
+import { SidebarNavigationAccordionContext } from './SidebarNavigationAccordionContext';
 import {
   sidebarNavigationBaseItemStyles,
   sidebarNavigationItemIconStyles,
   SidebarNavigationItemLabel,
 } from './SidebarNavigationItemStyles';
-
-import { SidebarNavigationAccordionContext } from './SidebarNavigationAccordionContext';
 import { SidebarNavigationIconComponent } from './SidebarNavigationTypes';
-import { TOOLTIP_DELAY_IN_MS } from './utils';
 import { useSidebarNavigationAccordionState } from './useSidebarNavigationAccordionState';
+import { TOOLTIP_DELAY_IN_MS } from './utils';
 
 interface SidebarNavigationAccordionItemCommonProps {
   /**
@@ -59,10 +58,10 @@ interface SidebarNavigationAccordionItemCommonProps {
    */
   disableTooltip?: boolean;
   /**
-   * The icon component to display at the start of the SidebarNavigationAccordionItem.
+   * Optional icon component to display at the start of the SidebarNavigationAccordionItem.
    * Must be an Echoes Icon component.
    */
-  Icon: SidebarNavigationIconComponent;
+  Icon?: SidebarNavigationIconComponent;
   /**
    * The label for the SidebarNavigationAccordionItem.
    */
@@ -183,7 +182,7 @@ export function SidebarNavigationAccordionItem(
           onClick={handleToggle}
           ref={ref}
           type="button">
-          <Icon css={sidebarNavigationItemIconStyles} isFilled={false} />
+          {isDefined(Icon) && <Icon css={sidebarNavigationItemIconStyles} isFilled={false} />}
 
           <SidebarNavigationItemLabel>{label}</SidebarNavigationItemLabel>
 
@@ -234,7 +233,7 @@ const AccordionItem = styled.button`
   ${sidebarNavigationBaseItemStyles}
 
   &:active {
-    background-color: ${cssVar('sidebar-navigation-item-colors-background-active')};
+    background-color: ${cssVar('navigation-item-colors-background-pressed')};
   }
 `;
 
@@ -244,7 +243,7 @@ const AccordionItemPanel = styled.section`
   margin-left: ${cssVar('dimension-space-200')};
   padding-left: ${cssVar('dimension-space-100')};
   padding-right: ${cssVar('dimension-space-100')};
-  border-left: ${cssVar('border-width-default')} solid ${cssVar('color-border-weak')};
+  border-left: ${cssVar('border-width-default')} solid ${cssVar('issue-row-colors-border')};
 
   // The children SidebarNavigationItems rely on this css property to set their display value,
   // falling back to flex if not inside an accordion

@@ -27,10 +27,10 @@ import {
 
 export interface SidebarNavigationItemProps extends SidebarNavigationItemBaseProps {
   /**
-   * The icon component to display at the start of the SidebarNavigationItem.
+   * Optional icon component to display at the start of the SidebarNavigationItem.
    * Must be an Echoes Icon component.
    */
-  Icon: SidebarNavigationIconComponent;
+  Icon?: SidebarNavigationIconComponent;
 }
 
 export function SidebarNavigationItem(props: Readonly<SidebarNavigationItemProps>) {

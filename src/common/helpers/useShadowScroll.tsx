@@ -103,6 +103,6 @@ export const TopShadowScroll = styled.div`
   top: -2px;
   height: 2px;
 
-  box-shadow: ${cssVar('box-shadow-small')};
+  box-shadow: ${cssVar('shadow-attached')};
 `;
 TopShadowScroll.displayName = 'TopShadowScroll';

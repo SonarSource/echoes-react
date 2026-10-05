@@ -22,9 +22,11 @@ import createCache from '@emotion/cache';
 import { CacheProvider, Global, css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { withThemeByDataAttribute } from '@storybook/addon-themes';
-import type { Preview } from '@storybook/react-vite';
+import type { Decorator, Preview } from '@storybook/react-vite';
+import { useEffect } from 'react';
 import { IntlProvider } from 'react-intl';
 import { MemoryRouter } from 'react-router-dom';
+import { useGlobals } from 'storybook/preview-api';
 import { EchoesProvider, Theme, cssVar } from '../src';
 
 /**
@@ -244,7 +246,7 @@ const preview: Preview = {
       // sort the stories based on name
       storySort: {
         method: 'alphabetical',
-        order: ['Design Tokens', 'Components'],
+        order: ['Playground', 'Design Tokens', 'Components'],
       },
     },
     backgrounds: {
@@ -265,6 +267,30 @@ const preview: Preview = {
       codePanel: true,
     },
   },
+  globalTypes: {
+    actionStrategy: {
+      description: 'Temporary primary-action mapping used for product testing',
+      defaultValue: 'neutral-action',
+      toolbar: {
+        icon: 'contrast',
+        items: [
+          { value: 'neutral-action', title: 'Neutral action' },
+          { value: 'accent-action', title: 'Accent action' },
+        ],
+      },
+    },
+    surfaceLayout: {
+      description: 'Temporary shell-surface comparison used for product testing',
+      defaultValue: 'gray-sidebar',
+      toolbar: {
+        icon: 'paintbrush',
+        items: [
+          { value: 'gray-sidebar', title: 'Gray sidebar' },
+          { value: 'gray-canvas', title: 'Gray canvas' },
+        ],
+      },
+    },
+  },
   decorators: [
     withThemeByDataAttribute({
       themes: Object.fromEntries(Object.entries<string>(Theme)),
@@ -272,25 +298,79 @@ const preview: Preview = {
       attributeName: 'data-echoes-theme',
       parentSelector: 'html',
     }),
-    (Story) => {
-      return (
-        <CacheProvider value={emotionCache}>
-          <IntlProvider defaultLocale="en-us" locale="en-us">
-            <MemoryRouter future={{ v7_relativeSplatPath: true, v7_startTransition: true }}>
-              <EchoesProvider>
-                <Global styles={globalStyles} />
-                <ResetLayerStack>
-                  <Story />
-                </ResetLayerStack>
-              </EchoesProvider>
-            </MemoryRouter>
-          </IntlProvider>
-        </CacheProvider>
-      );
-    },
+    EchoesPreviewDecorator,
   ],
   tags: ['autodocs'],
 };
+
+type DecoratorParameters = Parameters<Decorator>;
+
+function EchoesPreviewDecorator(...[Story, context]: DecoratorParameters) {
+  const [globals, updateGlobals] = useGlobals();
+
+  useEffect(() => {
+    function toggleTheme(event: KeyboardEvent) {
+      if (
+        event.key.toLowerCase() !== 'd' ||
+        event.altKey ||
+        event.ctrlKey ||
+        event.metaKey ||
+        event.shiftKey ||
+        event.repeat ||
+        isEditableTarget(event.target)
+      ) {
+        return;
+      }
+
+      event.preventDefault();
+      updateGlobals({ theme: globals.theme === Theme.dark ? Theme.light : Theme.dark });
+    }
+
+    const shortcutWindows = new Set([window, window.parent]);
+
+    shortcutWindows.forEach((shortcutWindow) =>
+      shortcutWindow.addEventListener('keydown', toggleTheme),
+    );
+
+    return () => {
+      shortcutWindows.forEach((shortcutWindow) =>
+        shortcutWindow.removeEventListener('keydown', toggleTheme),
+      );
+    };
+  }, [globals.theme, updateGlobals]);
+
+  return (
+    <CacheProvider value={emotionCache}>
+      <IntlProvider defaultLocale="en-us" locale="en-us">
+        <MemoryRouter future={{ v7_relativeSplatPath: true, v7_startTransition: true }}>
+          <EchoesProvider>
+            <Global styles={globalStyles} />
+            <ExperimentScope
+              data-echoes-action-strategy={context.globals.actionStrategy}
+              data-echoes-surface-layout={context.globals.surfaceLayout}>
+              <ResetLayerStack>
+                <Story />
+              </ResetLayerStack>
+            </ExperimentScope>
+          </EchoesProvider>
+        </MemoryRouter>
+      </IntlProvider>
+    </CacheProvider>
+  );
+}
+
+function isEditableTarget(target: EventTarget | null) {
+  const element = target as HTMLElement | null;
+  const tagName = element?.tagName?.toLowerCase();
+
+  return (
+    element?.isContentEditable === true ||
+    tagName === 'input' ||
+    tagName === 'textarea' ||
+    tagName === 'select' ||
+    Boolean(element?.closest?.('[contenteditable="true"]'))
+  );
+}
 
 /*
  * This ensures tooltips and other "floating" elements appended to the body are placed on top
@@ -299,6 +379,27 @@ const preview: Preview = {
 const ResetLayerStack = styled.div`
   isolation: isolate;
   position: relative;
+`;
+
+const ExperimentScope = styled.div`
+  min-height: 100%;
+
+  &[data-echoes-action-strategy='accent-action'] {
+    --echoes-color-action-primary-default: var(--echoes-color-feature-solid-default);
+    --echoes-color-action-primary-hover: var(--echoes-color-feature-solid-hover);
+    --echoes-color-action-primary-pressed: var(--echoes-color-feature-solid-pressed);
+    --echoes-color-action-link-default: var(--echoes-color-feature-foreground);
+    --echoes-color-action-link-hover: var(--echoes-color-feature-solid-pressed);
+
+    /* Style Dictionary resolves component aliases to final values. Keep the temporary
+       Storybook comparison in sync by overriding the dependent component variables too. */
+    --echoes-button-colors-background-primary-default: var(--echoes-color-feature-solid-default);
+    --echoes-button-colors-background-primary-hover: var(--echoes-color-feature-solid-hover);
+    --echoes-button-colors-background-primary-pressed: var(--echoes-color-feature-solid-pressed);
+    --echoes-button-colors-background-primary-focus: var(--echoes-color-feature-solid-default);
+    --echoes-link-colors-action-default: var(--echoes-color-feature-foreground);
+    --echoes-link-colors-action-hover: var(--echoes-color-feature-solid-pressed);
+  }
 `;
 
 export default preview;

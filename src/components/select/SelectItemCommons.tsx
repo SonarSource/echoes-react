@@ -75,8 +75,8 @@ const SelectItemWrapper = styled.div`
       ${cssVar('dimension-space-150')};
 
     font: ${cssVar('typography-text-small-medium')};
-    color: ${cssVar('color-text-default')};
-    background-color: ${cssVar('color-surface-default')};
+    color: ${cssVar('navigation-item-colors-foreground-default')};
+    background-color: ${cssVar('navigation-item-colors-background-default')};
 
     border: ${cssVar('focus-border-width-default')} solid transparent;
     border-radius: ${cssVar('border-radius-none')};
@@ -86,18 +86,18 @@ const SelectItemWrapper = styled.div`
 
   .echoes-select-option:not([data-combobox-disabled]):hover &,
   .echoes-select-option:not([data-combobox-disabled])[data-combobox-selected] & {
-    background-color: ${cssVar('color-surface-hover')};
+    background-color: ${cssVar('navigation-item-colors-background-hover')};
   }
   .echoes-select-option:not([data-combobox-disabled])[data-combobox-active] & {
-    background-color: ${cssVar('color-background-selected-weak-default')};
+    background-color: ${cssVar('navigation-item-colors-background-selected')};
   }
   .echoes-select-option:not([data-combobox-disabled])[data-combobox-active]:hover &,
   .echoes-select-option:not([data-combobox-disabled])[data-combobox-active][data-combobox-selected]
     & {
-    background-color: ${cssVar('color-background-selected-weak-hover')};
+    background-color: ${cssVar('navigation-item-colors-background-selected-hover')};
   }
   .echoes-select-option[data-combobox-disabled] & {
-    color: ${cssVar('color-text-disabled')};
+    color: ${cssVar('navigation-item-colors-foreground-disabled')};
     cursor: default;
   }
 `;
@@ -117,10 +117,10 @@ SelectItemInner.displayName = 'SelectItemInner';
 // Help text below the select item label
 const SelectItemHelpText = styled.span`
   font: ${cssVar('typography-others-helper-text')};
-  color: ${cssVar('color-text-subtle')};
+  color: ${cssVar('navigation-item-colors-foreground-subtle')};
 
   .echoes-select-option[data-combobox-disabled] & {
-    color: ${cssVar('color-text-disabled')};
+    color: ${cssVar('navigation-item-colors-foreground-disabled')};
   }
 `;
 SelectItemHelpText.displayName = 'SelectItemHelpText';
@@ -148,10 +148,10 @@ const SelectItemStatusStyled = styled.div`
   min-width: ${cssVar('dimension-width-250')};
 
   font: ${cssVar('typography-text-small-medium')};
-  color: ${cssVar('color-icon-selected')};
+  color: ${cssVar('navigation-item-colors-foreground-selected')};
 
   .echoes-select-option[data-combobox-disabled] & {
-    color: ${cssVar('color-icon-disabled')};
+    color: ${cssVar('navigation-item-colors-foreground-disabled')};
   }
 `;
 SelectItemStatusStyled.displayName = 'SelectItemStatusStyled';
@@ -164,13 +164,13 @@ const SelectItemStatusRadio = styled.div`
   min-width: ${cssVar('dimension-width-200')};
   padding: 0;
 
-  background-color: ${cssVar('color-surface-default')};
-  border: ${cssVar('border-width-default')} solid ${cssVar('color-border-bolder')};
+  background-color: ${cssVar('radio-button-colors-background-default')};
+  border: ${cssVar('border-width-default')} solid ${cssVar('radio-button-colors-border-default')};
   border-radius: ${cssVar('border-radius-full')};
 
   &[data-selected] {
-    border-color: ${cssVar('color-border-accent-default')};
-    background-color: ${cssVar('color-background-accent-default')};
+    border-color: ${cssVar('radio-button-colors-background-selected')};
+    background-color: ${cssVar('radio-button-colors-background-selected')};
 
     &::after {
       content: '';
@@ -179,20 +179,20 @@ const SelectItemStatusRadio = styled.div`
       height: 100%;
       width: 100%;
 
-      background-color: ${cssVar('color-icon-on-color')};
-      border: 0.25rem solid ${cssVar('color-border-accent-default')};
+      background-color: ${cssVar('radio-button-colors-foreground-selected')};
+      border: 0.25rem solid ${cssVar('radio-button-colors-background-selected')};
       border-radius: ${cssVar('border-radius-full')};
     }
   }
 
   .echoes-select-option[data-combobox-disabled] & {
-    background-color: ${cssVar('color-surface-disabled')};
-    border-color: ${cssVar('color-border-disabled')};
+    background-color: ${cssVar('radio-button-colors-background-disabled')};
+    border-color: ${cssVar('radio-button-colors-border-disabled')};
     border-width: ${cssVar('border-width-default')};
 
     &[data-selected]::after {
-      background-color: ${cssVar('color-icon-disabled')};
-      border-color: ${cssVar('color-surface-disabled')};
+      background-color: ${cssVar('radio-button-colors-foreground-disabled')};
+      border-color: ${cssVar('radio-button-colors-background-disabled')};
     }
   }
 `;

@@ -20,10 +20,10 @@
 
 import '@testing-library/jest-dom';
 import { screen } from '@testing-library/react';
-import { useEffect, useState } from 'react';
+import { forwardRef, useEffect, useState } from 'react';
 import { MemoryRouter, Route, Routes, useNavigate } from 'react-router-dom';
 import { render, renderWithMemoryRouter } from '~common/helpers/test-utils';
-import { IconBranch, IconExpand } from '../../../icons';
+import { IconBranch, IconExpand, IconFilledProps } from '../../../icons';
 import { SidebarNavigationAccordionChildItem } from '../SidebarNavigationAccordionChildItem';
 
 import {
@@ -170,7 +170,7 @@ function createSidebarNavigationAccordionItem(
 ) {
   return (
     <ul>
-      <SidebarNavigationAccordionItem Icon={IconExpand} label="Accordion Item" {...props}>
+      <SidebarNavigationAccordionItem Icon={TestLeadingIcon} label="Accordion Item" {...props}>
         {props.children ?? getDefaultSidebarNavigationAccordionChildren()}
       </SidebarNavigationAccordionItem>
     </ul>
@@ -213,3 +213,9 @@ function getDefaultSidebarNavigationAccordionChildren() {
     </>
   );
 }
+
+const TestLeadingIcon = forwardRef<HTMLSpanElement, IconFilledProps>(({ className }, ref) => (
+  <span className={className} data-testid="sidebar-navigation-leading-icon" ref={ref} />
+));
+
+TestLeadingIcon.displayName = 'TestLeadingIcon';

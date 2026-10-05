@@ -39,17 +39,18 @@ export const sidebarNavigationBaseItemStyles = css`
 
   flex-shrink: 0;
 
-  color: ${cssVar('color-text-default')};
+  color: ${cssVar('navigation-item-colors-foreground-default')};
   font: ${cssVar('typography-text-default-regular')};
 
   cursor: pointer;
 
   &:hover {
-    background-color: ${cssVar('sidebar-navigation-item-colors-background-hover')};
+    background-color: ${cssVar('navigation-item-colors-background-hover')};
   }
 
   &:focus-visible {
-    outline: ${cssVar('color-focus-default')} solid ${cssVar('focus-border-width-default')};
+    outline: ${cssVar('navigation-item-colors-focus-ring')} solid
+      ${cssVar('focus-border-width-default')};
     outline-offset: ${cssVar('focus-border-offset-default')};
     border-radius: ${cssVar('border-radius-400')};
   }
@@ -63,7 +64,7 @@ export const SidebarNavigationItemLabel = styled.span`
 SidebarNavigationItemLabel.displayName = 'SidebarNavigationItemLabel';
 
 export const sidebarNavigationItemIconStyles = css`
-  color: ${cssVar('color-icon-subtle')};
+  color: ${cssVar('navigation-item-colors-foreground-default')};
   font-size: ${cssVar('font-size-30')};
 `;
 

@@ -91,7 +91,7 @@ const SidebarNavigationGroupLabel = styled.div`
   display: flex;
   align-items: center;
   height: ${cssVar('dimension-height-800')};
-  padding: 0 ${cssVar('dimension-space-100')};
+  padding: 0 ${cssVar('dimension-space-75')};
   white-space: nowrap;
 `;
 
