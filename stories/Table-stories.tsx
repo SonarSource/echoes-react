@@ -62,7 +62,7 @@ const DATA = [
   {
     name: 'Michelangelo',
     email: 'mikey@sewers.nyc',
-    weapon: 'Nunchaku',
+    weapon: 'Nunchaku-of-radical-shell-shocking-pizza-powered-ninjutsu-mastery',
     age: '13',
     badge: BadgeVariety.Warning,
   },
@@ -231,6 +231,7 @@ function StateManager(props: TableProps) {
             <Table.CellText
               content={turtle.weapon}
               icon={<IconWarning color="echoes-color-icon-emphasis" />}
+              isTruncated
             />
             <Table.CellNumber content={turtle.age} description={turtle.ageDescription} />
 
