@@ -390,6 +390,7 @@ const MORE_FILTER_CATEGORIES = [
     id: 'duplications',
   },
   {
+    id: 'analysis',
     isMultiSelect: true,
     items: [
       { label: 'Last 7 days', value: 'analysis:last-7-days' },
@@ -397,7 +398,6 @@ const MORE_FILTER_CATEGORIES = [
       { label: 'Older than 30 days', value: 'analysis:older' },
     ],
     label: 'Last analysis',
-    id: 'last-analysis',
   },
 ];
 
@@ -409,6 +409,14 @@ const FILTER_LABELS = new Map(
 
 const FILTER_REFERENCE_DATE = Date.parse('20 Aug 2026, 23:59');
 const MILLISECONDS_PER_DAY = 24 * 60 * 60 * 1000;
+
+function getSelectedFilterValues(filters: FilterDropdownSelectedValues, categoryId: string) {
+  const filterPrefix = `${categoryId}:`;
+
+  return (filters[categoryId] ?? []).map((value) =>
+    value.startsWith(filterPrefix) ? value.slice(filterPrefix.length) : value,
+  );
+}
 
 function matchesRatingFilter(selectedRatings: string[], rating: `${RatingBadgeRating}`) {
   return selectedRatings.length === 0 || selectedRatings.includes(rating);
@@ -736,13 +744,13 @@ function ProjectsPage() {
 
   const projects = useMemo(() => {
     const normalizedQuery = query.trim().toLocaleLowerCase();
-    const securityFilters = moreFilters['security'];
-    const reliabilityFilters = moreFilters['reliability'];
-    const maintainabilityFilters = moreFilters['maintainability'];
-    const dependencyFilters = moreFilters['dependency'];
-    const coverageFilters = moreFilters['coverage'];
-    const duplicationsFilters = moreFilters['duplications'];
-    const analysisFilters = moreFilters['analysis'];
+    const securityFilters = getSelectedFilterValues(moreFilters, 'security');
+    const reliabilityFilters = getSelectedFilterValues(moreFilters, 'reliability');
+    const maintainabilityFilters = getSelectedFilterValues(moreFilters, 'maintainability');
+    const dependencyFilters = getSelectedFilterValues(moreFilters, 'dependency');
+    const coverageFilters = getSelectedFilterValues(moreFilters, 'coverage');
+    const duplicationsFilters = getSelectedFilterValues(moreFilters, 'duplications');
+    const analysisFilters = getSelectedFilterValues(moreFilters, 'analysis');
 
     const perspectiveProjects = perspective === 'new' ? PROJECTS.map(getNewCodeProject) : PROJECTS;
 
@@ -794,6 +802,23 @@ function ProjectsPage() {
     if (value === 'new' || value === 'overall') {
       setPerspective(value);
     }
+  }
+
+  function dismissMoreFilter(categoryId: string, value: string) {
+    setMoreFilters((current) => {
+      const remainingValues = (current[categoryId] ?? []).filter(
+        (filterValue) => filterValue !== value,
+      );
+      const next = { ...current };
+
+      if (remainingValues.length > 0) {
+        next[categoryId] = remainingValues;
+      } else {
+        delete next[categoryId];
+      }
+
+      return next;
+    });
   }
 
   return (
@@ -865,8 +890,8 @@ function ProjectsPage() {
                   onClear={() => setMoreFilters({})}
                   selectedValues={moreFilters}>
                   <FilterDropdownTrigger
-                    selectedCount={Object.keys(moreFilters).reduce(
-                      (count, catKey) => count + moreFilters[catKey].length,
+                    selectedCount={Object.values(moreFilters).reduce(
+                      (count, values) => count + values.length,
                       0,
                     )}
                     size={ButtonSize.Large}>
@@ -875,29 +900,15 @@ function ProjectsPage() {
                 </FilterDropdown>
               </>
             }
-            filterTags={Object.keys(moreFilters).map((catKey) => (
-              <>
-                {moreFilters[catKey].map((value) => (
-                  <FilterTag
-                    key={value}
-                    onDismiss={() =>
-                      setMoreFilters((current) => {
-                        const updatedCatValues = current[catKey].filter((v) => v !== value);
-
-                        if (updatedCatValues.length > 0) {
-                          current[catKey] = updatedCatValues;
-                        } else {
-                          delete current[catKey];
-                        }
-
-                        return { ...current };
-                      })
-                    }>
-                    {FILTER_LABELS.get(value) ?? value}
-                  </FilterTag>
-                ))}
-              </>
-            ))}
+            filterTags={Object.entries(moreFilters).flatMap(([categoryId, values]) =>
+              values.map((value) => (
+                <FilterTag
+                  key={`${categoryId}:${value}`}
+                  onDismiss={() => dismissMoreFilter(categoryId, value)}>
+                  {FILTER_LABELS.get(value) ?? value}
+                </FilterTag>
+              )),
+            )}
             onClearAll={() => setMoreFilters({})}
             searchInput={
               <SearchInput
