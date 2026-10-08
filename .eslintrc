@@ -15,6 +15,7 @@
     // Custom Echoes react config that differs from eslint-config-sonarqube
     "camelcase": "off",
     "no-implicit-coercion": [2, { "boolean": true, "number": true, "string": true }],
+    "import/extensions": ["error", "never", { "json": "always", "md": "always", "css": "always" }],
     "import/no-default-export": "error",
     "react/jsx-sort-props": "error",
     "react/jsx-pascal-case": [2, { "allowNamespace": true }],

@@ -169,18 +169,13 @@ yarn build-fonts
 
 Our raw design tokens files that are created on Figma are stored inside the `design-tokens/tokens` folder. We can't use these tokens as is, so we transform them using `style-dictionary` to css variable format and store them in the `src/generated` folder. We also generate a few other files to help us with typings.
 
-There can be multiple _brands_ representing the first layer of tokens. Only one brand can be built.
+There can be multiple _brands_ representing the first layer of tokens. All brands are built automatically.
 
-If new design tokens are added to the raw Figma file, we must run the following command to generate the new design tokens css variables for a given brand:
+If new design tokens are added to the raw Figma file, we must run the following command to generate the new design tokens css variables for all brands:
 
 ```bash
-yarn build-tokens --brand=Brand-A
+yarn build-tokens
 ```
-
-> **important**
->
-> [build.yml](.github/workflows/build.yml) must also be updated so that it defines the correct `DESIGN_TOKEN_BRAND` env variable (_Build, Test, Analyze and deploy_ step of the workflow).
-> Otherwise, the validation script will fail on the CI.
 
 #### Generated i18n keys file
 

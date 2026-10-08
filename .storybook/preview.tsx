@@ -232,6 +232,22 @@ const globalStyles = css`
 `;
 
 const preview: Preview = {
+  globalTypes: {
+    brand: {
+      description: 'Brand theme (CSS token set)',
+      toolbar: {
+        icon: 'paintbrush',
+        items: [
+          { value: 'sonar', title: 'Sonar' },
+          { value: 'gitar', title: 'Gitar' },
+        ],
+        dynamicTitle: true,
+      },
+    },
+  },
+  initialGlobals: {
+    brand: 'sonar',
+  },
   parameters: {
     actions: { argTypesRegex: '^on[A-Z].*' },
     controls: {
@@ -272,12 +288,29 @@ const preview: Preview = {
       attributeName: 'data-echoes-theme',
       parentSelector: 'html',
     }),
-    (Story) => {
+    (Story, context) => {
+      const brand = (context.globals.brand as string) ?? 'sonar';
+
+      // Reload the iframe when the brand changes so the new CSS import takes effect cleanly.
+      const customWindow = window as unknown as Record<string, unknown>;
+
+      const prev = customWindow.__ECHOES_BRAND__ as string | undefined;
+      if (prev != null && prev !== brand) {
+        customWindow.__ECHOES_BRAND__ = brand;
+        window.location.reload();
+      }
+      customWindow.__ECHOES_BRAND__ = brand;
+
+      return <Story />;
+    },
+    (Story, context) => {
+      const brand = (context.globals.brand as 'sonar' | 'gitar') ?? 'sonar';
+
       return (
         <CacheProvider value={emotionCache}>
           <IntlProvider defaultLocale="en-us" locale="en-us">
             <MemoryRouter future={{ v7_relativeSplatPath: true, v7_startTransition: true }}>
-              <EchoesProvider>
+              <EchoesProvider brand={brand}>
                 <Global styles={globalStyles} />
                 <ResetLayerStack>
                   <Story />

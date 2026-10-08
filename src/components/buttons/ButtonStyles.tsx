@@ -110,7 +110,7 @@ export const SpinnerButton = styled(SpinnerOverrideColor)`
   margin-right: ${cssVar('dimension-space-75')};
 `;
 
-export const BUTTON_VARIETY_STYLES = {
+export const BUTTON_VARIETY_STYLES: Record<ButtonVariety, Record<string, string>> = {
   [ButtonVariety.Default]: {
     '--button-color': cssVar('color-text-default'),
     '--button-border': `${cssVar('color-border-bold')} solid ${cssVar('border-width-default')}`,
