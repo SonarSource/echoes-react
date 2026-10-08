@@ -19,15 +19,24 @@
  */
 
 import { HeadlessMantineProvider } from '@mantine/core';
-import { PropsWithChildren, useMemo, useState } from 'react';
+import { PropsWithChildren, useEffect, useMemo, useState } from 'react';
 import { useIntl } from 'react-intl';
 import { Toaster as ToastContainer } from 'sonner';
 import { PortalContext } from '~common/components/PortalContext';
 import { ToastGlobalStyles } from '~common/components/Toast';
+import { designToken } from '~utils/design-tokens';
 import { TooltipProvider, TooltipProviderProps, TypographyGlobalStyles } from '..';
 import { SelectGlobalStyles } from '../select/SelectCommons';
 
 export interface EchoesProviderProps {
+  /**
+   * The brand whose design tokens (CSS custom properties) should be loaded.
+   * When the provider mounts, it checks whether the tokens are already present
+   * on the page; if not, it dynamically imports the corresponding stylesheet.
+   *
+   * @defaultValue "sonar"
+   */
+  brand?: 'gitar' | 'sonar';
   /**
    * Custom class name for all the toasts (optional).
    */
@@ -88,9 +97,17 @@ export interface EchoesProviderProps {
  * ```
  */
 export function EchoesProvider(props: PropsWithChildren<EchoesProviderProps>) {
-  const { children, tooltipsDelayDuration, toastsClassName, toastsVisibleNb = 5 } = props;
+  const {
+    brand = 'sonar',
+    children,
+    tooltipsDelayDuration,
+    toastsClassName,
+    toastsVisibleNb = 5,
+  } = props;
   const intl = useIntl();
   const [portalRef, setPortalRef] = useState<HTMLDivElement | null>(null);
+
+  useBrandStyles(brand);
 
   const modalContextProviderValue = useMemo(
     () => ({ portalReference: portalRef ?? undefined }),
@@ -136,8 +153,16 @@ EchoesProvider.displayName = 'EchoesProvider';
  * It doesn't prevent tests using Modals to work fine.
  */
 export function EchoesProviderForTests(props: PropsWithChildren<EchoesProviderProps>) {
-  const { children, tooltipsDelayDuration, toastsClassName, toastsVisibleNb = 5 } = props;
+  const {
+    brand = 'sonar',
+    children,
+    tooltipsDelayDuration,
+    toastsClassName,
+    toastsVisibleNb = 5,
+  } = props;
   const intl = useIntl();
+
+  useBrandStyles(brand);
 
   return (
     <>
@@ -163,3 +188,18 @@ export function EchoesProviderForTests(props: PropsWithChildren<EchoesProviderPr
 }
 
 EchoesProviderForTests.displayName = 'EchoesProviderForTests';
+
+/** @internal */
+function useBrandStyles(brand: NonNullable<EchoesProviderProps['brand']>) {
+  useEffect(() => {
+    const tokensLoaded = designToken('border-radius-100').length > 0;
+
+    if (!tokensLoaded) {
+      if (brand === 'gitar') {
+        import('~generated/styles/gitar.css');
+      } else {
+        import('~generated/styles/sonar.css');
+      }
+    }
+  }, [brand]);
+}

@@ -27,11 +27,6 @@ import { IntlProvider } from 'react-intl';
 import { MemoryRouter } from 'react-router-dom';
 import { EchoesProvider, Theme, cssVar } from '../src';
 
-// @ts-expect-error — Vite handles ?url imports at build time; no TS declarations needed
-import gitarCssUrl from '../src/generated/styles/gitar.css?url';
-// @ts-expect-error — Vite handles ?url imports at build time; no TS declarations needed
-import sonarCssUrl from '../src/generated/styles/sonar.css?url';
-
 /**
  * This prevents emotion from complaining about SSR
  * See:
@@ -236,11 +231,6 @@ const globalStyles = css`
   }
 `;
 
-const brandStylesheets: Record<string, string> = {
-  sonar: sonarCssUrl,
-  gitar: gitarCssUrl,
-};
-
 const preview: Preview = {
   globalTypes: {
     brand: {
@@ -301,26 +291,26 @@ const preview: Preview = {
     (Story, context) => {
       const brand = (context.globals.brand as string) ?? 'sonar';
 
-      for (const [name, url] of Object.entries(brandStylesheets)) {
-        const id = `echoes-brand-${name}`;
-        if (!document.getElementById(id)) {
-          const link = document.createElement('link');
-          link.id = id;
-          link.rel = 'stylesheet';
-          link.href = url;
-          document.head.appendChild(link);
-        }
-        (document.getElementById(id) as HTMLLinkElement).disabled = name !== brand;
+      // Reload the iframe when the brand changes so the new CSS import takes effect cleanly.
+      const customWindow = window as unknown as Record<string, unknown>;
+
+      const prev = customWindow.__ECHOES_BRAND__ as string | undefined;
+      if (prev != null && prev !== brand) {
+        customWindow.__ECHOES_BRAND__ = brand;
+        window.location.reload();
       }
+      customWindow.__ECHOES_BRAND__ = brand;
 
       return <Story />;
     },
-    (Story) => {
+    (Story, context) => {
+      const brand = (context.globals.brand as 'sonar' | 'gitar') ?? 'sonar';
+
       return (
         <CacheProvider value={emotionCache}>
           <IntlProvider defaultLocale="en-us" locale="en-us">
             <MemoryRouter future={{ v7_relativeSplatPath: true, v7_startTransition: true }}>
-              <EchoesProvider>
+              <EchoesProvider brand={brand}>
                 <Global styles={globalStyles} />
                 <ResetLayerStack>
                   <Story />
