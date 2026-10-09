@@ -19,27 +19,25 @@
  */
 import * as VisuallyHidden from '@radix-ui/react-visually-hidden';
 import classNames from 'classnames';
-import { forwardRef } from 'react';
+import { type Ref } from 'react';
 import { useIntl } from 'react-intl';
-import {
-  Link as RouterLink,
-  NavLink as RouterNavLink,
-  NavLinkProps as RouterNavLinkProps,
-} from 'react-router-dom';
 import { isDefined } from '~common/helpers/types';
 import { isSonarLink } from '~common/helpers/url';
+import { RouterLink, useIsPathActive } from '../../components/router/RouterContext';
+import { EchoesRouterLinkProps } from '../../components/router/RouterTypes';
 
-type RouterNavLinkPropsAllowed = 'download' | 'to' | 'onClick';
+type RouterLinkPropsAllowed = 'download' | 'to' | 'onClick';
 
-export interface NavLinkBaseProps extends Pick<RouterNavLinkProps, RouterNavLinkPropsAllowed> {
+export interface NavLinkBaseProps extends Pick<EchoesRouterLinkProps, RouterLinkPropsAllowed> {
   className?: string;
   children: React.ReactNode;
   isActive?: boolean;
   isMatchingFullPath?: boolean;
   enableOpenInNewTab?: boolean;
+  ref?: Ref<HTMLAnchorElement>;
 }
 
-export const NavLinkBase = forwardRef<HTMLAnchorElement, NavLinkBaseProps>((props, ref) => {
+export function NavLinkBase(props: Readonly<NavLinkBaseProps>) {
   const {
     className,
     children,
@@ -47,11 +45,14 @@ export const NavLinkBase = forwardRef<HTMLAnchorElement, NavLinkBaseProps>((prop
     isActive = undefined,
     isMatchingFullPath = false,
     enableOpenInNewTab = false,
+    ref,
     to,
     ...restAndRadixProps
   } = props;
 
   const intl = useIntl();
+  const isRouteActive = useIsPathActive(to, { end: isMatchingFullPath });
+  const active = isActive ?? isRouteActive;
 
   const enableOpenInNewTabProps =
     !download && enableOpenInNewTab
@@ -62,13 +63,10 @@ export const NavLinkBase = forwardRef<HTMLAnchorElement, NavLinkBaseProps>((prop
         }
       : {};
 
-  const LinkComponent = isDefined(isActive) ? RouterLink : RouterNavLink;
-
   return (
-    <LinkComponent
-      className={classNames({ active: isActive }, className)}
-      {...(isActive ? { 'aria-current': 'page' } : {})}
-      {...(isMatchingFullPath ? { end: true } : {})}
+    <RouterLink
+      className={classNames({ active }, className)}
+      {...(active ? { 'aria-current': 'page' as const } : {})}
       {...enableOpenInNewTabProps}
       {...(isDefined(download) ? { download, reloadDocument: true } : {})}
       {...restAndRadixProps}
@@ -85,8 +83,8 @@ export const NavLinkBase = forwardRef<HTMLAnchorElement, NavLinkBaseProps>((prop
           })}
         </VisuallyHidden.Root>
       )}
-    </LinkComponent>
+    </RouterLink>
   );
-});
+}
 
 NavLinkBase.displayName = 'NavLinkBase';
