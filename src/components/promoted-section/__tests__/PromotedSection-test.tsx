@@ -21,7 +21,6 @@
 import { screen } from '@testing-library/react';
 import { render } from '~common/helpers/test-utils';
 import { Button } from '../../buttons';
-import { IconBug } from '../../icons';
 import { PromotedSection, PromotedSectionProps } from '../PromotedSection';
 
 describe('PromotedSection', () => {
@@ -40,10 +39,11 @@ describe('PromotedSection', () => {
     expect(screen.getByText('New')).toBeInTheDocument();
   });
 
-  it('should render an illustration and use inline-block', () => {
-    renderPromotedSection({ illustration: <IconBug /> });
+  it('should not render a deprecated illustration', () => {
+    renderPromotedSection({ illustration: <div data-testid="illustration" /> });
 
-    expect(screen.getByTestId('promoted-section')).toHaveStyle({ display: 'inline-block' });
+    expect(screen.queryByTestId('illustration')).not.toBeInTheDocument();
+    expect(screen.getByTestId('promoted-section')).not.toHaveAttribute('illustration');
   });
 
   it('should render a dismiss button', async () => {
