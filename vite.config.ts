@@ -72,6 +72,16 @@ export default defineConfig({
           dest: '.',
           rename: { name: 'tailwind.js', stripBase: true },
         },
+        {
+          src: 'src/generated/styles/*.css',
+          dest: 'styles',
+          rename: { stripBase: true },
+        },
+        {
+          src: 'src/generated/tokens/**/*.json',
+          dest: 'tokens',
+          rename: { stripBase: 3 },
+        },
       ],
     }),
     react({ jsxImportSource: '@emotion/react' }),
@@ -86,6 +96,15 @@ export default defineConfig({
         '**/test-utils.*',
         '**/react-router-adapter.*',
       ],
+      beforeWriteFile(filePath, content) {
+        // The static-copy plugin places token JSON at dist/tokens/ (stripping the
+        // "generated/" segment), but the .d.ts emitter resolves ~generated to
+        // ../generated/tokens/. Rewrite so consumers can resolve the imports.
+        return {
+          filePath,
+          content: content.replace(/(['"])\.\.\/generated\/tokens\//g, '$1../tokens/'),
+        };
+      },
     }),
   ],
   resolve: {

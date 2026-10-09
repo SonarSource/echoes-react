@@ -18,10 +18,6 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import './generated/design-tokens-base.json';
-import './generated/design-tokens-themed.json';
-import './generated/design-tokens.css';
-
 export * from './components';
 export * from './utils';
 
