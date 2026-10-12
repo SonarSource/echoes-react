@@ -102,6 +102,10 @@ ButtonInnerWrapper.displayName = 'ButtonInnerWrapper';
 
 export const ButtonText = styled.span`
   ${truncate}
+
+  && * {
+    text-wrap: nowrap;
+  }
 `;
 
 ButtonText.displayName = 'ButtonText';
