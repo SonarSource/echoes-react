@@ -28,6 +28,7 @@ import {
   IconChevronDown,
   IconDownload,
   IconRocket,
+  Text,
   Tooltip,
 } from '../src';
 import { ButtonAsButtonProps } from '../src/components/buttons/Button';
@@ -98,6 +99,19 @@ export const WithEllipsis: Story = {
       <Tooltip content="Tooltip content for a very long button">
         <Button {...args} />
       </Tooltip>
+    </div>
+  ),
+};
+
+export const WithTextLabel: Story = {
+  args: {
+    children: 'A long button label wrapped in Text',
+  },
+  render: (args) => (
+    <div style={{ width: 180 }}>
+      <Button {...args}>
+        <Text id="button-text-label">{args.children}</Text>
+      </Button>
     </div>
   ),
 };
