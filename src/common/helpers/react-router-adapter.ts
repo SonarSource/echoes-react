@@ -21,9 +21,9 @@
 // Dev-only: used by tests and Storybook. It must stay identical to the README recipe and must
 // never be imported by library code, react-router-dom is not a dependency of Echoes.
 import { Link, useLocation } from 'react-router-dom';
-import { type EchoesRouter } from '../../components/router/RouterTypes';
 
-export const reactRouterAdapter: EchoesRouter = {
+// Structurally compatible with EchoesRouter, compatibility is checked where it's passed to EchoesProvider.
+export const reactRouterAdapter = {
   Link,
   usePathname: () => useLocation().pathname,
 };
