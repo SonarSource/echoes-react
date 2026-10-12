@@ -22,7 +22,7 @@ import styled from '@emotion/styled';
 import { type ReactNode, type Ref } from 'react';
 import { useIntl } from 'react-intl';
 import { LinkStandalone } from '../../links';
-import { type LinkTo } from '../../router/RouterTypes';
+import { type LinkTo } from '../../../types/RouterTypes';
 
 import { cssVar } from '~utils/design-tokens';
 
