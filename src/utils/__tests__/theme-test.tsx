@@ -21,7 +21,12 @@
 import { screen } from '@testing-library/react';
 import { render } from '~common/helpers/test-utils';
 import { Theme } from '~generated/themes';
-import { THEME_DATA_ATTRIBUTE, ThemeContext } from '~utils/theme';
+import {
+  THEME_DATA_ATTRIBUTE,
+  ThemeContext,
+  getCurrentTheme,
+  observeThemeChanges,
+} from '~utils/theme';
 import { ThemeProvider, setTheme } from '..';
 
 describe('setTheme', () => {
@@ -30,6 +35,56 @@ describe('setTheme', () => {
 
     setTheme(Theme.dark);
     expect(setAttribute).toHaveBeenCalledWith(THEME_DATA_ATTRIBUTE, Theme.dark);
+  });
+});
+
+describe('getCurrentTheme', () => {
+  it('should return the current theme from the document element', () => {
+    document.documentElement.setAttribute(THEME_DATA_ATTRIBUTE, Theme.dark);
+
+    expect(getCurrentTheme()).toBe(Theme.dark);
+  });
+
+  it('should return null when no theme is set', () => {
+    document.documentElement.removeAttribute(THEME_DATA_ATTRIBUTE);
+
+    expect(getCurrentTheme()).toBeNull();
+  });
+});
+
+describe('observeThemeChanges', () => {
+  it('should call the callback when the theme changes', async () => {
+    const callback = jest.fn();
+    document.documentElement.setAttribute(THEME_DATA_ATTRIBUTE, Theme.light);
+
+    const observer = observeThemeChanges(callback);
+
+    document.documentElement.setAttribute(THEME_DATA_ATTRIBUTE, Theme.dark);
+
+    // MutationObserver callbacks are async microtasks
+    await new Promise((resolve) => {
+      setTimeout(resolve, 0);
+    });
+
+    expect(callback).toHaveBeenCalledWith(Theme.dark);
+
+    observer.disconnect();
+  });
+
+  it('should not call the callback for unrelated attribute changes', async () => {
+    const callback = jest.fn();
+
+    const observer = observeThemeChanges(callback);
+
+    document.documentElement.setAttribute('data-unrelated', 'value');
+
+    await new Promise((resolve) => {
+      setTimeout(resolve, 0);
+    });
+
+    expect(callback).not.toHaveBeenCalled();
+
+    observer.disconnect();
   });
 });
 

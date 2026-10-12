@@ -37,6 +37,8 @@ export function useLayoutSidebarState(
   const mediaQueryList = useMemo(
     () =>
       globalThis.matchMedia(
+        /* Waiting for the CSS to be loaded causes needlessly complicated race conditions.
+         * Use the json directly instead! */
         `(min-width: ${jsonTokens['echoes-layout-sidebar-navigation-sizes-breakpoint-dockable']})`,
       ),
     [],
