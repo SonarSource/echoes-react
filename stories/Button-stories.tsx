@@ -28,6 +28,7 @@ import {
   IconChevronDown,
   IconDownload,
   IconRocket,
+  Text,
   Tooltip,
 } from '../src';
 import { ButtonAsButtonProps } from '../src/components/buttons/Button';
@@ -100,6 +101,26 @@ export const WithEllipsis: Story = {
       </Tooltip>
     </div>
   ),
+};
+
+export const WithTextLabel: Story = {
+  args: {
+    children: 'A long button label wrapped in Text',
+  },
+  render: (args) => (
+    <div style={{ width: 180 }}>
+      <Button {...args}>
+        <Text id="button-text-label">{args.children}</Text>
+      </Button>
+    </div>
+  ),
+  play: ({ canvasElement }) => {
+    const label = canvasElement.querySelector('#button-text-label');
+
+    if (!label || getComputedStyle(label).textWrap !== 'nowrap') {
+      throw new Error('Button labels wrapped in Text should stay on one line');
+    }
+  },
 };
 
 export const AllVarieties: StoryObj<ButtonAsButtonProps> = {
