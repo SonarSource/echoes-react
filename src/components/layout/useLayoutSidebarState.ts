@@ -20,9 +20,8 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { isDefined } from '~common/helpers/types';
-import { designToken } from '~utils/design-tokens';
+import jsonTokens from '../../generated/tokens/sonar/base.json';
 import type { LayoutSidebarContextShape } from './LayoutSidebarContext';
-
 import { isWithinSidebarInteractionZone } from './LayoutSidebarInteraction';
 
 interface UseLayoutSidebarStateInput {
@@ -38,7 +37,9 @@ export function useLayoutSidebarState(
   const mediaQueryList = useMemo(
     () =>
       globalThis.matchMedia(
-        `(min-width: ${designToken('layout-sidebar-navigation-sizes-breakpoint-dockable')})`,
+        /* Waiting for the CSS to be loaded causes needlessly complicated race conditions.
+         * Use the json directly instead! */
+        `(min-width: ${jsonTokens['echoes-layout-sidebar-navigation-sizes-breakpoint-dockable']})`,
       ),
     [],
   );
