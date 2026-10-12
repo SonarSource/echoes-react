@@ -55,7 +55,7 @@ Make sure to have the `IntlProvider` wrapping the `EchoesProvider`.
 
 Import the Sonar brand CSS once (`@sonarsource/echoes-react/styles/sonar.css`), typically in the module that renders the providers.
 
-To use custom brand values, create your own CSS file that sets the same CSS custom properties instead of importing the default one.
+To use custom brand values, create your own CSS file instead of importing the default one. Use `sonar.css` as a template: it must define the same CSS custom properties under the same selectors (`:root` for base tokens, `[data-echoes-theme='light']` and `[data-echoes-theme='dark']` for themed tokens), otherwise theme switching will not work.
 
 #### Router adapter
 
