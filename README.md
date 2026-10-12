@@ -51,6 +51,12 @@ The `IntlProvider` from `react-intl` is necessary for translations. See [this pa
 The [i18n keys file](i18n/keys.json) contains the list of keys that should be translated and provided by your `IntlProvider`.
 Make sure to have the `IntlProvider` wrapping the `EchoesProvider`.
 
+#### CSS variables
+
+Import the Sonar brand CSS once (`@sonarsource/echoes-react/styles/sonar.css`), typically in the module that renders the providers.
+
+To use custom brand values, create your own CSS file that sets the same CSS custom properties instead of importing the default one.
+
 #### Router adapter
 
 Echoes does not depend on any router. Links, buttons with a `to`, breadcrumbs, dropdown menu links and navigation components use the router adapter you pass to the required `router` prop of `EchoesProvider`.
@@ -113,6 +119,7 @@ position: relative;
 import { BrowserRouter } from 'react-router-dom';
 import { IntlProvider } from 'react-intl';
 import { EchoesProvider } from '@sonarsource/echoes-react';
+import '@sonarsource/echoes-react/styles/sonar.css'; // Import the sonar brand or include your own!
 import { reactRouterAdapter } from './reactRouterAdapter';
 
 function App() {
