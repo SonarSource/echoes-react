@@ -24,7 +24,7 @@ import { useIntl } from 'react-intl';
 import { isDefined } from '~common/helpers/types';
 import { isSonarLink } from '~common/helpers/url';
 import { RouterLink, useIsPathActive } from '../../components/router/RouterContext';
-import { EchoesRouterLinkProps } from '../../components/router/RouterTypes';
+import { EchoesRouterLinkProps } from '../../types/RouterTypes';
 
 type RouterLinkPropsAllowed = 'download' | 'to' | 'onClick';
 

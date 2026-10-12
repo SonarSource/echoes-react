@@ -26,7 +26,7 @@ import { PortalContext } from '~common/components/PortalContext';
 import { ToastGlobalStyles } from '~common/components/Toast';
 import { TooltipProvider, TooltipProviderProps, TypographyGlobalStyles } from '..';
 import { RouterContext } from '../router/RouterContext';
-import { EchoesRouter } from '../router/RouterTypes';
+import { EchoesRouter } from '../../types/RouterTypes';
 import { SelectGlobalStyles } from '../select/SelectCommons';
 
 export interface EchoesProviderProps {

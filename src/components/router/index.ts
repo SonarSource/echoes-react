@@ -19,4 +19,4 @@
  */
 
 export { toHref } from './RouterUtils';
-export type { EchoesRouter, EchoesRouterLinkProps, LinkTo } from './RouterTypes';
+export type { EchoesRouter, EchoesRouterLinkProps, LinkTo } from '../../types/RouterTypes';

@@ -25,7 +25,7 @@ import { DropdownMenu } from '../../dropdown-menu';
 import { DropdownMenuProps } from '../../dropdown-menu/DropdownMenu';
 import { IconChevronDown } from '../../icons';
 import { usePathname } from '../../router/RouterContext';
-import { LinkTo } from '../../router/RouterTypes';
+import { LinkTo } from '../../../types/RouterTypes';
 import { isPathActive } from '../../router/RouterUtils';
 import { globalNavigationItemStyle, StyledNavMenuItem } from './GlobalNavigationItemStyles';
 
