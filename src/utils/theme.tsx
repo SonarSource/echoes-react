@@ -28,6 +28,22 @@ export function setTheme(theme: `${Theme}`) {
   document.documentElement.setAttribute(THEME_DATA_ATTRIBUTE, theme);
 }
 
+export function getCurrentTheme(): `${Theme}` {
+  return (document.documentElement.getAttribute(THEME_DATA_ATTRIBUTE) as Theme) || Theme.light;
+}
+
+export function observeThemeChanges(callback: (theme: `${Theme}`) => void) {
+  const observer = new MutationObserver(() => {
+    callback(getCurrentTheme());
+  });
+  observer.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: [THEME_DATA_ATTRIBUTE],
+  });
+
+  return observer;
+}
+
 export interface ThemeProviderProps {
   asChild?: boolean;
   theme: `${Theme}`;
