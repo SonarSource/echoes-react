@@ -18,7 +18,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import { renderHook } from '@testing-library/react';
+import { act, renderHook } from '@testing-library/react';
 import { useIsOverflow } from '../useIsOverflow';
 
 const emptyMockRef = { current: null };
@@ -44,6 +44,12 @@ beforeEach(() => {
   jest.clearAllMocks();
 });
 
+afterEach(() => {
+  // clearAllMocks() doesn't reset mockReturnValue(Once) chains set by individual tests
+  getScrollWidth.mockReturnValue(100);
+  getOffsetWidth.mockReturnValue(100);
+});
+
 it('should return undefined initially when ref.current is null', () => {
   const { result } = renderHook(() => useIsOverflow(emptyMockRef));
 
@@ -57,8 +63,10 @@ it('should return false when content is not overflowing', () => {
 });
 
 it('should return true when content is overflowing', () => {
-  // Mock scrollWidth to be greater than offsetWidth, to simulate overflow
-  getScrollWidth.mockReturnValueOnce(200);
+  // Mock scrollWidth to be greater than offsetWidth, to simulate overflow. Uses a persistent
+  // mockReturnValue rather than mockReturnValueOnce: the resize observer's initial synchronous
+  // notification causes the overflow check to re-run once more right after mount.
+  getScrollWidth.mockReturnValue(200);
 
   const { result } = renderHook(() => useIsOverflow(mockRef));
 
@@ -82,5 +90,24 @@ it('should recalculate overflow when dependencies change', () => {
   // Change dependency to trigger recalculation
   dependency = 'changed';
   rerender();
+  expect(result.current[0]).toBe(true);
+});
+
+it('should recalculate overflow when the observed element is resized, without any dep changing', () => {
+  const { result } = renderHook(() => useIsOverflow(mockRef));
+
+  expect(result.current[0]).toBe(false);
+
+  // The element now overflows (e.g. its fluid grid column got narrower), with no dep changing
+  getScrollWidth.mockReturnValueOnce(200);
+
+  const [resizeCallback] = jest.mocked(global.ResizeObserver).mock.calls[0];
+  act(() => {
+    resizeCallback(
+      [{ contentRect: { width: 50, height: 10 } }] as ResizeObserverEntry[],
+      {} as ResizeObserver,
+    );
+  });
+
   expect(result.current[0]).toBe(true);
 });
