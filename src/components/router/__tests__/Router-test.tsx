@@ -26,7 +26,7 @@ import { EchoesProvider } from '../../echoes-provider';
 import { IconBranch } from '../../icons';
 import { SidebarNavigationItem } from '../../layout/sidebar-navigation/SidebarNavigationItem';
 import { Link } from '../../links';
-import { EchoesRouter, EchoesRouterLinkProps, LinkTo } from '../RouterTypes';
+import { EchoesRouter, EchoesRouterLinkProps, LinkTo } from '../../../types/RouterTypes';
 import { isPathActive, toHref } from '../RouterUtils';
 
 describe('isPathActive', () => {

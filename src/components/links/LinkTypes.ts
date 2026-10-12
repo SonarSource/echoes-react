@@ -20,7 +20,7 @@
 
 import { CSSProperties, MouseEvent, ReactNode } from 'react';
 import { ButtonBaseProps } from '../buttons/ButtonTypes';
-import { EchoesRouterLinkProps } from '../router/RouterTypes';
+import { EchoesRouterLinkProps } from '../../types/RouterTypes';
 
 type RouterLinkPropsSubset = Pick<
   EchoesRouterLinkProps,

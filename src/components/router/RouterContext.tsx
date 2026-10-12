@@ -19,7 +19,7 @@
  */
 
 import { createContext, useContext } from 'react';
-import { EchoesRouter, EchoesRouterLinkProps, LinkTo } from './RouterTypes';
+import { EchoesRouter, EchoesRouterLinkProps, LinkTo } from '../../types/RouterTypes';
 import { isPathActive, PathActiveOptions, toHref } from './RouterUtils';
 
 /** @internal */
