@@ -23,6 +23,7 @@ import { cssVar } from '~utils/design-tokens';
 export function FishtankIllustration() {
   return (
     <svg
+      aria-hidden="true"
       fill="none"
       style={{ height: '84px', width: '84px' }}
       viewBox="0 0 168 168"
