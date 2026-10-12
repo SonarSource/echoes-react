@@ -28,6 +28,11 @@ import { MemoryRouter } from 'react-router-dom';
 import { EchoesProvider, Theme, cssVar } from '../src';
 import { reactRouterAdapter } from '../src/common/helpers/react-router-adapter';
 
+// @ts-expect-error — Vite handles ?url imports at build time; no TS declarations needed
+import gitarCssUrl from '../src/generated/styles/gitar.css?url';
+// @ts-expect-error — Vite handles ?url imports at build time; no TS declarations needed
+import sonarCssUrl from '../src/generated/styles/sonar.css?url';
+
 /**
  * This prevents emotion from complaining about SSR
  * See:
@@ -232,7 +237,28 @@ const globalStyles = css`
   }
 `;
 
+const brandStylesheets: Record<string, string> = {
+  sonar: sonarCssUrl,
+  gitar: gitarCssUrl,
+};
+
 const preview: Preview = {
+  globalTypes: {
+    brand: {
+      description: 'Brand theme (CSS token set)',
+      toolbar: {
+        icon: 'paintbrush',
+        items: [
+          { value: 'sonar', title: 'Sonar' },
+          { value: 'gitar', title: 'Gitar' },
+        ],
+        dynamicTitle: true,
+      },
+    },
+  },
+  initialGlobals: {
+    brand: 'sonar',
+  },
   parameters: {
     actions: { argTypesRegex: '^on[A-Z].*' },
     controls: {
@@ -273,6 +299,23 @@ const preview: Preview = {
       attributeName: 'data-echoes-theme',
       parentSelector: 'html',
     }),
+    (Story, context) => {
+      const brand = (context.globals.brand as string) ?? 'sonar';
+
+      for (const [name, url] of Object.entries(brandStylesheets)) {
+        const id = `echoes-brand-${name}`;
+        if (!document.getElementById(id)) {
+          const link = document.createElement('link');
+          link.id = id;
+          link.rel = 'stylesheet';
+          link.href = url;
+          document.head.appendChild(link);
+        }
+        (document.getElementById(id) as HTMLLinkElement).disabled = name !== brand;
+      }
+
+      return <Story />;
+    },
     (Story) => {
       return (
         <CacheProvider value={emotionCache}>
