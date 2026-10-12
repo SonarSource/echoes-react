@@ -74,3 +74,41 @@ describe('cssVar utility', () => {
     expect(true).toBe(true);
   });
 });
+
+describe('designToken', () => {
+  /**
+   * Load design-tokens module in isolation to handle the module-level cache
+   * of the computed styles.
+   */
+  function importDesignToken() {
+    let designToken!: (typeof import('../design-tokens'))['designToken'];
+    jest.isolateModules(() => {
+      // eslint-disable-next-line @typescript-eslint/no-require-imports
+      ({ designToken } = require('../design-tokens'));
+    });
+    return designToken;
+  }
+
+  it('should return the computed value of a CSS custom property, trimmed', () => {
+    const getPropertyValue = jest.fn().mockReturnValue(' #fff ');
+    jest.spyOn(window, 'getComputedStyle').mockReturnValue({
+      getPropertyValue,
+    } as unknown as CSSStyleDeclaration);
+
+    const designToken = importDesignToken();
+
+    expect(designToken('color-background-accent-default')).toBe('#fff');
+    expect(getPropertyValue).toHaveBeenCalledWith('--echoes-color-background-accent-default');
+  });
+
+  it('should return an empty string when the property is not set', () => {
+    const getPropertyValue = jest.fn().mockReturnValue('');
+    jest.spyOn(window, 'getComputedStyle').mockReturnValue({
+      getPropertyValue,
+    } as unknown as CSSStyleDeclaration);
+
+    const designToken = importDesignToken();
+
+    expect(designToken('dimension-space-200')).toBe('');
+  });
+});

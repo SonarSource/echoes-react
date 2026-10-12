@@ -7,7 +7,13 @@
   },
   "type": "module",
   "exports": {
-    ".": "./dist/index.js",
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./styles/*": "./dist/styles/*",
+    "./tokens/*/base.json": "./dist/tokens/*/base.json",
+    "./tokens/*/themed.json": "./dist/tokens/*/themed.json",
     "./tailwind": "./dist/tailwind.js"
   },
   "files": [
