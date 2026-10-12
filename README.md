@@ -57,6 +57,30 @@ Import the Sonar brand CSS once (`@sonarsource/echoes-react/styles/sonar.css`), 
 
 To use custom brand values, create your own CSS file instead of importing the default one. Use `sonar.css` as a template: it must define the same CSS custom properties under the same selectors (`:root` for base tokens, `[data-echoes-theme='light']` and `[data-echoes-theme='dark']` for themed tokens), otherwise theme switching will not work.
 
+#### Fonts
+
+The brands' CSS may use specific fonts (e.g. Sonar uses `Inter` and `Ubuntu-Mono`). If you want them to apply, they need to be provided by the client project. If you can, use the CDN:
+
+```css
+@import 'https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap';
+@import 'https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700';
+```
+
+Otherwise, you'll have to define the fonts (like the CDN does) and serve the `.woff` files yourself (e.g. as static assets):
+
+```css
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100;
+  font-display: swap;
+  src: url('../fonts/Inter/Inter-Thin.woff2') format('woff2');
+}
+... for each variant
+```
+
+Otherwise, the fonts will fall back to defaults provided by the browser & OS.
+
 #### Router adapter
 
 Echoes does not depend on any router. Links, buttons with a `to`, breadcrumbs, dropdown menu links and navigation components use the router adapter you pass to the required `router` prop of `EchoesProvider`.
