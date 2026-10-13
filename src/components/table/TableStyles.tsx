@@ -81,10 +81,12 @@ export const cellBaseStyle = css`
   gap: ${cssVar('dimension-space-100')};
 
   box-sizing: border-box;
+  min-width: 0;
   min-height: ${cssVar('table-sizes-row-min-width-default')};
   padding: ${cssVar('dimension-space-100')} ${cssVar('dimension-space-200')};
 
   font: ${cssVar('typography-text-default-regular')};
+  overflow-wrap: anywhere;
 
   tbody & {
     border-top: ${cssVar('border-width-default')} solid ${cssVar('color-border-weak')};
@@ -142,5 +144,7 @@ export const StyledContentWrapper = styled.div`
   align-items: start;
   justify-content: center;
   flex: 1;
+  min-width: 0;
+  width: 100%;
 `;
 StyledContentWrapper.displayName = 'StyledContentWrapper';
