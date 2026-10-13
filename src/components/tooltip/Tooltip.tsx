@@ -147,6 +147,7 @@ const StyledTooltipContent = styled(TextTypographyStyle)`
   background-color: ${cssVar('color-surface-inverse-default')};
   font: ${cssVar('typography-text-small-medium')};
   color: ${cssVar('color-text-on-color')};
+  overflow-wrap: anywhere;
 `;
 StyledTooltipContent.displayName = 'StyledTooltipContent';
 

@@ -18,12 +18,15 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+import { matchers } from '@emotion/jest';
 import { screen } from '@testing-library/react';
 import { ComponentProps } from 'react';
 import { render } from '~common/helpers/test-utils';
 import { Theme } from '~generated/themes';
 import { ThemeProvider } from '~utils/theme';
 import { Tooltip } from '../Tooltip';
+
+expect.extend(matchers);
 
 it('toggles when trigger is hovered', async () => {
   const { user } = setupTooltip();
@@ -35,6 +38,17 @@ it('toggles when trigger is hovered', async () => {
 
   await user.keyboard('[Escape]');
   expect(screen.queryByRole('tooltip', { name: 'content' })).not.toBeInTheDocument();
+});
+
+it('lets long, unbreakable content wrap instead of overflowing the tooltip', async () => {
+  const longContent = 'a'.repeat(100);
+  const { user } = setupTooltip({ content: longContent });
+
+  await user.hover(screen.getByText('Trigger'));
+
+  // role="tooltip" matches Radix's visually-hidden a11y duplicate, not the styled popup;
+  // the visible content (carrying our styles) is the first match by text, as in the theme test above.
+  expect((await screen.findAllByText(longContent))[0]).toHaveStyleRule('overflow-wrap', 'anywhere');
 });
 
 it.each([
