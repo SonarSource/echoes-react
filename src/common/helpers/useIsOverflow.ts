@@ -19,19 +19,23 @@
  */
 
 import { DependencyList, RefObject, useLayoutEffect, useState } from 'react';
+import { useResizeObserver } from './useResizeObserver';
 
 /**
  * This hook checks if the content of a given ref is overflowing its container horizontally.
  * It returns a boolean indicating whether the content is overflowing.
  *
  * @param forwardedRef - The ref to check for overflow.
- * @param deps - Optional dependencies array to re-compute the overflow state.
+ * @param deps - Optional dependencies array to re-compute the overflow state. The element's own
+ *   size is always watched in addition to these, so callers in fluid layouts (e.g. a CSS grid
+ *   column) don't need to pass anything extra for that.
  */
 export function useIsOverflow(
   forwardedRef: RefObject<HTMLElement | null>,
   deps: DependencyList = [],
 ) {
   const [isOverflow, setIsOverflow] = useState<boolean | undefined>(undefined);
+  const { width } = useResizeObserver(forwardedRef);
 
   useLayoutEffect(() => {
     if (forwardedRef.current) {
@@ -39,7 +43,7 @@ export function useIsOverflow(
     }
     // We want to be able to pass an array of dependencies to re-compute the overflow state
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [forwardedRef, ...deps]);
+  }, [forwardedRef, width, ...deps]);
 
   return [isOverflow] as const;
 }
