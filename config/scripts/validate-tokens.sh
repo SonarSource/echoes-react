@@ -1,5 +1,7 @@
 #!/bin/bash
 
+node design-tokens/validate-color-architecture.mjs || exit 1
+
 yarn build-tokens > /dev/null || exit 1
 
 if (git diff --quiet src/generated); then

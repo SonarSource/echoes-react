@@ -170,7 +170,7 @@ function createSidebarNavigationAccordionItem(
 ) {
   return (
     <ul>
-      <SidebarNavigationAccordionItem Icon={IconExpand} label="Accordion Item" {...props}>
+      <SidebarNavigationAccordionItem Icon={IconBranch} label="Accordion Item" {...props}>
         {props.children ?? getDefaultSidebarNavigationAccordionChildren()}
       </SidebarNavigationAccordionItem>
     </ul>
