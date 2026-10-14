@@ -1083,7 +1083,7 @@ function QualityTrendChart({
     y: paddingTop + ((axisMaximum - value) / axisMaximum) * chartHeight,
   }));
   const points = coordinates.map(({ x, y }) => `${x},${y}`).join(' ');
-  const areaPath = `M ${coordinates[0].x},${baseline} L ${points} L ${coordinates.at(-1)?.x ?? width},${baseline} Z`;
+  const areaPath = `M ${coordinates[0].x},${baseline} L ${points} L ${coordinates[coordinates.length - 1]?.x ?? width},${baseline} Z`;
   const activePoint = activeIndex === null ? undefined : coordinates[activeIndex];
   const activeValue = activeIndex === null ? undefined : chartValues[activeIndex];
   const activeLabel = activeIndex === null ? undefined : range.axisLabels[activeIndex];
