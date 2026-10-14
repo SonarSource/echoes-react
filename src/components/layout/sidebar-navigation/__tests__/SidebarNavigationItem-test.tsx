@@ -19,10 +19,10 @@
  */
 
 import { matchers } from '@emotion/jest';
-import { screen } from '@testing-library/react';
+import { screen, within } from '@testing-library/react';
 import { createRef, type Ref } from 'react';
 import { renderWithMemoryRouter } from '~common/helpers/test-utils';
-import { IconBranch, IconClock } from '../../../icons';
+import { IconBranch } from '../../../icons';
 import { SidebarNavigationItem, SidebarNavigationItemProps } from '../SidebarNavigationItem';
 
 expect.extend(matchers);
@@ -50,6 +50,12 @@ it('should forward refs to the underlying link', () => {
   setupSidebarNavigationItem({}, ref);
 
   expect(ref.current).toBe(screen.getByRole('link', { name: 'Test Item' }));
+});
+
+it('should render without an icon', () => {
+  setupSidebarNavigationItem({ Icon: undefined });
+
+  expect(within(screen.getByRole('link')).queryByText('!')).not.toBeInTheDocument();
 });
 
 describe('ellipsis behavior', () => {
@@ -143,7 +149,7 @@ function setupSidebarNavigationItem(
 ) {
   return renderWithMemoryRouter(
     <ul>
-      <SidebarNavigationItem Icon={IconClock} ref={ref} to="/second" {...props}>
+      <SidebarNavigationItem Icon={IconBranch} ref={ref} to="/second" {...props}>
         Test Item
       </SidebarNavigationItem>
     </ul>,

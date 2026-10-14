@@ -4,14 +4,23 @@
     "brand/sonar/colors",
     "brand/gitar/base",
     "brand/gitar/colors",
+    "brand/gitar/compatibility-colors",
+    "brand/shared/palettes/base",
+    "brand/shared/palettes/aliases",
+    "brand/shared/palettes/light",
+    "brand/shared/palettes/dark",
     "modes/sonar/light",
     "modes/sonar/dark",
     "modes/gitar/light",
     "modes/gitar/dark",
+    "modes/design-language/light",
+    "modes/design-language/dark",
     "component/base",
     "component/sonar/light",
     "component/sonar/dark",
     "component/gitar/light",
-    "component/gitar/dark"
+    "component/gitar/dark",
+    "component/design-language/light",
+    "component/design-language/dark"
   ]
 }
