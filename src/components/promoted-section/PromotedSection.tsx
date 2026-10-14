@@ -63,7 +63,7 @@ export interface PromotedSectionProps {
   headerText: TextNode;
 
   /**
-   * The illustration to display on the right-hand side (optional)
+   * @deprecated Illustrations are no longer displayed in promoted sections.
    */
   illustration?: React.ReactNode;
 
@@ -105,12 +105,12 @@ export const PromotedSection = forwardRef<HTMLDivElement, Readonly<PromotedSecti
       badgeText,
       className,
       headerText,
-      illustration,
+      illustration, // NOSONAR -- accepted for compatibility, but no longer displayed
       onDismiss,
       text,
       titleAs = 'h2',
       variety = PromotedSectionVariety.Neutral,
-      ...otherProps
+      ...restProps
     },
     ref,
   ) => {
@@ -121,8 +121,7 @@ export const PromotedSection = forwardRef<HTMLDivElement, Readonly<PromotedSecti
         className={className}
         css={useMemo(() => PROMOTED_SECTION_STYLES[variety], [variety])}
         ref={ref}
-        {...(illustration ? { style: { display: 'inline-block' } } : {})}
-        {...otherProps}>
+        {...restProps}>
         <MainContainer>
           <MainContainerLeftSide>
             <TextAndActionsContainer>
@@ -149,8 +148,6 @@ export const PromotedSection = forwardRef<HTMLDivElement, Readonly<PromotedSecti
                 {actions && <ActionsContainer>{actions}</ActionsContainer>}
               </PromotedSectionTextAndActions>
             </TextAndActionsContainer>
-
-            {illustration && <IllustrationContainer>{illustration}</IllustrationContainer>}
           </MainContainerLeftSide>
 
           {isDefined(onDismiss) && (
@@ -191,25 +188,6 @@ const HeaderContainer = styled.div`
 `;
 
 HeaderContainer.displayName = 'HeaderContainer';
-
-const IllustrationContainer = styled.div`
-  align-items: center;
-  align-self: stretch;
-  display: flex;
-  justify-content: center;
-  max-height: 108px;
-  max-width: 108px;
-  padding-left: ${cssVar('dimension-space-200')};
-
-  & img,
-  svg {
-    height: 100%;
-    object-fit: contain;
-    width: 100%;
-  }
-`;
-
-IllustrationContainer.displayName = 'IllustrationContainer';
 
 const MainContainer = styled.div`
   align-items: flex-start;
