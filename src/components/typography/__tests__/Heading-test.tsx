@@ -58,10 +58,11 @@ it.each([
   expect(container).toMatchSnapshot();
 });
 
-it('applies balanced text wrapping', () => {
+it('uses balanced wrapping without overriding the text wrap mode', () => {
   setupHeading();
 
-  expect(screen.getByRole('heading')).toHaveStyle({ textWrap: 'balance' });
+  expect(screen.getByRole('heading')).toHaveStyle({ textWrapStyle: 'balance' });
+  expect(screen.getByRole('heading')).not.toHaveStyle({ textWrap: 'balance' });
 });
 
 function setupHeading(
