@@ -61,11 +61,12 @@ it('allows to override the color', () => {
   expect(screen.getByText(text)).toHaveStyle(`color: ${cssVar('color-text-danger')}`);
 });
 
-it('applies pretty text wrapping', () => {
+it('uses pretty wrapping without overriding the text wrap mode', () => {
   const text = 'hi there';
   setupText({ children: text });
 
-  expect(screen.getByText(text)).toHaveStyle({ textWrap: 'pretty' });
+  expect(screen.getByText(text)).toHaveStyle({ textWrapStyle: 'pretty' });
+  expect(screen.getByText(text)).not.toHaveStyle({ textWrap: 'pretty' });
 });
 
 function setupText(
