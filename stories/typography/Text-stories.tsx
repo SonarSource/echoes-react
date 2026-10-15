@@ -46,6 +46,14 @@ export const Default: Story = {
   },
 };
 
+export const RespectsNoWrap: Story = {
+  render: () => (
+    <div style={{ whiteSpace: 'nowrap', width: 120 }}>
+      <Text>Severity of impact</Text>
+    </div>
+  ),
+};
+
 export const OverrideColor: Story = {
   args: {
     children: 'I am a Text!',
