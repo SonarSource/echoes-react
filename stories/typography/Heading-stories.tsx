@@ -52,11 +52,3 @@ export const Default: Story = {
   },
   render,
 };
-
-export const RespectsNoWrap: Story = {
-  render: () => (
-    <div style={{ whiteSpace: 'nowrap', width: 120 }}>
-      <Heading as="h3">Severity of impact</Heading>
-    </div>
-  ),
-};
