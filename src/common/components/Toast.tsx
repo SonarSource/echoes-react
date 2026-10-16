@@ -248,9 +248,9 @@ const ToastWrapper = styled.div`
   border-radius: ${cssVar('border-radius-400')};
   width: ${cssVar('toast-sizes-width')};
 
-  background: ${cssVar('color-surface-default')};
-  box-shadow: ${cssVar('box-shadow-large')};
-  border: ${cssVar('border-width-default')} solid ${cssVar('color-border-weak')};
+  background: ${cssVar('overlay-colors-background')};
+  box-shadow: ${cssVar('overlay-shadow-floating')};
+  border: ${cssVar('border-width-default')} solid ${cssVar('overlay-colors-border')};
 `;
 ToastWrapper.displayName = 'ToastWrapper';
 

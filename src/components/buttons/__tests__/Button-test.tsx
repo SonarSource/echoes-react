@@ -65,10 +65,26 @@ describe('Button', () => {
   });
 
   it.each([
-    [ButtonVariety.Default, cssVar('color-icon-default'), cssVar('color-border-bold')],
-    [ButtonVariety.DefaultGhost, cssVar('color-icon-default'), cssVar('color-border-bold')],
-    [ButtonVariety.Primary, cssVar('color-icon-on-color'), cssVar('color-border-bold')],
-    [ButtonVariety.Danger, cssVar('color-icon-on-color'), cssVar('color-background-danger-active')],
+    [
+      ButtonVariety.Default,
+      cssVar('button-colors-spinner-default'),
+      cssVar('button-colors-spinner-track-default'),
+    ],
+    [
+      ButtonVariety.DefaultGhost,
+      cssVar('button-colors-spinner-ghost'),
+      cssVar('button-colors-spinner-track-default'),
+    ],
+    [
+      ButtonVariety.Primary,
+      cssVar('button-colors-spinner-primary'),
+      cssVar('button-colors-spinner-track-default'),
+    ],
+    [
+      ButtonVariety.Danger,
+      cssVar('button-colors-spinner-danger'),
+      cssVar('button-colors-spinner-track-danger'),
+    ],
   ])('defines %s spinner arc and track sentiment tokens', (variety, spinnerColor, trackColor) => {
     expect(BUTTON_VARIETY_STYLES[variety]).toMatchObject({
       '--spinner-color-override': spinnerColor,
@@ -77,9 +93,9 @@ describe('Button', () => {
   });
 
   it.each([
-    [ButtonVariety.PrimaryGhost, cssVar('color-border-accent-default')],
-    [ButtonVariety.DangerGhost, cssVar('color-icon-danger')],
-    [ButtonVariety.DangerOutline, cssVar('color-icon-danger')],
+    [ButtonVariety.PrimaryGhost, cssVar('button-colors-spinner-primary-ghost')],
+    [ButtonVariety.DangerGhost, cssVar('button-colors-spinner-danger-ghost')],
+    [ButtonVariety.DangerOutline, cssVar('button-colors-spinner-danger-outline')],
   ])('defines %s spinner arc sentiment token', (variety, spinnerColor) => {
     expect(BUTTON_VARIETY_STYLES[variety]).toMatchObject({
       '--spinner-color-override': spinnerColor,
