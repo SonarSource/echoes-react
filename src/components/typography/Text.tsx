@@ -119,7 +119,7 @@ type StyledTextProps = Required<Pick<TextProps, 'isSubtle' | 'isHighlighted' | '
 
 const StyledText = styled(TextTypographyStyle)<StyledTextProps>`
   max-width: ${cssVar('sizes-typography-max-width-default')};
-  text-wrap: pretty;
+  text-wrap-style: pretty;
 
   font: ${getFontForSizeAndWeight};
 
