@@ -82,6 +82,11 @@ export default defineConfig({
           dest: 'tokens',
           rename: { stripBase: 3 },
         },
+        {
+          src: 'src/generated/fonts/**/*',
+          dest: 'fonts',
+          rename: { stripBase: 3 },
+        },
       ],
     }),
     react({ jsxImportSource: '@emotion/react' }),
