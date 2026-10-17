@@ -5,10 +5,15 @@
     "group": "Theme",
     "selectedTokenSets": {
       "modes/sonar/light": "enabled",
+      "modes/design-language/light": "enabled",
       "component/sonar/light": "enabled",
+      "component/design-language/light": "enabled",
       "component/base": "enabled",
       "brand/sonar/base": "enabled",
-      "brand/sonar/colors": "source"
+      "brand/sonar/colors": "source",
+      "brand/shared/palettes/base": "source",
+      "brand/shared/palettes/aliases": "source",
+      "brand/shared/palettes/light": "source"
     },
     "$figmaStyleReferences": {}
   },
@@ -18,10 +23,15 @@
     "group": "Theme",
     "selectedTokenSets": {
       "modes/sonar/dark": "enabled",
+      "modes/design-language/dark": "enabled",
       "component/sonar/dark": "enabled",
+      "component/design-language/dark": "enabled",
       "component/base": "enabled",
       "brand/sonar/base": "enabled",
-      "brand/sonar/colors": "source"
+      "brand/sonar/colors": "source",
+      "brand/shared/palettes/base": "source",
+      "brand/shared/palettes/aliases": "source",
+      "brand/shared/palettes/dark": "source"
     },
     "$figmaStyleReferences": {}
   },
@@ -31,10 +41,16 @@
     "group": "Theme",
     "selectedTokenSets": {
       "modes/gitar/light": "enabled",
+      "modes/design-language/light": "enabled",
       "component/gitar/light": "enabled",
+      "component/design-language/light": "enabled",
       "component/base": "enabled",
       "brand/gitar/base": "enabled",
-      "brand/gitar/colors": "source"
+      "brand/gitar/colors": "source",
+      "brand/gitar/compatibility-colors": "source",
+      "brand/shared/palettes/base": "source",
+      "brand/shared/palettes/aliases": "source",
+      "brand/shared/palettes/light": "source"
     },
     "$figmaStyleReferences": {}
   },
@@ -44,10 +60,16 @@
     "group": "Theme",
     "selectedTokenSets": {
       "modes/gitar/dark": "enabled",
+      "modes/design-language/dark": "enabled",
       "component/gitar/dark": "enabled",
+      "component/design-language/dark": "enabled",
       "component/base": "enabled",
       "brand/gitar/base": "enabled",
-      "brand/gitar/colors": "source"
+      "brand/gitar/colors": "source",
+      "brand/gitar/compatibility-colors": "source",
+      "brand/shared/palettes/base": "source",
+      "brand/shared/palettes/aliases": "source",
+      "brand/shared/palettes/dark": "source"
     },
     "$figmaStyleReferences": {}
   }

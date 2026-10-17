@@ -204,7 +204,7 @@ const StyledSelectionCard = styled(RadioGroup.Item)`
   border: ${cssVar('border-width-default')} solid ${cssVar('color-border-bold')};
   border-radius: ${cssVar('border-radius-400')};
 
-  box-shadow: ${cssVar('box-shadow-xsmall')};
+  box-shadow: ${cssVar('shadow-resting')};
 
   padding: 0;
 
@@ -216,13 +216,13 @@ const StyledSelectionCard = styled(RadioGroup.Item)`
 
   &:hover {
     background-color: ${cssVar('color-surface-hover')};
-    box-shadow: ${cssVar('box-shadow-small')};
+    box-shadow: ${cssVar('shadow-attached')};
   }
 
   &[data-state='checked'] {
     border-color: ${cssVar('color-background-accent-default')};
     border-width: ${cssVar('focus-border-width-default')};
-    box-shadow: ${cssVar('box-shadow-small')};
+    box-shadow: ${cssVar('shadow-attached')};
 
     &:not(:disabled):hover {
       border-color: ${cssVar('color-background-selected-bold-hover')};
@@ -238,7 +238,7 @@ const StyledSelectionCard = styled(RadioGroup.Item)`
     cursor: default;
     background-color: ${cssVar('color-surface-disabled')};
     border-color: ${cssVar('color-border-disabled')};
-    box-shadow: none;
+    box-shadow: ${cssVar('shadow-suppressed')};
   }
 `;
 

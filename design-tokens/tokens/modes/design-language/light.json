@@ -1,0 +1,576 @@
+{
+  "echoes": {
+    "color": {
+      "action": {
+        "disabled": {
+          "background": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.gray.3}",
+            "$description": "Unavailable action background."
+          },
+          "border": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.gray.6}",
+            "$description": "Unavailable action boundary."
+          },
+          "foreground": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.gray.9}",
+            "$description": "Unavailable action text and icon."
+          }
+        },
+        "ghost": {
+          "background": {
+            "default": {
+              "$type": "color",
+              "$value": "{echoes.color.support.transparent}",
+              "$description": "Resting ghost action background."
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.grayAlpha.3}",
+              "$description": "Hovered ghost action overlay."
+            },
+            "pressed": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.grayAlpha.5}",
+              "$description": "Pressed ghost action overlay."
+            }
+          },
+          "foreground": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.gray.12}",
+            "$description": "Ghost action text and icon."
+          }
+        },
+        "link": {
+          "default": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.gray.12}",
+            "$description": "Neutral action link; components must underline it."
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.gray.11}",
+            "$description": "Hovered neutral action link; components must underline it."
+          }
+        },
+        "primary": {
+          "default": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.gray.12}",
+            "$description": "Preferred neutral primary action."
+          },
+          "foreground": {
+            "$type": "color",
+            "$value": "{echoes.color.support.white}",
+            "$description": "Foreground on the primary action."
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.gray.11}",
+            "$description": "Hovered preferred neutral primary action."
+          },
+          "pressed": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.gray.10}",
+            "$description": "Pressed preferred neutral primary action."
+          }
+        },
+        "secondary": {
+          "background": {
+            "default": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.gray.1}",
+              "$description": "Resting secondary action surface."
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.grayAlpha.3}",
+              "$description": "Hovered secondary action overlay."
+            },
+            "pressed": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.grayAlpha.5}",
+              "$description": "Pressed secondary action overlay."
+            }
+          },
+          "foreground": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.gray.12}",
+            "$description": "Secondary action text and icon."
+          }
+        }
+      },
+      "background": {
+        "accent": {
+          "default": {
+            "$type": "color",
+            "$value": "{echoes.color.roles.primary.strong}",
+            "$description": "Used as the background color of components that reinforce our brand"
+          }
+        },
+        "emphasis": {
+          "active": {
+            "$type": "color",
+            "$value": "{echoes.color.roles.highlight.dark}"
+          },
+          "default": {
+            "$type": "color",
+            "$value": "{echoes.color.roles.highlight.bold}"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.purple.800}"
+          },
+          "weak": {
+            "active": {
+              "$type": "color",
+              "$value": "{echoes.color.roles.highlight.medium}"
+            },
+            "default": {
+              "$type": "color",
+              "$value": "{echoes.color.roles.highlight.light}"
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.purple.200}"
+            }
+          }
+        },
+        "neutral": {
+          "subtle": {
+            "active": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.gray.5}",
+              "$description": "Use it in components with neutral sentiment"
+            },
+            "default": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.gray.3}",
+              "$description": "Use it in components with neutral sentiment"
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.gray.4}",
+              "$description": "Use it in components with neutral sentiment"
+            }
+          }
+        },
+        "utility": {
+          "transparent": {
+            "$type": "color",
+            "$value": "{echoes.color.roles.support.transparent}",
+            "$description": "Use it when you need transparency in the background"
+          }
+        }
+      },
+      "border": {
+        "default": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.gray.7}",
+          "$description": "Default structural border."
+        },
+        "disabled": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.gray.6}",
+          "$description": "Boundary for unavailable controls."
+        },
+        "emphasis": {
+          "weak": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.purple.200}"
+          }
+        },
+        "subtle": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.gray.6}",
+          "$description": "Subtle structural border."
+        },
+        "weak": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.gray.6}",
+          "$description": "Subtle structural border."
+        }
+      },
+      "feature": {
+        "border": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.blue.7}",
+          "$description": "Boundary for an explicit feature treatment."
+        },
+        "foreground": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.blue.11}",
+          "$description": "Readable feature text and icon."
+        },
+        "surface": {
+          "default": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.blue.3}",
+            "$description": "Weak AI, upgrade, upsell, pricing, or feature surface."
+          }
+        }
+      },
+      "focus": {
+        "ring": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.gray.12}",
+          "$description": "Theme-neutral keyboard focus indicator."
+        }
+      },
+      "icon": {
+        "subtle": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.gray.10}",
+          "$description": "Supporting low-contrast icon."
+        }
+      },
+      "interaction": {
+        "background": {
+          "default": {
+            "$type": "color",
+            "$value": "{echoes.color.support.transparent}",
+            "$description": "No resting interaction overlay."
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.grayAlpha.3}",
+            "$description": "Contextual neutral hover overlay."
+          },
+          "pressed": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.grayAlpha.5}",
+            "$description": "Contextual neutral pressed overlay."
+          }
+        }
+      },
+      "selection": {
+        "strong": {
+          "default": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.gray.12}",
+            "$description": "High-emphasis selected control."
+          },
+          "foreground": {
+            "$type": "color",
+            "$value": "{echoes.color.support.white}",
+            "$description": "Foreground on strong neutral selection."
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.gray.11}",
+            "$description": "Hovered high-emphasis selected control."
+          },
+          "pressed": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.gray.10}",
+            "$description": "Pressed high-emphasis selected control."
+          }
+        },
+        "weak": {
+          "default": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.grayAlpha.3}",
+            "$description": "Persistent low-emphasis selection."
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.grayAlpha.4}",
+            "$description": "Hovered low-emphasis selection."
+          }
+        }
+      },
+      "status": {
+        "danger": {
+          "border": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.red.7}",
+            "$description": "danger boundary."
+          },
+          "foreground": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.red.11}",
+            "$description": "Readable danger text and icon."
+          },
+          "onSolid": {
+            "$type": "color",
+            "$value": "{echoes.color.support.white}",
+            "$description": "Foreground on solid danger treatments."
+          },
+          "solid": {
+            "default": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.red.9}",
+              "$description": "Solid danger treatment."
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.red.10}",
+              "$description": "Hovered solid danger treatment."
+            },
+            "pressed": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.red.11}",
+              "$description": "Pressed solid danger treatment."
+            }
+          },
+          "surface": {
+            "default": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.red.3}",
+              "$description": "Weak danger surface."
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.red.4}",
+              "$description": "Hovered weak danger surface."
+            },
+            "pressed": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.red.5}",
+              "$description": "Pressed weak danger surface."
+            }
+          }
+        },
+        "information": {
+          "border": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.gray.7}",
+            "$description": "Generic-information boundary."
+          },
+          "foreground": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.gray.11}",
+            "$description": "Readable generic-information text and icon."
+          },
+          "onSolid": {
+            "$type": "color",
+            "$value": "{echoes.color.support.white}",
+            "$description": "Foreground on solid information treatments."
+          },
+          "solid": {
+            "default": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.gray.12}",
+              "$description": "Solid generic-information treatment."
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.gray.11}",
+              "$description": "Hovered solid generic-information treatment."
+            },
+            "pressed": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.gray.10}",
+              "$description": "Pressed solid generic-information treatment."
+            }
+          },
+          "surface": {
+            "default": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.gray.3}",
+              "$description": "Weak generic-information surface."
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.gray.4}",
+              "$description": "Hovered generic-information surface."
+            },
+            "pressed": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.gray.5}",
+              "$description": "Pressed generic-information surface."
+            }
+          }
+        },
+        "success": {
+          "border": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.green.7}",
+            "$description": "success boundary."
+          },
+          "foreground": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.green.11}",
+            "$description": "Readable success text and icon."
+          },
+          "onSolid": {
+            "$type": "color",
+            "$value": "{echoes.color.support.white}",
+            "$description": "Foreground on solid success treatments."
+          },
+          "solid": {
+            "default": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.green.9}",
+              "$description": "Solid success treatment."
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.green.10}",
+              "$description": "Hovered solid success treatment."
+            },
+            "pressed": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.green.11}",
+              "$description": "Pressed solid success treatment."
+            }
+          },
+          "surface": {
+            "default": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.green.3}",
+              "$description": "Weak success surface."
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.green.4}",
+              "$description": "Hovered weak success surface."
+            },
+            "pressed": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.green.5}",
+              "$description": "Pressed weak success surface."
+            }
+          }
+        },
+        "warning": {
+          "border": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.yellow.7}",
+            "$description": "warning boundary."
+          },
+          "foreground": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.yellow.11}",
+            "$description": "Readable warning text and icon."
+          },
+          "onSolid": {
+            "$type": "color",
+            "$value": "{echoes.color.support.white}",
+            "$description": "Foreground on solid warning treatments."
+          },
+          "solid": {
+            "default": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.yellow.9}",
+              "$description": "Solid warning treatment."
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.yellow.10}",
+              "$description": "Hovered solid warning treatment."
+            },
+            "pressed": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.yellow.11}",
+              "$description": "Pressed solid warning treatment."
+            }
+          },
+          "surface": {
+            "default": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.yellow.3}",
+              "$description": "Weak warning surface."
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.yellow.4}",
+              "$description": "Hovered weak warning surface."
+            },
+            "pressed": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.yellow.5}",
+              "$description": "Pressed weak warning surface."
+            }
+          }
+        }
+      },
+      "surface": {
+        "default": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.gray.1}",
+          "$description": "Default contained surface such as a card, table, menu, or dialog."
+        },
+        "disabled": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.gray.3}",
+          "$description": "Background for unavailable controls and regions."
+        },
+        "subtle": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.gray.3}",
+          "$description": "Subtle surface used to establish low-emphasis hierarchy."
+        }
+      },
+      "text": {
+        "default": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.gray.11}",
+          "$description": "Default readable text."
+        },
+        "disabled": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.gray.9}",
+          "$description": "Text for unavailable controls."
+        },
+        "emphasis": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.purple.800}"
+        },
+        "onColor": {
+          "$type": "color",
+          "$value": "{echoes.color.roles.support.white}"
+        },
+        "placeholder": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.gray.10}",
+          "$description": "Placeholder text."
+        },
+        "strong": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.gray.12}",
+          "$description": "Highest-contrast text."
+        },
+        "subtle": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.gray.10}",
+          "$description": "Supporting low-contrast text."
+        }
+      }
+    },
+    "shadow": {
+      "anchored": {
+        "$type": "boxShadow",
+        "$value": "{echoes.boxShadow.medium}",
+        "$description": "Dismissible transient surface anchored to a trigger."
+      },
+      "attached": {
+        "$type": "boxShadow",
+        "$value": "{echoes.boxShadow.small}",
+        "$description": "Structural chrome lifted off the page plane without overlaying content."
+      },
+      "overData": {
+        "$type": "boxShadow",
+        "$value": "{echoes.boxShadow.xLarge}",
+        "$description": "Surface that must remain legible above dense data, charts, tables, or imagery."
+      },
+      "overlay": {
+        "$type": "boxShadow",
+        "$value": "{echoes.boxShadow.large}",
+        "$description": "Independent layer that covers content."
+      },
+      "resting": {
+        "$type": "boxShadow",
+        "$value": "{echoes.boxShadow.xsmall}",
+        "$description": "Interactive or contained surface at rest, flush with the page."
+      },
+      "suppressed": {
+        "$type": "other",
+        "$value": "none",
+        "$description": "A parent already provides containment. Deliberately flat."
+      }
+    }
+  }
+}

@@ -150,6 +150,7 @@ export function GlobalNavigationPrimary(props: Readonly<GlobalNavigationPrimaryP
               Icon={IconDockToRight}
               ariaLabel={sidebarButtonAriaLabel}
               onClick={handleSidebarButtonClick}
+              size="medium"
               tooltipContent={sidebarButtonTooltipContent}
               variety="default-ghost"
             />
