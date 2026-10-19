@@ -1,0 +1,23 @@
+{
+  "echoes": {
+    "color": {
+      "support": {
+        "black": {
+          "$type": "color",
+          "$value": "#000000",
+          "$description": "Absolute black for accessible foreground pairings."
+        },
+        "white": {
+          "$type": "color",
+          "$value": "#FFFFFF",
+          "$description": "Absolute white for accessible foreground pairings."
+        },
+        "transparent": {
+          "$type": "color",
+          "$value": "#00000000",
+          "$description": "Fully transparent color."
+        }
+      }
+    }
+  }
+}
