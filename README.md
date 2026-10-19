@@ -59,15 +59,9 @@ To use custom brand values, create your own CSS file instead of importing the de
 
 #### Fonts
 
-The Sonar brand CSS bundles the Geist 1.7.2 variable sans font locally and loads it automatically.
-No network font request is required. The font is distributed under the SIL Open Font License 1.1.
-
-The monospace token continues to use `Ubuntu Mono`. Provide that font in the client application if
-you want it to apply; otherwise the system monospace fallback is used. For example:
-
-```css
-@import 'https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700';
-```
+The Sonar brand CSS bundles the Geist 1.7.2 variable sans and monospace fonts locally and loads
+them automatically. No network font request is required. Both fonts are distributed under the SIL
+Open Font License 1.1. Optical sizing is enabled globally for variable Geist.
 
 Custom brands must provide every CSS custom property present in `sonar.css`, including the
 component contracts. Existing broad semantic variables remain available for compatibility, but
