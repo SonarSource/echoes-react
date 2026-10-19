@@ -604,8 +604,8 @@ html[data-echoes-theme='dark'], [data-echoes-theme='dark'] {
   --echoes-form-control-colors-icon-default: #828282;
   --echoes-promoted-section-colors-neutral-background: #151515; /** Neutral promoted-section surface. */
   --echoes-promoted-section-colors-neutral-border: #363636; /** Neutral promoted-section border. */
-  --echoes-promoted-section-colors-highlight-background: #b790f74d; /** Frozen legacy highlight surface pending consumer audit. */
-  --echoes-promoted-section-colors-highlight-border: #b790f766; /** Frozen legacy highlight border pending consumer audit. */
+  --echoes-promoted-section-colors-highlight-background: #0d2740; /** Brand blue highlight surface. */
+  --echoes-promoted-section-colors-highlight-border: #3470aa; /** Brand blue highlight border. */
   --echoes-select-shadow-resting: 0 1px 2px 0 #15151552;
   --echoes-select-shadow-suppressed: none;
   --echoes-select-shadow-anchored: 0 4px 6px -1px #15151573, 0 2px 4px -2px #15151573;
@@ -826,15 +826,15 @@ html[data-echoes-theme='dark'], [data-echoes-theme='dark'] {
   --echoes-badge-colors-neutral-solid-default: #eeeeee; /** Solid neutral badge background. */
   --echoes-badge-colors-neutral-solid-hover: #b8b8b8; /** Solid neutral badge hover. */
   --echoes-badge-colors-neutral-solid-pressed: #828282; /** Solid neutral badge pressed. */
-  --echoes-badge-colors-highlight-weak-foreground: #ede2ff; /** Frozen legacy highlight badge foreground pending audit. */
-  --echoes-badge-colors-highlight-weak-border: #b790f766; /** Frozen legacy highlight badge border pending audit. */
-  --echoes-badge-colors-highlight-weak-default: #b790f74d; /** Frozen legacy highlight badge background pending audit. */
-  --echoes-badge-colors-highlight-weak-hover: #b790f733; /** Frozen legacy highlight badge hover pending audit. */
-  --echoes-badge-colors-highlight-weak-pressed: #b790f71a; /** Frozen legacy highlight badge pressed pending audit. */
-  --echoes-badge-colors-highlight-solid-foreground: #1a1a1a; /** Frozen legacy solid highlight badge foreground pending audit. */
-  --echoes-badge-colors-highlight-solid-default: #d9c5ff; /** Frozen legacy solid highlight badge background pending audit. */
-  --echoes-badge-colors-highlight-solid-hover: #e5d5ff; /** Frozen legacy solid highlight badge hover pending audit. */
-  --echoes-badge-colors-highlight-solid-pressed: #ede2ff; /** Frozen legacy solid highlight badge pressed pending audit. */
+  --echoes-badge-colors-highlight-weak-foreground: #a8d4ff; /** Brand blue highlight badge foreground. */
+  --echoes-badge-colors-highlight-weak-border: #3470aa; /** Brand blue highlight badge border. */
+  --echoes-badge-colors-highlight-weak-default: #0d2740; /** Brand blue highlight badge background. */
+  --echoes-badge-colors-highlight-weak-hover: #103455; /** Brand blue highlight badge hover. */
+  --echoes-badge-colors-highlight-weak-pressed: #13416b; /** Brand blue highlight badge pressed. */
+  --echoes-badge-colors-highlight-solid-foreground: #000000; /** Brand blue solid highlight badge foreground. */
+  --echoes-badge-colors-highlight-solid-default: #70b7ff; /** Brand blue solid highlight badge background. */
+  --echoes-badge-colors-highlight-solid-hover: #8cc6ff; /** Brand blue solid highlight badge hover. */
+  --echoes-badge-colors-highlight-solid-pressed: #a8d4ff; /** Brand blue solid highlight badge pressed. */
   --echoes-badge-colors-focus-ring: #eeeeee; /** Badge keyboard focus indicator. */
   --echoes-badge-counter-colors-default-foreground: #b8b8b8; /** Default badge-counter foreground. */
   --echoes-badge-counter-colors-default-background: #1f1f1f; /** Default badge-counter background. */
@@ -1248,8 +1248,8 @@ html[data-echoes-theme='dark'], [data-echoes-theme='dark'] {
   --echoes-form-control-colors-icon-default: #4a4a4a;
   --echoes-promoted-section-colors-neutral-background: #fcfcfc; /** Neutral promoted-section surface. */
   --echoes-promoted-section-colors-neutral-border: #e0e0e0; /** Neutral promoted-section border. */
-  --echoes-promoted-section-colors-highlight-background: #f4eeff; /** Frozen legacy highlight surface pending consumer audit. */
-  --echoes-promoted-section-colors-highlight-border: #ede2ff; /** Frozen legacy highlight border pending consumer audit. */
+  --echoes-promoted-section-colors-highlight-background: #e8f4ff; /** Brand blue highlight surface. */
+  --echoes-promoted-section-colors-highlight-border: #74b7fc; /** Brand blue highlight border. */
   --echoes-select-shadow-resting: 0 1px 2px 0 #1a1a1a0d;
   --echoes-select-shadow-suppressed: none;
   --echoes-select-shadow-anchored: 0 4px 6px -1px #1a1a1a1a, 0 2px 4px -2px #1a1a1a1a;
@@ -1470,15 +1470,15 @@ html[data-echoes-theme='dark'], [data-echoes-theme='dark'] {
   --echoes-badge-colors-neutral-solid-default: #1a1a1a; /** Solid neutral badge background. */
   --echoes-badge-colors-neutral-solid-hover: #3a3a3a; /** Solid neutral badge hover. */
   --echoes-badge-colors-neutral-solid-pressed: #4a4a4a; /** Solid neutral badge pressed. */
-  --echoes-badge-colors-highlight-weak-foreground: #7934c7; /** Frozen legacy highlight badge foreground pending audit. */
-  --echoes-badge-colors-highlight-weak-border: #ede2ff; /** Frozen legacy highlight badge border pending audit. */
-  --echoes-badge-colors-highlight-weak-default: #f4eeff; /** Frozen legacy highlight badge background pending audit. */
-  --echoes-badge-colors-highlight-weak-hover: #ede2ff; /** Frozen legacy highlight badge hover pending audit. */
-  --echoes-badge-colors-highlight-weak-pressed: #e5d5ff; /** Frozen legacy highlight badge pressed pending audit. */
-  --echoes-badge-colors-highlight-solid-foreground: #ffffff; /** Frozen legacy solid highlight badge foreground pending audit. */
-  --echoes-badge-colors-highlight-solid-default: #883fdd; /** Frozen legacy solid highlight badge background pending audit. */
-  --echoes-badge-colors-highlight-solid-hover: #7934c7; /** Frozen legacy solid highlight badge hover pending audit. */
-  --echoes-badge-colors-highlight-solid-pressed: #3f186b; /** Frozen legacy solid highlight badge pressed pending audit. */
+  --echoes-badge-colors-highlight-weak-foreground: #0061cc; /** Brand blue highlight badge foreground. */
+  --echoes-badge-colors-highlight-weak-border: #74b7fc; /** Brand blue highlight badge border. */
+  --echoes-badge-colors-highlight-weak-default: #e8f4ff; /** Brand blue highlight badge background. */
+  --echoes-badge-colors-highlight-weak-hover: #d3eaff; /** Brand blue highlight badge hover. */
+  --echoes-badge-colors-highlight-weak-pressed: #bedfff; /** Brand blue highlight badge pressed. */
+  --echoes-badge-colors-highlight-solid-foreground: #ffffff; /** Brand blue solid highlight badge foreground. */
+  --echoes-badge-colors-highlight-solid-default: #0070f3; /** Brand blue solid highlight badge background. */
+  --echoes-badge-colors-highlight-solid-hover: #0069df; /** Brand blue solid highlight badge hover. */
+  --echoes-badge-colors-highlight-solid-pressed: #0061cc; /** Brand blue solid highlight badge pressed. */
   --echoes-badge-colors-focus-ring: #1a1a1a; /** Badge keyboard focus indicator. */
   --echoes-badge-counter-colors-default-foreground: #3a3a3a; /** Default badge-counter foreground. */
   --echoes-badge-counter-colors-default-background: #f4f4f4; /** Default badge-counter background. */

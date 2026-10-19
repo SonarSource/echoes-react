@@ -1663,50 +1663,50 @@
           "weak": {
             "foreground": {
               "$type": "color",
-              "$value": "{echoes.color.text.emphasis}",
-              "$description": "Frozen legacy highlight badge foreground pending audit."
+              "$value": "{echoes.color.feature.foreground}",
+              "$description": "Brand blue highlight badge foreground."
             },
             "border": {
               "$type": "color",
-              "$value": "{echoes.color.border.emphasis.weak}",
-              "$description": "Frozen legacy highlight badge border pending audit."
+              "$value": "{echoes.color.feature.border}",
+              "$description": "Brand blue highlight badge border."
             },
             "default": {
               "$type": "color",
-              "$value": "{echoes.color.background.emphasis.weak.default}",
-              "$description": "Frozen legacy highlight badge background pending audit."
+              "$value": "{echoes.color.feature.surface.default}",
+              "$description": "Brand blue highlight badge background."
             },
             "hover": {
               "$type": "color",
-              "$value": "{echoes.color.background.emphasis.weak.hover}",
-              "$description": "Frozen legacy highlight badge hover pending audit."
+              "$value": "{echoes.color.feature.surface.hover}",
+              "$description": "Brand blue highlight badge hover."
             },
             "pressed": {
               "$type": "color",
-              "$value": "{echoes.color.background.emphasis.weak.active}",
-              "$description": "Frozen legacy highlight badge pressed pending audit."
+              "$value": "{echoes.color.feature.surface.pressed}",
+              "$description": "Brand blue highlight badge pressed."
             }
           },
           "solid": {
             "foreground": {
               "$type": "color",
-              "$value": "{echoes.color.text.onColor}",
-              "$description": "Frozen legacy solid highlight badge foreground pending audit."
+              "$value": "{echoes.color.feature.onSolid}",
+              "$description": "Brand blue solid highlight badge foreground."
             },
             "default": {
               "$type": "color",
-              "$value": "{echoes.color.background.emphasis.default}",
-              "$description": "Frozen legacy solid highlight badge background pending audit."
+              "$value": "{echoes.color.feature.solid.default}",
+              "$description": "Brand blue solid highlight badge background."
             },
             "hover": {
               "$type": "color",
-              "$value": "{echoes.color.background.emphasis.hover}",
-              "$description": "Frozen legacy solid highlight badge hover pending audit."
+              "$value": "{echoes.color.feature.solid.hover}",
+              "$description": "Brand blue solid highlight badge hover."
             },
             "pressed": {
               "$type": "color",
-              "$value": "{echoes.color.background.emphasis.active}",
-              "$description": "Frozen legacy solid highlight badge pressed pending audit."
+              "$value": "{echoes.color.feature.solid.pressed}",
+              "$description": "Brand blue solid highlight badge pressed."
             }
           }
         },
@@ -1736,13 +1736,13 @@
         "highlight": {
           "background": {
             "$type": "color",
-            "$value": "{echoes.color.background.emphasis.weak.default}",
-            "$description": "Frozen legacy highlight surface pending consumer audit."
+            "$value": "{echoes.color.feature.surface.default}",
+            "$description": "Brand blue highlight surface."
           },
           "border": {
             "$type": "color",
-            "$value": "{echoes.color.border.emphasis.weak}",
-            "$description": "Frozen legacy highlight border pending consumer audit."
+            "$value": "{echoes.color.feature.border}",
+            "$description": "Brand blue highlight border."
           }
         }
       }
