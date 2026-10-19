@@ -59,27 +59,13 @@ To use custom brand values, create your own CSS file instead of importing the de
 
 #### Fonts
 
-The brands' CSS may use specific fonts (e.g. Sonar uses `Inter` and `Ubuntu-Mono`). If you want them to apply, they need to be provided by the client project. If you can, use the CDN:
+The Sonar brand CSS bundles the Geist 1.7.2 variable sans and monospace fonts locally and loads
+them automatically. No network font request is required. Both fonts are distributed under the SIL
+Open Font License 1.1. Optical sizing is enabled globally for variable Geist.
 
-```css
-@import 'https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap';
-@import 'https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700';
-```
-
-Otherwise, you'll have to define the fonts (like the CDN does) and serve the `.woff` files yourself (e.g. as static assets):
-
-```css
-@font-face {
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 100;
-  font-display: swap;
-  src: url('../fonts/Inter/Inter-Thin.woff2') format('woff2');
-}
-... for each variant
-```
-
-Otherwise, the fonts will fall back to defaults provided by the browser & OS.
+Custom brands must provide every CSS custom property present in `sonar.css`, including the
+component contracts. Existing broad semantic variables remain available for compatibility, but
+components use the component-specific variables where a contract exists.
 
 #### Router adapter
 

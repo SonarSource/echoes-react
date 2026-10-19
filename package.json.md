@@ -1,5 +1,10 @@
 # Package.json: understanding our dependencies
 
+## Packaged assets
+
+- Geist 1.7.2: The Sonar brand's variable sans font is vendored in the published package under the
+  SIL Open Font License 1.1. It is not a runtime dependency.
+
 ## peerDependencies
 
 - react : Core runtime required by all Echoes React components.
