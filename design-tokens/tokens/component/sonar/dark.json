@@ -1566,8 +1566,8 @@
             },
             "border": {
               "$type": "color",
-              "$value": "{echoes.color.status.danger.border}",
-              "$description": "Weak danger badge border."
+              "$value": "{echoes.color.background.utility.transparent}",
+              "$description": "Weak danger badge has no visible border."
             },
             "default": {
               "$type": "color",
@@ -1617,8 +1617,8 @@
             },
             "border": {
               "$type": "color",
-              "$value": "{echoes.color.status.information.border}",
-              "$description": "Weak information badge border."
+              "$value": "{echoes.color.background.utility.transparent}",
+              "$description": "Weak information badge has no visible border."
             },
             "default": {
               "$type": "color",
@@ -1668,8 +1668,8 @@
             },
             "border": {
               "$type": "color",
-              "$value": "{echoes.color.status.success.border}",
-              "$description": "Weak success badge border."
+              "$value": "{echoes.color.background.utility.transparent}",
+              "$description": "Weak success badge has no visible border."
             },
             "default": {
               "$type": "color",
@@ -1719,8 +1719,8 @@
             },
             "border": {
               "$type": "color",
-              "$value": "{echoes.color.status.warning.border}",
-              "$description": "Weak warning badge border."
+              "$value": "{echoes.color.background.utility.transparent}",
+              "$description": "Weak warning badge has no visible border."
             },
             "default": {
               "$type": "color",
@@ -1770,8 +1770,8 @@
             },
             "border": {
               "$type": "color",
-              "$value": "{echoes.color.border.default}",
-              "$description": "Weak neutral badge border."
+              "$value": "{echoes.color.background.utility.transparent}",
+              "$description": "Weak neutral badge has no visible border."
             },
             "default": {
               "$type": "color",
@@ -1821,8 +1821,8 @@
             },
             "border": {
               "$type": "color",
-              "$value": "{echoes.color.feature.border}",
-              "$description": "Brand blue highlight badge border."
+              "$value": "{echoes.color.background.utility.transparent}",
+              "$description": "Brand blue highlight badge has no visible border."
             },
             "default": {
               "$type": "color",

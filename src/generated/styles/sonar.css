@@ -782,7 +782,7 @@ html[data-echoes-theme='dark'], [data-echoes-theme='dark'] {
   --echoes-promoted-feature-colors-icon: #a8d4ff;
   --echoes-promoted-feature-colors-title: #a8d4ff;
   --echoes-badge-colors-danger-weak-foreground: #ffb0ba; /** Weak danger badge foreground. */
-  --echoes-badge-colors-danger-weak-border: #a74351; /** Weak danger badge border. */
+  --echoes-badge-colors-danger-weak-border: #00000000; /** Weak danger badge has no visible border. */
   --echoes-badge-colors-danger-weak-default: #3b101a; /** Weak danger badge background. */
   --echoes-badge-colors-danger-weak-hover: #501422; /** Weak danger badge hover. */
   --echoes-badge-colors-danger-weak-pressed: #661829; /** Weak danger badge pressed. */
@@ -791,7 +791,7 @@ html[data-echoes-theme='dark'], [data-echoes-theme='dark'] {
   --echoes-badge-colors-danger-solid-hover: #ffa1ab; /** Solid danger badge hover. */
   --echoes-badge-colors-danger-solid-pressed: #ffb0ba; /** Solid danger badge pressed. */
   --echoes-badge-colors-information-weak-foreground: #b8b8b8; /** Weak information badge foreground. */
-  --echoes-badge-colors-information-weak-border: #464646; /** Weak information badge border. */
+  --echoes-badge-colors-information-weak-border: #00000000; /** Weak information badge has no visible border. */
   --echoes-badge-colors-information-weak-default: #1f1f1f; /** Weak information badge background. */
   --echoes-badge-colors-information-weak-hover: #252525; /** Weak information badge hover. */
   --echoes-badge-colors-information-weak-pressed: #2a2a2a; /** Weak information badge pressed. */
@@ -800,7 +800,7 @@ html[data-echoes-theme='dark'], [data-echoes-theme='dark'] {
   --echoes-badge-colors-information-solid-hover: #b8b8b8; /** Solid information badge hover. */
   --echoes-badge-colors-information-solid-pressed: #828282; /** Solid information badge pressed. */
   --echoes-badge-colors-success-weak-foreground: #9be8b5; /** Weak success badge foreground. */
-  --echoes-badge-colors-success-weak-border: #22824c; /** Weak success badge border. */
+  --echoes-badge-colors-success-weak-border: #00000000; /** Weak success badge has no visible border. */
   --echoes-badge-colors-success-weak-default: #0b2b18; /** Weak success badge background. */
   --echoes-badge-colors-success-weak-hover: #0f3c22; /** Weak success badge hover. */
   --echoes-badge-colors-success-weak-pressed: #124e2c; /** Weak success badge pressed. */
@@ -809,7 +809,7 @@ html[data-echoes-theme='dark'], [data-echoes-theme='dark'] {
   --echoes-badge-colors-success-solid-hover: #72d897; /** Solid success badge hover. */
   --echoes-badge-colors-success-solid-pressed: #9be8b5; /** Solid success badge pressed. */
   --echoes-badge-colors-warning-weak-foreground: #ffdb8a; /** Weak warning badge foreground. */
-  --echoes-badge-colors-warning-weak-border: #9a6c17; /** Weak warning badge border. */
+  --echoes-badge-colors-warning-weak-border: #00000000; /** Weak warning badge has no visible border. */
   --echoes-badge-colors-warning-weak-default: #332405; /** Weak warning badge background. */
   --echoes-badge-colors-warning-weak-hover: #463004; /** Weak warning badge hover. */
   --echoes-badge-colors-warning-weak-pressed: #5a3d03; /** Weak warning badge pressed. */
@@ -818,7 +818,7 @@ html[data-echoes-theme='dark'], [data-echoes-theme='dark'] {
   --echoes-badge-colors-warning-solid-hover: #fac969; /** Solid warning badge hover. */
   --echoes-badge-colors-warning-solid-pressed: #ffdb8a; /** Solid warning badge pressed. */
   --echoes-badge-colors-neutral-weak-foreground: #b8b8b8; /** Weak neutral badge foreground. */
-  --echoes-badge-colors-neutral-weak-border: #464646; /** Weak neutral badge border. */
+  --echoes-badge-colors-neutral-weak-border: #00000000; /** Weak neutral badge has no visible border. */
   --echoes-badge-colors-neutral-weak-default: #1f1f1f; /** Weak neutral badge background. */
   --echoes-badge-colors-neutral-weak-hover: #ffffff0d; /** Weak neutral badge hover. */
   --echoes-badge-colors-neutral-weak-pressed: #ffffff1f; /** Weak neutral badge pressed. */
@@ -827,7 +827,7 @@ html[data-echoes-theme='dark'], [data-echoes-theme='dark'] {
   --echoes-badge-colors-neutral-solid-hover: #b8b8b8; /** Solid neutral badge hover. */
   --echoes-badge-colors-neutral-solid-pressed: #828282; /** Solid neutral badge pressed. */
   --echoes-badge-colors-highlight-weak-foreground: #a8d4ff; /** Brand blue highlight badge foreground. */
-  --echoes-badge-colors-highlight-weak-border: #3470aa; /** Brand blue highlight badge border. */
+  --echoes-badge-colors-highlight-weak-border: #00000000; /** Brand blue highlight badge has no visible border. */
   --echoes-badge-colors-highlight-weak-default: #0d2740; /** Brand blue highlight badge background. */
   --echoes-badge-colors-highlight-weak-hover: #103455; /** Brand blue highlight badge hover. */
   --echoes-badge-colors-highlight-weak-pressed: #13416b; /** Brand blue highlight badge pressed. */
@@ -1426,7 +1426,7 @@ html[data-echoes-theme='dark'], [data-echoes-theme='dark'] {
   --echoes-promoted-feature-colors-icon: #0061cc;
   --echoes-promoted-feature-colors-title: #0061cc;
   --echoes-badge-colors-danger-weak-foreground: #c9153b; /** Weak danger badge foreground. */
-  --echoes-badge-colors-danger-weak-border: #f88893; /** Weak danger badge border. */
+  --echoes-badge-colors-danger-weak-border: #00000000; /** Weak danger badge has no visible border. */
   --echoes-badge-colors-danger-weak-default: #ffe7e9; /** Weak danger badge background. */
   --echoes-badge-colors-danger-weak-hover: #ffd6da; /** Weak danger badge hover. */
   --echoes-badge-colors-danger-weak-pressed: #ffc5cc; /** Weak danger badge pressed. */
@@ -1435,7 +1435,7 @@ html[data-echoes-theme='dark'], [data-echoes-theme='dark'] {
   --echoes-badge-colors-danger-solid-hover: #d40d37; /** Solid danger badge hover. */
   --echoes-badge-colors-danger-solid-pressed: #c9153b; /** Solid danger badge pressed. */
   --echoes-badge-colors-information-weak-foreground: #3a3a3a; /** Weak information badge foreground. */
-  --echoes-badge-colors-information-weak-border: #d4d4d4; /** Weak information badge border. */
+  --echoes-badge-colors-information-weak-border: #00000000; /** Weak information badge has no visible border. */
   --echoes-badge-colors-information-weak-default: #f4f4f4; /** Weak information badge background. */
   --echoes-badge-colors-information-weak-hover: #efefef; /** Weak information badge hover. */
   --echoes-badge-colors-information-weak-pressed: #e8e8e8; /** Weak information badge pressed. */
@@ -1444,7 +1444,7 @@ html[data-echoes-theme='dark'], [data-echoes-theme='dark'] {
   --echoes-badge-colors-information-solid-hover: #3a3a3a; /** Solid information badge hover. */
   --echoes-badge-colors-information-solid-pressed: #4a4a4a; /** Solid information badge pressed. */
   --echoes-badge-colors-success-weak-foreground: #08713a; /** Weak success badge foreground. */
-  --echoes-badge-colors-success-weak-border: #79c294; /** Weak success badge border. */
+  --echoes-badge-colors-success-weak-border: #00000000; /** Weak success badge has no visible border. */
   --echoes-badge-colors-success-weak-default: #e6f9ed; /** Weak success badge background. */
   --echoes-badge-colors-success-weak-hover: #d2f4de; /** Weak success badge hover. */
   --echoes-badge-colors-success-weak-pressed: #bdeecf; /** Weak success badge pressed. */
@@ -1453,7 +1453,7 @@ html[data-echoes-theme='dark'], [data-echoes-theme='dark'] {
   --echoes-badge-colors-success-solid-hover: #08753c; /** Solid success badge hover. */
   --echoes-badge-colors-success-solid-pressed: #08713a; /** Solid success badge pressed. */
   --echoes-badge-colors-warning-weak-foreground: #984800; /** Weak warning badge foreground. */
-  --echoes-badge-colors-warning-weak-border: #e8ad50; /** Weak warning badge border. */
+  --echoes-badge-colors-warning-weak-border: #00000000; /** Weak warning badge has no visible border. */
   --echoes-badge-colors-warning-weak-default: #fff5ca; /** Weak warning badge background. */
   --echoes-badge-colors-warning-weak-hover: #feecb0; /** Weak warning badge hover. */
   --echoes-badge-colors-warning-weak-pressed: #fee295; /** Weak warning badge pressed. */
@@ -1462,7 +1462,7 @@ html[data-echoes-theme='dark'], [data-echoes-theme='dark'] {
   --echoes-badge-colors-warning-solid-hover: #a65100; /** Solid warning badge hover. */
   --echoes-badge-colors-warning-solid-pressed: #984800; /** Solid warning badge pressed. */
   --echoes-badge-colors-neutral-weak-foreground: #3a3a3a; /** Weak neutral badge foreground. */
-  --echoes-badge-colors-neutral-weak-border: #d4d4d4; /** Weak neutral badge border. */
+  --echoes-badge-colors-neutral-weak-border: #00000000; /** Weak neutral badge has no visible border. */
   --echoes-badge-colors-neutral-weak-default: #f4f4f4; /** Weak neutral badge background. */
   --echoes-badge-colors-neutral-weak-hover: #00000008; /** Weak neutral badge hover. */
   --echoes-badge-colors-neutral-weak-pressed: #00000014; /** Weak neutral badge pressed. */
@@ -1471,7 +1471,7 @@ html[data-echoes-theme='dark'], [data-echoes-theme='dark'] {
   --echoes-badge-colors-neutral-solid-hover: #3a3a3a; /** Solid neutral badge hover. */
   --echoes-badge-colors-neutral-solid-pressed: #4a4a4a; /** Solid neutral badge pressed. */
   --echoes-badge-colors-highlight-weak-foreground: #0061cc; /** Brand blue highlight badge foreground. */
-  --echoes-badge-colors-highlight-weak-border: #74b7fc; /** Brand blue highlight badge border. */
+  --echoes-badge-colors-highlight-weak-border: #00000000; /** Brand blue highlight badge has no visible border. */
   --echoes-badge-colors-highlight-weak-default: #e8f4ff; /** Brand blue highlight badge background. */
   --echoes-badge-colors-highlight-weak-hover: #d3eaff; /** Brand blue highlight badge hover. */
   --echoes-badge-colors-highlight-weak-pressed: #bedfff; /** Brand blue highlight badge pressed. */
