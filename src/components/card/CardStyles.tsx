@@ -24,10 +24,10 @@ import { BUTTON_VARIETY_STYLES, ButtonStyled } from '../buttons/ButtonStyles';
 import { CardSize } from './CardSize';
 
 export const CardStyled = styled.div`
-  background-color: ${cssVar('color-surface-default')};
-  border: ${cssVar('border-width-default')} solid ${cssVar('color-border-weak')};
-  border-radius: ${cssVar('border-radius-400')};
-  box-shadow: ${cssVar('box-shadow-xsmall')};
+  background-color: ${cssVar('card-colors-background')};
+  border: ${cssVar('border-width-default')} solid ${cssVar('card-colors-border')};
+  border-radius: ${cssVar('card-border-radius-default')};
+  box-shadow: ${cssVar('card-shadow')};
 
   box-sizing: border-box;
   display: flex;

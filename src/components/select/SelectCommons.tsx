@@ -265,54 +265,58 @@ export const SelectStyled = styled(MantineSelect)`
     padding-left: ${cssVar('dimension-space-150')};
 
     font: ${cssVar('typography-text-default-regular')};
-    color: ${cssVar('color-text-strong')};
+    color: ${cssVar('input-colors-foreground-default')};
     text-align: left;
     text-overflow: ellipsis;
 
-    background-color: ${cssVar('form-control-colors-background-default')};
-    border: ${cssVar('border-width-default')} solid ${cssVar('form-control-colors-border-default')};
+    background-color: ${cssVar('input-colors-background-default')};
+    border: ${cssVar('border-width-default')} solid ${cssVar('input-colors-border-default')};
     border-radius: ${cssVar('form-control-border-radius-default')};
+    box-shadow: ${cssVar('select-shadow-resting')};
 
     &[data-variant='unstyled'],
     &[data-variant='unstyled'][data-disabled] {
       border-color: transparent;
+      box-shadow: ${cssVar('select-shadow-suppressed')};
     }
 
     &:hover {
-      background-color: ${cssVar('form-control-colors-background-hover')};
+      background-color: ${cssVar('input-colors-background-hover')};
+      border-color: ${cssVar('input-colors-border-hover')};
     }
 
     &[data-error] {
-      border-color: ${cssVar('color-border-danger-default')};
+      border-color: ${cssVar('input-colors-border-error')};
     }
 
     &:focus,
     &:focus-visible {
-      border-color: ${cssVar('color-border-weak')};
-      outline: ${cssVar('color-focus-default')} solid ${cssVar('focus-border-width-default')};
+      border-color: ${cssVar('input-colors-border-focus')};
+      outline: ${cssVar('input-colors-border-focus')} solid ${cssVar('focus-border-width-default')};
     }
 
     &::placeholder {
-      color: ${cssVar('color-text-placeholder')};
+      color: ${cssVar('input-colors-foreground-placeholder')};
     }
 
     &[data-disabled],
     &[data-disabled]:hover {
-      color: ${cssVar('color-text-disabled')};
-      background-color: ${cssVar('color-surface-disabled')};
-      border-color: ${cssVar('color-border-disabled')};
+      color: ${cssVar('input-colors-foreground-disabled')};
+      background-color: ${cssVar('input-colors-background-disabled')};
+      border-color: ${cssVar('input-colors-border-disabled')};
+      box-shadow: ${cssVar('select-shadow-suppressed')};
       outline: none;
       cursor: not-allowed;
 
       &::placeholder {
-        color: ${cssVar('color-text-disabled')};
+        color: ${cssVar('input-colors-foreground-disabled')};
       }
     }
   }
 
   // Input left and right sections
   & .echoes-select-input-section {
-    color: ${cssVar('form-control-colors-icon-default')};
+    color: ${cssVar('input-colors-icon-default')};
 
     position: absolute;
     top: 0;
@@ -349,24 +353,25 @@ export const SelectStyled = styled(MantineSelect)`
         justify-content: center;
 
         font: ${cssVar('typography-text-small-medium')};
-        background-color: ${cssVar('color-background-utility-transparent')};
-        color: ${cssVar('form-control-colors-icon-default')};
+        background-color: ${cssVar('dropdown-item-colors-background-default')};
+        color: ${cssVar('input-colors-icon-default')};
 
         border: none;
-        border-radius: ${cssVar('border-radius-200')};
+        border-radius: ${cssVar('select-border-radius-clear-button')};
 
         cursor: pointer;
         pointer-events: auto;
 
         &:hover {
-          background-color: ${cssVar('color-surface-hover')};
+          background-color: ${cssVar('dropdown-item-colors-background-hover')};
         }
 
         &:focus,
         &:focus-visible {
-          outline: ${cssVar('color-focus-default')} solid ${cssVar('focus-border-width-default')};
+          outline: ${cssVar('dropdown-item-colors-focus')} solid
+            ${cssVar('focus-border-width-default')};
           outline-offset: ${cssVar('focus-border-offset-default')};
-          border-radius: ${cssVar('border-radius-200')};
+          border-radius: ${cssVar('select-border-radius-clear-button')};
         }
       }
     }
@@ -374,7 +379,7 @@ export const SelectStyled = styled(MantineSelect)`
 
   // Input left and right sections icons when the input is disabled
   & .echoes-select-wrapper[data-disabled] .echoes-select-input-section {
-    color: ${cssVar('color-icon-disabled')};
+    color: ${cssVar('input-colors-foreground-disabled')};
   }
 `;
 
@@ -396,11 +401,11 @@ const selectGlobalStyles = css`
 
     overflow: hidden;
 
-    background-color: ${cssVar('color-surface-default')};
-    border: ${cssVar('border-width-default')} solid ${cssVar('color-border-weak')};
-    border-radius: ${cssVar('border-radius-400')};
+    background-color: ${cssVar('input-colors-background-default')};
+    border: ${cssVar('border-width-default')} solid ${cssVar('select-colors-border-dropdown')};
+    border-radius: ${cssVar('select-border-radius-dropdown')};
 
-    box-shadow: ${cssVar('box-shadow-medium')};
+    box-shadow: ${cssVar('select-shadow-anchored')};
 
     & .echoes-select-options-wrapper {
       max-height: 250px;
@@ -427,7 +432,7 @@ const selectGlobalStyles = css`
       ${cssVar('dimension-space-100')}`};
 
     font: ${cssVar('typography-text-small-semi-bold')};
-    color: ${cssVar('color-text-default')};
+    color: ${cssVar('dropdown-item-colors-foreground-default')};
   }
 
   // Inside the dropdown - Adds a divider between two groups
@@ -437,12 +442,12 @@ const selectGlobalStyles = css`
     flex: 1;
     padding: ${cssVar('dimension-space-25')} ${cssVar('dimension-space-0')};
 
-    border-top: ${cssVar('border-width-default')} solid ${cssVar('color-border-weak')};
+    border-top: ${cssVar('border-width-default')} solid ${cssVar('select-colors-border-separator')};
   }
 
   .echoes-select-empty {
     font: ${cssVar('typography-text-small-medium')};
-    color: ${cssVar('color-text-subtle')};
+    color: ${cssVar('select-colors-foreground-empty')};
     text-align: center;
 
     padding: ${cssVar('dimension-space-50')} ${cssVar('dimension-space-0')};
