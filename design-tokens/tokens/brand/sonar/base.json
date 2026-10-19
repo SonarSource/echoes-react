@@ -281,7 +281,7 @@
     "fontSize": {
       "10": {
         "$type": "fontSizes",
-        "$value": "0.8125rem"
+        "$value": "0.75rem"
       },
       "20": {
         "$type": "fontSizes",
