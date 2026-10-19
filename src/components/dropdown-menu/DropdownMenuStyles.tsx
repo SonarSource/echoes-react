@@ -22,8 +22,8 @@ import styled from '@emotion/styled';
 import { cssVar } from '~utils/design-tokens';
 
 export const styleDropdownItemBase = styled.div`
-  background-color: ${cssVar('color-surface-default')};
-  color: ${cssVar('color-text-default')};
+  background-color: ${cssVar('dropdown-item-colors-background-default')};
+  color: ${cssVar('dropdown-item-colors-foreground-default')};
   font: ${cssVar('typography-text-default-regular')};
 
   display: flex;
@@ -36,32 +36,32 @@ export const styleDropdownItemBase = styled.div`
 
   &:focus-visible {
     border-radius: ${cssVar('border-radius-400')};
-    outline: ${cssVar('color-focus-default')} solid ${cssVar('focus-border-width-default')};
+    outline: ${cssVar('dropdown-item-colors-focus')} solid ${cssVar('focus-border-width-default')};
     outline-offset: -2px;
   }
 
   &:hover {
-    background-color: ${cssVar('color-surface-hover')};
+    background-color: ${cssVar('dropdown-item-colors-background-hover')};
   }
 
   /* when the item is clicked */
   &:active {
-    background-color: ${cssVar('color-surface-active')};
+    background-color: ${cssVar('dropdown-item-colors-background-pressed')};
   }
 
   &[data-disabled],
   &:disabled {
-    background-color: ${cssVar('color-surface-default')};
-    color: ${cssVar('color-text-disabled')};
+    background-color: ${cssVar('dropdown-item-colors-background-default')};
+    color: ${cssVar('dropdown-item-colors-foreground-disabled')};
     cursor: default;
   }
 `.withComponent;
 
 export const styleDropdownMenuOverlay = styled.div`
-  background-color: ${cssVar('color-surface-default')};
-  border: ${cssVar('border-width-default')} solid ${cssVar('color-border-weak')};
+  background-color: ${cssVar('overlay-colors-background')};
+  border: ${cssVar('border-width-default')} solid ${cssVar('overlay-colors-border')};
   border-radius: ${cssVar('dimension-space-100')};
-  box-shadow: ${cssVar('box-shadow-medium')};
+  box-shadow: ${cssVar('overlay-shadow-anchored')};
   box-sizing: border-box;
   margin: ${cssVar('dimension-space-50')} 0;
   max-height: var(--radix-dropdown-menu-content-available-height);

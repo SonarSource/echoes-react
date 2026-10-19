@@ -12,6 +12,7 @@
       "default": "./dist/index.js"
     },
     "./styles/*": "./dist/styles/*",
+    "./fonts/*": "./dist/fonts/*",
     "./tokens/*/base.json": "./dist/tokens/*/base.json",
     "./tokens/*/themed.json": "./dist/tokens/*/themed.json",
     "./tailwind": "./dist/tailwind.js"
@@ -39,6 +40,7 @@
     "create-icon": "node ./config/scripts/create-icon.js",
     "build-intl-keys": "formatjs extract 'src/components/**/*.ts*' 'src/common/components/**/*.ts*' --out-file i18n/keys.json",
     "build-tokens": "node design-tokens/build.js",
+    "generate-sentiment-palettes": "node design-tokens/generate-sentiment-palettes.mjs",
     "build-storybook": "vite build & storybook build",
     "dep-check": "node --no-warnings ./config/scripts/validate-package-json.js",
     "format": "prettier --write --list-different .",
