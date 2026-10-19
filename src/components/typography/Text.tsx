@@ -25,28 +25,44 @@ import { DesignTokensColorsText } from '~types/design-tokens';
 import { cssVar } from '~utils/design-tokens';
 
 export enum TextSize {
+  /** Caption text (12px / 16px). */
+  Caption = 'caption',
+  /** Supporting text (14px / 20px). */
   Small = 'small',
+  /** Product body text (16px / 24px). */
   Default = 'default',
+  /** Large body text (18px / 28px). */
   Large = 'large',
+  /** Lead text (20px / 28px). */
+  Lead = 'lead',
+  /** Long-form prose text (16px / 28px). */
+  Prose = 'prose',
 }
 
 type TextTags = 'span' | 'p' | 'div' | 'strong' | 'b' | 'em' | 'i' | 'ul' | 'ol' | 'li';
 
 export type TextProps = {
+  /** HTML element used to render the text. */
   as?: TextTags;
+  /** Optional CSS class applied to the text. */
   className?: string;
+  /** Optional HTML id applied to the text. */
   id?: string;
+  /** Emphasizes the text with the highlighted weight for its size. @defaultValue false */
   isHighlighted?: boolean;
+  /** Semantic text size. @defaultValue TextSize.Default */
   size?: `${TextSize}`;
 } & ColorProps;
 
 type ColorProps =
   | {
+      /** Overrides the semantic text color. */
       colorOverride?: DesignTokensColorsText;
       isSubtle?: never;
     }
   | {
       colorOverride?: never;
+      /** Uses the subtle semantic text color. @defaultValue false */
       isSubtle: boolean;
     };
 
@@ -138,14 +154,20 @@ function getFontForSizeAndWeight({
 const TYPOGRAPHY_MAP = {
   /* isHighlighted is true */
   true: {
+    [TextSize.Caption]: cssVar('typography-text-caption-medium'),
     [TextSize.Small]: cssVar('typography-text-small-semi-bold'),
     [TextSize.Default]: cssVar('typography-text-default-semi-bold'),
     [TextSize.Large]: cssVar('typography-text-large-semi-bold'),
+    [TextSize.Lead]: cssVar('typography-text-lead-semi-bold'),
+    [TextSize.Prose]: cssVar('typography-text-prose-semi-bold'),
   },
   /* isHighlighted is false */
   false: {
+    [TextSize.Caption]: cssVar('typography-text-caption-regular'),
     [TextSize.Small]: cssVar('typography-text-small-regular'),
     [TextSize.Default]: cssVar('typography-text-default-regular'),
     [TextSize.Large]: cssVar('typography-text-large-regular'),
+    [TextSize.Lead]: cssVar('typography-text-lead-regular'),
+    [TextSize.Prose]: cssVar('typography-text-prose-regular'),
   },
 };

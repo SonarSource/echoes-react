@@ -30,14 +30,22 @@ TypographyGlobalStyles.displayName = 'TypographyGlobalStyles';
 const typographyGlobalStyles = css`
   body {
     font: ${cssVar('typography-text-default-regular')};
+    font-optical-sizing: auto;
     color: ${cssVar('color-text-default')};
   }
 
   pre,
-  code,
   kbd,
   samp,
   tt {
     font: ${cssVar('typography-code-default')};
+  }
+
+  code {
+    font: ${cssVar('typography-code-inline')};
+  }
+
+  pre code {
+    font: inherit;
   }
 `;

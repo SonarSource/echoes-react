@@ -2,6 +2,9 @@
   "tokenSetOrder": [
     "brand/sonar/base",
     "brand/sonar/colors",
+    "brand/sonar/palettes/base",
+    "brand/sonar/palettes/light",
+    "brand/sonar/palettes/dark",
     "brand/gitar/base",
     "brand/gitar/colors",
     "modes/sonar/light",
@@ -9,8 +12,10 @@
     "modes/gitar/light",
     "modes/gitar/dark",
     "component/base",
+    "component/sonar/base",
     "component/sonar/light",
     "component/sonar/dark",
+    "component/gitar/base",
     "component/gitar/light",
     "component/gitar/dark"
   ]
