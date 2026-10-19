@@ -154,7 +154,7 @@ const SidebarNavigationWrapper = styled.nav`
   }
 
   [data-sidebar-docked='false'][data-sidebar-open='true'] & {
-    box-shadow: ${cssVar('box-shadow-x-large')};
+    box-shadow: ${cssVar('shadow-over-data')};
   }
 `;
 

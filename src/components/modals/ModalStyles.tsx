@@ -46,8 +46,8 @@ export const styleModalWrapper = styled.div<{ size: `${ModalSize}` }>`
   width: ${(props) => SIZES[props.size]};
 
   border-radius: ${cssVar('border-radius-400')};
-  background: ${cssVar('color-surface-default')};
-  box-shadow: ${cssVar('box-shadow-large')};
+  background: ${cssVar('overlay-colors-background')};
+  box-shadow: ${cssVar('overlay-shadow-floating')};
 `.withComponent;
 
 export const styleModalTitle = styled.h2`

@@ -30,7 +30,7 @@ export interface LabelProps {
 }
 
 export const Label = styled.label<LabelProps>`
-  font: ${cssVar('typography-others-label')};
+  font: ${cssVar('label-typography-default')};
   color: ${({ isSubtle }) =>
     isSubtle ? cssVar('color-text-subtle') : cssVar('color-text-default')};
 `;
