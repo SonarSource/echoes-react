@@ -143,7 +143,7 @@
   "echoes-typography-heading-small": "600 0.875rem/1.25rem Geist, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
   "echoes-typography-heading-medium": "600 1rem/1.5rem Geist, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
   "echoes-typography-heading-large": "600 1.25rem/1.875rem Geist, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
-  "echoes-typography-heading-xlarge": "800 1.5rem/2.25rem Geist, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+  "echoes-typography-heading-xlarge": "600 1.5rem/2.25rem Geist, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
   "echoes-typography-code-default": "400 0.875rem/1.25rem Geist Mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace",
   "echoes-typography-code-inline": "600 0.875rem/1.25rem Geist Mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace",
   "echoes-typography-code-highlight": "700 0.875rem/1.25rem Geist Mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace",

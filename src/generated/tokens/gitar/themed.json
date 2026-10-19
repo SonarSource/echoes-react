@@ -468,6 +468,7 @@
   "echoes-sidebar-navigation-item-colors-background-default": "#fcfaf9",
   "echoes-sidebar-navigation-item-colors-background-hover": "#fcfaf9",
   "echoes-sidebar-navigation-item-colors-background-active": "#fcfaf9",
+  "echoes-sidebar-navigation-item-colors-foreground-default": "#2f2c28",
   "echoes-table-colors-background-header-default": "#fcfaf9",
   "echoes-link-colors-action-default": "#90349e",
   "echoes-link-colors-action-hover": "#f19ffe",

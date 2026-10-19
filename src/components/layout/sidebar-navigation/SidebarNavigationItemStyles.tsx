@@ -39,7 +39,7 @@ export const sidebarNavigationBaseItemStyles = css`
 
   flex-shrink: 0;
 
-  color: ${cssVar('navigation-item-colors-foreground-default')};
+  color: ${cssVar('sidebar-navigation-item-colors-foreground-default')};
   font: ${cssVar('typography-text-default-regular')};
 
   cursor: pointer;

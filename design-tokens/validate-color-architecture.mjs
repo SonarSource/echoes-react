@@ -53,6 +53,7 @@ const MIGRATED_COMPONENT_FAMILIES = [
   'promoted-section.',
   'radio-button.',
   'select.',
+  'severityBadge.',
   'table.',
 ];
 

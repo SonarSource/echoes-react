@@ -600,6 +600,13 @@
             "$type": "color",
             "$value": "{echoes.color.palette.sand.50}"
           }
+        },
+        "foreground": {
+          "default": {
+            "$type": "color",
+            "$value": "{echoes.color.text.default}",
+            "$description": "Existing Gitar sidebar label and text foreground."
+          }
         }
       }
     },

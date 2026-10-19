@@ -181,7 +181,7 @@
   --echoes-typography-heading-small: 600 0.875rem/1.25rem Geist, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --echoes-typography-heading-medium: 600 1rem/1.5rem Geist, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --echoes-typography-heading-large: 600 1.25rem/1.875rem Geist, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --echoes-typography-heading-xlarge: 800 1.5rem/2.25rem Geist, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --echoes-typography-heading-xlarge: 600 1.5rem/2.25rem Geist, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --echoes-typography-code-default: 400 0.875rem/1.25rem Geist Mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
   --echoes-typography-code-inline: 600 0.875rem/1.25rem Geist Mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
   --echoes-typography-code-highlight: 700 0.875rem/1.25rem Geist Mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
@@ -666,40 +666,41 @@ html[data-echoes-theme='dark'], [data-echoes-theme='dark'] {
   --echoes-ratings-colors-border-rating-d-hover: #ac7147;
   --echoes-ratings-colors-border-rating-e-default: #a74351;
   --echoes-ratings-colors-border-rating-e-hover: #d6727c;
-  --echoes-severity-badge-colors-background-severity-blocker-prefix-default: #d92d201a;
-  --echoes-severity-badge-colors-background-severity-blocker-suffix-default: #d92d2066;
-  --echoes-severity-badge-colors-background-severity-blocker-suffix-hover: #d92d2099;
-  --echoes-severity-badge-colors-background-severity-high-prefix-default: #f970661a;
-  --echoes-severity-badge-colors-background-severity-high-suffix-default: #f9706666;
-  --echoes-severity-badge-colors-background-severity-high-suffix-hover: #f9706699;
-  --echoes-severity-badge-colors-background-severity-medium-prefix-default: #fd71221a;
-  --echoes-severity-badge-colors-background-severity-medium-suffix-default: #fd712266;
-  --echoes-severity-badge-colors-background-severity-medium-suffix-hover: #fd712299;
-  --echoes-severity-badge-colors-background-severity-low-prefix-default: #fadc791a;
-  --echoes-severity-badge-colors-background-severity-low-suffix-default: #fadc7966;
-  --echoes-severity-badge-colors-background-severity-low-suffix-hover: #fadc7999;
-  --echoes-severity-badge-colors-background-severity-info-prefix-default: #8fcaea1a;
-  --echoes-severity-badge-colors-background-severity-info-suffix-default: #8fcaea66;
-  --echoes-severity-badge-colors-background-severity-info-suffix-hover: #8fcaea99;
-  --echoes-severity-badge-colors-foreground-blocker-icon-default: #fee4e2;
-  --echoes-severity-badge-colors-foreground-blocker-text-default: #fecdca;
-  --echoes-severity-badge-colors-foreground-high-text-default: #fee4e2;
-  --echoes-severity-badge-colors-foreground-high-icon-default: #fecdca;
-  --echoes-severity-badge-colors-foreground-medium-text-default: #ffe8da;
-  --echoes-severity-badge-colors-foreground-medium-icon-default: #fedbc7;
-  --echoes-severity-badge-colors-foreground-low-text-default: #fef5d0;
-  --echoes-severity-badge-colors-foreground-low-icon-default: #fce9a3;
-  --echoes-severity-badge-colors-foreground-info-text-default: #6eb9e4;
-  --echoes-severity-badge-colors-foreground-info-icon-default: #8fcaea;
-  --echoes-severity-badge-colors-borders-blocker-default: #d92d2099;
-  --echoes-severity-badge-colors-borders-high-default: #f9706666;
-  --echoes-severity-badge-colors-borders-medium-default: #fd712266;
-  --echoes-severity-badge-colors-borders-low-default: #fadc7966;
-  --echoes-severity-badge-colors-borders-info-default: #8fcaea66;
+  --echoes-severity-badge-colors-background-severity-blocker-prefix-default: #3b101a; /** Severity blocker prefix mapped through status.danger.surface.default. */
+  --echoes-severity-badge-colors-background-severity-blocker-suffix-default: #501422; /** Severity blocker suffix mapped through status.danger.surface.hover. */
+  --echoes-severity-badge-colors-background-severity-blocker-suffix-hover: #661829; /** Severity blocker hover mapped through status.danger.surface.pressed. */
+  --echoes-severity-badge-colors-background-severity-high-prefix-default: #3b101a; /** Severity high prefix mapped through status.danger.surface.default. */
+  --echoes-severity-badge-colors-background-severity-high-suffix-default: #501422; /** Severity high suffix mapped through status.danger.surface.hover. */
+  --echoes-severity-badge-colors-background-severity-high-suffix-hover: #661829; /** Severity high hover mapped through status.danger.surface.pressed. */
+  --echoes-severity-badge-colors-background-severity-medium-prefix-default: #332405; /** Severity medium prefix mapped through status.warning.surface.default. */
+  --echoes-severity-badge-colors-background-severity-medium-suffix-default: #463004; /** Severity medium suffix mapped through status.warning.surface.hover. */
+  --echoes-severity-badge-colors-background-severity-medium-suffix-hover: #5a3d03; /** Severity medium hover mapped through status.warning.surface.pressed. */
+  --echoes-severity-badge-colors-background-severity-low-prefix-default: #332405; /** Severity low prefix mapped through status.warning.surface.default. */
+  --echoes-severity-badge-colors-background-severity-low-suffix-default: #463004; /** Severity low suffix mapped through status.warning.surface.hover. */
+  --echoes-severity-badge-colors-background-severity-low-suffix-hover: #5a3d03; /** Severity low hover mapped through status.warning.surface.pressed. */
+  --echoes-severity-badge-colors-background-severity-info-prefix-default: #1f1f1f; /** Severity info prefix mapped through status.information.surface.default. */
+  --echoes-severity-badge-colors-background-severity-info-suffix-default: #252525; /** Severity info suffix mapped through status.information.surface.hover. */
+  --echoes-severity-badge-colors-background-severity-info-suffix-hover: #2a2a2a; /** Severity info hover mapped through status.information.surface.pressed. */
+  --echoes-severity-badge-colors-foreground-blocker-icon-default: #ffb0ba; /** Severity blocker icon mapped through status.danger.foreground. */
+  --echoes-severity-badge-colors-foreground-blocker-text-default: #ffb0ba; /** Severity blocker text mapped through status.danger.foreground. */
+  --echoes-severity-badge-colors-foreground-high-text-default: #ffb0ba; /** Severity high text mapped through status.danger.foreground. */
+  --echoes-severity-badge-colors-foreground-high-icon-default: #ffb0ba; /** Severity high icon mapped through status.danger.foreground. */
+  --echoes-severity-badge-colors-foreground-medium-text-default: #ffdb8a; /** Severity medium text mapped through status.warning.foreground. */
+  --echoes-severity-badge-colors-foreground-medium-icon-default: #ffdb8a; /** Severity medium icon mapped through status.warning.foreground. */
+  --echoes-severity-badge-colors-foreground-low-text-default: #ffdb8a; /** Severity low text mapped through status.warning.foreground. */
+  --echoes-severity-badge-colors-foreground-low-icon-default: #ffdb8a; /** Severity low icon mapped through status.warning.foreground. */
+  --echoes-severity-badge-colors-foreground-info-text-default: #b8b8b8; /** Severity info text mapped through status.information.foreground. */
+  --echoes-severity-badge-colors-foreground-info-icon-default: #b8b8b8; /** Severity info icon mapped through status.information.foreground. */
+  --echoes-severity-badge-colors-borders-blocker-default: #a74351; /** Severity blocker border mapped through status.danger.border. */
+  --echoes-severity-badge-colors-borders-high-default: #a74351; /** Severity high border mapped through status.danger.border. */
+  --echoes-severity-badge-colors-borders-medium-default: #9a6c17; /** Severity medium border mapped through status.warning.border. */
+  --echoes-severity-badge-colors-borders-low-default: #9a6c17; /** Severity low border mapped through status.warning.border. */
+  --echoes-severity-badge-colors-borders-info-default: #464646; /** Severity info border mapped through status.information.border. */
   --echoes-sidebar-navigation-colors-background-default: #1a1a1a;
   --echoes-sidebar-navigation-item-colors-background-default: #1a1a1a;
   --echoes-sidebar-navigation-item-colors-background-hover: #252525cc;
   --echoes-sidebar-navigation-item-colors-background-active: #2a2a2ab3;
+  --echoes-sidebar-navigation-item-colors-foreground-default: #828282; /** Subdued foreground for inactive sidebar labels and text. */
   --echoes-table-colors-background-header-default: #1f1f1f; /** Component contract mapped through surface.subtle. */
   --echoes-link-colors-action-default: #eeeeee; /** Component contract mapped through action.link.default. */
   --echoes-link-colors-action-hover: #b8b8b8; /** Component contract mapped through action.link.hover. */
@@ -1310,40 +1311,41 @@ html[data-echoes-theme='dark'], [data-echoes-theme='dark'] {
   --echoes-ratings-colors-border-rating-d-hover: #b87341;
   --echoes-ratings-colors-border-rating-e-default: #f88893;
   --echoes-ratings-colors-border-rating-e-hover: #e15461;
-  --echoes-severity-badge-colors-background-severity-blocker-prefix-default: #fee4e2;
-  --echoes-severity-badge-colors-background-severity-blocker-suffix-default: #fecdca;
-  --echoes-severity-badge-colors-background-severity-blocker-suffix-hover: #f8c8c5;
-  --echoes-severity-badge-colors-background-severity-high-prefix-default: #fef3f2;
-  --echoes-severity-badge-colors-background-severity-high-suffix-default: #fee4e2;
-  --echoes-severity-badge-colors-background-severity-high-suffix-hover: #f8dfdd;
-  --echoes-severity-badge-colors-background-severity-medium-prefix-default: #fff0eb;
-  --echoes-severity-badge-colors-background-severity-medium-suffix-default: #ffe8da;
-  --echoes-severity-badge-colors-background-severity-medium-suffix-hover: #f8d6c3;
-  --echoes-severity-badge-colors-background-severity-low-prefix-default: #fcf5e4;
-  --echoes-severity-badge-colors-background-severity-low-suffix-default: #fef5d0;
-  --echoes-severity-badge-colors-background-severity-low-suffix-hover: #f8efcb;
-  --echoes-severity-badge-colors-background-severity-info-prefix-default: #f5fbff;
-  --echoes-severity-badge-colors-background-severity-info-suffix-default: #e9f4fb;
-  --echoes-severity-badge-colors-background-severity-info-suffix-hover: #e4eef5;
-  --echoes-severity-badge-colors-foreground-blocker-icon-default: #b42318;
-  --echoes-severity-badge-colors-foreground-blocker-text-default: #801b14;
-  --echoes-severity-badge-colors-foreground-high-text-default: #b42318;
-  --echoes-severity-badge-colors-foreground-high-icon-default: #d92d20;
-  --echoes-severity-badge-colors-foreground-medium-text-default: #93370d;
-  --echoes-severity-badge-colors-foreground-medium-icon-default: #dc5e03;
-  --echoes-severity-badge-colors-foreground-low-text-default: #8c5e1e;
-  --echoes-severity-badge-colors-foreground-low-icon-default: #ae7a29;
-  --echoes-severity-badge-colors-foreground-info-text-default: #316c92;
-  --echoes-severity-badge-colors-foreground-info-icon-default: #3a7fad;
-  --echoes-severity-badge-colors-borders-blocker-default: #fecdca;
-  --echoes-severity-badge-colors-borders-high-default: #fee4e2;
-  --echoes-severity-badge-colors-borders-medium-default: #ffe8da;
-  --echoes-severity-badge-colors-borders-low-default: #fef5d0;
-  --echoes-severity-badge-colors-borders-info-default: #e9f4fb;
+  --echoes-severity-badge-colors-background-severity-blocker-prefix-default: #ffe7e9; /** Severity blocker prefix mapped through status.danger.surface.default. */
+  --echoes-severity-badge-colors-background-severity-blocker-suffix-default: #ffd6da; /** Severity blocker suffix mapped through status.danger.surface.hover. */
+  --echoes-severity-badge-colors-background-severity-blocker-suffix-hover: #ffc5cc; /** Severity blocker hover mapped through status.danger.surface.pressed. */
+  --echoes-severity-badge-colors-background-severity-high-prefix-default: #ffe7e9; /** Severity high prefix mapped through status.danger.surface.default. */
+  --echoes-severity-badge-colors-background-severity-high-suffix-default: #ffd6da; /** Severity high suffix mapped through status.danger.surface.hover. */
+  --echoes-severity-badge-colors-background-severity-high-suffix-hover: #ffc5cc; /** Severity high hover mapped through status.danger.surface.pressed. */
+  --echoes-severity-badge-colors-background-severity-medium-prefix-default: #fff5ca; /** Severity medium prefix mapped through status.warning.surface.default. */
+  --echoes-severity-badge-colors-background-severity-medium-suffix-default: #feecb0; /** Severity medium suffix mapped through status.warning.surface.hover. */
+  --echoes-severity-badge-colors-background-severity-medium-suffix-hover: #fee295; /** Severity medium hover mapped through status.warning.surface.pressed. */
+  --echoes-severity-badge-colors-background-severity-low-prefix-default: #fff5ca; /** Severity low prefix mapped through status.warning.surface.default. */
+  --echoes-severity-badge-colors-background-severity-low-suffix-default: #feecb0; /** Severity low suffix mapped through status.warning.surface.hover. */
+  --echoes-severity-badge-colors-background-severity-low-suffix-hover: #fee295; /** Severity low hover mapped through status.warning.surface.pressed. */
+  --echoes-severity-badge-colors-background-severity-info-prefix-default: #f4f4f4; /** Severity info prefix mapped through status.information.surface.default. */
+  --echoes-severity-badge-colors-background-severity-info-suffix-default: #efefef; /** Severity info suffix mapped through status.information.surface.hover. */
+  --echoes-severity-badge-colors-background-severity-info-suffix-hover: #e8e8e8; /** Severity info hover mapped through status.information.surface.pressed. */
+  --echoes-severity-badge-colors-foreground-blocker-icon-default: #c9153b; /** Severity blocker icon mapped through status.danger.foreground. */
+  --echoes-severity-badge-colors-foreground-blocker-text-default: #c9153b; /** Severity blocker text mapped through status.danger.foreground. */
+  --echoes-severity-badge-colors-foreground-high-text-default: #c9153b; /** Severity high text mapped through status.danger.foreground. */
+  --echoes-severity-badge-colors-foreground-high-icon-default: #c9153b; /** Severity high icon mapped through status.danger.foreground. */
+  --echoes-severity-badge-colors-foreground-medium-text-default: #984800; /** Severity medium text mapped through status.warning.foreground. */
+  --echoes-severity-badge-colors-foreground-medium-icon-default: #984800; /** Severity medium icon mapped through status.warning.foreground. */
+  --echoes-severity-badge-colors-foreground-low-text-default: #984800; /** Severity low text mapped through status.warning.foreground. */
+  --echoes-severity-badge-colors-foreground-low-icon-default: #984800; /** Severity low icon mapped through status.warning.foreground. */
+  --echoes-severity-badge-colors-foreground-info-text-default: #3a3a3a; /** Severity info text mapped through status.information.foreground. */
+  --echoes-severity-badge-colors-foreground-info-icon-default: #3a3a3a; /** Severity info icon mapped through status.information.foreground. */
+  --echoes-severity-badge-colors-borders-blocker-default: #f88893; /** Severity blocker border mapped through status.danger.border. */
+  --echoes-severity-badge-colors-borders-high-default: #f88893; /** Severity high border mapped through status.danger.border. */
+  --echoes-severity-badge-colors-borders-medium-default: #e8ad50; /** Severity medium border mapped through status.warning.border. */
+  --echoes-severity-badge-colors-borders-low-default: #e8ad50; /** Severity low border mapped through status.warning.border. */
+  --echoes-severity-badge-colors-borders-info-default: #d4d4d4; /** Severity info border mapped through status.information.border. */
   --echoes-sidebar-navigation-colors-background-default: #f8f8f8;
   --echoes-sidebar-navigation-item-colors-background-default: #f8f8f8;
   --echoes-sidebar-navigation-item-colors-background-hover: #efefef;
   --echoes-sidebar-navigation-item-colors-background-active: #e8e8e8;
+  --echoes-sidebar-navigation-item-colors-foreground-default: #4a4a4a; /** Subdued foreground for inactive sidebar labels and text. */
   --echoes-table-colors-background-header-default: #f4f4f4; /** Component contract mapped through surface.subtle. */
   --echoes-link-colors-action-default: #1a1a1a; /** Component contract mapped through action.link.default. */
   --echoes-link-colors-action-hover: #3a3a3a; /** Component contract mapped through action.link.hover. */

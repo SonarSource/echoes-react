@@ -684,6 +684,7 @@ html[data-echoes-theme='dark'], [data-echoes-theme='dark'] {
   --echoes-sidebar-navigation-item-colors-background-default: #403d38;
   --echoes-sidebar-navigation-item-colors-background-hover: #2f2c28;
   --echoes-sidebar-navigation-item-colors-background-active: #181613;
+  --echoes-sidebar-navigation-item-colors-foreground-default: #f1efec; /** Existing Gitar sidebar label and text foreground. */
   --echoes-table-colors-background-header-default: #696561;
   --echoes-link-colors-action-default: #f19ffe; /** Component contract mapped through action.link.default. */
   --echoes-link-colors-action-hover: #90349e; /** Component contract mapped through action.link.hover. */
@@ -1328,6 +1329,7 @@ html[data-echoes-theme='dark'], [data-echoes-theme='dark'] {
   --echoes-sidebar-navigation-item-colors-background-default: #fcfaf9;
   --echoes-sidebar-navigation-item-colors-background-hover: #fcfaf9;
   --echoes-sidebar-navigation-item-colors-background-active: #fcfaf9;
+  --echoes-sidebar-navigation-item-colors-foreground-default: #2f2c28; /** Existing Gitar sidebar label and text foreground. */
   --echoes-table-colors-background-header-default: #fcfaf9;
   --echoes-link-colors-action-default: #90349e; /** Component contract mapped through action.link.default. */
   --echoes-link-colors-action-hover: #f19ffe; /** Component contract mapped through action.link.hover. */

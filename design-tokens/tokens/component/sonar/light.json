@@ -363,26 +363,20 @@
               "prefix": {
                 "default": {
                   "$type": "color",
-                  "$value": "{echoes.color.palette.red.100}"
+                  "$value": "{echoes.color.status.danger.surface.default}",
+                  "$description": "Severity blocker prefix mapped through status.danger.surface.default."
                 }
               },
               "suffix": {
                 "default": {
                   "$type": "color",
-                  "$value": "{echoes.color.palette.red.200}"
+                  "$value": "{echoes.color.status.danger.surface.hover}",
+                  "$description": "Severity blocker suffix mapped through status.danger.surface.hover."
                 },
                 "hover": {
-                  "$extensions": {
-                    "studio.tokens": {
-                      "modify": {
-                        "type": "darken",
-                        "value": "0.02",
-                        "space": "lch"
-                      }
-                    }
-                  },
                   "$type": "color",
-                  "$value": "{echoes.color.palette.red.200}"
+                  "$value": "{echoes.color.status.danger.surface.pressed}",
+                  "$description": "Severity blocker hover mapped through status.danger.surface.pressed."
                 }
               }
             },
@@ -390,26 +384,20 @@
               "prefix": {
                 "default": {
                   "$type": "color",
-                  "$value": "{echoes.color.palette.red.50}"
+                  "$value": "{echoes.color.status.danger.surface.default}",
+                  "$description": "Severity high prefix mapped through status.danger.surface.default."
                 }
               },
               "suffix": {
                 "default": {
                   "$type": "color",
-                  "$value": "{echoes.color.palette.red.100}"
+                  "$value": "{echoes.color.status.danger.surface.hover}",
+                  "$description": "Severity high suffix mapped through status.danger.surface.hover."
                 },
                 "hover": {
-                  "$extensions": {
-                    "studio.tokens": {
-                      "modify": {
-                        "type": "darken",
-                        "value": "0.02",
-                        "space": "lch"
-                      }
-                    }
-                  },
                   "$type": "color",
-                  "$value": "{echoes.color.palette.red.100}"
+                  "$value": "{echoes.color.status.danger.surface.pressed}",
+                  "$description": "Severity high hover mapped through status.danger.surface.pressed."
                 }
               }
             },
@@ -417,26 +405,20 @@
               "prefix": {
                 "default": {
                   "$type": "color",
-                  "$value": "{echoes.color.palette.orange.50}"
+                  "$value": "{echoes.color.status.warning.surface.default}",
+                  "$description": "Severity medium prefix mapped through status.warning.surface.default."
                 }
               },
               "suffix": {
                 "default": {
                   "$type": "color",
-                  "$value": "{echoes.color.palette.orange.75}"
+                  "$value": "{echoes.color.status.warning.surface.hover}",
+                  "$description": "Severity medium suffix mapped through status.warning.surface.hover."
                 },
                 "hover": {
-                  "$extensions": {
-                    "studio.tokens": {
-                      "modify": {
-                        "type": "darken",
-                        "value": "0.02",
-                        "space": "lch"
-                      }
-                    }
-                  },
                   "$type": "color",
-                  "$value": "{echoes.color.palette.orange.100}"
+                  "$value": "{echoes.color.status.warning.surface.pressed}",
+                  "$description": "Severity medium hover mapped through status.warning.surface.pressed."
                 }
               }
             },
@@ -444,26 +426,20 @@
               "prefix": {
                 "default": {
                   "$type": "color",
-                  "$value": "{echoes.color.palette.yellow.50}"
+                  "$value": "{echoes.color.status.warning.surface.default}",
+                  "$description": "Severity low prefix mapped through status.warning.surface.default."
                 }
               },
               "suffix": {
                 "default": {
                   "$type": "color",
-                  "$value": "{echoes.color.palette.yellow.100}"
+                  "$value": "{echoes.color.status.warning.surface.hover}",
+                  "$description": "Severity low suffix mapped through status.warning.surface.hover."
                 },
                 "hover": {
-                  "$extensions": {
-                    "studio.tokens": {
-                      "modify": {
-                        "type": "darken",
-                        "value": "0.02",
-                        "space": "lch"
-                      }
-                    }
-                  },
                   "$type": "color",
-                  "$value": "{echoes.color.palette.yellow.100}"
+                  "$value": "{echoes.color.status.warning.surface.pressed}",
+                  "$description": "Severity low hover mapped through status.warning.surface.pressed."
                 }
               }
             },
@@ -471,26 +447,20 @@
               "prefix": {
                 "default": {
                   "$type": "color",
-                  "$value": "{echoes.color.palette.blue.50}"
+                  "$value": "{echoes.color.status.information.surface.default}",
+                  "$description": "Severity info prefix mapped through status.information.surface.default."
                 }
               },
               "suffix": {
                 "default": {
                   "$type": "color",
-                  "$value": "{echoes.color.palette.blue.100}"
+                  "$value": "{echoes.color.status.information.surface.hover}",
+                  "$description": "Severity info suffix mapped through status.information.surface.hover."
                 },
                 "hover": {
-                  "$extensions": {
-                    "studio.tokens": {
-                      "modify": {
-                        "type": "darken",
-                        "value": "0.02",
-                        "space": "lch"
-                      }
-                    }
-                  },
                   "$type": "color",
-                  "$value": "{echoes.color.palette.blue.100}"
+                  "$value": "{echoes.color.status.information.surface.pressed}",
+                  "$description": "Severity info hover mapped through status.information.surface.pressed."
                 }
               }
             }
@@ -501,13 +471,15 @@
             "icon": {
               "default": {
                 "$type": "color",
-                "$value": "{echoes.color.palette.red.700}"
+                "$value": "{echoes.color.status.danger.foreground}",
+                "$description": "Severity blocker icon mapped through status.danger.foreground."
               }
             },
             "text": {
               "default": {
                 "$type": "color",
-                "$value": "{echoes.color.palette.red.800}"
+                "$value": "{echoes.color.status.danger.foreground}",
+                "$description": "Severity blocker text mapped through status.danger.foreground."
               }
             }
           },
@@ -515,13 +487,15 @@
             "text": {
               "default": {
                 "$type": "color",
-                "$value": "{echoes.color.palette.red.700}"
+                "$value": "{echoes.color.status.danger.foreground}",
+                "$description": "Severity high text mapped through status.danger.foreground."
               }
             },
             "icon": {
               "default": {
                 "$type": "color",
-                "$value": "{echoes.color.palette.red.600}"
+                "$value": "{echoes.color.status.danger.foreground}",
+                "$description": "Severity high icon mapped through status.danger.foreground."
               }
             }
           },
@@ -529,13 +503,15 @@
             "text": {
               "default": {
                 "$type": "color",
-                "$value": "{echoes.color.palette.orange.800}"
+                "$value": "{echoes.color.status.warning.foreground}",
+                "$description": "Severity medium text mapped through status.warning.foreground."
               }
             },
             "icon": {
               "default": {
                 "$type": "color",
-                "$value": "{echoes.color.palette.orange.600}"
+                "$value": "{echoes.color.status.warning.foreground}",
+                "$description": "Severity medium icon mapped through status.warning.foreground."
               }
             }
           },
@@ -543,13 +519,15 @@
             "text": {
               "default": {
                 "$type": "color",
-                "$value": "{echoes.color.palette.yellow.800}"
+                "$value": "{echoes.color.status.warning.foreground}",
+                "$description": "Severity low text mapped through status.warning.foreground."
               }
             },
             "icon": {
               "default": {
                 "$type": "color",
-                "$value": "{echoes.color.palette.yellow.700}"
+                "$value": "{echoes.color.status.warning.foreground}",
+                "$description": "Severity low icon mapped through status.warning.foreground."
               }
             }
           },
@@ -557,13 +535,15 @@
             "text": {
               "default": {
                 "$type": "color",
-                "$value": "{echoes.color.palette.blue.800}"
+                "$value": "{echoes.color.status.information.foreground}",
+                "$description": "Severity info text mapped through status.information.foreground."
               }
             },
             "icon": {
               "default": {
                 "$type": "color",
-                "$value": "{echoes.color.palette.blue.700}"
+                "$value": "{echoes.color.status.information.foreground}",
+                "$description": "Severity info icon mapped through status.information.foreground."
               }
             }
           }
@@ -572,31 +552,36 @@
           "blocker": {
             "default": {
               "$type": "color",
-              "$value": "{echoes.color.palette.red.200}"
+              "$value": "{echoes.color.status.danger.border}",
+              "$description": "Severity blocker border mapped through status.danger.border."
             }
           },
           "high": {
             "default": {
               "$type": "color",
-              "$value": "{echoes.color.palette.red.100}"
+              "$value": "{echoes.color.status.danger.border}",
+              "$description": "Severity high border mapped through status.danger.border."
             }
           },
           "medium": {
             "default": {
               "$type": "color",
-              "$value": "{echoes.color.palette.orange.75}"
+              "$value": "{echoes.color.status.warning.border}",
+              "$description": "Severity medium border mapped through status.warning.border."
             }
           },
           "low": {
             "default": {
               "$type": "color",
-              "$value": "{echoes.color.palette.yellow.100}"
+              "$value": "{echoes.color.status.warning.border}",
+              "$description": "Severity low border mapped through status.warning.border."
             }
           },
           "info": {
             "default": {
               "$type": "color",
-              "$value": "{echoes.color.palette.blue.100}"
+              "$value": "{echoes.color.status.information.border}",
+              "$description": "Severity info border mapped through status.information.border."
             }
           }
         }
@@ -626,6 +611,13 @@
           "active": {
             "$type": "color",
             "$value": "{echoes.color.background.neutral.subtle.active}"
+          }
+        },
+        "foreground": {
+          "default": {
+            "$type": "color",
+            "$value": "{echoes.color.text.subtle}",
+            "$description": "Subdued foreground for inactive sidebar labels and text."
           }
         }
       }
