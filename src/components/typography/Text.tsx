@@ -25,17 +25,17 @@ import { DesignTokensColorsText } from '~types/design-tokens';
 import { cssVar } from '~utils/design-tokens';
 
 export enum TextSize {
-  /** Caption text (12px / 16px). */
+  /** Caption text. */
   Caption = 'caption',
-  /** Supporting text (14px / 20px). */
+  /** Supporting text. */
   Small = 'small',
-  /** Product body text (16px / 24px). */
+  /** Product body text. */
   Default = 'default',
-  /** Large body text (18px / 28px). */
+  /** Large body text. */
   Large = 'large',
-  /** Lead text (20px / 28px). */
+  /** Lead text. */
   Lead = 'lead',
-  /** Long-form prose text (16px / 28px). */
+  /** Long-form prose text. */
   Prose = 'prose',
 }
 
