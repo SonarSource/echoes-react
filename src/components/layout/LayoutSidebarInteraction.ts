@@ -20,6 +20,7 @@
 
 import { createContext, useContext } from 'react';
 import { isDefined } from '~common/helpers/types';
+import { LayoutSidebarContext } from './LayoutSidebarContext';
 
 // Elements marked with this attribute belong to the undocked sidebar interaction zone.
 // Moving pointer or focus between them must not close the sidebar.
@@ -29,15 +30,31 @@ export const SIDEBAR_INTERACTION_ZONE_ATTRIBUTE = 'data-sidebar-interaction-zone
 // context to mark themselves as part of the zone they were opened from.
 export const SidebarInteractionZoneContext = createContext(false);
 
-export function useSidebarInteractionZoneAttributes() {
+export function useSidebarInteractionZoneOverlay() {
   const isInSidebarInteractionZone = useContext(SidebarInteractionZoneContext);
+  const { handleInteractionZoneOverlayClose } = useContext(LayoutSidebarContext);
 
-  return isInSidebarInteractionZone ? { [SIDEBAR_INTERACTION_ZONE_ATTRIBUTE]: 'true' } : {};
+  if (!isInSidebarInteractionZone) {
+    return { attributes: {}, onOverlayClose: () => {} };
+  }
+
+  return {
+    attributes: { [SIDEBAR_INTERACTION_ZONE_ATTRIBUTE]: 'true' },
+    // Overlays can close on an outside pointerdown without moving focus or firing a mouseleave
+    // on the zone, so the sidebar has to re-check where the pointer and focus ended up.
+    onOverlayClose: handleInteractionZoneOverlayClose,
+  };
 }
 
 export function isWithinSidebarInteractionZone(target: EventTarget | null) {
   return (
     target instanceof Element &&
     isDefined(target.closest(`[${SIDEBAR_INTERACTION_ZONE_ATTRIBUTE}='true']`))
+  );
+}
+
+export function isSidebarInteractionZoneHovered() {
+  return isDefined(
+    globalThis.document.querySelector(`[${SIDEBAR_INTERACTION_ZONE_ATTRIBUTE}='true']:hover`),
   );
 }

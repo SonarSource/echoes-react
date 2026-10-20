@@ -397,6 +397,39 @@ describe('LayoutSidebarContext', () => {
       relatedTarget: screen.getByRole('button', { name: 'Page content action' }),
     });
     expect(screen.getByTestId('layout')).toHaveAttribute('data-sidebar-open', 'true');
+
+    await user.click(screen.getByRole('button', { name: 'Page content action' }));
+
+    expect(screen.queryByRole('menuitem', { name: 'Other org' })).not.toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByTestId('layout')).toHaveAttribute('data-sidebar-open', 'false');
+    });
+  });
+
+  it('should keep the undocked sidebar open when a dropdown menu opened from it closes with focus inside', async () => {
+    const { user } = renderWithMemoryRouter(
+      <Layout data-testid="layout" isSidebarInitiallyDocked={false}>
+        <Layout.SidebarNavigation>
+          <DropdownMenu items={<DropdownMenu.ItemButton>Other org</DropdownMenu.ItemButton>}>
+            <Layout.SidebarNavigation.Header isInteractive name="Current org" />
+          </DropdownMenu>
+        </Layout.SidebarNavigation>
+      </Layout>,
+    );
+
+    fireEvent.mouseOver(screen.getByTestId('sidebar-navigation-container'));
+    await user.click(screen.getByRole('button', { name: 'Current org' }));
+    await screen.findByRole('menuitem', { name: 'Other org' });
+
+    await user.keyboard('{Escape}');
+
+    expect(screen.getByRole('button', { name: 'Current org' })).toHaveFocus();
+    await act(async () => {
+      await new Promise((resolve) => {
+        setTimeout(resolve, 0);
+      });
+    });
+    expect(screen.getByTestId('layout')).toHaveAttribute('data-sidebar-open', 'true');
   });
 
   it('should dock the sidebar when the trigger button is clicked on dockable screens', async () => {
