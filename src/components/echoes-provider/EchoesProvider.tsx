@@ -24,9 +24,9 @@ import { useIntl } from 'react-intl';
 import { Toaster as ToastContainer } from 'sonner';
 import { PortalContext } from '~common/components/PortalContext';
 import { ToastGlobalStyles } from '~common/components/Toast';
+import { RouterContext } from '~common/router/RouterContext';
+import { EchoesRouter } from '~types/RouterTypes';
 import { TooltipProvider, TooltipProviderProps, TypographyGlobalStyles } from '..';
-import { RouterContext } from '../router/RouterContext';
-import { EchoesRouter } from '../../types/RouterTypes';
 import { SelectGlobalStyles } from '../select/SelectCommons';
 
 export interface EchoesProviderProps {

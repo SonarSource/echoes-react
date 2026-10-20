@@ -20,7 +20,7 @@
 
 import { useContext, useLayoutEffect, useRef } from 'react';
 import { isDefined } from '~common/helpers/types';
-import { useIsPathActive } from '../../router/RouterContext';
+import { useIsPathActive } from '~common/router/RouterContext';
 
 import { SidebarNavigationBaseItem } from './SidebarNavigationBaseItem';
 
