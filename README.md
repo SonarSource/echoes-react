@@ -222,6 +222,29 @@ To build the lib, use the following command:
 yarn build
 ```
 
+### Try a local build in another project
+
+To test unreleased changes in a consuming app, build and pack the lib into a tarball:
+
+```bash
+yarn build && rm -f /tmp/echoes-react-local.tgz && yarn pack --out /tmp/echoes-react-local.tgz
+```
+
+Then install the tarball from the consuming project's folder, without saving it to its `package.json` or lockfile:
+
+```bash
+# npm
+npm install --no-save /tmp/echoes-react-local.tgz
+# Yarn: no equivalent of --no-save, so revert package.json and yarn.lock when you are done
+yarn add /tmp/echoes-react-local.tgz
+```
+
+Prefer this over `npm link` / `yarn link`. A symlink makes the app resolve `react`, `@emotion/*` and `react-intl` from this repository's `node_modules`, which leads to duplicate React instances and "Invalid hook call" errors.
+
+Repeat both steps after each change, then restart the consuming app's dev server, as bundlers like Next.js cache `node_modules`.
+
+To go back to the published version, reinstall the project's dependencies from its lockfile (e.g. `npm ci` or `yarn install --immutable`).
+
 ### Generated files
 
 The lib is built on top of some generated files like the design-tokens or the icons fonts. These generated files are versioned in the `src/generated` and `i18n` folders.
