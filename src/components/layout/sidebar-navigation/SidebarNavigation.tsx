@@ -26,7 +26,10 @@ import { useIntl } from 'react-intl';
 import { cssVar } from '~utils/design-tokens';
 import { LayoutSidebarContext } from '../LayoutSidebarContext';
 
-import { SIDEBAR_INTERACTION_ZONE_ATTRIBUTE } from '../LayoutSidebarInteraction';
+import {
+  SIDEBAR_INTERACTION_ZONE_ATTRIBUTE,
+  SidebarInteractionZoneContext,
+} from '../LayoutSidebarInteraction';
 
 import { GlobalGridArea } from '../LayoutTypes';
 
@@ -92,7 +95,9 @@ export function SidebarNavigation(props: Readonly<PropsWithChildren<SidebarNavig
         }}
         onFocus={handleOpenSidebarOnInteraction}
         ref={ref}>
-        {children}
+        <SidebarInteractionZoneContext.Provider value>
+          {children}
+        </SidebarInteractionZoneContext.Provider>
       </SidebarNavigationWrapper>
     </SidebarNavigationContainer>
   );

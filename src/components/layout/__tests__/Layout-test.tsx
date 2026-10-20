@@ -24,6 +24,7 @@ import { useContext, useEffect } from 'react';
 import { isDefined } from '~common/helpers/types';
 import { Layout } from '..';
 import { render, renderWithMemoryRouter } from '../../../common/helpers/test-utils';
+import { DropdownMenu } from '../../dropdown-menu';
 import { LayoutSidebarContext } from '../LayoutSidebarContext';
 
 expect.extend(matchers);
@@ -363,6 +364,38 @@ describe('LayoutSidebarContext', () => {
 
     expect(screen.getByRole('button', { name: 'Dock sidebar' })).toHaveFocus();
     expect(screen.getByTestId('layout')).toHaveAttribute('data-sidebar-docked', 'false');
+    expect(screen.getByTestId('layout')).toHaveAttribute('data-sidebar-open', 'true');
+  });
+
+  it('should keep the undocked sidebar open while using a dropdown menu opened from it', async () => {
+    const { user } = renderWithMemoryRouter(
+      <Layout data-testid="layout" isSidebarInitiallyDocked={false}>
+        <Layout.SidebarNavigation>
+          <DropdownMenu items={<DropdownMenu.ItemButton>Other org</DropdownMenu.ItemButton>}>
+            <Layout.SidebarNavigation.Header isInteractive name="Current org" />
+          </DropdownMenu>
+        </Layout.SidebarNavigation>
+
+        <Layout.ContentGrid>
+          <button type="button">Page content action</button>
+        </Layout.ContentGrid>
+      </Layout>,
+    );
+
+    const sidebarContainer = screen.getByTestId('sidebar-navigation-container');
+
+    fireEvent.mouseOver(sidebarContainer);
+    expect(screen.getByTestId('layout')).toHaveAttribute('data-sidebar-open', 'true');
+
+    await user.click(screen.getByRole('button', { name: 'Current org' }));
+    const menuItem = await screen.findByRole('menuitem', { name: 'Other org' });
+
+    fireEvent.mouseOut(sidebarContainer, { relatedTarget: menuItem });
+    expect(screen.getByTestId('layout')).toHaveAttribute('data-sidebar-open', 'true');
+
+    fireEvent.mouseOut(sidebarContainer, {
+      relatedTarget: screen.getByRole('button', { name: 'Page content action' }),
+    });
     expect(screen.getByTestId('layout')).toHaveAttribute('data-sidebar-open', 'true');
   });
 

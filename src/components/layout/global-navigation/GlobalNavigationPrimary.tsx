@@ -35,7 +35,10 @@ import { ButtonIcon } from '../../buttons';
 import { IconDockToRight } from '../../icons';
 import { LayoutSidebarContext } from '../LayoutSidebarContext';
 
-import { SIDEBAR_INTERACTION_ZONE_ATTRIBUTE } from '../LayoutSidebarInteraction';
+import {
+  SIDEBAR_INTERACTION_ZONE_ATTRIBUTE,
+  SidebarInteractionZoneContext,
+} from '../LayoutSidebarInteraction';
 
 const GLOBAL_NAVIGATION_PRIMARY_GAP_TOKEN = 'dimension-space-150';
 
@@ -166,7 +169,9 @@ export function GlobalNavigationPrimary(props: Readonly<GlobalNavigationPrimaryP
           onMouseLeave={(event) => {
             sidebar.handleInteractionZoneMouseLeave(event.relatedTarget);
           }}>
-          {leadingContent}
+          <SidebarInteractionZoneContext.Provider value>
+            {leadingContent}
+          </SidebarInteractionZoneContext.Provider>
         </GlobalNavigationSidebarLeadingZone>
       )}
 
