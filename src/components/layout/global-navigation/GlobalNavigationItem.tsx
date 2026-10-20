@@ -20,9 +20,9 @@
 
 import * as radixNavigationMenu from '@radix-ui/react-navigation-menu';
 import { forwardRef, ReactNode } from 'react';
+import { useIsPathActive } from '~common/router/RouterContext';
+import { LinkTo } from '~types/RouterTypes';
 import { LinkBaseStyled } from '../../links/LinkBaseStyled';
-import { useIsPathActive } from '../../router/RouterContext';
-import { LinkTo } from '../../../types/RouterTypes';
 import { globalNavigationItemStyle, StyledNavMenuItem } from './GlobalNavigationItemStyles';
 
 export interface GlobalNavigationItemProps {

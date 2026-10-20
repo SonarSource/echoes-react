@@ -21,9 +21,9 @@
 import { matchers } from '@emotion/jest';
 import { act, fireEvent, screen, waitFor } from '@testing-library/react';
 import { useContext, useEffect } from 'react';
+import { render, renderWithMemoryRouter } from '~common/helpers/test-utils';
 import { isDefined } from '~common/helpers/types';
 import { Layout } from '..';
-import { render, renderWithMemoryRouter } from '../../../common/helpers/test-utils';
 import { LayoutSidebarContext } from '../LayoutSidebarContext';
 
 expect.extend(matchers);

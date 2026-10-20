@@ -23,8 +23,8 @@ import { type Ref } from 'react';
 import { useIntl } from 'react-intl';
 import { isDefined } from '~common/helpers/types';
 import { isSonarLink } from '~common/helpers/url';
-import { RouterLink, useIsPathActive } from '../../components/router/RouterContext';
-import { EchoesRouterLinkProps } from '../../types/RouterTypes';
+import { EchoesRouterLinkProps } from '~types/RouterTypes';
+import { RouterLink, useIsPathActive } from '../router/RouterContext';
 
 type RouterLinkPropsAllowed = 'download' | 'to' | 'onClick';
 
