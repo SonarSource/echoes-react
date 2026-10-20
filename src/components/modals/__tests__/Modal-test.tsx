@@ -19,7 +19,7 @@
  */
 import { screen, waitFor } from '@testing-library/react';
 import { PointerEventsCheckLevel, Options as UserEventsOptions } from '@testing-library/user-event';
-import { useState } from 'react';
+import { StrictMode, useState } from 'react';
 import { render } from '~common/helpers/test-utils';
 import { Button } from '../../buttons';
 import { DropdownMenu } from '../../dropdown-menu';
@@ -108,6 +108,122 @@ it('should be triggered by DropdownMenu Items', async () => {
   expect(screen.getByRole('dialog')).toBeInTheDocument();
 });
 
+it('should close the DropdownMenu when triggered by one of its Items', async () => {
+  const onMenuClose = jest.fn();
+  const { user } = renderModalInDropdownMenu({ onMenuClose });
+
+  await user.click(screen.getByRole('button', { name: 'Menu' }));
+
+  expect(screen.getByRole('button', { name: 'Menu' })).toHaveAttribute('aria-expanded', 'true');
+
+  await user.click(screen.getByRole('menuitem', { name: 'Open Modal' }));
+
+  expect(screen.getByRole('dialog')).toBeInTheDocument();
+  expect(onMenuClose).toHaveBeenCalledTimes(1);
+  // The menu is aria-hidden while the dialog is open, hence the `hidden` option
+  expect(getClosedMenuTrigger()).toBeInTheDocument();
+  expect(screen.queryByRole('menu', { hidden: true })).not.toBeVisible();
+
+  await user.click(screen.getByRole('button', { name: 'Close' }));
+
+  expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+  expect(screen.queryByRole('menu', { hidden: true })).not.toBeInTheDocument();
+  expect(screen.queryByRole('menuitem', { hidden: true })).not.toBeInTheDocument();
+  expect(onMenuClose).toHaveBeenCalledTimes(1);
+  expect(screen.getByRole('button', { name: 'Menu' })).toHaveFocus();
+});
+
+it('should close the DropdownMenu when a controlled Modal is triggered by one of its Items', async () => {
+  const { user } = renderModalInDropdownMenu({ isControlled: true });
+
+  await user.click(screen.getByRole('button', { name: 'Menu' }));
+  await user.click(screen.getByRole('menuitem', { name: 'Open Modal' }));
+
+  expect(screen.getByRole('dialog')).toBeInTheDocument();
+  expect(getClosedMenuTrigger()).toBeInTheDocument();
+
+  await user.click(screen.getByRole('button', { name: 'Quit' }));
+
+  expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+  expect(screen.queryByRole('menu', { hidden: true })).not.toBeInTheDocument();
+  expect(screen.getByRole('button', { name: 'Menu' })).toHaveFocus();
+});
+
+it('should be able to re-open the Modal from the DropdownMenu', async () => {
+  const { user } = renderModalInDropdownMenu();
+
+  await user.click(screen.getByRole('button', { name: 'Menu' }));
+  await user.click(screen.getByRole('menuitem', { name: 'Open Modal' }));
+  await user.click(screen.getByRole('button', { name: 'Close' }));
+
+  expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+
+  await user.click(screen.getByRole('button', { name: 'Menu' }));
+  await user.click(screen.getByRole('menuitem', { name: 'Open Modal' }));
+
+  expect(screen.getByRole('dialog')).toBeInTheDocument();
+});
+
+it('should keep the Modal open in StrictMode when triggered by a DropdownMenu Item', async () => {
+  const { user } = renderModalInDropdownMenu({ isStrictMode: true });
+
+  await user.click(screen.getByRole('button', { name: 'Menu' }));
+  await user.click(screen.getByRole('menuitem', { name: 'Open Modal' }));
+
+  expect(screen.getByRole('dialog')).toBeInTheDocument();
+  expect(getClosedMenuTrigger()).toBeInTheDocument();
+
+  await user.click(screen.getByRole('button', { name: 'Close' }));
+
+  expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+  expect(screen.queryByRole('menu', { hidden: true })).not.toBeInTheDocument();
+});
+
+it('should unmount the DropdownMenu content when the Modal of its Item did not open', async () => {
+  const { user } = renderModalInDropdownMenu({ isControlled: true, isModalOpenable: false });
+
+  await user.click(screen.getByRole('button', { name: 'Menu' }));
+  await user.click(screen.getByRole('menuitem', { name: 'Open Modal' }));
+
+  expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+
+  expect(screen.queryByRole('menu', { hidden: true })).not.toBeInTheDocument();
+
+  await user.click(screen.getByRole('button', { name: 'Menu' }));
+
+  expect(screen.getByRole('menu')).toBeVisible();
+});
+
+it('should close the DropdownMenu when triggered by an Item of a sub-menu', async () => {
+  const { user } = render(
+    <DropdownMenu
+      items={
+        <DropdownMenu.SubMenu
+          items={
+            <Modal content="Modal content" title="Modal title">
+              <DropdownMenu.ItemButton>Open Modal</DropdownMenu.ItemButton>
+            </Modal>
+          }>
+          Sub-menu
+        </DropdownMenu.SubMenu>
+      }>
+      <Button>Menu</Button>
+    </DropdownMenu>,
+  );
+
+  await user.click(screen.getByRole('button', { name: 'Menu' }));
+  await user.keyboard('{ArrowDown}{ArrowRight}');
+  await user.keyboard('{Enter}');
+
+  expect(screen.getByRole('dialog')).toBeInTheDocument();
+
+  await user.click(screen.getByRole('button', { name: 'Close' }));
+
+  expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+  expect(screen.queryByRole('menu', { hidden: true })).not.toBeInTheDocument();
+  expect(screen.queryByRole('menuitem', { hidden: true })).not.toBeInTheDocument();
+});
+
 it("shouldn't have any a11y violation", async () => {
   const { container } = renderModal({ isDefaultOpen: true, title: 'title' });
 
@@ -166,6 +282,57 @@ function renderControlledModal(
   }
 
   return render(<Controller />, undefined, userEventOptions);
+}
+
+/** The menu trigger is aria-hidden (so it has no accessible name) while the dialog is open */
+function getClosedMenuTrigger() {
+  return screen.getByRole('button', { hidden: true, expanded: false });
+}
+
+function renderModalInDropdownMenu({
+  isControlled = false,
+  isModalOpenable = true,
+  isStrictMode = false,
+  onMenuClose,
+}: {
+  isControlled?: boolean;
+  isModalOpenable?: boolean;
+  isStrictMode?: boolean;
+  onMenuClose?: () => void;
+} = {}) {
+  function Controller() {
+    const [isOpen, setIsOpen] = useState(false);
+
+    const controlledProps = isControlled
+      ? {
+          isOpen,
+          onOpenChange: (open: boolean) => isModalOpenable && setIsOpen(open),
+          secondaryButton: <Button onClick={() => setIsOpen(false)}>Quit</Button>,
+        }
+      : {};
+
+    return (
+      <DropdownMenu
+        items={
+          <Modal content="Modal content" title="Modal title" {...controlledProps}>
+            <DropdownMenu.ItemButton>Open Modal</DropdownMenu.ItemButton>
+          </Modal>
+        }
+        onClose={onMenuClose}>
+        <Button>Menu</Button>
+      </DropdownMenu>
+    );
+  }
+
+  return render(
+    isStrictMode ? (
+      <StrictMode>
+        <Controller />
+      </StrictMode>
+    ) : (
+      <Controller />
+    ),
+  );
 }
 
 it('should not close Modal on ESC when Select dropdown is open', async () => {
