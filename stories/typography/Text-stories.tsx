@@ -26,6 +26,9 @@ import { basicWrapperDecorator } from '../helpers/BasicWrapper';
 const meta: Meta<typeof Text> = {
   component: Text,
   title: 'Echoes Components/Typography/Text',
+  argTypes: {
+    size: { control: { type: 'select' }, options: Object.values(TextSize) },
+  },
   decorators: [basicWrapperDecorator],
 };
 
