@@ -19,16 +19,19 @@
  */
 import styled from '@emotion/styled';
 import * as RadixDialog from '@radix-ui/react-dialog';
-import { forwardRef, ReactNode, SyntheticEvent, useCallback, useContext } from 'react';
+import { forwardRef, ReactNode, useCallback, useContext } from 'react';
 import { useIntl } from 'react-intl';
 import { PortalContext } from '~common/components/PortalContext';
 import { isDefined } from '~common/helpers/types';
 import { TextNodeOptional } from '~types/utils';
 import { cssVar } from '~utils/design-tokens';
 import { ButtonGroup, ButtonIcon, ButtonSize, ButtonVariety } from '../buttons';
-import { isDropdownMenuItemComponent } from '../dropdown-menu/DropdownMenuItemBase';
 import { IconX } from '../icons';
 import { ModalBody } from './ModalBody';
+import {
+  ModalDropdownMenuItemRelease,
+  useModalDropdownMenuItemTriggerProps,
+} from './ModalDropdownMenuItemTrigger';
 import {
   ModalContent,
   ModalFooter,
@@ -76,9 +79,7 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
   const hasFooter = hasActionButtons || isDefined(footerLink);
   const isControlled = isDefined(isOpen) && isDefined(onOpenChange);
 
-  const handleSelectForDropdownMenu = useCallback((event: SyntheticEvent) => {
-    event.preventDefault();
-  }, []);
+  const dropdownMenuItemTriggerProps = useModalDropdownMenuItemTriggerProps(children);
 
   const handleOpenChange = useCallback(
     (isOpen: boolean) => {
@@ -102,9 +103,7 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
 
   return (
     <RadixDialog.Root defaultOpen={isDefaultOpen} onOpenChange={handleOpenChange} open={isOpen}>
-      <RadixDialog.Trigger
-        asChild
-        {...(isDropdownMenuItemComponent(children) && { onSelect: handleSelectForDropdownMenu })}>
+      <RadixDialog.Trigger asChild {...dropdownMenuItemTriggerProps}>
         {children}
       </RadixDialog.Trigger>
       <RadixDialog.Portal container={portalContext.portalReference}>
@@ -117,6 +116,8 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
           ref={ref}
           size={size}
           {...radixProps}>
+          <ModalDropdownMenuItemRelease />
+
           <ModalTitle>{title}</ModalTitle>
 
           <ModalBody isLast={!hasFooter}>
