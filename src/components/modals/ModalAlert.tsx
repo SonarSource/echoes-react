@@ -20,14 +20,17 @@
 
 import styled from '@emotion/styled';
 import * as RadixAlertDialog from '@radix-ui/react-alert-dialog';
-import { ReactNode, SyntheticEvent, forwardRef, useCallback, useContext } from 'react';
+import { ReactNode, forwardRef, useCallback, useContext } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { PortalContext } from '~common/components/PortalContext';
 import { isDefined } from '~common/helpers/types';
 import { TextNode, TextNodeOptional } from '~types/utils';
 import { Button, ButtonGroup, ButtonVariety } from '../buttons';
-import { isDropdownMenuItemComponent } from '../dropdown-menu/DropdownMenuItemBase';
 import { ModalBody } from './ModalBody';
+import {
+  ModalDropdownMenuItemRelease,
+  useModalDropdownMenuItemTriggerProps,
+} from './ModalDropdownMenuItemTrigger';
 import {
   ModalFooter,
   styleModalDescription,
@@ -88,9 +91,7 @@ export const ModalAlert = forwardRef<HTMLDivElement, ModalAlertProps>((props, re
     </Button>
   );
 
-  const handleSelectForDropdownMenu = useCallback((event: SyntheticEvent) => {
-    event.preventDefault();
-  }, []);
+  const dropdownMenuItemTriggerProps = useModalDropdownMenuItemTriggerProps(children);
 
   const handleOpenChange = useCallback(
     (isOpen: boolean) => {
@@ -107,9 +108,7 @@ export const ModalAlert = forwardRef<HTMLDivElement, ModalAlertProps>((props, re
       defaultOpen={isDefaultOpen}
       onOpenChange={handleOpenChange}
       open={isOpen}>
-      <RadixAlertDialog.Trigger
-        asChild
-        {...(isDropdownMenuItemComponent(children) && { onSelect: handleSelectForDropdownMenu })}>
+      <RadixAlertDialog.Trigger asChild {...dropdownMenuItemTriggerProps}>
         {children}
       </RadixAlertDialog.Trigger>
       <RadixAlertDialog.Portal container={portalContext.portalReference}>
@@ -119,6 +118,8 @@ export const ModalAlert = forwardRef<HTMLDivElement, ModalAlertProps>((props, re
           ref={ref}
           size={ModalSize.Default}
           {...radixProps}>
+          <ModalDropdownMenuItemRelease />
+
           <ModalAlertTitle>{title}</ModalAlertTitle>
 
           <ModalBody>

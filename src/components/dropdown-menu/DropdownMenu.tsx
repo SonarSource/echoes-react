@@ -20,7 +20,7 @@
 
 import styled from '@emotion/styled';
 import * as radixDropdownMenu from '@radix-ui/react-dropdown-menu';
-import { ReactNode, forwardRef, useContext, useId } from 'react';
+import { ReactNode, forwardRef, useContext, useId, useMemo, useState } from 'react';
 import { PortalContext } from '~common/components/PortalContext';
 import { truncate } from '~common/helpers/styles';
 import { isDefined } from '~common/helpers/types';
@@ -28,6 +28,7 @@ import { PropsLabelAndHelpText } from '~types/utils';
 import { cssVar } from '~utils/design-tokens';
 import { THEME_DATA_ATTRIBUTE, ThemeContext } from '~utils/theme';
 import { HelperText, Label } from '../typography';
+import { DropdownMenuContext } from './DropdownMenuContext';
 import { DropdownMenuSeparator } from './DropdownMenuSeparator';
 import { styleDropdownMenuOverlay } from './DropdownMenuStyles';
 
@@ -85,6 +86,17 @@ export const DropdownMenuRoot = forwardRef<HTMLButtonElement, DropdownMenuProps>
     const defaultId = `${useId()}dropdown-menu`;
     const dropdownId = id ?? defaultId;
 
+    // A Modal triggered by one of the items lives inside the menu content: when it is opened the
+    // menu must close, but its content must stay mounted until the Modal itself is gone.
+    const [isContentKeptMounted, setIsContentKeptMounted] = useState(false);
+    const dropdownMenuContext = useMemo(
+      () => ({
+        keepContentMounted: () => setIsContentKeptMounted(true),
+        releaseContent: () => setIsContentKeptMounted(false),
+      }),
+      [],
+    );
+
     // Radix fully handles a11y binding with generated ids, but we have to do it manually because
     // this id format is extensively used by SQS ITs to locate dropdown elements
     // We can drop that and rely on Radix implem once we stop relying on ids in SQS ITs
@@ -109,7 +121,9 @@ export const DropdownMenuRoot = forwardRef<HTMLButtonElement, DropdownMenuProps>
           {children}
         </radixDropdownMenu.Trigger>
 
-        <radixDropdownMenu.Portal container={portalContext.portalReference}>
+        <radixDropdownMenu.Portal
+          container={portalContext.portalReference}
+          forceMount={isContentKeptMounted ? true : undefined}>
           <StyledDropdownMenuContent
             {...themeOverrideProp}
             align={align}
@@ -117,30 +131,32 @@ export const DropdownMenuRoot = forwardRef<HTMLButtonElement, DropdownMenuProps>
             className={className}
             id={`${dropdownId}-dropdown`}
             side={side}>
-            {header && (
-              <>
-                <StyledHeaderLabelAndHelpText>
-                  <StyledHeaderWithSuffix>
-                    <StyledHeaderLabel
-                      as="div"
-                      title={typeof header.label === 'string' ? header.label : ''}>
-                      {header.label}
-                    </StyledHeaderLabel>
-                    {header.suffix}
-                  </StyledHeaderWithSuffix>
+            <DropdownMenuContext.Provider value={dropdownMenuContext}>
+              {header && (
+                <>
+                  <StyledHeaderLabelAndHelpText>
+                    <StyledHeaderWithSuffix>
+                      <StyledHeaderLabel
+                        as="div"
+                        title={typeof header.label === 'string' ? header.label : ''}>
+                        {header.label}
+                      </StyledHeaderLabel>
+                      {header.suffix}
+                    </StyledHeaderWithSuffix>
 
-                  <StyledHeaderHelpText
-                    as="span"
-                    title={typeof header.helpText === 'string' ? header.helpText : ''}>
-                    {header.helpText}
-                  </StyledHeaderHelpText>
-                </StyledHeaderLabelAndHelpText>
+                    <StyledHeaderHelpText
+                      as="span"
+                      title={typeof header.helpText === 'string' ? header.helpText : ''}>
+                      {header.helpText}
+                    </StyledHeaderHelpText>
+                  </StyledHeaderLabelAndHelpText>
 
-                <DropdownMenuSeparator />
-              </>
-            )}
+                  <DropdownMenuSeparator />
+                </>
+              )}
 
-            {items}
+              {items}
+            </DropdownMenuContext.Provider>
           </StyledDropdownMenuContent>
         </radixDropdownMenu.Portal>
       </radixDropdownMenu.Root>
@@ -177,5 +193,10 @@ const StyledHeaderHelpText = styled(HelperText)`
 `;
 StyledHeaderHelpText.displayName = 'StyledHeaderHelpText';
 
-const StyledDropdownMenuContent = styleDropdownMenuOverlay(radixDropdownMenu.Content);
+// The content is only closed but still mounted while it is kept alive for a Modal
+const StyledDropdownMenuContent = styled(styleDropdownMenuOverlay(radixDropdownMenu.Content))`
+  &[data-state='closed'] {
+    display: none;
+  }
+`;
 StyledDropdownMenuContent.displayName = 'StyledDropdownMenuContent';

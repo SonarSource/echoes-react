@@ -99,6 +99,41 @@ it('should be triggered by DropdownMenu Items', async () => {
   expect(screen.queryByRole('alertdialog')).not.toBeInTheDocument();
 });
 
+it('should close the DropdownMenu when triggered by one of its Items', async () => {
+  const onMenuClose = jest.fn();
+
+  const { user } = render(
+    <DropdownMenu
+      items={
+        <ModalAlert
+          description="modal-alert-description"
+          primaryButton={<Button>Accept</Button>}
+          secondaryButtonLabel="Cancel"
+          title="Modal alert title">
+          <DropdownMenu.ItemButton>Open Modal</DropdownMenu.ItemButton>
+        </ModalAlert>
+      }
+      onClose={onMenuClose}>
+      <Button>Menu</Button>
+    </DropdownMenu>,
+  );
+
+  await user.click(screen.getByRole('button', { name: 'Menu' }));
+  await user.click(screen.getByRole('menuitem', { name: 'Open Modal' }));
+
+  expect(screen.getByRole('alertdialog')).toBeInTheDocument();
+  expect(onMenuClose).toHaveBeenCalledTimes(1);
+  // The menu trigger is aria-hidden (so it has no accessible name) while the dialog is open
+  expect(screen.getByRole('button', { hidden: true, expanded: false })).toBeInTheDocument();
+
+  await user.click(screen.getByRole('button', { name: 'Accept' }));
+
+  expect(screen.queryByRole('alertdialog')).not.toBeInTheDocument();
+  expect(screen.queryByRole('menu', { hidden: true })).not.toBeInTheDocument();
+  expect(screen.queryByRole('menuitem', { hidden: true })).not.toBeInTheDocument();
+  expect(screen.getByRole('button', { name: 'Menu' })).toHaveFocus();
+});
+
 it("shouldn't have any a11y violation", async () => {
   const { container } = renderModalAlert();
   await expect(container).toHaveNoA11yViolations();
