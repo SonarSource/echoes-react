@@ -22,10 +22,10 @@ import { forwardRef } from 'react';
 import { IconMaterialWrapper, IconProps } from './IconWrapper';
 
 export const IconSortAscending = forwardRef<HTMLSpanElement, IconProps>((props, ref) => {
-  // This is Material Symbols' "arrow_upward_alt" icon
+  // This is Material Symbols' "list_arrow" icon
   return (
     <IconMaterialWrapper {...props} ref={ref}>
-      &#xE986;
+      &#xFFF33;
     </IconMaterialWrapper>
   );
 });

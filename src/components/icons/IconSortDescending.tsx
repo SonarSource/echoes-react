@@ -18,15 +18,21 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+import styled from '@emotion/styled';
 import { forwardRef } from 'react';
 import { IconMaterialWrapper, IconProps } from './IconWrapper';
 
 export const IconSortDescending = forwardRef<HTMLSpanElement, IconProps>((props, ref) => {
-  // This is Material Symbols' "arrow_downward_alt" icon
+  // This is Material Symbols' "list_arrow" icon, flipped vertically
   return (
-    <IconMaterialWrapper {...props} ref={ref}>
-      &#xE984;
-    </IconMaterialWrapper>
+    <StyledIconMaterialWrapper {...props} ref={ref}>
+      &#xFFF33;
+    </StyledIconMaterialWrapper>
   );
 });
 IconSortDescending.displayName = 'IconSortDescending';
+
+const StyledIconMaterialWrapper = styled(IconMaterialWrapper)`
+  transform: scaleY(-1);
+`;
+StyledIconMaterialWrapper.displayName = 'StyledIconMaterialWrapper';
