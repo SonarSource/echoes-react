@@ -76,5 +76,10 @@ const StyledDropdownMenuSubContent = styled(styleDropdownMenuOverlay(radixDropdo
   margin-top: calc(
     ${cssVar('offset-dropdown-submenu-panel-vertical')} - ${RADIX_SUBMENU_PANEL_VERTICAL_OFFSET}
   );
+
+  /* The content is only closed but still mounted while it is kept alive for a Modal */
+  &[data-state='closed'] {
+    display: none;
+  }
 `;
 StyledDropdownMenuSubContent.displayName = 'StyledDropdownMenuSubContent';
