@@ -702,12 +702,12 @@ html[data-echoes-theme='dark'], [data-echoes-theme='dark'] {
   --echoes-sidebar-navigation-item-colors-background-active: #2a2a2ab3;
   --echoes-sidebar-navigation-item-colors-foreground-default: #828282; /** Subdued foreground for inactive sidebar labels and text. */
   --echoes-table-colors-background-header-default: #1f1f1f; /** Component contract mapped through surface.subtle. */
-  --echoes-link-colors-action-default: #eeeeee; /** Component contract mapped through action.link.default. */
-  --echoes-link-colors-action-hover: #b8b8b8; /** Component contract mapped through action.link.hover. */
-  --echoes-link-colors-default-default: #b8b8b8; /** Component contract mapped through text.default. */
-  --echoes-link-colors-default-hover: #eeeeee; /** Component contract mapped through text.strong. */
-  --echoes-link-colors-subtle-default: #828282; /** Component contract mapped through text.subtle. */
-  --echoes-link-colors-subtle-hover: #b8b8b8; /** Component contract mapped through text.default. */
+  --echoes-link-colors-action-default: #a8d4ff; /** Brand blue foreground for accent text links. */
+  --echoes-link-colors-action-hover: #a8d4ff; /** Brand blue foreground for hovered accent text links. */
+  --echoes-link-colors-default-default: #a8d4ff; /** Brand blue foreground for default text links. */
+  --echoes-link-colors-default-hover: #a8d4ff; /** Brand blue foreground for hovered default text links. */
+  --echoes-link-colors-subtle-default: #a8d4ff; /** Brand blue foreground for subtle text links. */
+  --echoes-link-colors-subtle-hover: #a8d4ff; /** Brand blue foreground for hovered subtle text links. */
   --echoes-link-colors-feature-default: #a8d4ff; /** Component contract mapped through feature.foreground. */
   --echoes-link-colors-focus-ring: #eeeeee; /** Component contract mapped through focus.ring. */
   --echoes-input-colors-background-default: #151515; /** Component contract mapped through surface.default. */
@@ -1347,12 +1347,12 @@ html[data-echoes-theme='dark'], [data-echoes-theme='dark'] {
   --echoes-sidebar-navigation-item-colors-background-active: #e8e8e8;
   --echoes-sidebar-navigation-item-colors-foreground-default: #4a4a4a; /** Subdued foreground for inactive sidebar labels and text. */
   --echoes-table-colors-background-header-default: #f4f4f4; /** Component contract mapped through surface.subtle. */
-  --echoes-link-colors-action-default: #1a1a1a; /** Component contract mapped through action.link.default. */
-  --echoes-link-colors-action-hover: #3a3a3a; /** Component contract mapped through action.link.hover. */
-  --echoes-link-colors-default-default: #3a3a3a; /** Component contract mapped through text.default. */
-  --echoes-link-colors-default-hover: #1a1a1a; /** Component contract mapped through text.strong. */
-  --echoes-link-colors-subtle-default: #4a4a4a; /** Component contract mapped through text.subtle. */
-  --echoes-link-colors-subtle-hover: #3a3a3a; /** Component contract mapped through text.default. */
+  --echoes-link-colors-action-default: #0061cc; /** Brand blue foreground for accent text links. */
+  --echoes-link-colors-action-hover: #0061cc; /** Brand blue foreground for hovered accent text links. */
+  --echoes-link-colors-default-default: #0061cc; /** Brand blue foreground for default text links. */
+  --echoes-link-colors-default-hover: #0061cc; /** Brand blue foreground for hovered default text links. */
+  --echoes-link-colors-subtle-default: #0061cc; /** Brand blue foreground for subtle text links. */
+  --echoes-link-colors-subtle-hover: #0061cc; /** Brand blue foreground for hovered subtle text links. */
   --echoes-link-colors-feature-default: #0061cc; /** Component contract mapped through feature.foreground. */
   --echoes-link-colors-focus-ring: #1a1a1a; /** Component contract mapped through focus.ring. */
   --echoes-input-colors-background-default: #fcfcfc; /** Component contract mapped through surface.default. */
@@ -1465,7 +1465,7 @@ html[data-echoes-theme='dark'], [data-echoes-theme='dark'] {
   --echoes-badge-colors-warning-solid-pressed: #984800; /** Solid warning badge pressed. */
   --echoes-badge-colors-neutral-weak-foreground: #3a3a3a; /** Weak neutral badge foreground. */
   --echoes-badge-colors-neutral-weak-border: #00000000; /** Weak neutral badge has no visible border. */
-  --echoes-badge-colors-neutral-weak-default: #f4f4f4; /** Weak neutral badge background. */
+  --echoes-badge-colors-neutral-weak-default: #efefef; /** Weak neutral badge background. */
   --echoes-badge-colors-neutral-weak-hover: #00000008; /** Weak neutral badge hover. */
   --echoes-badge-colors-neutral-weak-pressed: #00000014; /** Weak neutral badge pressed. */
   --echoes-badge-colors-neutral-solid-foreground: #ffffff; /** Solid neutral badge foreground. */

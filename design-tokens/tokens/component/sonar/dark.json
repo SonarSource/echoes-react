@@ -883,37 +883,37 @@
         "action": {
           "default": {
             "$type": "color",
-            "$value": "{echoes.color.action.link.default}",
-            "$description": "Component contract mapped through action.link.default."
+            "$value": "{echoes.color.feature.foreground}",
+            "$description": "Brand blue foreground for accent text links."
           },
           "hover": {
             "$type": "color",
-            "$value": "{echoes.color.action.link.hover}",
-            "$description": "Component contract mapped through action.link.hover."
+            "$value": "{echoes.color.feature.foreground}",
+            "$description": "Brand blue foreground for hovered accent text links."
           }
         },
         "default": {
           "default": {
             "$type": "color",
-            "$value": "{echoes.color.text.default}",
-            "$description": "Component contract mapped through text.default."
+            "$value": "{echoes.color.feature.foreground}",
+            "$description": "Brand blue foreground for default text links."
           },
           "hover": {
             "$type": "color",
-            "$value": "{echoes.color.text.strong}",
-            "$description": "Component contract mapped through text.strong."
+            "$value": "{echoes.color.feature.foreground}",
+            "$description": "Brand blue foreground for hovered default text links."
           }
         },
         "subtle": {
           "default": {
             "$type": "color",
-            "$value": "{echoes.color.text.subtle}",
-            "$description": "Component contract mapped through text.subtle."
+            "$value": "{echoes.color.feature.foreground}",
+            "$description": "Brand blue foreground for subtle text links."
           },
           "hover": {
             "$type": "color",
-            "$value": "{echoes.color.text.default}",
-            "$description": "Component contract mapped through text.default."
+            "$value": "{echoes.color.feature.foreground}",
+            "$description": "Brand blue foreground for hovered subtle text links."
           }
         },
         "feature": {
