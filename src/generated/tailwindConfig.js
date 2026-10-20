@@ -128,6 +128,9 @@ const config = {
     ".code-comment": {
       "font": "var(--echoes-typography-code-comment)"
     },
+    ".code-inline": {
+      "font": "var(--echoes-typography-code-inline)"
+    },
     ".heading-xs": {
       "font": "var(--echoes-typography-heading-xsmall)",
       "letter-spacing": "var(--echoes-letter-spacing-decreased)"
@@ -151,6 +154,9 @@ const config = {
     ".typo-default": {
       "font": "var(--echoes-typography-text-default-regular)"
     },
+    ".typo-body": {
+      "font": "var(--echoes-typography-text-default-regular)"
+    },
     ".typo-semibold": {
       "font": "var(--echoes-typography-text-default-semi-bold)"
     },
@@ -169,6 +175,18 @@ const config = {
     ".typo-lg-semibold": {
       "font": "var(--echoes-typography-text-large-semi-bold)"
     },
+    ".typo-lead": {
+      "font": "var(--echoes-typography-text-lead-regular)"
+    },
+    ".typo-prose": {
+      "font": "var(--echoes-typography-text-prose-regular)"
+    },
+    ".typo-caption": {
+      "font": "var(--echoes-typography-text-caption-regular)"
+    },
+    ".typo-caption-medium": {
+      "font": "var(--echoes-typography-text-caption-medium)"
+    },
     ".typo-label": {
       "font": "var(--echoes-typography-others-label)"
     },
@@ -178,6 +196,17 @@ const config = {
     ".typo-display": {
       "font": "var(--echoes-typography-display-default)",
       "letter-spacing": "var(--echoes-letter-spacing-decreased)"
+    },
+    ".typeset": {
+      "--typeset-size": "var(--echoes-typography-typeset-size)",
+      "--typeset-leading": "var(--echoes-typography-typeset-leading)",
+      "--typeset-flow": "var(--echoes-typography-typeset-flow)",
+      "font-family": "var(--echoes-font-family-sans)",
+      "font-size": "var(--typeset-size)",
+      "line-height": "var(--typeset-leading)"
+    },
+    ".typeset > * + *": {
+      "margin-block-start": "var(--typeset-flow)"
     }
   }
 };

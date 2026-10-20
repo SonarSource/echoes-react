@@ -56,11 +56,8 @@ export type EchoesCSSVarStringWithFallback = `var(--echoes-${EchoesDesignTokens}
  */
 export function cssVar(token: EchoesDesignTokens): EchoesCSSVarString;
 export function cssVar(token: EchoesDesignTokens, fallback: string): EchoesCSSVarStringWithFallback;
-export function cssVar(
-  token: EchoesDesignTokens,
-  fallback?: string,
-): EchoesCSSVarString | EchoesCSSVarStringWithFallback {
-  const variableName = `--echoes-${token}` as const;
+export function cssVar(token: EchoesDesignTokens, fallback?: string): string {
+  const variableName: string = `--echoes-${token}`;
   return isStringDefined(fallback) ? `var(${variableName}, ${fallback})` : `var(${variableName})`;
 }
 

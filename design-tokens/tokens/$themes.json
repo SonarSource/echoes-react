@@ -8,7 +8,9 @@
       "component/sonar/light": "enabled",
       "component/base": "enabled",
       "brand/sonar/base": "enabled",
-      "brand/sonar/colors": "source"
+      "brand/sonar/colors": "source",
+      "brand/sonar/palettes/base": "source",
+      "brand/sonar/palettes/light": "source"
     },
     "$figmaStyleReferences": {}
   },
@@ -21,7 +23,9 @@
       "component/sonar/dark": "enabled",
       "component/base": "enabled",
       "brand/sonar/base": "enabled",
-      "brand/sonar/colors": "source"
+      "brand/sonar/colors": "source",
+      "brand/sonar/palettes/base": "source",
+      "brand/sonar/palettes/dark": "source"
     },
     "$figmaStyleReferences": {}
   },
