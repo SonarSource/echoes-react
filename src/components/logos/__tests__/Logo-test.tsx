@@ -19,6 +19,7 @@
  */
 
 import { screen } from '@testing-library/react';
+import { render } from '~common/helpers/test-utils';
 import {
   LogoSonar,
   LogoSonarQubeCloud,
@@ -26,7 +27,6 @@ import {
   LogoSonarQubeIde,
   LogoSonarQubeServer,
 } from '..';
-import { render } from '../../../common/helpers/test-utils';
 
 it.each([
   ['SonarQube Cloud', LogoSonarQubeCloud],

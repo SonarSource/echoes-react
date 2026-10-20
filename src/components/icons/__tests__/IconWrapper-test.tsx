@@ -19,7 +19,7 @@
  */
 
 import { screen } from '@testing-library/react';
-import { render } from '../../../common/helpers/test-utils';
+import { render } from '~common/helpers/test-utils';
 import { IconCustomWrapper, IconMaterialWrapper } from '../IconWrapper';
 
 import { cssVar } from '~utils/design-tokens';

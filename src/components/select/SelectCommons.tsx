@@ -23,11 +23,11 @@ import styled from '@emotion/styled';
 import { Select as MantineSelect, SelectProps as MantineSelectProps } from '@mantine/core';
 import { forwardRef, useContext, useEffect, useId } from 'react';
 import { useIntl } from 'react-intl';
+import { PortalContext } from '~common/components/PortalContext';
 import { isDefined, isStringDefined } from '~common/helpers/types';
 import { useForwardedRefWithState } from '~common/helpers/useForwardedRef';
 import { PropsWithLabels, TextNodeOptional } from '~types/utils';
 import { IconChevronDown, IconX, Spinner } from '..';
-import { PortalContext } from '../../common/components/PortalContext';
 import {
   type ValidationProps,
   FormField,

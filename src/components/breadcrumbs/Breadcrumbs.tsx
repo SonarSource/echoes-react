@@ -20,9 +20,9 @@
 
 import styled from '@emotion/styled';
 import React, { forwardRef } from 'react';
+import { toHref } from '~common/router/RouterUtils';
 import { cssVar } from '~utils/design-tokens';
 import { IconSlash } from '../icons';
-import { toHref } from '../router/RouterUtils';
 import { BreadcrumbItem } from './BreadcrumbItem';
 import { BreadcrumbLink } from './BreadcrumbLink';
 import { BreadcrumbLinkProps, BreadcrumbsProps } from './BreadcrumbTypes';

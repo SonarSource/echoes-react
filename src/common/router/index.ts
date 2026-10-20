@@ -18,5 +18,5 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+export type { EchoesRouter, EchoesRouterLinkProps, LinkTo } from '~types/RouterTypes';
 export { toHref } from './RouterUtils';
-export type { EchoesRouter, EchoesRouterLinkProps, LinkTo } from '../../types/RouterTypes';
