@@ -308,7 +308,7 @@ html[data-echoes-theme='dark'], [data-echoes-theme='dark'] {
   --echoes-color-surface-default: #151515; /** Default contained surface such as a card, table, menu, or dialog. */
   --echoes-color-surface-hover: #ffffff0d; /** Legacy surface hover, mapped to the neutral interaction overlay. */
   --echoes-color-surface-active: #ffffff1f; /** Legacy surface active state, mapped to the neutral pressed overlay. */
-  --echoes-color-surface-canvas-default: #1a1a1a; /** Page-level canvas behind content surfaces. */
+  --echoes-color-surface-canvas-default: #151515; /** Page-level canvas matching the default surface. */
   --echoes-color-surface-inverse-default: #b8b8b8;
   --echoes-color-surface-inverse-hover: #eeeeee;
   --echoes-color-surface-inverse-focus: #b8b8b8;
@@ -696,18 +696,18 @@ html[data-echoes-theme='dark'], [data-echoes-theme='dark'] {
   --echoes-severity-badge-colors-borders-medium-default: #9a6c17; /** Severity medium border mapped through status.warning.border. */
   --echoes-severity-badge-colors-borders-low-default: #9a6c17; /** Severity low border mapped through status.warning.border. */
   --echoes-severity-badge-colors-borders-info-default: #464646; /** Severity info border mapped through status.information.border. */
-  --echoes-sidebar-navigation-colors-background-default: #1a1a1a;
-  --echoes-sidebar-navigation-item-colors-background-default: #1a1a1a;
+  --echoes-sidebar-navigation-colors-background-default: #151515;
+  --echoes-sidebar-navigation-item-colors-background-default: #151515;
   --echoes-sidebar-navigation-item-colors-background-hover: #252525cc;
   --echoes-sidebar-navigation-item-colors-background-active: #2a2a2ab3;
   --echoes-sidebar-navigation-item-colors-foreground-default: #828282; /** Subdued foreground for inactive sidebar labels and text. */
   --echoes-table-colors-background-header-default: #1f1f1f; /** Component contract mapped through surface.subtle. */
-  --echoes-link-colors-action-default: #a8d4ff; /** Brand blue foreground for accent text links. */
-  --echoes-link-colors-action-hover: #a8d4ff; /** Brand blue foreground for hovered accent text links. */
-  --echoes-link-colors-default-default: #a8d4ff; /** Brand blue foreground for default text links. */
-  --echoes-link-colors-default-hover: #a8d4ff; /** Brand blue foreground for hovered default text links. */
-  --echoes-link-colors-subtle-default: #a8d4ff; /** Brand blue foreground for subtle text links. */
-  --echoes-link-colors-subtle-hover: #a8d4ff; /** Brand blue foreground for hovered subtle text links. */
+  --echoes-link-colors-action-default: #eeeeee; /** Component contract mapped through action.link.default. */
+  --echoes-link-colors-action-hover: #b8b8b8; /** Component contract mapped through action.link.hover. */
+  --echoes-link-colors-default-default: #b8b8b8; /** Component contract mapped through text.default. */
+  --echoes-link-colors-default-hover: #eeeeee; /** Component contract mapped through text.strong. */
+  --echoes-link-colors-subtle-default: #828282; /** Component contract mapped through text.subtle. */
+  --echoes-link-colors-subtle-hover: #b8b8b8; /** Component contract mapped through text.default. */
   --echoes-link-colors-feature-default: #a8d4ff; /** Component contract mapped through feature.foreground. */
   --echoes-link-colors-focus-ring: #eeeeee; /** Component contract mapped through focus.ring. */
   --echoes-input-colors-background-default: #151515; /** Component contract mapped through surface.default. */
@@ -953,7 +953,7 @@ html[data-echoes-theme='dark'], [data-echoes-theme='dark'] {
   --echoes-color-surface-default: #fcfcfc; /** Default contained surface such as a card, table, menu, or dialog. */
   --echoes-color-surface-hover: #00000008; /** Legacy surface hover, mapped to the neutral interaction overlay. */
   --echoes-color-surface-active: #00000014; /** Legacy surface active state, mapped to the neutral pressed overlay. */
-  --echoes-color-surface-canvas-default: #f8f8f8; /** Page-level canvas behind content surfaces. */
+  --echoes-color-surface-canvas-default: #fcfcfc; /** Page-level canvas matching the default surface. */
   --echoes-color-surface-inverse-default: #4a4a4a; /** Inverse color for bgs, creates high contrast against bg-default and bg-page */
   --echoes-color-surface-inverse-hover: #3a3a3a;
   --echoes-color-surface-inverse-focus: #4a4a4a;
@@ -1341,18 +1341,18 @@ html[data-echoes-theme='dark'], [data-echoes-theme='dark'] {
   --echoes-severity-badge-colors-borders-medium-default: #e8ad50; /** Severity medium border mapped through status.warning.border. */
   --echoes-severity-badge-colors-borders-low-default: #e8ad50; /** Severity low border mapped through status.warning.border. */
   --echoes-severity-badge-colors-borders-info-default: #d4d4d4; /** Severity info border mapped through status.information.border. */
-  --echoes-sidebar-navigation-colors-background-default: #f8f8f8;
-  --echoes-sidebar-navigation-item-colors-background-default: #f8f8f8;
+  --echoes-sidebar-navigation-colors-background-default: #fcfcfc;
+  --echoes-sidebar-navigation-item-colors-background-default: #fcfcfc;
   --echoes-sidebar-navigation-item-colors-background-hover: #efefef;
   --echoes-sidebar-navigation-item-colors-background-active: #e8e8e8;
   --echoes-sidebar-navigation-item-colors-foreground-default: #4a4a4a; /** Subdued foreground for inactive sidebar labels and text. */
   --echoes-table-colors-background-header-default: #f4f4f4; /** Component contract mapped through surface.subtle. */
-  --echoes-link-colors-action-default: #0061cc; /** Brand blue foreground for accent text links. */
-  --echoes-link-colors-action-hover: #0061cc; /** Brand blue foreground for hovered accent text links. */
-  --echoes-link-colors-default-default: #0061cc; /** Brand blue foreground for default text links. */
-  --echoes-link-colors-default-hover: #0061cc; /** Brand blue foreground for hovered default text links. */
-  --echoes-link-colors-subtle-default: #0061cc; /** Brand blue foreground for subtle text links. */
-  --echoes-link-colors-subtle-hover: #0061cc; /** Brand blue foreground for hovered subtle text links. */
+  --echoes-link-colors-action-default: #1a1a1a; /** Component contract mapped through action.link.default. */
+  --echoes-link-colors-action-hover: #3a3a3a; /** Component contract mapped through action.link.hover. */
+  --echoes-link-colors-default-default: #3a3a3a; /** Component contract mapped through text.default. */
+  --echoes-link-colors-default-hover: #1a1a1a; /** Component contract mapped through text.strong. */
+  --echoes-link-colors-subtle-default: #4a4a4a; /** Component contract mapped through text.subtle. */
+  --echoes-link-colors-subtle-hover: #3a3a3a; /** Component contract mapped through text.default. */
   --echoes-link-colors-feature-default: #0061cc; /** Component contract mapped through feature.foreground. */
   --echoes-link-colors-focus-ring: #1a1a1a; /** Component contract mapped through focus.ring. */
   --echoes-input-colors-background-default: #fcfcfc; /** Component contract mapped through surface.default. */

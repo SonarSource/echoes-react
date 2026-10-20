@@ -434,8 +434,8 @@
         "canvas": {
           "default": {
             "$type": "color",
-            "$value": "{echoes.color.palette.gray.2}",
-            "$description": "Page-level canvas behind content surfaces."
+            "$value": "{echoes.color.surface.default}",
+            "$description": "Page-level canvas matching the default surface."
           }
         },
         "inverse": {

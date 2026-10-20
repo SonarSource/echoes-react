@@ -883,37 +883,37 @@
         "action": {
           "default": {
             "$type": "color",
-            "$value": "{echoes.color.feature.foreground}",
-            "$description": "Brand blue foreground for accent text links."
+            "$value": "{echoes.color.action.link.default}",
+            "$description": "Component contract mapped through action.link.default."
           },
           "hover": {
             "$type": "color",
-            "$value": "{echoes.color.feature.foreground}",
-            "$description": "Brand blue foreground for hovered accent text links."
+            "$value": "{echoes.color.action.link.hover}",
+            "$description": "Component contract mapped through action.link.hover."
           }
         },
         "default": {
           "default": {
             "$type": "color",
-            "$value": "{echoes.color.feature.foreground}",
-            "$description": "Brand blue foreground for default text links."
+            "$value": "{echoes.color.text.default}",
+            "$description": "Component contract mapped through text.default."
           },
           "hover": {
             "$type": "color",
-            "$value": "{echoes.color.feature.foreground}",
-            "$description": "Brand blue foreground for hovered default text links."
+            "$value": "{echoes.color.text.strong}",
+            "$description": "Component contract mapped through text.strong."
           }
         },
         "subtle": {
           "default": {
             "$type": "color",
-            "$value": "{echoes.color.feature.foreground}",
-            "$description": "Brand blue foreground for subtle text links."
+            "$value": "{echoes.color.text.subtle}",
+            "$description": "Component contract mapped through text.subtle."
           },
           "hover": {
             "$type": "color",
-            "$value": "{echoes.color.feature.foreground}",
-            "$description": "Brand blue foreground for hovered subtle text links."
+            "$value": "{echoes.color.text.default}",
+            "$description": "Component contract mapped through text.default."
           }
         },
         "feature": {
