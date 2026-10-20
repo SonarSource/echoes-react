@@ -115,16 +115,6 @@
           }
         }
       },
-      "global-navigation": {
-        "sizes": {
-          "height": {
-            "default": {
-              "$type": "sizing",
-              "$value": "56px"
-            }
-          }
-        }
-      },
       "page-header": {
         "sizes": {
           "height": {

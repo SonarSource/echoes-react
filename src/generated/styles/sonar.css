@@ -55,7 +55,6 @@
   --echoes-layout-aside-width-small: 200px;
   --echoes-layout-aside-width-medium: 300px;
   --echoes-layout-aside-width-large: 400px;
-  --echoes-layout-global-navigation-sizes-height-default: 56px;
   --echoes-layout-page-header-sizes-height-collapsed: 56px;
   --echoes-layout-page-header-actions-offset-collapsed: 10px;
   --echoes-layout-sidebar-navigation-sizes-breakpoint-dockable: 1320px;
@@ -64,6 +63,7 @@
   --echoes-layout-sizes-max-width-default: 1160px;
   --echoes-layout-sizes-max-width-full: 100%;
   --echoes-layout-sizes-min-width-default: 1280px;
+  --echoes-layout-global-navigation-sizes-height-default: 48px;
   --echoes-sizes-overlays-max-width-default: 25rem;
   --echoes-sizes-overlays-min-width-default: 150px;
   --echoes-sizes-overlays-width-small: 25rem;
@@ -1291,12 +1291,12 @@ html[data-echoes-theme='dark'], [data-echoes-theme='dark'] {
   --echoes-quality-gate-indicator-colors-passed-background: #d4f2b7;
   --echoes-quality-gate-indicator-colors-failed-icon: #801b14;
   --echoes-quality-gate-indicator-colors-failed-background: #fecdca;
-  --echoes-ratings-colors-background-rating-a-default: #bdeecf;
+  --echoes-ratings-colors-background-rating-a-default: #e6f9ed;
   --echoes-ratings-colors-background-rating-b-default: #e6f9ed;
   --echoes-ratings-colors-background-rating-c-default: #fff5ca;
   --echoes-ratings-colors-background-rating-d-default: #f7eee8;
   --echoes-ratings-colors-background-rating-e-default: #ffe7e9;
-  --echoes-ratings-colors-text-rating-a-default: #10351f;
+  --echoes-ratings-colors-text-rating-a-default: #08713a;
   --echoes-ratings-colors-text-rating-b-default: #08713a;
   --echoes-ratings-colors-text-rating-c-default: #984800;
   --echoes-ratings-colors-text-rating-d-default: #6e4426;

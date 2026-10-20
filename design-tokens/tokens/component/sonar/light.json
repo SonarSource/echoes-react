@@ -196,7 +196,7 @@
           "ratingA": {
             "default": {
               "$type": "color",
-              "$value": "{echoes.color.palette.green.5}"
+              "$value": "{echoes.color.palette.green.3}"
             }
           },
           "ratingB": {
@@ -228,7 +228,7 @@
           "ratingA": {
             "default": {
               "$type": "color",
-              "$value": "{echoes.color.palette.green.12}"
+              "$value": "{echoes.color.palette.green.11}"
             }
           },
           "ratingB": {

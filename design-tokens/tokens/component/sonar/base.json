@@ -40,6 +40,18 @@
         }
       }
     },
+    "layout": {
+      "global-navigation": {
+        "sizes": {
+          "height": {
+            "default": {
+              "$type": "sizing",
+              "$value": "48px"
+            }
+          }
+        }
+      }
+    },
     "promoted-section": {
       "borderRadius": {
         "default": {
