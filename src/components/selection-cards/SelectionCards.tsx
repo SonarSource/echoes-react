@@ -202,9 +202,9 @@ const StyledSelectionCard = styled(RadioGroup.Item)`
 
   background: ${cssVar('color-surface-default')};
   border: ${cssVar('border-width-default')} solid ${cssVar('color-border-bold')};
-  border-radius: ${cssVar('border-radius-400')};
+  border-radius: ${cssVar('selection-card-border-radius-default')};
 
-  box-shadow: ${cssVar('box-shadow-xsmall')};
+  box-shadow: ${cssVar('shadow-resting')};
 
   padding: 0;
 
@@ -216,13 +216,13 @@ const StyledSelectionCard = styled(RadioGroup.Item)`
 
   &:hover {
     background-color: ${cssVar('color-surface-hover')};
-    box-shadow: ${cssVar('box-shadow-small')};
+    box-shadow: ${cssVar('shadow-attached')};
   }
 
   &[data-state='checked'] {
     border-color: ${cssVar('color-background-accent-default')};
     border-width: ${cssVar('focus-border-width-default')};
-    box-shadow: ${cssVar('box-shadow-small')};
+    box-shadow: ${cssVar('shadow-attached')};
 
     &:not(:disabled):hover {
       border-color: ${cssVar('color-background-selected-bold-hover')};
@@ -251,12 +251,19 @@ const IllustrationContainer = styled.div`
   justify-content: center;
   width: 100%;
 
-  border-radius: calc(${cssVar('border-radius-400')} - ${cssVar('border-width-default')})
-    calc(${cssVar('border-radius-400')} - ${cssVar('border-width-default')}) 0 0;
+  border-radius: calc(
+      ${cssVar('selection-card-border-radius-default')} - ${cssVar('border-width-default')}
+    )
+    calc(${cssVar('selection-card-border-radius-default')} - ${cssVar('border-width-default')}) 0 0;
 
   [data-state='checked'] & {
-    border-radius: calc(${cssVar('border-radius-400')} - ${cssVar('focus-border-width-default')})
-      calc(${cssVar('border-radius-400')} - ${cssVar('focus-border-width-default')}) 0 0;
+    border-radius: calc(
+        ${cssVar('selection-card-border-radius-default')} - ${cssVar('focus-border-width-default')}
+      )
+      calc(
+        ${cssVar('selection-card-border-radius-default')} - ${cssVar('focus-border-width-default')}
+      )
+      0 0;
   }
 
   overflow: hidden;

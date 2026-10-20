@@ -19,10 +19,12 @@
  */
 
 import { screen } from '@testing-library/react';
+import { PROMOTED_SECTION_STYLES } from '~common/components/PromotedSectionStyles';
 import { render } from '~common/helpers/test-utils';
+import { cssVar } from '~utils/design-tokens';
 import { Button } from '../../buttons';
 import { IconBug } from '../../icons';
-import { PromotedSection, PromotedSectionProps } from '../PromotedSection';
+import { PromotedSection, PromotedSectionProps, PromotedSectionVariety } from '..';
 
 describe('PromotedSection', () => {
   it('should render a neutral non-dismissable section by default', async () => {
@@ -38,6 +40,19 @@ describe('PromotedSection', () => {
     renderPromotedSection({ badgeText: 'New' });
 
     expect(screen.getByText('New')).toBeInTheDocument();
+  });
+
+  it('should render an accessible feature promotion using the feature contract', async () => {
+    const { container } = renderPromotedSection({
+      badgeText: 'AI',
+      variety: PromotedSectionVariety.Feature,
+    });
+
+    expect(PROMOTED_SECTION_STYLES[PromotedSectionVariety.Feature]).toMatchObject({
+      '--promoted-section-background-color': cssVar('promoted-feature-colors-background'),
+    });
+    expect(screen.getByText('AI')).toBeInTheDocument();
+    await expect(container).toHaveNoA11yViolations();
   });
 
   it('should render an illustration and use inline-block', () => {
