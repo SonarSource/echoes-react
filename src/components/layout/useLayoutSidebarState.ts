@@ -113,11 +113,9 @@ export function useLayoutSidebarState(
   );
 
   const handleInteractionZoneOverlayClose = useCallback(() => {
-    if (isDefined(blurTimeoutRef.current)) {
-      globalThis.clearTimeout(blurTimeoutRef.current);
-    }
+    globalThis.clearTimeout(blurTimeoutRef.current);
 
-    // Defer until the browser has moved focus for the interaction that closed the overlay
+    // Defer until the overlay has restored focus, or the browser has moved it for an outside click
     blurTimeoutRef.current = globalThis.setTimeout(() => {
       if (
         isWithinSidebarInteractionZone(globalThis.document.activeElement) ||

@@ -100,11 +100,10 @@ export const DropdownMenuRoot = forwardRef<HTMLButtonElement, DropdownMenuProps>
         defaultOpen={isOpenOnMount}
         modal={isModal}
         onOpenChange={(open: boolean) => {
-          if (open) {
-            onOpen?.();
-          } else {
-            sidebarInteractionZone.onOverlayClose();
-            onClose?.();
+          if (open && onOpen) {
+            onOpen();
+          } else if (!open && onClose) {
+            onClose();
           }
         }}
         open={isOpen}>
@@ -120,6 +119,7 @@ export const DropdownMenuRoot = forwardRef<HTMLButtonElement, DropdownMenuProps>
             aria-labelledby={`${dropdownId}-trigger`}
             className={className}
             id={`${dropdownId}-dropdown`}
+            onCloseAutoFocus={sidebarInteractionZone.onOverlayClose}
             side={side}>
             {header && (
               <>
