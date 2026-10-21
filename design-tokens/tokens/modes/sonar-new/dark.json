@@ -538,15 +538,15 @@
       "border": {
         "bolder": {
           "$type": "color",
-          "$value": "{echoes.color.palette.dark.gray.9}"
+          "$value": "{echoes.color.palette.dark.gray.6}"
         },
         "bold": {
           "$type": "color",
-          "$value": "{echoes.color.palette.dark.gray.8}"
+          "$value": "{echoes.color.palette.dark.gray.6}"
         },
         "weak": {
           "$type": "color",
-          "$value": "{echoes.color.palette.dark.gray.7}"
+          "$value": "{echoes.color.palette.dark.gray.6}"
         },
         "weaker": {
           "$type": "color",
@@ -664,7 +664,7 @@
       "focus": {
         "default": {
           "$type": "color",
-          "$value": "{echoes.color.palette.dark.gray.12}"
+          "$value": "{echoes.color.palette.dark.gray.9}"
         }
       },
       "charts": {
