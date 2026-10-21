@@ -59,7 +59,13 @@ To use custom brand values, create your own CSS file instead of importing the de
 
 #### Fonts
 
-The brands' CSS may use specific fonts (e.g. Sonar uses `Inter` and `Ubuntu-Mono`). If you want them to apply, they need to be provided by the client project. If you can, use the CDN:
+The Sonar New brand CSS (`@sonarsource/echoes-react/styles/sonar-new.css`) bundles the Geist 1.7.2
+variable sans and monospace fonts locally and loads them automatically. No network font request is
+required. Both fonts are distributed under the SIL Open Font License 1.1. Optical sizing is enabled
+globally for variable Geist.
+
+Other brand CSS may reference fonts that are not bundled. Client projects using those brands must
+provide the fonts themselves. If possible, use the CDN:
 
 ```css
 @import 'https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap';
