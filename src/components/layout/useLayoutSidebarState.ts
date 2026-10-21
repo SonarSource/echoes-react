@@ -22,7 +22,10 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { isDefined } from '~common/helpers/types';
 import jsonTokens from '../../generated/tokens/sonar/base.json';
 import type { LayoutSidebarContextShape } from './LayoutSidebarContext';
-import { isWithinSidebarInteractionZone } from './LayoutSidebarInteraction';
+import {
+  isSidebarInteractionZoneHovered,
+  isWithinSidebarInteractionZone,
+} from './LayoutSidebarInteraction';
 
 interface UseLayoutSidebarStateInput {
   isSidebarInitiallyDocked?: boolean;
@@ -109,6 +112,22 @@ export function useLayoutSidebarState(
     [close],
   );
 
+  const handleInteractionZoneOverlayClose = useCallback(() => {
+    globalThis.clearTimeout(blurTimeoutRef.current);
+
+    // Defer until the overlay has restored focus, or the browser has moved it for an outside click
+    blurTimeoutRef.current = globalThis.setTimeout(() => {
+      if (
+        isWithinSidebarInteractionZone(globalThis.document.activeElement) ||
+        isSidebarInteractionZoneHovered()
+      ) {
+        return;
+      }
+
+      close();
+    }, 0);
+  }, [close]);
+
   const ignoreNextInteractionZoneBlur = useCallback(() => {
     shouldIgnoreNextInteractionZoneBlurRef.current = true;
   }, []);
@@ -148,6 +167,7 @@ export function useLayoutSidebarState(
       close,
       handleInteractionZoneBlur,
       handleInteractionZoneMouseLeave,
+      handleInteractionZoneOverlayClose,
       ignoreNextInteractionZoneBlur,
       isDockable,
       isDocked,
@@ -161,6 +181,7 @@ export function useLayoutSidebarState(
       close,
       handleInteractionZoneBlur,
       handleInteractionZoneMouseLeave,
+      handleInteractionZoneOverlayClose,
       ignoreNextInteractionZoneBlur,
       isDockable,
       isDocked,
