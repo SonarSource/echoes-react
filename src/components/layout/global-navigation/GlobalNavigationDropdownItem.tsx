@@ -20,13 +20,13 @@
 
 import { Children, forwardRef, isValidElement, ReactNode, useMemo } from 'react';
 import { isDefined } from '~common/helpers/types';
+import { usePathname } from '~common/router/RouterContext';
+import { isPathActive } from '~common/router/RouterUtils';
+import { LinkTo } from '~types/RouterTypes';
 import { Button } from '../../buttons';
 import { DropdownMenu } from '../../dropdown-menu';
 import { DropdownMenuProps } from '../../dropdown-menu/DropdownMenu';
 import { IconChevronDown } from '../../icons';
-import { usePathname } from '../../router/RouterContext';
-import { LinkTo } from '../../../types/RouterTypes';
-import { isPathActive } from '../../router/RouterUtils';
 import { globalNavigationItemStyle, StyledNavMenuItem } from './GlobalNavigationItemStyles';
 
 export interface GlobalNavigationDropdownItemProps extends DropdownMenuProps {

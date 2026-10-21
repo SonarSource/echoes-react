@@ -21,12 +21,12 @@
 import styled from '@emotion/styled';
 import * as radixDropdownMenu from '@radix-ui/react-dropdown-menu';
 import { ReactNode, forwardRef, useContext, useId } from 'react';
+import { PortalContext } from '~common/components/PortalContext';
 import { truncate } from '~common/helpers/styles';
 import { isDefined } from '~common/helpers/types';
 import { PropsLabelAndHelpText } from '~types/utils';
 import { cssVar } from '~utils/design-tokens';
 import { THEME_DATA_ATTRIBUTE, ThemeContext } from '~utils/theme';
-import { PortalContext } from '../../common/components/PortalContext';
 import { useSidebarInteractionZoneOverlay } from '../layout/LayoutSidebarInteraction';
 import { HelperText, Label } from '../typography';
 import { DropdownMenuSeparator } from './DropdownMenuSeparator';
