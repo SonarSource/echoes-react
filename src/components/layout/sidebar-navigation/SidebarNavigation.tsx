@@ -95,6 +95,7 @@ export function SidebarNavigation(props: Readonly<PropsWithChildren<SidebarNavig
         }}
         onFocus={handleOpenSidebarOnInteraction}
         ref={ref}>
+        {/* `value` alone is shorthand for `value={true}` */}
         <SidebarInteractionZoneContext.Provider value>
           {children}
         </SidebarInteractionZoneContext.Provider>
