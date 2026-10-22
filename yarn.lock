@@ -1936,7 +1936,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@bundled-es-modules/glob@npm:^13.0.6":
+"@bundled-es-modules/glob@npm:^13.0.6-hotfix.0":
   version: 13.0.6
   resolution: "@bundled-es-modules/glob@npm:13.0.6"
   dependencies:
@@ -4754,7 +4754,7 @@ __metadata:
     sonarqube-scanner: "npm:4.3.8"
     sonner: "npm:2.0.7"
     storybook: "npm:10.2.13"
-    style-dictionary: "npm:5.5.0"
+    style-dictionary: "npm:5.7.0"
     subset-font: "npm:2.5.0"
     typescript: "npm:5.9.3"
     vite: "npm:8.1.6"
@@ -13181,12 +13181,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"style-dictionary@npm:5.5.0":
-  version: 5.5.0
-  resolution: "style-dictionary@npm:5.5.0"
+"style-dictionary@npm:5.7.0":
+  version: 5.7.0
+  resolution: "style-dictionary@npm:5.7.0"
   dependencies:
     "@bundled-es-modules/deepmerge": "npm:^4.3.2"
-    "@bundled-es-modules/glob": "npm:^13.0.6"
+    "@bundled-es-modules/glob": "npm:^13.0.6-hotfix.0"
     "@bundled-es-modules/memfs": "npm:^4.17.0"
     "@zip.js/zip.js": "npm:^2.7.44"
     chalk: "npm:^5.3.0"
@@ -13200,7 +13200,7 @@ __metadata:
     tinycolor2: "npm:^1.6.0"
   bin:
     style-dictionary: bin/style-dictionary.js
-  checksum: 10/1ca09592d7bd8b0fdd9bde0e61133ea756eaefab2f773485aa9b9e53cef16191fd1faa2181043ee022ca004315a933cadb2d0dd612b955337e105aeb486245e4
+  checksum: 10/22f77b7319de81c3268ed05c43385467e52844adb12c607e612110c29404f4c96adfa9a698886ff8a97ab7939596ea8bc72b7f8a62afd5aed815f1f36c773013
   languageName: node
   linkType: hard
 
