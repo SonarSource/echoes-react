@@ -13,16 +13,11 @@
     // "disableReferencedProjectLoad": true,             /* Reduce the number of projects loaded automatically by TypeScript. */
 
     /* Language and Environment */
-
-
-    /* ** CAUTION: if the "target" below is changed, */
-    /*    we must ensure that the version of core-js */
-    /*    we import polyfills all its features       */
-    "target": "ES2020",                                  /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
+    "target": "ES2022",                                  /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
     /* ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **/
 
 
-    "lib": ["DOM", "DOM.Iterable", "ES2020", "ESNext.Collection"], /* Specify a set of bundled library declaration files that describe the target runtime environment. */
+    "lib": ["DOM", "DOM.Iterable", "ES2022", "ESNext.Collection"], /* Specify a set of bundled library declaration files that describe the target runtime environment. */
     "jsx": "react-jsx",                                  /* Specify what JSX code is generated. */
     // "experimentalDecorators": true,                   /* Enable experimental support for TC39 stage 2 draft decorators. */
     // "emitDecoratorMetadata": true,                    /* Emit design-type metadata for decorated declarations in source files. */
@@ -112,6 +107,11 @@
 
     /* Completeness */
     // "skipDefaultLibCheck": true,                      /* Skip type checking .d.ts files that are included with TypeScript. */
-    // "skipLibCheck": false                             /* Skip type checking all .d.ts files. */
+    
+    /** 
+     * Temporary! Will be reverted when storybook fixes its types: 
+     * https://sonarsource.atlassian.net/browse/ECHOES-1497 
+     */
+    "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
   }
 }
