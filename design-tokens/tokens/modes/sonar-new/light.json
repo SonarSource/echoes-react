@@ -482,7 +482,7 @@
         },
         "placeholder": {
           "$type": "color",
-          "$value": "{echoes.color.palette.light.gray.10}"
+          "$value": "{echoes.color.text.subtle}"
         },
         "subtle": {
           "$type": "color",
