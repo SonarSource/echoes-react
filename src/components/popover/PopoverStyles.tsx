@@ -35,10 +35,10 @@ const ILLUSTRATION_HEIGHT = '142px';
  * Apply inside a styled component template alongside component-specific overrides.
  */
 export const stylePopoverContentBase = styled.div`
-  border: ${cssVar('border-width-default')} solid ${cssVar('color-border-weak')};
+  border: ${cssVar('border-width-default')} solid ${cssVar('overlay-colors-border')};
   border-radius: ${cssVar('border-radius-400')};
-  background-color: ${cssVar('color-surface-default')};
-  box-shadow: ${cssVar('box-shadow-large')};
+  background-color: ${cssVar('overlay-colors-background')};
+  box-shadow: ${cssVar('overlay-shadow-popover')};
 
   box-sizing: border-box;
   max-height: ${cssVar('sizes-overlays-max-height-default')};
@@ -62,10 +62,10 @@ PopoverInnerContent.displayName = 'PopoverInnerContent';
 
 export const PopoverArrow = styled(RadixPopover.Arrow)`
   clip-path: inset(0.9px 0 0 0);
-  fill: ${cssVar('color-surface-default')};
+  fill: ${cssVar('overlay-colors-background')};
   height: 9px;
   margin-top: -2px;
-  stroke: ${cssVar('color-border-weak')};
+  stroke: ${cssVar('overlay-colors-border')};
   width: 15px;
 
   /*

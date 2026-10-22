@@ -1,0 +1,84 @@
+{
+  "echoes": {
+    "button": {
+      "borderRadius": {
+        "default": {
+          "$type": "borderRadius",
+          "$value": "{echoes.borderRadius.300}"
+        }
+      }
+    },
+    "card": {
+      "borderRadius": {
+        "default": {
+          "$type": "borderRadius",
+          "$value": "{echoes.borderRadius.300}"
+        }
+      }
+    },
+    "checkbox": {
+      "borderRadius": {
+        "default": {
+          "$type": "borderRadius",
+          "$value": "{echoes.borderRadius.200}"
+        }
+      }
+    },
+    "form-control": {
+      "borderRadius": {
+        "default": {
+          "$type": "borderRadius",
+          "$value": "{echoes.borderRadius.300}"
+        }
+      }
+    },
+    "label": {
+      "typography": {
+        "default": {
+          "$type": "typography",
+          "$value": "{echoes.typography.others.label-medium}"
+        }
+      }
+    },
+    "layout": {
+      "global-navigation": {
+        "sizes": {
+          "height": {
+            "default": {
+              "$type": "sizing",
+              "$value": "48px"
+            }
+          }
+        }
+      }
+    },
+    "promoted-section": {
+      "borderRadius": {
+        "default": {
+          "$type": "borderRadius",
+          "$value": "{echoes.borderRadius.300}"
+        }
+      }
+    },
+    "select": {
+      "borderRadius": {
+        "clearButton": {
+          "$type": "borderRadius",
+          "$value": "{echoes.borderRadius.300}"
+        },
+        "dropdown": {
+          "$type": "borderRadius",
+          "$value": "{echoes.borderRadius.300}"
+        }
+      }
+    },
+    "selection-card": {
+      "borderRadius": {
+        "default": {
+          "$type": "borderRadius",
+          "$value": "{echoes.borderRadius.300}"
+        }
+      }
+    }
+  }
+}

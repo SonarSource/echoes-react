@@ -54,6 +54,20 @@ describe.each([
   });
 });
 
+it.each([
+  [TextSize.Caption, false, 'typography-text-caption-regular'],
+  [TextSize.Caption, true, 'typography-text-caption-medium'],
+  [TextSize.Lead, false, 'typography-text-lead-regular'],
+  [TextSize.Lead, true, 'typography-text-lead-semi-bold'],
+  [TextSize.Prose, false, 'typography-text-prose-regular'],
+  [TextSize.Prose, true, 'typography-text-prose-semi-bold'],
+] as const)('uses the %s semantic token when highlighted is %s', (size, isHighlighted, token) => {
+  const text = 'Semantic text';
+  setupText({ children: text, isHighlighted, size });
+
+  expect(screen.getByText(text)).toHaveStyle(`font: ${cssVar(token)}`);
+});
+
 it('allows to override the color', () => {
   const text = 'hi there';
   setupText({ children: text, colorOverride: 'echoes-color-text-danger' });
