@@ -187,7 +187,7 @@
       },
       "400": {
         "$type": "borderRadius",
-        "$value": "8px"
+        "$value": "6px"
       },
       "none": {
         "$type": "borderRadius",
@@ -255,7 +255,7 @@
       },
       "semi-bold": {
         "$type": "fontWeights",
-        "$value": "600"
+        "$value": "{echoes.fontWeight.medium}"
       },
       "regular": {
         "$type": "fontWeights",
@@ -426,7 +426,7 @@
           "$type": "typography",
           "$value": {
             "fontFamily": "{echoes.fontFamily.sans}",
-            "fontWeight": "{echoes.fontWeight.semi-bold}",
+            "fontWeight": "600",
             "lineHeight": "{echoes.lineHeight.30}",
             "fontSize": "{echoes.fontSize.30}"
           }
@@ -435,7 +435,7 @@
           "$type": "typography",
           "$value": {
             "fontFamily": "{echoes.fontFamily.sans}",
-            "fontWeight": "{echoes.fontWeight.semi-bold}",
+            "fontWeight": "600",
             "lineHeight": "{echoes.lineHeight.40}",
             "fontSize": "{echoes.fontSize.40}"
           }
@@ -444,7 +444,7 @@
           "$type": "typography",
           "$value": {
             "fontFamily": "{echoes.fontFamily.sans}",
-            "fontWeight": "{echoes.fontWeight.semi-bold}",
+            "fontWeight": "600",
             "lineHeight": "{echoes.lineHeight.50}",
             "fontSize": "{echoes.fontSize.50}"
           }
@@ -513,7 +513,7 @@
           "$type": "typography",
           "$value": {
             "fontFamily": "{echoes.fontFamily.sans}",
-            "fontWeight": "{echoes.fontWeight.semi-bold}",
+            "fontWeight": "600",
             "fontSize": "{echoes.fontSize.60}",
             "lineHeight": "{echoes.lineHeight.60}"
           }
