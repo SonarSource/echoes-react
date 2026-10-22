@@ -486,7 +486,7 @@
         },
         "subtle": {
           "$type": "color",
-          "$value": "{echoes.color.palette.light.gray.10}"
+          "$value": "{echoes.color.palette.light.gray.9}"
         },
         "onColor": {
           "$type": "color",
@@ -538,7 +538,7 @@
         },
         "subtle": {
           "$type": "color",
-          "$value": "{echoes.color.palette.light.gray.10}"
+          "$value": "{echoes.color.palette.light.gray.9}"
         },
         "disabled": {
           "$type": "color",

@@ -618,7 +618,7 @@ html[data-echoes-theme='dark'], [data-echoes-theme='dark'] {
   --echoes-color-text-default: #3a3a3a;
   --echoes-color-text-disabled: #5a5a5a;
   --echoes-color-text-placeholder: #4a4a4a;
-  --echoes-color-text-subtle: #4a4a4a;
+  --echoes-color-text-subtle: #5a5a5a;
   --echoes-color-text-on-color: #ffffff;
   --echoes-color-text-on-color-inverse: #ffffff;
   --echoes-color-text-accent: #1a1a1a;
@@ -630,7 +630,7 @@ html[data-echoes-theme='dark'], [data-echoes-theme='dark'] {
   --echoes-color-text-link-hover: #3a3a3a;
   --echoes-color-icon-bold: #1a1a1a;
   --echoes-color-icon-default: #3a3a3a;
-  --echoes-color-icon-subtle: #4a4a4a;
+  --echoes-color-icon-subtle: #5a5a5a;
   --echoes-color-icon-disabled: #5a5a5a;
   --echoes-color-icon-placeholder: #4a4a4a;
   --echoes-color-icon-accent: #1a1a1a;
@@ -749,7 +749,7 @@ html[data-echoes-theme='dark'], [data-echoes-theme='dark'] {
   --echoes-form-control-colors-background-hover: #f4f4f4;
   --echoes-form-control-colors-border-default: #e0e0e0;
   --echoes-form-control-colors-border-focus: #5a5a5a;
-  --echoes-form-control-colors-icon-default: #4a4a4a;
+  --echoes-form-control-colors-icon-default: #5a5a5a;
   --echoes-logos-colors-text: #290042; /** Deprecated, use echoes.logos.sonar.colors.text */
   --echoes-logos-colors-brand: #126ed3; /** Deprecated, use echoes.logos.sonar.colors.brand */
   --echoes-logos-colors-sonar-whale: #d3121d; /** Deprecated, use echoes.logos.sonar.colors.logomark */
