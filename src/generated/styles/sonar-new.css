@@ -211,15 +211,15 @@
  */
 
 html[data-echoes-theme='dark'], [data-echoes-theme='dark'] {
-  --echoes-color-background-neutral-subtle-default: #1f1f1f;
-  --echoes-color-background-neutral-subtle-hover: #252525;
-  --echoes-color-background-neutral-subtle-focus: #1f1f1f;
-  --echoes-color-background-neutral-subtle-active: #2a2a2a;
-  --echoes-color-background-neutral-bolder-default: #252525;
-  --echoes-color-background-accent-default: #eeeeee; /** Neutral primary actions and their interaction states. */
-  --echoes-color-background-accent-hover: #b8b8b8; /** Neutral primary actions and their interaction states. */
-  --echoes-color-background-accent-focus: #eeeeee; /** Neutral primary actions and their interaction states. */
-  --echoes-color-background-accent-active: #828282; /** Neutral primary actions and their interaction states. */
+  --echoes-color-background-neutral-subtle-default: oklch(0.247 0.022 255.629);
+  --echoes-color-background-neutral-subtle-hover: oklch(0.27 0.024 255.629);
+  --echoes-color-background-neutral-subtle-focus: oklch(0.247 0.022 255.629);
+  --echoes-color-background-neutral-subtle-active: oklch(0.293 0.026 255.629);
+  --echoes-color-background-neutral-bolder-default: oklch(0.27 0.024 255.629);
+  --echoes-color-background-accent-default: oklch(0.96 0.008 255.629); /** Neutral primary actions and their interaction states. */
+  --echoes-color-background-accent-hover: oklch(0.89 0.014 255.629); /** Neutral primary actions and their interaction states. */
+  --echoes-color-background-accent-focus: oklch(0.96 0.008 255.629); /** Neutral primary actions and their interaction states. */
+  --echoes-color-background-accent-active: oklch(0.79 0.02 255.629); /** Neutral primary actions and their interaction states. */
   --echoes-color-background-accent-weak-default: #ffffff0d; /** Neutral primary actions and their interaction states. */
   --echoes-color-background-accent-weak-hover: #ffffff14; /** Neutral primary actions and their interaction states. */
   --echoes-color-background-accent-weak-focus: #ffffff0d; /** Neutral primary actions and their interaction states. */
@@ -248,21 +248,21 @@ html[data-echoes-theme='dark'], [data-echoes-theme='dark'] {
   --echoes-color-background-danger-weak-hover: #501422;
   --echoes-color-background-danger-weak-focus: #3b101a;
   --echoes-color-background-danger-weak-active: #661829;
-  --echoes-color-background-info-default: #eeeeee;
-  --echoes-color-background-info-hover: #b8b8b8;
-  --echoes-color-background-info-focus: #eeeeee;
-  --echoes-color-background-info-active: #828282;
-  --echoes-color-background-info-weak-default: #1f1f1f;
-  --echoes-color-background-info-weak-hover: #252525;
-  --echoes-color-background-info-weak-focus: #1f1f1f;
-  --echoes-color-background-info-weak-active: #2a2a2a;
+  --echoes-color-background-info-default: oklch(0.96 0.008 255.629);
+  --echoes-color-background-info-hover: oklch(0.89 0.014 255.629);
+  --echoes-color-background-info-focus: oklch(0.96 0.008 255.629);
+  --echoes-color-background-info-active: oklch(0.79 0.02 255.629);
+  --echoes-color-background-info-weak-default: oklch(0.247 0.022 255.629);
+  --echoes-color-background-info-weak-hover: oklch(0.27 0.024 255.629);
+  --echoes-color-background-info-weak-focus: oklch(0.247 0.022 255.629);
+  --echoes-color-background-info-weak-active: oklch(0.293 0.026 255.629);
   --echoes-color-background-utility-transparent: #00000000;
   --echoes-color-background-selected-weak-default: #ffffff0d;
   --echoes-color-background-selected-weak-hover: #ffffff14;
   --echoes-color-background-selected-weak-pressed: #ffffff1f;
-  --echoes-color-background-selected-bold-default: #eeeeee;
-  --echoes-color-background-selected-bold-hover: #b8b8b8;
-  --echoes-color-background-selected-bold-pressed: #828282;
+  --echoes-color-background-selected-bold-default: oklch(0.96 0.008 255.629);
+  --echoes-color-background-selected-bold-hover: oklch(0.89 0.014 255.629);
+  --echoes-color-background-selected-bold-pressed: oklch(0.79 0.02 255.629);
   --echoes-color-background-ghost-accent-default: #00000000;
   --echoes-color-background-ghost-accent-hover: #ffffff0d;
   --echoes-color-background-ghost-accent-active: #ffffff1f;
@@ -275,82 +275,82 @@ html[data-echoes-theme='dark'], [data-echoes-theme='dark'] {
   --echoes-color-background-ghost-danger-hover: #501422;
   --echoes-color-background-ghost-danger-active: #661829;
   --echoes-color-background-ghost-danger-focus: #00000000;
-  --echoes-color-background-emphasis-weak-default: #0d2740; /** Explicit feature emphasis, AI, upgrade, upsell, and pricing. */
-  --echoes-color-background-emphasis-weak-hover: #103455; /** Explicit feature emphasis, AI, upgrade, upsell, and pricing. */
-  --echoes-color-background-emphasis-weak-focus: #0d2740; /** Explicit feature emphasis, AI, upgrade, upsell, and pricing. */
-  --echoes-color-background-emphasis-weak-active: #13416b; /** Explicit feature emphasis, AI, upgrade, upsell, and pricing. */
-  --echoes-color-background-emphasis-default: #70b7ff; /** Explicit feature emphasis, AI, upgrade, upsell, and pricing. */
-  --echoes-color-background-emphasis-hover: #8cc6ff; /** Explicit feature emphasis, AI, upgrade, upsell, and pricing. */
-  --echoes-color-background-emphasis-focus: #70b7ff; /** Explicit feature emphasis, AI, upgrade, upsell, and pricing. */
-  --echoes-color-background-emphasis-active: #a8d4ff; /** Explicit feature emphasis, AI, upgrade, upsell, and pricing. */
+  --echoes-color-background-emphasis-weak-default: oklch(0.275 0.05 255.629); /** Explicit feature emphasis, AI, upgrade, upsell, and pricing. */
+  --echoes-color-background-emphasis-weak-hover: oklch(0.325 0.065 255.629); /** Explicit feature emphasis, AI, upgrade, upsell, and pricing. */
+  --echoes-color-background-emphasis-weak-focus: oklch(0.275 0.05 255.629); /** Explicit feature emphasis, AI, upgrade, upsell, and pricing. */
+  --echoes-color-background-emphasis-weak-active: oklch(0.375 0.079 255.629); /** Explicit feature emphasis, AI, upgrade, upsell, and pricing. */
+  --echoes-color-background-emphasis-default: oklch(0.765 0.099 255.629); /** Explicit feature emphasis, AI, upgrade, upsell, and pricing. */
+  --echoes-color-background-emphasis-hover: oklch(0.815 0.077 255.629); /** Explicit feature emphasis, AI, upgrade, upsell, and pricing. */
+  --echoes-color-background-emphasis-focus: oklch(0.765 0.099 255.629); /** Explicit feature emphasis, AI, upgrade, upsell, and pricing. */
+  --echoes-color-background-emphasis-active: oklch(0.865 0.055 255.629); /** Explicit feature emphasis, AI, upgrade, upsell, and pricing. */
   --echoes-color-background-favourite-default: #f5b642;
   --echoes-color-background-favourite-hover: #fac969;
-  --echoes-color-surface-default: #151515;
-  --echoes-color-surface-hover: #1f1f1f;
-  --echoes-color-surface-active: #2a2a2a;
-  --echoes-color-surface-canvas-default: #1a1a1a;
+  --echoes-color-surface-default: oklch(0.205 0.018 255.629);
+  --echoes-color-surface-hover: oklch(0.247 0.022 255.629);
+  --echoes-color-surface-active: oklch(0.293 0.026 255.629);
+  --echoes-color-surface-canvas-default: oklch(0.225 0.02 255.629);
   --echoes-color-surface-inverse-default: #fcfcfc;
   --echoes-color-surface-inverse-hover: #efefef;
   --echoes-color-surface-inverse-focus: #fcfcfc;
   --echoes-color-surface-inverse-active: #e8e8e8;
-  --echoes-color-surface-disabled: #1f1f1f;
+  --echoes-color-surface-disabled: oklch(0.247 0.022 255.629);
   --echoes-color-overlays-back-drop-default: #ffffff52;
-  --echoes-color-overlays-disabled: #1f1f1f;
-  --echoes-color-text-strong: #eeeeee;
-  --echoes-color-text-default: #b8b8b8;
-  --echoes-color-text-subtle: #828282;
-  --echoes-color-text-disabled: #737373;
+  --echoes-color-overlays-disabled: oklch(0.247 0.022 255.629);
+  --echoes-color-text-strong: oklch(0.96 0.008 255.629);
+  --echoes-color-text-default: oklch(0.89 0.014 255.629);
+  --echoes-color-text-subtle: oklch(0.79 0.02 255.629);
+  --echoes-color-text-disabled: oklch(0.59 0.025 255.629);
   --echoes-color-text-on-color: #000000;
   --echoes-color-text-on-color-inverse: #000000;
   --echoes-color-text-danger: #ffb0ba;
-  --echoes-color-text-placeholder: #828282;
-  --echoes-color-text-accent: #eeeeee;
-  --echoes-color-text-info: #b8b8b8;
+  --echoes-color-text-placeholder: oklch(0.79 0.02 255.629);
+  --echoes-color-text-accent: oklch(0.96 0.008 255.629);
+  --echoes-color-text-info: oklch(0.89 0.014 255.629);
   --echoes-color-text-success: #9be8b5;
   --echoes-color-text-warning: #ffdb8a;
-  --echoes-color-text-emphasis: #a8d4ff;
-  --echoes-color-text-link-hover: #b8b8b8;
-  --echoes-color-icon-bold: #eeeeee;
-  --echoes-color-icon-default: #b8b8b8;
-  --echoes-color-icon-subtle: #828282;
-  --echoes-color-icon-disabled: #737373;
-  --echoes-color-icon-placeholder: #828282;
-  --echoes-color-icon-accent: #eeeeee;
+  --echoes-color-text-emphasis: oklch(0.865 0.055 255.629);
+  --echoes-color-text-link-hover: oklch(0.89 0.014 255.629);
+  --echoes-color-icon-bold: oklch(0.96 0.008 255.629);
+  --echoes-color-icon-default: oklch(0.89 0.014 255.629);
+  --echoes-color-icon-subtle: oklch(0.79 0.02 255.629);
+  --echoes-color-icon-disabled: oklch(0.59 0.025 255.629);
+  --echoes-color-icon-placeholder: oklch(0.79 0.02 255.629);
+  --echoes-color-icon-accent: oklch(0.96 0.008 255.629);
   --echoes-color-icon-danger: #ffb0ba;
   --echoes-color-icon-warning: #ffdb8a;
   --echoes-color-icon-success: #9be8b5;
-  --echoes-color-icon-info: #b8b8b8;
+  --echoes-color-icon-info: oklch(0.89 0.014 255.629);
   --echoes-color-icon-on-color: #000000;
   --echoes-color-icon-on-color-inverse: #000000;
-  --echoes-color-icon-selected: #eeeeee;
-  --echoes-color-icon-emphasis: #a8d4ff;
-  --echoes-color-border-bolder: #363636;
-  --echoes-color-border-bold: #363636;
-  --echoes-color-border-weak: #363636;
-  --echoes-color-border-weaker: #363636;
-  --echoes-color-border-disabled: #363636;
-  --echoes-color-border-accent-default: #eeeeee;
+  --echoes-color-icon-selected: oklch(0.96 0.008 255.629);
+  --echoes-color-icon-emphasis: oklch(0.865 0.055 255.629);
+  --echoes-color-border-bolder: oklch(0.342 0.03 255.629);
+  --echoes-color-border-bold: oklch(0.342 0.03 255.629);
+  --echoes-color-border-weak: oklch(0.342 0.03 255.629);
+  --echoes-color-border-weaker: oklch(0.342 0.03 255.629);
+  --echoes-color-border-disabled: oklch(0.342 0.03 255.629);
+  --echoes-color-border-accent-default: oklch(0.96 0.008 255.629);
   --echoes-color-border-danger-weak: #a74351;
   --echoes-color-border-danger-default: #a74351;
   --echoes-color-border-none: #00000000;
   --echoes-color-border-success-weak: #22824c;
   --echoes-color-border-success-default: #22824c;
   --echoes-color-border-warning-weak: #9a6c17;
-  --echoes-color-border-info-weak: #464646;
-  --echoes-color-border-emphasis-weak: #3470aa;
-  --echoes-color-code-background-default: #1a1a1a;
-  --echoes-color-code-background-highlight: #2a2a2a;
-  --echoes-color-code-border-default: #464646;
-  --echoes-color-code-text-default: #b8b8b8;
+  --echoes-color-border-info-weak: oklch(0.41 0.03 255.629);
+  --echoes-color-border-emphasis-weak: oklch(0.54 0.109 255.629);
+  --echoes-color-code-background-default: oklch(0.225 0.02 255.629);
+  --echoes-color-code-background-highlight: oklch(0.293 0.026 255.629);
+  --echoes-color-code-border-default: oklch(0.41 0.03 255.629);
+  --echoes-color-code-text-default: oklch(0.89 0.014 255.629);
   --echoes-color-code-text-highlight: #ffb0ba;
-  --echoes-color-code-text-annotation: #a8d4ff;
+  --echoes-color-code-text-annotation: oklch(0.865 0.055 255.629);
   --echoes-color-code-text-constant: #e5c3ad;
-  --echoes-color-code-text-comment: #828282;
+  --echoes-color-code-text-comment: oklch(0.79 0.02 255.629);
   --echoes-color-code-text-keyword: #e5bdd6;
   --echoes-color-code-text-string: #9be8b5;
   --echoes-color-code-text-keyword-subtle: #cfc4e4;
   --echoes-color-code-text-preprocessing-directive: #95dad4;
-  --echoes-color-focus-default: #737373;
+  --echoes-color-focus-default: oklch(0.59 0.025 255.629);
   --echoes-color-charts-categorical-1: #78a7e5;
   --echoes-color-charts-categorical-2: #e986b7;
   --echoes-color-charts-categorical-3: #5cb8a7;
@@ -364,7 +364,7 @@ html[data-echoes-theme='dark'], [data-echoes-theme='dark'] {
   --echoes-color-charts-severity-medium: #e39757;
   --echoes-color-charts-severity-low: #cdb761;
   --echoes-color-charts-severity-info: #78a7e5;
-  --echoes-color-charts-placeholder-default: #828282;
+  --echoes-color-charts-placeholder-default: oklch(0.79 0.02 255.629);
   --echoes-color-dataviz-raspberry-bg: #311c2a;
   --echoes-color-dataviz-raspberry-text: #e5bdd6;
   --echoes-color-dataviz-raspberry-border-border: #873d71;
@@ -379,13 +379,13 @@ html[data-echoes-theme='dark'], [data-echoes-theme='dark'] {
   --echoes-color-dataviz-violet-fill-hover: #bda7e8;
   --echoes-color-dataviz-violet-fill-active: #cfc4e4;
   --echoes-color-dataviz-violet-fill-focus: #b290ec;
-  --echoes-color-dataviz-indigo-bg: #0d2740;
-  --echoes-color-dataviz-indigo-text: #a8d4ff;
-  --echoes-color-dataviz-indigo-border-border: #3470aa;
-  --echoes-color-dataviz-indigo-fill-default: #70b7ff;
-  --echoes-color-dataviz-indigo-fill-hover: #8cc6ff;
-  --echoes-color-dataviz-indigo-fill-active: #a8d4ff;
-  --echoes-color-dataviz-indigo-fill-focus: #70b7ff;
+  --echoes-color-dataviz-indigo-bg: oklch(0.275 0.05 255.629);
+  --echoes-color-dataviz-indigo-text: oklch(0.865 0.055 255.629);
+  --echoes-color-dataviz-indigo-border-border: oklch(0.54 0.109 255.629);
+  --echoes-color-dataviz-indigo-fill-default: oklch(0.765 0.099 255.629);
+  --echoes-color-dataviz-indigo-fill-hover: oklch(0.815 0.077 255.629);
+  --echoes-color-dataviz-indigo-fill-active: oklch(0.865 0.055 255.629);
+  --echoes-color-dataviz-indigo-fill-focus: oklch(0.765 0.099 255.629);
   --echoes-color-dataviz-mint-bg: #1b2726;
   --echoes-color-dataviz-mint-text: #95dad4;
   --echoes-color-dataviz-mint-border-border: #3b6562;
@@ -427,11 +427,11 @@ html[data-echoes-theme='dark'], [data-echoes-theme='dark'] {
   --echoes-box-shadow-large: 0 4px 6px -2px #08090c0d, 0 12px 20px -4px #08090c80;
   --echoes-box-shadow-x-large: 0 8px 8px -4px #08090c0a, 0 20px 30px -4px #08090c80;
   --echoes-bottom-scroll-colors-shadow-gradient: #ffffff33;
-  --echoes-form-control-colors-background-default: #151515;
-  --echoes-form-control-colors-background-hover: #1f1f1f;
-  --echoes-form-control-colors-border-default: #363636;
-  --echoes-form-control-colors-border-focus: #737373;
-  --echoes-form-control-colors-icon-default: #828282;
+  --echoes-form-control-colors-background-default: oklch(0.205 0.018 255.629);
+  --echoes-form-control-colors-background-hover: oklch(0.247 0.022 255.629);
+  --echoes-form-control-colors-border-default: oklch(0.342 0.03 255.629);
+  --echoes-form-control-colors-border-focus: oklch(0.59 0.025 255.629);
+  --echoes-form-control-colors-icon-default: oklch(0.79 0.02 255.629);
   --echoes-logos-colors-text: #ffffff; /** Deprecated, use echoes.logos.sonar.colors.text */
   --echoes-logos-colors-brand: #ffffff; /** Deprecated, use echoes.logos.sonar.colors.brand */
   --echoes-logos-colors-sonar-whale: #d3121d; /** Deprecated, use echoes.logos.sonar.colors.logomark */
@@ -440,7 +440,7 @@ html[data-echoes-theme='dark'], [data-echoes-theme='dark'] {
   --echoes-logos-sonar-colors-logomark: #d3121d;
   --echoes-logos-gitar-colors-text: #f6ebf8;
   --echoes-logos-gitar-colors-logomark: #f6ebf8;
-  --echoes-margin-indicator-colors-background-duplication: #464646;
+  --echoes-margin-indicator-colors-background-duplication: oklch(0.41 0.03 255.629);
   --echoes-margin-indicator-colors-background-covered: #40c878;
   --echoes-margin-indicator-colors-background-partially-covered: #f5b642;
   --echoes-margin-indicator-colors-background-uncovered: #ff919c;
@@ -481,9 +481,9 @@ html[data-echoes-theme='dark'], [data-echoes-theme='dark'] {
   --echoes-severity-badge-colors-background-severity-low-prefix-default: #332405;
   --echoes-severity-badge-colors-background-severity-low-suffix-default: #463004;
   --echoes-severity-badge-colors-background-severity-low-suffix-hover: #5a3d03;
-  --echoes-severity-badge-colors-background-severity-info-prefix-default: #1f1f1f;
-  --echoes-severity-badge-colors-background-severity-info-suffix-default: #252525;
-  --echoes-severity-badge-colors-background-severity-info-suffix-hover: #2a2a2a;
+  --echoes-severity-badge-colors-background-severity-info-prefix-default: oklch(0.247 0.022 255.629);
+  --echoes-severity-badge-colors-background-severity-info-suffix-default: oklch(0.27 0.024 255.629);
+  --echoes-severity-badge-colors-background-severity-info-suffix-hover: oklch(0.293 0.026 255.629);
   --echoes-severity-badge-colors-foreground-blocker-icon-default: #ffb0ba;
   --echoes-severity-badge-colors-foreground-blocker-text-default: #ffb0ba;
   --echoes-severity-badge-colors-foreground-high-text-default: #ffb0ba;
@@ -492,18 +492,18 @@ html[data-echoes-theme='dark'], [data-echoes-theme='dark'] {
   --echoes-severity-badge-colors-foreground-medium-icon-default: #e5c3ad;
   --echoes-severity-badge-colors-foreground-low-text-default: #ffdb8a;
   --echoes-severity-badge-colors-foreground-low-icon-default: #ffdb8a;
-  --echoes-severity-badge-colors-foreground-info-text-default: #b8b8b8;
-  --echoes-severity-badge-colors-foreground-info-icon-default: #b8b8b8;
+  --echoes-severity-badge-colors-foreground-info-text-default: oklch(0.89 0.014 255.629);
+  --echoes-severity-badge-colors-foreground-info-icon-default: oklch(0.89 0.014 255.629);
   --echoes-severity-badge-colors-borders-blocker-default: #a74351;
   --echoes-severity-badge-colors-borders-high-default: #a74351;
   --echoes-severity-badge-colors-borders-medium-default: #7a5236;
   --echoes-severity-badge-colors-borders-low-default: #9a6c17;
-  --echoes-severity-badge-colors-borders-info-default: #464646;
-  --echoes-sidebar-navigation-colors-background-default: #1a1a1a;
+  --echoes-severity-badge-colors-borders-info-default: oklch(0.41 0.03 255.629);
+  --echoes-sidebar-navigation-colors-background-default: oklch(0.225 0.02 255.629);
   --echoes-sidebar-navigation-item-colors-background-default: #00000000;
   --echoes-sidebar-navigation-item-colors-background-hover: #ffffff0d;
   --echoes-sidebar-navigation-item-colors-background-active: #ffffff1f;
-  --echoes-table-colors-background-header-default: #1f1f1f;
+  --echoes-table-colors-background-header-default: oklch(0.247 0.022 255.629);
 }
 
 /**
@@ -607,10 +607,10 @@ html[data-echoes-theme='dark'], [data-echoes-theme='dark'] {
   --echoes-color-surface-hover: #f4f4f4; /** Hover color for bg-default */
   --echoes-color-surface-active: #e8e8e8; /** Active color for bg-default */
   --echoes-color-surface-canvas-default: #f8f8f8; /** Use it as page background */
-  --echoes-color-surface-inverse-default: #151515; /** Inverse color for bgs, creates high contrast against bg-default and bg-page */
-  --echoes-color-surface-inverse-hover: #252525;
-  --echoes-color-surface-inverse-focus: #151515;
-  --echoes-color-surface-inverse-active: #2a2a2a;
+  --echoes-color-surface-inverse-default: oklch(0.205 0.018 255.629); /** Inverse color for bgs, creates high contrast against bg-default and bg-page */
+  --echoes-color-surface-inverse-hover: oklch(0.27 0.024 255.629);
+  --echoes-color-surface-inverse-focus: oklch(0.205 0.018 255.629);
+  --echoes-color-surface-inverse-active: oklch(0.293 0.026 255.629);
   --echoes-color-surface-disabled: #f4f4f4; /** Use it as background for disabled components */
   --echoes-color-overlays-back-drop-default: #00000047;
   --echoes-color-overlays-disabled: #f4f4f4; /** Use it as background for disabled components */

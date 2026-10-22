@@ -634,53 +634,54 @@
         },
         "dark": {
           "gray": {
+            "$description": "Blue-tinted neutrals at the Sonar brand blue hue (255.629 degrees). OKLCH lightness is tuned for the existing 12 surface, border, focus, and text roles; subtle text meets APCA Lc 60 on steps 1-5.",
             "1": {
               "$type": "color",
-              "$value": "#151515"
+              "$value": "oklch(0.205 0.018 255.629)"
             },
             "2": {
               "$type": "color",
-              "$value": "#1A1A1A"
+              "$value": "oklch(0.225 0.02 255.629)"
             },
             "3": {
               "$type": "color",
-              "$value": "#1F1F1F"
+              "$value": "oklch(0.247 0.022 255.629)"
             },
             "4": {
               "$type": "color",
-              "$value": "#252525"
+              "$value": "oklch(0.27 0.024 255.629)"
             },
             "5": {
               "$type": "color",
-              "$value": "#2A2A2A"
+              "$value": "oklch(0.293 0.026 255.629)"
             },
             "6": {
               "$type": "color",
-              "$value": "#363636"
+              "$value": "oklch(0.342 0.03 255.629)"
             },
             "7": {
               "$type": "color",
-              "$value": "#464646"
+              "$value": "oklch(0.41 0.03 255.629)"
             },
             "8": {
               "$type": "color",
-              "$value": "#5A5A5A"
+              "$value": "oklch(0.5 0.028 255.629)"
             },
             "9": {
               "$type": "color",
-              "$value": "#737373"
+              "$value": "oklch(0.59 0.025 255.629)"
             },
             "10": {
               "$type": "color",
-              "$value": "#828282"
+              "$value": "oklch(0.79 0.02 255.629)"
             },
             "11": {
               "$type": "color",
-              "$value": "#B8B8B8"
+              "$value": "oklch(0.89 0.014 255.629)"
             },
             "12": {
               "$type": "color",
-              "$value": "#EEEEEE"
+              "$value": "oklch(0.96 0.008 255.629)"
             }
           },
           "gray-alpha": {
@@ -734,53 +735,54 @@
             }
           },
           "blue": {
+            "$description": "Dark accent ramp at the Sonar brand blue hue (255.629 degrees), with chroma scaled to the sRGB gamut at each OKLCH lightness. Retains the existing 12-step token interface.",
             "1": {
               "$type": "color",
-              "$value": "#0B121A"
+              "$value": "oklch(0.185 0.028 255.629)"
             },
             "2": {
               "$type": "color",
-              "$value": "#0D1C2C"
+              "$value": "oklch(0.225 0.037 255.629)"
             },
             "3": {
               "$type": "color",
-              "$value": "#0D2740"
+              "$value": "oklch(0.275 0.05 255.629)"
             },
             "4": {
               "$type": "color",
-              "$value": "#103455"
+              "$value": "oklch(0.325 0.065 255.629)"
             },
             "5": {
               "$type": "color",
-              "$value": "#13416B"
+              "$value": "oklch(0.375 0.079 255.629)"
             },
             "6": {
               "$type": "color",
-              "$value": "#164F82"
+              "$value": "oklch(0.425 0.093 255.629)"
             },
             "7": {
               "$type": "color",
-              "$value": "#3470AA"
+              "$value": "oklch(0.54 0.109 255.629)"
             },
             "8": {
               "$type": "color",
-              "$value": "#5293D4"
+              "$value": "oklch(0.65 0.132 255.629)"
             },
             "9": {
               "$type": "color",
-              "$value": "#70B7FF"
+              "$value": "oklch(0.765 0.099 255.629)"
             },
             "10": {
               "$type": "color",
-              "$value": "#8CC6FF"
+              "$value": "oklch(0.815 0.077 255.629)"
             },
             "11": {
               "$type": "color",
-              "$value": "#A8D4FF"
+              "$value": "oklch(0.865 0.055 255.629)"
             },
             "12": {
               "$type": "color",
-              "$value": "#EAF6FF"
+              "$value": "oklch(0.97 0.008 255.629)"
             }
           },
           "green": {
@@ -1242,7 +1244,7 @@
             },
             "placeholder": {
               "$type": "color",
-              "$value": "#828282"
+              "$value": "{echoes.color.palette.dark.gray.10}"
             }
           }
         }
