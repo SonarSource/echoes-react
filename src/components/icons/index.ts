@@ -127,6 +127,8 @@ export { IconSeverityMedium } from './IconSeverityMedium';
 export { IconShield } from './IconShield';
 export { IconSlash } from './IconSlash';
 export { IconSlideshow } from './IconSlideshow';
+export { IconSortAscending } from './IconSortAscending';
+export { IconSortDescending } from './IconSortDescending';
 export { IconSparkle } from './IconSparkle';
 export { IconSparkleInShield } from './IconSparkleInShield';
 export { IconSparkleInShieldDisabled } from './IconSparkleInShieldDisabled';

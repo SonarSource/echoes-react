@@ -19,8 +19,8 @@
  */
 
 import styled from '@emotion/styled';
+import { RouterLink } from '~common/router/RouterContext';
 import { LinkBaseProps } from '../links/LinkTypes';
-import { RouterLink } from '../router/RouterContext';
 import { ButtonStyled, buttonIconStyles } from './ButtonStyles';
 import { ButtonCommonProps, HTMLButtonAttributesSubset } from './ButtonTypes';
 

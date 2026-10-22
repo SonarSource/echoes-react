@@ -21,13 +21,13 @@
 import { css, Global } from '@emotion/react';
 import styled from '@emotion/styled';
 import { Select as MantineSelect, SelectProps as MantineSelectProps } from '@mantine/core';
-import { forwardRef, useContext, useEffect, useId } from 'react';
+import { forwardRef, ReactNode, useContext, useEffect, useId } from 'react';
 import { useIntl } from 'react-intl';
+import { PortalContext } from '~common/components/PortalContext';
 import { isDefined, isStringDefined } from '~common/helpers/types';
 import { useForwardedRefWithState } from '~common/helpers/useForwardedRef';
 import { PropsWithLabels, TextNodeOptional } from '~types/utils';
 import { IconChevronDown, IconX, Spinner } from '..';
-import { PortalContext } from '../../common/components/PortalContext';
 import {
   type ValidationProps,
   FormField,
@@ -114,6 +114,22 @@ export const SelectBase = forwardRef<HTMLInputElement, PropsWithLabels<SelectBas
       hasValidationMessage: Boolean(messageValid || messageInvalid),
     });
 
+    // Mantine's `InputClearButtonProps` type no longer includes `icon`, but it is still forwarded
+    // to the underlying `CloseButton`. Typing it as a variable (not a fresh literal) lets us pass it.
+    const clearButtonProps: MantineSelectProps['clearButtonProps'] & { icon?: ReactNode } =
+      isClearable
+        ? {
+            'aria-label': intl.formatMessage({
+              id: 'select.clear',
+              defaultMessage: 'Clear select field',
+              description:
+                'Screen reader-only text to indicate that the select field can be cleared with a button',
+            }),
+            className: 'echoes-select-close-button',
+            icon: <IconX />,
+          }
+        : {};
+
     const rightSection = getSelectRightSection({
       hasValue: isStringDefined(selectProps.value),
       isLoading,
@@ -152,22 +168,12 @@ export const SelectBase = forwardRef<HTMLInputElement, PropsWithLabels<SelectBas
               ? { ...SELECT_CLASSNAMES, dropdown: 'echoes-select-dropdown-auto-width' }
               : SELECT_CLASSNAMES
           }
-          clearButtonProps={
-            isClearable
-              ? {
-                  'aria-label': intl.formatMessage({
-                    id: 'select.clear',
-                    defaultMessage: 'Clear select field',
-                    description:
-                      'Screen reader-only text to indicate that the select field can be cleared with a button',
-                  }),
-                  className: 'echoes-select-close-button',
-                  icon: <IconX />,
-                }
-              : {}
-          }
-          clearable={isClearable}
+          clearButtonProps={clearButtonProps}
+          clearable={isClearable && !isLoading}
           comboboxProps={{
+            // Mantine 8 hides the dropdown when its target is considered detached, which also
+            // happens in environments without layout (e.g. jsdom). We keep the Mantine 7 behavior.
+            hideDetached: false,
             portalProps: {
               target: portalContext.portalReference,
             },
@@ -180,14 +186,7 @@ export const SelectBase = forwardRef<HTMLInputElement, PropsWithLabels<SelectBas
           filter={optionsFilter}
           id={controlId}
           label={label}
-          labelProps={{
-            // We no longer use Mantine's InputLabel component. However, if we
-            // do not pass a `label` prop to the Select component, Mantine will
-            // render an `aria-label` on the OptionsDropdown component. This
-            // causes the input and the dropdown to have the same label, which
-            // is problematic for accessibility.
-            labelElement: Null,
-          }}
+          labelProps={SELECT_LABEL_PROPS}
           leftSection={valueIcon}
           nothingFoundMessage={labelNotFound}
           onDropdownOpen={onOpen}
@@ -212,6 +211,13 @@ export const SelectBase = forwardRef<HTMLInputElement, PropsWithLabels<SelectBas
 function Null() {
   return null;
 }
+
+// We no longer use Mantine's InputLabel component. However, if we do not pass a `label` prop to
+// the Select component, Mantine will render an `aria-label` on the OptionsDropdown component. This
+// causes the input and the dropdown to have the same label, which is problematic for accessibility.
+// Mantine types `labelElement` as `'label' | 'div'` but forwards it as the `component` of a `Box`,
+// so a component that renders nothing works at runtime.
+const SELECT_LABEL_PROPS = { labelElement: Null } as unknown as MantineSelectProps['labelProps'];
 
 SelectBase.displayName = 'SelectBase';
 
@@ -332,6 +338,15 @@ export const SelectStyled = styled(MantineSelect)`
 
     &[data-position='right'] {
       right: 0;
+
+      // Mantine 8 displays its default chevron next to the clear button, we only want the button
+      & [data-combined-clear-section] {
+        padding-inline-end: 0 !important; // Overrides the inline style set by Mantine
+
+        & [data-combobox-chevron] {
+          display: none;
+        }
+      }
 
       // Clear button
       & .echoes-select-close-button {

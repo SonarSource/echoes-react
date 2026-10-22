@@ -20,7 +20,7 @@
 
 import styled from '@emotion/styled';
 import { PropsWithChildren, useMemo, useRef, useState } from 'react';
-import { PortalContext } from '../../common/components/PortalContext';
+import { PortalContext } from '~common/components/PortalContext';
 
 import {
   BottomShadowScroll,

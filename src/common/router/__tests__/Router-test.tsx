@@ -22,11 +22,11 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { createContext, ReactElement, useContext, useState } from 'react';
 import { IntlProvider } from 'react-intl';
-import { EchoesProvider } from '../../echoes-provider';
-import { IconBranch } from '../../icons';
-import { SidebarNavigationItem } from '../../layout/sidebar-navigation/SidebarNavigationItem';
-import { Link } from '../../links';
-import { EchoesRouter, EchoesRouterLinkProps, LinkTo } from '../../../types/RouterTypes';
+import { EchoesRouter, EchoesRouterLinkProps, LinkTo } from '~types/RouterTypes';
+import { EchoesProvider } from '../../../components/echoes-provider';
+import { IconBranch } from '../../../components/icons';
+import { SidebarNavigationItem } from '../../../components/layout/sidebar-navigation/SidebarNavigationItem';
+import { Link } from '../../../components/links';
 import { isPathActive, toHref } from '../RouterUtils';
 
 describe('isPathActive', () => {

@@ -64,15 +64,27 @@ variable sans and monospace fonts locally and loads them automatically. No netwo
 required. Both fonts are distributed under the SIL Open Font License 1.1. Optical sizing is enabled
 globally for variable Geist.
 
-Other brand CSS may reference fonts that are not bundled. Client projects using those brands must
-provide the fonts themselves. If possible, use the CDN:
+Other brands' CSS may use fonts that are not bundled (e.g. Sonar uses `Inter` and `Ubuntu Mono`).
+The consuming application is responsible for loading those fonts; importing those brands' CSS does
+not load the fonts.
 
-```css
-@import 'https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap';
-@import 'https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700';
+If your application uses Google Fonts, add the following links to the HTML `<head>` of each entry point that uses the Sonar brand:
+
+```html
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&amp;family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" />
 ```
 
-Otherwise, you'll have to define the fonts (like the CDN does) and serve the `.woff` files yourself (e.g. as static assets):
+Using a stylesheet link in the HTML lets the browser discover the fonts earlier than a CSS `@import`. Combine the font families in one stylesheet request and remove any corresponding font `@import` rules from your application CSS. The preconnects prepare connections to the stylesheet and font-file origins; the font-file origin requires `crossorigin`.
+
+The example includes Inter weights 100–900 and Ubuntu Mono regular, bold, and their italic variants. Request only the families, weights, and styles your application needs, while preserving the character coverage required by its supported languages. Load fonts used only by a specific page or layout there instead of adding them to every entry point.
+
+Use `display=swap` for all Google Fonts families so text can render with a fallback while fonts download. Suitable fallback fonts are defined in Echoes font stacks, including monospace fallbacks for code. You can check rendering with slow or blocked font requests.
+
+If you cannot use Google Fonts, define the fonts with `@font-face` and serve the `.woff2` files yourself (e.g. as static assets):
 
 ```css
 @font-face {
@@ -82,10 +94,11 @@ Otherwise, you'll have to define the fonts (like the CDN does) and serve the `.w
   font-display: swap;
   src: url('../fonts/Inter/Inter-Thin.woff2') format('woff2');
 }
-... for each variant
 ```
 
-Otherwise, the fonts will fall back to defaults provided by the browser & OS.
+Define a face for each weight and style you use, keeping `font-display: swap`. The path above is an example; use the location of your application's font assets.
+
+If the fonts are unavailable, text uses the fallback fonts from the font stack or the browser and OS defaults.
 
 #### Router adapter
 
