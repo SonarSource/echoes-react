@@ -1,0 +1,1157 @@
+{
+  "echoes": {
+    "color": {
+      "background": {
+        "neutral": {
+          "subtle": {
+            "default": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.light.gray.3}",
+              "$description": "Use it in components with neutral sentiment"
+            },
+            "focus": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.light.gray.3}",
+              "$description": "Use it in components with neutral sentiment"
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.light.gray.4}",
+              "$description": "Use it in components with neutral sentiment"
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.light.gray.5}",
+              "$description": "Use it in components with neutral sentiment"
+            }
+          },
+          "bolder": {
+            "default": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.light.gray.4}",
+              "$description": "Use it in components with neutral sentiment that need a bolder highlight"
+            }
+          }
+        },
+        "accent": {
+          "default": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.light.gray.12}",
+            "$description": "Neutral primary actions and their interaction states."
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.light.gray.11}",
+            "$description": "Neutral primary actions and their interaction states."
+          },
+          "focus": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.light.gray.12}",
+            "$description": "Neutral primary actions and their interaction states."
+          },
+          "active": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.light.gray.10}",
+            "$description": "Neutral primary actions and their interaction states."
+          },
+          "weak": {
+            "default": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.light.gray-alpha.3}",
+              "$description": "Neutral primary actions and their interaction states."
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.light.gray-alpha.4}",
+              "$description": "Neutral primary actions and their interaction states."
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.light.gray-alpha.5}",
+              "$description": "Neutral primary actions and their interaction states."
+            },
+            "focus": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.light.gray-alpha.3}",
+              "$description": "Neutral primary actions and their interaction states."
+            }
+          }
+        },
+        "warning": {
+          "default": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.light.yellow.9}",
+            "$description": "Use for backgrounds that communicate warning or caution"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.light.yellow.10}",
+            "$description": "Use for backgrounds that communicate warning or caution"
+          },
+          "focus": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.light.yellow.9}",
+            "$description": "Use for backgrounds that communicate warning or caution"
+          },
+          "active": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.light.yellow.11}",
+            "$description": "Use for backgrounds that communicate warning or caution"
+          },
+          "weak": {
+            "default": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.light.yellow.3}",
+              "$description": "Use for backgrounds that communicate warning or caution, with less visual highlight"
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.light.yellow.4}",
+              "$description": "Use for backgrounds that communicate warning or caution, with less visual highlight"
+            },
+            "focus": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.light.yellow.3}",
+              "$description": "Use for backgrounds that communicate warning or caution, with less visual highlight"
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.light.yellow.5}",
+              "$description": "Use for backgrounds that communicate warning or caution, with less visual highlight"
+            }
+          }
+        },
+        "success": {
+          "default": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.light.green.9}",
+            "$description": "Use for backgrounds that communicate positive or success messages"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.light.green.10}",
+            "$description": "Use for backgrounds that communicate positive or success messages"
+          },
+          "focus": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.light.green.9}",
+            "$description": "Use for backgrounds that communicate positive or success messages"
+          },
+          "active": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.light.green.11}",
+            "$description": "Use for backgrounds that communicate positive or success messages"
+          },
+          "weak": {
+            "default": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.light.green.3}",
+              "$description": "Use for backgrounds that communicate positive or success messages, with less visual highlight"
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.light.green.4}",
+              "$description": "Use for backgrounds that communicate positive or success messages, with less visual highlight"
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.light.green.5}",
+              "$description": "Use for backgrounds that communicate positive or success messages, with less visual highlight"
+            },
+            "focus": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.light.green.3}",
+              "$description": "Use for backgrounds that communicate positive or success messages, with less visual highlight"
+            }
+          }
+        },
+        "danger": {
+          "default": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.light.red.9}",
+            "$description": "Use for backgrounds that communicate danger or destructive messages"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.light.red.10}",
+            "$description": "Hover state for backgrounds that communicate danger or destructive messages"
+          },
+          "focus": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.light.red.9}",
+            "$description": "Focused state for backgrounds that communicate danger or destructive messages"
+          },
+          "active": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.light.red.11}",
+            "$description": "Active state for backgrounds that communicate danger or destructive messages"
+          },
+          "weak": {
+            "default": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.light.red.3}",
+              "$description": "Use it for backgrounds that communicate danger or destructive messages, with less visual highlight"
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.light.red.4}",
+              "$description": "Hover state for backgrounds that communicate danger or destructive messages, with less visual highlight"
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.light.red.5}",
+              "$description": "Active state for backgrounds that communicate danger or destructive messages, with less visual highlight"
+            },
+            "focus": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.light.red.3}"
+            }
+          }
+        },
+        "info": {
+          "default": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.light.gray.12}",
+            "$description": "Use for backgrounds that communicate information to the user"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.light.gray.11}",
+            "$description": "Use for backgrounds that communicate information to the user"
+          },
+          "focus": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.light.gray.12}",
+            "$description": "Use for backgrounds that communicate information to the user"
+          },
+          "active": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.light.gray.10}",
+            "$description": "Use for backgrounds that communicate information to the user"
+          },
+          "weak": {
+            "default": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.light.gray.3}",
+              "$description": "Use for backgrounds that communicate information to the user, with less visual highlight"
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.light.gray.4}",
+              "$description": "Use for backgrounds that communicate information to the user, with less visual highlight"
+            },
+            "focus": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.light.gray.3}",
+              "$description": "Use for backgrounds that communicate information to the user, with less visual highlight"
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.light.gray.5}",
+              "$description": "Use for backgrounds that communicate information to the user, with less visual highlight"
+            }
+          }
+        },
+        "utility": {
+          "transparent": {
+            "$type": "color",
+            "$value": "{echoes.color.roles.support.transparent}",
+            "$description": "Use it when you need transparency in the background"
+          }
+        },
+        "selected": {
+          "weak": {
+            "default": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.light.gray-alpha.3}",
+              "$description": "Use it in backgrounds of components that have a selected state that need less visual highlight, like dropdown or selects"
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.light.gray-alpha.4}",
+              "$description": "Hover state of components that have a selected state that need less visual highlight, like dropdown or selects"
+            },
+            "pressed": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.light.gray-alpha.5}",
+              "$description": "Pressed state of components that have a selected state that need less visual highlight, like dropdown or selects"
+            }
+          },
+          "bold": {
+            "default": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.light.gray.12}",
+              "$description": "Use it in backgrounds of components that have a selected state, like checkboxes or radios"
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.light.gray.11}",
+              "$description": "Hover state of components that have a selected state, like checkboxes or radios"
+            },
+            "pressed": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.light.gray.10}",
+              "$description": "Pressed state of components that have a selected state, like checkboxes or radios"
+            }
+          }
+        },
+        "ghost": {
+          "accent": {
+            "default": {
+              "$type": "color",
+              "$value": "{echoes.color.roles.support.transparent}"
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.light.gray-alpha.3}"
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.light.gray-alpha.5}"
+            },
+            "focus": {
+              "$type": "color",
+              "$value": "{echoes.color.roles.support.transparent}"
+            }
+          },
+          "neutral": {
+            "default": {
+              "$type": "color",
+              "$value": "{echoes.color.roles.support.transparent}"
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.light.gray-alpha.3}"
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.light.gray-alpha.5}"
+            },
+            "focus": {
+              "$type": "color",
+              "$value": "{echoes.color.roles.support.transparent}"
+            }
+          },
+          "danger": {
+            "default": {
+              "$type": "color",
+              "$value": "{echoes.color.roles.support.transparent}"
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.light.red.4}"
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.light.red.5}"
+            },
+            "focus": {
+              "$type": "color",
+              "$value": "{echoes.color.roles.support.transparent}"
+            }
+          }
+        },
+        "emphasis": {
+          "weak": {
+            "default": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.light.blue.3}",
+              "$description": "Explicit feature emphasis, AI, upgrade, upsell, and pricing."
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.light.blue.4}",
+              "$description": "Explicit feature emphasis, AI, upgrade, upsell, and pricing."
+            },
+            "focus": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.light.blue.3}",
+              "$description": "Explicit feature emphasis, AI, upgrade, upsell, and pricing."
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.light.blue.5}",
+              "$description": "Explicit feature emphasis, AI, upgrade, upsell, and pricing."
+            }
+          },
+          "default": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.light.blue.9}",
+            "$description": "Explicit feature emphasis, AI, upgrade, upsell, and pricing."
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.light.blue.10}",
+            "$description": "Explicit feature emphasis, AI, upgrade, upsell, and pricing."
+          },
+          "focus": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.light.blue.9}",
+            "$description": "Explicit feature emphasis, AI, upgrade, upsell, and pricing."
+          },
+          "active": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.light.blue.11}",
+            "$description": "Explicit feature emphasis, AI, upgrade, upsell, and pricing."
+          }
+        },
+        "favourite": {
+          "default": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.light.yellow.9}"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.light.yellow.10}"
+          }
+        }
+      },
+      "surface": {
+        "default": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.light.gray.1}",
+          "$description": "Go to color for surfaces.. eg: cards, modals, popovers, etc..."
+        },
+        "hover": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.light.gray.3}",
+          "$description": "Hover color for bg-default"
+        },
+        "active": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.light.gray.5}",
+          "$description": "Active color for bg-default"
+        },
+        "canvas": {
+          "default": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.light.gray.2}",
+            "$description": "Use it as page background"
+          }
+        },
+        "inverse": {
+          "default": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.dark.gray.1}",
+            "$description": "Inverse color for bgs, creates high contrast against bg-default and bg-page"
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.dark.gray.4}"
+          },
+          "focus": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.dark.gray.1}"
+          },
+          "active": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.dark.gray.5}"
+          }
+        },
+        "disabled": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.light.gray.3}",
+          "$description": "Use it as background for disabled components"
+        }
+      },
+      "overlays": {
+        "backDrop": {
+          "default": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.light.gray-alpha.8}"
+          }
+        },
+        "disabled": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.light.gray.3}",
+          "$description": "Use it as background for disabled components"
+        }
+      },
+      "text": {
+        "strong": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.light.gray.12}"
+        },
+        "default": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.light.gray.11}"
+        },
+        "disabled": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.light.gray.9}"
+        },
+        "placeholder": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.light.gray.10}"
+        },
+        "subtle": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.light.gray.10}"
+        },
+        "onColor": {
+          "$type": "color",
+          "$value": "{echoes.color.roles.support.white}"
+        },
+        "onColor-Inverse": {
+          "$type": "color",
+          "$value": "{echoes.color.roles.support.white}"
+        },
+        "accent": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.light.gray.12}"
+        },
+        "danger": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.light.red.11}"
+        },
+        "warning": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.light.yellow.11}"
+        },
+        "success": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.light.green.11}"
+        },
+        "info": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.light.gray.11}"
+        },
+        "emphasis": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.light.blue.11}"
+        },
+        "link": {
+          "hover": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.light.gray.11}"
+          }
+        }
+      },
+      "icon": {
+        "bold": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.light.gray.12}"
+        },
+        "default": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.light.gray.11}"
+        },
+        "subtle": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.light.gray.10}"
+        },
+        "disabled": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.light.gray.9}"
+        },
+        "placeholder": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.light.gray.10}"
+        },
+        "accent": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.light.gray.12}"
+        },
+        "danger": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.light.red.11}"
+        },
+        "warning": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.light.yellow.11}"
+        },
+        "success": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.light.green.11}"
+        },
+        "info": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.light.gray.11}"
+        },
+        "onColor": {
+          "$type": "color",
+          "$value": "{echoes.color.roles.support.white}"
+        },
+        "onColor-Inverse": {
+          "$type": "color",
+          "$value": "{echoes.color.roles.support.white}"
+        },
+        "selected": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.light.gray.12}"
+        },
+        "emphasis": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.light.blue.11}"
+        }
+      },
+      "border": {
+        "bolder": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.light.gray.6}"
+        },
+        "bold": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.light.gray.6}"
+        },
+        "weak": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.light.gray.6}"
+        },
+        "weaker": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.light.gray.6}"
+        },
+        "disabled": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.light.gray.6}"
+        },
+        "accent": {
+          "default": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.light.gray.12}"
+          }
+        },
+        "danger": {
+          "weak": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.light.red.7}"
+          },
+          "default": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.light.red.7}"
+          }
+        },
+        "none": {
+          "$type": "color",
+          "$value": "{echoes.color.roles.support.transparent}"
+        },
+        "success": {
+          "weak": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.light.green.7}"
+          },
+          "default": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.light.green.7}"
+          }
+        },
+        "warning": {
+          "weak": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.light.yellow.7}"
+          }
+        },
+        "info": {
+          "weak": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.light.gray.7}"
+          }
+        },
+        "emphasis": {
+          "weak": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.light.blue.7}"
+          }
+        }
+      },
+      "code": {
+        "background": {
+          "default": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.light.gray.2}"
+          },
+          "highlight": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.light.gray.5}"
+          }
+        },
+        "border": {
+          "default": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.light.gray.7}"
+          }
+        },
+        "text": {
+          "default": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.light.gray.11}"
+          },
+          "highlight": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.light.red.11}"
+          },
+          "annotation": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.light.blue.11}"
+          },
+          "constant": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.light.orange.11}"
+          },
+          "comment": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.light.gray.10}"
+          },
+          "keyword": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.light.magenta.11}"
+          },
+          "string": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.light.green.11}"
+          },
+          "keyword-subtle": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.light.purple.11}"
+          },
+          "preprocessing-directive": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.light.teal.11}"
+          }
+        }
+      },
+      "focus": {
+        "default": {
+          "$type": "color",
+          "$value": "{echoes.color.palette.light.gray.9}"
+        }
+      },
+      "charts": {
+        "categorical": {
+          "1": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.light.dataviz.categorical.1}"
+          },
+          "2": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.light.dataviz.categorical.2}"
+          },
+          "3": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.light.dataviz.categorical.3}"
+          },
+          "4": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.light.dataviz.categorical.4}"
+          },
+          "5": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.light.dataviz.categorical.5}"
+          },
+          "6": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.light.dataviz.categorical.6}"
+          },
+          "7": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.light.dataviz.categorical.7}"
+          },
+          "8": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.light.dataviz.categorical.8}"
+          }
+        },
+        "severity": {
+          "blocker": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.light.dataviz.severity.blocker}"
+          },
+          "high": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.light.dataviz.severity.high}"
+          },
+          "medium": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.light.dataviz.severity.medium}"
+          },
+          "low": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.light.dataviz.severity.low}"
+          },
+          "info": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.light.dataviz.severity.info}"
+          }
+        },
+        "placeholder": {
+          "default": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.light.dataviz.placeholder}"
+          }
+        }
+      },
+      "dataviz": {
+        "raspberry": {
+          "bg": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.light.magenta.3}"
+          },
+          "text": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.light.magenta.11}"
+          },
+          "border": {
+            "border": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.light.magenta.7}"
+            }
+          },
+          "fill": {
+            "default": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.light.magenta.9}"
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.light.magenta.10}"
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.light.magenta.11}"
+            },
+            "focus": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.light.magenta.9}"
+            }
+          }
+        },
+        "violet": {
+          "bg": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.light.purple.3}"
+          },
+          "text": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.light.purple.11}"
+          },
+          "border": {
+            "border": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.light.purple.7}"
+            }
+          },
+          "fill": {
+            "default": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.light.purple.9}"
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.light.purple.10}"
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.light.purple.11}"
+            },
+            "focus": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.light.purple.9}"
+            }
+          }
+        },
+        "indigo": {
+          "bg": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.light.blue.3}"
+          },
+          "text": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.light.blue.11}"
+          },
+          "border": {
+            "border": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.light.blue.7}"
+            }
+          },
+          "fill": {
+            "default": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.light.blue.9}"
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.light.blue.10}"
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.light.blue.11}"
+            },
+            "focus": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.light.blue.9}"
+            }
+          }
+        },
+        "mint": {
+          "bg": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.light.teal.3}"
+          },
+          "text": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.light.teal.11}"
+          },
+          "border": {
+            "border": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.light.teal.7}"
+            }
+          },
+          "fill": {
+            "default": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.light.teal.9}"
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.light.teal.10}"
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.light.teal.11}"
+            },
+            "focus": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.light.teal.9}"
+            }
+          }
+        },
+        "lime": {
+          "bg": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.light.green.3}"
+          },
+          "text": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.light.green.11}"
+          },
+          "border": {
+            "border": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.light.green.7}"
+            }
+          },
+          "fill": {
+            "default": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.light.green.9}"
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.light.green.10}"
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.light.green.11}"
+            },
+            "focus": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.light.green.9}"
+            }
+          }
+        },
+        "yellow": {
+          "bg": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.light.yellow.3}"
+          },
+          "text": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.light.yellow.11}"
+          },
+          "border": {
+            "border": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.light.yellow.7}"
+            }
+          },
+          "fill": {
+            "default": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.light.yellow.9}"
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.light.yellow.10}"
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.light.yellow.11}"
+            },
+            "focus": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.light.yellow.9}"
+            }
+          }
+        },
+        "pumpkin": {
+          "bg": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.light.orange.3}"
+          },
+          "text": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.light.orange.11}"
+          },
+          "border": {
+            "border": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.light.orange.7}"
+            }
+          },
+          "fill": {
+            "default": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.light.orange.9}"
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.light.orange.10}"
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.light.orange.11}"
+            },
+            "focus": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.light.orange.9}"
+            }
+          }
+        },
+        "coral": {
+          "bg": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.light.red.3}"
+          },
+          "text": {
+            "$type": "color",
+            "$value": "{echoes.color.palette.light.red.11}"
+          },
+          "border": {
+            "border": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.light.red.7}"
+            }
+          },
+          "fill": {
+            "default": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.light.red.9}"
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.light.red.10}"
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.light.red.11}"
+            },
+            "focus": {
+              "$type": "color",
+              "$value": "{echoes.color.palette.light.red.9}"
+            }
+          }
+        }
+      }
+    },
+    "boxShadow": {
+      "xsmall": {
+        "$type": "boxShadow",
+        "$value": {
+          "x": "0",
+          "y": "1",
+          "blur": "02",
+          "spread": "0",
+          "color": "#0000000d",
+          "type": "dropShadow"
+        }
+      },
+      "small": {
+        "$type": "boxShadow",
+        "$value": [
+          {
+            "x": "0",
+            "y": "1",
+            "blur": "25",
+            "spread": "0",
+            "color": "#1d212f0d",
+            "type": "dropShadow"
+          },
+          {
+            "x": "0",
+            "y": "1",
+            "blur": "3",
+            "spread": "0",
+            "color": "#1d212f0d",
+            "type": "dropShadow"
+          }
+        ]
+      },
+      "medium": {
+        "$type": "boxShadow",
+        "$value": [
+          {
+            "x": "0",
+            "y": "2",
+            "blur": "15",
+            "spread": "-2",
+            "color": "#1d212f0f",
+            "type": "dropShadow"
+          },
+          {
+            "x": "0",
+            "y": "4",
+            "blur": "8",
+            "spread": "-2",
+            "color": "#1d212f1a",
+            "type": "dropShadow"
+          }
+        ]
+      },
+      "large": {
+        "$type": "boxShadow",
+        "$value": [
+          {
+            "x": "0",
+            "y": "4",
+            "blur": "6",
+            "spread": "-2",
+            "color": "#1d212f0d",
+            "type": "dropShadow"
+          },
+          {
+            "x": "0",
+            "y": "12",
+            "blur": "16",
+            "spread": "-4",
+            "color": "#1d212f1a",
+            "type": "dropShadow"
+          }
+        ]
+      },
+      "xLarge": {
+        "$type": "boxShadow",
+        "$value": [
+          {
+            "x": "0",
+            "y": "8",
+            "blur": "8",
+            "spread": "-4",
+            "color": "#1d212f0a",
+            "type": "dropShadow"
+          },
+          {
+            "x": "15",
+            "y": "20",
+            "blur": "24",
+            "spread": "-4",
+            "color": "#1d212f1a",
+            "type": "dropShadow"
+          }
+        ]
+      }
+    }
+  }
+}

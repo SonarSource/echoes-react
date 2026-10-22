@@ -31,6 +31,8 @@ import { reactRouterAdapter } from '../src/common/helpers/react-router-adapter';
 // @ts-expect-error — Vite handles ?url imports at build time; no TS declarations needed
 import gitarCssUrl from '../src/generated/styles/gitar.css?url';
 // @ts-expect-error — Vite handles ?url imports at build time; no TS declarations needed
+import sonarNewCssUrl from '../src/generated/styles/sonar-new.css?url';
+// @ts-expect-error — Vite handles ?url imports at build time; no TS declarations needed
 import sonarCssUrl from '../src/generated/styles/sonar.css?url';
 
 /**
@@ -239,6 +241,7 @@ const globalStyles = css`
 
 const brandStylesheets: Record<string, string> = {
   sonar: sonarCssUrl,
+  'sonar-new': sonarNewCssUrl,
   gitar: gitarCssUrl,
 };
 
@@ -250,6 +253,7 @@ const preview: Preview = {
         icon: 'paintbrush',
         items: [
           { value: 'sonar', title: 'Sonar' },
+          { value: 'sonar-new', title: 'Sonar New' },
           { value: 'gitar', title: 'Gitar' },
         ],
         dynamicTitle: true,
