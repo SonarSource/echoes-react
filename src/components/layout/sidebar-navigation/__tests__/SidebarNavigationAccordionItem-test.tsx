@@ -19,7 +19,7 @@
  */
 
 import { matchers } from '@emotion/jest';
-import { screen, waitFor } from '@testing-library/react';
+import { screen, waitFor, within } from '@testing-library/react';
 import { IconBranch, IconGitBranch } from '../../../icons';
 import { SidebarNavigationAccordionChildItem } from '../SidebarNavigationAccordionChildItem';
 
@@ -30,8 +30,8 @@ import {
   setupControlledSidebarNavigationAccordionItem,
   setupSidebarNavigationAccordionItem,
   setupSidebarNavigationAccordionItemWithExplicitActiveChild,
-  setupSidebarNavigationAccordionItemWithTransientInitialActiveChild,
   setupSidebarNavigationAccordionItemWithRouter,
+  setupSidebarNavigationAccordionItemWithTransientInitialActiveChild,
 } from '../test-utils/SidebarNavigationAccordionItemTestUtils';
 
 expect.extend(matchers);
@@ -332,6 +332,14 @@ it('should render a button trigger that does not submit surrounding forms', () =
   setupSidebarNavigationAccordionItem();
 
   expect(screen.getByRole('button', { name: 'Accordion Item' })).toHaveAttribute('type', 'button');
+});
+
+it('should render without a leading icon', () => {
+  setupSidebarNavigationAccordionItem({ Icon: undefined });
+
+  expect(
+    within(screen.getByRole('button', { name: 'Accordion Item' })).queryByText('!'),
+  ).not.toBeInTheDocument();
 });
 
 describe('ellipsis behavior', () => {

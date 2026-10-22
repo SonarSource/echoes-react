@@ -209,13 +209,17 @@ async function buildThemedTokens(
     themedTokenGroups.map(async (theme) => {
       log(`Building "${theme.name}" theme...`);
 
+      const tokenSets = [
+        ...Object.entries(baseDesignTokenGroup.selectedTokenSets),
+        ...Object.entries(theme.selectedTokenSets),
+      ]
+        .filter(([, value]) => value !== 'disabled')
+        .map(([tokenSet]) => `${DESIGN_TOKENS_PATH}/${tokenSet}.json`);
+      const isDesignLanguageOverride = (file) => file.includes('/design-language/');
+
       const extendedSd = await sd.extend({
-        source: [
-          ...Object.entries(baseDesignTokenGroup.selectedTokenSets),
-          ...Object.entries(theme.selectedTokenSets),
-        ]
-          .filter(([, val]) => val !== 'disabled')
-          .map(([tokenset]) => `${DESIGN_TOKENS_PATH}/${tokenset}.json`),
+        include: tokenSets.filter((file) => !isDesignLanguageOverride(file)),
+        source: tokenSets.filter(isDesignLanguageOverride),
         platforms: {
           tokens: {
             transformGroup: CUSTOM_TRANSFORM_GROUP,
