@@ -26,6 +26,7 @@ import {
   Button,
   ButtonGroup,
   cssVar,
+  DropdownMenu,
   IconBell,
   IconCalendar,
   IconComputer,
@@ -175,25 +176,47 @@ function SidebarNavigationStoryContent(
       </Layout.GlobalNavigation>
 
       <Layout.SidebarNavigation {...args}>
-        <Layout.SidebarNavigation.Header
-          avatar={
-            <div
-              style={{
-                backgroundColor: cssVar('color-background-emphasis-active'),
-                color: cssVar('color-text-on-color'),
-                width: '100%',
-                height: '100%',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                borderRadius: cssVar('border-radius-400'),
-              }}>
-              <IconGear />
-            </div>
+        <DropdownMenu
+          align="start"
+          items={
+            <>
+              <DropdownMenu.ItemButton>Another enterprise instance</DropdownMenu.ItemButton>
+
+              <DropdownMenu.ItemButton>A third enterprise instance</DropdownMenu.ItemButton>
+
+              <DropdownMenu.SubMenu
+                items={
+                  <>
+                    <DropdownMenu.ItemButton>Archived instance</DropdownMenu.ItemButton>
+
+                    <DropdownMenu.ItemButton>Sandbox instance</DropdownMenu.ItemButton>
+                  </>
+                }>
+                More instances
+              </DropdownMenu.SubMenu>
+            </>
           }
-          isInteractive
-          name="Administration for a large enterprise instance"
-        />
+          side="right">
+          <Layout.SidebarNavigation.Header
+            avatar={
+              <div
+                style={{
+                  backgroundColor: cssVar('color-background-emphasis-active'),
+                  color: cssVar('color-text-on-color'),
+                  width: '100%',
+                  height: '100%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  borderRadius: cssVar('border-radius-400'),
+                }}>
+                <IconGear />
+              </div>
+            }
+            isInteractive
+            name="Administration for a large enterprise instance"
+          />
+        </DropdownMenu>
 
         <Layout.SidebarNavigation.Body>
           <Layout.SidebarNavigation.AccordionItem
@@ -351,6 +374,7 @@ function SidebarNavigationStoryContent(
             <br />
             <MessageCallout variety="info">
               Hover, focus, or click the top-left trigger to reveal the administration sidebar.
+              Click the sidebar header to open an instance switcher dropdown.
             </MessageCallout>
           </Layout.PageContent>
         </Layout.PageGrid>
