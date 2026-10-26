@@ -4762,8 +4762,8 @@ __metadata:
   peerDependencies:
     "@emotion/react": ^11.0.0
     "@emotion/styled": ^11.0.0
-    react: ^19.0.0
-    react-dom: ^19.0.0
+    react: ^19.2.0
+    react-dom: ^19.2.0
     react-intl: ^10.0.0
   languageName: unknown
   linkType: soft
