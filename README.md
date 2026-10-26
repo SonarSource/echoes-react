@@ -12,6 +12,8 @@ A React implementation of Echoes, Sonar's Design System.
 
 This library can be installed with **npm** or **Yarn**.
 
+It requires **React 19.2 or above** (`react` and `react-dom`).
+
 ### Install the library
 
 ```bash
