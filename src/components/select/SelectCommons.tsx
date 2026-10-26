@@ -398,6 +398,7 @@ export const SelectStyled = styled(MantineSelect<string>)`
     color: ${cssVar('color-icon-disabled')};
   }
 `;
+SelectStyled.displayName = 'SelectStyled';
 
 /*
  * These styles are meant for the dropdown part of the select, which can be portalled.
