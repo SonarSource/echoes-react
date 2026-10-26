@@ -10,7 +10,7 @@
 
 ## Dependencies
 
-- @mantine/core : Used as a base for some components (Select, MultiSelect). We maintain a local patch (via patch-package) to add `withExpandedAttribute` on `Combobox.Target` in Select so the trigger exposes the expected `aria-expanded` state for accessibility and tests.
+- @mantine/core : Used as a base for some components (Select, MultiSelect).
 - @mantine/hooks : Used with `@mantine/core` as a base for some components (Select, MultiSelect).
 - Sonner : Used as the base component for Toast notifications
 - @radix-ui/react-radio-group : Replaces an internal callback-ref + `useState` pattern with `useRef` to avoid ref-driven render loops (notably with React 19) that can cause maximum update depth errors. Patched locally via patch-package before build.
