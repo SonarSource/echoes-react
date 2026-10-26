@@ -137,8 +137,8 @@
     "vite-plugin-static-copy": "4.1.1"
   },
   "dependencies": {
-    "@mantine/core": "8.3.18",
-    "@mantine/hooks": "8.3.18",
+    "@mantine/core": "9.7.3",
+    "@mantine/hooks": "9.7.3",
     "@material-symbols/font-400": "0.45.4",
     "@radix-ui/react-alert-dialog": "1.1.18",
     "@radix-ui/react-checkbox": "1.3.6",

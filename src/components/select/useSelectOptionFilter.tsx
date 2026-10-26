@@ -18,11 +18,12 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import { useCallback } from 'react';
-import { SelectOption, SelectOptionGroup } from './SelectTypes';
+import { ReactNode, useCallback } from 'react';
+import { SelectOption } from './SelectTypes';
 
 export interface SelectParsedOptionGroup {
-  group: string;
+  // Mantine parses group labels as `ReactNode`, even though we only accept strings in `SelectData`
+  group: ReactNode;
   items: SelectOption[];
 }
 export type SelectParsedOption = SelectOption | SelectParsedOptionGroup;
@@ -59,7 +60,7 @@ export function useSelectOptionFilter(filter: SelectFilterFunction = defaultSele
         }
 
         if (isOptionsGroup(option)) {
-          const group: SelectOptionGroup = {
+          const group: SelectParsedOptionGroup = {
             ...option,
             items: option.items
               .filter((optionInGroup) => filter({ option: optionInGroup, search: parsedSearch }))

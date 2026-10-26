@@ -90,6 +90,7 @@ export const SelectBase = forwardRef<HTMLInputElement, PropsWithLabels<SelectBas
       labelNotFound,
       messageInvalid,
       messageValid,
+      onChange,
       onSearch,
       onOpen,
       optionComponent,
@@ -189,6 +190,9 @@ export const SelectBase = forwardRef<HTMLInputElement, PropsWithLabels<SelectBas
           labelProps={SELECT_LABEL_PROPS}
           leftSection={valueIcon}
           nothingFoundMessage={labelNotFound}
+          // Mantine 9 types the option as nullable (it is `null` when the value is cleared or
+          // deselected), but our public `onChange` signature has always promised a `SelectOption`.
+          onChange={onChange as MantineSelectProps['onChange']}
           onDropdownOpen={onOpen}
           onSearchChange={onSearch}
           ref={setRef}
@@ -238,7 +242,9 @@ const SELECT_CLASSNAMES = {
   groupLabel: 'echoes-select-group-label',
 };
 
-export const SelectStyled = styled(MantineSelect)`
+// Mantine's Select is generic over its value type. `styled` erases generics and falls back to the
+// widest `Primitive` constraint, so we pin the value type to `string` before wrapping it.
+export const SelectStyled = styled(MantineSelect<string>)`
   // Wrapper around the input
   & .echoes-select-wrapper {
     position: relative;
