@@ -27,6 +27,19 @@ import dts from 'vite-plugin-dts';
 import { viteStaticCopy } from 'vite-plugin-static-copy';
 import * as packageJson from './package.json';
 
+const peerDependencies = Object.keys(packageJson.peerDependencies);
+
+/*
+ * Subpaths count as external too. The emotion babel plugin rewrites
+ * `@emotion/styled` imports to `@emotion/styled/base`, which an exact match
+ * would bundle, using its browser build that skips styles during SSR.
+ */
+function isPeerDependency(id: string) {
+  return peerDependencies.some(
+    (dependency) => id === dependency || id.startsWith(`${dependency}/`),
+  );
+}
+
 // https://vitejs.dev/config/
 export default defineConfig({
   build: {
@@ -39,11 +52,7 @@ export default defineConfig({
     },
     outDir: 'dist',
     rollupOptions: {
-      external: [
-        'react/jsx-runtime',
-        '@emotion/react/jsx-runtime',
-        ...Object.keys(packageJson.peerDependencies),
-      ],
+      external: isPeerDependency,
       output: {
         intro: `import './style.css';`,
         globals: {
