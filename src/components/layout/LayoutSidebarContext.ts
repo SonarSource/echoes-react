@@ -24,6 +24,7 @@ export interface LayoutSidebarContextShape {
   close: VoidFunction;
   handleInteractionZoneBlur: (relatedTarget: EventTarget | null) => void;
   handleInteractionZoneMouseLeave: (relatedTarget: EventTarget | null) => void;
+  handleInteractionZoneOverlayClose: VoidFunction;
   ignoreNextInteractionZoneBlur: VoidFunction;
   isDockable: boolean;
   isDocked: boolean;
@@ -38,6 +39,7 @@ export const LayoutSidebarContext = createContext<LayoutSidebarContextShape>({
   close: () => {},
   handleInteractionZoneBlur: () => {},
   handleInteractionZoneMouseLeave: () => {},
+  handleInteractionZoneOverlayClose: () => {},
   ignoreNextInteractionZoneBlur: () => {},
   isDockable: false,
   isDocked: false,
