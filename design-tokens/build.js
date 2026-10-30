@@ -29,6 +29,8 @@ const DESIGN_TOKENS_PATH = 'design-tokens/tokens';
 const GENERATED_PATH = 'src/generated/';
 const GENERATED_STYLES_PATH = path.join(GENERATED_PATH, 'styles/');
 const GENERATED_TOKENS_PATH = path.join(GENERATED_PATH, 'tokens/');
+const GENERATED_FONTS_PATH = path.join(GENERATED_PATH, 'fonts/');
+const BRAND_ASSETS_PATH = 'design-tokens/assets';
 const NAME_PREFIX = 'design-tokens-';
 const CUSTOM_TRANSFORM_GROUP = 'sonar-design-tokens';
 const CUSTOM_FILTER_NO_COLOR = 'sonar-no-color';
@@ -347,7 +349,9 @@ async function buildBrand(brand, sd) {
     .map((theme) => fs.readFileSync(path.join(tmpPath, `${NAME_PREFIX}${theme.name}.css`), 'utf-8'))
     .join('\n');
 
-  const fullCss = [baseCss, themeCss].join('\n');
+  const brandCssPath = path.join(BRAND_ASSETS_PATH, `${brandDir}.css`);
+  const brandCss = fs.existsSync(brandCssPath) ? fs.readFileSync(brandCssPath, 'utf-8') : '';
+  const fullCss = [brandCss, baseCss, themeCss].filter(Boolean).join('\n');
 
   // Write per-brand CSS to src/generated/styles/
   fs.mkdirSync(GENERATED_STYLES_PATH, { recursive: true });
@@ -369,6 +373,8 @@ async function buildBrand(brand, sd) {
   log(`-> ${brandTokensDir}/base.json`);
   log(`-> ${brandTokensDir}/themed.json`);
 
+  copyBrandAssets(brandDir, log);
+
   // For the first brand, copy the tailwind config to src/generated/ root
   // (tailwind uses var(--token, fallback) — brand-agnostic)
   if (brand === brands[0]) {
@@ -382,6 +388,18 @@ async function buildBrand(brand, sd) {
   fs.rmSync(tmpPath, { recursive: true, force: true });
 
   log('Done.');
+}
+
+function copyBrandAssets(brandDir, log) {
+  const sourcePath = path.join(BRAND_ASSETS_PATH, brandDir);
+  if (!fs.existsSync(sourcePath)) {
+    return;
+  }
+
+  const destinationPath = path.join(GENERATED_FONTS_PATH, brandDir);
+  fs.mkdirSync(destinationPath, { recursive: true });
+  fs.cpSync(sourcePath, destinationPath, { recursive: true });
+  log(`-> ${destinationPath}`);
 }
 
 function validateTokenKeysAcrossBrands(brands) {
