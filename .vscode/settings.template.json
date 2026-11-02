@@ -1,11 +1,13 @@
 {
   "cssvar.files": ["src/generated/styles/sonar.css"],
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.defaultFormatter": "oxc.oxc-vscode",
   "editor.formatOnSave": true,
+  "editor.formatOnSaveMode": "file",
   "jest.jestCommandLine": "yarn run -T jest -c jest.config.cjs",
   "search.exclude": {
     "**/.yarn": true,
     "**/.pnp.*": true
   },
-  "js/ts.tsdk.path": "node_modules/typescript/lib"
+  "js/ts.tsdk.path": "node_modules/typescript/lib",
+  "oxc.enable.oxlint": false
 }
