@@ -125,7 +125,8 @@ interface SidebarNavigationAccordionItemUncontrolledProps extends SidebarNavigat
 }
 
 export type SidebarNavigationAccordionItemProps =
-  SidebarNavigationAccordionItemControlledProps | SidebarNavigationAccordionItemUncontrolledProps;
+  | SidebarNavigationAccordionItemControlledProps
+  | SidebarNavigationAccordionItemUncontrolledProps;
 
 export function SidebarNavigationAccordionItem(
   props: Readonly<SidebarNavigationAccordionItemProps>,
