@@ -28,12 +28,12 @@ yarn test-ci                       # full test run with coverage
 yarn build                         # compile the library (dist/)
 yarn ts-check                      # type check the library
 yarn lint                          # lint the library
-yarn format                        # auto-format with Prettier
+yarn format                        # auto-format with oxfmt
 ```
 
 - Never attempt to fix linting issues until you believe the implementation is correct.
 - When adding new dependencies to `package.json`, always add a corresponding entry in `package.json.md`.
-- **MANDATORY**: Run `yarn prettier --write <file>` after finishing editing files, do it in bulk.
+- **MANDATORY**: Run `yarn oxfmt --write <file>` after finishing editing files, do it in bulk.
 - **MANDATORY**: Fix all TypeScript errors before declaring a task done — `yarn ts-check` will surface them.
 
 # Writing code

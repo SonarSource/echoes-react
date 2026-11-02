@@ -168,7 +168,8 @@ export interface FilterDropdownCategoryWithContent {
  * or arbitrary custom content ({@link FilterDropdownCategoryWithContent}) in the right panel.
  */
 export type FilterDropdownCategory =
-  FilterDropdownCategoryWithItems | FilterDropdownCategoryWithContent;
+  | FilterDropdownCategoryWithItems
+  | FilterDropdownCategoryWithContent;
 
 /**
  * Selected values grouped by category id — e.g. `{ severity: ['high', 'medium'], type: ['bug'] }`.
