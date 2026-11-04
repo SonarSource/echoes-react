@@ -20,6 +20,7 @@
 
 import { matchers } from '@emotion/jest';
 import { act, fireEvent, screen, waitFor } from '@testing-library/react';
+import type { UserEvent } from '@testing-library/user-event';
 import { useContext, useEffect } from 'react';
 import { render, renderWithMemoryRouter } from '~common/helpers/test-utils';
 import { isDefined } from '~common/helpers/types';
@@ -368,36 +369,33 @@ describe('LayoutSidebarContext', () => {
   });
 
   it('should keep the undocked sidebar open while using a dropdown menu opened from it', async () => {
-    const { user } = renderWithMemoryRouter(
-      <Layout data-testid="layout" isSidebarInitiallyDocked={false}>
-        <Layout.SidebarNavigation>
-          <DropdownMenu items={<DropdownMenu.ItemButton>Other org</DropdownMenu.ItemButton>}>
-            <Layout.SidebarNavigation.Header isInteractive name="Current org" />
-          </DropdownMenu>
-        </Layout.SidebarNavigation>
+    const { user } = setupLayoutWithSidebarDropdown();
 
-        <Layout.ContentGrid>
-          <button type="button">Page content action</button>
-        </Layout.ContentGrid>
-      </Layout>,
-    );
+    await openSidebarDropdown(user);
 
-    const sidebarContainer = screen.getByTestId('sidebar-navigation-container');
-
-    fireEvent.mouseOver(sidebarContainer);
-    expect(screen.getByTestId('layout')).toHaveAttribute('data-sidebar-open', 'true');
-
-    await user.click(screen.getByRole('button', { name: 'Current org' }));
-    const menuItem = await screen.findByRole('menuitem', { name: 'Other org' });
-
-    fireEvent.mouseOut(sidebarContainer, { relatedTarget: menuItem });
-    expect(screen.getByTestId('layout')).toHaveAttribute('data-sidebar-open', 'true');
-
-    fireEvent.mouseOut(sidebarContainer, {
+    // The pointer crosses the page content on its way from the sidebar to the menu
+    fireEvent.mouseOut(screen.getByTestId('sidebar-navigation-container'), {
       relatedTarget: screen.getByRole('button', { name: 'Page content action' }),
     });
-    expect(screen.getByTestId('layout')).toHaveAttribute('data-sidebar-open', 'true');
 
+    expect(screen.getByTestId('layout')).toHaveAttribute('data-sidebar-open', 'true');
+  });
+
+  it('should keep the undocked sidebar open while using a submenu of a dropdown menu opened from it', async () => {
+    const { user } = setupLayoutWithSidebarDropdown();
+
+    await openSidebarDropdown(user);
+    await user.keyboard('{ArrowDown}{ArrowDown}{ArrowRight}');
+
+    expect(await screen.findByRole('menuitem', { name: 'Archived org' })).toHaveFocus();
+    await flushDeferredSidebarCheck();
+    expect(screen.getByTestId('layout')).toHaveAttribute('data-sidebar-open', 'true');
+  });
+
+  it('should close the undocked sidebar when a dropdown menu opened from it is dismissed outside', async () => {
+    const { user } = setupLayoutWithSidebarDropdown();
+
+    await openSidebarDropdown(user);
     await user.click(screen.getByRole('button', { name: 'Page content action' }));
 
     expect(screen.queryByRole('menuitem', { name: 'Other org' })).not.toBeInTheDocument();
@@ -407,29 +405,22 @@ describe('LayoutSidebarContext', () => {
   });
 
   it('should keep the undocked sidebar open when a dropdown menu opened from it closes with focus inside', async () => {
-    const { user } = renderWithMemoryRouter(
-      <Layout data-testid="layout" isSidebarInitiallyDocked={false}>
-        <Layout.SidebarNavigation>
-          <DropdownMenu items={<DropdownMenu.ItemButton>Other org</DropdownMenu.ItemButton>}>
-            <Layout.SidebarNavigation.Header isInteractive name="Current org" />
-          </DropdownMenu>
-        </Layout.SidebarNavigation>
-      </Layout>,
-    );
+    const { user } = setupLayoutWithSidebarDropdown();
 
-    fireEvent.mouseOver(screen.getByTestId('sidebar-navigation-container'));
-    await user.click(screen.getByRole('button', { name: 'Current org' }));
-    await screen.findByRole('menuitem', { name: 'Other org' });
-
+    await openSidebarDropdown(user);
     await user.keyboard('{Escape}');
 
     expect(screen.getByRole('button', { name: 'Current org' })).toHaveFocus();
-    await act(async () => {
-      await new Promise((resolve) => {
-        setTimeout(resolve, 0);
-      });
-    });
+    await flushDeferredSidebarCheck();
     expect(screen.getByTestId('layout')).toHaveAttribute('data-sidebar-open', 'true');
+  });
+
+  it('should not add dropdown menus opened outside the sidebar to its interaction zone', async () => {
+    const { user } = setupLayoutWithSidebarDropdown();
+
+    await user.click(screen.getByRole('button', { name: 'Page content menu' }));
+
+    expect(await screen.findByRole('menu')).not.toHaveAttribute('data-sidebar-interaction-zone');
   });
 
   it('should dock the sidebar when the trigger button is clicked on dockable screens', async () => {
@@ -504,6 +495,51 @@ function setupLayoutWithSidebar({
       </Layout.ContentGrid>
     </Layout>,
   );
+}
+
+function setupLayoutWithSidebarDropdown() {
+  return renderWithMemoryRouter(
+    <Layout data-testid="layout" isSidebarInitiallyDocked={false}>
+      <Layout.SidebarNavigation>
+        <DropdownMenu
+          items={
+            <>
+              <DropdownMenu.ItemButton>Other org</DropdownMenu.ItemButton>
+              <DropdownMenu.SubMenu
+                items={<DropdownMenu.ItemButton>Archived org</DropdownMenu.ItemButton>}>
+                More orgs
+              </DropdownMenu.SubMenu>
+            </>
+          }>
+          <Layout.SidebarNavigation.Header isInteractive name="Current org" />
+        </DropdownMenu>
+      </Layout.SidebarNavigation>
+
+      <Layout.ContentGrid>
+        <button type="button">Page content action</button>
+        <DropdownMenu items={<DropdownMenu.ItemButton>Page item</DropdownMenu.ItemButton>}>
+          <button type="button">Page content menu</button>
+        </DropdownMenu>
+      </Layout.ContentGrid>
+    </Layout>,
+  );
+}
+
+async function openSidebarDropdown(user: UserEvent) {
+  fireEvent.mouseOver(screen.getByTestId('sidebar-navigation-container'));
+  expect(screen.getByTestId('layout')).toHaveAttribute('data-sidebar-open', 'true');
+
+  await user.click(screen.getByRole('button', { name: 'Current org' }));
+  expect(await screen.findByRole('menuitem', { name: 'Other org' })).toBeInTheDocument();
+}
+
+// The sidebar defers its close check by one tick, so wait for it before asserting it stayed open
+async function flushDeferredSidebarCheck() {
+  await act(async () => {
+    await new Promise((resolve) => {
+      setTimeout(resolve, 0);
+    });
+  });
 }
 
 function getSidebarTopInteractionZone() {
