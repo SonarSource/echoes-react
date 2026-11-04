@@ -117,6 +117,7 @@ function setupSidebarNavigation(contextOverrides: Partial<LayoutSidebarContextSh
     open: jest.fn(),
     setIsDocked: jest.fn(),
     setIsInLayout: jest.fn(),
+    handleInteractionZoneOverlayClose: jest.fn(),
     ignoreNextInteractionZoneBlur: jest.fn(),
   };
 
