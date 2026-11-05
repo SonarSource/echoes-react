@@ -26,6 +26,32 @@
     "$figmaStyleReferences": {}
   },
   {
+    "id": "sonar-new-light",
+    "name": "Sonar New Light",
+    "group": "Theme",
+    "selectedTokenSets": {
+      "modes/sonar-new/light": "enabled",
+      "component/sonar-new/light": "enabled",
+      "component/base": "enabled",
+      "brand/sonar-new/base": "enabled",
+      "brand/sonar-new/colors": "source"
+    },
+    "$figmaStyleReferences": {}
+  },
+  {
+    "id": "sonar-new-dark",
+    "name": "Sonar New Dark",
+    "group": "Theme",
+    "selectedTokenSets": {
+      "modes/sonar-new/dark": "enabled",
+      "component/sonar-new/dark": "enabled",
+      "component/base": "enabled",
+      "brand/sonar-new/base": "enabled",
+      "brand/sonar-new/colors": "source"
+    },
+    "$figmaStyleReferences": {}
+  },
+  {
     "id": "gitar-light",
     "name": "Gitar Light",
     "group": "Theme",
