@@ -301,17 +301,22 @@ const preview: Preview = {
     }),
     (Story, context) => {
       const brand = (context.globals.brand as string) ?? 'sonar';
+      const href = brandStylesheets[brand] ?? brandStylesheets.sonar;
 
-      for (const [name, url] of Object.entries(brandStylesheets)) {
-        const id = `echoes-brand-${name}`;
-        if (!document.getElementById(id)) {
-          const link = document.createElement('link');
-          link.id = id;
-          link.rel = 'stylesheet';
-          link.href = url;
-          document.head.appendChild(link);
-        }
-        (document.getElementById(id) as HTMLLinkElement).disabled = name !== brand;
+      /*
+       * Use a single <link> and swap its href, rather than one <link> per brand toggled via
+       * `disabled`: setting `disabled` before a stylesheet has loaded is not reliably honoured,
+       * which left every brand active and let the last one in the cascade win.
+       */
+      let link = document.getElementById('echoes-brand-stylesheet') as HTMLLinkElement | null;
+      if (!link) {
+        link = document.createElement('link');
+        link.id = 'echoes-brand-stylesheet';
+        link.rel = 'stylesheet';
+        document.head.appendChild(link);
+      }
+      if (link.getAttribute('href') !== href) {
+        link.setAttribute('href', href);
       }
 
       return <Story />;
