@@ -27,6 +27,7 @@ import { isDefined } from '~common/helpers/types';
 import { PropsLabelAndHelpText } from '~types/utils';
 import { cssVar } from '~utils/design-tokens';
 import { THEME_DATA_ATTRIBUTE, ThemeContext } from '~utils/theme';
+import { useSidebarInteractionZoneOverlay } from '../layout/LayoutSidebarInteraction';
 import { HelperText, Label } from '../typography';
 import { DropdownMenuSeparator } from './DropdownMenuSeparator';
 import { styleDropdownMenuOverlay } from './DropdownMenuStyles';
@@ -81,6 +82,7 @@ export const DropdownMenuRoot = forwardRef<HTMLButtonElement, DropdownMenuProps>
     const portalContext = useContext(PortalContext);
     const theme = useContext(ThemeContext);
     const themeOverrideProp = isDefined(theme) ? { [THEME_DATA_ATTRIBUTE]: theme } : {};
+    const sidebarInteractionZone = useSidebarInteractionZoneOverlay();
 
     const defaultId = `${useId()}dropdown-menu`;
     const dropdownId = id ?? defaultId;
@@ -112,10 +114,12 @@ export const DropdownMenuRoot = forwardRef<HTMLButtonElement, DropdownMenuProps>
         <radixDropdownMenu.Portal container={portalContext.portalReference}>
           <StyledDropdownMenuContent
             {...themeOverrideProp}
+            {...sidebarInteractionZone.attributes}
             align={align}
             aria-labelledby={`${dropdownId}-trigger`}
             className={className}
             id={`${dropdownId}-dropdown`}
+            onCloseAutoFocus={sidebarInteractionZone.onOverlayClose}
             side={side}>
             {header && (
               <>
