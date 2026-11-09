@@ -81,6 +81,16 @@ export const WithLoading: Story = {
   },
 };
 
+export const WithLoadingAndDisabled: Story = {
+  args: {
+    children: 'My Button',
+    isDisabled: true,
+    isLoading: true,
+    onClick: () => console.log('Button clicked'),
+    prefix: <IconRocket />,
+  },
+};
+
 export const WithEllipsis: Story = {
   args: {
     children: 'My Super Long Button',
