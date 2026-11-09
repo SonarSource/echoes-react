@@ -72,6 +72,10 @@ export const ButtonStyled = styled.button`
     color: ${cssVar('color-text-disabled')};
     background-color: var(--button-background-disabled);
 
+    /* Override the variety's spinner colors so a loading spinner matches the disabled look */
+    --spinner-color-override: ${cssVar('color-icon-disabled')};
+    --spinner-track-color-override: transparent;
+
     border: none;
 
     cursor: not-allowed;
