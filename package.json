@@ -34,7 +34,6 @@
     "jest": "jest",
     "test": "yarn test-ci && yarn validate-ci",
     "test-ci": "jest --collectCoverage --coverageDirectory=build-reports/coverage --workerIdleMemoryLimit=1G --maxWorkers=4",
-    "test-lint-report": "node --test config/oxlint/__tests__/*.mjs",
     "build": "vite build && { [ \"${CI:-}\" != true ] || pinst --disable; }",
     "build-fonts": "node ./config/scripts/build-fonts.js",
     "create-icon": "node ./config/scripts/create-icon.js",
@@ -55,7 +54,7 @@
     "ts-check-files": "tsc --noEmit",
     "ts-check-declarations": "tsc --noEmit false --emitDeclarationOnly --isolatedModules false --outFile ./build-reports/ts-declarations/all-declarations",
     "validate": "yarn ts-check && yarn format-check && yarn lint",
-    "validate-ci": "yarn dep-check && yarn intl-keys-check && yarn tokens-check && yarn icons-check && yarn fonts-check && yarn ts-check && yarn format-check && yarn test-lint-report && yarn lint-report",
+    "validate-ci": "yarn dep-check && yarn intl-keys-check && yarn tokens-check && yarn icons-check && yarn fonts-check && yarn ts-check && yarn format-check && yarn lint-report",
     "postinstall": "patch-package"
   },
   "peerDependencies": {

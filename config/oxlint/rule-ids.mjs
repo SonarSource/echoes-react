@@ -18,6 +18,10 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+// Maps Oxlint diagnostic codes, including JS plugin aliases, to the previous ESLint rule IDs.
+// SonarQube imports those IDs from the lint report; retaining them avoids treating existing
+// findings as new rules after the migration, including React Hooks and TypeScript extension rules.
+
 const ESLINT_PLUGIN_BY_OXLINT_PLUGIN = {
   eslint: '',
   'eslint-js': '',

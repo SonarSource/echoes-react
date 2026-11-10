@@ -18,7 +18,9 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-// Expose ESLint core rules that Oxlint does not implement natively.
+// Exposes ESLint core rules as an Oxlint JS plugin under the `eslint-js` alias.
+// This preserves checks that have no native Oxlint equivalent without running the ESLint engine.
+// Oxlint's plugin loader requires the default export.
 import { builtinRules } from 'eslint/use-at-your-own-risk';
 
 const eslintJs = { rules: Object.fromEntries(builtinRules) };

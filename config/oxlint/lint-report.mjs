@@ -18,8 +18,9 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-// Runs Oxlint and writes its findings as an ESLint JSON report, keeping the ESLint rule IDs
-// that SonarQube already knows through `sonar.eslint.reportPaths`.
+// Runs Oxlint and converts its diagnostics to the ESLint JSON format consumed by SonarQube.
+// Keeping the existing report path, rule IDs, and source ranges lets Sonar track existing issues
+// across the migration. Oxlint's UTF-8 byte offsets are converted to ESLint's UTF-16 columns.
 
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';

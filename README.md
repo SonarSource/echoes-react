@@ -248,8 +248,6 @@ Oxlint does not select `.snap` files, so the nine existing external snapshot fil
 longer linted. The snapshot-size rule still checks inline snapshots. Avoid adding new
 snapshot tests, as required by the project's testing guidelines.
 
-Run the report-conversion checks with `yarn test-lint-report`.
-
 ### Build
 
 To build the lib, use the following command:

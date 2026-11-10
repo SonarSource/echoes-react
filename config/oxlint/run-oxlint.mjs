@@ -18,6 +18,10 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+// Launches the installed Oxlint executable with the current Node runtime for report generation.
+// Resolving the executable, configuration, and paths from the repository root keeps the report
+// runner independent of shell PATH lookup and makes relative inputs refer to the same workspace.
+
 import { spawnSync } from 'node:child_process';
 import { createRequire } from 'node:module';
 import { dirname, join, resolve } from 'node:path';
