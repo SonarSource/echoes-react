@@ -55,6 +55,12 @@
       "dependencyDashboardApproval": true
     },
     {
+      "description": "Review Oxlint major updates for rule and JS plugin compatibility.",
+      "matchPackageNames": ["oxlint"],
+      "matchUpdateTypes": ["major"],
+      "dependencyDashboardApproval": true
+    },
+    {
       "description": "React-intl minor patch version upgrade to 6.7.3 has broken types",
       "matchPackageNames": ["react-intl"],
       "dependencyDashboardApproval": true
