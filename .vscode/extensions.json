@@ -1,8 +1,4 @@
 {
-  "recommendations": [
-    "oxc.oxc-vscode",
-    "phoenisx.cssvar",
-    "dbaeumer.vscode-eslint"
-  ],
+  "recommendations": ["oxc.oxc-vscode", "phoenisx.cssvar"],
   "unwantedRecommendations": ["esbenp.prettier-vscode"]
 }
