@@ -49,7 +49,7 @@
       "dependencyDashboardApproval": true
     },
     {
-      "description": "SC-23705 Eslint major update need configuration rework.",
+      "description": "Review ESLint major updates for compatibility with Oxlint's JS plugins.",
       "extends": ["packages:eslint"],
       "matchUpdateTypes": ["major"],
       "dependencyDashboardApproval": true
