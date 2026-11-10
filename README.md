@@ -228,6 +228,28 @@ To run tests, use the following command:
 yarn jest
 ```
 
+### Linting
+
+Run `yarn lint` to check errors with Oxlint, or `yarn lint-report` to include warnings and
+write the ESLint-format report consumed by SonarQube. The report keeps its existing path
+and ESLint rule IDs.
+
+The root `.oxlintrc.json` migrates the previous lint rules using native Oxlint rules and
+ESLint plugins loaded as JS plugins. `config/oxlint/eslint-js.mjs` exposes ESLint core rules
+that have no native equivalent. Keep inline disable comments aligned with the configured
+rule names, including JS plugin aliases such as `react-js/jsx-sort-props`.
+
+`import/no-deprecated` is disabled because its ESLint implementation needs a parser API
+unavailable to Oxlint JS plugins. The native `import/namespace` rule allows computed access
+in `stories/helpers/arg-types.tsx`, which intentionally selects icons by name. TypeScript
+checks these accesses. Unused disable comments are reported as warnings.
+
+Oxlint does not select `.snap` files, so the nine existing external snapshot files are no
+longer linted. The snapshot-size rule still checks inline snapshots. Avoid adding new
+snapshot tests, as required by the project's testing guidelines.
+
+Run the report-conversion checks with `yarn test-lint-report`.
+
 ### Build
 
 To build the lib, use the following command:

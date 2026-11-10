@@ -9,5 +9,5 @@
     "**/.pnp.*": true
   },
   "js/ts.tsdk.path": "node_modules/typescript/lib",
-  "oxc.enable.oxlint": false
+  "oxc.enable.oxlint": true
 }
