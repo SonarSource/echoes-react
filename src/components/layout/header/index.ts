@@ -31,7 +31,8 @@ import { PageHeaderRoot } from './page-header/PageHeader';
 
 export type { HeaderMetadataProps as PageHeaderMetadataProps } from './common/HeaderMetadata';
 export type { ContentHeaderTitleProps, PageHeaderTitleProps } from './common/HeaderTitle';
-export type { HeaderProps as ContentHeaderProps, PageHeaderProps } from './common/HeaderTypes';
+export type { PageHeaderProps } from './common/HeaderTypes';
+export type { ContentHeaderProps } from './content-header/ContentHeader';
 
 const commonComponents = {
   /**
