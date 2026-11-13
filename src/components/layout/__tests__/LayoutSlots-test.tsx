@@ -79,9 +79,12 @@ describe('PageGrid', () => {
 });
 
 describe('ContentGrid', () => {
-  it.each([false, true])(
-    'keeps the header full-width and scrolls with page when scrollFirst is %s',
-    (scrollFirst) => {
+  it.each([
+    ['default', false, 'hidden', '', 'auto'],
+    ['scrollFirst', true, 'auto', 'sticky', 'visible'],
+  ])(
+    'keeps the header full-width and uses %s scrolling',
+    (_, scrollFirst, gridOverflow, asidePosition, pageOverflow) => {
       render(
         <ContentGrid data-testid="grid">
           <ContentHeader
@@ -95,17 +98,13 @@ describe('ContentGrid', () => {
         </ContentGrid>,
       );
 
-      expect(getComputedStyle(screen.getByTestId('grid')).overflowY).toBe(
-        scrollFirst ? 'auto' : 'hidden',
-      );
-      expect(getComputedStyle(screen.getByText('aside')).position).toBe(
-        scrollFirst ? 'sticky' : '',
-      );
+      expect(getComputedStyle(screen.getByTestId('grid')).overflowY).toBe(gridOverflow);
+      expect(getComputedStyle(screen.getByText('aside')).position).toBe(asidePosition);
       expect(getComputedStyle(screen.getByText('aside')).overflowY).toBe('auto');
       // eslint-disable-next-line testing-library/no-node-access
       const page = screen.getByText('content').closest('#page');
       expect(page).not.toBeNull();
-      expect(getComputedStyle(page!).overflowY).toBe(scrollFirst ? 'visible' : 'auto');
+      expect(getComputedStyle(page!).overflowY).toBe(pageOverflow);
     },
   );
 
