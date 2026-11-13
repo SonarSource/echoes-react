@@ -6,7 +6,7 @@
   "sortPackageJson": false,
   "overrides": [
     {
-      "files": [".eslintrc", "tsconfig.json"],
+      "files": ["tsconfig.json"],
       "options": {
         "trailingComma": "none"
       }
