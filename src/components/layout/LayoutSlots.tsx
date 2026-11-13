@@ -20,11 +20,16 @@
 
 import styled from '@emotion/styled';
 import {
+  createContext,
+  ComponentPropsWithRef,
   CSSProperties,
   DetailedHTMLProps,
+  Dispatch,
   forwardRef,
   HTMLAttributes,
   PropsWithChildren,
+  SetStateAction,
+  useState,
 } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { LoadingStateProvider } from '~common/components/LoadingStateProvider';
@@ -64,7 +69,25 @@ export const BannerContainer = styled.div`
 `;
 BannerContainer.displayName = 'BannerContainer';
 
-export const ContentGrid = styled.div`
+/** @internal */
+export const ContentGridScrollContext = createContext<Dispatch<SetStateAction<boolean>> | null>(
+  null,
+);
+
+export interface ContentGridProps extends ComponentPropsWithRef<'div'> {}
+
+export function ContentGrid({ ref, ...restProps }: Readonly<ContentGridProps>) {
+  const [scrollFirst, setScrollFirst] = useState(false);
+
+  return (
+    <ContentGridScrollContext.Provider value={setScrollFirst}>
+      <StyledContentGrid {...restProps} data-scroll-first={scrollFirst || undefined} ref={ref} />
+    </ContentGridScrollContext.Provider>
+  );
+}
+ContentGrid.displayName = 'ContentGrid';
+
+const StyledContentGrid = styled.div`
   grid-area: ${GlobalGridArea.content};
 
   position: relative;
@@ -79,8 +102,13 @@ export const ContentGrid = styled.div`
     '${ContentGridArea.aside} ${ContentGridArea.page}';
 
   background-color: ${cssVar('color-surface-canvas-default')};
+
+  &[data-scroll-first] {
+    overflow-y: auto;
+    container-type: size;
+  }
 `;
-ContentGrid.displayName = 'ContentGrid';
+StyledContentGrid.displayName = 'StyledContentGrid';
 
 /*
  * Layer 2 Grid components
@@ -113,6 +141,13 @@ const StyledAsideLeft = styled.div`
   box-sizing: border-box;
   padding: var(--aside-left-padding);
   width: var(--aside-left-width);
+
+  ${StyledContentGrid}[data-scroll-first] & {
+    position: sticky;
+    top: 0;
+    align-self: start;
+    height: 100cqh;
+  }
 `;
 StyledAsideLeft.displayName = 'StyledAside';
 
@@ -191,6 +226,10 @@ const PageGridContainer = styled.div`
   grid-area: ${ContentGridArea.page};
   position: relative; // Prevent scroll issues with sr-only elements we can have inside
   overflow-y: auto;
+
+  ${StyledContentGrid}[data-scroll-first] & {
+    overflow-y: visible;
+  }
 `;
 PageGridContainer.displayName = 'PageGridContainer';
 

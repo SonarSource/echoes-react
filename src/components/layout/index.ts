@@ -56,7 +56,7 @@ export type {
 } from './header';
 
 export type { LayoutProps } from './Layout';
-export type { AsideProps, PageGridProps } from './LayoutSlots';
+export type { AsideProps, ContentGridProps, PageGridProps } from './LayoutSlots';
 export { AsideSize, PageWidth } from './LayoutTypes';
 
 export type {
@@ -130,7 +130,8 @@ export const Layout = Object.assign(LayoutRoot, {
 
   /**
    * The Content Grid defines the layout that includes the Page and the optional AsideLeft & ContentHeader.
-   * Scrollable areas are the AsideLeft and the PageGrid. The ContentHeader does not scroll.
+   * By default, AsideLeft and PageGrid scroll independently; ContentHeader stays fixed.
+   * Set `scrollFirst` on ContentHeader to scroll it with PageGrid while keeping AsideLeft scrollable.
    *
    *```
    * +-------------------------------+
