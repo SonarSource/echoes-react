@@ -13,11 +13,11 @@ jobs:
       id-token: write
       contents: write
     steps:
-      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
-      - uses: jdx/mise-action@2d8d4cafcbd33be2ea37d2b6f5ad595363d1f1ca # v5.1.1
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: jdx/mise-action@b44d12e7d0d8ee7461bb893e1b1993500433185b # v5.2.7
         with:
-          version: 2026.7.0
-      - uses: SonarSource/ci-github-actions/build-yarn@d41706a4180f70b6c0d0479795309a6c99726022 # 2.0.0
+          version: 2026.11.4
+      - uses: SonarSource/ci-github-actions/build-yarn@e2032bdce92b0675c839fd6a697c8bb0078985d5 # 2.5.2
         with:
           run-shadow-scans: true
 
@@ -46,7 +46,7 @@ jobs:
             development/kv/data/slack token | SLACK_TOKEN;
 
       - name: Slack Notification rtCamp
-        uses: rtCamp/action-slack-notify@33ca3be66c6f378fe1610fd1d5258632dbed5e58  # v2.4.0
+        uses: rtCamp/action-slack-notify@06cc13f74fa8d4d2296c09455d91e9453e4025f4  # v2.4.1
         env:
           SLACK_TOKEN: >-
             ${{ fromJSON(steps.secrets.outputs.vault).SLACK_TOKEN }}
