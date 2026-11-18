@@ -33,8 +33,8 @@ jobs:
           secrets: |
             development/kv/data/slack token | SLACK_TOKEN;
 
-      - name: Slack Notification rtCamp
-        uses: rtCamp/action-slack-notify@33ca3be66c6f378fe1610fd1d5258632dbed5e58  # v2.4.0
+      - name: Slack Notification
+        uses: step-security/action-slack-notify@e4cdee14a905d9da46ba47ad9309704407d8cd79 # v2.4.0
         env:
           SLACK_TOKEN: >-
             ${{ fromJSON(steps.secrets.outputs.vault).SLACK_TOKEN }}
