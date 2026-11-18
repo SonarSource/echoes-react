@@ -23,7 +23,7 @@ jobs:
         with:
           version: 2026.7.0
       - name: Build, Test, Analyze and deploy
-        uses: SonarSource/ci-github-actions/build-yarn@d41706a4180f70b6c0d0479795309a6c99726022 # 2.0.0
+        uses: SonarSource/ci-github-actions/build-yarn@43609e4795f6400aa0b66dc1f5277f1fc3fb4768 # 2.6.0
         with:
           artifactory-reader-role: public-reader
           artifactory-deploy-repo: sonarsource-npm-public-qa
@@ -44,7 +44,7 @@ jobs:
       id-token: write
       contents: write
     steps:
-      - uses: SonarSource/ci-github-actions/promote@d41706a4180f70b6c0d0479795309a6c99726022 # 2.0.0
+      - uses: SonarSource/ci-github-actions/promote@43609e4795f6400aa0b66dc1f5277f1fc3fb4768 # 2.6.0
         with:
           promote-pull-request: true
 
