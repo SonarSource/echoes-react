@@ -98,13 +98,14 @@ const meta: Meta = {
     contentHeader: {
       control: 'boolean',
       mapping: {
-        true: (
+        true: (scrollFirst: boolean) => (
           <Layout.ContentHeader
             {...getHeaderProps()}
+            scrollFirst={scrollFirst}
             title={<Layout.ContentHeader.Title>Content title</Layout.ContentHeader.Title>}
           />
         ),
-        false: undefined,
+        false: (_: boolean) => undefined,
       },
     },
     pageHeader: {
@@ -132,6 +133,9 @@ const meta: Meta = {
       control: 'select',
       options: ['default', 'fluid'],
     },
+    scrollFirst: {
+      control: 'boolean',
+    },
     sidebar: {
       control: 'boolean',
       mapping: {
@@ -156,6 +160,7 @@ export const Default: Story = {
     pageHeader: true,
     pageHeaderScrollBehavior: PageHeaderScrollBehavior.scroll,
     pageWidth: 'default',
+    scrollFirst: false,
     sidebar: true,
   },
   render: (args) => (
@@ -167,7 +172,7 @@ export const Default: Story = {
       {args.sidebar}
 
       <Layout.ContentGrid>
-        {args.contentHeader}
+        {args.contentHeader(args.scrollFirst)}
 
         {args.aside}
 

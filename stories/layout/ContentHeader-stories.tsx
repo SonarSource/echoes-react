@@ -109,6 +109,11 @@ const meta: Meta<typeof Layout.ContentHeader | typeof Layout.ContentHeader.Title
         false: false,
       },
     },
+    scrollFirst: {
+      control: 'boolean',
+      description:
+        'Scrolls with the page when rendered inside Layout.ContentGrid (see Layout story).',
+    },
     suffix: {
       control: { type: 'boolean' },
       mapping: {
