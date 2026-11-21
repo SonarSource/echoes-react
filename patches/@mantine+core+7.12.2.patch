@@ -1,3 +1,40 @@
+diff --git a/node_modules/@mantine/core/cjs/components/Floating/use-floating-auto-update.cjs b/node_modules/@mantine/core/cjs/components/Floating/use-floating-auto-update.cjs
+index 7fd4252..7d8eb71 100644
+--- a/node_modules/@mantine/core/cjs/components/Floating/use-floating-auto-update.cjs
++++ b/node_modules/@mantine/core/cjs/components/Floating/use-floating-auto-update.cjs
+@@ -13,7 +13,7 @@ function useFloatingAutoUpdate({
+ }) {
+   const [delayedUpdate, setDelayedUpdate] = react.useState(0);
+   react.useEffect(() => {
+-    if (floating.refs.reference.current && floating.refs.floating.current) {
++    if (opened && floating.refs.reference.current && floating.refs.floating.current) {
+       return react$1.autoUpdate(
+         floating.refs.reference.current,
+         floating.refs.floating.current,
+@@ -29,7 +29,9 @@ function useFloatingAutoUpdate({
+     position
+   ]);
+   hooks.useDidUpdate(() => {
+-    floating.update();
++    if (opened) {
++      floating.update();
++    }
+   }, positionDependencies);
+   hooks.useDidUpdate(() => {
+     setDelayedUpdate((c) => c + 1);
+diff --git a/node_modules/@mantine/core/cjs/components/Popover/use-popover.cjs b/node_modules/@mantine/core/cjs/components/Popover/use-popover.cjs
+index d8c0834..9285b35 100644
+--- a/node_modules/@mantine/core/cjs/components/Popover/use-popover.cjs
++++ b/node_modules/@mantine/core/cjs/components/Popover/use-popover.cjs
+@@ -97,7 +97,7 @@ function usePopover(options) {
+     middleware: getPopoverMiddlewares(options, () => floating)
+   });
+   useFloatingAutoUpdate.useFloatingAutoUpdate({
+-    opened: options.opened,
++    opened: _opened,
+     position: options.position,
+     positionDependencies: options.positionDependencies || [],
+     floating
 diff --git a/node_modules/@mantine/core/cjs/components/Select/Select.cjs b/node_modules/@mantine/core/cjs/components/Select/Select.cjs
 index a12159b72324cb3604e49bc2e260fb3eb15032c3..789f11a6ff44969781c2955f781a1e976a167b6d 100644
 --- a/node_modules/@mantine/core/cjs/components/Select/Select.cjs
@@ -11,11 +48,48 @@ index a12159b72324cb3604e49bc2e260fb3eb15032c3..789f11a6ff44969781c2955f781a1e97
              InputBase.InputBase,
              {
                id: _id,
+diff --git a/node_modules/@mantine/core/esm/components/Floating/use-floating-auto-update.mjs b/node_modules/@mantine/core/esm/components/Floating/use-floating-auto-update.mjs
+index 1d44a27..a87f471 100644
+--- a/node_modules/@mantine/core/esm/components/Floating/use-floating-auto-update.mjs
++++ b/node_modules/@mantine/core/esm/components/Floating/use-floating-auto-update.mjs
+@@ -11,7 +11,7 @@ function useFloatingAutoUpdate({
+ }) {
+   const [delayedUpdate, setDelayedUpdate] = useState(0);
+   useEffect(() => {
+-    if (floating.refs.reference.current && floating.refs.floating.current) {
++    if (opened && floating.refs.reference.current && floating.refs.floating.current) {
+       return autoUpdate(
+         floating.refs.reference.current,
+         floating.refs.floating.current,
+@@ -27,7 +27,9 @@ function useFloatingAutoUpdate({
+     position
+   ]);
+   useDidUpdate(() => {
+-    floating.update();
++    if (opened) {
++      floating.update();
++    }
+   }, positionDependencies);
+   useDidUpdate(() => {
+     setDelayedUpdate((c) => c + 1);
+diff --git a/node_modules/@mantine/core/esm/components/Popover/use-popover.mjs b/node_modules/@mantine/core/esm/components/Popover/use-popover.mjs
+index 0d3b660..bb3fa77 100644
+--- a/node_modules/@mantine/core/esm/components/Popover/use-popover.mjs
++++ b/node_modules/@mantine/core/esm/components/Popover/use-popover.mjs
+@@ -95,7 +95,7 @@ function usePopover(options) {
+     middleware: getPopoverMiddlewares(options, () => floating)
+   });
+   useFloatingAutoUpdate({
+-    opened: options.opened,
++    opened: _opened,
+     position: options.position,
+     positionDependencies: options.positionDependencies || [],
+     floating
 diff --git a/node_modules/@mantine/core/esm/components/Select/Select.mjs b/node_modules/@mantine/core/esm/components/Select/Select.mjs
 index 43237ede36d1bc4cef6fb6d202b52a355b967daa..cdcffa198f983bb9bab150df67e04a32aa66475c 100644
 --- a/node_modules/@mantine/core/esm/components/Select/Select.mjs
 +++ b/node_modules/@mantine/core/esm/components/Select/Select.mjs
-@@ -172,7 +172,7 @@ const Select = factory((_props, ref) => {
+@@ -172,7 +172,7 @@ const Select = factory.factory((_props, ref) => {
          size,
          ...comboboxProps,
          children: [
