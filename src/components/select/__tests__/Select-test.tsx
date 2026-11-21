@@ -56,6 +56,24 @@ it('should display options with radio style', async () => {
   expect(screen.getAllByRole('option')).toHaveLength(3);
 });
 
+it('should only run Floating UI autoUpdate observers while the dropdown is open', async () => {
+  const resizeObserverMock = jest.mocked(ResizeObserver);
+  resizeObserverMock.mockClear();
+
+  const { user } = setupSelect({ ariaLabel: 'my-select' });
+
+  expect(resizeObserverMock).not.toHaveBeenCalled();
+
+  await user.click(screen.getByRole('combobox'));
+  expect(resizeObserverMock).toHaveBeenCalled();
+
+  const observerInstance = resizeObserverMock.mock.results[0].value as ResizeObserver;
+  jest.mocked(observerInstance.disconnect).mockClear();
+
+  await user.keyboard('{Escape}');
+  expect(observerInstance.disconnect).toHaveBeenCalled();
+});
+
 function setupSelect(props: OmitPropsWithLabels<typeof Select>) {
   const data = [
     { value: '1', label: 'One' },
