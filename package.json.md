@@ -17,6 +17,7 @@
 
 ## DevDependencies
 
+- @sonar/scan : Provides the SonarScanner for NPM CLI (`yarn sonar-scanner-npm`) for local SonarQube analysis using `sonar-project.properties`. Replaces the deprecated `sonarqube-scanner` package. CI runs `@sonar/scan` independently through the shared `build-yarn` action.
 - oxlint : Runs linting with `.oxlintrc.json`. Rules missing from Oxlint, or with different behavior, run through the original ESLint plugins loaded as JS plugins. Echoes has no type-aware lint rules, so it does not need `oxlint-tsgolint`.
 - eslint : Provides the core rules exposed by `config/oxlint/eslint-js.mjs` and satisfies the retained JS plugins' dependencies. The ESLint engine is not used to lint the project.
 - @tony.ganchev/eslint-plugin-header : Maintained fork of the header plugin with the rule metadata required by Oxlint's JS plugin API. Enforces the existing license header.
@@ -36,4 +37,3 @@
 
 - @radix-ui/react-compose-refs : Prevents forwarding `null` to function refs. This avoids repeated ref teardown/setup feedback loops that can retrigger state updates. Patched locally via patch-package.
 - ast-types: Transitive dependency of Storybook. It is apparently incompatible with typescript 5.4+, but we've never been impacted (why?). With the bump to storybook 9, it requires a patch not to fail ts-check. See [this issue](https://github.com/benjamn/ast-types/issues/948). Patched locally via patch-package.
-- axios: Transitive dependency of sonarqube-scanner. The version required by sonarqube-scanner (1.13.2) is vulnerable, but the latest version of axios is compatible with sonarqube-scanner, so we can safely override it.
