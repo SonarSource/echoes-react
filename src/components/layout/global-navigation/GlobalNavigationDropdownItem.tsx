@@ -46,6 +46,35 @@ export interface GlobalNavigationDropdownItemProps extends DropdownMenuProps {
   isActive?: boolean;
 }
 
+/**
+ * A global navigation item that opens a dropdown menu.
+ *
+ * The trigger is highlighted when any link in `items` is active, including links inside
+ * nested fragments. Links match their destination and descendant paths by default: a link
+ * to `/profiles` also activates the dropdown on `/profiles/show`. Set `isMatchingFullPath`
+ * on a `DropdownMenu.ItemLink` to require an exact path match. Only absolute destinations
+ * are matched automatically; use `isActive` for relative or search-only destinations.
+ *
+ * Both the dropdown and its links accept `isActive` to override automatic matching,
+ * including `isActive={false}` to force an inactive state. A dropdown override controls
+ * only its trigger; it does not override the individual links. `disableActiveHighlight`
+ * disables the trigger highlight even when `isActive` is `true`.
+ *
+ * @example
+ * ```tsx
+ * <Layout.GlobalNavigation.DropdownItem
+ *   items={
+ *     <>
+ *       <DropdownMenu.ItemLink to="/profiles">Quality Profiles</DropdownMenu.ItemLink>
+ *       <DropdownMenu.ItemLink isMatchingFullPath to="/coding_rules">
+ *         Rules
+ *       </DropdownMenu.ItemLink>
+ *     </>
+ *   }>
+ *   Policies
+ * </Layout.GlobalNavigation.DropdownItem>
+ * ```
+ */
 export const GlobalNavigationDropdownItem = forwardRef<
   HTMLButtonElement,
   GlobalNavigationDropdownItemProps
