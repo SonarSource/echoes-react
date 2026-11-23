@@ -58,6 +58,10 @@ export const GlobalNavigation = Object.assign(GlobalNavigationRoot, {
    * Place it inside the {@link GlobalNavigationItemsContainer | GlobalNavigation.ItemsContainer}.
    *
    * It uses a button with a chevron suffix as a trigger, so its children should be limited to formatted text.
+   *
+   * The trigger is active when any link is active, respecting each link's `isActive` and
+   * `isMatchingFullPath` props. Links match descendant paths by default. The dropdown's
+   * `isActive` overrides only the trigger; `disableActiveHighlight` takes precedence.
    */
   DropdownItem: GlobalNavigationDropdownItem,
   /**
