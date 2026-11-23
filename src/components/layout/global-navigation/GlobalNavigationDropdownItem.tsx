@@ -30,8 +30,20 @@ import { IconChevronDown } from '../../icons';
 import { globalNavigationItemStyle, StyledNavMenuItem } from './GlobalNavigationItemStyles';
 
 export interface GlobalNavigationDropdownItemProps extends DropdownMenuProps {
+  /** Class name applied to the dropdown trigger. */
   className?: string;
+  /**
+   * Disable active highlighting, including an explicit `isActive` override.
+   * @defaultValue false
+   */
   disableActiveHighlight?: boolean;
+  /**
+   * Override the dropdown's active state. When omitted, the dropdown is active when any
+   * link is active, respecting each link's `isActive` and `isMatchingFullPath` props.
+   * Links match their destination and descendant paths by default; use `isMatchingFullPath`
+   * on a link to require an exact match. Only absolute destinations match automatically.
+   */
+  isActive?: boolean;
 }
 
 export const GlobalNavigationDropdownItem = forwardRef<
@@ -43,6 +55,7 @@ export const GlobalNavigationDropdownItem = forwardRef<
       className,
       children,
       disableActiveHighlight,
+      isActive: isActiveOverride,
       ...dropdownMenuProps
     }: Readonly<GlobalNavigationDropdownItemProps>,
     ref,
@@ -50,8 +63,10 @@ export const GlobalNavigationDropdownItem = forwardRef<
     const pathname = usePathname();
 
     const active = useMemo(() => {
-      return !disableActiveHighlight && isActive(pathname, dropdownMenuProps.items);
-    }, [disableActiveHighlight, pathname, dropdownMenuProps.items]);
+      return (
+        !disableActiveHighlight && (isActiveOverride ?? isActive(pathname, dropdownMenuProps.items))
+      );
+    }, [disableActiveHighlight, isActiveOverride, pathname, dropdownMenuProps.items]);
 
     return (
       <StyledNavMenuItem data-selected={active}>
@@ -71,24 +86,26 @@ export const GlobalNavigationDropdownItem = forwardRef<
 );
 GlobalNavigationDropdownItem.displayName = 'GlobalNavigationDropdownItem';
 
-// exported for tests
-export function isActive(pathname: string, item: ReactNode) {
-  if (isValidElement<{ children?: ReactNode; to?: LinkTo }>(item)) {
-    if (isDefined(item.props?.to) && isPathActive(pathname, item.props.to, { end: true })) {
-      return true;
+/** @internal */
+export function isActive(pathname: string, items: ReactNode): boolean {
+  return Children.toArray(items).some((item) => {
+    if (
+      !isValidElement<{
+        children?: ReactNode;
+        isActive?: boolean;
+        isMatchingFullPath?: boolean;
+        to?: LinkTo;
+      }>(item)
+    ) {
+      return false;
     }
 
-    const targets: Array<LinkTo | undefined> =
-      Children.map(item.props.children, (child) => {
-        return isValidElement<{ to?: LinkTo }>(child) ? child?.props?.to : undefined;
-      }) ?? [];
+    const { children, isActive: isActiveOverride, isMatchingFullPath = false, to } = item.props;
 
-    for (const target of targets) {
-      if (isDefined(target) && isPathActive(pathname, target, { end: true })) {
-        return true;
-      }
+    if (isDefined(to)) {
+      return isActiveOverride ?? isPathActive(pathname, to, { end: isMatchingFullPath });
     }
-  }
 
-  return false;
+    return isActive(pathname, children);
+  });
 }

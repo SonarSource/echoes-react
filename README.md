@@ -140,6 +140,32 @@ Pass `router={null}` if your app has no client-side router: links render plain a
 
 Active navigation items are detected automatically only for absolute destinations (`/path` or `{ pathname: '/path' }`). For relative or search-only destinations, pass `isActive` explicitly.
 
+#### Dropdown navigation active state
+
+`Layout.GlobalNavigation.DropdownItem` highlights its trigger when any of its links is active,
+including links inside nested fragments. Links match their destination and descendant paths by
+default: a link to `/profiles` also activates the dropdown on `/profiles/show`. Set
+`isMatchingFullPath` on a `DropdownMenu.ItemLink` to require an exact path match.
+
+Both the dropdown and its links accept `isActive` to override automatic matching, including
+`isActive={false}` to force an inactive state. A dropdown override controls only its trigger;
+it does not override the individual links. `disableActiveHighlight` on the dropdown disables its
+trigger highlight even when `isActive` is `true`.
+
+```tsx
+<Layout.GlobalNavigation.DropdownItem
+  items={
+    <>
+      <DropdownMenu.ItemLink to="/profiles">Quality Profiles</DropdownMenu.ItemLink>
+      <DropdownMenu.ItemLink isMatchingFullPath to="/coding_rules">
+        Rules
+      </DropdownMenu.ItemLink>
+    </>
+  }>
+  Policies
+</Layout.GlobalNavigation.DropdownItem>
+```
+
 #### Stacking Context
 
 In order to have tooltips and other overlay components appear above the rest of the UI, it is probably necessary to have a [Stacking Context](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_positioned_layout/Understanding_z-index/Stacking_context) for your app. This means the root app component should define a new one, or be wrapped in a component that does it.
