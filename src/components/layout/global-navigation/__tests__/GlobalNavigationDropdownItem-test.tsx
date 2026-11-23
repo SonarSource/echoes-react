@@ -71,15 +71,93 @@ it.each([
   );
 });
 
-const setupWithContext = (component: JSX.Element) => {
+it.each([
+  ['/profiles', '/profiles/show', undefined, undefined, true],
+  ['/profiles', '/profiles/changelog', undefined, undefined, true],
+  ['/quality_gates', '/quality_gates/show/123', undefined, undefined, true],
+  ['/profiles', '/profiles/show', true, undefined, false],
+  ['/profiles', '/profiles', true, undefined, true],
+  ['/profiles', '/profiles-other', undefined, undefined, false],
+  ['/profiles', '/unrelated', undefined, true, true],
+  ['/profiles', '/profiles', undefined, false, false],
+  [{ pathname: '/profiles', search: '?language=js' }, '/profiles/show', false, undefined, true],
+  ['/', '/profiles', undefined, undefined, false],
+  ['relative', '/profiles', undefined, undefined, false],
+  ['relative', '/profiles', undefined, true, true],
+])(
+  'should highlight %j at %s with full-path matching %s and link override %s: %s',
+  (to, pathname, isMatchingFullPath, isActive, expected) => {
+    setupWithContext(
+      <GlobalNavigation.DropdownItem
+        items={
+          <DropdownMenu.ItemLink
+            isActive={isActive}
+            isMatchingFullPath={isMatchingFullPath}
+            to={to}>
+            Profiles
+          </DropdownMenu.ItemLink>
+        }>
+        Policies
+      </GlobalNavigation.DropdownItem>,
+      pathname,
+    );
+
+    expect(screen.getByRole('listitem')).toHaveAttribute('data-selected', String(expected));
+  },
+);
+
+it.each([
+  [true, false, '/unrelated', true],
+  [false, false, '/profiles', false],
+  [true, true, '/profiles', false],
+  [undefined, true, '/profiles/show', false],
+])(
+  'should apply dropdown override %s and disableActiveHighlight %s at %s: %s',
+  (isActive, disableActiveHighlight, pathname, expected) => {
+    setupWithContext(
+      <GlobalNavigation.DropdownItem
+        disableActiveHighlight={disableActiveHighlight}
+        isActive={isActive}
+        items={<DropdownMenu.ItemLink to="/profiles">Profiles</DropdownMenu.ItemLink>}>
+        Policies
+      </GlobalNavigation.DropdownItem>,
+      pathname,
+    );
+
+    expect(screen.getByRole('listitem')).toHaveAttribute('data-selected', String(expected));
+  },
+);
+
+it('should highlight links nested in fragments', () => {
+  setupWithContext(
+    <GlobalNavigation.DropdownItem
+      items={
+        <>
+          <>
+            <DropdownMenu.ItemLink to="/other">Other</DropdownMenu.ItemLink>
+            <>
+              <DropdownMenu.ItemLink to="/profiles">Profiles</DropdownMenu.ItemLink>
+            </>
+          </>
+        </>
+      }>
+      Policies
+    </GlobalNavigation.DropdownItem>,
+    '/profiles/show',
+  );
+
+  expect(screen.getByRole('listitem')).toHaveAttribute('data-selected', 'true');
+});
+
+const setupWithContext = (component: JSX.Element, pathname = '/') => {
   return render(
     <MemoryRouter
       future={{ v7_relativeSplatPath: true, v7_startTransition: true }}
-      initialEntries={['/']}>
+      initialEntries={[pathname]}>
       <Routes>
         <Route
           element={<GlobalNavigation.ItemsContainer>{component}</GlobalNavigation.ItemsContainer>}
-          path="/"
+          path="*"
         />
       </Routes>
     </MemoryRouter>,
