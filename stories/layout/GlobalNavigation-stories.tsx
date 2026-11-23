@@ -96,6 +96,45 @@ export const Default: Story = {
   ),
 };
 
+export const DropdownActiveState: StoryObj<typeof Layout.GlobalNavigation.DropdownItem> = {
+  argTypes: {
+    children: { control: 'text', mapping: {}, options: [] },
+    disableActiveHighlight: { control: 'boolean' },
+    isActive: { control: 'boolean' },
+  },
+  args: {
+    children: 'Policies',
+    disableActiveHighlight: false,
+    isActive: true,
+    items: (
+      <>
+        <DropdownMenu.ItemLink to="/profiles">Quality Profiles</DropdownMenu.ItemLink>
+        <DropdownMenu.ItemLink to="/quality_gates">Quality Gates</DropdownMenu.ItemLink>
+        <DropdownMenu.ItemLink isMatchingFullPath to="/coding_rules">
+          Rules
+        </DropdownMenu.ItemLink>
+      </>
+    ),
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Use isActive to override the dropdown highlight. When omitted, links match descendant paths by default and respect their own isActive and isMatchingFullPath props. disableActiveHighlight takes precedence over every active state.',
+      },
+    },
+  },
+  render: (args) => (
+    <Layout.GlobalNavigation>
+      <Layout.GlobalNavigation.Primary>
+        <Layout.GlobalNavigation.ItemsContainer>
+          <Layout.GlobalNavigation.DropdownItem {...args} />
+        </Layout.GlobalNavigation.ItemsContainer>
+      </Layout.GlobalNavigation.Primary>
+    </Layout.GlobalNavigation>
+  ),
+};
+
 function Avatar() {
   return (
     <img
