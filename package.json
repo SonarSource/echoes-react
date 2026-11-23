@@ -122,7 +122,6 @@
     "react-intl": "6.7.1",
     "react-router-dom": "6.30.6",
     "rollup-plugin-license": "3.7.1",
-    "sonarqube-scanner": "4.3.8",
     "storybook": "10.6.2",
     "style-dictionary": "5.5.0",
     "subset-font": "2.5.0",
@@ -153,7 +152,6 @@
   "resolutions": {
     "@radix-ui/react-compose-refs": "1.1.2",
     "ast-types": "0.16.1",
-    "axios": "1.20.0",
     "axe-core": "4.12.1"
   }
 }
