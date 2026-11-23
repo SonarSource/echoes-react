@@ -19,6 +19,7 @@
  */
 
 import { screen } from '@testing-library/react';
+import { createRef } from 'react';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import { render } from '~common/helpers/test-utils';
 import { GlobalNavigation } from '..';
@@ -147,6 +148,21 @@ it('should highlight links nested in fragments', () => {
   );
 
   expect(screen.getByRole('listitem')).toHaveAttribute('data-selected', 'true');
+});
+
+it('should expose the trigger button through its ref', () => {
+  const ref = createRef<HTMLButtonElement>();
+  setupWithContext(
+    <GlobalNavigation.DropdownItem
+      items={<DropdownMenu.ItemLink to="/profiles">Profiles</DropdownMenu.ItemLink>}
+      ref={ref}>
+      Policies
+    </GlobalNavigation.DropdownItem>,
+  );
+
+  expect(ref.current).toBe(screen.getByRole('button', { name: 'Policies' }));
+  ref.current?.focus();
+  expect(screen.getByRole('button', { name: 'Policies' })).toHaveFocus();
 });
 
 const setupWithContext = (component: JSX.Element, pathname = '/') => {

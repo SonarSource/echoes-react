@@ -98,6 +98,7 @@ export const Default: Story = {
 
 export const DropdownActiveState: StoryObj<typeof Layout.GlobalNavigation.DropdownItem> = {
   argTypes: {
+    children: { control: 'text', mapping: {}, options: [] },
     disableActiveHighlight: { control: 'boolean' },
     isActive: { control: 'boolean' },
   },

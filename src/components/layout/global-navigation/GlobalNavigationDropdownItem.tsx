@@ -18,7 +18,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import { Children, forwardRef, isValidElement, ReactNode, useMemo } from 'react';
+import { Children, isValidElement, ReactNode, Ref, useMemo } from 'react';
 import { isDefined } from '~common/helpers/types';
 import { usePathname } from '~common/router/RouterContext';
 import { isPathActive } from '~common/router/RouterUtils';
@@ -44,6 +44,8 @@ export interface GlobalNavigationDropdownItemProps extends DropdownMenuProps {
    * on a link to require an exact match. Only absolute destinations match automatically.
    */
   isActive?: boolean;
+  /** Ref to the dropdown trigger button. */
+  ref?: Ref<HTMLButtonElement>;
 }
 
 /**
@@ -75,44 +77,37 @@ export interface GlobalNavigationDropdownItemProps extends DropdownMenuProps {
  * </Layout.GlobalNavigation.DropdownItem>
  * ```
  */
-export const GlobalNavigationDropdownItem = forwardRef<
-  HTMLButtonElement,
-  GlobalNavigationDropdownItemProps
->(
-  (
-    {
-      className,
-      children,
-      disableActiveHighlight,
-      isActive: isActiveOverride,
-      ...dropdownMenuProps
-    }: Readonly<GlobalNavigationDropdownItemProps>,
-    ref,
-  ) => {
-    const pathname = usePathname();
+export function GlobalNavigationDropdownItem({
+  className,
+  children,
+  disableActiveHighlight,
+  isActive: isActiveOverride,
+  ref,
+  ...dropdownMenuProps
+}: Readonly<GlobalNavigationDropdownItemProps>) {
+  const pathname = usePathname();
 
-    const active = useMemo(() => {
-      return (
-        !disableActiveHighlight && (isActiveOverride ?? isActive(pathname, dropdownMenuProps.items))
-      );
-    }, [disableActiveHighlight, isActiveOverride, pathname, dropdownMenuProps.items]);
-
+  const active = useMemo(() => {
     return (
-      <StyledNavMenuItem data-selected={active}>
-        <DropdownMenu {...dropdownMenuProps}>
-          <Button
-            className={className}
-            css={globalNavigationItemStyle}
-            ref={ref}
-            suffix={<IconChevronDown />}
-            variety="default-ghost">
-            {children}
-          </Button>
-        </DropdownMenu>
-      </StyledNavMenuItem>
+      !disableActiveHighlight && (isActiveOverride ?? isActive(pathname, dropdownMenuProps.items))
     );
-  },
-);
+  }, [disableActiveHighlight, isActiveOverride, pathname, dropdownMenuProps.items]);
+
+  return (
+    <StyledNavMenuItem data-selected={active}>
+      <DropdownMenu {...dropdownMenuProps}>
+        <Button
+          className={className}
+          css={globalNavigationItemStyle}
+          ref={ref}
+          suffix={<IconChevronDown />}
+          variety="default-ghost">
+          {children}
+        </Button>
+      </DropdownMenu>
+    </StyledNavMenuItem>
+  );
+}
 GlobalNavigationDropdownItem.displayName = 'GlobalNavigationDropdownItem';
 
 /** @internal */
