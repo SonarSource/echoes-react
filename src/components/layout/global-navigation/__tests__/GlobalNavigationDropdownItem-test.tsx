@@ -134,11 +134,10 @@ it('should highlight links nested in fragments', () => {
     <GlobalNavigation.DropdownItem
       items={
         <>
+          <DropdownMenu.ItemLink to="/other">Other</DropdownMenu.ItemLink>
           <>
-            <DropdownMenu.ItemLink to="/other">Other</DropdownMenu.ItemLink>
-            <>
-              <DropdownMenu.ItemLink to="/profiles">Profiles</DropdownMenu.ItemLink>
-            </>
+            <DropdownMenu.ItemLink to="/profiles">Profiles</DropdownMenu.ItemLink>
+            <DropdownMenu.ItemLink to="/quality_gates">Quality Gates</DropdownMenu.ItemLink>
           </>
         </>
       }>
