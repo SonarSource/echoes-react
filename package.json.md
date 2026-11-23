@@ -17,7 +17,6 @@
 
 ## DevDependencies
 
-- @sonar/scan : Provides the SonarScanner for NPM CLI (`yarn sonar-scanner-npm`) for local SonarQube analysis using `sonar-project.properties`. Replaces the deprecated `sonarqube-scanner` package. CI runs `@sonar/scan` independently through the shared `build-yarn` action.
 - oxlint : Runs linting with `.oxlintrc.json`. Rules missing from Oxlint, or with different behavior, run through the original ESLint plugins loaded as JS plugins. Echoes has no type-aware lint rules, so it does not need `oxlint-tsgolint`.
 - eslint : Provides the core rules exposed by `config/oxlint/eslint-js.mjs` and satisfies the retained JS plugins' dependencies. The ESLint engine is not used to lint the project.
 - @tony.ganchev/eslint-plugin-header : Maintained fork of the header plugin with the rule metadata required by Oxlint's JS plugin API. Enforces the existing license header.

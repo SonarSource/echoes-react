@@ -80,7 +80,6 @@
     "@figma/code-connect": "1.4.8",
     "@formatjs/cli": "6.16.11",
     "@rolldown/plugin-babel": "0.2.3",
-    "@sonar/scan": "5.1.0",
     "@storybook/addon-a11y": "10.6.2",
     "@storybook/addon-docs": "10.6.2",
     "@storybook/addon-links": "10.6.2",
