@@ -46,4 +46,4 @@ jobs:
             Workflow in ${{ github.repository }}
             ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
             Branch: ${{ github.head_ref || github.ref_name }}
-            Released version: ${{ github.event.release.tag_name || inputs.release_version }}
+            Released version: ${{ inputs.version }}
