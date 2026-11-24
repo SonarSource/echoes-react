@@ -12,20 +12,20 @@ For more details, refer to the [internal versioning strategy](https://docs.googl
 
 - Create a new branch for the release and maintenance following the name convention `branch-x.y`
 
-- [Publish a new GitHub release](https://github.com/SonarSource/echoes-react/releases/new) targeting the release branch
-  - Tag version: `x.y.z-build_number`
-    - find it in the `repox-main` Github check, where it says `Latest promoted build of '0.13.0-2686' from branch 'main'`
-  - Release title: `@sonarsource/echoes-react - x.y.z`
-  - Find the relevant Jira release from the [releases page](https://sonarsource.atlassian.net/projects/ECHOES?selectedItem=com.atlassian.jira.jira-projects-plugin%3Arelease-page) and after ensuring the correct tickets are in there, release it, generating release notes in Jira at the same time.
-  - Populate the Github release notes section (copied as markdown from Jira).
-    - Example: <https://github.com/SonarSource/echoes-react/releases/tag/v0.5.0>
-  - /!\ DO NOT _Publish Release_ /!\
-
 - Trigger the release workflow
   - Go to the [Release action tab](https://github.com/SonarSource/echoes-react/actions/workflows/release.yml)
   - open the `run workflow` dropdown
   - fill the version field (including build number)
+    - find it in the `repox-main` Github check, where it says `Latest promoted build of '6.3.0-8276' from branch 'main'`
   - Click _Run workflow_
+  - Wait for the workflow to finish (~5 minutes)
+
+- [Find the new release](https://github.com/SonarSource/echoes-react/releases) with the title matching your build number and edit it:
+  - Update Release title: `@sonarsource/echoes-react - x.y.z`
+  - /!\ Don't click _Publish release_ /!\ if you see that you are going too fast, wait for the release workflow to finish
+  - Click _Update release_
+
+- Find the relevant Jira release from the releases page and after ensuring the correct tickets are in there, release it, generating release notes in Jira at the same time.
 
 - On the `main` branch, bump the [package version](https://github.com/SonarSource/echoes-react/blob/main/package.json#L3) for the next development iteration with `yarn version major|minor` and commit with message `Prepare for version x.y`.
 
