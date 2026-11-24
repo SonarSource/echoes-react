@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: 'Full version including build number, e.g. 1.2.3.456'
+        description: 'Full version including build number, e.g. 6.3.0-8276'
         required: true
 
 jobs:
