@@ -28,12 +28,12 @@ const TABLE_VARIETY_STYLES = {
   [TableVariety.Surface]: {
     '--table-header-background-color': cssVar('table-colors-background-header-default'),
     border: `${cssVar('border-width-default')} solid ${cssVar('color-border-bold')}`,
-    'border-collapse': 'separate',
+    borderCollapse: 'separate' as const,
   },
   [TableVariety.Ghost]: {
     '--table-header-background-color': cssVar('color-roles-support-transparent'),
     border: 'none',
-    'border-collapse': 'collapse',
+    borderCollapse: 'collapse' as const,
   },
 };
 
