@@ -91,6 +91,20 @@ it('should correctly support tooltips', async () => {
   expect(screen.getByRole('tooltip', { name: 'my tooltip' })).toBeInTheDocument();
 });
 
+it('only runs the rotation animation while loading', () => {
+  const { container, rerender } = setupSpinner({ isLoading: true });
+
+  expect(getSpinnerIcon(container)).toHaveStyleRule(
+    'animation',
+    expect.stringMatching(/1s infinite linear/),
+  );
+
+  rerender({ isLoading: false });
+
+  // The spinner is visually hidden when not loading, it must not keep an infinite animation running
+  expect(getSpinnerIcon(container)).not.toHaveStyleRule('animation', expect.anything());
+});
+
 it('uses the inverse color as the default solid arc with a weak track', () => {
   const { container } = setupSpinner({ isLoading: true });
   const spinnerIcon = getSpinnerIcon(container);
