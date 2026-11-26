@@ -52,6 +52,23 @@ it('allows setting a custom label to the spinner', () => {
   expect(screen.queryByText('loading too many things...')).not.toBeInTheDocument();
 });
 
+it('only animates while loading', () => {
+  const { container, rerender } = setupSpinner();
+  expect(getSpinnerIcon(container)).toHaveStyleRule(
+    'animation',
+    expect.stringContaining('1s infinite linear'),
+  );
+
+  rerender({ isLoading: false });
+  expect(getSpinnerIcon(container)).not.toHaveStyleRule('animation', expect.any(String));
+
+  rerender({ isLoading: true });
+  expect(getSpinnerIcon(container)).toHaveStyleRule(
+    'animation',
+    expect.stringContaining('1s infinite linear'),
+  );
+});
+
 it('allows setting a custom aria-label to the spinner', () => {
   const { rerender } = setupSpinner({ ariaLabel: 'loading too many things...' });
   expect(screen.getByText('loading too many things...')).toBeInTheDocument();

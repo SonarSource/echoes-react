@@ -36,6 +36,13 @@ export default meta;
 type Story = StoryObj<typeof Spinner>;
 
 export const Basic: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Toggle isLoading to show the loaded content and stop the spinner animation.',
+      },
+    },
+  },
   args: {
     isLoading: true,
     children: <span>Loading complete!</span>,
