@@ -19,6 +19,10 @@
     "defaultMessage": "Warning banner:",
     "description": "Screen reader only text that expresses the type of the Warning banner"
   },
+  "breadcrumbs.label": {
+    "defaultMessage": "Breadcrumb",
+    "description": "ARIA-label for the breadcrumb navigation landmark"
+  },
   "filter.dropdown.apply": {
     "defaultMessage": "Apply filters",
     "description": "Label for the button that applies the pending filter selection"

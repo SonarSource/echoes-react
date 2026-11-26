@@ -18,7 +18,6 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-/* eslint-disable no-console */
 import styled from '@emotion/styled';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Breadcrumbs, IconStar, IconTriangleUp } from '../src/components';
@@ -45,7 +44,10 @@ const indices = Array.from({ length: 6 }, (_, i) => i);
 const leaf = "Child element that doesn't have a link";
 
 export const Default: Story = {
-  render: () => {
+  args: {
+    ariaLabel: 'Breadcrumb',
+  },
+  render: ({ ariaLabel }) => {
     const crumbs = indices.map((i) => ({
       linkElement: i === indices.length - 1 ? leaf : `Breadcrumb #${i + 1}`,
       to: `https://google.com/search?q=${i + 1}`,
@@ -53,7 +55,7 @@ export const Default: Story = {
 
     return (
       <FixedWrapper>
-        <Breadcrumbs items={crumbs} />
+        <Breadcrumbs ariaLabel={ariaLabel} items={crumbs} />
       </FixedWrapper>
     );
   },
