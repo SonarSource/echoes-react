@@ -19,14 +19,15 @@
  */
 
 import classNames from 'classnames';
-import { forwardRef } from 'react';
+import { Ref } from 'react';
 import { LinkHighlight } from '../links';
 import { LinkStandalone } from '../links/LinkStandalone';
 import { BreadcrumbItemBase, breadcrumbItemStyle } from './BreadcrumbItem';
 import { BreadcrumbLinkProps } from './BreadcrumbTypes';
 
-export const BreadcrumbLink = forwardRef<HTMLAnchorElement, BreadcrumbLinkProps>((props, ref) => {
-  const { className, hasEllipsis, linkElement, ...linkProps } = props;
+/** @internal */
+export function BreadcrumbLink(props: BreadcrumbLinkProps & { ref?: Ref<HTMLAnchorElement> }) {
+  const { className, hasEllipsis, linkElement, ref, ...linkProps } = props;
 
   const title = hasEllipsis ? (linkElement as string) : undefined;
 
@@ -43,6 +44,6 @@ export const BreadcrumbLink = forwardRef<HTMLAnchorElement, BreadcrumbLinkProps>
       </LinkStandalone>
     </BreadcrumbItemBase>
   );
-});
+}
 
 BreadcrumbLink.displayName = 'BreadcrumbLink';
