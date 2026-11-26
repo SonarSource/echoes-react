@@ -20,11 +20,12 @@
 
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import { forwardRef, PropsWithChildren } from 'react';
+import { PropsWithChildren, Ref } from 'react';
 import { truncate } from '~common/helpers/styles';
 import { cssVar } from '~utils/design-tokens';
 import { BreadcrumbItemWithOptionalTo } from './BreadcrumbTypes';
 
+/** @internal */
 export function BreadcrumbItemBase(props: PropsWithChildren<{ hasEllipsis?: boolean }>) {
   const { hasEllipsis, children } = props;
 
@@ -35,21 +36,25 @@ export function BreadcrumbItemBase(props: PropsWithChildren<{ hasEllipsis?: bool
 }
 BreadcrumbItemBase.displayName = 'BreadcrumbItemBase';
 
-export const BreadcrumbItem = forwardRef<HTMLSpanElement, BreadcrumbItemWithOptionalTo>(
-  (props, ref) => {
-    const { className, hasEllipsis, linkElement } = props;
+/**
+ * The last item of the breadcrumbs, representing the current page.
+ * @internal
+ */
+export function BreadcrumbItem(
+  props: BreadcrumbItemWithOptionalTo & { ref?: Ref<HTMLSpanElement> },
+) {
+  const { className, hasEllipsis, linkElement, ref } = props;
 
-    const title = hasEllipsis ? (linkElement as string) : undefined;
+  const title = hasEllipsis ? (linkElement as string) : undefined;
 
-    return (
-      <BreadcrumbItemBase hasEllipsis={hasEllipsis}>
-        <span className={className} ref={ref} title={title}>
-          {linkElement}
-        </span>
-      </BreadcrumbItemBase>
-    );
-  },
-);
+  return (
+    <BreadcrumbItemBase hasEllipsis={hasEllipsis}>
+      <span aria-current="page" className={className} ref={ref} title={title}>
+        {linkElement}
+      </span>
+    </BreadcrumbItemBase>
+  );
+}
 BreadcrumbItem.displayName = 'BreadcrumbItem';
 
 const BreadcrumbEllipsisContainer = styled.span`

@@ -18,33 +18,48 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import { screen } from '@testing-library/react';
+import { screen, within } from '@testing-library/react';
 import { renderWithMemoryRouter } from '~common/helpers/test-utils';
-import { Breadcrumbs } from '..';
+import { Breadcrumbs, BreadcrumbsProps } from '..';
 
 it('should display Breadcrumbs properly', async () => {
-  const { container } = renderWithMemoryRouter(
-    <Breadcrumbs
-      items={[
-        { linkElement: 'parent crumb', to: 'parent' },
-        { linkElement: 'child crumb', to: 'child' },
-      ]}
-    />,
-  );
+  const { container } = renderBreadcrumbs();
 
-  expect(
-    screen.getByRole('link', {
-      name: 'parent crumb',
-    }),
-  ).toBeInTheDocument();
-
-  expect(
-    screen.queryByRole('link', {
-      name: 'child crumb',
-    }),
-  ).not.toBeInTheDocument();
-
+  expect(screen.getByRole('link', { name: 'parent crumb' })).toBeInTheDocument();
+  expect(screen.queryByRole('link', { name: 'child crumb' })).not.toBeInTheDocument();
   expect(screen.getByText('child crumb')).toBeInTheDocument();
 
   await expect(container).toHaveNoA11yViolations();
 });
+
+it('should render a labelled navigation landmark with an ordered list', () => {
+  renderBreadcrumbs();
+
+  const nav = screen.getByRole('navigation', { name: 'Breadcrumb' });
+  const list = within(nav).getByRole('list');
+
+  expect(list.tagName).toBe('OL');
+  expect(within(list).getAllByRole('listitem')).toHaveLength(2);
+});
+
+it('should mark the last item as the current page', () => {
+  renderBreadcrumbs();
+
+  expect(screen.getByText('child crumb')).toHaveAttribute('aria-current', 'page');
+  expect(screen.getByRole('link', { name: 'parent crumb' })).not.toHaveAttribute('aria-current');
+});
+
+it('should allow overriding the navigation label', () => {
+  renderBreadcrumbs({ ariaLabel: 'Project path' });
+
+  expect(screen.getByRole('navigation', { name: 'Project path' })).toBeInTheDocument();
+});
+
+const defaultItems: BreadcrumbsProps['items'] = [
+  { linkElement: 'parent crumb', to: 'parent' },
+  { linkElement: 'child crumb', to: 'child' },
+];
+
+function renderBreadcrumbs(props: Partial<BreadcrumbsProps> = {}) {
+  return renderWithMemoryRouter(<Breadcrumbs items={defaultItems} {...props} />);
+}
