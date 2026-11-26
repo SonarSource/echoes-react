@@ -32,8 +32,8 @@ export const SpinnerWrapper = styled.span<{ inline: boolean }>`
   position: relative;
   display: ${displaySwitcher};
 
-  /* 
-   * This prevents the scrollbar from appearing when only the spinner is present in an overflow:auto parent 
+  /*
+   * This prevents the scrollbar from appearing when only the spinner is present in an overflow:auto parent
    */
   overflow: hidden;
   vertical-align: bottom;
@@ -77,14 +77,18 @@ const spinnerTrackColor = `var(--spinner-track-color, ${SPINNER_DEFAULT_TRACK_CO
 
 export const SpinnerStyled = styled.span<{ inline: boolean }>`
   position: relative;
-  animation: ${spinAnimation} 1s infinite linear;
+
+  &[data-loading='true'] {
+    animation: ${spinAnimation} 1s infinite linear;
+  }
 
   &::before,
   &::after {
     position: absolute;
     inset: 0;
     box-sizing: border-box;
-    border-radius: inherit;
+    // Explicit inheritance from the animated parent cause big performance issues in Chrome 158 that has TrackAnimatedSources enabled by default
+    border-radius: ${cssVar('border-radius-full')};
     content: '';
   }
 
