@@ -19,7 +19,7 @@
  */
 
 import styled from '@emotion/styled';
-import React, { forwardRef } from 'react';
+import { useIntl } from 'react-intl';
 import { toHref } from '~common/router/RouterUtils';
 import { cssVar } from '~utils/design-tokens';
 import { IconSlash } from '../icons';
@@ -27,34 +27,63 @@ import { BreadcrumbItem } from './BreadcrumbItem';
 import { BreadcrumbLink } from './BreadcrumbLink';
 import { BreadcrumbLinkProps, BreadcrumbsProps } from './BreadcrumbTypes';
 
-const BreadcrumbsBase = forwardRef<HTMLDivElement, BreadcrumbsProps>((props, ref) => {
-  const { items, ...rest } = props;
+/**
+ * A breadcrumb trail, rendered as a `nav` landmark containing an ordered list of links.
+ * The last item represents the current page and is not a link.
+ */
+export function Breadcrumbs(props: Readonly<BreadcrumbsProps>) {
+  const { ariaLabel, items, ref, ...restProps } = props;
+
+  const intl = useIntl();
+
+  const defaultAriaLabel = intl.formatMessage({
+    id: 'breadcrumbs.label',
+    defaultMessage: 'Breadcrumb',
+    description: 'ARIA-label for the breadcrumb navigation landmark',
+  });
 
   return (
-    <div ref={ref} {...rest}>
-      {items.map((item, index) => (
-        <React.Fragment key={`${index}-${item.to ? toHref(item.to) : ''}`}>
-          {index > 0 && <IconSlash color="echoes-color-icon-subtle" />}
+    <BreadcrumbsNav aria-label={ariaLabel ?? defaultAriaLabel} ref={ref} {...restProps}>
+      <BreadcrumbsList>
+        {items.map((item, index) => (
+          <BreadcrumbsListItem key={`${index}-${item.to ? toHref(item.to) : ''}`}>
+            {index > 0 && <IconSlash color="echoes-color-icon-subtle" />}
 
-          {index === items.length - 1 ? (
-            <BreadcrumbItem {...item} />
-          ) : (
-            <BreadcrumbLink {...(item as BreadcrumbLinkProps)} />
-          )}
-        </React.Fragment>
-      ))}
-    </div>
+            {index === items.length - 1 ? (
+              <BreadcrumbItem {...item} />
+            ) : (
+              <BreadcrumbLink {...(item as BreadcrumbLinkProps)} />
+            )}
+          </BreadcrumbsListItem>
+        ))}
+      </BreadcrumbsList>
+    </BreadcrumbsNav>
   );
-});
+}
 
-BreadcrumbsBase.displayName = 'BreadcrumbsBase';
+Breadcrumbs.displayName = 'Breadcrumbs';
 
-export const Breadcrumbs = styled(BreadcrumbsBase)`
+const BreadcrumbsNav = styled.nav`
+  max-width: 100%;
+`;
+BreadcrumbsNav.displayName = 'BreadcrumbsNav';
+
+const BreadcrumbsList = styled.ol`
   display: flex;
   flex-wrap: wrap;
   font: ${cssVar('typography-text-small-regular')};
   gap: ${cssVar('dimension-space-75')};
+  list-style: none;
+  margin: 0;
   max-width: 100%;
+  padding: 0;
 `;
+BreadcrumbsList.displayName = 'BreadcrumbsList';
 
-Breadcrumbs.displayName = 'Breadcrumbs';
+const BreadcrumbsListItem = styled.li`
+  align-items: center;
+  display: inline-flex;
+  gap: ${cssVar('dimension-space-75')};
+  min-width: 0;
+`;
+BreadcrumbsListItem.displayName = 'BreadcrumbsListItem';
