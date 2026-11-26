@@ -54,19 +54,13 @@ it('allows setting a custom label to the spinner', () => {
 
 it('only animates while loading', () => {
   const { container, rerender } = setupSpinner();
-  expect(getSpinnerIcon(container)).toHaveStyleRule(
-    'animation',
-    expect.stringContaining('1s infinite linear'),
-  );
+  expect(getComputedStyle(getSpinnerIcon(container)).animation).toContain('1s infinite linear');
 
   rerender({ isLoading: false });
-  expect(getSpinnerIcon(container)).not.toHaveStyleRule('animation', expect.any(String));
+  expect(getComputedStyle(getSpinnerIcon(container)).animation).toBe('');
 
   rerender({ isLoading: true });
-  expect(getSpinnerIcon(container)).toHaveStyleRule(
-    'animation',
-    expect.stringContaining('1s infinite linear'),
-  );
+  expect(getComputedStyle(getSpinnerIcon(container)).animation).toContain('1s infinite linear');
 });
 
 it('allows setting a custom aria-label to the spinner', () => {
