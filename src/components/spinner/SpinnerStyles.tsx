@@ -84,7 +84,8 @@ export const SpinnerStyled = styled.span<{ inline: boolean }>`
     position: absolute;
     inset: 0;
     box-sizing: border-box;
-    border-radius: inherit;
+    /* Explicit inheritance from the animated parent prevents style sharing in Chrome. */
+    border-radius: ${cssVar('border-radius-full')};
     content: '';
   }
 
