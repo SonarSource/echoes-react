@@ -74,6 +74,7 @@ export const Spinner = forwardRef<HTMLOutputElement, SpinnerProps>((props, ref) 
           <SpinnerStyled
             /** Needs to also be inline if a visible label is present next to the Spinner icon */
             inline={isInline || isDefined(label)}
+            isLoading={isLoading}
           />
           {isLoading &&
             (label ? (

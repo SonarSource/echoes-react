@@ -18,7 +18,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import { keyframes } from '@emotion/react';
+import { css, keyframes } from '@emotion/react';
 import styled from '@emotion/styled';
 import { screenReaderOnly } from '~common/helpers/styles';
 
@@ -75,9 +75,13 @@ const spinnerBorderWidth = '2px';
 const spinnerColor = `var(--spinner-color, ${SPINNER_DEFAULT_COLOR})`;
 const spinnerTrackColor = `var(--spinner-track-color, ${SPINNER_DEFAULT_TRACK_COLOR})`;
 
-export const SpinnerStyled = styled.span<{ inline: boolean }>`
+export const SpinnerStyled = styled.span<{ inline: boolean; isLoading: boolean }>`
   position: relative;
-  animation: ${spinAnimation} 1s infinite linear;
+  ${({ isLoading }) =>
+    isLoading &&
+    css`
+      animation: ${spinAnimation} 1s infinite linear;
+    `}
 
   &::before,
   &::after {
