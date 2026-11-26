@@ -18,7 +18,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import { ReactNode } from 'react';
+import { ReactNode, Ref } from 'react';
 import { LinkBaseProps, LinkStandaloneBaseProps } from '../links/LinkTypes';
 
 export interface BreadcrumbLinkProps
@@ -36,9 +36,23 @@ export type BreadcrumbsItems =
   | BreadcrumbLinkProps[];
 
 export interface BreadcrumbsProps {
+  /**
+   * Accessible name of the breadcrumb navigation landmark.
+   *
+   * @defaultValue localized `'Breadcrumb'`
+   */
+  ariaLabel?: string;
+  /**
+   * Additional CSS class applied to the root `nav` element.
+   */
   className?: string;
   /**
    * A list of breadcrumb props. The last item can (and probably should, in most cases) omit the `to` prop, it will not be a link anyway.
+   * The last item is rendered as the current page (`aria-current="page"`).
    */
   items: BreadcrumbsItems;
+  /**
+   * Ref forwarded to the root `nav` element.
+   */
+  ref?: Ref<HTMLElement>;
 }
