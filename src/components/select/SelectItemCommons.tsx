@@ -84,18 +84,27 @@ const SelectItemWrapper = styled.div`
     cursor: pointer;
   }
 
-  .echoes-select-option:not([data-combobox-disabled]):hover &,
-  .echoes-select-option:not([data-combobox-disabled])[data-combobox-selected] & {
+  .echoes-select-option:not([data-combobox-disabled]):hover & {
     background-color: ${cssVar('color-surface-hover')};
   }
+
+  .echoes-select-option:not([data-combobox-disabled])[data-combobox-selected] & {
+    background-color: ${cssVar('color-surface-hover')};
+    border-radius: ${cssVar('border-radius-400')};
+    outline: ${cssVar('color-focus-default')} solid ${cssVar('focus-border-width-default')};
+    outline-offset: -2px;
+  }
+
   .echoes-select-option:not([data-combobox-disabled])[data-combobox-active] & {
     background-color: ${cssVar('color-background-selected-weak-default')};
   }
+
   .echoes-select-option:not([data-combobox-disabled])[data-combobox-active]:hover &,
   .echoes-select-option:not([data-combobox-disabled])[data-combobox-active][data-combobox-selected]
     & {
     background-color: ${cssVar('color-background-selected-weak-hover')};
   }
+
   .echoes-select-option[data-combobox-disabled] & {
     color: ${cssVar('color-text-disabled')};
     cursor: default;
