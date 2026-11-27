@@ -86,9 +86,7 @@ const items = (
 
     <DropdownMenu.Separator />
 
-    <DropdownMenu.GroupLabel>Enterprises</DropdownMenu.GroupLabel>
-
-    {enterpriseItems}
+    <DropdownMenu.Group label="Enterprises">{enterpriseItems}</DropdownMenu.Group>
 
     <DropdownMenu.Separator />
 
@@ -105,9 +103,7 @@ const items = (
 
     <DropdownMenu.Separator />
 
-    <DropdownMenu.GroupLabel>Theme</DropdownMenu.GroupLabel>
-
-    {themeItems}
+    <DropdownMenu.Group label="Theme">{themeItems}</DropdownMenu.Group>
 
     <DropdownMenu.Separator />
 
@@ -166,19 +162,19 @@ export const MenuWithGroupLabelAction: Story = {
       <DropdownMenu
         items={
           <>
-            <DropdownMenu.GroupLabel link={{ linkElement: 'View all', to: '/enterprises' }}>
-              Enterprises
-            </DropdownMenu.GroupLabel>
-
-            {enterpriseItems}
+            <DropdownMenu.Group
+              label="Enterprises"
+              link={{ linkElement: 'View all', to: '/enterprises' }}>
+              {enterpriseItems}
+            </DropdownMenu.Group>
 
             <DropdownMenu.Separator />
 
-            <DropdownMenu.GroupLabel link={{ linkElement: 'Configure', to: '/theme-settings' }}>
-              Theme
-            </DropdownMenu.GroupLabel>
-
-            {themeItems}
+            <DropdownMenu.Group
+              label="Theme"
+              link={{ linkElement: 'Configure', to: '/theme-settings' }}>
+              {themeItems}
+            </DropdownMenu.Group>
           </>
         }>
         <MenuButton>Menu with links</MenuButton>
