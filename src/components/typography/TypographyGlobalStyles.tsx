@@ -30,6 +30,7 @@ TypographyGlobalStyles.displayName = 'TypographyGlobalStyles';
 const typographyGlobalStyles = css`
   body {
     font: ${cssVar('typography-text-default-regular')};
+    font-optical-sizing: auto;
     color: ${cssVar('color-text-default')};
   }
 
