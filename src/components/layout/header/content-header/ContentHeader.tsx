@@ -19,8 +19,9 @@
  */
 
 import styled from '@emotion/styled';
-import { forwardRef } from 'react';
+import { forwardRef, useContext, useLayoutEffect } from 'react';
 import { cssVar } from '~utils/design-tokens';
+import { ContentGridScrollContext } from '../../LayoutSlots';
 import { ContentGridArea } from '../../LayoutTypes';
 import { StyledHeaderBase } from '../common/HeaderBase';
 import { StyledDivider, StyledDividerWithOverlap } from '../common/HeaderStyles';
@@ -30,8 +31,26 @@ import { HeaderProps } from '../common/HeaderTypes';
  * A flexible content header component that displays a title, optional metadata, description,
  * breadcrumbs, actions and navigation.
  */
-export const ContentHeaderRoot = forwardRef<HTMLDivElement, HeaderProps>((props, ref) => {
-  const { hasDivider, navigation, ...rest } = props;
+export interface ContentHeaderProps extends HeaderProps {
+  /**
+   * Scrolls this header with PageGrid instead of keeping it fixed above the page.
+   * @defaultValue false
+   */
+  scrollFirst?: boolean;
+}
+
+export const ContentHeaderRoot = forwardRef<HTMLDivElement, ContentHeaderProps>((props, ref) => {
+  const { hasDivider, navigation, scrollFirst, ...rest } = props;
+  const setScrollFirst = useContext(ContentGridScrollContext);
+
+  useLayoutEffect(() => {
+    if (!scrollFirst || !setScrollFirst) {
+      return undefined;
+    }
+
+    setScrollFirst(true);
+    return () => setScrollFirst(false);
+  }, [scrollFirst, setScrollFirst]);
   return (
     <StyledContentHeader>
       <StyledHeaderBase {...rest} hasDivider={false} navigation={navigation} ref={ref} />

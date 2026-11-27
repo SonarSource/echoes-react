@@ -18,10 +18,21 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+import { matchers } from '@emotion/jest';
 import { screen } from '@testing-library/react';
 import { render } from '~common/helpers/test-utils';
-import { AsideLeft, PageContent, PageContentProps, PageGrid, PageGridProps } from '../LayoutSlots';
+import {
+  AsideLeft,
+  ContentGrid,
+  PageContent,
+  PageContentProps,
+  PageGrid,
+  PageGridProps,
+} from '../LayoutSlots';
 import { AsideSize, PageWidth } from '../LayoutTypes';
+import { ContentHeader } from '../header';
+
+expect.extend(matchers);
 
 describe('PageGrid', () => {
   it.each([[PageWidth.default, 'var(--echoes-layout-sizes-max-width-default)']])(
@@ -64,6 +75,49 @@ describe('PageGrid', () => {
     // eslint-disable-next-line testing-library/no-node-access
     expect(container.firstChild).toHaveAttribute('aria-busy', ariaBusy);
     expect(screen.getByText(expectedText)).toBeInTheDocument();
+  });
+});
+
+describe('ContentGrid', () => {
+  it.each([
+    ['default', false, 'hidden', '', 'auto'],
+    ['scrollFirst', true, 'auto', 'sticky', 'visible'],
+  ])(
+    'keeps the header full-width and uses %s scrolling',
+    (_, scrollFirst, gridOverflow, asidePosition, pageOverflow) => {
+      render(
+        <ContentGrid data-testid="grid">
+          <ContentHeader
+            scrollFirst={scrollFirst}
+            title={<ContentHeader.Title>header</ContentHeader.Title>}
+          />
+          <AsideLeft id="aside">aside</AsideLeft>
+          <PageGrid id="page">
+            <PageContent>content</PageContent>
+          </PageGrid>
+        </ContentGrid>,
+      );
+
+      expect(getComputedStyle(screen.getByTestId('grid')).overflowY).toBe(gridOverflow);
+      expect(getComputedStyle(screen.getByText('aside')).position).toBe(asidePosition);
+      expect(getComputedStyle(screen.getByText('aside')).overflowY).toBe('auto');
+      // eslint-disable-next-line testing-library/no-node-access
+      const page = screen.getByText('content').closest('#page');
+      expect(page).not.toBeNull();
+      expect(getComputedStyle(page!).overflowY).toBe(pageOverflow);
+    },
+  );
+
+  it('resets the layout when the scrolling header unmounts', () => {
+    const { rerender } = render(
+      <ContentGrid data-testid="grid">
+        <ContentHeader scrollFirst title={<ContentHeader.Title>header</ContentHeader.Title>} />
+      </ContentGrid>,
+    );
+    expect(getComputedStyle(screen.getByTestId('grid')).overflowY).toBe('auto');
+
+    rerender(<ContentGrid data-testid="grid" />);
+    expect(getComputedStyle(screen.getByTestId('grid')).overflowY).toBe('hidden');
   });
 });
 
