@@ -18,7 +18,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import { screen } from '@testing-library/react';
+import { screen, within } from '@testing-library/react';
 import { renderWithMemoryRouter } from '~common/helpers/test-utils';
 import { Theme } from '~generated/themes';
 import { ThemeProvider } from '~utils/theme';
@@ -148,8 +148,9 @@ it('should render many different items', async () => {
       isOpen
       items={
         <>
-          <DropdownMenu.GroupLabel>DropdownMenu.ItemButton variants</DropdownMenu.GroupLabel>
-          <DropdownMenu.ItemButton>simple ItemButton</DropdownMenu.ItemButton>
+          <DropdownMenu.Group label="DropdownMenu.ItemButton variants">
+            <DropdownMenu.ItemButton>simple ItemButton</DropdownMenu.ItemButton>
+          </DropdownMenu.Group>
           <DropdownMenu.ItemButton ariaLabel="the aria-label">
             ItemButton with aria-label
           </DropdownMenu.ItemButton>
@@ -393,4 +394,105 @@ it('should forward ref to GroupLabel', () => {
   );
 
   expect(ref.current).toBeInstanceOf(HTMLDivElement);
+});
+
+it('should associate the Group label with its items', async () => {
+  const { container } = renderWithMemoryRouter(
+    <DropdownMenu
+      isOpen
+      items={
+        <>
+          <DropdownMenu.Group label="First group">
+            <DropdownMenu.ItemButton>First item</DropdownMenu.ItemButton>
+          </DropdownMenu.Group>
+          <DropdownMenu.Separator />
+          <DropdownMenu.Group label="Second group">
+            <DropdownMenu.ItemButton>Second item</DropdownMenu.ItemButton>
+          </DropdownMenu.Group>
+        </>
+      }>
+      {trigger}
+    </DropdownMenu>,
+  );
+
+  const firstGroup = await screen.findByRole('group', { name: 'First group' });
+  const secondGroup = screen.getByRole('group', { name: 'Second group' });
+
+  expect(within(firstGroup).getByRole('menuitem', { name: 'First item' })).toBeVisible();
+  expect(within(secondGroup).getByRole('menuitem', { name: 'Second item' })).toBeVisible();
+  expect(within(firstGroup).queryByText('Second item')).not.toBeInTheDocument();
+
+  await expect(container).toHaveNoA11yViolations();
+});
+
+it('should render Group with a label link', () => {
+  renderWithMemoryRouter(
+    <DropdownMenu
+      isOpen
+      items={
+        <DropdownMenu.Group label="My Group" link={{ linkElement: 'View all', to: '/view-all' }}>
+          <DropdownMenu.ItemButton>Item in group</DropdownMenu.ItemButton>
+        </DropdownMenu.Group>
+      }>
+      {trigger}
+    </DropdownMenu>,
+  );
+
+  const group = screen.getByRole('group', { name: 'My Group' });
+  const link = within(group).getByRole('menuitem', { name: 'View all' });
+
+  expect(link).toBeVisible();
+  expect(link).toHaveAttribute('href', '/view-all');
+});
+
+it('should navigate through Group items with the keyboard', async () => {
+  const { user } = renderWithMemoryRouter(
+    <DropdownMenu
+      items={
+        <>
+          <DropdownMenu.Group label="First group" link={{ linkElement: 'View all', to: '/all' }}>
+            <DropdownMenu.ItemButton>First item</DropdownMenu.ItemButton>
+          </DropdownMenu.Group>
+          <DropdownMenu.Group label="Second group">
+            <DropdownMenu.ItemButton>Second item</DropdownMenu.ItemButton>
+          </DropdownMenu.Group>
+        </>
+      }>
+      {trigger}
+    </DropdownMenu>,
+  );
+
+  screen.getByRole('button', { name: 'Trigger' }).focus();
+  await user.keyboard('{Enter}');
+
+  expect(screen.getByRole('menuitem', { name: 'View all' })).toHaveFocus();
+
+  await user.keyboard('{ArrowDown}');
+
+  expect(screen.getByRole('menuitem', { name: 'First item' })).toHaveFocus();
+
+  await user.keyboard('{ArrowDown}');
+
+  expect(screen.getByRole('menuitem', { name: 'Second item' })).toHaveFocus();
+});
+
+it('should forward className and ref to Group', () => {
+  const ref = { current: null };
+
+  renderWithMemoryRouter(
+    <DropdownMenu
+      isOpen
+      items={
+        <DropdownMenu.Group className="custom-class" label="My Group" ref={ref}>
+          <DropdownMenu.ItemButton>Item in group</DropdownMenu.ItemButton>
+        </DropdownMenu.Group>
+      }>
+      {trigger}
+    </DropdownMenu>,
+  );
+
+  const group = screen.getByRole('group', { name: 'My Group' });
+
+  expect(ref.current).toBe(group);
+  expect(group).toHaveClass('custom-class');
 });
