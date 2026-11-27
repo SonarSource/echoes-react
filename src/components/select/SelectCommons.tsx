@@ -133,8 +133,13 @@ export const SelectBase = forwardRef<HTMLInputElement, PropsWithLabels<SelectBas
 
     const rightSection = getSelectRightSection({
       hasValue: isStringDefined(selectProps.value),
-      isLoading,
       isClearable,
+    });
+
+    const defaultLabelNotFound = intl.formatMessage({
+      id: 'select.not_results',
+      defaultMessage: 'No results',
+      description: 'Label indicating no option matches the search query',
     });
 
     useEffect(() => {
@@ -189,7 +194,7 @@ export const SelectBase = forwardRef<HTMLInputElement, PropsWithLabels<SelectBas
           label={label}
           labelProps={SELECT_LABEL_PROPS}
           leftSection={valueIcon}
-          nothingFoundMessage={labelNotFound}
+          nothingFoundMessage={labelNotFound ?? defaultLabelNotFound}
           // Mantine 9 types the option as nullable (it is `null` when the value is cleared or
           // deselected), but our public `onChange` signature has always promised a `SelectOption`.
           onChange={onChange as MantineSelectProps['onChange']}
@@ -198,7 +203,7 @@ export const SelectBase = forwardRef<HTMLInputElement, PropsWithLabels<SelectBas
           ref={setRef}
           renderOption={optionRenderer}
           required={isRequired}
-          rightSection={rightSection}
+          rightSection={<Spinner isLoading={isLoading}>{rightSection}</Spinner>}
           rightSectionPointerEvents={isDefined(rightSection) ? 'none' : 'auto'} // Necessary to allow click events to go through and trigger the dropdown to open
           role="combobox"
           searchable={isSearchable}
@@ -471,18 +476,14 @@ const selectGlobalStyles = css`
   }
 `;
 
-interface SelectRightSectionProps extends Pick<SelectBaseProps, 'isLoading'> {
+interface SelectRightSectionProps {
   hasValue: boolean;
   isClearable: boolean;
 }
 
 // Can't be a component because it must return undefined when not needed
 export function getSelectRightSection(props: Readonly<SelectRightSectionProps>) {
-  const { isLoading, isClearable, hasValue, ...rest } = props;
-
-  if (isLoading) {
-    return <Spinner isLoading />;
-  }
+  const { isClearable, hasValue, ...rest } = props;
 
   // Display the clear button instead of the dropdown icon when the select is clearable and has a value selected
   if (isClearable && hasValue) {
